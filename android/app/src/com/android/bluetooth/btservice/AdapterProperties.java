@@ -82,6 +82,7 @@ class AdapterProperties {
             "persist.bluetooth.a2dp_offload.disabled";
 
     private static final long DEFAULT_DISCOVERY_TIMEOUT_MS = 12800;
+    private static final int BLUETOOTH_NAME_MAX_LENGTH_CHARS = 248;
     private static final int BD_ADDR_LEN = 6; // in bytes
 
     private volatile String mName;
@@ -317,6 +318,8 @@ class AdapterProperties {
      */
     boolean setName(String name) {
         synchronized (mObject) {
+            if (name.length() > BLUETOOTH_NAME_MAX_LENGTH_CHARS)
+                name =  name.substring(0, BLUETOOTH_NAME_MAX_LENGTH_CHARS);
             return mService.setAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_BDNAME,
                     name.getBytes());
         }
