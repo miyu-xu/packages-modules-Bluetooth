@@ -34,6 +34,7 @@ import android.net.Uri;
 import android.os.ParcelUuid;
 import android.util.Log;
 
+import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
@@ -64,6 +65,7 @@ public class MapClientService extends ProfileService {
     private DatabaseManager mDatabaseManager;
     private static MapClientService sMapClientService;
     private MapBroadcastReceiver mMapReceiver;
+    private int mMaxMapClientDevices;
 
     public static synchronized MapClientService getMapClientService() {
         if (sMapClientService == null) {
@@ -116,14 +118,14 @@ public class MapClientService extends ProfileService {
         MceStateMachine mapStateMachine = mMapInstanceMap.get(device);
         if (mapStateMachine == null) {
             // a map state machine instance doesn't exist yet, create a new one if we can.
-            if (mMapInstanceMap.size() < MAXIMUM_CONNECTED_DEVICES) {
+            if (mMapInstanceMap.size() < mMaxMapClientDevices) {
                 addDeviceToMapAndConnect(device);
                 return true;
             } else {
                 // Maxed out on the number of allowed connections.
                 // see if some of the current connections can be cleaned-up, to make room.
                 removeUncleanAccounts();
-                if (mMapInstanceMap.size() < MAXIMUM_CONNECTED_DEVICES) {
+                if (mMapInstanceMap.size() < mMaxMapClientDevices) {
                     addDeviceToMapAndConnect(device);
                     return true;
                 } else {
@@ -311,6 +313,8 @@ public class MapClientService extends ProfileService {
                 return false;
             }
         }
+
+        mMaxMapClientDevices = getResources().getInteger(R.integer.config_maxMapClientDevices);
 
         mMapReceiver = new MapBroadcastReceiver();
         IntentFilter filter = new IntentFilter();
@@ -766,3 +770,4 @@ public class MapClientService extends ProfileService {
         }
     }
 }
+

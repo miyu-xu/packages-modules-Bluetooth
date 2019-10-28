@@ -144,4 +144,14 @@
      -->
     <bool name="enable_gd_up_to_scanning_layer">true</bool>
 
+    <!-- Maximum number of PBAP Client connections allowed. -->
+    <integer name="config_maxPbapClientDevices">10</integer>
+
+    <!-- Maximum number of MAP Client connections allowed. -->
+    <integer name="config_maxMapClientDevices">4</integer>
+
+    <!-- Maximum number of HFP Client connections allowed.
+         When set to -1, this configuration is disabled. -->
+    <integer name="config_maxHfpClientDevices">-1</integer>
+
 </resources>

@@ -978,6 +978,10 @@ public class HeadsetClientStateMachine extends StateMachine {
 
             switch (message.what) {
                 case CONNECT:
+                    // Don't connect if the max number of connected devices are reached
+                    if (mService.isMaxConnectedDevicesReached()) {
+                        break;
+                    }
                     BluetoothDevice device = (BluetoothDevice) message.obj;
                     if (!mNativeInterface.connect(device)) {
                         // No state transition is involved, fire broadcast immediately
@@ -1016,7 +1020,7 @@ public class HeadsetClientStateMachine extends StateMachine {
             switch (state) {
                 case HeadsetClientHalConstants.CONNECTION_STATE_CONNECTED:
                     Log.w(TAG, "HFPClient Connecting from Disconnected state");
-                    if (okToConnect(device)) {
+                    if (okToConnect(device) && !mService.isMaxConnectedDevicesReached()) {
                         Log.i(TAG, "Incoming AG accepted");
                         mCurrentDevice = device;
                         transitionTo(mConnecting);

@@ -58,8 +58,8 @@ public class PbapClientService extends ProfileService {
 
     private static final String TAG = "PbapClientService";
     private static final String SERVICE_NAME = "Phonebook Access PCE";
-    // MAXIMUM_DEVICES set to 10 to prevent an excessive number of simultaneous devices.
-    private static final int MAXIMUM_DEVICES = 10;
+    // Maximum devices set to prevent an excessive number of simultaneous devices.
+    private int mMaxPbapClientDevices;
     private Map<BluetoothDevice, PbapClientStateMachine> mPbapClientStateMachineMap =
             new ConcurrentHashMap<>();
     private static PbapClientService sPbapClientService;
@@ -94,6 +94,8 @@ public class PbapClientService extends ProfileService {
         } catch (Exception e) {
             Log.w(TAG, "Unable to register pbapclient receiver", e);
         }
+
+        mMaxPbapClientDevices = getResources().getInteger(R.integer.config_maxPbapClientDevices);
 
         removeUncleanAccounts();
         registerSdpRecord();
@@ -394,7 +396,7 @@ public class PbapClientService extends ProfileService {
         synchronized (mPbapClientStateMachineMap) {
             PbapClientStateMachine pbapClientStateMachine = mPbapClientStateMachineMap.get(device);
             if (pbapClientStateMachine == null
-                    && mPbapClientStateMachineMap.size() < MAXIMUM_DEVICES) {
+                    && mPbapClientStateMachineMap.size() < mMaxPbapClientDevices) {
                 pbapClientStateMachine = new PbapClientStateMachine(this, device);
                 pbapClientStateMachine.start();
                 mPbapClientStateMachineMap.put(device, pbapClientStateMachine);
