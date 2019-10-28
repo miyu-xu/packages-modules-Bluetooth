@@ -151,14 +151,19 @@ public class MapClientTest {
     }
 
     /**
-     * Test connecting MAXIMUM_CONNECTED_DEVICES devices.
+     * Test connecting config_maxMapClientDevices devices.
      */
     @Test
     public void testConnectMaxDevices() {
+        int maxConnectedDevices;
+
+        maxConnectedDevices = mTargetContext.getResources().getInteger(
+            R.integer.config_maxMapClientDevices);
+
         // Create bluetoothdevice & mock statemachine objects to be used in this test
         List<BluetoothDevice> list = new ArrayList<>();
         String address = "11:11:11:11:11:1";
-        for (int i = 0; i < MapClientService.MAXIMUM_CONNECTED_DEVICES; ++i) {
+        for (int i = 0; i < maxConnectedDevices; ++i) {
             list.add(makeBluetoothDevice(address + i));
         }
 
@@ -175,7 +180,7 @@ public class MapClientTest {
 
         // verify
         Map<BluetoothDevice, MceStateMachine> map = mService.getInstanceMap();
-        Assert.assertEquals(MapClientService.MAXIMUM_CONNECTED_DEVICES, map.size());
+        Assert.assertEquals(maxConnectedDevices, map.size());
         for (BluetoothDevice d : list) {
             Assert.assertNotNull(map.get(d));
         }
