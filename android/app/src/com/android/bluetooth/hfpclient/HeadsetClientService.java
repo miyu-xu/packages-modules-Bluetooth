@@ -34,6 +34,7 @@ import android.os.HandlerThread;
 import android.os.Message;
 import android.util.Log;
 
+import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
@@ -74,6 +75,9 @@ public class HeadsetClientService extends ProfileService {
     private AudioManager mAudioManager = null;
     private BatteryManager mBatteryManager = null;
     private int mLastBatteryLevel = -1;
+    private int mMaxConnectedHfpClientDevices;
+    private static final int MAX_CONNECTION_CONFIG_DISABLED = -1;
+
     // Maxinum number of devices we can try connecting to in one session
     private static final int MAX_STATE_MACHINES_POSSIBLE = 100;
 
@@ -106,6 +110,9 @@ public class HeadsetClientService extends ProfileService {
             mNativeInterface.initialize();
 
             mBatteryManager = getSystemService(BatteryManager.class);
+
+            mMaxConnectedHfpClientDevices = getResources().getInteger(
+                R.integer.config_maxHfpClientDevices);
 
             mAudioManager = getSystemService(AudioManager.class);
             if (mAudioManager == null) {
@@ -726,6 +733,11 @@ public class HeadsetClientService extends ProfileService {
             return false;
         }
 
+        // Can't connect if max number of connected devices is reached.
+        if (isMaxConnectedDevicesReached()) {
+            return false;
+        }
+
         sm.sendMessage(HeadsetClientStateMachine.CONNECT, device);
         return true;
     }
@@ -1211,6 +1223,28 @@ public class HeadsetClientService extends ProfileService {
             }
         }
         return false;
+    }
+
+    boolean isMaxConnectedDevicesReached() {
+        if (mMaxConnectedHfpClientDevices == MAX_CONNECTION_CONFIG_DISABLED) {
+            return false;
+        }
+        int connectedDevices = 0;
+        HeadsetClientStateMachine sm;
+        synchronized (mStateMachineMap) {
+            for (BluetoothDevice tempDevice : mStateMachineMap.keySet()) {
+                sm = getStateMachine(tempDevice);
+                if (sm != null) {
+                    int state = sm.getConnectionState(tempDevice);
+                    if (state == BluetoothProfile.STATE_CONNECTING
+                        || state == BluetoothProfile.STATE_CONNECTED) {
+                        connectedDevices++;
+                    }
+                }
+            }
+        }
+        // Check if we already connected max number of devices
+        return connectedDevices >= mMaxConnectedHfpClientDevices;
     }
 
     private HeadsetClientStateMachine getStateMachine(BluetoothDevice device) {
