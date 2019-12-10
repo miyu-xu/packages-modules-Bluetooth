@@ -110,6 +110,7 @@ typedef enum {
   BTIF_AV_AVRCP_CLOSE_EVT,
   BTIF_AV_AVRCP_REMOTE_PLAY_EVT,
   BTIF_AV_SET_LATENCY_REQ_EVT,
+  BTIF_AV_SINK_CONFIG_UPDATE_EVT,
 } btif_av_sm_event_t;
 
 class BtifAvEvent {
@@ -1982,6 +1983,12 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
       btif_a2dp_on_offload_started(peer_.PeerAddress(), BTA_AV_FAIL);
       break;
 
+    case BTIF_AV_SINK_CONFIG_UPDATE_EVT:
+      tBTA_AVK_CONFIG reconfig_codec;
+      memcpy(&reconfig_codec, p_data, sizeof(reconfig_codec));
+      btif_a2dp_sink_update_decoder((uint8_t*)(reconfig_codec.codec_info));
+      break;
+
     default:
       LOG_WARN("%s: Peer %s : Unhandled event=%s", __PRETTY_FUNCTION__,
                ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
@@ -2266,6 +2273,12 @@ bool BtifAvStateMachine::StateOpening::ProcessEvent(uint32_t event,
       if (peer_.SelfInitiatedConnection()) {
         btif_queue_advance();
       }
+      break;
+
+    case BTIF_AV_SINK_CONFIG_UPDATE_EVT:
+      tBTA_AVK_CONFIG reconfig_codec;
+      memcpy(&reconfig_codec, p_data, sizeof(reconfig_codec));
+      btif_a2dp_sink_update_decoder((uint8_t*)(reconfig_codec.codec_info));
       break;
 
       CHECK_RC_EVENT(event, (tBTA_AV*)p_data);
@@ -3451,8 +3464,16 @@ static void bta_av_sink_media_callback(const RawAddress& peer_address,
       LOG_VERBOSE("%s: address=%s", __func__,
                   ADDRESS_TO_LOGGABLE_CSTR(p_data->avk_config.bd_addr));
 
+      tBTA_AVK_CONFIG reconfig_codec;
+      reconfig_codec.codec_info = p_data->avk_config.codec_info;
+      BtifAvEvent btif_av_event_reconfig_codec(BTIF_AV_SINK_CONFIG_UPDATE_EVT, &reconfig_codec,
+                                sizeof(reconfig_codec));
       // Update the codec info of the A2DP Sink decoder
-      btif_a2dp_sink_update_decoder((uint8_t*)(p_data->avk_config.codec_info));
+      do_in_main_thread(FROM_HERE,
+                        base::Bind(&btif_av_handle_event,
+                                   AVDT_TSEP_SRC,  // peer_sep
+                                   p_data->avk_config.bd_addr, kBtaHandleUnknown,
+                                   btif_av_event_reconfig_codec));
 
       config_req.sample_rate =
           A2DP_GetTrackSampleRate(p_data->avk_config.codec_info);
