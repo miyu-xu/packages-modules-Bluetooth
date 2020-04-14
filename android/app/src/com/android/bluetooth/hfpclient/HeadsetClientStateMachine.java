@@ -1597,8 +1597,11 @@ public class HeadsetClientStateMachine extends StateMachine {
                             if (event.valueInt == HeadsetClientHalConstants.VOLUME_TYPE_SPK) {
                                 mCommandedSpeakerVolume = hfToAmVol(event.valueInt2);
                                 logD("AM volume set to " + mCommandedSpeakerVolume);
+                                boolean show_volume = SystemProperties
+                                        .getBoolean("bluetooth.hfp_volume_control.enabled", true);
                                 mAudioManager.setStreamVolume(AudioManager.STREAM_VOICE_CALL,
-                                        +mCommandedSpeakerVolume, AudioManager.FLAG_SHOW_UI);
+                                        +mCommandedSpeakerVolume,
+                                        show_volume ? AudioManager.FLAG_SHOW_UI : 0);
                             } else if (event.valueInt
                                     == HeadsetClientHalConstants.VOLUME_TYPE_MIC) {
                                 mAudioManager.setMicrophoneMute(event.valueInt2 == 0);
