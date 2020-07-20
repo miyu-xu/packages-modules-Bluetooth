@@ -119,7 +119,7 @@ typedef uint8_t tBTA_SERVICE_ID;
 #define BTA_ALL_SERVICE_MASK 0x7FFFFFFF  /* All services supported by BTA. */
 #define BTA_USER_SERVICE_MASK 0x80000000 /* Message Notification Profile */
 
-typedef uint32_t tBTA_SERVICE_MASK;
+typedef uint64_t tBTA_SERVICE_MASK;
 
 /* Security Setting Mask */
 #define BTA_SEC_AUTHENTICATE \

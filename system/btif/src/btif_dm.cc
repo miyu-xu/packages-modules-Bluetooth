@@ -215,7 +215,6 @@ typedef struct {
   struct timespec timestamp;
 } btif_bond_event_t;
 
-#define BTA_SERVICE_ID_TO_SERVICE_MASK(id) (1 << (id))
 
 #define MAX_BTIF_BOND_EVENT_ENTRIES 15
 
@@ -1690,7 +1689,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
 
       RawAddress& bd_addr = p_data->disc_res.bd_addr;
 
-      LOG_VERBOSE("result=0x%x, services 0x%x", p_data->disc_res.result,
+      LOG_VERBOSE("result=0x%x, services: 0x%" PRIx64 , p_data->disc_res.result,
                   p_data->disc_res.services);
       if (p_data->disc_res.result != BTA_SUCCESS &&
           pairing_cb.state == BT_BOND_STATE_BONDED &&

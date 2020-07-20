@@ -70,6 +70,7 @@
 #include "stack/include/btu.h"       // do_in_main_thread
 #include "stack/include/srvc_api.h"  // DIS_ReadDISInfo
 #include "stack/sdp/sdpint.h"
+#include <inttypes.h>
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
@@ -1354,7 +1355,7 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
       BTM_LogHistory(
           kBtmLogTag, bta_dm_search_cb.peer_bdaddr, "Discovery completed",
-          base::StringPrintf("Result:%s services_found:0x%x service_index:0x%d",
+          base::StringPrintf("Result:%s services_found:0x%" PRIx64 "service_index:0x%d",
                              sdp_result_text(sdp_result).c_str(),
                              bta_dm_search_cb.services_found,
                              bta_dm_search_cb.service_index));
@@ -1772,7 +1773,7 @@ static void bta_dm_find_services(const RawAddress& bd_addr) {
                        bta_dm_search_cb.services);
       /* try to search all services by search based on L2CAP UUID */
       if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK) {
-        LOG_INFO("%s services_to_search=%08x", __func__,
+        LOG_INFO("%s services_to_search: 0x%" PRIx64, __func__,
                  bta_dm_search_cb.services_to_search);
         if (bta_dm_search_cb.services_to_search & BTA_RES_SERVICE_MASK) {
           uuid = Uuid::From16Bit(bta_service_id_to_uuid_lkup_tbl[0]);

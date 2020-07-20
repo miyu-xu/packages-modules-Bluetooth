@@ -58,7 +58,7 @@
 
 #define BTA_DM_MSG_LEN 50
 
-#define BTA_SERVICE_ID_TO_SERVICE_MASK(id) (1 << (id))
+#define BTA_SERVICE_ID_TO_SERVICE_MASK(id) ((tBTA_SERVICE_MASK)1 << (id))
 
 /* DM search events */
 typedef enum : uint16_t {

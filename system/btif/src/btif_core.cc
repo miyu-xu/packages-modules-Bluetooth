@@ -792,9 +792,9 @@ tBTA_SERVICE_MASK btif_get_enabled_services_mask(void) {
  *
  ******************************************************************************/
 void btif_enable_service(tBTA_SERVICE_ID service_id) {
-  btif_enabled_services |= (1 << service_id);
+  btif_enabled_services |= ((tBTA_SERVICE_MASK)1 << service_id);
 
-  BTIF_TRACE_DEBUG("%s: current services:0x%x", __func__,
+  BTIF_TRACE_DEBUG("%s: current services:0x%" PRIx64, __func__,
                    btif_enabled_services);
 
   if (btif_is_enabled()) {
@@ -811,9 +811,9 @@ void btif_enable_service(tBTA_SERVICE_ID service_id) {
  *
  ******************************************************************************/
 void btif_disable_service(tBTA_SERVICE_ID service_id) {
-  btif_enabled_services &= (tBTA_SERVICE_MASK)(~(1 << service_id));
+  btif_enabled_services &= ~((tBTA_SERVICE_MASK)1 << service_id);
 
-  BTIF_TRACE_DEBUG("%s: Current Services:0x%x", __func__,
+  BTIF_TRACE_DEBUG("%s: Current Services:0x%" PRIx64, __func__,
                    btif_enabled_services);
 
   if (btif_is_enabled()) {
