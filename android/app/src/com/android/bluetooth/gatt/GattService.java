@@ -2583,6 +2583,11 @@ public class GattService extends ProfileService {
                 this, attributionSource, "GattService startAdvertisingSet")) {
             return;
         }
+        if (!Utils.checkPrivilegedPermissionForDataDelivery(
+                this, parameters, attributionSource,
+                "GattService startAdvertisingSet with ADDRESS_TYPE_RANDOM")) {
+            return;
+        }
         mAdvertiseManager.startAdvertisingSet(parameters, advertiseData, scanResponse,
                 periodicParameters, periodicData, duration, maxExtAdvEvents, callback);
     }

@@ -560,6 +560,27 @@ public final class Utils {
     }
 
     /**
+     * Returns true if the BLUETOOTH_PRIVILEGED permission is needed and granted for the
+     * calling app. This permission is needed if advertising address type is set to
+     * ADDRESS_TYPE_RANDOM. Returns false if the result is a soft denial. Throws
+     * SecurityException if the result is a hard denial.
+     * <p>
+     * Should be used in situations where data will be delivered and hence the
+     * app op should be noted.
+     */
+    @SuppressLint("AndroidFrameworkRequiresPermission")
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    public static boolean checkPrivilegedPermissionForDataDelivery(
+            Context context, AdvertisingSetParameters parameters,
+            AttributionSource attributionSource, String message) {
+        if (parameters.getOwnAddressType() == AdvertisingSetParameters.ADDRESS_TYPE_RANDOM) {
+            return checkPermissionForDataDelivery(context, BLUETOOTH_PRIVILEGED,
+                    attributionSource, message);
+        }
+        return true;
+    }
+
+    /**
      * Returns true if the specified package has disavowed the use of bluetooth scans for location,
      * that is, if they have specified the {@code neverForLocation} flag on the BLUETOOTH_SCAN
      * permission.
