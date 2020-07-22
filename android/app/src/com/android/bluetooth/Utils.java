@@ -20,6 +20,7 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.BLUETOOTH_ADVERTISE;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 import static android.Manifest.permission.RENOUNCE_PERMISSIONS;
 import static android.content.PermissionChecker.PERMISSION_HARD_DENIED;
@@ -37,6 +38,7 @@ import android.app.AppOpsManager;
 import android.app.BroadcastOptions;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.le.AdvertisingSetParameters;
 import android.companion.Association;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
@@ -557,6 +559,27 @@ public final class Utils {
             Context context, AttributionSource attributionSource, String message) {
         return checkPermissionForDataDelivery(context, BLUETOOTH_ADVERTISE,
                 attributionSource, message);
+    }
+
+    /**
+     * Returns true if the BLUETOOTH_PRIVILEGED permission is needed and granted for the
+     * calling app. This permission is needed if advertising address type is set to
+     * ADDRESS_TYPE_RANDOM. Returns false if the result is a soft denial. Throws
+     * SecurityException if the result is a hard denial.
+     * <p>
+     * Should be used in situations where data will be delivered and hence the
+     * app op should be noted.
+     */
+    @SuppressLint("AndroidFrameworkRequiresPermission")
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    public static boolean checkPrivilegedPermissionForDataDelivery(
+            Context context, AdvertisingSetParameters parameters,
+            AttributionSource attributionSource, String message) {
+        if (parameters.getOwnAddressType() == AdvertisingSetParameters.ADDRESS_TYPE_RANDOM) {
+            return checkPermissionForDataDelivery(context, BLUETOOTH_PRIVILEGED,
+                    attributionSource, message);
+        }
+        return true;
     }
 
     /**
