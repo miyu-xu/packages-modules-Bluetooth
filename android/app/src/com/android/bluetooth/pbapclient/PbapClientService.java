@@ -526,7 +526,7 @@ public class PbapClientService extends ProfileService {
             throw new IllegalArgumentException("Null device");
         }
         Log.d(TAG, "connect(device=" + device.getAddress() + ")");
-        if (getConnectionPolicy(device) <= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+        if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return false;
         }
 
