@@ -389,6 +389,8 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
     info.media_id = std::string(value);
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.media_id = std::string();
   }
 
   jstr = (jstring)env->GetObjectField(metadata, field_title);
@@ -398,6 +400,8 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
         AttributeEntry(Attribute::TITLE, std::string(value)));
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.attributes.insert(AttributeEntry(Attribute::TITLE, std::string()));
   }
 
   jstr = (jstring)env->GetObjectField(metadata, field_artist);
@@ -407,6 +411,9 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
         AttributeEntry(Attribute::ARTIST_NAME, std::string(value)));
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.attributes.insert(
+        AttributeEntry(Attribute::ARTIST_NAME, std::string()));
   }
 
   jstr = (jstring)env->GetObjectField(metadata, field_album);
@@ -416,6 +423,9 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
         AttributeEntry(Attribute::ALBUM_NAME, std::string(value)));
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.attributes.insert(
+        AttributeEntry(Attribute::ALBUM_NAME, std::string()));
   }
 
   jstr = (jstring)env->GetObjectField(metadata, field_trackNum);
@@ -425,6 +435,9 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
         AttributeEntry(Attribute::TRACK_NUMBER, std::string(value)));
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.attributes.insert(
+        AttributeEntry(Attribute::TRACK_NUMBER, std::string()));
   }
 
   jstr = (jstring)env->GetObjectField(metadata, field_numTracks);
@@ -434,6 +447,9 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
         AttributeEntry(Attribute::TOTAL_NUMBER_OF_TRACKS, std::string(value)));
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.attributes.insert(
+        AttributeEntry(Attribute::TOTAL_NUMBER_OF_TRACKS, std::string()));
   }
 
   jstr = (jstring)env->GetObjectField(metadata, field_genre);
@@ -443,6 +459,8 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
         AttributeEntry(Attribute::GENRE, std::string(value)));
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.attributes.insert(AttributeEntry(Attribute::GENRE, std::string()));
   }
 
   jstr = (jstring)env->GetObjectField(metadata, field_playingTime);
@@ -452,6 +470,9 @@ static SongInfo getSongInfoFromJavaObj(JNIEnv* env, jobject metadata) {
         AttributeEntry(Attribute::PLAYING_TIME, std::string(value)));
     env->ReleaseStringUTFChars(jstr, value);
     env->DeleteLocalRef(jstr);
+  } else {
+    info.attributes.insert(
+        AttributeEntry(Attribute::PLAYING_TIME, std::string()));
   }
 
   jobject object_image = env->GetObjectField(metadata, field_image);
