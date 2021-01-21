@@ -221,9 +221,10 @@ void l2c_rcv_acl_data(BT_HDR* p_msg) {
     --p_ccb->remote_credit_count;
 
     /* If the credits left on the remote device are getting low, send some */
-    if (p_ccb->remote_credit_count <= L2CAP_LE_CREDIT_THRESHOLD) {
-      uint16_t credits = L2CAP_LE_CREDIT_DEFAULT - p_ccb->remote_credit_count;
-      p_ccb->remote_credit_count = L2CAP_LE_CREDIT_DEFAULT;
+    if (p_ccb->remote_credit_count <= get_l2cap_le_credit_threshold()) {
+      uint16_t credits =
+          get_l2cap_le_credit_default() - p_ccb->remote_credit_count;
+      p_ccb->remote_credit_count = get_l2cap_le_credit_default();
 
       /* Return back credits */
       l2c_csm_execute(p_ccb, L2CEVT_L2CA_SEND_FLOW_CONTROL_CREDIT, &credits);
