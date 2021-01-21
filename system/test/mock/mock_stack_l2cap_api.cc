@@ -287,5 +287,13 @@ bool L2CA_IsLinkEstablished(const RawAddress& bd_addr,
   return test::mock::stack_l2cap_api::L2CA_IsLinkEstablished(bd_addr,
                                                              transport);
 }
+uint16_t L2CA_LeCreditDefault() {
+  mock_function_count_map[__func__]++;
+  return 0;
+}
+uint16_t L2CA_LeCreditThreshold() {
+  mock_function_count_map[__func__]++;
+  return 0;
+}
 
 // END mockcify generation
