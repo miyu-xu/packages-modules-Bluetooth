@@ -65,6 +65,29 @@ uint16_t L2CA_Register2(uint16_t psm, const tL2CAP_APPL_INFO& p_cb_info,
   return ret;
 }
 
+uint16_t get_l2cap_le_credit_default() {
+  static const uint16_t sL2CAP_LE_CREDIT_DEFAULT =
+      (uint16_t)osi_property_get_int32(
+          "bluetooth.l2cap.le.credit_default.value", 0xffff);
+  return sL2CAP_LE_CREDIT_DEFAULT;
+}
+
+uint16_t get_l2cap_le_credit_threshold() {
+  static const uint16_t sL2CAP_LE_CREDIT_THRESHOLD =
+      (uint16_t)osi_property_get_int32(
+          "bluetooth.l2cap.le.credit_threshold.value", 0x0040);
+  return sL2CAP_LE_CREDIT_THRESHOLD;
+}
+
+bool check_l2cap_credit() {
+  CHECK(get_l2cap_le_credit_threshold() < get_l2cap_le_credit_default())
+      << "Threshold must be smaller than default credits";
+  return true;
+}
+
+// Replace static assert with startup assert depending of the config
+static const bool enforce_assert = check_l2cap_credit();
+
 /*******************************************************************************
  *
  * Function         L2CA_Register
