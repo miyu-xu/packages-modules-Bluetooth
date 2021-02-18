@@ -23,24 +23,44 @@
 namespace bluetooth {
 namespace avrcp {
 
-class GetItemAttributesResponseBuilder : public BrowsePacketBuilder {
- public:
-  virtual ~GetItemAttributesResponseBuilder() = default;
+template<class Builder>class AttributesResponseBuilderTestUser;
 
-  static std::unique_ptr<GetItemAttributesResponseBuilder> MakeBuilder(
+class GetItemAttributesResponseBuilder : public BrowsePacketBuilder {
+public:
+  virtual ~GetItemAttributesResponseBuilder() = default;
+  using Builder = std::unique_ptr<GetItemAttributesResponseBuilder>;
+  static Builder MakeBuilder(
       Status status, size_t mtu);
 
-  bool AddAttributeEntry(AttributeEntry entry);
-  bool AddAttributeEntry(Attribute, std::string);
+  size_t AddAttributeEntry(AttributeEntry entry);
+  size_t AddAttributeEntry(Attribute, std::string);
+
+  virtual void clear() {
+    entries_.clear();
+  }
+
+  static constexpr size_t kHeaderSize() {
+    size_t len = BrowsePacket::kMinSize();
+    len += 1;  // Status
+    len += 1;  // Number of attributes
+    return len;
+  }
+
+  static constexpr size_t kErrorHeaderSize() {
+    size_t len = BrowsePacket::kMinSize();
+    len += 1;  // Status
+    return len;
+  }
 
   virtual size_t size() const override;
   virtual bool Serialize(
       const std::shared_ptr<::bluetooth::Packet>& pkt) override;
 
- private:
+private:
   Status status_;
   size_t mtu_;
   std::set<AttributeEntry> entries_;
+  friend class AttributesResponseBuilderTestUser<GetItemAttributesResponseBuilder>;
 
   GetItemAttributesResponseBuilder(Status status, size_t mtu)
       : BrowsePacketBuilder(BrowsePdu::GET_ITEM_ATTRIBUTES),
@@ -49,7 +69,7 @@ class GetItemAttributesResponseBuilder : public BrowsePacketBuilder {
 };
 
 class GetItemAttributesRequest : public BrowsePacket {
- public:
+public:
   virtual ~GetItemAttributesRequest() = default;
 
   /**
@@ -76,7 +96,7 @@ class GetItemAttributesRequest : public BrowsePacket {
   virtual bool IsValid() const override;
   virtual std::string ToString() const override;
 
- protected:
+protected:
   using BrowsePacket::BrowsePacket;
 };
 
