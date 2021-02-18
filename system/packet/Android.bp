@@ -71,6 +71,8 @@ cc_test {
     ],
     cflags: [
         "-DBUILDCFG",
+//        "-Wno-error",
+//        "-Wno-format-security"
     ],
     target: {
         android: {
