@@ -103,6 +103,67 @@ TEST(GetElementAttributesResponseBuilderTest, builderTest) {
   ASSERT_EQ(test_packet->GetData(), get_elements_attributes_response_full);
 }
 
+TEST(GetElementAttributesResponseBuilderTest, builderMtuTest) {
+  std::vector<AttributeEntry> test_data = {
+      {Attribute::TITLE, "Test Song 1"},
+      {Attribute::ARTIST_NAME, "Test Artist"},
+      {Attribute::ALBUM_NAME, "Test Album"},
+      {Attribute::TRACK_NUMBER, "1"},
+      {Attribute::TOTAL_NUMBER_OF_TRACKS, "2"},
+      {Attribute::GENRE, "Test Genre"},
+      {Attribute::PLAYING_TIME, "10 200"},
+      {Attribute::TITLE, "Test Song 2"},
+      {Attribute::ARTIST_NAME, "Test Artist"},
+      {Attribute::ALBUM_NAME, "Test Album"},
+      {Attribute::TRACK_NUMBER, "2"},
+      {Attribute::TOTAL_NUMBER_OF_TRACKS, "2"},
+      {Attribute::GENRE, "Test Genre"},
+      {Attribute::PLAYING_TIME, "1500"}};
+
+  using Builder = GetElementAttributesResponseBuilder;
+  using Helper = FructionEntryBuildTestHelper<Builder>;
+  size_t mtu = size_t(-1);
+  Helper helper(mtu, [](size_t mtu) { return Builder::MakeBuilder(mtu); });
+  std::string report;
+  bool fruction_pass;
+  bool ordering_pass;
+
+  std::tie(fruction_pass, ordering_pass, report) =
+      helper.runTestWithUnexpectedPrintf(test_data, mtu, false, false);
+  ASSERT_FALSE(fruction_pass);
+  ASSERT_FALSE(ordering_pass);
+
+  mtu = test_data[0].size() + Builder::kHeaderSize();
+  std::tie(fruction_pass, ordering_pass, report) =
+      helper.runTestWithFailePrintf(test_data, mtu);
+  ASSERT_TRUE(fruction_pass);
+  ASSERT_TRUE(ordering_pass);
+
+  mtu = test_data[0].size() + test_data[1].size() + Builder::kHeaderSize();
+  std::tie(fruction_pass, ordering_pass, report) =
+      helper.runTestWithFailePrintf(test_data, mtu);
+  ASSERT_TRUE(fruction_pass);
+  ASSERT_TRUE(ordering_pass);
+
+  mtu = test_data[0].size() + (Builder::kHeaderSize() * 2) + 1;
+  std::tie(fruction_pass, ordering_pass, report) =
+      helper.runTestWithUnexpectedPrintf(test_data, mtu, true, false);
+  ASSERT_TRUE(fruction_pass);
+  ASSERT_FALSE(ordering_pass);
+
+  mtu = Builder::kHeaderSize() + AttributeEntry::kHeaderSize() + 1;
+  std::tie(fruction_pass, ordering_pass, report) =
+      helper.runTestWithFailePrintf(test_data, mtu);
+  ASSERT_TRUE(fruction_pass);
+  ASSERT_TRUE(ordering_pass);
+
+  mtu = Builder::kHeaderSize() + AttributeEntry::kHeaderSize();
+  std::tie(fruction_pass, ordering_pass, report) =
+      helper.runTestWithUnexpectedPrintf(test_data, mtu, false, false);
+  ASSERT_FALSE(fruction_pass);
+  ASSERT_FALSE(ordering_pass);
+}
+
 TEST(GetElementAttributesResponseBuilderTest, truncateBuilderTest) {
   auto attribute = AttributeEntry(Attribute::TITLE, "1234");
   size_t truncated_size = VendorPacket::kMinSize();
