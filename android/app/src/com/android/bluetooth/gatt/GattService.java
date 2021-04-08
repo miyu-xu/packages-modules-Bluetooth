@@ -48,7 +48,6 @@ import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.companion.ICompanionDeviceManager;
 import android.content.AttributionSource;
-import android.content.Context;
 import android.content.Intent;
 import android.net.MacAddress;
 import android.os.Binder;
@@ -57,7 +56,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.os.WorkSource;
@@ -167,6 +165,8 @@ public class GattService extends ProfileService {
             UUID.fromString("00001850-0000-1000-8000-00805F9B34FB"), // PACS
             UUID.fromString("0000184E-0000-1000-8000-00805F9B34FB"), // ASCS
             UUID.fromString("0000184F-0000-1000-8000-00805F9B34FB"), // BASS
+            /* FIXME: Not known yet, using a placeholder instead. */
+            UUID.fromString("EEEEEEEE-EEEE-EEEE-EEEE-EEEEEEEEEEEE"), // HAP
     };
 
     /**
