@@ -145,6 +145,7 @@ public class GattService extends ProfileService {
             UUID.fromString("00001850-0000-1000-8000-00805F9B34FB"), // PACS
             UUID.fromString("0000184E-0000-1000-8000-00805F9B34FB"), // ASCS
             UUID.fromString("0000184F-0000-1000-8000-00805F9B34FB"), // BASS
+            UUID.fromString("00007F6F-0000-1000-8000-00805F9B34FB"), // HAP
     };
 
     /**
