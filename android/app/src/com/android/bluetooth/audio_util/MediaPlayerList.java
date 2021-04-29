@@ -35,6 +35,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 
+import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -148,56 +149,73 @@ public class MediaPlayerList {
 
     public void init(MediaUpdateCallback callback) {
         Log.v(TAG, "Initializing MediaPlayerList");
+
         mCallback = callback;
 
-        // Build the list of browsable players and afterwards, build the list of media players
-        Intent intent = new Intent(android.service.media.MediaBrowserService.SERVICE_INTERFACE);
-        List<ResolveInfo> playerList =
-                mContext
-                    .getApplicationContext()
-                    .getPackageManager()
-                    .queryIntentServices(intent, PackageManager.MATCH_ALL);
+        if (mContext.getResources().getBoolean(R.bool.avrcp_enable_browsable_media_players)) {
+            // Build the list of browsable players and afterwards, build the list of media players
+            Intent intent = new Intent(android.service.media.MediaBrowserService.SERVICE_INTERFACE);
+            List<ResolveInfo> playerList =
+                    mContext
+                        .getApplicationContext()
+                        .getPackageManager()
+                        .queryIntentServices(intent, PackageManager.MATCH_ALL);
 
-        mBrowsablePlayerConnector = BrowsablePlayerConnector.connectToPlayers(mContext, mLooper,
-                playerList, (List<BrowsedPlayerWrapper> players) -> {
-                Log.i(TAG, "init: Browsable Player list size is " + players.size());
+            mBrowsablePlayerConnector = BrowsablePlayerConnector.connectToPlayers(mContext, mLooper,
+                    playerList, (List<BrowsedPlayerWrapper> players) -> {
+                    Log.i(TAG, "init: Browsable Player list size is " + players.size());
 
-                // Check to see if the list has been cleaned up before this completed
-                if (mMediaSessionManager == null) {
-                    return;
-                }
-
-                for (BrowsedPlayerWrapper wrapper : players) {
-                    // Generate new id and add the browsable player
-                    if (!havePlayerId(wrapper.getPackageName())) {
-                        mMediaPlayerIds.put(wrapper.getPackageName(), getFreeMediaPlayerId());
+                    // Check to see if the list has been cleaned up before this completed
+                    if (mMediaSessionManager == null) {
+                        return;
                     }
 
-                    d("Adding Browser Wrapper for " + wrapper.getPackageName() + " with id "
-                            + mMediaPlayerIds.get(wrapper.getPackageName()));
+                    for (BrowsedPlayerWrapper wrapper : players) {
+                        // Generate new id and add the browsable player
+                        if (!havePlayerId(wrapper.getPackageName())) {
+                            mMediaPlayerIds.put(wrapper.getPackageName(), getFreeMediaPlayerId());
+                        }
 
-                    mBrowsablePlayers.put(mMediaPlayerIds.get(wrapper.getPackageName()), wrapper);
+                        d("Adding Browser Wrapper for " + wrapper.getPackageName() + " with id "
+                                + mMediaPlayerIds.get(wrapper.getPackageName()));
 
-                    wrapper.getFolderItems(wrapper.getRootId(),
-                            (int status, String mediaId, List<ListItem> results) -> {
-                                d("Got the contents for: " + mediaId + " : num results="
-                                        + results.size());
-                            });
-                }
+                        mBrowsablePlayers.put(mMediaPlayerIds.get(wrapper.getPackageName()),
+                                wrapper);
 
-                // Construct the list of current players
-                d("Initializing list of current media players");
-                List<android.media.session.MediaController> controllers =
-                        mMediaSessionManager.getActiveSessions(null);
+                        wrapper.getFolderItems(wrapper.getRootId(),
+                                (int status, String mediaId, List<ListItem> results) -> {
+                                    d("Got the contents for: " + mediaId + " : num results="
+                                            + results.size());
+                                });
+                    }
 
-                for (android.media.session.MediaController controller : controllers) {
-                    addMediaPlayer(controller);
-                }
+                    // Construct the list of current players
+                    d("Initializing list of current media players");
+                    List<android.media.session.MediaController> controllers =
+                            mMediaSessionManager.getActiveSessions(null);
 
-                // If there were any active players and we don't already have one due to the Media
-                // Framework Callbacks then set the highest priority one to active
-                if (mActivePlayerId == 0 && mMediaPlayers.size() > 0) setActivePlayer(1);
-            });
+                    for (android.media.session.MediaController controller : controllers) {
+                        addMediaPlayer(controller);
+                    }
+
+                    // If there were any active players and we don't already have one due to
+                    // the Media Framework Callbacks then set the highest priority one to active
+                    if (mActivePlayerId == 0 && mMediaPlayers.size() > 0) setActivePlayer(1);
+                });
+        } else {
+            // Construct the list of current players
+            d("Initializing list of current media players");
+            List<android.media.session.MediaController> controllers =
+                    mMediaSessionManager.getActiveSessions(null);
+
+            for (android.media.session.MediaController controller : controllers) {
+                addMediaPlayer(controller);
+            }
+
+            // If there were any active players and we don't already have one due to the Media
+            // Framework Callbacks then set the highest priority one to active
+            if (mActivePlayerId == 0 && mMediaPlayers.size() > 0) setActivePlayer(1);
+        }
     }
 
     public void cleanup() {
