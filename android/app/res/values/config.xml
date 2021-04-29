@@ -112,6 +112,9 @@
     <!-- Enable support for URI based images. Off by default due to increased memory usage -->
     <bool name="avrcp_target_cover_art_uri_images">false</bool>
 
+    <!-- Enable binding browsable media players but it will take longer for some devices -->
+    <bool name="avrcp_enable_browsable_media_players">true</bool>
+
     <!-- Package that is responsible for user interaction on pairing request,
          success or cancel.
          Receives:
