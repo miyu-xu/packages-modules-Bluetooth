@@ -60,10 +60,9 @@ void bta_ag_sdp_cback_5(tSDP_RESULT);
 void bta_ag_sdp_cback_6(tSDP_RESULT);
 
 /* SDP callback function table */
-typedef tSDP_DISC_CMPL_CB* tBTA_AG_SDP_CBACK;
-const tBTA_AG_SDP_CBACK bta_ag_sdp_cback_tbl[] = {
-    bta_ag_sdp_cback_1, bta_ag_sdp_cback_2, bta_ag_sdp_cback_3,
-    bta_ag_sdp_cback_4, bta_ag_sdp_cback_5, bta_ag_sdp_cback_6};
+void (*const bta_ag_sdp_cback_tbl[])(tSDP_STATUS) = {
+    &bta_ag_sdp_cback_1, &bta_ag_sdp_cback_2, &bta_ag_sdp_cback_3,
+    &bta_ag_sdp_cback_4, &bta_ag_sdp_cback_5, &bta_ag_sdp_cback_6};
 
 /*******************************************************************************
  *
