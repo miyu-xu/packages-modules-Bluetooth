@@ -69,9 +69,12 @@ final class BondStateMachine extends StateMachine {
     static final int SSP_REQUEST = 5;
     static final int PIN_REQUEST = 6;
     static final int UUID_UPDATE = 10;
+    static final int SDP_TIMEOUT = 11;
     static final int BOND_STATE_NONE = 0;
     static final int BOND_STATE_BONDING = 1;
     static final int BOND_STATE_BONDED = 2;
+
+    static final int SDP_TIMEOUT_MS = 3000;
 
     private AdapterService mAdapterService;
     private AdapterProperties mAdapterProperties;
@@ -158,7 +161,14 @@ final class BondStateMachine extends StateMachine {
                                 + state2str(newState));
                     }
                     break;
+                case SDP_TIMEOUT:
+                    if (mPendingBondedDevices.contains(dev)) {
+                        Log.w(TAG, "Timeout finishing SDP");
+                        sendIntent(dev, BluetoothDevice.BOND_BONDED, 0, false);
+                    }
+                    break;
                 case UUID_UPDATE:
+                    removeMessages(SDP_TIMEOUT);
                     if (mPendingBondedDevices.contains(dev)) {
                         sendIntent(dev, BluetoothDevice.BOND_BONDED, 0);
                     }
@@ -273,6 +283,10 @@ final class BondStateMachine extends StateMachine {
                     }
 
                     break;
+                case SDP_TIMEOUT:
+                case UUID_UPDATE:
+                    deferMessage(msg);
+                    break;
                 default:
                     Log.e(TAG, "Received unhandled event:" + msg.what);
                     return false;
@@ -369,6 +383,10 @@ final class BondStateMachine extends StateMachine {
 
     @VisibleForTesting
     void sendIntent(BluetoothDevice device, int newState, int reason) {
+        sendIntent(device, newState, reason, true);
+    }
+
+    private void sendIntent(BluetoothDevice device, int newState, int reason, boolean waitForSdp) {
         DeviceProperties devProp = mRemoteDevices.getDeviceProperties(device);
         int oldState = BluetoothDevice.BOND_NONE;
         if (newState != BluetoothDevice.BOND_NONE
@@ -406,12 +424,16 @@ final class BondStateMachine extends StateMachine {
                 mAdapterService.getMetricId(device));
         mAdapterProperties.onBondStateChanged(device, newState);
 
-        if (devProp != null && ((devProp.getDeviceType() == BluetoothDevice.DEVICE_TYPE_CLASSIC
+        if (waitForSdp && devProp != null
+                && ((devProp.getDeviceType() == BluetoothDevice.DEVICE_TYPE_CLASSIC
                 || devProp.getDeviceType() == BluetoothDevice.DEVICE_TYPE_DUAL)
                 && newState == BluetoothDevice.BOND_BONDED && devProp.getUuids() == null)) {
             infoLog(device + " is bonded, wait for SDP complete to broadcast bonded intent");
             if (!mPendingBondedDevices.contains(device)) {
                 mPendingBondedDevices.add(device);
+            }
+            if (!hasMessages(SDP_TIMEOUT)) {
+                sendMessageDelayed(SDP_TIMEOUT, device, SDP_TIMEOUT_MS);
             }
             if (oldState == BluetoothDevice.BOND_NONE) {
                 // Broadcast NONE->BONDING for NONE->BONDED case.
