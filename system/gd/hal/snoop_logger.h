@@ -40,6 +40,7 @@ class SnoopLogger : public ::bluetooth::Module {
   static const std::string kBtSnoopLogModeDisabled;
   static const std::string kBtSnoopLogModeFiltered;
   static const std::string kBtSnoopLogModeFull;
+  static const std::string kBtSnoopLogModeTrunc;
   static const std::string kSoCManufacturerQualcomm;
 
   static const std::string kBtSnoopMaxPacketsPerFileProperty;
@@ -47,6 +48,8 @@ class SnoopLogger : public ::bluetooth::Module {
   static const std::string kBtSnoopLogModeProperty;
   static const std::string kBtSnoopDefaultLogModeProperty;
   static const std::string kSoCManufacturerProperty;
+
+  static const uint32_t kMaxTruncatedAclPacketSize;
 
   // Put in header for test
   struct PacketHeaderType {
@@ -124,6 +127,7 @@ class SnoopLogger : public ::bluetooth::Module {
   std::ofstream btsnoop_ostream_;
   bool is_enabled_ = false;
   bool is_filtered_ = false;
+  bool is_truncated_ = false;
   size_t max_packets_per_file_;
   common::CircularBuffer<std::string> btsnooz_buffer_;
   bool qualcomm_debug_log_enabled_ = false;

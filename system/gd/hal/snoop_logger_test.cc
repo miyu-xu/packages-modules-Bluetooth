@@ -440,6 +440,27 @@ TEST_F(SnoopLoggerModuleTest, qualcomm_debug_log_test) {
   ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
 }
 
+TEST_F(SnoopLoggerModuleTest, truncated_log_test) {
+  auto* snoop_logger = new TestSnoopLoggerModule(
+      temp_snoop_log_.string(), temp_snooz_log_.string(), 10, SnoopLogger::kBtSnoopLogModeTrunc, false);
+  std::vector<uint8_t> bigPacket(SnoopLogger::kMaxTruncatedAclPacketSize * 2, 0x42);
+
+  TestModuleRegistry test_registry;
+  test_registry.InjectTestModule(&SnoopLogger::Factory, snoop_logger);
+
+  snoop_logger->Capture(bigPacket, SnoopLogger::Direction::OUTGOING, SnoopLogger::PacketType::ACL);
+
+  test_registry.StopAll();
+
+  // Verify states after test
+  EXPECT_TRUE(std::filesystem::exists(temp_snoop_log_));
+  EXPECT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
+  EXPECT_EQ(
+      std::filesystem::file_size(temp_snoop_log_),
+      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) +
+          SnoopLogger::kMaxTruncatedAclPacketSize);
+}
+
 TEST_F(SnoopLoggerModuleTest, qualcomm_debug_log_regression_test) {
   {
     auto* snoop_logger = new TestSnoopLoggerModule(
