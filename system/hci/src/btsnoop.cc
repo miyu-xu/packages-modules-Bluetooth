@@ -65,6 +65,7 @@
 #define BTSNOOP_DEFAULT_MODE_PROPERTY "persist.bluetooth.btsnoopdefaultmode"
 #define BTSNOOP_MODE_DISABLED "disabled"
 #define BTSNOOP_MODE_FILTERED "filtered"
+#define BTSNOOP_MODE_TRUNCATED "truncated"
 #define BTSNOOP_MODE_FULL "full"
 
 #define BTSNOOP_PATH_PROPERTY "persist.bluetooth.btsnooppath"
@@ -91,6 +92,10 @@ static const size_t RFC_EVENT_OFFSET = 9;
 // The size of the L2CAP header. All information past this point is removed from
 // a filtered packet.
 static const uint32_t L2C_HEADER_SIZE = 9;
+
+// The max ACL packet size (in bytes) in truncated logging mode. All information
+// past this point is truncated from a packet.
+static constexpr uint32_t kMaxTruncatedAclPacketSize = 100;
 
 static int logfile_fd = INVALID_FD;
 static std::mutex btsnoop_mutex;
@@ -161,6 +166,7 @@ std::unordered_map<uint16_t, uint16_t> local_cid_to_acl;
 // checked for every packet.
 static bool is_btsnoop_enabled;
 static bool is_btsnoop_filtered;
+static bool is_btsnoop_truncated;
 
 // TODO(zachoverflow): merge btsnoop and btsnoop_net together
 void btsnoop_net_open();
@@ -194,21 +200,25 @@ static future_t* start_up() {
   int len = osi_property_get(BTSNOOP_LOG_MODE_PROPERTY, property.data(),
                              default_mode.c_str());
   std::string btsnoop_mode(property.data(), len);
-
+  is_btsnoop_truncated = false;
+  is_btsnoop_filtered = false;
+  is_btsnoop_enabled = true;
   if (btsnoop_mode == BTSNOOP_MODE_FILTERED) {
     LOG(INFO) << __func__ << ": Filtered Snoop Logs enabled";
-    is_btsnoop_enabled = true;
     is_btsnoop_filtered = true;
     delete_btsnoop_files(false);
   } else if (btsnoop_mode == BTSNOOP_MODE_FULL) {
     LOG(INFO) << __func__ << ": Snoop Logs fully enabled";
-    is_btsnoop_enabled = true;
-    is_btsnoop_filtered = false;
+    delete_btsnoop_files(true);
+  } else if (btsnoop_mode == BTSNOOP_MODE_TRUNCATED) {
+    LOG(INFO) << __func__
+              << ": Truncated Snoop Logs enabled. ACL packets limited to "
+              << kMaxTruncatedAclPacketSize << " bytes.";
+    is_btsnoop_truncated = true;
     delete_btsnoop_files(true);
   } else {
     LOG(INFO) << __func__ << ": Snoop Logs disabled";
     is_btsnoop_enabled = false;
-    is_btsnoop_filtered = false;
     delete_btsnoop_files(true);
     delete_btsnoop_files(false);
   }
@@ -438,15 +448,15 @@ static void btsnoop_write_packet(packet_type_t type, uint8_t* packet,
 
   btsnoop_header_t header;
   header.length_original = htonl(length_he);
-
-  bool rejectlisted = false;
-  if (is_btsnoop_filtered && type == kAclPacket) {
-    rejectlisted = should_filter_log(is_received, packet);
+  // Filter or Truncate ACL packets if required.
+  if (is_btsnoop_filtered && type == kAclPacket &&
+      should_filter_log(is_received, packet)) {
+    length_he = L2C_HEADER_SIZE;
   }
-
-  header.length_captured =
-      rejectlisted ? htonl(L2C_HEADER_SIZE) : header.length_original;
-  if (rejectlisted) length_he = L2C_HEADER_SIZE;
+  if (is_btsnoop_truncated && type == kAclPacket) {
+    length_he = std::min(length_he, kMaxTruncatedAclPacketSize);
+  }
+  header.length_captured = htonl(length_he);
   header.flags = htonl(flags);
   header.dropped_packets = 0;
   header.timestamp = htonll(timestamp_us + BTSNOOP_EPOCH_DELTA);
