@@ -196,6 +196,7 @@ size_t get_btsnooz_packet_length_to_write(
 const std::string SnoopLogger::kBtSnoopLogModeDisabled = "disabled";
 const std::string SnoopLogger::kBtSnoopLogModeFiltered = "filtered";
 const std::string SnoopLogger::kBtSnoopLogModeFull = "full";
+const std::string SnoopLogger::kBtSnoopLogModeTrunc = "truncated";
 const std::string SnoopLogger::kSoCManufacturerQualcomm = "Qualcomm";
 
 const std::string SnoopLogger::kBtSnoopMaxPacketsPerFileProperty = "persist.bluetooth.btsnoopsize";
@@ -203,6 +204,10 @@ const std::string SnoopLogger::kIsDebuggableProperty = "ro.debuggable";
 const std::string SnoopLogger::kBtSnoopLogModeProperty = "persist.bluetooth.btsnooplogmode";
 const std::string SnoopLogger::kBtSnoopDefaultLogModeProperty = "persist.bluetooth.btsnoopdefaultmode";
 const std::string SnoopLogger::kSoCManufacturerProperty = "ro.soc.manufacturer";
+
+// The max ACL packet size (in bytes) in truncated logging mode. All information
+// past this point is truncated from a packet.
+static constexpr uint32_t kMaxTruncatedAclPacketSize = 100;
 
 SnoopLogger::SnoopLogger(
     std::string snoop_log_path,
@@ -229,6 +234,13 @@ SnoopLogger::SnoopLogger(
     delete_btsnoop_files(get_btsnoop_log_path(snoop_log_path_, false));
     // delete snooz logs
     delete_btsnoop_files(snooz_log_path_);
+  } else if (btsnoop_mode == kBtSnoopLogModeTrunc) {
+    LOG_INFO("Truncated Snoop Logs enabled. ACL packets limited to %d", kMaxTruncatedAclPacketSize);
+    is_enabled_ = true;
+    is_truncated_ = true;
+    // delete both filtered and unfiltered logs
+    delete_btsnoop_files(get_btsnoop_log_path(snoop_log_path_, true));
+    delete_btsnoop_files(get_btsnoop_log_path(snoop_log_path_, false));
   } else if (btsnoop_mode == kBtSnoopLogModeFull) {
     LOG_INFO("Snoop Logs fully enabled");
     is_enabled_ = true;
@@ -321,6 +333,10 @@ void SnoopLogger::Capture(const HciPacket& packet, Direction direction, PacketTy
                              .dropped_packets = 0,
                              .timestamp = htonll(timestamp_us + kBtSnoopEpochDelta),
                              .type = static_cast<uint8_t>(type)};
+  // Truncate ACL packets if required.
+  if (is_truncated_ && type == PacketType::ACL) {
+    header.length_captured = htonl(std::min(length, kMaxTruncatedAclPacketSize));
+  }
   {
     std::lock_guard<std::recursive_mutex> lock(file_mutex_);
     if (!is_enabled_) {
