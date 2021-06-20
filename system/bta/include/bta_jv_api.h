@@ -151,10 +151,24 @@ enum {
 typedef uint8_t tBTA_JV_CONN_STATE;
 
 /* JV Connection types */
-#define BTA_JV_CONN_TYPE_RFCOMM 0
-#define BTA_JV_CONN_TYPE_L2CAP 1
-#define BTA_JV_CONN_TYPE_L2CAP_LE 2
-typedef int tBTA_JV_CONN_TYPE;
+enum tBTA_JV_CONN_TYPE {
+  BTA_JV_CONN_TYPE_RFCOMM = 0,
+  BTA_JV_CONN_TYPE_L2CAP = 1,
+  BTA_JV_CONN_TYPE_L2CAP_LE = 2,
+};
+
+inline tBT_TRANSPORT connection_type_to_transport(
+    const tBTA_JV_CONN_TYPE& conn_type) {
+  switch (conn_type) {
+    case BTA_JV_CONN_TYPE_L2CAP:
+      return BT_TRANSPORT_BR_EDR;
+    case BTA_JV_CONN_TYPE_L2CAP_LE:
+      return BT_TRANSPORT_LE;
+    case BTA_JV_CONN_TYPE_RFCOMM:
+    default:
+      return BT_TRANSPORT_AUTO;
+  }
+}
 
 enum tBTA_JV_EVT : uint16_t {
   /* Java I/F callback events */
