@@ -371,7 +371,7 @@ final class AdapterState extends StateMachine {
 
                 case BREDR_STOP_TIMEOUT:
                     errorLog(messageString(msg.what));
-                    transitionTo(mTurningBleOffState);
+                    transitionTo(mBleOnState);
                     break;
 
                 default:
