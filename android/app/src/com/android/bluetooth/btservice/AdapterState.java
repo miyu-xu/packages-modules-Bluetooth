@@ -41,12 +41,12 @@ import com.android.internal.util.StateMachine;
  *        |                    |
  *        v                    |
  * TurningBleOn   TO--->   TurningBleOff
- *        |                  ^ ^
- *        |                  | |
- *        +----->        ----+ |
- *                 BleOn       |
- *        +------        <---+ O
- *        v                  | T
+ *        |                    ^
+ *        |                    |
+ *        +----->        ------+
+ *                 BleOn
+ *        +------        <-----+
+ *        v                    |
  *    TurningOn  TO---->  TurningOff
  *        |                    ^
  *        |                    |
@@ -355,7 +355,7 @@ final class AdapterState extends StateMachine {
 
                 case BREDR_STOP_TIMEOUT:
                     errorLog(messageString(msg.what));
-                    transitionTo(mTurningBleOffState);
+                    transitionTo(mBleOnState);
                     break;
 
                 default:

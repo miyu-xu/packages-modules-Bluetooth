@@ -636,8 +636,13 @@ public class AdapterServiceTest {
         mAdapterService.onProfileServiceStateChanged(mMockService, BluetoothAdapter.STATE_OFF);
 
         verifyStateChange(BluetoothAdapter.STATE_TURNING_OFF,
-                BluetoothAdapter.STATE_BLE_TURNING_OFF, 1,
+                BluetoothAdapter.STATE_BLE_ON, 1,
                 AdapterState.BREDR_STOP_TIMEOUT_DELAY + CONTEXT_SWITCH_MS);
+
+        mServiceBinder.onBrEdrDown(mAttributionSource);
+
+        verifyStateChange(BluetoothAdapter.STATE_BLE_ON, BluetoothAdapter.STATE_BLE_TURNING_OFF,
+                1, CONTEXT_SWITCH_MS);
 
         // Stop GATT
         verify(mMockContext, timeout(ONE_SECOND_MS).times(6)).startService(any());
