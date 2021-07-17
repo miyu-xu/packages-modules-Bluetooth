@@ -374,7 +374,6 @@ init_flags!(
         finite_att_timeout = true,
         gatt_robust_caching_client = true,
         gatt_robust_caching_server,
-        gd_core,
         gd_l2cap,
         hci_adapter: i32,
         hfp_dynamic_version = true,
