@@ -26,7 +26,6 @@ mod ffi {
         fn finite_att_timeout_is_enabled() -> bool;
         fn gatt_robust_caching_client_is_enabled() -> bool;
         fn gatt_robust_caching_server_is_enabled() -> bool;
-        fn gd_core_is_enabled() -> bool;
         fn gd_l2cap_is_enabled() -> bool;
         fn get_default_log_level() -> i32;
         fn get_hci_adapter() -> i32;
