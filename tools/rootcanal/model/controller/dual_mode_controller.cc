@@ -2678,4 +2678,8 @@ void DualModeController::SetAddress(Address address) {
   properties_.SetAddress(address);
 }
 
+const Address& DualModeController::GetAddress() {
+  return properties_.GetAddress();
+}
+
 }  // namespace rootcanal
