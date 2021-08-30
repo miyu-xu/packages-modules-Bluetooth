@@ -693,7 +693,7 @@ public class AdapterService extends Service {
     void stopProfileServices() {
         // Make sure to stop classic background tasks now
         cancelDiscoveryNative();
-        mAdapterProperties.setScanMode(AbstractionLayer.BT_SCAN_MODE_NONE);
+        mAdapterProperties.setScanMode(BluetoothAdapter.SCAN_MODE_NONE);
 
         Class[] supportedProfileServices = Config.getSupportedProfiles();
         if (supportedProfileServices.length == 1 && (mRunningProfiles.size() == 1
@@ -1499,7 +1499,7 @@ public class AdapterService extends Service {
             }
 
             service.mAdapterProperties.setDiscoverableTimeout(duration);
-            return service.mAdapterProperties.setScanMode(convertScanModeToHal(mode));
+            return service.mAdapterProperties.setScanMode(mode);
         }
 
         @Override
@@ -3550,7 +3550,7 @@ public class AdapterService extends Service {
                 source.getUid(), source.getPackageName(), deviceAddress);
     }
 
-    private static int convertScanModeToHal(int mode) {
+    static int convertScanModeToHal(int mode) {
         switch (mode) {
             case BluetoothAdapter.SCAN_MODE_NONE:
                 return AbstractionLayer.BT_SCAN_MODE_NONE;
