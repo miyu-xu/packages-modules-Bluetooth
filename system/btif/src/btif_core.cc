@@ -142,6 +142,13 @@ void btif_init_ok() {
   btif_dm_load_ble_local_keys();
 }
 
+void allocate_exit_manager() { exit_manager = new base::AtExitManager(); }
+
+void free_exit_manager() {
+  delete exit_manager;
+  exit_manager = nullptr;
+}
+
 /*******************************************************************************
  *
  * Function         btif_init_bluetooth
@@ -153,7 +160,7 @@ void btif_init_ok() {
  ******************************************************************************/
 bt_status_t btif_init_bluetooth() {
   LOG_INFO("%s entered", __func__);
-  exit_manager = new base::AtExitManager();
+  allocate_exit_manager();
   jni_thread_startup();
   GetInterfaceToProfiles()->events->invoke_thread_evt_cb(ASSOCIATE_JVM);
   LOG_INFO("%s finished", __func__);
@@ -237,8 +244,7 @@ bt_status_t btif_cleanup_bluetooth() {
   GetInterfaceToProfiles()->events->invoke_thread_evt_cb(DISASSOCIATE_JVM);
   btif_queue_release();
   jni_thread_shutdown();
-  delete exit_manager;
-  exit_manager = nullptr;
+  free_exit_manager();
   btif_dut_mode = 0;
   LOG_INFO("%s finished", __func__);
   return BT_STATUS_SUCCESS;
