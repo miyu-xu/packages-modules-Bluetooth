@@ -18,13 +18,10 @@
 #include <gtest/gtest.h>
 #include <stdlib.h>
 
-#include <cstddef>
-
 #include "osi/include/allocator.h"
-#include "stack/include/bt_uuid16.h"
-#include "stack/include/sdpdefs.h"
 #include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdpint.h"
+#include "test/fake/fake_osi.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_l2cap_api.h"
 
@@ -36,10 +33,10 @@ static int L2CA_ConnectReq2_cid = 0x42;
 static RawAddress addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
 static tSDP_DISCOVERY_DB* sdp_db = nullptr;
 
-class StackSdpMainTest : public ::testing::Test {
+class StackSdpMockAndFakeTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    sdp_init();
+    fake_osi_ = std::make_unique<test::fake::FakeOsi>();
     test::mock::stack_l2cap_api::L2CA_ConnectReq2.body =
         [](uint16_t psm, const RawAddress& p_bd_addr, uint16_t sec_level) {
           return ++L2CA_ConnectReq2_cid;
@@ -58,26 +55,28 @@ class StackSdpMainTest : public ::testing::Test {
            uint16_t required_remote_mtu, uint16_t sec_level) {
           return 42;  // return non zero
         };
-    test::mock::osi_allocator::osi_malloc.body = [](size_t size) {
-      return malloc(size);
-    };
-    test::mock::osi_allocator::osi_free.body = [](void* ptr) { free(ptr); };
-    test::mock::osi_allocator::osi_free_and_reset.body = [](void** ptr) {
-      free(*ptr);
-      *ptr = nullptr;
-    };
+  }
+
+  void TearDown() override {
+    test::mock::stack_l2cap_api::L2CA_ConnectReq2 = {};
+    test::mock::stack_l2cap_api::L2CA_Register2 = {};
+    test::mock::stack_l2cap_api::L2CA_DataWrite = {};
+    test::mock::stack_l2cap_api::L2CA_DisconnectReq = {};
+  }
+  std::unique_ptr<test::fake::FakeOsi> fake_osi_;
+};
+
+class StackSdpMainTest : public StackSdpMockAndFakeTest {
+ protected:
+  void SetUp() override {
+    StackSdpMockAndFakeTest::SetUp();
+    sdp_init();
     sdp_db = (tSDP_DISCOVERY_DB*)osi_malloc(BT_DEFAULT_BUFFER_SIZE);
   }
 
   void TearDown() override {
     osi_free(sdp_db);
-    test::mock::stack_l2cap_api::L2CA_ConnectReq2 = {};
-    test::mock::stack_l2cap_api::L2CA_Register2 = {};
-    test::mock::stack_l2cap_api::L2CA_DataWrite = {};
-    test::mock::stack_l2cap_api::L2CA_DisconnectReq = {};
-    test::mock::osi_allocator::osi_malloc = {};
-    test::mock::osi_allocator::osi_free = {};
-    test::mock::osi_allocator::osi_free_and_reset = {};
+    StackSdpMockAndFakeTest::TearDown();
   }
 };
 
@@ -263,4 +262,81 @@ TEST_F(StackSdpMainTest, sdp_status_text) {
                sdp_status_text(static_cast<tSDP_STATUS>(
                                    std::numeric_limits<uint16_t>::max()))
                    .c_str());
+}
+
+TEST_F(StackSdpMainTest, sdpu_compare_uuid_with_attr_u16) {
+  tSDP_DISC_ATTR attr = {
+      .p_next_attr = nullptr,
+      .attr_id = 0,
+      .attr_len_type = 0,
+      .attr_value =
+          {
+              .v =
+                  {
+                      .u16 = 0x1234,
+                  },
+          },
+  };
+
+  bool is_valid{false};
+  bluetooth::Uuid uuid = bluetooth::Uuid::FromString("1234", &is_valid);
+
+  ASSERT_EQ(uuid.As16Bit(), attr.attr_value.v.u16);
+
+  ASSERT_TRUE(is_valid);
+  ASSERT_TRUE(sdpu_compare_uuid_with_attr(uuid, &attr));
+}
+
+TEST_F(StackSdpMainTest, sdpu_compare_uuid_with_attr_u32) {
+  tSDP_DISC_ATTR attr = {
+      .p_next_attr = nullptr,
+      .attr_id = 0,
+      .attr_len_type = 0,
+      .attr_value =
+          {
+              .v =
+                  {
+                      .u32 = 0x12345678,
+                  },
+          },
+  };
+
+  bool is_valid{false};
+  bluetooth::Uuid uuid = bluetooth::Uuid::FromString("12345678", &is_valid);
+
+  ASSERT_EQ(uuid.As32Bit(), attr.attr_value.v.u32);
+
+  ASSERT_TRUE(is_valid);
+  ASSERT_TRUE(sdpu_compare_uuid_with_attr(uuid, &attr));
+}
+
+TEST_F(StackSdpMainTest, sdpu_compare_uuid_with_attr_u128) {
+  tSDP_DISC_ATTR attr = {
+      .p_next_attr = nullptr,
+      .attr_id = 0,
+      .attr_len_type = 0,
+      .attr_value = {},
+  };
+
+  uint8_t data[] = {
+      0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc, 0xde, 0xf0,
+      0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc, 0xde, 0xf0,
+  };
+
+  tSDP_DISC_ATTR* p_attr =
+      (tSDP_DISC_ATTR*)calloc(1, sizeof(tSDP_DISC_ATTR) + 16);
+  memcpy(p_attr, &attr, sizeof(tSDP_DISC_ATTR));
+  memcpy(p_attr->attr_value.v.array, data, 16);
+
+  bool is_valid{false};
+  bluetooth::Uuid uuid = bluetooth::Uuid::FromString(
+      "12345678-9abc-def0-1234-56789abcdef0", &is_valid);
+
+  ASSERT_TRUE(is_valid);
+  ASSERT_TRUE(sdpu_compare_uuid_with_attr(uuid, p_attr));
+
+  ASSERT_EQ(0,
+            memcmp(uuid.To128BitBE().data(), (void*)p_attr->attr_value.v.array,
+                   bluetooth::Uuid::kNumBytes128));
+  free(p_attr);
 }
