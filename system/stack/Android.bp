@@ -2133,8 +2133,8 @@ cc_test {
     srcs: [
         ":LegacyStackSdp",
         ":TestCommonMockFunctions",
+        ":TestFakeOsi",
         ":TestMockBtif",
-        ":TestMockOsi",
         ":TestMockStackBtm",
         ":TestMockStackL2cap",
         ":TestMockStackMetrics",
