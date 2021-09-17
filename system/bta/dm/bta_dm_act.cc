@@ -3844,6 +3844,18 @@ void bta_dm_ble_get_energy_info(
 #define BTA_DM_GATT_CLOSE_DELAY_TOUT 1000
 #endif
 
+void bta_dm_restart_timer(uint16_t conn_id) {
+  if (conn_id != bta_dm_search_cb.conn_id) return;
+
+  if (!alarm_is_scheduled(bta_dm_search_cb.gatt_close_timer)) return;
+
+  /* start a GATT channel close delay timer */
+  alarm_cancel(bta_dm_search_cb.gatt_close_timer);
+  bta_sys_start_timer(bta_dm_search_cb.gatt_close_timer,
+                      BTA_DM_GATT_CLOSE_DELAY_TOUT, BTA_DM_DISC_CLOSE_TOUT_EVT,
+                      0);
+}
+
 /*******************************************************************************
  *
  * Function         bta_dm_gattc_register

@@ -141,6 +141,7 @@ tGATT_STATUS bta_gattc_discover_pri_service(uint16_t conn_id,
   if (!p_clcb) return GATT_ERROR;
 
   if (p_clcb->transport == BT_TRANSPORT_LE) {
+    bta_dm_restart_timer(conn_id);
     return GATTC_Discover(conn_id, disc_type, 0x0001, 0xFFFF);
   }
 
@@ -164,6 +165,7 @@ static void bta_gattc_explore_next_service(uint16_t conn_id,
     VLOG(1) << "Start service discovery";
 
     /* start discovering included services */
+    bta_dm_restart_timer(conn_id);
     GATTC_Discover(conn_id, GATT_DISC_INC_SRVC, service.first, service.second);
     return;
   }
@@ -256,6 +258,7 @@ void bta_gattc_start_disc_char_dscp(uint16_t conn_id,
     goto descriptor_discovery_done;
   }
 
+  bta_dm_restart_timer(conn_id);
   if (GATTC_Discover(conn_id, GATT_DISC_CHAR_DSCPT, range.first,
                      range.second) != 0) {
     goto descriptor_discovery_done;
@@ -474,6 +477,7 @@ void bta_gattc_disc_cmpl_cback(uint16_t conn_id, tGATT_DISC_TYPE disc_type,
 
     case GATT_DISC_INC_SRVC: {
       auto& service = p_srvc_cb->pending_discovery.CurrentlyExploredService();
+      bta_dm_restart_timer(conn_id);
       /* start discovering characteristic */
       GATTC_Discover(conn_id, GATT_DISC_CHAR, service.first, service.second);
       break;
