@@ -892,11 +892,6 @@ tBTM_EIR_SEARCH_RESULT bluetooth::shim::BTM_HasInquiryEirService(
   return BTM_EIR_UNKNOWN;
 }
 
-void bluetooth::shim::BTM_AddEirService(uint32_t* p_eir_uuid, uint16_t uuid16) {
-  LOG_INFO("UNIMPLEMENTED %s", __func__);
-  CHECK(p_eir_uuid != nullptr);
-}
-
 void bluetooth::shim::BTM_SecAddBleDevice(const RawAddress& bd_addr,
                                           tBT_DEVICE_TYPE dev_type,
                                           tBLE_ADDR_TYPE addr_type) {

@@ -241,9 +241,6 @@ uint8_t bluetooth::shim::BTM_BleMaxMultiAdvInstanceCount() {
   mock_function_count_map[__func__]++;
   return 0;
 }
-void bluetooth::shim::BTM_AddEirService(uint32_t* p_eir_uuid, uint16_t uuid16) {
-  mock_function_count_map[__func__]++;
-}
 void bluetooth::shim::BTM_BleAdvFilterParamSetup(
     tBTM_BLE_SCAN_COND_OP action, tBTM_BLE_PF_FILT_INDEX filt_index,
     std::unique_ptr<btgatt_filt_param_setup_t> p_filt_params,

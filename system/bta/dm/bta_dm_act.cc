@@ -3193,7 +3193,8 @@ void bta_dm_eir_update_uuid(uint16_t uuid16, bool adding) {
   if (adding) {
     LOG_INFO("EIR Adding UUID=0x%04X into extended inquiry response", uuid16);
 
-    BTM_AddEirService(bta_dm_cb.eir_uuid, uuid16);
+    get_btm_client_interface().eir.BTM_AddEirService(bta_dm_cb.eir_uuid,
+                                                     uuid16);
   } else {
     LOG_INFO("EIR Removing UUID=0x%04X from extended inquiry response", uuid16);
 
