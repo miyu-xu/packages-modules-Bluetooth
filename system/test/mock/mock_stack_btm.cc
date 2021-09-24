@@ -34,6 +34,7 @@ struct btm_client_interface_t btm_client_interface = {
     .eir =
         {
             .BTM_GetEirSupportedServices = BTM_GetEirSupportedServices,
+            .BTM_WriteEIR = BTM_WriteEIR,
         },
 };
 
