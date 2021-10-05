@@ -26,7 +26,6 @@ extern std::map<std::string, int> mock_function_count_map;
 
 #include <base/logging.h>
 #include "gd/common/init_flags.h"
-#include "hci/include/btsnoop_mem.h"
 
 #ifndef UNUSED_ATTR
 #define UNUSED_ATTR
