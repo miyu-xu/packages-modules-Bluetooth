@@ -80,6 +80,7 @@
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
+#include "stack/include/btm_client_interface.h"
 #include "stack_config.h"
 #include "types/raw_address.h"
 
@@ -1210,9 +1211,9 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
 
       /* Check EIR for services */
       if (p_search_data->inq_res.p_eir) {
-        BTM_GetEirUuidList(p_search_data->inq_res.p_eir,
-                           p_search_data->inq_res.eir_len, Uuid::kNumBytes16,
-                           &num_uuids, uuid_list, max_num_uuid);
+        get_btm_client_interface().eir.BTM_GetEirUuidList(
+            p_search_data->inq_res.p_eir, p_search_data->inq_res.eir_len,
+            Uuid::kNumBytes16, &num_uuids, uuid_list, max_num_uuid);
       }
 
       {
