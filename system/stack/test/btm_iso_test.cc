@@ -39,9 +39,6 @@ using testing::SaveArg;
 using testing::StrictMock;
 using testing::Test;
 
-// Iso Manager currently works on top of the legacy HCI layer
-bool bluetooth::shim::is_gd_shim_enabled() { return false; }
-
 namespace bte {
 class BteInterface {
  public:

@@ -158,41 +158,22 @@ void Stack::StartEverything() {
   if (common::init_flags::btaa_hci_is_enabled()) {
     modules.add<activity_attribution::ActivityAttribution>();
   }
-  if (common::init_flags::gd_core_is_enabled()) {
-    modules.add<att::AttModule>();
-    modules.add<neighbor::ConnectabilityModule>();
-    modules.add<neighbor::DiscoverabilityModule>();
-    modules.add<neighbor::InquiryModule>();
-    modules.add<neighbor::NameModule>();
-    modules.add<neighbor::NameDbModule>();
-    modules.add<neighbor::PageModule>();
-    modules.add<neighbor::ScanModule>();
-    modules.add<storage::StorageModule>();
-  }
   Start(&modules);
   is_running_ = true;
   // Make sure the leaf modules are started
   ASSERT(stack_manager_.GetInstance<storage::StorageModule>() != nullptr);
   ASSERT(stack_manager_.GetInstance<shim::Dumpsys>() != nullptr);
-  if (common::init_flags::gd_core_is_enabled()) {
-    btm_ = new Btm(stack_handler_,
-                   stack_manager_.GetInstance<neighbor::InquiryModule>());
-  }
-  if (!common::init_flags::gd_core_is_enabled()) {
-    acl_ = new legacy::Acl(
-        stack_handler_, legacy::GetAclInterface(),
-        controller_get_interface()->get_ble_acceptlist_size(),
-        controller_get_interface()->get_ble_resolving_list_max_size());
-  }
-  if (!common::init_flags::gd_core_is_enabled()) {
-    bluetooth::shim::hci_on_reset_complete();
-  }
+
+  acl_ = new legacy::Acl(
+      stack_handler_, legacy::GetAclInterface(),
+      controller_get_interface()->get_ble_acceptlist_size(),
+      controller_get_interface()->get_ble_resolving_list_max_size());
+  bluetooth::shim::hci_on_reset_complete();
 
   bluetooth::shim::init_advertising_manager();
   bluetooth::shim::init_scanning_manager();
 
-  if (common::init_flags::gd_l2cap_is_enabled() &&
-      !common::init_flags::gd_core_is_enabled()) {
+  if (common::init_flags::gd_l2cap_is_enabled()) {
     L2CA_UseLegacySecurityModule();
   }
   if (common::init_flags::btaa_hci_is_enabled()) {
@@ -228,9 +209,7 @@ void Stack::Stop() {
   }
 
   std::lock_guard<std::recursive_mutex> lock(mutex_);
-  if (!common::init_flags::gd_core_is_enabled()) {
-    bluetooth::shim::hci_on_shutting_down();
-  }
+  bluetooth::shim::hci_on_shutting_down();
 
   // Make sure gd acl flag is enabled and we started it up
   if (acl_ != nullptr) {

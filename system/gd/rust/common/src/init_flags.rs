@@ -34,10 +34,10 @@ macro_rules! init_flags {
                 Self { $($flag,)* }.reconcile()
             }
 
-            fn reconcile(mut self) -> Self {
+            fn reconcile(self) -> Self {
                 // Loop to ensure dependencies can be specified in any order
                 loop {
-                    let mut any_change = false;
+                    let any_change = false;
                     $(if self.$parent && !self.$child {
                         self.$child = true;
                         any_change = true;
@@ -83,7 +83,6 @@ init_flags!(
         gd_link_policy
     },
     dependencies: {
-        gd_core => gd_security
     }
 );
 

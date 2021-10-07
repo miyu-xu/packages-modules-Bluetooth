@@ -4,7 +4,6 @@ mod ffi {
         fn load(flags: Vec<String>);
         fn set_all_for_testing();
 
-        fn gd_core_is_enabled() -> bool;
         fn gd_security_is_enabled() -> bool;
         fn gd_l2cap_is_enabled() -> bool;
         fn gatt_robust_caching_is_enabled() -> bool;

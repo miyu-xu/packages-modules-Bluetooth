@@ -1326,14 +1326,14 @@ bool bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
 void bluetooth::shim::BTM_PINCodeReply(const RawAddress& bd_addr,
                                        tBTM_STATUS res, uint8_t pin_len,
                                        uint8_t* p_pin) {
-  ASSERT_LOG(!bluetooth::shim::is_gd_shim_enabled(), "Unreachable code path");
+  LOG_ERROR("Unimplemented code path");
 }
 
 void bluetooth::shim::BTM_RemoteOobDataReply(tBTM_STATUS res,
                                              const RawAddress& bd_addr,
                                              const Octet16& c,
                                              const Octet16& r) {
-  ASSERT_LOG(!bluetooth::shim::is_gd_shim_enabled(), "Unreachable code path");
+  LOG_ERROR("Unimplemented code path");
 }
 
 tBTM_STATUS bluetooth::shim::BTM_SetDeviceClass(DEV_CLASS dev_class) {

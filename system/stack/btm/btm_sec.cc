@@ -220,10 +220,6 @@ static bool btm_dev_16_digit_authenticated(tBTM_SEC_DEV_REC* p_dev_rec) {
  *
  ******************************************************************************/
 bool BTM_SecRegister(const tBTM_APPL_INFO* p_cb_info) {
-  if (bluetooth::shim::is_gd_shim_enabled()) {
-    return bluetooth::shim::BTM_SecRegister(p_cb_info);
-  }
-
   BTM_TRACE_EVENT("%s application registered", __func__);
 
   LOG_INFO("%s p_cb_info->p_le_callback == 0x%p", __func__,
@@ -876,11 +872,6 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
 tBTM_STATUS BTM_SecBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                         tBT_TRANSPORT transport, tBT_DEVICE_TYPE device_type,
                         uint8_t pin_len, uint8_t* p_pin) {
-  if (bluetooth::shim::is_gd_shim_enabled()) {
-    return bluetooth::shim::BTM_SecBond(bd_addr, addr_type, transport,
-                                        device_type);
-  }
-
   if (transport == BT_TRANSPORT_AUTO) {
     if (addr_type == BLE_ADDR_PUBLIC) {
       transport =
@@ -915,10 +906,6 @@ tBTM_STATUS BTM_SecBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
  *
  ******************************************************************************/
 tBTM_STATUS BTM_SecBondCancel(const RawAddress& bd_addr) {
-  if (bluetooth::shim::is_gd_shim_enabled()) {
-    return bluetooth::shim::BTM_SecBondCancel(bd_addr);
-  }
-
   tBTM_SEC_DEV_REC* p_dev_rec;
 
   BTM_TRACE_API("BTM_SecBondCancel()  State: %s flags:0x%x",
@@ -1040,11 +1027,6 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr,
                               tBT_TRANSPORT transport,
                               tBTM_SEC_CALLBACK* p_callback, void* p_ref_data,
                               tBTM_BLE_SEC_ACT sec_act) {
-  if (bluetooth::shim::is_gd_shim_enabled()) {
-    return bluetooth::shim::BTM_SetEncryption(bd_addr, transport, p_callback,
-                                              p_ref_data, sec_act);
-  }
-
   tBTM_STATUS rc = BTM_SUCCESS;
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
@@ -1196,8 +1178,6 @@ static tBTM_STATUS btm_sec_send_hci_disconnect(tBTM_SEC_DEV_REC* p_dev_rec,
  *
  ******************************************************************************/
 void BTM_ConfirmReqReply(tBTM_STATUS res, const RawAddress& bd_addr) {
-  ASSERT_LOG(!bluetooth::shim::is_gd_shim_enabled(), "Unreachable code path");
-
   BTM_TRACE_EVENT("BTM_ConfirmReqReply() State: %s  Res: %u",
                   btm_pair_state_descr(btm_cb.pairing_state), res);
 
@@ -1236,8 +1216,6 @@ void BTM_ConfirmReqReply(tBTM_STATUS res, const RawAddress& bd_addr) {
  ******************************************************************************/
 void BTM_PasskeyReqReply(tBTM_STATUS res, const RawAddress& bd_addr,
                          uint32_t passkey) {
-  ASSERT_LOG(!bluetooth::shim::is_gd_shim_enabled(), "Unreachable code path");
-
   BTM_TRACE_API("BTM_PasskeyReqReply: State: %s  res:%d",
                 btm_pair_state_descr(btm_cb.pairing_state), res);
 
@@ -1763,11 +1741,6 @@ tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr,
   tBTM_STATUS rc;
   bool transport = false; /* should check PSM range in LE connection oriented
                              L2CAP connection */
-  if (bluetooth::shim::is_gd_shim_enabled()) {
-    return bluetooth::shim::btm_sec_mx_access_request(
-        bd_addr, is_originator, security_required, p_callback, p_ref_data);
-  }
-
   LOG_DEBUG("Multiplex access request device:%s", PRIVATE_ADDRESS(bd_addr));
 
   /* Find or get oldest record */
