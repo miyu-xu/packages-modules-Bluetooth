@@ -34,6 +34,7 @@
 #include "bta/sys/bta_sys.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/allocator.h"
+#include "osi/include/log.h"
 #include "stack/include/bnep_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_log_history.h"
