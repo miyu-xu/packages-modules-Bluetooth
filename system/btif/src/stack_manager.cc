@@ -21,10 +21,8 @@
 #include "btif/include/stack_manager.h"
 
 #include <hardware/bluetooth.h>
-#if defined(STATIC_LIBBLUETOOTH)
 #include <cstdlib>
 #include <cstring>
-#endif
 
 #include "btcore/include/module.h"
 #include "btcore/include/osi_module.h"
