@@ -26,6 +26,7 @@ rust_binary_host {
         "libbt_facade_helpers",
         "libbt_topshim",
         "libbt_topshim_facade_protobuf",
+        "libbt_blueberry_protobuf",
         "libbt_shim",
     ],
     static_libs: [
@@ -73,6 +74,14 @@ rust_protobuf {
     source_stem: "topshim_facade",
     host_supported: true,
     grpc_protos: ["facade.proto"],
+}
+
+rust_protobuf {
+    name: "libbt_blueberry_protobuf",
+    crate_name: "bt_blueberry_protobuf",
+    source_stem: "blueberry",
+    host_supported: true,
+    grpc_protos: ["blueberry/host.proto", "blueberry/a2dp.proto"],
 }
 
 genrule {
