@@ -301,8 +301,12 @@ impl A2dp {
         self.internal.set_active_device(addr.into());
     }
 
-    pub fn disconnect(&mut self, addr: RawAddress) {
-        self.internal.disconnect(addr.into());
+    pub fn set_silence_device(&mut self, bt_addr: RawAddress) {
+        self.internal.set_silence_device(bt_addr.into(), true);
+    }
+
+    pub fn disconnect(&mut self, bt_addr: RawAddress) {
+        self.internal.disconnect(bt_addr.into());
     }
 
     pub fn set_audio_config(&self, sample_rate: i32, bits_per_sample: i32, channel_mode: i32) {

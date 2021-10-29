@@ -9,14 +9,24 @@ extern crate lazy_static;
 
 use bt_topshim::btif;
 
+use std::convert::TryInto;
+
 use futures::channel::mpsc;
-use futures::executor::block_on;
+use futures::future::FutureExt;
+use futures::select;
 use futures::stream::StreamExt;
 use grpcio::*;
 use log::debug;
+use nix::fcntl;
 use nix::sys::signal;
+use nix::unistd;
 use std::sync::{Arc, Mutex};
 use tokio::runtime::Runtime;
+use tokio::sync::oneshot;
+
+use std::env;
+use std::os::unix::process::CommandExt;
+use std::process::Command;
 
 mod adapter_service;
 mod media_service;
@@ -34,13 +44,33 @@ mod media_service;
 use bt_shim::*;
 
 fn main() {
-    let sigint = install_sigint();
     bt_common::init_logging();
     let rt = Arc::new(Runtime::new().unwrap());
-    rt.block_on(async_main(Arc::clone(&rt), sigint));
+    let reset = rt.block_on(async_main(Arc::clone(&rt)));
+    drop(rt);
+
+    if reset {
+        let mut args = env::args();
+        let process = args.next().unwrap();
+
+        println!("\n\nResetting stack ...\n\n");
+
+        // Close all file descriptors
+        let max_fd: i32 =
+            unistd::sysconf(unistd::SysconfVar::OPEN_MAX).unwrap().unwrap().try_into().unwrap();
+
+        for i in 3..max_fd {
+            let _ = fcntl::fcntl(i, fcntl::F_SETFD(fcntl::FdFlag::FD_CLOEXEC));
+        }
+
+        // On success this will not return and replace the current
+        // process. Warning: this will not run the destructors
+        let err = Command::new(process).args(args).exec();
+        panic!("Reset failed {:?}", err);
+    }
 }
 
-async fn async_main(rt: Arc<Runtime>, mut sigint: mpsc::UnboundedReceiver<()>) {
+async fn async_main(rt: Arc<Runtime>) -> bool {
     let matches = App::new("bluetooth_topshim_facade")
         .about("The bluetooth topshim stack, with testing facades enabled and exposed via gRPC.")
         .arg(Arg::with_name("grpc-port").long("grpc-port").default_value("8899").takes_value(true))
@@ -60,6 +90,7 @@ async fn async_main(rt: Arc<Runtime>, mut sigint: mpsc::UnboundedReceiver<()>) {
         .arg(Arg::with_name("btsnoop").long("btsnoop").takes_value(true))
         .arg(Arg::with_name("btsnooz").long("btsnooz").takes_value(true))
         .arg(Arg::with_name("btconfig").long("btconfig").takes_value(true))
+        .arg(Arg::with_name("blueberry").long("blueberry").default_value("false").takes_value(true))
         .arg(
             Arg::with_name("start-stack-now")
                 .long("start-stack-now")
@@ -70,20 +101,35 @@ async fn async_main(rt: Arc<Runtime>, mut sigint: mpsc::UnboundedReceiver<()>) {
 
     let grpc_port = value_t!(matches, "grpc-port", u16).unwrap();
     let _rootcanal_port = value_t!(matches, "rootcanal-port", u16).ok();
+    let blueberry = value_t!(matches, "blueberry", bool).unwrap();
     let env = Arc::new(Environment::new(2));
 
     let btif_intf = Arc::new(Mutex::new(btif::get_btinterface().unwrap()));
 
-    // AdapterServiceImpl::create initializes the stack; not the best practice because the side effect is hidden
-    let adapter_service_impl =
-        adapter_service::AdapterServiceImpl::create(rt.clone(), btif_intf.clone());
+    let (reset_tx, reset_rx) = oneshot::channel();
 
-    let media_service_impl = media_service::MediaServiceImpl::create(rt.clone(), btif_intf.clone());
+    // AdapterServiceImpl::create initializes the stack; not the best practice because the side effect is hidden
+    let (adapter_service_impl, wait_for_adapter) = adapter_service::AdapterServiceImpl::create(
+        rt.clone(),
+        btif_intf.clone(),
+        reset_tx,
+        blueberry,
+    );
+
+    let media_service_impl =
+        media_service::MediaServiceImpl::create(rt.clone(), btif_intf.clone(), blueberry);
 
     let start_stack_now = value_t!(matches, "start-stack-now", bool).unwrap();
 
     if start_stack_now {
         btif_intf.clone().lock().unwrap().enable();
+    }
+
+    if blueberry {
+        wait_for_adapter.await;
+        btif_intf.lock().unwrap().set_adapter_property(btif::BluetoothProperty::AdapterScanMode(
+            btif::BtScanMode::Connectable,
+        ));
     }
 
     let mut server = ServerBuilder::new(env)
@@ -92,10 +138,18 @@ async fn async_main(rt: Arc<Runtime>, mut sigint: mpsc::UnboundedReceiver<()>) {
         .bind("0.0.0.0", grpc_port)
         .build()
         .unwrap();
+
     server.start();
 
-    sigint.next().await;
-    block_on(server.shutdown()).unwrap();
+    let mut sigint = install_sigint();
+
+    let reset = select! {
+        _ = reset_rx.fuse() => true,
+        _ = sigint.next() => false,
+    };
+
+    server.shutdown().await.unwrap();
+    reset
 }
 
 // TODO: remove as this is a temporary nix-based hack to catch SIGINT
