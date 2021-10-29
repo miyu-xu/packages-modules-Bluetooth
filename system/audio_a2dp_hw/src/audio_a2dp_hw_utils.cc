@@ -40,5 +40,6 @@ const char* audio_a2dp_hw_dump_ctrl_event(tA2DP_CTRL_CMD event) {
 }
 
 bool delay_reporting_enabled() {
+  return false;
   return !osi_property_get_bool("persist.bluetooth.disabledelayreports", false);
 }
