@@ -20,10 +20,16 @@
 #include <array>
 #include <optional>
 
+#include "bt_av.h"
 #include "raw_address.h"
 
 namespace bluetooth {
 namespace le_audio {
+
+using btle_audio_codec_priority_t = bt_codec_priority_t;
+using btle_audio_codec_sample_rate_t = bt_codec_sample_rate_t;
+using btle_audio_codec_bits_per_sample_t = bt_codec_bits_per_sample_t;
+using btle_audio_codec_channel_mode_t = bt_codec_channel_mode_t;
 
 enum class ConnectionState {
   DISCONNECTED = 0,
@@ -49,6 +55,96 @@ enum class GroupNodeStatus {
   ADDED = 1,
   REMOVED,
 };
+
+typedef enum {
+  LE_AUDIO_CODEC_INDEX_SOURCE_LC3 = BT_CODEC_INDEX_SOURCE_LC3
+} btle_audio_codec_index_t;
+
+typedef struct {
+  btle_audio_codec_index_t codec_type;
+  btle_audio_codec_priority_t
+      codec_priority;  // Codec selection priority
+                       // relative to other codecs: larger value
+                       // means higher priority. If 0, reset to
+                       // default.
+  btle_audio_codec_sample_rate_t sample_rate;
+  btle_audio_codec_bits_per_sample_t bits_per_sample;
+  btle_audio_codec_channel_mode_t channel_mode;
+  int64_t codec_specific_1;  // Codec-specific value 1
+  int64_t codec_specific_2;  // Codec-specific value 2
+  int64_t codec_specific_3;  // Codec-specific value 3
+  int64_t codec_specific_4;  // Codec-specific value 4
+
+  std::string ToString() const {
+    std::string codec_name_str;
+
+    switch (codec_type) {
+      case LE_AUDIO_CODEC_INDEX_SOURCE_LC3:
+        codec_name_str = "LC3";
+        break;
+      default:
+        codec_name_str = "Unknown LE codec " + std::to_string(codec_type);
+        break;
+    }
+
+    std::string sample_rate_str;
+    AppendCapability(sample_rate_str,
+                     (sample_rate == BT_CODEC_SAMPLE_RATE_NONE), "NONE");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_44100), "44100");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_48000), "48000");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_88200), "88200");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_96000), "96000");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_176400), "176400");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_192000), "192000");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_16000), "16000");
+    AppendCapability(sample_rate_str,
+                     (sample_rate & BT_CODEC_SAMPLE_RATE_24000), "24000");
+
+    std::string bits_per_sample_str;
+    AppendCapability(bits_per_sample_str,
+                     (bits_per_sample == BT_CODEC_BITS_PER_SAMPLE_NONE),
+                     "NONE");
+    AppendCapability(bits_per_sample_str,
+                     (bits_per_sample & BT_CODEC_BITS_PER_SAMPLE_16), "16");
+    AppendCapability(bits_per_sample_str,
+                     (bits_per_sample & BT_CODEC_BITS_PER_SAMPLE_24), "24");
+    AppendCapability(bits_per_sample_str,
+                     (bits_per_sample & BT_CODEC_BITS_PER_SAMPLE_32), "32");
+
+    std::string channel_mode_str;
+    AppendCapability(channel_mode_str,
+                     (channel_mode == BT_CODEC_CHANNEL_MODE_NONE), "NONE");
+    AppendCapability(channel_mode_str,
+                     (channel_mode & BT_CODEC_CHANNEL_MODE_MONO), "MONO");
+    AppendCapability(channel_mode_str,
+                     (channel_mode & BT_CODEC_CHANNEL_MODE_STEREO), "STEREO");
+
+    return "codec: " + codec_name_str +
+           " priority: " + std::to_string(codec_priority) +
+           " sample_rate: " + sample_rate_str +
+           " bits_per_sample: " + bits_per_sample_str +
+           " channel_mode: " + channel_mode_str +
+           " codec_specific_1: " + std::to_string(codec_specific_1) +
+           " codec_specific_2: " + std::to_string(codec_specific_2) +
+           " codec_specific_3: " + std::to_string(codec_specific_3) +
+           " codec_specific_4: " + std::to_string(codec_specific_4);
+  }
+
+ private:
+  static void AppendCapability(std::string& result, bool append,
+                               const std::string& name) {
+    if (!append) return;
+    result += result.empty() ? name : "|" + name;
+  }
+
+} btle_audio_codec_config_t;
 
 class LeAudioClientCallbacks {
  public:
@@ -76,7 +172,9 @@ class LeAudioClientInterface {
   virtual ~LeAudioClientInterface() = default;
 
   /* Register the LeAudio callbacks */
-  virtual void Initialize(LeAudioClientCallbacks* callbacks) = 0;
+  virtual void Initialize(
+      LeAudioClientCallbacks* callbacks,
+      const std::vector<btle_audio_codec_config_t>& offloading_preference) = 0;
 
   /** Connect to LEAudio */
   virtual void Connect(const RawAddress& address) = 0;

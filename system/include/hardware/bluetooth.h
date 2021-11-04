@@ -749,6 +749,76 @@ typedef struct {
   int (*generate_local_oob_data)(tBT_TRANSPORT transport);
 } bt_interface_t;
 
+/*
+ * Enum values for A2DP and LE Audio supported codec.
+ * There should be a separate entry for each codec that is supported
+ * for encoding (SRC), and for decoding purpose (SINK).
+ */
+typedef enum {
+  BT_CODEC_INDEX_SOURCE_MIN = 0,
+
+  // Add an entry for each source codec here.
+  // NOTE: The values should be same as those listed in the following file:
+  //   BluetoothCodecConfig.java
+  BT_CODEC_INDEX_SOURCE_SBC = 0,
+  BT_CODEC_INDEX_SOURCE_AAC,
+  BT_CODEC_INDEX_SOURCE_APTX,
+  BT_CODEC_INDEX_SOURCE_APTX_HD,
+  BT_CODEC_INDEX_SOURCE_LDAC,
+  BT_CODEC_INDEX_SOURCE_LC3,
+
+  BT_CODEC_INDEX_SOURCE_MAX,
+
+  BT_CODEC_INDEX_SINK_MIN = BT_CODEC_INDEX_SOURCE_MAX,
+
+  // Add an entry for each sink codec here
+  BT_CODEC_INDEX_SINK_SBC = BT_CODEC_INDEX_SINK_MIN,
+  BT_CODEC_INDEX_SINK_AAC,
+  BT_CODEC_INDEX_SINK_LDAC,
+
+  BT_CODEC_INDEX_SINK_MAX,
+
+  BT_CODEC_INDEX_MIN = BT_CODEC_INDEX_SOURCE_MIN,
+  BT_CODEC_INDEX_MAX = BT_CODEC_INDEX_SINK_MAX
+} bt_codec_index_t;
+
+typedef enum {
+  // Disable the codec.
+  // NOTE: This value can be used only during initialization
+  BT_CODEC_PRIORITY_DISABLED = -1,
+
+  // Reset the codec priority to its default value.
+  BT_CODEC_PRIORITY_DEFAULT = 0,
+
+  // Highest codec priority.
+  BT_CODEC_PRIORITY_HIGHEST = 1000 * 1000
+} bt_codec_priority_t;
+
+typedef enum {
+  BT_CODEC_SAMPLE_RATE_NONE = 0x0,
+  BT_CODEC_SAMPLE_RATE_44100 = 0x1 << 0,
+  BT_CODEC_SAMPLE_RATE_48000 = 0x1 << 1,
+  BT_CODEC_SAMPLE_RATE_88200 = 0x1 << 2,
+  BT_CODEC_SAMPLE_RATE_96000 = 0x1 << 3,
+  BT_CODEC_SAMPLE_RATE_176400 = 0x1 << 4,
+  BT_CODEC_SAMPLE_RATE_192000 = 0x1 << 5,
+  BT_CODEC_SAMPLE_RATE_16000 = 0x1 << 6,
+  BT_CODEC_SAMPLE_RATE_24000 = 0x1 << 7
+} bt_codec_sample_rate_t;
+
+typedef enum {
+  BT_CODEC_BITS_PER_SAMPLE_NONE = 0x0,
+  BT_CODEC_BITS_PER_SAMPLE_16 = 0x1 << 0,
+  BT_CODEC_BITS_PER_SAMPLE_24 = 0x1 << 1,
+  BT_CODEC_BITS_PER_SAMPLE_32 = 0x1 << 2
+} bt_codec_bits_per_sample_t;
+
+typedef enum {
+  BT_CODEC_CHANNEL_MODE_NONE = 0x0,
+  BT_CODEC_CHANNEL_MODE_MONO = 0x1 << 0,
+  BT_CODEC_CHANNEL_MODE_STEREO = 0x1 << 1
+} bt_codec_channel_mode_t;
+
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"
 
 #endif /* ANDROID_INCLUDE_BLUETOOTH_H */
