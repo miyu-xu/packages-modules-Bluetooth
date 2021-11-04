@@ -54,6 +54,9 @@ class LeAclConnection : public AclConnection {
     return role_;
   }
 
+  // The peer address returned from the Connection Complete Event
+  Address peer_address_;
+
   virtual void RegisterCallbacks(LeConnectionManagementCallbacks* callbacks, os::Handler* handler);
   virtual void Disconnect(DisconnectReason reason);
 
