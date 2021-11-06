@@ -556,7 +556,8 @@ static void l2c_csm_term_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event,
 
     case L2CEVT_TIMEOUT:
       /* SM4 related. */
-      acl_disconnect_from_handle(p_ccb->p_lcb->Handle(), HCI_ERR_AUTH_FAILURE);
+      acl_disconnect_from_handle(p_ccb->p_lcb->Handle(), HCI_ERR_AUTH_FAILURE,
+                                 "L2cap Event Timeout");
       break;
 
     case L2CEVT_SEC_RE_SEND_CMD: /* BTM has enough info to proceed */
@@ -1146,7 +1147,8 @@ static void l2c_csm_config(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
         }
 
         acl_disconnect_from_handle(p_ccb->p_lcb->Handle(),
-                                   HCI_ERR_CONN_CAUSE_LOCAL_HOST);
+                                   HCI_ERR_CONN_CAUSE_LOCAL_HOST,
+                                   "L2capCfg:Event timeout");
         return;
       }
 
