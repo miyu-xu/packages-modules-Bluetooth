@@ -498,7 +498,7 @@ class SecurityListenerShim
     uint16_t handle = address_to_handle_[bda];
     address_to_handle_.erase(bda);
     address_to_interface_.erase(bda);
-    btm_sec_disconnected(handle, HCI_ERR_PEER_USER);
+    btm_sec_disconnected(handle, HCI_ERR_PEER_USER, "Security link disconnect");
     BTA_dm_acl_down(bda, BT_TRANSPORT_BR_EDR);
     BTM_PM_OnDisconnected(handle);
   }
