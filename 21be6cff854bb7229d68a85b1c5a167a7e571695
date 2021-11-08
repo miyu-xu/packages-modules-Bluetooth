@@ -1,0 +1,271 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017011279",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d0e34c76_bbae2dde",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-08T15:55:46Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027they\u0027, \u0027them\u0027, or \u0027person\u0027; see https://developers.google.com/style/word-list#gender for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 102,
+        "startChar": 21,
+        "endLine": 102,
+        "endChar": 24
+      },
+      "revId": "21be6cff854bb7229d68a85b1c5a167a7e571695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017011281",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "47ca8592_37e40f38",
+          "description": "Change to \"system/bta/has/has_client.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/has/has_client.cc",
+              "range": {
+                "startLine": 106,
+                "startChar": 13,
+                "endLine": 106,
+                "endChar": 24
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ec8b8af2_f556e948",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-08T15:55:46Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 106,
+        "startChar": 13,
+        "endLine": 106,
+        "endChar": 24
+      },
+      "revId": "21be6cff854bb7229d68a85b1c5a167a7e571695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017011279",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fa001b0e_2491c54d",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-08T15:55:46Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027they\u0027, \u0027them\u0027, or \u0027person\u0027; see https://developers.google.com/style/word-list#gender for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 1389,
+        "startChar": 10,
+        "endLine": 1389,
+        "endChar": 14
+      },
+      "revId": "21be6cff854bb7229d68a85b1c5a167a7e571695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017011281",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "83136bb5_433f88df",
+          "description": "Change to \"system/bta/has/has_client.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/has/has_client.cc",
+              "range": {
+                "startLine": 1402,
+                "startChar": 46,
+                "endLine": 1402,
+                "endChar": 53
+              },
+              "replacement": "the"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "70d05dd8_6cf9f5d6",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-08T15:55:46Z",
+      "side": 1,
+      "message": "Common typo found: \"the the\" -- should it be \"the\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1402,
+        "startChar": 46,
+        "endLine": 1402,
+        "endChar": 53
+      },
+      "revId": "21be6cff854bb7229d68a85b1c5a167a7e571695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017011281",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "a9fa8223_bcd07bee",
+          "description": "Change to \"system/bta/has/has_client.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/has/has_client.cc",
+              "range": {
+                "startLine": 1674,
+                "startChar": 7,
+                "endLine": 1674,
+                "endChar": 15
+              },
+              "replacement": "Initially"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "36e986b7_0acde4d2",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-08T15:55:46Z",
+      "side": 1,
+      "message": "Common typo found: \"Initally\" -- should it be \"Initially\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1674,
+        "startChar": 7,
+        "endLine": 1674,
+        "endChar": 15
+      },
+      "revId": "21be6cff854bb7229d68a85b1c5a167a7e571695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017011281",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "ef16b802_6c995c6e",
+          "description": "Change to \"system/bta/has/has_client_test.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/has/has_client_test.cc",
+              "range": {
+                "startLine": 3098,
+                "startChar": 18,
+                "endLine": 3098,
+                "endChar": 24
+              },
+              "replacement": "address"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "9b62fe2a_00fb584a",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3098,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-08T15:55:46Z",
+      "side": 1,
+      "message": "Common typo found: \"adress\" -- should it be \"address\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 3098,
+        "startChar": 18,
+        "endLine": 3098,
+        "endChar": 24
+      },
+      "revId": "21be6cff854bb7229d68a85b1c5a167a7e571695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017011281",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "c549c1ca_480c12b0",
+          "description": "Change to \"system/bta/has/has_preset.h\"",
+          "replacements": [
+            {
+              "path": "system/bta/has/has_preset.h",
+              "range": {
+                "startLine": 103,
+                "startChar": 61,
+                "endLine": 103,
+                "endChar": 67
+              },
+              "replacement": "length"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "68519661_b246dba5",
+        "filename": "system/bta/has/has_preset.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-08T15:55:46Z",
+      "side": 1,
+      "message": "Common typo found: \"lenght\" -- should it be \"length\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 103,
+        "startChar": 61,
+        "endLine": 103,
+        "endChar": 67
+      },
+      "revId": "21be6cff854bb7229d68a85b1c5a167a7e571695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
