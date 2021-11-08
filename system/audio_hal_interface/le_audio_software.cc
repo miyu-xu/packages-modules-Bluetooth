@@ -29,6 +29,7 @@ using ::android::hardware::bluetooth::audio::V2_0::BitsPerSample;
 using ::android::hardware::bluetooth::audio::V2_0::ChannelMode;
 using ::android::hardware::bluetooth::audio::V2_0::CodecType;
 using ::android::hardware::bluetooth::audio::V2_1::PcmParameters;
+using ::bluetooth::audio::AudioConfiguration_2_2;
 using ::bluetooth::audio::BluetoothAudioCtrlAck;
 using ::bluetooth::audio::SampleRate_2_1;
 using ::bluetooth::audio::SessionType;
@@ -188,7 +189,8 @@ class LeAudioSinkTransport
  public:
   LeAudioSinkTransport(StreamCallbacks stream_cb)
       : IBluetoothSinkTransportInstance(
-            SessionType_2_1::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH, {}) {
+            SessionType_2_1::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH,
+            (AudioConfiguration_2_2){}) {
     transport_ =
         new LeAudioTransport(flush_sink, std::move(stream_cb),
                              {SampleRate_2_1::RATE_16000, ChannelMode::STEREO,
@@ -263,7 +265,8 @@ class LeAudioSourceTransport
  public:
   LeAudioSourceTransport(StreamCallbacks stream_cb)
       : IBluetoothSourceTransportInstance(
-            SessionType_2_1::LE_AUDIO_SOFTWARE_DECODED_DATAPATH, {}) {
+            SessionType_2_1::LE_AUDIO_SOFTWARE_DECODED_DATAPATH,
+            (AudioConfiguration_2_2){}) {
     transport_ =
         new LeAudioTransport(flush_source, std::move(stream_cb),
                              {SampleRate_2_1::RATE_16000, ChannelMode::MONO,
@@ -423,13 +426,13 @@ void LeAudioClientInterface::Sink::SetRemoteDelay(uint16_t delay_report_ms) {
 
 void LeAudioClientInterface::Sink::StartSession() {
   LOG(INFO) << __func__;
-  AudioConfiguration_2_1 audio_config;
+  AudioConfiguration_2_2 audio_config;
   audio_config.pcmConfig(le_audio_sink->LeAudioGetSelectedHalPcmConfig());
-  if (!le_audio_sink_hal_clientinterface->UpdateAudioConfig_2_1(audio_config)) {
+  if (!le_audio_sink_hal_clientinterface->UpdateAudioConfig_2_2(audio_config)) {
     LOG(ERROR) << __func__ << ": cannot update audio config to HAL";
     return;
   }
-  le_audio_sink_hal_clientinterface->StartSession_2_1();
+  le_audio_sink_hal_clientinterface->StartSession_2_2();
 }
 
 void LeAudioClientInterface::Sink::ConfirmStreamingRequest() {
@@ -491,14 +494,14 @@ void LeAudioClientInterface::Source::SetRemoteDelay(uint16_t delay_report_ms) {
 void LeAudioClientInterface::Source::StartSession() {
   LOG(INFO) << __func__;
   if (!is_source_hal_enabled()) return;
-  AudioConfiguration_2_1 audio_config;
+  AudioConfiguration_2_2 audio_config;
   audio_config.pcmConfig(le_audio_source->LeAudioGetSelectedHalPcmConfig());
-  if (!le_audio_source_hal_clientinterface->UpdateAudioConfig_2_1(
+  if (!le_audio_source_hal_clientinterface->UpdateAudioConfig_2_2(
           audio_config)) {
     LOG(ERROR) << __func__ << ": cannot update audio config to HAL";
     return;
   }
-  le_audio_source_hal_clientinterface->StartSession_2_1();
+  le_audio_source_hal_clientinterface->StartSession_2_2();
 }
 
 void LeAudioClientInterface::Source::ConfirmStreamingRequest() {
