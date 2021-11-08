@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.AttributionSource;
+import android.net.ITetheredInterfaceCallback;
 
 /**
  * API for Bluetooth Pan service
@@ -29,7 +30,7 @@ interface IBluetoothPan {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     boolean isTetheringOn(in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED,android.Manifest.permission.TETHER_PRIVILEGED})")
-    void setBluetoothTethering(boolean value, in AttributionSource attributionSource);
+    void setBluetoothTethering(ITetheredInterfaceCallback callback, boolean value, in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     boolean connect(in BluetoothDevice device, in AttributionSource attributionSource);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
