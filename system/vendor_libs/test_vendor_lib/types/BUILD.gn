@@ -26,7 +26,7 @@ static_library("types") {
   ]
 
   include_dirs = [
-    "//bt",
+    "//bt/system",
   ]
 
   configs += [
@@ -42,7 +42,7 @@ if (use.test) {
     ]
 
     include_dirs = [
-      "//bt",
+      "//bt/system",
     ]
 
     libs = [
@@ -54,7 +54,7 @@ if (use.test) {
     ]
 
     deps = [
-      "//bt/types",
+      "//bt/system/types",
     ]
 
     configs += [

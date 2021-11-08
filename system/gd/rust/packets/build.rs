@@ -25,7 +25,7 @@ fn generate_packets() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
 
     let gd_root = match env::var("PLATFORM_SUBDIR") {
-        Ok(dir) => PathBuf::from(dir).join("bt/gd"),
+        Ok(dir) => PathBuf::from(dir).join("bt/system/gd"),
         // Currently at //platform2/gd/rust/rust/packets
         Err(_) => PathBuf::from(env::current_dir().unwrap()).join("../..").canonicalize().unwrap(),
     };
@@ -41,7 +41,7 @@ fn generate_packets() {
         let output = Command::new(packetgen.as_os_str().to_str().unwrap())
             .arg("--source_root=".to_owned() + gd_root.as_os_str().to_str().unwrap())
             .arg("--out=".to_owned() + out_dir.as_os_str().to_str().unwrap())
-            .arg("--include=bt/gd")
+            .arg("--include=bt/system/gd")
             .arg("--rust")
             .arg(input_files[i].as_os_str().to_str().unwrap())
             .output()

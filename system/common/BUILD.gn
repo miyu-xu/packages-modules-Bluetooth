@@ -28,15 +28,15 @@ static_library("common") {
   ]
 
   include_dirs = [
-    "//bt/",
-    "//bt/stack/include",
-    "//bt/linux_include",
-    "//bt/internal_include",
+    "//bt/system/",
+    "//bt/system/stack/include",
+    "//bt/system/linux_include",
+    "//bt/system/internal_include",
   ]
 
   deps = [
     "//bt:libbt-platform-protos-lite",
-    "//bt/gd/rust/shim:init_flags_bridge_header",
+    "//bt/system/gd/rust/shim:init_flags_bridge_header",
   ]
 
   configs += [ "//bt:target_defaults" ]
@@ -51,11 +51,11 @@ if (use.test) {
     ]
 
     include_dirs = [
-      "//bt/",
-      "//bt/common",
+      "//bt/system/",
+      "//bt/system/common",
     ]
 
-    deps = [ "//bt/common" ]
+    deps = [ "//bt/system/common" ]
 
     configs += [
       "//bt:external_gtest_main",

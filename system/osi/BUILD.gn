@@ -44,16 +44,16 @@ static_library("osi") {
   ]
 
   include_dirs = [
-    "//bt/",
-    "//bt/linux_include",
-    "//bt/internal_include",
-    "//bt/utils/include",
-    "//bt/stack/include",
+    "//bt/system/",
+    "//bt/system/linux_include",
+    "//bt/system/internal_include",
+    "//bt/system/utils/include",
+    "//bt/system/stack/include",
   ]
 
   deps = [
-    "//bt/common",
-    "//bt/gd/rust/shim:init_flags_bridge_header",
+    "//bt/system/common",
+    "//bt/system/gd/rust/shim:init_flags_bridge_header",
   ]
 
   configs += [
@@ -82,12 +82,12 @@ if (use.test) {
     ]
 
     include_dirs = [
-      "//bt/",
-      "//bt/osi/test",
+      "//bt/system/",
+      "//bt/system/osi/test",
     ]
 
     deps = [
-      "//bt/osi",
+      "//bt/system/osi",
     ]
 
     configs += [

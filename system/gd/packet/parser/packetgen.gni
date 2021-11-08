@@ -17,7 +17,7 @@
 # Generate pybind11 source files + headers
 #
 # Parameters:
-#   include: Base include path (i.e. bt/gd)
+#   include: Base include path (i.e. bt/system/gd)
 #   source_root: Root of source relative to current BUILD.gn
 #   sources: PDL files to use for generation.
 #   shards [optional]: Shard generated source into N files.
@@ -94,7 +94,7 @@ template("packetgen_py") {
 # Generate single c++ headers for each pdl
 #
 # Parameters:
-#   include: Base include path (i.e. bt/gd)
+#   include: Base include path (i.e. bt/system/gd)
 #   source_root: Root of source relative to current BUILD.gn
 #   sources: PDL files to use for generation.
 template("packetgen_headers") {
@@ -142,7 +142,7 @@ template("packetgen_headers") {
 # Generate single Rust files for each pdl
 #
 # Parameters:
-#   include: Base include path (i.e. bt/gd)
+#   include: Base include path (i.e. bt/system/gd)
 #   source_root: Root of source relative to current BUILD.gn
 #   sources: PDL files to use for generation.
 template("packetgen_rust") {

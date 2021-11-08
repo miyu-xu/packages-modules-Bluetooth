@@ -58,9 +58,9 @@ fn main() {
         _ => (),
     }
 
-    // Proto root is //platform2/bt/gd
+    // Proto root is //platform2/bt/system/gd
     let proto_root = match env::var("PLATFORM_SUBDIR") {
-        Ok(dir) => PathBuf::from(dir).join("bt/gd"),
+        Ok(dir) => PathBuf::from(dir).join("bt/system/gd"),
         // Currently at //platform2/gd/rust/facade_proto
         Err(_) => PathBuf::from(env::current_dir().unwrap()).join("../..").canonicalize().unwrap(),
     };

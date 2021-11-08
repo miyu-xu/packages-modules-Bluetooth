@@ -22,11 +22,11 @@ static_library("device") {
   ]
 
   include_dirs = [
-    "//bt/",
-    "//bt/btcore/include",
-    "//bt/hci/include",
-    "//bt/internal_include",
-    "//bt/stack/include",
+    "//bt/system/",
+    "//bt/system/btcore/include",
+    "//bt/system/hci/include",
+    "//bt/system/internal_include",
+    "//bt/system/stack/include",
   ]
 
   configs += [
@@ -34,24 +34,24 @@ static_library("device") {
   ]
 
   deps = [
-    "//bt/gd/rust/shim:init_flags_bridge_header",
-    "//bt/gd/rust/shim:libbluetooth_rust_interop",
-    "//bt/gd/rust/shim:message_loop_thread_bridge_header",
+    "//bt/system/gd/rust/shim:init_flags_bridge_header",
+    "//bt/system/gd/rust/shim:libbluetooth_rust_interop",
+    "//bt/system/gd/rust/shim:message_loop_thread_bridge_header",
   ]
 }
 
 if (use.test) {
   executable("net_test_device") {
     sources = [
-      "//bt/osi/test/AllocationTestHarness.cc",
+      "//bt/system/osi/test/AllocationTestHarness.cc",
     ]
 
-    include_dirs = [ "//bt" ]
+    include_dirs = [ "//bt/system" ]
 
     deps = [
-      "//bt/device",
-      "//bt/btcore",
-      "//bt/osi",
+      "//bt/system/device",
+      "//bt/system/btcore",
+      "//bt/system/osi",
     ]
 
     configs += [
