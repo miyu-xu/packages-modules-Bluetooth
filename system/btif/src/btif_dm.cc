@@ -1057,8 +1057,12 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
                    __func__, bd_addr.ToString().c_str());
           bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
         }
-        bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED);
-
+        if (BTM_SecIsCtkdAvailableFromBredr(bd_addr)) {
+          LOG_INFO("%s: %s classic pairing complete, waiting for CTKD",
+                   __func__, bd_addr.ToString().c_str());
+        } else {
+          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED);
+        }
         btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
       }
     }
