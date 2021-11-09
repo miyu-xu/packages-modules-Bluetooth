@@ -376,6 +376,21 @@ bool BTM_PeerSupportsSecureConnections(const RawAddress& bd_addr);
 
 /*******************************************************************************
  *
+ * Function         BTM_SecIsCtkdAvailableFromBredr
+ *
+ * Description      This function is called to check if a pairing session
+ *                  to the peer device supports CTKD from BR/EDR.
+ *
+ * Parameters:      bd_addr - address of the peer
+ *
+ * Returns          true if BR/EDR Secure Connections are supported by the peer,
+ *                  else false.
+ *
+ ******************************************************************************/
+bool BTM_SecIsCtkdAvailableFromBredr(const RawAddress& bd_addr);
+
+/*******************************************************************************
+ *
  * Function         btm_sec_l2cap_access_req
  *
  * Description      This function is called by the L2CAP to grant permission to

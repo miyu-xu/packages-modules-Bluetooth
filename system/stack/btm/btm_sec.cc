@@ -1399,6 +1399,32 @@ tBT_DEVICE_TYPE BTM_GetPeerDeviceTypeFromFeatures(const RawAddress& bd_addr) {
   return BT_DEVICE_TYPE_BREDR;
 }
 
+/*******************************************************************************
+ *
+ * Function         BTM_SecIsCtkdAvailableFromBredr
+ *
+ * Description      This function is called to check if a pairing session
+ *                  to the peer device supports CTKD from BR/EDR.
+ *
+ * Parameters:      bd_addr - address of the peer
+ *
+ * Returns          true if BR/EDR Secure Connections are supported by the peer,
+ *                  else false.
+ *
+ ******************************************************************************/
+bool BTM_SecIsCtkdAvailableFromBredr(const RawAddress& bd_addr) {
+  tBTM_SEC_DEV_REC* p_dev_rec;
+
+  p_dev_rec = btm_find_dev(bd_addr);
+  if (!p_dev_rec->new_encryption_key_is_p256) return false;
+  if (!btm_sec_use_smp_br_chnl(p_dev_rec)) return false;
+  /* no LE keys are available, do deriving */
+  if (p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN) return false;
+  /* or BR key is higher security than existing LE keys */
+  return (!(p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_AUTHED) &&
+          (p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_AUTHED));
+}
+
 /************************************************************************
  *              I N T E R N A L     F U N C T I O N S
  ************************************************************************/
@@ -3132,13 +3158,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
       BTM_LogHistory(kBtmLogTag, p_dev_rec->bd_addr, "Bonding completed",
                      hci_error_code_text(status));
       BTM_TRACE_DEBUG("TRYING TO DECIDE IF CAN USE SMP_BR_CHNL");
-      if (p_dev_rec->new_encryption_key_is_p256 &&
-          (btm_sec_use_smp_br_chnl(p_dev_rec))
-          /* no LE keys are available, do deriving */
-          && (!(p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN) ||
-              /* or BR key is higher security than existing LE keys */
-              (!(p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_AUTHED) &&
-               (p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_AUTHED)))) {
+      if (BTM_SecIsCtkdAvailableFromBredr(p_dev_rec->bd_addr)) {
         BTM_TRACE_DEBUG(
             "link encrypted afer dedic bonding can use SMP_BR_CHNL");
 
@@ -3281,13 +3301,8 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
     tHCI_ROLE role = HCI_ROLE_UNKNOWN;
     BTM_GetRole(p_dev_rec->bd_addr, &role);
     if (p_dev_rec->new_encryption_key_is_p256) {
-      if (btm_sec_use_smp_br_chnl(p_dev_rec) && role == HCI_ROLE_CENTRAL &&
-          /* if LE key is not known, do deriving */
-          (!(p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_KNOWN) ||
-           /* or BR key is higher security than existing LE keys */
-           (!(p_dev_rec->sec_flags & BTM_SEC_LE_LINK_KEY_AUTHED) &&
-            (p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_AUTHED))) &&
-          derive_ltk) {
+      if (BTM_SecIsCtkdAvailableFromBredr(p_dev_rec->bd_addr) && derive_ltk &&
+          role == HCI_ROLE_CENTRAL) {
         /* BR/EDR is encrypted with LK that can be used to derive LE LTK */
         p_dev_rec->new_encryption_key_is_p256 = false;
 
