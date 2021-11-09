@@ -4,75 +4,150 @@ package blueberry;
 
 import "blueberry/host.proto";
 
+// Service to trigger A2DP (Advanced Audio Distribution Profile) procedures.
 service A2DP {
+  // Open a stream from a local **Source** endpoint to a remote **Sink**
+  // endpoint.
   rpc OpenSource(OpenSourceRequest) returns (OpenSourceResponse);
+  // Open a stream from a local **Sink** endpoint to a remote **Source**
+  // endpoint.
   rpc OpenSink(OpenSinkRequest) returns (OpenSinkResponse);
+  // Wait for a stream to be opened from a local **Source** endpoint to
+  // a remote **Sink** endpoint.
+  rpc WaitSource(WaitSourceRequest) returns (WaitSourceResponse);
+  // Wait for a stream to be opened from a local **Sink** endpoint to
+  // a remote **Source** endpoint.
+  rpc WaitSink(WaitSinkRequest) returns (WaitSinkResponse);
+  // Start suspended a stream.
   rpc Start(StartRequest) returns (StartResponse);
+  // Suspend a started stream.
   rpc Suspend(SuspendRequest) returns (SuspendResponse);
+  // Close a stream, the source or sink tokens should not be reused afterwards.
   rpc Close(CloseRequest) returns (CloseResponse);
+  // Abort the current AVDTP procedure.
   rpc Abort(AbortRequest) returns (AbortResponse);
 }
 
+// A Token representing a Source stream.
+// It's acquired via an OpenSource on the A2DP service.
 message Source {
+  // Opaque value filled by the GRPC server, should not
+  // be modified nor crafted.
   bytes cookie = 1;
 }
 
+// A Token representing a Sink stream.
+// It's acquired via an OpenSink on the A2DP service.
 message Sink {
+  // Opaque value filled by the GRPC server, should not
+  // be modified nor crafted.
   bytes cookie = 1;
 }
 
+// Request for the `OpenSource` method.
 message OpenSourceRequest {
+  // The connection on which the stream should be opened.
   Connection connection = 1;
 }
 
+// Response for the `OpenSource` method.
 message OpenSourceResponse {
-  oneof response {
+  // Result of the `OpenSource` call:
+  // - If successfull: a Source
+  oneof result {
     Source source = 1;
   }
 }
 
+// Request for the `OpenSink` method.
 message OpenSinkRequest {
+  // The connection on which the stream should be opened.
   Connection connection = 1;
 }
 
+// Response for the `OpenSink` method.
 message OpenSinkResponse {
-  oneof response {
+  // Result of the `OpenSink` call:
+  // - If successfull: a Sink
+  oneof result {
     Sink sink = 1;
   }
 }
 
+// Request for the `WaitSource` method.
+message WaitSourceRequest {
+  // The connection on which the stream should be awaited.
+  Connection connection = 1;
+}
+
+// Response for the `WaitSource` method.
+message WaitSourceResponse {
+  // Result of the `WaitSource` call:
+  // - If successfull: a Source
+  oneof result {
+    Source source = 1;
+  }
+}
+
+// Request for the `WaitSink` method.
+message WaitSinkRequest {
+  // The connection on which the stream should be awaited.
+  Connection connection = 1;
+}
+
+// Response for the `WaitSink` method.
+message WaitSinkResponse {
+  oneof result {
+  // Result of the `WaitSink` call:
+  // - If successfull: a Sink
+	  Sink sink = 1;
+  }
+}
+
+// Request for the `Start` method.
 message StartRequest {
-  oneof response {
+  // Target of the start, either a Sink or a Source.
+  oneof target {
     Sink sink = 1;
     Source source = 2;
   }
 }
 
+// Response for the `Start` method.
 message StartResponse {}
 
+// Request for the `Suspend` method.
 message SuspendRequest {
-  oneof response {
+  // Target of the suspend, either a Sink or a Source.
+  oneof target {
     Sink sink = 1;
     Source source = 2;
   }
 }
 
+// Response for the `Suspend` method.
 message SuspendResponse {}
 
+// Request for the `Close` method.
 message CloseRequest {
-  oneof response {
+  // Target of the close, either a Sink or a Source.
+  oneof target {
     Sink sink = 1;
     Source source = 2;
   }
 }
 
+// Response for the `Close` method.
 message CloseResponse {}
 
+// Request for the `Abort` method.
 message AbortRequest {
-  oneof response {
+  // Target of the abort, either a Sink or a Source.
+  oneof target {
     Sink sink = 1;
     Source source = 2;
   }
 }
 
+// Response for the `Abort` method.
 message AbortResponse {}
