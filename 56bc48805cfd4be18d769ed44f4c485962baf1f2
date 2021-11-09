@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017059139",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1885648?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e3abac68_59fba9e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T10:36:16Z",
+      "side": 1,
+      "message": "#feature requires a tracking bug number",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 13
+      },
+      "revId": "56bc48805cfd4be18d769ed44f4c485962baf1f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017059139",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1885648?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "578e514c_53e03bc4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T10:36:16Z",
+      "side": 1,
+      "message": "\"Verified that the generated binder interface contains the\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 63
+      },
+      "revId": "56bc48805cfd4be18d769ed44f4c485962baf1f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
