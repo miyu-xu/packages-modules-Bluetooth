@@ -79,6 +79,7 @@
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
+#include "stack/include/btu.h"
 #include "stack_config.h"
 #include "types/raw_address.h"
 
@@ -120,6 +121,8 @@ const Uuid UUID_LE_AUDIO = Uuid::FromString("184E");
 #define ENCRYPTED_BREDR 2
 #define ENCRYPTED_LE 4
 
+#define BTIF_DM_CTKD_BR_TIMEOUT_MS (3 * 1000)
+
 typedef struct {
   bt_bond_state_t state;
   RawAddress static_bdaddr;
@@ -137,6 +140,7 @@ typedef struct {
   bool is_le_nc; /* LE Numeric comparison */
   btif_dm_ble_cb_t ble;
   uint8_t fail_reason;
+  bool pending_ctkd_over_br;
 } btif_dm_pairing_cb_t;
 
 // TODO(jpawlowski): unify ?
@@ -931,6 +935,27 @@ static void btif_dm_ssp_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
                         BT_SSP_VARIANT_PASSKEY_NOTIFICATION,
                         p_ssp_key_notif->passkey);
 }
+
+/*******************************************************************************
+ *
+ * Function         btif_dm_ctkd_over_br_timeout_or_cmpl
+ *
+ * Description      Handle CTKD over BR/EDR timeout or complete.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void btif_dm_ctkd_over_br_timeout_or_cmpl() {
+  if (!pairing_cb.pending_ctkd_over_br) {
+    return;
+  }
+  LOG_WARN("%s timeout", __func__);
+  bond_state_changed(BT_STATUS_SUCCESS, pairing_cb.bd_addr,
+                     BT_BOND_STATE_BONDED);
+  btif_dm_get_remote_services(pairing_cb.bd_addr, BT_TRANSPORT_BR_EDR);
+  pairing_cb.pending_ctkd_over_br = false;
+}
+
 /*******************************************************************************
  *
  * Function         btif_dm_auth_cmpl_evt
@@ -1057,9 +1082,18 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
                    __func__, bd_addr.ToString().c_str());
           bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
         }
-        bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED);
-
-        btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
+        if (BTM_SecIsCtkdAvailableFromBredr(bd_addr)) {
+          LOG_INFO("%s: %s classic pairing complete, waiting for CTKD",
+                   __func__, bd_addr.ToString().c_str());
+          pairing_cb.pending_ctkd_over_br = true;
+          // If CTKD failed, propagate bond_state_changed for BR/EDR part
+          do_in_main_thread_delayed(
+              FROM_HERE, base::Bind(&btif_dm_ctkd_over_br_timeout_or_cmpl),
+              base::TimeDelta::FromMilliseconds(BTIF_DM_CTKD_BR_TIMEOUT_MS));
+        } else {
+          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED);
+          btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_BR_EDR);
+        }
       }
     }
     // Do not call bond_state_changed_cb yet. Wait until remote service
@@ -2729,7 +2763,11 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     // Report RPA bonding state to Java in crosskey paring
     bond_state_changed(status, bd_addr, BT_BOND_STATE_BONDING);
   }
-  bond_state_changed(status, bd_addr, state);
+  if (pairing_cb.pending_ctkd_over_br) {
+    btif_dm_ctkd_over_br_timeout_or_cmpl();
+  } else {
+    bond_state_changed(status, bd_addr, state);
+  }
 }
 
 void btif_dm_load_ble_local_keys(void) {
