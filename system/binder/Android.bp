@@ -35,6 +35,7 @@ filegroup {
         "android/bluetooth/IBluetoothMcpServiceManager.aidl",
         "android/bluetooth/IBluetoothPbap.aidl",
         "android/bluetooth/IBluetoothPbapClient.aidl",
+        "android/bluetooth/IBluetoothRfcommHandoff.aidl",
         "android/bluetooth/IBluetoothSap.aidl",
         "android/bluetooth/IBluetoothSocketManager.aidl",
         "android/bluetooth/IBluetoothStateChangeCallback.aidl",

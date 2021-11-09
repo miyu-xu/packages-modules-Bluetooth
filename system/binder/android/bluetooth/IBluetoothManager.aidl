@@ -22,6 +22,8 @@ import android.bluetooth.IBluetoothManagerCallback;
 import android.bluetooth.IBluetoothProfileServiceConnection;
 import android.bluetooth.IBluetoothStateChangeCallback;
 import android.content.AttributionSource;
+import android.content.Intent;
+import android.os.ParcelUuid;
 
 /**
  * System private API for talking with the Bluetooth service.
@@ -73,4 +75,24 @@ interface IBluetoothManager
     boolean isBleAppPresent();
     @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
     boolean isHearingAidProfileSupported();
+
+    /**
+     * Requests that the BluetoothManager starts an RFCOMM listener with the given name and id.
+     * <p>
+     * Incoming socket connections will cause the framework to bind to the service described by
+     * the given intent and hand off the socket connections as defined in the
+     * BluetoothRfcommListenerService.
+     *
+     * @return A result code from {@link android.bluetooth.BluetoothAdapter#RfcommListenerResult}.
+     */
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    int startRfcommListener(String name, in ParcelUuid uuid, in Intent intent, int callingUid);
+
+    /**
+     * Shuts down the RFCOMM listener for the given name and id.
+     *
+     * @return A result code from {@link android.bluetooth.BluetoothAdapter#RfcommListenerResult}.
+     */
+    @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
+    int stopRfcommListener(in ParcelUuid uuid, int callingUid);
 }
