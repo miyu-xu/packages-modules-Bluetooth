@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b07ad46_ace09449",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2692,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2021-11-09T10:28:10Z",
+      "side": 1,
+      "message": "This looks similar with how it\u0027s done for BT classic (https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;drc\u003dc48b62cd9c2713828e9d594f5e94646bafe7b9d3;l\u003d1048)",
+      "revId": "e2e5b1b2d29360823b752b4b74a064fc065a839a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
