@@ -249,10 +249,14 @@ void ack_stream_suspended(const tA2DP_CTRL_ACK& ack) {
 
 // Read from the FMQ of BluetoothAudio HAL
 size_t read(uint8_t* p_buf, uint32_t len) {
+  uint32_t bytes_read = 0;
   if (a2dp_uipc == nullptr) {
     return 0;
   }
-  return UIPC_Read(*a2dp_uipc, UIPC_CH_ID_AV_AUDIO, p_buf, len);
+  bytes_read = UIPC_Read(*a2dp_uipc, UIPC_CH_ID_AV_AUDIO, p_buf, len);
+  total_bytes_read_ += bytes_read;
+  clock_gettime(CLOCK_MONOTONIC, &data_position_);
+  return bytes_read;
 }
 
 }  // namespace a2dp
