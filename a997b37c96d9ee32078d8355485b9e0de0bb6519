@@ -1,0 +1,212 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048134",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0aa13820_0aac5d7f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "\"bluetooth_has_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048135",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ab42c253_bbdf8d27",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "It looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)",
+      "range": {
+        "startLine": 1169,
+        "startChar": 12,
+        "endLine": 1169,
+        "endChar": 47
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048135",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9693481d_1631fc02",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1409,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "It looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)",
+      "range": {
+        "startLine": 1409,
+        "startChar": 14,
+        "endLine": 1409,
+        "endChar": 49
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048135",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2be75b7e_c0fe7da8",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "assert() gets compiled out - use ASSERT() instead",
+      "range": {
+        "startLine": 803,
+        "startChar": 6,
+        "endLine": 803,
+        "endChar": 13
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048135",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6711c92a_1b9d9ac1",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "General logging asserts don\u0027t do what you expect in tests - use gtest\u0027s ASSERT_TRUE() instead",
+      "range": {
+        "startLine": 959,
+        "startChar": 8,
+        "endLine": 959,
+        "endChar": 15
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048135",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9a6412f4_f10c475a",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "General logging asserts don\u0027t do what you expect in tests - use gtest\u0027s ASSERT_TRUE() instead",
+      "range": {
+        "startLine": 994,
+        "startChar": 8,
+        "endLine": 994,
+        "endChar": 15
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048135",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8ca098f8_b04aedf5",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2942,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "Use ASSERT_EQ() instead",
+      "range": {
+        "startLine": 2942,
+        "startChar": 2,
+        "endLine": 2942,
+        "endChar": 12
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017048135",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884653?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1010213d_524f12f0",
+        "filename": "system/bta/has/has_ctp.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T07:32:15Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 173,
+        "startChar": 6,
+        "endLine": 173,
+        "endChar": 13
+      },
+      "revId": "a997b37c96d9ee32078d8355485b9e0de0bb6519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
