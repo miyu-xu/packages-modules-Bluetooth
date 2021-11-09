@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f34437af_f1a80fef",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-09T16:39:06Z",
+      "side": 1,
+      "message": "AddressWithType?",
+      "revId": "cc6163cc78119acd12f9dae8260e87db2085f1e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
