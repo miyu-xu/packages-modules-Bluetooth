@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017059245",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1885648?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "296b488a_8651982c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-09T10:38:45Z",
+      "side": 1,
+      "message": "\"Verified that the generated binder interface contains the\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 63
+      },
+      "revId": "f510b6010f0efebb267eb4b5eb16f248ede3dbb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
