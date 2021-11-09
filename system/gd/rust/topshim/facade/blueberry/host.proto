@@ -4,51 +4,106 @@ package blueberry;
 
 import "google/protobuf/empty.proto";
 
+// Service to trigger Bluetooth Host procedures
 service Host {
+  // Reset the host.
+  // All the state of the GRPC server should be lost **after**
+  // reponding to this command.
+  // This is comparable to a process restart or an hardware reset.
+  // The GRPC server migh take some time to be available after
+  // this command.
   rpc Reset(google.protobuf.Empty) returns (google.protobuf.Empty);
+  // Create an ACL BR/EDR connection to a remote Bluetooth device.
+  // This should send a CreateConnection on the HCI level.
   rpc Connect(ConnectRequest) returns (ConnectResponse);
+  // Get a currently active ACL BR/EDR connection to a remote Bluetooth device.
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse);
+  // Wait for an ACL BR/EDR connection from a remote Bluetooth device.
+  rpc WaitConnection(WaitConnectionRequest) returns (WaitConnectionResponse);
+  // Disconnect an ACL BR/EDR connection. The Connection should not be reused afterwards.
   rpc Disconnect(DisconnectRequest) returns (DisconnectResponse);
+  // Read the Bluetooth device address of the local Bluetooth device.
+  // This should return the same value as a Read BD_ADDR HCI command.
   rpc ReadLocalAddress(google.protobuf.Empty) returns (ReadLocalAddressResponse);
+  // Enable Page Scan on the local Bluetooth device.
   rpc SetConnectable(SetConnectableRequest) returns (SetConnectableResponse);
 }
 
+// A Token representing an ACL connection.
+// It's acquired via a Connect on the Host service.
 message Connection {
+  // Opaque value filled by the GRPC server, should not
+  // be modified nor crafted.
   bytes cookie = 1;
 }
 
+// Request of the `Connect` method.
 message ConnectRequest {
+  // Bluetooth Device Address of the remote device as array of 6 bytes.
   bytes address = 1;
 }
 
+// Response of the `Connect` method.
 message ConnectResponse {
-  oneof response {
+  // Result of the `Connect` call:
+  // - If successfull: a Connection
+  oneof result {
     Connection connection = 1;
   }
 }
 
+// Request of the `GetConnection` method.
 message GetConnectionRequest {
+  // Bluetooth Device Address of the remote device as array of 6 bytes.
   bytes address = 1;
 }
 
+// Response of the `GetConnection` method.
 message GetConnectionResponse {
-  oneof response {
+  // Result of the `GetConnection` call:
+  // - If successfull: a Connection
+  oneof result {
     Connection connection = 1;
   }
 }
 
+// Request of the `WaitConnection` method.
+message WaitConnectionRequest {
+  // Bluetooth Device Address of the remote device as array of 6 bytes.
+  bytes address = 1;
+}
+
+// Response of the `WaitConnection` method.
+message WaitConnectionResponse {
+  // Result of the `WaitConnection` call:
+  // - If successfull: a Connection
+  oneof result {
+    Connection connection = 1;
+  }
+}
+
+// Request of the `Disconnect` method.
 message DisconnectRequest {
+  // Connection that should be disconnected.
   Connection connection = 1;
 }
 
+// Response of the `Disconnect` method.
 message DisconnectResponse {}
 
+// Response of the `ReadLocalAddress` method.
 message ReadLocalAddressResponse {
+  // Bluetooth Device Address of the local device as array of 6 bytes.
   bytes address = 1;
 }
 
+// Request of the `SetConnectable` method.
 message SetConnectableRequest {
+  // If the device should be connectable:
+  // - `true`: Enable Page Scan.
+  // - `false`: Disable Page Scan.
   bool connectable = 1;
 }
 
+// Response of the `SetConnectable` method.
 message SetConnectableResponse {}
