@@ -3,7 +3,8 @@
 use bt_blueberry_protobuf::a2dp::{
     AbortRequest, AbortResponse, CloseRequest, CloseResponse, OpenSinkRequest, OpenSinkResponse,
     OpenSourceRequest, OpenSourceResponse, Sink, Source, StartRequest, StartResponse,
-    SuspendRequest, SuspendResponse, WaitSourceRequest, WaitSourceResponse
+    SuspendRequest, SuspendResponse, WaitSourceRequest, WaitSourceResponse,
+    WaitSinkRequest, WaitSinkResponse,
 };
 use bt_blueberry_protobuf::a2dp_grpc::{create_a2_dp, A2Dp};
 use bt_topshim::btif::{BluetoothInterface, RawAddress};
@@ -215,6 +216,27 @@ impl A2Dp for MediaServiceImpl {
             // Wait for connected event
             while let Some(event) = rx.lock().await.recv().await {
                 if let A2dpCallbacks::ConnectionState(_, BtavConnectionState::Connected) = event
+                {
+                    break;
+                }
+            }
+            sink.success(response).await.unwrap();
+        })
+    }
+
+    fn wait_sink(&mut self, ctx: RpcContext<'_>, mut req: WaitSinkRequest, sink: UnarySink<WaitSinkResponse>) {
+        let rx = self.a2dp_sink_rx.clone();
+        let cookie = req.mut_connection().take_cookie();
+        let mut response = WaitSinkResponse::new();
+        {
+            let mut sink = Sink::new();
+            sink.set_cookie(cookie);
+            response.set_sink(sink);
+        }
+        ctx.spawn(async move {
+            // Wait for connected event
+            while let Some(event) = rx.lock().await.recv().await {
+                if let A2dpSinkCallbacks::ConnectionState(_, BtavConnectionState::Connected) = event
                 {
                     break;
                 }
