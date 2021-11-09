@@ -16,6 +16,24 @@
       "message": "AddressWithType?",
       "revId": "cc6163cc78119acd12f9dae8260e87db2085f1e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bf399aa_0f090317",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-09T16:59:12Z",
+      "side": 1,
+      "message": "So this address holds *only* the address from enhanced connection (using rpas) from the enhanced connection complete event, parameter #6.  Peer_Address\n\nParameter #5 is Peer_Address_Type which I suppose modifies the type of Peer_Address being presented.\n\nI haven\u0027t fully yet decoded all the branches of the meaning of the Peer_Address_Type being presented but I imagine it makes sense to bind them together at this layer in the stack.",
+      "parentUuid": "f34437af_f1a80fef",
+      "revId": "cc6163cc78119acd12f9dae8260e87db2085f1e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
