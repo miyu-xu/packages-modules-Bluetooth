@@ -291,7 +291,8 @@ tA2DP_STATUS A2DP_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
   }
 
   if (a2dp_cb.find.service_uuid == UUID_SERVCLASS_AUDIO_SOURCE ||
-      a2dp_cb.find.service_uuid == UUID_SERVCLASS_AUDIO_SINK) {
+      a2dp_cb.find.service_uuid == UUID_SERVCLASS_AUDIO_SINK ||
+      a2dp_cb.find.p_db != NULL) {
     LOG_ERROR("%s: cannot find service for peer %s UUID 0x%x: busy", __func__,
               bd_addr.ToString().c_str(), service_uuid);
     return A2DP_BUSY;
@@ -302,8 +303,7 @@ tA2DP_STATUS A2DP_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
     p_db->num_attr = A2DP_NUM_ATTR;
   }
 
-  if (a2dp_cb.find.p_db == NULL)
-    a2dp_cb.find.p_db = (tSDP_DISCOVERY_DB*)osi_malloc(p_db->db_len);
+  a2dp_cb.find.p_db = (tSDP_DISCOVERY_DB*)osi_malloc(p_db->db_len);
 
   Uuid uuid_list = Uuid::From16Bit(service_uuid);
   result = SDP_InitDiscoveryDb(a2dp_cb.find.p_db, p_db->db_len, 1, &uuid_list,
@@ -322,6 +322,7 @@ tA2DP_STATUS A2DP_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
     }
   }
   if (!result) {
+    osi_free_and_reset((void**)&a2dp_cb.find.p_db);
     LOG_ERROR(
         "%s: cannot find service for peer %s UUID 0x%x: "
         "SDP error",
