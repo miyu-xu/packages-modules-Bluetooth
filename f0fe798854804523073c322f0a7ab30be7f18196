@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d17f2fca_6fee3b82",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1450,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-10T19:08:32Z",
+      "side": 1,
+      "message": "This seems a little odd.  Is the peer address the address that just connected (RPA)? Or is it the resolved address?  If we\u0027re unpaired, we need to remove the RPA, but if we\u0027re paired, we connected with the resolved address.  Should we just remove both?",
+      "range": {
+        "startLine": 1450,
+        "startChar": 4,
+        "endLine": 1450,
+        "endChar": 62
+      },
+      "revId": "f0fe798854804523073c322f0a7ab30be7f18196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
