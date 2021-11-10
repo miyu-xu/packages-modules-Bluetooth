@@ -22,6 +22,30 @@
       },
       "revId": "f0fe798854804523073c322f0a7ab30be7f18196",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6334487_267f070f",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1450,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-10T20:25:42Z",
+      "side": 1,
+      "message": "So the le_impl.h abstracts this information and decides what the \u0027true\u0027 peer address is based upon the rpa status.\n\nIf it is an rpa, that information is lost except it may be recovered with the `peer_address_with_type` field recently inserted.\n\n\" Is the peer address the address that just connected (RPA)? \"\nNo, in the case you highlight the rpa is the address_with_type, and the peer_address_with_type is the identity address.\n\n\"Or is it the resolved address?\"\nI suspect that the peer_address_with_type is the resolved address, the address used as the primary key (along with the IRKs) in the Address Resolution list.\n\n\"Should we just remove both?\"\nIf there is an additional condition (paired/unpaired) then this routine lacks that info and we\u0027d need to add it in.  This is only adding/removing from the *shadow* acceptlist which is for informational purposes only.  The actual add/remove to the controller is handled by the le_impl.h acl manager.\n\nAs we migrate all of legacy into gd there may not be a need for auditing this information anymore...although keeping a shadow/cached list of controller \"things\" can be maintained in gd for query purposes.\n\nGoing forward I want to highlight unexpected adds/removals so we understand the sequences and corner cases better.",
+      "parentUuid": "d17f2fca_6fee3b82",
+      "range": {
+        "startLine": 1450,
+        "startChar": 4,
+        "endLine": 1450,
+        "endChar": 62
+      },
+      "revId": "f0fe798854804523073c322f0a7ab30be7f18196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
