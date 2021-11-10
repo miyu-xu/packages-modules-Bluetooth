@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5317a8b0_829604c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-10T01:27:31Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/main/shim/acl.cc:1416:19: error: no member named \u0027peer_address_with_type_\u0027 in \u0027bluetooth::hci::acl_manager::LeAclConnection\u0027\n      connection-\u003epeer_address_with_type_;",
+      "revId": "8b1d540db0d6b55aad0cdffdf4f06e05a4bb63d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
