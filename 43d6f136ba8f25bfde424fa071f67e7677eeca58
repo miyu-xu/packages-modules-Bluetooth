@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0516cc87_21000de9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-10T00:55:05Z",
+      "side": 1,
+      "message": "a_static/obj/packages/modules/Bluetooth/system/stack/smp/smp_main.o packages/modules/Bluetooth/system/stack/smp/smp_main.cc\npackages/modules/Bluetooth/system/stack/smp/smp_main.cc:948:30: error: no member named \u0027pairing_ble_bd_addr\u0027 in \u0027tSMP_CB\u0027\n          kBtmLogTag, smp_cb.pairing_ble_bd_addr, \"Security state changed\",",
+      "revId": "43d6f136ba8f25bfde424fa071f67e7677eeca58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
