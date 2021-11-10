@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d0f7d71_70f62586",
+        "filename": "system/stack/btm/btm_ble_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-10T00:59:39Z",
+      "side": 1,
+      "message": "const ?",
+      "revId": "7897c9c0e98e172a7d96d96a1cacd332d5f13f9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19c37fa6_a3210e24",
+        "filename": "system/stack/btm/btm_ble_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-10T00:59:39Z",
+      "side": 1,
+      "message": "removed in a following CL?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 48
+      },
+      "revId": "7897c9c0e98e172a7d96d96a1cacd332d5f13f9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
