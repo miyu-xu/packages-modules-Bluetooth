@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "52b1f5ae_e72266bd",
+        "filename": "system/stack/btm/btm_ble_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-10T01:37:09Z",
+      "side": 1,
+      "message": "It should be const...but there is a single bit modified to indicate that it is in the resolving list.\n\n  dev_rec.ble.in_controller_list |\u003d BTM_RESOLVING_LIST_BIT;\n  \nI expect this to become const in the future as we move away from piling too much info in the security record and one can query a separate entity TBD to determine the state of the Address Resolution list",
+      "parentUuid": "0d0f7d71_70f62586",
+      "revId": "7897c9c0e98e172a7d96d96a1cacd332d5f13f9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "19c37fa6_a3210e24",
         "filename": "system/stack/btm/btm_ble_int.h",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2021-11-10T00:59:39Z",
       "side": 1,
       "message": "removed in a following CL?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 48
+      },
+      "revId": "7897c9c0e98e172a7d96d96a1cacd332d5f13f9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1ad0a90_4e89c9b3",
+        "filename": "system/stack/btm/btm_ble_int.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-10T01:37:09Z",
+      "side": 1,
+      "message": "Yes... part of my add-\u003euse-\u003edelete strategy",
+      "parentUuid": "19c37fa6_a3210e24",
       "range": {
         "startLine": 124,
         "startChar": 0,
