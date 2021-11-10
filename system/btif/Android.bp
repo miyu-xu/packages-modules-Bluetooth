@@ -325,7 +325,6 @@ cc_test {
     name: "net_test_btif_config_cache",
     defaults: ["fluoride_defaults"],
     test_suites: ["device-tests"],
-    host_supported: true,
     test_options: {
         unit_test: true,
     },
@@ -336,8 +335,11 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
-        "liblog",
+        "android.system.suspend.control-V1-ndk",
+        "libbinder_ndk",
+        "libcrypto",
         "libcutils",
+        "liblog",
     ],
     static_libs: [
         "libbluetooth-types",
