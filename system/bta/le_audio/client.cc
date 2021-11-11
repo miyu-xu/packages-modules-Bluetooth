@@ -27,8 +27,10 @@
 #include "bta_le_audio_api.h"
 #include "btif_storage.h"
 #include "btm_iso_api.h"
+#include "btm_iso_api_types.h"
 #include "client_audio.h"
 #include "client_parser.h"
+#include "codec_offload.h"
 #include "device/include/controller.h"
 #include "devices.h"
 #include "embdrv/lc3/Api/Lc3Decoder.hpp"
@@ -55,6 +57,7 @@ using bluetooth::le_audio::ConnectionState;
 using bluetooth::le_audio::GroupNodeStatus;
 using bluetooth::le_audio::GroupStatus;
 using bluetooth::le_audio::GroupStreamStatus;
+using le_audio::LeAudioCodecOffload;
 using le_audio::LeAudioDevice;
 using le_audio::LeAudioDeviceGroup;
 using le_audio::LeAudioDeviceGroups;
@@ -67,6 +70,7 @@ using le_audio::types::AudioLocations;
 using le_audio::types::AudioStreamDataPathState;
 using le_audio::types::hdl_pair;
 using le_audio::types::kDefaultScanDurationS;
+using le_audio::types::LeAudioConfigDataPathState;
 using le_audio::types::LeAudioContextType;
 
 using le_audio::client_parser::ascs::
@@ -84,6 +88,7 @@ LeAudioClientAudioSinkReceiver* audioSinkReceiver;
 LeAudioClientAudioSourceReceiver* audioSourceReceiver;
 CigCallbacks* stateMachineHciCallbacks;
 LeAudioGroupStateMachine::Callbacks* stateMachineCallbacks;
+LeAudioCodecOffload::Callbacks* codecOffloadCallbacks;
 DeviceGroupsCallbacks* device_group_callbacks;
 
 bool use_new_encoder = true;
@@ -125,6 +130,7 @@ class LeAudioClientImpl : public LeAudioClient {
   LeAudioClientImpl(
       bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
       LeAudioGroupStateMachine::Callbacks* state_machine_callbacks_,
+      LeAudioCodecOffload::Callbacks* codec_offload_callbacks_,
       base::Closure initCb)
       : gatt_if_(0),
         callbacks_(callbacks_),
@@ -143,6 +149,9 @@ class LeAudioClientImpl : public LeAudioClient {
         audio_sink_instance_(nullptr) {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
     groupStateMachine_ = LeAudioGroupStateMachine::Get();
+
+    LeAudioCodecOffload::Initialize(codec_offload_callbacks_);
+    CodecOffload_ = LeAudioCodecOffload::Get();
 
     BTA_GATTC_AppRegister(
         le_audio_gattc_callback,
@@ -512,6 +521,13 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (!group->IsAnyDeviceConnected()) {
       LOG(ERROR) << __func__ << ", group " << group_id << " is not connected ";
+      CancelStreamingRequest();
+      return;
+    }
+
+    if (instance->CodecOffload_->IsEnabled(context_type) &&
+        !(instance->CodecOffload_->IsReady())) {
+      LOG(ERROR) << __func__ << ", codec offload not ready";
       CancelStreamingRequest();
       return;
     }
@@ -1716,6 +1732,9 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void connectionReady(LeAudioDevice* leAudioDevice) {
+    /* fetches the offload related codec configuration (one time) */
+    CodecOffload_->InitConfig();
+
     callbacks_->OnConnectionState(ConnectionState::CONNECTED,
                                   leAudioDevice->address_);
 
@@ -2077,6 +2096,12 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG(INFO) << __func__;
 
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (group->codec_offload_.sink_enabled_) {
+      LOG(INFO) << __func__ << " skip as codec offload enabled";
+      return true;
+    }
+
     LeAudioDevice* device = group->GetFirstActiveDevice();
     LOG_ASSERT(device) << __func__
                        << " Shouldn't be called without an active device.";
@@ -2177,6 +2202,11 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG(INFO) << __func__;
 
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+
+    if (group->codec_offload_.source_enabled_) {
+      LOG(INFO) << __func__ << " skip as codec offload enabled";
+      return;
+    }
 
     auto* stream_conf = GetStreamSourceConfiguration(group);
     if (!stream_conf) {
@@ -2697,6 +2727,36 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
+  void IsoLocalSupportedCodecsReadCb(
+      uint8_t status,
+      std::vector<struct supported_standard_codecs_t> standard_codecs,
+      std::vector<struct supported_vendor_spec_codecs_t> vendor_spec_codecs) {
+    instance->CodecOffload_->ProcessHciNotifLocalSupportedCodecsRead(
+        status, standard_codecs, vendor_spec_codecs);
+  }
+
+  void IsoLocalSupportedCodecCapabilitiesReadCb(
+      uint8_t status, std::vector<uint8_t> codec_caps_len,
+      uint8_t* codec_caps) {
+    instance->CodecOffload_->ProcessHciNotifLocalSupportedCodecCapabilitiesRead(
+        status, codec_caps_len, codec_caps);
+  }
+
+  void IsoLocalSupportedControllerDelayReadCb(uint8_t status,
+                                              uint32_t min_controller_delay,
+                                              uint32_t max_controller_delay) {
+    instance->CodecOffload_->ProcessHciNotifLocalSupportedControllerDelayRead(
+        status, min_controller_delay, max_controller_delay);
+  }
+
+  void IsoConfigureDataPathCb(uint8_t status) {
+    LeAudioDeviceGroup* group = aseGroups_.FindByConfigDataPathState(
+        LeAudioConfigDataPathState::CONFIG_PENDING);
+
+    instance->groupStateMachine_->ProcessHciNotifConfigureDataPath(group,
+                                                                   status);
+  }
+
   void IsoSetupIsoDataPathCb(uint8_t status, uint16_t conn_handle,
                              uint8_t /* cig_id */) {
     LeAudioDevice* leAudioDevice =
@@ -2739,6 +2799,7 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void StatusReportCb(int group_id, GroupStreamStatus status) {
+    auto group = aseGroups_.FindById(group_id);
     switch (status) {
       case GroupStreamStatus::STREAMING:
         stream_request_started_ = false;
@@ -2751,6 +2812,7 @@ class LeAudioClientImpl : public LeAudioClient {
         break;
       case GroupStreamStatus::IDLE:
         if (stream_request_started_) {
+          group->Clear();
           stream_request_started_ = false;
           CancelStreamingRequest();
         }
@@ -2760,12 +2822,17 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
+  void StatusCb(uint8_t status) {
+    LOG(INFO) << __func__ << " status: " << loghex(status);
+  }
+
  private:
   tGATT_IF gatt_if_;
   bluetooth::le_audio::LeAudioClientCallbacks* callbacks_;
   LeAudioDevices leAudioDevices_;
   LeAudioDeviceGroups aseGroups_;
   LeAudioGroupStateMachine* groupStateMachine_;
+  LeAudioCodecOffload* CodecOffload_;
   int active_group_id_;
   bool stream_request_started_;
   LeAudioContextType current_context_type_;
@@ -2863,6 +2930,36 @@ void le_audio_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
 
 class LeAudioStateMachineHciCallbacksImpl : public CigCallbacks {
  public:
+  void OnLocalSupportedCodecsRead(
+      uint8_t status,
+      std::vector<struct supported_standard_codecs_t> standard_codecs,
+      std::vector<struct supported_vendor_spec_codecs_t> vendor_spec_codecs)
+      override {
+    if (instance)
+      instance->IsoLocalSupportedCodecsReadCb(status, standard_codecs,
+                                              vendor_spec_codecs);
+  }
+
+  void OnLocalSupportedCodecCapabilitiesRead(
+      uint8_t status, std::vector<uint8_t> codec_caps_len,
+      uint8_t* codec_caps) override {
+    if (instance)
+      instance->IsoLocalSupportedCodecCapabilitiesReadCb(status, codec_caps_len,
+                                                         codec_caps);
+  }
+
+  void OnLocalSupportedControllerDelayRead(
+      uint8_t status, uint32_t min_controller_delay,
+      uint32_t max_controller_delay) override {
+    if (instance)
+      instance->IsoLocalSupportedControllerDelayReadCb(
+          status, min_controller_delay, max_controller_delay);
+  }
+
+  void OnConfigureDataPath(uint8_t status) override {
+    if (instance) instance->IsoConfigureDataPathCb(status);
+  }
+
   void OnCigEvent(uint8_t event, void* data) override {
     if (instance) instance->IsoCigEventsCb(event, data);
   }
@@ -2908,6 +3005,15 @@ class CallbacksImpl : public LeAudioGroupStateMachine::Callbacks {
 };
 
 CallbacksImpl stateMachineCallbacksImpl;
+
+class CodecOffloadCallbacksImpl : public LeAudioCodecOffload::Callbacks {
+ public:
+  void StatusCb(uint8_t status) override {
+    if (instance) instance->StatusCb(status);
+  }
+};
+
+CodecOffloadCallbacksImpl codecOffloadCallbacksImpl;
 
 class LeAudioClientAudioSinkReceiverImpl
     : public LeAudioClientAudioSinkReceiver {
@@ -3024,7 +3130,9 @@ void LeAudioClient::Initialize(
   stateMachineHciCallbacks = &stateMachineHciCallbacksImpl;
   stateMachineCallbacks = &stateMachineCallbacksImpl;
   device_group_callbacks = &deviceGroupsCallbacksImpl;
-  instance = new LeAudioClientImpl(callbacks_, stateMachineCallbacks, initCb);
+  codecOffloadCallbacks = &codecOffloadCallbacksImpl;
+  instance = new LeAudioClientImpl(callbacks_, stateMachineCallbacks,
+                                   codecOffloadCallbacks, initCb);
 
   IsoManager::GetInstance()->RegisterCigCallbacks(stateMachineHciCallbacks);
 }
@@ -3056,4 +3164,5 @@ void LeAudioClient::Cleanup(void) {
 
   LeAudioGroupStateMachine::Cleanup();
   IsoManager::GetInstance()->Stop();
+  LeAudioCodecOffload::Cleanup();
 }

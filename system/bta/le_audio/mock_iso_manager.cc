@@ -46,6 +46,29 @@ void IsoManager::RegisterBigCallbacks(
   pimpl_->RegisterBigCallbacks(callbacks);
 }
 
+void IsoManager::ReadLocalSupportedCodecs() {
+  if (!pimpl_) return;
+  pimpl_->ReadLocalSupportedCodecs();
+}
+
+void IsoManager::ReadLocalSupportedCodecCapabilities(
+    struct iso_manager::read_supp_codec_caps_params codec_caps_params) {
+  if (!pimpl_) return;
+  pimpl_->ReadLocalSupportedCodecCapabilities(std::move(codec_caps_params));
+}
+
+void IsoManager::ReadLocalSupportedControllerDelay(
+    struct iso_manager::read_supp_controller_delay_params delay_params) {
+  if (!pimpl_) return;
+  pimpl_->ReadLocalSupportedControllerDelay(std::move(delay_params));
+}
+
+void IsoManager::ConfigureDataPath(
+    struct iso_manager::configure_data_path_params config_params) {
+  if (!pimpl_) return;
+  pimpl_->ConfigureDataPath(std::move(config_params));
+}
+
 void IsoManager::CreateCig(uint8_t cig_id,
                            struct iso_manager::cig_create_params cig_params) {
   if (!pimpl_) return;

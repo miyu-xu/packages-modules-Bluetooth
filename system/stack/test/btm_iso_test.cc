@@ -19,6 +19,7 @@
 #include <gtest/gtest.h>
 
 #include "btm_iso_api.h"
+#include "btm_iso_api_types.h"
 #include "hci/include/hci_layer.h"
 #include "main/shim/shim.h"
 #include "mock_controller.h"
@@ -71,6 +72,25 @@ class MockCigCallbacks : public bluetooth::hci::iso_manager::CigCallbacks {
   MockCigCallbacks() = default;
   ~MockCigCallbacks() override = default;
 
+  MOCK_METHOD(
+      (void), OnLocalSupportedCodecsRead,
+      (uint8_t status,
+       std::vector<
+           struct bluetooth::hci::iso_manager::supported_standard_codecs_t>
+           standard_codecs,
+       std::vector<
+           struct bluetooth::hci::iso_manager::supported_vendor_spec_codecs_t>
+           vendor_spec_codecs),
+      (override));
+  MOCK_METHOD((void), OnLocalSupportedCodecCapabilitiesRead,
+              (uint8_t status, std::vector<uint8_t> codec_caps_len,
+               uint8_t* codec_caps),
+              (override));
+  MOCK_METHOD((void), OnLocalSupportedControllerDelayRead,
+              (uint8_t status, uint32_t min_controller_delay,
+               uint32_t max_controller_delay),
+              (override));
+  MOCK_METHOD((void), OnConfigureDataPath, (uint8_t status), (override));
   MOCK_METHOD((void), OnSetupIsoDataPath,
               (uint8_t status, uint16_t conn_handle, uint8_t cig_id),
               (override));

@@ -44,6 +44,11 @@ constexpr int kEnhancedSetupSynchronousConnection = 0x428;
 constexpr int kEnhancedAcceptSynchronousConnection = 0x429;
 constexpr int kLeSetPrivacyMode = 0x204e;
 
+constexpr int kReadLocalSupportedCodecsV2 = 0x100D;
+constexpr int kReadLocalSupportedCodecCapabilities = 0x100E;
+constexpr int kReadLocalSupportedControllerDelay = 0x100F;
+constexpr int kConfigureDataPath = 0x0C83;
+
 constexpr int kHciDataPreambleSize = 4;  // #define HCI_DATA_PREAMBLE_SIZE 4
 
 // Module lifecycle functions
@@ -226,6 +231,20 @@ FORWARD_IF_RUST(
     supports_ble_set_privacy_mode,
     GetController()->IsSupported((bluetooth::hci::OpCode)kLeSetPrivacyMode))
 
+FORWARD_IF_RUST(supports_read_local_supported_codecs_v2,
+                GetController()->IsSupported((bluetooth::hci::OpCode)
+                                                 kReadLocalSupportedCodecsV2))
+FORWARD_IF_RUST(
+    supports_read_local_supported_codec_capabilities,
+    GetController()->IsSupported((bluetooth::hci::OpCode)
+                                     kReadLocalSupportedCodecCapabilities))
+FORWARD_IF_RUST(supports_read_local_supported_controller_delay,
+                GetController()->IsSupported(
+                    (bluetooth::hci::OpCode)kReadLocalSupportedControllerDelay))
+FORWARD_IF_RUST(
+    supports_configure_data_path,
+    GetController()->IsSupported((bluetooth::hci::OpCode)kConfigureDataPath))
+
 #define FORWARD_GETTER_IF_RUST(type, legacy, gd)                         \
   static type legacy(void) {                                             \
     if (gd_rust_is_enabled()) {                                          \
@@ -376,6 +395,14 @@ static const controller_t interface = {
         supports_connected_iso_stream_peripheral,
     .supports_ble_isochronous_broadcaster = supports_iso_broadcaster,
     .supports_ble_synchronized_receiver = supports_synchronized_receiver,
+
+    .supports_read_local_supported_codecs_v2 =
+        supports_read_local_supported_codecs_v2,
+    .supports_read_local_supported_codec_capabilities =
+        supports_read_local_supported_codec_capabilities,
+    .supports_read_local_supported_controller_delay =
+        supports_read_local_supported_controller_delay,
+    .supports_configure_data_path = supports_configure_data_path,
 
     .get_acl_data_size_classic = get_acl_buffer_length,
     .get_acl_data_size_ble = get_le_buffer_length,

@@ -105,7 +105,11 @@ opcode_getters! {
     reading_remote_extended_features => OpCode::ReadRemoteSupportedFeatures,
     enhanced_setup_synchronous_connection => OpCode::EnhancedSetupSynchronousConnection,
     enhanced_accept_synchronous_connection => OpCode::EnhancedAcceptSynchronousConnection,
-    ble_set_privacy_mode => OpCode::LeSetPrivacyMode
+    ble_set_privacy_mode => OpCode::LeSetPrivacyMode,
+    read_local_supported_codecs_v2 => OpCode::ReadLocalSupportedCodecsV2,
+    read_local_supported_codec_capabilities => OpCode::ReadLocalSupportedCodecCapabilities,
+    read_local_supported_controller_delay => OpCode::ReadLocalSupportedControllerDelay,
+    configure_data_path => OpCode::ConfigureDataPath
 }
 
 macro_rules! field_getters {

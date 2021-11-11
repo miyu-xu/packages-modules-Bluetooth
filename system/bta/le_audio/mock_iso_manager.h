@@ -32,6 +32,17 @@ struct MockIsoManager {
               (bluetooth::hci::iso_manager::CigCallbacks * callbacks), (const));
   MOCK_METHOD((void), RegisterBigCallbacks,
               (bluetooth::hci::iso_manager::BigCallbacks * callbacks), (const));
+  MOCK_METHOD((void), ReadLocalSupportedCodecs, ());
+  MOCK_METHOD((void), ReadLocalSupportedCodecCapabilities,
+              (struct bluetooth::hci::iso_manager::read_supp_codec_caps_params
+                   codec_caps_params));
+  MOCK_METHOD(
+      (void), ReadLocalSupportedControllerDelay,
+      (struct bluetooth::hci::iso_manager::read_supp_controller_delay_params
+           delay_params));
+  MOCK_METHOD((void), ConfigureDataPath,
+              (struct bluetooth::hci::iso_manager::configure_data_path_params
+                   config_params));
   MOCK_METHOD(
       (void), CreateCig,
       (uint8_t cig_id,

@@ -27,6 +27,7 @@
 #include "bta_le_audio_api.h"
 #include "btm_iso_api.h"
 #include "client_parser.h"
+#include "codec_offload.h"
 #include "devices.h"
 #include "hcimsgs.h"
 #include "le_audio_types.h"
@@ -87,6 +88,7 @@
 
 using bluetooth::hci::IsoManager;
 using bluetooth::le_audio::GroupStreamStatus;
+using le_audio::LeAudioCodecOffload;
 using le_audio::LeAudioDevice;
 using le_audio::LeAudioDeviceGroup;
 using le_audio::LeAudioGroupStateMachine;
@@ -94,6 +96,8 @@ using le_audio::LeAudioGroupStateMachine;
 using le_audio::types::ase;
 using le_audio::types::AseState;
 using le_audio::types::AudioStreamDataPathState;
+using le_audio::types::LeAudioCodecLocation;
+using le_audio::types::LeAudioConfigDataPathState;
 
 namespace {
 
@@ -151,8 +155,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           return false;
         }
 
-        /* All ASEs should aim to achieve target state */
         group->SetContextType(context_type);
+        group->Clear();
+
+        /* All ASEs should aim to achieve target state */
         SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
         PrepareAndSendCodecConfigure(group, group->GetFirstActiveDevice());
         break;
@@ -267,6 +273,21 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         StopStream(group);
         break;
     }
+  }
+
+  void ProcessHciNotifConfigureDataPath(LeAudioDeviceGroup* group,
+                                        uint8_t status) override {
+    if (group->config_data_path_.sink_state ==
+        LeAudioConfigDataPathState::CONFIG_PENDING) {
+      group->config_data_path_.sink_state =
+          LeAudioConfigDataPathState::CONFIGURED;
+    } else if (group->config_data_path_.source_state ==
+               LeAudioConfigDataPathState::CONFIG_PENDING) {
+      group->config_data_path_.source_state =
+          LeAudioConfigDataPathState::CONFIGURED;
+    }
+
+    HandleConfigureDataPath(group);
   }
 
   void ProcessHciNotifOnCigCreate(LeAudioDeviceGroup* group, uint8_t status,
@@ -422,7 +443,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
     LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active ASE";
     if (ase->data_path_state == AudioStreamDataPathState::CIS_ESTABLISHED)
-      PrepareDataPath(ase);
+      PrepareDataPath(group, ase);
     else
       LOG(ERROR) << __func__
                  << " CIS got disconnected? handle: " << +ase->cis_conn_hdl;
@@ -816,6 +837,104 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         INT_TO_PTR(group->group_id_));
   }
 
+  struct ase* GetActiveAseForConfigureDataPath(LeAudioDeviceGroup* group) {
+    struct ase* ase = nullptr;
+    uint8_t direction;
+
+    if (group->config_data_path_.sink_state ==
+        LeAudioConfigDataPathState::IDLE) {
+      direction = le_audio::types::kLeAudioDirectionSink;
+    } else if (group->config_data_path_.source_state ==
+               LeAudioConfigDataPathState::IDLE) {
+      direction = le_audio::types::kLeAudioDirectionSource;
+    } else {
+      return nullptr;
+    }
+
+    LeAudioDevice* leAudioDevice = group->GetFirstActiveDeviceByState(
+        AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED);
+
+    do {
+      ase = leAudioDevice->GetFirstActiveAseByDirection(direction);
+      do {
+        if (ase) {
+          return ase;
+        }
+      } while ((ase = leAudioDevice->GetNextActiveAseWithSameDirection(ase)));
+    } while (
+        (leAudioDevice = group->GetNextActiveDeviceByState(
+             leAudioDevice, AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED)));
+
+    return nullptr;
+  }
+
+  void CheckandSetCodecOffloadEnabled(LeAudioDeviceGroup* group,
+                                      struct ase* ase) {
+    if (!(LeAudioCodecOffload::Get()->IsEnabled(
+            static_cast<uint16_t>(group->GetContextType()))) ||
+        !(LeAudioCodecOffload::Get()->IsReady())) {
+      LOG(INFO) << __func__ << ", codec offload not enabled";
+      return;
+    }
+
+    if (LeAudioCodecOffload::Get()->IsSupported(ase->direction, ase->codec_id,
+                                                ase->codec_config)) {
+      if (ase->direction == le_audio::types::kLeAudioDirectionSink) {
+        group->codec_offload_.sink_enabled_ = true;
+      } else {
+        group->codec_offload_.source_enabled_ = true;
+      }
+    }
+  }
+
+  void ConfigureDataPath(LeAudioDeviceGroup* group, struct ase* ase) {
+    uint8_t data_path_dir, data_path_id;
+    LeAudioCodecLocation codec_location =
+        LeAudioCodecOffload::Get()->GetCodecLocation();
+    bool codec_offload_enabled =
+        ((ase->direction == le_audio::types::kLeAudioDirectionSink)
+             ? group->codec_offload_.sink_enabled_
+             : group->codec_offload_.source_enabled_);
+
+    data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci;
+    if (codec_offload_enabled &&
+        (codec_location == LeAudioCodecLocation::CONTROLLER ||
+         codec_location == LeAudioCodecLocation::ADSP)) {
+      data_path_id = bluetooth::hci::iso_manager::kIsoDataPathVsPlatformDefault;
+    }
+
+    if (ase->direction == le_audio::types::kLeAudioDirectionSink) {
+      data_path_dir = bluetooth::hci::iso_manager::kIsoDataPathDirectionIn;
+
+      group->config_data_path_.sink_state =
+          LeAudioConfigDataPathState::CONFIG_PENDING;
+    } else {
+      data_path_dir = bluetooth::hci::iso_manager::kIsoDataPathDirectionOut;
+
+      group->config_data_path_.source_state =
+          LeAudioConfigDataPathState::CONFIG_PENDING;
+    }
+
+    bluetooth::hci::iso_manager::configure_data_path_params param = {
+        .data_path_dir = data_path_dir,
+        .data_path_id = data_path_id,
+        .vendor_conf = std::vector<uint8_t>(),
+    };
+
+    IsoManager::GetInstance()->ConfigureDataPath(std::move(param));
+  }
+
+  void HandleConfigureDataPath(LeAudioDeviceGroup* group) {
+    struct ase* config_data_path_ase = GetActiveAseForConfigureDataPath(group);
+
+    if (config_data_path_ase) {
+      CheckandSetCodecOffloadEnabled(group, config_data_path_ase);
+      ConfigureDataPath(group, config_data_path_ase);
+    } else {
+      CigCreate(group);
+    }
+  }
+
   void CigCreate(LeAudioDeviceGroup* group) {
     LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
     struct ase* ase;
@@ -965,21 +1084,50 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         {.conn_pairs = std::move(conn_pairs)});
   }
 
-  static void PrepareDataPath(const struct ase* ase) {
-    /* TODO Handle HW offloading as we handle here only HCI for now, Need
-     * to set coding_format based on the codec location, force SW encode
-     * for now */
+  static void PrepareDataPath(const LeAudioDeviceGroup* group,
+                              const struct ase* ase) {
+    uint8_t data_path_id, codec_id_format;
+    LeAudioCodecLocation codec_location =
+        LeAudioCodecOffload::Get()->GetCodecLocation();
+    std::vector<uint8_t> codec_conf;
+
+    bool codec_offload_enabled =
+        ((ase->direction == le_audio::types::kLeAudioDirectionSink)
+             ? group->codec_offload_.sink_enabled_
+             : group->codec_offload_.source_enabled_);
+
+    data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci;
+    if (codec_offload_enabled &&
+        (codec_location == LeAudioCodecLocation::CONTROLLER ||
+         codec_location == LeAudioCodecLocation::ADSP)) {
+      data_path_id = bluetooth::hci::iso_manager::kIsoDataPathVsPlatformDefault;
+    }
+
+    codec_id_format = le_audio::types::kLeAudioCodingFormatTransparent;
+    if (codec_offload_enabled &&
+        codec_location == LeAudioCodecLocation::CONTROLLER) {
+      codec_id_format = (ase->codec_id.coding_format ==
+                         le_audio::types::kLeAudioCodingFormatLC3)
+                            ? bluetooth::hci::kIsoCodingFormatLc3
+                            : bluetooth::hci::kIsoCodingFormatVendorSpecific;
+
+      auto ltv_map = ase->codec_config.GetAsLtvMap();
+      codec_conf.resize(ltv_map.RawPacketSize());
+      uint8_t* p_buf = codec_conf.data();
+      p_buf = ltv_map.RawPacket(p_buf);
+    }
+
     bluetooth::hci::iso_manager::iso_data_path_params param = {
         .data_path_dir =
             ase->direction == le_audio::types::kLeAudioDirectionSink
                 ? bluetooth::hci::iso_manager::kIsoDataPathDirectionIn
                 : bluetooth::hci::iso_manager::kIsoDataPathDirectionOut,
-        .data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci,
-        .codec_id_format = bluetooth::hci::kIsoCodingFormatTransparent,
+        .data_path_id = data_path_id,
+        .codec_id_format = codec_id_format,
         .codec_id_company = ase->codec_id.vendor_company_id,
         .codec_id_vendor = ase->codec_id.vendor_codec_id,
         .controller_delay = 0x00000000,
-        .codec_conf = std::vector<uint8_t>(),
+        .codec_conf = codec_conf,
     };
     IsoManager::GetInstance()->SetupIsoDataPath(ase->cis_conn_hdl,
                                                 std::move(param));
@@ -992,7 +1140,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
     auto* ase = leAudioDevice->GetFirstActiveAse();
     LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active ASE";
-    PrepareDataPath(ase);
+    PrepareDataPath(group, ase);
   }
 
   static void ReleaseDataPath(LeAudioDeviceGroup* group) {
@@ -1319,10 +1467,16 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         LeAudioDevice* leAudioDeviceNext =
             group->GetNextActiveDevice(leAudioDevice);
+        struct ase* config_data_path_ase =
+            GetActiveAseForConfigureDataPath(group);
 
         /* Configure ASEs qos for next device in group */
         if (leAudioDeviceNext) {
           PrepareAndSendConfigQos(group, leAudioDeviceNext);
+        } else if (LeAudioCodecOffload::Get()->IsRequiredCommandsSupported() &&
+                   config_data_path_ase) {
+          CheckandSetCodecOffloadEnabled(group, config_data_path_ase);
+          ConfigureDataPath(group, config_data_path_ase);
         } else {
           CigCreate(group);
         }

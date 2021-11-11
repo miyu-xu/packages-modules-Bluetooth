@@ -189,6 +189,8 @@ class LeAudioDeviceGroup {
   types::AudioLocations snk_audio_locations_;
   types::AudioLocations src_audio_locations_;
 
+  types::LeAudioCodecOffloadEnabledStatus codec_offload_;
+  types::LeAudioConfigDataPath config_data_path_;
   explicit LeAudioDeviceGroup(const int group_id)
       : group_id_(group_id),
         cig_created_(false),
@@ -214,6 +216,9 @@ class LeAudioDeviceGroup {
   int NumOfConnected(
       types::LeAudioContextType context_type = types::LeAudioContextType::RFU);
   void Deactivate(void);
+  void ClearCodecOffload(void);
+  void ClearConfigDataPath(void);
+  void Clear(void);
   void Cleanup(void);
   LeAudioDevice* GetFirstDevice(void);
   LeAudioDevice* GetFirstDeviceWithActiveContext(
@@ -223,6 +228,9 @@ class LeAudioDeviceGroup {
       LeAudioDevice* leAudioDevice, types::LeAudioContextType context_type);
   LeAudioDevice* GetFirstActiveDevice(void);
   LeAudioDevice* GetNextActiveDevice(LeAudioDevice* leAudioDevice);
+  LeAudioDevice* GetFirstActiveDeviceByState(types::AseState state);
+  LeAudioDevice* GetNextActiveDeviceByState(LeAudioDevice* leAudioDevice,
+                                            types::AseState state);
   bool IsDeviceInTheGroup(LeAudioDevice* leAudioDevice);
   bool HaveAllActiveDevicesAsesTheSameState(types::AseState state);
   bool IsGroupStreamReady(void);
@@ -308,6 +316,8 @@ class LeAudioDeviceGroups {
   LeAudioDeviceGroup* Add(int group_id);
   void Remove(const int group_id);
   LeAudioDeviceGroup* FindById(int group_id);
+  LeAudioDeviceGroup* FindByConfigDataPathState(
+      types::LeAudioConfigDataPathState config_data_path_state);
   std::vector<int> GetGroupsIds(void);
   size_t Size();
   bool IsAnyInTransition();

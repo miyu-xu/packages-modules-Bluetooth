@@ -29,6 +29,18 @@ namespace hci {
 namespace iso_manager {
 struct CigCallbacks {
   virtual ~CigCallbacks() = default;
+  virtual void OnLocalSupportedCodecsRead(
+      uint8_t status,
+      std::vector<struct supported_standard_codecs_t> standard_codecs,
+      std::vector<struct supported_vendor_spec_codecs_t>
+          vendor_spec_codecs) = 0;
+  virtual void OnLocalSupportedCodecCapabilitiesRead(
+      uint8_t status, std::vector<uint8_t> codec_caps_len,
+      uint8_t* codec_caps) = 0;
+  virtual void OnLocalSupportedControllerDelayRead(
+      uint8_t status, uint32_t min_controller_delay,
+      uint32_t max_controller_delay) = 0;
+  virtual void OnConfigureDataPath(uint8_t status) = 0;
   virtual void OnSetupIsoDataPath(uint8_t status, uint16_t conn_handle,
                                   uint8_t cig_id) = 0;
   virtual void OnRemoveIsoDataPath(uint8_t status, uint16_t conn_handle,
@@ -84,6 +96,38 @@ class IsoManager {
    * @param callbacks BigCallbacks implementation
    */
   virtual void RegisterBigCallbacks(iso_manager::BigCallbacks* callbacks) const;
+
+  /**
+   * Reads Controller supported Standard and Vendor specific Codecs.
+   */
+  virtual void ReadLocalSupportedCodecs();
+
+  /**
+   * Reads controller supported codec capabilities for a given
+   * codec_ID, logical_transport_type and direction.
+   *
+   * @param codec_caps_params read codec capabilities parameters
+   */
+  virtual void ReadLocalSupportedCodecCapabilities(
+      struct iso_manager::read_supp_codec_caps_params codec_caps_params);
+
+  /**
+   * Reads controller supported codec delay for a give
+   * codec_configuration, logical_transport_type and direction.
+   *
+   * @param delay_params read controller delay parameters
+   */
+  virtual void ReadLocalSupportedControllerDelay(
+      struct iso_manager::read_supp_controller_delay_params delay_params);
+
+  /**
+   * Request the controller to configure the data transport path
+   * in a given direction between the Controller and the Host.
+   *
+   * @param config_params config data path parameters
+   */
+  virtual void ConfigureDataPath(
+      struct iso_manager::configure_data_path_params config_params);
 
   /**
    * Creates connected isochronous group (CIG) according to given params.

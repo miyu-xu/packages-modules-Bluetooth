@@ -23,6 +23,60 @@ void hcic::SetMockHcicInterface(MockHcicInterface* interface) {
   hcic_interface = interface;
 }
 
+void btsnd_hcic_read_local_supported_codecs_v2(
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  hcic_interface->ReadLocalSupportedCodecsV2(std::move(cb));
+}
+
+void btsnd_hcic_read_local_supported_codec_capabilities(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  struct bluetooth::hci::iso_manager::read_supp_codec_caps_params
+      codec_caps_params = {
+          .codec_id_format = codec_id_format,
+          .codec_id_company = codec_id_company,
+          .codec_id_vendor = codec_id_vendor,
+          .logical_transport_type = logical_trans_type,
+          .direction = direction,
+      };
+
+  hcic_interface->ReadLocalSupportedCodecCapabilities(
+      std::move(codec_caps_params), std::move(cb));
+}
+
+void btsnd_hcic_read_local_supported_controller_delay(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    std::vector<uint8_t> codec_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  struct bluetooth::hci::iso_manager::read_supp_controller_delay_params
+      delay_params = {
+          .codec_id_format = codec_id_format,
+          .codec_id_company = codec_id_company,
+          .codec_id_vendor = codec_id_vendor,
+          .logical_transport_type = logical_trans_type,
+          .direction = direction,
+          .codec_conf = std::move(codec_conf),
+      };
+
+  hcic_interface->ReadLocalSupportedControllerDelay(std::move(delay_params),
+                                                    std::move(cb));
+}
+
+void btsnd_hcic_configure_data_path(
+    uint8_t data_path_dir, uint8_t data_path_id,
+    std::vector<uint8_t> vendor_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  struct bluetooth::hci::iso_manager::configure_data_path_params config_params =
+      {
+          .data_path_dir = data_path_dir,
+          .data_path_id = data_path_id,
+          .vendor_conf = std::move(vendor_conf),
+      };
+  hcic_interface->ConfigureDataPath(std::move(config_params), std::move(cb));
+}
+
 void btsnd_hcic_set_cig_params(
     uint8_t cig_id, uint32_t sdu_itv_mtos, uint32_t sdu_itv_stom, uint8_t sca,
     uint8_t packing, uint8_t framing, uint16_t max_trans_lat_stom,
