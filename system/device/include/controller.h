@@ -83,6 +83,11 @@ typedef struct controller_t {
   bool (*supports_ble_isochronous_broadcaster)(void);
   bool (*supports_ble_synchronized_receiver)(void);
 
+  bool (*supports_read_local_supported_codecs_v2)(void);
+  bool (*supports_read_local_supported_codec_capabilities)(void);
+  bool (*supports_read_local_supported_controller_delay)(void);
+  bool (*supports_configure_data_path)(void);
+
   // Get the cached acl data sizes for the controller.
   uint16_t (*get_acl_data_size_classic)(void);
   uint16_t (*get_acl_data_size_ble)(void);

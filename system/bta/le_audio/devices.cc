@@ -43,6 +43,7 @@ using le_audio::types::AudioLocations;
 using le_audio::types::AudioStreamDataPathState;
 using le_audio::types::BidirectAsesPair;
 using le_audio::types::LeAudioCodecId;
+using le_audio::types::LeAudioConfigDataPathState;
 using le_audio::types::LeAudioContextType;
 using le_audio::types::LeAudioLc3Config;
 
@@ -91,7 +92,19 @@ int LeAudioDeviceGroup::NumOfConnected(types::LeAudioContextType context_type) {
       });
 }
 
-void LeAudioDeviceGroup::Cleanup(void) { leAudioDevices_.clear(); }
+void LeAudioDeviceGroup::ClearCodecOffload(void) { codec_offload_ = {}; }
+
+void LeAudioDeviceGroup::ClearConfigDataPath(void) { config_data_path_ = {}; }
+
+void LeAudioDeviceGroup::Clear(void) {
+  this->ClearCodecOffload();
+  this->ClearConfigDataPath();
+}
+
+void LeAudioDeviceGroup::Cleanup(void) {
+  leAudioDevices_.clear();
+  this->Clear();
+}
 
 void LeAudioDeviceGroup::Deactivate(void) {
   for (auto* leAudioDevice = GetFirstActiveDevice(); leAudioDevice;
@@ -233,6 +246,45 @@ LeAudioDevice* LeAudioDeviceGroup::GetNextActiveDevice(
     else
       return ((d.lock()).get())->HaveActiveAse();
   });
+
+  return (iter == leAudioDevices_.end()) ? nullptr : (iter->lock()).get();
+}
+
+LeAudioDevice* LeAudioDeviceGroup::GetFirstActiveDeviceByState(AseState state) {
+  auto iter = std::find_if(
+      leAudioDevices_.begin(), leAudioDevices_.end(), [&state](auto& d) {
+        if (d.expired())
+          return false;
+        else
+          return ((d.lock()).get())->HaveAllActiveAsesSameState(state);
+      });
+
+  if (iter == leAudioDevices_.end() || iter->expired()) return nullptr;
+
+  return (iter->lock()).get();
+}
+
+LeAudioDevice* LeAudioDeviceGroup::GetNextActiveDeviceByState(
+    LeAudioDevice* leAudioDevice, AseState state) {
+  auto iter = std::find_if(leAudioDevices_.begin(), leAudioDevices_.end(),
+                           [&leAudioDevice](auto& d) {
+                             if (d.expired())
+                               return false;
+                             else
+                               return (d.lock()).get() == leAudioDevice;
+                           });
+
+  if (iter == leAudioDevices_.end() ||
+      std::distance(iter, leAudioDevices_.end()) < 1)
+    return nullptr;
+
+  iter = std::find_if(
+      std::next(iter, 1), leAudioDevices_.end(), [&state](auto& d) {
+        if (d.expired())
+          return false;
+        else
+          return ((d.lock()).get())->HaveAllActiveAsesSameState(state);
+      });
 
   return (iter == leAudioDevices_.end()) ? nullptr : (iter->lock()).get();
 }
@@ -1666,6 +1718,27 @@ LeAudioDeviceGroup* LeAudioDeviceGroups::FindById(int group_id) {
   auto iter = std::find_if(
       groups_.begin(), groups_.end(),
       [&group_id](auto const& group) { return group->group_id_ == group_id; });
+
+  return (iter == groups_.end()) ? nullptr : iter->get();
+}
+
+LeAudioDeviceGroup* LeAudioDeviceGroups::FindByConfigDataPathState(
+    LeAudioConfigDataPathState config_data_path_state) {
+  auto iter = std::find_if(groups_.begin(), groups_.end(),
+                           [&config_data_path_state](auto const& group) {
+                             return group->config_data_path_.sink_state ==
+                                    config_data_path_state;
+                           });
+
+  if (iter != groups_.end()) {
+    return (iter->get());
+  }
+
+  iter = std::find_if(groups_.begin(), groups_.end(),
+                      [&config_data_path_state](auto const& group) {
+                        return group->config_data_path_.source_state ==
+                               config_data_path_state;
+                      });
 
   return (iter == groups_.end()) ? nullptr : iter->get();
 }

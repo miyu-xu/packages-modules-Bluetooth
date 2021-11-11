@@ -944,6 +944,82 @@ struct btsnd_hcic_read_iso_tx_sync {
 };
 extern struct btsnd_hcic_read_iso_tx_sync btsnd_hcic_read_iso_tx_sync;
 
+// Name: btsnd_hcic_read_local_supported_codecs_v2
+// Params: base::OnceCallback<void(uint8_t*, uint16_t
+// Return: void
+struct btsnd_hcic_read_local_supported_codecs_v2 {
+  std::function<void(base::OnceCallback<void(uint8_t*, uint16_t)>)> body{
+      [](base::OnceCallback<void(uint8_t*, uint16_t)> cb) {}};
+  void operator()(base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+    body(std::move(cb));
+  };
+};
+extern struct btsnd_hcic_read_local_supported_codecs_v2
+    btsnd_hcic_read_local_supported_codecs_v2;
+
+// Name: btsnd_hcic_read_local_supported_codec_capabilities
+// Params: uint8_t codec_id_format, uint16_t codec_id_company, uint16_t
+// codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+// base::OnceCallback<void(uint8_t*, uint16_t Return: void
+struct btsnd_hcic_read_local_supported_codec_capabilities {
+  std::function<void(uint8_t, uint16_t, uint16_t, uint8_t, uint8_t,
+                     base::OnceCallback<void(uint8_t*, uint16_t)>)>
+      body{[](uint8_t codec_id_format, uint16_t codec_id_company,
+              uint16_t codec_id_vendor, uint8_t logical_trans_type,
+              uint8_t direction,
+              base::OnceCallback<void(uint8_t*, uint16_t)> cb) {}};
+  void operator()(uint8_t codec_id_format, uint16_t codec_id_company,
+                  uint16_t codec_id_vendor, uint8_t logical_trans_type,
+                  uint8_t direction,
+                  base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+    body(codec_id_format, codec_id_company, codec_id_vendor, logical_trans_type,
+         direction, std::move(cb));
+  };
+};
+extern struct btsnd_hcic_read_local_supported_codec_capabilities
+    btsnd_hcic_read_local_supported_codec_capabilities;
+
+// Name: btsnd_hcic_read_local_supported_controller_delay
+// Params: uint8_t codec_id_format, uint16_t codec_id_company, uint16_t
+// codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+// std::vector<uint8_t> codec_conf, base::OnceCallback<void(uint8_t*, uint16_t
+// Return: void
+struct btsnd_hcic_read_local_supported_controller_delay {
+  std::function<void(uint8_t, uint16_t, uint16_t, uint8_t, uint8_t,
+                     std::vector<uint8_t>,
+                     base::OnceCallback<void(uint8_t*, uint16_t)>)>
+      body{[](uint8_t codec_id_format, uint16_t codec_id_company,
+              uint16_t codec_id_vendor, uint8_t logical_trans_type,
+              uint8_t direction, std::vector<uint8_t> codec_conf,
+              base::OnceCallback<void(uint8_t*, uint16_t)> cb) {}};
+  void operator()(uint8_t codec_id_format, uint16_t codec_id_company,
+                  uint16_t codec_id_vendor, uint8_t logical_trans_type,
+                  uint8_t direction, std::vector<uint8_t> codec_conf,
+                  base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+    body(codec_id_format, codec_id_company, codec_id_vendor, logical_trans_type,
+         direction, std::move(codec_conf), std::move(cb));
+  };
+};
+extern struct btsnd_hcic_read_local_supported_controller_delay
+    btsnd_hcic_read_local_supported_controller_delay;
+
+// Name: btsnd_hcic_configure_data_path
+// Params: uint8_t data_path_dir, uint8_t data_path_id, std::vector<uint8_t>
+// vendor_conf, base::OnceCallback<void(uint8_t*, uint16_t Return: void
+struct btsnd_hcic_configure_data_path {
+  std::function<void(uint8_t, uint8_t, std::vector<uint8_t>,
+                     base::OnceCallback<void(uint8_t*, uint16_t)>)>
+      body{[](uint8_t data_path_dir, uint8_t data_path_id,
+              std::vector<uint8_t> vendor_conf,
+              base::OnceCallback<void(uint8_t*, uint16_t)> cb) {}};
+  void operator()(uint8_t data_path_dir, uint8_t data_path_id,
+                  std::vector<uint8_t> vendor_conf,
+                  base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+    body(data_path_dir, data_path_id, std::move(vendor_conf), std::move(cb));
+  };
+};
+extern struct btsnd_hcic_configure_data_path btsnd_hcic_configure_data_path;
+
 // Name: btsnd_hcic_rej_cis_req
 // Params: uint16_t conn_handle, uint8_t reason,
 // base::OnceCallback<void(uint8_t*, uint16_t Return: void

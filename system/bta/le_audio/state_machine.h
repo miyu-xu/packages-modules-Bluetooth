@@ -56,6 +56,8 @@ class LeAudioGroupStateMachine {
                                      LeAudioDevice* leAudioDevice,
                                      LeAudioDeviceGroup* group) = 0;
 
+  virtual void ProcessHciNotifConfigureDataPath(LeAudioDeviceGroup* group,
+                                                uint8_t status) = 0;
   virtual void ProcessHciNotifOnCigCreate(
       LeAudioDeviceGroup* group, uint8_t status, uint8_t cig_id,
       std::vector<uint16_t> conn_handles) = 0;

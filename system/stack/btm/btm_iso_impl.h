@@ -84,6 +84,115 @@ struct iso_impl {
     big_callbacks_ = callbacks;
   }
 
+  void on_local_supported_codecs_read(uint8_t* stream, uint16_t len) {
+    uint8_t status, num_supported_standard_codecs,
+        num_supported_vendor_spec_codecs;
+    std::vector<struct supported_standard_codecs_t> standard_codecs;
+    std::vector<struct supported_vendor_spec_codecs_t> vendor_spec_codecs;
+    struct supported_standard_codecs_t supported_codec;
+    struct supported_vendor_spec_codecs_t supported_vendor_spec_codec;
+
+    STREAM_TO_UINT8(status, stream);
+    STREAM_TO_UINT8(num_supported_standard_codecs, stream);
+
+    standard_codecs.reserve(num_supported_standard_codecs);
+    for (int i = 0; i < num_supported_standard_codecs; i++) {
+      STREAM_TO_UINT8(supported_codec.codec_id, stream);
+      STREAM_TO_UINT8(supported_codec.codec_transport, stream);
+      standard_codecs.push_back(supported_codec);
+    }
+
+    STREAM_TO_UINT8(num_supported_vendor_spec_codecs, stream);
+
+    vendor_spec_codecs.reserve(num_supported_vendor_spec_codecs);
+    for (int i = 0; i < num_supported_vendor_spec_codecs; i++) {
+      STREAM_TO_UINT16(supported_vendor_spec_codec.vendor_company_id, stream);
+      STREAM_TO_UINT16(supported_vendor_spec_codec.vendor_codec_id, stream);
+      STREAM_TO_UINT8(supported_vendor_spec_codec.vendor_codec_transport,
+                      stream);
+      vendor_spec_codecs.push_back(supported_vendor_spec_codec);
+    }
+
+    cig_callbacks_->OnLocalSupportedCodecsRead(status, standard_codecs,
+                                               vendor_spec_codecs);
+  }
+
+  void read_local_supported_codecs() {
+    btsnd_hcic_read_local_supported_codecs_v2(base::BindOnce(
+        &iso_impl::on_local_supported_codecs_read, base::Unretained(this)));
+  }
+
+  void on_local_supported_codec_capabilities_read(uint8_t* stream,
+                                                  uint16_t len) {
+    uint8_t status, num_codec_caps, b;
+    std::vector<uint8_t> codec_caps_len;
+    uint8_t* codec_caps;
+
+    STREAM_TO_UINT8(status, stream);
+    STREAM_TO_UINT8(num_codec_caps, stream);
+
+    codec_caps_len.reserve(num_codec_caps);
+    for (int i = 0; i < num_codec_caps; i++) {
+      STREAM_TO_UINT8(b, stream);
+      codec_caps_len.push_back(b);
+    }
+
+    codec_caps = stream;
+
+    cig_callbacks_->OnLocalSupportedCodecCapabilitiesRead(
+        status, codec_caps_len, codec_caps);
+  }
+
+  void read_local_supported_codec_capabilities(
+      struct iso_manager::read_supp_codec_caps_params codec_caps_params) {
+    btsnd_hcic_read_local_supported_codec_capabilities(
+        codec_caps_params.codec_id_format, codec_caps_params.codec_id_company,
+        codec_caps_params.codec_id_vendor,
+        codec_caps_params.logical_transport_type, codec_caps_params.direction,
+        base::BindOnce(&iso_impl::on_local_supported_codec_capabilities_read,
+                       base::Unretained(this)));
+  }
+
+  void on_local_supported_controller_delay_read(uint8_t* stream, uint16_t len) {
+    uint8_t status;
+    uint32_t min_controller_delay;
+    uint32_t max_controller_delay;
+
+    STREAM_TO_UINT8(status, stream);
+    STREAM_TO_UINT24(min_controller_delay, stream);
+    STREAM_TO_UINT24(max_controller_delay, stream);
+
+    cig_callbacks_->OnLocalSupportedControllerDelayRead(
+        status, min_controller_delay, max_controller_delay);
+  }
+
+  void read_local_supported_controller_delay(
+      struct iso_manager::read_supp_controller_delay_params delay_params) {
+    btsnd_hcic_read_local_supported_controller_delay(
+        delay_params.codec_id_format, delay_params.codec_id_company,
+        delay_params.codec_id_vendor, delay_params.logical_transport_type,
+        delay_params.direction, std::move(delay_params.codec_conf),
+        base::BindOnce(&iso_impl::on_local_supported_controller_delay_read,
+                       base::Unretained(this)));
+  }
+
+  void on_configure_data_path(uint8_t* stream, uint16_t len) {
+    uint8_t status;
+
+    STREAM_TO_UINT8(status, stream);
+
+    cig_callbacks_->OnConfigureDataPath(status);
+  }
+
+  void configure_data_path(
+      struct iso_manager::configure_data_path_params config_params) {
+    btsnd_hcic_configure_data_path(
+        config_params.data_path_dir, config_params.data_path_id,
+        std::move(config_params.vendor_conf),
+        base::BindOnce(&iso_impl::on_configure_data_path,
+                       base::Unretained(this)));
+  }
+
   void on_set_cig_params(uint8_t cig_id, uint32_t sdu_itv_mtos, uint8_t* stream,
                          uint16_t len) {
     uint8_t cis_cnt;

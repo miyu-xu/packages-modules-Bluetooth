@@ -28,6 +28,24 @@ class HcicInterface {
  public:
   // iso_manager::cig_create_params is a workaround for the 10 params function
   // limitation that gmock sets
+  virtual void ReadLocalSupportedCodecsV2(
+      base::OnceCallback<void(uint8_t*, uint16_t)> cb) = 0;
+
+  virtual void ReadLocalSupportedCodecCapabilities(
+      struct bluetooth::hci::iso_manager::read_supp_codec_caps_params
+          codec_caps_params,
+      base::OnceCallback<void(uint8_t*, uint16_t)> cb) = 0;
+
+  virtual void ReadLocalSupportedControllerDelay(
+      struct bluetooth::hci::iso_manager::read_supp_controller_delay_params
+          delay_params,
+      base::OnceCallback<void(uint8_t*, uint16_t)> cb) = 0;
+
+  virtual void ConfigureDataPath(
+      struct bluetooth::hci::iso_manager::configure_data_path_params
+          config_params,
+      base::OnceCallback<void(uint8_t*, uint16_t)> cb) = 0;
+
   virtual void SetCigParams(
       uint8_t cig_id,
       struct bluetooth::hci::iso_manager::cig_create_params cig_params,
@@ -69,6 +87,28 @@ class HcicInterface {
 
 class MockHcicInterface : public HcicInterface {
  public:
+  MOCK_METHOD((void), ReadLocalSupportedCodecsV2,
+              (base::OnceCallback<void(uint8_t*, uint16_t)> cb), (override));
+
+  MOCK_METHOD((void), ReadLocalSupportedCodecCapabilities,
+              (struct bluetooth::hci::iso_manager::read_supp_codec_caps_params
+                   codec_caps_params,
+               base::OnceCallback<void(uint8_t*, uint16_t)> cb),
+              (override));
+
+  MOCK_METHOD(
+      (void), ReadLocalSupportedControllerDelay,
+      (struct bluetooth::hci::iso_manager::read_supp_controller_delay_params
+           delay_params,
+       base::OnceCallback<void(uint8_t*, uint16_t)> cb),
+      (override));
+
+  MOCK_METHOD((void), ConfigureDataPath,
+              (struct bluetooth::hci::iso_manager::configure_data_path_params
+                   config_params,
+               base::OnceCallback<void(uint8_t*, uint16_t)> cb),
+              (override));
+
   MOCK_METHOD((void), SetCigParams,
               (uint8_t cig_id,
                struct bluetooth::hci::iso_manager::cig_create_params cig_params,

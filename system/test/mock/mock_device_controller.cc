@@ -302,6 +302,24 @@ bool supports_ble_synchronized_receiver(void) {
   return HCI_LE_SYNCHRONIZED_RECEIVER(features_ble.as_array);
 }
 
+bool supports_read_local_supported_codecs_v2(void) {
+  return HCI_READ_LOCAL_SUPPORTED_CODECS_V2_SUPPORTED(supported_commands);
+}
+
+bool supports_read_local_supported_codec_capabilities(void) {
+  return HCI_READ_LOCAL_SUPPORTED_CODEC_CAPABILITIES_SUPPORTED(
+      supported_commands);
+}
+
+bool supports_read_local_supported_controller_delay(void) {
+  return HCI_READ_LOCAL_SUPPORTED_CONTROLLER_DELAY_SUPPORTED(
+      supported_commands);
+}
+
+bool supports_configure_data_path(void) {
+  return HCI_CONFIGURE_DATA_PATH_SUPPORTED(supported_commands);
+}
+
 uint16_t get_acl_data_size_classic(void) { return acl_data_size_classic; }
 
 uint16_t get_acl_data_size_ble(void) { return acl_data_size_ble; }
@@ -421,6 +439,11 @@ const controller_t interface = {
     supports_ble_connected_isochronous_stream_peripheral,
     supports_ble_isochronous_broadcaster,
     supports_ble_synchronized_receiver,
+
+    supports_read_local_supported_codecs_v2,
+    supports_read_local_supported_codec_capabilities,
+    supports_read_local_supported_controller_delay,
+    supports_configure_data_path,
 
     get_acl_data_size_classic,
     get_acl_data_size_ble,

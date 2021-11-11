@@ -86,6 +86,11 @@ pub mod ffi {
         fn controller_supports_enhanced_accept_synchronous_connection(c: &Controller) -> bool;
         fn controller_supports_ble_set_privacy_mode(c: &Controller) -> bool;
 
+        fn controller_supports_read_local_supported_codecs_v2(c: &Controller) -> bool;
+        fn controller_supports_read_local_supported_codec_capabilities(c: &Controller) -> bool;
+        fn controller_supports_read_local_supported_controller_delay(c: &Controller) -> bool;
+        fn controller_supports_configure_data_path(c: &Controller) -> bool;
+
         fn controller_get_acl_buffer_length(c: &Controller) -> u16;
         fn controller_get_le_buffer_length(c: &Controller) -> u16;
         fn controller_get_iso_buffer_length(c: &Controller) -> u16;

@@ -909,6 +909,70 @@ void btsnd_hcic_read_iso_tx_sync(
                             params_len, std::move(cb));
 }
 
+void btsnd_hcic_read_local_supported_codecs_v2(
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_READ_LOCAL_SUPPORTED_CODECS_V2,
+                            nullptr, 0, std::move(cb));
+}
+
+void btsnd_hcic_read_local_supported_codec_capabilities(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  const int params_len = 7;
+  uint8_t param[params_len];
+  uint8_t* pp = param;
+
+  UINT8_TO_STREAM(pp, codec_id_format);
+  UINT16_TO_STREAM(pp, codec_id_company);
+  UINT16_TO_STREAM(pp, codec_id_vendor);
+  UINT8_TO_STREAM(pp, logical_trans_type);
+  UINT8_TO_STREAM(pp, direction);
+
+  btu_hcif_send_cmd_with_cb(FROM_HERE,
+                            HCI_READ_LOCAL_SUPPORTED_CODEC_CAPABILITIES, param,
+                            params_len, std::move(cb));
+}
+
+void btsnd_hcic_read_local_supported_controller_delay(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    std::vector<uint8_t> codec_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  const int params_len = 8 + codec_conf.size();
+  uint8_t param[params_len];
+  uint8_t* pp = param;
+
+  UINT8_TO_STREAM(pp, codec_id_format);
+  UINT16_TO_STREAM(pp, codec_id_company);
+  UINT16_TO_STREAM(pp, codec_id_vendor);
+  UINT8_TO_STREAM(pp, logical_trans_type);
+  UINT8_TO_STREAM(pp, direction);
+  UINT8_TO_STREAM(pp, codec_conf.size());
+  ARRAY_TO_STREAM(pp, codec_conf.data(), static_cast<int>(codec_conf.size()));
+
+  btu_hcif_send_cmd_with_cb(FROM_HERE,
+                            HCI_READ_LOCAL_SUPPORTED_CONTROLLER_DELAY, param,
+                            params_len, std::move(cb));
+}
+
+void btsnd_hcic_configure_data_path(
+    uint8_t data_path_dir, uint8_t data_path_id,
+    std::vector<uint8_t> vendor_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  const int params_len = 3 + vendor_conf.size();
+  uint8_t param[params_len];
+  uint8_t* pp = param;
+
+  UINT8_TO_STREAM(pp, data_path_dir);
+  UINT8_TO_STREAM(pp, data_path_id);
+  UINT8_TO_STREAM(pp, vendor_conf.size());
+  ARRAY_TO_STREAM(pp, vendor_conf.data(), static_cast<int>(vendor_conf.size()));
+
+  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_CONFIGURE_DATA_PATH, param,
+                            params_len, std::move(cb));
+}
+
 void btsnd_hcic_set_cig_params(
     uint8_t cig_id, uint32_t sdu_itv_mtos, uint32_t sdu_itv_stom, uint8_t sca,
     uint8_t packing, uint8_t framing, uint16_t max_trans_lat_stom,

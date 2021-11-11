@@ -122,6 +122,13 @@ struct btsnd_hcic_create_big btsnd_hcic_create_big;
 struct btsnd_hcic_create_cis btsnd_hcic_create_cis;
 struct btsnd_hcic_read_iso_link_quality btsnd_hcic_read_iso_link_quality;
 struct btsnd_hcic_read_iso_tx_sync btsnd_hcic_read_iso_tx_sync;
+struct btsnd_hcic_read_local_supported_codecs_v2
+    btsnd_hcic_read_local_supported_codecs_v2;
+struct btsnd_hcic_read_local_supported_codec_capabilities
+    btsnd_hcic_read_local_supported_codec_capabilities;
+struct btsnd_hcic_read_local_supported_controller_delay
+    btsnd_hcic_read_local_supported_controller_delay;
+struct btsnd_hcic_configure_data_path btsnd_hcic_configure_data_path;
 struct btsnd_hcic_rej_cis_req btsnd_hcic_rej_cis_req;
 struct btsnd_hcic_remove_cig btsnd_hcic_remove_cig;
 struct btsnd_hcic_remove_iso_data_path btsnd_hcic_remove_iso_data_path;
@@ -544,6 +551,41 @@ void btsnd_hcic_read_iso_tx_sync(
   mock_function_count_map[__func__]++;
   test::mock::stack_hcic_hciblecmds::btsnd_hcic_read_iso_tx_sync(iso_handle,
                                                                  std::move(cb));
+}
+void btsnd_hcic_read_local_supported_codecs_v2(
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  mock_function_count_map[__func__]++;
+  test::mock::stack_hcic_hciblecmds::btsnd_hcic_read_local_supported_codecs_v2(
+      std::move(cb));
+}
+void btsnd_hcic_read_local_supported_codec_capabilities(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  mock_function_count_map[__func__]++;
+  test::mock::stack_hcic_hciblecmds::
+      btsnd_hcic_read_local_supported_codec_capabilities(
+          codec_id_format, codec_id_company, codec_id_vendor,
+          logical_trans_type, direction, std::move(cb));
+}
+void btsnd_hcic_read_local_supported_controller_delay(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    std::vector<uint8_t> codec_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  mock_function_count_map[__func__]++;
+  test::mock::stack_hcic_hciblecmds::
+      btsnd_hcic_read_local_supported_controller_delay(
+          codec_id_format, codec_id_company, codec_id_vendor,
+          logical_trans_type, direction, std::move(codec_conf), std::move(cb));
+}
+void btsnd_hcic_configure_data_path(
+    uint8_t data_path_dir, uint8_t data_path_id,
+    std::vector<uint8_t> vendor_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
+  mock_function_count_map[__func__]++;
+  test::mock::stack_hcic_hciblecmds::btsnd_hcic_configure_data_path(
+      data_path_dir, data_path_id, std::move(vendor_conf), std::move(cb));
 }
 void btsnd_hcic_rej_cis_req(uint16_t conn_handle, uint8_t reason,
                             base::OnceCallback<void(uint8_t*, uint16_t)> cb) {

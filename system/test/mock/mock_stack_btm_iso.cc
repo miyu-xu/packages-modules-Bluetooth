@@ -14,6 +14,13 @@ IsoManager::IsoManager() {}
 IsoManager::~IsoManager() {}
 void IsoManager::RegisterCigCallbacks(CigCallbacks* callbacks) const {}
 void IsoManager::RegisterBigCallbacks(BigCallbacks* callbacks) const {}
+void IsoManager::ReadLocalSupportedCodecs() {}
+void IsoManager::ReadLocalSupportedCodecCapabilities(
+    struct iso_manager::read_supp_codec_caps_params codec_caps_params) {}
+void IsoManager::ReadLocalSupportedControllerDelay(
+    struct iso_manager::read_supp_controller_delay_params delay_params) {}
+void IsoManager::ConfigureDataPath(
+    struct iso_manager::configure_data_path_params config_params) {}
 void IsoManager::CreateCig(uint8_t cig_id,
                            struct iso_manager::cig_create_params cig_params) {}
 void IsoManager::ReconfigureCig(

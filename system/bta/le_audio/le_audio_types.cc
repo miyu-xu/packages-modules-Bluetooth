@@ -88,8 +88,8 @@ bool check_if_may_cover_scenario(const AudioSetConfiguration* audio_set_conf,
   return group_size >= min_req_devices_cnt(audio_set_conf);
 }
 
-static bool IsCodecConfigurationSupported(const types::LeAudioLtvMap& pacs,
-                                          const LeAudioLc3Config& lc3_config) {
+bool IsCodecConfigurationSupported(const types::LeAudioLtvMap& pacs,
+                                   const LeAudioLc3Config& lc3_config) {
   const auto& reqs = lc3_config.GetAsLtvMap();
   uint8_t u8_req_val, u8_pac_val;
   uint16_t u16_req_val, u16_pac_val;

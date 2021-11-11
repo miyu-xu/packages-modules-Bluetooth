@@ -45,7 +45,7 @@ constexpr uint8_t kIsoDataPathDirectionIn = 0x00;
 constexpr uint8_t kIsoDataPathDirectionOut = 0x01;
 
 constexpr uint8_t kIsoDataPathHci = 0x00;
-constexpr uint8_t kIsoDataPathDisabled = 0xFF;
+constexpr uint8_t kIsoDataPathVsPlatformDefault = 0x01;
 
 constexpr uint8_t kIsoSca251To500Ppm = 0x00;
 constexpr uint8_t kIsoSca151To250Ppm = 0x01;
@@ -66,6 +66,50 @@ constexpr uint8_t kIsoEventCigOnRemoveCmpl = 0x02;
 
 constexpr uint8_t kIsoEventBigOnCreateCmpl = 0x00;
 constexpr uint8_t kIsoEventBigOnTerminateCmpl = 0x01;
+
+constexpr uint8_t kIsoLogicalTransportTypeBrEdrAcl = 0x00;
+constexpr uint8_t kIsoLogicalTransportTypeBrEdrScoEsco = 0x01;
+constexpr uint8_t kIsoLogicalTransportTypeLeCis = 0x02;
+constexpr uint8_t kIsoLogicalTransportTypeLeBis = 0x03;
+
+struct supported_standard_codecs_t {
+  uint8_t codec_id;
+  uint8_t codec_transport;
+};
+
+struct supported_vendor_spec_codecs_t {
+  uint16_t vendor_company_id;
+  uint16_t vendor_codec_id;
+  uint8_t vendor_codec_transport;
+};
+
+struct codec_capability_t {
+  uint8_t length;
+  std::vector<uint8_t> capability;
+};
+
+struct read_supp_codec_caps_params {
+  uint8_t codec_id_format;
+  uint16_t codec_id_company;
+  uint16_t codec_id_vendor;
+  uint8_t logical_transport_type;
+  uint8_t direction;
+};
+
+struct read_supp_controller_delay_params {
+  uint8_t codec_id_format;
+  uint16_t codec_id_company;
+  uint16_t codec_id_vendor;
+  uint8_t logical_transport_type;
+  uint8_t direction;
+  std::vector<uint8_t> codec_conf;
+};
+
+struct configure_data_path_params {
+  uint8_t data_path_dir;
+  uint8_t data_path_id;
+  std::vector<uint8_t> vendor_conf;
+};
 
 struct cig_create_params {
   uint32_t sdu_itv_mtos;

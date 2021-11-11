@@ -259,6 +259,8 @@ constexpr uint16_t kLeAudioCodecLC3FrameLen120 =
 };  // namespace codec_spec_caps
 
 namespace types {
+constexpr uint8_t kLeAudioCodingFormatTransparent =
+    bluetooth::hci::kIsoCodingFormatTransparent;
 constexpr uint8_t kLeAudioCodingFormatLC3 = bluetooth::hci::kIsoCodingFormatLc3;
 constexpr uint8_t kLeAudioCodingFormatVendorSpecific =
     bluetooth::hci::kIsoCodingFormatVendorSpecific;
@@ -330,6 +332,29 @@ enum class AudioStreamDataPathState {
   CIS_PENDING,
   CIS_ESTABLISHED,
   DATA_PATH_ESTABLISHED,
+};
+
+enum class LeAudioCodecLocation {
+  HOST,
+  CONTROLLER,
+  ADSP,
+  MAX,
+};
+
+struct LeAudioCodecOffloadEnabledStatus {
+  bool sink_enabled_;
+  bool source_enabled_;
+};
+
+enum class LeAudioConfigDataPathState {
+  IDLE,
+  CONFIG_PENDING,
+  CONFIGURED,
+};
+
+struct LeAudioConfigDataPath {
+  LeAudioConfigDataPathState sink_state;
+  LeAudioConfigDataPathState source_state;
 };
 
 /* Context Types */
@@ -917,6 +942,8 @@ bool check_if_may_cover_scenario(
 bool IsCodecCapabilitySettingSupported(
     const types::acs_ac_record& pac_record,
     const CodecCapabilitySetting& codec_capability_setting);
+bool IsCodecConfigurationSupported(const types::LeAudioLtvMap& pacs,
+                                   const types::LeAudioLc3Config& lc3_config);
 const AudioSetConfigurations* get_confs_by_type(types::LeAudioContextType type);
 }  // namespace set_configurations
 

@@ -691,6 +691,25 @@ extern void btsnd_hcic_write_authenticated_payload_tout(uint16_t handle,
 extern void btsnd_hcic_read_iso_tx_sync(
     uint16_t iso_handle, base::OnceCallback<void(uint8_t*, uint16_t)> cb);
 
+extern void btsnd_hcic_read_local_supported_codecs_v2(
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb);
+
+extern void btsnd_hcic_read_local_supported_codec_capabilities(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb);
+
+extern void btsnd_hcic_read_local_supported_controller_delay(
+    uint8_t codec_id_format, uint16_t codec_id_company,
+    uint16_t codec_id_vendor, uint8_t logical_trans_type, uint8_t direction,
+    std::vector<uint8_t> codec_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb);
+
+extern void btsnd_hcic_configure_data_path(
+    uint8_t data_path_dir, uint8_t data_path_id,
+    std::vector<uint8_t> vendor_conf,
+    base::OnceCallback<void(uint8_t*, uint16_t)> cb);
+
 struct EXT_CIS_CFG {
   uint8_t cis_id;
   uint16_t max_sdu_size_mtos;
