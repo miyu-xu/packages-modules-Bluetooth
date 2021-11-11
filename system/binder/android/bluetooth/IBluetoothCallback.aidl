@@ -25,4 +25,6 @@ interface IBluetoothCallback
 {
     //void onRfcommChannelFound(int channel);
     void onBluetoothStateChange(int prevState, int newState);
+    void onBluetoothNameChanged(in String name);
+    void onBluetoothAddressChanged(in String address);
 }
