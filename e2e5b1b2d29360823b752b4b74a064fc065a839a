@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4e8355da_50f83b20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2021-11-12T10:32:10Z",
+      "side": 1,
+      "message": "Still needing Owner approval, adding Jakub, thank you.",
+      "revId": "e2e5b1b2d29360823b752b4b74a064fc065a839a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8b07ad46_ace09449",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 2
