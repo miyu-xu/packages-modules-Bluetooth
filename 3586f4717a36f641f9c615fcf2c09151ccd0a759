@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97284ded_211135af",
+        "filename": "system/btif/src/btif_le_audio.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-11-12T07:54:11Z",
+      "side": 1,
+      "message": "please use LOG_DEBUG() instead, and __func__ is no longer needed with LOG_DEBUG\n\nit is disabled by default and can be dynamically enabled via\n\nadb shell device_config put bluetooth INIT_logging_debug_enabled_for_all true",
+      "range": {
+        "startLine": 79,
+        "startChar": 6,
+        "endLine": 79,
+        "endChar": 22
+      },
+      "revId": "3586f4717a36f641f9c615fcf2c09151ccd0a759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4fb99460_33328c7d",
         "filename": "system/include/hardware/bt_le_audio.h",
         "patchSetId": 2
