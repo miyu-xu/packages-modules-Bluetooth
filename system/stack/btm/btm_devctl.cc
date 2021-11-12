@@ -197,12 +197,22 @@ void BTM_reset_complete() {
   std::srand(std::time(nullptr));
 
   /* Set up the BLE privacy settings */
-  if (controller->supports_ble() && controller->supports_ble_privacy() &&
-      controller->get_ble_resolving_list_max_size() > 0) {
-    btm_ble_resolving_list_init(controller->get_ble_resolving_list_max_size());
+  if (controller->supports_ble() && controller->supports_ble_privacy()) {
+    // Use the value in controller if set, otherwise use default size
+    int ble_resolving_list_max_size =
+        controller->get_ble_resolving_list_max_size();
+    if (ble_resolving_list_max_size == 0) {
+      ble_resolving_list_max_size = kDefaultBleResolvingListMaxSize;
+    }
+    btm_ble_resolving_list_init(ble_resolving_list_max_size);
+    LOG_DEBUG("Set Le Address Resolving list max size:%hhu",
+              controller->get_ble_resolving_list_max_size());
     /* set the default random private address timeout */
     btsnd_hcic_ble_set_rand_priv_addr_timeout(
         btm_get_next_private_addrress_interval_ms() / 1000);
+  } else {
+    LOG_INFO(
+        "Le Address Resolving list disabled due to lack of controller support");
   }
 
   if (controller->supports_ble()) {

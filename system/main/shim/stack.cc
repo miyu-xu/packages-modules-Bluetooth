@@ -16,13 +16,15 @@
 
 #define LOG_TAG "bt_gd_shim"
 
-#include "device/include/controller.h"
+#include "main/shim/stack.h"
 
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+
 #include <string>
 
+#include "device/include/controller.h"
 #include "gd/att/att_module.h"
 #include "gd/btaa/activity_attribution.h"
 #include "gd/common/init_flags.h"
@@ -47,16 +49,15 @@
 #include "gd/security/security_module.h"
 #include "gd/shim/dumpsys.h"
 #include "gd/storage/storage_module.h"
-
 #include "main/shim/acl_legacy_interface.h"
 #include "main/shim/activity_attribution.h"
+#include "main/shim/controller.h"
 #include "main/shim/hci_layer.h"
 #include "main/shim/helpers.h"
 #include "main/shim/l2c_api.h"
 #include "main/shim/le_advertising_manager.h"
 #include "main/shim/le_scanning_manager.h"
 #include "main/shim/shim.h"
-#include "main/shim/stack.h"
 
 namespace bluetooth {
 namespace shim {
@@ -177,10 +178,10 @@ void Stack::StartEverything() {
   }
   if (common::init_flags::gd_acl_is_enabled()) {
     if (!common::init_flags::gd_core_is_enabled()) {
-      acl_ = new legacy::Acl(
-          stack_handler_, legacy::GetAclInterface(),
-          controller_get_interface()->get_ble_acceptlist_size(),
-          controller_get_interface()->get_ble_resolving_list_max_size());
+      acl_ =
+          new legacy::Acl(stack_handler_, legacy::GetAclInterface(),
+                          controller_get_interface()->get_ble_acceptlist_size(),
+                          kDefaultBleResolvingListMaxSize);
     }
   }
   if (!common::init_flags::gd_core_is_enabled()) {

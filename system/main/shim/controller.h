@@ -20,6 +20,8 @@
 
 static const char GD_CONTROLLER_MODULE[] = "gd_controller_module";
 
+constexpr int kDefaultBleResolvingListMaxSize = 32;
+
 namespace bluetooth {
 namespace shim {
 
