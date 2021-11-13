@@ -1,0 +1,212 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235265",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b29a2bb0_ca80acc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235265",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "28135f6c_feac3189",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235266",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2f0ad17c_289202f2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1865,
+        "startChar": 0,
+        "endLine": 1865,
+        "endChar": 374
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235266",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cf3d8031_df4f2029",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1880,
+        "startChar": 0,
+        "endLine": 1880,
+        "endChar": 314
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235266",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3112bf74_a37403ab",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 1897,
+        "startChar": 14,
+        "endLine": 1897,
+        "endChar": 16
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235266",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "526bcde3_65eb6289",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1905,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 1905,
+        "startChar": 14,
+        "endLine": 1905,
+        "endChar": 16
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235266",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3e3dc7a7_6cad4843",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2101,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 2101,
+        "startChar": 0,
+        "endLine": 2101,
+        "endChar": 1
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235266",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891676?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "33da858d_7cd6327b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2102,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:38:52Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 2102,
+        "startChar": 0,
+        "endLine": 2102,
+        "endChar": 337
+      },
+      "revId": "45376eaa4ba481cdda1d79ef9081ee99289fc100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
