@@ -45,8 +45,12 @@ extern uint8_t btu_trace_level;
 /* Functions provided by btu_hcif.cc
  ***********************************
 */
-void btu_hcif_process_event(uint8_t controller_id, BT_HDR* p_buf);
-void btu_hcif_send_cmd(uint8_t controller_id, BT_HDR* p_msg);
+void btu_hcif_process_event(const BT_HDR* p_buf);
+void btu_hcif_process_event(uint8_t controller_id,
+                            const BT_HDR* p_buf);  // DEPRECATED
+void btu_hcif_send_cmd(const BT_HDR* p_msg);
+void btu_hcif_send_cmd(uint8_t controller_id,
+                       const BT_HDR* p_msg);  // DEPRECATED
 void btu_hcif_send_cmd_with_cb(const base::Location& posted_from,
                                uint16_t opcode, uint8_t* params,
                                uint8_t params_len,
