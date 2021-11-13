@@ -1,0 +1,744 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235274",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "decd9568_33de44db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "c642aa91_7f3827b4",
+          "description": "Change to \"system/embdrv/lc3_enc/include/lc3.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/include/lc3.h",
+              "range": {
+                "startLine": 57,
+                "startChar": 12,
+                "endLine": 57,
+                "endChar": 20
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "77043de3_2593e5b7",
+        "filename": "system/embdrv/lc3_enc/include/lc3.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 20
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "d37922da_db3f015d",
+          "description": "Change to \"system/embdrv/lc3_enc/include/lc3.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/include/lc3.h",
+              "range": {
+                "startLine": 58,
+                "startChar": 20,
+                "endLine": 58,
+                "endChar": 28
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a2535b01_9b66f1eb",
+        "filename": "system/embdrv/lc3_enc/include/lc3.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 58,
+        "startChar": 20,
+        "endLine": 58,
+        "endChar": 28
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "0cf4cd67_2e496b8f",
+          "description": "Change to \"system/embdrv/lc3_enc/include/lc3.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/include/lc3.h",
+              "range": {
+                "startLine": 66,
+                "startChar": 12,
+                "endLine": 66,
+                "endChar": 20
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e35df85e_16142f07",
+        "filename": "system/embdrv/lc3_enc/include/lc3.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 20
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "fb7c5fb9_0cf75b17",
+          "description": "Change to \"system/embdrv/lc3_enc/include/lc3.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/include/lc3.h",
+              "range": {
+                "startLine": 72,
+                "startChar": 61,
+                "endLine": 72,
+                "endChar": 68
+              },
+              "replacement": "across"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a9132032_e37bcf73",
+        "filename": "system/embdrv/lc3_enc/include/lc3.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"accross\" -- should it be \"across\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 72,
+        "startChar": 61,
+        "endLine": 72,
+        "endChar": 68
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "ece98330_8c859556",
+          "description": "Change to \"system/embdrv/lc3_enc/include/lc3.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/include/lc3.h",
+              "range": {
+                "startLine": 93,
+                "startChar": 21,
+                "endLine": 93,
+                "endChar": 27
+              },
+              "replacement": "address"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "bf7e653f_05737a69",
+        "filename": "system/embdrv/lc3_enc/include/lc3.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"adress\" -- should it be \"address\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 93,
+        "startChar": 21,
+        "endLine": 93,
+        "endChar": 27
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "70d137e6_2bf828dd",
+          "description": "Change to \"system/embdrv/lc3_enc/src/bits.c\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/bits.c",
+              "range": {
+                "startLine": 221,
+                "startChar": 11,
+                "endLine": 221,
+                "endChar": 19
+              },
+              "replacement": "Fulfill"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "7f19b043_d271b647",
+        "filename": "system/embdrv/lc3_enc/src/bits.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"Fullfill\" -- should it be \"Fulfill\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 221,
+        "startChar": 11,
+        "endLine": 221,
+        "endChar": 19
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "37e5c249_95240e59",
+          "description": "Change to \"system/embdrv/lc3_enc/src/bits.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/bits.h",
+              "range": {
+                "startLine": 28,
+                "startChar": 5,
+                "endLine": 28,
+                "endChar": 13
+              },
+              "replacement": "addresses"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e0b01197_eb6b82a0",
+        "filename": "system/embdrv/lc3_enc/src/bits.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"adresses\" -- should it be \"addresses\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 13
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235275",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "369d0500_650c94e9",
+        "filename": "system/embdrv/lc3_enc/src/bits.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027they\u0027, \u0027them\u0027, or \u0027person\u0027; see https://developers.google.com/style/word-list#gender for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 44,
+        "startChar": 65,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "25427b5e_1c857cb1",
+          "description": "Change to \"system/embdrv/lc3_enc/src/bwdet.c\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/bwdet.c",
+              "range": {
+                "startLine": 105,
+                "startChar": 7,
+                "endLine": 105,
+                "endChar": 15
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "0da4311b_7a420026",
+        "filename": "system/embdrv/lc3_enc/src/bwdet.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 105,
+        "startChar": 7,
+        "endLine": 105,
+        "endChar": 15
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "f495a7a6_4e25c3ac",
+          "description": "Change to \"system/embdrv/lc3_enc/src/bwdet.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/bwdet.h",
+              "range": {
+                "startLine": 50,
+                "startChar": 7,
+                "endLine": 50,
+                "endChar": 15
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "24d4c30c_7c0a316c",
+        "filename": "system/embdrv/lc3_enc/src/bwdet.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 50,
+        "startChar": 7,
+        "endLine": 50,
+        "endChar": 15
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "92765d97_cf8a9bdb",
+          "description": "Change to \"system/embdrv/lc3_enc/src/bwdet.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/bwdet.h",
+              "range": {
+                "startLine": 53,
+                "startChar": 19,
+                "endLine": 53,
+                "endChar": 27
+              },
+              "replacement": "Bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "7fbc021a_958ba6c1",
+        "filename": "system/embdrv/lc3_enc/src/bwdet.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"Bandwith\" -- should it be \"Bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 53,
+        "startChar": 19,
+        "endLine": 53,
+        "endChar": 27
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "ec3d3288_030a5e24",
+          "description": "Change to \"system/embdrv/lc3_enc/src/common.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/common.h",
+              "range": {
+                "startLine": 35,
+                "startChar": 32,
+                "endLine": 35,
+                "endChar": 38
+              },
+              "replacement": "between"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "b07f56b5_66871dc5",
+        "filename": "system/embdrv/lc3_enc/src/common.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"betwen\" -- should it be \"between\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 35,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "c3506e41_e9507fde",
+          "description": "Change to \"system/embdrv/lc3_enc/src/ltpf.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/ltpf.h",
+              "range": {
+                "startLine": 65,
+                "startChar": 30,
+                "endLine": 65,
+                "endChar": 37
+              },
+              "replacement": "disabled"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e3a5c2c3_2c80f0bc",
+        "filename": "system/embdrv/lc3_enc/src/ltpf.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"diabled\" -- should it be \"disabled\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 65,
+        "startChar": 30,
+        "endLine": 65,
+        "endChar": 37
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "43c1ebcd_74777588",
+          "description": "Change to \"system/embdrv/lc3_enc/src/noise.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/noise.h",
+              "range": {
+                "startLine": 36,
+                "startChar": 32,
+                "endLine": 36,
+                "endChar": 40
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "7227a3d1_df965f4b",
+        "filename": "system/embdrv/lc3_enc/src/noise.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 36,
+        "startChar": 32,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "82316a91_a673480b",
+          "description": "Change to \"system/embdrv/lc3_enc/src/sns.c\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/sns.c",
+              "range": {
+                "startLine": 362,
+                "startChar": 19,
+                "endLine": 362,
+                "endChar": 29
+              },
+              "replacement": "Transformed"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "9e3a272b_c6aa4708",
+        "filename": "system/embdrv/lc3_enc/src/sns.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"Tranformed\" -- should it be \"Transformed\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 362,
+        "startChar": 19,
+        "endLine": 362,
+        "endChar": 29
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "e33eda7f_99a1a230",
+          "description": "Change to \"system/embdrv/lc3_enc/src/tns.c\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/tns.c",
+              "range": {
+                "startLine": 40,
+                "startChar": 32,
+                "endLine": 40,
+                "endChar": 40
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3679093c_adfa03cf",
+        "filename": "system/embdrv/lc3_enc/src/tns.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 40,
+        "startChar": 32,
+        "endLine": 40,
+        "endChar": 40
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017235277",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1891675?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "b96987a9_835bbcd4",
+          "description": "Change to \"system/embdrv/lc3_enc/src/tns.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3_enc/src/tns.h",
+              "range": {
+                "startLine": 47,
+                "startChar": 32,
+                "endLine": 47,
+                "endChar": 40
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a4f09d6f_9a4569df",
+        "filename": "system/embdrv/lc3_enc/src/tns.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-13T10:39:02Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 47,
+        "startChar": 32,
+        "endLine": 47,
+        "endChar": 40
+      },
+      "revId": "e45a0090d5b40569902d6e2749498a4f838e5160",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
