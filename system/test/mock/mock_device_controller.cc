@@ -306,6 +306,10 @@ bool supports_ble_synchronized_receiver(void) {
   return HCI_LE_SYNCHRONIZED_RECEIVER(features_ble.as_array);
 }
 
+bool supports_ble_periodic_advertising_adi(void) {
+  return HCI_LE_PERIODIC_ADVERTISING_ADI_SUPPORTED(features_ble.as_array);
+}
+
 uint16_t get_acl_data_size_classic(void) { return acl_data_size_classic; }
 
 uint16_t get_acl_data_size_ble(void) { return acl_data_size_ble; }
@@ -440,6 +444,7 @@ const controller_t interface = {
     supports_ble_connected_isochronous_stream_peripheral,
     supports_ble_isochronous_broadcaster,
     supports_ble_synchronized_receiver,
+    supports_ble_periodic_advertising_adi,
 
     get_acl_data_size_classic,
     get_acl_data_size_ble,
