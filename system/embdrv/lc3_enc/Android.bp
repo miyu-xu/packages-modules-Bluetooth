@@ -19,30 +19,16 @@ cc_library_static {
     srcs: [
         "src/*.c",
     ],
-    cflags: [
-        "-O3",
-        "-ffast-math",
-        "-Werror",
-        "-Wmissing-braces",
-        "-Wno-unused-parameter",
-        "-Wno-#warnings",
-        "-Wuninitialized",
-        "-Wno-self-assign",
-        "-Wno-implicit-fallthrough",
-    ],
-    target: {
-       android: {
-            sanitize: {
-                misc_undefined:[
-                   "unsigned-integer-overflow",
-                   "signed-integer-overflow",
-                   "bounds",
-                ],
-                cfi: true,
-            },
-       },
-    },
     export_include_dirs: [
         "include",
+    ],
+}
+
+cc_binary {
+    name: "bug_tester",
+    static_libs : [ "liblc3encoder"],
+    host_supported:true,
+    srcs: [
+    "bug_tester.c",
     ],
 }

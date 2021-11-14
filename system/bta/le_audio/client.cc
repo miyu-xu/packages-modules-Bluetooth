@@ -1865,7 +1865,7 @@ class LeAudioClientImpl : public LeAudioClient {
       int dt_us = current_source_codec_config.data_interval_us;
       int sr_hz = current_source_codec_config.sample_rate;
       number_of_required_samples_per_channel = lc3_frame_samples(dt_us, sr_hz);
-      LOG(WARNING)  << " ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ encoder usage dt_us=" << +dt_us << ", sr_hz= " << +sr_hz << ", num_samples=" << +number_of_required_samples_per_channel;
+      LOG(WARNING)  << " ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ encoder usage dt_us=" << +dt_us << ", sr_hz= " << +sr_hz << ", num_samples=" << +number_of_required_samples_per_channel << ", byte_count=" << +byte_count;
     } else {
       number_of_required_samples_per_channel = lc3_encoder->lc3Config.NF;
     }
@@ -1875,15 +1875,16 @@ class LeAudioClientImpl : public LeAudioClient {
       LOG(ERROR) << __func__ << "Missing samples";
       return;
     }
-
     std::vector<uint8_t> chan_encoded(num_channels * byte_count, 0);
     uint8_t err = 0;
     if (num_channels == 1) {
       if (use_new_encoder) {
+
+        LOG(WARNING)  << " ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ lc3_encoder_left->dt: " <<  lc3_encoder_left->dt << ", lc3_encoder_left->sr: " <<  lc3_encoder_left->sr ;
         LOG(WARNING)  << " ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ encoding data: " <<  bluetooth::common::ToHexString(data);
 
         lc3_encode(lc3_encoder_left, (const int16_t*)data.data(), 1,
-          chan_encoded.data(), chan_encoded.size());
+          chan_encoded.data(), byte_count);
       } else {
         err = lc3_encoder->run((const int16_t*)data.data(), byte_count,
                                chan_encoded.data(), 0);
@@ -1896,7 +1897,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
       if (use_new_encoder) {
         lc3_encode(lc3_encoder_left, (const int16_t*)chan_left.data(), 1,
-          chan_encoded.data(), chan_encoded.size());
+          chan_encoded.data(), byte_count);
       } else {  
         err |= lc3_encoder->run((const int16_t*)chan_left.data(), byte_count,
                                 chan_encoded.data(), 0);
@@ -1904,7 +1905,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
       if (use_new_encoder) {
         lc3_encode(lc3_encoder_right, (const int16_t*)chan_right.data(), 1,
-          chan_encoded.data(), chan_encoded.size());
+          chan_encoded.data() + byte_count, byte_count);
       } else {  
         err |= lc3_encoder->run((const int16_t*)chan_right.data(), byte_count,
                                 chan_encoded.data() + byte_count, 1);
