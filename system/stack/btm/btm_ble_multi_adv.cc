@@ -867,6 +867,12 @@ class BleAdvertisingManagerImpl
         },
         p_inst, enable, include_adi, std::move(cb));
 
+    if (enable) {
+      if (!controller_get_interface()
+               ->supports_ble_periodic_advertising_adi()) {
+        include_adi = false;
+      }
+    }
     GetHciInterface()->SetPeriodicAdvertisingEnable(
         enable, include_adi, inst_id, std::move(enable_cb));
   }

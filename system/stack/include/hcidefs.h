@@ -1029,6 +1029,8 @@ typedef struct {
 #define HCI_LE_ISO_BROADCASTER(x) ((x)[3] & 0x40)
 #define HCI_LE_SYNCHRONIZED_RECEIVER(x) ((x)[3] & 0x80)
 
+#define HCI_LE_PERIODIC_ADVERTISING_ADI_SUPPORTED(x) ((x)[4] & 0x10)
+
 /* Supported Commands*/
 #define HCI_NUM_SUPP_COMMANDS_BYTES 64
 
