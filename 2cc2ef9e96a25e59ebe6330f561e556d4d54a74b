@@ -22,6 +22,30 @@
       },
       "revId": "2cc2ef9e96a25e59ebe6330f561e556d4d54a74b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0697213f_49e2b637",
+        "filename": "system/gd/common/sync_map_count.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-15T20:15:31Z",
+      "side": 1,
+      "message": "Good Q...I had an add\u0027l statement above the iterator\nauto map \u003d this-\u003eGet()\nWhich gets a _copy_ of the map properly synchronized.\n\nI ended up combining them.",
+      "parentUuid": "bfc9960c_8210ef54",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 15
+      },
+      "revId": "2cc2ef9e96a25e59ebe6330f561e556d4d54a74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
