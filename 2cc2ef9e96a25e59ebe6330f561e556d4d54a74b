@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc9960c_8210ef54",
+        "filename": "system/gd/common/sync_map_count.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-15T18:27:52Z",
+      "side": 1,
+      "message": "Should you lock for iterating ?",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 15
+      },
+      "revId": "2cc2ef9e96a25e59ebe6330f561e556d4d54a74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
