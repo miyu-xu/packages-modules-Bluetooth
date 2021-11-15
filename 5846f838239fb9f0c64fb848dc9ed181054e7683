@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6b9177_adbd3988",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-11-15T19:49:26Z",
+      "side": 1,
+      "message": "PTAL -- happy to figure out how to appease the linter if we want this change. :) ",
+      "revId": "5846f838239fb9f0c64fb848dc9ed181054e7683",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65b4cbd1_e32e6217",
+        "filename": "system/gd/security/internal/security_manager_impl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-11-15T19:49:26Z",
+      "side": 1,
+      "message": "(I don\u0027t have enough context on this code to know whether `std::holds_alternative\u003cPairingFailure\u003e(pairing_result)` implies that `stored_chan !\u003d nullptr`. If so, we can abandon this CL)",
+      "range": {
+        "startLine": 704,
+        "startChar": 0,
+        "endLine": 704,
+        "endChar": 22
+      },
+      "revId": "5846f838239fb9f0c64fb848dc9ed181054e7683",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
