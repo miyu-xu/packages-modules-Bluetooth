@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "72eb4b88_cca09bb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2021-11-15T20:01:08Z",
+      "side": 1,
+      "message": "Looks like it makes sense to me, but since that is for the LE path I\u0027ll concede to Jakub.",
+      "revId": "5846f838239fb9f0c64fb848dc9ed181054e7683",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "65b4cbd1_e32e6217",
         "filename": "system/gd/security/internal/security_manager_impl.cc",
         "patchSetId": 3
