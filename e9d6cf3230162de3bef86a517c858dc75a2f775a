@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433926c3_2a64a1eb",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-11-15T20:20:51Z",
+      "side": 1,
+      "message": "(it seems weird to not exit if this fails, but it offers no return value to check for that, so...)",
+      "range": {
+        "startLine": 862,
+        "startChar": 2,
+        "endLine": 862,
+        "endChar": 24
+      },
+      "revId": "e9d6cf3230162de3bef86a517c858dc75a2f775a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
