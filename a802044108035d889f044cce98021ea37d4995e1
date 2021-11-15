@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b4ebb8_0302c876",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-15T18:09:29Z",
+      "side": 0,
+      "message": "Maybe this should choose the smaller of the passed in value or the value supported by the controller.  It looks like btm_ble_privacy.cc is allocating memory for this.",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 1
+      },
+      "revId": "a802044108035d889f044cce98021ea37d4995e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
