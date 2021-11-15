@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "73e0252b_f1f11a51",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-15T12:37:50Z",
+      "side": 1,
+      "message": "We already have IsRpa method in AddressWithType, no need to add new version",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 0
+      },
+      "revId": "f0fe798854804523073c322f0a7ab30be7f18196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d17f2fca_6fee3b82",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 6
