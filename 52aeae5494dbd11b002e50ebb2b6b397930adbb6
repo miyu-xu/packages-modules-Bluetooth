@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572309e4_c87dcf4a",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-15T12:51:30Z",
+      "side": 1,
+      "message": "This doesn\u0027t look like a correct solution, you could still have i.e. setting start a scan, which would cause same issue.",
+      "range": {
+        "startLine": 1130,
+        "startChar": 2,
+        "endLine": 1130,
+        "endChar": 49
+      },
+      "revId": "52aeae5494dbd11b002e50ebb2b6b397930adbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
