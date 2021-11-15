@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e46f7d6e_205338b4",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-15T16:47:26Z",
+      "side": 1,
+      "message": "ok...then I need to find out the difference between _Enable_ and _StartAdvertisingSet_ as there seem to be 2 API entries that do similar things.",
+      "parentUuid": "9f6d576d_16036c91",
+      "range": {
+        "startLine": 111,
+        "startChar": 7,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "a802044108035d889f044cce98021ea37d4995e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53792a8f_49a3beae",
         "filename": "system/main/shim/le_advertising_manager.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2021-11-15T11:25:58Z",
       "side": 1,
       "message": "This is where you get confirmation from controller about scan enabled/disabled, might be better place to put logs.",
+      "range": {
+        "startLine": 275,
+        "startChar": 7,
+        "endLine": 275,
+        "endChar": 27
+      },
+      "revId": "a802044108035d889f044cce98021ea37d4995e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "182027eb_fa1e13af",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-15T16:47:26Z",
+      "side": 1,
+      "message": "Yeah....this is a long standing issue with the entire stack...do we change any cached state at the time of command issuance, or at the time of command successful ack ?\n\nSo far the precedent has been the former; but that clearly has issue should the command fail then state is corrupt",
+      "parentUuid": "53792a8f_49a3beae",
       "range": {
         "startLine": 275,
         "startChar": 7,
