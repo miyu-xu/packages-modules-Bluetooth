@@ -26,6 +26,7 @@ use std::process::Command;
 
 mod adapter_service;
 mod media_service;
+mod gatt_service;
 
 // This is needed for linking, libbt_shim_bridge needs symbols defined by
 // bt_shim, however bt_shim depends on rust crates (future, tokio) that
@@ -107,6 +108,8 @@ async fn async_main(rt: Arc<Runtime>) -> bool {
     let media_service_impl =
         media_service::MediaServiceImpl::create(rt.clone(), btif_intf.clone(), blueberry);
 
+    let gatt_service =
+        gatt_service::GattService::create();
     let start_stack_now = value_t!(matches, "start-stack-now", bool).unwrap();
 
     if start_stack_now {
@@ -120,6 +123,7 @@ async fn async_main(rt: Arc<Runtime>) -> bool {
     let mut server = ServerBuilder::new(env)
         .register_service(adapter_service_impl)
         .register_service(media_service_impl)
+        .register_service(gatt_service)
         .bind("0.0.0.0", grpc_port)
         .build()
         .unwrap();

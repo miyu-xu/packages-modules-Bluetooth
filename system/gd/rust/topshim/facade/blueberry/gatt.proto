@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package blueberry;
+
+import "google/protobuf/empty.proto";
+
+service GATT {
+  rpc Connect(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
