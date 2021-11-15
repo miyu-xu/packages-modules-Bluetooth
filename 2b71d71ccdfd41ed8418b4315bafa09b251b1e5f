@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc638a8_0c637dbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-11-15T20:00:48Z",
+      "side": 1,
+      "message": "PTAL.\n\nI occasionally end up in bt/ code chasing these kinds of cleanups. Since the lack of a bug # \u003d\u003d a lint failure, should I just create a general \"static analyzer cleanups within bt/\" bug and tag this with that? Or should I ignore the lints?",
+      "revId": "2b71d71ccdfd41ed8418b4315bafa09b251b1e5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
