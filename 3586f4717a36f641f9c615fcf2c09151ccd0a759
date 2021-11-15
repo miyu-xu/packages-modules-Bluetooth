@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "607f2f1d_8b22d8bb",
+        "filename": "system/btif/src/btif_le_audio.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-11-15T02:46:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97284ded_211135af",
+      "range": {
+        "startLine": 79,
+        "startChar": 6,
+        "endLine": 79,
+        "endChar": 22
+      },
+      "revId": "3586f4717a36f641f9c615fcf2c09151ccd0a759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fb99460_33328c7d",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-11-11T15:36:13Z",
       "side": 1,
       "message": "The same with the comment on aosp/1880998, we may need to have the SOURCE and SINK index.",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 33
+      },
+      "revId": "3586f4717a36f641f9c615fcf2c09151ccd0a759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda7d553_c867e39d",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-11-15T02:46:39Z",
+      "side": 1,
+      "message": "In this patch, I\u0027d like to focus on one direction.",
+      "parentUuid": "4fb99460_33328c7d",
       "range": {
         "startLine": 54,
         "startChar": 2,
