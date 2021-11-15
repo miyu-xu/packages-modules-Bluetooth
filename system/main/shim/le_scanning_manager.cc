@@ -539,3 +539,7 @@ BleScannerInterface* bluetooth::shim::get_ble_scanner_instance() {
 void bluetooth::shim::init_scanning_manager() {
   bt_le_scanner_instance->Init();
 }
+
+void bluetooth::shim::scan_filter_enable(bool enable) {
+  bluetooth::shim::GetScanning()->ScanFilterEnable(enable);
+}

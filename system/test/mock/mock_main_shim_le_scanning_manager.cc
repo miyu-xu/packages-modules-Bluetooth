@@ -38,3 +38,7 @@ BleScannerInterface* bluetooth::shim::get_ble_scanner_instance() {
 void bluetooth::shim::init_scanning_manager() {
   mock_function_count_map[__func__]++;
 }
+
+void bluetooth::shim::scan_filter_enable(bool enable) {
+  mock_function_count_map[__func__]++;
+}
