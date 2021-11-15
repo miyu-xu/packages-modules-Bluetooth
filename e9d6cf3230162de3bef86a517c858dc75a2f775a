@@ -22,6 +22,30 @@
       },
       "revId": "e9d6cf3230162de3bef86a517c858dc75a2f775a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a4ea5c_470215f3",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-15T20:56:17Z",
+      "side": 1,
+      "message": "The problem is that this API works with p_dev_rec structures, yet is passed an address.\n\n  if (p_dev_rec \u003d\u003d NULL) {\n    BTM_TRACE_ERROR(\"btm_ble_link_sec_check received for unknown device\");\n    return;\n  }\n  \nSo there is a path to pass through uninitialized\n\nIf this function took a p_dev_rec struct rather than a bdaddr then all would be well.",
+      "parentUuid": "433926c3_2a64a1eb",
+      "range": {
+        "startLine": 862,
+        "startChar": 2,
+        "endLine": 862,
+        "endChar": 24
+      },
+      "revId": "e9d6cf3230162de3bef86a517c858dc75a2f775a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
