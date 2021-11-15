@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3066814f_e094f29b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-15T21:36:15Z",
+      "side": 1,
+      "message": "\u003e\u003e Myles Watson\n\nThis is the snoop filtering code.  Have we decided that we don\u0027t want snoop log filtering?\n\n\u003e\u003e Chris Manton\nYou are right...I think we are hitting the edge here.\n\nThis code is deprecated, but the new code is unreleased.\n\nThis code falls under the mandate of hci removal so just throwing it out here.\n\nGD would need to export a `btsnoop_get_interface` function and `allowlist_l2c_channel`, `add_rfc_l2c_channel` methods to be equivalent.  Then the gd would need to call in and secure filtering capabilities.\n",
+      "revId": "b5019953f1722f79828c434fff048ab4a7f9ec3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
