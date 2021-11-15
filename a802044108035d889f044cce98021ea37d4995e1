@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f6d576d_16036c91",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-15T11:25:58Z",
+      "side": 1,
+      "message": "Advertising can be started/stopped here, you should probably log that too",
+      "range": {
+        "startLine": 111,
+        "startChar": 7,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "a802044108035d889f044cce98021ea37d4995e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53792a8f_49a3beae",
+        "filename": "system/main/shim/le_advertising_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-15T11:25:58Z",
+      "side": 1,
+      "message": "This is where you get confirmation from controller about scan enabled/disabled, might be better place to put logs.",
+      "range": {
+        "startLine": 275,
+        "startChar": 7,
+        "endLine": 275,
+        "endChar": 27
+      },
+      "revId": "a802044108035d889f044cce98021ea37d4995e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
