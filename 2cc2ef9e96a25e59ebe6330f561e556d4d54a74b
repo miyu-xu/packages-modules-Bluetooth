@@ -70,6 +70,30 @@
       },
       "revId": "2cc2ef9e96a25e59ebe6330f561e556d4d54a74b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5512c1b_dcacad51",
+        "filename": "system/gd/common/sync_map_count.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-15T21:15:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "05c6196d_09b901cd",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 41,
+        "endChar": 15
+      },
+      "revId": "2cc2ef9e96a25e59ebe6330f561e556d4d54a74b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
