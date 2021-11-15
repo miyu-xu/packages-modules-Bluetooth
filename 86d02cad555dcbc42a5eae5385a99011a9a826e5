@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66888a20_8d4c1376",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-11-15T20:57:48Z",
+      "side": 1,
+      "message": "Similar to https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1892729 -- I don\u0027t know for certain if this can happen in practice, but the question seems worth raising :) ",
+      "revId": "86d02cad555dcbc42a5eae5385a99011a9a826e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
