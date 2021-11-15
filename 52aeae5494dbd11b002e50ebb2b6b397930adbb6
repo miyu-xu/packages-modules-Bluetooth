@@ -22,6 +22,30 @@
       },
       "revId": "52aeae5494dbd11b002e50ebb2b6b397930adbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25785cc_17d85932",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-15T14:04:23Z",
+      "side": 1,
+      "message": "I also though about the solution, where btm will track if filtering is on, and disable it when active scan is starting.",
+      "parentUuid": "572309e4_c87dcf4a",
+      "range": {
+        "startLine": 1130,
+        "startChar": 2,
+        "endLine": 1130,
+        "endChar": 49
+      },
+      "revId": "52aeae5494dbd11b002e50ebb2b6b397930adbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
