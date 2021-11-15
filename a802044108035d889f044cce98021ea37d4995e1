@@ -22,6 +22,30 @@
       },
       "revId": "a802044108035d889f044cce98021ea37d4995e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b281f3f7_f3836fb6",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-15T18:12:39Z",
+      "side": 0,
+      "message": "So going forward setting the resolving max list size is unsupported, so this no longer matters.\n\nW.R.T. your comment about the allocation, that is centered around the vendor (google) le privacy option that right now is best-effort unsupported.\n\nThe memory allocation is also no longer needed and may be removed in the future",
+      "parentUuid": "87b4ebb8_0302c876",
+      "range": {
+        "startLine": 303,
+        "startChar": 0,
+        "endLine": 305,
+        "endChar": 1
+      },
+      "revId": "a802044108035d889f044cce98021ea37d4995e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
