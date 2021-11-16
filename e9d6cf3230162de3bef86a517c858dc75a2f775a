@@ -46,6 +46,30 @@
       },
       "revId": "e9d6cf3230162de3bef86a517c858dc75a2f775a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17a3bc27_a0bd300b",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T05:57:05Z",
+      "side": 1,
+      "message": "looks like this should be set to \n{ BTM_BLE_SEC_REQ_ACT_NONE };",
+      "parentUuid": "33a4ea5c_470215f3",
+      "range": {
+        "startLine": 862,
+        "startChar": 2,
+        "endLine": 862,
+        "endChar": 24
+      },
+      "revId": "e9d6cf3230162de3bef86a517c858dc75a2f775a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
