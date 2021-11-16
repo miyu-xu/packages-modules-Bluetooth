@@ -16,6 +16,24 @@
       "message": "I don\u0027t like removal of host targets.  In fact, I prefer (almost) everything host capable to be built.\n\nCan\u0027t you do something like this:\n+    target: {\n+        android: {\n+            shared_libs: [\n+              \"android.system.suspend.control-V1-ndk\",\n+            ],\n+        },\n+        host: {\n+        },\n+    },",
       "revId": "e0656706d7a93624cbb6c89050b8522a8ef24ca0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd42ebd7_9f4bdf11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T15:22:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8e0272cc_13a88eab",
+      "revId": "e0656706d7a93624cbb6c89050b8522a8ef24ca0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
