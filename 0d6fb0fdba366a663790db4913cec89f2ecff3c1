@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78627340_197b05aa",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T19:31:35Z",
+      "side": 1,
+      "message": "if (!SDP_Init_DiscoveryDb(...) {\n    osi_free_and_reset((void**)\u0026a2dp_cb.find.p_db);\n    LOG_ERROR(\"Unable to initialize SDP discovery peer:%s UUID:0x%04X\",\n    PRIVATE_ADDRESS(bd_addr), service_uuid)\n    return A2DP_FAIL;\n  }",
+      "revId": "0d6fb0fdba366a663790db4913cec89f2ecff3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613c89c9_b2728477",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T19:31:35Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 312,
+        "startChar": 2,
+        "endLine": 312,
+        "endChar": 15
+      },
+      "revId": "0d6fb0fdba366a663790db4913cec89f2ecff3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c4748cf_fc512b31",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T19:31:35Z",
+      "side": 1,
+      "message": "Merge to condition check below",
+      "range": {
+        "startLine": 320,
+        "startChar": 3,
+        "endLine": 322,
+        "endChar": 5
+      },
+      "revId": "0d6fb0fdba366a663790db4913cec89f2ecff3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9640594_07471ea4",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T19:31:35Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 323,
+        "startChar": 2,
+        "endLine": 323,
+        "endChar": 3
+      },
+      "revId": "0d6fb0fdba366a663790db4913cec89f2ecff3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "868fe303_f0fc3a87",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T19:31:35Z",
+      "side": 1,
+      "message": "// Reset these globals set in lines #314, #315\na2dp_cb.find.service_uuid \u003d 0;\na2dp_cb.find.p_cback \u003d nullptr;",
+      "revId": "0d6fb0fdba366a663790db4913cec89f2ecff3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa7a7dd_326042d2",
+        "filename": "system/stack/a2dp/a2dp_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T19:31:35Z",
+      "side": 1,
+      "message": "Update LOG_ERROR message (remove __func__) and use PRIVATE_ADDRESS for bd_addr",
+      "revId": "0d6fb0fdba366a663790db4913cec89f2ecff3c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
