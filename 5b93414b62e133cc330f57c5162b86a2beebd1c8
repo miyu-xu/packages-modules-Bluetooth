@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017342538",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893699?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3ba22f6e_4bbaf6b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-16T20:08:54Z",
+      "side": 1,
+      "message": "\"Manual testing to ensure it crash without this fix.\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 57
+      },
+      "revId": "5b93414b62e133cc330f57c5162b86a2beebd1c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017342538",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893699?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1c27ae40_21c8166a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-16T20:08:54Z",
+      "side": 1,
+      "message": "{#stability %!s(int\u003d11) %!s(int\u003d4) %!s(int\u003d15)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 15
+      },
+      "revId": "5b93414b62e133cc330f57c5162b86a2beebd1c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
