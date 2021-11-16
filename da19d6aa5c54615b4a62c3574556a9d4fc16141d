@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c518ccf1_9b812521",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-16T07:06:59Z",
+      "side": 1,
+      "message": "The BB was fixed by another patch.\nPlease abandon these two patches.\nThanks!",
+      "revId": "da19d6aa5c54615b4a62c3574556a9d4fc16141d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
