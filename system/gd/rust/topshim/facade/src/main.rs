@@ -130,6 +130,12 @@ async fn async_main(rt: Arc<Runtime>) -> bool {
 
     server.start();
 
+    // Set stack connectable
+    btif_intf
+        .lock()
+        .unwrap()
+        .set_adapter_property(btif::BluetoothProperty::AdapterScanMode(btif::BtScanMode::Connectable));
+
     let mut sigint = install_sigint();
 
     let reset = select! {
