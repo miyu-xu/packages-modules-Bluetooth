@@ -2274,10 +2274,14 @@ TEST_F(UnicastTest, RemoveWhileStreaming) {
 
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
+  // Needed for reconfiguration from default phone
+  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
+  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
 
   EXPECT_CALL(mock_state_machine_, StartStream(_, _)).Times(1);
 
-  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id, true);
 
   SyncOnMainLoop();
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
@@ -2337,8 +2341,12 @@ TEST_F(UnicastTest, SpeakerStreaming) {
 
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
+  // Needed for reconfiguration from default phone
+  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
+  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
 
-  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id, true);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
@@ -2391,8 +2399,12 @@ TEST_F(UnicastTest, SpeakerStreamingAutonomousRelease) {
   // Start streaming
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
+  // Needed for reconfiguration from default phone
+  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
+  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
 
-  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id, true);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
@@ -2446,17 +2458,13 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
 
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
-
-  // Start streaming with reconfiguration from default media stream setup
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
-  EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
-  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
-  EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
+  Mock::VerifyAndClearExpectations(&mock_audio_sink_);
 
   StartStreaming(AUDIO_USAGE_VOICE_COMMUNICATION, AUDIO_CONTENT_TYPE_SPEECH,
-                 group_id, true /* reconfigure */);
+                 group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
@@ -2530,32 +2538,31 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchSimple) {
 
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
 
-  // Start streaming with reconfiguration from default media stream setup
-  EXPECT_CALL(
-      mock_state_machine_,
-      StartStream(_, le_audio::types::LeAudioContextType::NOTIFICATIONS))
+  // Start streaming with reconfiguration from default phone stream setup
+  EXPECT_CALL(mock_state_machine_,
+              StartStream(_, le_audio::types::LeAudioContextType::MEDIA))
       .Times(1);
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
   EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
 
-  StartStreaming(AUDIO_USAGE_NOTIFICATION, AUDIO_CONTENT_TYPE_UNKNOWN, group_id,
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id,
                  true /* reconfigure */);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
   SyncOnMainLoop();
 
-  // Do a content switch to ALERTS
+  // Reconfigure to ALERTS
   EXPECT_CALL(mock_audio_source_, Release).Times(0);
-  EXPECT_CALL(mock_audio_source_, Stop).Times(0);
-  EXPECT_CALL(mock_audio_source_, Start).Times(0);
+  EXPECT_CALL(mock_audio_source_, Stop).Times(1);
+  EXPECT_CALL(mock_audio_source_, Start).Times(1);
   EXPECT_CALL(mock_state_machine_,
               StartStream(_, le_audio::types::LeAudioContextType::ALERTS))
       .Times(1);
-  UpdateMetadata(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN);
+  StartStreaming(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN, group_id,
+                 true /* reconfigure */);
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
 
@@ -2602,7 +2609,12 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
 
-  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  // Needed for reconfiguration from default phone
+  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
+  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
+
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id, true);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
@@ -2656,8 +2668,12 @@ TEST_F(UnicastTest, TwoEarbuds2ndLateConnect) {
   // Start streaming
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
+  // Needed for reconfiguration from default phone
+  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
+  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
 
-  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id, true);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
@@ -2709,8 +2725,12 @@ TEST_F(UnicastTest, TwoEarbuds2ndDisconnect) {
   // Start streaming
   EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
+  // Needed for reconfiguration from default phone
+  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_audio_source_, CancelStreamingRequest()).Times(1);
+  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
 
-  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
+  StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id, true);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_audio_source_);
