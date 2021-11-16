@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e404ae8e_c8efb6e9",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-16T15:00:29Z",
+      "side": 1,
+      "message": "that is quite verbose, would log on each connection established.",
+      "range": {
+        "startLine": 172,
+        "startChar": 3,
+        "endLine": 172,
+        "endChar": 12
+      },
+      "revId": "f0702ac2ef67c795ab25d7d121fa9551e07dabea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c1ad71e_1d4fcdb6",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-16T15:00:29Z",
+      "side": 1,
+      "message": "Should this be implemented before submitting ?",
+      "range": {
+        "startLine": 188,
+        "startChar": 9,
+        "endLine": 188,
+        "endChar": 13
+      },
+      "revId": "f0702ac2ef67c795ab25d7d121fa9551e07dabea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
