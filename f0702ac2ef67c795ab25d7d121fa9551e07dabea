@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "311279c9_9a99e81a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-16T17:25:14Z",
+      "side": 1,
+      "message": "This feels like a policy decision, not an advertising manager decision.  I feel like it should be done at a higher level.",
+      "revId": "f0702ac2ef67c795ab25d7d121fa9551e07dabea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e404ae8e_c8efb6e9",
         "filename": "system/gd/hci/le_advertising_manager.cc",
         "patchSetId": 1
@@ -14,6 +31,30 @@
       "writtenOn": "2021-11-16T15:00:29Z",
       "side": 1,
       "message": "that is quite verbose, would log on each connection established.",
+      "range": {
+        "startLine": 172,
+        "startChar": 3,
+        "endLine": 172,
+        "endChar": 12
+      },
+      "revId": "f0702ac2ef67c795ab25d7d121fa9551e07dabea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50f43785_e7a8a92f",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-16T17:25:14Z",
+      "side": 1,
+      "message": "On each incoming connection.",
+      "parentUuid": "e404ae8e_c8efb6e9",
       "range": {
         "startLine": 172,
         "startChar": 3,
