@@ -70,6 +70,30 @@
       },
       "revId": "52aeae5494dbd11b002e50ebb2b6b397930adbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e00d30a_60718fe1",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-16T09:01:29Z",
+      "side": 1,
+      "message": "You are right, I will prepare the patch of un-filter.\nThanks",
+      "parentUuid": "365a934f_03bb2381",
+      "range": {
+        "startLine": 1130,
+        "startChar": 2,
+        "endLine": 1130,
+        "endChar": 49
+      },
+      "revId": "52aeae5494dbd11b002e50ebb2b6b397930adbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
