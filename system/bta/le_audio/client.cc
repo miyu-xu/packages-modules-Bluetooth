@@ -2566,6 +2566,10 @@ class LeAudioClientImpl : public LeAudioClient {
     std::vector<LeAudioContextType> contexts;
 
     while (track_count) {
+      if (tracks->content_type == 0 && tracks->usage == 0) {
+        continue;
+      }
+
       DLOG(INFO) << __func__ << ": usage=" << tracks->usage
                  << ", content_type=" << tracks->content_type
                  << ", gain=" << tracks->gain;
@@ -2576,6 +2580,11 @@ class LeAudioClientImpl : public LeAudioClient {
 
       --track_count;
       ++tracks;
+    }
+
+    if (contexts.empty()) {
+      DLOG(INFO) << __func__ << " invalid metadata update";
+      return;
     }
 
     auto new_context = ChooseContextType(contexts);
