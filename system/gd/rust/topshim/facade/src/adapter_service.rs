@@ -8,8 +8,7 @@ use bt_topshim::controller::Controller;
 use bt_blueberry_protobuf::empty::Empty;
 use bt_blueberry_protobuf::host::{
     ConnectRequest, ConnectResponse, Connection, DisconnectRequest, DisconnectResponse,
-    GetConnectionRequest, GetConnectionResponse, ReadLocalAddressResponse, SetConnectableRequest,
-    SetConnectableResponse,
+    GetConnectionRequest, GetConnectionResponse, ReadLocalAddressResponse
 };
 use bt_blueberry_protobuf::host_grpc::{create_host, Host};
 use bt_topshim_facade_protobuf::facade::{
@@ -237,25 +236,6 @@ impl Host for AdapterServiceImpl {
 
         ctx.spawn(async move {
             sink.success(response).await.unwrap();
-        })
-    }
-
-    fn set_connectable(
-        &mut self,
-        ctx: RpcContext<'_>,
-        req: SetConnectableRequest,
-        sink: UnarySink<SetConnectableResponse>,
-    ) {
-        let mode =
-            if req.connectable { btif::BtScanMode::Connectable } else { btif::BtScanMode::None_ };
-
-        self.btif_intf
-            .lock()
-            .unwrap()
-            .set_adapter_property(btif::BluetoothProperty::AdapterScanMode(mode));
-
-        ctx.spawn(async move {
-            sink.success(SetConnectableResponse::new()).await.unwrap();
         })
     }
 }
