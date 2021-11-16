@@ -46,6 +46,30 @@
       },
       "revId": "52aeae5494dbd11b002e50ebb2b6b397930adbb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "365a934f_03bb2381",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-11-16T03:34:33Z",
+      "side": 1,
+      "message": "We may need to un-filter instead of disabling apcf.",
+      "parentUuid": "a25785cc_17d85932",
+      "range": {
+        "startLine": 1130,
+        "startChar": 2,
+        "endLine": 1130,
+        "endChar": 49
+      },
+      "revId": "52aeae5494dbd11b002e50ebb2b6b397930adbb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
