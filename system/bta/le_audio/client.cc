@@ -130,7 +130,7 @@ class LeAudioClientImpl : public LeAudioClient {
         callbacks_(callbacks_),
         active_group_id_(bluetooth::groups::kGroupUnknown),
         stream_request_started_(false),
-        current_context_type_(LeAudioContextType::MEDIA),
+        current_context_type_(LeAudioContextType::CONVERSATIONAL),
         audio_sink_ready_to_receive(false),
         audio_source_ready_to_send(false),
         current_source_codec_config({0, 0, 0, 0}),
@@ -650,7 +650,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     /* Configure audio HAL sessions with most frequent context */
-    UpdateCurrentHalSessions(group_id, LeAudioContextType::MEDIA);
+    UpdateCurrentHalSessions(group_id, LeAudioContextType::CONVERSATIONAL);
     if (current_source_codec_config.IsInvalid() &&
         current_sink_codec_config.IsInvalid()) {
       LOG(WARNING) << __func__ << ", unsupported device configurations";
@@ -2485,7 +2485,32 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   LeAudioContextType AudioContentToLeAudioContext(
+      LeAudioContextType current_context_type,
       audio_content_type_t content_type, audio_usage_t usage) {
+    /* Let's stay on the Conversational context type in case it is already
+     * configured to conversational.
+     */
+    if (current_context_type == LeAudioContextType::CONVERSATIONAL) {
+      switch (content_type) {
+        case AUDIO_CONTENT_TYPE_SONIFICATION:
+        case AUDIO_CONTENT_TYPE_SPEECH:
+          return LeAudioContextType::CONVERSATIONAL;
+        default:
+          break;
+      }
+
+      switch (usage) {
+        case AUDIO_USAGE_NOTIFICATION_TELEPHONY_RINGTONE:
+        case AUDIO_USAGE_NOTIFICATION:
+        case AUDIO_USAGE_ALARM:
+        case AUDIO_USAGE_EMERGENCY:
+        case AUDIO_USAGE_VOICE_COMMUNICATION:
+          return LeAudioContextType::CONVERSATIONAL;
+        default:
+          break;
+      }
+    }
+
     switch (content_type) {
       case AUDIO_CONTENT_TYPE_SPEECH:
         return LeAudioContextType::CONVERSATIONAL;
