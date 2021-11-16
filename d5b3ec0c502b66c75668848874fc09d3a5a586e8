@@ -16,6 +16,24 @@
       "message": "Naive post-submit drive-by.  I don\u0027t know this code or this API, but is this something we would want to pass by const reference instead of by copy.  i.e.:\n\n  void ACL_Disconnect(uint16_t handle, bool is_classic, tHCI_STATUS reason,\n                      const std::string\u0026 comment);\n\nOtherwise, it seems like we\u0027re requiring a copy of this string to be made every time we\u0027re calling through here, and it could result in a lot of unnecessary allocations/frees depending on usage.",
       "revId": "d5b3ec0c502b66c75668848874fc09d3a5a586e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77b754ef_f209b026",
+        "filename": "system/main/shim/acl_api.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-16T15:31:05Z",
+      "side": 1,
+      "message": "This a good point.\n\nThis is intended to be transitionary code to understand the various areas disconnect originates.  An enum/int could have done the same, but at the expense of an arbitrary mapping process somewhere and some understanding of how that works.\n\nI expect the disconnect processes to eventually be grouped and encapsulated into a single point so everything is synchronized and understood properly.\n\nOnce that is done a formal internal reason/comment system would be applied to each disconnect and there would be no more string-ification API.",
+      "parentUuid": "b436f4d0_6d399f65",
+      "revId": "d5b3ec0c502b66c75668848874fc09d3a5a586e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
