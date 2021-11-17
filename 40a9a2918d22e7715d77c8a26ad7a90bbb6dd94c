@@ -1,0 +1,68 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c1715e_ce826a0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-11-17T06:50:54Z",
+      "side": 1,
+      "message": "Please fix the net_test_stack_multi_adv.BleAdvertisingManagerTest#test_start_advertising_set",
+      "revId": "40a9a2918d22e7715d77c8a26ad7a90bbb6dd94c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ad45293_60fb0806",
+        "filename": "system/stack/btm/btm_ble_multi_adv.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-11-17T06:50:54Z",
+      "side": 1,
+      "message": "Please don\u0027t use magic number",
+      "range": {
+        "startLine": 407,
+        "startChar": 36,
+        "endLine": 407,
+        "endChar": 38
+      },
+      "revId": "40a9a2918d22e7715d77c8a26ad7a90bbb6dd94c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b9118c5_e54b82dc",
+        "filename": "system/stack/btm/btm_ble_multi_adv.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-11-17T06:50:54Z",
+      "side": 1,
+      "message": "\u003e TODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.\n\nPlease fix.",
+      "parentUuid": "5653d7b5_d719a723",
+      "range": {
+        "startLine": 1064,
+        "startChar": 7,
+        "endLine": 1064,
+        "endChar": 20
+      },
+      "revId": "40a9a2918d22e7715d77c8a26ad7a90bbb6dd94c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
