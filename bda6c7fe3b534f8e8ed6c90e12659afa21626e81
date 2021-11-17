@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64bc0051_13110d56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1868991
+      },
+      "writtenOn": "2021-11-17T08:23:25Z",
+      "side": 1,
+      "message": "This is the same one as aosp/1854353.  Sorry that I did a repo sync and then messed up moving the system/bt repo to this new folder, so I just simply created this new CL.  For the previous comments Michael/Jack had please refer to aosp/1854353.",
+      "revId": "bda6c7fe3b534f8e8ed6c90e12659afa21626e81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
