@@ -108,6 +108,9 @@ void AttributionProcessor::OnWakeup() {
   wakeup_ = true;
 }
 
+void AttributionProcessor::NotifyActivityAttributionInfo(
+    int uid, const std::string& packageName, const std::string& deviceAddress) {}
+
 void AttributionProcessor::Dump(
     std::promise<flatbuffers::Offset<ActivityAttributionData>> promise, flatbuffers::FlatBufferBuilder* fb_builder) {
   // Dump wakeup attribution data
