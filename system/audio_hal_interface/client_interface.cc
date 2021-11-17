@@ -1060,7 +1060,7 @@ void BluetoothAudioClientInterface::RenewAudioProviderAndSession() {
 
 size_t BluetoothAudioSourceClientInterface::WriteAudioData(const uint8_t* p_buf,
                                                            uint32_t len) {
-  if (provider_ == nullptr) {
+  if (!IsValid()) {
     LOG(ERROR) << __func__ << ": BluetoothAudioHal nullptr";
     return 0;
   }
