@@ -31,6 +31,9 @@ void ActivityAttribution::OnWakeup() {}
 
 void ActivityAttribution::RegisterActivityAttributionCallback(ActivityAttributionCallback* callback) {}
 
+void ActivityAttribution::NotifyActivityAttributionInfo(
+    int uid, const std::string& packageName, const std::string& deviceAddress) {}
+
 std::string ActivityAttribution::ToString() const {
   return "Btaa Module";
 }
