@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017360558",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893501?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4e12b8fd_1e37bea2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-17T03:18:21Z",
+      "side": 1,
+      "message": "\"manual, with SBC or aptx codec HS\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 39
+      },
+      "revId": "6fd32e46416a0be28c63944bdf1979e2288b6cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017360558",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893501?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "69697a65_63295e85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-17T03:18:21Z",
+      "side": 1,
+      "message": "{#stability %!s(int\u003d8) %!s(int\u003d4) %!s(int\u003d15)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "6fd32e46416a0be28c63944bdf1979e2288b6cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
