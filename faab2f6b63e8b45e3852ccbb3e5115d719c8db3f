@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b26c2e_435d5b50",
+        "filename": "system/build/dpkg/floss/install-dependencies",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-17T22:54:37Z",
+      "side": 1,
+      "message": "nit: APT",
+      "range": {
+        "startLine": 25,
+        "startChar": 2,
+        "endLine": 25,
+        "endChar": 5
+      },
+      "revId": "faab2f6b63e8b45e3852ccbb3e5115d719c8db3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7451a98_4d3b2873",
+        "filename": "system/build/dpkg/floss/install-dependencies",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-17T22:54:37Z",
+      "side": 1,
+      "message": "did you mean cargo? But we already get cargo from rustup below, so maybe remove this?",
+      "range": {
+        "startLine": 26,
+        "startChar": 28,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "faab2f6b63e8b45e3852ccbb3e5115d719c8db3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7839fb67_bdf83dfb",
+        "filename": "system/build/dpkg/floss/install-dependencies",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-17T22:54:37Z",
+      "side": 1,
+      "message": "usually the user\u0027s bin directory, i.e. `$HOME/bin`. Usually, this is already in $PATH. If not, it\u0027s okay to add to $HOME/bin to PATH.",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 62
+      },
+      "revId": "faab2f6b63e8b45e3852ccbb3e5115d719c8db3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c5f1043_596f36cc",
+        "filename": "system/build/dpkg/floss/install-dependencies",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-17T22:54:37Z",
+      "side": 1,
+      "message": "extra `wget`?",
+      "range": {
+        "startLine": 74,
+        "startChar": 31,
+        "endLine": 74,
+        "endChar": 35
+      },
+      "revId": "faab2f6b63e8b45e3852ccbb3e5115d719c8db3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
