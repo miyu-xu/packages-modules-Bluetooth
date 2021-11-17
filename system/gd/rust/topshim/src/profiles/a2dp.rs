@@ -5,6 +5,8 @@ use num_traits::cast::FromPrimitive;
 use std::sync::{Arc, Mutex};
 use topshim_macros::cb_variant;
 
+use crate::profiles::{Callback, Dispatcher};
+
 #[derive(Debug, FromPrimitive, PartialEq, PartialOrd)]
 #[repr(u32)]
 pub enum BtavConnectionState {
@@ -241,9 +243,9 @@ pub enum A2dpCallbacks {
     MandatoryCodecPreferred(RawAddress),
 }
 
-pub struct A2dpCallbacksDispatcher {
-    pub dispatch: Box<dyn Fn(A2dpCallbacks) + Send>,
-}
+impl Callback for A2dpCallbacks {}
+
+pub type A2dpCallbacksDispatcher = Dispatcher<A2dpCallbacks>;
 
 type A2dpCb = Arc<Mutex<A2dpCallbacksDispatcher>>;
 
@@ -328,9 +330,9 @@ pub enum A2dpSinkCallbacks {
     ConnectionState(RawAddress, BtavConnectionState),
 }
 
-pub struct A2dpSinkCallbacksDispatcher {
-    pub dispatch: Box<dyn Fn(A2dpSinkCallbacks) + Send>,
-}
+impl Callback for A2dpSinkCallbacks {}
+
+type A2dpSinkCallbacksDispatcher = Dispatcher<A2dpSinkCallbacks>;
 
 type A2dpSinkCb = Arc<Mutex<A2dpSinkCallbacksDispatcher>>;
 
