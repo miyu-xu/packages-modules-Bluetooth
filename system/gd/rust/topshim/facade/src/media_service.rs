@@ -8,10 +8,10 @@ use bt_blueberry_protobuf::a2dp::{
 use bt_blueberry_protobuf::a2dp_grpc::{create_a2_dp, A2Dp};
 use bt_topshim::btif::{BluetoothInterface, RawAddress};
 use bt_topshim::profiles::a2dp::{
-    A2dp, A2dpCallbacks, A2dpCallbacksDispatcher, A2dpSink, A2dpSinkCallbacks,
-    A2dpSinkCallbacksDispatcher, BtavConnectionState,
+    A2dp, A2dpCallbacks, A2dpSink, A2dpSinkCallbacks,
+    BtavConnectionState,
 };
-use bt_topshim::profiles::avrcp::{Avrcp, AvrcpCallbacksDispatcher};
+use bt_topshim::profiles::avrcp::Avrcp;
 use bt_topshim_facade_protobuf::facade::{
     A2dpSourceConnectRequest, A2dpSourceConnectResponse, StartA2dpRequest, StartA2dpResponse,
 };
@@ -23,30 +23,6 @@ use std::sync::{Arc, Mutex};
 use tokio::runtime::Runtime;
 use tokio::sync::mpsc;
 use tokio::sync::Mutex as TokioMutex;
-
-fn get_a2dp_dispatcher(tx: mpsc::Sender<A2dpCallbacks>) -> A2dpCallbacksDispatcher {
-    A2dpCallbacksDispatcher {
-        dispatch: Box::new(move |cb| {
-            if let Err(cb) = tx.try_send(cb) {
-                println!("Cannot send event {:?}", cb);
-            }
-        }),
-    }
-}
-
-fn get_a2dp_sink_dispatcher(tx: mpsc::Sender<A2dpSinkCallbacks>) -> A2dpSinkCallbacksDispatcher {
-    A2dpSinkCallbacksDispatcher {
-        dispatch: Box::new(move |cb| {
-            if let Err(cb) = tx.try_send(cb) {
-                println!("Cannot send event {:?}", cb);
-            }
-        }),
-    }
-}
-
-fn get_avrcp_dispatcher() -> AvrcpCallbacksDispatcher {
-    AvrcpCallbacksDispatcher { dispatch: Box::new(move |_cb| {}) }
-}
 
 /// Main object for Media facade service
 #[derive(Clone)]
@@ -72,11 +48,12 @@ impl MediaServiceImpl {
 
         let (a2dp_tx, a2dp_rx) = mpsc::channel(10);
         let (a2dp_sink_tx, a2dp_sink_rx) = mpsc::channel(10);
-        btif_a2dp.initialize(get_a2dp_dispatcher(a2dp_tx));
+        let (_avrcp_tx, _avrcp_rx) = mpsc::channel(10);
+        btif_a2dp.initialize(a2dp_tx.into());
         if blueberry {
-            btif_a2dp_sink.initialize(get_a2dp_sink_dispatcher(a2dp_sink_tx));
+            btif_a2dp_sink.initialize(a2dp_sink_tx.into());
         }
-        btif_avrcp.initialize(get_avrcp_dispatcher());
+        btif_avrcp.initialize(_avrcp_tx.into());
 
         let service = Self {
             rt,
@@ -108,7 +85,7 @@ impl MediaService for MediaServiceImpl {
             })
         } else if req.start_a2dp_sink {
             let (a2dp_sink_tx, a2dp_sink_rx) = mpsc::channel(10);
-            self.btif_a2dp_sink.lock().unwrap().initialize(get_a2dp_sink_dispatcher(a2dp_sink_tx));
+            self.btif_a2dp_sink.lock().unwrap().initialize(a2dp_sink_tx.into());
             self.a2dp_sink_rx = Arc::new(TokioMutex::new(a2dp_sink_rx));
             ctx.spawn(async move {
                 sink.success(StartA2dpResponse::default()).await.unwrap();

@@ -4,6 +4,8 @@ use crate::topstack::get_dispatchers;
 use std::sync::{Arc, Mutex};
 use topshim_macros::cb_variant;
 
+use crate::profiles::Dispatcher;
+
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 pub mod ffi {
     unsafe extern "C++" {
@@ -30,9 +32,7 @@ pub enum AvrcpCallbacks {
     AvrcpAbsoluteVolumeUpdate(i8),
 }
 
-pub struct AvrcpCallbacksDispatcher {
-    pub dispatch: Box<dyn Fn(AvrcpCallbacks) + Send>,
-}
+type AvrcpCallbacksDispatcher = Dispatcher<AvrcpCallbacks>;
 
 type AvrcpCb = Arc<Mutex<AvrcpCallbacksDispatcher>>;
 
