@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9cc28b4_55b7a484",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1280853
+      },
+      "writtenOn": "2021-11-18T05:36:12Z",
+      "side": 1,
+      "message": "please use android style, Bug, Test:\nand add Tag: #floss",
+      "revId": "9b078c6ca01c533cc450713cd42c66de64962b01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
