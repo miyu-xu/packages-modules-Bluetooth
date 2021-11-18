@@ -54,6 +54,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1e524c3c_66e4f573",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2021-11-18T13:15:40Z",
+      "side": 1,
+      "message": "According to https://buganizer.corp.google.com/issues/202923715#comment11, the alternative fix proposed is for a different use case and doesn\u0027t resolve this problem.",
+      "parentUuid": "1c63f779_e2a8f9ac",
+      "revId": "e2e5b1b2d29360823b752b4b74a064fc065a839a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "8b07ad46_ace09449",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 2
