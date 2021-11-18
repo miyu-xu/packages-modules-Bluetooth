@@ -22,6 +22,30 @@
       },
       "revId": "27d56a8e02ad3b79bf95df2d18abba2090cc3552",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "747d4b86_c23d4271",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2021-11-18T07:56:58Z",
+      "side": 1,
+      "message": "In short, Audio side tracks that \"total bytes N1 written out at T1\"\nand BT side tracks \"total bytes N2 read at T2\", and whoever combines these info can do the math to derive the delay in between.\n\nwork in progress CL regarding the calculation:\nhttps://chromium-review.googlesource.com/c/chromiumos/third_party/adhd/+/3289577/1/cras/src/server/cras_a2dp_pcm_iodev.c\n\nThis may not be a trivial calculation. If you log print all numbers it\u0027d be more clear.",
+      "parentUuid": "0a8622a5_85ce8017",
+      "range": {
+        "startLine": 258,
+        "startChar": 34,
+        "endLine": 258,
+        "endChar": 48
+      },
+      "revId": "27d56a8e02ad3b79bf95df2d18abba2090cc3552",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
