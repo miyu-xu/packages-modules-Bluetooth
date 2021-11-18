@@ -33,6 +33,24 @@
       "message": "Brought over from system/bt\n\nMyles had concerns about the filtered hci logging, but will defer to Jack if we should continue with the legacy hci mandate and remove this code, or leave as-is in preparation for however \u0027T\u0027 filtered logging will look.",
       "revId": "b5019953f1722f79828c434fff048ab4a7f9ec3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0082f09f_88b19182",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-18T20:18:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3066814f_e094f29b",
+      "revId": "b5019953f1722f79828c434fff048ab4a7f9ec3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
