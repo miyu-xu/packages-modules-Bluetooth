@@ -66,16 +66,9 @@ class LeAudioTransport {
   BluetoothAudioCtrlAck StartRequest() {
     LOG(INFO) << __func__;
 
-    /*
-     * Set successful state as initial, it may be overwritten with cancelation
-     * during on_resume handling
-     */
-    pending_start_request_state_ = BluetoothAudioCtrlAck::PENDING;
-
     if (stream_cb_.on_resume_(true)) {
-      if (pending_start_request_state_ == BluetoothAudioCtrlAck::PENDING)
-        is_pending_start_request_ = true;
-
+      pending_start_request_state_ = BluetoothAudioCtrlAck::PENDING;
+      is_pending_start_request_ = true;
       return pending_start_request_state_;
     }
 
