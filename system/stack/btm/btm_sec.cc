@@ -3122,9 +3122,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
 
   if ((btm_cb.pairing_state != BTM_PAIR_STATE_IDLE) &&
       (p_dev_rec->bd_addr == btm_cb.pairing_bda)) {
-    if (btm_cb.pairing_flags & BTM_PAIR_FLAGS_WE_STARTED_DD) {
-      are_bonding = true;
-    }
+    are_bonding = true;
     btm_sec_change_pairing_state(BTM_PAIR_STATE_IDLE);
   }
 
@@ -3164,20 +3162,18 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
 
         tHCI_ROLE role = HCI_ROLE_UNKNOWN;
         BTM_GetRole(p_dev_rec->bd_addr, &role);
-        if (role == HCI_ROLE_CENTRAL) {
-          // Encryption is required to start SM over BR/EDR
-          // indicate that this is encryption after authentication
-          BTM_SetEncryption(p_dev_rec->bd_addr, BT_TRANSPORT_BR_EDR, NULL, NULL,
-                            BTM_BLE_SEC_NONE);
-        } else if (p_dev_rec->IsLocallyInitiated()) {
+        if (role != HCI_ROLE_CENTRAL && p_dev_rec->IsLocallyInitiated()) {
           // Encryption will be set in role_changed callback
           BTM_TRACE_DEBUG(
-              "%s auth completed in role=peripheral, try to switch role and "
-              "encrypt",
+              "%s auth completed in role=peripheral, try to switch role",
               __func__);
           BTM_SwitchRoleToCentral(p_dev_rec->RemoteAddress());
         }
       }
+      // Always setting encryption after authentication complete. LMP can handle
+      // collisions.
+      BTM_SetEncryption(p_dev_rec->bd_addr, BT_TRANSPORT_BR_EDR, NULL, NULL,
+                        BTM_BLE_SEC_NONE);
       l2cu_start_post_bond_timer(p_dev_rec->hci_handle);
     }
 
