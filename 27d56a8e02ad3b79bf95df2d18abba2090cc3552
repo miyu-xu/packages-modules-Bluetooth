@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a8622a5_85ce8017",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2021-11-18T07:43:45Z",
+      "side": 1,
+      "message": "May I ask how will this data_position_ be used?",
+      "range": {
+        "startLine": 258,
+        "startChar": 34,
+        "endLine": 258,
+        "endChar": 48
+      },
+      "revId": "27d56a8e02ad3b79bf95df2d18abba2090cc3552",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
