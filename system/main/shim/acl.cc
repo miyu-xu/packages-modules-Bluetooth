@@ -93,6 +93,19 @@ inline bool IsRpa(const hci::AddressWithType address_with_type) {
          ((address_with_type.GetAddress().address.data()[5] & 0xc0) == 0x40);
 }
 
+hci::AddressWithType ToIdentityAddress(hci::AddressWithType address_with_type) {
+  switch (address_with_type.GetAddressType()) {
+    case hci::AddressType::PUBLIC_DEVICE_ADDRESS:
+    case hci::AddressType::PUBLIC_IDENTITY_ADDRESS:
+      return hci::AddressWithType(address_with_type.GetAddress(),
+                                  hci::AddressType::PUBLIC_IDENTITY_ADDRESS);
+    case hci::AddressType::RANDOM_DEVICE_ADDRESS:
+    case hci::AddressType::RANDOM_IDENTITY_ADDRESS:
+      return hci::AddressWithType(address_with_type.GetAddress(),
+                                  hci::AddressType::RANDOM_IDENTITY_ADDRESS);
+  }
+}
+
 class ShadowAcceptlist {
  public:
   ShadowAcceptlist(uint8_t max_acceptlist_size)
@@ -103,18 +116,18 @@ class ShadowAcceptlist {
       LOG_ERROR("Acceptlist is full size:%zu", acceptlist_set_.size());
       return false;
     }
-    if (!acceptlist_set_.insert(address_with_type).second) {
+    if (!acceptlist_set_.insert(ToIdentityAddress(address_with_type)).second) {
       LOG_WARN("Attempted to add duplicate le address to acceptlist:%s",
-               PRIVATE_ADDRESS(address_with_type));
+               PRIVATE_ADDRESS(ToIdentityAddress(address_with_type)));
     }
     return true;
   }
 
   bool Remove(const hci::AddressWithType& address_with_type) {
-    auto iter = acceptlist_set_.find(address_with_type);
+    auto iter = acceptlist_set_.find(ToIdentityAddress(address_with_type));
     if (iter == acceptlist_set_.end()) {
       LOG_WARN("Unknown device being removed from acceptlist:%s",
-               PRIVATE_ADDRESS(address_with_type));
+               PRIVATE_ADDRESS(ToIdentityAddress(address_with_type)));
       return false;
     }
     acceptlist_set_.erase(iter);
