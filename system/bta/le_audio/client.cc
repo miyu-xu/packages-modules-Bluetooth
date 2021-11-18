@@ -2854,9 +2854,8 @@ class LeAudioClientAudioSinkReceiverImpl
     do_suspend_promise.set_value();
   }
 
-  void OnAudioResume(std::promise<void> do_resume_promise) override {
+  void OnAudioResume(void) override {
     if (instance) instance->OnAudioSinkResume();
-    do_resume_promise.set_value();
   }
 
   void OnAudioMetadataUpdate(
@@ -2874,9 +2873,8 @@ class LeAudioClientAudioSourceReceiverImpl
     if (instance) instance->OnAudioSourceSuspend();
     do_suspend_promise.set_value();
   }
-  void OnAudioResume(std::promise<void> do_resume_promise) override {
+  void OnAudioResume(void) override {
     if (instance) instance->OnAudioSourceResume();
-    do_resume_promise.set_value();
   }
 };
 
