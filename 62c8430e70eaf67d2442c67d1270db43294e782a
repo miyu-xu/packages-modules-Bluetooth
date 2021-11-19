@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017485358",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1897355?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4739fdaf_14448f3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-19T19:35:28Z",
+      "side": 1,
+      "message": "\"Call `list bonded` on btclient\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 36
+      },
+      "revId": "62c8430e70eaf67d2442c67d1270db43294e782a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017485359",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1897355?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5bbfcfb0_e6e6873d",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-19T19:35:28Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 660,
+        "startChar": 4,
+        "endLine": 660,
+        "endChar": 11
+      },
+      "revId": "62c8430e70eaf67d2442c67d1270db43294e782a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
