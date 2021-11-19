@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c149f1_7791f47f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2021-11-19T17:54:48Z",
+      "side": 1,
+      "message": "nit: there is a bug where we failed to set the property length to 0 and got uninitialized data instead.",
+      "revId": "fb73a586c5088cead83159b123e8f9a2934d92b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
