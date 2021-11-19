@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3d057b7_4c8311f1",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-19T20:34:55Z",
+      "side": 1,
+      "message": "I don\u0027t think this needs to depend on Vendor Specific.  Any unknown command status should be treated this way.",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 71
+      },
+      "revId": "c6be1b434d8fd6caf4b3542e44b8879ea0b951c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
