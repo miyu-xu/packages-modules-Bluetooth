@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "323bab1f_a3609e69",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-11-19T17:35:40Z",
+      "side": 1,
+      "message": "Why do you remove it with the new LC3 codec?",
+      "range": {
+        "startLine": 1051,
+        "startChar": 11,
+        "endLine": 1051,
+        "endChar": 59
+      },
+      "revId": "3966b7eaf283fc00339b37b79ac8689c036dc514",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
