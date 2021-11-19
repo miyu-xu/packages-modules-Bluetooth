@@ -133,15 +133,19 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   void on_common_le_connection_complete(AddressWithType address_with_type) {
     auto connecting_addr_with_type = connecting_le_.find(address_with_type);
-    if (connecting_addr_with_type == connecting_le_.end()) {
-      LOG_WARN("No prior connection request for %s", address_with_type.ToString().c_str());
-    } else {
+    if (connecting_addr_with_type != connecting_le_.end()) {
+      if (create_connection_timeout_alarms_.find(*connecting_addr_with_type) !=
+          create_connection_timeout_alarms_.end()) {
+        create_connection_timeout_alarms_.at(*connecting_addr_with_type).Cancel();
+        create_connection_timeout_alarms_.erase(*connecting_addr_with_type);
+      } else {
+        LOG_WARN("No alarm set for %s", address_with_type.ToString().c_str());
+      }
       connecting_le_.erase(connecting_addr_with_type);
+    } else {
+      LOG_WARN("No prior connection request for %s", address_with_type.ToString().c_str());
     }
-    if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
-      create_connection_timeout_alarms_.at(address_with_type).Cancel();
-      create_connection_timeout_alarms_.erase(address_with_type);
-    }
+    connectability_armed_ = false;
   }
 
   void on_le_connection_complete(LeMetaEventView packet) {
