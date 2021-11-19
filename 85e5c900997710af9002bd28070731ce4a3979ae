@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "957ba695_6f64ec66",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2476,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:37:14Z",
+      "side": 1,
+      "message": "content_type \u003d 0 is UNKNOWN, should it be treated as INVALID ? the same for usage.",
+      "revId": "85e5c900997710af9002bd28070731ce4a3979ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "765eeb47_cfd0de5a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2492,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:37:14Z",
+      "side": 1,
+      "message": "Optimal would be use contexts.empty() -\u003e \"begin() \u003d\u003d end()\"\nthan contexts.size() -\u003e \"std::distance(begin(), end())\"",
+      "revId": "85e5c900997710af9002bd28070731ce4a3979ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
