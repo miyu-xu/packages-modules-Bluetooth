@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a327f023_00fa5940",
+        "filename": "system/gd/rust/topshim/facade/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2021-11-19T09:32:36Z",
+      "side": 1,
+      "message": "We should only do this in the blueberry mode",
+      "revId": "6740470269bcfc09089b5003205749f9b1cbde92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
