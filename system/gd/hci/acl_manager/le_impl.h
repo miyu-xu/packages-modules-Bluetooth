@@ -735,16 +735,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
   }
 
-  void check_for_unregister() {
-    if (le_acl_connections_.empty() && awaiting_connections_.empty() && canceled_connections_.empty() &&
-        address_manager_registered && ready_to_unregister) {
-      le_address_manager_->Unregister(this);
-      address_manager_registered = false;
-      pause_connection = false;
-      ready_to_unregister = false;
-    }
-  }
-
   uint16_t HACK_get_handle(Address address) {
     for (auto it = le_acl_connections_.begin(); it != le_acl_connections_.end(); it++) {
       if (it->second.remote_address_.GetAddress() == address) {
@@ -762,6 +752,24 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
     callbacks->OnLocalAddressUpdate(address_with_type);
+  }
+
+  void register_with_address_manager() {
+    if (!address_manager_registered) {
+      le_address_manager_->Register(this);
+      address_manager_registered = true;
+      pause_connection = true;
+    }
+  }
+
+  void check_for_unregister() {
+    if (le_acl_connections_.empty() && awaiting_connections_.empty() && address_manager_registered &&
+        ready_to_unregister) {
+      le_address_manager_->Unregister(this);
+      address_manager_registered = false;
+      pause_connection = false;
+      ready_to_unregister = false;
+    }
   }
 
   static constexpr uint16_t kMinimumCeLength = 0x0002;
