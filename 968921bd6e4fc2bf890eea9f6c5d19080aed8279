@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4dea203_9f71bdfd",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-19T00:17:10Z",
+      "side": 1,
+      "message": "I agree this should be done.  I wonder if we could make it more generic.\n\nYou should be able to get the status from the StatusCommandView.  If that is UNKNOWN_HCI_COMMAND ...",
+      "range": {
+        "startLine": 182,
+        "startChar": 4,
+        "endLine": 182,
+        "endChar": 111
+      },
+      "revId": "968921bd6e4fc2bf890eea9f6c5d19080aed8279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
