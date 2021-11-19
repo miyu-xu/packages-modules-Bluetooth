@@ -125,7 +125,20 @@ const Uuid UUID_LE_MIDI = Uuid::FromString("03B80E5A-EDE8-4B33-A751-6CE34EC4C700
 #define ENCRYPTED_LE 4
 
 typedef struct {
+  /***
+   * This state indicates the main state reported to Java layer.
+   ***/
   bt_bond_state_t state;
+  /***
+   * These two states are not reported to Java layer directly.
+   * They are used to avoid reverse state transitions.
+   * When one transport port is bonded, the another one should not
+   * emit any bond_state_change broadcast excepting BOND_NONE.
+   *
+   * TODO(b/211593554): Simplify or even eliminate state machines in BTIF.
+   ***/
+  bt_bond_state_t br_state;
+  bt_bond_state_t le_state;
   RawAddress static_bdaddr;
   RawAddress bd_addr;
   tBTM_SEC_DEV_REC::tBTM_BOND_TYPE bond_type;
@@ -468,16 +481,22 @@ static bool check_sdp_bl(const RawAddress* remote_bdaddr) {
 }
 
 static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
-                               bt_bond_state_t state) {
+                               bt_bond_state_t state, tBT_TRANSPORT transport) {
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_BOND_STATE_CHANGED, state);
 
-  if ((pairing_cb.state == state) && (state == BT_BOND_STATE_BONDING)) {
-    // Cross key pairing so send callback for static address
-    if (!pairing_cb.static_bdaddr.IsEmpty()) {
-      invoke_bond_state_changed_cb(status, bd_addr, state,
-                                   pairing_cb.fail_reason);
+  if (state == BT_BOND_STATE_BONDING) {
+    if (pairing_cb.state == state) {
+      // Cross key pairing so send callback for static address
+      if (!pairing_cb.static_bdaddr.IsEmpty()) {
+        invoke_bond_state_changed_cb(status, bd_addr, state,
+                                     pairing_cb.fail_reason);
+      }
+      return;
+    } else if (transport == BT_TRANSPORT_LE &&
+               pairing_cb.br_state == BT_BOND_STATE_BONDED) {
+      // Avoid BONDED=>BONDING transition during CTKD
+      return;
     }
-    return;
   }
 
   if (pairing_cb.bond_type == tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY) {
@@ -510,6 +529,17 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
     // Save state for the device is bonding or SDP.
     pairing_cb.state = state;
     pairing_cb.bd_addr = bd_addr;
+    switch (transport) {
+      case BT_TRANSPORT_BR_EDR:
+        pairing_cb.br_state = state;
+        break;
+      case BT_TRANSPORT_LE:
+        pairing_cb.le_state = state;
+        break;
+      case BT_TRANSPORT_AUTO:
+        pairing_cb.br_state = pairing_cb.le_state = state;
+        break;
+    }
   } else {
     pairing_cb = {};
   }
@@ -641,7 +671,8 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
 static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport) {
   bool is_hid = check_cod(&bd_addr, COD_HID_POINTING);
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     transport);
 
   int device_type = 0;
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
@@ -675,7 +706,7 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
   if (is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
     const bt_status_t status = btif_hh_connect(&bd_addr);
     if (status != BT_STATUS_SUCCESS)
-      bond_state_changed(status, bd_addr, BT_BOND_STATE_NONE);
+      bond_state_changed(status, bd_addr, BT_BOND_STATE_NONE, transport);
   } else {
     BTA_DmBond(bd_addr, addr_type, transport, device_type);
   }
@@ -753,7 +784,8 @@ static void btif_dm_pin_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
     return;
   }
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_BR_EDR);
 
   cod = devclass2uint(p_pin_req->dev_class);
 
@@ -847,7 +879,8 @@ static void btif_dm_ssp_cfm_req_evt(tBTA_DM_SP_CFM_REQ* p_ssp_cfm_req) {
 
   /* Set the pairing_cb based on the local & remote authentication requirements
    */
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_BR_EDR);
 
   BTIF_TRACE_EVENT("%s: just_works:%d, loc_auth_req=%d, rmt_auth_req=%d",
                    __func__, p_ssp_cfm_req->just_works,
@@ -918,7 +951,8 @@ static void btif_dm_ssp_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
   memcpy(bd_name.name, p_ssp_key_notif->bd_name, BD_NAME_LEN);
   bd_name.name[BD_NAME_LEN] = '\0';
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_BR_EDR);
   pairing_cb.is_ssp = true;
   cod = devclass2uint(p_ssp_key_notif->dev_class);
 
@@ -976,7 +1010,8 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
           BTIF_TRACE_DEBUG("%s: sending BT_BOND_STATE_NONE for Temp pairing",
                            __func__);
           btif_storage_remove_bonded_device(&bd_addr);
-          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_NONE);
+          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_NONE,
+                             BT_TRANSPORT_BR_EDR);
           return;
         }
       }
@@ -1032,7 +1067,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
       skip_sdp = true;
     }
     if (!pairing_cb.is_local_initiated && skip_sdp) {
-      bond_state_changed(status, bd_addr, state);
+      bond_state_changed(status, bd_addr, state, BT_TRANSPORT_BR_EDR);
 
       LOG_WARN("%s: Incoming HID Connection", __func__);
       bt_property_t prop;
@@ -1066,10 +1101,13 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
           invoke_address_consolidate_cb(pairing_cb.bd_addr, bd_addr);
         } else if (is_crosskey && !enable_address_consolidate) {
           // TODO remove
-          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
-          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED);
+          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                             BT_TRANSPORT_BR_EDR);
+          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED,
+                             BT_TRANSPORT_BR_EDR);
         } else {
-          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED);
+          bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDED,
+                             BT_TRANSPORT_BR_EDR);
         }
         btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
       }
@@ -1150,7 +1188,7 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     // Report bond state change to java only if we are bonding to a device or
     // a device is removed from the pairing list.
     if (pairing_cb.state == BT_BOND_STATE_BONDING || is_bonded_device_removed) {
-      bond_state_changed(status, bd_addr, state);
+      bond_state_changed(status, bd_addr, state, BT_TRANSPORT_BR_EDR);
     }
   }
 }
@@ -1594,7 +1632,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
         btm_set_bond_type_dev(pairing_cb.bd_addr,
                               tBTM_SEC_DEV_REC::BOND_TYPE_UNKNOWN);
         bond_state_changed((bt_status_t)p_data->bond_cancel_cmpl.result,
-                           bd_addr, BT_BOND_STATE_NONE);
+                           bd_addr, BT_BOND_STATE_NONE, BT_TRANSPORT_AUTO);
       }
       break;
 
@@ -1630,7 +1668,8 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       }
 
       btif_storage_remove_bonded_device(&bd_addr);
-      bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_NONE);
+      bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_NONE,
+                         BT_TRANSPORT_AUTO);
       break;
 
     case BTA_DM_LINK_UP_EVT:
@@ -1676,7 +1715,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
         BTIF_TRACE_DEBUG(
             "Bond state not sent to App so far.Notify the app now");
         bond_state_changed(BT_STATUS_SUCCESS, p_data->ble_key.bd_addr,
-                           BT_BOND_STATE_BONDING);
+                           BT_BOND_STATE_BONDING, BT_TRANSPORT_LE);
       } else if (pairing_cb.bd_addr != p_data->ble_key.bd_addr) {
         BTIF_TRACE_ERROR("BD mismatch discard BLE key_type=%d ",
                          p_data->ble_key.key_type);
@@ -1958,12 +1997,14 @@ void btif_dm_create_bond_out_of_band(const RawAddress bd_addr,
           // because the controllers do not yet support it.
           LOG_ERROR("Invalid data present for controller: %d",
                     oob_cb.data_present);
-          bond_state_changed(BT_STATUS_FAIL, bd_addr, BT_BOND_STATE_NONE);
+          bond_state_changed(BT_STATUS_FAIL, bd_addr, BT_BOND_STATE_NONE,
+                             BT_TRANSPORT_BR_EDR);
           return;
       }
       pairing_cb.is_local_initiated = true;
       LOG_ERROR("Classic not implemented yet");
-      bond_state_changed(BT_STATUS_FAIL, bd_addr, BT_BOND_STATE_NONE);
+      bond_state_changed(BT_STATUS_FAIL, bd_addr, BT_BOND_STATE_NONE,
+                         BT_TRANSPORT_BR_EDR);
       return;
     case BT_TRANSPORT_LE: {
       // Guess default RANDOM for address type for LE
@@ -1998,7 +2039,8 @@ void btif_dm_create_bond_out_of_band(const RawAddress bd_addr,
     }
     default:
       LOG_ERROR("Invalid transport: %d", transport);
-      bond_state_changed(BT_STATUS_FAIL, bd_addr, BT_BOND_STATE_NONE);
+      bond_state_changed(BT_STATUS_FAIL, bd_addr, BT_BOND_STATE_NONE,
+                         BT_TRANSPORT_AUTO);
       return;
   }
 }
@@ -2055,7 +2097,8 @@ void btif_dm_cancel_bond(const RawAddress bd_addr) {
 void btif_dm_hh_open_failed(RawAddress* bdaddr) {
   if (pairing_cb.state == BT_BOND_STATE_BONDING &&
       *bdaddr == pairing_cb.bd_addr) {
-    bond_state_changed(BT_STATUS_FAIL, *bdaddr, BT_BOND_STATE_NONE);
+    bond_state_changed(BT_STATUS_FAIL, *bdaddr, BT_BOND_STATE_NONE,
+                       BT_TRANSPORT_AUTO);
   }
 }
 
@@ -2592,7 +2635,8 @@ bool btif_dm_proc_rmt_oob(const RawAddress& bd_addr, Octet16* p_c,
   (void)fread(p_r->data(), 1, OCTET16_LEN, fp);
   fclose(fp);
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_BR_EDR);
   return true;
 }
 #endif /*  BTIF_DM_OOB_TEST */
@@ -2616,7 +2660,8 @@ static void btif_dm_ble_key_notif_evt(tBTA_DM_SP_KEY_NOTIF* p_ssp_key_notif) {
   memcpy(bd_name.name, p_ssp_key_notif->bd_name, BD_NAME_LEN);
   bd_name.name[BD_NAME_LEN] = '\0';
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_LE);
   pairing_cb.is_ssp = false;
   cod = COD_UNCLASSIFIED;
 
@@ -2704,9 +2749,9 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
   if (state == BT_BOND_STATE_BONDED && !pairing_cb.static_bdaddr.IsEmpty() &&
       bd_addr != pairing_cb.static_bdaddr) {
     // Report RPA bonding state to Java in crosskey paring
-    bond_state_changed(status, bd_addr, BT_BOND_STATE_BONDING);
+    bond_state_changed(status, bd_addr, BT_BOND_STATE_BONDING, BT_TRANSPORT_LE);
   }
-  bond_state_changed(status, bd_addr, state);
+  bond_state_changed(status, bd_addr, state, BT_TRANSPORT_LE);
 }
 
 void btif_dm_load_ble_local_keys(void) {
@@ -2830,7 +2875,8 @@ static void btif_dm_ble_sec_req_evt(tBTA_DM_BLE_SEC_REQ* p_ble_req,
   memcpy(bd_name.name, p_ble_req->bd_name, BD_NAME_LEN);
   bd_name.name[BD_NAME_LEN] = '\0';
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_LE);
 
   pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
   pairing_cb.is_le_only = true;
@@ -2868,7 +2914,8 @@ static void btif_dm_ble_passkey_req_evt(tBTA_DM_PIN_REQ* p_pin_req) {
   memcpy(bd_name.name, p_pin_req->bd_name, BD_NAME_LEN);
   bd_name.name[BD_NAME_LEN] = '\0';
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_LE);
   pairing_cb.is_le_only = true;
 
   cod = COD_UNCLASSIFIED;
@@ -2889,7 +2936,8 @@ static void btif_dm_ble_key_nc_req_evt(tBTA_DM_SP_KEY_NOTIF* p_notif_req) {
   memcpy(bd_name.name, p_notif_req->bd_name, BD_NAME_LEN);
   bd_name.name[BD_NAME_LEN] = '\0';
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_LE);
   pairing_cb.is_ssp = false;
   pairing_cb.is_le_only = true;
   pairing_cb.is_le_nc = true;
@@ -2922,7 +2970,8 @@ static void btif_dm_ble_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type) {
   btif_update_remote_properties(req_oob_type->bd_addr, req_oob_type->bd_name,
                                 NULL, BT_DEVICE_TYPE_BLE);
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_LE);
   pairing_cb.is_ssp = false;
   pairing_cb.is_le_only = true;
   pairing_cb.is_le_nc = false;
@@ -2979,7 +3028,8 @@ static void btif_dm_ble_sc_oob_req_evt(tBTA_DM_SP_RMT_OOB* req_oob_type) {
                                 oob_data_to_use.device_name, NULL,
                                 BT_DEVICE_TYPE_BLE);
 
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     BT_TRANSPORT_LE);
   pairing_cb.is_ssp = false;
   // TODO: we can derive classic pairing from this one
   pairing_cb.is_le_only = true;
