@@ -22,6 +22,30 @@
       },
       "revId": "c6be1b434d8fd6caf4b3542e44b8879ea0b951c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "490ff772_b79f502c",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-19T22:50:08Z",
+      "side": 1,
+      "message": "From the discussion with Zach, we should be able to probe the support of the command for non-vendor specific commands so we wouldn\u0027t send the command if it\u0027s not supported in the first place. And we treat this as hard failure if controller gives us the wrong support info.\n\nBut I don\u0027t have a strong opinion, I am okay with either way.",
+      "parentUuid": "e3d057b7_4c8311f1",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 71
+      },
+      "revId": "c6be1b434d8fd6caf4b3542e44b8879ea0b951c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
