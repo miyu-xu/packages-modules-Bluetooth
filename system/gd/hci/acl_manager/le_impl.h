@@ -225,6 +225,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
       create_connection_timeout_alarms_.erase(address_with_type);
     }
+    connectability_armed_ = false;
   }
 
   void on_le_connection_complete(LeMetaEventView packet) {
@@ -515,11 +516,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   void on_extended_create_connection(CommandStatusView status) {
     ASSERT(status.IsValid());
     ASSERT(status.GetCommandOpCode() == OpCode::LE_EXTENDED_CREATE_CONNECTION);
+    connectability_armed_ = true;
   }
 
   void on_create_connection(CommandStatusView status) {
     ASSERT(status.IsValid());
     ASSERT(status.GetCommandOpCode() == OpCode::LE_CREATE_CONNECTION);
+    connectability_armed_ = true;
   }
 
   void create_le_connection(AddressWithType address_with_type, bool add_to_connect_list, bool is_direct) {
@@ -557,10 +560,17 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       }
     }
 
+    connecting_le_.insert(address_with_type);
     if (pause_connection) {
       canceled_connections_.insert(address_with_type);
       return;
+    } else {
+      arm_connectability();
     }
+  }
+
+  void arm_connectability() {
+    ASSERT(!connecting_le_.empty());
 
     uint16_t le_scan_interval = kScanIntervalSlow;
     uint16_t le_scan_window = kScanWindowSlow;
@@ -765,23 +775,22 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   void OnPause() override {
     pause_connection = true;
-    if (connecting_le_.empty()) {
+    if (!connectability_armed_) {
       le_address_manager_->AckPause(this);
       return;
     }
-    canceled_connections_ = connecting_le_;
     le_acl_connection_interface_->EnqueueCommand(
         LeCreateConnectionCancelBuilder::Create(),
         handler_->BindOnce(&le_impl::on_create_connection_cancel_complete, common::Unretained(this)));
+    connectability_armed_ = false;
     le_address_manager_->AckPause(this);
   }
 
   void OnResume() override {
     pause_connection = false;
-    if (!canceled_connections_.empty()) {
-      create_le_connection(*canceled_connections_.begin(), false, false);
+    if (!connecting_le_.empty()) {
+      arm_connectability();
     }
-    canceled_connections_.clear();
     le_address_manager_->AckResume(this);
     check_for_unregister();
   }
@@ -832,6 +841,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   bool address_manager_registered = false;
   bool ready_to_unregister = false;
   bool pause_connection = false;
+  bool connectability_armed_ = false;
   std::map<AddressWithType, os::Alarm> create_connection_timeout_alarms_;
 };
 
