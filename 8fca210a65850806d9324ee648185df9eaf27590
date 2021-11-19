@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "106e3a87_055c3ad7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:24:20Z",
+      "side": 1,
+      "message": "The main issue witch such workaround is assumption that device is supporting Conversational otherwise we would not play anything using it.",
+      "revId": "8fca210a65850806d9324ee648185df9eaf27590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
