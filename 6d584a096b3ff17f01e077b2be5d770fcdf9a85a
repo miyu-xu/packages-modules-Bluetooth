@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c127983_66c6c927",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T11:32:11Z",
+      "side": 1,
+      "message": "There are both ways to do this:\n1) GetAndResetPendingStartStreamFlag - which is doing partial of existing logic: return current value and sets it to false:\n\"bool ret \u003d is_pending_start_request_;\n￼is_pending_start_request_ \u003d false;\n return ret\n\"\n2) Implement Get and Set as suggested.\n\nI was rather oriented to GetAndResetPendingStartStreamFlag since \"LeAudioClientInterface\" Sink or Source are only getting this value and after getting stream request is confirmed or canceled.",
+      "parentUuid": "759f6f61_7e175fdb",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0e25086_a8b5c7e9",
         "filename": "system/audio_hal_interface/le_audio_software.cc",
         "patchSetId": 2
