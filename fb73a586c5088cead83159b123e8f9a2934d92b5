@@ -16,6 +16,24 @@
       "message": "nit: there is a bug where we failed to set the property length to 0 and got uninitialized data instead.",
       "revId": "fb73a586c5088cead83159b123e8f9a2934d92b5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a47d407c_b5b6d126",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-19T19:35:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9c149f1_7791f47f",
+      "revId": "fb73a586c5088cead83159b123e8f9a2934d92b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
