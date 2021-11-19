@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f09698_19e02bee",
+        "filename": "system/gd/rust/topshim/facade/src/media_service.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2021-11-19T09:31:09Z",
+      "side": 1,
+      "message": "Since we don\u0027t read the avrcp_rx this will just fill the channel and generate send errors, I think we should instead add a way to create empty dispatchers",
+      "revId": "2985874f16d6e6f9873681f0c5f8a921a16bab18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
