@@ -104,6 +104,24 @@
       "parentUuid": "ddd88bc9_54d3e482",
       "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e2cf6a_9b1d0525",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2021-11-19T19:41:12Z",
+      "side": 1,
+      "message": "LGTM -- much clearer what it\u0027s doing. Thanks",
+      "parentUuid": "67c05015_6598a931",
+      "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
