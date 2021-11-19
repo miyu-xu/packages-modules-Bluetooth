@@ -3,6 +3,7 @@ syntax = "proto3";
 package blueberry;
 
 import "blueberry/host.proto";
+import "google/protobuf/empty.proto";
 
 service A2DP {
   rpc OpenSource(OpenSourceRequest) returns (OpenSourceResponse);
@@ -11,6 +12,7 @@ service A2DP {
   rpc Suspend(SuspendRequest) returns (SuspendResponse);
   rpc Close(CloseRequest) returns (CloseResponse);
   rpc Abort(AbortRequest) returns (AbortResponse);
+  rpc PlayAudio(stream PlayAudioRequest) returns (google.protobuf.Empty);
 }
 
 message Source {
@@ -76,3 +78,8 @@ message AbortRequest {
 }
 
 message AbortResponse {}
+
+message PlayAudioRequest {
+  Source source = 1;
+  bytes data = 2;
+}

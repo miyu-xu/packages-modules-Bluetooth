@@ -2,10 +2,11 @@
 
 use bt_blueberry_protobuf::a2dp::{
     AbortRequest, AbortResponse, CloseRequest, CloseResponse, OpenSinkRequest, OpenSinkResponse,
-    OpenSourceRequest, OpenSourceResponse, Sink, Source, StartRequest, StartResponse,
-    SuspendRequest, SuspendResponse,
+    OpenSourceRequest, OpenSourceResponse, PlayAudioRequest, Sink, Source, StartRequest,
+    StartResponse, SuspendRequest, SuspendResponse,
 };
 use bt_blueberry_protobuf::a2dp_grpc::{create_a2_dp, A2Dp};
+use bt_blueberry_protobuf::empty::Empty;
 use bt_topshim::btif::{BluetoothInterface, RawAddress};
 use bt_topshim::profiles::a2dp::{
     A2dp, A2dpCallbacks, A2dpCallbacksDispatcher, A2dpSink, A2dpSinkCallbacks,
@@ -20,9 +21,16 @@ use bt_topshim_facade_protobuf::facade_grpc::{create_media_service, MediaService
 use grpcio::*;
 
 use std::sync::{Arc, Mutex};
+use tokio::io::AsyncWriteExt;
+use tokio::net::UnixStream;
 use tokio::runtime::Runtime;
 use tokio::sync::mpsc;
 use tokio::sync::Mutex as TokioMutex;
+
+use futures::StreamExt;
+use nix::sys::socket::{connect, socket, AddressFamily, SockAddr, SockFlag, SockType, UnixAddr};
+use std::os::unix::io::FromRawFd;
+use std::os::unix::net::UnixStream as StdUnixStream;
 
 fn get_a2dp_dispatcher(tx: mpsc::Sender<A2dpCallbacks>) -> A2dpCallbacksDispatcher {
     A2dpCallbacksDispatcher {
@@ -67,14 +75,14 @@ impl MediaServiceImpl {
         blueberry: bool,
     ) -> grpcio::Service {
         let mut btif_a2dp = A2dp::new(&btif_intf.lock().unwrap());
-        let mut btif_a2dp_sink = A2dpSink::new(&btif_intf.lock().unwrap());
+        let btif_a2dp_sink = A2dpSink::new(&btif_intf.lock().unwrap());
         let mut btif_avrcp = Avrcp::new(&btif_intf.lock().unwrap());
 
         let (a2dp_tx, a2dp_rx) = mpsc::channel(10);
-        let (a2dp_sink_tx, a2dp_sink_rx) = mpsc::channel(10);
+        let (_a2dp_sink_tx, a2dp_sink_rx) = mpsc::channel(10);
         btif_a2dp.initialize(get_a2dp_dispatcher(a2dp_tx));
         if blueberry {
-            btif_a2dp_sink.initialize(get_a2dp_sink_dispatcher(a2dp_sink_tx));
+            //btif_a2dp_sink.initialize(get_a2dp_sink_dispatcher(a2dp_sink_tx));
         }
         btif_avrcp.initialize(get_avrcp_dispatcher());
 
@@ -154,15 +162,7 @@ impl A2Dp for MediaServiceImpl {
         response.set_source(source);
 
         ctx.spawn(async move {
-            a2dp.lock().unwrap().connect(addr);
-
-            // Wait for connected event
-            while let Some(event) = rx.lock().await.recv().await {
-                if let A2dpCallbacks::ConnectionState(_, BtavConnectionState::Connected) = event {
-                    break;
-                }
-            }
-            a2dp.lock().unwrap().set_active_device(addr);
+            a2dp.lock().unwrap(); //.connect(addr);
             sink.success(response).await.unwrap();
         })
     }
@@ -202,11 +202,27 @@ impl A2Dp for MediaServiceImpl {
         })
     }
 
-    fn start(&mut self, ctx: RpcContext<'_>, req: StartRequest, sink: UnarySink<StartResponse>) {
+    fn start(
+        &mut self,
+        ctx: RpcContext<'_>,
+        mut req: StartRequest,
+        sink: UnarySink<StartResponse>,
+    ) {
         if req.has_source() {
+            let cookie = req.mut_source().take_cookie();
+            let addr = RawAddress::from_bytes(&cookie).unwrap();
+
             let a2dp = self.btif_a2dp.clone();
+            let rx = self.a2dp_rx.clone();
 
             ctx.spawn(async move {
+                while let Some(event) = rx.lock().await.recv().await {
+                    if let A2dpCallbacks::ConnectionState(_, BtavConnectionState::Connected) = event
+                    {
+                        break;
+                    }
+                }
+                a2dp.lock().unwrap().set_active_device(addr);
                 a2dp.lock().unwrap().start_audio_request();
                 sink.success(StartResponse::new()).await.unwrap();
             })
@@ -248,5 +264,28 @@ impl A2Dp for MediaServiceImpl {
 
     fn abort(&mut self, ctx: RpcContext<'_>, req: AbortRequest, sink: UnarySink<AbortResponse>) {
         unimplemented_call!(ctx, sink);
+    }
+
+    fn play_audio(
+        &mut self,
+        ctx: RpcContext<'_>,
+        mut stream: RequestStream<PlayAudioRequest>,
+        sink: ClientStreamingSink<Empty>,
+    ) {
+        self.rt.spawn(async move {
+            let fd = socket(AddressFamily::Unix, SockType::Stream, SockFlag::SOCK_CLOEXEC, None)
+                .unwrap();
+            let addr = SockAddr::Unix(
+                UnixAddr::new_abstract(b"/var/run/bluetooth/audio/.a2dp_data").unwrap(),
+            );
+            connect(fd, &addr).unwrap();
+            let mut a2dp_data =
+                UnixStream::from_std(unsafe { StdUnixStream::from_raw_fd(fd) }).unwrap();
+
+            while let Some(req) = stream.next().await {
+                a2dp_data.write_all(&*req.unwrap().data).await.unwrap();
+            }
+            sink.success(Empty::new()).await.unwrap();
+        });
     }
 }
