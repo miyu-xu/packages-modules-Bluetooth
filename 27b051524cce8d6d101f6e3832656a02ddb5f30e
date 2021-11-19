@@ -35,6 +35,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d075b6f_01d5375a",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-19T19:35:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6aa241a2_80be69c7",
+      "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ebc025_72ab8f40",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-19T19:35:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf6940af_a5d4ba47",
+      "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddd88bc9_54d3e482",
@@ -48,6 +84,24 @@
       "writtenOn": "2021-11-19T18:06:32Z",
       "side": 1,
       "message": "Shouldn\u0027t this comment say we generate an empty command complete rather than say we handle an intentionally invalid Command Complete? Or am I reading this code wrong?",
+      "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67c05015_6598a931",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-11-19T19:35:15Z",
+      "side": 1,
+      "message": "it\u0027s both, we create empty Command Complete such that it will be interpreted by the command-complete-handler as invalid. Maybe I should reword this, PTAL.",
+      "parentUuid": "ddd88bc9_54d3e482",
       "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
