@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3570e5d_ffaa80de",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-19T11:22:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafd957f_0a79c8fb",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7833798_a52146fb",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "759f6f61_7e175fdb",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-19T11:22:30Z",
+      "side": 1,
+      "message": "I think we need method to set and get is_pending_start_request_, isn\u0027t?",
+      "parentUuid": "f7833798_a52146fb",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0e25086_a8b5c7e9",
         "filename": "system/audio_hal_interface/le_audio_software.cc",
         "patchSetId": 2
@@ -48,6 +84,24 @@
       "writtenOn": "2021-11-19T09:19:06Z",
       "side": 1,
       "message": "For immediatelly response this is not needed since changing of state would not happen while handling on_resume.",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111951c3_78b1fcb6",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-19T11:22:30Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "d0e25086_a8b5c7e9",
       "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -122,6 +176,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e749d877_8a92151a",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-19T11:22:30Z",
+      "side": 1,
+      "message": "so we need method to get this flag, correct?",
+      "parentUuid": "8b70b7a4_d05f7c6e",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2035f8bc_e4360320",
         "filename": "system/audio_hal_interface/le_audio_software.cc",
         "patchSetId": 2
@@ -133,6 +205,24 @@
       "writtenOn": "2021-11-19T09:19:06Z",
       "side": 1,
       "message": "this could directly rely on \u0027is_pending_start_request_\u0027 and if true just call  StreamStarted with FAILURE",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e004c7cb_067730ba",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-19T11:22:30Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "2035f8bc_e4360320",
       "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
