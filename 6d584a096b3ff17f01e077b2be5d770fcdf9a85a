@@ -107,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1137cd8b_8c600e45",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T12:40:48Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s fair enough.",
+      "parentUuid": "79681222_fd20dc0d",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0e25086_a8b5c7e9",
