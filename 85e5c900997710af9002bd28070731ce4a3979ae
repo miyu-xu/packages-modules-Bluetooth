@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "febcc1cc_4a7576a4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2476,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-19T11:22:37Z",
+      "side": 1,
+      "message": "only when usage is 0 us well.",
+      "parentUuid": "957ba695_6f64ec66",
+      "revId": "85e5c900997710af9002bd28070731ce4a3979ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "765eeb47_cfd0de5a",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-11-19T09:37:14Z",
       "side": 1,
       "message": "Optimal would be use contexts.empty() -\u003e \"begin() \u003d\u003d end()\"\nthan contexts.size() -\u003e \"std::distance(begin(), end())\"",
+      "revId": "85e5c900997710af9002bd28070731ce4a3979ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8ef4fef_c55ac0f1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2492,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-19T11:22:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "765eeb47_cfd0de5a",
       "revId": "85e5c900997710af9002bd28070731ce4a3979ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
