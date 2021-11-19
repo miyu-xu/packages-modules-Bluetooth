@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "900de71b_92581b4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2021-11-19T09:46:16Z",
+      "side": 1,
+      "message": "A rendered version can be found here: https://user.git.corp.google.com/licorne/pdl-doc/+/refs/heads/main/README.md",
+      "revId": "f419d424f55b9be39fd268be65f5a9e6cc2b2e7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
