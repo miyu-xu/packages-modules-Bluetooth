@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fafd957f_0a79c8fb",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "This could be directly returned.\nThis variable in case of immediately return is not even needed.",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7833798_a52146fb",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "For immediatelly response this is not needed since changing of state would not happen while handling on_resume.",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0e25086_a8b5c7e9",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "For immediatelly response this is not needed since changing of state would not happen while handling on_resume.",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d2962d6_532dd5e7",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "For immediately response this is not needed since changing of state would not happen while handling on_resume.",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d1a0591_dfd1be4c",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d69bfd48_679500ed",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b70b7a4_d05f7c6e",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "this could directly rely on \u0027is_pending_start_request_\u0027 and if true just call  StreamStarted with SUCCESS",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2035f8bc_e4360320",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T09:19:06Z",
+      "side": 1,
+      "message": "this could directly rely on \u0027is_pending_start_request_\u0027 and if true just call  StreamStarted with FAILURE",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
