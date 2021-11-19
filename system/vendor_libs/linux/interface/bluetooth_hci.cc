@@ -77,11 +77,14 @@ int BluetoothHci::openBtHci() {
   rfkill_state_ = NULL;
   rfKill(1);
 
-  int fd = socket(AF_BLUETOOTH, SOCK_RAW, BTPROTO_HCI);
-  if (fd < 0) {
-    ALOGE( "Bluetooth socket error: %s", strerror(errno));
-    return -1;
-  }
+  int fd = -1;
+  do {
+    fd = socket(AF_BLUETOOTH, SOCK_RAW, BTPROTO_HCI);
+    if (fd < 0) {
+      ALOGE( "Bluetooth socket error: %s", strerror(errno));
+      sleep(10);
+    }
+  } while (fd < 0);
   bt_soc_fd_ = fd;
 
   if (waitHciDev(hci_interface)) {
