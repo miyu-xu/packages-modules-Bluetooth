@@ -263,6 +263,11 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
     uint16_t handle = connection_complete.GetConnectionHandle();
+
+    // Going forward use the RPA if available
+    if (!peer_resolvable_address.IsEmpty()) {
+      remote_address = AddressWithType(peer_resolvable_address, AddressType::RANDOM_DEVICE_ADDRESS);
+    }
     auto queue = std::make_shared<AclConnection::Queue>(10);
     auto emplace_pair = le_acl_connections_.emplace(
         std::piecewise_construct,
