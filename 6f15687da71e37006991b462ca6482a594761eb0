@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017477964",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1896712?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dac835ae_669d208c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-19T15:11:05Z",
+      "side": 1,
+      "message": "\"net_test_types\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 26,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 33
+      },
+      "revId": "6f15687da71e37006991b462ca6482a594761eb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
