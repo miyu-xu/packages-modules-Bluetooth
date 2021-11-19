@@ -22,6 +22,30 @@
       },
       "revId": "3966b7eaf283fc00339b37b79ac8689c036dc514",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "857c8794_db581df2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-19T17:59:24Z",
+      "side": 1,
+      "message": "Good catch!",
+      "parentUuid": "323bab1f_a3609e69",
+      "range": {
+        "startLine": 1051,
+        "startChar": 11,
+        "endLine": 1051,
+        "endChar": 59
+      },
+      "revId": "3966b7eaf283fc00339b37b79ac8689c036dc514",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

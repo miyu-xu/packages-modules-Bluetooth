@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55515fb8_36413e67",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-11-19T17:59:24Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer a more descriptive name than \"new\"",
+      "range": {
+        "startLine": 89,
+        "startChar": 5,
+        "endLine": 89,
+        "endChar": 20
+      },
+      "revId": "02d57e6fd72b87429aa063ec6422d2a851305035",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
