@@ -157,16 +157,16 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     // TODO: find out which address and type was used to initiate the connection
     AddressWithType remote_address(address, peer_address_type);
     AddressWithType local_address = le_address_manager_->GetCurrentAddress();
-    on_common_le_connection_complete(remote_address);
     if (status == ErrorCode::UNKNOWN_CONNECTION && pause_connection) {
       // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()
       return;
     } else if (status == ErrorCode::UNKNOWN_CONNECTION && remote_address.GetAddress() == Address::kEmpty) {
       // direct connect canceled due to connection timeout, start background connect
+      on_common_le_connection_complete(remote_address);
       create_le_connection(remote_address, false, false);
       return;
     } else {
-      canceled_connections_.erase(remote_address);
+      on_common_le_connection_complete(remote_address);
       ready_to_unregister = true;
       remove_device_from_connect_list(remote_address);
     }
@@ -217,19 +217,16 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     auto peer_address_type = connection_complete.GetPeerAddressType();
     auto peer_resolvable_address = connection_complete.GetPeerResolvablePrivateAddress();
     AddressWithType remote_address(address, peer_address_type);
-    if (!peer_resolvable_address.IsEmpty()) {
-      remote_address = AddressWithType(peer_resolvable_address, AddressType::RANDOM_DEVICE_ADDRESS);
-    }
-    on_common_le_connection_complete(remote_address);
     if (status == ErrorCode::UNKNOWN_CONNECTION && pause_connection) {
       // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()
       return;
     } else if (status == ErrorCode::UNKNOWN_CONNECTION && remote_address.GetAddress() == Address::kEmpty) {
       // direct connect canceled due to connection timeout, start background connect
+      on_common_le_connection_complete(remote_address);
       create_le_connection(remote_address, false, false);
       return;
     } else {
-      canceled_connections_.erase(remote_address);
+      on_common_le_connection_complete(remote_address);
       ready_to_unregister = true;
       remove_device_from_connect_list(remote_address);
     }
