@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf6940af_a5d4ba47",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2021-11-19T18:06:32Z",
+      "side": 1,
+      "message": "nit: lets move `static_cast\u003cint\u003e(op_code) \u0026 (0x3f \u003c\u003c 10)` above and make it `bool is_vendor \u003d ...`. That makes this if statement easier to read:\n\n  if (is_vendor \u0026\u0026 is_status \u0026\u0026 ...)",
+      "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa241a2_80be69c7",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2021-11-19T18:06:32Z",
+      "side": 1,
+      "message": "readability nit: put the is_status \u0026\u0026 !waiting_for_status_ in parantheses -- makes it clearer you\u0027re testing for a case where you got CmdStatus and weren\u0027t expecting it.",
+      "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddd88bc9_54d3e482",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2021-11-19T18:06:32Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this comment say we generate an empty command complete rather than say we handle an intentionally invalid Command Complete? Or am I reading this code wrong?",
+      "revId": "27b051524cce8d6d101f6e3832656a02ddb5f30e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
