@@ -160,6 +160,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd41547b_db1872bf",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T12:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "111951c3_78b1fcb6",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d2962d6_532dd5e7",
@@ -173,6 +191,24 @@
       "writtenOn": "2021-11-19T09:19:06Z",
       "side": 1,
       "message": "For immediately response this is not needed since changing of state would not happen while handling on_resume.",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cfcda82_c67e2705",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T12:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d2962d6_532dd5e7",
       "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -194,6 +230,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a7c8617_2ec26420",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T12:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d1a0591_dfd1be4c",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d69bfd48_679500ed",
@@ -207,6 +261,24 @@
       "writtenOn": "2021-11-19T09:19:06Z",
       "side": 1,
       "message": "ditto",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ca63a35_0f160b61",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T12:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d69bfd48_679500ed",
       "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -246,6 +318,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6252b4_eb4fa806",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T12:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e749d877_8a92151a",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2035f8bc_e4360320",
@@ -277,6 +367,24 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "2035f8bc_e4360320",
+      "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10eca83e_eddb3309",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-19T12:41:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e004c7cb_067730ba",
       "revId": "6d584a096b3ff17f01e077b2be5d770fcdf9a85a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
