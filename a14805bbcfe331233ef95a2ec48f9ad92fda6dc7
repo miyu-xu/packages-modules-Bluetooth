@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a38d4c2_64c16579",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-20T07:10:52Z",
+      "side": 1,
+      "message": "Updated to handle ConnectListAddress",
+      "parentUuid": "ed65733a_bb1ce16b",
+      "revId": "a14805bbcfe331233ef95a2ec48f9ad92fda6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c69d5d7b_4b90b766",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2021-11-19T07:46:50Z",
       "side": 1,
       "message": "This is not correct.\nYou are allowed to put just regular public or random address into the accept list.\n\nDevice with Random Static address X is different than device with Public address X. Here you are removing this distinction.",
+      "range": {
+        "startLine": 119,
+        "startChar": 32,
+        "endLine": 119,
+        "endChar": 49
+      },
+      "revId": "a14805bbcfe331233ef95a2ec48f9ad92fda6dc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfc1f147_8395f80a",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-20T07:10:52Z",
+      "side": 1,
+      "message": "Remember this is the _Shadow_ address list which is an attempt to mirror the actual address list located in silicon.  It\u0027s common practice in device drivers to mirror hardware state to understand and isolate any possible discrepancies in development, bugs or even bad firmware.\n\nThe addresses added and removed here are never sent to the chip; all that functionality is done in the actual gd le_impl code; this shim code simply does a best effort to provide observability into the actual hardware state.\n\nI\u0027ve updated this, however, and added extra code including a ConnectAddressWithType type to more accurately reflect the items you\u0027ve outlined.",
+      "parentUuid": "c69d5d7b_4b90b766",
       "range": {
         "startLine": 119,
         "startChar": 32,
