@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a54398_0e596b47",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-22T20:33:07Z",
+      "side": 1,
+      "message": "What is the reason behind this change ? You want to guarantee the ordering of callbacks ?\n\nI fought callback list would be easier to extend in future, i.e. for upper layer profiles to listen on disconnect event",
+      "revId": "5ce6c18291e9d38dd1b076ab16b48ebc763c276b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
