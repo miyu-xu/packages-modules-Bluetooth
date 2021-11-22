@@ -16,6 +16,46 @@
       "message": "Hi, I have revised this change according to my findings during test.\n(1) Reset of values is required across avdtp start/stop.\n(2) for audio side the reliably calculate the delay, CLOCK_MONOTOMIC_RAW is required(not affected by NTP)\n\nplease help take another look, thanks!",
       "revId": "ce7a4341786dd9bafec71a409cbd2c23d03f7f01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b3cb68a_9a8a8ff3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2021-11-22T14:30:58Z",
+      "side": 1,
+      "message": "I\u0027ll need more testing on this CL",
+      "revId": "ce7a4341786dd9bafec71a409cbd2c23d03f7f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "275c8a42_08d27a85",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2021-11-22T14:30:58Z",
+      "side": 1,
+      "message": "hm, well I think this is incorrect :/ \nThe delay report value might need a reset at different time point.",
+      "range": {
+        "startLine": 128,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 27
+      },
+      "revId": "ce7a4341786dd9bafec71a409cbd2c23d03f7f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
