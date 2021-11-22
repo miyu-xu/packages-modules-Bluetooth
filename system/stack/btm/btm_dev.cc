@@ -149,13 +149,6 @@ bool BTM_SecDeleteDevice(const RawAddress& bd_addr) {
     return bluetooth::shim::BTM_SecDeleteDevice(bd_addr);
   }
 
-  if (BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE) ||
-      BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_BR_EDR)) {
-    BTM_TRACE_WARNING("%s FAILED: Cannot Delete when connection is active",
-                      __func__);
-    return false;
-  }
-
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   if (p_dev_rec != NULL) {
     RawAddress bda = p_dev_rec->bd_addr;
