@@ -47,6 +47,10 @@ using os::Handler;
 using std::move;
 using std::unique_ptr;
 
+using DisconnectHandler = void(uint16_t hci_handle, hci::ErrorCode);
+using ReadRemoteVersionHandler =
+    void(hci::ErrorCode, uint16_t hci_handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version);
+
 static void fail_if_reset_complete_not_success(CommandCompleteView complete) {
   auto reset_complete = ResetCompleteView::Create(complete);
   ASSERT(reset_complete.IsValid());
@@ -482,9 +486,8 @@ void HciLayer::on_disconnection_complete(EventView event_view) {
 }
 
 void HciLayer::Disconnect(uint16_t handle, ErrorCode reason) {
-  for (auto callback : disconnect_handlers_) {
-    callback.Invoke(handle, reason);
-  }
+  if (classic.disconnect_handler) classic.disconnect_handler->Invoke(handle, reason);
+  if (le.disconnect_handler) le.disconnect_handler->Invoke(handle, reason);
 }
 
 void HciLayer::on_read_remote_version_complete(EventView event_view) {
@@ -500,36 +503,39 @@ void HciLayer::on_read_remote_version_complete(EventView event_view) {
 
 void HciLayer::ReadRemoteVersion(
     hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
-  for (auto callback : read_remote_version_handlers_) {
-    callback.Invoke(hci_status, handle, version, manufacturer_name, sub_version);
-  }
+  if (classic.read_remote_version_handler)
+    classic.read_remote_version_handler->Invoke(hci_status, handle, version, manufacturer_name, sub_version);
+  if (le.read_remote_version_handler)
+    le.read_remote_version_handler->Invoke(hci_status, handle, version, manufacturer_name, sub_version);
 }
 
 AclConnectionInterface* HciLayer::GetAclConnectionInterface(
     ContextualCallback<void(EventView)> event_handler,
-    ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,
-    ContextualCallback<
-        void(hci::ErrorCode hci_status, uint16_t, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version)>
-        on_read_remote_version) {
+    ContextualCallback<DisconnectHandler> on_disconnect,
+    ContextualCallback<ReadRemoteVersionHandler> on_read_remote_version) {
+  ASSERT_LOG(classic.disconnect_handler, "Cannot register disconnect handler twice");
+  classic.disconnect_handler = std::make_unique<ContextualCallback<DisconnectHandler>>(std::move(on_disconnect));
+  ASSERT_LOG(classic.read_remote_version_handler, "Cannot register read remote version handler twice");
+  classic.read_remote_version_handler =
+      std::make_unique<ContextualCallback<ReadRemoteVersionHandler>>(std::move(on_read_remote_version));
   for (const auto event : AclConnectionEvents) {
     RegisterEventHandler(event, event_handler);
   }
-  disconnect_handlers_.push_back(on_disconnect);
-  read_remote_version_handlers_.push_back(on_read_remote_version);
   return &acl_connection_manager_interface_;
 }
 
 LeAclConnectionInterface* HciLayer::GetLeAclConnectionInterface(
     ContextualCallback<void(LeMetaEventView)> event_handler,
-    ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,
-    ContextualCallback<
-        void(hci::ErrorCode hci_status, uint16_t, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version)>
-        on_read_remote_version) {
+    ContextualCallback<DisconnectHandler> on_disconnect,
+    ContextualCallback<ReadRemoteVersionHandler> on_read_remote_version) {
+  ASSERT_LOG(le.disconnect_handler, "Cannot register disconnect handler twice");
+  le.disconnect_handler = std::make_unique<ContextualCallback<DisconnectHandler>>(std::move(on_disconnect));
+  ASSERT_LOG(le.read_remote_version_handler, "Cannot register read remote version handler twice");
+  le.read_remote_version_handler =
+      std::make_unique<ContextualCallback<ReadRemoteVersionHandler>>(std::move(on_read_remote_version));
   for (const auto event : LeConnectionManagementEvents) {
     RegisterLeEventHandler(event, event_handler);
   }
-  disconnect_handlers_.push_back(on_disconnect);
-  read_remote_version_handlers_.push_back(on_read_remote_version);
   return &le_acl_connection_manager_interface_;
 }
 
