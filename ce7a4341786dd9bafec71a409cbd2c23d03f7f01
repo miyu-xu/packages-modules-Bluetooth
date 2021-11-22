@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a96e1e4_26e55520",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2021-11-22T13:56:27Z",
+      "side": 1,
+      "message": "Hi, I have revised this change according to my findings during test.\n(1) Reset of values is required across avdtp start/stop.\n(2) for audio side the reliably calculate the delay, CLOCK_MONOTOMIC_RAW is required(not affected by NTP)\n\nplease help take another look, thanks!",
+      "revId": "ce7a4341786dd9bafec71a409cbd2c23d03f7f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
