@@ -519,6 +519,14 @@ AclConnectionInterface* HciLayer::GetAclConnectionInterface(
   return &acl_connection_manager_interface_;
 }
 
+void HciLayer::PutAclConnectionInterface() {
+  for (const auto event : AclConnectionEvents) {
+    UnregisterEventHandler(event);
+  }
+  disconnect_handlers_.clear();
+  read_remote_version_handlers_.clear();
+}
+
 LeAclConnectionInterface* HciLayer::GetLeAclConnectionInterface(
     ContextualCallback<void(LeMetaEventView)> event_handler,
     ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,
@@ -531,6 +539,14 @@ LeAclConnectionInterface* HciLayer::GetLeAclConnectionInterface(
   disconnect_handlers_.push_back(on_disconnect);
   read_remote_version_handlers_.push_back(on_read_remote_version);
   return &le_acl_connection_manager_interface_;
+}
+
+void HciLayer::PutLeAclConnectionInterface() {
+  for (const auto event : LeConnectionManagementEvents) {
+    UnregisterLeEventHandler(event);
+  }
+  disconnect_handlers_.clear();
+  read_remote_version_handlers_.clear();
 }
 
 SecurityInterface* HciLayer::GetSecurityInterface(ContextualCallback<void(EventView)> event_handler) {
