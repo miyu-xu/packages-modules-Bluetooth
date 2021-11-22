@@ -16,6 +16,24 @@
       "message": "What is the reason behind this change ? You want to guarantee the ordering of callbacks ?\n\nI fought callback list would be easier to extend in future, i.e. for upper layer profiles to listen on disconnect event",
       "revId": "5ce6c18291e9d38dd1b076ab16b48ebc763c276b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4019fc8_96fbd043",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-22T22:35:54Z",
+      "side": 1,
+      "message": "I want to be able to properly disable callbacks upon shutdown.\n\nThe ordering of callbacks isn\u0027t important (AFAIK)...I put them alphabetically.\n\nI briefly looked into the callback list, and if that would allow disable/removal then I think that may be a good option, but I didn\u0027t see that feature.\npackages/modules/Bluetooth/system/gd/common/callback_list.h\n\nFor other clients; I\u0027m not sure how that will go yet.  Certainly they could be notified at this level; or could be notified at a higher level.  I think a good use case for this would help determine the best arch.",
+      "parentUuid": "36a54398_0e596b47",
+      "revId": "5ce6c18291e9d38dd1b076ab16b48ebc763c276b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
