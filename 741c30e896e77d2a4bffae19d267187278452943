@@ -75,6 +75,24 @@
       "parentUuid": "9555dc3e_8b5ca69e",
       "revId": "741c30e896e77d2a4bffae19d267187278452943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6aa83440_7771949a",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-23T19:07:04Z",
+      "side": 1,
+      "message": "The thing is the Settings app uses BTM path to enable scan.\nOther apps which uses filtering, uses le_scanning_manager, which is sending HCI commands to the controller.\n\nIf we move this fix into BTM_BleObserve we would also fix Settings app which also does not get Scan Results when some other app using filters is in action.",
+      "parentUuid": "c3a30ac1_57cf048f",
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
