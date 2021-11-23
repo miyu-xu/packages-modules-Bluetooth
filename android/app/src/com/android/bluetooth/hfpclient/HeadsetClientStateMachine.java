@@ -61,7 +61,6 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.hfpclient.connserv.HfpClientConnectionService;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.IState;
 import com.android.internal.util.State;
@@ -718,7 +717,7 @@ public class HeadsetClientStateMachine extends StateMachine {
         }
     }
 
-    public Bundle getCurrentAgFeatures() {
+    public Bundle getCurrentAgFeaturesBundle() {
         Bundle b = new Bundle();
         if ((mPeerFeatures & HeadsetClientHalConstants.PEER_FEAT_3WAY)
                 == HeadsetClientHalConstants.PEER_FEAT_3WAY) {
@@ -761,6 +760,46 @@ public class HeadsetClientStateMachine extends StateMachine {
         }
 
         return b;
+    }
+
+    public Set<Integer> getCurrentAgFeatures() {
+        HashSet<Integer> features = new HashSet<>();
+
+        if (isSupported(mPeerFeatures, HeadsetClientHalConstants.PEER_FEAT_3WAY)) {
+            features.add(HeadsetClientHalConstants.PEER_FEAT_3WAY);
+        }
+        if (isSupported(mPeerFeatures, HeadsetClientHalConstants.PEER_FEAT_VREC)) {
+            features.add(HeadsetClientHalConstants.PEER_FEAT_VREC);
+        }
+        if (isSupported(mPeerFeatures, HeadsetClientHalConstants.PEER_FEAT_REJECT)) {
+            features.add(HeadsetClientHalConstants.PEER_FEAT_REJECT);
+        }
+        if (isSupported(mPeerFeatures, HeadsetClientHalConstants.PEER_FEAT_ECC)) {
+            features.add(HeadsetClientHalConstants.PEER_FEAT_ECC);
+        }
+
+        // add individual CHLD support extras
+        if (isSupported(mChldFeatures, HeadsetClientHalConstants.CHLD_FEAT_HOLD_ACC)) {
+            features.add(HeadsetClientHalConstants.CHLD_FEAT_HOLD_ACC);
+        }
+        if (isSupported(mChldFeatures, HeadsetClientHalConstants.CHLD_FEAT_REL)) {
+            features.add(HeadsetClientHalConstants.CHLD_FEAT_REL);
+        }
+        if (isSupported(mChldFeatures, HeadsetClientHalConstants.CHLD_FEAT_REL_ACC)) {
+            features.add(HeadsetClientHalConstants.CHLD_FEAT_REL_ACC);
+        }
+        if (isSupported(mChldFeatures, HeadsetClientHalConstants.CHLD_FEAT_MERGE)) {
+            features.add(HeadsetClientHalConstants.CHLD_FEAT_MERGE);
+        }
+        if (isSupported(mChldFeatures, HeadsetClientHalConstants.CHLD_FEAT_MERGE_DETACH)) {
+            features.add(HeadsetClientHalConstants.CHLD_FEAT_MERGE_DETACH);
+        }
+
+        return features;
+    }
+
+    private boolean isSupported(int bitfield, int mask) {
+        return (bitfield & mask) == mask;
     }
 
     HeadsetClientStateMachine(HeadsetClientService context, Looper looper,

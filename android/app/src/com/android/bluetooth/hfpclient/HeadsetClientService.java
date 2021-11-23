@@ -43,10 +43,12 @@ import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -512,11 +514,9 @@ public class HeadsetClientService extends ProfileService {
             if (service == null) {
                 return null;
             }
-            return service.getCurrentAgFeatures(device);
+            return service.getCurrentAgFeaturesBundle(device);
         }
     }
-
-    ;
 
     // API methods
     public static synchronized HeadsetClientService getHeadsetClientService() {
@@ -724,7 +724,7 @@ public class HeadsetClientService extends ProfileService {
         return sm.getAudioState(device);
     }
 
-    boolean connectAudio(BluetoothDevice device) {
+    public boolean connectAudio(BluetoothDevice device) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -741,7 +741,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    boolean disconnectAudio(BluetoothDevice device) {
+    public boolean disconnectAudio(BluetoothDevice device) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -755,7 +755,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    boolean holdCall(BluetoothDevice device) {
+    public boolean holdCall(BluetoothDevice device) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -772,7 +772,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    boolean acceptCall(BluetoothDevice device, int flag) {
+    public boolean acceptCall(BluetoothDevice device, int flag) {
         /* Phonecalls from a single device are supported, hang up any calls on the other phone */
         synchronized (mStateMachineMap) {
             for (Map.Entry<BluetoothDevice, HeadsetClientStateMachine> entry : mStateMachineMap
@@ -809,7 +809,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    boolean rejectCall(BluetoothDevice device) {
+    public boolean rejectCall(BluetoothDevice device) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -827,7 +827,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    boolean terminateCall(BluetoothDevice device, UUID uuid) {
+    public boolean terminateCall(BluetoothDevice device, UUID uuid) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -846,7 +846,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    boolean enterPrivateMode(BluetoothDevice device, int index) {
+    public boolean enterPrivateMode(BluetoothDevice device, int index) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -865,7 +865,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    BluetoothHeadsetClientCall dial(BluetoothDevice device, String number) {
+    public BluetoothHeadsetClientCall dial(BluetoothDevice device, String number) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -880,7 +880,7 @@ public class HeadsetClientService extends ProfileService {
 
         BluetoothHeadsetClientCall call = new BluetoothHeadsetClientCall(device,
                 HeadsetClientStateMachine.HF_ORIGINATED_CALL_ID,
-                BluetoothHeadsetClientCall.CALL_STATE_DIALING, number, false  /* multiparty */,
+                HeadsetClientHalConstants.CALL_STATE_DIALING, number, false  /* multiparty */,
                 true  /* outgoing */, sm.getInBandRing());
         Message msg = sm.obtainMessage(HeadsetClientStateMachine.DIAL_NUMBER);
         msg.obj = call;
@@ -974,7 +974,20 @@ public class HeadsetClientService extends ProfileService {
         return sm.getCurrentAgEvents();
     }
 
-    public Bundle getCurrentAgFeatures(BluetoothDevice device) {
+    public Bundle getCurrentAgFeaturesBundle(BluetoothDevice device) {
+        HeadsetClientStateMachine sm = getStateMachine(device);
+        if (sm == null) {
+            Log.e(TAG, "SM does not exist for device " + device);
+            return null;
+        }
+        int connectionState = sm.getConnectionState(device);
+        if (connectionState != BluetoothProfile.STATE_CONNECTED) {
+            return null;
+        }
+        return sm.getCurrentAgFeaturesBundle();
+    }
+
+    public Set<Integer> getCurrentAgFeatures(BluetoothDevice device) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -1091,7 +1104,7 @@ public class HeadsetClientService extends ProfileService {
                     .entrySet()) {
                 if (entry.getValue() != null) {
                     int audioState = entry.getValue().getAudioState(entry.getKey());
-                    if (audioState == BluetoothHeadsetClient.STATE_AUDIO_CONNECTED) {
+                    if (audioState == HeadsetClientHalConstants.AUDIO_STATE_CONNECTED) {
                         if (DBG) {
                             Log.d(TAG, "Device " + entry.getKey() + " audio state " + audioState
                                     + " Connected");
