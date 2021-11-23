@@ -1113,6 +1113,9 @@ public class HeadsetClientService extends ProfileService {
                     sm.dump(sb);
                 }
             }
+
+            sb.append("\n");
+            HfpClientConnectionService.dump(sb);
         }
     }
 
