@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017625557",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1885262?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e0be1886_3353997e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-23T20:25:18Z",
+      "side": 1,
+      "message": "\"NA\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "3c78627b246a5cb505fee047881da97ee1fc9b0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
