@@ -34,6 +34,29 @@
       "parentUuid": "41b5db1e_41635307",
       "revId": "741c30e896e77d2a4bffae19d267187278452943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95390d83_e1c70884",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-23T14:12:24Z",
+      "side": 1,
+      "message": "This issue is not specific to CSIS client. You should be able to reproduce this issue with just regular scan from settings.\n\nThis means that this fix should be moved to lower layers, where the inquiry is started",
+      "range": {
+        "startLine": 1130,
+        "startChar": 3,
+        "endLine": 1130,
+        "endChar": 46
+      },
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
