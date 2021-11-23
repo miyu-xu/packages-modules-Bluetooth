@@ -908,8 +908,10 @@ void bta_hh_get_dscp_act(tBTA_HH_DEV_CB* p_cb,
                          UNUSED_ATTR const tBTA_HH_DATA* p_data) {
   if (p_cb->is_le_device) {
     bta_hh_le_get_dscp_act(p_cb);
-  } else
+  } else {
+    p_cb->dscp_info.hid_handle = p_cb->hid_handle;
     (*bta_hh_cb.p_cback)(BTA_HH_GET_DSCP_EVT, (tBTA_HH*)&p_cb->dscp_info);
+  }
 }
 
 /*******************************************************************************
