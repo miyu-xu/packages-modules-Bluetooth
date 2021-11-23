@@ -57,6 +57,24 @@
       },
       "revId": "741c30e896e77d2a4bffae19d267187278452943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3a30ac1_57cf048f",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-23T14:13:35Z",
+      "side": 1,
+      "message": "What would be a proper fix if this is temporary workaround ?",
+      "parentUuid": "9555dc3e_8b5ca69e",
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
