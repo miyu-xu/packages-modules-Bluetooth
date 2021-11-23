@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73cf4d9d_2d16e22f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018026
+      },
+      "writtenOn": "2021-11-23T16:40:32Z",
+      "side": 1,
+      "message": "I would recommend getting proper OWNERS review.  If you click \u0027Add Owners\u0027 it tells you who can approve the ",
+      "revId": "1e67e2f46349c6367ef1ff54bc43376b4cd99408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
