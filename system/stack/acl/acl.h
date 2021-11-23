@@ -414,3 +414,5 @@ struct tACL_CB {
     return cnt;
   }
 };
+
+extern tACL_CONN* btm_acl_for_bda(const RawAddress& bd_addr, tBT_TRANSPORT transport);

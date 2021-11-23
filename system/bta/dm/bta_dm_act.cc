@@ -55,6 +55,7 @@
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "stack/btm/btm_ble_int.h"
 
 #include <base/logging.h>
 
@@ -67,6 +68,7 @@ using bluetooth::Uuid;
 void BTIF_dm_disable();
 void BTIF_dm_enable();
 void btm_ble_adv_init(void);
+void btm_ble_scanner_init(void);
 
 static void bta_dm_inq_results_cb(tBTM_INQ_RESULTS* p_inq, const uint8_t* p_eir,
                                   uint16_t eir_len);
@@ -399,6 +401,8 @@ void BTA_dm_on_hw_on() {
   if (bta_dm_cb.p_sec_cback)
     bta_dm_cb.p_sec_cback(BTA_DM_LE_FEATURES_READ, NULL);
 #endif
+
+  btm_ble_scanner_init();
 
   /* Earlier, we used to invoke BTM_ReadLocalAddr which was just copying the
      bd_addr

@@ -70,6 +70,7 @@
 #include "device/include/interop.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/controller.h"
+#include "btm_ble_int.h"
 
 #ifndef BT_STACK_CLEANUP_WAIT_MS
 #define BT_STACK_CLEANUP_WAIT_MS 1000
@@ -369,6 +370,8 @@ static void event_shut_down_stack(UNUSED_ATTR void* context) {
   stack_is_running = false;
 
   do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_multi_adv_cleanup));
+
+  do_in_main_thread(FROM_HERE, base::Bind(&btm_ble_scanner_cleanup));
 
   btif_dm_on_disable();
   btif_sock_cleanup();
