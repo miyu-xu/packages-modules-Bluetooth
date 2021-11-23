@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017624894",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900811?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "43ca7106_91c50305",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-23T19:55:59Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "7b9cf73e8812c5553b121d43d4d19d76d1df3e23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017624894",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900811?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "57cef848_8fdaf150",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-23T19:55:59Z",
+      "side": 1,
+      "message": "\"Tag: #stability#\" is not a valid tag. Must be in the format #[a-zA-Z\\-]+",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "7b9cf73e8812c5553b121d43d4d19d76d1df3e23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
