@@ -36,6 +36,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.media.AudioManager;
+import android.media.AudioDeviceAttributes;
+import android.media.AudioDeviceInfo;
+import android.media.audiopolicy.AudioProductStrategy;
 import android.media.BtProfileConnectionInfo;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -91,6 +94,8 @@ public class LeAudioService extends ProfileService {
     private HandlerThread mStateMachinesThread;
     private BluetoothDevice mActiveAudioOutDevice;
     private BluetoothDevice mActiveAudioInDevice;
+    private AudioProductStrategy mAudioProductStrategyVoiceCall;
+
     ServiceFactory mServiceFactory = new ServiceFactory();
 
     LeAudioNativeInterface mLeAudioNativeInterface;
@@ -212,6 +217,10 @@ public class LeAudioService extends ProfileService {
         /* Bind Volume control service */
         bindVolumeControlService();
 
+        mAudioProductStrategyVoiceCall = GetAudioProductStrategyVoiceCall();
+        if (mAudioProductStrategyVoiceCall == null) {
+            Log.e(TAG, "Cannot get audio product strategy for voice call");
+        }
         // Mark service as started
         setLeAudioService(this);
 
@@ -302,6 +311,27 @@ public class LeAudioService extends ProfileService {
             Log.d(TAG, "setLeAudioService(): set to: " + instance);
         }
         sLeAudioService = instance;
+    }
+
+    private AudioDeviceAttributes ObtainDeviceInfo() {
+        AudioDeviceInfo[] devicesInfo = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+        for (AudioDeviceInfo deviceInfo : devicesInfo) {
+            if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_HEADSET) {
+                return new AudioDeviceAttributes(deviceInfo);
+            }
+        }
+        return null;
+    }
+
+    private AudioProductStrategy GetAudioProductStrategyVoiceCall() {
+        List<AudioProductStrategy> strategies = AudioProductStrategy.getAudioProductStrategies();
+        for (AudioProductStrategy strategy : strategies) {
+            if (strategy.getAudioAttributesForLegacyStreamType(AudioManager.STREAM_VOICE_CALL)
+                    != null) {
+                return AudioProductStrategy.getAudioProductStrategyWithId(strategy.getId());
+            }
+        }
+        return null;
     }
 
     private void bindVolumeControlService() {
@@ -712,6 +742,17 @@ public class LeAudioService extends ProfileService {
             updateActiveInDevice(device, groupId, oldActiveContexts, newActiveContexts);
 
         if (outReplaced || inReplaced) {
+            if (mAudioProductStrategyVoiceCall != null) {
+                if (mActiveAudioOutDevice != null && mActiveAudioInDevice != null) {
+                    AudioDeviceAttributes mAudioDeviceAttributes = ObtainDeviceInfo();
+                    if (mAudioDeviceAttributes != null) {
+                        mAudioManager.setPreferredDeviceForStrategy(mAudioProductStrategyVoiceCall,
+                                                                    mAudioDeviceAttributes);
+                    }
+                } else {
+                    mAudioManager.removePreferredDeviceForStrategy(mAudioProductStrategyVoiceCall);
+                }
+            }
             Intent intent = new Intent(BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED);
             intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mActiveAudioOutDevice);
             intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
