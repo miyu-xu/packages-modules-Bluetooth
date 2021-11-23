@@ -362,6 +362,28 @@ public class HfpClientDeviceBlock {
         return bundle;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("<HfpClientDeviceBlock");
+        sb.append(" device=" + mDevice);
+        sb.append(" account=" + mPhoneAccount);
+        sb.append(" connections=[");
+        boolean first = true;
+        for (HfpClientConnection connection :  mConnections.values()) {
+            if (first) {
+                sb.append(", ");
+                first = false;
+            }
+            sb.append(connection.toString());
+
+        }
+        sb.append("]");
+        sb.append(" conference=" + mConference);
+        sb.append(">");
+        return sb.toString();
+    }
+
     /**
      * Factory class for {@link HfpClientDeviceBlock}
      */
