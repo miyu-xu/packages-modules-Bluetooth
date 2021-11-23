@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "337cbdfa_e8839b2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018026
+      },
+      "writtenOn": "2021-11-23T00:16:19Z",
+      "side": 1,
+      "message": "The presubmit failure is due to dependency on internal target which is not allowed in the same topic",
+      "revId": "df21e8979246b658c36b2126734f173d1ca5334a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
