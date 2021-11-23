@@ -56,6 +56,30 @@
       },
       "revId": "ce7a4341786dd9bafec71a409cbd2c23d03f7f01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d573e5ef_e8cc20c5",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2021-11-23T10:02:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "275c8a42_08d27a85",
+      "range": {
+        "startLine": 128,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 27
+      },
+      "revId": "ce7a4341786dd9bafec71a409cbd2c23d03f7f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
