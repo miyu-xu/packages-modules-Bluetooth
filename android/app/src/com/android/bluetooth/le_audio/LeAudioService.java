@@ -779,18 +779,14 @@ public class LeAudioService extends ProfileService {
             Log.d(TAG, "getActiveDevices");
         }
         ArrayList<BluetoothDevice> activeDevices = new ArrayList<>();
+        activeDevices.add(null);
+        activeDevices.add(null);
         synchronized (mStateMachines) {
             if (mActiveDeviceGroupId == LE_AUDIO_GROUP_ID_INVALID) {
                 return activeDevices;
             }
-            for (BluetoothDevice device : mDeviceGroupIdMap.keySet()) {
-                if (getConnectionState(device) != BluetoothProfile.STATE_CONNECTED) {
-                    continue;
-                }
-                if (mDeviceGroupIdMap.get(device) == Integer.valueOf(mActiveDeviceGroupId)) {
-                    activeDevices.add(device);
-                }
-            }
+                activeDevices.add(0, mActiveAudioOutDevice);
+                activeDevices.add(1, mActiveAudioInDevice);
         }
         return activeDevices;
     }
