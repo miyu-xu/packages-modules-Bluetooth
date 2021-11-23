@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017624878",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900039?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9ee4c7d7_8e49b78a",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-23T19:55:56Z",
+      "side": 1,
+      "message": "Changes in the preceding block may need to be reflected in these files: /system/gd/hci/fuzz/fuzz_hci_layer.h If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 43
+      },
+      "revId": "fed56e3b8a0d369fb9b40e02f8d80b8889134556",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
