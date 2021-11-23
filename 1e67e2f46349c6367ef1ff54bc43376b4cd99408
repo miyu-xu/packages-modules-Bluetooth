@@ -33,6 +33,24 @@
       "message": "I think this project is in transit to being moved...you may want to verify and/or wait until landing",
       "revId": "1e67e2f46349c6367ef1ff54bc43376b4cd99408",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9675e49_3887c1fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1480715
+      },
+      "writtenOn": "2021-11-23T17:45:36Z",
+      "side": 1,
+      "message": "I checked with Baligh and confirmed that this file is already after the migration. AFAIK \"packages/apps/Bluetooth moved to packages/modules/Bluetooth/android/app\".",
+      "parentUuid": "4484a74f_afb84bf0",
+      "revId": "1e67e2f46349c6367ef1ff54bc43376b4cd99408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
