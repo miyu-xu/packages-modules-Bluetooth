@@ -17,10 +17,8 @@
 from rust.topshim.facade import adapter_test
 from mobly import test_runner
 
-
-class AdapterTest(adapter_test.AdapterTest):
+class AdapterTestBb(adapter_test.AdapterTest):
     pass
-
 
 if __name__ == '__main__':
     test_runner.main()
