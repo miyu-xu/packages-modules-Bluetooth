@@ -47,6 +47,7 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 #include "vendor_api.h"
+#include "stack/include/btm_ble_api.h"
 
 using base::Bind;
 using base::Owned;
@@ -334,12 +335,82 @@ class BleScannerInterfaceImpl : public BleScannerInterface {
 
   void StartSync(uint8_t sid, RawAddress address, uint16_t skip,
                  uint16_t timeout, StartSyncCb start_cb, SyncReportCb report_cb,
-                 SyncLostCb lost_cb) override {}
+                 SyncLostCb lost_cb) override {
+    const controller_t* controller = controller_get_interface();
+    if (!controller->supports_ble_periodic_advertising_sync_transfer_sender()) {
+      uint8_t status_no_resource = 2;
+      start_cb.Run(status_no_resource, -1, sid, 1, address, 0, 0);
+    }
+    do_in_main_thread(FROM_HERE,
+                      base::Bind(&BTM_BleStartPeriodicSync, sid, address, skip,
+                      timeout, jni_thread_wrapper(FROM_HERE, std::move(start_cb)),
+                      jni_thread_wrapper(FROM_HERE, std::move(report_cb)),
+                      jni_thread_wrapper(FROM_HERE, std::move(lost_cb))));
+  }
 
-  void StopSync(uint16_t handle) override {}
+  void StopSync(uint16_t handle) override {
+    BTIF_TRACE_DEBUG("%s: handle: %d", __func__, handle);
+    const controller_t* controller = controller_get_interface();
+    if (!controller->supports_ble_periodic_advertising_sync_transfer_sender()) {
+      BTIF_TRACE_ERROR("%s: PAST not supported by controller",__func__);
+    }
+    do_in_main_thread(FROM_HERE,
+                      base::Bind(&BTM_BleStopPeriodicSync, handle));
+  }
 
   void RegisterCallbacks(ScanningCallbacks* callbacks) {
-    // For GD only
+      // For GD only
+  }
+
+  void CancelCreateSync(uint8_t sid, RawAddress address) override {
+   const controller_t* controller = controller_get_interface();
+   if (!controller->supports_ble_periodic_advertising_sync_transfer_sender()) {
+     BTIF_TRACE_ERROR("%s: PAST not supported by controller",__func__);
+   }
+   do_in_main_thread(FROM_HERE, base::Bind(&BTM_BleCancelPeriodicSync, sid, address));
+  }
+
+  void TransferSync(RawAddress address, uint16_t service_data,
+                         uint16_t sync_handle, SyncTransferCb cb) override {
+    BTIF_TRACE_DEBUG("%s: to %s", __func__, address.ToString().c_str());
+    const controller_t* controller = controller_get_interface();
+    if (!controller->supports_ble_periodic_advertising_sync_transfer_sender()) {
+      uint8_t status_no_resource = 2;
+      BTIF_TRACE_ERROR("%s: PAST not supported by controller",__func__);
+      cb.Run(status_no_resource, address);
+    }
+    do_in_main_thread(FROM_HERE,
+                         base::Bind(&BTM_BlePeriodicSyncTransfer, address, service_data,
+                         sync_handle, jni_thread_wrapper(FROM_HERE, std::move(cb))));
+  }
+
+  void TransferSetInfo(RawAddress address, uint16_t service_data,
+                         uint8_t adv_handle, SyncTransferCb cb) override {
+    BTIF_TRACE_DEBUG("%s: to %s", __func__, address.ToString().c_str());
+    const controller_t* controller = controller_get_interface();
+    if (!controller->supports_ble_periodic_advertising_sync_transfer_sender()) {
+      uint8_t status_no_resource = 2;
+      BTIF_TRACE_ERROR("%s: PAST not supported by controller",__func__);
+      cb.Run(status_no_resource, address);
+    }
+
+    do_in_main_thread(FROM_HERE,
+                         base::Bind(&BTM_BlePeriodicSyncSetInfo, address, service_data,
+                         adv_handle, jni_thread_wrapper(FROM_HERE, std::move(cb))));
+  }
+
+  void SyncTxParameters(RawAddress addr, uint8_t mode,
+                                       uint16_t skip, uint16_t timeout,StartSyncCb cb) {
+    BTIF_TRACE_DEBUG("%s",__func__);
+    const controller_t* controller = controller_get_interface();
+    if (!controller->supports_ble_periodic_advertising_sync_transfer_sender()) {
+      uint8_t status_no_resource = 2;
+      BTIF_TRACE_ERROR("%s: PAST not supported by controller",__func__);
+      cb.Run(status_no_resource, -1, -1, 1, addr, 0, 0);
+    }
+    do_in_main_thread(FROM_HERE,
+                         base::Bind(&BTM_BlePeriodicSyncTxParameters, addr, mode, skip, timeout,
+                         jni_thread_wrapper(FROM_HERE, std::move(cb))));
   }
 };
 
