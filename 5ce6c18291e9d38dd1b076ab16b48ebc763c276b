@@ -52,6 +52,24 @@
       "parentUuid": "d4019fc8_96fbd043",
       "revId": "5ce6c18291e9d38dd1b076ab16b48ebc763c276b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1de5390_43efd780",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-23T17:18:44Z",
+      "side": 1,
+      "message": "That may work fine with a regular callback.\ncommon::Callback\u003cR(Args...)\u003e\nBut we wrap it in a\nclass ContextualCallback\u003cR(Args...)\u003e\nwhich is not a drop-in replacement.",
+      "parentUuid": "759510e1_ef2072fa",
+      "revId": "5ce6c18291e9d38dd1b076ab16b48ebc763c276b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
