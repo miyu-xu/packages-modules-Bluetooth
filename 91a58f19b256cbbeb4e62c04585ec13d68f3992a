@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1a982d3_a23e2cfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2021-11-23T08:31:03Z",
+      "side": 1,
+      "message": "Now the CL is good and verified. During my test I found the delay is composed by 2 things:\n(1) remote_delay_: sets at every session\n(2) total read bytes/timestamps: should reset every start/stop cycle, audio server relies on it to calculate (N1 - N0) + rate *(T1-T0).",
+      "revId": "91a58f19b256cbbeb4e62c04585ec13d68f3992a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
