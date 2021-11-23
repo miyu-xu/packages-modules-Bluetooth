@@ -34,6 +34,24 @@
       "parentUuid": "36a54398_0e596b47",
       "revId": "5ce6c18291e9d38dd1b076ab16b48ebc763c276b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "759510e1_ef2072fa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-23T12:06:47Z",
+      "side": 1,
+      "message": "callback_list.h is wrapping callback_list from base.\nIt also adds ability to call callbacks using different handlers.\n\ncalling Add returns subscription object. You can call .reset() on it to end the subscription, or unregister for callback.\n\nHere is test doing just that: https://cs.android.com/android/platform/superproject/+/master:external/libchrome/base/callback_list_unittest.cc;l\u003d166",
+      "parentUuid": "d4019fc8_96fbd043",
+      "revId": "5ce6c18291e9d38dd1b076ab16b48ebc763c276b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
