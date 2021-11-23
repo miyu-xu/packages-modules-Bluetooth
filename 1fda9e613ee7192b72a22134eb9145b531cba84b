@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab23b615_ec3859c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1849983
+      },
+      "writtenOn": "2021-11-23T23:22:03Z",
+      "side": 1,
+      "message": "A CL to fix presubmit fails has been created(https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1900045), so we don\u0027t need to revert this one.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 56
+      },
+      "revId": "1fda9e613ee7192b72a22134eb9145b531cba84b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
