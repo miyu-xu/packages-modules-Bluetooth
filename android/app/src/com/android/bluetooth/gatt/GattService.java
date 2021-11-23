@@ -1065,8 +1065,28 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void unregisterSync(
+        public void transferSync(BluetoothDevice bda, int service_data , int sync_handle,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.transferSync(bda, service_data , sync_handle, attributionSource);
+        }
+
+        @Override
+        public void transferSetInfo(BluetoothDevice bda, int service_data , int adv_handle,
                 IPeriodicAdvertisingCallback callback, AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.transferSetInfo(bda, service_data , adv_handle, callback, attributionSource);
+        }
+
+        @Override
+        public void unregisterSync(IPeriodicAdvertisingCallback callback,
+                AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
@@ -2569,6 +2589,25 @@ public class GattService extends ProfileService {
             return;
         }
         mPeriodicScanManager.stopSync(callback);
+    }
+
+    void transferSync(BluetoothDevice bda, int service_data, int sync_handle,
+            AttributionSource attributionSource) {
+        if (!Utils.checkScanPermissionForDataDelivery(
+                this, attributionSource, "GattService transferSync")) {
+            return;
+        }
+        mPeriodicScanManager.transferSync(bda, service_data, sync_handle);
+    }
+
+    void transferSetInfo(BluetoothDevice bda, int service_data,
+                  int adv_handle, IPeriodicAdvertisingCallback callback,
+                  AttributionSource attributionSource) {
+        if (!Utils.checkScanPermissionForDataDelivery(
+                this, attributionSource, "GattService transferSetInfo")) {
+            return;
+        }
+        mPeriodicScanManager.transferSetInfo(bda, service_data, adv_handle, callback);
     }
 
     /**************************************************************************
