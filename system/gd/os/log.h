@@ -127,38 +127,15 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 #endif
 
 #else
-/* syslog didn't work well here since we would be redefining LOG_DEBUG. */
-#include <sys/syscall.h>
-#include <sys/types.h>
-#include <unistd.h>
 
-#include <chrono>
-#include <cstdio>
-#include <ctime>
+namespace bluetooth::os {
+enum log_level { LOG_LEVEL_VERBOSE, LOG_LEVEL_DEBUG, LOG_LEVEL_INFO, LOG_LEVEL_WARN, LOG_LEVEL_ERROR, LOG_LEVEL_FATAL };
 
-#define LOGWRAPPER(fmt, args...)                                                                                    \
-  do {                                                                                                              \
-    auto _now = std::chrono::system_clock::now();                                                                   \
-    auto _now_ms = std::chrono::time_point_cast<std::chrono::milliseconds>(_now);                                   \
-    auto _now_t = std::chrono::system_clock::to_time_t(_now);                                                       \
-    /* YYYY-MM-DD_HH:MM:SS.sss is 23 byte long, plus 1 for null terminator */                                       \
-    char _buf[24];                                                                                                  \
-    auto l = std::strftime(_buf, sizeof(_buf), "%Y-%m-%d %H:%M:%S", std::localtime(&_now_t));                       \
-    snprintf(                                                                                                       \
-        _buf + l, sizeof(_buf) - l, ".%03u", static_cast<unsigned int>(_now_ms.time_since_epoch().count() % 1000)); \
-    /* pid max is 2^22 = 4194304 in 64-bit system, and 32768 by default, hence 7 digits are needed most */          \
-    fprintf(                                                                                                        \
-        stderr,                                                                                                     \
-        "%s %7d %7ld %s - %s:%d - %s: " fmt "\n",                                                                   \
-        _buf,                                                                                                       \
-        static_cast<int>(getpid()),                                                                                 \
-        syscall(SYS_gettid),                                                                                        \
-        LOG_TAG,                                                                                                    \
-        __FILE__,                                                                                                   \
-        __LINE__,                                                                                                   \
-        __func__,                                                                                                   \
-        ##args);                                                                                                    \
-  } while (false)
+void log(enum log_level level, char const* tag, char const* format, ...) __attribute__((format(printf, 3, 4)));
+}  // namespace bluetooth::os
+
+#define LOGWRAPPER(level, fmt, args...) \
+  ::bluetooth::os::log(::bluetooth::os::log_level::LOG_LEVEL_##level, LOG_TAG, "%s: " fmt, __func__, ##args)
 
 #ifdef FUZZ_TARGET
 #define LOG_VERBOSE(...)
@@ -169,25 +146,25 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
 #define LOG_VERBOSE(fmt, args...)                                             \
   do {                                                                        \
     if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      LOGWRAPPER(fmt, ##args);                                                \
+      LOGWRAPPER(VERBOSE, fmt, ##args);                                       \
     }                                                                         \
   } while (false)
 #define LOG_DEBUG(fmt, args...)                                               \
   do {                                                                        \
     if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \
-      LOGWRAPPER(fmt, ##args);                                                \
+      LOGWRAPPER(DEBUG, fmt, ##args);                                         \
     }                                                                         \
   } while (false)
-#define LOG_INFO(...) LOGWRAPPER(__VA_ARGS__)
-#define LOG_WARN(...) LOGWRAPPER(__VA_ARGS__)
+#define LOG_INFO(...) LOGWRAPPER(INFO, __VA_ARGS__)
+#define LOG_WARN(...) LOGWRAPPER(WARN, __VA_ARGS__)
 #endif /* FUZZ_TARGET */
-#define LOG_ERROR(...) LOGWRAPPER(__VA_ARGS__)
+#define LOG_ERROR(...) LOGWRAPPER(ERROR, __VA_ARGS__)
 
 #ifndef LOG_ALWAYS_FATAL
-#define LOG_ALWAYS_FATAL(...) \
-  do {                        \
-    LOGWRAPPER(__VA_ARGS__);  \
-    abort();                  \
+#define LOG_ALWAYS_FATAL(...)       \
+  do {                              \
+    LOGWRAPPER(FATAL, __VA_ARGS__); \
+    abort();                        \
   } while (false)
 #endif
 
