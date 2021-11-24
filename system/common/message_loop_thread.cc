@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "message_loop_thread"
+
 #include "message_loop_thread.h"
 
 #include <sys/syscall.h>
@@ -66,7 +68,7 @@ void MessageLoopThread::StartUp() {
   {
     std::lock_guard<std::recursive_mutex> api_lock(api_mutex_);
     if (thread_ != nullptr) {
-      LOG(WARNING) << __func__ << ": thread " << *this << " is already started";
+      LOG_WARN("thread %s is already started", this->ToString().c_str());
 
       return;
     }
@@ -223,8 +225,7 @@ void MessageLoopThread::Run(std::promise<void> start_up_promise) {
       return;
     }
 
-    LOG(INFO) << __func__ << ": message loop starting for thread "
-              << thread_name_;
+    LOG_INFO("message loop starting for thread %s", thread_name_.c_str());
     base::PlatformThread::SetName(thread_name_);
     message_loop_ = new btbase::AbstractMessageLoop();
     run_loop_ = new base::RunLoop();
