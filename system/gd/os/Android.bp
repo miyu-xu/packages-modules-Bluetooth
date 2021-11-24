@@ -37,6 +37,13 @@ filegroup {
 }
 
 filegroup {
+    name: "BluetoothOsSources_log_host",
+    srcs: [
+        "log.cc",
+    ],
+}
+
+filegroup {
     name: "BluetoothOsTestSources_host",
     srcs: [
         "host/system_properties_test.cc",
