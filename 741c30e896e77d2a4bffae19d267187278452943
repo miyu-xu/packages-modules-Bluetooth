@@ -135,6 +135,24 @@
       "parentUuid": "6aa83440_7771949a",
       "revId": "741c30e896e77d2a4bffae19d267187278452943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda6dad7_cd9ece0d",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-11-24T09:42:27Z",
+      "side": 1,
+      "message": "nit: Could you add todo for adding RSI filter later or have a buganizer to track the further work?",
+      "parentUuid": "0b1124c9_a22279d4",
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
