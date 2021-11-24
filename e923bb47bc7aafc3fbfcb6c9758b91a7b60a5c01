@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2c47f5c_df8af632",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-11-24T15:29:37Z",
+      "side": 1,
+      "message": "This seems like a classic API failure where the code compiles yet the statement(s) do something quite non-obvious and unexpected from that the user intended.\n\nIs there anyway to prevent future users from accidentally making the same mistake ?",
+      "revId": "e923bb47bc7aafc3fbfcb6c9758b91a7b60a5c01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
