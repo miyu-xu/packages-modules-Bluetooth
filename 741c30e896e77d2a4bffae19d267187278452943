@@ -155,6 +155,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed3068ea_fb20955c",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-24T14:22:10Z",
+      "side": 1,
+      "message": "We have a feature request and design doc to track this.\nThanks!",
+      "parentUuid": "cda6dad7_cd9ece0d",
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cb66bc4_b9ebd071",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-24T14:22:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bc945b21_cf83d8c3",
+      "range": {
+        "startLine": 1130,
+        "startChar": 3,
+        "endLine": 1130,
+        "endChar": 46
+      },
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "761ccbe7_e68a0ba4",
@@ -168,6 +210,30 @@
       "writtenOn": "2021-11-24T13:32:19Z",
       "side": 1,
       "message": "This is copy-paste from btif_dm_start_discovery. \n\nCan we make call from btif_dm_start_discovery to this method, rather than keeping 2 versions of this code ?\n\nCan be done in separate patch.",
+      "range": {
+        "startLine": 548,
+        "startChar": 1,
+        "endLine": 561,
+        "endChar": 3
+      },
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b6790b_3db411c5",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-24T14:22:10Z",
+      "side": 1,
+      "message": "Sure, let\u0027s keep this patch focus on CSIS.\nI will do it with another patch.\nThanks!",
+      "parentUuid": "761ccbe7_e68a0ba4",
       "range": {
         "startLine": 548,
         "startChar": 1,
