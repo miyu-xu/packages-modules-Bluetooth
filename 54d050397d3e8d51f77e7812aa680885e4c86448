@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c3d78b7_9c210c6a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-24T13:48:46Z",
+      "side": 1,
+      "message": "So for earbuds use case, with two earbuds connected, each being a two way device, we would return in and out from one of them ?\nIf that is the case, you need to update this method comments to clarify",
+      "range": {
+        "startLine": 768,
+        "startChar": 7,
+        "endLine": 769,
+        "endChar": 32
+      },
+      "revId": "54d050397d3e8d51f77e7812aa680885e4c86448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
