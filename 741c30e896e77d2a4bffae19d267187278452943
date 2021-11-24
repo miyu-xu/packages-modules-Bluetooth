@@ -153,6 +153,29 @@
       "parentUuid": "0b1124c9_a22279d4",
       "revId": "741c30e896e77d2a4bffae19d267187278452943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "761ccbe7_e68a0ba4",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-24T13:32:19Z",
+      "side": 1,
+      "message": "This is copy-paste from btif_dm_start_discovery. \n\nCan we make call from btif_dm_start_discovery to this method, rather than keeping 2 versions of this code ?\n\nCan be done in separate patch.",
+      "range": {
+        "startLine": 548,
+        "startChar": 1,
+        "endLine": 561,
+        "endChar": 3
+      },
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
