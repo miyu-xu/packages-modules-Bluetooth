@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab416b8_0abfedd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1609802
+      },
+      "writtenOn": "2021-11-24T20:23:35Z",
+      "side": 1,
+      "message": "This is re-push of CL aosp/1895959 after Bluetooth pkg migrated. It is re-tested to make sure no break on BT functions.\n\nPlease help to review.\nThanks!",
+      "revId": "798a2bc50d707025c2dd47e48c5790c91c42135c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
