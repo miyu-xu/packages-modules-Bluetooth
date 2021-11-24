@@ -16,6 +16,24 @@
       "message": "Looks like you might be missing the \"Merged-In\" which is resulting in presubmit failures",
       "revId": "ecac07a6b78e8cd2774bc684408d7c2c2df4e727",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a29ae40d_258cbd54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2021-11-24T00:48:06Z",
+      "side": 1,
+      "message": "This is fine, discussed offline",
+      "parentUuid": "e2921335_f9149697",
+      "revId": "ecac07a6b78e8cd2774bc684408d7c2c2df4e727",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
