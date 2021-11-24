@@ -93,6 +93,48 @@
       "parentUuid": "c3a30ac1_57cf048f",
       "revId": "741c30e896e77d2a4bffae19d267187278452943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc945b21_cf83d8c3",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-24T07:23:26Z",
+      "side": 1,
+      "message": "Hi Jakub,\nDo you mean b/206370164?\nI tried, but I can\u0027t reproduce it on AOSP.",
+      "parentUuid": "95390d83_e1c70884",
+      "range": {
+        "startLine": 1130,
+        "startChar": 3,
+        "endLine": 1130,
+        "endChar": 46
+      },
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b1124c9_a22279d4",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1130,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-24T07:23:26Z",
+      "side": 1,
+      "message": "Setting app will add empty filter by btif_dm_start_discovery.\nI am not sure why it will be affected by other apps, I can\u0027t reproduce it on AOSP.\nThe proper fix is add AD Type filter for APCF command, in this way, we can filter RSI AD type for CSIP.\nI shared the doc for both of you.\nThanks!",
+      "parentUuid": "6aa83440_7771949a",
+      "revId": "741c30e896e77d2a4bffae19d267187278452943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
