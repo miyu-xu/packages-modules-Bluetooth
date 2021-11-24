@@ -32,6 +32,7 @@ filegroup {
         "host/parameter_provider.cc",
         "host/system_properties.cc",
         "host/wakelock_native.cc",
+        "log.cc",
     ],
 }
 
