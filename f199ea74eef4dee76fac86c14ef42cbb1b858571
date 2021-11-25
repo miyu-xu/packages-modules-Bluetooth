@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a646de_c7d9ebe7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2578,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-25T22:20:02Z",
+      "side": 1,
+      "message": "This should go into previous patch",
+      "range": {
+        "startLine": 2578,
+        "startChar": 10,
+        "endLine": 2578,
+        "endChar": 33
+      },
+      "revId": "f199ea74eef4dee76fac86c14ef42cbb1b858571",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
