@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017691093",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900791?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d22d00d8_846dbc0d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-25T19:59:46Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "5fdd80bb3b721996dee9f3f3827c59f7844d2ef0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017691093",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900791?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cdb1d0fe_3308b8cc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-25T19:59:46Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "5fdd80bb3b721996dee9f3f3827c59f7844d2ef0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017691093",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900791?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "10884aed_76d5f72d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-25T19:59:46Z",
+      "side": 1,
+      "message": "\"Check LE audio codec offload streaming working\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 52
+      },
+      "revId": "5fdd80bb3b721996dee9f3f3827c59f7844d2ef0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
