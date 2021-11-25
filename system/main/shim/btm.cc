@@ -620,15 +620,6 @@ size_t Btm::GetNumberOfAdvertisingInstances() const {
 
 tBTM_STATUS Btm::CreateBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                             tBT_TRANSPORT transport, int device_type) {
-  if (transport == BT_TRANSPORT_AUTO) {
-    if (device_type & BT_DEVICE_TYPE_BLE) {
-      transport = BT_TRANSPORT_LE;
-    } else if (device_type & BT_DEVICE_TYPE_BREDR) {
-      transport = BT_TRANSPORT_BR_EDR;
-    }
-    LOG_INFO("%s guessing transport as %02x ", __func__, transport);
-  }
-
   auto security_manager = GetSecurityModule()->GetSecurityManager();
   switch (transport) {
     case BT_TRANSPORT_BR_EDR:

@@ -67,6 +67,7 @@
 #include "btif_sdp.h"
 #include "btif_storage.h"
 #include "btif_util.h"
+#include "btm_api.h"
 #include "common/metrics.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
@@ -671,8 +672,6 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
 static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport) {
   bool is_hid = check_cod(&bd_addr, COD_HID_POINTING);
-  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
-                     transport);
 
   int device_type = 0;
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
@@ -702,6 +701,17 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
     BTA_DmAddBleDevice(bd_addr, addr_type,
                        static_cast<tBT_DEVICE_TYPE>(device_type));
   }
+  if (transport == BT_TRANSPORT_AUTO) {
+    if (addr_type == BLE_ADDR_PUBLIC) {
+      transport =
+          BTM_UseLeLink(bd_addr) ? BT_TRANSPORT_LE : BT_TRANSPORT_BR_EDR;
+    } else {
+      LOG_INFO("Forcing transport LE (was auto) because of the address type");
+      transport = BT_TRANSPORT_LE;
+    }
+  }
+  bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+                     transport);
 
   if (is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
     const bt_status_t status = btif_hh_connect(&bd_addr);

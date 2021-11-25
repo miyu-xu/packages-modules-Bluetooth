@@ -880,23 +880,14 @@ tBTM_STATUS BTM_SecBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
     return bluetooth::shim::BTM_SecBond(bd_addr, addr_type, transport,
                                         device_type);
   }
-
-  if (transport == BT_TRANSPORT_AUTO) {
-    if (addr_type == BLE_ADDR_PUBLIC) {
-      transport =
-          BTM_UseLeLink(bd_addr) ? BT_TRANSPORT_LE : BT_TRANSPORT_BR_EDR;
-    } else {
-      LOG_INFO("Forcing transport LE (was auto) because of the address type");
-      transport = BT_TRANSPORT_LE;
-    }
-  }
   tBT_DEVICE_TYPE dev_type;
 
   BTM_ReadDevInfo(bd_addr, &dev_type, &addr_type);
   /* LE device, do SMP pairing */
   if ((transport == BT_TRANSPORT_LE && (dev_type & BT_DEVICE_TYPE_BLE) == 0) ||
       (transport == BT_TRANSPORT_BR_EDR &&
-       (dev_type & BT_DEVICE_TYPE_BREDR) == 0)) {
+       (dev_type & BT_DEVICE_TYPE_BREDR) == 0) ||
+      transport == BT_TRANSPORT_AUTO) {
     return BTM_ILLEGAL_ACTION;
   }
   return btm_sec_bond_by_transport(bd_addr, addr_type, transport, pin_len,
