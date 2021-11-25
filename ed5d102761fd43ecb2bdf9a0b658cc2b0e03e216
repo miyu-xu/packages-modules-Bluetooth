@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017682269",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902972?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "531facaa_ba909bd6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-25T10:50:21Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "ed5d102761fd43ecb2bdf9a0b658cc2b0e03e216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017682269",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902972?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "16c8c2db_4c174cb4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-25T10:50:21Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "ed5d102761fd43ecb2bdf9a0b658cc2b0e03e216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017682269",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902972?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "98ffed22_6382c948",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-25T10:50:21Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "ed5d102761fd43ecb2bdf9a0b658cc2b0e03e216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017682269",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902972?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a32b4814_4d42908e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-25T10:50:21Z",
+      "side": 1,
+      "message": "\"Bug: b/136790746\" is not a valid bug number. Must be only digits with no prefixes.",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "ed5d102761fd43ecb2bdf9a0b658cc2b0e03e216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
