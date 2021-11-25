@@ -319,6 +319,26 @@ bool BluetoothAudioPortOut::LoadAudioConfig(audio_config_t* audio_cfg) const {
   return true;
 }
 
+bool BluetoothAudioPortOut::GetPreferredDataIntervalUs(size_t *interval_us) const {
+  if (!in_use()) {
+    return false;
+  }
+
+  const ::android::hardware::bluetooth::audio::V2_2::AudioConfiguration&
+      hal_audio_cfg =
+          BluetoothAudioSessionControl_2_2::GetAudioConfig(session_type_);
+  if (hal_audio_cfg.getDiscriminator() !=
+      ::android::hardware::bluetooth::audio::V2_2::AudioConfiguration::
+          hidl_discriminator::pcmConfig) {
+    return false;
+  }
+
+  const ::android::hardware::bluetooth::audio::V2_1::PcmParameters& pcm_cfg =
+      hal_audio_cfg.pcmConfig();
+  *interval_us = pcm_cfg.dataIntervalUs;
+  return true;
+}
+
 bool BluetoothAudioPortIn::LoadAudioConfig(audio_config_t* audio_cfg) const {
   if (!in_use()) {
     LOG(ERROR) << __func__ << ": BluetoothAudioPortIn is not in use";
@@ -475,8 +495,7 @@ size_t BluetoothAudioPortOut::WriteData(const void* buffer, size_t bytes) const 
   downmix_to_mono_i16_from_stereo_i16(dst.get(), src, write_frames);
   // a frame is 16 bits, and the size of a mono frame is equal to half a stereo.
   return BluetoothAudioSessionControl_2_2::OutWritePcmData(
-             session_type_, dst.get(), write_frames * 2) *
-         2;
+             session_type_, dst.get(), write_frames * 2) * 2;
 }
 
 size_t BluetoothAudioPortIn::ReadData(void* buffer, size_t bytes) const {
