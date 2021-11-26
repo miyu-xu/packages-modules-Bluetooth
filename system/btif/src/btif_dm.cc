@@ -71,6 +71,7 @@
 #include "device/include/controller.h"
 #include "device/include/interop.h"
 #include "internal_include/stack_config.h"
+#include "main/shim/le_scanning_manager.h"
 #include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
@@ -1314,10 +1315,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
        *
        */
       if (!btif_dm_inquiry_in_progress) {
-        btgatt_filt_param_setup_t adv_filt_param;
-        memset(&adv_filt_param, 0, sizeof(btgatt_filt_param_setup_t));
-        BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_DELETE, 0, nullptr,
-                                   base::Bind(&bte_scan_filt_param_cfg_evt));
+        bluetooth::shim::set_empty_filter(false);
         invoke_discovery_state_changed_cb(BT_DISCOVERY_STOPPED);
       }
     } break;
@@ -1870,22 +1868,7 @@ void btif_dm_start_discovery(void) {
     return;
   }
 
-  /* Cleanup anything remaining on index 0 */
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_DELETE,
-                             static_cast<tBTM_BLE_PF_FILT_INDEX>(0), nullptr,
-                             base::Bind(&bte_scan_filt_param_cfg_evt));
-
-  auto adv_filt_param = std::make_unique<btgatt_filt_param_setup_t>();
-  /* Add an allow-all filter on index 0*/
-  adv_filt_param->dely_mode = IMMEDIATE_DELY_MODE;
-  adv_filt_param->feat_seln = ALLOW_ALL_FILTER;
-  adv_filt_param->filt_logic_type = BTA_DM_BLE_PF_FILT_LOGIC_OR;
-  adv_filt_param->list_logic_type = BTA_DM_BLE_PF_LIST_LOGIC_OR;
-  adv_filt_param->rssi_low_thres = LOWEST_RSSI_VALUE;
-  adv_filt_param->rssi_high_thres = LOWEST_RSSI_VALUE;
-  BTM_BleAdvFilterParamSetup(
-      BTM_BLE_SCAN_COND_ADD, static_cast<tBTM_BLE_PF_FILT_INDEX>(0),
-      std::move(adv_filt_param), base::Bind(&bte_scan_filt_param_cfg_evt));
+  bluetooth::shim::set_empty_filter(true);
 
   /* Will be enabled to true once inquiry busy level has been received */
   btif_dm_inquiry_in_progress = false;

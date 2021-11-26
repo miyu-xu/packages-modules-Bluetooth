@@ -532,6 +532,7 @@ class BleScannerInterfaceImpl : public BleScannerInterface,
 };
 
 BleScannerInterfaceImpl* bt_le_scanner_instance = nullptr;
+uint8_t empty_filter_count = 0x00;
 
 BleScannerInterface* bluetooth::shim::get_ble_scanner_instance() {
   if (bt_le_scanner_instance == nullptr) {
@@ -545,10 +546,12 @@ void bluetooth::shim::init_scanning_manager() {
 }
 
 void bluetooth::shim::set_empty_filter(bool enable) {
-  bluetooth::hci::AdvertisingFilterParameter advertising_filter_parameter;
-  bluetooth::shim::GetScanning()->ScanFilterParameterSetup(
-      bluetooth::hci::ApcfAction::DELETE, 0x00, advertising_filter_parameter);
   if (enable) {
+    empty_filter_count++;
+    bluetooth::hci::AdvertisingFilterParameter advertising_filter_parameter;
+    bluetooth::shim::GetScanning()->ScanFilterParameterSetup(
+        bluetooth::hci::ApcfAction::DELETE, 0x00, advertising_filter_parameter);
+
     /* Add an allow-all filter on index 0 */
     advertising_filter_parameter.delivery_mode =
         bluetooth::hci::DeliveryMode::IMMEDIATE;
@@ -558,5 +561,14 @@ void bluetooth::shim::set_empty_filter(bool enable) {
     advertising_filter_parameter.rssi_high_thresh = kLowestRssiValue;
     bluetooth::shim::GetScanning()->ScanFilterParameterSetup(
         bluetooth::hci::ApcfAction::ADD, 0x00, advertising_filter_parameter);
+
+  } else {
+    empty_filter_count--;
+    if (empty_filter_count == 0) {
+      bluetooth::hci::AdvertisingFilterParameter advertising_filter_parameter;
+      bluetooth::shim::GetScanning()->ScanFilterParameterSetup(
+          bluetooth::hci::ApcfAction::DELETE, 0x00,
+          advertising_filter_parameter);
+    }
   }
 }
