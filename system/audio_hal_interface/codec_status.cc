@@ -46,6 +46,11 @@ using ::android::hardware::bluetooth::audio::V2_0::SbcChannelMode;
 using ::android::hardware::bluetooth::audio::V2_0::SbcNumSubbands;
 using ::android::hardware::bluetooth::audio::V2_0::SbcParameters;
 
+using AudioCapabilities_2_2 =
+    ::android::hardware::bluetooth::audio::V2_2::AudioCapabilities;
+using SessionType_2_1 =
+    ::android::hardware::bluetooth::audio::V2_1::SessionType;
+
 // capabilities from BluetoothAudioSinkClientInterface::GetAudioCapabilities()
 std::vector<AudioCapabilities> audio_hal_capabilities(0);
 // capabilities that audio HAL supports and frameworks / Bluetooth SoC / runtime
@@ -565,6 +570,11 @@ bool IsCodecOffloadingEnabled(const CodecConfiguration& codec_config) {
   }
   LOG(INFO) << __func__ << ": software codec=" << toString(codec_config);
   return false;
+}
+
+std::vector<AudioCapabilities_2_2> getLeAudioOffloadEncodingCapabilities() {
+  return audio::BluetoothAudioSinkClientInterface::GetAudioCapabilities_2_2(
+      SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
 }
 
 }  // namespace codec
