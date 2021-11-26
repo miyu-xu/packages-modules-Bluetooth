@@ -21,6 +21,7 @@
 #include <gtest/gtest.h>
 
 #include "btm_api_mock.h"
+#include "le_audio_set_configurations.h"
 #include "le_audio_types.h"
 #include "mock_controller.h"
 #include "stack/btm/btm_int_types.h"
@@ -313,6 +314,11 @@ uint16_t GetOctetsPerCodecFrame(Lc3SettingId id) {
   }
 }
 
+static constexpr ::le_audio::types::LeAudioCodecId LeAudioCodecIdLc3 = {
+    .coding_format = ::le_audio::types::kLeAudioCodingFormatLC3,
+    .vendor_company_id = ::le_audio::types::kLeAudioVendorCompanyIdUndefined,
+    .vendor_codec_id = ::le_audio::types::kLeAudioVendorCodecIdUndefined};
+
 class PublishedAudioCapabilitiesBuilder {
  public:
   PublishedAudioCapabilitiesBuilder() {}
@@ -347,11 +353,12 @@ class PublishedAudioCapabilitiesBuilder {
 
   void Add(const CodecCapabilitySetting& setting,
            uint8_t audio_channel_counts) {
-    if (setting.id != LeAudioCodecIdLc3) return;
+    if (setting.id() != LeAudioCodecIdLc3) return;
 
-    const LeAudioLc3Config config = std::get<LeAudioLc3Config>(setting.config);
+    const LeAudioLc3Config config =
+        std::get<LeAudioLc3Config>(setting.config());
 
-    Add(setting.id, config.sampling_frequency, config.frame_duration,
+    Add(setting.id(), config.sampling_frequency, config.frame_duration,
         audio_channel_counts, config.octets_per_codec_frame);
   }
 
@@ -481,11 +488,11 @@ class LeAudioAseConfigurationTest : public Test {
 
       /* Prepare PAC's */
       PublishedAudioCapabilitiesBuilder snk_pac_builder, src_pac_builder;
-      for (const auto& entry : (*audio_set_conf).confs) {
-        if (entry.direction == kLeAudioDirectionSink) {
-          snk_pac_builder.Add(entry.codec, data[i].audio_channel_counts_snk);
+      for (const auto& entry : (*audio_set_conf).confs()) {
+        if (entry.direction() == kLeAudioDirectionSink) {
+          snk_pac_builder.Add(entry.codec(), data[i].audio_channel_counts_snk);
         } else {
-          src_pac_builder.Add(entry.codec, data[i].audio_channel_counts_src);
+          src_pac_builder.Add(entry.codec(), data[i].audio_channel_counts_src);
         }
       }
 
@@ -505,7 +512,7 @@ class LeAudioAseConfigurationTest : public Test {
   void TestGroupAseConfiguration(LeAudioContextType context_type,
                                  TestGroupAseConfigurationData* data,
                                  uint8_t data_size) {
-    const auto* configurations = get_confs_by_type(context_type);
+    const auto* configurations = GetConfigurationsByType(context_type);
     for (const auto& audio_set_conf : *configurations) {
       // the configuration should fail if there are no active ases expected
       bool success_expected = data_size > 0;
@@ -515,11 +522,13 @@ class LeAudioAseConfigurationTest : public Test {
 
         /* Prepare PAC's */
         PublishedAudioCapabilitiesBuilder snk_pac_builder, src_pac_builder;
-        for (const auto& entry : (*audio_set_conf).confs) {
-          if (entry.direction == kLeAudioDirectionSink) {
-            snk_pac_builder.Add(entry.codec, data[i].audio_channel_counts_snk);
+        for (const auto& entry : (*audio_set_conf).confs()) {
+          if (entry.direction() == kLeAudioDirectionSink) {
+            snk_pac_builder.Add(entry.codec(),
+                                data[i].audio_channel_counts_snk);
           } else {
-            src_pac_builder.Add(entry.codec, data[i].audio_channel_counts_src);
+            src_pac_builder.Add(entry.codec(),
+                                data[i].audio_channel_counts_src);
           }
         }
 
@@ -854,8 +863,11 @@ TEST_F(LeAudioAseConfigurationTest, test_reconnection_media) {
       {right, kLeAudioCodecLC3ChannelCountSingleChannel,
        kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0}};
 
-  TestSingleAseConfiguration(LeAudioContextType::MEDIA, data, 2,
-                             &kDualDev_OneChanStereoSnk_48_4);
+  /* Get known requirement*/
+  auto configuration =
+      *GetConfigurationsByType(LeAudioContextType::MEDIA)->begin();
+
+  TestSingleAseConfiguration(LeAudioContextType::MEDIA, data, 2, configuration);
 
   SetCisInformationToActiveAse();
 
@@ -871,12 +883,9 @@ TEST_F(LeAudioAseConfigurationTest, test_reconnection_media) {
   ::le_audio::types::AudioLocations group_src_audio_location =
       ase->codec_config.audio_channel_allocation;
 
-  /* Get known requirement*/
-  auto* configuration = &kDualDev_OneChanStereoSnk_48_4;
-
   /* Get entry for the sink direction and use it to set configuration */
-  for (auto& ent : configuration->confs) {
-    if (ent.direction == ::le_audio::types::kLeAudioDirectionSink) {
+  for (auto& ent : configuration->confs()) {
+    if (ent.direction() == ::le_audio::types::kLeAudioDirectionSink) {
       left->ConfigureAses(ent, group_->GetCurrentContextType(),
                           &number_of_active_ases, group_snk_audio_location,
                           group_src_audio_location);
@@ -884,7 +893,9 @@ TEST_F(LeAudioAseConfigurationTest, test_reconnection_media) {
   }
 
   ASSERT_TRUE(number_of_active_ases == 2);
-  ASSERT_TRUE(group_snk_audio_location == kChannelAllocationStereo);
+  ASSERT_TRUE(group_snk_audio_location ==
+              (::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft |
+               ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight));
 
   for (int i = 0; i < 2; i++) {
     TestGroupAseConfigurationVerdict(data[i]);
