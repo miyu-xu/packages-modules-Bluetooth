@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9c4e348_a81c6830",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2021-11-26T08:31:45Z",
+      "side": 1,
+      "message": "The name of this method is misleading: if you want to actually compute the number of \"samples\" the formula is correct. But as you use the returned value as a \"frame\" count then the channel count is irrelevant.\nI advise you make this consistent with what is expected in out-\u003eframes_count_",
+      "range": {
+        "startLine": 682,
+        "startChar": 39,
+        "endLine": 682,
+        "endChar": 52
+      },
+      "revId": "a1dd9aafb5dd0fe7021ddddf5149ea0138ff2f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b95fc96_d7b2ecb0",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 746,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2021-11-26T08:31:45Z",
+      "side": 1,
+      "message": "if you have to hard code 1 here regardless of channel_mask it means that you are interested in frames and that channel count is irrelevant",
+      "range": {
+        "startLine": 746,
+        "startChar": 76,
+        "endLine": 746,
+        "endChar": 77
+      },
+      "revId": "a1dd9aafb5dd0fe7021ddddf5149ea0138ff2f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
