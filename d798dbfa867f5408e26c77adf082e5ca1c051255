@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017707329",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1894904?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2e3580d2_6cbafaaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-26T19:59:34Z",
+      "side": 1,
+      "message": "\"mmma -j packages/modules/Bluetooth\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "d798dbfa867f5408e26c77adf082e5ca1c051255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017707333",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1894904?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8be38d8f_42899b5e",
+        "filename": "system/gd/btaa/activity_attribution.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-26T19:59:34Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 112
+      },
+      "revId": "d798dbfa867f5408e26c77adf082e5ca1c051255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017707333",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1894904?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2c0cf0a0_9d528459",
+        "filename": "system/gd/btaa/android/activity_attribution.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-26T19:59:34Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 116
+      },
+      "revId": "d798dbfa867f5408e26c77adf082e5ca1c051255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017707333",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1894904?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fe051613_5c658f3b",
+        "filename": "system/gd/btaa/attribution_processor.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-26T19:59:34Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 112
+      },
+      "revId": "d798dbfa867f5408e26c77adf082e5ca1c051255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
