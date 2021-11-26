@@ -132,6 +132,9 @@ public class LeAudioService extends ProfileService {
     private BroadcastReceiver mConnectionStateChangedReceiver;
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
+    // LE Audio Offload Enabled in platform
+    private boolean mLeaudioOffloadEnabled = false;
+
     @Override
     protected IProfileServiceBinder initBinder() {
         return new BluetoothLeAudioBinder(this);
@@ -188,6 +191,11 @@ public class LeAudioService extends ProfileService {
         // before we start accepting connections
         mHandler.post(() ->
                 mLeAudioNativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading()));
+
+        mLeaudioOffloadEnabled = mAdapterService.isLeaudioOffloadEnabled();
+        if (DBG) {
+            Log.d(TAG, "LE Audio offload flag set to " + mLeaudioOffloadEnabled);
+        }
 
         return true;
     }
@@ -1505,6 +1513,9 @@ public class LeAudioService extends ProfileService {
             ProfileService.println(sb, "    isConnected: " + descriptor.mIsConnected);
             ProfileService.println(sb, "    mActiveContexts: " + descriptor.mActiveContexts);
             ProfileService.println(sb, "    group lead: " + getFirstDeviceFromGroup(groupId));
+        }
+        if (mLeaudioOffloadEnabled) {
+            ProfileService.println(sb, "codecConfigOffloading:");
         }
     }
 }
