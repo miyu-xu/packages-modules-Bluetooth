@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebe56b7f_7d019e0d",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-26T22:24:02Z",
+      "side": 1,
+      "message": "why not uint32_t as originally this parameter is https://cs.android.com/android/platform/superproject/+/master:hardware/interfaces/bluetooth/audio/2.1/types.hal;drc\u003de5611aa5c6e8c6d5a225b2583ecb4f338edfae76;l\u003d54",
+      "range": {
+        "startLine": 322,
+        "startChar": 63,
+        "endLine": 322,
+        "endChar": 74
+      },
+      "revId": "d33bc580b98c7bad29ee818561bfabf1c455b63e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
