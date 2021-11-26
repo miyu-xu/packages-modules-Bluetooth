@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dda6a97_10646251",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1321,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-26T08:00:03Z",
+      "side": 1,
+      "message": "bluetooth::shim::set_empty_filter(false);\n?",
+      "range": {
+        "startLine": 1318,
+        "startChar": 8,
+        "endLine": 1321,
+        "endChar": 77
+      },
+      "revId": "7941d1757e501bd5d6d8aa6cd9e12dc2cb48de0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0544467d_c1b16768",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1874,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-26T08:00:03Z",
+      "side": 1,
+      "message": "This can be called from two places now. You should put a counter inside, and handle scenario when this is called twice in a row with true, and then twice in a row with false (first call with false should not set the filter back)",
+      "revId": "7941d1757e501bd5d6d8aa6cd9e12dc2cb48de0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
