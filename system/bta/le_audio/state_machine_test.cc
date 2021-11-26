@@ -27,6 +27,7 @@
 #include "btm_api_mock.h"
 #include "client_parser.h"
 #include "fake_osi.h"
+#include "le_audio_set_configurations.h"
 #include "mock_controller.h"
 #include "mock_iso_manager.h"
 #include "types/bt_transport.h"

@@ -36,6 +36,7 @@
 #include "embdrv/lc3/Api/Lc3Encoder.hpp"
 #include "embdrv/lc3_enc/include/lc3.h"
 #include "gatt/bta_gattc_int.h"
+#include "le_audio_set_configurations.h"
 #include "le_audio_types.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
@@ -61,6 +62,7 @@ using le_audio::LeAudioDeviceGroup;
 using le_audio::LeAudioDeviceGroups;
 using le_audio::LeAudioDevices;
 using le_audio::LeAudioGroupStateMachine;
+using le_audio::set_configurations::StreamConfiguration;
 using le_audio::types::ase;
 using le_audio::types::AseState;
 using le_audio::types::AudioContexts;
@@ -154,7 +156,7 @@ bool use_new_encoder = true;
  */
 class LeAudioClientImpl : public LeAudioClient {
  public:
-  virtual ~LeAudioClientImpl() = default;
+  virtual ~LeAudioClientImpl(){};
 
   LeAudioClientImpl(
       bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
@@ -1726,15 +1728,15 @@ class LeAudioClientImpl : public LeAudioClient {
       source_num_of_active_ases++;
     }
 
-    for (auto& ent : stream_conf->conf->confs) {
-      if (ent.direction == le_audio::types::kLeAudioDirectionSink) {
+    for (auto& ent : stream_conf->conf->confs()) {
+      if (ent.direction() == le_audio::types::kLeAudioDirectionSink) {
         /* Sink*/
         if (!leAudioDevice->ConfigureAses(ent, group->GetCurrentContextType(),
                                           &sink_num_of_active_ases,
                                           sink_group_audio_locations,
                                           source_group_audio_locations, true)) {
           LOG(INFO) << __func__ << " Could not set sink configuration of "
-                    << stream_conf->conf->name;
+                    << stream_conf->conf->name();
           return;
         }
       } else {
@@ -1744,7 +1746,7 @@ class LeAudioClientImpl : public LeAudioClient {
                                           sink_group_audio_locations,
                                           source_group_audio_locations, true)) {
           LOG(INFO) << __func__ << " Could not set source configuration of "
-                    << stream_conf->conf->name;
+                    << stream_conf->conf->name();
           return;
         }
       }
@@ -1813,9 +1815,8 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
-  void PrepareAndSendToTwoDevices(
-      const std::vector<uint8_t>& data,
-      struct le_audio::stream_configuration* stream_conf) {
+  void PrepareAndSendToTwoDevices(const std::vector<uint8_t>& data,
+                                  StreamConfiguration* stream_conf) {
     uint16_t byte_count = stream_conf->sink_octets_per_codec_frame;
     uint16_t left_cis_handle = 0;
     uint16_t right_cis_handle = 0;
@@ -1901,9 +1902,8 @@ class LeAudioClientImpl : public LeAudioClient {
           right_cis_handle, chan_right_enc.data(), chan_right_enc.size());
   }
 
-  void PrepareAndSendToSingleDevice(
-      const std::vector<uint8_t>& data,
-      struct le_audio::stream_configuration* stream_conf) {
+  void PrepareAndSendToSingleDevice(const std::vector<uint8_t>& data,
+                                    StreamConfiguration* stream_conf) {
     int num_channels = current_source_codec_config.num_channels;
     uint16_t byte_count = stream_conf->sink_octets_per_codec_frame;
     auto cis_handle = stream_conf->sink_streams.front().first;
@@ -1965,9 +1965,8 @@ class LeAudioClientImpl : public LeAudioClient {
                                            chan_encoded.size());
   }
 
-  struct le_audio::stream_configuration* GetStreamSinkConfiguration(
-      LeAudioDeviceGroup* group) {
-    struct le_audio::stream_configuration* stream_conf = &group->stream_conf;
+  StreamConfiguration* GetStreamSinkConfiguration(LeAudioDeviceGroup* group) {
+    StreamConfiguration* stream_conf = &group->stream_conf;
     int num_of_devices = 0;
     int num_of_channels = 0;
     uint32_t sample_freq_hz = 0;
@@ -2041,7 +2040,7 @@ class LeAudioClientImpl : public LeAudioClient {
     stream_conf->valid = true;
     stream_conf->conf = group->GetActiveConfiguration();
 
-    LOG(INFO) << __func__ << " configuration: " << stream_conf->conf->name;
+    LOG(INFO) << __func__ << " configuration: " << stream_conf->conf->name();
 
     return stream_conf;
   }
@@ -2175,8 +2174,7 @@ class LeAudioClientImpl : public LeAudioClient {
     return true;
   }
 
-  struct le_audio::stream_configuration* GetStreamSourceConfiguration(
-      LeAudioDeviceGroup* group) {
+  StreamConfiguration* GetStreamSourceConfiguration(LeAudioDeviceGroup* group) {
     LeAudioDevice* device = group->GetFirstActiveDevice();
     LOG_ASSERT(device) << __func__
                        << " Shouldn't be called without an active device.";

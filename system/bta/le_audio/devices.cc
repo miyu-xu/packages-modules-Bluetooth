@@ -28,6 +28,7 @@
 #include "btm_iso_api_types.h"
 #include "client_audio.h"
 #include "device/include/controller.h"
+#include "le_audio_set_configurations.h"
 
 using bluetooth::hci::kIsoCigFramingFramed;
 using bluetooth::hci::kIsoCigFramingUnframed;
@@ -550,9 +551,9 @@ std::optional<AudioContexts> LeAudioDeviceGroup::UpdateActiveContextsMap(
     LOG(INFO) << __func__ << ", updated context: " << loghex(int(ctx_type))
               << ", "
               << (active_context_to_configuration_map[ctx_type] != nullptr
-                      ? active_context_to_configuration_map[ctx_type]->name
+                      ? active_context_to_configuration_map[ctx_type]->name()
                       : "empty")
-              << " -> " << (new_conf != nullptr ? new_conf->name : "empty");
+              << " -> " << (new_conf != nullptr ? new_conf->name() : "empty");
     active_context_to_configuration_map[ctx_type] = new_conf;
   }
 
@@ -637,17 +638,19 @@ uint8_t LeAudioDeviceGroup::GetFirstFreeCisId(void) {
   return kInvalidCisId;
 }
 
-bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
-                              types::AudioLocations audio_locations,
-                              uint8_t requested_channel_count,
-                              uint8_t channel_count_mask) {
+bool CheckIfStrategySupported(
+    set_configurations::LeAudioConfigurationStrategy strategy,
+    types::AudioLocations audio_locations, uint8_t requested_channel_count,
+    uint8_t channel_count_mask) {
   DLOG(INFO) << __func__ << " strategy: " << (int)strategy
              << " locations: " << +audio_locations.to_ulong();
 
   switch (strategy) {
-    case types::LeAudioConfigurationStrategy::MONO_ONE_CIS_PER_DEVICE:
+    case set_configurations::LeAudioConfigurationStrategy::
+        MONO_ONE_CIS_PER_DEVICE:
       return audio_locations.any();
-    case types::LeAudioConfigurationStrategy::STEREO_TWO_CISES_PER_DEVICE:
+    case set_configurations::LeAudioConfigurationStrategy::
+        STEREO_TWO_CISES_PER_DEVICE:
       if ((audio_locations.to_ulong() &
            codec_spec_conf::kLeAudioLocationAnyLeft) &&
           (audio_locations.to_ulong() &
@@ -655,7 +658,8 @@ bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
         return true;
       else
         return false;
-    case types::LeAudioConfigurationStrategy::STEREO_ONE_CIS_PER_DEVICE:
+    case set_configurations::LeAudioConfigurationStrategy::
+        STEREO_ONE_CIS_PER_DEVICE:
       if (!(audio_locations.to_ulong() &
             codec_spec_conf::kLeAudioLocationAnyLeft) ||
           !(audio_locations.to_ulong() &
@@ -685,7 +689,7 @@ bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
 bool LeAudioDeviceGroup::IsConfigurationSupported(
     const set_configurations::AudioSetConfiguration* audio_set_conf,
     types::LeAudioContextType context_type) {
-  if (!set_configurations::check_if_may_cover_scenario(
+  if (!set_configurations::CheckIfMayCoverScenario(
           audio_set_conf, NumOfConnected(context_type))) {
     DLOG(INFO) << __func__ << " cannot cover scenario "
                << static_cast<int>(context_type)
@@ -701,21 +705,21 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
    *    scenarion will be covered.
    * 3) ASEs should be filled according to performance profile.
    */
-  for (const auto& ent : (*audio_set_conf).confs) {
+  for (const auto& ent : (*audio_set_conf).confs()) {
     DLOG(INFO) << __func__
-               << " Looking for configuration: " << audio_set_conf->name
+               << " Looking for configuration: " << audio_set_conf->name()
                << " - "
-               << (ent.direction == types::kLeAudioDirectionSink ? "snk"
-                                                                 : "src");
+               << (ent.direction() == types::kLeAudioDirectionSink ? "snk"
+                                                                   : "src");
 
-    uint8_t required_device_cnt = ent.device_cnt;
+    uint8_t required_device_cnt = ent.device_cnt();
     uint8_t max_required_ase_per_dev =
-        ent.ase_cnt / ent.device_cnt + (ent.ase_cnt % ent.device_cnt);
+        ent.ase_cnt() / ent.device_cnt() + (ent.ase_cnt() % ent.device_cnt());
     uint8_t active_ase_num = 0;
-    auto strategy = ent.strategy;
+    auto strategy = ent.strategy();
 
     DLOG(INFO) << __func__ << " Number of devices: " << +required_device_cnt
-               << " number of ASEs: " << +ent.ase_cnt
+               << " number of ASEs: " << +ent.ase_cnt()
                << " Max ASE per device: " << +max_required_ase_per_dev
                << " strategy: " << static_cast<int>(strategy);
 
@@ -726,11 +730,12 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
 
       if (device->ases_.empty()) continue;
 
-      if (!device->IsCodecConfigurationSupported(ent.direction, ent.codec))
+      if (!device->IsCodecConfigurationSupported(ent.direction(), ent.codec()))
         continue;
 
-      int needed_ase = std::min(static_cast<int>(max_required_ase_per_dev),
-                                static_cast<int>(ent.ase_cnt - active_ase_num));
+      int needed_ase =
+          std::min(static_cast<int>(max_required_ase_per_dev),
+                   static_cast<int>(ent.ase_cnt() - active_ase_num));
 
       /* If we required more ASEs per device which means we would like to
        * create more CISes to one device, we should also check the allocation
@@ -739,7 +744,7 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
 
       types::AudioLocations audio_locations = 0;
       /* Check direction and if audio location allows to create more cise */
-      if (ent.direction == types::kLeAudioDirectionSink)
+      if (ent.direction() == types::kLeAudioDirectionSink)
         audio_locations = device->snk_audio_locations_;
       else
         audio_locations = device->src_audio_locations_;
@@ -747,15 +752,16 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
       /* TODO Make it no Lc3 specific */
       if (!CheckIfStrategySupported(
               strategy, audio_locations,
-              std::get<LeAudioLc3Config>(ent.codec.config).GetChannelCount(),
-              device->GetLc3SupportedChannelCount(ent.direction))) {
+              std::get<LeAudioLc3Config>(ent.codec().config())
+                  .GetChannelCount(),
+              device->GetLc3SupportedChannelCount(ent.direction()))) {
         DLOG(INFO) << __func__ << " insufficient device audio allocation: "
                    << audio_locations;
         continue;
       }
 
       for (auto& ase : device->ases_) {
-        if (ase.direction != ent.direction) continue;
+        if (ase.direction != ent.direction()) continue;
 
         active_ase_num++;
         needed_ase--;
@@ -774,7 +780,7 @@ bool LeAudioDeviceGroup::IsConfigurationSupported(
   }
 
   DLOG(INFO) << "Choosed ASE Configuration for group: " << this->group_id_
-             << " configuration: " << audio_set_conf->name;
+             << " configuration: " << audio_set_conf->name();
   return true;
 }
 
@@ -853,16 +859,19 @@ uint32_t GetFirstRight(const types::AudioLocations audio_locations) {
   return 0;
 }
 
-uint32_t PickAudioLocation(types::LeAudioConfigurationStrategy strategy,
-                           types::AudioLocations audio_locations,
-                           types::AudioLocations* group_audio_locations) {
+uint32_t PickAudioLocation(
+    set_configurations::LeAudioConfigurationStrategy strategy,
+    types::AudioLocations audio_locations,
+    types::AudioLocations* group_audio_locations) {
   DLOG(INFO) << __func__ << " strategy: " << (int)strategy
              << " locations: " << +audio_locations.to_ulong()
              << " group locations: " << +group_audio_locations->to_ulong();
 
   switch (strategy) {
-    case types::LeAudioConfigurationStrategy::MONO_ONE_CIS_PER_DEVICE:
-    case types::LeAudioConfigurationStrategy::STEREO_TWO_CISES_PER_DEVICE:
+    case set_configurations::LeAudioConfigurationStrategy::
+        MONO_ONE_CIS_PER_DEVICE:
+    case set_configurations::LeAudioConfigurationStrategy::
+        STEREO_TWO_CISES_PER_DEVICE:
       if ((audio_locations.to_ulong() &
            codec_spec_conf::kLeAudioLocationAnyLeft) &&
           !(group_audio_locations->to_ulong() &
@@ -881,7 +890,8 @@ uint32_t PickAudioLocation(types::LeAudioConfigurationStrategy strategy,
         return right_location;
       }
       break;
-    case types::LeAudioConfigurationStrategy::STEREO_ONE_CIS_PER_DEVICE:
+    case set_configurations::LeAudioConfigurationStrategy::
+        STEREO_ONE_CIS_PER_DEVICE:
       if ((audio_locations.to_ulong() &
            codec_spec_conf::kLeAudioLocationAnyLeft) &&
           (audio_locations.to_ulong() &
@@ -907,25 +917,26 @@ bool LeAudioDevice::ConfigureAses(
     uint8_t* number_of_already_active_group_ase,
     types::AudioLocations& group_snk_audio_locations,
     types::AudioLocations& group_src_audio_locations, bool reconnect) {
-  struct ase* ase = GetFirstInactiveAse(ent.direction, reconnect);
+  struct ase* ase = GetFirstInactiveAse(ent.direction(), reconnect);
   if (!ase) return false;
 
   uint8_t active_ases = *number_of_already_active_group_ase;
   uint8_t max_required_ase_per_dev =
-      ent.ase_cnt / ent.device_cnt + (ent.ase_cnt % ent.device_cnt);
-  le_audio::types::LeAudioConfigurationStrategy strategy = ent.strategy;
+      ent.ase_cnt() / ent.device_cnt() + (ent.ase_cnt() % ent.device_cnt());
+  le_audio::set_configurations::LeAudioConfigurationStrategy strategy =
+      ent.strategy();
 
   bool is_codec_supported =
-      IsCodecConfigurationSupported(ent.direction, ent.codec);
+      IsCodecConfigurationSupported(ent.direction(), ent.codec());
   if (!is_codec_supported) return false;
 
   int needed_ase = std::min((int)(max_required_ase_per_dev),
-                            (int)(ent.ase_cnt - active_ases));
+                            (int)(ent.ase_cnt() - active_ases));
 
   types::AudioLocations audio_locations = 0;
   types::AudioLocations* group_audio_locations;
   /* Check direction and if audio location allows to create more cise */
-  if (ent.direction == types::kLeAudioDirectionSink) {
+  if (ent.direction() == types::kLeAudioDirectionSink) {
     audio_locations = snk_audio_locations_;
     group_audio_locations = &group_snk_audio_locations;
   } else {
@@ -940,9 +951,9 @@ bool LeAudioDevice::ConfigureAses(
     if (ase->state == AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED)
       ase->reconfigure = true;
 
-    ase->codec_id = ent.codec.id;
+    ase->codec_id = ent.codec().id();
     /* TODO: find better way to not use LC3 explicitly */
-    ase->codec_config = std::get<LeAudioLc3Config>(ent.codec.config);
+    ase->codec_config = std::get<LeAudioLc3Config>(ent.codec().config());
 
     /*Let's choose audio channel allocation if not set */
     ase->codec_config.audio_channel_allocation =
@@ -959,7 +970,7 @@ bool LeAudioDevice::ConfigureAses(
                << ", max_sdu_size=" << +ase->max_sdu_size
                << ", cis_id=" << +ase->cis_id;
 
-    ase = GetFirstInactiveAse(ent.direction, reconnect);
+    ase = GetFirstInactiveAse(ent.direction(), reconnect);
   }
 
   *number_of_already_active_group_ase = active_ases;
@@ -972,7 +983,7 @@ bool LeAudioDevice::ConfigureAses(
 bool LeAudioDeviceGroup::ConfigureAses(
     const set_configurations::AudioSetConfiguration* audio_set_conf,
     types::LeAudioContextType context_type) {
-  if (!set_configurations::check_if_may_cover_scenario(
+  if (!set_configurations::CheckIfMayCoverScenario(
           audio_set_conf, NumOfConnected(context_type)))
     return false;
 
@@ -987,19 +998,20 @@ bool LeAudioDeviceGroup::ConfigureAses(
   types::AudioLocations group_snk_audio_locations = 0;
   types::AudioLocations group_src_audio_locations = 0;
 
-  for (const auto& ent : (*audio_set_conf).confs) {
+  for (const auto& ent : (*audio_set_conf).confs()) {
     DLOG(INFO) << __func__
-               << " Looking for requirements: " << audio_set_conf->name << " - "
-               << (ent.direction == 1 ? "snk" : "src");
+               << " Looking for requirements: " << audio_set_conf->name()
+               << " - " << (ent.direction() == 1 ? "snk" : "src");
 
-    uint8_t required_device_cnt = ent.device_cnt;
+    uint8_t required_device_cnt = ent.device_cnt();
     uint8_t max_required_ase_per_dev =
-        ent.ase_cnt / ent.device_cnt + (ent.ase_cnt % ent.device_cnt);
+        ent.ase_cnt() / ent.device_cnt() + (ent.ase_cnt() % ent.device_cnt());
     uint8_t active_ase_num = 0;
-    le_audio::types::LeAudioConfigurationStrategy strategy = ent.strategy;
+    le_audio::set_configurations::LeAudioConfigurationStrategy strategy =
+        ent.strategy();
 
     DLOG(INFO) << __func__ << " Number of devices: " << +required_device_cnt
-               << " number of ASEs: " << +ent.ase_cnt
+               << " number of ASEs: " << +ent.ase_cnt()
                << " Max ASE per device: " << +max_required_ase_per_dev
                << " strategy: " << (int)strategy;
 
@@ -1007,7 +1019,7 @@ bool LeAudioDeviceGroup::ConfigureAses(
          device != nullptr && required_device_cnt > 0;
          device = GetNextDeviceWithActiveContext(device, context_type)) {
       /* Skip if device has ASE configured in this direction already */
-      if (device->GetFirstActiveAseByDirection(ent.direction)) continue;
+      if (device->GetFirstActiveAseByDirection(ent.direction())) continue;
 
       if (!device->ConfigureAses(ent, context_type, &active_ase_num,
                                  group_snk_audio_locations,
@@ -1026,7 +1038,7 @@ bool LeAudioDeviceGroup::ConfigureAses(
   }
 
   LOG(INFO) << "Choosed ASE Configuration for group: " << this->group_id_
-            << " configuration: " << audio_set_conf->name;
+            << " configuration: " << audio_set_conf->name();
 
   active_context_type_ = context_type;
   return true;
@@ -1048,41 +1060,42 @@ LeAudioDeviceGroup::GetCodecConfigurationByDirection(
   LeAudioCodecConfiguration group_config = {0, 0, 0, 0};
   if (!audio_set_conf) return std::nullopt;
 
-  for (const auto& conf : audio_set_conf->confs) {
-    if (conf.direction != direction) continue;
+  for (const auto& conf : audio_set_conf->confs()) {
+    if (conf.direction() != direction) continue;
 
     if (group_config.sample_rate != 0 &&
-        conf.codec.GetConfigSamplingFrequency() != group_config.sample_rate) {
+        conf.codec().GetConfigSamplingFrequency() != group_config.sample_rate) {
       LOG(WARNING) << __func__
                    << ", stream configuration could not be "
                       "determined (sampling frequency differs) for direction: "
                    << loghex(direction);
       return std::nullopt;
     }
-    group_config.sample_rate = conf.codec.GetConfigSamplingFrequency();
+    group_config.sample_rate = conf.codec().GetConfigSamplingFrequency();
 
     if (group_config.data_interval_us != 0 &&
-        conf.codec.GetConfigDataIntervalUs() != group_config.data_interval_us) {
+        conf.codec().GetConfigDataIntervalUs() !=
+            group_config.data_interval_us) {
       LOG(WARNING) << __func__
                    << ", stream configuration could not be "
                       "determined (data interval differs) for direction: "
                    << loghex(direction);
       return std::nullopt;
     }
-    group_config.data_interval_us = conf.codec.GetConfigDataIntervalUs();
+    group_config.data_interval_us = conf.codec().GetConfigDataIntervalUs();
 
     if (group_config.bits_per_sample != 0 &&
-        conf.codec.GetConfigBitsPerSample() != group_config.bits_per_sample) {
+        conf.codec().GetConfigBitsPerSample() != group_config.bits_per_sample) {
       LOG(WARNING) << __func__
                    << ", stream configuration could not be "
                       "determined (bits per sample differs) for direction: "
                    << loghex(direction);
       return std::nullopt;
     }
-    group_config.bits_per_sample = conf.codec.GetConfigBitsPerSample();
+    group_config.bits_per_sample = conf.codec().GetConfigBitsPerSample();
 
     group_config.num_channels +=
-        conf.codec.GetConfigChannelCount() * conf.device_cnt;
+        conf.codec().GetConfigChannelCount() * conf.device_cnt();
   }
 
   if (group_config.IsInvalid()) return std::nullopt;
@@ -1108,14 +1121,13 @@ const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedConfiguration(
     LeAudioContextType context_type) {
   const set_configurations::AudioSetConfigurations* confs =
-      set_configurations::get_confs_by_type(context_type);
+      set_configurations::GetConfigurationsByType(context_type);
 
   DLOG(INFO) << __func__ << " context type: " << (int)context_type
              << " number of connected devices: " << NumOfConnected();
 
   /* Filter out device set for all scenarios */
-  if (!set_configurations::check_if_may_cover_scenario(confs,
-                                                       NumOfConnected())) {
+  if (!set_configurations::CheckIfMayCoverScenario(confs, NumOfConnected())) {
     LOG(ERROR) << __func__ << ", group is unable to cover scenario";
     return nullptr;
   }
@@ -1124,7 +1136,7 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
 
   for (const auto& conf : *confs) {
     if (IsConfigurationSupported(conf, context_type)) {
-      DLOG(INFO) << __func__ << " found: " << conf->name;
+      DLOG(INFO) << __func__ << " found: " << conf->name();
       return conf;
     }
   }
@@ -1174,12 +1186,12 @@ void LeAudioDeviceGroup::Dump(int fd) {
          << "      current context type: "
          << static_cast<int>(GetCurrentContextType()) << "\n"
          << "      active stream configuration name: "
-         << (active_conf ? active_conf->name : " not set") << "\n"
+         << (active_conf ? active_conf->name() : " not set") << "\n"
          << "    Last used stream configuration: \n"
          << "      valid: " << (stream_conf.valid ? " Yes " : " No") << "\n"
          << "      codec id : " << +(stream_conf.id.coding_format) << "\n"
          << "      name: "
-         << (stream_conf.conf != nullptr ? stream_conf.conf->name : " null ")
+         << (stream_conf.conf != nullptr ? stream_conf.conf->name() : " null ")
          << "\n"
          << "      number of sinks in the configuration "
          << stream_conf.sink_num_of_devices << "\n"

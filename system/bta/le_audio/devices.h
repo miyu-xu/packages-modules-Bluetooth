@@ -28,6 +28,7 @@
 #include "btm_iso_api_types.h"
 #include "client_audio.h"
 #include "gatt_api.h"
+#include "le_audio_set_configurations.h"
 #include "le_audio_types.h"
 #include "osi/include/alarm.h"
 #include "raw_address.h"
@@ -183,7 +184,7 @@ class LeAudioDeviceGroup {
   const int group_id_;
   bool cig_created_;
 
-  struct stream_configuration stream_conf;
+  struct set_configurations::StreamConfiguration stream_conf;
 
   uint8_t audio_directions_;
   types::AudioLocations snk_audio_locations_;
