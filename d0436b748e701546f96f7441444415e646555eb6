@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1d0f750_0508fec6",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-26T22:31:36Z",
+      "side": 1,
+      "message": "To guard localAudioSinkReceiver by concurrent access from bluetooth main thread and audio sink worker thread.",
+      "parentUuid": "971fda40_7576a7c8",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "d0436b748e701546f96f7441444415e646555eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2a01636_575d29c2",
         "filename": "system/bta/le_audio/client_audio.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2021-11-25T10:53:45Z",
       "side": 1,
       "message": "#if defined(OS_ANDROID)\n    LOG(FATAL) \u003c\u003c __func__\n               \u003c\u003c \": Failed to increase A2DP decoder thread priority\";\n#endif",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 17
+      },
+      "revId": "d0436b748e701546f96f7441444415e646555eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "410aa85c_d4790fcc",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-26T22:31:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2a01636_575d29c2",
       "range": {
         "startLine": 123,
         "startChar": 0,
