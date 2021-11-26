@@ -75,6 +75,10 @@ class AdapterProperties {
             "ro.bluetooth.a2dp_offload.supported";
     private static final String A2DP_OFFLOAD_DISABLED_PROPERTY =
             "persist.bluetooth.a2dp_offload.disabled";
+    private static final String LEAUDIO_OFFLOAD_SUPPORTED_PROPERTY =
+            "ro.bluetooth.leaudio_offload.supported";
+    private static final String LEAUDIO_OFFLOAD_ENABLED_PROPERTY =
+            "persist.bluetooth.leaudio_offload.enabled";
 
     private static final long DEFAULT_DISCOVERY_TIMEOUT_MS = 12800;
     private static final int BD_ADDR_LEN = 6; // in bytes
@@ -99,6 +103,7 @@ class AdapterProperties {
     private volatile int mState = BluetoothAdapter.STATE_OFF;
     private int mMaxConnectedAudioDevices = 1;
     private boolean mA2dpOffloadEnabled = false;
+    private boolean mLeaudioOffloadEnabled = false;
 
     private AdapterService mService;
     private boolean mDiscovering;
@@ -223,6 +228,10 @@ class AdapterProperties {
         mA2dpOffloadEnabled =
                 SystemProperties.getBoolean(A2DP_OFFLOAD_SUPPORTED_PROPERTY, false)
                 && !SystemProperties.getBoolean(A2DP_OFFLOAD_DISABLED_PROPERTY, false);
+
+        mLeaudioOffloadEnabled =
+                SystemProperties.getBoolean(LEAUDIO_OFFLOAD_SUPPORTED_PROPERTY, false)
+                && SystemProperties.getBoolean(LEAUDIO_OFFLOAD_ENABLED_PROPERTY, false);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
@@ -544,6 +553,13 @@ class AdapterProperties {
      */
     boolean isA2dpOffloadEnabled() {
         return mA2dpOffloadEnabled;
+    }
+
+    /**
+     * @return LE Audio offload support
+     */
+    boolean isLeaudioOffloadEnabled() {
+        return mLeaudioOffloadEnabled;
     }
 
     /**
@@ -1083,6 +1099,7 @@ class AdapterProperties {
         writer.println("  " + "State: " + BluetoothAdapter.nameForState(getState()));
         writer.println("  " + "MaxConnectedAudioDevices: " + getMaxConnectedAudioDevices());
         writer.println("  " + "A2dpOffloadEnabled: " + mA2dpOffloadEnabled);
+        writer.println("  " + "LeaudioOffloadEnabled: " + mLeaudioOffloadEnabled);
         writer.println("  " + "Discovering: " + mDiscovering);
         writer.println("  " + "DiscoveryEndMs: " + mDiscoveryEndMs);
 
