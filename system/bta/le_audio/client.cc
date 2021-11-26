@@ -2029,12 +2029,24 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void SendAudioData(uint8_t* data, uint16_t size) {
-    /* Get only one channel for MONO microphone */
-    /* Gather data for channel */
-    uint16_t required_for_channel_byte_count =
-        lc3_decoder->lc3Config.getByteCountFromBitrate(32000);
+    if (active_group_id_ == bluetooth::groups::kGroupUnknown ||
+        !audio_sink_ready_to_receive)
+      return;
+
+    LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
+    if (!group) {
+      LOG(ERROR) << __func__ << "There is no streaming group available";
+      return;
+    }
+
+    auto stream_conf = group->stream_conf;
+    if (!stream_conf.valid) {
+      LOG(ERROR) << __func__ << " Stream configuration is not valid.";
+      return;
+    }
+
     size_t required_byte_count = current_sink_codec_config.num_channels *
-                                 required_for_channel_byte_count;
+                                 stream_conf.source_octets_per_codec_frame;
 
     if (required_byte_count != size) {
       LOG(ERROR) << "Insufficient data for decoding and send, required: "
@@ -2043,26 +2055,29 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     uint8_t BEC_detect = 0;
-    std::vector<int16_t> pcm_data_decoded(lc3_decoder->lc3Config.NF, 0);
-    auto err = lc3_decoder->run(data, required_for_channel_byte_count, 0,
-                                pcm_data_decoded.data(),
-                                pcm_data_decoded.size(), BEC_detect);
+    std::vector<int16_t> pcm_data_decoded(
+        lc3_decoder->lc3Config.NF * current_sink_codec_config.num_channels, 0);
+    for (int channel_num = 0;
+         channel_num < current_sink_codec_config.num_channels; channel_num++) {
+      auto err = lc3_decoder->run(
+          data + (stream_conf.source_octets_per_codec_frame * channel_num),
+          stream_conf.source_octets_per_codec_frame, 0,
+          pcm_data_decoded.data() +
+              (stream_conf.source_octets_per_codec_frame * channel_num),
+          stream_conf.source_octets_per_codec_frame, BEC_detect, channel_num);
 
-    /* TODO: How handle failing decoding ? */
-    if (err != Lc3Decoder::ERROR_FREE) {
-      LOG(ERROR) << " error while decoding error code: "
-                 << static_cast<int>(err);
-      return;
+      if (err != Lc3Decoder::ERROR_FREE) {
+        LOG(ERROR) << " error while decoding error code: "
+                   << static_cast<int>(err);
+        return;
+      }
     }
 
     uint16_t to_write = sizeof(int16_t) * pcm_data_decoded.size();
     uint16_t written = LeAudioClientAudioSink::SendData(
         (uint8_t*)pcm_data_decoded.data(), to_write);
 
-    /* TODO: What to do if not all data sinked ? */
     if (written != to_write) LOG(ERROR) << __func__ << ", not all data sinked";
-
-    LOG(INFO) << __func__;
   }
 
   static inline Lc3Config::FrameDuration Lc3ConfigFrameDuration(
@@ -2185,11 +2200,10 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    Lc3Config lc3Config(
+    lc3_decoder = new Lc3Decoder(Lc3Config(
         current_sink_codec_config.sample_rate,
-        Lc3ConfigFrameDuration(current_sink_codec_config.data_interval_us), 1);
-
-    lc3_decoder = new Lc3Decoder(lc3Config);
+        Lc3ConfigFrameDuration(current_sink_codec_config.data_interval_us),
+        current_sink_codec_config.num_channels));
 
     uint16_t remote_delay_ms =
         group->GetRemoteDelay(le_audio::types::kLeAudioDirectionSource);
