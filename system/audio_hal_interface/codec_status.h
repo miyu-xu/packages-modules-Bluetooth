@@ -30,6 +30,8 @@ using ::android::hardware::bluetooth::audio::V2_0::BitsPerSample;
 using ::android::hardware::bluetooth::audio::V2_0::ChannelMode;
 using ::android::hardware::bluetooth::audio::V2_0::CodecConfiguration;
 using ::android::hardware::bluetooth::audio::V2_0::SampleRate;
+using AudioCapabilities_2_2 =
+    ::android::hardware::bluetooth::audio::V2_2::AudioCapabilities;
 
 extern const CodecConfiguration kInvalidCodecConfiguration;
 
@@ -55,6 +57,7 @@ bool UpdateOffloadingCapabilities(
 // by prefernece of framework / Bluetooth SoC / runtime property.
 bool IsCodecOffloadingEnabled(const CodecConfiguration& codec_config);
 
+std::vector<AudioCapabilities_2_2> getLeAudioOffloadEncodingCapabilities();
 }  // namespace codec
 }  // namespace audio
 }  // namespace bluetooth
