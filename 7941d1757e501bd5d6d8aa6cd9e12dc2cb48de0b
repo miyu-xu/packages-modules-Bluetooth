@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d96d7b31_95cc2c9c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1321,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-26T09:17:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dda6a97_10646251",
+      "range": {
+        "startLine": 1318,
+        "startChar": 8,
+        "endLine": 1321,
+        "endChar": 77
+      },
+      "revId": "7941d1757e501bd5d6d8aa6cd9e12dc2cb48de0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0544467d_c1b16768",
@@ -37,6 +61,24 @@
       "writtenOn": "2021-11-26T08:00:03Z",
       "side": 1,
       "message": "This can be called from two places now. You should put a counter inside, and handle scenario when this is called twice in a row with true, and then twice in a row with false (first call with false should not set the filter back)",
+      "revId": "7941d1757e501bd5d6d8aa6cd9e12dc2cb48de0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c89105d2_9dcfdc7c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1874,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-26T09:17:06Z",
+      "side": 1,
+      "message": "Thanks for the reminder!\nDone.",
+      "parentUuid": "0544467d_c1b16768",
       "revId": "7941d1757e501bd5d6d8aa6cd9e12dc2cb48de0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
