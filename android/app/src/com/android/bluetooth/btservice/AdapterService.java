@@ -2251,6 +2251,19 @@ public class AdapterService extends Service {
             return service.isA2dpOffloadEnabled();
         }
 
+        //@Override
+        @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+        public boolean isLeaudioOffloadEnabled(AttributionSource attributionSource) {
+            // don't check caller, may be called from system UI
+            AdapterService service = getService();
+            if (service == null || !Utils.checkConnectPermissionForDataDelivery(
+                    service, attributionSource, "AdapterService isLeaudioOffloadEnabled")) {
+                return false;
+            }
+
+            return service.isLeaudioOffloadEnabled();
+        }
+
         @Override
         public boolean factoryReset(AttributionSource source) {
             AdapterService service = getService();
@@ -3427,6 +3440,15 @@ public class AdapterService extends Service {
      */
     public boolean isA2dpOffloadEnabled() {
         return mAdapterProperties.isA2dpOffloadEnabled();
+    }
+
+    /**
+     * Check whether LE Audio offload is enabled.
+     *
+     * @return true if LE Audio offload is enabled
+     */
+    public boolean isLeaudioOffloadEnabled() {
+        return mAdapterProperties.isLeaudioOffloadEnabled();
     }
 
     private BluetoothActivityEnergyInfo reportActivityInfo() {

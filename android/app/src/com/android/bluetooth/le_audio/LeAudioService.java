@@ -134,6 +134,9 @@ public class LeAudioService extends ProfileService {
 
     private volatile IBluetoothVolumeControl mVolumeControlProxy;
     VolumeControlService mVolumeControlService = null;
+    // LE Audio Offload Enabled in platform
+    boolean mLeaudioOffloadEnabled = false;
+
     private final ServiceConnection mVolumeControlProxyConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
@@ -216,6 +219,11 @@ public class LeAudioService extends ProfileService {
         setLeAudioService(this);
 
         mLeAudioNativeInterface.init();
+
+        mLeaudioOffloadEnabled = mAdapterService.isLeaudioOffloadEnabled();
+        if (DBG) {
+            Log.d(TAG, "LE Audio offload flag set to " + mLeaudioOffloadEnabled);
+        }
 
         return true;
     }
@@ -1440,6 +1448,9 @@ public class LeAudioService extends ProfileService {
     @Override
     public void dump(StringBuilder sb) {
         super.dump(sb);
+        if (mLeaudioOffloadEnabled){
+            ProfileService.println(sb, "codecConfigOffloading:");
+        }
         for (LeAudioStateMachine sm : mStateMachines.values()) {
             sm.dump(sb);
         }
