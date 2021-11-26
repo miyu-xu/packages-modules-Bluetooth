@@ -22,6 +22,30 @@
       },
       "revId": "54d050397d3e8d51f77e7812aa680885e4c86448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2e5c803_698983e6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-26T12:49:39Z",
+      "side": 1,
+      "message": "In case of LE audio Group, we choose one of the device to be a representation of the group in the context of \"ActiveDevice\".\nThat means, LE audio group has IN/OUT capabilities, then this function will return one device address in this array -\u003e [dev][dev]\nIf LE audio group has only OUT capabilities then it will return [dev][null]\nIf LE audio group has only IN capabilities then it will return [null][dev]\n\nI will update the comment of this function",
+      "parentUuid": "3c3d78b7_9c210c6a",
+      "range": {
+        "startLine": 768,
+        "startChar": 7,
+        "endLine": 769,
+        "endChar": 32
+      },
+      "revId": "54d050397d3e8d51f77e7812aa680885e4c86448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

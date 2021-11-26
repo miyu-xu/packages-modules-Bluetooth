@@ -22,6 +22,30 @@
       },
       "revId": "1c0213070de5e7ae4afc25fe3ed98c98eb2c1f4b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b81bd1bb_3ddd0326",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-26T12:49:39Z",
+      "side": 0,
+      "message": "because now,we do have two elements in the array - it is just filled with null.",
+      "parentUuid": "1e6724b3_09ab0e91",
+      "range": {
+        "startLine": 945,
+        "startChar": 0,
+        "endLine": 946,
+        "endChar": 67
+      },
+      "revId": "1c0213070de5e7ae4afc25fe3ed98c98eb2c1f4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
