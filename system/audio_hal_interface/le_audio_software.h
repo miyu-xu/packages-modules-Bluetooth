@@ -20,6 +20,7 @@
 
 #include <functional>
 
+#include "bta/le_audio/le_audio_types.h"
 #include "common/message_loop_thread.h"
 
 namespace bluetooth {
@@ -45,6 +46,9 @@ struct StreamCallbacks {
   std::function<bool(void)> on_suspend_;
   std::function<bool(const source_metadata_t&)> on_metadata_update_;
 };
+
+std::vector<::le_audio::set_configurations::CodecCapabilitySetting>
+get_offload_capabilities();
 
 class LeAudioClientInterface {
  public:

@@ -23,6 +23,11 @@ namespace audio {
 
 namespace le_audio {
 
+std::vector<::le_audio::set_configurations::CodecCapabilitySetting>
+get_offload_capabilities() {
+  return std::vector<::le_audio::set_configurations::CodecCapabilitySetting>(0);
+}
+
 LeAudioClientInterface* LeAudioClientInterface::Get() { return nullptr; }
 
 bool LeAudioClientInterface::IsSinkAcquired() { return false; }
