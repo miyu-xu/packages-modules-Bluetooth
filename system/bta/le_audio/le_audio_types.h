@@ -168,6 +168,23 @@ constexpr uint32_t kLeAudioLocationAnyRight =
 constexpr uint32_t kLeAudioLocationStereo =
     kLeAudioLocationFrontLeft | kLeAudioLocationFrontRight;
 
+constexpr uint32_t kLeAudioLocationAllArray[] = {
+    kLeAudioLocationMonoUnspecified,    kLeAudioLocationFrontLeft,
+    kLeAudioLocationFrontRight,         kLeAudioLocationFrontCenter,
+    kLeAudioLocationLowFreqEffects1,    kLeAudioLocationBackLeft,
+    kLeAudioLocationBackRight,          kLeAudioLocationFrontLeftOfCenter,
+    kLeAudioLocationFrontRightOfCenter, kLeAudioLocationBackCenter,
+    kLeAudioLocationLowFreqEffects2,    kLeAudioLocationSideLeft,
+    kLeAudioLocationSideRight,          kLeAudioLocationTopFrontLeft,
+    kLeAudioLocationTopFrontRight,      kLeAudioLocationTopFrontCenter,
+    kLeAudioLocationTopCenter,          kLeAudioLocationTopBackLeft,
+    kLeAudioLocationTopBackRight,       kLeAudioLocationTopSideLeft,
+    kLeAudioLocationTopSideRight,       kLeAudioLocationTopSideCenter,
+    kLeAudioLocationBottomFrontCenter,  kLeAudioLocationBottomFrontLeft,
+    kLeAudioLocationBottomFrontRight,   kLeAudioLocationFrontLeftWide,
+    kLeAudioLocationFrontRightWide,     kLeAudioLocationLeftSurround,
+    kLeAudioLocationRightSurround};
+
 /* Octets Per Frame */
 constexpr uint16_t kLeAudioCodecLC3FrameLen30 = 30;
 constexpr uint16_t kLeAudioCodecLC3FrameLen40 = 40;
@@ -999,6 +1016,8 @@ struct stream_configuration {
   uint32_t sink_sample_frequency_hz;
   uint32_t sink_frame_duration_us;
   uint16_t sink_octets_per_codec_frame;
+  uint32_t sink_audio_channel_allocation;
+  uint8_t sink_codec_frames_blocks_per_sdu;
   /* Number of channels is what we will request from audio framework */
   uint8_t sink_num_of_channels;
   int sink_num_of_devices;
@@ -1010,6 +1029,8 @@ struct stream_configuration {
   uint32_t source_sample_frequency_hz;
   uint32_t source_frame_duration_us;
   uint16_t source_octets_per_codec_frame;
+  uint32_t source_audio_channel_allocation;
+  uint8_t source_codec_frames_blocks_per_sdu;
   /* Number of channels is what we will request from audio framework */
   uint8_t source_num_of_channels;
   int source_num_of_devices;
