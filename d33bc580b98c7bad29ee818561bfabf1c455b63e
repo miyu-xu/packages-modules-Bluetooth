@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017702337",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903630?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d1747855_f1adf390",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-26T12:55:19Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "d33bc580b98c7bad29ee818561bfabf1c455b63e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017702337",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903630?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "87d3dff8_b7531b46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-26T12:55:19Z",
+      "side": 1,
+      "message": "\"manual, verify audio quality in hearing test.\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 51
+      },
+      "revId": "d33bc580b98c7bad29ee818561bfabf1c455b63e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
