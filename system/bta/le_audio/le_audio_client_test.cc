@@ -1472,7 +1472,8 @@ class UnicastTestNoInit : public Test {
   }
 
   void TestAudioDataTransfer(int group_id, uint8_t cis_count_out,
-                             uint8_t cis_count_in, int data_len) {
+                             uint8_t cis_count_in, int data_len,
+                             int in_data_len = 40) {
     ASSERT_NE(audio_sink_receiver_, nullptr);
 
     // Expect two channels ISO Data to be sent
@@ -1485,8 +1486,9 @@ class UnicastTestNoInit : public Test {
     std::vector<uint8_t> data(data_len);
     audio_sink_receiver_->OnAudioDataReady(data);
 
-    // Inject microphone data from a single peer device
-    EXPECT_CALL(mock_audio_sink_, SendData(_, _)).Times(cis_count_in);
+    // Inject microphone data from group
+    EXPECT_CALL(mock_audio_sink_, SendData(_, _))
+        .Times(cis_count_in > 0 ? 1 : 0);
     ASSERT_EQ(streaming_groups.count(group_id), 1u);
 
     if (cis_count_in) {
@@ -1497,7 +1499,7 @@ class UnicastTestNoInit : public Test {
            device = group->GetNextDevice(device)) {
         for (auto& ase : device->ases_) {
           if (ase.direction == le_audio::types::kLeAudioDirectionSource) {
-            InjectIncomingIsoData(group_id, ase.cis_conn_hdl);
+            InjectIncomingIsoData(group_id, ase.cis_conn_hdl, in_data_len);
             --cis_count_in;
             if (!cis_count_in) break;
           }
@@ -1518,7 +1520,7 @@ class UnicastTestNoInit : public Test {
   }
 
   void InjectIncomingIsoData(uint16_t cig_id, uint16_t cis_con_hdl,
-                             size_t payload_size = 40) {
+                             size_t payload_size) {
     BT_HDR* bt_hdr = (BT_HDR*)malloc(sizeof(BT_HDR) + payload_size);
 
     bt_hdr->offset = 0;
@@ -2456,8 +2458,8 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
 
   // Verify Data transfer on two peer sinks and one source
   uint8_t cis_count_out = 2;
-  uint8_t cis_count_in = 1;
-  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+  uint8_t cis_count_in = 2;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920, 40);
 
   // Suspend
   LeAudioClient::Get()->GroupSuspend(group_id);
@@ -2471,7 +2473,7 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   Mock::VerifyAndClearExpectations(&mock_audio_sink_);
 
   // Verify Data transfer still works
-  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920, 40);
 
   // Stop
   StopStreaming(group_id, true);
@@ -2612,8 +2614,8 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
 
   // Verify Data transfer on two peer sinks and one source
   cis_count_out = 2;
-  cis_count_in = 1;
-  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
+  cis_count_in = 2;
+  TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920, 40);
 }
 
 TEST_F(UnicastTest, TwoEarbuds2ndLateConnect) {
