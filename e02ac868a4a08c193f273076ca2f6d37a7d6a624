@@ -46,6 +46,30 @@
       },
       "revId": "e02ac868a4a08c193f273076ca2f6d37a7d6a624",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ea61aa6_2588f6db",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-11-29T09:50:40Z",
+      "side": 1,
+      "message": "Lukasz reported that this patch was breaking microphone for him, that\u0027s why I asked about sink and source.",
+      "parentUuid": "defc9ada_c1f6b52c",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 3
+      },
+      "revId": "e02ac868a4a08c193f273076ca2f6d37a7d6a624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
