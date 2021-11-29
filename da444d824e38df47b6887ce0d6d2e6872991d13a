@@ -73,6 +73,30 @@
       },
       "revId": "da444d824e38df47b6887ce0d6d2e6872991d13a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f1bc6c8_570fb43b",
+        "filename": "system/bta/hf_client/bta_hf_client_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2021-11-29T17:15:30Z",
+      "side": 1,
+      "message": "You are right. Sorry I didn\u0027t check the patch correctly.",
+      "parentUuid": "d154edc0_0f667824",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 66
+      },
+      "revId": "da444d824e38df47b6887ce0d6d2e6872991d13a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
