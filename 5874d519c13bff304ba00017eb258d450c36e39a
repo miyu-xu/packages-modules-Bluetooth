@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017772788",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1896445?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "60cd978c_4c867624",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-29T16:28:24Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 107,
+        "endChar": 11
+      },
+      "revId": "5874d519c13bff304ba00017eb258d450c36e39a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017772788",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1896445?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d466d377_ba0ed58d",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-29T16:28:24Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 109,
+        "startChar": 4,
+        "endLine": 109,
+        "endChar": 11
+      },
+      "revId": "5874d519c13bff304ba00017eb258d450c36e39a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
