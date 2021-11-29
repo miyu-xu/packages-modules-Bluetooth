@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93216bc7_284b0726",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2021-11-29T16:34:11Z",
+      "side": 1,
+      "message": "Post-submit drive-by.  I don\u0027t have context here, but my (possibly mistaken?) reading of the code is we\u0027ve introduced a NULL dereference.",
+      "revId": "da444d824e38df47b6887ce0d6d2e6872991d13a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee6f897_3739d263",
+        "filename": "system/bta/hf_client/bta_hf_client_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2021-11-29T16:34:11Z",
+      "side": 1,
+      "message": "This seems pretty bad from my reading of the code, as we\u0027re passing NULL for the only parameter...",
+      "revId": "da444d824e38df47b6887ce0d6d2e6872991d13a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fa35738_7ef99b62",
+        "filename": "system/bta/hf_client/bta_hf_client_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2021-11-29T16:34:11Z",
+      "side": 1,
+      "message": "...that parameter is \u0027p_data\u0027...",
+      "revId": "da444d824e38df47b6887ce0d6d2e6872991d13a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d154edc0_0f667824",
+        "filename": "system/bta/hf_client/bta_hf_client_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2021-11-29T16:34:11Z",
+      "side": 1,
+      "message": "...and the very first thing we do in this function is dereference \u0027p_data\u0027.  It seems like this code path is always going to crash from a NULL dereference, unless I\u0027m reading something incorrectly.\n\nI\u0027m guessing we just want to remove the call to this function on line 339 altogether, instead of passing NULL here.  Although maybe there\u0027s something else we intend?",
+      "range": {
+        "startLine": 358,
+        "startChar": 0,
+        "endLine": 359,
+        "endChar": 66
+      },
+      "revId": "da444d824e38df47b6887ce0d6d2e6872991d13a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
