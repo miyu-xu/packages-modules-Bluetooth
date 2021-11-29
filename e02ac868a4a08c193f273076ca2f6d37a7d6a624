@@ -22,6 +22,30 @@
       },
       "revId": "e02ac868a4a08c193f273076ca2f6d37a7d6a624",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "defc9ada_c1f6b52c",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-29T07:31:53Z",
+      "side": 1,
+      "message": "Locking only this part may be unnecessary, since send_audio_data is called only from bt_le_audio_sink_worker_thread.\n\nI\u0027ve add synchronized access to only localAudioSinkReceiver (not localAudioSourceReceiver) to not allow e.g. setting it to null while being in OnAudioDataReady etc.\n\nNot tried with both sink and source. I think it should not have an impact on such scenario since mutex is only for multi thread localAudioSourceReceiver (processing data in worker thread and handling signaling on main thread).",
+      "parentUuid": "4ce77d4b_66ba42de",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 3
+      },
+      "revId": "e02ac868a4a08c193f273076ca2f6d37a7d6a624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
