@@ -36,6 +36,7 @@ using bluetooth::hci::kIsoCigPackingSequential;
 using bluetooth::hci::kIsoCigPhy1M;
 using bluetooth::hci::kIsoCigPhy2M;
 using bluetooth::hci::iso_manager::kIsoSca0To20Ppm;
+using le_audio::set_configurations::AudioSetConfigurationProvider;
 using le_audio::set_configurations::CodecCapabilitySetting;
 using le_audio::types::ase;
 using le_audio::types::AseState;
@@ -1121,7 +1122,7 @@ const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedConfiguration(
     LeAudioContextType context_type) {
   const set_configurations::AudioSetConfigurations* confs =
-      set_configurations::GetConfigurationsByType(context_type);
+      AudioSetConfigurationProvider::Get()->GetConfigurations(context_type);
 
   DLOG(INFO) << __func__ << " context type: " << (int)context_type
              << " number of connected devices: " << NumOfConnected();
@@ -1135,9 +1136,9 @@ LeAudioDeviceGroup::FindFirstSupportedConfiguration(
   /* Filter out device set for each end every scenario */
 
   for (const auto& conf : *confs) {
-    if (IsConfigurationSupported(conf, context_type)) {
-      DLOG(INFO) << __func__ << " found: " << conf->name();
-      return conf;
+    if (IsConfigurationSupported(&conf, context_type)) {
+      DLOG(INFO) << __func__ << " found: " << conf.name();
+      return &conf;
     }
   }
 

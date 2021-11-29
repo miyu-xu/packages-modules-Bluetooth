@@ -156,6 +156,7 @@ cc_defaults {
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
+        "LeAudioSetConfigSchemas_h",
     ],
     shared_libs: [
         "android.hardware.bluetooth.a2dp@1.0",
