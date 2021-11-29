@@ -146,6 +146,17 @@ class MockLeAudioGroupStateMachineCallbacks
   DISALLOW_COPY_AND_ASSIGN(MockLeAudioGroupStateMachineCallbacks);
 };
 
+#ifdef OS_ANDROID
+static const std::vector<std::tuple<bool, const char*, const char*>>
+    kLeAudioSetConfigs = {};
+#else
+static const std::vector<std::tuple<bool, const char*, const char*>>
+    kLeAudioSetConfigs = {
+        {true, "audio_set_scenarios.bfbs", "audio_set_scenarios.json"},
+        {false, "audio_set_configurations.bfbs",
+         "audio_set_configurations.json"}};
+#endif
+
 class StateMachineTest : public Test {
  protected:
   void SetUp() override {
@@ -156,6 +167,8 @@ class StateMachineTest : public Test {
     gatt::SetMockBtaGattQueue(&gatt_queue);
 
     ase_id_last_assigned = types::ase::kAseIdInvalid;
+    set_configurations::AudioSetConfigurationProvider::Initialize(
+        kLeAudioSetConfigs);
     LeAudioGroupStateMachine::Initialize(&mock_callbacks_);
 
     // Support 2M Phy
@@ -395,6 +408,7 @@ class StateMachineTest : public Test {
     le_audio_devices_.clear();
     cached_codec_configuration_map_.clear();
     LeAudioGroupStateMachine::Cleanup();
+    set_configurations::AudioSetConfigurationProvider::Cleanup();
   }
 
   std::shared_ptr<LeAudioDevice> PrepareConnectedDevice(uint8_t id,

@@ -61,6 +61,7 @@ using le_audio::LeAudioDeviceGroup;
 using le_audio::LeAudioDeviceGroups;
 using le_audio::LeAudioDevices;
 using le_audio::LeAudioGroupStateMachine;
+using le_audio::set_configurations::AudioSetConfigurationProvider;
 using le_audio::set_configurations::StreamConfiguration;
 using le_audio::types::ase;
 using le_audio::types::AseState;
@@ -147,7 +148,7 @@ bool use_new_encoder = true;
  */
 class LeAudioClientImpl : public LeAudioClient {
  public:
-  virtual ~LeAudioClientImpl(){};
+  virtual ~LeAudioClientImpl() { AudioSetConfigurationProvider::Cleanup(); };
 
   LeAudioClientImpl(
       bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
@@ -188,6 +189,7 @@ class LeAudioClientImpl : public LeAudioClient {
         true);
 
     DeviceGroups::Get()->Initialize(device_group_callbacks);
+    AudioSetConfigurationProvider::Initialize();
   }
 
   void AseInitialStateReadRequest(LeAudioDevice* leAudioDevice) {
