@@ -19,15 +19,15 @@
 #include <variant>
 #include <vector>
 
+#include "audio_set_configurations_generated.h"
+#include "audio_set_scenarios_generated.h"
+#include "flatbuffers/idl.h"
 #include "le_audio_types.h"
 
 namespace le_audio {
 namespace set_configurations {
 
 struct CodecCapabilitySetting {
-  constexpr CodecCapabilitySetting(types::LeAudioCodecId id,
-                                   std::variant<types::LeAudioLc3Config> config)
-      : id_(id), config_(config) {}
   /* Codec ID */
   const types::LeAudioCodecId& id() const { return id_; }
   /* Codec Configuration */
@@ -44,11 +44,20 @@ struct CodecCapabilitySetting {
   /* Audio channels number for stream */
   uint8_t GetConfigChannelCount() const;
 
+  friend struct SetConfiguration;
+
  private:
   types::LeAudioCodecId id_;
 
   /* Codec Specific Configuration variant */
   std::variant<types::LeAudioLc3Config> config_;
+
+  /* Wrapper constructor */
+  CodecCapabilitySetting(
+      const bluetooth::le_audio::CodecId* flat_codec_id,
+      const flatbuffers::Vector<
+          flatbuffers::Offset<bluetooth::le_audio::CodecSpecificConfiguration>>*
+          flat_codec_specific_caps);
 };
 
 /* Configuration strategy */
@@ -63,48 +72,73 @@ enum class LeAudioConfigurationStrategy : uint8_t {
 };
 
 struct SetConfiguration {
-  constexpr SetConfiguration(
-      uint8_t direction, uint8_t device_cnt, uint8_t ase_cnt,
-      CodecCapabilitySetting codec,
-      LeAudioConfigurationStrategy strategy =
-          LeAudioConfigurationStrategy::MONO_ONE_CIS_PER_DEVICE)
-      : direction_(direction),
-        device_cnt_(device_cnt),
-        ase_cnt_(ase_cnt),
-        codec_(codec),
-        strategy_(strategy) {}
+  uint8_t direction() const { return flat_subconfig_->direction(); }
+  uint8_t device_cnt() const { return flat_subconfig_->device_cnt(); }
+  uint8_t ase_cnt() const { return flat_subconfig_->ase_cnt(); }
+  const CodecCapabilitySetting& codec() const { return codec_; };
+  LeAudioConfigurationStrategy strategy() const {
+    auto strategy_int =
+        static_cast<int>(flat_subconfig_->configuration_strategy());
 
-  uint8_t direction() const { return direction_; }
-  uint8_t device_cnt() const { return device_cnt_; }
-  uint8_t ase_cnt() const { return ase_cnt_; }
-  const CodecCapabilitySetting& codec() const { return codec_; }
-  LeAudioConfigurationStrategy strategy() const { return strategy_; }
+    if ((strategy_int <
+         (int)LeAudioConfigurationStrategy::MONO_ONE_CIS_PER_DEVICE) ||
+        strategy_int > (int)LeAudioConfigurationStrategy::RFU)
+      return LeAudioConfigurationStrategy::RFU;
+
+    return static_cast<LeAudioConfigurationStrategy>(strategy_int);
+  }
+
+  friend struct AudioSetConfiguration;
 
  private:
-  uint8_t direction_;  /* Direction of set */
-  uint8_t device_cnt_; /* How many devices must be in set */
-  uint8_t ase_cnt_;    /* How many ASE we need in configuration */
+  const bluetooth::le_audio::AudioSetSubConfiguration* flat_subconfig_;
+
+  /* Wrapper constructor */
+  SetConfiguration(
+      const bluetooth::le_audio::AudioSetSubConfiguration* flat_subconfig)
+      : flat_subconfig_(flat_subconfig),
+        codec_(CodecCapabilitySetting(flat_subconfig_->codec_id(),
+                                      flat_subconfig_->codec_configuration())) {
+  }
+
   CodecCapabilitySetting codec_;
-  LeAudioConfigurationStrategy strategy_;
 };
 
 struct AudioSetConfiguration {
   const std::string name() const { return std::string(name_); }
   const std::vector<struct SetConfiguration>& confs() const { return confs_; }
 
+  friend struct AudioSetConfigurations;
+
+ private:
   const char* name_;
-  const std::vector<struct SetConfiguration> confs_;
+  std::vector<struct SetConfiguration> confs_;
+
+  /* Wrapper constructor */
+  AudioSetConfiguration(
+      const bluetooth::le_audio::AudioSetConfiguration* flat_cfg);
 };
 
 struct AudioSetConfigurations {
   using const_iterator =
-      typename std::vector<const AudioSetConfiguration*>::const_iterator;
+      typename std::vector<const AudioSetConfiguration>::const_iterator;
   const_iterator begin(void) const { return items_.begin(); }
   const_iterator end(void) const { return items_.end(); }
 
   auto size() const { return items_.size(); }
+  auto empty() const { return items_.empty(); }
 
-  const std::vector<const AudioSetConfiguration*> items_;
+  friend class AudioSetConfigurationProviderImpl;
+
+ private:
+  std::vector<const AudioSetConfiguration> items_;
+
+  /* Wrapper constructor */
+  AudioSetConfigurations(
+      const bluetooth::le_audio::AudioSetScenario* const flat_scenario,
+      const flatbuffers::Vector<
+          flatbuffers::Offset<bluetooth::le_audio::AudioSetConfiguration>>*
+          flats);
 };
 
 struct StreamConfiguration {
@@ -145,8 +179,20 @@ bool CheckIfMayCoverScenario(
 bool IsCodecCapabilitySettingSupported(
     const types::acs_ac_record& pac_record,
     const CodecCapabilitySetting& codec_capability_setting);
-const AudioSetConfigurations* GetConfigurationsByType(
-    ::le_audio::types::LeAudioContextType content_type);
 
+class AudioSetConfigurationProvider {
+ public:
+  static void Initialize(
+      std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
+          configs = {},
+      std::vector<std::pair<const char* /*schema*/, const char* /*content*/>>
+          scenarios = {});
+  static void Cleanup();
+  static AudioSetConfigurationProvider* Get();
+
+  virtual ~AudioSetConfigurationProvider() = default;
+  virtual const AudioSetConfigurations* GetConfigurations(
+      ::le_audio::types::LeAudioContextType content_type) const = 0;
+};
 }  // namespace set_configurations
 }  // namespace le_audio
