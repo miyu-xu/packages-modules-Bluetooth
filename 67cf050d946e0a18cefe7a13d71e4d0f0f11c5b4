@@ -1,0 +1,264 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838488",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7489ce3a_0b3ec1e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "\"Test: atest BluetoothInstrumentationTests\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 47
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "61a61067_7ae45336",
+        "filename": "android/app/src/com/android/bluetooth/tbs/BluetoothGattServerProxy.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Prefer to use context.getSystemService(BluetoothManager.class) instead to avoid the cast.",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 72
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f1ef6848_e35d19ca",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 101
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5e6d75fe_06183307",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8a8fe831_5d275ed4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "10a51ec4_b5967924",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5bdd43fb_81a8ffa0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Use go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bf524208_e2dd57cc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c4b0f12a_33425295",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017838489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1900476?revision\u003d11",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7f38c5d0_359c4f69",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T20:13:24Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "67cf050d946e0a18cefe7a13d71e4d0f0f11c5b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
