@@ -16,6 +16,24 @@
       "message": "I think this will not cause empty filter added twice, I will update my analysis on the bug later.\nThanks!",
       "revId": "52fe59f8b272c0be30a8a018bcba2911a6a740bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6128d6d_ff064ac4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1073518
+      },
+      "writtenOn": "2021-11-30T02:58:54Z",
+      "side": 1,
+      "message": "Please check my comment on the bug. Thanks.",
+      "parentUuid": "1f796019_f2386d86",
+      "revId": "52fe59f8b272c0be30a8a018bcba2911a6a740bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
