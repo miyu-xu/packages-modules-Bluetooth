@@ -44,6 +44,7 @@
 #include "gd/neighbor/page.h"
 #include "gd/neighbor/scan.h"
 #include "gd/os/log.h"
+#include "gd/os/counter_metrics.h"
 #include "gd/security/security_module.h"
 #include "gd/shim/dumpsys.h"
 #include "gd/storage/storage_module.h"
@@ -133,6 +134,7 @@ void Stack::StartEverything() {
   modules.add<storage::StorageModule>();
   modules.add<shim::Dumpsys>();
   modules.add<hci::VendorSpecificEventManager>();
+  modules.add<os::CounterMetrics>();
 
   modules.add<hci::Controller>();
   if (common::init_flags::gd_acl_is_enabled()) {
