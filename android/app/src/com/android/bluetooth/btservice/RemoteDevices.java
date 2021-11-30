@@ -68,6 +68,7 @@ final class RemoteDevices {
     private static final int MESSAGE_UUID_INTENT = 1;
 
     private final HashMap<String, DeviceProperties> mDevices;
+    private final HashMap<String, String> mDualDevicesMap;
     private Queue<String> mDeviceQueue;
 
     private final Handler mHandler;
@@ -139,6 +140,7 @@ final class RemoteDevices {
         sAdapterService = service;
         sSdpTracker = new ArrayList<BluetoothDevice>();
         mDevices = new HashMap<String, DeviceProperties>();
+        mDualDevicesMap = new HashMap<String, String>();
         mDeviceQueue = new LinkedList<String>();
         mHandler = new RemoteDevicesHandler(looper);
     }
@@ -180,6 +182,10 @@ final class RemoteDevices {
             mDevices.clear();
         }
 
+        if (mDualDevicesMap != null) {
+            mDualDevicesMap.clear();
+        }
+
         if (mDeviceQueue != null) {
             mDeviceQueue.clear();
         }
@@ -197,8 +203,14 @@ final class RemoteDevices {
     }
 
     BluetoothDevice getDevice(byte[] address) {
-        DeviceProperties prop = mDevices.get(Utils.getAddressStringFromByte(address));
+        String addressString = Utils.getAddressStringFromByte(address);
+        DeviceProperties prop = mDevices.get(addressString);
         if (prop == null) {
+            String mainAddress = mDualDevicesMap.get(addressString);
+            if (mainAddress != null && mDevices.get(mainAddress) != null) {
+                prop = mDevices.get(mainAddress);
+                return prop.getDevice();
+            }
             return null;
         }
         return prop.getDevice();
@@ -233,6 +245,9 @@ final class RemoteDevices {
     class DeviceProperties {
         private String mName;
         private byte[] mAddress;
+        private String mBrEdrAddress;
+        private String mBleAddress;
+        private boolean mIsConsolidated = false;
         private int mBluetoothClass = BluetoothClass.Device.Major.UNCATEGORIZED;
         private short mRssi;
         private String mAlias;
@@ -254,6 +269,33 @@ final class RemoteDevices {
         String getName() {
             synchronized (mObject) {
                 return mName;
+            }
+        }
+
+        /**
+         * @return the mBrEdrAddress
+         */
+        String getBrEdrAddress() {
+            synchronized (mObject) {
+                return mBrEdrAddress;
+            }
+        }
+
+        /**
+         * @return the mBleAddress
+         */
+        String getBleAddress() {
+            synchronized (mObject) {
+                return mBleAddress;
+            }
+        }
+
+        /**
+         * @return mIsConsolidated
+         */
+        boolean isConsolidated() {
+            synchronized (mObject) {
+                return mIsConsolidated;
             }
         }
 
@@ -677,7 +719,12 @@ final class RemoteDevices {
         }
         Log.d(TAG, "addressConsolidateCallback device: " + device + ", secondaryAddress:"
                 + Utils.getAddressStringFromByte(secondaryAddress));
-        // TODO
+
+        DeviceProperties deviceProperties = getDeviceProperties(device);
+        deviceProperties.mIsConsolidated = true;
+        deviceProperties.mBrEdrAddress = Utils.getAddressStringFromByte(secondaryAddress);
+        deviceProperties.mBleAddress = Utils.getAddressStringFromByte(mainAddress);
+        mDualDevicesMap.put(deviceProperties.getBrEdrAddress(), deviceProperties.getBleAddress());
     }
 
     void aclStateChangeCallback(int status, byte[] address, int newState,
