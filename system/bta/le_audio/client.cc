@@ -2690,10 +2690,10 @@ class LeAudioClientImpl : public LeAudioClient {
 
         if (event->max_pdu_mtos > 0)
           group->SetTransportLatency(le_audio::types::kLeAudioDirectionSink,
-                                     event->trans_lat_mtos);
+                                     event->trans_lat_mtos / 1000);
         if (event->max_pdu_stom > 0)
           group->SetTransportLatency(le_audio::types::kLeAudioDirectionSource,
-                                     event->trans_lat_stom);
+                                     event->trans_lat_stom / 1000);
 
         groupStateMachine_->ProcessHciNotifCisEstablished(group, leAudioDevice,
                                                           event);
