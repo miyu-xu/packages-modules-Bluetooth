@@ -2405,13 +2405,14 @@ public class AdapterService extends Service {
         }
 
         @Override
-        public int isCisCentralSupported() {
+        public int isLeAudioSupported() {
             AdapterService service = getService();
             if (service == null) {
                 return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
             }
 
-            if (service.mAdapterProperties.isLeConnectedIsochronousStreamCentralSupported()) {
+            if (service.mAdapterProperties.isLeConnectedIsochronousStreamCentralSupported() &&
+                    mService.mLeAudioService != null) {
                 return BluetoothStatusCodes.SUCCESS;
             }
 
