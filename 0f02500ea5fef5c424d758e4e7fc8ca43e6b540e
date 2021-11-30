@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c48a39ac_d45ec41a",
+        "filename": "system/build/dpkg/floss/install-dependencies",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2021-11-30T19:17:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32f77e4b_97d88edf",
+      "revId": "0f02500ea5fef5c424d758e4e7fc8ca43e6b540e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b8aaa86_a835a0ef",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-11-30T18:37:23Z",
       "side": 1,
       "message": "Comment not up to date since cargo bin is ~/.cargo/bin and you\u0027re adding ~/bin here.\n\nAlso, it may be a good idea to replace all \"~\" with $HOME for clarity.",
+      "revId": "0f02500ea5fef5c424d758e4e7fc8ca43e6b540e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01115ca9_70d7d617",
+        "filename": "system/build/dpkg/floss/install-dependencies",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2021-11-30T19:17:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b8aaa86_a835a0ef",
       "revId": "0f02500ea5fef5c424d758e4e7fc8ca43e6b540e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
