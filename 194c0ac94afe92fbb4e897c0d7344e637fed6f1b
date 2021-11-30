@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e2826b_6d85819e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-30T15:53:40Z",
+      "side": 1,
+      "message": "I\u0027m not sure about this since final place where latency is returned to audio server is in [ms] not us nor ns. https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/audio_bluetooth_hw/stream_apis.cc;drc\u003d108194c394885ddcc0259a36398300747a05df6b;l\u003d50\n\nWe would waste space for keeping transport latency in redundant variable and passing it to higher layers to finally divide to ms.",
+      "revId": "194c0ac94afe92fbb4e897c0d7344e637fed6f1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
