@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5675eb50_721df472",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-11-30T05:35:04Z",
+      "side": 1,
+      "message": "The patch will cause SDP for BR/EDR canceled when pairing dual mode device over BLE. (b/208349053)\nSorry, I didn\u0027t find this issue when reviewed",
+      "revId": "a96c2f9ca290dd68dc56c2de6f5faee17affb440",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
