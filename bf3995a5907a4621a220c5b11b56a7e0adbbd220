@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017790660",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1905395?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c4e30e33_5fb69425",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T00:07:12Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "bf3995a5907a4621a220c5b11b56a7e0adbbd220",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017790660",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1905395?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d4a7dcaf_15e785f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T00:07:12Z",
+      "side": 1,
+      "message": "\"adb logcat | grep SCHED_FIFO\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 34
+      },
+      "revId": "bf3995a5907a4621a220c5b11b56a7e0adbbd220",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
