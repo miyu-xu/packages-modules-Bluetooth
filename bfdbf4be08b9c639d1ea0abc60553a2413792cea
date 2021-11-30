@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017836840",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1895816?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "01c62a1c_c5a102b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T19:11:30Z",
+      "side": 1,
+      "message": "\"Floss dpkg builds\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 23
+      },
+      "revId": "bfdbf4be08b9c639d1ea0abc60553a2413792cea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
