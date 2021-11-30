@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a315978_87bdf511",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-11-30T23:33:21Z",
+      "side": 1,
+      "message": "try to run atest --host bluetooth_le_audio_test",
+      "revId": "fea4f487065c38e9eb6cb75b6843f0208a8ca244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
