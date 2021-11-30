@@ -487,7 +487,7 @@ uint16_t LeAudioDeviceGroup::GetRemoteDelay(uint8_t direction) {
 
   /* us to ms */
   remote_delay_ms = presentation_delay / 1000;
-  remote_delay_ms += GetTransportLatency(direction) / 1000;
+  remote_delay_ms += GetTransportLatency(direction);
 
   return remote_delay_ms;
 }
