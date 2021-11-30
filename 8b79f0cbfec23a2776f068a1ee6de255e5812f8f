@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee746d77_f8f09cd8",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-11-30T11:35:17Z",
+      "side": 1,
+      "message": "Maybe some kind of warning comment should be added that Flush was called on already closed session ? cause it looks like in only this case it may happen",
+      "revId": "8b79f0cbfec23a2776f068a1ee6de255e5812f8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
