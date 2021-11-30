@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017795575",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1905387?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f4512a9d_5ff3cd4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T01:37:38Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "b6a45b494b1c59f0f10a50586998225f472dbf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017795575",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1905387?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8866db58_6380917f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T01:37:38Z",
+      "side": 1,
+      "message": "\"bluetooth_test_gd_unit\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 34
+      },
+      "revId": "b6a45b494b1c59f0f10a50586998225f472dbf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017795570",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1905387?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "1cbde3e7_7ffb3fe7",
+          "description": "Change to \"system/gd/os/linux_generic/counter_metrics.cc\"",
+          "replacements": [
+            {
+              "path": "system/gd/os/linux_generic/counter_metrics.cc",
+              "range": {
+                "startLine": 27,
+                "startChar": 10,
+                "endLine": 27,
+                "endChar": 16
+              },
+              "replacement": "COUNTER"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f3602bda_208359c4",
+        "filename": "system/gd/os/linux_generic/counter_metrics.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T01:37:38Z",
+      "side": 1,
+      "message": "Common typo found: \"CONTER\" -- should it be \"COUNTER\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 27,
+        "startChar": 10,
+        "endLine": 27,
+        "endChar": 16
+      },
+      "revId": "b6a45b494b1c59f0f10a50586998225f472dbf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017795570",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1905387?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "0de60ac5_0d7595f1",
+          "description": "Change to \"system/gd/os/linux_generic/counter_metrics.cc\"",
+          "replacements": [
+            {
+              "path": "system/gd/os/linux_generic/counter_metrics.cc",
+              "range": {
+                "startLine": 44,
+                "startChar": 27,
+                "endLine": 44,
+                "endChar": 33
+              },
+              "replacement": "COUNTER"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6b774ffe_0e0f490e",
+        "filename": "system/gd/os/linux_generic/counter_metrics.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-11-30T01:37:38Z",
+      "side": 1,
+      "message": "Common typo found: \"CONTER\" -- should it be \"COUNTER\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 44,
+        "startChar": 27,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "b6a45b494b1c59f0f10a50586998225f472dbf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
