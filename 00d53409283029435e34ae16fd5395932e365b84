@@ -34,6 +34,24 @@
       "parentUuid": "40fd01b2_5ec702e7",
       "revId": "00d53409283029435e34ae16fd5395932e365b84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afe814a9_30a6c7a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-11-30T02:58:12Z",
+      "side": 1,
+      "message": "The same concern goes with many RT thread changes. The problem can only be proven with systrace collected along side the bugreport. +2 based on the LE audio claim.",
+      "parentUuid": "3707decb_11667dd7",
+      "revId": "00d53409283029435e34ae16fd5395932e365b84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
