@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017848699",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1906518?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ba5a56d6_cb8cfbc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T00:43:53Z",
+      "side": 1,
+      "message": "\"net_test_btm_iso\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 36
+      },
+      "revId": "934b24e2d72aabeaf1bd96ed8ed3014aaf5c897c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
