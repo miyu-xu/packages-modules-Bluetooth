@@ -1,0 +1,134 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017870383",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b50a1dd8_98ad33aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T16:10:54Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "8413f204c002c977f4062df367c9619bb0006cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017870383",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8748c60b_c040d3cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T16:10:54Z",
+      "side": 1,
+      "message": "{#stability %!s(int\u003d7) %!s(int\u003d4) %!s(int\u003d15)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "8413f204c002c977f4062df367c9619bb0006cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017870383",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9eb4758f_d4921297",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T16:10:54Z",
+      "side": 1,
+      "message": "#stability requires a tracking bug number",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 15
+      },
+      "revId": "8413f204c002c977f4062df367c9619bb0006cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017870383",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "40803a94_7799c20d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T16:10:54Z",
+      "side": 1,
+      "message": "\"manual\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "8413f204c002c977f4062df367c9619bb0006cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017870384",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "078f61f5_5e2de065",
+        "filename": "system/vendor_libs/linux/interface/bluetooth_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T16:10:54Z",
+      "side": 1,
+      "message": "sleep and its variants should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 12
+      },
+      "revId": "8413f204c002c977f4062df367c9619bb0006cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
