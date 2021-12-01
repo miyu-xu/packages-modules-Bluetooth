@@ -96,6 +96,7 @@ cc_library_shared {
         "libcrypto",
         "libflatbuffers-cpp",
         "liblog",
+        "libutilscallstack",
     ],
     static_libs: [
         "libbte",
