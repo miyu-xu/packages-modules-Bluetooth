@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f730ad20_aa1f5c52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1684060
+      },
+      "writtenOn": "2021-12-01T16:02:55Z",
+      "side": 1,
+      "message": "Some questions regarding lint findings:\n1. Who is my sponsor?\n2. Sleep can be avoided, but bt_linux has to be completely redesigned to support true hotplug. This patch is just another workaround to make things a little more stable. Can I somehow suppress this LINT warning?",
+      "revId": "c2aeb722ce62a93a801a23fa13c4a7abf2518dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
