@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e9b478c_52a6e33e",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-01T17:34:45Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 431,
+        "endChar": 6
+      },
+      "revId": "4b5c244770f9a4f30f546ce4d2bbba657e23b5f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
