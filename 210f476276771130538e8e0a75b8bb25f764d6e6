@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4698373_00b86534",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpCoverArtService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2021-12-01T18:41:51Z",
+      "side": 1,
+      "message": "Do we want to add why we are limiting the packet size?",
+      "revId": "210f476276771130538e8e0a75b8bb25f764d6e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
