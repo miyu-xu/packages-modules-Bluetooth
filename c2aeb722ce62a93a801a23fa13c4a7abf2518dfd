@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017869911",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5b690fdc_f80f8cc3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T15:53:27Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "c2aeb722ce62a93a801a23fa13c4a7abf2518dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017869911",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "45d1a266_7be7c754",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T15:53:27Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "c2aeb722ce62a93a801a23fa13c4a7abf2518dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017869911",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "38cb9ce9_48ba0759",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T15:53:27Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "c2aeb722ce62a93a801a23fa13c4a7abf2518dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017869912",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907691?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ac56cca8_35d90a0b",
+        "filename": "system/vendor_libs/linux/interface/bluetooth_hci.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-01T15:53:27Z",
+      "side": 1,
+      "message": "sleep and its variants should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 85,
+        "startChar": 6,
+        "endLine": 85,
+        "endChar": 12
+      },
+      "revId": "c2aeb722ce62a93a801a23fa13c4a7abf2518dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
