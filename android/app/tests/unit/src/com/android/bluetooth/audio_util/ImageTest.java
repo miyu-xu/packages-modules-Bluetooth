@@ -19,6 +19,7 @@ package com.android.bluetooth.audio_util;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 import android.content.ContentResolver;
@@ -52,6 +53,7 @@ public class ImageTest {
     private Context mTargetContext;
 
     private @Mock Context mMockContext;
+    private @Mock Resources mMockResources;
     private Resources mTestResources;
     private MockContentResolver mTestContentResolver;
 
@@ -104,6 +106,8 @@ public class ImageTest {
         });
 
         when(mMockContext.getContentResolver()).thenReturn(mTestContentResolver);
+        when(mMockContext.getResources()).thenReturn(mMockResources);
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
     }
 
     @After
