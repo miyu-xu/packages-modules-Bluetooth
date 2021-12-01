@@ -16,6 +16,23 @@
       "message": "friendly ping :) ",
       "revId": "eb22a4c405b72e82ffd0552d03b547d0fd3fdee6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cafba760_faf87251",
+        "filename": "system/stack/gatt/gatt_auth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2021-12-01T19:09:38Z",
+      "side": 1,
+      "message": "Should we be logging and returning if p_clcb is null, since it would crash if null.",
+      "revId": "eb22a4c405b72e82ffd0552d03b547d0fd3fdee6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
