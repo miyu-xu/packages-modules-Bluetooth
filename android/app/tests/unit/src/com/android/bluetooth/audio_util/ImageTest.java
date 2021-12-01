@@ -19,6 +19,7 @@ package com.android.bluetooth.audio_util;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 import android.content.ContentResolver;
@@ -52,6 +53,7 @@ public class ImageTest {
     private Context mTargetContext;
 
     private @Mock Context mMockContext;
+    private @Mock Resources mMockResources;
     private Resources mTestResources;
     private MockContentResolver mTestContentResolver;
 
@@ -104,6 +106,7 @@ public class ImageTest {
         });
 
         when(mMockContext.getContentResolver()).thenReturn(mTestContentResolver);
+        when(mMockContext.getResources()).thenReturn(mMockResources);
     }
 
     @After
@@ -190,6 +193,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaMetadataWithArt() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaMetadata metadata =
                 getMediaMetadataWithBitmap(MediaMetadata.METADATA_KEY_ART, mTestBitmap);
         Image artwork = new Image(mMockContext, metadata);
@@ -204,6 +208,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaMetadataWithAlbumArt() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaMetadata metadata =
                 getMediaMetadataWithBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, mTestBitmap);
         Image artwork = new Image(mMockContext, metadata);
@@ -218,6 +223,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaMetadataWithDisplayIcon() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaMetadata metadata =
                 getMediaMetadataWithBitmap(MediaMetadata.METADATA_KEY_DISPLAY_ICON, mTestBitmap);
         Image artwork = new Image(mMockContext, metadata);
@@ -232,6 +238,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaMetadataWithArtUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaMetadata metadata =
                 getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_ART_URI, IMAGE_STRING_1);
         Image artwork = new Image(mMockContext, metadata);
@@ -246,6 +253,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaMetadataWithAlbumArtUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaMetadata metadata =
                 getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_ALBUM_ART_URI, IMAGE_STRING_1);
         Image artwork = new Image(mMockContext, metadata);
@@ -260,6 +268,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaMetadataWithDisplayIconUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaMetadata metadata =
                 getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_DISPLAY_ICON_URI,
                         IMAGE_STRING_1);
@@ -270,10 +279,57 @@ public class ImageTest {
     }
 
     /**
+     * Make sure no image is set when you create an Image from a MediaMetadata object that contains
+     * cover artwork as an Art Uri and Bluetooth is not configured to support URI images.
+     */
+    @Test
+    public void testCreateImageFromMediaMetadataWithArtUriDisabled() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(false);
+        MediaMetadata metadata =
+                getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_ART_URI, IMAGE_STRING_1);
+        Image artwork = new Image(mMockContext, metadata);
+        assertThat(artwork.getImage()).isNull();
+        assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_NONE);
+        assertThat(artwork.getImageHandle()).isNull();
+    }
+
+    /**
+     * Make sure no image is set when you create an Image from a MediaMetadata object that contains
+     * cover artwork as an Album Art Uri and Bluetooth is not configured to support URI images.
+     */
+    @Test
+    public void testCreateImageFromMediaMetadataWithAlbumArtUriDisabled() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(false);
+        MediaMetadata metadata =
+                getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_ALBUM_ART_URI, IMAGE_STRING_1);
+        Image artwork = new Image(mMockContext, metadata);
+        assertThat(artwork.getImage()).isNull();
+        assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_NONE);
+        assertThat(artwork.getImageHandle()).isNull();
+    }
+
+    /**
+     * Make sure no image is set when you create an Image from a MediaMetadata object that contains
+     * cover artwork as a Display Icon Uri and Bluetooth is not configured to support URI images.
+     */
+    @Test
+    public void testCreateImageFromMediaMetadataWithDisplayIconUriDisabled() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(false);
+        MediaMetadata metadata =
+                getMediaMetadataWithUri(MediaMetadata.METADATA_KEY_DISPLAY_ICON_URI,
+                        IMAGE_STRING_1);
+        Image artwork = new Image(mMockContext, metadata);
+        assertThat(artwork.getImage()).isNull();
+        assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_NONE);
+        assertThat(artwork.getImageHandle()).isNull();
+    }
+
+    /**
      * Make sure you can create an Image from a MediaMetadata object that contains no cover artwork
      */
     @Test
     public void testCreateImageFromMediaMetadataWithoutArtwork() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaMetadata metadata = getMediaMetadataWithoutArt();
         Image artwork = new Image(mMockContext, metadata);
         assertThat(artwork.getImage()).isNull();
@@ -287,6 +343,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaDescriptionWithImage() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaDescription description = getMediaDescriptionWithBitmap(mTestBitmap);
         Image artwork = new Image(mMockContext, description);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
@@ -300,6 +357,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaDescriptionWithUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaDescription description = getMediaDescriptionWithUri(IMAGE_URI_1);
         Image artwork = new Image(mMockContext, description);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
@@ -313,6 +371,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromMediaDescriptionWithoutArtwork() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         MediaDescription description = getMediaDescriptionWithoutArt();
         Image artwork = new Image(mMockContext, description);
         assertThat(artwork.getImage()).isNull();
@@ -325,6 +384,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromBundleWithArt() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Bundle bundle = getBundleWithBitmap(MediaMetadata.METADATA_KEY_ART, mTestBitmap);
         Image artwork = new Image(mMockContext, bundle);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
@@ -338,6 +398,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromBundleWithAlbumArt() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Bundle bundle = getBundleWithBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART, mTestBitmap);
         Image artwork = new Image(mMockContext, bundle);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
@@ -351,6 +412,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromBundleWithDisplayIcon() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Bundle bundle = getBundleWithBitmap(MediaMetadata.METADATA_KEY_DISPLAY_ICON, mTestBitmap);
         Image artwork = new Image(mMockContext, bundle);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
@@ -363,6 +425,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromBundleWithArtUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Bundle bundle = getBundleWithUri(MediaMetadata.METADATA_KEY_ART_URI, IMAGE_STRING_1);
         Image artwork = new Image(mMockContext, bundle);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
@@ -376,6 +439,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromBundleWithAlbumArtUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Bundle bundle = getBundleWithUri(MediaMetadata.METADATA_KEY_ALBUM_ART_URI, IMAGE_STRING_1);
         Image artwork = new Image(mMockContext, bundle);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
@@ -389,6 +453,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromBundleWithDisplayIconUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Bundle bundle =
                 getBundleWithUri(MediaMetadata.METADATA_KEY_DISPLAY_ICON_URI, IMAGE_STRING_1);
         Image artwork = new Image(mMockContext, bundle);
@@ -398,10 +463,54 @@ public class ImageTest {
     }
 
     /**
+     * Make sure no image is set when you create an Image from a Bundle that contains cover artwork
+     * as an Art Uri and Bluetooth is not configured to support URI images.
+     */
+    @Test
+    public void testCreateImageFromBundleWithArtUriDisabled() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(false);
+        Bundle bundle = getBundleWithUri(MediaMetadata.METADATA_KEY_ART_URI, IMAGE_STRING_1);
+        Image artwork = new Image(mMockContext, bundle);
+        assertThat(artwork.getImage()).isNull();
+        assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_NONE);
+        assertThat(artwork.getImageHandle()).isNull();
+    }
+
+    /**
+     * Make sure no image is set when you create an Image from a Bundle that contains cover artwork
+     * as an Album Art Uri and Bluetooth is not configured to support URI images.
+     */
+    @Test
+    public void testCreateImageFromBundleWithAlbumArtUriDisabled() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(false);
+        Bundle bundle = getBundleWithUri(MediaMetadata.METADATA_KEY_ALBUM_ART_URI, IMAGE_STRING_1);
+        Image artwork = new Image(mMockContext, bundle);
+        assertThat(artwork.getImage()).isNull();
+        assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_NONE);
+        assertThat(artwork.getImageHandle()).isNull();
+    }
+
+    /**
+     * Make sure no image is set when you create an Image from a Bundle that contains cover artwork
+     * as a Display Icon Uri and Bluetooth is not configured to support URI images.
+     */
+    @Test
+    public void testCreateImageFromBundleWithDisplayIconUriDisabled() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(false);
+        Bundle bundle =
+                getBundleWithUri(MediaMetadata.METADATA_KEY_DISPLAY_ICON_URI, IMAGE_STRING_1);
+        Image artwork = new Image(mMockContext, bundle);
+        assertThat(artwork.getImage()).isNull();
+        assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_NONE);
+        assertThat(artwork.getImageHandle()).isNull();
+    }
+
+    /**
      * Make sure you can create an Image from a Bundle that contains no cover artwork
      */
     @Test
     public void testCreateImageFromBundleWithoutArtwork() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Bundle bundle = new Bundle();
         Image artwork = new Image(mMockContext, bundle);
         assertThat(artwork.getImage()).isNull();
@@ -414,6 +523,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromUri() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Image artwork = new Image(mMockContext, IMAGE_URI_1);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
         assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_URI);
@@ -425,6 +535,7 @@ public class ImageTest {
      */
     @Test
     public void testCreateImageFromBitmap() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Image artwork = new Image(mMockContext, mTestBitmap);
         assertThat(mTestBitmap.sameAs(artwork.getImage())).isTrue();
         assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_BITMAP);
@@ -436,6 +547,7 @@ public class ImageTest {
      */
     @Test
     public void testGetImageHandleWithEmptyHandle() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Image artwork = new Image(mMockContext, mTestBitmap);
         assertThat(artwork.getImageHandle()).isNull();
     }
@@ -445,6 +557,7 @@ public class ImageTest {
      */
     @Test
     public void testSetAndGetImageHandle() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Image artwork = new Image(mMockContext, mTestBitmap);
         artwork.setImageHandle(IMAGE_HANDLE_1);
         assertThat(artwork.getImageHandle()).isEqualTo(IMAGE_HANDLE_1);
@@ -456,6 +569,7 @@ public class ImageTest {
      */
     @Test
     public void testLoadImageFromUriWithSecurityException() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Image artwork = new Image(mMockContext, IMAGE_URI_SECURITY_ERROR);
         assertThat(artwork.getImageHandle()).isNull();
         assertThat(artwork.getSource()).isEqualTo(Image.SOURCE_NONE);
@@ -467,6 +581,7 @@ public class ImageTest {
      */
     @Test
     public void testToString() {
+        when(mMockResources.getBoolean(anyInt())).thenReturn(true);
         Image artwork = new Image(mMockContext, mTestBitmap);
         assertThat(artwork.toString()).isNotNull();
     }
