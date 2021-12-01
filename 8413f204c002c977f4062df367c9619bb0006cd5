@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21cc8c3d_7a4b34b6",
+        "filename": "system/vendor_libs/linux/interface/bluetooth_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2021-12-01T19:09:56Z",
+      "side": 1,
+      "message": "a timer or usleep if perhaps better instead of sleep. How about a counter which prints the log statement only once in 10 tries. Wouldnt that solve the verbose messages instead of making the thread sleep?",
+      "revId": "8413f204c002c977f4062df367c9619bb0006cd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
