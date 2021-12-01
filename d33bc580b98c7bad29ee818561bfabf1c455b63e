@@ -22,6 +22,30 @@
       },
       "revId": "d33bc580b98c7bad29ee818561bfabf1c455b63e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d60538db_f83e3319",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-01T16:33:16Z",
+      "side": 1,
+      "message": "In Blueooth code this is uint32_t, but in all audio related code size_t is used to represent intervals and frame_count accept size_t too.\n\nI don\u0027t really have a strong preference, if you think this type distinction is important I can change that.",
+      "parentUuid": "ebe56b7f_7d019e0d",
+      "range": {
+        "startLine": 322,
+        "startChar": 63,
+        "endLine": 322,
+        "endChar": 74
+      },
+      "revId": "d33bc580b98c7bad29ee818561bfabf1c455b63e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
