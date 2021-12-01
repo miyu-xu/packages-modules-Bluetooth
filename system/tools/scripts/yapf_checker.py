@@ -34,12 +34,9 @@ def main():
             the diff
     :return:
     """
+
     if COMMIT_ID_ENV_KEY not in os.environ:
         logging.error('Missing PREUPLOAD_COMMIT in environment.')
-        exit(1)
-
-    if ANDROID_BUILD_TOP_KEY not in os.environ:
-        logging.error('Missing ANDROID_BUILD_TOP in environment.')
         exit(1)
 
     # Gather changed Python files
@@ -49,6 +46,10 @@ def main():
     full_files = [os.path.abspath(f) for f in files if f.endswith('.py')]
     if not full_files:
         return
+
+    if ANDROID_BUILD_TOP_KEY not in os.environ:
+        logging.error('Missing ANDROID_BUILD_TOP in environment.')
+        exit(1)
 
     # Find yapf in Android code tree
     yapf_dir = os.path.join(os.environ[ANDROID_BUILD_TOP_KEY], DEFAULT_YAPF_DIR)
