@@ -22,6 +22,30 @@
       },
       "revId": "4b5c244770f9a4f30f546ce4d2bbba657e23b5f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15e3072e_6fd25b2a",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-01T19:08:07Z",
+      "side": 1,
+      "message": "Another CL...I have one that \u0027grep BTSNOOP_MEM\u0027 b/c there are others and part of the dreaded bt_target.h",
+      "parentUuid": "7e9b478c_52a6e33e",
+      "range": {
+        "startLine": 430,
+        "startChar": 0,
+        "endLine": 431,
+        "endChar": 6
+      },
+      "revId": "4b5c244770f9a4f30f546ce4d2bbba657e23b5f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
