@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adc50d8f_54b3b487",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-01T17:40:14Z",
+      "side": 1,
+      "message": "Why delete the address manager before unregistering the event handlers?",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 46
+      },
+      "revId": "4d32f79c97580f9d4980e198bc90bda27c39a832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
