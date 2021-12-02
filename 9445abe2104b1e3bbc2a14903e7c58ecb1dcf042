@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f64722b3_6fccdaaa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/ImageTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-02T16:06:38Z",
+      "side": 1,
+      "message": "Adding a test to prove the expected behavior when URI Images are not supported might be a good idea.",
+      "range": {
+        "startLine": 52,
+        "startChar": 13,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "9445abe2104b1e3bbc2a14903e7c58ecb1dcf042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
