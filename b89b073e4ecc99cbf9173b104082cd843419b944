@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c126b254_69f7a52a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-02T18:30:14Z",
+      "side": 1,
+      "message": "More worries about HFP and A2DP. PAN looks good to me. ",
+      "revId": "b89b073e4ecc99cbf9173b104082cd843419b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
