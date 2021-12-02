@@ -34,6 +34,24 @@
       "parentUuid": "1f796019_f2386d86",
       "revId": "52fe59f8b272c0be30a8a018bcba2911a6a740bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86f24238_a6313067",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-02T06:38:22Z",
+      "side": 1,
+      "message": "Sorry about wrong comments, I tested it by start discovery again after 10s, but actually our inquiry length is 12.8s. Inquiry complete will remove the empty filter.\n\nBluetooth HCI Command - Inquiry\n    Command Opcode: Inquiry (0x0401)\n    Parameter Total Length: 5\n    LAP: 0x9e8b33\n    Inquiry Length: 10 (12.8 sec)\n    Num Responses: 0\n\nSo I didn\u0027t meet this issue, after looking your log again, I realize the symptom you described.\nThanks!",
+      "parentUuid": "b6128d6d_ff064ac4",
+      "revId": "52fe59f8b272c0be30a8a018bcba2911a6a740bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
