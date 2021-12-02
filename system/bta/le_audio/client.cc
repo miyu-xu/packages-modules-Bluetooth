@@ -2471,6 +2471,22 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
+    /* For testing only */
+    if (osi_property_get_bool("persist.bluetooth.use_phone_context", false)) {
+      LOG(INFO) << __func__ << " override to PHONE context type ";
+
+      if (current_context_type_ != LeAudioContextType::CONVERSATIONAL) {
+        upcoming_context_type_ = LeAudioContextType::CONVERSATIONAL;
+        /* Schedule HAL Session update */
+        do_in_main_thread(
+            FROM_HERE, base::Bind(&LeAudioClientImpl::UpdateCurrentHalSessions,
+                                  base::Unretained(instance), group->group_id_,
+                                  upcoming_context_type_));
+        LeAudioClientAudioSource::CancelStreamingRequest();
+        return;
+      }
+    }
+
     /* Check if the device resume is expected */
     if (!group->GetCodecConfigurationByDirection(
             current_context_type_, le_audio::types::kLeAudioDirectionSink)) {
