@@ -22,6 +22,30 @@
       },
       "revId": "611e583c199b4d69e701b4eb079e12201e91b685",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffd34718_f21869af",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-02T21:30:38Z",
+      "side": 1,
+      "message": "I actually had that initially...but discarded it on a subtle nuance.\n\nThe connections in this map are potential connections... (potential_connections_ ?)\n\nThe adjective \u0027pending\u0027 implies something of certainty to happen within a short period of time, one way or another, failure, success, etc.  For example, I think of the hci pending command or BTM command pending which is used throughout the stack.  An event is guaranteed to follow, and if a device transitions out of the pending state w/out a connection it would appear to be a fault of some kind, which it is not.  I think of classic falling into this space where there is in explicit intent to connect.\n\nDevices in this list are in a potential connectable state, and based upon many debatable conditions, may not have an obvious exit condition within a short time period to either convert to a full connection, or abort/cancel/timeout.\n\nI chose \u0027awaiting\u0027 as a _softer_ less aggressive term, indicating that devices could sit here indefinitely waiting for an adv packet to indicate a connection should be made.  It seemed more clear to the reader that exiting a waiting condition isn\u0027t necessarily a failure but part of the intent of the LE spec to have more loosely coupled device connection network.\n\nAnyway, structure naming is one of the two most difficult software engineering problems, along with cache coherence and off by one errors.\n\nI can certainly s/awaiting_/pending_ pretty easily but do want to change the name.",
+      "parentUuid": "6728d72d_55e47916",
+      "range": {
+        "startLine": 777,
+        "startChar": 28,
+        "endLine": 777,
+        "endChar": 37
+      },
+      "revId": "611e583c199b4d69e701b4eb079e12201e91b685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
