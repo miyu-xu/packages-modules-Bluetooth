@@ -16,6 +16,24 @@
       "message": "This should be fine and the code looks great, though best I can tell it doesn\u0027t fix a bug or do anything new that the code doesn\u0027t already do. In the spirit of that, I might just leave the code as is until we know we need the change. \n\nThe Image object was originally meant to be agnostic of the outside business rules that are used to build it. As such, we currently prevent URI images from being used a level up in Metadata.java when the Image is built.\n\nThat said, who knows though! Maybe our partners have patches on top of this suggested change and use Image.java differently than we originally intended and more patch requests will come in on top of this shortly. And this does make dealing with URI images safer at the cost of a bit of flexibility. I trust your judgement!\n\nChanging this will likely impact several of the unit tests as well, so make sure those are ran and updated.",
       "revId": "cf7055e053d7c9ec2336ca14e38de0b8467454fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d9c2966_6955cb48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2021-12-02T14:39:22Z",
+      "side": 1,
+      "message": "Thanks for the feedback! Indeed, these changes currently do not fix anything in the code, but as those were requested by one of our partners I think that they do have patches over this, yes.",
+      "parentUuid": "6b198747_8c8260cf",
+      "revId": "cf7055e053d7c9ec2336ca14e38de0b8467454fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
