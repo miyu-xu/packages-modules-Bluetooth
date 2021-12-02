@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b908ecb0_58088cc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1868991
+      },
+      "writtenOn": "2021-12-02T00:38:45Z",
+      "side": 1,
+      "message": "This is the same one as aosp/1854082 and please refer to it for previous comments. It is copied here due to the change of repo.",
+      "revId": "0eca2a94304b909cffe337ed21d6efa941cf9f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
