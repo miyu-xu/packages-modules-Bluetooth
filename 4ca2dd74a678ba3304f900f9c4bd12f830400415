@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36d33421_e8f75ef8",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-02T09:27:27Z",
+      "side": 1,
+      "message": "Should we also try to disconnect the device after cleaning up the keys?",
+      "revId": "4ca2dd74a678ba3304f900f9c4bd12f830400415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
