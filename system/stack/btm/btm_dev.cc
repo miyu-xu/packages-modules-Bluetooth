@@ -149,6 +149,7 @@ bool BTM_SecDeleteDevice(const RawAddress& bd_addr) {
     return bluetooth::shim::BTM_SecDeleteDevice(bd_addr);
   }
 
+  LOG(INFO) << __func__ << " " << bd_addr.ToString();
   if (BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE) ||
       BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_BR_EDR)) {
     BTM_TRACE_WARNING("%s FAILED: Cannot Delete when connection is active",
