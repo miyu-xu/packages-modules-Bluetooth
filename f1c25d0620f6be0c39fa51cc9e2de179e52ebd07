@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017905013",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1906021?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e5da876d_20371f51",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-02T10:52:42Z",
+      "side": 1,
+      "message": "\"BasicAdapterTest\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "f1c25d0620f6be0c39fa51cc9e2de179e52ebd07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017905014",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1906021?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "912ffd50_05cabdce",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2431,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-02T10:52:42Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 2431,
+        "startChar": 0,
+        "endLine": 2431,
+        "endChar": 119
+      },
+      "revId": "f1c25d0620f6be0c39fa51cc9e2de179e52ebd07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
