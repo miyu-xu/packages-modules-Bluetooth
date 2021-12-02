@@ -1988,7 +1988,7 @@ static AdvertiseParameters parseParams(JNIEnv* env, jobject i) {
   p.advertising_event_properties = props;
   p.min_interval = interval;
   p.max_interval = interval + INTERVAL_DELTA;
-  p.channel_map = 0x07; /* all channels */
+  p.channel_map = 0x04; /* channel 39 */
   p.tx_power = txPowerLevel;
   p.primary_advertising_phy = primaryPhy;
   p.secondary_advertising_phy = secondaryPhy;
