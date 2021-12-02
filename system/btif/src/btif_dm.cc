@@ -2450,7 +2450,7 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
   parameters.advertising_event_properties = 0x0041 /* connectable, tx power */;
   parameters.min_interval = 0xa0;   // 100 ms
   parameters.max_interval = 0x500;  // 800 ms
-  parameters.channel_map = 0x7;     // Use all the channels
+  parameters.channel_map = 0x2;     // Use channel 38
   parameters.tx_power = 0;          // 0 dBm
   parameters.primary_advertising_phy = 1;
   parameters.secondary_advertising_phy = 2;
