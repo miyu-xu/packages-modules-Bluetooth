@@ -22,6 +22,30 @@
       },
       "revId": "9445abe2104b1e3bbc2a14903e7c58ecb1dcf042",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61aa2f1_1b9738b0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/ImageTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2021-12-02T17:52:41Z",
+      "side": 1,
+      "message": "Sure, done!",
+      "parentUuid": "f64722b3_6fccdaaa",
+      "range": {
+        "startLine": 52,
+        "startChar": 13,
+        "endLine": 52,
+        "endChar": 22
+      },
+      "revId": "9445abe2104b1e3bbc2a14903e7c58ecb1dcf042",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
