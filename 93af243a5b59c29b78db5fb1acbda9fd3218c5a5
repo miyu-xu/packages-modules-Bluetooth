@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017925348",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1905387?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "de6eb135_cb0a209d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-02T23:40:12Z",
+      "side": 1,
+      "message": "\"bluetooth_test_gd_unit\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 34
+      },
+      "revId": "93af243a5b59c29b78db5fb1acbda9fd3218c5a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
