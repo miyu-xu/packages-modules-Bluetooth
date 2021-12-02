@@ -16,6 +16,23 @@
       "message": "This is the same one as aosp/1850621 and please refer to it for review comments. It is copied here due to the repo change.  ",
       "revId": "e10a1b724951ca112e948670c8cf8c2604a06f91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bc8ccce_940bc866",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1868991
+      },
+      "writtenOn": "2021-12-02T00:35:50Z",
+      "side": 1,
+      "message": "This is the same one as aosp/1854082 and please refer to it for previous comments. It is copied here due to the change of repo. ",
+      "revId": "e10a1b724951ca112e948670c8cf8c2604a06f91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
