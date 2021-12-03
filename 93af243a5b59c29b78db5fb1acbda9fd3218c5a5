@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4dc02b5_2ce62b0e",
+        "filename": "system/gd/metrics/counter_metrics.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-03T20:31:06Z",
+      "side": 1,
+      "message": "even though we buffer the counters in this class, when writing we still write them one-by-one. Then why not just writing it directly to stats_log? What benefit do we get from buffering it?",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "93af243a5b59c29b78db5fb1acbda9fd3218c5a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
