@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017961111",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908995?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a6bb0123_045e4ad4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T16:07:45Z",
+      "side": 1,
+      "message": "{#compatibility %!s(int\u003d4) %!s(int\u003d4) %!s(int\u003d19)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "f2ca784cb85cc0bba4d50261e79aa119b34117e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017961112",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908995?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "621fd040_a04214cc",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T16:07:45Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 112
+      },
+      "revId": "f2ca784cb85cc0bba4d50261e79aa119b34117e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017961112",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908995?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9e676817_e8f3cfc2",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T16:07:45Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 103
+      },
+      "revId": "f2ca784cb85cc0bba4d50261e79aa119b34117e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017961112",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908995?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "308c0a43_46484941",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T16:07:45Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 105
+      },
+      "revId": "f2ca784cb85cc0bba4d50261e79aa119b34117e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
