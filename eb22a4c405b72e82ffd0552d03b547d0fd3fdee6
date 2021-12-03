@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acbafb57_f1467fe8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-12-03T21:40:10Z",
+      "side": 1,
+      "message": "thanks for the comment!",
+      "revId": "eb22a4c405b72e82ffd0552d03b547d0fd3fdee6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cafba760_faf87251",
@@ -31,6 +48,24 @@
       "writtenOn": "2021-12-01T19:09:38Z",
       "side": 1,
       "message": "Should we be logging and returning if p_clcb is null, since it would crash if null.",
+      "revId": "eb22a4c405b72e82ffd0552d03b547d0fd3fdee6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42a004f1_ef9d691e",
+        "filename": "system/stack/gatt/gatt_auth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-12-03T21:40:10Z",
+      "side": 1,
+      "message": "Hmm, we\u0027re already crashing if p_clcb is null in this function; this CL just tries to make that more obvious. If you\u0027d like, I can add things to log instead of crashing, but I don\u0027t work in bt/, so I unfortunately don\u0027t have the context to say what behavior is most appropriate here. :)\n\nPlease LMK your thoughts",
+      "parentUuid": "cafba760_faf87251",
       "revId": "eb22a4c405b72e82ffd0552d03b547d0fd3fdee6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
