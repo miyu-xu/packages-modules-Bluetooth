@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d154d24a_d4040aa5",
+        "filename": "system/gd/hci/hci_metrics_logging.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2021-12-03T20:35:06Z",
+      "side": 1,
+      "message": "This line is actually the only difference from the log_link_layer_connection_command_status, right?\n\nAll other items of the LLC events will be logged exact same, right?\n\nCan we keep the log_link_layer_connection_command_status, and at server side, treat android::bluetooth::hci::EVT_COMMAND_STATUS same as  android::bluetooth::hci::EVT_UNKNOWN, as a command?",
+      "revId": "f2ca784cb85cc0bba4d50261e79aa119b34117e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
