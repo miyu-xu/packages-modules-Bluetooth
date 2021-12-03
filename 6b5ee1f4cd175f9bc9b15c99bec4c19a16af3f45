@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017960742",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1906021?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ba8c3966_e6553f97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T15:49:35Z",
+      "side": 1,
+      "message": "\"BasicAdapterTest\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "6b5ee1f4cd175f9bc9b15c99bec4c19a16af3f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
