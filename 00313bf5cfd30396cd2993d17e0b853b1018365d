@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "997c3dfa_6b1e4148",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4073,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:38:18Z",
+      "side": 1,
+      "message": "Change this to a new logging:\nLOG_WARN(\"RC key missing\");",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e6dc6f1_429fe735",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4074,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:38:18Z",
+      "side": 1,
+      "message": "Can you initialize like this:\ntBTA_DM_SEC param \u003d {\n  .delete_key_RC_to_unpair \u003d {\n      .bd_addr \u003d bd_addr,\n   },\n};",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8351aa_d71fd3b0",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:38:18Z",
+      "side": 1,
+      "message": "No need for both logging messages; combing into a single LOG_ERROR",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a48658e0_03e88f33",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1787,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:38:18Z",
+      "side": 1,
+      "message": "Change to a LOG_WARN(\"\");  \n\nAnd no need to add function __func__",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "065845e0_bb292882",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3275,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:38:18Z",
+      "side": 1,
+      "message": "Just add the \u0027status\u0027 since it should be the same\n\np_dev_rec-\u003esec_status \u003d status;",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "665524df_f9b7be87",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:38:18Z",
+      "side": 1,
+      "message": "Use proper type\n\ntHCI_STATUS sec_status;",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
