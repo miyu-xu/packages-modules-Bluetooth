@@ -22,6 +22,30 @@
       },
       "revId": "93af243a5b59c29b78db5fb1acbda9fd3218c5a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "908e5efc_0bae99ce",
+        "filename": "system/gd/metrics/counter_metrics.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2021-12-03T20:44:29Z",
+      "side": 1,
+      "message": "For counter keys that log very frequently, (eg, a code snippet running every minute), by having a buffer, we\u0027ll call stats_log 4-5 times for thoses key instead of thousands of times per day. \n\nLet\u0027s say that we have 100 counters and each of them will call Count() for 100 times per day:\n\nWith the buffer, the events generated will be 5 * number of counter keys \u003d 500.\nWithout the buffer, the events generated will be the sum of all Count() \u003d 10000.",
+      "parentUuid": "c4dc02b5_2ce62b0e",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "93af243a5b59c29b78db5fb1acbda9fd3218c5a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
