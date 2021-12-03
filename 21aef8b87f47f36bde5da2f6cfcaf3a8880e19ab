@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "490d3a60_674abd8c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2858,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:43:37Z",
+      "side": 1,
+      "message": "Add a LOG_INFO to indicate we hit this code\ne.g.\nLOG_INFO(\"Replying to ble security event initiated by remote using SSP\");",
+      "revId": "21aef8b87f47f36bde5da2f6cfcaf3a8880e19ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
