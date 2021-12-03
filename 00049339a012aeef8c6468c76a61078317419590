@@ -1,0 +1,1049 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969774",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0441dde0_342a4d56",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969774",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "eabee698_ec6985ad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969774",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "15f1c44b_7b257723",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "19d659f0_43229909",
+          "description": "Change to \"android/app/jni/com_android_bluetooth_gatt.cpp\"",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 187,
+                "startChar": 30,
+                "endLine": 187,
+                "endChar": 40
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "39611e3b_bfab6aef",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 187,
+        "startChar": 30,
+        "endLine": 187,
+        "endChar": 40
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "8723399b_761e22d8",
+          "description": "Change to \"android/app/jni/com_android_bluetooth_gatt.cpp\"",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 2217,
+                "startChar": 15,
+                "endLine": 2217,
+                "endChar": 25
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "b2667e37_91fece1e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2217,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 2217,
+        "startChar": 15,
+        "endLine": 2217,
+        "endChar": 25
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "9340d391_b4378a3b",
+          "description": "Change to \"android/app/jni/com_android_bluetooth_gatt.cpp\"",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 2218,
+                "startChar": 37,
+                "endLine": 2218,
+                "endChar": 47
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1b4d51a4_3728378b",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2218,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 2218,
+        "startChar": 37,
+        "endLine": 2218,
+        "endChar": 47
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "367752e4_8ba1dff9",
+          "description": "Change to \"android/app/jni/com_android_bluetooth_gatt.cpp\"",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 2297,
+                "startChar": 18,
+                "endLine": 2297,
+                "endChar": 28
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "02fd1c27_168de9b6",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2297,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 2297,
+        "startChar": 18,
+        "endLine": 2297,
+        "endChar": 28
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b41150f6_b61eca62",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2307,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 2307,
+        "startChar": 0,
+        "endLine": 2307,
+        "endChar": 101
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "33bfd56f_223ac67c",
+          "description": "Change to \"android/app/jni/com_android_bluetooth_gatt.cpp\"",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 2307,
+                "startChar": 71,
+                "endLine": 2307,
+                "endChar": 81
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e1fa9a35_399dfebe",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2307,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 2307,
+        "startChar": 71,
+        "endLine": 2307,
+        "endChar": 81
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "33723a08_69f0005a",
+          "description": "Change to \"android/app/jni/com_android_bluetooth_gatt.cpp\"",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 2316,
+                "startChar": 51,
+                "endLine": 2316,
+                "endChar": 61
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a040f265_13f7ff8f",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2316,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 2316,
+        "startChar": 51,
+        "endLine": 2316,
+        "endChar": 61
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "23fc91a0_4587f8de",
+          "description": "Change to \"android/app/jni/com_android_bluetooth_gatt.cpp\"",
+          "replacements": [
+            {
+              "path": "android/app/jni/com_android_bluetooth_gatt.cpp",
+              "range": {
+                "startLine": 2323,
+                "startChar": 51,
+                "endLine": 2323,
+                "endChar": 61
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e00fb443_884162b9",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2323,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 2323,
+        "startChar": 51,
+        "endLine": 2323,
+        "endChar": 61
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "08716d3d_01bded4e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 112
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e81f34ec_79fb5bf2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 110
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7aed3351_4bfdb993",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 266,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 105
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8aadd039_d0c3b90a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 106
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "00ec23a4_1bd33ea6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 102
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "840654b6_a08f14e1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 102
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "5dd0bb81_0cc3d914",
+          "description": "Change to \"android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+              "range": {
+                "startLine": 325,
+                "startChar": 15,
+                "endLine": 325,
+                "endChar": 25
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3c685416_68d28234",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 325,
+        "startChar": 15,
+        "endLine": 325,
+        "endChar": 25
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "404737fb_b9c1cd63",
+          "description": "Change to \"android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+              "range": {
+                "startLine": 326,
+                "startChar": 26,
+                "endLine": 326,
+                "endChar": 36
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1c6acc00_b77f261e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 326,
+        "startChar": 26,
+        "endLine": 326,
+        "endChar": 36
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "9c2bbd6c_e2e35339",
+          "description": "Change to \"android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+              "range": {
+                "startLine": 332,
+                "startChar": 31,
+                "endLine": 332,
+                "endChar": 41
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a0704c38_aebb2bf5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 332,
+        "startChar": 31,
+        "endLine": 332,
+        "endChar": 41
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c2a30e51_faf63fef",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 110
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7bd917af_8c92b65a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 382,
+        "endChar": 109
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f2d46dab_d42908cc",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 111
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969777",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [
+        {
+          "fixId": "537687c5_f7b6167d",
+          "description": "Change to \"system/binder/android/bluetooth/le/IPeriodicAdvertisingCallback.aidl\"",
+          "replacements": [
+            {
+              "path": "system/binder/android/bluetooth/le/IPeriodicAdvertisingCallback.aidl",
+              "range": {
+                "startLine": 31,
+                "startChar": 13,
+                "endLine": 31,
+                "endChar": 23
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d0b5b409_0548baaf",
+        "filename": "system/binder/android/bluetooth/le/IPeriodicAdvertisingCallback.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0dd3b522_f2ab58c6",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027valid\u0027, \u0027validity check\u0027 or \u0027initial check\u0027; see https://source.android.com/setup/contribute/respectful-code for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 868,
+        "startChar": 5,
+        "endLine": 868,
+        "endChar": 11
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c77c056d_ee4df246",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 871,
+        "startChar": 2,
+        "endLine": 871,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a3053168_fd8efe62",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 972,
+        "startChar": 2,
+        "endLine": 972,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "de5b47b4_71533490",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1435,
+        "startChar": 0,
+        "endLine": 1435,
+        "endChar": 106
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dd0b1e3b_3eb0dfa4",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3350,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 3350,
+        "startChar": 2,
+        "endLine": 3350,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969770",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dcd2c4b7_1122164a",
+        "filename": "system/stack/btm/btm_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969770",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c2ca623a_5f398c17",
+        "filename": "system/stack/include/ble_scanner.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969775",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "832bd406_e0918b5a",
+        "filename": "system/stack/include/btm_ble_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 662,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 104
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017969770",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c0856227_1455dbcc",
+        "filename": "system/test/mock/mock_stack_btm_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T19:33:17Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
