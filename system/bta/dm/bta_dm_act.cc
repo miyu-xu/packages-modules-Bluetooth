@@ -125,7 +125,7 @@ static void bta_dm_ctrl_features_rd_cmpl_cback(tHCI_STATUS result);
 
 #ifndef BTA_DM_BLE_ADV_CHNL_MAP
 #define BTA_DM_BLE_ADV_CHNL_MAP \
-  (BTM_BLE_ADV_CHNL_37 | BTM_BLE_ADV_CHNL_38 | BTM_BLE_ADV_CHNL_39)
+  (BTM_BLE_ADV_CHNL_37 | BTM_BLE_ADV_CHNL_37 | BTM_BLE_ADV_CHNL_37)
 #endif
 
 /* Disable timer interval (in milliseconds) */

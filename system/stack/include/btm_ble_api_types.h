@@ -80,7 +80,7 @@ typedef uint8_t tBTM_BLE_ADV_CHNL_MAP;
 /*d efault advertising channel map */
 #ifndef BTM_BLE_DEFAULT_ADV_CHNL_MAP
 #define BTM_BLE_DEFAULT_ADV_CHNL_MAP \
-  (BTM_BLE_ADV_CHNL_37 | BTM_BLE_ADV_CHNL_38 | BTM_BLE_ADV_CHNL_39)
+  (BTM_BLE_ADV_CHNL_37 | BTM_BLE_ADV_CHNL_37 | BTM_BLE_ADV_CHNL_37)
 #endif
 
 /* advertising filter policy */
