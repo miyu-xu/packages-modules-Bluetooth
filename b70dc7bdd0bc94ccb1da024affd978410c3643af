@@ -67,6 +67,23 @@
       "message": "No longer needed when moved to same location where br/edr is set",
       "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9b4a695_bbe1d9fe",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:25:57Z",
+      "side": 1,
+      "message": "I assume this field is no longer needed; can it be reset here ?\n\ne.g.\np_data-\u003edscp_info.hid_handle \u003d BTA_HH_INVALID_HANDLE;",
+      "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
