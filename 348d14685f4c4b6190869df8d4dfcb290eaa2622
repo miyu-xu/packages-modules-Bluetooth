@@ -1,0 +1,359 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942684",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "30bd4b2c_2e9ff537",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942684",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c43c4e6c_c5de44e2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942684",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a4d96613_ab0356cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942679",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "c07ae209_12dffc8b",
+          "description": "Change to \"system/binder/android/bluetooth/le/IPeriodicAdvertisingCallback.aidl\"",
+          "replacements": [
+            {
+              "path": "system/binder/android/bluetooth/le/IPeriodicAdvertisingCallback.aidl",
+              "range": {
+                "startLine": 31,
+                "startChar": 13,
+                "endLine": 31,
+                "endChar": 23
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "80ccd836_24d51355",
+        "filename": "system/binder/android/bluetooth/le/IPeriodicAdvertisingCallback.aidl",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 31,
+        "startChar": 13,
+        "endLine": 31,
+        "endChar": 23
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942685",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7501430d_63c20f4d",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027valid\u0027, \u0027validity check\u0027 or \u0027initial check\u0027; see https://source.android.com/setup/contribute/respectful-code for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 868,
+        "startChar": 5,
+        "endLine": 868,
+        "endChar": 11
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942685",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2a0a3019_b7f61239",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 871,
+        "startChar": 2,
+        "endLine": 871,
+        "endChar": 9
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942685",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5b53a2b5_00a7478b",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 972,
+        "startChar": 2,
+        "endLine": 972,
+        "endChar": 9
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942685",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f2c6cbcd_3e2c2845",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1435,
+        "startChar": 0,
+        "endLine": 1435,
+        "endChar": 106
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942685",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b3015cd0_7688a8eb",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3350,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 3350,
+        "startChar": 2,
+        "endLine": 3350,
+        "endChar": 9
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942678",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3f47c482_f23e703b",
+        "filename": "system/stack/btm/btm_ble_scanner.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942678",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2987b374_03a6ca1e",
+        "filename": "system/stack/include/ble_scanner.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942685",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0e1594b6_4d779dea",
+        "filename": "system/stack/include/btm_ble_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 662,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 104
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017942678",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4e4c317f_7b98effc",
+        "filename": "system/test/mock/mock_stack_btm_ble_scanner.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T05:32:40Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "348d14685f4c4b6190869df8d4dfcb290eaa2622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
