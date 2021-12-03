@@ -16,6 +16,57 @@
       "message": "Based on this being already on pi-tv-mtk-dev",
       "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d019b6d_b27aa7c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:15:11Z",
+      "side": 1,
+      "message": "Can you please also remove this now unused field in btif_hh_cb_t ?\n\nsystem/btif/include/btif_hh.h 115 btif_hh_device_t* p_curr_dev;\n",
+      "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550c69df_c4d24b0b",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:15:11Z",
+      "side": 1,
+      "message": "Can you save the outstanding dscp hid handle at this level for le too ?\n\ne.g.\nif (p_cb-\u003ehid_srvc.in_use)\n  p_cb-\u003edscp_info.hid_handle \u003d p_cb-\u003ehid_handle;\nbta_hh_le_get_dscp_act(p_cb);\n\nThen you need to modify 1 less file.",
+      "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d63e6c7_537d9016",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1981,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-03T01:15:11Z",
+      "side": 1,
+      "message": "No longer needed when moved to same location where br/edr is set",
+      "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
