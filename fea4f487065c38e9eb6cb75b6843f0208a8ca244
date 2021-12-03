@@ -16,6 +16,24 @@
       "message": "try to run atest --host bluetooth_le_audio_test",
       "revId": "fea4f487065c38e9eb6cb75b6843f0208a8ca244",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab5fede7_9cff4115",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-12-03T14:18:55Z",
+      "side": 1,
+      "message": "Running Tests...\n\nx86_64 bluetooth_le_audio_client_test\n-------------------------------------\nbluetooth_le_audio_client_test (23 Tests)\n[1/23] UnicastTest#Initialize: PASSED (15ms)\n[2/23] UnicastTest#ConnectOneEarbudEmpty: PASSED (5ms)\n[3/23] UnicastTest#ConnectOneEarbudNoPacs: PASSED (3ms)\n[4/23] UnicastTest#ConnectOneEarbudNoAscs: PASSED (3ms)\n[5/23] UnicastTest#ConnectOneEarbudNoCas: PASSED (11ms)\n[6/23] UnicastTest#ConnectOneEarbudNoCsis: PASSED (18ms)\n[7/23] UnicastTest#ConnectDisconnectOneEarbud: PASSED (44ms)\n[8/23] UnicastTest#ConnectTwoEarbudsCsisGrouped: PASSED (47ms)\n[9/23] UnicastTest#ConnectTwoEarbudsCsisGroupUnknownAtConnect: PASSED (39ms)\n[10/23] UnicastTest#GroupingAddRemove: PASSED (46ms)\n[11/23] UnicastTest#GroupingAddTwiceNoRemove: PASSED (47ms)\n[12/23] UnicastTest#RemoveTwoEarbudsCsisGrouped: PASSED (64ms)\n[13/23] UnicastTest#RemoveWhileStreaming: PASSED (14ms)\n[14/23] UnicastTest#SpeakerStreaming: PASSED (14ms)\n[15/23] UnicastTest#SpeakerStreamingAutonomousRelease: PASSED (16ms)\n[16/23] UnicastTest#TwoEarbudsStreaming: PASSED (38ms)\n[17/23] UnicastTest#TwoEarbudsStreamingContextSwitchSimple: PASSED (50ms)\n[18/23] UnicastTest#TwoEarbudsStreamingContextSwitchReconfigure: PASSED (39ms)\n[19/23] UnicastTest#TwoEarbuds2ndLateConnect: PASSED (34ms)\n[20/23] UnicastTest#TwoEarbuds2ndDisconnect: PASSED (43ms)\n[21/23] UnicastTestNoInit#InitializeNoHal_2_1: PASSED (126ms)\n[22/23] UnicastTestNoInit#LoadStoredEarbudsCsisGrouped: PASSED (37ms)\n[23/23] UnicastTestNoInit#LoadStoredEarbudsCsisGroupedDifferently: PASSED (28ms)\n\nSummary\n-------\nx86_64 bluetooth_le_audio_client_test: Passed: 23, Failed: 0, Ignored: 0, Assumption Failed: 0,    \n\nAll tests passed!\n\nWhich should be failing ?\nWhat is the problem on your side ?",
+      "parentUuid": "9a315978_87bdf511",
+      "revId": "fea4f487065c38e9eb6cb75b6843f0208a8ca244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
