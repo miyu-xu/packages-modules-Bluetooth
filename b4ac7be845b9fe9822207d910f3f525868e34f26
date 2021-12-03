@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017966623",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908693?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f71859f0_c17d9173",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T18:27:35Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "b4ac7be845b9fe9822207d910f3f525868e34f26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017966623",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908693?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "df5ce207_6263cf45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T18:27:35Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "b4ac7be845b9fe9822207d910f3f525868e34f26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000017966616",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908693?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b99e167c_1bbd482b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-03T18:27:35Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 1324,
+        "startChar": 74,
+        "endLine": 1324,
+        "endChar": 75
+      },
+      "revId": "b4ac7be845b9fe9822207d910f3f525868e34f26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
