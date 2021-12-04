@@ -1,0 +1,580 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd5095f9_7d2a3a8b",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"Transfered\" -- should it be \"Transferred\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "39611e3b_bfab6aef",
+      "range": {
+        "startLine": 187,
+        "startChar": 30,
+        "endLine": 187,
+        "endChar": 40
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bda3326_d4183fa2",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2307,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"Transfered\" -- should it be \"Transferred\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "e1fa9a35_399dfebe",
+      "range": {
+        "startLine": 2307,
+        "startChar": 71,
+        "endLine": 2307,
+        "endChar": 81
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1403b516_3113592c",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2307,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "b41150f6_b61eca62",
+      "range": {
+        "startLine": 2307,
+        "startChar": 0,
+        "endLine": 2307,
+        "endChar": 101
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "432df643_ee64da87",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2316,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"Transfered\" -- should it be \"Transferred\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "a040f265_13f7ff8f",
+      "range": {
+        "startLine": 2316,
+        "startChar": 51,
+        "endLine": 2316,
+        "endChar": 61
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c587ab8f_b1e62b84",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2323,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"Transfered\" -- should it be \"Transferred\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "e00fb443_884162b9",
+      "range": {
+        "startLine": 2323,
+        "startChar": 51,
+        "endLine": 2323,
+        "endChar": 61
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b5c9f6a_8c2efe12",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "08716d3d_01bded4e",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 112
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8c83e1d_96d03817",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "e81f34ec_79fb5bf2",
+      "range": {
+        "startLine": 164,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 110
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd687745_2b3677c5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "8aadd039_d0c3b90a",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 106
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c6d0982_d81e7865",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "00ec23a4_1bd33ea6",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 102
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572aa289_514dc3f4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "840654b6_a08f14e1",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 102
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "479bec7e_b185082b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"Transfered\" -- should it be \"Transferred\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "3c685416_68d28234",
+      "range": {
+        "startLine": 325,
+        "startChar": 15,
+        "endLine": 325,
+        "endChar": 25
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "780fd54b_fdee8735",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"Transfered\" -- should it be \"Transferred\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "1c6acc00_b77f261e",
+      "range": {
+        "startLine": 326,
+        "startChar": 26,
+        "endLine": 326,
+        "endChar": 36
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70e7c5d8_2487bf81",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"Transfered\" -- should it be \"Transferred\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "a0704c38_aebb2bf5",
+      "range": {
+        "startLine": 332,
+        "startChar": 31,
+        "endLine": 332,
+        "endChar": 41
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f016755_2af756ed",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "c2a30e51_faf63fef",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 110
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d28530a4_b0907e60",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "7bd917af_8c92b65a",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 382,
+        "endChar": 109
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2263abd0_ee63e302",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "f2d46dab_d42908cc",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 111
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08675ec4_239d0311",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Please use language idioms to initialize or assign\n\nPlease fix.Please use C++ assignments like\n\n*p_node \u003d *p_param;\n\ninstead of memcpy to avoid accidental OOB memory write in future changes to this file",
+      "parentUuid": "c77c056d_ee4df246",
+      "range": {
+        "startLine": 871,
+        "startChar": 2,
+        "endLine": 871,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c618b40d_47b0322c",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Please use language idioms to initialize or assign\n\nPlease fix.Please use C++ approaches like\n\nsync_node_t node \u003d {};\n\ninstead of memset. If someone adds a C++ data type to sync_node_t like std::mutex or std::string, memset to 0 will break the code",
+      "parentUuid": "a3053168_fd8efe62",
+      "range": {
+        "startLine": 972,
+        "startChar": 2,
+        "endLine": 972,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a63bff31_fc8045d3",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "de5b47b4_71533490",
+      "range": {
+        "startLine": 1435,
+        "startChar": 0,
+        "endLine": 1435,
+        "endChar": 106
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98d4236b_4126205f",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3350,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Please use language idioms to initialize or assign\n\nPlease fix. Same as above, please use\n\nbtm_ble_pa_sync_cb \u003d {};\n\nto zero out the struct instead",
+      "parentUuid": "dd0b1e3b_3eb0dfa4",
+      "range": {
+        "startLine": 3350,
+        "startChar": 2,
+        "endLine": 3350,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5ed5c60_0fd1a97e",
+        "filename": "system/stack/btm/btm_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\n\u003e Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n\u003e \n\nPlease fix. Could this license header be replaced with the standard Android Apache license header as shown here?\n\nhttps://cs.android.com/android/platform/superproject/+/master:development/docs/copyright-templates/c.txt",
+      "parentUuid": "dcd2c4b7_1122164a",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0229bf_d8fa872a",
+        "filename": "system/stack/include/ble_scanner.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\n\u003e Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n\u003e \n\nPlease fix.Could this license header be replaced with the standard Android Apache license header as shown here?\n\nhttps://cs.android.com/android/platform/superproject/+/master:development/docs/copyright-templates/c.txt",
+      "parentUuid": "c2ca623a_5f398c17",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3a5c5ea_0f9ceffb",
+        "filename": "system/stack/include/btm_ble_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "832bd406_e0918b5a",
+      "range": {
+        "startLine": 662,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 104
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cca31f9b_32f26fb8",
+        "filename": "system/test/mock/mock_stack_btm_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-04T08:56:50Z",
+      "side": 1,
+      "message": "\u003e Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\n\u003e Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n\u003e \n\nPlease fix.Could this license header be replaced with the standard Android Apache license header as shown here?\n\nhttps://cs.android.com/android/platform/superproject/+/master:development/docs/copyright-templates/c.txt",
+      "parentUuid": "c0856227_1455dbcc",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
