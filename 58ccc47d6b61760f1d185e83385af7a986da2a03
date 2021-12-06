@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8b43286_833481ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2021-12-06T23:45:44Z",
+      "side": 1,
+      "message": "No code changes in this change (only changing OWNERS link). Test failures in pre-submit are unrelated.",
+      "revId": "58ccc47d6b61760f1d185e83385af7a986da2a03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
