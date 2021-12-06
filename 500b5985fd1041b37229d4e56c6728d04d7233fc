@@ -22,6 +22,30 @@
       },
       "revId": "500b5985fd1041b37229d4e56c6728d04d7233fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8039880a_b38314cd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-06T15:37:49Z",
+      "side": 1,
+      "message": "Create another patch to fix it(to update the internal branch as well)",
+      "parentUuid": "c8099bea_e8a66c44",
+      "range": {
+        "startLine": 58,
+        "startChar": 34,
+        "endLine": 58,
+        "endChar": 55
+      },
+      "revId": "500b5985fd1041b37229d4e56c6728d04d7233fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
