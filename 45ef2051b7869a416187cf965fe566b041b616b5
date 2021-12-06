@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6357421_a3f89fb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T20:36:05Z",
+      "side": 1,
+      "message": "Only nit is that the log will print the function twice, once for the LOG_* macro, and a 2nd time for the \"%s\", __func__ in the log file.\n\nThis is harmless but providing this feedback for next time.\n",
+      "revId": "45ef2051b7869a416187cf965fe566b041b616b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1400c1d6_262d68b0",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T20:36:05Z",
+      "side": 1,
+      "message": "The LOG_*() series already includes the __func__ so there is no need for a second one.",
+      "revId": "45ef2051b7869a416187cf965fe566b041b616b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebae6214_20521872",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T20:36:05Z",
+      "side": 1,
+      "message": "This a log file that presents the filename as part of the LOG_* series so no need for __func__.",
+      "revId": "45ef2051b7869a416187cf965fe566b041b616b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
