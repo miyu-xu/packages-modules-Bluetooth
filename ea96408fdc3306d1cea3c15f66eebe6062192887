@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "237c7626_8d14ae1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2021-12-06T21:18:17Z",
+      "side": 1,
+      "message": "Maybe we should also be using GD wakelock manager? I know the host implementation is just a stub (which might be what we want here).",
+      "revId": "ea96408fdc3306d1cea3c15f66eebe6062192887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
