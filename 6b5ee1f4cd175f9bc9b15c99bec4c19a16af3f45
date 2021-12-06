@@ -22,6 +22,30 @@
       },
       "revId": "6b5ee1f4cd175f9bc9b15c99bec4c19a16af3f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad8d0aa_fb880477",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2435,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-06T02:54:53Z",
+      "side": 1,
+      "message": "Per discussed with Jack, in the CDD document, we mentioned that device SHOULD enable BAP, CSIP, MCP, VCP, CCP simultaneously if they support LE audio, so we should check the related service is enabled as well",
+      "parentUuid": "c72a9925_bb461b57",
+      "range": {
+        "startLine": 2435,
+        "startChar": 16,
+        "endLine": 2435,
+        "endChar": 76
+      },
+      "revId": "6b5ee1f4cd175f9bc9b15c99bec4c19a16af3f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
