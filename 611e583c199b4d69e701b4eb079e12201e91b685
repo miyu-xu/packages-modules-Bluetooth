@@ -70,6 +70,30 @@
       },
       "revId": "611e583c199b4d69e701b4eb079e12201e91b685",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36f282da_d0df1be4",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T18:38:03Z",
+      "side": 1,
+      "message": "ok sgtm.\n\nI will punt.",
+      "parentUuid": "af86c597_d315c576",
+      "range": {
+        "startLine": 777,
+        "startChar": 28,
+        "endLine": 777,
+        "endChar": 37
+      },
+      "revId": "611e583c199b4d69e701b4eb079e12201e91b685",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
