@@ -16,6 +16,23 @@
       "message": "Add a LOG_INFO to indicate we hit this code\ne.g.\nLOG_INFO(\"Replying to ble security event initiated by remote using SSP\");",
       "revId": "21aef8b87f47f36bde5da2f6cfcaf3a8880e19ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93e21859_a1918a5c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2859,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2021-12-06T19:14:30Z",
+      "side": 1,
+      "message": "I don\u0027t believe this is in-line with what we wanted to do. We don\u0027t want to bypass a pairing dialog under any circumstances. We should instead target the logic that decides whether we show the dialog in the foreground or in the background (handled in the Java layer). That will ensure we only show 1 foreground dialog under more circumstances.",
+      "revId": "21aef8b87f47f36bde5da2f6cfcaf3a8880e19ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
