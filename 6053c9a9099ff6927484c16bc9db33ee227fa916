@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "937fe427_a0c5abaf",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-06T14:05:08Z",
+      "side": 1,
+      "message": "if (HalVersionManager::GetHalVersion() !\u003d\n      BluetoothAudioHalVersion::VERSION_2_2) {",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 43
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cd4bc6f_b97e8af8",
+        "filename": "system/audio_hal_interface/codec_status.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-06T14:05:08Z",
+      "side": 1,
+      "message": "Could we bring the session_type to get the corresponding AudioCapabilities?",
+      "range": {
+        "startLine": 60,
+        "startChar": 35,
+        "endLine": 60,
+        "endChar": 72
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34155d2b_98067e37",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-06T14:05:08Z",
+      "side": 1,
+      "message": "using ::android::hardware::bluetooth::audio::V2_0::CodecType;\nusing CodecType_2_1 \u003d ::android::hardware::bluetooth::audio::V2_1::CodecType;\n\nDo we need to identify CodecType_2_1 and CodecType for le_audio_software?",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 61
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8376e184_7afc383b",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-06T14:05:08Z",
+      "side": 1,
+      "message": "using ::android::hardware::bluetooth::audio::V2_2::AudioCapabilities; ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3994c38_f26662db",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-06T14:05:08Z",
+      "side": 1,
+      "message": "The file naming is software. If we put these functions here, it\u0027s confused.",
+      "range": {
+        "startLine": 354,
+        "startChar": 5,
+        "endLine": 354,
+        "endChar": 29
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31b369f3_b0b821da",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-06T14:05:08Z",
+      "side": 1,
+      "message": "Could we add all the parameters supported by HAL and le_audio_type.h?",
+      "range": {
+        "startLine": 365,
+        "startChar": 4,
+        "endLine": 365,
+        "endChar": 12
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
