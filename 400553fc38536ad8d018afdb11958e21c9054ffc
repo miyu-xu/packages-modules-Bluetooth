@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a373e3a_e8c5bd02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T07:15:16Z",
+      "side": 1,
+      "message": "Thanks for helping provide better logs.  A few suggestions to try to make it even more readable.",
+      "revId": "400553fc38536ad8d018afdb11958e21c9054ffc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d4abff_6dcf69e9",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T07:15:16Z",
+      "side": 1,
+      "message": "Try to use the newer LOG_INFO macro which also does not need the __func__ argument.\nPlus, include \"main/shim/dumpsys.h\" to privatize mac address.\n\ne.g.\n\"%s\", PRIVATE_ADDRESS(bd_addr)\n\nAlso move down and describe better the logging reason.",
+      "revId": "400553fc38536ad8d018afdb11958e21c9054ffc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d35ea70_570d503d",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T07:15:16Z",
+      "side": 1,
+      "message": "Move above LOG_INFO message here, and add to log something like \n\"Wiped secrets and deleted any stored link key from controller\"",
+      "revId": "400553fc38536ad8d018afdb11958e21c9054ffc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a939e687_dab034d0",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T07:15:16Z",
+      "side": 1,
+      "message": "else {\n LOG_WARN(\"Unable to delete link key for unknown device:%s\", PRIVATE_ADDRESS(bd_addr);\n }",
+      "revId": "400553fc38536ad8d018afdb11958e21c9054ffc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
