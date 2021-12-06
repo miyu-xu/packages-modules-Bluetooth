@@ -31,6 +31,7 @@ license {
 }
 
 subdirs = [
+    "hehhe"
     "apex",
     "binder",
     "build",
