@@ -39,6 +39,30 @@
       },
       "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53c57d49_d483de06",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-06T22:38:41Z",
+      "side": 1,
+      "message": "First, the specification has the following to say on missing/uninitialized valuesin GetElementAttributes/GetItemAttributes calls:\n```\nThe requested attributes for which the Media\nPlayer is able to determine a value should be\nincluded in this list. Although the media player\nmay not include all requested attribute values if\nthey are not available it shall not include values\nwhich were not requested.\n```\n\nThis does mean the car kit device in question may be out of spec.\n\nI know in our open source controller implementation we simply display what we get. We\u0027re robust to missing values because the spec says to expect them. If the target code were to file some of our requested values with an empty string instead of not including them then I think we would be okay.\n\nI do wonder if there are AVRCP Target PTS tests around sending partial data though that might get tough to pass with this change though.\n\nAdditionally, a blanket \"set media_id to \u0027\u0027\" policy might impact the caching scheme deeper in the stack in funny ways, where as a null value is a better signal that the uid/media_id is in fact missing.\n\nIf we must do this then I think I would replace null values deeper in the stack when we format the packet instead of here, that way its a last minute formatting change of the data going out instead of changing the representation immediately as we get it.",
+      "parentUuid": "297de215_a2d5bca6",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
