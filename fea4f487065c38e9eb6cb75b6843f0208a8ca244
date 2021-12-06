@@ -34,6 +34,24 @@
       "parentUuid": "9a315978_87bdf511",
       "revId": "fea4f487065c38e9eb6cb75b6843f0208a8ca244",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29d11244_f11eba11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-12-06T16:24:16Z",
+      "side": 1,
+      "message": "Tested and found issue in \"bluetooth_le_audio_test\". Issue was about not allowing Linux host (--host) to increase priority on thread.",
+      "parentUuid": "ab5fede7_9cff4115",
+      "revId": "fea4f487065c38e9eb6cb75b6843f0208a8ca244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
