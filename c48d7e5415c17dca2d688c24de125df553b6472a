@@ -16,6 +16,29 @@
       "message": "This seems fine if it\u0027s part of the spec.  If not, should we use a quirk for car kits that need it?",
       "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "297de215_a2d5bca6",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-06T21:43:44Z",
+      "side": 1,
+      "message": "Would it make sense to initialize SongInfo and not add the media_id below?  Does the carkit need info to be initialized when we return it on 364?\n\nSongInfo info{};",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
