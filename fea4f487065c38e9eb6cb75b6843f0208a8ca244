@@ -69,6 +69,24 @@
       "message": "maybe it should be inside the #if ?",
       "revId": "fea4f487065c38e9eb6cb75b6843f0208a8ca244",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e31823e_293df176",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-12-06T20:07:41Z",
+      "side": 1,
+      "message": "I think LOG(FATAL) causes an abort also, so any return here wouldn\u0027t make sens.",
+      "parentUuid": "f585c871_8912dd69",
+      "revId": "fea4f487065c38e9eb6cb75b6843f0208a8ca244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
