@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8099bea_e8a66c44",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-06T02:34:00Z",
+      "side": 1,
+      "message": "nit: getCodecConfigOffloading?",
+      "range": {
+        "startLine": 58,
+        "startChar": 34,
+        "endLine": 58,
+        "endChar": 55
+      },
+      "revId": "500b5985fd1041b37229d4e56c6728d04d7233fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
