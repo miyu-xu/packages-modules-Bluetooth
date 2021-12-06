@@ -63,6 +63,30 @@
       },
       "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ee5e805_e99c955b",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-06T22:57:25Z",
+      "side": 1,
+      "message": "My first thought also was that SongInfo should be pre-initialized.  But in java-land every single string would be initialized and highly probable to be overwritten, not very efficient.\n\nI agree there may be arbitrary ways this fix may not ideal and I\u0027m sure a better architected approach would be superior, but this band-aid seems to target a very specific compatibility use-case.\n\nLeveraging an imperfect partial fix today seems preferable then an unwritten ideal future fix guaranteed to cover all possible scenarios.",
+      "parentUuid": "53c57d49_d483de06",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
