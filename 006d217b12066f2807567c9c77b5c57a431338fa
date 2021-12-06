@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e1e79c0_84a74a99",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-06T22:27:47Z",
+      "side": 1,
+      "message": "Once again, you don\u0027t need to grab the mutex for whole content of this function. \nLocking after line 81 would unblock other methods from being called while we wait for audio data.",
+      "range": {
+        "startLine": 70,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 53
+      },
+      "revId": "006d217b12066f2807567c9c77b5c57a431338fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
