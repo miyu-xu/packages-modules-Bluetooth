@@ -87,6 +87,30 @@
       },
       "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb5c2c0b_20753b8b",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-06T23:22:13Z",
+      "side": 1,
+      "message": "Hey, fair enough!\n\nAlso, just to quell my own fears on the media_id field being an empty string-- The default string constructor is already being called and setting the media_id value to an empty string. If nothing is found to overwrite it then that\u0027s the value that sticks. It presumably ends somewhere in error, as \"\" is treated in a few places in device.cc as an empty/invalid value. Do this won\u0027t yield any different behavior than today.",
+      "parentUuid": "9ee5e805_e99c955b",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
