@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02477847_d71fc4c9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/MetadataDatabase.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "NIT: this should fit into one line.",
+      "range": {
+        "startLine": 404,
+        "startChar": 34,
+        "endLine": 405,
+        "endChar": 24
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e9efee4_54d8a417",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "Log.e or Log.i the failure ?",
+      "range": {
+        "startLine": 219,
+        "startChar": 9,
+        "endLine": 219,
+        "endChar": 12
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c7a1226_bef44e1e",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "??",
+      "range": {
+        "startLine": 368,
+        "startChar": 11,
+        "endLine": 368,
+        "endChar": 39
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30045a25_d6d6fd5f",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "Is this guaranteed to be a safe cast ?\nI mean you are guaranteed to receive  BluetoothGattCharacteristic, what if the server internally re-creates the characteristic instance, i.e. when re-allocating the vector ?",
+      "range": {
+        "startLine": 661,
+        "startChar": 10,
+        "endLine": 661,
+        "endChar": 72
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07d6ce8_62791166",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 685,
+        "startChar": 11,
+        "endLine": 685,
+        "endChar": 88
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20d37fab_a02c1197",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "Please implement or remove.",
+      "range": {
+        "startLine": 688,
+        "startChar": 14,
+        "endLine": 688,
+        "endChar": 44
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd7ee1df_8e8015d1",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "Should this warn  or error log ?",
+      "range": {
+        "startLine": 280,
+        "startChar": 12,
+        "endLine": 280,
+        "endChar": 18
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5b86e5d_99a4e824",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T19:26:30Z",
+      "side": 1,
+      "message": "Should this be logged ?",
+      "range": {
+        "startLine": 369,
+        "startChar": 12,
+        "endLine": 369,
+        "endChar": 18
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
