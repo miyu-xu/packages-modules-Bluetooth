@@ -1,0 +1,121 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "855b142c_8cb532ad",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-07T23:51:18Z",
+      "side": 1,
+      "message": "please move the initialization to the closest place where they first used",
+      "range": {
+        "startLine": 940,
+        "startChar": 0,
+        "endLine": 943,
+        "endChar": 17
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "652f757a_0ee0ec96",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-07T23:51:18Z",
+      "side": 1,
+      "message": "e.g. int i initialize here",
+      "range": {
+        "startLine": 947,
+        "startChar": 7,
+        "endLine": 947,
+        "endChar": 12
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eecbafa_3865fff3",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-07T23:51:18Z",
+      "side": 1,
+      "message": "\u003e Please use language idioms to initialize or assign\n\nPlease fix. Could we use key \u003d {}; to init the struct instead?",
+      "parentUuid": "7c693aae_63c7c274",
+      "range": {
+        "startLine": 950,
+        "startChar": 4,
+        "endLine": 950,
+        "endChar": 11
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ee18ab1_3f7cc406",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-07T23:51:18Z",
+      "side": 1,
+      "message": "\u003e Please use language idioms to initialize or assign\n\nPlease fix. could we use adapter_prop \u003d {} instead?",
+      "parentUuid": "e59fd794_490a0ebb",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 966,
+        "endChar": 11
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "245e49ab_0f6f66b6",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-07T23:51:18Z",
+      "side": 1,
+      "message": "since devices_list is freed immediately in this scope, should we just use a stack var\n\nRawAddress devices_list[consolidated_devices.size()] \u003d {};\n\ninstead?",
+      "range": {
+        "startLine": 968,
+        "startChar": 0,
+        "endLine": 978,
+        "endChar": 27
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
