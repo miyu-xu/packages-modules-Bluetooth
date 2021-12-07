@@ -17,7 +17,6 @@
 package com.android.bluetooth.hfpclient;
 
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothHeadsetClientCall;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -50,7 +49,7 @@ public class HeadsetClientServiceInterface {
         return true;
     }
 
-    public BluetoothHeadsetClientCall dial(BluetoothDevice device, String number) {
+    public HfpClientCall dial(BluetoothDevice device, String number) {
         HeadsetClientService service = HeadsetClientService.getHeadsetClientService();
         if (!isServiceAvailable(service)) return null;
         return service.dial(device, number);
@@ -68,7 +67,7 @@ public class HeadsetClientServiceInterface {
         return service.sendDTMF(device, code);
     }
 
-    public boolean terminateCall(BluetoothDevice device, BluetoothHeadsetClientCall call) {
+    public boolean terminateCall(BluetoothDevice device, HfpClientCall call) {
         HeadsetClientService service = HeadsetClientService.getHeadsetClientService();
         if (!isServiceAvailable(service)) return false;
         return service.terminateCall(device, call != null ? call.getUUID() : null);
@@ -122,7 +121,7 @@ public class HeadsetClientServiceInterface {
         return service.getConnectedDevices();
     }
 
-    public List<BluetoothHeadsetClientCall> getCurrentCalls(BluetoothDevice device) {
+    public List<HfpClientCall> getCurrentCalls(BluetoothDevice device) {
         HeadsetClientService service = HeadsetClientService.getHeadsetClientService();
         if (!isServiceAvailable(service)) return null;
         return service.getCurrentCalls(device);

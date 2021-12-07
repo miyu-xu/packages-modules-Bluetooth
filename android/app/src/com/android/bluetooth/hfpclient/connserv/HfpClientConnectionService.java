@@ -17,7 +17,6 @@ package com.android.bluetooth.hfpclient;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothHeadsetClientCall;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
@@ -27,6 +26,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelUuid;
 import android.telecom.Connection;
 import android.telecom.ConnectionRequest;
 import android.telecom.ConnectionService;
@@ -41,6 +41,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public class HfpClientConnectionService extends ConnectionService {
     private static final String TAG = "HfpClientConnService";
@@ -95,7 +96,7 @@ public class HfpClientConnectionService extends ConnectionService {
         service.onConnectionStateChangedInternal(device, newState, oldState);
     }
 
-    public static void onCallChanged(BluetoothDevice device, BluetoothHeadsetClientCall call) {
+    public static void onCallChanged(BluetoothDevice device, HfpClientCall call) {
         HfpClientConnectionService service = getInstance();
         if (service == null) {
             Log.e(TAG, "onCallChanged: HFP Client Connection Service not started");
@@ -146,7 +147,7 @@ public class HfpClientConnectionService extends ConnectionService {
         }
     }
 
-    private void onCallChangedInternal(BluetoothDevice device, BluetoothHeadsetClientCall call) {
+    private void onCallChangedInternal(BluetoothDevice device, HfpClientCall call) {
         HfpClientDeviceBlock block = findBlockForDevice(device);
         if (block == null) {
             Log.w(TAG, "Call changed but no block for device=" + device);
@@ -248,9 +249,10 @@ public class HfpClientConnectionService extends ConnectionService {
         }
 
         // We should already have a connection by this time.
-        BluetoothHeadsetClientCall call =
+        ParcelUuid callUuid =
                 request.getExtras().getParcelable(TelecomManager.EXTRA_INCOMING_CALL_EXTRAS);
-        HfpClientConnection connection = block.onCreateIncomingConnection(call);
+        HfpClientConnection connection =
+                block.onCreateIncomingConnection((callUuid != null ? callUuid.getUuid() : null));
         return connection;
     }
 
@@ -286,9 +288,10 @@ public class HfpClientConnectionService extends ConnectionService {
         }
 
         // We should already have a connection by this time.
-        BluetoothHeadsetClientCall call =
+        ParcelUuid callUuid =
                 request.getExtras().getParcelable(TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS);
-        HfpClientConnection connection = block.onCreateUnknownConnection(call);
+        HfpClientConnection connection =
+                block.onCreateUnknownConnection((callUuid != null ? callUuid.getUuid() : null));
         return connection;
     }
 
