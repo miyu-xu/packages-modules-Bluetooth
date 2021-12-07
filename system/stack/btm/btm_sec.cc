@@ -3107,9 +3107,7 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
 
   if ((btm_cb.pairing_state != BTM_PAIR_STATE_IDLE) &&
       (p_dev_rec->bd_addr == btm_cb.pairing_bda)) {
-    if (btm_cb.pairing_flags & BTM_PAIR_FLAGS_WE_STARTED_DD) {
-      are_bonding = true;
-    }
+    are_bonding = true;
     btm_sec_change_pairing_state(BTM_PAIR_STATE_IDLE);
   }
 
@@ -3132,8 +3130,6 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
 
   /* If this is a bonding procedure can disconnect the link now */
   if (are_bonding) {
-    p_dev_rec->security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
-
     if (status != HCI_SUCCESS) {
       if (((status != HCI_ERR_PEER_USER) &&
            (status != HCI_ERR_CONN_CAUSE_LOCAL_HOST)))
@@ -3173,7 +3169,10 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
       l2cu_start_post_bond_timer(p_dev_rec->hci_handle);
     }
 
-    return;
+    if (p_dev_rec->IsLocallyInitiated()) {
+      p_dev_rec->security_required &= ~BTM_SEC_OUT_AUTHENTICATE;
+      return;
+    }
   }
 
   /* If authentication failed, notify the waiting layer */
