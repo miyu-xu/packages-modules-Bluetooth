@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a62562c1_6e8d6991",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-07T19:00:51Z",
+      "side": 1,
+      "message": "According to Sal\u0027s comment, I think this should be a quirk.",
+      "parentUuid": "9f983ecb_286cb316",
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "297de215_a2d5bca6",
         "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
         "patchSetId": 2
