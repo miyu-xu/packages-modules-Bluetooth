@@ -239,9 +239,9 @@ typedef void(tL2CA_DISCONNECT_IND_CB)(uint16_t, bool);
  */
 typedef void(tL2CA_DISCONNECT_CFM_CB)(uint16_t, uint16_t);
 
-/* Disconnect confirm callback prototype. Parameters are
+/* Data received indication callback prototype. Parameters are
  *              Local CID
- *              Result
+ *              Address of buffer
  */
 typedef void(tL2CA_DATA_IND_CB)(uint16_t, BT_HDR*);
 
