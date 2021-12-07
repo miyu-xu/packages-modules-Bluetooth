@@ -1,0 +1,160 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018147640",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914032?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b101dbc6_ebade383",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientCallTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T22:31:02Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 101
+      },
+      "revId": "d42cfcb42dcdccfd348ff08e7bf5d2eaaf593ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018147640",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914032?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d1030a43_87647e40",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientCallTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T22:31:02Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 102
+      },
+      "revId": "d42cfcb42dcdccfd348ff08e7bf5d2eaaf593ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018147640",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914032?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ec927aad_a8fb84ab",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientCallTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T22:31:02Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 101
+      },
+      "revId": "d42cfcb42dcdccfd348ff08e7bf5d2eaaf593ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018147640",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914032?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c7ab4583_3962306d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientCallTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T22:31:02Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 155,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 119
+      },
+      "revId": "d42cfcb42dcdccfd348ff08e7bf5d2eaaf593ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018147640",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914032?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8319508f_48369070",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientCallTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T22:31:02Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 104
+      },
+      "revId": "d42cfcb42dcdccfd348ff08e7bf5d2eaaf593ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018147640",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914032?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1b2b844d_a4b7c224",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/connserv/HfpClientCallTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T22:31:02Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 209,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 101
+      },
+      "revId": "d42cfcb42dcdccfd348ff08e7bf5d2eaaf593ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
