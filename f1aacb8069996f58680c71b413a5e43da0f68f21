@@ -22,6 +22,30 @@
       },
       "revId": "f1aacb8069996f58680c71b413a5e43da0f68f21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6eaa180_ac58baf4",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2021-12-07T16:30:43Z",
+      "side": 0,
+      "message": "If I understand correctly, wakelock support should be built for the kernel (and working) in order for this alarm module to function correctly. What is the expectation if wakelock support is not present or not working in the kernel? If we don\u0027t expect things to work correctly anyway, why do we need to treat the error in Android differently?",
+      "parentUuid": "db34a67a_41a81ca7",
+      "range": {
+        "startLine": 477,
+        "startChar": 3,
+        "endLine": 477,
+        "endChar": 18
+      },
+      "revId": "f1aacb8069996f58680c71b413a5e43da0f68f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
