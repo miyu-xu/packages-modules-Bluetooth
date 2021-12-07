@@ -17,7 +17,6 @@ package com.android.bluetooth.hfpclient;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothHeadsetClientCall;
 import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothProfile;
 import android.content.BroadcastReceiver;
@@ -95,7 +94,7 @@ public class HfpClientConnectionService extends ConnectionService {
         service.onConnectionStateChangedInternal(device, newState, oldState);
     }
 
-    public static void onCallChanged(BluetoothDevice device, BluetoothHeadsetClientCall call) {
+    public static void onCallChanged(BluetoothDevice device, HfpClientCall call) {
         HfpClientConnectionService service = getInstance();
         if (service == null) {
             Log.e(TAG, "onCallChanged: HFP Client Connection Service not started");
@@ -146,7 +145,7 @@ public class HfpClientConnectionService extends ConnectionService {
         }
     }
 
-    private void onCallChangedInternal(BluetoothDevice device, BluetoothHeadsetClientCall call) {
+    private void onCallChangedInternal(BluetoothDevice device, HfpClientCall call) {
         HfpClientDeviceBlock block = findBlockForDevice(device);
         if (block == null) {
             Log.w(TAG, "Call changed but no block for device=" + device);
@@ -248,7 +247,7 @@ public class HfpClientConnectionService extends ConnectionService {
         }
 
         // We should already have a connection by this time.
-        BluetoothHeadsetClientCall call =
+        HfpClientCall call =
                 request.getExtras().getParcelable(TelecomManager.EXTRA_INCOMING_CALL_EXTRAS);
         HfpClientConnection connection = block.onCreateIncomingConnection(call);
         return connection;
@@ -286,7 +285,7 @@ public class HfpClientConnectionService extends ConnectionService {
         }
 
         // We should already have a connection by this time.
-        BluetoothHeadsetClientCall call =
+        HfpClientCall call =
                 request.getExtras().getParcelable(TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS);
         HfpClientConnection connection = block.onCreateUnknownConnection(call);
         return connection;
