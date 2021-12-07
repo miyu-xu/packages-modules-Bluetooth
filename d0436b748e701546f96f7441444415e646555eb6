@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6afc2d2b_55c4f426",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T15:02:49Z",
+      "side": 1,
+      "message": "move this below line 41, mutex definition.\nCall the mutex \"sinkMutex\" or\"sinkInterfaceMutex\"",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 60
+      },
+      "revId": "d0436b748e701546f96f7441444415e646555eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "971fda40_7576a7c8",
         "filename": "system/bta/le_audio/client_audio.cc",
         "patchSetId": 2
