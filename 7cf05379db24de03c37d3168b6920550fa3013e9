@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d223b4_b9812be7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-07T00:43:52Z",
+      "side": 1,
+      "message": "I love that this unreadable code is gone...but being unreadable I\u0027m not quite sure what it does and/or why it was there and/or what will happen with it removed.\n\n\n\n```\n     if (p_dev_rec-\u003enew_encryption_key_is_p256 \u0026\u0026\n          (btm_sec_use_smp_br_chnl(p_dev_rec))\n          /* no LE keys are available, do deriving */\n          \u0026\u0026 (!(p_dev_rec-\u003esec_flags \u0026 BTM_SEC_LE_LINK_KEY_KNOWN) ||\n              /* or BR key is higher security than existing LE keys */\n              (!(p_dev_rec-\u003esec_flags \u0026 BTM_SEC_LE_LINK_KEY_AUTHED) \u0026\u0026\n               (p_dev_rec-\u003esec_flags \u0026 BTM_SEC_LINK_KEY_AUTHED)))) {\n```\n               ",
+      "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
