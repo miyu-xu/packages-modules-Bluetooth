@@ -16,6 +16,29 @@
       "message": "New CL due to change of repo directory. Please refer to this link for earlier reviews and comments: https://android-review.googlesource.com/c/platform/packages/apps/Bluetooth/+/1845981/5",
       "revId": "e3d7ba1f1067fc18e244ff7e74054dc8a9a23c62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e27a9c6_70cf8010",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-07T05:55:09Z",
+      "side": 1,
+      "message": "nint: It would be good if we can add a helper in the Utils.java for this permission check.",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 49
+      },
+      "revId": "e3d7ba1f1067fc18e244ff7e74054dc8a9a23c62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
