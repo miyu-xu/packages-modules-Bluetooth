@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db34a67a_41a81ca7",
+        "filename": "system/osi/src/alarm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T16:06:20Z",
+      "side": 0,
+      "message": "should this be inside #ifdef OS_ANDROID rather than just plainly removed ?",
+      "range": {
+        "startLine": 477,
+        "startChar": 3,
+        "endLine": 477,
+        "endChar": 18
+      },
+      "revId": "f1aacb8069996f58680c71b413a5e43da0f68f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
