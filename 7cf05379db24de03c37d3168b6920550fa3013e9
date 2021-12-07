@@ -16,6 +16,24 @@
       "message": "I love that this unreadable code is gone...but being unreadable I\u0027m not quite sure what it does and/or why it was there and/or what will happen with it removed.\n\n\n\n```\n     if (p_dev_rec-\u003enew_encryption_key_is_p256 \u0026\u0026\n          (btm_sec_use_smp_br_chnl(p_dev_rec))\n          /* no LE keys are available, do deriving */\n          \u0026\u0026 (!(p_dev_rec-\u003esec_flags \u0026 BTM_SEC_LE_LINK_KEY_KNOWN) ||\n              /* or BR key is higher security than existing LE keys */\n              (!(p_dev_rec-\u003esec_flags \u0026 BTM_SEC_LE_LINK_KEY_AUTHED) \u0026\u0026\n               (p_dev_rec-\u003esec_flags \u0026 BTM_SEC_LINK_KEY_AUTHED)))) {\n```\n               ",
       "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0367759_f4dcb1c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2021-12-07T03:48:35Z",
+      "side": 1,
+      "message": "Unfortunately, there is still a similar block in btm_sec_encrypt_change. 😊\nThis block is used to determine if SMP over BR/EDR is available(CID\u003d0x0007 \u0026\u0026 key is p256 \u0026\u0026 le ltk is not known). If so, then it will set encrption, checking again in btm_sec_encrypt_change and start CTKD.\nHowever, there is no requirement to set encryption. Even though SMP over BR/EDR is not available, setting encryption still has no side effect.",
+      "parentUuid": "e9d223b4_b9812be7",
+      "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
