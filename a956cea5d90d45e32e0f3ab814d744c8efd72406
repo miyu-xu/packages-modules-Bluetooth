@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1800720_030e8ff6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-07T22:59:40Z",
+      "side": 1,
+      "message": "I think Test: atest bluetooth_test_gd_unit would have worked",
+      "revId": "a956cea5d90d45e32e0f3ab814d744c8efd72406",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
