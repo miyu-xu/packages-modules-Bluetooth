@@ -238,6 +238,15 @@ public class HeadsetClientService extends ProfileService {
         }
     };
 
+    // TODO(206035301): Remove this along with BluetoothHeadsetClientCall once we know other form
+    // factors won't be impacted
+    private static BluetoothHeadsetClientCall toLegacyCall(HfpClientCall call) {
+        if (call == null) return null;
+        return new BluetoothHeadsetClientCall(call.getDevice(), call.getId(), call.getUUID(),
+                call.getState(), call.getNumber(), call.isMultiParty(), call.isOutgoing(),
+                call.isInBandRing());
+    }
+
     /**
      * Handlers for incoming service calls
      */
@@ -426,7 +435,6 @@ public class HeadsetClientService extends ProfileService {
                 AttributionSource source) {
             HeadsetClientService service = getService(source);
             if (service == null) {
-                Log.w(TAG, "service is null");
                 return false;
             }
             return service.terminateCall(device, call != null ? call.getUUID() : null);
@@ -458,7 +466,8 @@ public class HeadsetClientService extends ProfileService {
             if (service == null) {
                 return null;
             }
-            return service.dial(device, number);
+            HfpClientCall call = service.dial(device, number);
+            return toLegacyCall(call);
         }
 
         @Override
@@ -468,7 +477,12 @@ public class HeadsetClientService extends ProfileService {
             if (service == null) {
                 return new ArrayList<BluetoothHeadsetClientCall>();
             }
-            return service.getCurrentCalls(device);
+            List<HfpClientCall> calls = service.getCurrentCalls(device);
+            List<BluetoothHeadsetClientCall> legacy = new ArrayList<BluetoothHeadsetClientCall>();
+            for (HfpClientCall call : calls) {
+                legacy.add(toLegacyCall(call));
+            }
+            return legacy;
         }
 
         @Override
@@ -865,7 +879,7 @@ public class HeadsetClientService extends ProfileService {
         return true;
     }
 
-    public BluetoothHeadsetClientCall dial(BluetoothDevice device, String number) {
+    public HfpClientCall dial(BluetoothDevice device, String number) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
@@ -878,9 +892,9 @@ public class HeadsetClientService extends ProfileService {
             return null;
         }
 
-        BluetoothHeadsetClientCall call = new BluetoothHeadsetClientCall(device,
+        HfpClientCall call = new HfpClientCall(device,
                 HeadsetClientStateMachine.HF_ORIGINATED_CALL_ID,
-                HeadsetClientHalConstants.CALL_STATE_DIALING, number, false  /* multiparty */,
+                HfpClientCall.CALL_STATE_DIALING, number, false  /* multiparty */,
                 true  /* outgoing */, sm.getInBandRing());
         Message msg = sm.obtainMessage(HeadsetClientStateMachine.DIAL_NUMBER);
         msg.obj = call;
@@ -910,7 +924,7 @@ public class HeadsetClientService extends ProfileService {
         return false;
     }
 
-    public List<BluetoothHeadsetClientCall> getCurrentCalls(BluetoothDevice device) {
+    public List<HfpClientCall> getCurrentCalls(BluetoothDevice device) {
         HeadsetClientStateMachine sm = getStateMachine(device);
         if (sm == null) {
             Log.e(TAG, "SM does not exist for device " + device);
