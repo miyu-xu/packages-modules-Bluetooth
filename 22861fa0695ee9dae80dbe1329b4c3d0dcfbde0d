@@ -22,6 +22,30 @@
       },
       "revId": "22861fa0695ee9dae80dbe1329b4c3d0dcfbde0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf6b8b47_ceae4cc5",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T08:21:27Z",
+      "side": 1,
+      "message": "It extends 2_0::IBluetoothAudioPort, so is safe to pass as parameter to methods requiring 2.0 and 2.1 HAL",
+      "parentUuid": "678c8cc1_b8e63661",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "22861fa0695ee9dae80dbe1329b4c3d0dcfbde0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
