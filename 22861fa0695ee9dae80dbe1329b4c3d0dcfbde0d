@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678c8cc1_b8e63661",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-07T01:35:42Z",
+      "side": 1,
+      "message": "Is it compatible with HIDL 2.1/2.0?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 71
+      },
+      "revId": "22861fa0695ee9dae80dbe1329b4c3d0dcfbde0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
