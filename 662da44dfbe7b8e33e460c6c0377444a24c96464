@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64f1f99e_b417223d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2021-12-07T14:37:54Z",
+      "side": 1,
+      "message": "New CL due to directory change. Follow previous CL here: https://android-review.googlesource.com/c/platform/packages/apps/Bluetooth/+/1871318",
+      "revId": "662da44dfbe7b8e33e460c6c0377444a24c96464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
