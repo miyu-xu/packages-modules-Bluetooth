@@ -34,6 +34,40 @@
       "parentUuid": "e9d223b4_b9812be7",
       "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db19f1d9_51addf38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-07T05:17:08Z",
+      "side": 1,
+      "message": "Is data available to support the success rate claim ?\n\n",
+      "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "862649c7_0501107a",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3110,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-07T05:17:08Z",
+      "side": 1,
+      "message": "Is this CL independent of the other one ?  If so, can we break this into 2 CLs ?\n\nIf not independant, I am very suspicious messing with \u0027BTM_PAIR_FLAGS_WE_STARTED_DD\u0027 as it seems like another unknown as these bits are internal implementations state and is sprinkled throughout the security code.",
+      "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
