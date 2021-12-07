@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018123645",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1913310?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b2a80c82_cf2c042f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T11:40:12Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "ade917f9688bde103e17ba2289946cdcf703af51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018123645",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1913310?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "625eb108_2f3e7505",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T11:40:12Z",
+      "side": 1,
+      "message": "\"manual, ADT3 is not stuck in a loop anymore, pairing and remotes work\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 75
+      },
+      "revId": "ade917f9688bde103e17ba2289946cdcf703af51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018123638",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1913310?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "751a8b4c_7baee601",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T11:40:12Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 624,
+        "startChar": 51,
+        "endLine": 624,
+        "endChar": 52
+      },
+      "revId": "ade917f9688bde103e17ba2289946cdcf703af51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
