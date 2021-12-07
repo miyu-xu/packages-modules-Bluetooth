@@ -1459,13 +1459,17 @@ void l2cble_sec_comp(const RawAddress* bda, tBT_TRANSPORT transport,
   while (!fixed_queue_is_empty(p_lcb->le_sec_pending_q)) {
     p_buf = (tL2CAP_SEC_DATA*)fixed_queue_dequeue(p_lcb->le_sec_pending_q);
 
-    if (status != BTM_SUCCESS)
+    if (status != BTM_SUCCESS) {
       (*(p_buf->p_callback))(p_bda, BT_TRANSPORT_LE, p_buf->p_ref_data, status);
-    else
+      osi_free(p_buf);
+    }
+    else {
       l2ble_sec_access_req(p_bda, p_buf->psm, p_buf->is_originator,
-                           p_buf->p_callback, p_buf->p_ref_data);
+          p_buf->p_callback, p_buf->p_ref_data);
 
-    osi_free(p_buf);
+      osi_free(p_buf);
+      break;
+    }
   }
 }
 
