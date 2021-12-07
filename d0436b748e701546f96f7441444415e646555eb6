@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cab991c_c7a6169d",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-07T14:52:37Z",
+      "side": 1,
+      "message": "Can you please make this into a code comment, and move the mutex and protected variable definition close to each other ?",
+      "parentUuid": "a1d0f750_0508fec6",
+      "range": {
+        "startLine": 41,
+        "startChar": 11,
+        "endLine": 41,
+        "endChar": 26
+      },
+      "revId": "d0436b748e701546f96f7441444415e646555eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d2a01636_575d29c2",
         "filename": "system/bta/le_audio/client_audio.cc",
         "patchSetId": 2
