@@ -1541,6 +1541,7 @@ void BTIF_dm_enable() {
   /* clear control blocks */
   memset(&pairing_cb, 0, sizeof(btif_dm_pairing_cb_t));
   pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
+  btif_storage_load_consolidate_devices();
 
   /* This function will also trigger the adapter_properties_cb
   ** and bonded_devices_info_cb
