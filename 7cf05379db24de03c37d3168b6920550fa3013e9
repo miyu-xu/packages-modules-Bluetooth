@@ -104,6 +104,24 @@
       "parentUuid": "16049ee8_001f342d",
       "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bb53d42_3497ea88",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3110,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2021-12-07T06:39:02Z",
+      "side": 1,
+      "message": "Done! It makes sense.",
+      "parentUuid": "25e26995_ae43f2f3",
+      "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
