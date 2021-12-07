@@ -16,7 +16,6 @@
 package com.android.bluetooth.hfpclient;
 
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothHeadsetClientCall;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -72,7 +71,7 @@ public class HfpClientDeviceBlock {
         }
 
 
-        List<BluetoothHeadsetClientCall> calls = mServiceInterface.getCurrentCalls(mDevice);
+        List<HfpClientCall> calls = mServiceInterface.getCurrentCalls(mDevice);
         if (DBG) {
             Log.d(mTAG, "Got calls " + calls);
         }
@@ -84,7 +83,7 @@ public class HfpClientDeviceBlock {
             return;
         }
 
-        for (BluetoothHeadsetClientCall call : calls) {
+        for (HfpClientCall call : calls) {
             handleCall(call);
         }
     }
@@ -101,7 +100,7 @@ public class HfpClientDeviceBlock {
         return mConnections;
     }
 
-    synchronized HfpClientConnection onCreateIncomingConnection(BluetoothHeadsetClientCall call) {
+    synchronized HfpClientConnection onCreateIncomingConnection(HfpClientCall call) {
         HfpClientConnection connection = mConnections.get(call.getUUID());
         if (connection != null) {
             connection.onAdded();
@@ -134,7 +133,7 @@ public class HfpClientDeviceBlock {
         }
     }
 
-    synchronized HfpClientConnection onCreateUnknownConnection(BluetoothHeadsetClientCall call) {
+    synchronized HfpClientConnection onCreateUnknownConnection(HfpClientCall call) {
         Uri number = Uri.fromParts(PhoneAccount.SCHEME_TEL, call.getNumber(), null);
         HfpClientConnection connection = mConnections.get(call.getUUID());
 
@@ -172,9 +171,9 @@ public class HfpClientDeviceBlock {
     }
 
     // Handle call change
-    synchronized void handleCall(BluetoothHeadsetClientCall call) {
+    synchronized void handleCall(HfpClientCall call) {
         if (DBG) {
-            Log.d(mTAG, "Got call " + call.toString(true));
+            Log.d(mTAG, "Got call " + call.toString());
         }
 
         HfpClientConnection connection = findConnectionKey(call);
@@ -198,25 +197,25 @@ public class HfpClientDeviceBlock {
             buildConnection(call, null);
 
             // Depending on where this call originated make it an incoming call or outgoing
-            // (represented as unknown call in telecom since). Since BluetoothHeadsetClientCall is a
+            // (represented as unknown call in telecom since). Since HfpClientCall is a
             // parcelable we simply pack the entire object in there.
             Bundle b = new Bundle();
-            if (call.getState() == BluetoothHeadsetClientCall.CALL_STATE_DIALING
-                    || call.getState() == BluetoothHeadsetClientCall.CALL_STATE_ALERTING
-                    || call.getState() == BluetoothHeadsetClientCall.CALL_STATE_ACTIVE
-                    || call.getState() == BluetoothHeadsetClientCall.CALL_STATE_HELD) {
+            if (call.getState() == HfpClientCall.CALL_STATE_DIALING
+                    || call.getState() == HfpClientCall.CALL_STATE_ALERTING
+                    || call.getState() == HfpClientCall.CALL_STATE_ACTIVE
+                    || call.getState() == HfpClientCall.CALL_STATE_HELD) {
                 // This is an outgoing call. Even if it is an active call we do not have a way of
                 // putting that parcelable in a seaprate field.
                 b.putParcelable(TelecomManager.EXTRA_OUTGOING_CALL_EXTRAS, call);
                 mTelecomManager.addNewUnknownCall(mPhoneAccount.getAccountHandle(), b);
-            } else if (call.getState() == BluetoothHeadsetClientCall.CALL_STATE_INCOMING
-                    || call.getState() == BluetoothHeadsetClientCall.CALL_STATE_WAITING) {
+            } else if (call.getState() == HfpClientCall.CALL_STATE_INCOMING
+                    || call.getState() == HfpClientCall.CALL_STATE_WAITING) {
                 // This is an incoming call.
                 b.putParcelable(TelecomManager.EXTRA_INCOMING_CALL_EXTRAS, call);
                 b.putBoolean(TelecomManager.EXTRA_CALL_EXTERNAL_RINGER, call.isInBandRing());
                 mTelecomManager.addNewIncomingCall(mPhoneAccount.getAccountHandle(), b);
             }
-        } else if (call.getState() == BluetoothHeadsetClientCall.CALL_STATE_TERMINATED) {
+        } else if (call.getState() == HfpClientCall.CALL_STATE_TERMINATED) {
             if (DBG) {
                 Log.d(mTAG, "Removing call " + call);
             }
@@ -227,7 +226,7 @@ public class HfpClientDeviceBlock {
     }
 
     // Find the connection specified by the key, also update the key with ID if present.
-    private synchronized HfpClientConnection findConnectionKey(BluetoothHeadsetClientCall call) {
+    private synchronized HfpClientConnection findConnectionKey(HfpClientCall call) {
         if (DBG) {
             Log.d(mTAG, "findConnectionKey local key set " + mConnections.toString());
         }
@@ -249,18 +248,18 @@ public class HfpClientDeviceBlock {
     }
 
     private boolean isDisconnectingToActive(HfpClientConnection prevConn,
-            BluetoothHeadsetClientCall newCall) {
+            HfpClientCall newCall) {
         if (DBG) {
             Log.d(mTAG, "prevConn " + prevConn.isClosing() + " new call " + newCall.getState());
         }
         if (prevConn.isClosing() && prevConn.getCall().getState() != newCall.getState()
-                && newCall.getState() != BluetoothHeadsetClientCall.CALL_STATE_TERMINATED) {
+                && newCall.getState() != HfpClientCall.CALL_STATE_TERMINATED) {
             return true;
         }
         return false;
     }
 
-    private synchronized HfpClientConnection buildConnection(BluetoothHeadsetClientCall call,
+    private synchronized HfpClientConnection buildConnection(HfpClientCall call,
             Uri number) {
         if (call == null && number == null) {
             Log.e(mTAG, "Both call and number cannot be null.");
