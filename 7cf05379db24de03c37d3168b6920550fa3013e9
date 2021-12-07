@@ -68,6 +68,24 @@
       "message": "Is this CL independent of the other one ?  If so, can we break this into 2 CLs ?\n\nIf not independant, I am very suspicious messing with \u0027BTM_PAIR_FLAGS_WE_STARTED_DD\u0027 as it seems like another unknown as these bits are internal implementations state and is sprinkled throughout the security code.",
       "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16049ee8_001f342d",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3110,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2021-12-07T06:20:36Z",
+      "side": 1,
+      "message": "It\u0027s another part of \"aggressive CTKD\".(But it can still be broken into 2 CLs, it\u0027s up to you)\nAndroid\u003c\u003d12 devices handle CTKD dangerously:\nIf a device is\n1.(Initiator+Central)\u003d\u003eEncryption\u0026CTKD will be set by local(best)\n2.(Initiator+Periphiral)\u003d\u003eEncryption will not be set by local, CTKD will not be run\n3.(Passive+Central)\u003d\u003eEncryption will not be set by local, CTKD will be run IF encrpted by remote(so this line can force old remote Android devices to start CTKD)\n4.(Passive+Periphiral)\u003d\u003eEncryption\u0026CTKD might be set by remote",
+      "parentUuid": "862649c7_0501107a",
+      "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
