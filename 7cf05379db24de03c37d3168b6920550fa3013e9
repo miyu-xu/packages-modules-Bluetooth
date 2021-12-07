@@ -86,6 +86,24 @@
       "parentUuid": "862649c7_0501107a",
       "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25e26995_ae43f2f3",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3110,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-07T06:26:34Z",
+      "side": 1,
+      "message": "I updated the BR with the last comment...as that seems that really nice info.\n\nThe reason I ask about splitting into 2 CLs is that it protects this CL from potential regressions.  It\u0027s minimal work to submit 2 CLs, but saves a ton of time in tracking down potential regressions by isolation in separate already-built images.",
+      "parentUuid": "16049ee8_001f342d",
+      "revId": "7cf05379db24de03c37d3168b6920550fa3013e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
