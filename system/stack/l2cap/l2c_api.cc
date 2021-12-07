@@ -1316,11 +1316,14 @@ uint16_t L2CA_SendFixedChnlData(uint16_t fixed_cid, const RawAddress& rem_bda,
   p_buf->layer_specific = L2CAP_FLUSHABLE_CH_BASED;
 
   if (!p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL]) {
-    if (!l2cu_initialize_fixed_ccb(p_lcb, fixed_cid)) {
-      LOG_WARN("No channel control block found for CID: 0x%4x", fixed_cid);
-      osi_free(p_buf);
-      return (L2CAP_DW_FAILED);
-    }
+    osi_free(p_buf);
+    return (L2CAP_DW_FAILED);
+  }
+
+  if (!l2cu_initialize_fixed_ccb(p_lcb, fixed_cid)) {
+    LOG_WARN("No channel control block found for CID: 0x%4x", fixed_cid);
+    osi_free(p_buf);
+    return (L2CAP_DW_FAILED);
   }
 
   if (p_lcb->p_fixed_ccbs[fixed_cid - L2CAP_FIRST_FIXED_CHNL]->cong_sent) {
