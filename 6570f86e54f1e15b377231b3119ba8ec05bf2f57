@@ -1,0 +1,203 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018119152",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d988c3a7_74bbc60b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T09:52:47Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018119152",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "439109df_73c4e00a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T09:52:47Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018119152",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "350fa68b_46003244",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T09:52:47Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 42
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018119156",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "06549b6a_eb61393e",
+          "description": "Change to \"system/bta/le_audio/le_audio_set_configurations.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/le_audio_set_configurations.cc",
+              "range": {
+                "startLine": 191,
+                "startChar": 35,
+                "endLine": 191,
+                "endChar": 41
+              },
+              "replacement": "Unknown"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ae02435f_4d62915c",
+        "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T09:52:47Z",
+      "side": 1,
+      "message": "Common typo found: \"Unknow\" -- should it be \"Unknown\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 191,
+        "startChar": 35,
+        "endLine": 191,
+        "endChar": 41
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018119153",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6a481edd_1f028856",
+        "filename": "system/bta/le_audio/le_audio_set_configurations_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T09:52:47Z",
+      "side": 1,
+      "message": "Use ASSERT_NE() instead",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 12
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018119153",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fe4f8975_e6ff2725",
+        "filename": "system/bta/le_audio/le_audio_set_configurations_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T09:52:47Z",
+      "side": 1,
+      "message": "Use ASSERT_NE() instead",
+      "range": {
+        "startLine": 166,
+        "startChar": 2,
+        "endLine": 166,
+        "endChar": 12
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018119153",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9542a789_6299efae",
+        "filename": "system/bta/le_audio/le_audio_set_configurations_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-07T09:52:47Z",
+      "side": 1,
+      "message": "Use ASSERT_NE() instead",
+      "range": {
+        "startLine": 179,
+        "startChar": 2,
+        "endLine": 179,
+        "endChar": 12
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
