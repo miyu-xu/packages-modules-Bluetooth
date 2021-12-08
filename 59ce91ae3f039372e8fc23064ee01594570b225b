@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fc138e0_e93bd716",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-08T09:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "855b142c_8cb532ad",
+      "range": {
+        "startLine": 940,
+        "startChar": 0,
+        "endLine": 943,
+        "endChar": 17
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "652f757a_0ee0ec96",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-07T23:51:18Z",
       "side": 1,
       "message": "e.g. int i initialize here",
+      "range": {
+        "startLine": 947,
+        "startChar": 7,
+        "endLine": 947,
+        "endChar": 12
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85452a96_13b7826c",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-08T09:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "652f757a_0ee0ec96",
       "range": {
         "startLine": 947,
         "startChar": 7,
@@ -71,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "21182e6f_586b7665",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 950,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-08T09:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eecbafa_3865fff3",
+      "range": {
+        "startLine": 950,
+        "startChar": 4,
+        "endLine": 950,
+        "endChar": 11
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ee18ab1_3f7cc406",
@@ -95,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7c81ea5_1430c051",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-08T09:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ee18ab1_3f7cc406",
+      "range": {
+        "startLine": 966,
+        "startChar": 4,
+        "endLine": 966,
+        "endChar": 11
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "245e49ab_0f6f66b6",
@@ -108,6 +204,30 @@
       "writtenOn": "2021-12-07T23:51:18Z",
       "side": 1,
       "message": "since devices_list is freed immediately in this scope, should we just use a stack var\n\nRawAddress devices_list[consolidated_devices.size()] \u003d {};\n\ninstead?",
+      "range": {
+        "startLine": 968,
+        "startChar": 0,
+        "endLine": 978,
+        "endChar": 27
+      },
+      "revId": "59ce91ae3f039372e8fc23064ee01594570b225b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab28b82_028e4730",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-08T09:15:34Z",
+      "side": 1,
+      "message": "It will cause compile error:\npackages/modules/Bluetooth/system/btif/src/btif_storage.cc:962:27: error: variable-sized object may not be initialized\n  RawAddress devices_list[consolidated_devices.size()] \u003d {};",
+      "parentUuid": "245e49ab_0f6f66b6",
       "range": {
         "startLine": 968,
         "startChar": 0,
