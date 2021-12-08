@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e8accf3_3585aa03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-08T17:49:15Z",
+      "side": 1,
+      "message": "This looks great Henri!  Thanks!",
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f1def85_bba3722a",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-08T17:49:15Z",
+      "side": 1,
+      "message": "Maybe at this point we should change this class to be a connection handler, if it will handle SCO.  That could/should be a separate CL to make it easier to see what\u0027s being changed, though.",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c9bb6e_c0b4502f",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-08T17:49:15Z",
+      "side": 1,
+      "message": "should this be a warning?",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 38
+      },
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51579151_f7827fa9",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-08T17:49:15Z",
+      "side": 1,
+      "message": "I know I mix the syntax quite a bit.  I think I prefer:\n\nsend_event_(bluetooth::hci::ConnectionRequestBuilder::Create(\n      address, ClassOfDevice(),\n      bluetooth::hci::ConnectionRequestLinkType::ESCO));\n\n(no std::move() needed)\n\nWhat do you think?",
+      "range": {
+        "startLine": 1400,
+        "startChar": 0,
+        "endLine": 1403,
+        "endChar": 33
+      },
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
