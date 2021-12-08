@@ -16,6 +16,23 @@
       "message": "Thanks martin! Friendly ping jpawlowski@ :) ",
       "revId": "6641ea5280d6e5147ddc21d8548801da44ceeabf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a38330f_459a647e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-12-08T19:15:30Z",
+      "side": 1,
+      "message": "friendly ping #2 jpawlowski@",
+      "revId": "6641ea5280d6e5147ddc21d8548801da44ceeabf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
