@@ -1085,6 +1085,12 @@ LeAudioDeviceGroup::GetCodecConfigurationByDirection(
         conf.codec.GetConfigChannelCount() * conf.device_cnt;
   }
 
+  /* always grab stereo stream, in case 2nd device connects later. */
+  if (Size() == 2 && group_config.num_channels ==
+                         LeAudioCodecConfiguration::kChannelNumberMono) {
+    group_config.num_channels = LeAudioCodecConfiguration::kChannelNumberStereo;
+  }
+
   if (group_config.IsInvalid()) return std::nullopt;
 
   return group_config;

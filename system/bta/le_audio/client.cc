@@ -1956,7 +1956,6 @@ class LeAudioClientImpl : public LeAudioClient {
   struct le_audio::stream_configuration* GetStreamSinkConfiguration(
       LeAudioDeviceGroup* group) {
     struct le_audio::stream_configuration* stream_conf = &group->stream_conf;
-    int num_of_devices = 0;
     int num_of_channels = 0;
     uint32_t sample_freq_hz = 0;
     uint32_t frame_duration_us = 0;
@@ -1974,7 +1973,6 @@ class LeAudioClientImpl : public LeAudioClient {
 
       if (ase) {
         LOG(INFO) << __func__ << "device: " << device->address_;
-        num_of_devices++;
       }
 
       for (; ase != nullptr;
@@ -2021,7 +2019,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (streams.empty()) return nullptr;
 
     stream_conf->sink_streams = std::move(streams);
-    stream_conf->sink_num_of_devices = num_of_devices;
+    stream_conf->sink_num_of_devices = group->Size();
     stream_conf->sink_num_of_channels = num_of_channels;
     stream_conf->sink_sample_frequency_hz = sample_freq_hz;
     stream_conf->sink_frame_duration_us = frame_duration_us;
