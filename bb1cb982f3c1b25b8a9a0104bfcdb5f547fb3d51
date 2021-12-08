@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018191886",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "feb72d1e_1eb42962",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T21:58:40Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018191886",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f093f002_1df04bb9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T21:58:40Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018191886",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "55fbbb04_bc4d4e70",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T21:58:40Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018191887",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1908371?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "96db7070_e8e88215",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 870,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T21:58:40Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027valid\u0027, \u0027validity check\u0027 or \u0027initial check\u0027; see https://source.android.com/setup/contribute/respectful-code for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 870,
+        "startChar": 5,
+        "endLine": 870,
+        "endChar": 11
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
