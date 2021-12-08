@@ -24,7 +24,6 @@ package com.android.bluetooth.le_audio;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothLeAudioCodecConfig;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
@@ -146,8 +145,8 @@ public class LeAudioNativeInterface {
      *
      * priorities to configure.
      */
-    public void init(BluetoothLeAudioCodecConfig[] codecConfigOffloading) {
-        initNative(codecConfigOffloading);
+    public void init() {
+        initNative();
     }
 
     /**
@@ -205,7 +204,7 @@ public class LeAudioNativeInterface {
 
     // Native methods that call into the JNI interface
     private static native void classInitNative();
-    private native void initNative(BluetoothLeAudioCodecConfig[] codecConfigOffloading);
+    private native void initNative();
     private native void cleanupNative();
     private native boolean connectLeAudioNative(byte[] address);
     private native boolean disconnectLeAudioNative(byte[] address);

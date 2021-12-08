@@ -27,8 +27,6 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_le_audio.h"
 
-using bluetooth::le_audio::btle_audio_codec_config_t;
-using bluetooth::le_audio::btle_audio_codec_index_t;
 using bluetooth::le_audio::ConnectionState;
 using bluetooth::le_audio::GroupNodeStatus;
 using bluetooth::le_audio::GroupStatus;
@@ -40,12 +38,6 @@ static jmethodID method_onConnectionStateChanged;
 static jmethodID method_onGroupStatus;
 static jmethodID method_onGroupNodeStatus;
 static jmethodID method_onAudioConf;
-
-static struct {
-  jclass clazz;
-  jmethodID constructor;
-  jmethodID getCodecType;
-} android_bluetooth_BluetoothLeAudioCodecConfig;
 
 static LeAudioClientInterface* sLeAudioClientInterface = nullptr;
 static std::shared_timed_mutex interface_mutex;
@@ -129,13 +121,6 @@ class LeAudioClientCallbacksImpl : public LeAudioClientCallbacks {
 static LeAudioClientCallbacksImpl sLeAudioClientCallbacks;
 
 static void classInitNative(JNIEnv* env, jclass clazz) {
-  jclass jniBluetoothLeAudioCodecConfigClass =
-      env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig");
-  android_bluetooth_BluetoothLeAudioCodecConfig.constructor =
-      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "<init>", "(I)V");
-  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
-      jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
-
   method_onGroupStatus = env->GetMethodID(clazz, "onGroupStatus", "(II)V");
   method_onGroupNodeStatus =
       env->GetMethodID(clazz, "onGroupNodeStatus", "([BII)V");
@@ -144,34 +129,7 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onConnectionStateChanged", "(I[B)V");
 }
 
-std::vector<btle_audio_codec_config_t> prepareCodecPreferences(
-    JNIEnv* env, jobject object, jobjectArray codecConfigArray) {
-  std::vector<btle_audio_codec_config_t> codec_preferences;
-
-  int numConfigs = env->GetArrayLength(codecConfigArray);
-  for (int i = 0; i < numConfigs; i++) {
-    jobject jcodecConfig = env->GetObjectArrayElement(codecConfigArray, i);
-    if (jcodecConfig == nullptr) continue;
-    if (!env->IsInstanceOf(
-            jcodecConfig,
-            android_bluetooth_BluetoothLeAudioCodecConfig.clazz)) {
-      ALOGE("%s: Invalid BluetoothLeAudioCodecConfig instance", __func__);
-      continue;
-    }
-    jint codecType = env->CallIntMethod(
-        jcodecConfig,
-        android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType);
-
-    btle_audio_codec_config_t codec_config = {
-        .codec_type = static_cast<btle_audio_codec_index_t>(codecType)};
-
-    codec_preferences.push_back(codec_config);
-  }
-  return codec_preferences;
-}
-
-static void initNative(JNIEnv* env, jobject object,
-                       jobjectArray codecOffloadingArray) {
+static void initNative(JNIEnv* env, jobject object) {
   std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
   std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
 
@@ -192,15 +150,6 @@ static void initNative(JNIEnv* env, jobject object,
     return;
   }
 
-  android_bluetooth_BluetoothLeAudioCodecConfig.clazz =
-      (jclass)env->NewGlobalRef(
-          env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig"));
-  if (android_bluetooth_BluetoothLeAudioCodecConfig.clazz == nullptr) {
-    LOG(ERROR) << "Failed to allocate Global Ref for "
-                  "BluetoothLeAudioCodecConfig class";
-    return;
-  }
-
   sLeAudioClientInterface =
       (LeAudioClientInterface*)btInf->get_profile_interface(
           BT_PROFILE_LE_AUDIO_ID);
@@ -209,11 +158,7 @@ static void initNative(JNIEnv* env, jobject object,
     return;
   }
 
-  std::vector<btle_audio_codec_config_t> codec_offloading =
-      prepareCodecPreferences(env, object, codecOffloadingArray);
-
-  sLeAudioClientInterface->Initialize(&sLeAudioClientCallbacks,
-                                      codec_offloading);
+  sLeAudioClientInterface->Initialize(&sLeAudioClientCallbacks);
 }
 
 static void cleanupNative(JNIEnv* env, jobject object) {
@@ -230,9 +175,6 @@ static void cleanupNative(JNIEnv* env, jobject object) {
     sLeAudioClientInterface->Cleanup();
     sLeAudioClientInterface = nullptr;
   }
-
-  env->DeleteGlobalRef(android_bluetooth_BluetoothLeAudioCodecConfig.clazz);
-  android_bluetooth_BluetoothLeAudioCodecConfig.clazz = nullptr;
 
   if (mCallbacksObj != nullptr) {
     env->DeleteGlobalRef(mCallbacksObj);
@@ -330,8 +272,7 @@ static void groupSetActiveNative(JNIEnv* env, jobject object, jint group_id) {
 
 static JNINativeMethod sMethods[] = {
     {"classInitNative", "()V", (void*)classInitNative},
-    {"initNative", "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
-     (void*)initNative},
+    {"initNative", "()V", (void*)initNative},
     {"cleanupNative", "()V", (void*)cleanupNative},
     {"connectLeAudioNative", "([B)Z", (void*)connectLeAudioNative},
     {"disconnectLeAudioNative", "([B)Z", (void*)disconnectLeAudioNative},
