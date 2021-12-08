@@ -70,6 +70,30 @@
       },
       "revId": "6b5ee1f4cd175f9bc9b15c99bec4c19a16af3f45",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6202261_b73681d0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2435,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-08T09:55:57Z",
+      "side": 1,
+      "message": "Per discuss, this function would check all of the unicast related profiles together.",
+      "parentUuid": "d6e06341_c8e7ded9",
+      "range": {
+        "startLine": 2435,
+        "startChar": 16,
+        "endLine": 2435,
+        "endChar": 76
+      },
+      "revId": "6b5ee1f4cd175f9bc9b15c99bec4c19a16af3f45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
