@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018176566",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914674?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "177e96e6_48f4ce1e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T16:37:11Z",
+      "side": 1,
+      "message": "#feature requires a tracking bug number",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 13
+      },
+      "revId": "0e50355a6883d487b214c2a194d7730bf1a391f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018176572",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914674?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "b1031da7_ef314d9c",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+              "range": {
+                "startLine": 62,
+                "startChar": 14,
+                "endLine": 62,
+                "endChar": 22
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "24f63448_703d4ae9",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T16:37:11Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 62,
+        "startChar": 14,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "0e50355a6883d487b214c2a194d7730bf1a391f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018176572",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914674?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "88cedf60_77bf9527",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+              "range": {
+                "startLine": 114,
+                "startChar": 33,
+                "endLine": 114,
+                "endChar": 41
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d4c28c2b_6757aa6d",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T16:37:11Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 114,
+        "startChar": 33,
+        "endLine": 114,
+        "endChar": 41
+      },
+      "revId": "0e50355a6883d487b214c2a194d7730bf1a391f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018176572",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914674?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "7a26bc2a_6058c5ae",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+              "range": {
+                "startLine": 121,
+                "startChar": 13,
+                "endLine": 121,
+                "endChar": 21
+              },
+              "replacement": "bandwidth"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e206f57c_10bfad5c",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T16:37:11Z",
+      "side": 1,
+      "message": "Common typo found: \"bandwith\" -- should it be \"bandwidth\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 121,
+        "startChar": 13,
+        "endLine": 121,
+        "endChar": 21
+      },
+      "revId": "0e50355a6883d487b214c2a194d7730bf1a391f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
