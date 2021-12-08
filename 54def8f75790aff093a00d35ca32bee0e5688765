@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018179435",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914570?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8452a7ca_83263e26",
+        "filename": "system/btif/src/btif_config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-08T17:44:55Z",
+      "side": 1,
+      "message": "TODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.",
+      "range": {
+        "startLine": 94,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 21
+      },
+      "revId": "54def8f75790aff093a00d35ca32bee0e5688765",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
