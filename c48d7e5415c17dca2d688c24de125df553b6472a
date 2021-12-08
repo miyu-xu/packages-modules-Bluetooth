@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7c2c1a_95d99b07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-08T05:40:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a62562c1_6e8d6991",
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "297de215_a2d5bca6",
@@ -145,6 +163,30 @@
       "side": 1,
       "message": "Yes, that is correct.  The issue is entirely ensuring the set is \"complete\" with respect to the assumed content by the consumer.\n\n\n```\nstruct SongInfo {\n  std::string media_id;  // This gets converted to a UID in the native service\n  std::set\u003cAttributeEntry\u003e attributes;\n};\n```",
       "parentUuid": "eb5c2c0b_20753b8b",
+      "range": {
+        "startLine": 362,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 39
+      },
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5d3ee36_6faf7f5e",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-08T05:40:05Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "272cfa2d_90cafc49",
       "range": {
         "startLine": 362,
         "startChar": 0,
