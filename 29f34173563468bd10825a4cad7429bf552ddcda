@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09666103_92b58d57",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-08T18:31:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ddcaf997_eb00d917",
+      "range": {
+        "startLine": 33,
+        "startChar": 6,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71c9bb6e_c0b4502f",
@@ -129,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0fc1d84_9eb76848",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-08T18:31:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5a21ff2a_99cf150f",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 386,
+        "endChar": 38
+      },
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51579151_f7827fa9",
@@ -166,6 +214,30 @@
       "side": 1,
       "message": "I am fine either way. I would prefer doing a quick pass in another CL before this one to make sure all use the same syntax, would you be fine with this ?",
       "parentUuid": "51579151_f7827fa9",
+      "range": {
+        "startLine": 1400,
+        "startChar": 0,
+        "endLine": 1403,
+        "endChar": 33
+      },
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f824c48f_c313dc3a",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-08T18:31:33Z",
+      "side": 1,
+      "message": "Of course!",
+      "parentUuid": "4a6579cd_4a186b62",
       "range": {
         "startLine": 1400,
         "startChar": 0,
