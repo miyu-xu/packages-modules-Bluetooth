@@ -219,7 +219,7 @@ public class LeAudioService extends ProfileService {
         // Setup codec config
         mLeAudioCodecConfig = new LeAudioCodecConfig(this);
 
-        mLeAudioNativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
+        mLeAudioNativeInterface.init(mLeAudioCodecConfig.codecConfigOffloading());
 
         return true;
     }
