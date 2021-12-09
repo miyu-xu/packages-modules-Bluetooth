@@ -14,7 +14,7 @@
 //  limitations under the License.
 
 use std::env;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn main() {
@@ -36,6 +36,10 @@ fn generate_packets() {
     // Find the packetgen tool. Expecting it at CARGO_HOME/bin
     let packetgen =
         PathBuf::from(env::var("CARGO_HOME").unwrap()).join("bin").join("bluetooth_packetgen");
+
+    if !Path::new(packetgen.as_os_str()).exists() {
+        panic!("Unable to locate bluetooth packet generator:{:?}", packetgen.as_os_str().to_str().unwrap());
+    }
 
     for i in 0..input_files.len() {
         let output = Command::new(packetgen.as_os_str().to_str().unwrap())
