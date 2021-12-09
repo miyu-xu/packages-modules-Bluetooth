@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85b90f5d_aae1091d",
+        "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-09T14:10:03Z",
+      "side": 1,
+      "message": "Add names in comments for template field, otherwise it\u0027s hard to read this definition. i.e.:\n\n\nbool /* is_scenario*/, const char /* schema */...\n\n\nWould it be easier to just pass two separate vectors, one for scenarios, and one for configurations, rather than passing a vector of complicated touples ?",
+      "range": {
+        "startLine": 388,
+        "startChar": 30,
+        "endLine": 388,
+        "endChar": 59
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e71652_95afde7d",
+        "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-09T14:10:03Z",
+      "side": 1,
+      "message": "What thread is it being executed at ?\n\nWe shouldn\u0027t load file using bta thread.\ndisk operations should happen in btif or JNI thread only. i.e. check how btif_config_open is executed, on which thread it runs.",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 70
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
