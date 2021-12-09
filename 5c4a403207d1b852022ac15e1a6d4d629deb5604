@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "574c7a58_177b74fe",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2524,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-09T18:37:01Z",
+      "side": 1,
+      "message": "0 is a valid handle.  Please assign to HCI_INVALID_HANDLE and test for that as well.",
+      "range": {
+        "startLine": 2524,
+        "startChar": 39,
+        "endLine": 2524,
+        "endChar": 40
+      },
+      "revId": "5c4a403207d1b852022ac15e1a6d4d629deb5604",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c695701_ff63fa27",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3019,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-09T18:37:01Z",
+      "side": 1,
+      "message": "Same thing.  I think HCI_INVALID_HANDLE was correct here.",
+      "range": {
+        "startLine": 3019,
+        "startChar": 22,
+        "endLine": 3019,
+        "endChar": 48
+      },
+      "revId": "5c4a403207d1b852022ac15e1a6d4d629deb5604",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
