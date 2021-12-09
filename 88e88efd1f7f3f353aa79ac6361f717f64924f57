@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d14b1fce_a81d32ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2021-12-09T13:56:08Z",
+      "side": 1,
+      "message": "I don\u0027t have any LeAudio device to test the modification.\nCan you tell me if it\u0027s work for you ?",
+      "revId": "88e88efd1f7f3f353aa79ac6361f717f64924f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
