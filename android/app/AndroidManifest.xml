@@ -463,7 +463,7 @@
             android:name=".telephony.BluetoothInCallService"
             android:permission="android.permission.BIND_INCALL_SERVICE"
             android:process="@string/process"
-            android:enabled="@bool/profile_supported_hfp_incallservice"
+            android:enabled="false"
             android:exported="true">
             <meta-data android:name="android.telecom.INCLUDE_SELF_MANAGED_CALLS"
                        android:value="true" />
