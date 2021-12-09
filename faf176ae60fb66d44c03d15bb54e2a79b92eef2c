@@ -1,0 +1,185 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018226410",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917080?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9e67508a_c3ef1bae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T19:53:38Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "faf176ae60fb66d44c03d15bb54e2a79b92eef2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018226410",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917080?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fec117bb_1ba265a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T19:53:38Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "faf176ae60fb66d44c03d15bb54e2a79b92eef2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018226406",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917080?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "1a2e6336_e31f094b",
+          "description": "Change to \"system/gd/hci/uci_packets.pdl\"",
+          "replacements": [
+            {
+              "path": "system/gd/hci/uci_packets.pdl",
+              "range": {
+                "startLine": 65,
+                "startChar": 15,
+                "endLine": 65,
+                "endChar": 23
+              },
+              "replacement": "SESSION"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3c5b0f3b_77e740c6",
+        "filename": "system/gd/hci/uci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T19:53:38Z",
+      "side": 1,
+      "message": "Common typo found: \"SESSSION\" -- should it be \"SESSION\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 65,
+        "startChar": 15,
+        "endLine": 65,
+        "endChar": 23
+      },
+      "revId": "faf176ae60fb66d44c03d15bb54e2a79b92eef2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018226406",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917080?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "6d87b32e_adee95d1",
+          "description": "Change to \"system/gd/hci/uci_packets.pdl\"",
+          "replacements": [
+            {
+              "path": "system/gd/hci/uci_packets.pdl",
+              "range": {
+                "startLine": 66,
+                "startChar": 15,
+                "endLine": 66,
+                "endChar": 23
+              },
+              "replacement": "SESSION"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d044ce00_189d82c5",
+        "filename": "system/gd/hci/uci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T19:53:38Z",
+      "side": 1,
+      "message": "Common typo found: \"SESSSION\" -- should it be \"SESSION\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 66,
+        "startChar": 15,
+        "endLine": 66,
+        "endChar": 23
+      },
+      "revId": "faf176ae60fb66d44c03d15bb54e2a79b92eef2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018226406",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917080?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "27f5c08d_0f60122e",
+          "description": "Change to \"system/gd/hci/uci_packets.pdl\"",
+          "replacements": [
+            {
+              "path": "system/gd/hci/uci_packets.pdl",
+              "range": {
+                "startLine": 67,
+                "startChar": 15,
+                "endLine": 67,
+                "endChar": 23
+              },
+              "replacement": "SESSION"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "15e8de31_a0d8d422",
+        "filename": "system/gd/hci/uci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T19:53:38Z",
+      "side": 1,
+      "message": "Common typo found: \"SESSSION\" -- should it be \"SESSION\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 23
+      },
+      "revId": "faf176ae60fb66d44c03d15bb54e2a79b92eef2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
