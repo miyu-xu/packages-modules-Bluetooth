@@ -16,6 +16,23 @@
       "message": "Working on an emulator build file update that might fix it.",
       "revId": "5f8510fec16236d7b92c0ea683279b659f0fa464",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1747ecb3_1b751706",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2021-12-09T19:47:37Z",
+      "side": 1,
+      "message": "We can use https://android-review.googlesource.com/c/platform/external/qemu/+/1916999",
+      "revId": "5f8510fec16236d7b92c0ea683279b659f0fa464",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
