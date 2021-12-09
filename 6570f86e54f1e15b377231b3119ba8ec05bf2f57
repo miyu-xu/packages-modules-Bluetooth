@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c999ff9_3d62fc5a",
+        "filename": "system/bta/le_audio/audio_set_scenarios.fbs",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-09T14:11:47Z",
+      "side": 1,
+      "message": "A comment would be nice here.",
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85b90f5d_aae1091d",
         "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
         "patchSetId": 1
