@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d985f637_802c3818",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HeadsetClientServiceInterface.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-09T18:52:03Z",
+      "side": 1,
+      "message": "HeadsetClientService is a static singleton, and this is just meant to be a utility to call into it and save all the boilerplate instance checking code and what not.\n\nWe can definitely change how it is someone gets one of these objects though. I\u0027m open to suggestions!",
+      "parentUuid": "c918b1c5_bc9ef165",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 44
+      },
+      "revId": "46df22f5c03ca71252a8b6e20590b662d3d288ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "116a2cf9_c2e53b95",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HeadsetClientServiceInterface.java",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-09T17:44:45Z",
       "side": 1,
       "message": "Could you pull the null check into a private helper function and also log a warning if the service is null?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 86
+      },
+      "revId": "46df22f5c03ca71252a8b6e20590b662d3d288ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eadac56f_2c049534",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HeadsetClientServiceInterface.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-09T18:52:03Z",
+      "side": 1,
+      "message": "Absolutely. Is something like this okay?\n\nprivate boolean isServiceAvailable(HeadsetClientService service) {\n    if (service \u003d\u003d null) {\n        Log.w(\"HeadsetClientService is not available\");\n        return false;\n    }\n    return true;\n}\n\npublic BluetoothHeadsetClientCall dial(BluetoothDevice device, String number) {\n    if (isServiceAvailable(service)) {\n        return service.dial(device, number);\n    }\n    return null;   \n]",
+      "parentUuid": "116a2cf9_c2e53b95",
       "range": {
         "startLine": 44,
         "startChar": 0,
