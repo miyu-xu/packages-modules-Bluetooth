@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c918b1c5_bc9ef165",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HeadsetClientServiceInterface.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1649618
+      },
+      "writtenOn": "2021-12-09T17:44:45Z",
+      "side": 1,
+      "message": "This could be a proper singleton with a private constructor",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 44
+      },
+      "revId": "46df22f5c03ca71252a8b6e20590b662d3d288ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "116a2cf9_c2e53b95",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HeadsetClientServiceInterface.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1649618
+      },
+      "writtenOn": "2021-12-09T17:44:45Z",
+      "side": 1,
+      "message": "Could you pull the null check into a private helper function and also log a warning if the service is null?",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 86
+      },
+      "revId": "46df22f5c03ca71252a8b6e20590b662d3d288ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a640249d_598d6c9b",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1649618
+      },
+      "writtenOn": "2021-12-09T17:44:45Z",
+      "side": 1,
+      "message": "Can\u0027t getSystemService return null in some cases?",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 89
+      },
+      "revId": "46df22f5c03ca71252a8b6e20590b662d3d288ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
