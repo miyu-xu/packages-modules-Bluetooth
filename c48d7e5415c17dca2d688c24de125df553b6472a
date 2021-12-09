@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d9ad314_9a3bd81a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-09T17:56:26Z",
+      "side": 1,
+      "message": "I don\u0027t think the spec has an opinion on empty strings for data. In fact, I think I\u0027ve seen some Samsung phones do the type of thing we\u0027re suggesting before. It\u0027s a gray area though.\n\nI don\u0027t think our AOSP AVRCP Controller implementation is impacted, we\u0027ll just log an error for malformed values:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpItem.java;l\u003d307?q\u003dAvrcpItem\u0026ss\u003dandroid%2Fplatform%2Fsuperproject\n\nThat doesn\u0027t mean other older cars not based on android won\u0027t be impacted at all though.\n\nIf you want to be extra safe, you can test the change against a Pixel-Car build off the build server and see if it impacts metadata transfer in any way for recent Android based cars. You could also see if the test team can test the change against other car kits they may have from various companies.",
+      "parentUuid": "736ba6b8_4dbee3a8",
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "297de215_a2d5bca6",
         "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
         "patchSetId": 2
