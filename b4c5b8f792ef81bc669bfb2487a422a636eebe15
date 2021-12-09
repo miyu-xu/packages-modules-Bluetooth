@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018199085",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1910922?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "773b9dcb_701663bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T00:50:35Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "b4c5b8f792ef81bc669bfb2487a422a636eebe15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018199085",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1910922?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b890c4ab_e2d1ef16",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T00:50:35Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "b4c5b8f792ef81bc669bfb2487a422a636eebe15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018199085",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1910922?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "13b3808e_b53b0af8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-09T00:50:35Z",
+      "side": 1,
+      "message": "\"manual - Verified with carkit\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "b4c5b8f792ef81bc669bfb2487a422a636eebe15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
