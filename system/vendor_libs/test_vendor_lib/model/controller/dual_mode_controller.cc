@@ -489,6 +489,8 @@ void DualModeController::ReadEncryptionKeySize(CommandView command) {
       gd_hci::SecurityCommandView::Create(command));
   ASSERT(command_view.IsValid());
 
+  LOG_INFO("Read Encryption Key Size: %x", properties_.GetEncryptionKeySize());
+
   auto packet = bluetooth::hci::ReadEncryptionKeySizeCompleteBuilder::Create(
       kNumCommandPackets, ErrorCode::SUCCESS,
       command_view.GetConnectionHandle(), properties_.GetEncryptionKeySize());
@@ -568,6 +570,7 @@ void DualModeController::ReadLocalSupportedCommands(CommandView command) {
 void DualModeController::ReadLocalSupportedFeatures(CommandView command) {
   auto command_view = gd_hci::ReadLocalSupportedFeaturesView::Create(command);
   ASSERT(command_view.IsValid());
+
   auto packet =
       bluetooth::hci::ReadLocalSupportedFeaturesCompleteBuilder::Create(
           kNumCommandPackets, ErrorCode::SUCCESS,
