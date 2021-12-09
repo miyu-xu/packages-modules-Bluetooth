@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "280e26c2_57e5356d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-09T18:45:08Z",
+      "side": 1,
+      "message": "These were just made for ease of calling/reduction of boilerplate code, especially as this service is now a static singleton.\n\nI could absolutely just remove the \"*Internal\" variants and make them public, and then expect calls to do more or less exactly what these are doing where you call getInstance(), check it, and invoke the function you care about.\n\nAs far as testing goes, the paired tests aren\u0027t too bad (they ended up on the next change and I\u0027m trying to resolve that right now!).",
+      "parentUuid": "34ca948f_ff914f3f",
+      "revId": "6d0539d4cc22848e52df4f39fcb6449fa9766008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85da92da_fee662b7",
         "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientDeviceBlock.java",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2021-12-09T17:44:53Z",
       "side": 1,
       "message": "Won\u0027t this just add a single comma after the first list entry?",
+      "revId": "6d0539d4cc22848e52df4f39fcb6449fa9766008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56933982_955e9a45",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientDeviceBlock.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-09T18:45:08Z",
+      "side": 1,
+      "message": "Whoops! Must have been on autopilot here. Should be if (!first) (:",
+      "parentUuid": "85da92da_fee662b7",
       "revId": "6d0539d4cc22848e52df4f39fcb6449fa9766008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
