@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "867063a2_cc9dcb31",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-09T00:21:22Z",
+      "side": 1,
+      "message": "since we never use the look-up function of the unorder_map and we always iterate through it, could we replace it with std::vector\u003cstd::pair\u003cRawAddress, RawAddress\u003e\u003e ?\n\nThis make sure the the callback order is the same as the bonded devices order and also easier to iterate.",
+      "range": {
+        "startLine": 943,
+        "startChar": 2,
+        "endLine": 943,
+        "endChar": 66
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe6b8199_803d14c8",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-09T00:21:22Z",
+      "side": 1,
+      "message": "if we are using std::vector\u003cstd::pair\u003c\u003e\u003e, then this becomes\n\nconsolidated_devices.emplace_back(bonded_devices.devices[i], key.pid_key.identity_addr);",
+      "range": {
+        "startLine": 954,
+        "startChar": 0,
+        "endLine": 955,
+        "endChar": 38
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be54991c_8c6a8ce9",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-09T00:21:22Z",
+      "side": 1,
+      "message": "can we use std::make_unique then? So that we don\u0027t need to worry about freeing the device list. \n\nauto devices_list \u003d std::make_unique\u003cRawAddress[]\u003e(consolidated_devices.size());\n...\nadapter_prop.val \u003d devices_list.get();",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 965,
+        "endChar": 58
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b5661bc_8af0cfab",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-09T00:21:22Z",
+      "side": 1,
+      "message": "if we are using vector, then it can be\n\nfor (int i \u003d 0; i \u003c consolidated_devices.size(); i++) {\n  devices_list[i] \u003d consolidated_devices[i].first;\n}",
+      "range": {
+        "startLine": 969,
+        "startChar": 4,
+        "endLine": 972,
+        "endChar": 5
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "831c0b5e_bbdb504d",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-09T00:21:22Z",
+      "side": 1,
+      "message": "nit: add a /* XXX */ style comment to indicate what it means by \"1\" here",
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
