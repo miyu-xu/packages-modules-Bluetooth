@@ -246,6 +246,30 @@
       },
       "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09c9855a_db090015",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-09T14:34:20Z",
+      "side": 1,
+      "message": "https://r.android.com/1916439",
+      "parentUuid": "f824c48f_c313dc3a",
+      "range": {
+        "startLine": 1400,
+        "startChar": 0,
+        "endLine": 1403,
+        "endChar": 33
+      },
+      "revId": "29f34173563468bd10825a4cad7429bf552ddcda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
