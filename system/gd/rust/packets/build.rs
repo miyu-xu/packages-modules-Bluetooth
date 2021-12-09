@@ -34,8 +34,14 @@ fn generate_packets() {
     let outputted = [out_dir.join("../../hci/hci_packets.rs")];
 
     // Find the packetgen tool. Expecting it at CARGO_HOME/bin
-    let packetgen =
-        PathBuf::from(env::var("CARGO_HOME").unwrap()).join("bin").join("bluetooth_packetgen");
+    let packetgen = match env::var("CARGO_HOME") {
+        Ok(dir) => PathBuf::from(dir).join("bin").join("bluetooth_packetgen"),
+        Err(_) => PathBuf::from("bluetooth_packetgen"),
+    };
+
+    if !packetgen.exists() {
+        panic!("Unable to find \"bluetooth_packetgen\".  Is CARGO_HOME set ?");
+    }
 
     for i in 0..input_files.len() {
         let output = Command::new(packetgen.as_os_str().to_str().unwrap())
