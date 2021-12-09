@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2adb2617_e5eb7786",
+        "filename": "system/binder/android/bluetooth/IBluetoothCarProjection.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1112054
+      },
+      "writtenOn": "2021-12-09T18:56:24Z",
+      "side": 1,
+      "message": "This should be oneway method.",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 85
+      },
+      "revId": "f510b6010f0efebb267eb4b5eb16f248ede3dbb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
