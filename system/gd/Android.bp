@@ -559,6 +559,20 @@ genrule {
     ],
 }
 
+genrule {
+    name: "BluetoothGeneratedPackets_rust_uci",
+    tools: [
+        "bluetooth_packetgen",
+    ],
+    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in) --rust",
+    srcs: [
+        "hci/uci_packets.pdl",
+    ],
+    out: [
+        "hci/uci_packets.rs",
+    ],
+}
+
 rust_library {
     name: "libbt_packets",
     defaults: ["gd_rust_defaults"],
@@ -566,6 +580,21 @@ rust_library {
     srcs: ["rust/packets/lib.rs", ":BluetoothGeneratedPackets_rust"],
     edition: "2018",
     host_supported: true,
+    proc_macros: ["libnum_derive"],
+    rustlibs: [
+        "libbytes",
+        "libnum_traits",
+        "libthiserror",
+        "liblog_rust",
+    ],
+}
+
+rust_test_host {
+    name: "libbt_packets_test_uci",
+    defaults: ["gd_rust_defaults"],
+    srcs: ["rust/packets/lib_uci.rs", ":BluetoothGeneratedPackets_rust_uci"],
+    test_suites: ["general-tests"],
+    edition: "2018",
     proc_macros: ["libnum_derive"],
     rustlibs: [
         "libbytes",
