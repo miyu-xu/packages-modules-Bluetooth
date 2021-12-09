@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "736ba6b8_4dbee3a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-09T17:37:32Z",
+      "side": 1,
+      "message": "The danger here is if there are car kits that don\u0027t allow empty strings for meta data.  Are they required to accept it by the spec?",
+      "parentUuid": "3d7c2c1a_95d99b07",
+      "revId": "c48d7e5415c17dca2d688c24de125df553b6472a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "297de215_a2d5bca6",
         "filename": "android/app/jni/com_android_bluetooth_avrcp_target.cpp",
         "patchSetId": 2
