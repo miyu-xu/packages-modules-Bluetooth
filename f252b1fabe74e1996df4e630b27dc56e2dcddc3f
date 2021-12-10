@@ -63,6 +63,30 @@
       },
       "revId": "f252b1fabe74e1996df4e630b27dc56e2dcddc3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e86d4c_57dbe25d",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2021-12-10T10:39:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5ed1b0c_565747a4",
+      "range": {
+        "startLine": 189,
+        "startChar": 4,
+        "endLine": 189,
+        "endChar": 68
+      },
+      "revId": "f252b1fabe74e1996df4e630b27dc56e2dcddc3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
