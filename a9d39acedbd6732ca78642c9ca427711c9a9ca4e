@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018252259",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1916442?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7c69d656_8681f30d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T09:36:45Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "a9d39acedbd6732ca78642c9ca427711c9a9ca4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018252259",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1916442?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7607106b_b94b7189",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T09:36:45Z",
+      "side": 1,
+      "message": "\"MediaControlGattServiceTest\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 39
+      },
+      "revId": "a9d39acedbd6732ca78642c9ca427711c9a9ca4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
