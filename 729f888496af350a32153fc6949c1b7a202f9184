@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3147c0c7_0d4f8a7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "616ae1f3_8b1f212f",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": "Do we want to check that here?  We could get the address for this handle and print a warning if eSCO is still connected.",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 33
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dad2f828_e5b812bb",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": "Does eSCO vs SCO matter in this file?  Maybe we could keep it generic.",
+      "range": {
+        "startLine": 176,
+        "startChar": 44,
+        "endLine": 176,
+        "endChar": 48
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "680e11d9_740eaef2",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": "Needed?  Maybe debug?\n\nThis seems unrelated to SCO",
+      "range": {
+        "startLine": 492,
+        "startChar": 0,
+        "endLine": 492,
+        "endChar": 79
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd53c163_04fd7e5e",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": "I\u0027m not sure what this means.",
+      "range": {
+        "startLine": 1403,
+        "startChar": 29,
+        "endLine": 1403,
+        "endChar": 41
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe1cd017_7e677609",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": ":)",
+      "range": {
+        "startLine": 1415,
+        "startChar": 2,
+        "endLine": 1415,
+        "endChar": 29
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "374d45a0_d0393222",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": "Should we have a message here if it\u0027s unexpected?",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 15
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22b8dc49_4280ba89",
+        "filename": "system/vendor_libs/test_vendor_lib/model/devices/device_properties.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T15:45:45Z",
+      "side": 1,
+      "message": "I would rather do this as part of a separate change.  Is it needed for eSCO?",
+      "range": {
+        "startLine": 55,
+        "startChar": 61,
+        "endLine": 55,
+        "endChar": 71
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
