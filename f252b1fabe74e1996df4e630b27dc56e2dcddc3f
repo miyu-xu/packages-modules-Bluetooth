@@ -16,6 +16,29 @@
       "message": "This change may also act as fail safe against b/205989947.",
       "revId": "f252b1fabe74e1996df4e630b27dc56e2dcddc3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7715fc8_d4b04158",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-10T07:04:36Z",
+      "side": 1,
+      "message": "we should always shutdown or kill the management thread, otherwise, if event_clean_up_stack() still runs on management thread with the promise, it may invoke the promise after it goes out of scope in this method.\n\nor maybe we should just abort() the stack in this case",
+      "range": {
+        "startLine": 189,
+        "startChar": 4,
+        "endLine": 189,
+        "endChar": 68
+      },
+      "revId": "f252b1fabe74e1996df4e630b27dc56e2dcddc3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
