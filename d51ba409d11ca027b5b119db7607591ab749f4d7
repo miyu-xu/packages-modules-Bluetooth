@@ -16,6 +16,24 @@
       "message": "Could we check stream_conf-\u003econf is null or not before getting the name field?",
       "revId": "d51ba409d11ca027b5b119db7607591ab749f4d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b67c627f_a0933b05",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2043,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-10T16:25:44Z",
+      "side": 1,
+      "message": "it shall not be null. Other options is to add here an assert, but it would lead to same thing.\n\nSince we are in the STREAMING state, it means, group is configured with some configuration. This patch, makes sure, that once configuration is applied to the group, stream_conf-\u003econf is pointing to this configuration.",
+      "parentUuid": "0de99b7d_65376959",
+      "revId": "d51ba409d11ca027b5b119db7607591ab749f4d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
