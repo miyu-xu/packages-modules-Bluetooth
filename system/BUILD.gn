@@ -115,6 +115,11 @@ config("target_defaults") {
     "TARGET_FLOSS",
     "EXPORT_SYMBOL=__attribute__((visibility(\"default\")))",
     "FALLTHROUGH_INTENDED=[[clang::fallthrough]]",
+    # Start with NB
+    "DISABLE_WBS=TRUE",
+    # Start with no extra feature supported
+    # This will be consumed by BTA_AgRegister and passed to HF through AT+BRSF.
+    "BTIF_HF_FEATURES=0x00000000"
   ]
 
   # If not configured as a dynamic library, default to static library
