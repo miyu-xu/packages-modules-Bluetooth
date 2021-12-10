@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "629c7c88_e33d6d84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-10T09:29:47Z",
+      "side": 1,
+      "message": "Please also add Bug: 150670922",
+      "revId": "ac5731dd8a90ef473ec45d1515d1e0fb829cbda0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
