@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1d8be11_77693160",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-12-10T11:03:07Z",
+      "side": 1,
+      "message": "Could this be kind of \"define\" to not use \"magic numbers\" for known types, defined in assigned numbers ?",
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c999ff9_3d62fc5a",
         "filename": "system/bta/le_audio/audio_set_scenarios.fbs",
         "patchSetId": 1
