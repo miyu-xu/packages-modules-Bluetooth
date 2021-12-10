@@ -159,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "009f3d87_e57fea70",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 492,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-10T16:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d502b84_69e69601",
+      "range": {
+        "startLine": 492,
+        "startChar": 0,
+        "endLine": 492,
+        "endChar": 79
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd53c163_04fd7e5e",
@@ -196,6 +220,30 @@
       "side": 1,
       "message": "Typo, `to use` should be left out.",
       "parentUuid": "cd53c163_04fd7e5e",
+      "range": {
+        "startLine": 1403,
+        "startChar": 29,
+        "endLine": 1403,
+        "endChar": 41
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3321b65f_b0755718",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1403,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-10T16:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39f38545_2f883945",
       "range": {
         "startLine": 1403,
         "startChar": 29,
@@ -313,6 +361,30 @@
       "side": 1,
       "message": "Will revert.",
       "parentUuid": "22b8dc49_4280ba89",
+      "range": {
+        "startLine": 55,
+        "startChar": 61,
+        "endLine": 55,
+        "endChar": 71
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7f3da79_dbc60e67",
+        "filename": "system/vendor_libs/test_vendor_lib/model/devices/device_properties.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-10T16:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdea3d21_c19c139d",
       "range": {
         "startLine": 55,
         "startChar": 61,
