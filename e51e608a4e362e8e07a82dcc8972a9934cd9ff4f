@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018259297",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1918379?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "30fea493_7bd29947",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T15:50:53Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_client_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 74
+      },
+      "revId": "e51e608a4e362e8e07a82dcc8972a9934cd9ff4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018259297",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1918379?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0724ed02_fb4a288f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T15:50:53Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 74
+      },
+      "revId": "e51e608a4e362e8e07a82dcc8972a9934cd9ff4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018259292",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1918379?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "67a54622_9cdf8fd0",
+          "description": "Change to \"system/bta/le_audio/devices.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/devices.cc",
+              "range": {
+                "startLine": 1160,
+                "startChar": 48,
+                "endLine": 1160,
+                "endChar": 55
+              },
+              "replacement": "chosen"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "88bf99f9_16a7547b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T15:50:53Z",
+      "side": 1,
+      "message": "Common typo found: \"choosen\" -- should it be \"chosen\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1160,
+        "startChar": 48,
+        "endLine": 1160,
+        "endChar": 55
+      },
+      "revId": "e51e608a4e362e8e07a82dcc8972a9934cd9ff4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018259292",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1918379?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "a8c4ff3b_08c5e17d",
+          "description": "Change to \"system/bta/le_audio/devices.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/devices.cc",
+              "range": {
+                "startLine": 1161,
+                "startChar": 33,
+                "endLine": 1161,
+                "endChar": 43
+              },
+              "replacement": "unavailable"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6270a3bd_31a53030",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1161,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T15:50:53Z",
+      "side": 1,
+      "message": "Common typo found: \"unavalable\" -- should it be \"unavailable\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1161,
+        "startChar": 33,
+        "endLine": 1161,
+        "endChar": 43
+      },
+      "revId": "e51e608a4e362e8e07a82dcc8972a9934cd9ff4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
