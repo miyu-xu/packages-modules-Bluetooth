@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3d198e4_37110ffd",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2524,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T14:38:30Z",
+      "side": 1,
+      "message": "Good point.  I saw that the name changed, but didn\u0027t follow it well enough to see that the type of handle had changed.\n\nI wonder if having a BTA_INVALID_HANDLE would help.",
+      "parentUuid": "6d2de446_07ed86ae",
+      "range": {
+        "startLine": 2524,
+        "startChar": 39,
+        "endLine": 2524,
+        "endChar": 40
+      },
+      "revId": "5c4a403207d1b852022ac15e1a6d4d629deb5604",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c695701_ff63fa27",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 2
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Same as above",
       "parentUuid": "8c695701_ff63fa27",
+      "range": {
+        "startLine": 3019,
+        "startChar": 22,
+        "endLine": 3019,
+        "endChar": 48
+      },
+      "revId": "5c4a403207d1b852022ac15e1a6d4d629deb5604",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e16b89_8d216788",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3019,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T14:38:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "af06491a_b69db47d",
       "range": {
         "startLine": 3019,
         "startChar": 22,
