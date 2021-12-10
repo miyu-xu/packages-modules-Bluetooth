@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0a9dc82_ea3fa573",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 943,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-10T05:36:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "867063a2_cc9dcb31",
+      "range": {
+        "startLine": 943,
+        "startChar": 2,
+        "endLine": 943,
+        "endChar": 66
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe6b8199_803d14c8",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-09T00:21:22Z",
       "side": 1,
       "message": "if we are using std::vector\u003cstd::pair\u003c\u003e\u003e, then this becomes\n\nconsolidated_devices.emplace_back(bonded_devices.devices[i], key.pid_key.identity_addr);",
+      "range": {
+        "startLine": 954,
+        "startChar": 0,
+        "endLine": 955,
+        "endChar": 38
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9798a2be_01dc2650",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-10T05:36:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe6b8199_803d14c8",
       "range": {
         "startLine": 954,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "709c43fb_fcb739a5",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 965,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-10T05:36:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be54991c_8c6a8ce9",
+      "range": {
+        "startLine": 963,
+        "startChar": 0,
+        "endLine": 965,
+        "endChar": 58
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b5661bc_8af0cfab",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dd90089_bd13ef10",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-10T05:36:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b5661bc_8af0cfab",
+      "range": {
+        "startLine": 969,
+        "startChar": 4,
+        "endLine": 972,
+        "endChar": 5
+      },
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "831c0b5e_bbdb504d",
@@ -106,6 +202,24 @@
       "writtenOn": "2021-12-09T00:21:22Z",
       "side": 1,
       "message": "nit: add a /* XXX */ style comment to indicate what it means by \"1\" here",
+      "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "482e69fb_d9623729",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-10T05:36:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "831c0b5e_bbdb504d",
       "revId": "75fd1251d932c64efdf857618cc17433231ef9cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
