@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "738e0ee2_8ff814fa",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T17:03:49Z",
+      "side": 1,
+      "message": "We could implement that here, to make sure we don\u0027t miss a case somewhere else.",
+      "parentUuid": "ffe9483d_6c9e93e2",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 33
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dad2f828_e5b812bb",
         "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
         "patchSetId": 2
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "I started with the idea of only supporting eSCO links, but I might have to implement simple legacy SCO links at some point, the PTS is being pesky about it...",
       "parentUuid": "dad2f828_e5b812bb",
+      "range": {
+        "startLine": 176,
+        "startChar": 44,
+        "endLine": 176,
+        "endChar": 48
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e72352e8_3e245485",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T17:03:49Z",
+      "side": 1,
+      "message": "In this file, let\u0027s just say SCO handle, then.",
+      "parentUuid": "71e0e0c6_d347cfe3",
       "range": {
         "startLine": 176,
         "startChar": 44,
@@ -314,6 +362,30 @@
       "side": 1,
       "message": "Will appear as a negotiation error, I can log individual failures if you prefer.",
       "parentUuid": "374d45a0_d0393222",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 15
+      },
+      "revId": "729f888496af350a32153fc6949c1b7a202f9184",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6a6d2b8_739fc299",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-10T17:03:49Z",
+      "side": 1,
+      "message": "OK. That\u0027s fine.",
+      "parentUuid": "fde8272e_1c48fd3d",
       "range": {
         "startLine": 106,
         "startChar": 8,
