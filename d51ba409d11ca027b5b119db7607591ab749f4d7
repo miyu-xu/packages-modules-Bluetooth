@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de99b7d_65376959",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2043,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-10T16:04:55Z",
+      "side": 1,
+      "message": "Could we check stream_conf-\u003econf is null or not before getting the name field?",
+      "revId": "d51ba409d11ca027b5b119db7607591ab749f4d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
