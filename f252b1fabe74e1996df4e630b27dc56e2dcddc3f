@@ -39,6 +39,30 @@
       },
       "revId": "f252b1fabe74e1996df4e630b27dc56e2dcddc3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5ed1b0c_565747a4",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2021-12-10T10:13:02Z",
+      "side": 1,
+      "message": "The management thread will be aborted as the whole process exits after the execution returns back to the BT service adapter.\n\nAs for scope of promise, I see similar pattern being used in other places like\npackages/modules/Bluetooth/system/main/shim/l2c_api.cc:1297\npackages/modules/Bluetooth/system/gd/module.h:207\nThough std::move() is used instead of base::Passed() for passing the arguments. I have now aligned my changes in the same way.\n\nAlso corrected micro to milli.",
+      "parentUuid": "e7715fc8_d4b04158",
+      "range": {
+        "startLine": 189,
+        "startChar": 4,
+        "endLine": 189,
+        "endChar": 68
+      },
+      "revId": "f252b1fabe74e1996df4e630b27dc56e2dcddc3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
