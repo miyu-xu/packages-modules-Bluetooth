@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c76c6df_c7653493",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2021-12-10T14:49:25Z",
+      "side": 1,
+      "message": "It\u0027s my first attempt at flatbuffers but it seems to me there is no such thing as integer \u0027define\u0027 in the schema language as it describes data types rather than the data itself (defined values). Nor there is any \u0027macro\u0027 like mechanism (which \u0027C\u0027 language defines are) in xml itself.\n\nSure we have enums but these are like C++ enum classes, which are strictly typed and disallow values other than those defined as enum values. Maybe some quirky combination of multiple types hidden behind an union or resolving Strings to some (elsewhere defined) byte arrays in the code itself would work but I\u0027m not sure if it would look better or worse than that (similar to how scenarios reference configurations by their names). We still want to allow others to put their own generic byte arrays without defining them as types (at least not in the schema). I\u0027m open for suggestions on how to make it more like \u0027defines\u0027 but also flexible without future schema changes.",
+      "parentUuid": "c1d8be11_77693160",
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c999ff9_3d62fc5a",
         "filename": "system/bta/le_audio/audio_set_scenarios.fbs",
         "patchSetId": 1
@@ -60,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "72989b8e_943ef696",
+        "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2021-12-10T14:49:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "85b90f5d_aae1091d",
+      "range": {
+        "startLine": 388,
+        "startChar": 30,
+        "endLine": 388,
+        "endChar": 59
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b7e71652_95afde7d",
         "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
         "patchSetId": 1
@@ -71,6 +113,30 @@
       "writtenOn": "2021-12-09T14:10:03Z",
       "side": 1,
       "message": "What thread is it being executed at ?\n\nWe shouldn\u0027t load file using bta thread.\ndisk operations should happen in btif or JNI thread only. i.e. check how btif_config_open is executed, on which thread it runs.",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 70
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f9f9318_d56b059c",
+        "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2021-12-10T14:49:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b7e71652_95afde7d",
       "range": {
         "startLine": 481,
         "startChar": 0,
