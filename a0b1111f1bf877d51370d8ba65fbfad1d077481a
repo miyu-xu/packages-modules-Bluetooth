@@ -1,0 +1,238 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245213",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a490d940_fefeb089",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245213",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c638ba34_91787e22",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245206",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9188d9de_caf5c25d",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 102
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245206",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e57d2994_b17ead58",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 127
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245206",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "733ac16e_8237e70b",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 129
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245206",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "17fbad81_c09f56df",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 104
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245206",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9a8763f5_e5481bc6",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 123
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245206",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "781fefef_7c1ffb7e",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 117
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018245206",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8455b2c2_f07c0a6a",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T05:01:49Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 108
+      },
+      "revId": "a0b1111f1bf877d51370d8ba65fbfad1d077481a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
