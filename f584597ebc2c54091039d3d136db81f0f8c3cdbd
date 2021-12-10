@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20b766bb_73fb884d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2021-12-10T16:38:57Z",
+      "side": 1,
+      "message": "Guessing timeout values is almost always a losing proposition.  Timeouts live in a larger ecosystem of other timeouts which may unexpectedly trigger (or not tigger) causing unexpected side effects.\n\nThere are several clients with orthogonal shutdown requirements that maybe this should be an API.  Nearby may want fast shutdown using bt as another transport, but other clients may want a reliable fault tolerant graceful shutdown.\n\nWe should metricize this number; upon every shutdown we should accumulate the values across all targets to understand the behavior under real work conditions.\n",
+      "revId": "f584597ebc2c54091039d3d136db81f0f8c3cdbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
