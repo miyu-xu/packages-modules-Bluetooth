@@ -1,0 +1,47 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018256667",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1918182?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "ceec3a00_e18e2ad7",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+              "range": {
+                "startLine": 143,
+                "startChar": 17,
+                "endLine": 143,
+                "endChar": 31
+              },
+              "replacement": "responsibility"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "55375c84_6dd35469",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-10T13:51:13Z",
+      "side": 1,
+      "message": "Common typo found: \"responsability\" -- should it be \"responsibility\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 143,
+        "startChar": 17,
+        "endLine": 143,
+        "endChar": 31
+      },
+      "revId": "de0b59d323035bdd95afb823558f8fe1158efa0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
