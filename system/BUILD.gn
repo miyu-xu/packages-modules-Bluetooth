@@ -115,6 +115,8 @@ config("target_defaults") {
     "TARGET_FLOSS",
     "EXPORT_SYMBOL=__attribute__((visibility(\"default\")))",
     "FALLTHROUGH_INTENDED=[[clang::fallthrough]]",
+    "DISABLE_WBS=TRUE",
+    "BTIF_HF_FEATURES=BTA_AG_FEAT_ECS|BTA_AG_FEAT_HF_IND"
   ]
 
   # If not configured as a dynamic library, default to static library
