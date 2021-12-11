@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf17f76_5b3591ea",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-11T08:18:57Z",
+      "side": 1,
+      "message": "Is \"\" a valid key for mClccIndexMap?",
+      "range": {
+        "startLine": 761,
+        "startChar": 19,
+        "endLine": 761,
+        "endChar": 21
+      },
+      "revId": "d3d5c639e133ddc210d55f6fb78b30603eb624f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
