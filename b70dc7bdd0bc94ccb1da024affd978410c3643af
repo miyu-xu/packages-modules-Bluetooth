@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b37c93a5_a086d453",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2021-12-12T05:24:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "550c69df_c4d24b0b",
+      "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d63e6c7_537d9016",
@@ -65,6 +83,24 @@
       "writtenOn": "2021-12-03T01:15:11Z",
       "side": 1,
       "message": "No longer needed when moved to same location where br/edr is set",
+      "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de7be0d5_2e8f0578",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1981,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2021-12-12T05:24:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d63e6c7_537d9016",
       "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
