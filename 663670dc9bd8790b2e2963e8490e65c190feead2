@@ -34,6 +34,24 @@
       "parentUuid": "7e8349fa_7d228882",
       "revId": "663670dc9bd8790b2e2963e8490e65c190feead2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "433d7034_709061e6",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-13T21:16:35Z",
+      "side": 1,
+      "message": "We may need to fix RootCanal, then :)\n\nI don\u0027t think there\u0027s any logic to make sure 0 isn\u0027t used as a SCO handle.",
+      "parentUuid": "5c6a5f7d_356a567d",
+      "revId": "663670dc9bd8790b2e2963e8490e65c190feead2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
