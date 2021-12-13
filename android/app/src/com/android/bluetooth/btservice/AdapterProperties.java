@@ -120,6 +120,7 @@ class AdapterProperties {
     private boolean mIsLeCodedPhySupported;
     private boolean mIsLeExtendedAdvertisingSupported;
     private boolean mIsLePeriodicAdvertisingSupported;
+    private boolean mIsLeAudioBroadcastSupported;
     private int mLeMaximumAdvertisingDataLength;
 
     private int mIsDynamicAudioBufferSizeSupported;
@@ -516,6 +517,13 @@ class AdapterProperties {
      */
     boolean isLeConnectedIsochronousStreamCentralSupported() {
         return mIsLeConnectedIsochronousStreamCentralSupported;
+    }
+
+    /**
+     * @return the mIsLeAudioBroadcastSupported
+     */
+    boolean isLeAudioBroadcastSupported() {
+        return mIsLeAudioBroadcastSupported;
     }
 
     /**
@@ -979,6 +987,7 @@ class AdapterProperties {
                 ((0xFF & ((int) val[23])) << 8) + (0xFF & ((int) val[22]));
         mIsLePeriodicAdvertisingSyncTransferSenderSupported = ((0xFF & ((int) val[24])) != 0);
         mIsLeConnectedIsochronousStreamCentralSupported = ((0xFF & ((int) val[25])) != 0);
+        mIsLeAudioBroadcastSupported = ((0xFF & ((int) val[26])) != 0);
 
         Log.d(TAG, "BT_PROPERTY_LOCAL_LE_FEATURES: update from BT controller"
                 + " mNumOfAdvertisementInstancesSupported = "
@@ -995,6 +1004,7 @@ class AdapterProperties {
                 + " mIsLeExtendedAdvertisingSupported = " + mIsLeExtendedAdvertisingSupported
                 + " mIsLePeriodicAdvertisingSupported = " + mIsLePeriodicAdvertisingSupported
                 + " mLeMaximumAdvertisingDataLength = " + mLeMaximumAdvertisingDataLength
+                + " mIsLeAudioBroadcastSupported = " + mIsLeAudioBroadcastSupported
                 + " mDynamicAudioBufferSizeSupportedCodecsGroup1 = "
                 + mDynamicAudioBufferSizeSupportedCodecsGroup1
                 + " mDynamicAudioBufferSizeSupportedCodecsGroup2 = "
