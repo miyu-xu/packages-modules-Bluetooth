@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018359054",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1921077?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "76dc12b2_48d1995b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-13T23:29:38Z",
+      "side": 1,
+      "message": "\"Observe logs on ChromeOS has shorter __file__ paths\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 57
+      },
+      "revId": "4d0205d8abeecc39b8de9d9a17528b3d1df037e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
