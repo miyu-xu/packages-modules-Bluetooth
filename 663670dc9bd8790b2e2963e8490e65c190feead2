@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e8349fa_7d228882",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/acl_connection_handler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-13T19:14:49Z",
+      "side": 1,
+      "message": "kReservedHandle?\n\nI think 0 is a valid handle.",
+      "revId": "663670dc9bd8790b2e2963e8490e65c190feead2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
