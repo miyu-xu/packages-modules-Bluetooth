@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571fe7d3_be4b73fe",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2021-12-13T21:00:32Z",
+      "side": 1,
+      "message": "getLoggableAddress?",
+      "range": {
+        "startLine": 125,
+        "startChar": 25,
+        "endLine": 125,
+        "endChar": 42
+      },
+      "revId": "e076c3ff9c532eebbbff2c890f06eb2f0be52034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
