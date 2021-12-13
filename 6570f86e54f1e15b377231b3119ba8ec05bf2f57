@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be009b4e_864e478d",
+        "filename": "system/bta/le_audio/audio_set_scenarios.fbs",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2021-12-13T10:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c999ff9_3d62fc5a",
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "85b90f5d_aae1091d",
@@ -100,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01b63568_5845732d",
+        "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2021-12-13T10:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "72989b8e_943ef696",
+      "range": {
+        "startLine": 388,
+        "startChar": 30,
+        "endLine": 388,
+        "endChar": 59
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7e71652_95afde7d",
@@ -137,6 +179,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "b7e71652_95afde7d",
+      "range": {
+        "startLine": 481,
+        "startChar": 0,
+        "endLine": 482,
+        "endChar": 70
+      },
+      "revId": "6570f86e54f1e15b377231b3119ba8ec05bf2f57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c493496_2b2403bf",
+        "filename": "system/bta/le_audio/le_audio_set_configurations.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2021-12-13T10:47:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f9f9318_d56b059c",
       "range": {
         "startLine": 481,
         "startChar": 0,
