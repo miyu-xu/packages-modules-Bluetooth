@@ -25,6 +25,7 @@ import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.nullable;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -40,6 +41,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
+import android.media.BtProfileConnectionInfo;
 import android.os.ParcelUuid;
 
 import androidx.test.InstrumentationRegistry;
@@ -58,6 +60,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -132,6 +135,10 @@ public class LeAudioServiceTest {
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_CONF_CHANGED);
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_GROUP_STATUS_CHANGED);
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_CREATED);
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_DESTROYED);
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_STATE);
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_ID);
         mLeAudioIntentReceiver = new LeAudioIntentReceiver();
         mTargetContext.registerReceiver(mLeAudioIntentReceiver, filter);
 
@@ -209,7 +216,11 @@ public class LeAudioServiceTest {
                 }
             }
 
-            if (BluetoothLeAudio.ACTION_LE_AUDIO_GROUP_STATUS_CHANGED.equals(intent.getAction())) {
+            if (BluetoothLeAudio.ACTION_LE_AUDIO_GROUP_STATUS_CHANGED.equals(intent.getAction()) ||
+                BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_CREATED.equals(intent.getAction()) ||
+                BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_STATE.equals(intent.getAction()) ||
+                BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_DESTROYED.equals(intent.getAction()) ||
+                BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_ID.equals(intent.getAction())) {
                 try {
                     mGroupIntentQueue.put(intent);
                 } catch (InterruptedException e) {
@@ -1056,5 +1067,117 @@ public class LeAudioServiceTest {
 
         sendEventAndVerifyIntentForGroupStatusChanged(testGroupId, LeAudioStackEvent.GROUP_STATUS_ACTIVE);
         sendEventAndVerifyIntentForGroupStatusChanged(testGroupId, LeAudioStackEvent.GROUP_STATUS_INACTIVE);
+    }
+
+    /**
+     * Test native interface broadcast created message handling
+     */
+    @Test
+    public void testBroadcastCreated() {
+        int instanceId = 1;
+        boolean success = true;
+        int eventType = LeAudioStackEvent.EVENT_TYPE_BROADCAST_CREATED;
+        String action = BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_CREATED;
+
+        LeAudioStackEvent broadcastCreatedEvent = new LeAudioStackEvent(eventType);
+        broadcastCreatedEvent.valueInt1 = instanceId;
+        broadcastCreatedEvent.valueBool1 = success;
+        mService.messageFromNative(broadcastCreatedEvent);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mGroupIntentQueue);
+        assertThat(intent).isNotNull();
+        assertThat(action).isEqualTo(intent.getAction());
+        assertThat(instanceId)
+                .isEqualTo(intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID,
+                        -instanceId));
+        assertThat(success)
+                .isEqualTo(intent.getBooleanExtra(BluetoothLeAudio
+                        .EXTRA_LE_AUDIO_BROADCAST_INSTANCE_STATUS, !success));
+    }
+
+    /**
+     * Test native interface broadcast destroyed message handling
+     */
+    @Test
+    public void testBroadcastDestroyed() {
+        int instanceId = 1;
+        int eventType = LeAudioStackEvent.EVENT_TYPE_BROADCAST_DESTROYED;
+        String action = BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_DESTROYED;
+
+        LeAudioStackEvent broadcastDestroyedEvent = new LeAudioStackEvent(eventType);
+        broadcastDestroyedEvent.valueInt1 = instanceId;
+        mService.messageFromNative(broadcastDestroyedEvent);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mGroupIntentQueue);
+        assertThat(intent).isNotNull();
+        assertThat(action).isEqualTo(intent.getAction());
+        assertThat(instanceId)
+                .isEqualTo(intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID,
+                        -instanceId));
+    }
+
+    private void sendEventAndVerifyIntentForBroadcastState(int state, int expected_state) {
+        int instanceId = 1;
+        int eventType = LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE;
+        String action = BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_STATE;
+
+        LeAudioStackEvent broadcastStateEvent = new LeAudioStackEvent(eventType);
+        broadcastStateEvent.device = mSingleDevice;
+        broadcastStateEvent.valueInt1 = instanceId;
+        broadcastStateEvent.valueInt2 = state;
+        mService.messageFromNative(broadcastStateEvent);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mGroupIntentQueue);
+        assertThat(intent).isNotNull();
+        assertThat(action).isEqualTo(intent.getAction());
+        assertThat(instanceId)
+                .isEqualTo(intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID,
+                        -instanceId));
+        assertThat(state)
+                .isEqualTo(intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_STATE,
+                        -state));
+
+        ArgumentCaptor<BtProfileConnectionInfo> info = ArgumentCaptor.forClass(BtProfileConnectionInfo.class);
+        verify(mAudioManager, times(1)).handleBluetoothActiveDeviceChanged(eq(mSingleDevice),
+                nullable(BluetoothDevice.class), info.capture());
+        assertThat(BluetoothProfile.LE_AUDIO).isEqualTo(info.getValue().getProfile());
+        assertThat(true).isEqualTo(info.getValue().getIsLeOutput());
+    }
+
+    /**
+     * Test native interface broadcast state message handling
+     */
+    @Test
+    public void testBroadcastState() {
+        sendEventAndVerifyIntentForBroadcastState(BluetoothLeAudio.BROADCAST_STATE_STREAMING,
+                BluetoothProfile.STATE_CONNECTED);
+        sendEventAndVerifyIntentForBroadcastState(BluetoothLeAudio.BROADCAST_STATE_STOPPED,
+                BluetoothProfile.STATE_DISCONNECTED);
+    }
+
+    /**
+     * Test native interface broadcast own address message handling
+     */
+    @Test
+    public void testBroadcastId() {
+        int instanceId = 1;
+        byte[] broadcastId = {0x01, 0x02, 0x03};
+        int eventType = LeAudioStackEvent.EVENT_TYPE_BROADCAST_ID;
+        String action = BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_ID;
+
+        LeAudioStackEvent broadcastIdEvent = new LeAudioStackEvent(eventType);
+        broadcastIdEvent.device = mSingleDevice;
+        broadcastIdEvent.valueInt1 = instanceId;
+        broadcastIdEvent.valueByte1 = broadcastId;
+        mService.messageFromNative(broadcastIdEvent);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mGroupIntentQueue);
+        assertThat(intent).isNotNull();
+        assertThat(action).isEqualTo(intent.getAction());
+        assertThat(instanceId)
+                .isEqualTo(intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID,
+                        -instanceId));
+        assertThat(broadcastId)
+                .isEqualTo(intent.getByteArrayExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_ID));
     }
 }
