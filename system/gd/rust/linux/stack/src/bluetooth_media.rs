@@ -11,7 +11,7 @@ use bt_topshim::profiles::hfp::{BthfConnectionState, Hfp, HfpCallbacks, HfpCallb
 
 use bt_topshim::topstack;
 
-use log::warn;
+use log::{info, warn};
 
 use std::collections::HashMap;
 use std::convert::TryFrom;
@@ -45,6 +45,9 @@ pub trait IBluetoothMedia {
     fn start_audio_request(&mut self);
     fn stop_audio_request(&mut self);
     fn get_presentation_position(&mut self) -> PresentationPosition;
+
+    fn start_sco_call(&mut self, device: String);
+    fn stop_sco_call(&mut self, device: String);
 }
 
 pub trait IBluetoothMediaCallback {
@@ -183,12 +186,17 @@ impl BluetoothMedia {
                 }
                 match state {
                     BthfConnectionState::Connected => {
-                        // TODO: Integrate with A2dp
+                        info!("HFP connected.");
+                        self.start_sco_call(addr.to_string());
                     }
-                    BthfConnectionState::Connecting => {}
-                    BthfConnectionState::Disconnected => {}
+                    BthfConnectionState::Disconnected => {
+                        info!("HFP disconnected.");
+                    }
+                    BthfConnectionState::Connecting => {
+                        info!("HFP connecting.");
+                    }
                     BthfConnectionState::Disconnecting => {
-                        // TODO: Integrate with A2dp
+                        info!("HFP disconnecting.");
                     }
                 }
             }
@@ -325,6 +333,27 @@ impl IBluetoothMedia for BluetoothMedia {
 
     fn stop_audio_request(&mut self) {
         self.a2dp.as_mut().unwrap().stop_audio_request();
+    }
+
+    fn start_sco_call(&mut self, device: String) {
+        if let Some(addr) = RawAddress::from_string(device.clone()) {
+            info!("Start sco call for {}", device);
+            match self.hfp.as_mut().unwrap().connect_audio(addr) {
+                0 => { info!("SCO connect_audio status success."); }
+                x => { warn!("SCO connect_audio status failed: {}", x); }
+            };
+        } else {
+            warn!("Can't start sco call with: {}", device);
+        }
+    }
+
+    fn stop_sco_call(&mut self, device: String) {
+        if let Some(addr) = RawAddress::from_string(device.clone()) {
+            info!("Stop sco call for {}", device);
+            self.hfp.as_mut().unwrap().disconnect_audio(addr);
+        } else {
+            warn!("Can't stop sco call with: {}", device);
+        }
     }
 
     fn get_presentation_position(&mut self) -> PresentationPosition {

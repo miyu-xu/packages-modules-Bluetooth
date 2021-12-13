@@ -329,8 +329,12 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
     p_setup->packet_types = temp_packet_types;
 
     /* Use Enhanced Synchronous commands if supported */
+#if 0
     if (controller_get_interface()
             ->supports_enhanced_setup_synchronous_connection()) {
+#else
+    if (false) {
+#endif
       LOG_INFO("Sending enhanced SCO connect request over handle:0x%04x",
                acl_handle);
       /* Use the saved SCO routing */

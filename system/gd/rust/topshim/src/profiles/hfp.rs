@@ -36,7 +36,9 @@ pub mod ffi {
 
         fn init(self: Pin<&mut HfpIntf>) -> i32;
         fn connect(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
+        fn connect_audio(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
         fn disconnect(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
+        fn disconnect_audio(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
         fn cleanup(self: Pin<&mut HfpIntf>);
 
     }
@@ -106,8 +108,16 @@ impl Hfp {
         self.internal.pin_mut().connect(addr.into());
     }
 
+    pub fn connect_audio(&mut self, addr: RawAddress) -> i32 {
+        self.internal.pin_mut().connect_audio(addr.into())
+    }
+
     pub fn disconnect(&mut self, addr: RawAddress) {
         self.internal.pin_mut().disconnect(addr.into());
+    }
+
+    pub fn disconnect_audio(&mut self, addr: RawAddress) -> i32 {
+        self.internal.pin_mut().disconnect_audio(addr.into())
     }
 
     pub fn cleanup(&mut self) -> bool {
