@@ -3472,6 +3472,10 @@ public class AdapterService extends Service {
         return mAdapterProperties.isLeConnectedIsochronousStreamCentralSupported();
     }
 
+    public boolean isLeAudioBroadcastSupported() {
+        return mAdapterProperties.isLeAudioBroadcastSupported();
+    }
+
     /**
      * Get the maximum number of connected audio devices.
      *
