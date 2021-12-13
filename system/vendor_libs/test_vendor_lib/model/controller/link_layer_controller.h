@@ -348,6 +348,9 @@ class LinkLayerController {
   void ReadLocalOobData();
   void ReadLocalOobExtendedData();
 
+  ErrorCode AddScoConnection(
+      uint16_t connection_handle,
+      uint16_t packet_type);
   ErrorCode SetupSynchronousConnection(
       uint16_t connection_handle,
       uint32_t transmit_bandwidth,

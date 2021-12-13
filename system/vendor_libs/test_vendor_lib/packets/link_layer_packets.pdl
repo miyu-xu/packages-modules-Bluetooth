@@ -399,6 +399,8 @@ packet EScoConnectionResponse : LinkLayerPacket (type = ESCO_CONNECTION_RESPONSE
   rx_packet_length : 16,
   tx_packet_length : 16,
   air_mode : 8,
+  extended : 1,
+  _reserved_ : 7,
 }
 
 packet EScoDisconnect : LinkLayerPacket (type = ESCO_DISCONNECT) {
