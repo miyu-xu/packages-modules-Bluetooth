@@ -46,6 +46,30 @@
       },
       "revId": "d3d5c639e133ddc210d55f6fb78b30603eb624f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d2f444f_8f059d3b",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 761,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-13T21:16:30Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "80fa15ac_6fc927ec",
+      "range": {
+        "startLine": 761,
+        "startChar": 19,
+        "endLine": 761,
+        "endChar": 21
+      },
+      "revId": "d3d5c639e133ddc210d55f6fb78b30603eb624f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
