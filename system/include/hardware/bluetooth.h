@@ -55,6 +55,7 @@
 #define BT_PROFILE_VC_ID "volume_control"
 #define BT_PROFILE_CSIS_CLIENT_ID "csis_client"
 #define BT_PROFILE_LE_AUDIO_ID "le_audio"
+#define BT_PROFILE_LE_AUDIO_BROADCASTER_ID "le_audio_broadcaster"
 
 /** Bluetooth Device Name */
 typedef struct { uint8_t name[249]; } __attribute__((packed)) bt_bdname_t;
@@ -207,6 +208,7 @@ typedef struct {
   uint32_t dynamic_audio_buffer_supported;
   bool le_periodic_advertising_sync_transfer_sender_supported;
   bool le_connected_isochronous_stream_central_supported;
+  bool le_isochronous_broadcast_supported;
 } bt_local_le_features_t;
 
 /* Stored the default/maximum/minimum buffer time for dynamic audio buffer.
