@@ -120,6 +120,7 @@ class AdapterProperties {
     private boolean mIsLeCodedPhySupported;
     private boolean mIsLeExtendedAdvertisingSupported;
     private boolean mIsLePeriodicAdvertisingSupported;
+    private boolean mIsLeAudioBroadcastSupported;
     private int mLeMaximumAdvertisingDataLength;
 
     private int mIsDynamicAudioBufferSizeSupported;
@@ -1016,6 +1017,7 @@ class AdapterProperties {
                 + " mIsLeExtendedAdvertisingSupported = " + mIsLeExtendedAdvertisingSupported
                 + " mIsLePeriodicAdvertisingSupported = " + mIsLePeriodicAdvertisingSupported
                 + " mLeMaximumAdvertisingDataLength = " + mLeMaximumAdvertisingDataLength
+                + " mIsLeAudioBroadcastSupported = " + mIsLeAudioBroadcastSupported
                 + " mDynamicAudioBufferSizeSupportedCodecsGroup1 = "
                 + mDynamicAudioBufferSizeSupportedCodecsGroup1
                 + " mDynamicAudioBufferSizeSupportedCodecsGroup2 = "
