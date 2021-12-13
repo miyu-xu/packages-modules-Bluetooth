@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "02185973_9dacb3ad",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 20
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-13T23:54:42Z",
+      "side": 1,
+      "message": "maybe \n\nprofile_supported_le_call_control?\n\nand group it with le_audio",
+      "parentUuid": "5128a50f_51414522",
+      "range": {
+        "startLine": 39,
+        "startChar": 16,
+        "endLine": 39,
+        "endChar": 37
+      },
+      "revId": "b75a79eff3a5c10ea91b0094bee03d7cd9f01ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "02477847_d71fc4c9",
