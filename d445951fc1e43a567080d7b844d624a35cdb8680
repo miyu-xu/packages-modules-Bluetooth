@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018337627",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "75d95748_696dfd23",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-13T10:47:51Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "d445951fc1e43a567080d7b844d624a35cdb8680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018337628",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ba9049db_b04240f4",
+        "filename": "system/bta/le_audio/le_audio_set_configurations_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-13T10:47:51Z",
+      "side": 1,
+      "message": "Use ASSERT_NE() instead",
+      "range": {
+        "startLine": 151,
+        "startChar": 2,
+        "endLine": 151,
+        "endChar": 12
+      },
+      "revId": "d445951fc1e43a567080d7b844d624a35cdb8680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018337628",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c3bcd5f0_8fe10521",
+        "filename": "system/bta/le_audio/le_audio_set_configurations_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-13T10:47:51Z",
+      "side": 1,
+      "message": "Use ASSERT_NE() instead",
+      "range": {
+        "startLine": 166,
+        "startChar": 2,
+        "endLine": 166,
+        "endChar": 12
+      },
+      "revId": "d445951fc1e43a567080d7b844d624a35cdb8680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018337628",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911879?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "af9e328a_51a8829a",
+        "filename": "system/bta/le_audio/le_audio_set_configurations_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-13T10:47:51Z",
+      "side": 1,
+      "message": "Use ASSERT_NE() instead",
+      "range": {
+        "startLine": 179,
+        "startChar": 2,
+        "endLine": 179,
+        "endChar": 12
+      },
+      "revId": "d445951fc1e43a567080d7b844d624a35cdb8680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
