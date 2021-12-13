@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd2fa9b_37fab652",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-13T19:12:05Z",
+      "side": 1,
+      "message": "Looks good!  A couple of minor comments.",
+      "revId": "a7ef1221e01ff63669795788ed5a3739b57eb95a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50affd69_3898c84c",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-13T19:12:05Z",
+      "side": 1,
+      "message": "We could check the Version here, and not set it as supported if the version is greater than 4.1\n\nI\u0027m not sure what version the \"PTS dongle\" should return.",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 54
+      },
+      "revId": "a7ef1221e01ff63669795788ed5a3739b57eb95a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2328b2a4_f484fb48",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-13T19:12:05Z",
+      "side": 1,
+      "message": "Should we rename this packet to ScoConnectionResponse?  It\u0027s surprising to have an extended field otherwise.",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 15
+      },
+      "revId": "a7ef1221e01ff63669795788ed5a3739b57eb95a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
