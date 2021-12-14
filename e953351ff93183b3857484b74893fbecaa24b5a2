@@ -34,6 +34,29 @@
       "parentUuid": "fabfd6a0_e286d357",
       "revId": "e953351ff93183b3857484b74893fbecaa24b5a2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e797f758_aa0f4681",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetNativeInterface.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T16:03:13Z",
+      "side": 1,
+      "message": "The A2DP code has a null check here.  Should there be one here as well?",
+      "range": {
+        "startLine": 82,
+        "startChar": 8,
+        "endLine": 82,
+        "endChar": 62
+      },
+      "revId": "e953351ff93183b3857484b74893fbecaa24b5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
