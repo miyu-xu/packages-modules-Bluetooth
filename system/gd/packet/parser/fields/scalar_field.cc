@@ -144,8 +144,7 @@ std::string ScalarField::GetRustParseDataType() const {
   return util::GetRustTypeForSize(size_);
 }
 
-int ScalarField::GetRustBitOffset(
-    std::ostream&, Size start_offset, Size end_offset, Size size) const {
+int ScalarField::GetRustBitOffset(std::ostream&, Size start_offset, Size end_offset, Size size) const {
   int num_leading_bits = 0;
 
   if (!start_offset.empty()) {
@@ -207,7 +206,8 @@ void ScalarField::GenRustGetter(std::ostream& s, Size start_offset, Size end_off
   // needs casting from primitive
   if (GetRustParseDataType() != GetRustDataType()) {
     s << "let " << GetName() << " = ";
-    s << GetRustDataType() << "::from_" << GetRustParseDataType() << "(" << GetName() << ").unwrap();";
+    s << GetRustDataType() << "::from_" << GetRustParseDataType() << "(" << GetName()
+      << ").ok_or(Error::InvalidPacketError)?;";
   }
 }
 
