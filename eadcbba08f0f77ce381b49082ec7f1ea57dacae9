@@ -33,6 +33,23 @@
       "message": "+rahul for OWNERS",
       "revId": "eadcbba08f0f77ce381b49082ec7f1ea57dacae9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66192376_a6623bb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2021-12-14T20:10:18Z",
+      "side": 1,
+      "message": "friendly ping jack he or rahul for owners :) ",
+      "revId": "eadcbba08f0f77ce381b49082ec7f1ea57dacae9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
