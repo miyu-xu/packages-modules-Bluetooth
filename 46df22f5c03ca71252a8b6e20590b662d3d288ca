@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f94135_0adc6367",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HeadsetClientServiceInterface.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-14T02:45:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eadac56f_2c049534",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 86
+      },
+      "revId": "46df22f5c03ca71252a8b6e20590b662d3d288ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a640249d_598d6c9b",
@@ -108,6 +132,30 @@
       "writtenOn": "2021-12-09T17:44:45Z",
       "side": 1,
       "message": "Can\u0027t getSystemService return null in some cases?",
+      "range": {
+        "startLine": 320,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 89
+      },
+      "revId": "46df22f5c03ca71252a8b6e20590b662d3d288ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b51ee1f8_7ab50182",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-14T02:45:47Z",
+      "side": 1,
+      "message": "As I understand it, only when the Bluetooth service isn\u0027t active, which is more or less where this code lies.\n\nI think this is one of those instances where if that happened, there\u0027s no recovering at all and blowing up is an okay option.\n\nIn the future I hope we can make calls directly to AdapterService instead of through BluetoothAdapter and avoid any type of blowing up.",
+      "parentUuid": "a640249d_598d6c9b",
       "range": {
         "startLine": 320,
         "startChar": 0,
