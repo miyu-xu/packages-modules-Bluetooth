@@ -16,6 +16,292 @@
       "message": "Thanks for addressing the header issue. ",
       "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69a9e75e_0e4e5a96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "Reviewed Java code, will continue C++ code review later",
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33691f50_df7110f8",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 2296,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: please leave an empty line between methods",
+      "range": {
+        "startLine": 2296,
+        "startChar": 0,
+        "endLine": 2296,
+        "endChar": 1
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee53fa6f_b3741116",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 2319,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: transferSetInfoNative\n\nplease follow previous format",
+      "range": {
+        "startLine": 2319,
+        "startChar": 12,
+        "endLine": 2319,
+        "endChar": 33
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e12722_73ceafab",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1068,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "please remove this empty line",
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22a449d7_1b26f312",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2608,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "please add an empty line after this line",
+      "range": {
+        "startLine": 2608,
+        "startChar": 3,
+        "endLine": 2608,
+        "endChar": 5
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beec2bf2_e3505aaf",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: please add an empty line after this line",
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d8bdce2_e3dcdc9c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: please add an empty line after this line",
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff691327_f22918ef",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: please add an empty line after this line",
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "941556af_e62cf53c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: to reduce nesting we can change this to:\n\nif (e.getValue().id !\u003d syncHandle) {\n    continue;\n}                \nsyncMap.put(e.getKey(), new SyncInfo(e.getValue().id,\n                                     e.getValue().adv_sid, \n                                     e.getValue().address,\n                                     e.getValue().skip, \n                                     e.getValue().timeout,\n                                     e.getValue().deathRecipient,\n                                     e.getValue().callback));\n                                     \nAlso, it seems like you are doing a shallow copy of the SyncInfo object. could we add e.getValue() to the returned map? \n\nOtherwise, this can be replaced with e.getValue().clone() which does this shallow copy automatically",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 13
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c448a1b_c0747ecf",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "we can reduce nesting with\n\nif (e.getValue().id !\u003d regId) {\n    continue;\n}\nIPeriodicAdvertisingCallback callback \u003d e.getValue().callback;\nif (status \u003d\u003d 0) {\n    Log.d(TAG,\"onSyncStarted: updating id with syncHandle \" + syncHandle);\n    e.setValue(new SyncInfo(syncHandle, \n                            sid, \n                            address, \n                            e.getValue().skip,\n                            e.getValue().timeout, \n                            e.getValue().deathRecipient, \n                            callback));\n    callback.onSyncEstablished(syncHandle, \n                               mAdapter.getRemoteDevice(address),\n                               sid, \n                               e.getValue().skip, \n                               e.getValue().timeout, \n                               status);\n} else {\n    callback.onSyncEstablished(syncHandle, \n                               mAdapter.getRemoteDevice(address),\n                               sid, \n                               e.getValue().skip, \n                               e.getValue().timeout, \n                               status);\n    IBinder binder \u003d e.getKey();\n    binder.unlinkToDeath(e.getValue().deathRecipient, 0);\n    mSyncs.remove(binder);\n}",
+      "range": {
+        "startLine": 187,
+        "startChar": 16,
+        "endLine": 202,
+        "endChar": 17
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "176783e9_0bbad0c0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: syncMap.isEmpty()",
+      "range": {
+        "startLine": 231,
+        "startChar": 12,
+        "endLine": 231,
+        "endChar": 32
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e617a6_613bd634",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "nit: please add new line",
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec80a2a_a549b68c",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "LOG_DEBUG(\"handle: %d\", handle);\n\nwill print the same log, __func__ is automatically added, same as below",
+      "range": {
+        "startLine": 352,
+        "startChar": 4,
+        "endLine": 352,
+        "endChar": 57
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8498153_37051f2c",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T10:28:39Z",
+      "side": 1,
+      "message": "#include \"include/hardware/ble_scanner.h\"\n\nplease include path based on the system/ directory root",
+      "range": {
+        "startLine": 57,
+        "startChar": 10,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
