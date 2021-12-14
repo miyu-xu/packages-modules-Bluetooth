@@ -120,6 +120,24 @@
       "message": "I assume this field is no longer needed; can it be reset here ?\n\ne.g.\np_data-\u003edscp_info.hid_handle \u003d BTA_HH_INVALID_HANDLE;",
       "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b998e5f_2935d1e8",
+        "filename": "system/btif/src/btif_hh.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2021-12-14T09:50:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9b4a695_bbe1d9fe",
+      "revId": "b70dc7bdd0bc94ccb1da024affd978410c3643af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
