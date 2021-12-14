@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed02949b_82e98fc5",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T21:28:03Z",
+      "side": 1,
+      "message": "would it make sense to use:\nauto status \u003d static_cast\u003cErrorCode\u003e(response.GetStatus());",
+      "range": {
+        "startLine": 1422,
+        "startChar": 7,
+        "endLine": 1422,
+        "endChar": 13
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7cd0182_b97377bc",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T21:28:03Z",
+      "side": 1,
+      "message": "I\u0027d prefer not to use these.\n%hhx?",
+      "range": {
+        "startLine": 1425,
+        "startChar": 61,
+        "endLine": 1425,
+        "endChar": 66
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "022f1cde_507fb5c4",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T21:28:03Z",
+      "side": 1,
+      "message": "Success with a 0 handle if it was cancelled?",
+      "range": {
+        "startLine": 1460,
+        "startChar": 10,
+        "endLine": 1460,
+        "endChar": 32
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b250809_abd501c5",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1484,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T21:28:03Z",
+      "side": 1,
+      "message": "%hhx?",
+      "range": {
+        "startLine": 1484,
+        "startChar": 25,
+        "endLine": 1484,
+        "endChar": 30
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60e6bead_9b9fb5c7",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T21:28:03Z",
+      "side": 1,
+      "message": "%hhx, %hx for 16\n\nSorry I didn\u0027t see these before.",
+      "range": {
+        "startLine": 266,
+        "startChar": 42,
+        "endLine": 266,
+        "endChar": 47
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

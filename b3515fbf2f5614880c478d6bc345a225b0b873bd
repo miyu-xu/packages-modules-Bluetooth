@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff7eebd_7cbc4c0d",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T21:28:03Z",
+      "side": 0,
+      "message": "Good catch :)",
+      "range": {
+        "startLine": 1389,
+        "startChar": 20,
+        "endLine": 1389,
+        "endChar": 32
+      },
+      "revId": "b3515fbf2f5614880c478d6bc345a225b0b873bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
