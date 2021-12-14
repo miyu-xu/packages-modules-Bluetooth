@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018370007",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1914032?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "87df6fef_42032d82",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-14T02:44:59Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 479,
+        "startChar": 0,
+        "endLine": 479,
+        "endChar": 104
+      },
+      "revId": "691bae50d7e9f408f2b28f84f2255b07ea6f7d7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
