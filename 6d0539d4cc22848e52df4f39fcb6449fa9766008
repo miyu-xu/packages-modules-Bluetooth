@@ -69,6 +69,24 @@
       "parentUuid": "85da92da_fee662b7",
       "revId": "6d0539d4cc22848e52df4f39fcb6449fa9766008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cf3498a_49fc26f1",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientDeviceBlock.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-14T02:45:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56933982_955e9a45",
+      "revId": "6d0539d4cc22848e52df4f39fcb6449fa9766008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
