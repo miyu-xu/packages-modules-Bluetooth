@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cbb542d3_2e75dc6a",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-14T23:45:05Z",
+      "side": 1,
+      "message": "Here I am using my experience as C programmer, uint16_t is not necessarily short. But I am not sure in c++.",
+      "parentUuid": "f7cd0182_b97377bc",
+      "range": {
+        "startLine": 1425,
+        "startChar": 61,
+        "endLine": 1425,
+        "endChar": 66
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "022f1cde_507fb5c4",
         "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
         "patchSetId": 2
@@ -60,6 +84,30 @@
       "writtenOn": "2021-12-14T21:28:03Z",
       "side": 1,
       "message": "Success with a 0 handle if it was cancelled?",
+      "range": {
+        "startLine": 1460,
+        "startChar": 10,
+        "endLine": 1460,
+        "endChar": 32
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ab6ab28_9b4edffa",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-14T23:45:05Z",
+      "side": 1,
+      "message": "Copy paste error, thanks for picking it up.",
+      "parentUuid": "022f1cde_507fb5c4",
       "range": {
         "startLine": 1460,
         "startChar": 10,
