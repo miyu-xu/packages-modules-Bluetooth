@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "074907bc_ec8e3911",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T15:50:17Z",
+      "side": 1,
+      "message": "If PTS ignores the mask, you could just use SET_HANDLER() instead of set supported to discourage other uses.",
+      "parentUuid": "5d6b58e5_61073e42",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 54
+      },
+      "revId": "a7ef1221e01ff63669795788ed5a3739b57eb95a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2328b2a4_f484fb48",
         "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
         "patchSetId": 1
