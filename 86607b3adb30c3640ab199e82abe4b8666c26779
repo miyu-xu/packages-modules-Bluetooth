@@ -22,6 +22,30 @@
       },
       "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5006417e_96e242a1",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T00:02:58Z",
+      "side": 1,
+      "message": "Just realized BluetoothInCallService might be running in a different process than the main com.android.bluetooth process, in that case, we have to keep binder APIs. Hence please ignore my above comment if it is so.",
+      "parentUuid": "47029f02_1b9bab88",
+      "range": {
+        "startLine": 542,
+        "startChar": 16,
+        "endLine": 542,
+        "endChar": 51
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
