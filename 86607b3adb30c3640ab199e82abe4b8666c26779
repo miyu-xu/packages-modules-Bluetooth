@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "381995f5_23d1d0d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "We can keep the internal implementation name as TBS as reader of the stack code would understand the meaning of TBS. However, in the API, please use more readable names like BluetoothLeCallControl",
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a87a6038_f0156973",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/ProfilePrioritiesEntity.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "le_call_control_connection_policy?",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "47029f02_1b9bab88",
         "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
         "patchSetId": 21
@@ -61,6 +101,219 @@
       "writtenOn": "2021-12-14T01:04:26Z",
       "side": 1,
       "message": "I see this function shares many similarity with sendClccForCall(). \n\nCan we reduce the duplicate code by extracting common parts?",
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24d0af40_a42132d1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
+      "parentUuid": "e2dc809c_cd5515ae",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c42ebc48_09336cbb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
+      "parentUuid": "1c9e1936_b6eaebd6",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57e3d18b_5ae35660",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
+      "parentUuid": "5a51737d_a583a18d",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8db532f6_516c2777",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
+      "parentUuid": "daed1c6f_831ab4d5",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "738336d5_85865844",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
+      "parentUuid": "72c05624_ba0f5ee7",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5487c501_ca3a49d3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
+      "parentUuid": "92b6d93e_2fae4079",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b0f3a8_69179464",
+        "filename": "system/binder/android/bluetooth/BluetoothTbsCall.aidl",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "BluetoothLeCallControl",
+      "range": {
+        "startLine": 20,
+        "startChar": 11,
+        "endLine": 20,
+        "endChar": 27
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab477b9_2da61b2b",
+        "filename": "system/binder/android/bluetooth/IBluetoothTbs.aidl",
+        "patchSetId": 21
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "IBluetoothLeCallControl",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2562c8b_1681042b",
+        "filename": "system/binder/android/bluetooth/IBluetoothTbsCallback.aidl",
+        "patchSetId": 21
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-14T08:50:45Z",
+      "side": 1,
+      "message": "IBluetoothLeCallControlCallback",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 38
+      },
       "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
