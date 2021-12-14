@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c8e206d_ccb64cbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T16:01:53Z",
+      "side": 1,
+      "message": "Could we make HFP and A2DP more similar?  Why does A2DP do this in the native interface, but HFP doesn\u0027t?",
+      "revId": "74e13a7eaef5ad237c23854835fe0f00bf41d359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8031c421_f091d541",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-14T16:01:53Z",
+      "side": 1,
+      "message": "Did we also need a null check in the HeadsetService CL?",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 62
+      },
+      "revId": "74e13a7eaef5ad237c23854835fe0f00bf41d359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
