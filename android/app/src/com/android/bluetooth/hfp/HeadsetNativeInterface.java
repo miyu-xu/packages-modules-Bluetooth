@@ -21,7 +21,10 @@ import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.internal.annotations.VisibleForTesting;
+
+import java.util.Objects;
 
 /**
  * Defines native calls that are used by state machine/service to either send or receive
@@ -39,8 +42,12 @@ public class HeadsetNativeInterface {
 
     private static HeadsetNativeInterface sInterface;
     private static final Object INSTANCE_LOCK = new Object();
+    private AdapterService mAdapterService;
 
-    private HeadsetNativeInterface() {}
+    private HeadsetNativeInterface() {
+        mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
+                "AdapterService cannot be null when HeadsetNativeInterface init");
+    }
 
     /**
      * This class is a singleton because native library should only be loaded once
@@ -68,7 +75,11 @@ public class HeadsetNativeInterface {
     }
 
     private BluetoothDevice getDevice(byte[] address) {
-        return mAdapter.getRemoteDevice(Utils.getAddressStringFromByte(address));
+        return mAdapterService.getDeviceFromByte(address);
+    }
+
+    private byte[] getByteAddress(BluetoothDevice device) {
+        return mAdapterService.getByteIdentityAddress(device);
     }
 
     void onConnectionStateChanged(int state, byte[] address) {
@@ -238,7 +249,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean atResponseCode(BluetoothDevice device, int responseCode, int errorCode) {
-        return atResponseCodeNative(responseCode, errorCode, Utils.getByteAddress(device));
+        return atResponseCodeNative(responseCode, errorCode, getByteAddress(device));
     }
 
     /**
@@ -250,7 +261,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean atResponseString(BluetoothDevice device, String responseString) {
-        return atResponseStringNative(responseString, Utils.getByteAddress(device));
+        return atResponseStringNative(responseString, getByteAddress(device));
     }
 
     /**
@@ -261,7 +272,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean connectHfp(BluetoothDevice device) {
-        return connectHfpNative(Utils.getByteAddress(device));
+        return connectHfpNative(getByteAddress(device));
     }
 
     /**
@@ -272,7 +283,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean disconnectHfp(BluetoothDevice device) {
-        return disconnectHfpNative(Utils.getByteAddress(device));
+        return disconnectHfpNative(getByteAddress(device));
     }
 
     /**
@@ -283,7 +294,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean connectAudio(BluetoothDevice device) {
-        return connectAudioNative(Utils.getByteAddress(device));
+        return connectAudioNative(getByteAddress(device));
     }
 
     /**
@@ -294,7 +305,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean disconnectAudio(BluetoothDevice device) {
-        return disconnectAudioNative(Utils.getByteAddress(device));
+        return disconnectAudioNative(getByteAddress(device));
     }
 
     /**
@@ -305,7 +316,7 @@ public class HeadsetNativeInterface {
      * @return true if the device support echo cancellation or noise reduction, false otherwise
      */
     public boolean isNoiseReductionSupported(BluetoothDevice device) {
-        return isNoiseReductionSupportedNative(Utils.getByteAddress(device));
+        return isNoiseReductionSupportedNative(getByteAddress(device));
     }
 
     /**
@@ -315,7 +326,7 @@ public class HeadsetNativeInterface {
      * @return true if the device supports voice recognition, false otherwise
      */
     public boolean isVoiceRecognitionSupported(BluetoothDevice device) {
-        return isVoiceRecognitionSupportedNative(Utils.getByteAddress(device));
+        return isVoiceRecognitionSupportedNative(getByteAddress(device));
     }
 
     /**
@@ -326,7 +337,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean startVoiceRecognition(BluetoothDevice device) {
-        return startVoiceRecognitionNative(Utils.getByteAddress(device));
+        return startVoiceRecognitionNative(getByteAddress(device));
     }
 
 
@@ -338,7 +349,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean stopVoiceRecognition(BluetoothDevice device) {
-        return stopVoiceRecognitionNative(Utils.getByteAddress(device));
+        return stopVoiceRecognitionNative(getByteAddress(device));
     }
 
     /**
@@ -351,7 +362,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean setVolume(BluetoothDevice device, int volumeType, int volume) {
-        return setVolumeNative(volumeType, volume, Utils.getByteAddress(device));
+        return setVolumeNative(volumeType, volume, getByteAddress(device));
     }
 
     /**
@@ -371,7 +382,7 @@ public class HeadsetNativeInterface {
     public boolean cindResponse(BluetoothDevice device, int service, int numActive, int numHeld,
             int callState, int signal, int roam, int batteryCharge) {
         return cindResponseNative(service, numActive, numHeld, callState, signal, roam,
-                batteryCharge, Utils.getByteAddress(device));
+                batteryCharge, getByteAddress(device));
     }
 
     /**
@@ -384,7 +395,7 @@ public class HeadsetNativeInterface {
     @VisibleForTesting
     public boolean notifyDeviceStatus(BluetoothDevice device, HeadsetDeviceState deviceState) {
         return notifyDeviceStatusNative(deviceState.mService, deviceState.mRoam,
-                deviceState.mSignal, deviceState.mBatteryCharge, Utils.getByteAddress(device));
+                deviceState.mSignal, deviceState.mBatteryCharge, getByteAddress(device));
     }
 
     /**
@@ -410,7 +421,7 @@ public class HeadsetNativeInterface {
     public boolean clccResponse(BluetoothDevice device, int index, int dir, int status, int mode,
             boolean mpty, String number, int type) {
         return clccResponseNative(index, dir, status, mode, mpty, number, type,
-                Utils.getByteAddress(device));
+                getByteAddress(device));
     }
 
     /**
@@ -422,7 +433,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean copsResponse(BluetoothDevice device, String operatorName) {
-        return copsResponseNative(operatorName, Utils.getByteAddress(device));
+        return copsResponseNative(operatorName, getByteAddress(device));
     }
 
     /**
@@ -441,7 +452,7 @@ public class HeadsetNativeInterface {
     public boolean phoneStateChange(BluetoothDevice device, HeadsetCallState callState) {
         return phoneStateChangeNative(callState.mNumActive, callState.mNumHeld,
                 callState.mCallState, callState.mNumber, callState.mType, callState.mName,
-                Utils.getByteAddress(device));
+                getByteAddress(device));
     }
 
     /**
@@ -464,7 +475,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean sendBsir(BluetoothDevice device, boolean value) {
-        return sendBsirNative(value, Utils.getByteAddress(device));
+        return sendBsirNative(value, getByteAddress(device));
     }
 
     /**
@@ -474,7 +485,7 @@ public class HeadsetNativeInterface {
      */
     @VisibleForTesting
     public boolean setActiveDevice(BluetoothDevice device) {
-        return setActiveDeviceNative(Utils.getByteAddress(device));
+        return setActiveDeviceNative(getByteAddress(device));
     }
 
     /* Native methods */
