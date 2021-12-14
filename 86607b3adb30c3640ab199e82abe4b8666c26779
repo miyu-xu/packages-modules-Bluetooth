@@ -46,6 +46,23 @@
       },
       "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cd4a88b_83b3df63",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2021-12-14T01:04:26Z",
+      "side": 1,
+      "message": "I see this function shares many similarity with sendClccForCall(). \n\nCan we reduce the duplicate code by extracting common parts?",
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
