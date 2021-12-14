@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b4fac08_8c3d9f58",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-14T02:28:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "937fe427_a0c5abaf",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 43
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cd4bc6f_b97e8af8",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-06T14:05:08Z",
       "side": 1,
       "message": "Could we bring the session_type to get the corresponding AudioCapabilities?",
+      "range": {
+        "startLine": 60,
+        "startChar": 35,
+        "endLine": 60,
+        "endChar": 72
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be7360a1_7a5607f9",
+        "filename": "system/audio_hal_interface/codec_status.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-14T02:28:54Z",
+      "side": 1,
+      "message": "Call the function GetAudioCapabilities_2_2() with session type directly, instead of adding this wrap function",
+      "parentUuid": "9cd4bc6f_b97e8af8",
       "range": {
         "startLine": 60,
         "startChar": 35,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b24d0576_3a104b4d",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-14T02:28:54Z",
+      "side": 1,
+      "message": "Only 2_1 is required, remove CodecType 2_0",
+      "parentUuid": "34155d2b_98067e37",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 61
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8376e184_7afc383b",
@@ -83,6 +155,30 @@
       "writtenOn": "2021-12-06T14:05:08Z",
       "side": 1,
       "message": "using ::android::hardware::bluetooth::audio::V2_2::AudioCapabilities; ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb2c82c_3d7053fc",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-14T02:28:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8376e184_7afc383b",
       "range": {
         "startLine": 46,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e21adeb7_0544af86",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-14T02:28:54Z",
+      "side": 1,
+      "message": "will change to store a mapping of hal config and stack config. Just query the value from map to get the corresponding value.",
+      "parentUuid": "d3994c38_f26662db",
+      "range": {
+        "startLine": 354,
+        "startChar": 5,
+        "endLine": 354,
+        "endChar": 29
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31b369f3_b0b821da",
@@ -129,6 +249,30 @@
       "writtenOn": "2021-12-06T14:05:08Z",
       "side": 1,
       "message": "Could we add all the parameters supported by HAL and le_audio_type.h?",
+      "range": {
+        "startLine": 365,
+        "startChar": 4,
+        "endLine": 365,
+        "endChar": 12
+      },
+      "revId": "6053c9a9099ff6927484c16bc9db33ee227fa916",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0411a38d_84f92924",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-14T02:28:54Z",
+      "side": 1,
+      "message": "create mapping to map the HAL format and BT stack format\n\nFollowing sample rate defined in le_audio_type.h is not included in the BAP spec nor SampleRate v2.1. will not store the mapping\n\nconstexpr uint8_t kLeAudioSamplingFreq11025Hz \u003d 0x02;\nconstexpr uint8_t kLeAudioSamplingFreq22050Hz \u003d 0x04;\nconstexpr uint8_t kLeAudioSamplingFreq384000Hz \u003d 0x0D;",
+      "parentUuid": "31b369f3_b0b821da",
       "range": {
         "startLine": 365,
         "startChar": 4,
