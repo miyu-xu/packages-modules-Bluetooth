@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fabfd6a0_e286d357",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetNativeInterface.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-14T14:10:17Z",
+      "side": 1,
+      "message": "Does this import still required? Seems you already remove all related usage.",
+      "revId": "e953351ff93183b3857484b74893fbecaa24b5a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
