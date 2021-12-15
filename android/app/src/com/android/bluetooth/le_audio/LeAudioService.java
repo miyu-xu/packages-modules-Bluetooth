@@ -115,6 +115,7 @@ public class LeAudioService extends ProfileService {
 
     private final Map<BluetoothDevice, Integer> mDeviceGroupIdMap = new ConcurrentHashMap<>();
     private int mActiveDeviceGroupId = LE_AUDIO_GROUP_ID_INVALID;
+    private boolean mCommunicationDevice = false;
     private final int mContextSupportingInputAudio =
             BluetoothLeAudio.CONTEXT_TYPE_COMMUNICATION |
             BluetoothLeAudio.CONTEXT_TYPE_MAN_MACHINE;
@@ -245,7 +246,6 @@ public class LeAudioService extends ProfileService {
 
         mAudioManager = null;
         mAdapterService = null;
-        mAudioManager = null;
 
         return true;
     }
@@ -651,6 +651,8 @@ public class LeAudioService extends ProfileService {
 
         if (isActive)
             device = getFirstDeviceFromGroup(groupId);
+        else
+            clearCommunicationDevice();
 
         boolean outReplaced =
             updateActiveOutDevice(device, groupId, oldActiveContexts, newActiveContexts);
@@ -690,6 +692,8 @@ public class LeAudioService extends ProfileService {
 
         mLeAudioNativeInterface.groupSetActive(groupId);
         mActiveDeviceGroupId = groupId;
+        /* Always clear communication device when active group has changed. */
+        clearCommunicationDevice();
     }
 
     /**
@@ -1194,6 +1198,72 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
+     * This method is used to set the active LE Audio group as a
+     * communication device.
+     *
+     * This method is used e.g. by the Telecom in phone call scenario.
+     *
+     * Note: This method  has an effect if there is no active LE Audio group.
+     *
+     * @hide
+     */
+    public void setAsCommunicationDevice() {
+        if (DBG) {
+            Log.d(TAG, " setAsCommunicationDevice");
+        }
+        int currentlyActiveGroupId = getActiveGroupId();
+        if (currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID) {
+            Log.e(TAG, " LeAudio is not active");
+            return;
+        }
+
+        AudioDeviceInfo currentCommunicationDevice =
+            mAudioManager.getCommunicationDevice();
+        if (currentCommunicationDevice == null) {
+            mCommunicationDevice = false;
+        }
+
+        if (currentCommunicationDevice.getType() != AudioDeviceInfo.TYPE_BLE_HEADSET) {
+            mAudioManager.clearCommunicationDevice();
+            mCommunicationDevice = false;
+        }
+
+        if (mCommunicationDevice) {
+            Log.i(TAG, " LeAudio is already communication device");
+            return;
+        }
+
+        AudioDeviceInfo[] devicesInfo = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+        for (AudioDeviceInfo deviceInfo : devicesInfo) {
+            if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_HEADSET) {
+                if (DBG) {
+                    Log.d(TAG, " setAsCommunicationDevice - success");
+                }
+                mAudioManager.setCommunicationDevice(deviceInfo);
+                mCommunicationDevice = true;
+                return;
+            }
+        }
+        Log.e(TAG, "No OUT_BLE_HEADSET device available");
+    }
+
+    /**
+     * This method clears LE Audio group from being the communication devices.
+     * @hide
+     */
+    public void clearCommunicationDevice() {
+        if (!mCommunicationDevice) {
+            Log.e(TAG, " LeAudio is communication device");
+        } else {
+            if (DBG) {
+                Log.d(TAG, " clearCommunicationDevice ");
+            }
+            mAudioManager.clearCommunicationDevice();
+            mCommunicationDevice = false;
+        }
+    }
+
+    /**
      * Get device group id. Devices with same group id belong to same group (i.e left and right
      * earbud)
      * @param device LE Audio capable device
@@ -1382,6 +1452,34 @@ public class LeAudioService extends ProfileService {
                     defaultValue = service.getConnectionPolicy(device);
                 }
                 receiver.send(defaultValue);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void setAsCommunicationDevice(AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    service.setAsCommunicationDevice();
+                }
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void clearCommunicationDevice(AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                LeAudioService service = getService(source);
+                if (service != null) {
+                    service.clearCommunicationDevice();
+                }
+                receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
