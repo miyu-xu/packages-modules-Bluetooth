@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f360fd6_96e93504",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-15T11:35:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ec5dc3e_b194807f",
+      "revId": "822c7d945d6389211190ebf249518d63bf502646",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94a64f8f_7ecbd101",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-12-15T10:36:29Z",
       "side": 1,
       "message": "Should it be Upper Case?",
+      "range": {
+        "startLine": 2755,
+        "startChar": 86,
+        "endLine": 2755,
+        "endChar": 93
+      },
+      "revId": "822c7d945d6389211190ebf249518d63bf502646",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe9171b4_81b0e50a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2755,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-15T11:35:10Z",
+      "side": 1,
+      "message": "Good catch!\nThanks!",
+      "parentUuid": "94a64f8f_7ecbd101",
       "range": {
         "startLine": 2755,
         "startChar": 86,
