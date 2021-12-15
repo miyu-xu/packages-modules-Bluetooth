@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0caf055c_b67f867a",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-15T19:08:33Z",
+      "side": 1,
+      "message": "This is good for debugging, but will quickly get out of hand :)",
+      "range": {
+        "startLine": 479,
+        "startChar": 0,
+        "endLine": 481,
+        "endChar": 64
+      },
+      "revId": "1afb23976b77ae25a51d3eb9106fd81630bf3a82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
