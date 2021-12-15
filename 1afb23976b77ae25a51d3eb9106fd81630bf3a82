@@ -46,6 +46,30 @@
       },
       "revId": "1afb23976b77ae25a51d3eb9106fd81630bf3a82",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28598b88_6d651f3e",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-15T20:38:24Z",
+      "side": 1,
+      "message": "Embarrassing.  I thought I already removed that log line...\n\nI talked with David while he was here about logging LinkLayer packets to a trace file (and making them match LMP packets better).\n\nFor the short term, verbose (or even INFO) is probably OK, but let\u0027s think a little more about what would be good long term.",
+      "parentUuid": "7ccff7c8_819fb404",
+      "range": {
+        "startLine": 479,
+        "startChar": 0,
+        "endLine": 481,
+        "endChar": 64
+      },
+      "revId": "1afb23976b77ae25a51d3eb9106fd81630bf3a82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
