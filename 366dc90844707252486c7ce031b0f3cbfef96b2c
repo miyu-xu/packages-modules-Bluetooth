@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29df3ef0_eafe8562",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1578,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-15T23:57:35Z",
+      "side": 1,
+      "message": "Should we clear this before it gets put back on the free pool?  I wouldn\u0027t think it should matter, but the comment on 1538 makes me feel paranoid.",
+      "range": {
+        "startLine": 1577,
+        "startChar": 0,
+        "endLine": 1578,
+        "endChar": 22
+      },
+      "revId": "366dc90844707252486c7ce031b0f3cbfef96b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
