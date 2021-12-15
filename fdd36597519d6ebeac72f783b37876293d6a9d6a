@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d49e01_949d4b8e",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1319,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-15T23:48:36Z",
+      "side": 1,
+      "message": "Should there be a LOG message here, or is it something that happens too frequently?",
+      "range": {
+        "startLine": 1319,
+        "startChar": 4,
+        "endLine": 1319,
+        "endChar": 12
+      },
+      "revId": "fdd36597519d6ebeac72f783b37876293d6a9d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
