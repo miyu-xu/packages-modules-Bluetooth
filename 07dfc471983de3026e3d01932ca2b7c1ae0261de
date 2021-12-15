@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad7b3c27_524062c2",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-15T19:06:55Z",
+      "side": 1,
+      "message": "I\u0027m also fine with %x + static_cast\u003cint\u003e(status)\n\nI feel like the PRIx8 is a little too close to assembly :)",
+      "parentUuid": "cbb542d3_2e75dc6a",
+      "range": {
+        "startLine": 1425,
+        "startChar": 61,
+        "endLine": 1425,
+        "endChar": 66
+      },
+      "revId": "07dfc471983de3026e3d01932ca2b7c1ae0261de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "022f1cde_507fb5c4",
         "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
         "patchSetId": 2
