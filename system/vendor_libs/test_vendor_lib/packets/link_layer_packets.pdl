@@ -52,10 +52,11 @@ enum PacketType : 8 {
     LE_READ_REMOTE_FEATURES_RESPONSE = 0x2D,
     LE_CONNECTION_PARAMETER_REQUEST = 0x2E,
     LE_CONNECTION_PARAMETER_UPDATE = 0x2F,
-
     ESCO_CONNECTION_REQUEST = 0x30,
     ESCO_CONNECTION_RESPONSE = 0x31,
     ESCO_DISCONNECT = 0x32,
+    AUTHENTICATION_REQUEST = 0x33,
+    AUTHENTICATION_RESPONSE = 0x34,
 }
 
 packet LinkLayerPacket {
@@ -403,4 +404,13 @@ packet EScoConnectionResponse : LinkLayerPacket (type = ESCO_CONNECTION_RESPONSE
 
 packet EScoDisconnect : LinkLayerPacket (type = ESCO_DISCONNECT) {
   reason : 8,
+}
+
+packet AuthenticationRequest : LinkLayerPacket (type = AUTHENTICATION_REQUEST) {
+  link_key: 8[16]
+}
+
+packet AuthenticationResponse : LinkLayerPacket (type = AUTHENTICATION_RESPONSE) {
+  success: 1,
+  _reserved_ : 7
 }

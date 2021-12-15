@@ -441,6 +441,10 @@ class LinkLayerController {
   void IncomingRemoteNameRequest(model::packets::LinkLayerPacketView packet);
   void IncomingRemoteNameRequestResponse(
       model::packets::LinkLayerPacketView packet);
+  void IncomingAuthenticationRequest(
+      model::packets::LinkLayerPacketView packet);
+  void IncomingAuthenticationResponse(
+      model::packets::LinkLayerPacketView packet);
 
   void IncomingEScoConnectionRequest(
       model::packets::LinkLayerPacketView packet);
