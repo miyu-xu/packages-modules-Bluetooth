@@ -383,6 +383,12 @@ void LinkLayerController::IncomingPacket(
     case (model::packets::PacketType::READ_CLOCK_OFFSET_RESPONSE):
       IncomingReadClockOffsetResponse(incoming);
       break;
+    case (model::packets::PacketType::AUTHENTICATION_REQUEST):
+      IncomingAuthenticationRequest(incoming);
+      break;
+    case (model::packets::PacketType::AUTHENTICATION_RESPONSE):
+      IncomingAuthenticationResponse(incoming);
+      break;
     default:
       LOG_WARN("Dropping unhandled packet of type %s",
                model::packets::PacketTypeText(incoming.GetType()).c_str());
@@ -599,6 +605,35 @@ void LinkLayerController::IncomingReadClockOffsetResponse(
   if (properties_.IsUnmasked(EventCode::READ_CLOCK_OFFSET_COMPLETE)) {
     send_event_(bluetooth::hci::ReadClockOffsetCompleteBuilder::Create(
         ErrorCode::SUCCESS, handle, view.GetOffset()));
+  }
+}
+
+void LinkLayerController::IncomingAuthenticationRequest(
+    model::packets::LinkLayerPacketView packet) {
+  auto view = model::packets::AuthenticationRequestView::Create(packet);
+
+  ASSERT(view.IsValid());
+  Address address = packet.GetSourceAddress();
+
+  security_manager_.WriteKey(address, view.GetLinkKey());
+
+  if (properties_.IsUnmasked(EventCode::LINK_KEY_REQUEST)) {
+    send_event_(bluetooth::hci::LinkKeyRequestBuilder::Create(address));
+  }
+}
+
+void LinkLayerController::IncomingAuthenticationResponse(
+    model::packets::LinkLayerPacketView packet) {
+  auto view = model::packets::AuthenticationResponseView::Create(packet);
+
+  ASSERT(view.IsValid());
+  Address address = packet.GetSourceAddress();
+
+  if (view.GetSuccess()) {
+    AuthenticateRemoteStage2(address);
+  } else {
+    ScheduleTask(kShortDelayMs,
+                 [this, address]() { StartSimplePairing(address); });
   }
 }
 
@@ -2018,6 +2053,7 @@ void LinkLayerController::AuthenticateRemoteStage1(const Address& peer,
       LOG_ALWAYS_FATAL("Invalid PairingType %d",
                        static_cast<int>(pairing_type));
   }
+  security_manager_.InvalidateIoCapabilities();
 }
 
 void LinkLayerController::AuthenticateRemoteStage2(const Address& peer) {
@@ -2035,11 +2071,20 @@ void LinkLayerController::AuthenticateRemoteStage2(const Address& peer) {
 
 ErrorCode LinkLayerController::LinkKeyRequestReply(
     const Address& peer, const std::array<uint8_t, 16>& key) {
-  security_manager_.WriteKey(peer, key);
-  security_manager_.AuthenticationRequestFinished();
+  if (security_manager_.IsInitiator()) {
+    security_manager_.WriteKey(peer, key);
 
-  ScheduleTask(kShortDelayMs,
-               [this, peer]() { AuthenticateRemoteStage2(peer); });
+    SendLinkLayerPacket(model::packets::AuthenticationRequestBuilder::Create(
+        properties_.GetAddress(), peer, key));
+  } else {
+    bool same_key = key == security_manager_.GetKey(peer);
+    if (!same_key) {
+      LOG_INFO("Link key missmatch");
+    }
+
+    SendLinkLayerPacket(model::packets::AuthenticationResponseBuilder::Create(
+        properties_.GetAddress(), peer, same_key));
+  }
 
   return ErrorCode::SUCCESS;
 }
@@ -2054,21 +2099,22 @@ ErrorCode LinkLayerController::LinkKeyRequestNegativeReply(
     return ErrorCode::UNKNOWN_CONNECTION;
   }
 
-  if (properties_.GetSecureSimplePairingSupported()) {
-    if (!security_manager_.AuthenticationInProgress()) {
-      security_manager_.AuthenticationRequest(address, handle, false);
+  if (security_manager_.IsInitiator()) {
+    if (properties_.GetSecureSimplePairingSupported()) {
+      ScheduleTask(kShortDelayMs,
+                   [this, address]() { StartSimplePairing(address); });
+    } else {
+      LOG_INFO("PIN pairing %s", properties_.GetAddress().ToString().c_str());
+      ScheduleTask(kShortDelayMs, [this, address]() {
+        security_manager_.SetPinRequested(address);
+        if (properties_.IsUnmasked(EventCode::PIN_CODE_REQUEST)) {
+          send_event_(bluetooth::hci::PinCodeRequestBuilder::Create(address));
+        }
+      });
     }
-
-    ScheduleTask(kShortDelayMs,
-                 [this, address]() { StartSimplePairing(address); });
   } else {
-    LOG_INFO("PIN pairing %s", properties_.GetAddress().ToString().c_str());
-    ScheduleTask(kShortDelayMs, [this, address]() {
-      security_manager_.SetPinRequested(address);
-      if (properties_.IsUnmasked(EventCode::PIN_CODE_REQUEST)) {
-        send_event_(bluetooth::hci::PinCodeRequestBuilder::Create(address));
-      }
-    });
+    SendLinkLayerPacket(model::packets::AuthenticationResponseBuilder::Create(
+        properties_.GetAddress(), address, false));
   }
   return ErrorCode::SUCCESS;
 }

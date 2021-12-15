@@ -52,6 +52,8 @@ enum PacketType : 8 {
     LE_READ_REMOTE_FEATURES_RESPONSE = 0x2D,
     LE_CONNECTION_PARAMETER_REQUEST = 0x2E,
     LE_CONNECTION_PARAMETER_UPDATE = 0x2F,
+    AUTHENTICATION_REQUEST = 0x30,
+    AUTHENTICATION_RESPONSE = 0x31,
 }
 
 packet LinkLayerPacket {
@@ -376,4 +378,13 @@ packet LeConnectionParameterUpdate : LinkLayerPacket (type = LE_CONNECTION_PARAM
   interval : 16,
   latency : 16,
   timeout : 16,
+}
+
+packet AuthenticationRequest : LinkLayerPacket (type = AUTHENTICATION_REQUEST) {
+  link_key: 8[16]
+}
+
+packet AuthenticationResponse : LinkLayerPacket (type = AUTHENTICATION_RESPONSE) {
+  success: 1,
+  _reserved_ : 7
 }
