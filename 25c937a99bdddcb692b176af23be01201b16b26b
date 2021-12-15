@@ -1,0 +1,290 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422450",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f7e6f5f5_981419dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422450",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a849fd3d_1c8940e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "931cbedc_d8bfd03a",
+        "filename": "system/blueberry/decorators/fitbit_app_decorator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 159,
+        "startChar": 6,
+        "endLine": 159,
+        "endChar": 16
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1842cf86_9a8e6d86",
+        "filename": "system/blueberry/tests/avrcp/bluetooth_avrcp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "11bdbf54_c08329fd",
+        "filename": "system/blueberry/tests/avrcp/bluetooth_avrcp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 132,
+        "startChar": 4,
+        "endLine": 132,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "563cd517_4d27ce21",
+        "filename": "system/blueberry/tests/triangle/connection_switching_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b0095c2d_71be8c52",
+        "filename": "system/blueberry/tests/triangle/connection_switching_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9b762f4f_f8d92467",
+        "filename": "system/blueberry/utils/android_bluetooth_decorator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1681,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 1681,
+        "startChar": 4,
+        "endLine": 1681,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "15686065_0c09d503",
+        "filename": "system/blueberry/utils/android_bluetooth_decorator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1697,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 1697,
+        "startChar": 4,
+        "endLine": 1697,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1cf940ad_2a9a6721",
+        "filename": "system/blueberry/utils/ui_pages/ui_core.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 210,
+        "startChar": 4,
+        "endLine": 210,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018422442",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1922800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5e3c4468_30051254",
+        "filename": "system/blueberry/utils/ui_pages/ui_core.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-15T00:28:33Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 418,
+        "startChar": 4,
+        "endLine": 418,
+        "endChar": 14
+      },
+      "revId": "25c937a99bdddcb692b176af23be01201b16b26b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
