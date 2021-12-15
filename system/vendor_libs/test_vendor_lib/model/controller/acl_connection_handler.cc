@@ -514,4 +514,14 @@ ScoLinkParameters AclConnectionHandler::GetScoLinkParameters(bluetooth::hci::Add
   return {};
 }
 
+std::vector<uint16_t> AclConnectionHandler::GetAclHandles() const {
+  std::vector<uint16_t> keys;
+
+  std::transform(acl_connections_.begin(), acl_connections_.end(),
+                 std::back_inserter(keys),
+                 [](const auto& pair) { return pair.first; });
+
+  return keys;
+}
+
 }  // namespace test_vendor_lib
