@@ -400,4 +400,14 @@ StreamParameters AclConnectionHandler::GetStreamParameters(
   return isochronous_connection_handler_.GetStreamParameters(handle);
 }
 
+std::vector<uint16_t> AclConnectionHandler::GetAclHandles() const {
+  std::vector<uint16_t> keys;
+
+  std::transform(acl_connections_.begin(), acl_connections_.end(),
+                 std::back_inserter(keys),
+                 [](const auto& pair) { return pair.first; });
+
+  return keys;
+}
+
 }  // namespace test_vendor_lib
