@@ -39,6 +39,30 @@
       },
       "revId": "74e13a7eaef5ad237c23854835fe0f00bf41d359",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3efd4d2b_9f63d791",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2021-12-15T03:58:47Z",
+      "side": 1,
+      "message": "It will be used by mA2dpNativeInterface.setActiveDevice(null) in A2dpService.removeActiveDevice(). HFP doesn\u0027t have code like this.\nThanks!",
+      "parentUuid": "8031c421_f091d541",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 62
+      },
+      "revId": "74e13a7eaef5ad237c23854835fe0f00bf41d359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
