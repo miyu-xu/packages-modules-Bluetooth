@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68de403c_7ee52c9f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1126163
+      },
+      "writtenOn": "2021-12-16T21:14:36Z",
+      "side": 1,
+      "message": "Not necessary",
+      "revId": "c64fb8b26ebff93ab2df4ba5f21c26a73302e5a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
