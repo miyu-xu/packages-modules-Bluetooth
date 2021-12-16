@@ -46,11 +46,6 @@ PHONE_PHENOTYPE_FLAGS = {
     NEARBY_PACKAGE:
         (
             {
-                'name': 'fast_pair_half_sheet_wear_os',
-                'type': FLAG_TYPE.BOOLEAN,
-                'value': 'true'
-            },
-            {
                 'name': 'default_debug_mode_enabled',
                 'type': FLAG_TYPE.BOOLEAN,
                 'value': 'true'
