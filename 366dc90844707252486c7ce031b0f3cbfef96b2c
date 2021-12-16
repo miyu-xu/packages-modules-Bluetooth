@@ -46,6 +46,30 @@
       },
       "revId": "366dc90844707252486c7ce031b0f3cbfef96b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "870d6476_2234a1de",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1578,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-16T11:48:25Z",
+      "side": 1,
+      "message": "I think it should be ok to clear remote_cid and the local transaction id here.\n\nJust nit comment: could you please add comments here as it is done in this function? Especially that someone could confuse local_id with local_cid.",
+      "parentUuid": "7fb65f16_9da19136",
+      "range": {
+        "startLine": 1577,
+        "startChar": 0,
+        "endLine": 1578,
+        "endChar": 22
+      },
+      "revId": "366dc90844707252486c7ce031b0f3cbfef96b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
