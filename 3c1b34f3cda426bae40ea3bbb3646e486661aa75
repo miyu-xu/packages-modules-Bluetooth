@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4cbebb4e_b44cca6d",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T10:31:59Z",
+      "side": 1,
+      "message": "this can be simplified with \n\np_lcb-\u003eis_transport_ble()",
+      "range": {
+        "startLine": 837,
+        "startChar": 6,
+        "endLine": 837,
+        "endChar": 41
+      },
+      "revId": "3c1b34f3cda426bae40ea3bbb3646e486661aa75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fdecc9c6_02d65ca2",
         "filename": "system/stack/l2cap/l2c_link.cc",
         "patchSetId": 3
