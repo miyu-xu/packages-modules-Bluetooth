@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0074ede8_aa40fe34",
+        "filename": "system/btif/include/btif_hh.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-16T17:14:11Z",
+      "side": 1,
+      "message": "You should delete that too",
+      "range": {
+        "startLine": 115,
+        "startChar": 20,
+        "endLine": 115,
+        "endChar": 30
+      },
+      "revId": "627789463d5418e67f0578c1bf7853666fc48515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
