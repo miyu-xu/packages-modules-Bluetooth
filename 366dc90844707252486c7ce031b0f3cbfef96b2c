@@ -22,6 +22,30 @@
       },
       "revId": "366dc90844707252486c7ce031b0f3cbfef96b2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fb65f16_9da19136",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1578,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2021-12-16T01:16:02Z",
+      "side": 1,
+      "message": "1. DUT device performing credit connection request continously. And all channels CCB\u0027s are almost full.\n2. And the perform disconnecting the channels one by one. And CCB\u0027s are releasing one by one.\n3. Meanwhile remote device performed initiated credit based connection request. And CCB which is assigned was already released from step 2.\n4. Here local_id in CCB which was assinged in step 1 was not yet cleared. Due to that below condition will point wrong channels\n       From l2c_ble.cc\n\t   case L2CAP_CMD_CREDIT_BASED_CONN_RES:\n\t   \n629       L2CAP_TRACE_DEBUG(\"Recv L2CAP_CMD_CREDIT_BASED_CONN_RES\");\n630       /* For all channels, see whose identifier matches this id */\n631       for (temp_p_ccb \u003d p_lcb-\u003eccb_queue.p_first_ccb; temp_p_ccb;\n632            temp_p_ccb \u003d temp_p_ccb-\u003ep_next_ccb) {\n\t\t\t//Below condition will point wrong CCB instead of actual one. Due to mismatch in local_id.\n633         if (temp_p_ccb-\u003elocal_id \u003d\u003d id) {\n634           p_ccb \u003d temp_p_ccb;\n635           break;\n636         }\n\n5. So After clearing the local_id in deallocation, it always pointing to right CCB in above condition.\n\nSimilary for remote_cid also.",
+      "parentUuid": "29df3ef0_eafe8562",
+      "range": {
+        "startLine": 1577,
+        "startChar": 0,
+        "endLine": 1578,
+        "endChar": 22
+      },
+      "revId": "366dc90844707252486c7ce031b0f3cbfef96b2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
