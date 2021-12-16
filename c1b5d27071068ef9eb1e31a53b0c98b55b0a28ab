@@ -62,6 +62,30 @@
       },
       "revId": "c1b5d27071068ef9eb1e31a53b0c98b55b0a28ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0310dd42_20bf4b6b",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-16T10:21:27Z",
+      "side": 1,
+      "message": "Looks like l2ble_sec_access_req is putting it back\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/l2cap/l2c_ble.cc;l\u003d1514;bpv\u003d1;bpt\u003d1?q\u003dl2ble_sec_access_req",
+      "parentUuid": "78be48fd_ac085170",
+      "range": {
+        "startLine": 1459,
+        "startChar": 0,
+        "endLine": 1460,
+        "endChar": 75
+      },
+      "revId": "c1b5d27071068ef9eb1e31a53b0c98b55b0a28ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
