@@ -1,0 +1,549 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0f0aa14a_6aeae4ce",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioBroadcasterNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027complex\u0027, \u0027unexpected\u0027, or \u0027placeholder\u0027; see https://developers.google.com/style/inclusive-documentation#ableist-language for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 120,
+        "startChar": 53,
+        "endLine": 120,
+        "endChar": 58
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "219288bd_e8fc4fa4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c02f4b0e_dedcd829",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e78ae799_274cf297",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Use go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "edba34be_daedcac6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 120
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b5171fab_3705f948",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 249,
+        "endChar": 106
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "35f3a012_978b211d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 102
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f063f3a0_9453ad40",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 120
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d366812f_5a1fc11c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 107
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "11d14288_6495915a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 120
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "465a3212_018f736f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 108
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "66ae058a_f602dfcd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 291,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 119
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "185d5988_920e5626",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1140,
+        "startChar": 0,
+        "endLine": 1140,
+        "endChar": 110
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493306",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "3d53149a_dada4cb0",
+          "description": "Change to \"system/bta/le_audio/broadcaster/broadcaster.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 249,
+                "startChar": 48,
+                "endLine": 249,
+                "endChar": 54
+              },
+              "replacement": "acquire"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4d96bf83_816d8ff5",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Common typo found: \"aquire\" -- should it be \"acquire\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 249,
+        "startChar": 48,
+        "endLine": 249,
+        "endChar": 54
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493306",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "0267755e_615dbb27",
+          "description": "Change to \"system/bta/le_audio/broadcaster/broadcaster.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/broadcaster.cc",
+              "range": {
+                "startLine": 706,
+                "startChar": 10,
+                "endLine": 706,
+                "endChar": 18
+              },
+              "replacement": "members"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a4b11f25_410f04da",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Common typo found: \"memebers\" -- should it be \"members\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 706,
+        "startChar": 10,
+        "endLine": 706,
+        "endChar": 18
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "130f9372_3c16666e",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027complex\u0027, \u0027unexpected\u0027, or \u0027placeholder\u0027; see https://developers.google.com/style/inclusive-documentation#ableist-language for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 57,
+        "startChar": 3,
+        "endLine": 57,
+        "endChar": 8
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493306",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "2c108964_f2c665e5",
+          "description": "Change to \"system/bta/le_audio/broadcaster/state_machine.cc\"",
+          "replacements": [
+            {
+              "path": "system/bta/le_audio/broadcaster/state_machine.cc",
+              "range": {
+                "startLine": 202,
+                "startChar": 24,
+                "endLine": 202,
+                "endChar": 29
+              },
+              "replacement": "gets"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "57ea1afb_0d376ecf",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Common typo found: \"get\u0027s\" -- should it be \"gets\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 202,
+        "startChar": 24,
+        "endLine": 202,
+        "endChar": 29
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ac2d240f_9da86d2a",
+        "filename": "system/bta/le_audio/broadcaster/state_machine_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Use ASSERT_EQ() instead",
+      "range": {
+        "startLine": 319,
+        "startChar": 2,
+        "endLine": 319,
+        "endChar": 12
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018493304",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "29f275a6_3b8ca964",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-16T16:49:43Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 500,
+        "startChar": 0,
+        "endLine": 500,
+        "endChar": 4
+      },
+      "revId": "5447a1733f56566090b604fee57b511bd7de3379",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
