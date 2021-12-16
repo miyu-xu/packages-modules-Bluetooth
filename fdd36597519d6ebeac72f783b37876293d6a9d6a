@@ -22,6 +22,23 @@
       },
       "revId": "fdd36597519d6ebeac72f783b37876293d6a9d6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f398a28_24b8c120",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1323,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-16T11:02:24Z",
+      "side": 1,
+      "message": "It does not look correct.\n\n`p_lcb-\u003ep_fixed_ccbs` cannot be null - as this is pointing to the address of the table which is always present if `p_lcb` is valid.\n\n`p_lcb-\u003ep_fixed_ccbs[XX]` - can be null and if this is a case then previous code correctly tried to allocate ccb using `l2cu_initialize_fixed_ccb`.\nNow it will always fail instead.\n\nAlso with the change, code will try to initialize ccb even it is already there.\n\nCould you elaborate more about issue you are seeing?",
+      "revId": "fdd36597519d6ebeac72f783b37876293d6a9d6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
