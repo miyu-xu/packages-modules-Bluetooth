@@ -86,6 +86,30 @@
       },
       "revId": "c1b5d27071068ef9eb1e31a53b0c98b55b0a28ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a882147a_22ec2e00",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-16T18:25:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0310dd42_20bf4b6b",
+      "range": {
+        "startLine": 1459,
+        "startChar": 0,
+        "endLine": 1460,
+        "endChar": 75
+      },
+      "revId": "c1b5d27071068ef9eb1e31a53b0c98b55b0a28ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
