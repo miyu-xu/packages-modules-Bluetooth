@@ -49,7 +49,7 @@ PHONE_PHENOTYPE_FLAGS = {
                 'name': 'default_debug_mode_enabled',
                 'type': FLAG_TYPE.BOOLEAN,
                 'value': 'true'
-            }
+            },
         ) + CONNECTION_SWITCHING_FLAGS
     ,
     WEARABLE_PACKAGE:
