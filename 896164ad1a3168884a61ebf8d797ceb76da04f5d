@@ -16,6 +16,24 @@
       "message": "Is this move safe? Wondering if there was a reason to run source \u0026 lunch. If not then sure.",
       "revId": "896164ad1a3168884a61ebf8d797ceb76da04f5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31d1d9b8_6ceeb149",
+        "filename": "system/tools/scripts/yapf_checker.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2021-12-16T18:08:15Z",
+      "side": 1,
+      "message": "You are right, I should check for the commit key before. I uploaded a new patchset to enforce that.\n\nThe only reason for source \u0026 lunch is to have a ANDROID_BUILD_TOP_KEY in order to find the associated yapf_dir.\nIf there is some python files in your preupload commit, you still need to source \u0026 lunch.\n\nWith this CL, it first check if there is a python file before asserting other python prerequisite, and skip them if there is no python file.\nFor all other file (rust / cpp / c / java), it will no longer fail because of the python prerequisite.",
+      "parentUuid": "da0cf51b_b580736a",
+      "revId": "896164ad1a3168884a61ebf8d797ceb76da04f5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
