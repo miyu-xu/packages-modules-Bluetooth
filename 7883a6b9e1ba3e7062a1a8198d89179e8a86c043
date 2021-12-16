@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df24a1cc_61e35db2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-16T19:23:19Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/gd/hci/controller.cc\npackages/modules/Bluetooth/system/gd/hci/controller.cc:568:13: error: enumeration value \u0027ADD_SCO_CONNECTION\u0027 not handled in switch [-Werror,-Wswitch]",
+      "revId": "7883a6b9e1ba3e7062a1a8198d89179e8a86c043",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
