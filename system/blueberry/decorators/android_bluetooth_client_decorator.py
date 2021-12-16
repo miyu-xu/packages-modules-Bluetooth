@@ -10,10 +10,11 @@ from __future__ import print_function
 
 import importlib
 import re
-from mobly.controllers.android_device import AndroidDevice
+from mobly.controllers import android_device
 
 
-def decorate(ad, decorator):
+def decorate(ad: android_device.AndroidDevice,
+             decorator: str) -> android_device.AndroidDevice:
   """Utility to decorate an AndroidDevice.
 
   Args:
@@ -23,19 +24,18 @@ def decorate(ad, decorator):
     AndroidDevice object.
   """
 
-  if not isinstance(ad, AndroidDevice):
+  if not isinstance(ad, android_device.AndroidDevice):
     raise TypeError('Must apply AndroidBluetoothClientDecorator to an '
                     'AndroidDevice')
   decorator_module = camel_to_snake(decorator)
   module = importlib.import_module(
       'blueberry.decorators.%s' % decorator_module)
   cls = getattr(module, decorator)
-  ad = cls(ad)
 
-  return ad
+  return cls(ad)
 
 
-def camel_to_snake(cls_name):
+def camel_to_snake(cls_name: str) -> str:
   """Utility to convert a class name from camel case to snake case.
 
   Args:
