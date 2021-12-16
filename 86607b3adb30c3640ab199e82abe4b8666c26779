@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c492221_396e2852",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "381995f5_23d1d0d6",
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a87a6038_f0156973",
@@ -31,6 +49,30 @@
       "writtenOn": "2021-12-14T08:50:45Z",
       "side": 1,
       "message": "le_call_control_connection_policy?",
+      "range": {
+        "startLine": 41,
+        "startChar": 15,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c976916_70ccafa6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/ProfilePrioritiesEntity.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a87a6038_f0156973",
       "range": {
         "startLine": 41,
         "startChar": 15,
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb27f165_72f61e99",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5006417e_96e242a1",
+      "range": {
+        "startLine": 542,
+        "startChar": 16,
+        "endLine": 542,
+        "endChar": 51
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cd4a88b_83b3df63",
@@ -101,6 +167,24 @@
       "writtenOn": "2021-12-14T01:04:26Z",
       "side": 1,
       "message": "I see this function shares many similarity with sendClccForCall(). \n\nCan we reduce the duplicate code by extracting common parts?",
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77fc240d_439ece67",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Leaving this as an action item for a future CL",
+      "parentUuid": "5cd4a88b_83b3df63",
       "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -119,6 +203,30 @@
       "side": 1,
       "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
       "parentUuid": "e2dc809c_cd5515ae",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "747efdde_80737812",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Leaving this an an action item for a future CL",
+      "parentUuid": "24d0af40_a42132d1",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -153,6 +261,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d907d70a_63ecb0ef",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Leaving this an an action item for a future CL",
+      "parentUuid": "c42ebc48_09336cbb",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57e3d18b_5ae35660",
@@ -167,6 +299,30 @@
       "side": 1,
       "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
       "parentUuid": "5a51737d_a583a18d",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09f68946_4a9b0543",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGattTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Leaving this an an action item for a future CL",
+      "parentUuid": "57e3d18b_5ae35660",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -225,6 +381,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3393c7a4_377f2b98",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Leaving this an an action item for a future CL",
+      "parentUuid": "738336d5_85865844",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5487c501_ca3a49d3",
@@ -239,6 +419,30 @@
       "side": 1,
       "message": "\u003e Import specific classes instead of wildcard imports\n\nPlease fix.",
       "parentUuid": "92b6d93e_2fae4079",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2637eb8e_0d82c48c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Leaving this an an action item for a future CL",
+      "parentUuid": "5487c501_ca3a49d3",
       "range": {
         "startLine": 23,
         "startChar": 0,

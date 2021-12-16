@@ -16,6 +16,24 @@
       "message": "Please add TbsService service in the mLeAudioUnicastProfiles(at L73)",
       "revId": "e66278ead6ed28e3ac7ef72c8dd28d0c35a7eda6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c48d511e_3860949c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2021-12-16T22:53:13Z",
+      "side": 1,
+      "message": "Please do it in a follow-up CL.",
+      "parentUuid": "6fef16d0_9253d946",
+      "revId": "e66278ead6ed28e3ac7ef72c8dd28d0c35a7eda6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
