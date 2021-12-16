@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a840f0cb_39401abd",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientDeviceBlock.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1126163
+      },
+      "writtenOn": "2021-12-16T21:17:40Z",
+      "side": 1,
+      "message": "Consider a \u003d ? : operator here.",
+      "range": {
+        "startLine": 273,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 46
+      },
+      "revId": "9d23b3e5a2d4188f0e223a87c0336353853a1563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
