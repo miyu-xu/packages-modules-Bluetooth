@@ -2,12 +2,15 @@
 
 from mobly.controllers import android_device
 
+from blueberry.utils.ui_pages import errors
 from blueberry.utils.ui_pages import ui_core
 from blueberry.utils.ui_pages.fitbit_companion import account_pages
 from blueberry.utils.ui_pages.fitbit_companion import constants
 from blueberry.utils.ui_pages.fitbit_companion import context
 from blueberry.utils.ui_pages.fitbit_companion import other_pages
 from blueberry.utils.ui_pages.fitbit_companion import pairing_pages
+
+# Internal import
 
 
 def get_context(ad: android_device.AndroidDevice,
@@ -36,6 +39,7 @@ def get_context(ad: android_device.AndroidDevice,
       other_pages.SettingLocation,
       other_pages.LocationDisabledPage,
       other_pages.LinkConfirmPage,
+      other_pages.PlayfulPage,
       account_pages.AccountPage,
       account_pages.PairedDeviceDetailPage,
       account_pages.UnpairConfirmPage,
@@ -79,6 +83,26 @@ def go_google_play_page(ctx: context.Context) -> None:
   ctx.expect_page(other_pages.GooglePlayPage)
 
 
+@retry.logged_retry_on_exception(
+    retry_value=(errors.ContextError),
+    retry_intervals=retry.FuzzedExponentialIntervals(
+        initial_delay_sec=1, num_retries=5, factor=1.1))
+def _click_unpair_button_on_device(ctx: context.Context,
+                                   device_name: str) -> None:
+  """Unpairs given device.
+
+  Args:
+    ctx: Context object of Fitbit Companion App.
+    device_name: Name of Fitbit device to be unpaired.
+  """
+  ctx.page.click(device_name)
+  ctx.expect_page(account_pages.PairedDeviceDetailPage)
+  ctx.page.unpair()
+  ctx.expect_page(account_pages.UnpairConfirmPage)
+  ctx.page.confirm()
+  ctx.expect_page(account_pages.AccountPage)
+
+
 def remove_all_paired_devices(ctx: context.Context) -> int:
   """Removes all paired devices.
 
@@ -96,12 +120,7 @@ def remove_all_paired_devices(ctx: context.Context) -> int:
   ctx.go_page(account_pages.AccountPage)
   paired_devices = ctx.page.get_paired_devices()
   while paired_devices:
-    ctx.page.click(paired_devices[0])
-    ctx.expect_page(account_pages.PairedDeviceDetailPage)
-    ctx.page.unpair()
-    ctx.expect_page(account_pages.UnpairConfirmPage)
-    ctx.page.confirm()
-    ctx.expect_page(account_pages.AccountPage)
+    _click_unpair_button_on_device(ctx, paired_devices[0])
     removed_count += 1
     paired_devices = ctx.page.get_paired_devices()
 
