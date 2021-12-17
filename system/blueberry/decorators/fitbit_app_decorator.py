@@ -87,6 +87,7 @@ class FitbitAppDecorator:
           (f'Target BT device has MAC address={target_device_mac_address}',
            f'which is different than given MAC address={mac_address} !'))
 
+    self.ui_context.regr_page_call(other_pages.PlayfulPage, 'skip')
     self.ui_context.regr_page_call(other_pages.LinkConfirmPage, 'ok')
     self.ui_context.regr_page_call(other_pages.PurchaseFail, 'ok')
     self.ui_context.regr_page_call(pairing_pages.PremiumPage, 'done')
