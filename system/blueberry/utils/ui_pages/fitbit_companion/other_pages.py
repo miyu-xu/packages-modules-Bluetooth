@@ -357,3 +357,18 @@ class LinkConfirmPage(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_rid(self._NODE_PAIR_BTN_RID)
+
+
+class PlayfulPage(ui_core.UIPage):
+  """Playful page seen from b/210761410."""
+
+  PAGE_TEXT = 'Playful'
+  _NODE_BACK_BTN_RID = 'back-button'
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips this page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_rid(self._NODE_BACK_BTN_RID)
