@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "831125d7_388d74b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559553
+      },
+      "writtenOn": "2021-12-20T19:54:36Z",
+      "side": 1,
+      "message": "I looked into the presubmit failure and it looks like the fixes are pretty simple. I\u0027ve left comments where they need to be made.",
+      "revId": "81dfff783a6066a4c1a7feed871c97d7ff6a036a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c0c7f8c_a83a8f9c",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1559553
+      },
+      "writtenOn": "2021-12-20T19:54:36Z",
+      "side": 1,
+      "message": "Add a \u0027bool onSinkMetadataUpdate(const sink_metadata_t\u0026)\u0027 here.",
+      "revId": "81dfff783a6066a4c1a7feed871c97d7ff6a036a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bf7d48_4170c955",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1559553
+      },
+      "writtenOn": "2021-12-20T19:54:36Z",
+      "side": 1,
+      "message": "Add the new \u0027onSinkMetadataUpdate\u0027 here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 74,
+        "endLine": 60,
+        "endChar": 75
+      },
+      "revId": "81dfff783a6066a4c1a7feed871c97d7ff6a036a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
