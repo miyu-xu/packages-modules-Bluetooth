@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f40a650b_238bbcaf",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-20T03:29:17Z",
+      "side": 1,
+      "message": "ADDRESS_TYPE_PUBLIC?",
+      "range": {
+        "startLine": 567,
+        "startChar": 7,
+        "endLine": 567,
+        "endChar": 26
+      },
+      "revId": "120d7f0422e93050d8403ca95a9f0d12d429ae60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1ad24f8_4ff2834f",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-20T03:29:17Z",
+      "side": 1,
+      "message": "\"!\u003d AdvertisingSetParameters.ADDRESS_TYPE_DEFAULT\"? We should always check the permission if OwnAddressType is changed no matter what type has been set.",
+      "range": {
+        "startLine": 578,
+        "startChar": 43,
+        "endLine": 578,
+        "endChar": 90
+      },
+      "revId": "120d7f0422e93050d8403ca95a9f0d12d429ae60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
