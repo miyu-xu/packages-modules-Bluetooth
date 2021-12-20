@@ -44,6 +44,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.hamcrest.MockitoHamcrest;
+import android.util.Log;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -70,6 +71,7 @@ public class HeadsetClientStateMachineTest {
 
     @Before
     public void setUp() {
+        Log.e("TAG", "CYDBG setUp");
         mTargetContext = InstrumentationRegistry.getTargetContext();
         Assume.assumeTrue("Ignore test when HeadsetClientService is not enabled",
                 mTargetContext.getResources().getBoolean(R.bool.profile_supported_hfpclient));
@@ -401,7 +403,7 @@ public class HeadsetClientStateMachineTest {
         mHeadsetClientStateMachine.sendMessage(msg);
 
         verify(mNativeInterface, timeout(STANDARD_WAIT_MILLIS).times(1)).sendATCmd(
-                Utils.getBytesFromAddress(mTestDevice.getAddress()),
+                mTestDevice,
                 HeadsetClientHalConstants.HANDSFREECLIENT_AT_CMD_VENDOR_SPECIFIC_CMD,
                 0, 0, atCommand);
     }
@@ -584,8 +586,8 @@ public class HeadsetClientStateMachineTest {
         // Setup connection state machine to be in connected state
         when(mHeadsetClientService.getConnectionPolicy(any(BluetoothDevice.class))).thenReturn(
                 BluetoothProfile.CONNECTION_POLICY_ALLOWED);
-        when(mNativeInterface.startVoiceRecognition(any(byte[].class))).thenReturn(true);
-        when(mNativeInterface.stopVoiceRecognition(any(byte[].class))).thenReturn(true);
+        doReturn(true).when(mNativeInterface.startVoiceRecognition(any(BluetoothDevice.class)));
+        doReturn(true).when(mNativeInterface.stopVoiceRecognition(any(BluetoothDevice.class)));
 
         int expectedBroadcastIndex = 1;
         expectedBroadcastIndex = setUpHfpClientConnection(expectedBroadcastIndex);
@@ -653,7 +655,7 @@ public class HeadsetClientStateMachineTest {
 
         verify(mNativeInterface, timeout(STANDARD_WAIT_MILLIS).times(1))
                 .sendATCmd(
-                        Utils.getBytesFromAddress(mTestDevice.getAddress()),
+                        mTestDevice,
                         HeadsetClientHalConstants.HANDSFREECLIENT_AT_CMD_BIEV,
                         indicator_id,
                         indicator_value,
