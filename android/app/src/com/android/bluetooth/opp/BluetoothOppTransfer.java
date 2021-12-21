@@ -218,7 +218,15 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                     if (V) {
                         Log.v(TAG, "receive TRANSPORT_ERROR msg");
                     }
-                    mConnectThread = null;
+                    try {
+                        synchronized (mConnectThread) {
+                            mConnectThread = null;
+                        }
+                    } catch (NullPointerException e) {
+                        if (V) {
+                            Log.d(TAG, "mConnectThread is null");
+                        }
+                    }
                     markBatchFailed(BluetoothShare.STATUS_CONNECTION_ERROR);
                     mBatch.mStatus = Constants.BATCH_STATUS_FAILED;
 
@@ -231,7 +239,15 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
                     if (V) {
                         Log.v(TAG, "Transfer receive TRANSPORT_CONNECTED msg");
                     }
-                    mConnectThread = null;
+                    try {
+                        synchronized (mConnectThread) {
+                            mConnectThread = null;
+                        }
+                    } catch (NullPointerException e) {
+                        if (V) {
+                            Log.d(TAG, "mConnectThread is null");
+                        }
+                    }
                     mTransport = (ObexTransport) msg.obj;
                     startObexSession();
 
@@ -514,20 +530,25 @@ public class BluetoothOppTransfer implements BluetoothOppBatch.BluetoothOppBatch
         }
 
         cleanUp();
-        if (mConnectThread != null) {
-            try {
+        try {
+            synchronized (mConnectThread) {
                 mConnectThread.interrupt();
                 if (V) {
                     Log.v(TAG, "waiting for connect thread to terminate");
                 }
                 mConnectThread.join();
-            } catch (InterruptedException e) {
-                if (V) {
-                    Log.v(TAG, "Interrupted waiting for connect thread to join");
-                }
             }
-            mConnectThread = null;
+        } catch (InterruptedException e) {
+            if (V) {
+                Log.v(TAG, "Interrupted waiting for connect thread to join");
+            }
+        } catch (NullPointerException e) {
+            if (V) {
+                Log.v(TAG, "mConnectThread is null");
+            }
         }
+        mConnectThread = null;
+
         // Prevent concurrent access
         synchronized (this) {
             if (mHandlerThread != null) {
