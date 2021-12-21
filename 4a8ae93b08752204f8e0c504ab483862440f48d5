@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb48a7ae_e6be0298",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-21T11:29:00Z",
+      "side": 1,
+      "message": "GD tests don\u0027t cover BTIF layer",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "4a8ae93b08752204f8e0c504ab483862440f48d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78bcd17a_b7d4d5af",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-21T11:29:00Z",
+      "side": 1,
+      "message": "At least a comment about how these three variables are related is needed.",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 27
+      },
+      "revId": "4a8ae93b08752204f8e0c504ab483862440f48d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
