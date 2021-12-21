@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018573804",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1930760?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8901f0ed_3e742691",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-21T00:19:30Z",
+      "side": 1,
+      "message": "#gd-refactor can\u0027t be used because this change does not have changes in system/bt/gd",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "170c2061044903b9ce6b16f5bacfb6c071d0f27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018573789",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1930760?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6e64ccf7_7be13727",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-21T00:19:30Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 498,
+        "startChar": 0,
+        "endLine": 498,
+        "endChar": 119
+      },
+      "revId": "170c2061044903b9ce6b16f5bacfb6c071d0f27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
