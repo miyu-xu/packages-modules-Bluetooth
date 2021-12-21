@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d0f9ebf_dd1f3110",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-21T15:42:45Z",
+      "side": 1,
+      "message": "Audio framework already streams silence for 3 seconds when the stream is finished.\n\nIs that not enough ? Or is this patch helping with changing content type after metadata is update ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 64
+      },
+      "revId": "075b4795ec74e5379140409ff02143d60a4ebb13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
