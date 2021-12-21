@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f26ef0b6_ea2bd926",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-21T16:52:25Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/gd/hci/controller.cc\npackages/modules/Bluetooth/system/gd/hci/controller.cc:821:12: error: use of undeclared identifier \u0027ADD_SCO_CONNECTION\u0027\n      case ADD_SCO_CONNECTION:\n           ^",
+      "revId": "2b29dcfb3c966cfa97a6ee8a65e02010981c5aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
