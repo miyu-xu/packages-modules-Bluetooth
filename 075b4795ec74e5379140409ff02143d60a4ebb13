@@ -22,6 +22,30 @@
       },
       "revId": "075b4795ec74e5379140409ff02143d60a4ebb13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4335ff45_41300c62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-21T16:31:09Z",
+      "side": 1,
+      "message": "the problem I want to address here (even it is not yet fully working) is following scenario:\n1) Two earbuds are streaming (L and R)\n2) L is a lead device and is set as Active\n3) L got disconnected, which leads to update on Active device. R will become active device, therefor Audio Framework will suspend the session and then will try to reopen same session.\n\nCurrent result:\nStream would be dropped and reestablished\n\nExpected Result: \nStream is restarted almost immediately when Audio Framework opens audio session.",
+      "parentUuid": "7d0f9ebf_dd1f3110",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 64
+      },
+      "revId": "075b4795ec74e5379140409ff02143d60a4ebb13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
