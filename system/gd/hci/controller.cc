@@ -61,9 +61,13 @@ struct Controller::impl {
     // Wait for all extended features read
     std::promise<void> features_promise;
     auto features_future = features_promise.get_future();
-    hci_->EnqueueCommand(ReadLocalExtendedFeaturesBuilder::Create(0x00),
-                         handler->BindOnceOn(this, &Controller::impl::read_local_extended_features_complete_handler,
-                                             std::move(features_promise)));
+    hci_->EnqueueCommand(
+        ReadLocalExtendedFeaturesBuilder::Create(0x00),
+        handler->BindOnceOn(
+            this,
+            &Controller::impl::read_local_extended_features_complete_handler,
+            std::move(features_promise),
+            false /* retry_page_one */));
     features_future.wait();
 
     hci_->EnqueueCommand(ReadBufferSizeBuilder::Create(),
@@ -256,7 +260,8 @@ struct Controller::impl {
     local_supported_commands_ = complete_view.GetSupportedCommands();
   }
 
-  void read_local_extended_features_complete_handler(std::promise<void> promise, CommandCompleteView view) {
+  void read_local_extended_features_complete_handler(
+      std::promise<void> promise, bool retry_page_one, CommandCompleteView view) {
     auto complete_view = ReadLocalExtendedFeaturesCompleteView::Create(view);
     ASSERT(complete_view.IsValid());
     ErrorCode status = complete_view.GetStatus();
@@ -265,13 +270,28 @@ struct Controller::impl {
     maximum_page_number_ = complete_view.GetMaximumPageNumber();
     extended_lmp_features_array_.push_back(complete_view.GetExtendedLmpFeatures());
 
+    if (page_number == 1 && !module_.SupportsSimultaneousLeBrEdrHost()) {
+      if (retry_page_one) {
+        LOG_WARN("Controller reports no host support for SimultaneousLeBrEdr, some features may not work");
+      } else {
+        // Since Bluetooth Core Spec 4.1, this bit should be 0, but if the support bit is not set, try setting it.
+        write_le_host_support(Enable::ENABLED, Enable::ENABLED);
+      }
+      retry_page_one = !retry_page_one;
+    }
+
     // Query all extended features
-    if (page_number < maximum_page_number_) {
-      page_number++;
+    if (page_number < maximum_page_number_ || retry_page_one) {
+      if (!retry_page_one) {
+        page_number++;
+      }
       hci_->EnqueueCommand(
           ReadLocalExtendedFeaturesBuilder::Create(page_number),
-          module_.GetHandler()->BindOnceOn(this, &Controller::impl::read_local_extended_features_complete_handler,
-                                           std::move(promise)));
+          module_.GetHandler()->BindOnceOn(
+              this,
+              &Controller::impl::read_local_extended_features_complete_handler,
+              std::move(promise),
+              retry_page_one));
     } else {
       promise.set_value();
     }
@@ -942,6 +962,8 @@ LOCAL_FEATURE_ACCESSOR(SupportsNonFlushablePb, 0, 54)
 LOCAL_FEATURE_ACCESSOR(SupportsSniffSubrating, 0, 41)
 LOCAL_FEATURE_ACCESSOR(SupportsEncryptionPause, 0, 42)
 LOCAL_FEATURE_ACCESSOR(SupportsBle, 0, 38)
+
+LOCAL_FEATURE_ACCESSOR(SupportsSimultaneousLeBrEdrHost, 1, 2)
 
 #define LOCAL_LE_FEATURE_ACCESSOR(name, bit) \
   bool Controller::name() const {            \

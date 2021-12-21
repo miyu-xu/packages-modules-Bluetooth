@@ -74,6 +74,8 @@ class Controller : public Module {
   virtual bool SupportsEncryptionPause() const;
   virtual bool SupportsBle() const;
 
+  virtual bool SupportsSimultaneousLeBrEdrHost() const;
+
   virtual bool SupportsBleEncryption() const;
   virtual bool SupportsBleConnectionParametersRequest() const;
   virtual bool SupportsBleExtendedReject() const;
