@@ -1393,7 +1393,10 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
 
         // Both SDP and bonding are done, clear pairing control block in case
         // it is not already cleared
-        pairing_cb = {};
+        if (pairing_cb.br_state == BT_BOND_STATE_BONDED &&
+            pairing_cb.le_state == BT_BOND_STATE_BONDED) {
+          pairing_cb = {};
+        }
 
         // Send one empty UUID to Java to unblock pairing intent when SDP failed
         // or no UUID is discovered
