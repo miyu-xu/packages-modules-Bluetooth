@@ -16,6 +16,29 @@
       "message": "packages/modules/Bluetooth/system/gd/hci/controller.cc\npackages/modules/Bluetooth/system/gd/hci/controller.cc:821:12: error: use of undeclared identifier \u0027ADD_SCO_CONNECTION\u0027\n      case ADD_SCO_CONNECTION:\n           ^",
       "revId": "2b29dcfb3c966cfa97a6ee8a65e02010981c5aca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a483b9b3_f6cbbd92",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2021-12-21T16:53:40Z",
+      "side": 1,
+      "message": "OpCode::ADD_SCO_CONNECTION:",
+      "range": {
+        "startLine": 821,
+        "startChar": 11,
+        "endLine": 821,
+        "endChar": 12
+      },
+      "revId": "2b29dcfb3c966cfa97a6ee8a65e02010981c5aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
