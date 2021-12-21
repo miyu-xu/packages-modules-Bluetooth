@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6943c172_f3d3aabf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-21T11:27:09Z",
+      "side": 1,
+      "message": "So how is it incorrect right now ?\nWas it correct x years ago, or was it always incorrect ?\n\nWhat was the behavior before, and what is it now for LE, classic and dual mode devices ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 42
+      },
+      "revId": "6596745093dd01a1c846f410b76f8f3ba7506f9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "def5f0ff_bc75c036",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-21T11:27:09Z",
+      "side": 1,
+      "message": "BTIF layer is not contained in gd tests. Description of manual procedure to verify the change would be more informative",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 17
+      },
+      "revId": "6596745093dd01a1c846f410b76f8f3ba7506f9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "d6788f25_7b1f7e49",
