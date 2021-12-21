@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efa20b5a_9c2b18fb",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1653964
+      },
+      "writtenOn": "2021-12-21T13:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c0c7f8c_a83a8f9c",
+      "revId": "81dfff783a6066a4c1a7feed871c97d7ff6a036a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62bf7d48_4170c955",
@@ -48,6 +66,30 @@
       "writtenOn": "2021-12-20T19:54:36Z",
       "side": 1,
       "message": "Add the new \u0027onSinkMetadataUpdate\u0027 here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 74,
+        "endLine": 60,
+        "endChar": 75
+      },
+      "revId": "81dfff783a6066a4c1a7feed871c97d7ff6a036a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b7e6880_a4144c52",
+        "filename": "system/audio_hal_interface/fuzzer/libbt_audio_hal_le_audio_software_fuzzer.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1653964
+      },
+      "writtenOn": "2021-12-21T13:50:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62bf7d48_4170c955",
       "range": {
         "startLine": 60,
         "startChar": 74,
