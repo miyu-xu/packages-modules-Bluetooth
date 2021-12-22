@@ -62,6 +62,7 @@ import android.content.pm.IPackageManager;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManagerInternal;
 import android.content.pm.UserInfo;
+import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.os.Binder;
 import android.os.Bundle;
@@ -85,7 +86,6 @@ import android.util.Log;
 import android.util.Slog;
 import android.util.proto.ProtoOutputStream;
 
-import com.android.internal.R;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.DumpUtils;
 import com.android.internal.util.FrameworkStatsLog;
@@ -168,6 +168,8 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
     private static final int SERVICE_IBLUETOOTH = 1;
     private static final int SERVICE_IBLUETOOTHGATT = 2;
+
+    private static final String BLUETOOTH_PACKAGE_NAME = "com.android.bluetooth";
 
     private final Context mContext;
 
@@ -468,7 +470,8 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         mContext = context;
 
         mWirelessConsentRequired = context.getResources()
-                .getBoolean(com.android.internal.R.bool.config_wirelessConsentRequired);
+                .getBoolean(Resources.getSystem().getIdentifier(
+                "config_wirelessConsentRequired", "bool", "android"));
 
         mCrashes = 0;
         mBluetooth = null;
@@ -492,8 +495,8 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
         mUserManager = mContext.getSystemService(UserManager.class);
 
-        mIsHearingAidProfileSupported = context.getResources()
-                .getBoolean(com.android.internal.R.bool.config_hearing_aid_profile_supported);
+        mIsHearingAidProfileSupported = getBluetoothBooleanConfig(
+                "config_hearing_aid_profile_supported", false);
 
         // TODO: We need a more generic way to initialize the persist keys of FeatureFlagUtils
         String value = SystemProperties.get(FeatureFlagUtils.PERSIST_PREFIX + FeatureFlagUtils.HEARING_AID_SETTINGS);
@@ -544,7 +547,9 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
         int systemUiUid = -1;
         // Check if device is configured with no home screen, which implies no SystemUI.
-        boolean noHome = mContext.getResources().getBoolean(R.bool.config_noHomeScreen);
+        boolean noHome = context.getResources()
+                .getBoolean(Resources.getSystem().getIdentifier(
+                "config_noHomeScreen", "bool", "android"));
         if (!noHome) {
             PackageManagerInternal pm = LocalServices.getService(PackageManagerInternal.class);
             systemUiUid = pm.getPackageUid(pm.getSystemUiServiceComponent().getPackageName(),
@@ -559,6 +564,19 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         mSystemUiUid = systemUiUid;
     }
 
+    private boolean getBluetoothBooleanConfig(String name, boolean orElse) {
+        try {
+            Resources bluetoothRes = mContext.getPackageManager()
+                    .getResourcesForApplication(BLUETOOTH_PACKAGE_NAME);
+            orElse = bluetoothRes.getBoolean(bluetoothRes.getIdentifier(
+                    name, "bool", BLUETOOTH_PACKAGE_NAME));
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e(TAG, "Unable to retrieve Bluetooth configuration " + name);
+            e.printStackTrace();
+        }
+        return orElse;
+    }
+
     /**
      *  Returns true if airplane mode is currently on
      */
@@ -568,7 +586,8 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
     }
 
     private boolean supportBluetoothPersistedState() {
-        return mContext.getResources().getBoolean(R.bool.config_supportBluetoothPersistedState);
+        // Set default support to true to copy config default.
+        return getBluetoothBooleanConfig("config_supportBluetoothPersistedState", true);
     }
 
     /**
@@ -641,8 +660,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         if (DBG) {
             Slog.d(TAG, "Loading stored name and address");
         }
-        if (mContext.getResources()
-                .getBoolean(com.android.internal.R.bool.config_bluetooth_address_validation)
+        if (getBluetoothBooleanConfig("config_bluetooth_address_validation", false)
                 && Settings.Secure.getIntForUser(mContentResolver,
                 SECURE_SETTINGS_BLUETOOTH_ADDR_VALID, 0, mUserId)
                 == 0) {

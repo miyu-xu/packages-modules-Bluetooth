@@ -31,8 +31,8 @@ import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
+import com.android.bluetooth.R;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.internal.R;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
