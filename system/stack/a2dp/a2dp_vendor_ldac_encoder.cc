@@ -515,6 +515,11 @@ void a2dp_vendor_ldac_send_frames(uint64_t timestamp_us) {
               nb_frame, nb_iterations);
   if (nb_frame == 0) return;
 
+  if (nb_frame > 20) {
+     nb_frame = 20;
+     LOG_WARN("%s: nb_frame too big,will spend a lot of time", __func__);
+  }
+
   for (uint8_t counter = 0; counter < nb_iterations; counter++) {
     if (a2dp_ldac_encoder_cb.has_ldac_abr_handle) {
       int flag_enable = 1;
