@@ -50,6 +50,23 @@
       "message": "ah alright, so you are saying we are lacking of command status in some case.",
       "revId": "5703bc176178956e7213a6e196583c0c5035643b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac92dfd_2eccb24b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-22T14:47:34Z",
+      "side": 1,
+      "message": "nit: please add Bug:208912945 in the commit message",
+      "revId": "5703bc176178956e7213a6e196583c0c5035643b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
