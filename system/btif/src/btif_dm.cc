@@ -2463,12 +2463,15 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
 
   oob_advertiser_id = id;
 
+  // By default use all channels, but have property for tweaking.
+  int channel_map = osi_property_get_int32("persist.bluetooth.advertising_channel_map", 0x7);
+
   auto advertiser = get_ble_advertiser_instance();
   AdvertiseParameters parameters;
   parameters.advertising_event_properties = 0x0041 /* connectable, tx power */;
   parameters.min_interval = 0xa0;   // 100 ms
   parameters.max_interval = 0x500;  // 800 ms
-  parameters.channel_map = 0x7;     // Use all the channels
+  parameters.channel_map = channel_map;
   parameters.tx_power = 0;          // 0 dBm
   parameters.primary_advertising_phy = 1;
   parameters.secondary_advertising_phy = 2;
