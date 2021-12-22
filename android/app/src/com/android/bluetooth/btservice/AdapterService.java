@@ -616,8 +616,8 @@ public class AdapterService extends Service {
     void bringUpBle() {
         debugLog("bleOnProcessStart()");
 
-        if (getResources().getBoolean(
-                R.bool.config_bluetooth_reload_supported_profiles_when_enabled)) {
+        if (getResources().getBoolean(com.android.bluetooth
+                .R.bool.config_bluetooth_reload_supported_profiles_when_enabled)) {
             Config.init(getApplicationContext());
         }
 
