@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77cdecea_b759a8da",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-22T03:13:12Z",
+      "side": 1,
+      "message": "return false?",
+      "range": {
+        "startLine": 385,
+        "startChar": 4,
+        "endLine": 385,
+        "endChar": 44
+      },
+      "revId": "6cda20c1b8542b06a79e6b3fb91387e5bc15f079",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
