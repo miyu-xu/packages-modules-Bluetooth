@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cee1dacb_74faeb92",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-22T14:30:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c42a1a0_d9877118",
+      "revId": "b660ed7324b2f0e1efe17cc3466f9f30f5a861b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82a1edd0_5c90e663",
@@ -48,6 +66,24 @@
       "writtenOn": "2021-12-22T14:24:54Z",
       "side": 1,
       "message": "...right now, this check is always false, since it\u0027s identical to the one on line 180.\n\nI presume one of these two checks intend to check HV1_ALLOWED instead of checking HV3_ALLOWED twice.  But I don\u0027t have enough context on this code to know which one it should be.",
+      "revId": "b660ed7324b2f0e1efe17cc3466f9f30f5a861b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d365ebc_d77ac916",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2021-12-22T14:30:17Z",
+      "side": 1,
+      "message": "There is indeed a bug, good catch! I meant to check HV1_ALLOWED for the second occurrence (by order of priority).",
+      "parentUuid": "82a1edd0_5c90e663",
       "revId": "b660ed7324b2f0e1efe17cc3466f9f30f5a861b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
