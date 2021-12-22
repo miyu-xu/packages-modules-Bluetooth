@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "29d02b7a_77d3c0ca",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2059,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-12-22T22:36:25Z",
+      "side": 1,
+      "message": "This is a callback from HCI to receive data. If device is disconnected, \"current_sink_codec_config\" should be updated as well. With updated number of channels from current sink codec config, it should be fine to decode right amount of channels.",
+      "parentUuid": "11cd01dc_c5a83d17",
+      "range": {
+        "startLine": 2059,
+        "startChar": 30,
+        "endLine": 2059,
+        "endChar": 34
+      },
+      "revId": "89d29368769f081315cf1dfa932155fb00590011",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "424b3372_bac14b5d",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-06T22:39:23Z",
       "side": 1,
       "message": "This is never defined anywhere. Does that compile ?",
+      "range": {
+        "startLine": 2061,
+        "startChar": 9,
+        "endLine": 2061,
+        "endChar": 36
+      },
+      "revId": "89d29368769f081315cf1dfa932155fb00590011",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c87e5e2a_671b23e7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2061,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-12-22T22:36:25Z",
+      "side": 1,
+      "message": "hmmm so it means that some code that were merged removed this. Need to rebase.",
+      "parentUuid": "424b3372_bac14b5d",
       "range": {
         "startLine": 2061,
         "startChar": 9,
@@ -60,6 +108,30 @@
       "writtenOn": "2021-12-06T22:39:23Z",
       "side": 1,
       "message": "You should always reserve for 2 channels, in case 2nd earbud connects.",
+      "range": {
+        "startLine": 2235,
+        "startChar": 8,
+        "endLine": 2235,
+        "endChar": 46
+      },
+      "revId": "89d29368769f081315cf1dfa932155fb00590011",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acff2343_cef4e0c7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2235,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2021-12-22T22:36:25Z",
+      "side": 1,
+      "message": "This happens when group is streaming and it should be known that here we have 2 or 1 earbud.",
+      "parentUuid": "feff33d6_827a592b",
       "range": {
         "startLine": 2235,
         "startChar": 8,
