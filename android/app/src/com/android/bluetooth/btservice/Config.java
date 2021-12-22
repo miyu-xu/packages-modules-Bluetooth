@@ -48,8 +48,8 @@ import com.android.bluetooth.pan.PanService;
 import com.android.bluetooth.pbap.BluetoothPbapService;
 import com.android.bluetooth.pbapclient.PbapClientService;
 import com.android.bluetooth.sap.SapService;
-import com.android.bluetooth.vc.VolumeControlService;
 import com.android.bluetooth.tbs.TbsService;
+import com.android.bluetooth.vc.VolumeControlService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -125,7 +125,7 @@ public class Config {
             new ProfileConfig(TbsService.class, R.bool.profile_supported_le_call_control,
                     (1 << BluetoothProfile.LE_CALL_CONTROL)),
             new ProfileConfig(HearingAidService.class,
-                    com.android.internal.R.bool.config_hearing_aid_profile_supported,
+                    R.bool.config_hearing_aid_profile_supported,
                     (1 << BluetoothProfile.HEARING_AID)),
             new ProfileConfig(LeAudioService.class, R.bool.profile_supported_le_audio,
                     (1 << BluetoothProfile.LE_AUDIO)),

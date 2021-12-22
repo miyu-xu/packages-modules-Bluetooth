@@ -38,9 +38,10 @@ import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
+import com.android.bluetooth.R;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
-import com.android.internal.R;
+
 
 import org.junit.After;
 import org.junit.Assert;
