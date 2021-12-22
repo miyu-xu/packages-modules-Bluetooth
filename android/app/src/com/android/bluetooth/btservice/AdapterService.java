@@ -96,6 +96,7 @@ import android.util.SparseArray;
 
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
+import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
@@ -122,7 +123,6 @@ import com.android.bluetooth.sap.SapService;
 import com.android.bluetooth.sdp.SdpManager;
 import com.android.bluetooth.telephony.BluetoothInCallService;
 import com.android.bluetooth.vc.VolumeControlService;
-import com.android.internal.R;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.os.BinderCallsStats;
@@ -502,7 +502,7 @@ public class AdapterService extends Service {
 
         // Phone policy is specific to phone implementations and hence if a device wants to exclude
         // it out then it can be disabled by using the flag below.
-        if (getResources().getBoolean(com.android.bluetooth.R.bool.enable_phone_policy)) {
+        if (getResources().getBoolean(R.bool.enable_phone_policy)) {
             Log.i(TAG, "Phone policy enabled");
             mPhonePolicy = new PhonePolicy(this, new ServiceFactory());
             mPhonePolicy.start();
@@ -3719,19 +3719,19 @@ public class AdapterService extends Service {
     }
 
     private int getIdleCurrentMa() {
-        return getResources().getInteger(R.integer.config_bluetooth_idle_cur_ma);
+        return SystemProperties.getInt("persist.bluetooth_config.idle_cur_ma", 0);
     }
 
     private int getTxCurrentMa() {
-        return getResources().getInteger(R.integer.config_bluetooth_tx_cur_ma);
+        return SystemProperties.getInt("persist.bluetooth_config.tx_cur_ma", 0);
     }
 
     private int getRxCurrentMa() {
-        return getResources().getInteger(R.integer.config_bluetooth_rx_cur_ma);
+        return SystemProperties.getInt("persist.bluetooth_config.rx_cur_ma", 0);
     }
 
     private double getOperatingVolt() {
-        return getResources().getInteger(R.integer.config_bluetooth_operating_voltage_mv) / 1000.0;
+        return SystemProperties.getInt("persist.bluetooth_config.operating_voltage_mv", 0) / 1000.0;
     }
 
     @Override

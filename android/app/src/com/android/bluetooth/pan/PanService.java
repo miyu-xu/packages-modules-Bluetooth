@@ -20,7 +20,6 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.TETHER_PRIVILEGED;
 
 import android.annotation.RequiresPermission;
-import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothPan;
 import android.bluetooth.BluetoothPan.LocalPanRole;
@@ -133,7 +132,7 @@ public class PanService extends ProfileService {
         mBluetoothIfaceAddresses = new ArrayList<String>();
         try {
             mMaxPanDevices = getResources().getInteger(
-                    com.android.internal.R.integer.config_max_pan_devices);
+                    com.android.bluetooth.R.integer.config_max_pan_devices);
         } catch (NotFoundException e) {
             mMaxPanDevices = BLUETOOTH_MAX_PAN_CONNECTIONS;
         }
