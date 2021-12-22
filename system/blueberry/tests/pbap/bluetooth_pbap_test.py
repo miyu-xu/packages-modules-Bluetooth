@@ -58,7 +58,7 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     # Grant the permissions to Contacts app.
     for device in [self.pri_phone, self.derived_bt_device]:
-      required_permissions = PERMISSION_LIST
+      required_permissions = PERMISSION_LIST.copy()
       # App requires READ_EXTERNAL_STORAGE to read contacts if SDK < 30.
       if int(device.build_info['build_version_sdk']) < 30:
         required_permissions.append('android.permission.READ_EXTERNAL_STORAGE')
