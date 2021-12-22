@@ -51,6 +51,23 @@
       "parentUuid": "97ebb818_8ee97eee",
       "revId": "edde71ee59d7b7c4caebf7893a150cfe5f758bc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a845400_cffc2563",
+        "filename": "system/stack/a2dp/a2dp_vendor_ldac_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2021-12-22T15:02:05Z",
+      "side": 1,
+      "message": "The above function (a2dp_ldac_get_num_frame_iteration) goes through a complex logic to return the number of frames and the number of iterations, if any adjustment needs to be made, it would be in that function.\nThat logic seems to involve timestamps, so I would first look into the timestamp values and see if those impact the result and why. Is there a timestamp reset needed somewhere or when paused the timestamp should be adjusted?",
+      "revId": "edde71ee59d7b7c4caebf7893a150cfe5f758bc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
