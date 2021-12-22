@@ -90,7 +90,7 @@
     <bool name="hfp_client_connection_service_support_emergency_call">false</bool>
 
     <!-- Enabling autoconnect over pan -->
-    <bool name="config_bluetooth_pan_enable_autoconnect">true</bool>
+    <bool name="config_bluetooth_pan_enable_autoconnect">false</bool>
 
     <!-- Enabling the phone policy -->
     <bool name="enable_phone_policy">true</bool>
@@ -141,5 +141,9 @@
             - Other required GD components like config storage
      -->
     <bool name="enable_gd_up_to_scanning_layer">true</bool>
+
+    <!-- Max number of Bluetooth tethering connections allowed. If this is
+         updated config_tether_dhcp_range has to be updated appropriately. -->
+    <integer translatable="false" name="config_max_pan_devices">5</integer>
 
 </resources>
