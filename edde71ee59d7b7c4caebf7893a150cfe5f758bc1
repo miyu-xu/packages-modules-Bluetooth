@@ -16,6 +16,23 @@
       "message": "Hello Johanna + Dorin, mind checking this CL before passing it to owners in BT team?",
       "revId": "edde71ee59d7b7c4caebf7893a150cfe5f758bc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ebb818_8ee97eee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2021-12-22T14:38:58Z",
+      "side": 1,
+      "message": "As I know, there are about 2~3 frames every LDAC tick (20ms), but why does it have to send more than 20 frames in a tick? ",
+      "revId": "edde71ee59d7b7c4caebf7893a150cfe5f758bc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
