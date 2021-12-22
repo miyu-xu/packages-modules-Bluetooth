@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94c1e118_1eab7a41",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-22T07:59:37Z",
+      "side": 1,
+      "message": "I think caller should based on the feature implementation to decide whether need to call GetAudioCapabilities or GetAudioCapabilities_2_1 to get the capability if the HAL is not 2.2. For le audio offload, we need HAL 2.2 version, if the version is not 2.2, return empty vector is expected.",
+      "parentUuid": "0dbf5557_154dd11a",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "577fe3de30390737ce931d3cbaee8562fd71591c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70817d75_a236b6c7",
