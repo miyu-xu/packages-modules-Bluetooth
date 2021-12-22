@@ -16,6 +16,7 @@
 
 #include "hearing_aid_software_encoding.h"
 
+#include "aidl/hearing_aid_software_encoding.h"
 #include "hal_version_manager.h"
 #include "hidl/hearing_aid_software_encoding.h"
 
@@ -29,7 +30,7 @@ bool is_hal_enabled() {
       BluetoothAudioHalTransport::HIDL) {
     return hidl::hearing_aid::is_hal_2_0_enabled();
   }
-  return false;
+  return aidl::hearing_aid::is_hal_enabled();
 }
 
 // Initialize BluetoothAudio HAL: openProvider
@@ -39,7 +40,7 @@ bool init(StreamCallbacks stream_cb,
       BluetoothAudioHalTransport::HIDL) {
     return hidl::hearing_aid::init(stream_cb, message_loop);
   }
-  return false;
+  return aidl::hearing_aid::init(stream_cb, message_loop);
 }
 
 // Clean up BluetoothAudio HAL
@@ -48,6 +49,7 @@ void cleanup() {
       BluetoothAudioHalTransport::HIDL) {
     return hidl::hearing_aid::cleanup();
   }
+  aidl::hearing_aid::cleanup();
 }
 
 // Send command to the BluetoothAudio HAL: StartSession, EndSession
@@ -56,12 +58,15 @@ void start_session() {
       BluetoothAudioHalTransport::HIDL) {
     return hidl::hearing_aid::start_session();
   }
+  aidl::hearing_aid::start_session();
 }
+
 void end_session() {
   if (HalVersionManager::GetHalTransport() ==
       BluetoothAudioHalTransport::HIDL) {
     return hidl::hearing_aid::end_session();
   }
+  aidl::hearing_aid::end_session();
 }
 
 void set_remote_delay(uint16_t delay_report_ms) {
@@ -69,6 +74,7 @@ void set_remote_delay(uint16_t delay_report_ms) {
       BluetoothAudioHalTransport::HIDL) {
     return hidl::hearing_aid::set_remote_delay(delay_report_ms);
   }
+  aidl::hearing_aid::set_remote_delay(delay_report_ms);
 }
 
 // Read from the FMQ of BluetoothAudio HAL
@@ -77,7 +83,7 @@ size_t read(uint8_t* p_buf, uint32_t len) {
       BluetoothAudioHalTransport::HIDL) {
     return hidl::hearing_aid::read(p_buf, len);
   }
-  return 0;
+  return aidl::hearing_aid::read(p_buf, len);
 }
 
 }  // namespace hearing_aid
