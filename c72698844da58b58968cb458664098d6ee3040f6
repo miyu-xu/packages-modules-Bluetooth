@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018634962",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927374?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "38651445_24b1f6a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-22T12:06:36Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 73
+      },
+      "revId": "c72698844da58b58968cb458664098d6ee3040f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018634962",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927374?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "516c45b9_cc91b8e6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-22T12:06:36Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_client_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 73
+      },
+      "revId": "c72698844da58b58968cb458664098d6ee3040f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
