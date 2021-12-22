@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aee10d5b_932f507d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1045544
+      },
+      "writtenOn": "2021-12-22T12:08:01Z",
+      "side": 1,
+      "message": "Hello Johanna + Dorin, mind checking this CL before passing it to owners in BT team?",
+      "revId": "edde71ee59d7b7c4caebf7893a150cfe5f758bc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
