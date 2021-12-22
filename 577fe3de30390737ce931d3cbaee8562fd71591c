@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69283aec_720b3b22",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-22T01:50:27Z",
+      "side": 1,
+      "message": "How to handle the compatible issue? Do you plan to do it inside this function or some place need to check the hal version and decide which one from GetAudioCapabilities, GetAudioCapabilities_2_1, GetAudioCapabilities_2_2 functions they should use?",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "577fe3de30390737ce931d3cbaee8562fd71591c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70817d75_a236b6c7",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-22T01:50:27Z",
+      "side": 1,
+      "message": "Could we add the warning msg before the function return false?\n\nnit: how about to do the early return?",
+      "range": {
+        "startLine": 419,
+        "startChar": 2,
+        "endLine": 419,
+        "endChar": 15
+      },
+      "revId": "577fe3de30390737ce931d3cbaee8562fd71591c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
