@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0dbf5557_154dd11a",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-22T02:28:44Z",
+      "side": 1,
+      "message": "For le audio, the capability should use the format AudioCapabilities_2_2, otherwise the le audio structure doesn\u0027t defined in HAL. For A2DP, they will use GetAudioCapabilities.\n\nIn this case, if the version is 2.1, and try to call 2.2 function, we would return an empty array",
+      "parentUuid": "69283aec_720b3b22",
+      "range": {
+        "startLine": 298,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 0
+      },
+      "revId": "577fe3de30390737ce931d3cbaee8562fd71591c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "70817d75_a236b6c7",
         "filename": "system/audio_hal_interface/le_audio_software.cc",
         "patchSetId": 7
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-22T01:50:27Z",
       "side": 1,
       "message": "Could we add the warning msg before the function return false?\n\nnit: how about to do the early return?",
+      "range": {
+        "startLine": 419,
+        "startChar": 2,
+        "endLine": 419,
+        "endChar": 15
+      },
+      "revId": "577fe3de30390737ce931d3cbaee8562fd71591c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dd9cb47_60203f06",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-22T02:28:44Z",
+      "side": 1,
+      "message": "will modify",
+      "parentUuid": "70817d75_a236b6c7",
       "range": {
         "startLine": 419,
         "startChar": 2,
