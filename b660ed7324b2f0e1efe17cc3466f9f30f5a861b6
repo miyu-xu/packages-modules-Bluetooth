@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a6b80f_0c695f3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2021-12-22T14:24:54Z",
+      "side": 1,
+      "message": "Post-submit drive-by.  While I don\u0027t have context on this code, I\u0027m highly suspicious that we have a bug in here.",
+      "revId": "b660ed7324b2f0e1efe17cc3466f9f30f5a861b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c42a1a0_d9877118",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2021-12-22T14:24:54Z",
+      "side": 1,
+      "message": "Does this intend to check HV1_ALLOWED instead of HV3_ALLOWED?  Because...",
+      "revId": "b660ed7324b2f0e1efe17cc3466f9f30f5a861b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82a1edd0_5c90e663",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/sco_connection.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2021-12-22T14:24:54Z",
+      "side": 1,
+      "message": "...right now, this check is always false, since it\u0027s identical to the one on line 180.\n\nI presume one of these two checks intend to check HV1_ALLOWED instead of checking HV3_ALLOWED twice.  But I don\u0027t have enough context on this code to know which one it should be.",
+      "revId": "b660ed7324b2f0e1efe17cc3466f9f30f5a861b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
