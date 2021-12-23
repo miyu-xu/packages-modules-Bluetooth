@@ -363,6 +363,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f870e548_46f6bb2e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T19:40:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be8134b1_e357a22d",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 167,
+        "endChar": 13
+      },
+      "revId": "bb1cb982f3c1b25b8a9a0104bfcdb5f547fb3d51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c448a1b_c0747ecf",
