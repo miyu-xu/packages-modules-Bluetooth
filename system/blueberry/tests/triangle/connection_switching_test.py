@@ -71,9 +71,11 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     """
     self.phone.log.info('Disable Bluetooth and wait 1 minute.')
     self.phone.mbs.btDisable()
+    self.wait_for_watch_connection(connected=False)
     time.sleep(triangle_constants.WAITING_TIME_SEC)
     self.phone.log.info('Enable Bluetooth.')
     self.phone.mbs.btEnable()
+    self.wait_for_watch_connection(connected=True)
     self.assert_headset_a2dp_connection(connected=True, device=self.phone)
     self.assert_headset_hsp_connection(connected=True, device=self.phone)
 
