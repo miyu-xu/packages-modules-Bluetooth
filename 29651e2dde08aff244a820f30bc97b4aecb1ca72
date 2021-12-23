@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dfb4901_2fe07c81",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-23T08:23:41Z",
+      "side": 1,
+      "message": "Described scenario in commit message",
+      "parentUuid": "588952d0_0fd6c028",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "29651e2dde08aff244a820f30bc97b4aecb1ca72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b9c828af_1ce94386",
         "filename": "system/bta/hearing_aid/hearing_aid.cc",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-13T01:59:33Z",
       "side": 1,
       "message": "It should be clear on Line 1552 if it is not 0.",
+      "range": {
+        "startLine": 1334,
+        "startChar": 8,
+        "endLine": 1334,
+        "endChar": 38
+      },
+      "revId": "29651e2dde08aff244a820f30bc97b4aecb1ca72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "158aa8a5_c9b5ad36",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1334,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-23T08:23:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b9c828af_1ce94386",
       "range": {
         "startLine": 1334,
         "startChar": 8,
@@ -60,6 +108,30 @@
       "writtenOn": "2021-12-13T01:59:33Z",
       "side": 1,
       "message": "Why do we need this?\nIt looks like we can directly use hearingDevice-\u003econnecting_actively on Line.1487.",
+      "range": {
+        "startLine": 1462,
+        "startChar": 9,
+        "endLine": 1462,
+        "endChar": 28
+      },
+      "revId": "29651e2dde08aff244a820f30bc97b4aecb1ca72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "290cb414_f543341e",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1462,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2021-12-23T08:23:41Z",
+      "side": 1,
+      "message": "no, because  DoDisconnectCleanUp() will clear this flag. This is also why bool connected is here.",
+      "parentUuid": "76b3e734_4c5b551f",
       "range": {
         "startLine": 1462,
         "startChar": 9,
