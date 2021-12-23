@@ -49,6 +49,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed50d0b0_4fe6f0d6",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd5095f9_7d2a3a8b",
+      "range": {
+        "startLine": 187,
+        "startChar": 30,
+        "endLine": 187,
+        "endChar": 40
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bda3326_d4183fa2",
@@ -145,6 +169,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eeabaf1_c840d13a",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2307,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1403b516_3113592c",
+      "range": {
+        "startLine": 2307,
+        "startChar": 0,
+        "endLine": 2307,
+        "endChar": 101
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "432df643_ee64da87",
@@ -182,6 +230,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "432df643_ee64da87",
+      "range": {
+        "startLine": 2316,
+        "startChar": 51,
+        "endLine": 2316,
+        "endChar": 61
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70eb5b11_48c8eecd",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2316,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "432df643_ee64da87",
       "range": {
         "startLine": 2316,
@@ -241,6 +313,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "526804dd_95bead0f",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 2323,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c587ab8f_b1e62b84",
+      "range": {
+        "startLine": 2323,
+        "startChar": 51,
+        "endLine": 2323,
+        "endChar": 61
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b5c9f6a_8c2efe12",
@@ -278,6 +374,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "5b5c9f6a_8c2efe12",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 112
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1e6e9a2_ed7db7f7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "5b5c9f6a_8c2efe12",
       "range": {
         "startLine": 163,
@@ -385,6 +505,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b62b772_46d63b4b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd687745_2b3677c5",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 106
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c6d0982_d81e7865",
@@ -422,6 +566,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "5c6d0982_d81e7865",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 102
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24782943_44c28a9f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "5c6d0982_d81e7865",
       "range": {
         "startLine": 271,
@@ -481,6 +649,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1df15e4_d504e067",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "572aa289_514dc3f4",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 283,
+        "endChar": 102
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "479bec7e_b185082b",
@@ -518,6 +710,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "479bec7e_b185082b",
+      "range": {
+        "startLine": 325,
+        "startChar": 15,
+        "endLine": 325,
+        "endChar": 25
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5116e2d_675af931",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "479bec7e_b185082b",
       "range": {
         "startLine": 325,
@@ -577,6 +793,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f40785a_397f7455",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "780fd54b_fdee8735",
+      "range": {
+        "startLine": 326,
+        "startChar": 26,
+        "endLine": 326,
+        "endChar": 36
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "70e7c5d8_2487bf81",
@@ -614,6 +854,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "70e7c5d8_2487bf81",
+      "range": {
+        "startLine": 332,
+        "startChar": 31,
+        "endLine": 332,
+        "endChar": 41
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f6ca05d_d5d9f44b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "70e7c5d8_2487bf81",
       "range": {
         "startLine": 332,
@@ -673,6 +937,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "879c9209_aa3ee570",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f016755_2af756ed",
+      "range": {
+        "startLine": 346,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 110
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d28530a4_b0907e60",
@@ -710,6 +998,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "d28530a4_b0907e60",
+      "range": {
+        "startLine": 382,
+        "startChar": 0,
+        "endLine": 382,
+        "endChar": 109
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "161af61a_0ecef32b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "d28530a4_b0907e60",
       "range": {
         "startLine": 382,
@@ -769,6 +1081,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22b41482_73c251a2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2263abd0_ee63e302",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 111
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08675ec4_239d0311",
@@ -806,6 +1142,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "08675ec4_239d0311",
+      "range": {
+        "startLine": 871,
+        "startChar": 2,
+        "endLine": 871,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35b283e8_b093b71d",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "08675ec4_239d0311",
       "range": {
         "startLine": 871,
@@ -865,6 +1225,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "540a6d92_d38f14d4",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c618b40d_47b0322c",
+      "range": {
+        "startLine": 972,
+        "startChar": 2,
+        "endLine": 972,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a63bff31_fc8045d3",
@@ -902,6 +1286,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "a63bff31_fc8045d3",
+      "range": {
+        "startLine": 1435,
+        "startChar": 0,
+        "endLine": 1435,
+        "endChar": 106
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0ed01be_88c448ba",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1435,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "a63bff31_fc8045d3",
       "range": {
         "startLine": 1435,
@@ -961,6 +1369,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d93693b_e7b98cd0",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3350,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98d4236b_4126205f",
+      "range": {
+        "startLine": 3350,
+        "startChar": 2,
+        "endLine": 3350,
+        "endChar": 9
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5ed5c60_0fd1a97e",
@@ -998,6 +1430,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "e5ed5c60_0fd1a97e",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff7d6784_db20b230",
+        "filename": "system/stack/btm/btm_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "e5ed5c60_0fd1a97e",
       "range": {
         "startLine": 9,
@@ -1057,6 +1513,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f223caa6_332b5776",
+        "filename": "system/stack/include/ble_scanner.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c0229bf_d8fa872a",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3a5c5ea_0f9ceffb",
@@ -1105,6 +1585,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "913f41d1_23e5234a",
+        "filename": "system/stack/include/btm_ble_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3a5c5ea_0f9ceffb",
+      "range": {
+        "startLine": 662,
+        "startChar": 0,
+        "endLine": 662,
+        "endChar": 104
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cca31f9b_32f26fb8",
@@ -1142,6 +1646,30 @@
       "writtenOn": "2021-12-09T06:54:06Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "cca31f9b_32f26fb8",
+      "range": {
+        "startLine": 9,
+        "startChar": 7,
+        "endLine": 19,
+        "endChar": 68
+      },
+      "revId": "00049339a012aeef8c6468c76a61078317419590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42aadd12_04153520",
+        "filename": "system/test/mock/mock_stack_btm_ble_scanner.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2021-12-23T18:46:35Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "cca31f9b_32f26fb8",
       "range": {
         "startLine": 9,
