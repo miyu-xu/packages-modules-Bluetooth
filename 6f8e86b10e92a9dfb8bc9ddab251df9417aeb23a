@@ -33,6 +33,23 @@
       "message": "gerrit that was reviewed is @ https://android-review.googlesource.com/c/platform/packages/apps/Bluetooth/+/1803957",
       "revId": "6f8e86b10e92a9dfb8bc9ddab251df9417aeb23a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8707610a_9b011683",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1462630
+      },
+      "writtenOn": "2021-12-23T06:00:43Z",
+      "side": 1,
+      "message": "https://jira-quic.qualcomm.com/jira/browse/QUICLOST-477604 -\u003e LOST Approval",
+      "revId": "6f8e86b10e92a9dfb8bc9ddab251df9417aeb23a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
