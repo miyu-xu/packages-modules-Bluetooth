@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d4e464_909d458d",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1462630
+      },
+      "writtenOn": "2021-12-23T16:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cbebb4e_b44cca6d",
+      "range": {
+        "startLine": 837,
+        "startChar": 6,
+        "endLine": 837,
+        "endChar": 41
+      },
+      "revId": "3c1b34f3cda426bae40ea3bbb3646e486661aa75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdecc9c6_02d65ca2",
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-15T23:32:20Z",
       "side": 1,
       "message": "It looks like this should be removed if we\u0027re checking the transport above.",
+      "range": {
+        "startLine": 854,
+        "startChar": 20,
+        "endLine": 854,
+        "endChar": 50
+      },
+      "revId": "3c1b34f3cda426bae40ea3bbb3646e486661aa75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a21e4cb_cf64c63e",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1462630
+      },
+      "writtenOn": "2021-12-23T16:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdecc9c6_02d65ca2",
       "range": {
         "startLine": 854,
         "startChar": 20,
