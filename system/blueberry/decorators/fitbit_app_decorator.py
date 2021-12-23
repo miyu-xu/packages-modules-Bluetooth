@@ -22,6 +22,7 @@ _LOG_PREFIX_MESSAGE = 'Fitbit Companion App'
 _DEBUG_PREFIX_TEMPLATE = f'[{_LOG_PREFIX_MESSAGE}|{{tag}}] {{msg}}'
 _MODEL_TO_PRODUCT_NAME_MAPPING = immutabledict.immutabledict({
     'Buzz': 'Luxe',
+    'Morgan': 'Charge 5',
 })
 _INVALID_PAIRING_CODE_MESSAGE = "Sorry, this code isn't valid."
 _MAX_PAIRING_RETRIES = 10
