@@ -16,6 +16,24 @@
       "message": "Not necessary",
       "revId": "c64fb8b26ebff93ab2df4ba5f21c26a73302e5a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4d07791_00d4ba33",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/connserv/HfpClientConnectionService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2021-12-23T01:31:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68de403c_7ee52c9f",
+      "revId": "c64fb8b26ebff93ab2df4ba5f21c26a73302e5a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
