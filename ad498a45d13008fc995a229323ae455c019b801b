@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "435681f5_d53547b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-23T22:15:58Z",
+      "side": 1,
+      "message": "Can you please be more specific ?\nWere you able to play the music and verify the credits do not run out ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 12
+      },
+      "revId": "ad498a45d13008fc995a229323ae455c019b801b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
