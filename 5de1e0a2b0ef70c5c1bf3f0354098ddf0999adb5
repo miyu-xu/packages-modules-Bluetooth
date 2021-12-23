@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "788812ab_1556b5b7",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-23T22:39:27Z",
+      "side": 1,
+      "message": "Should this be removed ?\n\nRight now, if status !\u003d BTM_SUCCESS, you would call osi_free in line 1434, and then 1453 on the same p_buf\n\nJust osi_free from line 1453 should be good.",
+      "range": {
+        "startLine": 1434,
+        "startChar": 6,
+        "endLine": 1434,
+        "endChar": 22
+      },
+      "revId": "5de1e0a2b0ef70c5c1bf3f0354098ddf0999adb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
