@@ -156,10 +156,18 @@ class AdvertiseManager {
         if (status == 0) {
             entry.setValue(
                     new AdvertiserInfo(advertiserId, entry.getValue().deathRecipient, callback));
+
+            mService.mAdvertiserMap.setAdvertiserIdByRegId(regId, advertiserId);
         } else {
             IBinder binder = entry.getKey();
             binder.unlinkToDeath(entry.getValue().deathRecipient, 0);
             mAdvertisers.remove(binder);
+
+            AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(regId);
+            if (stats != null) {
+                stats.recordAdvertiseStop();
+            }
+            mService.mAdvertiserMap.removeAppAdvertiseStats(regId);
         }
 
         callback.onAdvertisingSetStarted(advertiserId, txPower, status);
@@ -207,6 +215,13 @@ class AdvertiseManager {
         }
         startAdvertisingSetNative(parameters, advDataBytes, scanResponseBytes, periodicParameters,
                 periodicDataBytes, duration, maxExtAdvEvents, cbId);
+
+        mService.mAdvertiserMap.add(cbId, callback, mService);
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(cbId);
+        if (stats != null) {
+            stats.recordAdvertiseStart(parameters, advertiseData, scanResponse, periodicParameters,
+                    periodicData, duration, maxExtAdvEvents);
+        }
     }
 
     void onOwnAddressRead(int advertiserId, int addressType, String address)
@@ -262,6 +277,12 @@ class AdvertiseManager {
         } catch (RemoteException e) {
             Log.i(TAG, "error sending onAdvertisingSetStopped callback", e);
         }
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.recordAdvertiseStop();
+        }
+        mService.mAdvertiserMap.removeAppAdvertiseStats(advertiserId);
     }
 
     void enableAdvertisingSet(int advertiserId, boolean enable, int duration, int maxExtAdvEvents) {
@@ -271,6 +292,11 @@ class AdvertiseManager {
             return;
         }
         enableAdvertisingSetNative(advertiserId, enable, duration, maxExtAdvEvents);
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.enableAdvertisingSet(enable, duration, maxExtAdvEvents);
+        }
     }
 
     void setAdvertisingData(int advertiserId, AdvertiseData data) {
@@ -282,6 +308,11 @@ class AdvertiseManager {
         String deviceName = AdapterService.getAdapterService().getName();
         setAdvertisingDataNative(advertiserId,
                 AdvertiseHelper.advertiseDataToBytes(data, deviceName));
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.setAdvertisingData(data);
+        }
     }
 
     void setScanResponseData(int advertiserId, AdvertiseData data) {
@@ -293,6 +324,11 @@ class AdvertiseManager {
         String deviceName = AdapterService.getAdapterService().getName();
         setScanResponseDataNative(advertiserId,
                 AdvertiseHelper.advertiseDataToBytes(data, deviceName));
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.setScanResponseData(data);
+        }
     }
 
     void setAdvertisingParameters(int advertiserId, AdvertisingSetParameters parameters) {
@@ -302,6 +338,11 @@ class AdvertiseManager {
             return;
         }
         setAdvertisingParametersNative(advertiserId, parameters);
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.setAdvertisingParameters(parameters);
+        }
     }
 
     void setPeriodicAdvertisingParameters(int advertiserId,
@@ -312,6 +353,11 @@ class AdvertiseManager {
             return;
         }
         setPeriodicAdvertisingParametersNative(advertiserId, parameters);
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.setPeriodicAdvertisingParameters(parameters);
+        }
     }
 
     void setPeriodicAdvertisingData(int advertiserId, AdvertiseData data) {
@@ -323,6 +369,11 @@ class AdvertiseManager {
         String deviceName = AdapterService.getAdapterService().getName();
         setPeriodicAdvertisingDataNative(advertiserId,
                 AdvertiseHelper.advertiseDataToBytes(data, deviceName));
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.setPeriodicAdvertisingData(data);
+        }
     }
 
     void setPeriodicAdvertisingEnable(int advertiserId, boolean enable) {
@@ -432,6 +483,11 @@ class AdvertiseManager {
 
         IAdvertisingSetCallback callback = entry.getValue().callback;
         callback.onPeriodicAdvertisingEnabled(advertiserId, enable, status);
+
+        AppAdvertiseStats stats = mService.mAdvertiserMap.getAppAdvertiseStatsById(advertiserId);
+        if (stats != null) {
+            stats.onPeriodicAdvertiseEnabled(enable);
+        }
     }
 
     static {
