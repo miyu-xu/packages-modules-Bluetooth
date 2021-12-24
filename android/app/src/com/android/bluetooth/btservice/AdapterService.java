@@ -2444,7 +2444,7 @@ public class AdapterService extends Service {
             HashSet<Class> leAudioUnicastProfiles = Config.geLeAudioUnicastProfiles();
 
             if (supportedProfileServices.containsAll(leAudioUnicastProfiles)) {
-                return BluetoothStatusCodes.SUCCESS;
+                return BluetoothStatusCodes.FEATURE_SUPPORTED;
             }
 
             return BluetoothStatusCodes.ERROR_FEATURE_NOT_SUPPORTED;
@@ -2458,7 +2458,7 @@ public class AdapterService extends Service {
             }
 
             if (service.mAdapterProperties.isLePeriodicAdvertisingSyncTransferSenderSupported()) {
-                return BluetoothStatusCodes.SUCCESS;
+                return BluetoothStatusCodes.FEATURE_SUPPORTED;
             }
 
             return BluetoothStatusCodes.ERROR_FEATURE_NOT_SUPPORTED;
