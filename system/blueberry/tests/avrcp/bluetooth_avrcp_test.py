@@ -6,10 +6,12 @@ from __future__ import division
 from __future__ import print_function
 
 import time
+from typing import Any, Dict
 
 from mobly import test_runner
 from mobly import signals
 from mobly.controllers.android_device_lib import adb
+
 from blueberry.controllers import android_bt_target_device
 from blueberry.utils import blueberry_base_test
 from blueberry.utils import bt_constants
@@ -32,7 +34,7 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     4. track_next()
   """
 
-  def __init__(self, configs):
+  def __init__(self, configs: Dict[str, str]):
     super().__init__(configs)
     self.derived_bt_device = None
     self.pri_device = None
@@ -131,7 +133,7 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     # Buffer between tests.
     time.sleep(1)
 
-  def wait_for_media_info_sync(self):
+  def wait_for_media_info_sync(self) -> None:
     """Waits for sync Media information between two sides.
 
     Waits for sync the current playback state and Now playing track info from
@@ -156,7 +158,8 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
             '"%s" != "%s"' %
             (self.derived_bt_device.get_current_track_info(), expected_track)))
 
-  def execute_media_play_pause_test_logic(self, command_sender, test_command):
+  def execute_media_play_pause_test_logic(self, command_sender: Any,
+                                          test_command: str) -> None:
     """Executes the test logic of the media command "play" or "pause".
 
     Steps:
@@ -213,11 +216,11 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
           expected_state=expected_state,
           exception=signals.TestFailure(
               'Playback state is not changed to "%s" from the device "%s". '
-              'Current state: %s' %
-              (expected_state, device.serial,
-               device.get_current_playback_state())))
+              'Current state: %s' % (expected_state, device.serial,
+                                     device.get_current_playback_state())))
 
-  def execute_skip_next_prev_test_logic(self, command_sender, test_command):
+  def execute_skip_next_prev_test_logic(self, command_sender: Any,
+                                        test_command: str) -> None:
     """Executes the test logic of the media command "skipNext" or "skipPrev".
 
     Steps:
