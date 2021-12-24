@@ -16,6 +16,24 @@
       "message": "Just curious how you decided on these min_sdk_versions?",
       "revId": "64960c3ba03914354b7117a6a7452b51c545d860",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a3fc93f_3832cdae",
+        "filename": "system/audio_a2dp_hw/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2021-12-24T04:55:05Z",
+      "side": 1,
+      "message": "Source of truth - https://docs.google.com/spreadsheets/d/1a9taYMeVFzkRg1U8Y7dse_GsJMOwvIVvbAiRcGRGFbo/edit#gid\u003d0. \n\nmin_sdk_version if not present can be set to the current release too. But this module has been there prior to 33(Android T) hence dating it back to 29.",
+      "parentUuid": "8646cc1f_520c2c77",
+      "revId": "64960c3ba03914354b7117a6a7452b51c545d860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
