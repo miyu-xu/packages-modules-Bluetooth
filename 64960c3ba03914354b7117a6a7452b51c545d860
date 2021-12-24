@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8646cc1f_520c2c77",
+        "filename": "system/audio_a2dp_hw/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2021-12-24T00:24:32Z",
+      "side": 1,
+      "message": "Just curious how you decided on these min_sdk_versions?",
+      "revId": "64960c3ba03914354b7117a6a7452b51c545d860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
