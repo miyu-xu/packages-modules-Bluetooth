@@ -129,6 +129,15 @@ import java.util.UUID;
         }
 
         /**
+         * Creates a new app context for advertiser.
+         */
+        App(int id, C callback, String name) {
+            this.id = id;
+            this.callback = callback;
+            this.name = name;
+        }
+
+        /**
          * Link death recipient
          */
         void linkToDeath(IBinder.DeathRecipient deathRecipient) {
@@ -177,6 +186,9 @@ import java.util.UUID;
     /** Internal map to keep track of logging information by app name */
     private HashMap<Integer, AppScanStats> mAppScanStats = new HashMap<Integer, AppScanStats>();
 
+    /** Internal map to keep track of logging information by advertise id */
+    private HashMap<Integer, AppAdvertiseStats> mAppAdvertiseStats;
+
     /** Internal list of connected devices **/
     private Set<Connection> mConnections = new HashSet<Connection>();
 
@@ -199,6 +211,36 @@ import java.util.UUID;
             App app = new App(uuid, callback, info, appName, appScanStats);
             mApps.add(app);
             appScanStats.isRegistered = true;
+            return app;
+        }
+    }
+
+    /**
+     * Add an entry to the application context list for advertiser.
+     */
+    App add(int id, C callback, GattService service) {
+        int appUid = Binder.getCallingUid();
+        String appName = service.getPackageManager().getNameForUid(appUid);
+        if (appName == null) {
+            // Assign an app name if one isn't found
+            appName = "Unknown App (UID: " + appUid + ")";
+        }
+
+        if (mAppAdvertiseStats == null) {
+            mAppAdvertiseStats = new HashMap<Integer, AppAdvertiseStats>();
+        }
+
+        synchronized (mApps) {
+            AppAdvertiseStats appAdvertiseStats = mAppAdvertiseStats.get(id);
+            if (appAdvertiseStats == null) {
+                appAdvertiseStats = new AppAdvertiseStats(appUid, id, appName, this, service);
+                mAppAdvertiseStats.put(id, appAdvertiseStats);
+            }
+            App app = getById(appUid);
+            if (app == null) {
+                app = new App(appUid, callback, appName);
+                mApps.add(app);
+            }
             return app;
         }
     }
@@ -386,6 +428,30 @@ import java.util.UUID;
     }
 
     /**
+     * Remove the context for a given application ID.
+     */
+    void removeAppAdvertiseStats(int id) {
+        mAppAdvertiseStats.remove(id);
+    }
+
+    /**
+     * Get Logging info by ID
+     */
+    AppAdvertiseStats getAppAdvertiseStatsById(int id) {
+        return mAppAdvertiseStats.get(id);
+    }
+
+    /**
+     * update the advertiser ID by the regiseter ID
+     */
+    void setAdvertierIdByRegId(int regId, int advertiserId) {
+        AppAdvertiseStats stats = mAppAdvertiseStats.get(regId);
+        stats.setAdvertierIdByRegId(regId, advertiserId);
+        mAppAdvertiseStats.remove(regId);
+        mAppAdvertiseStats.put(advertiserId, stats);
+    }
+
+    /**
      * Get the device addresses for all connected devices
      */
     Set<String> getConnectedDevices() {
@@ -516,5 +582,12 @@ import java.util.UUID;
             AppScanStats appScanStats = entry.getValue();
             appScanStats.dumpToString(sb);
         }
+    }
+
+    /**
+     * Logs advertiser debug information.
+     */
+    void dumpAdvertiser(StringBuilder sb) {
+        AppAdvertiseStats.dumpToString(sb);
     }
 }
