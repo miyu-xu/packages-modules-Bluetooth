@@ -1,10 +1,12 @@
 """Tests for blueberry.map.bluetooth_map."""
+
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
 import queue
 import time
+from typing import Dict
 
 from mobly import test_runner
 from mobly import signals
@@ -24,7 +26,7 @@ _TEXT_COUNT = 5
 class BluetoothMapTest(blueberry_base_test.BlueberryBaseTest):
   """Test Class for Bluetooth MAP Test."""
 
-  def __init__(self, configs):
+  def __init__(self, configs: Dict[str, str]):
     super().__init__(configs)
     self.derived_bt_device = None
     self.pri_phone = None
@@ -72,7 +74,7 @@ class BluetoothMapTest(blueberry_base_test.BlueberryBaseTest):
     super().teardown_test()
     self.derived_bt_device.map_disconnect()
 
-  def _wait_for_message_on_mce(self, text):
+  def _wait_for_message_on_mce(self, text: str) -> None:
     """Waits for that MCE gets an event with specific message.
 
     Args:
@@ -91,7 +93,7 @@ class BluetoothMapTest(blueberry_base_test.BlueberryBaseTest):
           'Timed out after %ds waiting for "%s" event with the message: %s' %
           (_EVENT_TIMEOUT_SEC, _MAP_MSG_EVENT, text))
 
-  def _wait_for_message_on_mse(self, text):
+  def _wait_for_message_on_mse(self, text: str) -> None:
     """Waits for that MSE gets an event with specific message.
 
     This method is used to make sure that MSE has received the test message.
@@ -113,7 +115,7 @@ class BluetoothMapTest(blueberry_base_test.BlueberryBaseTest):
           'Timed out after %ds waiting for "%s" event with the message: %s' %
           (_EVENT_TIMEOUT_SEC, _SMS_MSG_EVENT, text))
 
-  def _create_message_on_mse(self, text):
+  def _create_message_on_mse(self, text: str) -> None:
     """Creates a new incoming message on MSE.
 
     Args:
