@@ -22,6 +22,30 @@
       },
       "revId": "ad498a45d13008fc995a229323ae455c019b801b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36013bd9_46392580",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2021-12-24T16:08:56Z",
+      "side": 1,
+      "message": "I tested this for around one hour, I didn\u0027t encounter the no sound issue, I will ask test team to use Forrest build to verify with this patch.\nBesides, I did some more experiment and paste my observation on the issue.",
+      "parentUuid": "435681f5_d53547b8",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 12
+      },
+      "revId": "ad498a45d13008fc995a229323ae455c019b801b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
