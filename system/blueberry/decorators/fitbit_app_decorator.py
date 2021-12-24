@@ -1,4 +1,5 @@
 """Android Device decorator to control functionality of the Fitbit companion App."""
+
 import logging
 import time
 from typing import Any, Dict, Tuple
@@ -8,14 +9,15 @@ from mobly import asserts
 from mobly import signals
 from mobly.controllers import android_device
 
+# Internal import
+# Internal import
 from blueberry.controllers import derived_bt_device
-# Internal import
-# Internal import
 from blueberry.utils.ui_pages import fitbit_companion  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import account_pages  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import context  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import other_pages  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import pairing_pages  # pylint: disable=no-name-in-module,import-error
+
 
 _FITBIT_PACKAGE_NAME = 'com.fitbit.FitbitMobile'
 _LOG_PREFIX_MESSAGE = 'Fitbit Companion App'
@@ -58,7 +60,7 @@ class FitbitAppDecorator:
           self._ad._user_params.get('fitbit_app_password', 'test'))
       self.ui_context.expect_page(context.HomePage)
 
-  def __getattr__(self, name):
+  def __getattr__(self, name: str):
     return getattr(self._ad, name)
 
   def set_target(self, bt_device: derived_bt_device.BtDevice) -> None:
