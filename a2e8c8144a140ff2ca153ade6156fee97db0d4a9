@@ -158,6 +158,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74a28654_651837a6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:56:40Z",
+      "side": 1,
+      "message": "mAdvertisingData is private, can we use it this way?",
+      "range": {
+        "startLine": 250,
+        "startChar": 18,
+        "endLine": 250,
+        "endChar": 34
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1791f685_242ff2d5",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 2
