@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38aae719_b4d61dcd",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "I cannot find anywhere using these parameters, and do they need to be public?",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 18
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d0b5170_12d510ce",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "The function is already synchronized, do we still this one here?",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 43
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9e940e6_53b860ff",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "Same here, do we need the synchronized() here?",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 43
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57cf726c_70631969",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "typo? setAdvertiserIdByRegId()",
+      "range": {
+        "startLine": 177,
+        "startChar": 22,
+        "endLine": 177,
+        "endChar": 43
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a539aa49_fd542731",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "private",
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1322bb25_d9c07f4e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "Same here, this should be private.\nAnd the synchronized doesn\u0027t look necessary here.",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 97
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf29b4c_ea86e85b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "same here, private, and remove the synchronized",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 95
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1791f685_242ff2d5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "Why does this need to be static?",
+      "range": {
+        "startLine": 275,
+        "startChar": 4,
+        "endLine": 275,
+        "endChar": 10
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8445c492_116dba30",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T03:55:25Z",
+      "side": 1,
+      "message": "stopTimeStamp, lower camel case",
+      "range": {
+        "startLine": 285,
+        "startChar": 21,
+        "endLine": 285,
+        "endChar": 22
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
