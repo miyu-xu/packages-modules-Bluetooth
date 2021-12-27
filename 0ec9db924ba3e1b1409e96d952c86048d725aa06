@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018749420",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932799?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "682bb16f_2f270d86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-27T14:43:35Z",
+      "side": 1,
+      "message": "\"MediaControlGattServiceTest\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 39
+      },
+      "revId": "0ec9db924ba3e1b1409e96d952c86048d725aa06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
