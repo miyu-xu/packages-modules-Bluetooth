@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60e830f3_0d88de7d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T06:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67581d17_69d9a70b",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 18
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d0b5170_12d510ce",
@@ -189,6 +213,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77134fb8_3aec570e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T06:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc4a874d_b2415f46",
+      "range": {
+        "startLine": 177,
+        "startChar": 22,
+        "endLine": 177,
+        "endChar": 43
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a539aa49_fd542731",
@@ -220,6 +268,24 @@
       "side": 1,
       "message": "will set it as private",
       "parentUuid": "a539aa49_fd542731",
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fe0c079_d5711bdd",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T06:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f37453dc_bb1d6411",
       "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -271,6 +337,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10978947_27916999",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T06:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdd3597d_344302f6",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 97
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cf29b4c_ea86e85b",
@@ -308,6 +398,30 @@
       "side": 1,
       "message": "will set it as private and remove synchronized due to synchronized function call it",
       "parentUuid": "2cf29b4c_ea86e85b",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 95
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e50093e2_83af7d03",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T06:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58d1aa7b_afcbe1cd",
       "range": {
         "startLine": 227,
         "startChar": 0,
@@ -449,6 +563,30 @@
       "side": 1,
       "message": "will fix it",
       "parentUuid": "8445c492_116dba30",
+      "range": {
+        "startLine": 285,
+        "startChar": 21,
+        "endLine": 285,
+        "endChar": 22
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ecd1c5e_a073da1e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T06:43:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51b18b6e_bff955b4",
       "range": {
         "startLine": 285,
         "startChar": 21,
