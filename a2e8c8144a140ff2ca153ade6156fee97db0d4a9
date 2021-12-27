@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67581d17_69d9a70b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "will set them as private",
+      "parentUuid": "38aae719_b4d61dcd",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 18
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d0b5170_12d510ce",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2021-12-27T03:55:25Z",
       "side": 1,
       "message": "The function is already synchronized, do we still this one here?",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 43
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f4c0bec_ba712547",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "The function is synchronized in each object but sOngoingAdvertises is static so not belong to any object. I think need to prevent many objects to access it.",
+      "parentUuid": "7d0b5170_12d510ce",
       "range": {
         "startLine": 160,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ffa430d8_c2b525ce",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "The function is synchronized in each object but sOngoingAdvertises is static so not belong to any object. I think need to prevent many objects to access it.",
+      "parentUuid": "c9e940e6_53b860ff",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 166,
+        "endChar": 43
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "57cf726c_70631969",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 2
@@ -83,6 +155,30 @@
       "writtenOn": "2021-12-27T03:55:25Z",
       "side": 1,
       "message": "typo? setAdvertiserIdByRegId()",
+      "range": {
+        "startLine": 177,
+        "startChar": 22,
+        "endLine": 177,
+        "endChar": 43
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc4a874d_b2415f46",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "typo, will fix",
+      "parentUuid": "57cf726c_70631969",
       "range": {
         "startLine": 177,
         "startChar": 22,
@@ -112,6 +208,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f37453dc_bb1d6411",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "will set it as private",
+      "parentUuid": "a539aa49_fd542731",
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1322bb25_d9c07f4e",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 2
@@ -135,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdd3597d_344302f6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "will set it as private and remove synchronized due to synchronized function call it",
+      "parentUuid": "1322bb25_d9c07f4e",
+      "range": {
+        "startLine": 194,
+        "startChar": 0,
+        "endLine": 194,
+        "endChar": 97
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2cf29b4c_ea86e85b",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 2
@@ -146,6 +284,30 @@
       "writtenOn": "2021-12-27T03:55:25Z",
       "side": 1,
       "message": "same here, private, and remove the synchronized",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 95
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58d1aa7b_afcbe1cd",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "will set it as private and remove synchronized due to synchronized function call it",
+      "parentUuid": "2cf29b4c_ea86e85b",
       "range": {
         "startLine": 227,
         "startChar": 0,
@@ -228,6 +390,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb6eef72_8cd0ce1a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "only static function can access the static variable(sLastAdvertises/sOngoingAdvertises)",
+      "parentUuid": "1791f685_242ff2d5",
+      "range": {
+        "startLine": 275,
+        "startChar": 4,
+        "endLine": 275,
+        "endChar": 10
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8445c492_116dba30",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 2
@@ -239,6 +425,30 @@
       "writtenOn": "2021-12-27T03:55:25Z",
       "side": 1,
       "message": "stopTimeStamp, lower camel case",
+      "range": {
+        "startLine": 285,
+        "startChar": 21,
+        "endLine": 285,
+        "endChar": 22
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51b18b6e_bff955b4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2021-12-27T04:26:09Z",
+      "side": 1,
+      "message": "will fix it",
+      "parentUuid": "8445c492_116dba30",
       "range": {
         "startLine": 285,
         "startChar": 21,
