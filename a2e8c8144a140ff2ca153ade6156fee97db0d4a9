@@ -179,6 +179,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53ef4c1e_e209fe78",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2021-12-27T04:13:35Z",
+      "side": 1,
+      "message": "NVM, the access level of private is based on class, not object.",
+      "parentUuid": "74a28654_651837a6",
+      "range": {
+        "startLine": 250,
+        "startChar": 18,
+        "endLine": 250,
+        "endChar": 34
+      },
+      "revId": "a2e8c8144a140ff2ca153ade6156fee97db0d4a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1791f685_242ff2d5",
