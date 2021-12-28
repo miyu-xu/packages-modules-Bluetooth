@@ -148,23 +148,8 @@ bool LeAudioClientInterface::ReleaseSource(
   return true;
 }
 
-void LeAudioClientInterface::Sink::Cleanup() {}
-void LeAudioClientInterface::Sink::SetPcmParameters(
-    const PcmParameters& params) {}
-void LeAudioClientInterface::Sink::SetRemoteDelay(uint16_t delay_report_ms) {}
-void LeAudioClientInterface::Sink::StartSession() {}
-void LeAudioClientInterface::Sink::StopSession() {}
-void LeAudioClientInterface::Sink::ConfirmStreamingRequest(){};
-void LeAudioClientInterface::Sink::CancelStreamingRequest(){};
-
-void LeAudioClientInterface::Source::Cleanup() {}
-void LeAudioClientInterface::Source::SetPcmParameters(
-    const PcmParameters& params) {}
-void LeAudioClientInterface::Source::SetRemoteDelay(uint16_t delay_report_ms) {}
-void LeAudioClientInterface::Source::StartSession() {}
-void LeAudioClientInterface::Source::StopSession() {}
-void LeAudioClientInterface::Source::ConfirmStreamingRequest(){};
-void LeAudioClientInterface::Source::CancelStreamingRequest(){};
+bool LeAudioClientInterface::IsSinkAcquired() { return false; }
+bool LeAudioClientInterface::IsSourceAcquired() { return false; }
 
 size_t LeAudioClientInterface::Source::Write(const uint8_t* p_buf,
                                              uint32_t len) {

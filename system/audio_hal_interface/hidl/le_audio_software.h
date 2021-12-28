@@ -20,11 +20,13 @@
 
 #include <functional>
 
+#include "../le_audio_software.h"
 #include "bta/le_audio/le_audio_types.h"
 #include "common/message_loop_thread.h"
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace le_audio {
 
 constexpr uint8_t kChannelNumberMono = 1;
@@ -41,83 +43,77 @@ constexpr uint8_t kBitsPerSample16 = 16;
 constexpr uint8_t kBitsPerSample24 = 24;
 constexpr uint8_t kBitsPerSample32 = 32;
 
-struct StreamCallbacks {
-  std::function<bool(bool start_media_task)> on_resume_;
-  std::function<bool(void)> on_suspend_;
-  std::function<bool(const source_metadata_t&)> on_metadata_update_;
-  std::function<bool(const sink_metadata_t&)> on_sink_metadata_update_;
-};
+using ::bluetooth::audio::le_audio::StreamCallbacks;
+using SourceStub = ::bluetooth::audio::le_audio::LeAudioClientInterface::Source;
+using SinkStub = ::bluetooth::audio::le_audio::LeAudioClientInterface::Sink;
 
 std::vector<::le_audio::set_configurations::AudioSetConfiguration>
 get_offload_capabilities();
 
-class LeAudioClientInterface {
+class LeAudioClientInterface
+    : public ::bluetooth::audio::le_audio::LeAudioClientInterface {
  public:
-  struct PcmParameters {
-    uint32_t data_interval_us;
-    uint32_t sample_rate;
-    uint8_t bits_per_sample;
-    uint8_t channels_count;
-  };
-
-  virtual ~LeAudioClientInterface() = default;
-
- private:
-  class IClientInterfaceEndpoint {
-   public:
-    virtual ~IClientInterfaceEndpoint() = default;
-    virtual void Cleanup() = 0;
-    virtual void SetPcmParameters(const PcmParameters& params) = 0;
-    virtual void SetRemoteDelay(uint16_t delay_report_ms) = 0;
-    virtual void StartSession() = 0;
-    virtual void StopSession() = 0;
-    virtual void ConfirmStreamingRequest() = 0;
-    virtual void CancelStreamingRequest() = 0;
-  };
-
- public:
-  class Sink : public IClientInterfaceEndpoint {
+  virtual ~LeAudioClientInterface() {}
+  class Sink : public SinkStub {
    public:
     virtual ~Sink() = default;
+
+    void Cleanup() override;
+    void SetPcmParameters(const PcmParameters& params) override;
+    void SetRemoteDelay(uint16_t delay_report_ms) override;
+    void StartSession() override;
+    void StopSession() override;
+    void ConfirmStreamingRequest() override;
+    void CancelStreamingRequest() override;
+
     // Read the stream of bytes sinked to us by the upper layers
-    virtual size_t Read(uint8_t* p_buf, uint32_t len);
+    size_t Read(uint8_t* p_buf, uint32_t len) override;
   };
-  class Source : public IClientInterfaceEndpoint {
+  class Source : public SourceStub {
    public:
     virtual ~Source() = default;
+
+    void Cleanup() override;
+    void SetPcmParameters(const PcmParameters& params) override;
+    void SetRemoteDelay(uint16_t delay_report_ms) override;
+    void StartSession() override;
+    void StopSession() override;
+    void ConfirmStreamingRequest() override;
+    void CancelStreamingRequest() override;
+
     // Source the given stream of bytes to be sinked into the upper layers
-    virtual size_t Write(const uint8_t* p_buf, uint32_t len);
+    size_t Write(const uint8_t* p_buf, uint32_t len) override;
   };
 
   // Get LE Audio sink client interface if it's not previously acquired and not
   // yet released.
-  virtual Sink* GetSink(StreamCallbacks stream_cb,
-                        bluetooth::common::MessageLoopThread* message_loop);
-
+  Sink* GetSink(StreamCallbacks stream_cb,
+                bluetooth::common::MessageLoopThread* message_loop) override;
   // This should be called before trying to get sink interface
-  virtual bool IsSinkAcquired();
-
+  bool IsSinkAcquired() override;
   // Release sink interface if belongs to LE audio client interface
-  virtual bool ReleaseSink(Sink* sink);
+  bool ReleaseSink(SinkStub* sink) override;
 
   // Get LE Audio source client interface if it's not previously acquired and
   // not yet released.
-  virtual Source* GetSource(StreamCallbacks stream_cb,
-                            bluetooth::common::MessageLoopThread* message_loop);
-
+  SourceStub* GetSource(
+      StreamCallbacks stream_cb,
+      bluetooth::common::MessageLoopThread* message_loop) override;
   // This should be called before trying to get source interface
-  virtual bool IsSourceAcquired();
-
+  bool IsSourceAcquired() override;
   // Release source interface if belongs to LE audio client interface
-  virtual bool ReleaseSource(Source* source);
+  bool ReleaseSource(SourceStub* source) override;
 
   // Get interface, if previously not initialized - it'll initialize singleton.
   static LeAudioClientInterface* Get();
 
  private:
   static LeAudioClientInterface* interface;
+  Sink* sink_ = nullptr;
+  Source* source_ = nullptr;
 };
 
 }  // namespace le_audio
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

@@ -17,7 +17,6 @@
 #define LOG_TAG "bluetooth"
 
 #include "codec_status.h"
-#include "client_interface.h"
 
 #include "a2dp_aac_constants.h"
 #include "a2dp_sbc_constants.h"
@@ -25,6 +24,7 @@
 #include "a2dp_vendor_aptx_hd_constants.h"
 #include "a2dp_vendor_ldac_constants.h"
 #include "bta/av/bta_av_int.h"
+#include "client_interface.h"
 
 namespace {
 
@@ -152,6 +152,7 @@ bool ldac_offloading_capability_match(const LdacParameters& ldac_capability,
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace codec {
 
 const CodecConfiguration kInvalidCodecConfiguration = {
@@ -568,5 +569,6 @@ bool IsCodecOffloadingEnabled(const CodecConfiguration& codec_config) {
 }
 
 }  // namespace codec
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
