@@ -37,13 +37,13 @@ using ::android::hardware::bluetooth::audio::V2_1::Lc3FrameDuration;
 using ::android::hardware::bluetooth::audio::V2_1::Lc3Parameters;
 using ::android::hardware::bluetooth::audio::V2_1::PcmParameters;
 using ::android::hardware::bluetooth::audio::V2_2::AudioLocation;
-using ::bluetooth::audio::AudioConfiguration_2_2;
-using ::bluetooth::audio::BluetoothAudioCtrlAck;
-using ::bluetooth::audio::SampleRate_2_1;
-using ::bluetooth::audio::SessionType;
-using ::bluetooth::audio::SessionType_2_1;
-using ::bluetooth::audio::le_audio::LeAudioClientInterface;
-using ::bluetooth::audio::le_audio::StreamCallbacks;
+using ::bluetooth::audio::hidl::AudioConfiguration_2_2;
+using ::bluetooth::audio::hidl::BluetoothAudioCtrlAck;
+using ::bluetooth::audio::hidl::SampleRate_2_1;
+using ::bluetooth::audio::hidl::SessionType;
+using ::bluetooth::audio::hidl::SessionType_2_1;
+using ::bluetooth::audio::hidl::le_audio::LeAudioClientInterface;
+using ::bluetooth::audio::hidl::le_audio::StreamCallbacks;
 using AudioCapabilities_2_2 =
     ::android::hardware::bluetooth::audio::V2_2::AudioCapabilities;
 using android::hardware::bluetooth::audio::V2_2::LeAudioCodecCapability;
@@ -53,9 +53,9 @@ using ::le_audio::set_configurations::CodecCapabilitySetting;
 using ::le_audio::set_configurations::SetConfiguration;
 using ::le_audio::types::LeAudioLc3Config;
 
-bluetooth::audio::BluetoothAudioSinkClientInterface*
+::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface*
     le_audio_sink_hal_clientinterface = nullptr;
-bluetooth::audio::BluetoothAudioSourceClientInterface*
+::bluetooth::audio::hidl::BluetoothAudioSourceClientInterface*
     le_audio_source_hal_clientinterface = nullptr;
 
 static bool is_source_hal_enabled() {
@@ -198,7 +198,7 @@ static void flush_sink() {
 
 // Sink transport implementation for Le Audio
 class LeAudioSinkTransport
-    : public bluetooth::audio::IBluetoothSinkTransportInstance {
+    : public ::bluetooth::audio::hidl::IBluetoothSinkTransportInstance {
  public:
   LeAudioSinkTransport(StreamCallbacks stream_cb)
       : IBluetoothSinkTransportInstance(
@@ -275,7 +275,7 @@ static void flush_source() {
 }
 
 class LeAudioSourceTransport
-    : public bluetooth::audio::IBluetoothSourceTransportInstance {
+    : public ::bluetooth::audio::hidl::IBluetoothSourceTransportInstance {
  public:
   LeAudioSourceTransport(StreamCallbacks stream_cb)
       : IBluetoothSourceTransportInstance(
@@ -352,6 +352,7 @@ LeAudioSourceTransport* le_audio_source = nullptr;
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace le_audio {
 
 std::unordered_map<SampleRate_2_1, uint8_t> sampling_freq_map{
@@ -442,7 +443,7 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
   LOG(INFO) << __func__;
   std::vector<AudioSetConfiguration> offload_capabilities;
   std::vector<AudioCapabilities_2_2> le_audio_hal_capabilities =
-      audio::BluetoothAudioSinkClientInterface::GetAudioCapabilities_2_2(
+      BluetoothAudioSinkClientInterface::GetAudioCapabilities_2_2(
           SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
   std::string strCapabilityLog;
 
@@ -728,8 +729,8 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
 
   le_audio_sink = new LeAudioSinkTransport(std::move(stream_cb));
   le_audio_sink_hal_clientinterface =
-      new bluetooth::audio::BluetoothAudioSinkClientInterface(le_audio_sink,
-                                                              message_loop);
+      new ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface(
+          le_audio_sink, message_loop);
   if (!le_audio_sink_hal_clientinterface->IsValid()) {
     LOG(WARNING) << __func__
                  << ": BluetoothAudio HAL for Le Audio is invalid?!";
@@ -776,8 +777,7 @@ LeAudioClientInterface::Source* LeAudioClientInterface::GetSource(
 
   le_audio_source = new LeAudioSourceTransport(std::move(stream_cb));
   le_audio_source_hal_clientinterface =
-      new bluetooth::audio::BluetoothAudioSourceClientInterface(le_audio_source,
-                                                                message_loop);
+      new BluetoothAudioSourceClientInterface(le_audio_source, message_loop);
   if (!le_audio_source_hal_clientinterface->IsValid()) {
     LOG(WARNING) << __func__
                  << ": BluetoothAudio HAL for Le Audio is invalid?!";
@@ -812,5 +812,6 @@ bool LeAudioClientInterface::ReleaseSource(
 }
 
 }  // namespace le_audio
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
