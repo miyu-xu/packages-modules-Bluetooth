@@ -30,15 +30,21 @@ cc_library_static {
         "libosi",
         "libbt-common",
     ],
+    srcs: [
+    ],
     target: {
         android: {
             shared_libs: [
                 "libfmq",
             ],
             srcs: [
+                "hidl/a2dp_encoding.cc",
+                "hidl/client_interface.cc",
+                "hidl/codec_status.cc",
+                "hidl/hal_version_manager.cc",
+                "hidl/hearing_aid_software_encoding.cc",
+                "hidl/le_audio_software.cc",
                 "a2dp_encoding.cc",
-                "client_interface.cc",
-                "codec_status.cc",
                 "hearing_aid_software_encoding.cc",
                 "le_audio_software.cc",
             ],
@@ -48,6 +54,7 @@ cc_library_static {
                 "a2dp_encoding_host.cc",
                 "hearing_aid_software_encoding_host.cc",
                 "le_audio_software_host.cc",
+                "hidl/hal_version_manager_host.cc",
             ],
         },
     },
@@ -67,7 +74,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs: [
-        "client_interface_unittest.cc",
+        "hidl/client_interface_unittest.cc",
     ],
     shared_libs: [
         "android.hardware.bluetooth.audio@2.0",
