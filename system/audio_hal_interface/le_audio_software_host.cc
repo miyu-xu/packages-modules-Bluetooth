@@ -20,7 +20,7 @@
 
 namespace bluetooth {
 namespace audio {
-
+namespace hidl {
 namespace le_audio {
 
 std::vector<::le_audio::set_configurations::AudioSetConfiguration>
@@ -65,5 +65,6 @@ bool LeAudioClientInterface::ReleaseSource(
 }
 
 }  // namespace le_audio
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

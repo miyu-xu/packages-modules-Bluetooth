@@ -30,30 +30,30 @@
 
 namespace {
 
-using ::bluetooth::audio::AudioCapabilities;
-using ::bluetooth::audio::AudioConfiguration;
-using ::bluetooth::audio::BitsPerSample;
-using ::bluetooth::audio::BluetoothAudioCtrlAck;
-using ::bluetooth::audio::ChannelMode;
-using ::bluetooth::audio::PcmParameters;
-using ::bluetooth::audio::SampleRate;
-using ::bluetooth::audio::SessionType;
+using ::bluetooth::audio::hidl::AudioCapabilities;
+using ::bluetooth::audio::hidl::AudioConfiguration;
+using ::bluetooth::audio::hidl::BitsPerSample;
+using ::bluetooth::audio::hidl::BluetoothAudioCtrlAck;
+using ::bluetooth::audio::hidl::ChannelMode;
+using ::bluetooth::audio::hidl::PcmParameters;
+using ::bluetooth::audio::hidl::SampleRate;
+using ::bluetooth::audio::hidl::SessionType;
 
-using ::bluetooth::audio::BluetoothAudioSinkClientInterface;
-using ::bluetooth::audio::codec::A2dpAacToHalConfig;
-using ::bluetooth::audio::codec::A2dpAptxToHalConfig;
-using ::bluetooth::audio::codec::A2dpCodecToHalBitsPerSample;
-using ::bluetooth::audio::codec::A2dpCodecToHalChannelMode;
-using ::bluetooth::audio::codec::A2dpCodecToHalSampleRate;
-using ::bluetooth::audio::codec::A2dpLdacToHalConfig;
-using ::bluetooth::audio::codec::A2dpSbcToHalConfig;
-using ::bluetooth::audio::codec::CodecConfiguration;
+using ::bluetooth::audio::hidl::BluetoothAudioSinkClientInterface;
+using ::bluetooth::audio::hidl::codec::A2dpAacToHalConfig;
+using ::bluetooth::audio::hidl::codec::A2dpAptxToHalConfig;
+using ::bluetooth::audio::hidl::codec::A2dpCodecToHalBitsPerSample;
+using ::bluetooth::audio::hidl::codec::A2dpCodecToHalChannelMode;
+using ::bluetooth::audio::hidl::codec::A2dpCodecToHalSampleRate;
+using ::bluetooth::audio::hidl::codec::A2dpLdacToHalConfig;
+using ::bluetooth::audio::hidl::codec::A2dpSbcToHalConfig;
+using ::bluetooth::audio::hidl::codec::CodecConfiguration;
 
 BluetoothAudioCtrlAck a2dp_ack_to_bt_audio_ctrl_ack(tA2DP_CTRL_ACK ack);
 
 // Provide call-in APIs for the Bluetooth Audio HAL
 class A2dpTransport
-    : public ::bluetooth::audio::IBluetoothSinkTransportInstance {
+    : public ::bluetooth::audio::hidl::IBluetoothSinkTransportInstance {
  public:
   A2dpTransport(SessionType sessionType)
       : IBluetoothSinkTransportInstance(sessionType, (AudioConfiguration){}),
@@ -232,7 +232,7 @@ bool a2dp_get_selected_hal_codec_config(CodecConfiguration* codec_config) {
   A2dpCodecConfig* a2dp_config = bta_av_get_a2dp_current_codec();
   if (a2dp_config == nullptr) {
     LOG(WARNING) << __func__ << ": failure to get A2DP codec config";
-    *codec_config = ::bluetooth::audio::codec::kInvalidCodecConfiguration;
+    *codec_config = ::bluetooth::audio::hidl::codec::kInvalidCodecConfiguration;
     return false;
   }
   btav_a2dp_codec_config_t current_codec = a2dp_config->getCodecConfig();
@@ -272,7 +272,8 @@ bool a2dp_get_selected_hal_codec_config(CodecConfiguration* codec_config) {
     default:
       LOG(ERROR) << __func__
                  << ": Unknown codec_type=" << current_codec.codec_type;
-      *codec_config = ::bluetooth::audio::codec::kInvalidCodecConfiguration;
+      *codec_config =
+          ::bluetooth::audio::hidl::codec::kInvalidCodecConfiguration;
       return false;
   }
   codec_config->encodedAudioBitrate = a2dp_config->getTrackBitRate();
@@ -327,11 +328,12 @@ bool is_hal_2_0_force_disabled() {
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace a2dp {
 
 bool update_codec_offloading_capabilities(
     const std::vector<btav_a2dp_codec_config_t>& framework_preference) {
-  return ::bluetooth::audio::codec::UpdateOffloadingCapabilities(
+  return ::bluetooth::audio::hidl::codec::UpdateOffloadingCapabilities(
       framework_preference);
 }
 
@@ -437,7 +439,7 @@ bool setup_codec() {
     return false;
   }
   bool should_codec_offloading =
-      bluetooth::audio::codec::IsCodecOffloadingEnabled(codec_config);
+      bluetooth::audio::hidl::codec::IsCodecOffloadingEnabled(codec_config);
   if (should_codec_offloading && !is_hal_2_0_offloading()) {
     LOG(WARNING) << __func__ << ": Switching BluetoothAudio HAL to Hardware";
     end_session();
@@ -496,7 +498,7 @@ void ack_stream_started(const tA2DP_CTRL_ACK& ack) {
                  << " ignore result=" << ctrl_ack;
     return;
   }
-  if (ctrl_ack != bluetooth::audio::BluetoothAudioCtrlAck::PENDING) {
+  if (ctrl_ack != bluetooth::audio::hidl::BluetoothAudioCtrlAck::PENDING) {
     a2dp_sink->ResetPendingCmd();
   }
 }
@@ -516,7 +518,7 @@ void ack_stream_suspended(const tA2DP_CTRL_ACK& ack) {
                  << " ignore result=" << ctrl_ack;
     return;
   }
-  if (ctrl_ack != bluetooth::audio::BluetoothAudioCtrlAck::PENDING) {
+  if (ctrl_ack != bluetooth::audio::hidl::BluetoothAudioCtrlAck::PENDING) {
     a2dp_sink->ResetPendingCmd();
   }
 }
@@ -551,5 +553,6 @@ void set_remote_delay(uint16_t delay_report) {
 }
 
 }  // namespace a2dp
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

@@ -21,6 +21,7 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace hearing_aid {
 
 struct StreamCallbacks {
@@ -48,5 +49,6 @@ void set_remote_delay(uint16_t delay_report_ms);
 size_t read(uint8_t* p_buf, uint32_t len);
 
 }  // namespace hearing_aid
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

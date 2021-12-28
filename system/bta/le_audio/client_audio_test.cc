@@ -74,7 +74,7 @@ static void cleanup_message_loop_thread() {
   message_loop_thread.ShutDown();
 }
 
-using bluetooth::audio::le_audio::LeAudioClientInterface;
+using bluetooth::audio::hidl::le_audio::LeAudioClientInterface;
 
 class MockLeAudioClientInterfaceSink : public LeAudioClientInterface::Sink {
  public:
@@ -110,10 +110,10 @@ class MockLeAudioClientInterface : public LeAudioClientInterface {
   ~MockLeAudioClientInterface() = default;
 
   MOCK_METHOD((Sink*), GetSink,
-              (bluetooth::audio::le_audio::StreamCallbacks stream_cb,
+              (bluetooth::audio::hidl::le_audio::StreamCallbacks stream_cb,
                bluetooth::common::MessageLoopThread* message_loop));
   MOCK_METHOD((Source*), GetSource,
-              (bluetooth::audio::le_audio::StreamCallbacks stream_cb,
+              (bluetooth::audio::hidl::le_audio::StreamCallbacks stream_cb,
                bluetooth::common::MessageLoopThread* message_loop));
 };
 
@@ -121,6 +121,7 @@ LeAudioClientInterface* mockInterface;
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace le_audio {
 MockLeAudioClientInterface* interface_mock;
 MockLeAudioClientInterfaceSink* sink_mock;
@@ -174,7 +175,9 @@ size_t LeAudioClientInterface::Source::Write(const uint8_t* p_buf,
 size_t LeAudioClientInterface::Sink::Read(uint8_t* p_buf, uint32_t len) {
   return sink_mock->Read(p_buf, len);
 }
+
 }  // namespace le_audio
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
 
@@ -204,18 +207,19 @@ class LeAudioClientAudioTest : public ::testing::Test {
  public:
   void SetUp(void) override {
     init_message_loop_thread();
-    bluetooth::audio::le_audio::interface_mock = &mock_client_interface_;
-    bluetooth::audio::le_audio::sink_mock = &mock_client_interface_sink_;
-    bluetooth::audio::le_audio::source_mock = &mock_client_interface_source_;
+    bluetooth::audio::hidl::le_audio::interface_mock = &mock_client_interface_;
+    bluetooth::audio::hidl::le_audio::sink_mock = &mock_client_interface_sink_;
+    bluetooth::audio::hidl::le_audio::source_mock =
+        &mock_client_interface_source_;
 
     // Init sink Audio HAL mock
     is_sink_acquired = false;
     hal_sink_stream_cb = {.on_suspend_ = nullptr, .on_resume_ = nullptr};
 
     ON_CALL(mock_client_interface_, GetSink(_, _))
-        .WillByDefault(DoAll(SaveArg<0>(&hal_sink_stream_cb),
-                             Assign(&is_sink_acquired, true),
-                             Return(bluetooth::audio::le_audio::sink_mock)));
+        .WillByDefault(DoAll(
+            SaveArg<0>(&hal_sink_stream_cb), Assign(&is_sink_acquired, true),
+            Return(bluetooth::audio::hidl::le_audio::sink_mock)));
     ON_CALL(mock_client_interface_sink_, Cleanup())
         .WillByDefault(Assign(&is_sink_acquired, false));
 
@@ -224,9 +228,10 @@ class LeAudioClientAudioTest : public ::testing::Test {
     hal_source_stream_cb = {.on_suspend_ = nullptr, .on_resume_ = nullptr};
 
     ON_CALL(mock_client_interface_, GetSource(_, _))
-        .WillByDefault(DoAll(SaveArg<0>(&hal_source_stream_cb),
-                             Assign(&is_source_acquired, true),
-                             Return(bluetooth::audio::le_audio::source_mock)));
+        .WillByDefault(
+            DoAll(SaveArg<0>(&hal_source_stream_cb),
+                  Assign(&is_source_acquired, true),
+                  Return(bluetooth::audio::hidl::le_audio::source_mock)));
     ON_CALL(mock_client_interface_source_, Cleanup())
         .WillByDefault(Assign(&is_source_acquired, false));
   }
@@ -259,8 +264,8 @@ class LeAudioClientAudioTest : public ::testing::Test {
 
     cleanup_message_loop_thread();
 
-    bluetooth::audio::le_audio::sink_mock = nullptr;
-    bluetooth::audio::le_audio::source_mock = nullptr;
+    bluetooth::audio::hidl::le_audio::sink_mock = nullptr;
+    bluetooth::audio::hidl::le_audio::source_mock = nullptr;
   }
 
   MockLeAudioClientInterface mock_client_interface_;
@@ -275,8 +280,8 @@ class LeAudioClientAudioTest : public ::testing::Test {
   const void* audio_sink_instance_ = nullptr;
   const void* audio_source_instance_ = nullptr;
 
-  bluetooth::audio::le_audio::StreamCallbacks hal_source_stream_cb;
-  bluetooth::audio::le_audio::StreamCallbacks hal_sink_stream_cb;
+  bluetooth::audio::hidl::le_audio::StreamCallbacks hal_source_stream_cb;
+  bluetooth::audio::hidl::le_audio::StreamCallbacks hal_sink_stream_cb;
 
   const LeAudioCodecConfiguration default_codec_conf{
       .num_channels = LeAudioCodecConfiguration::kChannelNumberMono,
@@ -289,7 +294,7 @@ class LeAudioClientAudioTest : public ::testing::Test {
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkInitializeCleanup) {
   EXPECT_CALL(mock_client_interface_, GetSource(_, _))
       .WillOnce(DoAll(Assign(&is_source_acquired, true),
-                      Return(bluetooth::audio::le_audio::source_mock)));
+                      Return(bluetooth::audio::hidl::le_audio::source_mock)));
   AcquireAudioSink();
 
   EXPECT_CALL(mock_client_interface_source_, Cleanup())
@@ -300,7 +305,7 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkInitializeCleanup) {
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceInitializeCleanup) {
   EXPECT_CALL(mock_client_interface_, GetSink(_, _))
       .WillOnce(DoAll(Assign(&is_sink_acquired, true),
-                      Return(bluetooth::audio::le_audio::sink_mock)));
+                      Return(bluetooth::audio::hidl::le_audio::sink_mock)));
   AcquireAudioSource();
 
   EXPECT_CALL(mock_client_interface_sink_, Cleanup())
@@ -320,10 +325,11 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkStartStop) {
                                             &mock_hal_source_event_receiver_));
 
   ASSERT_EQ(params.channels_count,
-            bluetooth::audio::le_audio::kChannelNumberMono);
-  ASSERT_EQ(params.sample_rate, bluetooth::audio::le_audio::kSampleRate44100);
+            bluetooth::audio::hidl::le_audio::kChannelNumberMono);
+  ASSERT_EQ(params.sample_rate,
+            bluetooth::audio::hidl::le_audio::kSampleRate44100);
   ASSERT_EQ(params.bits_per_sample,
-            bluetooth::audio::le_audio::kBitsPerSample24);
+            bluetooth::audio::hidl::le_audio::kBitsPerSample24);
   ASSERT_EQ(params.data_interval_us, 10000u);
 
   EXPECT_CALL(mock_client_interface_source_, StopSession()).Times(1);
@@ -343,10 +349,11 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceStartStop) {
                                               &mock_hal_sink_event_receiver_));
 
   ASSERT_EQ(params.channels_count,
-            bluetooth::audio::le_audio::kChannelNumberMono);
-  ASSERT_EQ(params.sample_rate, bluetooth::audio::le_audio::kSampleRate44100);
+            bluetooth::audio::hidl::le_audio::kChannelNumberMono);
+  ASSERT_EQ(params.sample_rate,
+            bluetooth::audio::hidl::le_audio::kSampleRate44100);
   ASSERT_EQ(params.bits_per_sample,
-            bluetooth::audio::le_audio::kBitsPerSample24);
+            bluetooth::audio::hidl::le_audio::kBitsPerSample24);
   ASSERT_EQ(params.data_interval_us, 10000u);
 
   EXPECT_CALL(mock_client_interface_sink_, StopSession()).Times(1);
