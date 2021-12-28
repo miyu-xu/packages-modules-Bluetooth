@@ -23,6 +23,7 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace a2dp {
 
 bool update_codec_offloading_capabilities(
@@ -57,5 +58,6 @@ size_t read(uint8_t* p_buf, uint32_t len);
 void set_remote_delay(uint16_t delay_report);
 
 }  // namespace a2dp
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

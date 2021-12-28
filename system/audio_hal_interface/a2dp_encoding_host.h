@@ -23,6 +23,7 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace a2dp {
 
 // Audio config from audio server; PCM format for now
@@ -53,5 +54,6 @@ struct PresentationPosition {
 PresentationPosition GetPresentationPosition();
 
 }  // namespace a2dp
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

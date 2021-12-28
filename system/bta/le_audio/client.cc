@@ -3292,7 +3292,8 @@ void LeAudioClient::Initialize(
 
   // TODO: The capability list should pass to the codec manager once it's ready
   std::vector<::le_audio::set_configurations::AudioSetConfiguration>
-      capabilities = ::bluetooth::audio::le_audio::get_offload_capabilities();
+      capabilities =
+          ::bluetooth::audio::hidl::le_audio::get_offload_capabilities();
 
   IsoManager::GetInstance()->Start();
 

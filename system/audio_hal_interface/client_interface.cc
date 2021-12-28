@@ -30,6 +30,7 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
@@ -48,7 +49,7 @@ static constexpr int kDefaultDataReadPollIntervalMs = 1;   // non-blocking poll
 static constexpr int kDefaultDataWritePollIntervalMs = 1;  // non-blocking poll
 
 std::unique_ptr<HalVersionManager> HalVersionManager::instance_ptr =
-    std::unique_ptr<HalVersionManager>(new HalVersionManager());
+    std::make_unique<HalVersionManager>();
 
 std::ostream& operator<<(std::ostream& os, const BluetoothAudioCtrlAck& ack) {
   switch (ack) {
@@ -1150,5 +1151,6 @@ size_t BluetoothAudioSourceClientInterface::WriteAudioData(const uint8_t* p_buf,
   return total_written;
 }
 
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
