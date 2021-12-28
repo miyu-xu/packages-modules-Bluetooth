@@ -2,7 +2,7 @@
 
 known_tests=(
   audio_bluetooth_hw_test
-  bluetooth-test-audio-hal-interface
+  bluetooth-test-audio-hidl-interface
   bluetooth_test_common
   bluetoothtbd_test
   net_test_audio_a2dp_hw
