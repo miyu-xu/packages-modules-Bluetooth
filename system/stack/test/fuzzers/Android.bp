@@ -22,7 +22,7 @@ cc_defaults {
         "libbt-stack",
         "libbte",
         "libFraunhoferAAC",
-        "libbt-audio-hal-interface",
+        "libbt-audio-hidl-interface",
         "libbtcore",
         "libbt-bta",
         "libbt-stack",

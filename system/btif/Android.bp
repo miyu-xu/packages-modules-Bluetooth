@@ -187,7 +187,7 @@ cc_defaults {
     whole_static_libs: [
         "avrcp-target-service",
         "lib-bt-packets",
-        "libbt-audio-hal-interface",
+        "libbt-audio-hidl-interface",
         "libaudio-a2dp-hw-utils",
     ],
     cflags: [

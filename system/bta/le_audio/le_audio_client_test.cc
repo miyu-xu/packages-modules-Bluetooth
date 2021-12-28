@@ -61,13 +61,16 @@ using namespace bluetooth::le_audio;
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace le_audio {
 
 std::vector<::le_audio::set_configurations::AudioSetConfiguration>
 get_offload_capabilities() {
   return std::vector<::le_audio::set_configurations::AudioSetConfiguration>(0);
 }
+
 }  // namespace le_audio
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
 

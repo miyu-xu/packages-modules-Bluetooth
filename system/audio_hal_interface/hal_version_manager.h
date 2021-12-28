@@ -24,6 +24,7 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 
 using ::android::hardware::hidl_vec;
 
@@ -167,5 +168,6 @@ class HalVersionManager {
   BluetoothAudioHalVersion hal_version_;
 };
 
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

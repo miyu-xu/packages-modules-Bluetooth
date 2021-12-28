@@ -257,7 +257,7 @@ cc_test {
         "libcrypto",
     ],
     static_libs: [
-        "libbt-audio-hal-interface",
+        "libbt-audio-hidl-interface",
         "libbluetooth-dumpsys",
         "libbtcore",
         "libbt-bta",

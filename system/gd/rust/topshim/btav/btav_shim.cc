@@ -236,21 +236,21 @@ void A2dpIntf::cleanup() const {
   // TODO: Implement.
 }
 bool A2dpIntf::set_audio_config(A2dpCodecConfig rconfig) const {
-  bluetooth::audio::a2dp::AudioConfig config = {
+  bluetooth::audio::hidl::a2dp::AudioConfig config = {
       .sample_rate = static_cast<btav_a2dp_codec_sample_rate_t>(rconfig.sample_rate),
       .bits_per_sample = static_cast<btav_a2dp_codec_bits_per_sample_t>(rconfig.bits_per_sample),
       .channel_mode = static_cast<btav_a2dp_codec_channel_mode_t>(rconfig.channel_mode),
   };
-  return bluetooth::audio::a2dp::SetAudioConfig(config);
+  return bluetooth::audio::hidl::a2dp::SetAudioConfig(config);
 }
 bool A2dpIntf::start_audio_request() const {
-  return bluetooth::audio::a2dp::StartRequest();
+  return bluetooth::audio::hidl::a2dp::StartRequest();
 }
 bool A2dpIntf::stop_audio_request() const {
-  return bluetooth::audio::a2dp::StopRequest();
+  return bluetooth::audio::hidl::a2dp::StopRequest();
 }
 RustPresentationPosition A2dpIntf::get_presentation_position() const {
-  bluetooth::audio::a2dp::PresentationPosition p = bluetooth::audio::a2dp::GetPresentationPosition();
+  auto p = bluetooth::audio::hidl::a2dp::GetPresentationPosition();
   RustPresentationPosition rposition = {
       .remote_delay_report_ns = p.remote_delay_report_ns,
       .total_bytes_read = p.total_bytes_read,
