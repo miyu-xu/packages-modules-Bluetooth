@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018762207",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932800?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c30d7c96_b11b30f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-28T08:14:22Z",
+      "side": 1,
+      "message": "#refctor is not a valid tag. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "1069d431fab94bbe0f3ea093542eb93068473202",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
