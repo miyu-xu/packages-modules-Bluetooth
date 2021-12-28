@@ -15,12 +15,10 @@
  * limitations under the License.
  */
 
-#include "audio_hal_interface/hal_version_manager.h"
 #include "audio_hal_interface/le_audio_software.h"
 
 namespace bluetooth {
 namespace audio {
-
 namespace le_audio {
 
 std::vector<::le_audio::set_configurations::AudioSetConfiguration>
