@@ -17,28 +17,28 @@
 #define LOG_TAG "BTAudioClientHearingAid"
 
 #include "hearing_aid_software_encoding.h"
-#include "client_interface.h"
 
 #include "audio_hearing_aid_hw/include/audio_hearing_aid_hw.h"
+#include "client_interface.h"
 #include "osi/include/log.h"
 #include "osi/include/properties.h"
 
 namespace {
 
 using ::android::hardware::bluetooth::audio::V2_0::CodecType;
-using ::bluetooth::audio::AudioConfiguration;
-using ::bluetooth::audio::BitsPerSample;
-using ::bluetooth::audio::BluetoothAudioCtrlAck;
-using ::bluetooth::audio::ChannelMode;
-using ::bluetooth::audio::PcmParameters;
-using ::bluetooth::audio::SampleRate;
-using ::bluetooth::audio::SessionType;
-using ::bluetooth::audio::SessionType_2_1;
-using ::bluetooth::audio::hearing_aid::StreamCallbacks;
+using ::bluetooth::audio::hidl::AudioConfiguration;
+using ::bluetooth::audio::hidl::BitsPerSample;
+using ::bluetooth::audio::hidl::BluetoothAudioCtrlAck;
+using ::bluetooth::audio::hidl::ChannelMode;
+using ::bluetooth::audio::hidl::PcmParameters;
+using ::bluetooth::audio::hidl::SampleRate;
+using ::bluetooth::audio::hidl::SessionType;
+using ::bluetooth::audio::hidl::SessionType_2_1;
+using ::bluetooth::audio::hidl::hearing_aid::StreamCallbacks;
 
 // Transport implementation for Hearing Aids
 class HearingAidTransport
-    : public bluetooth::audio::IBluetoothSinkTransportInstance {
+    : public bluetooth::audio::hidl::IBluetoothSinkTransportInstance {
  public:
   HearingAidTransport(StreamCallbacks stream_cb)
       : IBluetoothSinkTransportInstance(
@@ -61,7 +61,7 @@ class HearingAidTransport
     LOG(INFO) << __func__;
     if (stream_cb_.on_suspend_()) {
       uint8_t p_buf[AUDIO_STREAM_OUTPUT_BUFFER_SZ * 2];
-      ::bluetooth::audio::hearing_aid::read(p_buf, sizeof(p_buf));
+      ::bluetooth::audio::hidl::hearing_aid::read(p_buf, sizeof(p_buf));
       return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
     } else {
       return BluetoothAudioCtrlAck::FAILURE;
@@ -73,7 +73,7 @@ class HearingAidTransport
     if (stream_cb_.on_suspend_()) {
       // flush
       uint8_t p_buf[AUDIO_STREAM_OUTPUT_BUFFER_SZ * 2];
-      ::bluetooth::audio::hearing_aid::read(p_buf, sizeof(p_buf));
+      ::bluetooth::audio::hidl::hearing_aid::read(p_buf, sizeof(p_buf));
     }
   }
 
@@ -146,7 +146,7 @@ bool HearingAidGetSelectedHalPcmConfig(PcmParameters* hal_pcm_config) {
 // Sink instance of Hearing Aids to provide call-in APIs for Bluetooth Audio Hal
 HearingAidTransport* hearing_aid_sink = nullptr;
 // Common interface to call-out into Bluetooth Audio Hal
-bluetooth::audio::BluetoothAudioSinkClientInterface*
+bluetooth::audio::hidl::BluetoothAudioSinkClientInterface*
     hearing_aid_hal_clientinterface = nullptr;
 bool btaudio_hearing_aid_disabled = false;
 bool is_configured = false;
@@ -157,7 +157,8 @@ uint16_t remote_delay_ms = 0;
 
 bool is_hal_2_0_force_disabled() {
   if (!is_configured) {
-    btaudio_hearing_aid_disabled = osi_property_get_bool(BLUETOOTH_AUDIO_HAL_PROP_DISABLED, false);
+    btaudio_hearing_aid_disabled =
+        osi_property_get_bool(BLUETOOTH_AUDIO_HAL_PROP_DISABLED, false);
     is_configured = true;
   }
   return btaudio_hearing_aid_disabled;
@@ -167,6 +168,7 @@ bool is_hal_2_0_force_disabled() {
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace hearing_aid {
 
 bool is_hal_2_0_enabled() { return hearing_aid_hal_clientinterface != nullptr; }
@@ -182,10 +184,11 @@ bool init(StreamCallbacks stream_cb,
 
   hearing_aid_sink = new HearingAidTransport(std::move(stream_cb));
   hearing_aid_hal_clientinterface =
-      new bluetooth::audio::BluetoothAudioSinkClientInterface(hearing_aid_sink,
-                                                              message_loop);
+      new bluetooth::audio::hidl::BluetoothAudioSinkClientInterface(
+          hearing_aid_sink, message_loop);
   if (!hearing_aid_hal_clientinterface->IsValid()) {
-    LOG(WARNING) << __func__ << ": BluetoothAudio HAL for Hearing Aid is invalid?!";
+    LOG(WARNING) << __func__
+                 << ": BluetoothAudio HAL for Hearing Aid is invalid?!";
     delete hearing_aid_hal_clientinterface;
     hearing_aid_hal_clientinterface = nullptr;
     delete hearing_aid_sink;
@@ -254,5 +257,6 @@ void set_remote_delay(uint16_t delay_report_ms) {
 }
 
 }  // namespace hearing_aid
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

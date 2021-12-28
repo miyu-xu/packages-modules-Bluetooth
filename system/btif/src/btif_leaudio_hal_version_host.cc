@@ -20,11 +20,13 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 class HalVersionManager {
   static std::unique_ptr<HalVersionManager> instance_ptr;
 };
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
 
-std::unique_ptr<bluetooth::audio::HalVersionManager>
-    bluetooth::audio::HalVersionManager::instance_ptr;
+std::unique_ptr<bluetooth::audio::hidl::HalVersionManager>
+    bluetooth::audio::hidl::HalVersionManager::instance_ptr;

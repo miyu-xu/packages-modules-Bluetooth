@@ -9,7 +9,7 @@ package {
 }
 
 cc_library_static {
-    name: "libbt-audio-hal-interface",
+    name: "libbt-audio-hidl-interface",
     defaults: ["fluoride_defaults"],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -59,7 +59,7 @@ cc_library_static {
 
 // Bluetooth Audio client interface library unit tests for target and host
 cc_test {
-    name: "bluetooth-test-audio-hal-interface",
+    name: "bluetooth-test-audio-hidl-interface",
     defaults: ["fluoride_defaults"],
     include_dirs: [
         "packages/modules/Bluetooth/system",
@@ -80,7 +80,7 @@ cc_test {
         "libutils",
     ],
     static_libs: [
-        "libbt-audio-hal-interface",
+        "libbt-audio-hidl-interface",
         "libbt-common",
     ],
     cflags: [
