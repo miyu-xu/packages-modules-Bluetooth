@@ -18,6 +18,7 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace hearing_aid {
 
 bool is_hal_2_0_enabled() { return false; }
@@ -38,5 +39,6 @@ size_t read(uint8_t* p_buf, uint32_t len) { return 0; }
 void set_remote_delay(uint16_t delay_report_ms) {}
 
 }  // namespace hearing_aid
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

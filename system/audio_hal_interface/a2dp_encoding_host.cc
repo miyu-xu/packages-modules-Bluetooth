@@ -110,6 +110,7 @@ uint16_t remote_delay_report_;
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace a2dp {
 
 // Invoked by audio server to set audio config (PCM for now)
@@ -270,5 +271,6 @@ size_t read(uint8_t* p_buf, uint32_t len) {
 }
 
 }  // namespace a2dp
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth

@@ -25,7 +25,7 @@
 #include "common/time_util.h"
 #include "osi/include/wakelock.h"
 
-using bluetooth::audio::le_audio::LeAudioClientInterface;
+using ::bluetooth::audio::hidl::le_audio::LeAudioClientInterface;
 
 namespace {
 LeAudioCodecConfiguration source_codec_config;
@@ -333,7 +333,7 @@ const void* LeAudioClientAudioSource::Acquire() {
     }
   }
 
-  auto sink_stream_cb = bluetooth::audio::le_audio::StreamCallbacks{
+  auto sink_stream_cb = bluetooth::audio::hidl::le_audio::StreamCallbacks{
       .on_resume_ = le_audio_sink_on_resume_req,
       .on_suspend_ = le_audio_sink_on_suspend_req,
       .on_metadata_update_ = le_audio_sink_on_metadata_update_req,
@@ -496,7 +496,7 @@ const void* LeAudioClientAudioSink::Acquire() {
     }
   }
 
-  auto source_stream_cb = bluetooth::audio::le_audio::StreamCallbacks{
+  auto source_stream_cb = bluetooth::audio::hidl::le_audio::StreamCallbacks{
       .on_resume_ = le_audio_source_on_resume_req,
       .on_suspend_ = le_audio_source_on_suspend_req,
       .on_sink_metadata_update_ = le_audio_source_on_metadata_update_req,

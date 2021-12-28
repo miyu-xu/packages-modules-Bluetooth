@@ -44,29 +44,29 @@ class LeAudioClientAudioSourceReceiver {
  */
 struct LeAudioCodecConfiguration {
   static constexpr uint8_t kChannelNumberMono =
-      bluetooth::audio::le_audio::kChannelNumberMono;
+      bluetooth::audio::hidl::le_audio::kChannelNumberMono;
   static constexpr uint8_t kChannelNumberStereo =
-      bluetooth::audio::le_audio::kChannelNumberStereo;
+      bluetooth::audio::hidl::le_audio::kChannelNumberStereo;
 
   static constexpr uint32_t kSampleRate48000 =
-      bluetooth::audio::le_audio::kSampleRate48000;
+      bluetooth::audio::hidl::le_audio::kSampleRate48000;
   static constexpr uint32_t kSampleRate44100 =
-      bluetooth::audio::le_audio::kSampleRate44100;
+      bluetooth::audio::hidl::le_audio::kSampleRate44100;
   static constexpr uint32_t kSampleRate32000 =
-      bluetooth::audio::le_audio::kSampleRate32000;
+      bluetooth::audio::hidl::le_audio::kSampleRate32000;
   static constexpr uint32_t kSampleRate24000 =
-      bluetooth::audio::le_audio::kSampleRate24000;
+      bluetooth::audio::hidl::le_audio::kSampleRate24000;
   static constexpr uint32_t kSampleRate16000 =
-      bluetooth::audio::le_audio::kSampleRate16000;
+      bluetooth::audio::hidl::le_audio::kSampleRate16000;
   static constexpr uint32_t kSampleRate8000 =
-      bluetooth::audio::le_audio::kSampleRate8000;
+      bluetooth::audio::hidl::le_audio::kSampleRate8000;
 
   static constexpr uint8_t kBitsPerSample16 =
-      bluetooth::audio::le_audio::kBitsPerSample16;
+      bluetooth::audio::hidl::le_audio::kBitsPerSample16;
   static constexpr uint8_t kBitsPerSample24 =
-      bluetooth::audio::le_audio::kBitsPerSample24;
+      bluetooth::audio::hidl::le_audio::kBitsPerSample24;
   static constexpr uint8_t kBitsPerSample32 =
-      bluetooth::audio::le_audio::kBitsPerSample32;
+      bluetooth::audio::hidl::le_audio::kBitsPerSample32;
 
   static constexpr uint32_t kInterval7500Us = 7500;
   static constexpr uint32_t kInterval10000Us = 10000;

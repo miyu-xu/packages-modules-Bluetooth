@@ -25,6 +25,7 @@
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace le_audio {
 
 constexpr uint8_t kChannelNumberMono = 1;
@@ -133,5 +134,6 @@ class LeAudioClientInterface {
 };
 
 }  // namespace le_audio
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
