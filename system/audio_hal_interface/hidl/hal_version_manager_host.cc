@@ -14,17 +14,37 @@
  * limitations under the License.
  */
 
-#include <memory>
-
-#include "embdrv/lc3/Api/Lc3Encoder.hpp"
+#include "hal_version_manager.h"
 
 namespace bluetooth {
 namespace audio {
 namespace hidl {
-class HalVersionManager {
-  static inline std::unique_ptr<HalVersionManager> instance_ptr =
-      std::make_unique<HalVersionManager>();
-};
+
+std::unique_ptr<HalVersionManager> HalVersionManager::instance_ptr = nullptr;
+
+BluetoothAudioHalVersion HalVersionManager::GetHalVersion() {
+  return BluetoothAudioHalVersion::VERSION_UNAVAILABLE;
+}
+
+android::sp<IBluetoothAudioProvidersFactory_2_2>
+HalVersionManager::GetProvidersFactory_2_2() {
+  return nullptr;
+}
+
+android::sp<IBluetoothAudioProvidersFactory_2_1>
+HalVersionManager::GetProvidersFactory_2_1() {
+  return nullptr;
+}
+
+android::sp<IBluetoothAudioProvidersFactory_2_0>
+HalVersionManager::GetProvidersFactory_2_0() {
+  return nullptr;
+}
+
+HalVersionManager::HalVersionManager() {
+  hal_version_ = BluetoothAudioHalVersion::VERSION_UNAVAILABLE;
+}
+
 }  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
