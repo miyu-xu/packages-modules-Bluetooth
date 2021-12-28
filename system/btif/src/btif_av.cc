@@ -985,7 +985,7 @@ bt_status_t BtifAvSource::Init(
 
   callbacks_ = callbacks;
   if (a2dp_offload_enabled_) {
-    bluetooth::audio::a2dp::update_codec_offloading_capabilities(
+    bluetooth::audio::hidl::a2dp::update_codec_offloading_capabilities(
         offloading_preference);
   }
   bta_av_co_init(codec_priorities);
@@ -3457,7 +3457,7 @@ void btif_av_set_audio_delay(const RawAddress& peer_address, uint16_t delay) {
   if (peer != nullptr && peer->IsSink()) {
     peer->SetDelayReport(delay);
     if (peer->IsActivePeer()) {
-      bluetooth::audio::a2dp::set_remote_delay(peer->GetDelayReport());
+      bluetooth::audio::hidl::a2dp::set_remote_delay(peer->GetDelayReport());
     }
   }
 }
@@ -3480,12 +3480,12 @@ bool btif_av_is_a2dp_offload_running() {
   if (!btif_av_is_a2dp_offload_enabled()) {
     return false;
   }
-  if (!bluetooth::audio::a2dp::is_hal_2_0_enabled()) {
+  if (!bluetooth::audio::hidl::a2dp::is_hal_2_0_enabled()) {
     // since android::hardware::bluetooth::a2dp::V1_0 deprecated, offloading
     // is supported by Bluetooth Audio HAL 2.0 only.
     return false;
   }
-  return bluetooth::audio::a2dp::is_hal_2_0_offloading();
+  return bluetooth::audio::hidl::a2dp::is_hal_2_0_offloading();
 }
 
 bool btif_av_is_peer_silenced(const RawAddress& peer_address) {
