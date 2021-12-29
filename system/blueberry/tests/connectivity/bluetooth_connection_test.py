@@ -38,7 +38,7 @@ class BluetoothConnectionTest(blueberry_base_test.BlueberryBaseTest):
     # Buffer between tests.
     time.sleep(CONNECTION_STATE_CHANGE_SLEEP_SEC)
 
-  def assert_a2dp_and_hsp_connection_state(self, connected):
+  def assert_a2dp_and_hsp_connection_state(self, connected: bool) -> None:
     """Asserts that A2DP and HSP connections are in the expected state.
 
     Args:
