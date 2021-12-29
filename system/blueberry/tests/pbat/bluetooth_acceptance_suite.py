@@ -1,6 +1,7 @@
 """Suite collecting bluetooth test classes for acceptance testing."""
 
 import logging
+from typing import Mapping
 
 from mobly import test_runner_suite
 
@@ -13,6 +14,7 @@ from blueberry.tests.map import bluetooth_map_test
 from blueberry.tests.opp import bluetooth_opp_test
 from blueberry.tests.pan import bluetooth_pan_test
 from blueberry.tests.pbap import bluetooth_pbap_test
+
 
 # Test classes for the Bluetooth acceptance suite.
 TEST_CLASSES = [
@@ -37,7 +39,7 @@ class BluetoothAcceptanceSuite(mobly_g3_suite.BaseSuite):
   used, all tests will be running.
   """
 
-  def setup_suite(self, config):
+  def setup_suite(self, config: Mapping[str, str]):
     selected_tests = None
     selector = config.user_params.get('acceptance_test_selector')
     if selector:
