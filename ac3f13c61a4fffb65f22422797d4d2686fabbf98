@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dfbb3c8_e45a945f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1559553
+      },
+      "writtenOn": "2021-12-29T16:41:10Z",
+      "side": 1,
+      "message": "This has already been approved by zachoverflow@ and cheneyni@, but there was a small (~6 lines) change to resolve a build conflict.\n\nWe just need OWNERS permissions on this.",
+      "revId": "ac3f13c61a4fffb65f22422797d4d2686fabbf98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
