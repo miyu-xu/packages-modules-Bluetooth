@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "130d659c_7135781d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2021-12-29T16:35:55Z",
+      "side": 1,
+      "message": "This might break hardware offload, it needs to suspend and resume the session",
+      "revId": "0c12d6848b76e544a274453983104a8e3465e843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
