@@ -27,6 +27,7 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_le_audio.h"
 
+using bluetooth::le_audio::btle_audio_audio_direction_index_t;
 using bluetooth::le_audio::btle_audio_codec_config_t;
 using bluetooth::le_audio::btle_audio_codec_index_t;
 using bluetooth::le_audio::ConnectionState;
@@ -45,6 +46,7 @@ static struct {
   jclass clazz;
   jmethodID constructor;
   jmethodID getCodecType;
+  jmethodID getAudioDirection;
 } android_bluetooth_BluetoothLeAudioCodecConfig;
 
 static LeAudioClientInterface* sLeAudioClientInterface = nullptr;
@@ -132,9 +134,12 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
   jclass jniBluetoothLeAudioCodecConfigClass =
       env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig");
   android_bluetooth_BluetoothLeAudioCodecConfig.constructor =
-      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "<init>", "(I)V");
+      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "<init>", "(II)V");
   android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
       jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getAudioDirection =
+      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "getAudioDirection",
+                       "()I");
 
   method_onGroupStatus = env->GetMethodID(clazz, "onGroupStatus", "(II)V");
   method_onGroupNodeStatus =
@@ -162,8 +167,14 @@ std::vector<btle_audio_codec_config_t> prepareCodecPreferences(
         jcodecConfig,
         android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType);
 
+    jint audioDirection = env->CallIntMethod(
+        jcodecConfig,
+        android_bluetooth_BluetoothLeAudioCodecConfig.getAudioDirection);
+
     btle_audio_codec_config_t codec_config = {
-        .codec_type = static_cast<btle_audio_codec_index_t>(codecType)};
+        .codec_type = static_cast<btle_audio_codec_index_t>(codecType),
+        .audio_direction =
+            static_cast<btle_audio_audio_direction_index_t>(audioDirection)};
 
     codec_preferences.push_back(codec_config);
   }
