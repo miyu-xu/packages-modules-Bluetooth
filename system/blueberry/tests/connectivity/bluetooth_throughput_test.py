@@ -10,8 +10,9 @@ import math
 
 from mobly import asserts
 from mobly import test_runner
-from mobly.controllers.android_device_lib.jsonrpc_client_base import ApiError
-from mobly.signals import TestAbortClass
+from mobly import signals
+from mobly.controllers.android_device_lib import jsonrpc_client_base
+
 # Internal import
 from blueberry.utils import blueberry_base_test
 from blueberry.utils import metrics_utils
@@ -23,7 +24,7 @@ class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
   @retry.logged_retry_on_exception(
       retry_intervals=retry.FuzzedExponentialIntervals(
           initial_delay_sec=2, factor=5, num_retries=5, max_delay_sec=300))
-  def _measure_throughput(self, num_of_buffers, buffer_size):
+  def _measure_throughput(self, num_of_buffers: int, buffer_size: int) -> int:
     """Measures the throughput of a data transfer.
 
     Sends data from the client device that is read by the server device.
@@ -48,7 +49,7 @@ class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
                                                      buffer_size))
     return throughput
 
-  def _throughput_test(self, buffer_size, test_name):
+  def _throughput_test(self, buffer_size: int, test_name: str) -> None:
     logging.info('throughput test with buffer_size: %d and testname: %s',
                  buffer_size, test_name)
     metrics = {}
@@ -95,7 +96,7 @@ class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
     """Standard Mobly setup class."""
     super(BluetoothThroughputTest, self).setup_class()
     if len(self.android_devices) < 2:
-      raise TestAbortClass(
+      raise signals.TestAbortClass(
           'Not enough android phones detected (need at least two)')
     self.phone = self.android_devices[0]
 
@@ -168,7 +169,7 @@ class BluetoothThroughputTest(blueberry_base_test.BlueberryBaseTest):
             num_of_buffers, current_buffer_size)
         logging.info('The throughput is %d at buffer size of %d', throughput,
                      current_buffer_size)
-      except ApiError:
+      except jsonrpc_client_base.ApiError:
         maximum_buffer_size = current_buffer_size - 1
         logging.info('Max buffer size: %d bytes', maximum_buffer_size)
         logging.info('Max throughput: %d bytes-per-second', throughput)
