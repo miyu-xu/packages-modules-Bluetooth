@@ -3,17 +3,18 @@
 import os
 import random
 import time
+from typing import Mapping, Optional
 
 from mobly import asserts
 from mobly import test_runner
 from mobly import signals
 from mobly import utils
-
 from mobly.controllers import android_device
 
 from blueberry.utils import blueberry_ui_base_test
 from blueberry.utils import bt_constants
 from blueberry.utils import bt_test_utils
+
 
 # The path is used to place the created vcf files.
 STORAGE_PATH = '/storage/emulated/0'
@@ -37,7 +38,7 @@ PERMISSION_LIST = [
 class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
   """Test Class for Bluetooth PBAP Test."""
 
-  def __init__(self, configs):
+  def __init__(self, configs: Mapping[str, str]):
     super().__init__(configs)
     self.derived_bt_device = None
     self.pri_phone = None
@@ -82,7 +83,8 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
     # Make sure PBAP is not connected before running tests.
     self._terminate_pbap_connection()
 
-  def _import_vcf_to_pse(self, file_name, expected_contact_count):
+  def _import_vcf_to_pse(self, file_name: str,
+                         expected_contact_count: int) -> None:
     """Imports the vcf file to PSE."""
     # Open ImportVcardActivity and click "OK" in the pop-up dialog, then
     # PickActivity will be launched and browses the existing vcf files.
@@ -122,10 +124,10 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
         'Successfully added %d contact(s).' % current_count)
 
   def _generate_contacts_on_pse(self,
-                                num_of_contacts,
-                                first_name=None,
-                                last_name=None,
-                                phone_number=None):
+                                num_of_contacts: int,
+                                first_name: Optional[str] = None,
+                                last_name: Optional[str] = None,
+                                phone_number: Optional[int] = None) -> None:
     """Generates contacts to be tested on PSE."""
     vcf_file = bt_test_utils.create_vcf_from_vcard(
         output_path=self.pri_phone.log_path,
@@ -141,10 +143,11 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
                                'scan_volume --arg external_primary')
     file_name = vcf_file.split('/')[-1]
     self._import_vcf_to_pse(file_name, num_of_contacts)
-    self.pri_phone.adb.shell(
-        'rm -rf %s' % os.path.join(STORAGE_PATH, file_name))
+    self.pri_phone.adb.shell('rm -rf %s' %
+                             os.path.join(STORAGE_PATH, file_name))
 
-  def _generate_call_logs_on_pse(self, call_log_type, num_of_call_logs):
+  def _generate_call_logs_on_pse(self, call_log_type: str,
+                                 num_of_call_logs: int) -> None:
     """Generates call logs to be tested on PSE."""
     self.pri_phone.log.info('Putting %d call log(s) which type are "%s"...' %
                             (num_of_call_logs, call_log_type))
@@ -168,9 +171,9 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
         'Successfully added %d call log(s).' % current_count)
 
   def _wait_and_get_contact_count(self,
-                                  device,
-                                  expected_contact_count,
-                                  timeout_sec):
+                                  device: android_device.AndroidDevice,
+                                  expected_contact_count: int,
+                                  timeout_sec: int) -> int:
     """Waits for contact update for a period time and returns contact count.
 
     This method should be used when a device imports some new contacts. It can
@@ -202,10 +205,10 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
     return current_count
 
   def _wait_and_get_call_log_count(self,
-                                   device,
-                                   call_log_type,
-                                   expected_call_log_count,
-                                   timeout_sec):
+                                   device: android_device.AndroidDevice,
+                                   call_log_type: str,
+                                   expected_call_log_count: int,
+                                   timeout_sec: int) -> int:
     """Waits for call log update for a period time and returns call log count.
 
     This method should be used when a device adds some new call logs. It can
@@ -237,7 +240,7 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
           (expected_call_log_count, current_count))
     return current_count
 
-  def _terminate_pbap_connection(self):
+  def _terminate_pbap_connection(self) -> None:
     status = self.derived_bt_device.sl4a.bluetoothPbapClientGetConnectionStatus(
         self.pse_mac_address)
     if status == bt_constants.BluetoothConnectionStatus.STATE_DISCONNECTED:
