@@ -13,7 +13,7 @@ import time
 
 from mobly import asserts
 from mobly import test_runner
-from mobly.signals import TestAbortClass
+from mobly import signals
 # Internal import
 from blueberry.utils import blueberry_base_test
 from blueberry.utils import bt_test_utils
@@ -26,7 +26,7 @@ class BluetoothLatencyTest(blueberry_base_test.BlueberryBaseTest):
   @retry.logged_retry_on_exception(
       retry_intervals=retry.FuzzedExponentialIntervals(
           initial_delay_sec=2, factor=5, num_retries=5, max_delay_sec=300))
-  def _measure_latency(self):
+  def _measure_latency(self) -> float:
     """Measures the latency of data transfer over RFCOMM.
 
     Sends data from the client device that is read by the server device.
@@ -50,7 +50,7 @@ class BluetoothLatencyTest(blueberry_base_test.BlueberryBaseTest):
     """Standard Mobly setup class."""
     super(BluetoothLatencyTest, self).setup_class()
     if len(self.android_devices) < 2:
-      raise TestAbortClass(
+      raise signals.TestAbortClass(
           'Not enough android phones detected (need at least two)')
     self.phone = self.android_devices[0]
     self.phone.init_setup()
