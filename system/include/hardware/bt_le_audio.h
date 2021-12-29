@@ -57,21 +57,40 @@ typedef enum {
   LE_AUDIO_CODEC_INDEX_SOURCE_MAX
 } btle_audio_codec_index_t;
 
+typedef enum {
+  LE_AUDIO_AUDIO_DIRECTION_INPUT = 0,
+  LE_AUDIO_AUDIO_DIRECTION_OUTPUT
+} btle_audio_audio_direction_index_t;
+
 typedef struct {
   btle_audio_codec_index_t codec_type;
+  btle_audio_audio_direction_index_t audio_direction;
 
   std::string ToString() const {
-    std::string codec_name_str;
+    std::string codec_str;
 
     switch (codec_type) {
       case LE_AUDIO_CODEC_INDEX_SOURCE_LC3:
-        codec_name_str = "LC3";
+        codec_str = "codec: LC3";
         break;
       default:
-        codec_name_str = "Unknown LE codec " + std::to_string(codec_type);
+        codec_str = "codec: Unknown LE codec " + std::to_string(codec_type);
         break;
     }
-    return "codec: " + codec_name_str;
+
+    switch (audio_direction) {
+      case LE_AUDIO_AUDIO_DIRECTION_INPUT:
+        codec_str += ", input audio direction";
+        break;
+      case LE_AUDIO_AUDIO_DIRECTION_OUTPUT:
+        codec_str += ", output audio direction";
+        break;
+      default:
+        codec_str +=
+            ", unknown audio direction " + std::to_string(audio_direction);
+        break;
+    }
+    return codec_str;
   }
 } btle_audio_codec_config_t;
 
