@@ -17,6 +17,7 @@
 package com.android.bluetooth.sdp;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothAdapter;
@@ -68,6 +69,7 @@ public class DipTest {
 
     @Before
     public void setUp() throws Exception {
+        doReturn("00:01:02:03:04:05").when(mAdapterService).getIdentityAddress("00:01:02:03:04:05");
         mTargetContext = InstrumentationRegistry.getTargetContext();
         // Set up mocks and test assets
         MockitoAnnotations.initMocks(this);
