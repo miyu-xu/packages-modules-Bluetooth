@@ -52,28 +52,46 @@ enum class GroupNodeStatus {
   REMOVED,
 };
 
-typedef enum {
-  LE_AUDIO_CODEC_INDEX_SOURCE_LC3 = 0,
-  LE_AUDIO_CODEC_INDEX_SOURCE_MAX
-} btle_audio_codec_index_t;
+enum class CodecType {
+  LC3 = 0,
+  MAX,
+};
+
+enum class AudioDirection { UNSPECIFIED = 0, INPUT, OUTPUT };
 
 typedef struct {
-  btle_audio_codec_index_t codec_type;
+  CodecType codec_type;
+  AudioDirection audio_direction;
 
   std::string ToString() const {
-    std::string codec_name_str;
+    std::string codec_str;
 
     switch (codec_type) {
-      case LE_AUDIO_CODEC_INDEX_SOURCE_LC3:
-        codec_name_str = "LC3";
+      case CodecType::LC3:
+        codec_str = "codec: LC3";
         break;
       default:
-        codec_name_str = "Unknown LE codec " + std::to_string(codec_type);
+        codec_str = "codec: Unknown LE codec";
         break;
     }
-    return "codec: " + codec_name_str;
+
+    switch (audio_direction) {
+      case AudioDirection::UNSPECIFIED:
+        codec_str += ", unspecified audio direction";
+        break;
+      case AudioDirection::INPUT:
+        codec_str += ", input audio direction";
+        break;
+      case AudioDirection::OUTPUT:
+        codec_str += ", output audio direction";
+        break;
+      default:
+        codec_str += ", unknown audio direction";
+        break;
+    }
+    return codec_str;
   }
-} btle_audio_codec_config_t;
+} offload_preference_codec_t;
 
 class LeAudioClientCallbacks {
  public:
@@ -103,7 +121,7 @@ class LeAudioClientInterface {
   /* Register the LeAudio callbacks */
   virtual void Initialize(
       LeAudioClientCallbacks* callbacks,
-      const std::vector<btle_audio_codec_config_t>& offloading_preference) = 0;
+      const std::vector<offload_preference_codec_t>& offloading_preference) = 0;
 
   /** Connect to LEAudio */
   virtual void Connect(const RawAddress& address) = 0;

@@ -28,12 +28,12 @@
 
 using base::Bind;
 using base::Unretained;
-using bluetooth::le_audio::btle_audio_codec_config_t;
 using bluetooth::le_audio::ConnectionState;
 using bluetooth::le_audio::GroupNodeStatus;
 using bluetooth::le_audio::GroupStatus;
 using bluetooth::le_audio::LeAudioClientCallbacks;
 using bluetooth::le_audio::LeAudioClientInterface;
+using bluetooth::le_audio::offload_preference_codec_t;
 
 namespace {
 class LeAudioClientInterfaceImpl;
@@ -71,7 +71,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
   }
 
   void Initialize(LeAudioClientCallbacks* callbacks,
-                  const std::vector<btle_audio_codec_config_t>&
+                  const std::vector<offload_preference_codec_t>&
                       offloading_preference) override {
     this->callbacks = callbacks;
 

@@ -27,13 +27,14 @@
 #include "com_android_bluetooth.h"
 #include "hardware/bt_le_audio.h"
 
-using bluetooth::le_audio::btle_audio_codec_config_t;
-using bluetooth::le_audio::btle_audio_codec_index_t;
+using bluetooth::le_audio::AudioDirection;
+using bluetooth::le_audio::CodecType;
 using bluetooth::le_audio::ConnectionState;
 using bluetooth::le_audio::GroupNodeStatus;
 using bluetooth::le_audio::GroupStatus;
 using bluetooth::le_audio::LeAudioClientCallbacks;
 using bluetooth::le_audio::LeAudioClientInterface;
+using bluetooth::le_audio::offload_preference_codec_t;
 
 namespace android {
 static jmethodID method_onConnectionStateChanged;
@@ -45,6 +46,7 @@ static struct {
   jclass clazz;
   jmethodID constructor;
   jmethodID getCodecType;
+  jmethodID getAudioDirection;
 } android_bluetooth_BluetoothLeAudioCodecConfig;
 
 static LeAudioClientInterface* sLeAudioClientInterface = nullptr;
@@ -132,9 +134,12 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
   jclass jniBluetoothLeAudioCodecConfigClass =
       env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig");
   android_bluetooth_BluetoothLeAudioCodecConfig.constructor =
-      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "<init>", "(I)V");
+      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "<init>", "(II)V");
   android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
       jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getAudioDirection =
+      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "getAudioDirection",
+                       "()I");
 
   method_onGroupStatus = env->GetMethodID(clazz, "onGroupStatus", "(II)V");
   method_onGroupNodeStatus =
@@ -144,9 +149,9 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
       env->GetMethodID(clazz, "onConnectionStateChanged", "(I[B)V");
 }
 
-std::vector<btle_audio_codec_config_t> prepareCodecPreferences(
+std::vector<offload_preference_codec_t> prepareCodecPreferences(
     JNIEnv* env, jobject object, jobjectArray codecConfigArray) {
-  std::vector<btle_audio_codec_config_t> codec_preferences;
+  std::vector<offload_preference_codec_t> codec_preferences;
 
   int numConfigs = env->GetArrayLength(codecConfigArray);
   for (int i = 0; i < numConfigs; i++) {
@@ -162,8 +167,13 @@ std::vector<btle_audio_codec_config_t> prepareCodecPreferences(
         jcodecConfig,
         android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType);
 
-    btle_audio_codec_config_t codec_config = {
-        .codec_type = static_cast<btle_audio_codec_index_t>(codecType)};
+    jint audioDirection = env->CallIntMethod(
+        jcodecConfig,
+        android_bluetooth_BluetoothLeAudioCodecConfig.getAudioDirection);
+
+    offload_preference_codec_t codec_config = {
+        .codec_type = static_cast<CodecType>(codecType),
+        .audio_direction = static_cast<AudioDirection>(audioDirection)};
 
     codec_preferences.push_back(codec_config);
   }
@@ -209,7 +219,7 @@ static void initNative(JNIEnv* env, jobject object,
     return;
   }
 
-  std::vector<btle_audio_codec_config_t> codec_offloading =
+  std::vector<offload_preference_codec_t> codec_offloading =
       prepareCodecPreferences(env, object, codecOffloadingArray);
 
   sLeAudioClientInterface->Initialize(&sLeAudioClientCallbacks,
