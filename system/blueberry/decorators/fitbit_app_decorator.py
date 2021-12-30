@@ -13,11 +13,11 @@ from mobly.controllers import android_device
 # Internal import
 from blueberry.controllers import derived_bt_device
 from blueberry.utils.ui_pages import fitbit_companion  # pylint: disable=no-name-in-module,import-error
+from blueberry.utils.ui_pages import ui_core
 from blueberry.utils.ui_pages.fitbit_companion import account_pages  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import context  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import other_pages  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import pairing_pages  # pylint: disable=no-name-in-module,import-error
-
 
 _FITBIT_PACKAGE_NAME = 'com.fitbit.FitbitMobile'
 _LOG_PREFIX_MESSAGE = 'Fitbit Companion App'
@@ -43,22 +43,42 @@ class FitbitAppDecorator:
     self.ui_context = fitbit_companion.get_context(
         self._ad, do_go_home=False, safe_get=True)
 
+    self.ui_context.regr_page_call(other_pages.LocationPermissionSync, 'enable')
+    self.ui_context.regr_page_call(other_pages.PixelBudConnectPopup, 'cancel')
+    self.ui_context.regr_page_call(other_pages.DownloadAppPopup, 'done')
+    self.ui_context.regr_page_call(other_pages.FitbitSmartLockPage, 'save')
+    self.ui_context.regr_page_call(other_pages.GooglePasswordSavePage, 'save')
+    self.ui_context.regr_page_call(other_pages.GooglePlayAccountCompletePage,
+                                   'go')
+    self.ui_context.regr_page_call(other_pages.GoogleSmartLockSavePage, 'no')
+    self.ui_context.regr_page_call(other_pages.GooglePlayTermOfServicePage,
+                                   'accept')
     if not apk_utils.is_apk_installed(self._ad, _FITBIT_PACKAGE_NAME):
       # Fitbit App is not installed, install it now.
       self.ui_context.log.info('Installing Fitbit App...')
       fitbit_companion.go_google_play_page(self.ui_context)
       self.ui_context.expect_page(other_pages.GooglePlayPage)
-      self.ui_context.regr_page_call(other_pages.GoogleSmartLockSavePage, 'no')
       self.ui_context.page.install()
-      self.ui_context.expect_page(other_pages.LoginPage)
-      fitbit_app_account = self._ad._user_params.get('fitbit_app_account',
-                                                     'test')
+
+    self.ui_context.go_home_page()
+    fitbit_app_account = self._ad._user_params.get('fitbit_app_account', 'test')
+
+    if self.ui_context.is_page(other_pages.LoginInputPage):
+      self.ui_context.page.input(
+          fitbit_app_account,
+          self._ad._user_params.get('fitbit_app_password', 'test'))
+    elif self.ui_context.is_page(other_pages.LoginPage2):
+      self.ui_context.page.login(
+          fitbit_app_account,
+          self._ad._user_params.get('fitbit_app_password', 'test'))
+    elif self.ui_context.is_page(other_pages.LoginPage):
       self.ui_context.log.info('Login Fitbit App with account=%s...',
                                fitbit_app_account)
       self.ui_context.page.login(
           fitbit_app_account,
           self._ad._user_params.get('fitbit_app_password', 'test'))
-      self.ui_context.expect_page(context.HomePage)
+
+    self.ui_context.expect_page(context.HomePage)
 
   def __getattr__(self, name: str):
     return getattr(self._ad, name)
@@ -70,6 +90,13 @@ class FitbitAppDecorator:
       bt_device: The testing target.
     """
     self._target_device = bt_device
+
+  def factory_reset_bluetooth(self):
+    logging.info('Removing all paired device(s) after testing...')
+    removed_count = fitbit_companion.remove_all_paired_devices(self.ui_context)
+    logging.info('Total %d device(s) being removed!', removed_count)
+    logging.info('Delegate the BT reset down to %s...', self._ad)
+    self._ad.factory_reset_bluetooth()
 
   def pair_and_connect_bluetooth(self, mac_address: str) -> None:
     """Pairs and connects Android device with Fitbit device.
@@ -90,14 +117,27 @@ class FitbitAppDecorator:
           (f'Target BT device has MAC address={target_device_mac_address}',
            f'which is different than given MAC address={mac_address} !'))
 
+    self.ui_context.regr_page_call(pairing_pages.CancelPairPage, 'yes')
+    self.ui_context.regr_page_call(other_pages.FitbitLocationPermissionPopup,
+                                   'back')
+    self.ui_context.regr_page_call(ui_core.NonePage, 'swipe_left')
+    self.ui_context.regr_page_call(pairing_pages.PairRetryPage, 'retry')
+    self.ui_context.regr_page_call(other_pages.NetworkOpFailPage, 'cancel')
     self.ui_context.regr_page_call(other_pages.PlayfulPage, 'skip')
     self.ui_context.regr_page_call(other_pages.LinkConfirmPage, 'ok')
     self.ui_context.regr_page_call(other_pages.PurchaseFail, 'ok')
     self.ui_context.regr_page_call(pairing_pages.PremiumPage, 'done')
     self.ui_context.regr_page_call(other_pages.PurchaseFail, 'ok')
-    self.ui_context.regr_page_call(other_pages.LocationPermissionSync, 'enable')
     self.ui_context.regr_page_call(pairing_pages.UpdateDevicePage,
                                    'update_later')
+
+    log.info('Entering account page...')
+    self.ui_context.go_page(account_pages.AccountPage)
+
+    log.info('Removing all paired device(s) before testing...')
+    removed_count = fitbit_companion.remove_all_paired_devices(self.ui_context)
+
+    log.info('Total %d device(s) being removed!', removed_count)
 
     log.debug('Start the pair-pin subscription...')
     try:
@@ -107,14 +147,6 @@ class FitbitAppDecorator:
         log.warning('Fitbit device already subscribed on pubsub!')
       else:
         raise err
-
-    log.info('Entering account page...')
-    self.ui_context.go_page(account_pages.AccountPage)
-
-    log.info('Removed all paired device(s) before testing...')
-    removed_count = fitbit_companion.remove_all_paired_devices(self.ui_context)
-
-    log.info('Total %d device(s) being removed!', removed_count)
 
     fitbit_prod_name = _MODEL_TO_PRODUCT_NAME_MAPPING[fitbit_device.model]
     log.info('Pairing with %s...', fitbit_prod_name)
@@ -145,7 +177,7 @@ class FitbitAppDecorator:
 
     # TODO(user): Move pairing logic into fitbit_companion package while
     #   it may be used in many places.
-    self.ui_context.expect_page(pairing_pages.Pairing4DigitPage, wait_sec=150)
+    self.ui_context.expect_page(pairing_pages.Pairing4DigitPage, wait_sec=200)
     pins = fitbit_device._device.bt.pair_pin_show()
     log.info('Pairing pins=%s...', pins)
     self.ui_context.page.input_pins(pins)
@@ -173,6 +205,7 @@ class FitbitAppDecorator:
           pairing_pages.CancelPairPage,
           pairing_pages.CancelPair2Page,
           other_pages.AllowNotification,
+          other_pages.LinkConfirmPage,
       ],
                                    wait_sec=90)
       if self.ui_context.is_page(pairing_pages.PairingConfirmPage):
@@ -190,6 +223,9 @@ class FitbitAppDecorator:
       elif self.ui_context.is_page(other_pages.AllowNotification):
         log.warning('Allow notification page...')
         self.ui_context.page.allow()
+      elif self.ui_context.is_page(other_pages.LinkConfirmPage):
+        log.warning('Allow Fitbit to manage device page...')
+        self.ui_context.page.ok()
       elif self.ui_context.is_page(pairing_pages.PairingIntroPage):
         log.info('Passing through Fitbit introduction pages...')
         break
@@ -215,24 +251,31 @@ class FitbitAppDecorator:
       # Optional page observed during manual pairing experiment.
       self.ui_context.page.ok()
 
-    log.info('Completed pairing process and start evaluation process...')
-    if self.ui_context.is_page(account_pages.AccountPage):
-      paired_device_nodes = self.ui_context.page.get_paired_devices()
-      asserts.assert_true(
-          len(paired_device_nodes) == 1,
-          f'Unexpected paired device nodes={paired_device_nodes}',
-      )
-      asserts.assert_true(
-          paired_device_nodes[0].text == fitbit_prod_name,
-          f'Unexpected paired device nodes={paired_device_nodes}',
-      )
-    else:
-      raise signals.TestError('Failed in evaluation of Fitbit pairing result!')
+    try:
+      log.info('Completing pairing process and start evaluation process...')
+      if self.ui_context.is_page(account_pages.AccountPage):
+        paired_device_nodes = self.ui_context.page.get_paired_devices()
+        asserts.assert_true(
+            len(paired_device_nodes) >= 1,
+            f'Unexpected paired device nodes={paired_device_nodes}',
+        )
+        asserts.assert_true(
+            fitbit_prod_name in [node.text for node in paired_device_nodes],
+            f'Unexpected paired device nodes={paired_device_nodes}',
+        )
+      else:
+        raise signals.TestError(
+            'Failed in evaluation of Fitbit pairing result!')
 
-    log.info('Stop the pair-pin subscription...')
-    fitbit_device._device.bt.pair_pin_stop()
-    log.info('Pairing and connection with %s(%s) is all done!',
-             fitbit_prod_name, mac_address)
+      log.info('Stop the pair-pin subscription...')
+      fitbit_device._device.bt.pair_pin_stop()
+      log.info('Pairing and connection with %s(%s) is all done!',
+               fitbit_prod_name, mac_address)
+    finally:
+      removed_count = fitbit_companion.remove_all_paired_devices(
+          self.ui_context)
+      logging.info('Total %d device(s) being removed after testing!',
+                   removed_count)
 
 
 class FitbitCompanionAppLoggerAdapter(logging.LoggerAdapter):
