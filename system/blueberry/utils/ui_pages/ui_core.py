@@ -32,7 +32,7 @@ _EXPECT_PAGE_WAIT_TIME_IN_SECOND = 20
 NodeEvaluator = Optional[Callable[[ui_node.UINode], bool]]
 
 # Number of retries in retrieving UI xml file.
-_RETRIES_NUM_OF_ADB_COMMAND = 5
+_RETRIES_NUM_OF_ADB_COMMAND = 6
 
 
 # Dataclass for return of UI parsing result.
@@ -126,11 +126,15 @@ class Context(abc.ABC):
     """
     pass
 
-  def go_page(self, page_class: Type[UIPage]) -> UIPage:
+  def go_page(self,
+              page_class: Type[UIPage],
+              expected_pages: Optional[List[Type[UIPage]]] = None) -> UIPage:
     """Goes to target page.
 
     Args:
       page_class: The class of target page to go to.
+      expected_pages: The expected page(s) after launching activity
+        of target page.
 
     Returns:
       The corresponding UIPage of given page class.
@@ -143,7 +147,7 @@ class Context(abc.ABC):
 
     self.ad.adb.shell(f'am start -n {page_class.ACTIVITY}')
     self.get_page()
-    self.expect_page(page_class)
+    self.expect_pages(expected_pages or [page_class])
 
     return self.page
 
@@ -485,6 +489,9 @@ class UIPage:
   # Defined in subclass
   PAGE_TITLE = None
 
+  # Defined in subclass
+  CONTENT_DESC = None
+
   def __init__(self, ctx: Context, ui_xml: Optional[minidom.Document],
                clickable_nodes: List[ui_node.UINode],
                enabled_nodes: List[ui_node.UINode],
@@ -528,6 +535,10 @@ class UIPage:
     elif cls.PAGE_RE_TEXT is not None:
       for node in enabled_nodes + clickable_nodes:
         if re.search(cls.PAGE_RE_TEXT, node.text):
+          return cls(ctx, ui_xml, clickable_nodes, enabled_nodes, all_nodes)
+    elif cls.CONTENT_DESC is not None:
+      for node in enabled_nodes + clickable_nodes:
+        if node.content_desc == cls.CONTENT_DESC:
           return cls(ctx, ui_xml, clickable_nodes, enabled_nodes, all_nodes)
     elif cls.PAGE_TITLE is not None:
       for node in enabled_nodes + clickable_nodes:
