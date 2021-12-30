@@ -51,6 +51,24 @@
       "message": "Hi Jakub, Alice, \n\nIt would be good reconfig is issued from BT stack to Audio framework and finally to the Audio HAL. This will make all layers are in sync. \n\nWith current patch, seems it is trying to make BT stack and Audio HAL are in sync and not sure this would work. We are also checking with our Audio team on this approach. Will update final feedback once we hear from our audio team.",
       "revId": "0c12d6848b76e544a274453983104a8e3465e843",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "116f139f_5dca3661",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1136338
+      },
+      "writtenOn": "2021-12-30T14:41:34Z",
+      "side": 1,
+      "message": "Hi Jakub, Alice, \n\nIt would be good reconfig is issued from BT stack to Audio framework and finally to the Audio HAL. This will make all layers are in sync. \n\nWith current patch, seems it is trying to make BT stack and Audio HAL are in sync and not sure this would work. We are also checking with our Audio team on this approach. Will update final feedback once we hear from our audio team.",
+      "parentUuid": "5ee4e237_d3989fbf",
+      "revId": "0c12d6848b76e544a274453983104a8e3465e843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
