@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018810089",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1913451?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fab62534_afac54c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-30T16:08:59Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "4a410bc0ecf0e7777519c999e6e2a3a6fdeecd3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018810089",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1913451?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "11143539_b19e13d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-30T16:08:59Z",
+      "side": 1,
+      "message": "\"After above steps issue not seen\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 38
+      },
+      "revId": "4a410bc0ecf0e7777519c999e6e2a3a6fdeecd3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
