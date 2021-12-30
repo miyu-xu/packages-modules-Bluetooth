@@ -29,8 +29,20 @@ def get_context(ad: android_device.AndroidDevice,
   """
   ctx = context.Context(ad, safe_get=safe_get, do_go_home=do_go_home)
   ctx.known_pages.extend((
+      other_pages.PixelBudConnectPopup,
+      other_pages.ConfirmLocationPermissionPopup,
+      other_pages.DownloadAppPopup,
+      other_pages.LoginInputPage,
+      other_pages.LoginPage2,
       other_pages.LoginPage,
+      other_pages.FitbitLocationPermissionPopup,
+      other_pages.FitbitSmartLockPage,
+      other_pages.GooglePasswordSavePage,
       other_pages.GooglePlayPage,
+      other_pages.GooglePlayNotAvailablePage,
+      other_pages.GooglePlayTermOfServicePage,
+      other_pages.GooglePlayAccountCompletePage,
+      other_pages.GoogleSmartLockPage,
       other_pages.AllowLocationPermissionConfirmPopup,
       other_pages.AllowLocationPermissionPopup,
       other_pages.LocationPermissionSync,
@@ -39,6 +51,7 @@ def get_context(ad: android_device.AndroidDevice,
       other_pages.SettingLocation,
       other_pages.LocationDisabledPage,
       other_pages.LinkConfirmPage,
+      other_pages.NetworkOpFailPage,
       other_pages.PlayfulPage,
       account_pages.AccountPage,
       account_pages.PairedDeviceDetailPage,
@@ -57,6 +70,7 @@ def get_context(ad: android_device.AndroidDevice,
       pairing_pages.ConfirmChargePage,
       pairing_pages.ChooseTrackerPage,
       pairing_pages.ConfirmDevicePage,
+      pairing_pages.SearchDevicePage,
       pairing_pages.SkipInfoPage,
       pairing_pages.UpdateDevicePage,
   ))
@@ -96,6 +110,15 @@ def _click_unpair_button_on_device(ctx: context.Context,
     device_name: Name of Fitbit device to be unpaired.
   """
   ctx.page.click(device_name)
+  ctx.expect_pages([
+      pairing_pages.PairAndLinkPage,
+      account_pages.PairedDeviceDetailPage,
+      other_pages.ConfirmLocationPermissionPopup])
+  if ctx.is_page(pairing_pages.PairAndLinkPage):
+    ctx.page.cancel()
+  elif ctx.is_page(other_pages.ConfirmLocationPermissionPopup):
+    ctx.page.cancel()
+
   ctx.expect_page(account_pages.PairedDeviceDetailPage)
   ctx.page.unpair()
   ctx.expect_page(account_pages.UnpairConfirmPage)
