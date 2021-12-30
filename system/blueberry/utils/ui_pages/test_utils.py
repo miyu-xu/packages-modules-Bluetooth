@@ -16,6 +16,9 @@ class MockNode:
     if 'bounds' not in self.attributes:
       self.attributes['bounds'] = '[0,0][384,384]'
 
+    if 'content-desc' not in self.attributes:
+      self.attributes['content-desc'] = ''
+
   def __str__(self):
     xml_str_elements = []
     if not self.is_child:
