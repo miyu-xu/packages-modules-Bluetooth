@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018802672",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932806?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7419638f_72943add",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-30T02:46:34Z",
+      "side": 1,
+      "message": "\"play/pause music from a BT headset\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 40
+      },
+      "revId": "bd4ad1148e1c8a06f722b93ecd48d8f9145f6ddb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018802672",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932806?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "32d16890_73cc47de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-30T02:46:34Z",
+      "side": 1,
+      "message": "\"IOP and BCST\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 18
+      },
+      "revId": "bd4ad1148e1c8a06f722b93ecd48d8f9145f6ddb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
