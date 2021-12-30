@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018812330",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1934967?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c01b535d_823dff04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-30T20:22:43Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "951b68494d99a55703ff4b15af25136747b6a41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018812330",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1934967?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ecda306a_56a99117",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2021-12-30T20:22:43Z",
+      "side": 1,
+      "message": "\"watch -n 1 -d \\\"adb shell dumpsys bluetooth_manager  | grep LeAudio\\\\ Mana -A 60\\\"\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 85
+      },
+      "revId": "951b68494d99a55703ff4b15af25136747b6a41f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
