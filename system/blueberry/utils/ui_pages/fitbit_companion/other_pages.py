@@ -86,6 +86,33 @@ class GoogleSmartLockPage(ui_core.UIPage):
     return self.click_node_by_text(self._NODE_NO_TEXT)
 
 
+class LoginPage2(ui_core.UIPage):
+  """Fitbit Companion App's login page2."""
+
+  PAGE_TEXT = "Let's get started"
+  _NODE_TERM_OF_SERVICE_RID = 'com.fitbit.FitbitMobile:id/termsTextView'
+  _NODE_EMAIL_INPUT_RID = f'{constants.PKG_NAME_ID}/login_email'
+  _NODE_PASSWORD_INPUT_RID = f'{constants.PKG_NAME_ID}/login_password'
+  _NODE_LOGIN_BUTTON_RID = f'{constants.PKG_NAME_ID}/login_button'
+
+  def login(self, account: str, password: str) -> ui_core.UIPage:
+    """Logins Fitbit companion app.
+
+    Args:
+      account: The account is used to login Fitbit App.
+      password: The password is used to login Fitbit App.
+
+    Returns:
+      The transformed page.
+    """
+    self.click_node_by_rid(self._NODE_TERM_OF_SERVICE_RID)
+    self.click_node_by_rid(self._NODE_EMAIL_INPUT_RID)
+    self.ctx.ad.adb.shell(shlex.split(f'input text "{account}"'))
+    self.click_node_by_rid(self._NODE_PASSWORD_INPUT_RID)
+    self.ctx.ad.adb.shell(shlex.split(f'input text "{password}"'))
+    return self.click_node_by_rid(self._NODE_LOGIN_BUTTON_RID)
+
+
 class LoginPage(ui_core.UIPage):
   """Fitbit Companion App's login page."""
 
@@ -128,8 +155,7 @@ class GooglePlayPage(ui_core.UIPage):
 
   @classmethod
   def from_xml(cls, ctx: ui_core.Context, ui_xml: minidom.Document,
-               clickable_nodes: NodeList,
-               enabled_nodes: NodeList,
+               clickable_nodes: NodeList, enabled_nodes: NodeList,
                all_nodes: NodeList) -> Optional[ui_core.UIPage]:
     """Instantiates page object from XML object.
 
@@ -170,13 +196,28 @@ class GooglePlayPage(ui_core.UIPage):
       self.click_node_by_text(self._NODE_INSTALL_BUTTON_TEXT)
       self.ctx.expect_page(
           self.__class__,
-          wait_sec=120,
+          wait_sec=300,
           node_eval=lambda node: node.text == self._NODE_OPEN_BUTTON_TEXT)
 
     if open_app:
       return self.ctx.page.open()
     else:
       return self.ctx.page
+
+
+class FitbitLocationPermissionPopup(ui_core.UIPage):
+  """Page to confirm the location permission request in Fitbit."""
+
+  PAGE_TEXT = 'LOCATION ACCESS FOR THIS APP'
+  _NODE_BTN_BACK_TEXT = 'Back'
+
+  def back(self) -> ui_core.UIPage:
+    """Backs to previous page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_content_desc(self._NODE_BTN_BACK_TEXT)
 
 
 class AllowLocationPermissionConfirmPopup(ui_core.UIPage):
@@ -186,8 +227,27 @@ class AllowLocationPermissionConfirmPopup(ui_core.UIPage):
   _ALLOW_BUTTON_RESOURCE_ID = 'com.android.permissioncontroller:id/permission_no_upgrade_button'
 
   def allow(self) -> ui_core.UIPage:
-    """Allows the request."""
+    """Allows the request.
+
+    Returns:
+      The transformed page.
+    """
     return self.click_node_by_rid(self._ALLOW_BUTTON_RESOURCE_ID)
+
+
+class ConfirmLocationPermissionPopup(ui_core.UIPage):
+  """Page to confirm the location permission."""
+
+  PAGE_TEXT = 'Are you sure?'
+  _NODE_BTN_CANCEL = 'CANCEL'
+
+  def cancel(self) -> ui_core.UIPage:
+    """Cancels the popup.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_BTN_CANCEL)
 
 
 class AllowLocationPermissionPopup(ui_core.UIPage):
@@ -215,9 +275,16 @@ class LocationPermissionSync(ui_core.UIPage):
     self.ctx.get_page()
     self.ctx.expect_page(AllowLocationPermissionPopup)
     self.ctx.page.next()
-    self.ctx.expect_page(AllowLocationPermissionConfirmPopup)
-    self.ctx.page.allow()
-    self.click_node_by_text(self._UPDATE_BUTTON_TEXT)
+    if self.ctx.is_page(FitbitLocationPermissionPopup):
+      self.ctx.page.back()
+
+    if self.ctx.is_page(ConfirmLocationPermissionPopup):
+      self.ctx.page.cancel()
+    else:
+      self.ctx.expect_page(AllowLocationPermissionConfirmPopup)
+      self.ctx.page.allow()
+      self.click_node_by_text(self._UPDATE_BUTTON_TEXT)
+
     self.ctx.enable_registered_page_call = True
     return self.click_node_by_class(self._EXIT_IMAGE_CLASS)
 
@@ -269,8 +336,7 @@ class SettingLocation(ui_core.UIPage):
 
   @classmethod
   def from_xml(cls, ctx: ui_core.Context, ui_xml: minidom.Document,
-               clickable_nodes: NodeList,
-               enabled_nodes: NodeList,
+               clickable_nodes: NodeList, enabled_nodes: NodeList,
                all_nodes: NodeList) -> Optional[ui_core.UIPage]:
     """Instantiates page object from XML object.
 
@@ -362,7 +428,7 @@ class LinkConfirmPage(ui_core.UIPage):
 class PlayfulPage(ui_core.UIPage):
   """Playful page seen from b/210761410."""
 
-  PAGE_TEXT = 'Playful'
+  PAGE_RE_TEXT = '^(Playful|Continuum)$'
   _NODE_BACK_BTN_RID = 'back-button'
 
   def skip(self) -> ui_core.UIPage:
@@ -372,3 +438,149 @@ class PlayfulPage(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_rid(self._NODE_BACK_BTN_RID)
+
+
+class NetworkOpFailPage(ui_core.UIPage):
+  """Network operation failed page."""
+
+  PAGE_TEXT = 'Network operation failed'
+  _NODE_IGNORE_BTN_TEXT = 'CANCEL'
+
+  def cancel(self) -> ui_core.UIPage:
+    """Cancels the page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_IGNORE_BTN_TEXT)
+
+
+class GooglePlayTermOfServicePage(ui_core.UIPage):
+  """GooglePlay terms of service page."""
+
+  PAGE_TEXT = 'Terms of Service'
+  _NODE_ACCEPT_BTN_TEXT = 'Accept'
+
+  def accept(self) -> ui_core.UIPage:
+    """Accepts the terms of service.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_ACCEPT_BTN_TEXT)
+
+
+class GooglePlayNotAvailablePage(ui_core.UIPage):
+  """GooglePlay popup for message as not available."""
+
+  PAGE_TEXT = 'Google Play Store is not available.'
+  _NODE_OK_BTN_TEXT = 'OK'
+
+  def ok(self) -> ui_core.UIPage:
+    """Closes the popup.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_OK_BTN_TEXT)
+
+
+class GooglePlayAccountCompletePage(ui_core.UIPage):
+  """Page to complete GooglePlay account."""
+
+  PAGE_TEXT = 'Complete account setup'
+  _NODE_GROUP_BTN_RID = 'com.android.vending:id/button_group'
+  _NODE_SKIP_BTN_TEXT = 'Skip'
+
+  def go(self) -> ui_core.UIPage:
+    """Continues the setup.
+
+    Returns:
+      The transformed page.
+    """
+    node_skip = self.get_node_by_text(self._NODE_SKIP_BTN_TEXT)
+    if node_skip is not None:
+      # [skip] | [continue]
+      button_group_node = self.get_node_by_rid(self._NODE_GROUP_BTN_RID)
+      if button_group_node is not None:
+        # We want to click button [continue] on the right side.
+        button_group_node.x += 200
+        return self.click(button_group_node)
+
+    # [  continue  ]
+    return self.click_node_by_rid(self._NODE_GROUP_BTN_RID)
+
+
+class FitbitSmartLockPage(ui_core.UIPage):
+  """Page to save password in smart lock."""
+
+  PAGE_RE_TEXT = ('(Sign in easily across devices|Save Fitbit password with)')
+  _NODE_SAVE_BTN_TEXT = 'SAVE PASSWORD'
+
+  def save(self) -> ui_core.UIPage:
+    """Saves the password.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SAVE_BTN_TEXT)
+
+
+class GooglePasswordSavePage(ui_core.UIPage):
+  """Page to save password in Google."""
+
+  PAGE_RE_TEXT = 'Save password to Google'
+  _NODE_SAVE_BTN_TEXT = 'Save'
+
+  def save(self) -> ui_core.UIPage:
+    """Saves the password.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SAVE_BTN_TEXT)
+
+
+class PixelBudConnectPopup(ui_core.UIPage):
+  """Popup to connect Pixel Bud."""
+
+  PAGE_TEXT = 'Pixel Buds A-Series'
+  _NODE_CONNECT_BTN_TEXT = 'Connect'
+
+  def connect(self) -> ui_core.UIPage:
+    """Connects the Pixel bud proposed from the popup.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_CONNECT_BTN_TEXT)
+
+  def cancel(self) -> ui_core.UIPage:
+    """Scrolls down to cancel the request.
+
+    Returns:
+      The transformed page.
+    """
+    width, height = self.ctx.get_display_size()
+    return self.swipe(
+        width * 0.5,
+        height * 0.5,
+        width * 0.5,
+        height * 0.1,
+        duration_ms=800,
+        swipes=1)
+
+
+class DownloadAppPopup(ui_core.UIPage):
+  """Popup to download app."""
+
+  PAGE_TEXT = 'Download app'
+  _NODE_DONE_BTN_TEXT = 'Done'
+
+  def done(self) -> ui_core.UIPage:
+    """Skips the download request.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_DONE_BTN_TEXT)
