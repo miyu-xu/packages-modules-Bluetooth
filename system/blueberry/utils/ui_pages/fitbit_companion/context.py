@@ -1,8 +1,10 @@
 """Context of Fitbit Companion App."""
+
 from mobly.controllers import android_device
 
 from blueberry.utils.ui_pages import ui_core
 from blueberry.utils.ui_pages.fitbit_companion import constants
+from blueberry.utils.ui_pages.fitbit_companion import other_pages
 
 
 class Context(ui_core.Context):
@@ -31,7 +33,9 @@ class Context(ui_core.Context):
     Raises:
       errors.ContextError: Fail to reach target page.
     """
-    return self.go_page(HomePage)
+    return self.go_page(
+        HomePage,
+        [HomePage, other_pages.LoginPage, other_pages.LoginPage2])
 
 
 class HomePage(ui_core.UIPage):
