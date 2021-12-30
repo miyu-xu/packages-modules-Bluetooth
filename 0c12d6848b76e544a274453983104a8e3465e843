@@ -16,6 +16,24 @@
       "message": "This might break hardware offload, it needs to suspend and resume the session",
       "revId": "0c12d6848b76e544a274453983104a8e3465e843",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ee4e237_d3989fbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2021-12-30T04:14:20Z",
+      "side": 1,
+      "message": "We plan to update audio configuration to the HAL and with a callback to notify audio driver to get the audio configuration again. By this way, not sure if it works with this patch. Need to look into more.",
+      "parentUuid": "130d659c_7135781d",
+      "revId": "0c12d6848b76e544a274453983104a8e3465e843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
