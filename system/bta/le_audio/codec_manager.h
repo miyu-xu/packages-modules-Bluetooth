@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * You may obtain a copy of the License at:
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
@@ -14,15 +14,26 @@
  * limitations under the License.
  */
 
-#include "audio_hal_interface/hal_version_manager.h"
-#include "bta_le_audio_api.h"
+#pragma once
 
-bool LeAudioHalVerifier::SupportsLeAudio() {
-  return bluetooth::audio::HalVersionManager::GetHalVersion() >=
-         bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
-}
+#include "le_audio_types.h"
 
-bool LeAudioHalVerifier::SupportsLeAudioHardwareOffload() {
-  return bluetooth::audio::HalVersionManager::GetHalVersion() >
-         bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
-}
+namespace le_audio {
+
+class CodecManager {
+ public:
+  CodecManager();
+  virtual ~CodecManager() = default;
+  static CodecManager* GetInstance(void) {
+    static CodecManager* instance = new CodecManager();
+    return instance;
+  }
+  void Start(void);
+  void Stop(void);
+  virtual types::CodecLocation GetCodecLocation(void) const;
+
+ private:
+  struct impl;
+  std::unique_ptr<impl> pimpl_;
+};
+}  // namespace le_audio
