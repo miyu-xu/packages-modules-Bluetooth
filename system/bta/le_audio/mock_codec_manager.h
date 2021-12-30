@@ -1,5 +1,6 @@
 /*
- * Copyright 2021 The Android Open Source Project
+ * Copyright 2020 HIMSA II K/S - www.himsa.com.
+ * Represented by EHIMA - www.ehima.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +15,24 @@
  * limitations under the License.
  */
 
-#include "audio_hal_interface/hal_version_manager.h"
-#include "bta_le_audio_api.h"
+#pragma once
 
-bool LeAudioHalVerifier::SupportsLeAudio() {
-  return bluetooth::audio::HalVersionManager::GetHalVersion() >=
-         bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
-}
+#include <gmock/gmock.h>
 
-bool LeAudioHalVerifier::SupportsLeAudioHardwareOffload() {
-  return bluetooth::audio::HalVersionManager::GetHalVersion() >
-         bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
-}
+#include "codec_manager.h"
+
+class MockCodecManager {
+ public:
+  static MockCodecManager* GetInstance();
+
+  MockCodecManager() = default;
+  virtual ~MockCodecManager() = default;
+
+  MOCK_METHOD((le_audio::types::CodecLocation), GetCodecLocation, (), (const));
+
+  MOCK_METHOD((void), Start, ());
+  MOCK_METHOD((void), Stop, ());
+
+ private:
+  DISALLOW_COPY_AND_ASSIGN(MockCodecManager);
+};
