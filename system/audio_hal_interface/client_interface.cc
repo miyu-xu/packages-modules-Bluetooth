@@ -962,6 +962,14 @@ void BluetoothAudioClientInterface::StreamStarted(
 
 void BluetoothAudioClientInterface::StreamSuspended(
     const BluetoothAudioCtrlAck& ack) {
+<<<<<<< HEAD
+=======
+  if (provider_ == nullptr && provider_2_1_ == nullptr &&
+      provider_2_2_ == nullptr) {
+    LOG(ERROR) << __func__ << ": BluetoothAudioHal nullptr";
+    return;
+  }
+>>>>>>> 012212699c4b (LE audio hardware offload: onAudioSuspend handling for encode direction)
   if (ack == BluetoothAudioCtrlAck::PENDING) {
     LOG(INFO) << __func__ << ": " << ack << " ignored";
     return;
