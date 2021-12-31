@@ -83,7 +83,8 @@ class LeAudioTransport {
         total_bytes_processed_(0),
         data_position_({}),
         pcm_config_(std::move(pcm_config)),
-        is_pending_start_request_(false){};
+        is_pending_start_request_(false),
+        is_pending_suspend_request_(false){};
 
   BluetoothAudioCtrlAck StartRequest() {
     LOG(INFO) << __func__;
@@ -99,8 +100,9 @@ class LeAudioTransport {
   BluetoothAudioCtrlAck SuspendRequest() {
     LOG(INFO) << __func__;
     if (stream_cb_.on_suspend_()) {
+      is_pending_suspend_request_ = true;
       flush_();
-      return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+      return BluetoothAudioCtrlAck::PENDING;
     } else {
       return BluetoothAudioCtrlAck::FAILURE;
     }
@@ -186,6 +188,8 @@ class LeAudioTransport {
 
   bool IsPendingStartStream(void) { return is_pending_start_request_; }
   void ClearPendingStartStream(void) { is_pending_start_request_ = false; }
+  bool IsPendingSuspendStream(void) { return is_pending_suspend_request_; }
+  void ClearPendingSuspendStream(void) { is_pending_suspend_request_ = false; }
 
  private:
   void (*flush_)(void);
@@ -195,6 +199,7 @@ class LeAudioTransport {
   timespec data_position_;
   PcmParameters pcm_config_;
   bool is_pending_start_request_;
+  bool is_pending_suspend_request_;
 };
 
 static void flush_sink() {
@@ -269,6 +274,12 @@ class LeAudioSinkTransport
 
   bool IsPendingStartStream(void) { return transport_->IsPendingStartStream(); }
   void ClearPendingStartStream(void) { transport_->ClearPendingStartStream(); }
+  bool IsPendingSuspendStream(void) {
+    return transport_->IsPendingSuspendStream();
+  }
+  void ClearPendingSuspendStream(void) {
+    transport_->ClearPendingSuspendStream();
+  }
 
  private:
   LeAudioTransport* transport_;
@@ -346,6 +357,12 @@ class LeAudioSourceTransport
 
   bool IsPendingStartStream(void) { return transport_->IsPendingStartStream(); }
   void ClearPendingStartStream(void) { transport_->ClearPendingStartStream(); }
+  bool IsPendingSuspendStream(void) {
+    return transport_->IsPendingSuspendStream();
+  }
+  void ClearPendingSuspendStream(void) {
+    transport_->ClearPendingSuspendStream();
+  }
 
  private:
   LeAudioTransport* transport_;
@@ -645,6 +662,18 @@ void LeAudioClientInterface::Sink::CancelStreamingRequest() {
       BluetoothAudioCtrlAck::FAILURE);
 }
 
+void LeAudioClientInterface::Sink::ConfirmStreamingSuspended() {
+  LOG(INFO) << __func__;
+  if (!le_audio_sink->IsPendingSuspendStream()) {
+    LOG(WARNING) << ", no pending suspend stream request";
+    return;
+  }
+
+  le_audio_sink->ClearPendingSuspendStream();
+  le_audio_sink_hal_clientinterface->StreamSuspended(
+      BluetoothAudioCtrlAck::SUCCESS_FINISHED);
+}
+
 void LeAudioClientInterface::Sink::StopSession() {
   LOG(INFO) << __func__ << " sink";
   le_audio_sink->ClearPendingStartStream();
@@ -762,6 +791,18 @@ void LeAudioClientInterface::Source::CancelStreamingRequest() {
   le_audio_source->ClearPendingStartStream();
   le_audio_source_hal_clientinterface->StreamStarted(
       BluetoothAudioCtrlAck::FAILURE);
+}
+
+void LeAudioClientInterface::Source::ConfirmStreamingSuspended() {
+  LOG(INFO) << __func__;
+  if (!le_audio_source->IsPendingSuspendStream()) {
+    LOG(WARNING) << ", no pending start stream request";
+    return;
+  }
+
+  le_audio_source->ClearPendingSuspendStream();
+  le_audio_source_hal_clientinterface->StreamSuspended(
+      BluetoothAudioCtrlAck::SUCCESS_FINISHED);
 }
 
 void LeAudioClientInterface::Source::StopSession() {

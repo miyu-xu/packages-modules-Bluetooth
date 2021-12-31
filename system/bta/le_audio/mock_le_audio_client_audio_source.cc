@@ -52,4 +52,8 @@ void LeAudioClientAudioSource::UpdateAudioConfigToHal(
   instance->UpdateAudioConfigToHal(config);
 }
 
+void LeAudioClientAudioSource::ConfirmStreamingSuspended() {
+  instance->ConfirmStreamingSuspended();
+}
+
 void LeAudioClientAudioSource::DebugDump(int fd) { instance->DebugDump(fd); }
