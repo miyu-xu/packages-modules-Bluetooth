@@ -20,6 +20,7 @@
 
 #include <functional>
 
+#include "bta/le_audio/codec_manager.h"
 #include "bta/le_audio/le_audio_types.h"
 #include "common/message_loop_thread.h"
 
@@ -72,6 +73,8 @@ class LeAudioClientInterface {
     virtual void ConfirmStreamingRequest() = 0;
     virtual void CancelStreamingRequest() = 0;
     virtual void ConfirmStreamingSuspended() = 0;
+    virtual void UpdateAudioConfigToHal(
+        const ::le_audio::offload_config& config) = 0;
   };
 
  public:
@@ -87,7 +90,8 @@ class LeAudioClientInterface {
     void ConfirmStreamingRequest() override;
     void CancelStreamingRequest() override;
     void ConfirmStreamingSuspended() override;
-
+    void UpdateAudioConfigToHal(
+        const ::le_audio::offload_config& config) override;
     // Read the stream of bytes sinked to us by the upper layers
     size_t Read(uint8_t* p_buf, uint32_t len);
   };
@@ -103,7 +107,8 @@ class LeAudioClientInterface {
     void ConfirmStreamingRequest() override;
     void CancelStreamingRequest() override;
     void ConfirmStreamingSuspended() override;
-
+    void UpdateAudioConfigToHal(
+        const ::le_audio::offload_config& config) override;
     // Source the given stream of bytes to be sinked into the upper layers
     size_t Write(const uint8_t* p_buf, uint32_t len);
   };
