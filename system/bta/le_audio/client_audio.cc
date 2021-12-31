@@ -408,6 +408,17 @@ void LeAudioClientAudioSource::CancelStreamingRequest() {
   sinkClientInterface->CancelStreamingRequest();
 }
 
+void LeAudioClientAudioSource::StreamingSuspended() {
+  LOG(INFO) << __func__;
+  if ((sinkClientInterface == nullptr) ||
+      (le_audio_sink_hal_state != HAL_STARTED)) {
+    LOG(ERROR) << "LE audio device HAL was not started!";
+    return;
+  }
+
+  sinkClientInterface->StreamingSuspended();
+}
+
 void LeAudioClientAudioSource::UpdateRemoteDelay(uint16_t remote_delay_ms) {
   LOG(INFO) << __func__;
   if ((sinkClientInterface == nullptr) ||
@@ -597,6 +608,17 @@ void LeAudioClientAudioSink::CancelStreamingRequest() {
   }
 
   sourceClientInterface->CancelStreamingRequest();
+}
+
+void LeAudioClientAudioSink::StreamingSuspended() {
+  LOG(INFO) << __func__;
+  if ((sourceClientInterface == nullptr) ||
+      (le_audio_source_hal_state != HAL_STARTED)) {
+    LOG(ERROR) << "LE audio device HAL was not started!";
+    return;
+  }
+
+  sourceClientInterface->StreamingSuspended();
 }
 
 void LeAudioClientAudioSink::UpdateRemoteDelay(uint16_t remote_delay_ms) {

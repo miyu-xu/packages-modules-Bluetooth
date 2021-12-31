@@ -94,6 +94,8 @@ class LeAudioTransport {
 
   bool IsPendingStartStream(void);
   void ClearPendingStartStream(void);
+  bool IsPendingSuspendStream(void);
+  void ClearPendingSuspendStream(void);
 
  private:
   void (*flush_)(void);
@@ -103,6 +105,7 @@ class LeAudioTransport {
   timespec data_position_;
   PcmParameters pcm_config_;
   bool is_pending_start_request_;
+  bool is_pending_suspend_request_;
 };
 
 // Sink transport implementation for Le Audio
@@ -141,6 +144,8 @@ class LeAudioSinkTransport
 
   bool IsPendingStartStream(void);
   void ClearPendingStartStream(void);
+  bool IsPendingSuspendStream(void);
+  void ClearPendingSuspendStream(void);
 
   static inline LeAudioSinkTransport* instance = nullptr;
   static inline BluetoothAudioSinkClientInterface* interface = nullptr;
@@ -185,6 +190,8 @@ class LeAudioSourceTransport
 
   bool IsPendingStartStream(void);
   void ClearPendingStartStream(void);
+  bool IsPendingSuspendStream(void);
+  void ClearPendingSuspendStream(void);
 
   static inline LeAudioSourceTransport* instance = nullptr;
   static inline BluetoothAudioSourceClientInterface* interface = nullptr;

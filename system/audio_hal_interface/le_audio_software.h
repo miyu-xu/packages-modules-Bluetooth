@@ -74,6 +74,7 @@ class LeAudioClientInterface {
     virtual void CancelStreamingRequest() = 0;
     virtual void UpdateAudioConfigToHal(
         const ::le_audio::offload_config& config) = 0;
+    virtual void StreamingSuspended() = 0;
   };
 
  public:
@@ -90,6 +91,8 @@ class LeAudioClientInterface {
     void CancelStreamingRequest() override;
     void UpdateAudioConfigToHal(
         const ::le_audio::offload_config& config) override;
+    void StreamingSuspended() override;
+
     // Read the stream of bytes sinked to us by the upper layers
     size_t Read(uint8_t* p_buf, uint32_t len);
   };
@@ -106,6 +109,8 @@ class LeAudioClientInterface {
     void CancelStreamingRequest() override;
     void UpdateAudioConfigToHal(
         const ::le_audio::offload_config& config) override;
+    void StreamingSuspended() override;
+
     // Source the given stream of bytes to be sinked into the upper layers
     size_t Write(const uint8_t* p_buf, uint32_t len);
   };
