@@ -949,7 +949,8 @@ void BluetoothAudioClientInterface::StreamStarted(
 
 void BluetoothAudioClientInterface::StreamSuspended(
     const BluetoothAudioCtrlAck& ack) {
-  if (provider_ == nullptr) {
+  if (provider_ == nullptr && provider_2_1_ == nullptr &&
+      provider_2_2_ == nullptr) {
     LOG(ERROR) << __func__ << ": BluetoothAudioHal nullptr";
     return;
   }

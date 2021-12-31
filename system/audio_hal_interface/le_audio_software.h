@@ -71,6 +71,7 @@ class LeAudioClientInterface {
     virtual void StopSession() = 0;
     virtual void ConfirmStreamingRequest() = 0;
     virtual void CancelStreamingRequest() = 0;
+    virtual void ConfirmStreamingSuspended() = 0;
   };
 
  public:
@@ -85,6 +86,7 @@ class LeAudioClientInterface {
     void StopSession() override;
     void ConfirmStreamingRequest() override;
     void CancelStreamingRequest() override;
+    void ConfirmStreamingSuspended() override;
 
     // Read the stream of bytes sinked to us by the upper layers
     size_t Read(uint8_t* p_buf, uint32_t len);
@@ -100,6 +102,7 @@ class LeAudioClientInterface {
     void StopSession() override;
     void ConfirmStreamingRequest() override;
     void CancelStreamingRequest() override;
+    void ConfirmStreamingSuspended() override;
 
     // Source the given stream of bytes to be sinked into the upper layers
     size_t Write(const uint8_t* p_buf, uint32_t len);

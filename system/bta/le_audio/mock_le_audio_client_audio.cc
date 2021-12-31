@@ -66,6 +66,12 @@ void LeAudioClientAudioSource::CancelStreamingRequest() {
   source_instance->CancelStreamingRequest();
 }
 
+void LeAudioClientAudioSource::ConfirmStreamingSuspended() {
+  LOG_ASSERT(source_instance)
+      << "Mock LeAudioClientAudioSink interface not set!";
+  source_instance->ConfirmStreamingSuspended();
+}
+
 void LeAudioClientAudioSource::UpdateRemoteDelay(uint16_t delay) {
   LOG_ASSERT(source_instance)
       << "Mock LeAudioClientAudioSource interface not set!";
@@ -132,4 +138,9 @@ void LeAudioClientAudioSink::ConfirmStreamingRequest() {
 void LeAudioClientAudioSink::CancelStreamingRequest() {
   LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
   sink_instance->CancelStreamingRequest();
+}
+
+void LeAudioClientAudioSink::ConfirmStreamingSuspended() {
+  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
+  sink_instance->ConfirmStreamingSuspended();
 }

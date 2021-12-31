@@ -47,4 +47,8 @@ void LeAudioClientAudioSource::CancelStreamingRequest() {
   instance->CancelStreamingRequest();
 }
 
+void LeAudioClientAudioSource::ConfirmStreamingSuspended() {
+  instance->ConfirmStreamingSuspended();
+}
+
 void LeAudioClientAudioSource::DebugDump(int fd) { instance->DebugDump(fd); }

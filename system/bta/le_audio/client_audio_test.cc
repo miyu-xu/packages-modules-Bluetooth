@@ -87,6 +87,7 @@ class MockLeAudioClientInterfaceSink : public LeAudioClientInterface::Sink {
   MOCK_METHOD((void), StopSession, (), (override));
   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
+  MOCK_METHOD((void), ConfirmStreamingSuspended, (), (override));
   MOCK_METHOD((size_t), Read, (uint8_t * p_buf, uint32_t len));
 };
 
@@ -101,6 +102,7 @@ class MockLeAudioClientInterfaceSource : public LeAudioClientInterface::Source {
   MOCK_METHOD((void), StopSession, (), (override));
   MOCK_METHOD((void), ConfirmStreamingRequest, (), (override));
   MOCK_METHOD((void), CancelStreamingRequest, (), (override));
+  MOCK_METHOD((void), ConfirmStreamingSuspended, (), (override));
   MOCK_METHOD((size_t), Write, (const uint8_t* p_buf, uint32_t len));
 };
 
@@ -156,6 +158,7 @@ void LeAudioClientInterface::Sink::StartSession() {}
 void LeAudioClientInterface::Sink::StopSession() {}
 void LeAudioClientInterface::Sink::ConfirmStreamingRequest(){};
 void LeAudioClientInterface::Sink::CancelStreamingRequest(){};
+void LeAudioClientInterface::Sink::ConfirmStreamingSuspended(){};
 
 void LeAudioClientInterface::Source::Cleanup() {}
 void LeAudioClientInterface::Source::SetPcmParameters(
@@ -165,6 +168,7 @@ void LeAudioClientInterface::Source::StartSession() {}
 void LeAudioClientInterface::Source::StopSession() {}
 void LeAudioClientInterface::Source::ConfirmStreamingRequest(){};
 void LeAudioClientInterface::Source::CancelStreamingRequest(){};
+void LeAudioClientInterface::Source::ConfirmStreamingSuspended(){};
 
 size_t LeAudioClientInterface::Source::Write(const uint8_t* p_buf,
                                              uint32_t len) {

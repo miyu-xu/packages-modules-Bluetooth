@@ -199,6 +199,22 @@ bool LeAudioDeviceGroup::HaveAllActiveDevicesAsesTheSameState(AseState state) {
   return iter == leAudioDevices_.end();
 }
 
+bool LeAudioDeviceGroup::HaveAllActiveDevicesAsesTheSameStateByDirection(
+    AseState state, uint8_t direction) {
+  auto iter =
+      std::find_if(leAudioDevices_.begin(), leAudioDevices_.end(),
+                   [&state, &direction](auto& d) {
+                     if (d.expired())
+                       return false;
+                     else
+                       return !(((d.lock()).get())
+                                    ->HaveAllActiveAsesSameStateByDirection(
+                                        state, direction));
+                   });
+
+  return iter == leAudioDevices_.end();
+}
+
 LeAudioDevice* LeAudioDeviceGroup::GetFirstActiveDevice(void) {
   auto iter =
       std::find_if(leAudioDevices_.begin(), leAudioDevices_.end(), [](auto& d) {
@@ -1400,6 +1416,17 @@ bool LeAudioDevice::HaveAllActiveAsesSameState(AseState state) {
   auto iter = std::find_if(
       ases_.begin(), ases_.end(),
       [&state](const auto& ase) { return ase.active && (ase.state != state); });
+
+  return iter == ases_.end();
+}
+
+bool LeAudioDevice::HaveAllActiveAsesSameStateByDirection(AseState state,
+                                                          uint8_t direction) {
+  auto iter = std::find_if(ases_.begin(), ases_.end(),
+                           [&state, &direction](const auto& ase) {
+                             return ase.active && (ase.state != state) &&
+                                    (ase.direction == direction);
+                           });
 
   return iter == ases_.end();
 }
