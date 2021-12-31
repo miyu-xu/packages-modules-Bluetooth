@@ -1039,6 +1039,12 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         ase->state = AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
         ase->active = false;
 
+        if (group->HaveAllActiveDevicesAsesTheSameStateByDirection(
+                AseState::BTA_LE_AUDIO_ASE_STATE_IDLE,
+                le_audio::types::kLeAudioDirectionSink)) {
+          ProcessGroupSuspend(le_audio::types::kLeAudioDirectionSink);
+        }
+
         if (!leAudioDevice->HaveAllActiveAsesSameState(
                 AseState::BTA_LE_AUDIO_ASE_STATE_IDLE)) {
           /* More ASEs notification from this device has to come for this group
@@ -1260,6 +1266,12 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         LeAudioDevice* leAudioDeviceNext;
         ase->state = AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
         ase->active = false;
+
+        if (group->HaveAllActiveDevicesAsesTheSameStateByDirection(
+                AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED,
+                le_audio::types::kLeAudioDirectionSink)) {
+          ProcessGroupSuspend(le_audio::types::kLeAudioDirectionSink);
+        }
 
         if (!leAudioDevice->HaveAllActiveAsesSameState(
                 AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED)) {
@@ -1881,6 +1893,11 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                  << ", invalid state transition, from: " << group->GetState()
                  << ", to: " << group->GetTargetState();
       StopStream(group);
+    }
+  }
+  void ProcessGroupSuspend(uint8_t direction) {
+    if (direction == le_audio::types::kLeAudioDirectionSink) {
+      LeAudioClientAudioSource::StreamingSuspended();
     }
   }
 };

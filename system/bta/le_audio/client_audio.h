@@ -111,6 +111,7 @@ class LeAudioClientAudioSource {
   static void Release(const void* instance);
   static void ConfirmStreamingRequest();
   static void CancelStreamingRequest();
+  static void StreamingSuspended();
   static void UpdateRemoteDelay(uint16_t remote_delay_ms);
   static void DebugDump(int fd);
   static void UpdateAudioConfigToHal(const ::le_audio::offload_config& config);
@@ -127,6 +128,7 @@ class LeAudioClientAudioSink {
   static size_t SendData(uint8_t* data, uint16_t size);
   static void ConfirmStreamingRequest();
   static void CancelStreamingRequest();
+  static void StreamingSuspended();
   static void UpdateRemoteDelay(uint16_t remote_delay_ms);
   static void DebugDump(int fd);
   static void UpdateAudioConfigToHal(const ::le_audio::offload_config& config);
