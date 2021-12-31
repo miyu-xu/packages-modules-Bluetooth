@@ -168,6 +168,23 @@ void LeAudioClientInterface::Sink::CancelStreamingRequest() {
   }
 }
 
+void LeAudioClientInterface::Sink::StreamingSuspended() {
+  LOG(INFO) << __func__;
+  if (HalVersionManager::GetHalTransport() ==
+      BluetoothAudioHalTransport::HIDL) {
+    if (!hidl::le_audio::LeAudioSinkTransport::instance
+             ->IsPendingSuspendStream()) {
+      LOG(WARNING) << ", no pending suspend stream request";
+      return;
+    }
+
+    hidl::le_audio::LeAudioSinkTransport::instance->ClearPendingSuspendStream();
+    hidl::le_audio::LeAudioSinkTransport::interface->StreamSuspended(
+        BluetoothAudioCtrlAck::SUCCESS_FINISHED);
+    return;
+  }
+}
+
 void LeAudioClientInterface::Sink::StopSession() {
   LOG(INFO) << __func__ << " sink";
   if (HalVersionManager::GetHalTransport() ==
@@ -301,6 +318,24 @@ void LeAudioClientInterface::Source::CancelStreamingRequest() {
     hidl::le_audio::LeAudioSourceTransport::instance->ClearPendingStartStream();
     hidl::le_audio::LeAudioSourceTransport::interface->StreamStarted(
         BluetoothAudioCtrlAck::FAILURE);
+    return;
+  }
+}
+
+void LeAudioClientInterface::Source::StreamingSuspended() {
+  LOG(INFO) << __func__;
+  if (HalVersionManager::GetHalTransport() ==
+      BluetoothAudioHalTransport::HIDL) {
+    if (!hidl::le_audio::LeAudioSourceTransport::instance
+             ->IsPendingSuspendStream()) {
+      LOG(WARNING) << ", no pending start stream request";
+      return;
+    }
+
+    hidl::le_audio::LeAudioSourceTransport::instance
+        ->ClearPendingSuspendStream();
+    hidl::le_audio::LeAudioSourceTransport::interface->StreamSuspended(
+        BluetoothAudioCtrlAck::SUCCESS_FINISHED);
     return;
   }
 }
