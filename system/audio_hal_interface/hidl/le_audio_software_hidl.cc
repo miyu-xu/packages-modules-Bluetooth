@@ -159,7 +159,8 @@ LeAudioTransport::LeAudioTransport(void (*flush)(void),
       total_bytes_processed_(0),
       data_position_({}),
       pcm_config_(std::move(pcm_config)),
-      is_pending_start_request_(false){};
+      is_pending_start_request_(false),
+      is_pending_suspend_request_(false){};
 
 BluetoothAudioCtrlAck LeAudioTransport::StartRequest() {
   LOG(INFO) << __func__;
@@ -175,8 +176,9 @@ BluetoothAudioCtrlAck LeAudioTransport::StartRequest() {
 BluetoothAudioCtrlAck LeAudioTransport::SuspendRequest() {
   LOG(INFO) << __func__;
   if (stream_cb_.on_suspend_()) {
+    is_pending_suspend_request_ = true;
     flush_();
-    return BluetoothAudioCtrlAck::SUCCESS_FINISHED;
+    return BluetoothAudioCtrlAck::PENDING;
   } else {
     return BluetoothAudioCtrlAck::FAILURE;
   }
@@ -270,6 +272,12 @@ bool LeAudioTransport::IsPendingStartStream(void) {
 void LeAudioTransport::ClearPendingStartStream(void) {
   is_pending_start_request_ = false;
 }
+bool LeAudioTransport::IsPendingSuspendStream(void) {
+  return is_pending_suspend_request_;
+}
+void LeAudioTransport::ClearPendingSuspendStream(void) {
+  is_pending_suspend_request_ = false;
+}
 
 void flush_sink() {
   if (!is_sink_hal_enabled()) return;
@@ -345,6 +353,12 @@ bool LeAudioSinkTransport::IsPendingStartStream(void) {
 void LeAudioSinkTransport::ClearPendingStartStream(void) {
   transport_->ClearPendingStartStream();
 }
+bool LeAudioSinkTransport::IsPendingSuspendStream(void) {
+  return transport_->IsPendingSuspendStream();
+}
+void LeAudioSinkTransport::ClearPendingSuspendStream(void) {
+  transport_->ClearPendingSuspendStream();
+}
 
 void flush_source() {
   if (LeAudioSourceTransport::interface == nullptr) return;
@@ -419,6 +433,12 @@ bool LeAudioSourceTransport::IsPendingStartStream(void) {
 }
 void LeAudioSourceTransport::ClearPendingStartStream(void) {
   transport_->ClearPendingStartStream();
+}
+bool LeAudioSourceTransport::IsPendingSuspendStream(void) {
+  return transport_->IsPendingSuspendStream();
+}
+void LeAudioSourceTransport::ClearPendingSuspendStream(void) {
+  transport_->ClearPendingSuspendStream();
 }
 
 std::unordered_map<SampleRate_2_1, uint8_t> sampling_freq_map{

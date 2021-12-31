@@ -115,6 +115,8 @@ class LeAudioDevice {
   types::BidirectAsesPair GetAsesByCisId(uint8_t cis_id);
   bool HaveActiveAse(void);
   bool HaveAllActiveAsesSameState(types::AseState state);
+  bool HaveAllActiveAsesSameStateByDirection(types::AseState state,
+                                             uint8_t direction);
   bool HaveAnyUnconfiguredAses(void);
   bool IsReadyToCreateStream(void);
   bool IsReadyToSuspendStream(void);
@@ -222,6 +224,8 @@ class LeAudioDeviceGroup {
   LeAudioDevice* GetNextActiveDevice(LeAudioDevice* leAudioDevice);
   bool IsDeviceInTheGroup(LeAudioDevice* leAudioDevice);
   bool HaveAllActiveDevicesAsesTheSameState(types::AseState state);
+  bool HaveAllActiveDevicesAsesTheSameStateByDirection(types::AseState state,
+                                                       uint8_t direction);
   bool IsGroupStreamReady(void);
   bool HaveAllActiveDevicesCisDisc(void);
   uint8_t GetFirstFreeCisId(void);
