@@ -22,6 +22,30 @@
       },
       "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa067500_13632642",
+        "filename": "system/audio_hal_interface/le_audio_software.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-03T12:08:01Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. Makes sense.\n\nThe initial though is to align the above function name. I would change the method name to StreamingSuspended in the next version.",
+      "parentUuid": "690d6ccf_e5755292",
+      "range": {
+        "startLine": 74,
+        "startChar": 17,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
