@@ -362,6 +362,12 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
       return pairing_time
 
     except queue.Empty:
+      # TODO(user): Remove this check when this bug is fixed.
+      if self.is_bt_paired(mac_address):
+        self._ad.log.info(
+            'Actually device "%s" was bonded within %d seconds.',
+            mac_address, timeout)
+        return timeout
       raise signals.ControllerError(
           'Failed to bond with device %s after %d seconds' %
           (mac_address, timeout))
