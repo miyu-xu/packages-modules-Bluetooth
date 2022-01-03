@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0367015f_0b1e911b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-03T12:24:38Z",
+      "side": 1,
+      "message": "This patch is conflicting with other use cases I described offline.\nLet\u0027s discuss it before merging it.",
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0809a849_50ec4c6d",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-03T12:24:38Z",
+      "side": 1,
+      "message": "can we have it as separate patch?",
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "690d6ccf_e5755292",
@@ -44,6 +78,23 @@
         "endLine": 74,
         "endChar": 42
       },
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa246c31_717dd8ed",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1899,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-03T12:24:38Z",
+      "side": 1,
+      "message": "lets make client.cc the only place which is talking to audio framework.\nThere is already a callback to client.cc which saying that stream is suspended.\nIf stream is suspended then\n  state_machine_callbacks_-\u003eStatusReportCb(group_id,GroupStreamStatus::SUSPENDED);\n  \n Could you please use it?",
       "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
