@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a8ac1b_00dfbc87",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-03T01:58:41Z",
+      "side": 1,
+      "message": "Why need to add kAudioSuspentKeepIsoAliveTimeoutMs (5s) before suspend? It would cause the suspend timer logger and get the result failed as hardware offload.\n\nAs the offload driver trigger suspend, it would get the control status callback to be aware the suspend was completed or have a timeout to decide it was failed. With the timeout, the ASE action would be started after 5s, it make the suspend time longer and always meet the offload driver\u0027s timeout.",
+      "revId": "586a49c7578526cd39515dadc090922963effa16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
