@@ -67,6 +67,24 @@
       "message": "nit: please add Bug:208912945 in the commit message",
       "revId": "5703bc176178956e7213a6e196583c0c5035643b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75c86d56_ea1e4a98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-03T14:00:57Z",
+      "side": 1,
+      "message": "lacking or we trigger faster \"operation\" on CIS which has not set connecting state.",
+      "parentUuid": "427febe6_003d8c3d",
+      "revId": "5703bc176178956e7213a6e196583c0c5035643b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
