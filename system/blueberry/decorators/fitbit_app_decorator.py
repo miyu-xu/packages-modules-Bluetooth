@@ -30,7 +30,7 @@ _INVALID_PAIRING_CODE_MESSAGE = "Sorry, this code isn't valid."
 _MAX_PAIRING_RETRIES = 10
 
 
-class FitbitAppDecorator:
+class FitbitAppDecorator(android_device.AndroidDevice):
   """Decorates Android Device with the Fitbit Companion App's operations.
 
   Attributes:
