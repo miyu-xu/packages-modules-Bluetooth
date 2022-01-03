@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54f650b1_5657d3c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-03T13:12:38Z",
+      "side": 1,
+      "message": "Looks good. Minor comments only.",
+      "revId": "34f9638402917e63f3ee98604e695ac55d75259f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04ff92b7_45dae6f3",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-03T13:12:38Z",
+      "side": 1,
+      "message": "nit: 2022 (all other new files same thing)",
+      "revId": "34f9638402917e63f3ee98604e695ac55d75259f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a98852c9_affd8eb3",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-03T13:12:38Z",
+      "side": 1,
+      "message": "typo -\u003e support",
+      "revId": "34f9638402917e63f3ee98604e695ac55d75259f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308ca8c6_05e65156",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 974,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-03T13:12:38Z",
+      "side": 1,
+      "message": "this comment can be changed now to actually behavior.",
+      "revId": "34f9638402917e63f3ee98604e695ac55d75259f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
