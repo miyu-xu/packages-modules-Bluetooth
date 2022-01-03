@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ed489b9_6475a2ee",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-03T14:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fcb0b67_619271e5",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 27
+      },
+      "revId": "7888f12952a5f25d954460b20c7aeb5965bb81ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fa58b3f_4c6bb2d5",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9aabcbf3_4329c999",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-03T14:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fa58b3f_4c6bb2d5",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 64,
+        "endChar": 36
+      },
+      "revId": "7888f12952a5f25d954460b20c7aeb5965bb81ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f325f6bd_c6621052",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-01-03T03:08:31Z",
       "side": 1,
       "message": "Could you have more specific naming to represent the struct purpose?",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 28
+      },
+      "revId": "7888f12952a5f25d954460b20c7aeb5965bb81ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa81ca25_627d53f5",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-03T14:25:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f325f6bd_c6621052",
       "range": {
         "startLine": 99,
         "startChar": 0,
