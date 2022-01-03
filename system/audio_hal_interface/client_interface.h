@@ -37,8 +37,6 @@ using AudioCapabilities =
     ::android::hardware::bluetooth::audio::V2_0::AudioCapabilities;
 using AudioCapabilities_2_1 =
     ::android::hardware::bluetooth::audio::V2_1::AudioCapabilities;
-using AudioCapabilities_2_2 =
-    ::android::hardware::bluetooth::audio::V2_2::AudioCapabilities;
 using AudioConfiguration =
     ::android::hardware::bluetooth::audio::V2_0::AudioConfiguration;
 using AudioConfiguration_2_1 =
@@ -231,7 +229,7 @@ class BluetoothAudioClientInterface {
       SessionType session_type);
   static std::vector<AudioCapabilities_2_1> GetAudioCapabilities_2_1(
       SessionType_2_1 session_type_2_1);
-  static std::vector<AudioCapabilities_2_2> GetAudioCapabilities_2_2(
+  static std::vector<AudioCapabilities_2_1> GetAudioCapabilities_2_2(
       SessionType_2_1 session_type_2_1);
 
   void StreamStarted(const BluetoothAudioCtrlAck& ack);
@@ -280,7 +278,6 @@ class BluetoothAudioClientInterface {
   IBluetoothTransportInstance* transport_;
   std::vector<AudioCapabilities> capabilities_;
   std::vector<AudioCapabilities_2_1> capabilities_2_1_;
-  std::vector<AudioCapabilities_2_2> capabilities_2_2_;
 };
 
 // The client interface connects an IBluetoothTransportInstance to

@@ -995,18 +995,12 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
         }
     }
 
-    @VisibleForTesting
-    int getMediaStateChar() {
+    private int getMediaStateChar() {
         if (!isFeatureSupported(ServiceFeature.MEDIA_STATE)) return MediaState.INACTIVE.getValue();
 
         BluetoothGattCharacteristic stateChar =
                 mCharacteristics.get(CharId.MEDIA_STATE);
-
-        if (stateChar.getValue() != null) {
-            return stateChar.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
-        }
-
-        return MediaState.INACTIVE.getValue();
+        return stateChar.getIntValue(BluetoothGattCharacteristic.FORMAT_UINT8, 0);
     }
 
     @VisibleForTesting

@@ -57,9 +57,10 @@ namespace uuid {
  * This service is used to identify peer role (which we are not using for now)
  * and to wrap CSIS service as this is required to understand the context of the
  * CSIS
+ * Place holder
  */
 static const bluetooth::Uuid kCapServiceUuid =
-    bluetooth::Uuid::From16Bit(0x1853);
+    bluetooth::Uuid::From16Bit(0xEEEE);
 
 /* Assigned numbers for attributes */
 static const bluetooth::Uuid kPublishedAudioCapabilityServiceUuid =
