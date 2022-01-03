@@ -1,0 +1,99 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018850071",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1936078?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9eaf1c76_44b9bb36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-03T18:46:17Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "1fdc954d8b1037c13c6fc6bb7ff97805eca0fef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018850071",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1936078?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "99954a0c_d8da4955",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-03T18:46:17Z",
+      "side": 1,
+      "message": "\"compilaion\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "1fdc954d8b1037c13c6fc6bb7ff97805eca0fef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018850066",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1936078?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "a23b372a_744482b0",
+          "description": "Change to \"system/embdrv/lc3/src/bits.h\"",
+          "replacements": [
+            {
+              "path": "system/embdrv/lc3/src/bits.h",
+              "range": {
+                "startLine": 143,
+                "startChar": 18,
+                "endLine": 143,
+                "endChar": 25
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "bb08ae2a_89078af3",
+        "filename": "system/embdrv/lc3/src/bits.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-03T18:46:17Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 143,
+        "startChar": 18,
+        "endLine": 143,
+        "endChar": 25
+      },
+      "revId": "1fdc954d8b1037c13c6fc6bb7ff97805eca0fef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
