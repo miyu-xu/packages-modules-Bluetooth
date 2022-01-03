@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "690d6ccf_e5755292",
+        "filename": "system/audio_hal_interface/le_audio_software.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-01-03T11:09:21Z",
+      "side": 1,
+      "message": "\"Confirm\" seems like a bad choose of words for method name.\n\nWould just \"StreamingSuspended\" or \"SuspendStream\" or \"SetReadyForRelease\" be a better choose ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 17,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
