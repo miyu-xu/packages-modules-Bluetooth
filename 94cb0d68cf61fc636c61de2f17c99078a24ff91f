@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0593e7d3_ed0ea344",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-04T09:11:40Z",
+      "side": 1,
+      "message": "We just printing that including device name or not(true/false). For services, printing service UUIDs and the lenght of service data.",
+      "parentUuid": "75f601e6_e7061792",
+      "range": {
+        "startLine": 308,
+        "startChar": 24,
+        "endLine": 308,
+        "endChar": 45
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c64f72c4_e61bb6db",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 6
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-04T08:13:09Z",
       "side": 1,
       "message": "If you have any problems that requires this type of information, you should use HCI snoop log.\n\nHCI snoop log additionally knows when the advertising was started, stopped, whether the data or parameters were updated, or when the address was rotated.",
+      "range": {
+        "startLine": 341,
+        "startChar": 24,
+        "endLine": 341,
+        "endChar": 45
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fac31c8_9313000d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-04T09:11:40Z",
+      "side": 1,
+      "message": "This logger is created because sometimes HCI snoop log cannot be enabled. For example: wear OS... Do you think parameters should not be printed here?",
+      "parentUuid": "c64f72c4_e61bb6db",
       "range": {
         "startLine": 341,
         "startChar": 24,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c07e62e_eaaf53f1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-04T09:11:40Z",
+      "side": 1,
+      "message": "It should be a problem. I will add a protection",
+      "parentUuid": "4486d78d_cb86ddc8",
+      "range": {
+        "startLine": 352,
+        "startChar": 18,
+        "endLine": 352,
+        "endChar": 32
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "48e12179_9177ad86",
         "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
         "patchSetId": 6
@@ -100,6 +172,30 @@
       "writtenOn": "2022-01-04T08:13:09Z",
       "side": 1,
       "message": "What if advertiser was paused, and then re-enabled, how is it logged  ?",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 65
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae12477e_e5618e60",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-04T09:11:40Z",
+      "side": 1,
+      "message": "If a advertisingSet is re-enabled, a advertisingSet stay in sOngoingAdvertises and it is marked as disable.",
+      "parentUuid": "48e12179_9177ad86",
       "range": {
         "startLine": 408,
         "startChar": 0,
