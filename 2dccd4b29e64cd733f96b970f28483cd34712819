@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c01940_a145197e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2142,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-04T12:58:02Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be\n`if (CodecManager::GetInstance()-\u003eGetCodecLocation() !\u003d le_audio::types::CodecLocation::HOST) ?`\nThe bottom line is that for the CodecLocation::CONTROLLER we probably want the same, correct?",
+      "revId": "2dccd4b29e64cd733f96b970f28483cd34712819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
