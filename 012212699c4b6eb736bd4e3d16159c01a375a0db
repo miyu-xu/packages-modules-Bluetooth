@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8ad528e_170a09a1",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-04T04:22:15Z",
+      "side": 1,
+      "message": "Sure. \nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1934170",
+      "parentUuid": "0809a849_50ec4c6d",
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "690d6ccf_e5755292",
         "filename": "system/audio_hal_interface/le_audio_software.h",
         "patchSetId": 1
