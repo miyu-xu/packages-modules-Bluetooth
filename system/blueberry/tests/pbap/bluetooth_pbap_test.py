@@ -256,6 +256,46 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
       raise signals.TestError('PBAP connection failed to be terminated.')
     self.derived_bt_device.log.info('Successfully disconnected PBAP.')
 
+  def _download_contacts(self, contact_count: int) -> int:
+    """PCE downloads PSE created contacts by PBAP profile.
+
+    This method setups up PSE contacts based on contact_count parameter,
+    then connect PSE and PCE by PBPA profile and finally will return corrent
+    contact count in PCE.
+
+    Args:
+      contact_count: number of PSE contacts count.
+
+    Returns:
+      current_count: number of PCE contacts after connecting with PSE.
+    """
+    # Make sure no any contacts existed on the devices.
+    for device in [self.pri_phone, self.derived_bt_device]:
+      device.sl4a.contactsEraseAll()
+
+    # Add contacts to PSE.
+    if contact_count != 0:
+      self._generate_contacts_on_pse(contact_count)
+
+    # PCE connect PSE and then download default contacts.
+    self.derived_bt_device.pbap_connect()
+    self.derived_bt_device.log.info('Download %d contacts from PSE...' %
+                                    contact_count)
+    current_count = self._wait_and_get_contact_count(self.derived_bt_device,
+                                                     contact_count,
+                                                     WAITING_TIMEOUT_SEC)
+    return current_count
+
+  def test_download_empty_contacts(self):
+    """Tests that PCE can download contacts from PSE."""
+    default_contact_count = 0
+    current_count = self._download_contacts(default_contact_count)
+    asserts.assert_true(
+        current_count == default_contact_count,
+        'PCE failed to download %d contact(s) within %ds, '
+        'actually downloaded %d contact(s).' %
+        (default_contact_count, WAITING_TIMEOUT_SEC, current_count))
+
   def test_download_contacts(self):
     """Test for the feature of downloading contacts.
 
