@@ -16,6 +16,24 @@
       "message": "shouldn\u0027t it be\n`if (CodecManager::GetInstance()-\u003eGetCodecLocation() !\u003d le_audio::types::CodecLocation::HOST) ?`\nThe bottom line is that for the CodecLocation::CONTROLLER we probably want the same, correct?",
       "revId": "2dccd4b29e64cd733f96b970f28483cd34712819",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604dfc94_851bd453",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2142,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-04T13:43:19Z",
+      "side": 1,
+      "message": "We have not started the CodecLocation:controller implementation yet.\n\nBut I think it is needed only for ADSP, because the encoder/decoder is inside the controller as CodecLocation::CONTROLLER, the offload audio driver don\u0027t need the information in HAL. The audio configuration should set via HCI command - setup ISO data path.",
+      "parentUuid": "10c01940_a145197e",
+      "revId": "2dccd4b29e64cd733f96b970f28483cd34712819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
