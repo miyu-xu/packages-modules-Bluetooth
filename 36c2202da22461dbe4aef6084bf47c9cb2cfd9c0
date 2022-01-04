@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bbf6736_ecdfc0c1",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3704,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-04T17:53:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0d357dd1_1d4c505a",
+      "range": {
+        "startLine": 3704,
+        "startChar": 6,
+        "endLine": 3704,
+        "endChar": 17
+      },
+      "revId": "36c2202da22461dbe4aef6084bf47c9cb2cfd9c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d592890f_dc6b5402",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Not quite, but it matches the error codes returned by a dongle I have been using to double check the command flow.",
       "parentUuid": "d592890f_dc6b5402",
+      "range": {
+        "startLine": 3795,
+        "startChar": 41,
+        "endLine": 3795,
+        "endChar": 68
+      },
+      "revId": "36c2202da22461dbe4aef6084bf47c9cb2cfd9c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c06074_e38c6a38",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3795,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-04T17:53:53Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "92811c23_c29e9c77",
       "range": {
         "startLine": 3795,
         "startChar": 41,
