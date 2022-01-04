@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76439d25_51c8fe6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-01-04T17:21:05Z",
+      "side": 1,
+      "message": "The plan for system resources usage in Bluetooth differs for almost each usages. Some will be moved to packages/modules/Bluetooth (either android/app or frameworks), some will be replaced by public resources, some will be moved and exposed as APIs for other packages... But yes, we know where everything will be!",
+      "parentUuid": "999d854a_97d37ff1",
+      "revId": "9ebe350f283a1918ed4c1b20d6477d1b894a4d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68feed16_c343beda",
