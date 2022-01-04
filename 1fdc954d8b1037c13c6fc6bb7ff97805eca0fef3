@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "544a1ad5_974415ce",
+        "filename": "system/embdrv/lc3/src/lc3.c",
+        "patchSetId": 1
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-01-04T16:32:48Z",
+      "side": 1,
+      "message": "On line 298, we\u0027re checking if \u0027encoder\u0027 is NULL, which implies that\u0027s possible.  But if it is NULL, we\u0027ll crash on this line before getting to that check.\n\nI\u0027ve put up a follow-up fix to move this initialization to after the parameter check: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1936319",
+      "revId": "1fdc954d8b1037c13c6fc6bb7ff97805eca0fef3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
