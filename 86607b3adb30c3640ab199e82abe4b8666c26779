@@ -357,6 +357,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd6f5794_05d59c7d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/tbs/TbsGenericTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-04T22:05:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8db532f6_516c2777",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "738336d5_85865844",
@@ -476,6 +500,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b280a4a9_65a60140",
+        "filename": "system/binder/android/bluetooth/BluetoothTbsCall.aidl",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-04T22:05:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "17b0f3a8_69179464",
+      "range": {
+        "startLine": 20,
+        "startChar": 11,
+        "endLine": 20,
+        "endChar": 27
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ab477b9_2da61b2b",
@@ -499,6 +547,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f962f5_a788e23e",
+        "filename": "system/binder/android/bluetooth/IBluetoothTbs.aidl",
+        "patchSetId": 21
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-04T22:05:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1ab477b9_2da61b2b",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 30
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2562c8b_1681042b",
@@ -512,6 +584,30 @@
       "writtenOn": "2021-12-14T08:50:45Z",
       "side": 1,
       "message": "IBluetoothLeCallControlCallback",
+      "range": {
+        "startLine": 28,
+        "startChar": 17,
+        "endLine": 28,
+        "endChar": 38
+      },
+      "revId": "86607b3adb30c3640ab199e82abe4b8666c26779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c0ca96d_b5c9a90d",
+        "filename": "system/binder/android/bluetooth/IBluetoothTbsCallback.aidl",
+        "patchSetId": 21
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-04T22:05:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f2562c8b_1681042b",
       "range": {
         "startLine": 28,
         "startChar": 17,
