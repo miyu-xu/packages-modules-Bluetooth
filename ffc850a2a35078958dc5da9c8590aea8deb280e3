@@ -16,6 +16,24 @@
       "message": "Is this too specific to this type of device?",
       "revId": "ffc850a2a35078958dc5da9c8590aea8deb280e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf363401_0fcf3c5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-01-04T18:07:33Z",
+      "side": 1,
+      "message": "If type of device mean DualModeController, I don\u0027t think it is specific to the DualModeController but it\u0027s the only device that establish ACL connections and maintain a map of them",
+      "parentUuid": "bd076f43_0d011505",
+      "revId": "ffc850a2a35078958dc5da9c8590aea8deb280e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
