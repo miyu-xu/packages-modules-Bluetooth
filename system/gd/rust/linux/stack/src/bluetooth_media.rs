@@ -22,6 +22,8 @@ use tokio::sync::mpsc::Sender;
 
 use crate::Message;
 
+const CONN_WATCH_PERIOD_MS: u32 = 2000;
+
 pub trait IBluetoothMedia {
     ///
     fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool;
@@ -85,6 +87,7 @@ pub struct BluetoothMedia {
     hfp: Option<Hfp>,
     hfp_states: HashMap<RawAddress, BthfConnectionState>,
     selectable_caps: HashMap<RawAddress, Vec<A2dpCodecConfig>>,
+    // timer: Option,
 }
 
 impl BluetoothMedia {
@@ -114,33 +117,21 @@ impl BluetoothMedia {
                 }
                 match state {
                     BtavConnectionState::Connected => {
-                        if let Some(caps) = self.selectable_caps.get(&addr) {
-                            for cap in caps {
-                                // TODO: support codecs other than SBC.
-                                if A2dpCodecIndex::SrcSbc != A2dpCodecIndex::from(cap.codec_type) {
-                                    continue;
-                                }
-
-                                self.for_all_callbacks(|callback| {
-                                    callback.on_bluetooth_audio_device_added(
-                                        addr.to_string(),
-                                        cap.sample_rate,
-                                        cap.bits_per_sample,
-                                        cap.channel_mode,
-                                    );
-                                });
-                                return;
-                            }
-                        }
+                        warn!("A2dp connected");
+                        self.notify_bluetooth_device_connected(addr);
                     }
                     BtavConnectionState::Connecting => {}
                     BtavConnectionState::Disconnected => {
-                        self.for_all_callbacks(|callback| {
-                            callback.on_bluetooth_audio_device_removed(addr.to_string());
-                        });
+                        if self.a2dp_states.remove(&addr).is_none() {
+                            warn!("Not recorded A2DP address {} disconnected", addr.to_string());
+                            return;
+                        }
+                        self.notify_bluetooth_device_disconnected(addr);
                     }
                     BtavConnectionState::Disconnecting => {}
                 };
+
+                warn!("A2dp state {:?}", state);
                 self.a2dp_states.insert(addr, state);
             }
             A2dpCallbacks::AudioState(_addr, _state) => {}
@@ -183,14 +174,20 @@ impl BluetoothMedia {
                 }
                 match state {
                     BthfConnectionState::Connected => {
-                        // TODO: Integrate with A2dp
+                        // connect_audio
+                        self.notify_bluetooth_device_connected(addr);
                     }
                     BthfConnectionState::Connecting => {}
-                    BthfConnectionState::Disconnected => {}
-                    BthfConnectionState::Disconnecting => {
-                        // TODO: Integrate with A2dp
+                    BthfConnectionState::Disconnected => {
+                        if self.hfp_states.remove(&addr).is_none() {
+                            warn!("Not recorded HFP address {} disconnected", addr.to_string());
+                            return;
+                        }
+                        self.notify_bluetooth_device_disconnected(addr);
                     }
+                    BthfConnectionState::Disconnecting => {}
                 }
+                self.hfp_states.insert(addr, state);
             }
         }
     }
@@ -199,6 +196,35 @@ impl BluetoothMedia {
         for callback in &self.callbacks {
             f(&callback.1);
         }
+    }
+
+    fn notify_bluetooth_device_connected(&self, addr: RawAddress) {
+        // TODO: Schedule a timer waiting for HFP or A2DP if either is not ready
+        if let Some(caps) = self.selectable_caps.get(&addr) {
+            for cap in caps {
+                // TODO: support codecs other than SBC.
+                if A2dpCodecIndex::SrcSbc != A2dpCodecIndex::from(cap.codec_type) {
+                    continue;
+                }
+
+                self.for_all_callbacks(|callback| {
+                    callback.on_bluetooth_audio_device_added(
+                        addr.to_string(),
+                        cap.sample_rate,
+                        cap.bits_per_sample,
+                        cap.channel_mode,
+                    );
+                });
+                return;
+            }
+        }
+    }
+
+    fn notify_bluetooth_device_disconnected(&self, addr: RawAddress) {
+        // TODO: Check state of hfp and a2dp
+        self.for_all_callbacks(|callback| {
+            callback.on_bluetooth_audio_device_removed(addr.to_string());
+        });
     }
 }
 
@@ -248,7 +274,7 @@ impl IBluetoothMedia for BluetoothMedia {
         }
         self.initialized = true;
 
-        // TEST A2dp
+        // A2DP
         let a2dp_dispatcher = get_a2dp_dispatcher(self.tx.clone());
         self.a2dp = Some(A2dp::new(&self.intf.lock().unwrap()));
         self.a2dp.as_mut().unwrap().initialize(a2dp_dispatcher);
