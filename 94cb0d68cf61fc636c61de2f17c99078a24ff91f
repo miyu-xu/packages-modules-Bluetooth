@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b552152e_cae42c2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-01-04T08:13:09Z",
+      "side": 1,
+      "message": "If you need to do in-depth debugging, you should use HCI snoop log.\nIn case it is not available, I would recommend checking logs you get in logcat - it should already print the start/stop/enable/disable/update without much details.\n",
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75f601e6_e7061792",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-01-04T08:13:09Z",
+      "side": 1,
+      "message": "This might be printing some sensitive user-identifying data into bugreport, and can\u0027t get in in this form, i.e. device name that can potentially identify you, or some service data that can be tied to user.\n\nPrinting just the type with lenght of content could be an option.",
+      "range": {
+        "startLine": 308,
+        "startChar": 24,
+        "endLine": 308,
+        "endChar": 45
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64f72c4_e61bb6db",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-01-04T08:13:09Z",
+      "side": 1,
+      "message": "If you have any problems that requires this type of information, you should use HCI snoop log.\n\nHCI snoop log additionally knows when the advertising was started, stopped, whether the data or parameters were updated, or when the address was rotated.",
+      "range": {
+        "startLine": 341,
+        "startChar": 24,
+        "endLine": 341,
+        "endChar": 45
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4486d78d_cb86ddc8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-01-04T08:13:09Z",
+      "side": 1,
+      "message": "There are new PHYs coming. The way this code is written will cause crashes in this code for new PHY values.",
+      "range": {
+        "startLine": 352,
+        "startChar": 18,
+        "endLine": 352,
+        "endChar": 32
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48e12179_9177ad86",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-01-04T08:13:09Z",
+      "side": 1,
+      "message": "What if advertiser was paused, and then re-enabled, how is it logged  ?",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 65
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
