@@ -533,6 +533,7 @@ const void* LeAudioClientAudioSink::Acquire() {
   }
 
   le_audio_source_hal_state = HAL_STOPPED;
+  LOG(INFO) << __func__;
   return sourceClientInterface;
 }
 
