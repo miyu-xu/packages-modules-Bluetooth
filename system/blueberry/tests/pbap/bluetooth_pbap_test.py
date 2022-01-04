@@ -301,20 +301,7 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     Tests that PCE can download contacts from PSE.
     """
-    # Make sure no any contacts exist on the devices.
-    for device in [self.pri_phone, self.derived_bt_device]:
-      device.sl4a.contactsEraseAll()
-
-    # Add contacts to PSE.
-    self._generate_contacts_on_pse(TEST_DATA_COUNT)
-
-    # When PCE is connected to PSE, it will download PSE's contacts.
-    self.derived_bt_device.pbap_connect()
-    self.derived_bt_device.log.info('Downloading contacts from PSE...')
-    current_count = self._wait_and_get_contact_count(
-        self.derived_bt_device, TEST_DATA_COUNT, WAITING_TIMEOUT_SEC)
-    self.derived_bt_device.log.info(
-        'Successfully downloaded %d contact(s).' % current_count)
+    current_count = self._download_contacts(TEST_DATA_COUNT)
 
     asserts.assert_true(
         current_count == TEST_DATA_COUNT,
