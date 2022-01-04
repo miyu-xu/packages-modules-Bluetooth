@@ -152,6 +152,7 @@ bool ldac_offloading_capability_match(const LdacParameters& ldac_capability,
 
 namespace bluetooth {
 namespace audio {
+namespace hidl {
 namespace codec {
 
 const CodecConfiguration kInvalidCodecConfiguration = {
@@ -568,5 +569,6 @@ bool IsCodecOffloadingEnabled(const CodecConfiguration& codec_config) {
 }
 
 }  // namespace codec
+}  // namespace hidl
 }  // namespace audio
 }  // namespace bluetooth
