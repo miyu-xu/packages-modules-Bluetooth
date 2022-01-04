@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "999d854a_97d37ff1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-01-04T17:07:18Z",
+      "side": 1,
+      "message": "Im good with the change - as long as we know where res resides eventually.",
+      "revId": "9ebe350f283a1918ed4c1b20d6477d1b894a4d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68feed16_c343beda",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-01-04T17:07:18Z",
+      "side": 1,
+      "message": "Are we going to move these into packages/modules/Bluetooth/frameworks/ once we migrate that folder?",
+      "revId": "9ebe350f283a1918ed4c1b20d6477d1b894a4d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
