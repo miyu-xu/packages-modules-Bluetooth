@@ -19,7 +19,7 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     let Watch be last connected device of Headset.
     """
     super().setup_class()
-    self.headset.power_on()
+    self.headset.factory_reset_bluetooth()
     self.pair_and_connect_phone_to_headset()
     self.pair_and_connect_phone_to_watch()
     self.pair_and_connect_watch_to_headset()
