@@ -33,6 +33,24 @@
       "message": "Are we going to move these into packages/modules/Bluetooth/frameworks/ once we migrate that folder?",
       "revId": "9ebe350f283a1918ed4c1b20d6477d1b894a4d9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6af515a9_9d4f48e8",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-01-04T17:13:44Z",
+      "side": 1,
+      "message": "These are not concerned by the migration as the only usages are in package/module/Bluetooth/android/app. Resources that are being used in frameworks/base will be moved to packages/modules/Bluetooth/frameworks/ once the migration is done yes!",
+      "parentUuid": "68feed16_c343beda",
+      "revId": "9ebe350f283a1918ed4c1b20d6477d1b894a4d9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
