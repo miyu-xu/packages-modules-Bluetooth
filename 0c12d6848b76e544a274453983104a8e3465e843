@@ -69,6 +69,24 @@
       "parentUuid": "5ee4e237_d3989fbf",
       "revId": "0c12d6848b76e544a274453983104a8e3465e843",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0362408_1c2d061d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-04T13:27:28Z",
+      "side": 1,
+      "message": "I just review Alice code which allows to update driver configuration and it does not conflict with this patch.\nSo I think we should be OK to go with this approach.",
+      "parentUuid": "116f139f_5dca3661",
+      "revId": "0c12d6848b76e544a274453983104a8e3465e843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
