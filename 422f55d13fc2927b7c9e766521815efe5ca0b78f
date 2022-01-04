@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018854437",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932811?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f0d01145_5eca5a03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-04T02:48:39Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "422f55d13fc2927b7c9e766521815efe5ca0b78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018854437",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932811?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bdd09c43_c315f9c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-04T02:48:39Z",
+      "side": 1,
+      "message": "\"Verify LE audio hardware offload with HAL 2.2 for media\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 61
+      },
+      "revId": "422f55d13fc2927b7c9e766521815efe5ca0b78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018854437",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932811?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8b849e6a_4cb72928",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-04T02:48:39Z",
+      "side": 1,
+      "message": "\"Verify LE audio software path with HAL 2.1/2.2 with property\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 66
+      },
+      "revId": "422f55d13fc2927b7c9e766521815efe5ca0b78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
