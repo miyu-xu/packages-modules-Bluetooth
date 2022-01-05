@@ -87,6 +87,24 @@
       "parentUuid": "116f139f_5dca3661",
       "revId": "0c12d6848b76e544a274453983104a8e3465e843",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03b63398_a49aa81c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-05T15:37:09Z",
+      "side": 1,
+      "message": "With the audio configuration change API in HAL, the audio configuration could be updated to the HAL. So if offload driver register the callback function, it would getAudidConfig from HAL. It may no break the hardware offload without session restart.\n\nFor audio framework sync, I\u0027m not really sure, I am thinking if device_port_porxy could register audio configuration change callback as well and get the configuration from HAL. Is it workable for audio framework?",
+      "parentUuid": "b0362408_1c2d061d",
+      "revId": "0c12d6848b76e544a274453983104a8e3465e843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
