@@ -3,6 +3,7 @@
 import logging
 import time
 
+from mobly import asserts
 from mobly import test_runner
 from blueberry.utils import bt_audio_utils
 from blueberry.utils import triangle_base_test as base_test
@@ -78,6 +79,62 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     self.wait_for_watch_connection(connected=True)
     self.assert_headset_a2dp_connection(connected=True, device=self.phone)
     self.assert_headset_hsp_connection(connected=True, device=self.phone)
+
+  def test_trigger_connection_switching_when_media_paused_on_watch(self):
+    """Test for triggering connection switching when Media is paused on Watch.
+
+    Steps:
+      1. Power off Headset.
+      2. Wait 1 minute.
+      3. Play and then pause media on Watch.
+      4. Power on Headset, and then it will be reconnect.
+
+    Verifications:
+      The Headset connection is switched from Watch to Phone.
+    """
+    logging.info('Power off Headset and wait 1 minute.')
+    self.headset.power_off()
+    time.sleep(triangle_constants.WAITING_TIME_SEC)
+    self.watch.log.info('Play and then pause media.')
+    self.watch.sl4a.mediaPlayOpen(self.audio_file_on_watch)
+    self.watch.sl4a.mediaPlayStart()
+    self.watch.sl4a.mediaPlayPause()
+    logging.info('Power on Headset.')
+    self.headset.power_on()
+    self.assert_headset_a2dp_connection(connected=True, device=self.phone)
+    self.assert_headset_hsp_connection(connected=True, device=self.phone)
+
+  def test_trigger_connection_switching_when_media_playing_on_phone(self):
+    """Test for triggering connection switching when Media is playing on Phone.
+
+    Steps:
+      1. Power off Headset.
+      2. Wait 1 minute.
+      3. Play media on Phone.
+      4. Power on Headset, and then it will be reconnect.
+
+    Verifications:
+      A2DP is playing when Headset connection is switched from Watch to Phone.
+    """
+    sine_wave_file = bt_audio_utils.generate_sine_wave_to_device(
+        device=self.phone,
+        duration_sec=90)[0]
+    audio_file_on_phone = f'file://{sine_wave_file}'
+    logging.info('Power off Headset and wait 1 minute.')
+    self.headset.power_off()
+    time.sleep(triangle_constants.WAITING_TIME_SEC)
+    self.phone.log.info('Play media.')
+    self.phone.sl4a.mediaPlayOpen(audio_file_on_phone)
+    self.phone.sl4a.mediaPlayStart()
+    logging.info('Power on Headset.')
+    self.headset.power_on()
+    self.assert_headset_a2dp_connection(connected=True, device=self.phone)
+    self.assert_headset_hsp_connection(connected=True, device=self.phone)
+    asserts.assert_true(
+        self.phone.mbs.btIsA2dpPlaying(self.headset.mac_address),
+        'A2DP is not playing when Phone is connected to Headset.')
+    self.phone.sl4a.mediaPlayStop()
+    self.phone.sl4a.mediaPlayClose()
 
 
 if __name__ == '__main__':
