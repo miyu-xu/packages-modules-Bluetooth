@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d594e999_e19bfe6a",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-05T02:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2259eee2_ea52e22c",
+      "revId": "e639404e531fbe1bcf5be8382c4e621e2071e59a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa0bc2b5_46242a3d",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-05T01:30:59Z",
       "side": 1,
       "message": "Please move the check of whether the address type was set here. If it was set to anything other than the default, please call Utils.enforceBluetoothPrivilegedPermission",
+      "revId": "e639404e531fbe1bcf5be8382c4e621e2071e59a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a5f67bd_5bbcb7d4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2586,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-05T02:47:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0bc2b5_46242a3d",
       "revId": "e639404e531fbe1bcf5be8382c4e621e2071e59a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
