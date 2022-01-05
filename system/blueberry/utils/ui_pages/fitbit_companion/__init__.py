@@ -30,7 +30,6 @@ def get_context(ad: android_device.AndroidDevice,
   ctx = context.Context(ad, safe_get=safe_get, do_go_home=do_go_home)
   ctx.known_pages.extend((
       other_pages.PixelBudConnectPopup,
-      other_pages.ConfirmLocationPermissionPopup,
       other_pages.DownloadAppPopup,
       other_pages.LoginInputPage,
       other_pages.LoginPage2,
@@ -73,6 +72,7 @@ def get_context(ad: android_device.AndroidDevice,
       pairing_pages.SearchDevicePage,
       pairing_pages.SkipInfoPage,
       pairing_pages.UpdateDevicePage,
+      other_pages.ConfirmLocationPermissionPopup,  # b/213124134
   ))
 
   return ctx
