@@ -177,7 +177,7 @@ class FitbitAppDecorator(android_device.AndroidDevice):
 
     # TODO(user): Move pairing logic into fitbit_companion package while
     #   it may be used in many places.
-    self.ui_context.expect_page(pairing_pages.Pairing4DigitPage, wait_sec=200)
+    self.ui_context.expect_page(pairing_pages.Pairing4DigitPage, wait_sec=300)
     pins = fitbit_device._device.bt.pair_pin_show()
     log.info('Pairing pins=%s...', pins)
     self.ui_context.page.input_pins(pins)
@@ -201,7 +201,6 @@ class FitbitAppDecorator(android_device.AndroidDevice):
           pairing_pages.PairAndLinkPage,
           pairing_pages.PairingIntroPage,
           pairing_pages.PairingConfirmPage,
-          pairing_pages.PairingIntroPage,
           pairing_pages.CancelPairPage,
           pairing_pages.CancelPair2Page,
           other_pages.AllowNotification,
@@ -217,7 +216,9 @@ class FitbitAppDecorator(android_device.AndroidDevice):
       elif self.ui_context.is_page(pairing_pages.PairAndLinkPage):
         log.warning('Skip pair and link page...')
         self.ui_context.page.cancel()
-      elif self.ui_context.is_page(pairing_pages.CancelPairPage):
+      elif (
+          self.ui_context.is_page(pairing_pages.CancelPairPage) or
+          self.ui_context.is_page(pairing_pages.CancelPair2Page)):
         log.warning('Skip cancel pair page...')
         self.ui_context.page.yes()
       elif self.ui_context.is_page(other_pages.AllowNotification):
