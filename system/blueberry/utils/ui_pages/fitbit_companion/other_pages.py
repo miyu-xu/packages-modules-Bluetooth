@@ -236,7 +236,10 @@ class AllowLocationPermissionConfirmPopup(ui_core.UIPage):
 
 
 class ConfirmLocationPermissionPopup(ui_core.UIPage):
-  """Page to confirm the location permission."""
+  """Page to confirm the location permission.
+
+  TODO(user): Fix parsing logic to avoid mis-interpretation.
+  """
 
   PAGE_TEXT = 'Are you sure?'
   _NODE_BTN_CANCEL = 'CANCEL'
