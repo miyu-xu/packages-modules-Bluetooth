@@ -44,6 +44,9 @@
 // A2DP AAC encoder interval in milliseconds
 #define A2DP_AAC_ENCODER_INTERVAL_MS 20
 
+// A2DP AAC max number of frames we can keep in queue during temporary link congestion
+#define A2DP_AAC_MAX_FRAMES_QUEUE 20
+
 // offset
 #define A2DP_AAC_OFFSET AVDT_MEDIA_OFFSET
 
@@ -452,8 +455,7 @@ void a2dp_aac_send_frames(uint64_t timestamp_us) {
 // are used as output param for returning the respective values.
 static void a2dp_aac_get_num_frame_iteration(uint8_t* num_of_iterations, uint8_t* num_of_frames,
                                              uint64_t timestamp_us) {
-  uint32_t result = 0;
-  uint8_t nof = 0;
+  uint32_t nof = 0;
   uint8_t noi = 1;
 
   uint32_t pcm_bytes_per_frame = a2dp_aac_encoder_cb.aac_encoder_params.frame_length *
@@ -472,9 +474,20 @@ static void a2dp_aac_get_num_frame_iteration(uint8_t* num_of_iterations, uint8_t
           (float)a2dp_aac_encoder_cb.aac_feeding_state.bytes_per_tick * us_this_tick /
           (a2dp_aac_encoder_interval_ms * 1000);
 
-  result = a2dp_aac_encoder_cb.aac_feeding_state.counter / pcm_bytes_per_frame;
-  a2dp_aac_encoder_cb.aac_feeding_state.counter -= result * pcm_bytes_per_frame;
-  nof = result;
+  nof = a2dp_aac_encoder_cb.aac_feeding_state.counter / pcm_bytes_per_frame;
+
+  if (nof > A2DP_AAC_MAX_FRAMES_QUEUE) {
+    LOG_WARN("%s: limiting frames to be sent from %d to %d", __func__,
+            nof, A2DP_AAC_MAX_FRAMES_QUEUE);
+    // Update the stats
+    size_t delta = nof - A2DP_AAC_MAX_FRAMES_QUEUE;
+    a2dp_aac_encoder_cb.stats.media_read_total_dropped_packets += delta;
+
+    nof = A2DP_AAC_MAX_FRAMES_QUEUE;
+    a2dp_aac_encoder_cb.aac_feeding_state.counter = nof * pcm_bytes_per_frame;
+  }
+
+  a2dp_aac_encoder_cb.aac_feeding_state.counter -= nof * pcm_bytes_per_frame;
 
   log::verbose("effective num of frames {}, iterations {}", nof, noi);
 
