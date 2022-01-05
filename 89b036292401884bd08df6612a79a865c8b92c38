@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82cd73b4_42f0fbf4",
+        "filename": "system/audio_hal_interface/fuzzer/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1559553
+      },
+      "writtenOn": "2022-01-05T23:31:08Z",
+      "side": 1,
+      "message": "This was just changed to \u0027liblc3\u0027 from \u0027liblc3encoder\u0027.",
+      "range": {
+        "startLine": 62,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "89b036292401884bd08df6612a79a865c8b92c38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
