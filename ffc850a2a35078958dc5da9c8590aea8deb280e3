@@ -57,6 +57,30 @@
       },
       "revId": "ffc850a2a35078958dc5da9c8590aea8deb280e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b80b98e4_dcdf3bfe",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/link_layer_controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-01-05T18:02:38Z",
+      "side": 1,
+      "message": "Not really, it\u0027s needed x), the TestModel schedule things with a 0 millisecond delay https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/vendor_libs/test_vendor_lib/model/setup/test_model.cc;l\u003d241\nWith 1 ms the task used to send LinkLayerPackets is canceled before executing by the 0 ms timer of the `OnConnectionClosed`",
+      "parentUuid": "563cfa50_e5949e18",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 36
+      },
+      "revId": "ffc850a2a35078958dc5da9c8590aea8deb280e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
