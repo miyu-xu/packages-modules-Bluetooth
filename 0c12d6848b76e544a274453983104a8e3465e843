@@ -105,6 +105,24 @@
       "parentUuid": "b0362408_1c2d061d",
       "revId": "0c12d6848b76e544a274453983104a8e3465e843",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e26cd39_26a241a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-05T15:55:38Z",
+      "side": 1,
+      "message": "Thanks Alice.\n\nMy thinking is, that in software encoding/decoding and controller offloader, all the configuration will happen from the BT stack and there is no need to sync with audio framework (at least this is my understanding). Resampling will happen in BT stack as well so we should be good to stick to fixed Audio Session configuration.",
+      "parentUuid": "03b63398_a49aa81c",
+      "revId": "0c12d6848b76e544a274453983104a8e3465e843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
