@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018885769",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1935571?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bc23c332_90ac8232",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T00:35:42Z",
+      "side": 1,
+      "message": "\"Manual\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "6292e2294c866c84dc4efcf5b0362cf7e94ac0e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018885771",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1935571?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a48f45a0_c230915e",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T00:35:42Z",
+      "side": 1,
+      "message": "TODO statements should not reference a specific human; consider using a bug number instead; see https://source.android.com/setup/contribute/code-style#use-todo-comments for more details.",
+      "range": {
+        "startLine": 923,
+        "startChar": 7,
+        "endLine": 923,
+        "endChar": 26
+      },
+      "revId": "6292e2294c866c84dc4efcf5b0362cf7e94ac0e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
