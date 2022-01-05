@@ -1033,9 +1033,18 @@ public class LeAudioService extends ProfileService {
             }
 
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_CREATED) {
-            // TODO: Implement
+            int instanceId = stackEvent.valueInt1;
+            boolean success = stackEvent.valueBool1;
+            intent = new Intent(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_CREATED);
+            intent.putExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, instanceId);
+            intent.putExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_STATUS, success);
+
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_DESTROYED) {
-            // TODO: Implement
+            int instanceId = stackEvent.valueInt1;
+
+            intent = new Intent(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_DESTROYED);
+            intent.putExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, instanceId);
+
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE) {
             int instanceId = stackEvent.valueInt1;
             int state = stackEvent.valueInt2;
@@ -1061,9 +1070,18 @@ public class LeAudioService extends ProfileService {
                     }
                 }
             }
-            // TODO: Implement
+
+            intent = new Intent(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_STATE);
+            intent.putExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, instanceId);
+            intent.putExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_STATE, state);
+
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_ID) {
-            // TODO: Implement
+            int instanceId = stackEvent.valueInt1;
+            byte[] broadcast_id = stackEvent.valueByte1;
+
+            intent = new Intent(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_ID);
+            intent.putExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_ID, broadcast_id);
+            intent.putExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, instanceId);
         }
 
         if (intent != null) {
