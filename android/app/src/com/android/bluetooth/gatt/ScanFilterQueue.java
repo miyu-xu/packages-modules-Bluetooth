@@ -186,7 +186,8 @@ import java.util.UUID;
              * however, the host stack will force the type to 0x02 for the APCF filter in
              * btm_ble_adv_filter.cc#BTM_LE_PF_addr_filter(...)
              */
-            addDeviceAddress(filter.getDeviceAddress(), (byte) filter.getAddressType(), filter.getIrk());
+            addDeviceAddress(filter.getDeviceAddress(), (byte) filter.getAddressType(),
+                    filter.getIrk());
         }
         if (filter.getServiceUuid() != null) {
             if (filter.getServiceUuidMask() == null) {
