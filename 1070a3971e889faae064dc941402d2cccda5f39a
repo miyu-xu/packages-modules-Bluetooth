@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018885313",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1935570?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a63a057b_8aa10f5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T00:18:54Z",
+      "side": 1,
+      "message": "\"Manual scanning app\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 34,
+        "startChar": 5,
+        "endLine": 34,
+        "endChar": 25
+      },
+      "revId": "1070a3971e889faae064dc941402d2cccda5f39a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018885313",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1935570?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dfc9aea3_9ae742ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T00:18:54Z",
+      "side": 1,
+      "message": "{#stability %!s(int\u003d29) %!s(int\u003d4) %!s(int\u003d15)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 15
+      },
+      "revId": "1070a3971e889faae064dc941402d2cccda5f39a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
