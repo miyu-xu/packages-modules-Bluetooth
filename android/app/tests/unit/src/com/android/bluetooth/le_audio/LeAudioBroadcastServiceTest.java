@@ -93,6 +93,10 @@ public class LeAudioBroadcastServiceTest {
 
         // Set up the State Changed receiver
         IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_CREATED);
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_DESTROYED);
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_STATE);
+        filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_ID);
 
         mLeAudioIntentReceiver = new LeAudioIntentReceiver();
         mTargetContext.registerReceiver(mLeAudioIntentReceiver, filter);
@@ -149,7 +153,7 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testCreateBroadcastNative() {
-        int broadcast_profile = 0;
+        int broadcast_profile = BluetoothLeAudio.BROADCAST_PROFILE_SONIFICATION;
         byte[] meta = new byte[]{0x02, 0x01, 0x02};
         byte[] code = {0x00, 0x01, 0x00};
         mService.createBroadcast(meta, broadcast_profile, code);
@@ -160,7 +164,7 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testStartBroadcastNative() {
-        int broadcast_profile = 0;
+        int broadcast_profile = BluetoothLeAudio.BROADCAST_PROFILE_SONIFICATION;
         byte[] meta = new byte[]{0x02, 0x01, 0x02};
         byte[] code = {0x00, 0x01, 0x00};
         mService.createBroadcast(meta, broadcast_profile, code);
@@ -172,7 +176,7 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testStopBroadcastNative() {
-        int broadcast_profile = 0;
+        int broadcast_profile = BluetoothLeAudio.BROADCAST_PROFILE_SONIFICATION;
         byte[] meta = new byte[]{0x02, 0x01, 0x02};
         byte[] code = {0x00, 0x01, 0x00};
         mService.createBroadcast(meta, broadcast_profile, code);
@@ -184,7 +188,7 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testPauseBroadcastNative() {
-        int broadcast_profile = 0;
+        int broadcast_profile = BluetoothLeAudio.BROADCAST_PROFILE_SONIFICATION;
         byte[] meta = new byte[]{0x02, 0x01, 0x02};
         byte[] code = {0x00, 0x01, 0x00};
         mService.createBroadcast(meta, broadcast_profile, code);
@@ -196,7 +200,7 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testDestroyBroadcastNative() {
-        int broadcast_profile = 0;
+        int broadcast_profile = BluetoothLeAudio.BROADCAST_PROFILE_SONIFICATION;
         byte[] meta = new byte[]{0x02, 0x01, 0x02};
         byte[] code = {0x00, 0x01, 0x00};
         mService.createBroadcast(meta, broadcast_profile, code);
@@ -208,7 +212,7 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testGetBroadcastAddressNative() {
-        int broadcast_profile = 0;
+        int broadcast_profile = BluetoothLeAudio.BROADCAST_PROFILE_SONIFICATION;
         byte[] meta = new byte[]{0x02, 0x01, 0x02};
         byte[] code = {0x00, 0x01, 0x00};
         mService.createBroadcast(meta, broadcast_profile, code);
@@ -220,7 +224,7 @@ public class LeAudioBroadcastServiceTest {
 
     @Test
     public void testGetAllBroadcastStates() {
-        int broadcast_profile = 0;
+        int broadcast_profile = BluetoothLeAudio.BROADCAST_PROFILE_SONIFICATION;
         byte[] meta = new byte[]{0x02, 0x01, 0x02};
         byte[] code = {0x00, 0x01, 0x00};
         mService.createBroadcast(meta, broadcast_profile, code);
@@ -228,6 +232,73 @@ public class LeAudioBroadcastServiceTest {
         int broadcast_id = 243;
         mService.getAllBroadcastStates();
         verify(mNativeInterface, times(1)).getAllBroadcastStates();
+    }
+
+    @Test
+    public void testStackEventBroadcastCreated() {
+        int broadcastId = 0x01;
+
+        doCallRealMethod().when(mNativeInterface).onBroadcastCreated(anyInt(), anyBoolean());
+        mNativeInterface.onBroadcastCreated(broadcastId, true);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mIntentQueue);
+        Assert.assertNotNull(intent);
+        Assert.assertEquals(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_CREATED, intent.getAction());
+        Assert.assertEquals(broadcastId, intent.getIntExtra(
+                BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, -1));
+        Assert.assertEquals(true,
+                intent.getBooleanExtra(
+                        BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_STATUS, false));
+    }
+
+    @Test
+    public void testStackEventBroadcastDestroyed() {
+        int broadcastId = 0x01;
+
+        doCallRealMethod().when(mNativeInterface).onBroadcastDestroyed(anyInt());
+        mNativeInterface.onBroadcastDestroyed(broadcastId);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mIntentQueue);
+        Assert.assertNotNull(intent);
+        Assert.assertEquals(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_DESTROYED,
+                intent.getAction());
+        Assert.assertEquals(broadcastId,
+                intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, -1));
+    }
+
+    @Test
+    public void testStackEventBroadcastStateChanged() {
+        int broadcastId = 0x01;
+
+        doCallRealMethod().when(mNativeInterface).onBroadcastStateChanged(anyInt(), anyInt());
+        mNativeInterface.onBroadcastStateChanged(broadcastId,
+                LeAudioStackEvent.BROADCAST_STATE_STREAMING);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mIntentQueue);
+        Assert.assertNotNull(intent);
+        Assert.assertEquals(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_STATE, intent.getAction());
+        Assert.assertEquals(broadcastId,
+                intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, -1));
+        Assert.assertEquals(BluetoothLeAudio.BROADCAST_STATE_STREAMING,
+                intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_STATE,
+                        BluetoothLeAudio.BROADCAST_STATE_STOPPED));
+    }
+
+    @Test
+    public void testStackEventBroadcastId() {
+        int instanceId = 0x01;
+        byte[] broadcastId = {0x01, 0x02, 0x03};
+
+        doCallRealMethod().when(mNativeInterface).onBroadcastId(anyInt(), any(byte[].class));
+        mNativeInterface.onBroadcastId(instanceId, broadcastId);
+
+        Intent intent = TestUtils.waitForIntent(TIMEOUT_MS, mIntentQueue);
+        Assert.assertNotNull(intent);
+        Assert.assertEquals(BluetoothLeAudio.ACTION_LE_AUDIO_BROADCAST_ID, intent.getAction());
+        Assert.assertEquals(instanceId,
+                intent.getIntExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_INSTANCE_ID, -1));
+        Assert.assertArrayEquals(broadcastId,
+                intent.getByteArrayExtra(BluetoothLeAudio.EXTRA_LE_AUDIO_BROADCAST_ID));
     }
 
     private class LeAudioIntentReceiver extends BroadcastReceiver {
