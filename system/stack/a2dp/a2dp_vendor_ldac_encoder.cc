@@ -511,7 +511,7 @@ void a2dp_vendor_ldac_send_frames(uint64_t timestamp_us) {
   uint8_t nb_iterations = 0;
 
   a2dp_ldac_get_num_frame_iteration(&nb_iterations, &nb_frame, timestamp_us);
-  LOG_VERBOSE("%s: Sending %d frames per iteration, %d iterations", __func__,
+  LOG_WARN("%s: Sending %d frames per iteration, %d iterations", __func__,
               nb_frame, nb_iterations);
   if (nb_frame == 0) return;
 
@@ -540,15 +540,14 @@ void a2dp_vendor_ldac_send_frames(uint64_t timestamp_us) {
 static void a2dp_ldac_get_num_frame_iteration(uint8_t* num_of_iterations,
                                               uint8_t* num_of_frames,
                                               uint64_t timestamp_us) {
-  uint32_t result = 0;
-  uint8_t nof = 0;
+  uint32_t nof = 0;
   uint8_t noi = 1;
 
   uint32_t pcm_bytes_per_frame =
       A2DP_LDAC_MEDIA_BYTES_PER_FRAME *
       a2dp_ldac_encoder_cb.feeding_params.channel_count *
       a2dp_ldac_encoder_cb.feeding_params.bits_per_sample / 8;
-  LOG_VERBOSE("%s: pcm_bytes_per_frame %u", __func__, pcm_bytes_per_frame);
+  LOG_WARN("%s: pcm_bytes_per_frame %u", __func__, pcm_bytes_per_frame);
 
   uint32_t us_this_tick = A2DP_LDAC_ENCODER_INTERVAL_MS * 1000;
   uint64_t now_us = timestamp_us;
@@ -561,14 +560,22 @@ static void a2dp_ldac_get_num_frame_iteration(uint8_t* num_of_iterations,
       (float)a2dp_ldac_encoder_cb.ldac_feeding_state.bytes_per_tick * us_this_tick /
       (A2DP_LDAC_ENCODER_INTERVAL_MS * 1000);
 
-  result =
-      a2dp_ldac_encoder_cb.ldac_feeding_state.counter / pcm_bytes_per_frame;
-  a2dp_ldac_encoder_cb.ldac_feeding_state.counter -=
-      result * pcm_bytes_per_frame;
-  nof = result;
+  nof = a2dp_ldac_encoder_cb.ldac_feeding_state.counter / pcm_bytes_per_frame;
 
-  LOG_VERBOSE("%s: effective num of frames %u, iterations %u", __func__, nof,
-              noi);
+  if (nof > MAX_PCM_FRAME_NUM_PER_TICK) {
+    LOG_WARN("%s: limiting frames to be sent from %d to %d", __func__,
+            nof, MAX_PCM_FRAME_NUM_PER_TICK);
+
+    // Update the stats
+    size_t delta = nof - MAX_PCM_FRAME_NUM_PER_TICK;
+    a2dp_ldac_encoder_cb.stats.media_read_total_dropped_packets += delta;
+
+    nof = MAX_PCM_FRAME_NUM_PER_TICK;
+  }
+
+  a2dp_ldac_encoder_cb.ldac_feeding_state.counter -= nof * pcm_bytes_per_frame;
+
+  LOG_WARN("%s: effective num of frames %u, iterations %u", __func__, nof, noi);
 
   *num_of_frames = nof;
   *num_of_iterations = noi;
