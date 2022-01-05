@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44929563_c1bfec16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-05T03:25:45Z",
+      "side": 1,
+      "message": "We have encountering advertising issues and we need to collect information about which APP to start/stop/modify advertisers. There has been a scanner logger(scannerMap) for BLE scan in AOSP but not for advertising.",
+      "parentUuid": "b552152e_cae42c2a",
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75f601e6_e7061792",
@@ -149,6 +167,30 @@
       "side": 1,
       "message": "It should be a problem. I will add a protection",
       "parentUuid": "4486d78d_cb86ddc8",
+      "range": {
+        "startLine": 352,
+        "startChar": 18,
+        "endLine": 352,
+        "endChar": 32
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b729619f_41f6b3a3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-05T03:25:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c07e62e_eaaf53f1",
       "range": {
         "startLine": 352,
         "startChar": 18,
