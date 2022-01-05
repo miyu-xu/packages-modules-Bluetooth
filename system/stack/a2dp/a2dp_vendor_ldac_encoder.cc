@@ -107,6 +107,9 @@ static tLDAC_GET_ERROR_CODE ldac_get_error_code_func;
 #define A2DP_LDAC_ENCODER_INTERVAL_MS 20
 #define A2DP_LDAC_MEDIA_BYTES_PER_FRAME 128
 
+// A2DP LDAC max number of frames we can keep in queue during temporary link congestion 
+#define A2DP_LDAC_MAX_FRAMES_QUEUE 20
+
 // offset
 #if (BTA_AV_CO_CP_SCMS_T == TRUE)
 #define A2DP_LDAC_OFFSET (AVDT_MEDIA_OFFSET + A2DP_LDAC_MPL_HDR_LEN + 1)
@@ -511,7 +514,7 @@ void a2dp_vendor_ldac_send_frames(uint64_t timestamp_us) {
   uint8_t nb_iterations = 0;
 
   a2dp_ldac_get_num_frame_iteration(&nb_iterations, &nb_frame, timestamp_us);
-  LOG_VERBOSE("%s: Sending %d frames per iteration, %d iterations", __func__,
+  LOG_WARN("%s: Sending %d frames per iteration, %d iterations", __func__,
               nb_frame, nb_iterations);
   if (nb_frame == 0) return;
 
@@ -540,8 +543,7 @@ void a2dp_vendor_ldac_send_frames(uint64_t timestamp_us) {
 static void a2dp_ldac_get_num_frame_iteration(uint8_t* num_of_iterations,
                                               uint8_t* num_of_frames,
                                               uint64_t timestamp_us) {
-  uint32_t result = 0;
-  uint8_t nof = 0;
+  uint32_t nof = 0;
   uint8_t noi = 1;
 
   uint32_t pcm_bytes_per_frame =
@@ -561,14 +563,23 @@ static void a2dp_ldac_get_num_frame_iteration(uint8_t* num_of_iterations,
       (float)a2dp_ldac_encoder_cb.ldac_feeding_state.bytes_per_tick * us_this_tick /
       (A2DP_LDAC_ENCODER_INTERVAL_MS * 1000);
 
-  result =
-      a2dp_ldac_encoder_cb.ldac_feeding_state.counter / pcm_bytes_per_frame;
-  a2dp_ldac_encoder_cb.ldac_feeding_state.counter -=
-      result * pcm_bytes_per_frame;
-  nof = result;
+  nof = a2dp_ldac_encoder_cb.ldac_feeding_state.counter / pcm_bytes_per_frame;
 
-  LOG_VERBOSE("%s: effective num of frames %u, iterations %u", __func__, nof,
-              noi);
+  if (nof > A2DP_LDAC_MAX_FRAMES_QUEUE) {
+    LOG_WARN("%s: limiting frames to be sent from %d to %d", __func__,
+            nof, A2DP_LDAC_MAX_FRAMES_QUEUE);
+
+    // Update the stats
+    size_t delta = nof - A2DP_LDAC_MAX_FRAMES_QUEUE;
+    a2dp_ldac_encoder_cb.stats.media_read_total_dropped_packets += delta;
+
+    nof = A2DP_LDAC_MAX_FRAMES_QUEUE;
+    a2dp_ldac_encoder_cb.ldac_feeding_state.counter = nof * pcm_bytes_per_frame;
+  }
+
+  a2dp_ldac_encoder_cb.ldac_feeding_state.counter -= nof * pcm_bytes_per_frame;
+
+  LOG_VERBOSE("%s: effective num of frames %u, iterations %u", __func__, nof, noi);
 
   *num_of_frames = nof;
   *num_of_iterations = noi;
