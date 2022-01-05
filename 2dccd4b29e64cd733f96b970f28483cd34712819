@@ -34,6 +34,24 @@
       "parentUuid": "10c01940_a145197e",
       "revId": "2dccd4b29e64cd733f96b970f28483cd34712819",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11790ab1_a9d7c090",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2142,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-05T11:57:03Z",
+      "side": 1,
+      "message": "Right, so then we setup it in Bluetooth stack.",
+      "parentUuid": "604dfc94_851bd453",
+      "revId": "2dccd4b29e64cd733f96b970f28483cd34712819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
