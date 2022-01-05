@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "998dae02_c1a2aac8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-01-05T14:40:12Z",
+      "side": 1,
+      "message": "Add some context, few things worth mentioning:\n - the internal entry point for callbacks is bta_ag_at_hfp_cback()\n - some at commands are considered \u0027local\u0027 and is handled in bta_ag_cmd.cc\n - otherwise by default AT commands are forwarded to application(i.e HFP shim) to be handled, and that\u0027s what this CL is for.",
+      "revId": "71738d2e340b8ffc20821d3dd1aeaf11622ada83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b072b51f_ca072c01",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-01-05T14:40:12Z",
+      "side": 1,
+      "message": "add a comment this is for BTA_AgRegister()",
+      "revId": "71738d2e340b8ffc20821d3dd1aeaf11622ada83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1734250c_62c4511d",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-01-05T14:40:12Z",
+      "side": 1,
+      "message": "This worth some comments, at least explain what indicators mean here, ex: battery, telephony related stuff, etc.\n\nLater when we qualify this implementation, we shall add detailed explanations.",
+      "revId": "71738d2e340b8ffc20821d3dd1aeaf11622ada83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87d133ca_f5303645",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-01-05T14:40:12Z",
+      "side": 1,
+      "message": "roughly remember the AT+BIND is a required one. suggest leave a TODO and shortly explain what it is for.",
+      "revId": "71738d2e340b8ffc20821d3dd1aeaf11622ada83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
