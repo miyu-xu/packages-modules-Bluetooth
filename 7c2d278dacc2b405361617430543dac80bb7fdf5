@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018910233",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "375f2c01_b7a376d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T18:16:25Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "7c2d278dacc2b405361617430543dac80bb7fdf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018910233",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "df0ad1a7_043a9efb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T18:16:25Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "7c2d278dacc2b405361617430543dac80bb7fdf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018910233",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ea4783a9_1a172d54",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T18:16:25Z",
+      "side": 1,
+      "message": "Use go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 23
+      },
+      "revId": "7c2d278dacc2b405361617430543dac80bb7fdf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018910233",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1927382?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fe509f8e_05b9c5d9",
+        "filename": "system/bta/le_audio/broadcaster/state_machine_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T18:16:25Z",
+      "side": 1,
+      "message": "Use ASSERT_EQ() instead",
+      "range": {
+        "startLine": 319,
+        "startChar": 2,
+        "endLine": 319,
+        "endChar": 12
+      },
+      "revId": "7c2d278dacc2b405361617430543dac80bb7fdf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
