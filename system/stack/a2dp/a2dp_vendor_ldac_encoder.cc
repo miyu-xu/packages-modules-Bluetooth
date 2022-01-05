@@ -56,6 +56,9 @@
 #define A2DP_LDAC_ENCODER_INTERVAL_MS 20
 #define A2DP_LDAC_MEDIA_BYTES_PER_FRAME 128
 
+// A2DP LDAC max number of frames we can keep in queue during temporary link congestion
+#define A2DP_LDAC_MAX_FRAMES_QUEUE 20
+
 // offset
 #define A2DP_LDAC_OFFSET (AVDT_MEDIA_OFFSET + A2DP_LDAC_MPL_HDR_LEN)
 
@@ -372,8 +375,7 @@ void a2dp_vendor_ldac_send_frames(uint64_t timestamp_us) {
 // are used as output param for returning the respective values.
 static void a2dp_ldac_get_num_frame_iteration(uint8_t* num_of_iterations, uint8_t* num_of_frames,
                                               uint64_t timestamp_us) {
-  uint32_t result = 0;
-  uint8_t nof = 0;
+  uint32_t nof = 0;
   uint8_t noi = 1;
 
   uint32_t pcm_bytes_per_frame = A2DP_LDAC_MEDIA_BYTES_PER_FRAME *
@@ -392,11 +394,42 @@ static void a2dp_ldac_get_num_frame_iteration(uint8_t* num_of_iterations, uint8_
           (float)a2dp_ldac_encoder_cb.ldac_feeding_state.bytes_per_tick * us_this_tick /
           (A2DP_LDAC_ENCODER_INTERVAL_MS * 1000);
 
+<<<<<<< PATCH SET (d0bff2 Limit the number of frames for LDAC and AAC)
+  nof = a2dp_ldac_encoder_cb.ldac_feeding_state.counter / pcm_bytes_per_frame;
+||||||| BASE
+  result =
+      a2dp_ldac_encoder_cb.ldac_feeding_state.counter / pcm_bytes_per_frame;
+  a2dp_ldac_encoder_cb.ldac_feeding_state.counter -=
+      result * pcm_bytes_per_frame;
+  nof = result;
+=======
   result = a2dp_ldac_encoder_cb.ldac_feeding_state.counter / pcm_bytes_per_frame;
   a2dp_ldac_encoder_cb.ldac_feeding_state.counter -= result * pcm_bytes_per_frame;
   nof = result;
+>>>>>>> BASE      (ecb352 Merge "floss: save address privacy setting to backup file fo)
 
+<<<<<<< PATCH SET (d0bff2 Limit the number of frames for LDAC and AAC)
+  if (nof > A2DP_LDAC_MAX_FRAMES_QUEUE) {
+    LOG_WARN("%s: limiting frames to be sent from %d to %d", __func__,
+            nof, A2DP_LDAC_MAX_FRAMES_QUEUE);
+
+    // Update the stats
+    size_t delta = nof - A2DP_LDAC_MAX_FRAMES_QUEUE;
+    a2dp_ldac_encoder_cb.stats.media_read_total_dropped_packets += delta;
+
+    nof = A2DP_LDAC_MAX_FRAMES_QUEUE;
+    a2dp_ldac_encoder_cb.ldac_feeding_state.counter = nof * pcm_bytes_per_frame;
+  }
+
+  a2dp_ldac_encoder_cb.ldac_feeding_state.counter -= nof * pcm_bytes_per_frame;
+
+  LOG_VERBOSE("%s: effective num of frames %u, iterations %u", __func__, nof, noi);
+||||||| BASE
+  LOG_VERBOSE("%s: effective num of frames %u, iterations %u", __func__, nof,
+              noi);
+=======
   log::verbose("effective num of frames {}, iterations {}", nof, noi);
+>>>>>>> BASE      (ecb352 Merge "floss: save address privacy setting to backup file fo)
 
   *num_of_frames = nof;
   *num_of_iterations = noi;
