@@ -1,0 +1,99 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018919309",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1937299?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8e7707a8_457a03b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T22:53:43Z",
+      "side": 1,
+      "message": "\"Manual\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "2a827178e0952930e92b6c57536d20a1f4bee47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018919309",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1937299?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a235be04_f0c6e2c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T22:53:43Z",
+      "side": 1,
+      "message": "\"gd/cert/run --device --clean --test_config\u003dgd/cert/gd_sl4a_device_config.json LeAdvancedScanningTest\" is not a known gd cert stanza format. Expected something like \"gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e)\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 106
+      },
+      "revId": "2a827178e0952930e92b6c57536d20a1f4bee47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018919312",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1937299?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "a65245a2_2a9b0029",
+          "description": "Change to \"android/app/src/com/android/bluetooth/gatt/GattService.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+              "range": {
+                "startLine": 1241,
+                "startChar": 53,
+                "endLine": 1241,
+                "endChar": 60
+              },
+              "replacement": "occasion"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "0d1042ab_02e0ec08",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1241,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-05T22:53:43Z",
+      "side": 1,
+      "message": "Common typo found: \"ocation\" -- should it be \"occasion\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1241,
+        "startChar": 53,
+        "endLine": 1241,
+        "endChar": 60
+      },
+      "revId": "2a827178e0952930e92b6c57536d20a1f4bee47a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
