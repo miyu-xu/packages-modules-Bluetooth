@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018951187",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1937299?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "62b2db16_a03fa2bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T18:08:08Z",
+      "side": 1,
+      "message": "\"Manual\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 12
+      },
+      "revId": "73b299a30d684d27ade51d446f119d54dd2c1b5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018951187",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1937299?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "38b44d28_2602de19",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T18:08:08Z",
+      "side": 1,
+      "message": "\"gd/cert/run --device --clean --test_config\u003dgd/cert/gd_sl4a_device_config.json LeAdvancedScanningTest\" is not a known gd cert stanza format. Expected something like \"gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e)\"",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 106
+      },
+      "revId": "73b299a30d684d27ade51d446f119d54dd2c1b5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
