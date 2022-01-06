@@ -131,11 +131,13 @@ static void btm_esco_conn_rsp(uint16_t sco_inx, uint8_t hci_status,
     /* If parameters not specified use the default */
     if (p_parms) {
       *p_setup = *p_parms;
+    } else if (p_sco->esco.data.link_type == BTM_LINK_TYPE_SCO
+        || !sco_peer_supports_esco_ev3(bda)) {
+      *p_setup = esco_parameters_for_codec(SCO_CODEC_CVSD_D1);
     } else {
       /* Use the last setup passed thru BTM_SetEscoMode (or defaults) */
       *p_setup = btm_cb.sco_cb.def_esco_parms;
     }
-
     /* Use Enhanced Synchronous commands if supported */
     if (controller_get_interface()
             ->supports_enhanced_setup_synchronous_connection()) {
@@ -279,6 +281,13 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
         BTM_TRACE_DEBUG("BTM Remote does not support 3-EDR eSCO");
         temp_packet_types |=
             (ESCO_PKT_TYPES_MASK_NO_3_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV5);
+      }
+      if (!sco_peer_supports_esco_ev3(bd_addr)) {
+        BTM_TRACE_DEBUG("BTM Remote does not support EV3 eSCO");
+        temp_packet_types &= ~ESCO_PKT_TYPES_MASK_EV3;
+
+        p_setup->retransmission_effort = ESCO_RETRANSMISSION_OFF;
+        p_setup->max_latency_ms = 10;
       }
 
       /* Check to see if BR/EDR Secure Connections is being used
