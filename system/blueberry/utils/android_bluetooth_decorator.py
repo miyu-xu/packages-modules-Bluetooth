@@ -1398,9 +1398,15 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
       timeout_sec: Number of seconds to wait for Bluetooth to be in the expected
           state.
     """
+    def is_bluetooth_enabled() -> bool:
+      """Returns True if Bluetooth enabled else False."""
+      cmd = 'dumpsys bluetooth_manager|grep -E "enabled: true|enabled: false"'
+      bt_status = self._ad.adb.shell(cmd).decode().strip()
+      return 'true' in bt_status
+
     bt_test_utils.wait_until(
         timeout_sec=timeout_sec,
-        condition_func=self._ad.mbs.btIsEnabled,
+        condition_func=is_bluetooth_enabled,
         func_args=[],
         expected_value=enabled,
         exception=signals.TestError(
@@ -1679,12 +1685,13 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     Returns:
         None
     """
-    self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '1'])
-    self._ad.adb.shell([
-        'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE', '--ez',
-        'state', 'true'
-    ])
-    time.sleep(wait_secs)
+    if not self._is_airplane_mode_enabled():
+      self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '1'])
+      self._ad.adb.shell([
+          'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE',
+          '--ez', 'state', 'true'
+      ])
+      time.sleep(wait_secs)
 
   def disable_airplane_mode(self, wait_secs=1) -> None:
     """Disables airplane mode on device.
@@ -1695,12 +1702,13 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     Returns:
         None
     """
-    self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '0'])
-    self._ad.adb.shell([
-        'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE', '--ez',
-        'state', 'false'
-    ])
-    time.sleep(wait_secs)
+    if self._is_airplane_mode_enabled():
+      self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '0'])
+      self._ad.adb.shell([
+          'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE',
+          '--ez', 'state', 'false'
+      ])
+      time.sleep(wait_secs)
 
   def disable_verity_check(self) -> None:
     """Disables Android dm verity check.
@@ -1714,3 +1722,15 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     self._ad.root_adb()
     self._ad.wait_for_boot_completion()
     self._ad.adb.remount()
+
+  def toggle_bluetooth(self, enabled: bool = True) -> None:
+    """Toggles Bluetooth on the device."""
+    status = 'enable' if enabled else 'disable'
+    cmd = f'svc bluetooth {status}'
+    self._ad.adb.shell(cmd)
+
+  def _is_airplane_mode_enabled(self) -> bool:
+    """Returns True if airplane mode enabled else False."""
+    cmd = 'dumpsys wifi|grep -E "AirplaneModeOn true|AirplaneModeOn false"'
+    airplane_mode_status = self._ad.adb.shell(cmd).decode().strip()
+    return 'true' in airplane_mode_status
