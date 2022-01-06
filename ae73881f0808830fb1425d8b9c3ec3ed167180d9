@@ -16,6 +16,24 @@
       "message": "Have you done a code coverage run following these changes? What are our numbers looking like?",
       "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1114a24d_5ccea5dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1126163
+      },
+      "writtenOn": "2022-01-06T19:19:25Z",
+      "side": 1,
+      "message": "It should bring two more classes up to 100% method coverage, with a high line coverage, but I have not generated coverage numbers.",
+      "parentUuid": "723a37a8_bbc27a79",
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
