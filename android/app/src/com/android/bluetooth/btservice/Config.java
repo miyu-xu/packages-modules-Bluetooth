@@ -50,6 +50,7 @@ import com.android.bluetooth.pbapclient.PbapClientService;
 import com.android.bluetooth.sap.SapService;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.bluetooth.tbs.TbsService;
+import com.android.bluetooth.bc.BCService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -132,6 +133,9 @@ public class Config {
             new ProfileConfig(CsipSetCoordinatorService.class,
                     R.bool.profile_supported_csip_set_coordinator,
                     (1 << BluetoothProfile.CSIP_SET_COORDINATOR)),
+            new ProfileConfig(BCService.class,
+                    R.bool.profile_supported_bc,
+                    (1 << BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)),
     };
 
     private static Class[] sSupportedProfiles = new Class[0];
