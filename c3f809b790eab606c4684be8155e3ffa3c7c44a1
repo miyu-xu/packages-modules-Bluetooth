@@ -16,6 +16,23 @@
       "message": "Follow-up to https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1936078",
       "revId": "c3f809b790eab606c4684be8155e3ffa3c7c44a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c2ca93_c61333f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-01-06T20:39:47Z",
+      "side": 1,
+      "message": "Follow-up to https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1936078\n\nHad TreeHugger verification time out after 2 days.  Trying again with more reviewers.",
+      "revId": "c3f809b790eab606c4684be8155e3ffa3c7c44a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
