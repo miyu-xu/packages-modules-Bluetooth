@@ -123,6 +123,7 @@ import com.android.bluetooth.sap.SapService;
 import com.android.bluetooth.sdp.SdpManager;
 import com.android.bluetooth.telephony.BluetoothInCallService;
 import com.android.bluetooth.vc.VolumeControlService;
+import com.android.bluetooth.bc.BCService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.os.BinderCallsStats;
@@ -306,6 +307,7 @@ public class AdapterService extends Service {
     private VolumeControlService mVolumeControlService;
     private CsipSetCoordinatorService mCsipSetCoordinatorService;
     private LeAudioService mLeAudioService;
+    private BCService mBCService;
 
     private BinderCallsStats.SettingsObserver mBinderCallsSettingsObserver;
 
@@ -1054,6 +1056,9 @@ public class AdapterService extends Service {
         if (profile == BluetoothProfile.LE_AUDIO) {
             return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.LE_AUDIO);
         }
+        if (profile == BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT) {
+            return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.BASS_ID);
+        }
 
         Log.e(TAG, "isSupported: Unexpected profile passed in to function: " + profile);
         return false;
@@ -1115,6 +1120,10 @@ public class AdapterService extends Service {
         }
         if (mLeAudioService != null && mLeAudioService.getConnectionPolicy(device)
                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            return true;
+        }
+        if (mBCService != null && mBCService.getConnectionPolicy(device)
+                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return true;
         }
         return false;
@@ -1215,6 +1224,13 @@ public class AdapterService extends Service {
             Log.i(TAG, "connectEnabledProfiles: Connecting LeAudio profile (BAP)");
             mLeAudioService.connect(device);
         }
+        if (mBCService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
+                BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, device)
+                && mBCService.getConnectionPolicy(device)
+                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            Log.i(TAG, "connectEnabledProfiles: Connecting LE Broadcast Assistant Profile");
+            mBCService.connect(device);
+        }
         return BluetoothStatusCodes.SUCCESS;
     }
 
@@ -1254,6 +1270,7 @@ public class AdapterService extends Service {
         mVolumeControlService = VolumeControlService.getVolumeControlService();
         mCsipSetCoordinatorService = CsipSetCoordinatorService.getCsipSetCoordinatorService();
         mLeAudioService = LeAudioService.getLeAudioService();
+        mBCService = BCService.getBCService();
     }
 
     private boolean isAvailable() {
@@ -3212,6 +3229,13 @@ public class AdapterService extends Service {
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
+        if (mBCService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
+                BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, device)) {
+            Log.i(TAG, "connectAllEnabledProfiles: Connecting LE Broadcast Assistant Profile");
+            mBCService.setConnectionPolicy(device,
+                    BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            numProfilesConnected++;
+        }
 
         Log.i(TAG, "connectAllEnabledProfiles: Number of Profiles Connected: "
                 + numProfilesConnected);
@@ -3313,6 +3337,12 @@ public class AdapterService extends Service {
                 == BluetoothProfile.STATE_CONNECTED) {
             Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting LeAudio profile (BAP)");
             mLeAudioService.disconnect(device);
+        }
+        if (mBCService != null && mBCService.getConnectionState(device)
+                == BluetoothProfile.STATE_CONNECTED) {
+            Log.i(TAG, "disconnectAllEnabledProfiles: Disconnecting " +
+                            "LE Broadcast Assistant Profile");
+            mBCService.disconnect(device);
         }
 
         return BluetoothStatusCodes.SUCCESS;
