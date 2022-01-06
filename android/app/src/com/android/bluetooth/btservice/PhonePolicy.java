@@ -49,6 +49,7 @@ import com.android.bluetooth.hid.HidHostService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.bluetooth.pan.PanService;
 import com.android.bluetooth.vc.VolumeControlService;
+import com.android.bluetooth.bc.BCService;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.HashSet;
@@ -296,6 +297,7 @@ class PhonePolicy {
              mFactory.getCsipSetCoordinatorService();
         VolumeControlService volumeControlService =
              mFactory.getVolumeControlService();
+        BCService bcService = mFactory.getBCService();
 
         // Set profile priorities only for the profiles discovered on the remote device.
         // This avoids needless auto-connect attempts to profiles non-existent on the remote device
@@ -363,6 +365,14 @@ class PhonePolicy {
             debugLog("setting volume control profile priority for device " + device);
             mAdapterService.getDatabase().setProfileConnectionPolicy(device,
                     BluetoothProfile.VOLUME_CONTROL, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        }
+        if ((bcService != null) && Utils.arrayContains(uuids,
+                BluetoothUuid.BC_ID) && (bcService.getConnectionPolicy(device)
+                == BluetoothProfile.CONNECTION_POLICY_UNKNOWN)) {
+            debugLog("setting broadcast assistant profile priority for device " + device);
+            mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                    BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT,
+                    BluetoothProfile.CONNECTION_POLICY_ALLOWED);
         }
     }
 
