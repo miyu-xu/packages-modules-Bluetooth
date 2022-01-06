@@ -34,6 +34,13 @@ PERMISSION_LIST = [
     'android.permission.WRITE_CONTACTS',
 ]
 
+# Types of call log type
+CALL_LOG_TYPES = [
+    bt_constants.INCOMING_CALL_LOG_TYPE,
+    bt_constants.OUTGOING_CALL_LOG_TYPE,
+    bt_constants.MISSED_CALL_LOG_TYPE,
+]
+
 
 class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
   """Test Class for Bluetooth PBAP Test."""
@@ -286,6 +293,38 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
                                                      WAITING_TIMEOUT_SEC)
     return current_count
 
+  def _download_call_logs(self, call_log_count: int,
+                          call_log_type: str) -> int:
+    """PCE downloads PSE created call logs by PBAP profile.
+
+    This method should be used when PSE creates call logs based on parameter,
+    then connects PCE by PBAP profile and finally this method will return
+    current call logs count in PCE.
+
+    Args:
+      call_log_count: number of PSE call logs count.
+      call_log_type: type of call log
+
+    Returns:
+      current_count: number of PCE call logs after connecting with PSE.
+    """
+
+    # Add call logs to PSE.
+    if call_log_count != 0:
+      self._generate_call_logs_on_pse(call_log_type, call_log_count)
+
+    # When PCE is connected to PSE, it will download PSE's contacts.
+    self.derived_bt_device.pbap_connect()
+    self.derived_bt_device.log.info('Downloading %d call logs from PSE...' %
+                                    call_log_count)
+
+    current_count = self._wait_and_get_call_log_count(self.derived_bt_device,
+                                                      call_log_type,
+                                                      call_log_count,
+                                                      WAITING_TIMEOUT_SEC)
+
+    return current_count
+
   def test_download_empty_contacts(self):
     """Tests that PCE can download contacts from PSE."""
     default_contact_count = 0
@@ -308,6 +347,28 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
         'PCE failed to download %d contact(s) within %ds, '
         'actually downloaded %d contact(s).' %
         (TEST_DATA_COUNT, WAITING_TIMEOUT_SEC, current_count))
+
+  def test_download_empty_call_logs(self):
+    """Tests for the feature of downloading empty call logs.
+
+    Tests that PCE can download empty incoming/outgoing/missed call logs from
+    PSE.
+    """
+    default_call_log_count = 0
+
+    # Make sure no any call logs exist on the devices.
+    for device in [self.pri_phone, self.derived_bt_device]:
+      device.sl4a.callLogsEraseAll()
+
+    for call_log_type in CALL_LOG_TYPES:
+      current_count = self._download_call_logs(default_call_log_count,
+                                               call_log_type)
+      asserts.assert_true(
+          current_count == default_call_log_count,
+          'PCE failed to download %d call log(s) which type are "%s" within %ds'
+          ', actually downloaded %d call log(s).' %
+          (default_call_log_count, call_log_type, WAITING_TIMEOUT_SEC,
+           current_count))
 
   def test_download_call_logs(self):
     """Test for the feature of downloading call logs.
