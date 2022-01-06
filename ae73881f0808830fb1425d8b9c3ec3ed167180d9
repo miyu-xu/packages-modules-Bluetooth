@@ -34,6 +34,103 @@
       "parentUuid": "723a37a8_bbc27a79",
       "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b50d8cb_6caacdca",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MessageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:48:06Z",
+      "side": 1,
+      "message": "If we don\u0027t explicitly need the setup() step then we can remove it",
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0c0a36_85ab9074",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MessageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:48:06Z",
+      "side": 1,
+      "message": "nit: I\u0027d explicitly pass null here in case future test changes initialize attrs.",
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5dae2144_23ec802e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MessageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:48:06Z",
+      "side": 1,
+      "message": "nit: I\u0027d make a constant for INVALID_MSG_HANDLE so it\u0027s clear that we\u0027re testing a message handle that doesn\u0027t meet the spec. It looks like we\u0027re doing similar things in a few places below too. This type of thing does work though, but it\u0027s an arbitrary value. I might even settle for a comment too vs. lots of new constants (:",
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb2bdaa6_587d0568",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MessageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:48:06Z",
+      "side": 1,
+      "message": "You can probably pull this into an assertMessage(expected, ... , actual) function and reuse it below since many of the tests are variations on the default message attributes values anyway. It\u0027ll make the tests a bit more robust.",
+      "range": {
+        "startLine": 102,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 55
+      },
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5992db33_311a8bfb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MessageTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:48:06Z",
+      "side": 1,
+      "message": "nit: We actually know the desired json output of this. If we\u0027re using it in a specification defined way (I honestly can\u0027t remember without digging) then we should probably check the JSON itself. Otherwise, this is fine.",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 60
+      },
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
