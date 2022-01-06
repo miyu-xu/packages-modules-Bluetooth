@@ -7,7 +7,9 @@ use bt_topshim::profiles::a2dp::{
     PresentationPosition,
 };
 use bt_topshim::profiles::avrcp::{Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher};
-use bt_topshim::profiles::hfp::{BthfConnectionState, Hfp, HfpCallbacks, HfpCallbacksDispatcher};
+use bt_topshim::profiles::hfp::{
+    BthfConnectionState, Hfp, HfpCallbacks, HfpCallbacksDispatcher, HfpCodecCapacity,
+};
 
 use bt_topshim::topstack;
 
@@ -56,6 +58,7 @@ pub trait IBluetoothMediaCallback {
         sample_rate: i32,
         bits_per_sample: i32,
         channel_mode: i32,
+        hfp_cap: i32,
     );
 
     ///
@@ -128,6 +131,7 @@ impl BluetoothMedia {
                                         cap.sample_rate,
                                         cap.bits_per_sample,
                                         cap.channel_mode,
+                                        HfpCodecCapacity::NONE.bits(),
                                     );
                                 });
                                 return;
