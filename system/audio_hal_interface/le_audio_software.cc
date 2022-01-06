@@ -450,9 +450,9 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
     CodecCapabilitySetting encodeCapability;
     CodecCapabilitySetting decodeCapability;
     LeAudioCodecCapability halEncodeConfig =
-        halCapability.leAudioCapabilities().encodeCapability;
+        halCapability.leAudioCapabilities().unicastEncodeCapability;
     LeAudioCodecCapability halDecodeConfig =
-        halCapability.leAudioCapabilities().decodeCapability;
+        halCapability.leAudioCapabilities().unicastDecodeCapability;
     AudioSetConfiguration audioSetConfig = {.name = "offload capability"};
     strCapabilityLog.clear();
 
