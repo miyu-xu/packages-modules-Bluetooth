@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3401ad4_63bed5cf",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-06T02:28:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0593e7d3_ed0ea344",
+      "range": {
+        "startLine": 308,
+        "startChar": 24,
+        "endLine": 308,
+        "endChar": 45
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c64f72c4_e61bb6db",
@@ -120,6 +144,30 @@
       "side": 1,
       "message": "This logger is created because sometimes HCI snoop log cannot be enabled. For example: wear OS... Do you think parameters should not be printed here?",
       "parentUuid": "c64f72c4_e61bb6db",
+      "range": {
+        "startLine": 341,
+        "startChar": 24,
+        "endLine": 341,
+        "endChar": 45
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c34acd86_2467b1f1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-06T02:28:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1fac31c8_9313000d",
       "range": {
         "startLine": 341,
         "startChar": 24,
@@ -238,6 +286,30 @@
       "side": 1,
       "message": "If a advertisingSet is re-enabled, a advertisingSet stay in sOngoingAdvertises and it is marked as disable.",
       "parentUuid": "48e12179_9177ad86",
+      "range": {
+        "startLine": 408,
+        "startChar": 0,
+        "endLine": 411,
+        "endChar": 65
+      },
+      "revId": "94cb0d68cf61fc636c61de2f17c99078a24ff91f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "666bca16_4d59c0db",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppAdvertiseStats.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-06T02:28:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ae12477e_e5618e60",
       "range": {
         "startLine": 408,
         "startChar": 0,
