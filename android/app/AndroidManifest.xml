@@ -449,6 +449,15 @@
                 <action android:name="android.bluetooth.IBluetoothCsipSetCoordinator" />
             </intent-filter>
         </service>
+        <service
+            android:process="@string/process"
+            android:name = ".bc.BCService"
+            android:enabled="@bool/profile_supported_bc"
+            android:exported = "true">
+            <intent-filter>
+                <action android:name="android.bluetooth.IBluetoothSyncHelper" />
+            </intent-filter>
+        </service>
         <!-- Authenticator for PBAP account. -->
         <service android:process="@string/process"
              android:name=".pbapclient.AuthenticationService"
