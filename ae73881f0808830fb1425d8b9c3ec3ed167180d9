@@ -38,6 +38,80 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0164a328_e96fcc8c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/EventReportTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:54:18Z",
+      "side": 1,
+      "message": "While we may not actually *use* all of them in our implementation, there appears to be several more EventReport.Type.* values that would could test in this same fashion.",
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e11c5f8a_42e9d3d2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/EventReportTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:54:18Z",
+      "side": 1,
+      "message": "Can be removed",
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cb83a2e_83c01da9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/EventReportTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:54:18Z",
+      "side": 1,
+      "message": "Is this an empty stream (i.e. a stream with no bytes \"\" or \"\\0\") or is it a null object still?",
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026d2d0b_f799cfde",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/EventReportTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-06T19:54:18Z",
+      "side": 1,
+      "message": "I would pull this into an assertEventReport(expected, ..., EventReport actual) type function and reuse it since we\u0027re doing it a few times.",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 91,
+        "endChar": 78
+      },
+      "revId": "ae73881f0808830fb1425d8b9c3ec3ed167180d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b50d8cb_6caacdca",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MessageTest.java",
         "patchSetId": 1
