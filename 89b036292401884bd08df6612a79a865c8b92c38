@@ -22,6 +22,30 @@
       },
       "revId": "89b036292401884bd08df6612a79a865c8b92c38",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ce1f7ff_4c5d35a1",
+        "filename": "system/audio_hal_interface/fuzzer/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1653964
+      },
+      "writtenOn": "2022-01-06T13:37:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82cd73b4_42f0fbf4",
+      "range": {
+        "startLine": 62,
+        "startChar": 9,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "89b036292401884bd08df6612a79a865c8b92c38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
