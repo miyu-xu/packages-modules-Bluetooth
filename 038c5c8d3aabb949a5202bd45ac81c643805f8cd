@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5f7f2cd_51539119",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-06T11:36:01Z",
+      "side": 1,
+      "message": "Here are the clang-format errors, the automated tool should be able to fix by running the suggested command:\n\n[FAILED] clang_format\n    The following files have formatting errors:\n    \tandroid/app/jni/com_android_bluetooth_gatt.cpp\n    \tsystem/bta/dm/bta_dm_act.cc\n    \tsystem/btif/src/btif_ble_scanner.cc\n    \tsystem/btif/src/stack_manager.cc\n    \tsystem/include/hardware/ble_scanner.h\n    \tsystem/main/shim/le_scanning_manager.cc\n    \tsystem/service/test/low_energy_scanner_unittest.cc\n    \tsystem/stack/acl/acl.h\n    \tsystem/stack/btm/btm_ble_gap.cc\n    \tsystem/stack/btm/btm_ble_scanner.cc\n    \tsystem/stack/include/ble_scanner.h\n    \tsystem/stack/include/btm_ble_api.h\n    \tsystem/test/mock/mock_stack_btm_ble_gap.cc\n    \tsystem/test/mock/mock_stack_btm_ble_scanner.cc\n    You can try to fix this by running:\n    /work/android/external/aosp/tools/repohooks/tools/clang-format.py --fix --clang-format /work/android/external/aosp/prebuilts/clang/host/linux-x86/clang-stable/bin/clang-format --git-clang-format /work/android/external/aosp/prebuilts/clang/host/linux-x86/clang-stable/bin/git-clang-format --style file --commit a12477b92b89629253b6ca88e9cebef512f6c020\n",
+      "revId": "038c5c8d3aabb949a5202bd45ac81c643805f8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91c0c05c_a8c11d7a",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 6
