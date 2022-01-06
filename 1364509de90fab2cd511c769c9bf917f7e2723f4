@@ -1,0 +1,160 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018943850",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893456?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b47fdcf6_fbb1354f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T13:37:15Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "1364509de90fab2cd511c769c9bf917f7e2723f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018943850",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893456?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d0e6d021_98be8d0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T13:37:15Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "1364509de90fab2cd511c769c9bf917f7e2723f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018943850",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893456?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "11bd71a8_03fd6014",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T13:37:15Z",
+      "side": 1,
+      "message": "\"./libbt_audio_hal_a2dp_encoding_fuzzer\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 44
+      },
+      "revId": "1364509de90fab2cd511c769c9bf917f7e2723f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018943850",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893456?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "87dfbe0d_125dfd93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T13:37:15Z",
+      "side": 1,
+      "message": "\"./libbt_audio_hal_le_audio_software_fuzzer\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 48
+      },
+      "revId": "1364509de90fab2cd511c769c9bf917f7e2723f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018943850",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893456?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ddd3241a_18865cd8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T13:37:15Z",
+      "side": 1,
+      "message": "\"./libbt_audio_hal_hearing_aid_software_encoding_fuzzer\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 60
+      },
+      "revId": "1364509de90fab2cd511c769c9bf917f7e2723f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018943850",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1893456?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "530e9b1f_31f3bbf2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-06T13:37:15Z",
+      "side": 1,
+      "message": "\"./libbt_audio_hal_client_interface_fuzzer\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 47
+      },
+      "revId": "1364509de90fab2cd511c769c9bf917f7e2723f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
