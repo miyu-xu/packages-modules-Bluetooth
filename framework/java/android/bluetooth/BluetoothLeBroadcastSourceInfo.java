@@ -290,7 +290,10 @@ public final class BluetoothLeBroadcastSourceInfo implements Parcelable {
         mBroadcastCode = null;
     }
 
-    /*package*/ BluetoothLeBroadcastSourceInfo(
+    /**
+     * @hide
+     */
+    public BluetoothLeBroadcastSourceInfo(
             byte sourceId,
             @LeAudioBroadcastSourceAddressType int addressType,
             @NonNull BluetoothDevice device,
