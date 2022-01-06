@@ -141,6 +141,24 @@
       "parentUuid": "1e26cd39_26a241a2",
       "revId": "0c12d6848b76e544a274453983104a8e3465e843",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ef0a27_70012e21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-06T04:17:36Z",
+      "side": 1,
+      "message": "Hi Lukasz, more thinking for it. How the offloader ADSP or controller to know the pcm data sampling frequency is not the same as the audio configuration bring to the HAL or HCI command and do the resampling?",
+      "parentUuid": "c9b8f338_689f2437",
+      "revId": "0c12d6848b76e544a274453983104a8e3465e843",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
