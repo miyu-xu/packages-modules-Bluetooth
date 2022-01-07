@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d2ee48_d7cf71fa",
+        "filename": "system/audio_hal_interface/client_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-07T16:39:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8ad528e_170a09a1",
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "690d6ccf_e5755292",
