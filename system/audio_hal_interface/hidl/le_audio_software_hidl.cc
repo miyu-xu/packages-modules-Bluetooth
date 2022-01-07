@@ -500,9 +500,20 @@ bool halConfigToCodecCapabilitySetting(
            .frame_duration = frame_duration_map[halLc3Config.frameDuration],
            .octets_per_codec_frame =
                octets_per_frame_map[halLc3Config.octetsPerFrame],
-           .audio_channel_allocation = audio_location_map[supportedChannel]})};
+           .audio_channel_allocation = audio_location_map[supportedChannel],
+           .channel_count =
+               static_cast<uint8_t>(halConfig.channelCountPerDevice)})};
 
   return true;
+}
+
+::le_audio::types::LeAudioConfigurationStrategy getConfigStrategy(
+    int channel_per_device) {
+  return (channel_per_device == 2)
+             ? ::le_audio::types::LeAudioConfigurationStrategy::
+                   STEREO_ONE_CIS_PER_DEVICE
+             : ::le_audio::types::LeAudioConfigurationStrategy::
+                   MONO_ONE_CIS_PER_DEVICE;
 }
 
 std::vector<AudioSetConfiguration> get_offload_capabilities() {
@@ -527,7 +538,8 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
       audioSetConfig.confs.push_back(SetConfiguration(
           ::le_audio::types::kLeAudioDirectionSink, halEncodeConfig.deviceCount,
           halEncodeConfig.deviceCount * halEncodeConfig.channelCountPerDevice,
-          encodeCapability));
+          encodeCapability,
+          getConfigStrategy(halEncodeConfig.channelCountPerDevice)));
       strCapabilityLog = " Encode Capability: " + toString(halEncodeConfig);
     }
 
@@ -536,7 +548,8 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
           ::le_audio::types::kLeAudioDirectionSource,
           halDecodeConfig.deviceCount,
           halDecodeConfig.deviceCount * halDecodeConfig.channelCountPerDevice,
-          decodeCapability));
+          decodeCapability,
+          getConfigStrategy(halDecodeConfig.channelCountPerDevice)));
       strCapabilityLog += " Decode Capability: " + toString(halDecodeConfig);
     }
 
