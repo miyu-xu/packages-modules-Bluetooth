@@ -29,13 +29,20 @@ using bluetooth::hci::iso_manager::kIsoDataPathHci;
 using bluetooth::hci::iso_manager::kIsoDataPathPlatformDefault;
 using le_audio::CodecManager;
 using le_audio::types::CodecLocation;
+
+using bluetooth::le_audio::btle_audio_codec_config_t;
+using le_audio::set_configurations::AudioSetConfiguration;
+using le_audio::set_configurations::AudioSetConfigurations;
+
 }  // namespace
 
 namespace le_audio {
 
 struct codec_manager_impl {
  public:
-  codec_manager_impl() {
+  codec_manager_impl(
+      const std::vector<btle_audio_codec_config_t>& offloading_preference,
+      const std::vector<AudioSetConfiguration>& adsp_capabilities) {
     offload_enable_ = osi_property_get_bool(
                           "ro.bluetooth.leaudio_offload.supported", false) &&
                       osi_property_get_bool(
@@ -60,6 +67,7 @@ struct codec_manager_impl {
                             kIsoDataPathPlatformDefault, {});
     btm_configure_data_path(btm_data_direction::CONTROLLER_TO_HOST,
                             kIsoDataPathPlatformDefault, {});
+    UpdateOffloadCapability(offloading_preference, adsp_capabilities);
     SetCodecLocation(CodecLocation::ADSP);
   }
   ~codec_manager_impl() {
@@ -108,23 +116,140 @@ struct codec_manager_impl {
     LeAudioClientAudioSink::UpdateAudioConfigToHal(source_config);
   }
 
+  const AudioSetConfigurations* GetOffloadCodecConfig(
+      types::LeAudioContextType ctx_type) {
+    return &context_type_offload_config_map[ctx_type];
+  }
+
  private:
   void SetCodecLocation(CodecLocation location) {
     if (offload_enable_ == false) return;
     codec_location_ = location;
   }
+
+  bool IsLc3ConfigMatched(
+      const set_configurations::CodecCapabilitySetting& adsp_config,
+      const set_configurations::CodecCapabilitySetting& target_config) {
+    if (adsp_config.id.coding_format != types::kLeAudioCodingFormatLC3 ||
+        target_config.id.coding_format != types::kLeAudioCodingFormatLC3) {
+      return false;
+    }
+
+    const types::LeAudioLc3Config adsp_lc3_config =
+        std::get<types::LeAudioLc3Config>(adsp_config.config);
+    const types::LeAudioLc3Config target_lc3_config =
+        std::get<types::LeAudioLc3Config>(target_config.config);
+
+    if (adsp_lc3_config.sampling_frequency !=
+            target_lc3_config.sampling_frequency ||
+        adsp_lc3_config.frame_duration != target_lc3_config.frame_duration ||
+        adsp_lc3_config.channel_count != target_lc3_config.channel_count ||
+        adsp_lc3_config.octets_per_codec_frame !=
+            target_lc3_config.octets_per_codec_frame) {
+      return false;
+    }
+
+    return true;
+  }
+
+  bool IsOffloadSupportAudioSetConfig(
+      std::unordered_set<uint8_t>& offload_preference_set,
+      const AudioSetConfiguration* audio_set_conf,
+      const std::vector<AudioSetConfiguration>& adsp_capabilities) {
+    // Checks any of offload config matches the input audio set config
+    for (const auto& adsp_audio_set_conf : adsp_capabilities) {
+      bool isMatch = false;
+
+      // Checks both sink and source directoin config is matched
+      for (auto direction :
+           {types::kLeAudioDirectionSource, types::kLeAudioDirectionSink}) {
+        auto source_set_config = std::find_if(
+            audio_set_conf->confs.begin(), audio_set_conf->confs.end(),
+            [direction](auto& config) {
+              return config.direction == direction;
+            });
+        auto target_set_config = std::find_if(
+            adsp_audio_set_conf.confs.begin(), adsp_audio_set_conf.confs.end(),
+            [direction](auto& config) {
+              return config.direction == direction;
+            });
+
+        if (source_set_config == audio_set_conf->confs.end() &&
+            target_set_config == adsp_audio_set_conf.confs.end()) {
+          isMatch = true;
+        } else if (source_set_config != audio_set_conf->confs.end() &&
+                   target_set_config != adsp_audio_set_conf.confs.end()) {
+          isMatch =
+              (offload_preference_set.find(
+                   source_set_config->codec.id.coding_format) !=
+                   offload_preference_set.end() &&
+               source_set_config->direction == target_set_config->direction &&
+               source_set_config->device_cnt == target_set_config->device_cnt &&
+               source_set_config->strategy == target_set_config->strategy &&
+               IsLc3ConfigMatched(source_set_config->codec,
+                                  target_set_config->codec));
+        } else {
+          isMatch = false;
+        }
+
+        if (!isMatch) break;
+      }
+
+      if (isMatch) return true;
+    }
+
+    return false;
+  }
+
+  void UpdateOffloadCapability(
+      const std::vector<btle_audio_codec_config_t>& offloading_preference,
+      const std::vector<AudioSetConfiguration>& adsp_capabilities) {
+    LOG(INFO) << __func__;
+    std::unordered_set<uint8_t> offload_preference_set;
+
+    for (auto codec : offloading_preference) {
+      if (codec.codec_type ==
+          ::bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3) {
+        offload_preference_set.insert(types::kLeAudioCodingFormatLC3);
+      }
+    }
+
+    for (types::LeAudioContextType ctx_type :
+         types::kLeAudioContextAllTypesArray) {
+      // Gets the software supported context type and the corresponding config
+      // priority
+      const AudioSetConfigurations* audio_set_confs =
+          set_configurations::get_confs_by_type(ctx_type);
+
+      for (const auto& audio_set_conf : *audio_set_confs) {
+        if (IsOffloadSupportAudioSetConfig(offload_preference_set,
+                                           audio_set_conf, adsp_capabilities)) {
+          LOG(INFO) << "Offload supported conf, context type: " << (int)ctx_type
+                    << ", settings -> " << audio_set_conf->name;
+          context_type_offload_config_map[ctx_type].push_back(audio_set_conf);
+        }
+      }
+    }
+  }
+
   CodecLocation codec_location_ = CodecLocation::HOST;
   bool offload_enable_ = false;
   le_audio::offload_config sink_config;
   le_audio::offload_config source_config;
+  std::unordered_map<types::LeAudioContextType, AudioSetConfigurations>
+      context_type_offload_config_map;
 };
 
 struct CodecManager::impl {
   impl(const CodecManager& codec_manager) : codec_manager_(codec_manager) {}
 
-  void Start() {
+  void Start(
+      const std::vector<btle_audio_codec_config_t>& offloading_preference,
+      const std::vector<set_configurations::AudioSetConfiguration>&
+          adsp_capabilities) {
     LOG_ASSERT(!codec_manager_impl_);
-    codec_manager_impl_ = std::make_unique<codec_manager_impl>();
+    codec_manager_impl_ = std::make_unique<codec_manager_impl>(
+        offloading_preference, adsp_capabilities);
   }
 
   void Stop() {
@@ -140,8 +265,12 @@ struct CodecManager::impl {
 
 CodecManager::CodecManager() : pimpl_(std::make_unique<impl>(*this)) {}
 
-void CodecManager::Start() {
-  if (!pimpl_->IsRunning()) pimpl_->Start();
+void CodecManager::Start(
+    const std::vector<btle_audio_codec_config_t>& offloading_preference,
+    const std::vector<set_configurations::AudioSetConfiguration>&
+        adsp_capabilities) {
+  if (!pimpl_->IsRunning())
+    pimpl_->Start(offloading_preference, adsp_capabilities);
 }
 
 void CodecManager::Stop() {
@@ -168,6 +297,15 @@ void CodecManager::UpdateActiveSinkAudioConfig(
   if (pimpl_->IsRunning())
     pimpl_->codec_manager_impl_->UpdateActiveSinkAudioConfig(stream_conf,
                                                              delay);
+}
+
+const AudioSetConfigurations* CodecManager::GetOffloadCodecConfig(
+    types::LeAudioContextType ctx_type) {
+  if (pimpl_->IsRunning()) {
+    return pimpl_->codec_manager_impl_->GetOffloadCodecConfig(ctx_type);
+  }
+
+  return nullptr;
 }
 
 }  // namespace le_audio
