@@ -951,7 +951,8 @@ bool check_if_may_cover_scenario(
 bool IsCodecCapabilitySettingSupported(
     const types::acs_ac_record& pac_record,
     const CodecCapabilitySetting& codec_capability_setting);
-const AudioSetConfigurations* get_confs_by_type(types::LeAudioContextType type);
+const AudioSetConfigurations* get_confs_by_type(
+    types::LeAudioContextType type, bool getOffloadConfByDefault = true);
 }  // namespace set_configurations
 
 struct stream_configuration {
