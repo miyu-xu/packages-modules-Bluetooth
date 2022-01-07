@@ -31,6 +31,9 @@ class MockCodecManager {
   MOCK_METHOD((void), UpdateActiveAudioConfig,
               (const le_audio::stream_configuration& stream_conf,
                uint16_t delay));
+  MOCK_METHOD((le_audio::set_configurations::AudioSetConfigurations*),
+              GetOffloadCodecConfig,
+              (le_audio::types::LeAudioContextType ctx_type), (const));
 
   MOCK_METHOD((void), Start, ());
   MOCK_METHOD((void), Stop, ());
