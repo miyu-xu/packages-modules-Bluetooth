@@ -3,9 +3,10 @@
 import logging
 import time
 
-from mobly import asserts
 from mobly import test_runner
+from mobly import signals
 from blueberry.utils import bt_audio_utils
+from blueberry.utils import bt_test_utils
 from blueberry.utils import triangle_base_test as base_test
 from blueberry.utils import triangle_constants
 
@@ -130,9 +131,13 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     self.headset.power_on()
     self.assert_headset_a2dp_connection(connected=True, device=self.phone)
     self.assert_headset_hsp_connection(connected=True, device=self.phone)
-    asserts.assert_true(
-        self.phone.mbs.btIsA2dpPlaying(self.headset.mac_address),
-        'A2DP is not playing when Phone is connected to Headset.')
+    bt_test_utils.wait_until(
+        timeout_sec=10,
+        condition_func=self.phone.mbs.btIsA2dpPlaying,
+        func_args=[self.headset.mac_address],
+        expected_value=True,
+        exception=signals.TestFailure(
+            'A2DP is not playing when Phone is connected to Headset.'))
     self.phone.sl4a.mediaPlayStop()
     self.phone.sl4a.mediaPlayClose()
 
