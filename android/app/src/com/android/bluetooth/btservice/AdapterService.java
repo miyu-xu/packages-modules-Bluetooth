@@ -1737,6 +1737,8 @@ public class AdapterService extends Service {
             if (service == null) {
                 return 0;
             }
+            enforceBluetoothPrivilegedPermission(service);
+
             return Config.getSupportedProfilesBitMask();
         }
 
