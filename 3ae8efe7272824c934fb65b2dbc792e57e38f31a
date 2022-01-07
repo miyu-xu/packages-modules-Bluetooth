@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "379af35f_ab668a69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-01-07T15:11:02Z",
+      "side": 1,
+      "message": "I found minor errors while navigating source code.\nNot sure all the changes from aosp/1846281 was intended.\n",
+      "revId": "3ae8efe7272824c934fb65b2dbc792e57e38f31a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
