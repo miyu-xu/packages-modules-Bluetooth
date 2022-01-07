@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018989247",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1935346?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8db9e03b_14eb40da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-07T16:40:17Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "787aa855890afce7ab5b58fa57b23c69b919860e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000018989247",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1935346?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b0b84282_e65aef37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-07T16:40:17Z",
+      "side": 1,
+      "message": "\"Verify LE audio hardware offload play/pause with HAL 2.2 for media\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 72
+      },
+      "revId": "787aa855890afce7ab5b58fa57b23c69b919860e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
