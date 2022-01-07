@@ -500,7 +500,9 @@ bool halConfigToCodecCapabilitySetting(
            .frame_duration = frame_duration_map[halLc3Config.frameDuration],
            .octets_per_codec_frame =
                octets_per_frame_map[halLc3Config.octetsPerFrame],
-           .audio_channel_allocation = audio_location_map[supportedChannel]})};
+           .audio_channel_allocation = audio_location_map[supportedChannel],
+           .channel_count =
+               static_cast<uint8_t>(halConfig.channelCountPerDevice)})};
 
   return true;
 }
