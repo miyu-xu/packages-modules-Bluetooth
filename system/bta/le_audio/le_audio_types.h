@@ -293,7 +293,17 @@ constexpr uint8_t kTargetPhy1M = 0x01;
 constexpr uint8_t kTargetPhy2M = 0x02;
 constexpr uint8_t kTargetPhyCoded = 0x03;
 
+constexpr uint16_t kPresDelay40000 = 0x00000FA0;
+
 constexpr uint32_t kPresDelayNoPreference = 0x00000000;
+
+constexpr uint16_t kRetransmissionNumber2 = 0x02;
+constexpr uint16_t kRetransmissionNumber5 = 0x05;
+
+constexpr uint16_t kMaxTransportLatency8 = 0x0008;
+constexpr uint16_t kMaxTransportLatency10 = 0x000A;
+constexpr uint16_t kMaxTransportLatency15 = 0x000F;
+constexpr uint16_t kMaxTransportLatency20 = 0x0014;
 
 constexpr uint16_t kMaxTransportLatencyMin = 0x0005;
 constexpr uint16_t kMaxTransportLatencyMax = 0x0FA0;
@@ -501,6 +511,14 @@ struct LeAudioCodecId {
   }
 };
 
+struct LeAudioLC3QoSConfig {
+  uint8_t framing;
+  uint16_t max_sdu_size;
+  uint8_t retrans_nb;
+  uint16_t max_transport_latency;
+  uint32_t pres_delay;
+};
+
 struct hdl_pair {
   hdl_pair() = default;
   hdl_pair(uint16_t val_hdl, uint16_t ccc_hdl)
@@ -574,11 +592,82 @@ using AudioContexts = std::bitset<16>;
 
 namespace set_configurations {
 
+/* Various QoS Configuration settings */
+const std::array<types::LeAudioLC3QoSConfig, 0x0C> qos_config_lc3_16_1 = {{
+    {}, /* UNSPECIFIED */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen30, types::kRetransmissionNumber2,
+     types::kMaxTransportLatency8, types::kPresDelay40000}, /* CONVERSATIONAL */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen30, types::kRetransmissionNumber5,
+     types::kMaxTransportLatency15, types::kPresDelay40000}, /* MEDIA */
+    {},                                                      /* GAME */
+    {},                                                      /* INSTRUCTIONAL */
+    {}, /* VOICEASSISTANTS */
+    {}, /* LIVE */
+    {}, /* SOUNDEFFECTS */
+    {}, /* NOTIFICATIONS */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen30, types::kRetransmissionNumber5,
+     types::kMaxTransportLatency15, types::kPresDelay40000}, /* RINGTONE */
+    {},                                                      /* ALERTS */
+    {}, /* EMERGENCYALARM */
+}};
+
+const std::array<types::LeAudioLC3QoSConfig, 0x0C> qos_config_lc3_16_2 = {{
+    {}, /* UNSPECIFIED */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen40, types::kRetransmissionNumber2,
+     types::kMaxTransportLatency10,
+     types::kPresDelay40000}, /* CONVERSATIONAL */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen40, types::kRetransmissionNumber5,
+     types::kMaxTransportLatency20, types::kPresDelay40000}, /* MEDIA */
+    {},                                                      /* GAME */
+    {},                                                      /* INSTRUCTIONAL */
+    {}, /* VOICEASSISTANTS */
+    {}, /* LIVE */
+    {}, /* SOUNDEFFECTS */
+    {}, /* NOTIFICATIONS */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen40, types::kRetransmissionNumber5,
+     types::kMaxTransportLatency20, types::kPresDelay40000}, /* RINGTONE */
+    {},                                                      /* ALERTS */
+    {}, /* EMERGENCYALARM */
+}};
+
+const std::array<types::LeAudioLC3QoSConfig, 0x0C> qos_config_lc3_48_4 = {{
+    {}, /* UNSPECIFIED */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen120,
+     types::kRetransmissionNumber2, types::kMaxTransportLatency10,
+     types::kPresDelay40000}, /* CONVERSATIONAL */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen120,
+     types::kRetransmissionNumber5, types::kMaxTransportLatency20,
+     types::kPresDelay40000}, /* MEDIA */
+    {},                       /* GAME */
+    {},                       /* INSTRUCTIONAL */
+    {},                       /* VOICEASSISTANTS */
+    {},                       /* LIVE */
+    {},                       /* SOUNDEFFECTS */
+    {},                       /* NOTIFICATIONS */
+    {types::kFramingUnframedPduSupported,
+     codec_spec_conf::kLeAudioCodecLC3FrameLen120,
+     types::kRetransmissionNumber5, types::kMaxTransportLatency20,
+     types::kPresDelay40000}, /* RINGTONE */
+    {},                       /* ALERTS */
+    {},                       /* EMERGENCYALARM */
+}};
+
 struct CodecCapabilitySetting {
   types::LeAudioCodecId id;
 
   /* Codec Specific Configuration variant */
   std::variant<types::LeAudioLc3Config> config;
+
+  /* QoS Specific Configuration settings */
+  std::array<types::LeAudioLC3QoSConfig, 0x0C> qos_config;
 
   /* Sampling freqency requested for codec */
   uint32_t GetConfigSamplingFrequency() const;
@@ -642,7 +731,8 @@ constexpr CodecCapabilitySetting codec_lc3_16_1(uint8_t channel_count) {
           .octets_per_codec_frame = codec_spec_conf::kLeAudioCodecLC3FrameLen30,
           .channel_count = channel_count,
           .audio_channel_allocation = 0,
-      })};
+      }),
+      .qos_config = qos_config_lc3_16_1};
 }
 
 constexpr CodecCapabilitySetting codec_lc3_16_2(uint8_t channel_count) {
@@ -654,7 +744,8 @@ constexpr CodecCapabilitySetting codec_lc3_16_2(uint8_t channel_count) {
           .octets_per_codec_frame = codec_spec_conf::kLeAudioCodecLC3FrameLen40,
           .channel_count = channel_count,
           .audio_channel_allocation = 0,
-      })};
+      }),
+      .qos_config = qos_config_lc3_16_2};
 }
 
 constexpr CodecCapabilitySetting codec_lc3_48_4(uint8_t channel_count) {
@@ -667,7 +758,8 @@ constexpr CodecCapabilitySetting codec_lc3_48_4(uint8_t channel_count) {
               codec_spec_conf::kLeAudioCodecLC3FrameLen120,
           .channel_count = channel_count,
           .audio_channel_allocation = 0,
-      })};
+      }),
+      .qos_config = qos_config_lc3_48_4};
 }
 
 /*
