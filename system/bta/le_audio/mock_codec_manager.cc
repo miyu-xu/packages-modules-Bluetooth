@@ -42,7 +42,16 @@ void CodecManager::UpdateActiveAudioConfig(
   if (pimpl_) return pimpl_->UpdateActiveAudioConfig(stream_conf, delay);
 }
 
-void CodecManager::Start() {
+const set_configurations::AudioSetConfigurations*
+CodecManager::GetOffloadCodecConfig(types::LeAudioContextType ctx_type) {
+  if (!pimpl_) return nullptr;
+  return pimpl_->GetOffloadCodecConfig(ctx_type);
+}
+
+void CodecManager::Start(
+    const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
+        offloading_preference,
+    std::vector<set_configurations::AudioSetConfiguration>& adsp_capabilities) {
   // It is needed here as CodecManager which is a singleton creates it, but in
   // this mock we want to destroy and recreate the mock on each test case.
   if (!pimpl_) {
