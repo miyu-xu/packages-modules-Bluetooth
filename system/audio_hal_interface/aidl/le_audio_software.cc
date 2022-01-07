@@ -406,8 +406,9 @@ bool hal_ucast_capability_to_stack_format(
           {.sampling_frequency = sampling_freq_map[sample_rate_hz],
            .frame_duration = frame_duration_map[frame_duration_us],
            .octets_per_codec_frame = octets_per_frame_map[octets_per_frame],
-           .audio_channel_allocation = audio_location_map[supportedChannel]})};
-
+           .audio_channel_allocation = audio_location_map[supportedChannel],
+           .channel_count =
+               static_cast<uint8_t>(halConfig.channelCountPerDevice)})};
   return true;
 }
 
