@@ -283,10 +283,10 @@ static void flush_source() {
 class LeAudioSourceTransport
     : public bluetooth::audio::IBluetoothSourceTransportInstance {
  public:
-  LeAudioSourceTransport(StreamCallbacks stream_cb)
-      : IBluetoothSourceTransportInstance(
-            SessionType_2_1::LE_AUDIO_SOFTWARE_DECODED_DATAPATH,
-            (AudioConfiguration_2_2){}) {
+  LeAudioSourceTransport(SessionType_2_1 session_type,
+                         StreamCallbacks stream_cb)
+      : IBluetoothSourceTransportInstance(session_type,
+                                          (AudioConfiguration_2_2){}) {
     transport_ =
         new LeAudioTransport(flush_source, std::move(stream_cb),
                              {SampleRate_2_1::RATE_16000, ChannelMode::MONO,
@@ -731,7 +731,14 @@ void LeAudioClientInterface::Source::StartSession() {
   }
 
   AudioConfiguration_2_2 audio_config;
-  audio_config.pcmConfig(le_audio_source->LeAudioGetSelectedHalPcmConfig());
+  if (le_audio_source_hal_clientinterface->GetTransportInstance()
+          ->GetSessionType_2_1() ==
+      SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH) {
+    LeAudioConfiguration le_audio_config = {};
+    audio_config.leAudioConfig(le_audio_config);
+  } else {
+    audio_config.pcmConfig(le_audio_sink->LeAudioGetSelectedHalPcmConfig());
+  }
   if (!le_audio_source_hal_clientinterface->UpdateAudioConfig_2_2(
           audio_config)) {
     LOG(ERROR) << __func__ << ": cannot update audio config to HAL";
@@ -847,7 +854,14 @@ LeAudioClientInterface::Source* LeAudioClientInterface::GetSource(
 
   LOG(INFO) << __func__;
 
-  le_audio_source = new LeAudioSourceTransport(std::move(stream_cb));
+  SessionType_2_1 session_type =
+      SessionType_2_1::LE_AUDIO_SOFTWARE_DECODED_DATAPATH;
+  if (CodecManager::GetInstance()->GetCodecLocation() != CodecLocation::HOST) {
+    session_type = SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH;
+  }
+
+  le_audio_source =
+      new LeAudioSourceTransport(session_type, std::move(stream_cb));
   le_audio_source_hal_clientinterface =
       new bluetooth::audio::BluetoothAudioSourceClientInterface(le_audio_source,
                                                                 message_loop);
