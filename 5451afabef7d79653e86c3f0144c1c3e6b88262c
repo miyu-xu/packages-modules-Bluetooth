@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f854a2ba_5239e688",
+        "filename": "system/audio_hal_interface/a2dp_encoding.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-08T04:52:10Z",
+      "side": 1,
+      "message": "Do we still need this function to compatible bluetooth.audio@1.0 ?",
+      "range": {
+        "startLine": 32,
+        "startChar": 5,
+        "endLine": 32,
+        "endChar": 22
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
