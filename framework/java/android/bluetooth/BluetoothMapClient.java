@@ -18,12 +18,12 @@ package android.bluetooth;
 
 import static android.bluetooth.BluetoothUtils.getSyncTimeout;
 
-import android.Manifest;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
+import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.app.PendingIntent;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
@@ -34,6 +34,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.CloseGuard;
 import android.util.Log;
 
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -49,15 +50,37 @@ import java.util.concurrent.TimeoutException;
  * @hide
  */
 @SystemApi
-public final class BluetoothMapClient implements BluetoothProfile {
+public final class BluetoothMapClient implements BluetoothProfile, AutoCloseable {
 
     private static final String TAG = "BluetoothMapClient";
     private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
     private static final boolean VDBG = Log.isLoggable(TAG, Log.VERBOSE);
 
-    /** @hide */
+    private final CloseGuard mCloseGuard;
+
+    /**
+     * Intent used to broadcast the change in connection state of the MAP Client profile.
+     *
+     * <p>This intent will have 3 extras:
+     * <ul>
+     * <li> {@link #EXTRA_STATE} - The current state of the profile. </li>
+     * <li> {@link #EXTRA_PREVIOUS_STATE}- The previous state of the profile.</li>
+     * <li> {@link BluetoothDevice#EXTRA_DEVICE} - The remote device. </li>
+     * </ul>
+     *
+     * <p>{@link #EXTRA_STATE} or {@link #EXTRA_PREVIOUS_STATE} can be any of
+     * {@link #STATE_DISCONNECTED}, {@link #STATE_CONNECTING},
+     * {@link #STATE_CONNECTED}, {@link #STATE_DISCONNECTING}.
+     *
+     * @hide
+     */
+    @SystemApi
+    @SuppressLint("ActionValue")
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
     @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
     public static final String ACTION_CONNECTION_STATE_CHANGED =
             "android.bluetooth.mapmce.profile.action.CONNECTION_STATE_CHANGED";
@@ -197,6 +220,16 @@ public final class BluetoothMapClient implements BluetoothProfile {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
         mProfileConnector.connect(context, listener);
+        mCloseGuard = new CloseGuard();
+        mCloseGuard.open("close");
+    }
+
+    /** @hide */
+    protected void finalize() {
+        if (mCloseGuard != null) {
+            mCloseGuard.warnIfOpen();
+        }
+        close();
     }
 
     /**
@@ -208,6 +241,9 @@ public final class BluetoothMapClient implements BluetoothProfile {
      */
     public void close() {
         mProfileConnector.disconnect();
+        if (mCloseGuard != null) {
+            mCloseGuard.close();
+        }
     }
 
     private IBluetoothMapClient getService() {
@@ -309,10 +345,14 @@ public final class BluetoothMapClient implements BluetoothProfile {
      * @return list of connected devices
      * @hide
      */
+    @SystemApi
     @Override
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
-    public List<BluetoothDevice> getConnectedDevices() {
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @NonNull List<BluetoothDevice> getConnectedDevices() {
         if (DBG) Log.d(TAG, "getConnectedDevices()");
         final IBluetoothMapClient service = getService();
         final List<BluetoothDevice> defaultValue = new ArrayList<>();
@@ -340,10 +380,15 @@ public final class BluetoothMapClient implements BluetoothProfile {
      * @return list of matching devices
      * @hide
      */
+    @SystemApi
     @Override
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
-    public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public
+    @NonNull List<BluetoothDevice> getDevicesMatchingConnectionStates(@NonNull int[] states) {
         if (DBG) Log.d(TAG, "getDevicesMatchingStates()");
         final IBluetoothMapClient service = getService();
         final List<BluetoothDevice> defaultValue = new ArrayList<>();
@@ -371,10 +416,14 @@ public final class BluetoothMapClient implements BluetoothProfile {
      * @return device connection state
      * @hide
      */
+    @SystemApi
     @Override
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
-    public int getConnectionState(BluetoothDevice device) {
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @BtProfileState int getConnectionState(@NonNull BluetoothDevice device) {
         if (DBG) Log.d(TAG, "getConnectionState(" + device + ")");
         final IBluetoothMapClient service = getService();
         final int defaultValue =  BluetoothProfile.STATE_DISCONNECTED;
@@ -426,6 +475,7 @@ public final class BluetoothMapClient implements BluetoothProfile {
      * @return true if connectionPolicy is set, false on error
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {
             android.Manifest.permission.BLUETOOTH_CONNECT,
@@ -484,6 +534,7 @@ public final class BluetoothMapClient implements BluetoothProfile {
      * @return connection policy of the device
      * @hide
      */
+    @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(allOf = {
             android.Manifest.permission.BLUETOOTH_CONNECT,
