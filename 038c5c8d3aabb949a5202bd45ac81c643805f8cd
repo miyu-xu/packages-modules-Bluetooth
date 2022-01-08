@@ -37,6 +37,42 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e23bd723_b69a0c51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2022-01-08T00:59:46Z",
+      "side": 1,
+      "message": "Unable to run checkstyle_hook through \"repo upload --cb .\" in our setup. Below error is seen. \nrepohooks: error: Python-3.6+ is required\nERROR: Failed to run pre-upload hook.\nEven after upgrading python to 3.6+, it is not being used during \"repo upload --cb .\".\n\nIs there any other way to run checkstyle_hook without the repo upload?",
+      "parentUuid": "38c798cc_0c7e6014",
+      "revId": "038c5c8d3aabb949a5202bd45ac81c643805f8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46750e73_6cce72d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2022-01-08T00:59:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5f7f2cd_51539119",
+      "revId": "038c5c8d3aabb949a5202bd45ac81c643805f8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "91c0c05c_a8c11d7a",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 6
@@ -48,6 +84,30 @@
       "writtenOn": "2022-01-06T11:33:06Z",
       "side": 1,
       "message": "Tried to compile the patches locally and this class is not found in the AOSP stack\n\nerror: use of undeclared identifier \u0027BleScanningManager\u0027;",
+      "range": {
+        "startLine": 928,
+        "startChar": 6,
+        "endLine": 928,
+        "endChar": 24
+      },
+      "revId": "038c5c8d3aabb949a5202bd45ac81c643805f8cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a1b367_e79f6bcf",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2022-01-08T00:59:46Z",
+      "side": 1,
+      "message": "Fixed the header file inclusion #include \"stack/include/ble_scanner.h\" to fix compilation error.",
+      "parentUuid": "91c0c05c_a8c11d7a",
       "range": {
         "startLine": 928,
         "startChar": 6,
