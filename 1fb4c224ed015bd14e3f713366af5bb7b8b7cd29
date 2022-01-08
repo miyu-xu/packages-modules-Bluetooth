@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019013603",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903453?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c6a6837a_82b751d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-08T10:16:25Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "1fb4c224ed015bd14e3f713366af5bb7b8b7cd29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019013603",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903453?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2f849aef_9468a0f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-08T10:16:25Z",
+      "side": 1,
+      "message": "\"Tag: #leaudio_hw_encode\" is not a valid tag. Must be in the format #[a-zA-Z\\-]+",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 23
+      },
+      "revId": "1fb4c224ed015bd14e3f713366af5bb7b8b7cd29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019013603",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903453?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8d0d85b0_456485a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-08T10:16:25Z",
+      "side": 1,
+      "message": "\"make, and check the log\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 29
+      },
+      "revId": "1fb4c224ed015bd14e3f713366af5bb7b8b7cd29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
