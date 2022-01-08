@@ -318,8 +318,38 @@ void LeAudioClientInterface::Source::StopSession() {
 }
 
 void LeAudioClientInterface::Source::UpdateAudioConfigToHal(
-    const ::le_audio::offload_config& config) {
-  LOG(INFO) << __func__ << " source: not handle now";
+    const ::le_audio::offload_config& offload_config) {
+  if (le_audio_source_hal_clientinterface->GetTransportInstance()
+          ->GetSessionType_2_1() !=
+      SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH) {
+    return;
+  }
+
+  AudioConfiguration_2_2 audio_config;
+  std::vector<UnicastStreamMap> unicast_map;
+  for (auto& [handle, location] : offload_config.stream_map) {
+    UnicastStreamMap stream = {.streamHandle = handle,
+                               .audioChannelAllocation = location};
+    unicast_map.emplace_back(stream);
+  }
+  hidl_vec<UnicastStreamMap> hal_map;
+  hal_map.setToExternal(unicast_map.data(), unicast_map.size());
+  LeAudioConfiguration le_audio_config;
+  le_audio_config.mode = LeAudioMode::UNICAST;
+  le_audio_config.config.unicastConfig() = {
+      .streamMap = std::move(hal_map),
+      .peerDelay = offload_config.peer_delay,
+      .lc3Config = {.pcmBitDepth = le_audio_bits_per_sample2audio_hal(
+                        offload_config.bits_per_sample),
+                    .samplingFrequency = le_audio_sample_rate2audio_hal(
+                        offload_config.sampling_rate),
+                    .frameDuration = le_audio_frame_duration2audio_hal(
+                        offload_config.frame_duration),
+                    .octetsPerFrame = offload_config.octets_per_frame,
+                    .blocksPerSdu = offload_config.blocks_per_sdu}};
+  audio_config.leAudioConfig(le_audio_config);
+
+  le_audio_source_hal_clientinterface->UpdateAudioConfig_2_2(audio_config);
   return;
 }
 
