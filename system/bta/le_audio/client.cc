@@ -1922,11 +1922,11 @@ class LeAudioClientImpl : public LeAudioClient {
     if (num_channels == 1) {
       /* Since we always get two channels from framework, lets make it mono here
        */
-      std::vector<int16_t> chan_mono;
-      get_mono_stream(data, chan_mono);
+      // std::vector<int16_t> chan_mono;
+      // get_mono_stream(data, chan_mono);
 
-      lc3_encode(lc3_encoder_left, (const int16_t*)chan_mono.data(), 1,
-                 byte_count, chan_encoded.data());
+      lc3_encode(lc3_encoder_left, (const int16_t*)data.data(), 1, byte_count,
+                 chan_encoded.data());
 
     } else {
       std::vector<int16_t> chan_left;
