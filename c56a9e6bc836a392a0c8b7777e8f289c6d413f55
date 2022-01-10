@@ -1,0 +1,400 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050043",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3a63f5a4_8dcf3753",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050043",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4e4a9124_916481ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "\"m bt_topshim_facade\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 25
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "dc4f5a00_85ed2387",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/a2dp.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+              "range": {
+                "startLine": 11,
+                "startChar": 25,
+                "endLine": 11,
+                "endChar": 37
+              },
+              "replacement": "automatically"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "9995eeee_eadf1d86",
+        "filename": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"automaticaly\" -- should it be \"automatically\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 11,
+        "startChar": 25,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "9c2305f7_6d39b40b",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/a2dp.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+              "range": {
+                "startLine": 107,
+                "startChar": 10,
+                "endLine": 107,
+                "endChar": 21
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f1b99723_70ef6f3f",
+        "filename": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 107,
+        "startChar": 10,
+        "endLine": 107,
+        "endChar": 21
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "927f8730_39c67c96",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/a2dp.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+              "range": {
+                "startLine": 122,
+                "startChar": 10,
+                "endLine": 122,
+                "endChar": 21
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "b75d8f93_2a8602a9",
+        "filename": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 122,
+        "startChar": 10,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "593625c3_5a85596a",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/a2dp.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+              "range": {
+                "startLine": 137,
+                "startChar": 10,
+                "endLine": 137,
+                "endChar": 21
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "fa25f9b9_db885bd6",
+        "filename": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 137,
+        "startChar": 10,
+        "endLine": 137,
+        "endChar": 21
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "a98a6f6f_787979ca",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/a2dp.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+              "range": {
+                "startLine": 152,
+                "startChar": 10,
+                "endLine": 152,
+                "endChar": 21
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d6ebe93c_b7439756",
+        "filename": "system/gd/rust/topshim/facade/blueberry/a2dp.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 152,
+        "startChar": 10,
+        "endLine": 152,
+        "endChar": 21
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "612fac48_918473e2",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/host.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/host.proto",
+              "range": {
+                "startLine": 52,
+                "startChar": 10,
+                "endLine": 52,
+                "endChar": 21
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1d003327_e9563c51",
+        "filename": "system/gd/rust/topshim/facade/blueberry/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 52,
+        "startChar": 10,
+        "endLine": 52,
+        "endChar": 21
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "8d721d40_cc148fe1",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/host.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/host.proto",
+              "range": {
+                "startLine": 67,
+                "startChar": 10,
+                "endLine": 67,
+                "endChar": 21
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6f3b9b25_b5c94994",
+        "filename": "system/gd/rust/topshim/facade/blueberry/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 67,
+        "startChar": 10,
+        "endLine": 67,
+        "endChar": 21
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019050046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1882482?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "5fbebb20_557a6e89",
+          "description": "Change to \"system/gd/rust/topshim/facade/blueberry/host.proto\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/facade/blueberry/host.proto",
+              "range": {
+                "startLine": 82,
+                "startChar": 10,
+                "endLine": 82,
+                "endChar": 21
+              },
+              "replacement": "successful"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "21bbb0d7_f4466c9c",
+        "filename": "system/gd/rust/topshim/facade/blueberry/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T15:39:13Z",
+      "side": 1,
+      "message": "Common typo found: \"successfull\" -- should it be \"successful\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 82,
+        "startChar": 10,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "c56a9e6bc836a392a0c8b7777e8f289c6d413f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
