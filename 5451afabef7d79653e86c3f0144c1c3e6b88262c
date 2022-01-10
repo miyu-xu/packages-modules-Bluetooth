@@ -22,6 +22,30 @@
       },
       "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f8e4167_102ba32f",
+        "filename": "system/audio_hal_interface/a2dp_encoding.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-01-10T03:26:05Z",
+      "side": 1,
+      "message": "I agree that 1.0 API can be merged as an implementation under A2DP stub, but we can do that in another CL.",
+      "parentUuid": "f854a2ba_5239e688",
+      "range": {
+        "startLine": 32,
+        "startChar": 5,
+        "endLine": 32,
+        "endChar": 22
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
