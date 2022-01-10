@@ -23,14 +23,30 @@
 #include "src/profiles/a2dp.rs.h"
 #include "types/raw_address.h"
 
+namespace rusty = ::bluetooth::topshim::rust;
+
 namespace bluetooth {
 namespace topshim {
 namespace rust {
 namespace internal {
 static A2dpSinkIntf* g_a2dp_sink_if;
 
-static void connection_state_cb(const RawAddress&, btav_connection_state_t) {}
-static void audio_state_cb(const RawAddress&, btav_audio_state_t) {}
+static RustRawAddress to_rust_address(const RawAddress& address) {
+  RustRawAddress raddr;
+  std::copy(std::begin(address.address), std::end(address.address), std::begin(raddr.address));
+  return raddr;
+}
+
+static void connection_state_cb(const RawAddress& bd_addr, btav_connection_state_t state) {
+  RustRawAddress addr = to_rust_address(bd_addr);
+  rusty::sink_connection_state_callback(addr, state);
+}
+
+static void audio_state_cb(const RawAddress& bd_addr, btav_audio_state_t state) {
+  RustRawAddress addr = to_rust_address(bd_addr);
+  rusty::sink_audio_state_callback(addr, state);
+}
+
 static void audio_config_cb(const RawAddress&, uint32_t, uint8_t) {}
 
 btav_sink_callbacks_t g_a2dp_sink_callbacks = {
