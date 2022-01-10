@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59b6ca5d_dc7dd780",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-10T23:25:38Z",
+      "side": 1,
+      "message": "Enshuo, will you be cleaning this up and removing the unnecessary parts?",
+      "revId": "885016d742a162d8526212885f3cf30f400b0914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8238da2_27ea0b0f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-10T23:25:38Z",
+      "side": 1,
+      "message": "As mentioned in meeting, this doesn\u0027t work because this event doesn\u0027t signal that SLC is completed.",
+      "revId": "885016d742a162d8526212885f3cf30f400b0914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad2ad8b_1e690324",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-10T23:25:38Z",
+      "side": 1,
+      "message": "We can remove these changes as new FW has fixed the bug encountered with this.",
+      "revId": "885016d742a162d8526212885f3cf30f400b0914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
