@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019042097",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1942094?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8167e6d3_f034e5bb",
+        "filename": "system/audio_hal_interface/aidl/client_interface.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T10:33:54Z",
+      "side": 1,
+      "message": "sleep and its variants should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 387,
+        "startChar": 24,
+        "endLine": 387,
+        "endChar": 34
+      },
+      "revId": "a1f8f2f166b556657cd26a4bd6b20ef7d9bf7d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019042097",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1942094?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5b59e5db_3eb49aed",
+        "filename": "system/audio_hal_interface/aidl/client_interface.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T10:33:54Z",
+      "side": 1,
+      "message": "sleep and its variants should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 454,
+        "startChar": 24,
+        "endLine": 454,
+        "endChar": 34
+      },
+      "revId": "a1f8f2f166b556657cd26a4bd6b20ef7d9bf7d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
