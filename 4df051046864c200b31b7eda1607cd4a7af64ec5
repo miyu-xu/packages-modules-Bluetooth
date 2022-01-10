@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019035597",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932810?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a5671a2b_ecac6127",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T05:44:59Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "4df051046864c200b31b7eda1607cd4a7af64ec5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019035597",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932810?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1002feab_083950ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T05:44:59Z",
+      "side": 1,
+      "message": "\"Verified polling continues until the outgoing call timeout.\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 65
+      },
+      "revId": "4df051046864c200b31b7eda1607cd4a7af64ec5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
