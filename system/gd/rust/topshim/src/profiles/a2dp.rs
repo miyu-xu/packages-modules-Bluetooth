@@ -5,7 +5,7 @@ use num_traits::cast::FromPrimitive;
 use std::sync::{Arc, Mutex};
 use topshim_macros::cb_variant;
 
-#[derive(Debug, FromPrimitive, PartialEq, PartialOrd)]
+#[derive(Debug, FromPrimitive, PartialEq, PartialOrd, Copy, Clone)]
 #[repr(u32)]
 pub enum BtavConnectionState {
     Disconnected = 0,
@@ -20,7 +20,7 @@ impl From<u32> for BtavConnectionState {
     }
 }
 
-#[derive(Debug, FromPrimitive, PartialEq, PartialOrd)]
+#[derive(Debug, FromPrimitive, PartialEq, PartialOrd, Copy, Clone)]
 #[repr(u32)]
 pub enum BtavAudioState {
     RemoteSuspend = 0,
@@ -133,7 +133,7 @@ pub mod ffi {
         address: [u8; 6],
     }
 
-    #[derive(Debug)]
+    #[derive(Debug, Clone)]
     pub struct A2dpCodecConfig {
         codec_type: i32,
         codec_priority: i32,
@@ -198,6 +198,9 @@ pub mod ffi {
             codecs_selectable_capabilities: Vec<A2dpCodecConfig>,
         );
         fn mandatory_codec_preferred_callback(addr: RustRawAddress);
+
+        fn sink_connection_state_callback(addr: RustRawAddress, state: u32);
+        fn sink_audio_state_callback(addr: RustRawAddress, state: u32);
     }
 }
 
@@ -233,7 +236,7 @@ impl Default for A2dpCodecConfig {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum A2dpCallbacks {
     ConnectionState(RawAddress, BtavConnectionState),
     AudioState(RawAddress, BtavAudioState),
@@ -323,9 +326,10 @@ impl A2dp {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum A2dpSinkCallbacks {
     ConnectionState(RawAddress, BtavConnectionState),
+    AudioState(RawAddress, BtavAudioState),
 }
 
 pub struct A2dpSinkCallbacksDispatcher {
@@ -333,6 +337,16 @@ pub struct A2dpSinkCallbacksDispatcher {
 }
 
 type A2dpSinkCb = Arc<Mutex<A2dpSinkCallbacksDispatcher>>;
+
+cb_variant!(A2dpSinkCb, sink_connection_state_callback -> A2dpSinkCallbacks::ConnectionState,
+FfiAddress -> RawAddress, u32 -> BtavConnectionState, {
+    let _0 = _0.into();
+});
+
+cb_variant!(A2dpSinkCb, sink_audio_state_callback -> A2dpSinkCallbacks::AudioState,
+FfiAddress -> RawAddress, u32 -> BtavAudioState, {
+    let _0 = _0.into();
+});
 
 pub struct A2dpSink {
     internal: cxx::UniquePtr<ffi::A2dpSinkIntf>,
