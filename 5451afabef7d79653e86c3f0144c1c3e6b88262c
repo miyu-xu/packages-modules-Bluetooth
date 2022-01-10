@@ -176,6 +176,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a867c2_92c2ec38",
+        "filename": "system/audio_hal_interface/hal_version_manager.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-01-10T08:44:46Z",
+      "side": 1,
+      "message": "unknown and disabled are different things, but can we have a specific wording?",
+      "parentUuid": "ad38b198_c13ae5af",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "727a2ff0_cbf8b3a5",
