@@ -2,6 +2,7 @@
 
 import os
 import random
+import re
 import time
 from typing import Mapping, Optional
 
@@ -26,7 +27,7 @@ CONTACTS_URI = 'content://com.android.contacts/data/phones'
 WAITING_TIMEOUT_SEC = 60
 
 # Number of contacts and call logs to be tested.
-TEST_DATA_COUNT = 1000
+TEST_DATA_COUNT = 200
 
 # Permissions for Contacts app.
 PERMISSION_LIST = [
@@ -325,6 +326,59 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     return current_count
 
+  def _normalize_phonenumber(self, phone_number: str) -> str:
+    """Removes all non-digits from phone_number.
+
+    Args:
+      phone_number: the string number from device. Could be call logs or contact
+
+    Returns:
+      phone_number: the phone number with digital only
+    """
+
+    return re.sub(r'\D', '', phone_number)
+
+  def _compare_call_logs(self, call_log_type: str) -> bool:
+    """Compares the call logs between PSE and PCE.
+
+    This method shall be used to compare the call logs between PSE and PCE after
+    PBAP connects.
+
+    Args:
+      call_log_type: type of call log
+
+    Returns:
+      True: the call logs between PSE and PCE are the same.
+      False: the call logs between PSE and PCE are different.
+    """
+    # Get PSE and PCE call logs
+    pse_call_logs = self.pri_phone.sl4a.callLogsGet(call_log_type)
+    pce_call_logs = self.derived_bt_device.sl4a.callLogsGet(call_log_type)
+
+    # Normalize phone number
+    for i in range(len(pse_call_logs)):
+      pse_call_logs[i]['number'] = self._normalize_phonenumber(
+          pse_call_logs[i]['number'])
+      pce_call_logs[i]['number'] = self._normalize_phonenumber(
+          pce_call_logs[i]['number'])
+
+    # Normalize date
+    for i in range(len(pse_call_logs)):
+      pse_call_logs[i]['date'] = str(int(pse_call_logs[i]['date'])//1000)
+      pce_call_logs[i]['date'] = str(int(pce_call_logs[i]['date'])//1000)
+
+    # Compare diff between PSE and PCE
+    diff_in_pse = [i for i in pse_call_logs if i not in pce_call_logs]
+    diff_in_pce = [j for j in pce_call_logs if j not in pse_call_logs]
+
+    # Log the difference
+    self.pri_phone.log.debug('Call log exits in PSE not in PCE: %s',
+                             diff_in_pse)
+    self.derived_bt_device.log.debug('Call log exits in PCE not in PSE: %s',
+                                     diff_in_pce)
+
+    return True if not diff_in_pse and not diff_in_pce else False
+
   def test_download_empty_contacts(self):
     """Tests that PCE can download contacts from PSE."""
     default_contact_count = 0
@@ -363,12 +417,19 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
     for call_log_type in CALL_LOG_TYPES:
       current_count = self._download_call_logs(default_call_log_count,
                                                call_log_type)
+      # Compare call log count
       asserts.assert_true(
           current_count == default_call_log_count,
           'PCE failed to download %d call log(s) which type are "%s" within %ds'
           ', actually downloaded %d call log(s).' %
           (default_call_log_count, call_log_type, WAITING_TIMEOUT_SEC,
            current_count))
+
+      # Compare call log content
+      compare_result = self._compare_call_logs(call_log_type)
+      asserts.assert_true(
+          compare_result,
+          'PCE download call log: %s are different then PSE', call_log_type)
 
   def test_download_call_logs(self):
     """Test for the feature of downloading call logs.
@@ -379,12 +440,7 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
     for device in [self.pri_phone, self.derived_bt_device]:
       device.sl4a.callLogsEraseAll()
 
-    call_log_types = [
-        bt_constants.INCOMING_CALL_LOG_TYPE,
-        bt_constants.OUTGOING_CALL_LOG_TYPE,
-        bt_constants.MISSED_CALL_LOG_TYPE,
-    ]
-    for call_log_type in call_log_types:
+    for call_log_type in CALL_LOG_TYPES:
       # Add call logs to PSE.
       self._generate_call_logs_on_pse(call_log_type, TEST_DATA_COUNT)
 
@@ -392,7 +448,7 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
     self.derived_bt_device.pbap_connect()
     self.derived_bt_device.log.info('Downloading call logs...')
 
-    for call_log_type in call_log_types:
+    for call_log_type in CALL_LOG_TYPES:
       current_count = self._wait_and_get_call_log_count(
           self.derived_bt_device,
           call_log_type,
@@ -402,11 +458,18 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
           'Successfully downloaded %d call log(s) which type are "%s".' %
           (current_count, call_log_type))
 
+      # Compare call log count
       asserts.assert_true(
           current_count == TEST_DATA_COUNT,
           'PCE failed to download %d call log(s) which type are "%s" within %ds'
           ', actually downloaded %d call log(s).' %
           (TEST_DATA_COUNT, call_log_type, WAITING_TIMEOUT_SEC, current_count))
+
+      # Compare call log content
+      compare_result = self._compare_call_logs(call_log_type)
+      asserts.assert_true(
+          compare_result,
+          'PCE download call log: %s are different then PSE', call_log_type)
 
   def test_show_caller_name(self):
     """Test for caller name of the incoming phone call is correct on PCE.
