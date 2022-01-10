@@ -74,6 +74,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.util.NumberUtils;
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.modules.utils.SynchronousResultReceiver;
 
 import libcore.util.HexEncoding;
 
@@ -1084,7 +1085,15 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void unregAll(AttributionSource attributionSource) {
+        public void unregAll(AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                unregAll(source);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private void unregAll(AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
