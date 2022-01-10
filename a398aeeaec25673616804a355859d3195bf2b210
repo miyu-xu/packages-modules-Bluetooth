@@ -52,6 +52,24 @@
       "parentUuid": "b668ac55_4eaa19cb",
       "revId": "a398aeeaec25673616804a355859d3195bf2b210",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c73ec2a_54cca589",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2088,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-10T20:56:46Z",
+      "side": 1,
+      "message": "\u003e Done\n\nSorry @Jack - didn\u0027t click Reply button :) (\"Done\" was in draft)",
+      "parentUuid": "1dd49cba_e9dfc76f",
+      "revId": "a398aeeaec25673616804a355859d3195bf2b210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
