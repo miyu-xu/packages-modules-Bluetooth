@@ -43,21 +43,21 @@ from blueberry.tests.gd.cert.os_utils import is_subprocess_alive
 from blueberry.tests.gd.cert.os_utils import make_ports_available
 from blueberry.tests.gd.cert.os_utils import TerminalColor
 
-from facade import rootservice_pb2_grpc as facade_rootservice_pb2_grpc
-from hal import hal_facade_pb2_grpc
-from hci.facade import hci_facade_pb2_grpc
-from hci.facade import acl_manager_facade_pb2_grpc
-from hci.facade import controller_facade_pb2_grpc
-from hci.facade import le_acl_manager_facade_pb2_grpc
-from hci.facade import le_advertising_manager_facade_pb2_grpc
-from hci.facade import le_initiator_address_facade_pb2_grpc
-from hci.facade import le_scanning_manager_facade_pb2_grpc
-from l2cap.classic import facade_pb2_grpc as l2cap_facade_pb2_grpc
-from l2cap.le import facade_pb2_grpc as l2cap_le_facade_pb2_grpc
-from iso import facade_pb2_grpc as iso_facade_pb2_grpc
-from neighbor.facade import facade_pb2_grpc as neighbor_facade_pb2_grpc
-from security import facade_pb2_grpc as security_facade_pb2_grpc
-from shim.facade import facade_pb2_grpc as shim_facade_pb2_grpc
+from blueberry.facade import rootservice_pb2_grpc as facade_rootservice_pb2_grpc
+from blueberry.facade.hal import hal_facade_pb2_grpc
+from blueberry.facade.hci import hci_facade_pb2_grpc
+from blueberry.facade.hci import acl_manager_facade_pb2_grpc
+from blueberry.facade.hci import controller_facade_pb2_grpc
+from blueberry.facade.hci import le_acl_manager_facade_pb2_grpc
+from blueberry.facade.hci import le_advertising_manager_facade_pb2_grpc
+from blueberry.facade.hci import le_initiator_address_facade_pb2_grpc
+from blueberry.facade.hci import le_scanning_manager_facade_pb2_grpc
+from blueberry.facade.l2cap.classic import facade_pb2_grpc as l2cap_facade_pb2_grpc
+from blueberry.facade.l2cap.le import facade_pb2_grpc as l2cap_le_facade_pb2_grpc
+from blueberry.facade.iso import facade_pb2_grpc as iso_facade_pb2_grpc
+from blueberry.facade.neighbor import facade_pb2_grpc as neighbor_facade_pb2_grpc
+from blueberry.facade.security import facade_pb2_grpc as security_facade_pb2_grpc
+from blueberry.facade.shim import facade_pb2_grpc as shim_facade_pb2_grpc
 
 from mobly import utils
 from mobly.controllers.android_device_lib.adb import AdbError

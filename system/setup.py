@@ -15,7 +15,6 @@
 #   limitations under the License.
 
 from distutils import log
-from distutils.errors import DistutilsModuleError
 import os
 from setuptools import find_packages
 from setuptools import setup
@@ -28,6 +27,7 @@ install_requires = [
     'grpcio',
     'psutil',
     'protobuf>=3.14.0',
+    'mobly',
 ]
 
 host_executables = [
