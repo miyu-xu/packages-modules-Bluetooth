@@ -88,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff1d09cb_13794b21",
+        "filename": "system/audio_hal_interface/hal_version_manager.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-01-10T08:36:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "79febe13_9742c4c8",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2abf798_0092cae4",
@@ -101,6 +125,30 @@
       "writtenOn": "2022-01-10T08:23:38Z",
       "side": 1,
       "message": "Suggest to change the order, and UNKNOWN is the latest one. Or, *UNKNOWN* means *disabled*?\nBtw, is it similar to BluetoothAudioHalVersion?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad38b198_c13ae5af",
+        "filename": "system/audio_hal_interface/hal_version_manager.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-01-10T08:36:33Z",
+      "side": 1,
+      "message": "1. I prefer 0 to be a default value indicating \"unknown or \"disabled\", and currently it\u0027s always fetched with GetHalTransport().\n2. Not really since there are 3 versions of HIDL and 1(or more in the future) version of AIDL, so I think it can significantly simplify the code used to judge transport.",
+      "parentUuid": "a2abf798_0092cae4",
       "range": {
         "startLine": 50,
         "startChar": 0,
