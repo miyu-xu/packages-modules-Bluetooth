@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019034990",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932807?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5e3b7055_0c0f6f2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T04:55:21Z",
+      "side": 1,
+      "message": "\"manual\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "69f162e46ab92342841a3ea1ab008fbfb7815089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019034990",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932807?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "355cc1ea_82efb8c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T04:55:21Z",
+      "side": 1,
+      "message": "\"IOP and BCST\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 18
+      },
+      "revId": "69f162e46ab92342841a3ea1ab008fbfb7815089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
