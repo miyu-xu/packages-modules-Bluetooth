@@ -12,6 +12,7 @@ WEARABLE_PACKAGE = 'com.google.android.gms.wearable'
 
 SET_SCREEN_OFF_TIMEOUT_HALF_HOUR = (
     'settings put system screen_off_timeout 1800000')
+START_BLUETOOTH_SETTINGS = 'am start -S -a android.settings.BLUETOOTH_SETTINGS'
 
 # Phenotype flags
 CONNECTION_SWITCHING_FLAGS = (
