@@ -34,6 +34,24 @@
       "parentUuid": "20b766bb_73fb884d",
       "revId": "f584597ebc2c54091039d3d136db81f0f8c3cdbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56e1861e_91c39dc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-10T21:10:32Z",
+      "side": 1,
+      "message": "Its analogous to 2 basic types of software exception errors, recoverable and unrecoverable.\n\nA planned shutdown or quiesced state should always fall into the \"recoverable\" type and behave as conformant as possible to the underlying specifications, in this case the BT spec w.r.t. handling outstanding shared state with peer device(s).\n\nre: this particular timeout was precedent and introduced for a reason which may or may not have been valid at the time, and may or may not be valid currently, and may or may not have surfaced in certain scenarios or with a subset of peer devices.\n\nHowever, the overall intent is to provide a significantly better 360 degree experience than kill -9 the BT process.",
+      "parentUuid": "b52611d1_1d78c75c",
+      "revId": "f584597ebc2c54091039d3d136db81f0f8c3cdbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
