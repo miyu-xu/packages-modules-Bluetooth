@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cae5e69a_09eaaf94",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-10T08:26:55Z",
+      "side": 1,
+      "message": "+1 for le audio",
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f854a2ba_5239e688",
@@ -43,6 +60,29 @@
         "startChar": 5,
         "endLine": 32,
         "endChar": 22
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79febe13_9742c4c8",
+        "filename": "system/audio_hal_interface/hal_version_manager.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-10T08:26:55Z",
+      "side": 1,
+      "message": "nit: 2022 for all the new header.",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
       },
       "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
