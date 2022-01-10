@@ -20,6 +20,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d4cd91f_da0ded27",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 22
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-01-10T08:51:58Z",
+      "side": 1,
+      "message": "Unnecessary empty line.",
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e37f1c6_7da2f477",
+        "filename": "system/audio_hal_interface/a2dp_encoding.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-01-10T08:51:58Z",
+      "side": 1,
+      "message": "Remove this unnecessary return value.",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 11
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f854a2ba_5239e688",
         "filename": "system/audio_hal_interface/a2dp_encoding.h",
         "patchSetId": 22
