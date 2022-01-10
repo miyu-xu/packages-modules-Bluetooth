@@ -16,6 +16,24 @@
       "message": "For the stereo use case Audio Framework will expect PCM data like this\n\nLLRR,LLRR,LLRR,LLRR.. LLRR \n\nWhat is happening here will result in \n\nLLLL,LLLL...LLLL, RRRR,RRRR ... RRRR\n\nWe need to mix left and right correctly.",
       "revId": "a398aeeaec25673616804a355859d3195bf2b210",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c17a4270_639ad384",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2088,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-10T17:51:45Z",
+      "side": 1,
+      "message": "Has this been resolved?",
+      "parentUuid": "b668ac55_4eaa19cb",
+      "revId": "a398aeeaec25673616804a355859d3195bf2b210",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
