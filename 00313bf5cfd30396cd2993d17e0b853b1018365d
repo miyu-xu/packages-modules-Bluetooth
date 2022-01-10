@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a001a5_e12d1b7a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4073,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2022-01-10T07:10:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "997c3dfa_6b1e4148",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e6dc6f1_429fe735",
@@ -31,6 +49,24 @@
       "writtenOn": "2021-12-03T01:38:18Z",
       "side": 1,
       "message": "Can you initialize like this:\ntBTA_DM_SEC param \u003d {\n  .delete_key_RC_to_unpair \u003d {\n      .bd_addr \u003d bd_addr,\n   },\n};",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a168307d_0daf4716",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4074,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2022-01-10T07:10:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e6dc6f1_429fe735",
       "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5532e0d6_085e4f76",
+        "filename": "system/bta/hh/bta_hh_le.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2022-01-10T07:10:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c8351aa_d71fd3b0",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a48658e0_03e88f33",
@@ -65,6 +119,24 @@
       "writtenOn": "2021-12-03T01:38:18Z",
       "side": 1,
       "message": "Change to a LOG_WARN(\"\");  \n\nAnd no need to add function __func__",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07508d0e_45561578",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1787,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2022-01-10T07:10:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a48658e0_03e88f33",
       "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6feef94_6d1abbfb",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3275,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2022-01-10T07:10:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "065845e0_bb292882",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "665524df_f9b7be87",
@@ -99,6 +189,24 @@
       "writtenOn": "2021-12-03T01:38:18Z",
       "side": 1,
       "message": "Use proper type\n\ntHCI_STATUS sec_status;",
+      "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1112d0f_fcf3ff33",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1501832
+      },
+      "writtenOn": "2022-01-10T07:10:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "665524df_f9b7be87",
       "revId": "00313bf5cfd30396cd2993d17e0b853b1018365d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
