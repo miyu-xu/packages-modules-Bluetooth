@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019035025",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932809?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dcec6732_ed276b83",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T04:55:43Z",
+      "side": 1,
+      "message": "{#stability %!s(int\u003d4) %!s(int\u003d4) %!s(int\u003d15)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 15
+      },
+      "revId": "c55851b841a2dc1fbeccbf9be671066e2c2af8ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019035025",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1932809?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2538a4fc_599831c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-10T04:55:43Z",
+      "side": 1,
+      "message": "\"Manual\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 12
+      },
+      "revId": "c55851b841a2dc1fbeccbf9be671066e2c2af8ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
