@@ -46,6 +46,29 @@
       },
       "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2abf798_0092cae4",
+        "filename": "system/audio_hal_interface/hal_version_manager.h",
+        "patchSetId": 22
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-01-10T08:23:38Z",
+      "side": 1,
+      "message": "Suggest to change the order, and UNKNOWN is the latest one. Or, *UNKNOWN* means *disabled*?\nBtw, is it similar to BluetoothAudioHalVersion?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 10
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
