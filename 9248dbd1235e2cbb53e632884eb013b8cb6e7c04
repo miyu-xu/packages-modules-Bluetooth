@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd1c737_3802da28",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-11T08:07:12Z",
+      "side": 1,
+      "message": "this seems reasonable, but where is it used?",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 1
+      },
+      "revId": "9248dbd1235e2cbb53e632884eb013b8cb6e7c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ae8b6a6_17aab8d0",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-11T08:07:12Z",
+      "side": 1,
+      "message": "it seems this is never used?",
+      "range": {
+        "startLine": 729,
+        "startChar": 43,
+        "endLine": 729,
+        "endChar": 56
+      },
+      "revId": "9248dbd1235e2cbb53e632884eb013b8cb6e7c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45d9bef1_0dd8ecc1",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-11T08:07:12Z",
+      "side": 1,
+      "message": "same as above, do we ever use a controller id differ from LOCAL_BR_EDR_CONTROLLER_ID ?",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 757,
+        "endChar": 1
+      },
+      "revId": "9248dbd1235e2cbb53e632884eb013b8cb6e7c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
