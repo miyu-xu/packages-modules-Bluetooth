@@ -45,6 +45,7 @@ static struct {
   jclass clazz;
   jmethodID constructor;
   jmethodID getCodecType;
+  jmethodID getCodecSessionType;
 } android_bluetooth_BluetoothLeAudioCodecConfig;
 
 static LeAudioClientInterface* sLeAudioClientInterface = nullptr;
@@ -132,9 +133,12 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
   jclass jniBluetoothLeAudioCodecConfigClass =
       env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig");
   android_bluetooth_BluetoothLeAudioCodecConfig.constructor =
-      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "<init>", "(I)V");
+      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass, "<init>", "(II)V");
   android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
       jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecSessionType =
+      env->GetMethodID(jniBluetoothLeAudioCodecConfigClass,
+                       "getCodecSessionType", "()I");
 
   method_onGroupStatus = env->GetMethodID(clazz, "onGroupStatus", "(II)V");
   method_onGroupNodeStatus =
