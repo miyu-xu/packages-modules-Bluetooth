@@ -247,6 +247,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9e13ca5_646f5fec",
+        "filename": "system/audio_hal_interface/hal_version_manager.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-01-11T03:34:37Z",
+      "side": 1,
+      "message": "Return is an exception. Linter might fail if adding break here.",
+      "parentUuid": "4a639cd6_a6732436",
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2abf798_0092cae4",
@@ -379,6 +397,30 @@
       "side": 1,
       "message": "A void function can\u0027t return a value. You can add a return without value at your later CL.",
       "parentUuid": "402c0f22_265c207d",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 49,
+        "endChar": 11
+      },
+      "revId": "5451afabef7d79653e86c3f0144c1c3e6b88262c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5413858b_ab45c692",
+        "filename": "system/audio_hal_interface/hearing_aid_software_encoding.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-01-11T03:34:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "11b0cfa3_ea089955",
       "range": {
         "startLine": 49,
         "startChar": 4,
