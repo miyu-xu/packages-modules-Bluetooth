@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f888f32c_3a84efc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-11T16:56:12Z",
+      "side": 1,
+      "message": "Thanks for quick review, but this CL wasn\u0027t quite ready to be reviewed.  It\u0027s a bit stale, and I will go re-verify the CL before official review (when I \u0027CC bluetooth reviews and/or post on chat).\n\nThe points you cite are now-deleted code and will be removed prior to official review.\n\nthanks !\n",
+      "revId": "9248dbd1235e2cbb53e632884eb013b8cb6e7c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dd1c737_3802da28",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-01-11T08:07:12Z",
       "side": 1,
       "message": "this seems reasonable, but where is it used?",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 1
+      },
+      "revId": "9248dbd1235e2cbb53e632884eb013b8cb6e7c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40593187_08320ea9",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-11T16:56:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0dd1c737_3802da28",
       "range": {
         "startLine": 472,
         "startChar": 0,
