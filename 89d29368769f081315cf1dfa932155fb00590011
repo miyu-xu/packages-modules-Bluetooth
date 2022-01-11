@@ -140,6 +140,30 @@
       },
       "revId": "89d29368769f081315cf1dfa932155fb00590011",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeaecd1c_c886428b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2235,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-11T10:27:28Z",
+      "side": 1,
+      "message": "the use case which Jakub has in mind, is that we start streaming when 1 earbud is connected and then the other one got connected.\nHowever I believe this approach is good as for now and we should allocated decoder for as many channels as we know we have.\n\nIf we are connected to two devices and then one get disconnected, then we can keep decoder instance and wait for the reconnection.",
+      "parentUuid": "acff2343_cef4e0c7",
+      "range": {
+        "startLine": 2235,
+        "startChar": 8,
+        "endLine": 2235,
+        "endChar": 46
+      },
+      "revId": "89d29368769f081315cf1dfa932155fb00590011",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
