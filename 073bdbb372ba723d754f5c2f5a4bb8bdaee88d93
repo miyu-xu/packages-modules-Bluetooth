@@ -16,6 +16,23 @@
       "message": "Hi Patty, Alice, Jakub, request you to review this patch that allows the phone to pick the appropriate transport latency and RTN based on context type",
       "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1182d093_217d29e2",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-11T12:52:17Z",
+      "side": 1,
+      "message": "Please note BAP specification present only recommended values and not THE values.\nI suggest that we add here target_latecy: (low latency/high reliability/balance) and let the audio server to choose the parameters they like.\n\nWould it work for you?\n\nIn addition - we are moving this configuration to the json file: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1911879/3\n\nhaving this, I believe we could allow for additional .qos_config field, but having it implemented in the way, that BT stack does no required it but use it when it is present. In this way, if some vendors would like to force audio server to use specific parameters, they could use it.",
+      "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
