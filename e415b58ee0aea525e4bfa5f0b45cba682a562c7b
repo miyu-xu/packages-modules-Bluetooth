@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e072b751_3396c22c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T11:10:56Z",
+      "side": 1,
+      "message": "I think this is ready to go.\nThe log looks consistent with my investigation results.\nQuote the log I got:\n2022-01-11T11:05:02.777870Z INFO btadapterd[10782]: HFP connected.                                                                                                                                                                                                                                    \n...\n2022-01-11T11:05:02.828875Z WARNING btadapterd[10782]: bluetooth: gd/rust/topshim/hfp/hfp_shim.cc:99 - AtCindCallback: Respond +CIND: 0,0,0,0,0,0,0 to AT+CIND? from 04:fe:a1:b4:33:f0                                                                                                                \n...\n2022-01-11T11:05:02.842562Z INFO btadapterd[10782]: HFP SLC connected.       ",
+      "revId": "e415b58ee0aea525e4bfa5f0b45cba682a562c7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0db3606_235eb62a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T11:10:56Z",
+      "side": 1,
+      "message": "I ended up thinking it\u0027s better to keep them separated. 😜",
+      "parentUuid": "268dfc30_7252a7e7",
+      "revId": "885016d742a162d8526212885f3cf30f400b0914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ad2ad8b_1e690324",
@@ -84,6 +102,24 @@
       "writtenOn": "2022-01-10T23:25:38Z",
       "side": 1,
       "message": "We can remove these changes as new FW has fixed the bug encountered with this.",
+      "revId": "885016d742a162d8526212885f3cf30f400b0914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a4201c8_835ff069",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T11:10:56Z",
+      "side": 1,
+      "message": "Comment about how to patch the fix: https://buganizer.corp.google.com/issues/210527586#comment10",
+      "parentUuid": "6ad2ad8b_1e690324",
       "revId": "885016d742a162d8526212885f3cf30f400b0914",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
