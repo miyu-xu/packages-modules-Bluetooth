@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "465f8623_71d3d7a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T08:00:47Z",
+      "side": 1,
+      "message": "Yes. I\u0027m working on it. Will probably just squash this into my previous CL.",
+      "parentUuid": "59b6ca5d_dc7dd780",
+      "revId": "885016d742a162d8526212885f3cf30f400b0914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8238da2_27ea0b0f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-10T23:25:38Z",
       "side": 1,
       "message": "As mentioned in meeting, this doesn\u0027t work because this event doesn\u0027t signal that SLC is completed.",
+      "revId": "885016d742a162d8526212885f3cf30f400b0914",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "268dfc30_7252a7e7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T08:00:47Z",
+      "side": 1,
+      "message": "Yes. I found the BTHF_CONNECTION_STATE_SLC_CONNECTED is the one we should use here. I somehow hadn\u0027t noticed it.\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/include/hardware/bt_hf.h;drc\u003dmaster;l\u003d32",
+      "parentUuid": "d8238da2_27ea0b0f",
       "revId": "885016d742a162d8526212885f3cf30f400b0914",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
