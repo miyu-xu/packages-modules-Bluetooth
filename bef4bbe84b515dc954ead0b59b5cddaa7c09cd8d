@@ -16,6 +16,24 @@
       "message": "Just need to add a check for the BLUETOOTH_CONNECT permission",
       "revId": "bef4bbe84b515dc954ead0b59b5cddaa7c09cd8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d29b6ab_a27e0213",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1735,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-11T07:37:36Z",
+      "side": 1,
+      "message": "bluetooth connect will require an attribution source. Should it be a good idea to create a separate getSupportedProfiles here to check the permission?",
+      "parentUuid": "016f4318_9ab7c125",
+      "revId": "bef4bbe84b515dc954ead0b59b5cddaa7c09cd8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
