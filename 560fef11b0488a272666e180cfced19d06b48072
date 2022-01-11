@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab72e399_675b116d",
+        "filename": "system/audio_hal_interface/hidl/le_audio_software.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-01-11T15:05:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f844f147_58b35956",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 82,
+        "endChar": 48
+      },
+      "revId": "560fef11b0488a272666e180cfced19d06b48072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af7058c1_9b17e721",
@@ -71,6 +95,30 @@
       "writtenOn": "2022-01-11T14:04:27Z",
       "side": 1,
       "message": "session_type",
+      "range": {
+        "startLine": 283,
+        "startChar": 10,
+        "endLine": 283,
+        "endChar": 62
+      },
+      "revId": "560fef11b0488a272666e180cfced19d06b48072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2982720_b42afed4",
+        "filename": "system/audio_hal_interface/hidl/le_audio_software.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-01-11T15:05:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af7058c1_9b17e721",
       "range": {
         "startLine": 283,
         "startChar": 10,
