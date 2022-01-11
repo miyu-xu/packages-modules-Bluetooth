@@ -62,6 +62,11 @@ public class MnsService {
         sContext = context;
         sAcceptThread = new SocketAcceptor();
         sServerSockets = ObexServerSockets.create(sAcceptThread);
+        System.out.println("DUDE: " + sServerSockets); // felipeal: tmp
+        if (sServerSockets == null) {
+            Log.e(TAG, "sServerSockets is null");
+            return;
+        }
         SdpManager sdpManager = SdpManager.getDefaultManager();
         if (sdpManager == null) {
             Log.e(TAG, "SdpManager is null");
