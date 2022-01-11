@@ -16,6 +16,23 @@
       "message": "I think this is ready to go.\nThe log looks consistent with my investigation results.\nQuote the log I got:\n2022-01-11T11:05:02.777870Z INFO btadapterd[10782]: HFP connected.                                                                                                                                                                                                                                    \n...\n2022-01-11T11:05:02.828875Z WARNING btadapterd[10782]: bluetooth: gd/rust/topshim/hfp/hfp_shim.cc:99 - AtCindCallback: Respond +CIND: 0,0,0,0,0,0,0 to AT+CIND? from 04:fe:a1:b4:33:f0                                                                                                                \n...\n2022-01-11T11:05:02.842562Z INFO btadapterd[10782]: HFP SLC connected.       ",
       "revId": "e415b58ee0aea525e4bfa5f0b45cba682a562c7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22b74e89_37f4ee65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T11:14:33Z",
+      "side": 1,
+      "message": "It seems I can\u0027t ask Abhishek to review his own CL. Should I change the owner? or, we\u0027ll require Hansong\u0027s +2.",
+      "revId": "e415b58ee0aea525e4bfa5f0b45cba682a562c7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
