@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019127659",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1941499?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3112c20e_1ebdc060",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-11T23:48:48Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "d2a5c8b0b948952cc39b129c133b679921daaee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019127659",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1941499?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "863533c6_09dc17b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-11T23:48:48Z",
+      "side": 1,
+      "message": "\"Verify LE audio hardware offload decode update codec behavior\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 67
+      },
+      "revId": "d2a5c8b0b948952cc39b129c133b679921daaee8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
