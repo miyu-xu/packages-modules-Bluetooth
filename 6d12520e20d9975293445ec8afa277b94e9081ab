@@ -39,6 +39,30 @@
       },
       "revId": "6d12520e20d9975293445ec8afa277b94e9081ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4deb1c8d_7508c734",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-11T23:47:18Z",
+      "side": 1,
+      "message": "Good catch",
+      "parentUuid": "759268c0_e553a8c6",
+      "range": {
+        "startLine": 740,
+        "startChar": 27,
+        "endLine": 740,
+        "endChar": 40
+      },
+      "revId": "6d12520e20d9975293445ec8afa277b94e9081ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
