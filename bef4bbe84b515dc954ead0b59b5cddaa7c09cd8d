@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "016f4318_9ab7c125",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1735,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-11T00:50:17Z",
+      "side": 1,
+      "message": "Just need to add a check for the BLUETOOTH_CONNECT permission",
+      "revId": "bef4bbe84b515dc954ead0b59b5cddaa7c09cd8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
