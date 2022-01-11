@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e47afb5_ebdcd8bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-01-11T03:52:32Z",
+      "side": 1,
+      "message": "Hi Patty, Alice, Jakub, request you to review this patch that allows the phone to pick the appropriate transport latency and RTN based on context type",
+      "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
