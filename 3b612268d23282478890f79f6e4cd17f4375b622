@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e2c46a5_1d000913",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-11T08:21:26Z",
+      "side": 1,
+      "message": "why not synchronize on a dedicated private lock Object that is initialized to final and guaranteed not to be null?",
+      "range": {
+        "startLine": 222,
+        "startChar": 38,
+        "endLine": 222,
+        "endChar": 52
+      },
+      "revId": "3b612268d23282478890f79f6e4cd17f4375b622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
