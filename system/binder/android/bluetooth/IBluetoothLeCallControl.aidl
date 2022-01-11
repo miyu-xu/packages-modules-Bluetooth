@@ -16,30 +16,33 @@
  */
 
 package android.bluetooth;
-
+import android.content.AttributionSource;
 import android.bluetooth.BluetoothLeCall;
 import android.bluetooth.IBluetoothLeCallControlCallback;
 
 import android.os.ParcelUuid;
+
+import com.android.modules.utils.SynchronousResultReceiver;
 
 /**
  * @hide
  */
 oneway interface IBluetoothLeCallControl {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void registerBearer(in String token, in IBluetoothLeCallControlCallback callback, in String uci, in List<String> uriSchemes, in int capabilities, in String provider, in int technology);
+    void registerBearer(in String token, in IBluetoothLeCallControlCallback callback, in String uci, in List<String> uriSchemes,
+        in int capabilities, in String provider, in int technology, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void unregisterBearer(in String token);
+    void unregisterBearer(in String token, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void requestResult(in int ccid, in int requestId, in int result);
+    void requestResult(in int ccid, in int requestId, in int result, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void callAdded(in int ccid, in BluetoothLeCall call);
+    void callAdded(in int ccid, in BluetoothLeCall call, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void callRemoved(in int ccid, in ParcelUuid callId, in int reason);
+    void callRemoved(in int ccid, in ParcelUuid callId, in int reason, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void callStateChanged(in int ccid, in ParcelUuid callId, in int state);
+    void callStateChanged(in int ccid, in ParcelUuid callId, in int state, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void currentCallsList(in int ccid, in List<BluetoothLeCall> calls);
+    void currentCallsList(in int ccid, in List<BluetoothLeCall> calls, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
-    void networkStateChanged(in int ccid, in String provider, in int technology);
+    void networkStateChanged(in int ccid, in String provider, in int technology, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
 }
