@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3a5aaee_d6bf94e7",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-11T07:01:52Z",
+      "side": 1,
+      "message": "We can\u0027t not synchronize with null reference, it will cause NPE",
+      "parentUuid": "182d686c_0b3b0bd9",
+      "range": {
+        "startLine": 165,
+        "startChar": 20,
+        "endLine": 165,
+        "endChar": 34
+      },
+      "revId": "12a2bf31d8f02a3ad7156008a009e86186538deb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbf53776_3a1b4ed1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad3f7b9f_3dca2b88",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-11T07:01:52Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bbf53776_3a1b4ed1",
+      "range": {
+        "startLine": 209,
+        "startChar": 20,
+        "endLine": 209,
+        "endChar": 34
+      },
+      "revId": "12a2bf31d8f02a3ad7156008a009e86186538deb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80fb9a8a_9ead5d42",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-01-04T19:19:58Z",
       "side": 1,
       "message": "Shouldn\u0027t we synchronize before this check?",
+      "range": {
+        "startLine": 521,
+        "startChar": 12,
+        "endLine": 521,
+        "endChar": 26
+      },
+      "revId": "12a2bf31d8f02a3ad7156008a009e86186538deb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "238f6ef6_d723bebc",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppTransfer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-11T07:01:52Z",
+      "side": 1,
+      "message": "We can\u0027t not synchronize with null reference, it will cause NPE, but we can replace this check with try catch statement",
+      "parentUuid": "80fb9a8a_9ead5d42",
       "range": {
         "startLine": 521,
         "startChar": 12,
