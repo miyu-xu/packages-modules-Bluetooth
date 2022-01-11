@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfbc6cfc_2ec0715b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T06:02:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6294909b_6fcbaf60",
+      "revId": "95e4b6480f17088d895a502131526c12922fdf83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62dc0d91_9d6b3e4b",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7380f7a_725a07b5",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T06:02:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62dc0d91_9d6b3e4b",
+      "revId": "95e4b6480f17088d895a502131526c12922fdf83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39e7a783_bda9791c",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-01-10T23:23:33Z",
       "side": 1,
       "message": "Is None required? HFP requires that at least CVSD must be supported right?",
+      "revId": "95e4b6480f17088d895a502131526c12922fdf83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db0e6c6d_b1758f8e",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-11T06:02:53Z",
+      "side": 1,
+      "message": "I reserve this for devices with only A2DP as we\u0027d like to only trigger one device added event for each device.",
+      "parentUuid": "39e7a783_bda9791c",
       "revId": "95e4b6480f17088d895a502131526c12922fdf83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
