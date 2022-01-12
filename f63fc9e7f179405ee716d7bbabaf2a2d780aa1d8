@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9a591a2_8f8634c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-12T05:26:14Z",
+      "side": 1,
+      "message": "lgtm with nits (can\u0027t +2 since autosubmit is on)",
+      "revId": "f63fc9e7f179405ee716d7bbabaf2a2d780aa1d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27926197_ac74ca04",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-12T05:26:14Z",
+      "side": 1,
+      "message": "Please use ///\n\nhttps://doc.rust-lang.org/rustdoc/what-is-rustdoc.html#outer-and-inner-documentation",
+      "revId": "f63fc9e7f179405ee716d7bbabaf2a2d780aa1d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

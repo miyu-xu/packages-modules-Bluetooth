@@ -104,6 +104,24 @@
       "parentUuid": "39e7a783_bda9791c",
       "revId": "95e4b6480f17088d895a502131526c12922fdf83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f1761b_3405f6eb",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-12T05:26:14Z",
+      "side": 1,
+      "message": "Unsupported might be better than `None` then.",
+      "parentUuid": "db0e6c6d_b1758f8e",
+      "revId": "95e4b6480f17088d895a502131526c12922fdf83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
