@@ -51,6 +51,24 @@
       "parentUuid": "1182d093_217d29e2",
       "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "664b85d7_96ffbfd6",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-12T11:55:50Z",
+      "side": 1,
+      "message": "Hi Lukasz, All,\n\nJust to add, as remote BAP Server gets information regarding Context Type, only during Enable operation, after Config Codec operation, so Target_Latency and Codec_Specific_Configuration information from BAP Client during Config Codec operation alone might not suffice for BAP Server to give meaningful values regarding Preferred_Retransmission_Number and Max_Transport_Latency for BAP Client to directly use for QoS Configuration settings, BAP Client may prefer to choose specific QoS Configuration settings based on the Context type. Hence think its better BAP Client should drive these values. Please let know you opinion.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "f2b54f51_7816ecda",
+      "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
