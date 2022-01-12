@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8334e5c7_4f9b0e89",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "Could you put the method in front of these members?",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55d8a12_d1bcd06a",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "The function is LC3 config matched. Why we need to check the other codec?",
+      "range": {
+        "startLine": 117,
+        "startChar": 55,
+        "endLine": 117,
+        "endChar": 68
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b7174c_ecf169ca",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "Do we need this?",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 7
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15277daf_05890232",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "Please check   \nif (pimpl_-\u003eIsRunning())",
+      "range": {
+        "startLine": 254,
+        "startChar": 2,
+        "endLine": 254,
+        "endChar": 70
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3176e468_e75749e9",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "const?",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "551f20fc_7ca2ec04",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "Could it put inside namespace le_audio?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71f9ff98_a83ded31",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "If the offload_confs is empty, how to handle the codec location? We choose the software config after then, but if the config is not supported by offload. It would be an issue.",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 235,
+        "endChar": 36
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33ce4d99_ee560f2c",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T04:48:47Z",
+      "side": 1,
+      "message": "Why we need this? When we set this value false? Could we just check the CodecLocation?",
+      "range": {
+        "startLine": 955,
+        "startChar": 41,
+        "endLine": 955,
+        "endChar": 64
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
