@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019140058",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1917159?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9aed3783_69c4bc8e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T07:24:09Z",
+      "side": 1,
+      "message": "\"Build and check btmon\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "4e4812c018ce4fb5843459a7ec572b6cb359f08e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
