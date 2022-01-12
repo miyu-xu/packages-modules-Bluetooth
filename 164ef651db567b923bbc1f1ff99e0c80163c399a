@@ -22,6 +22,30 @@
       },
       "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2fc50b3_141b0975",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-01-12T18:51:22Z",
+      "side": 1,
+      "message": "It could be in fact be unrelated to this specific CL or could be a separate CL.  However, this whole stack is a all or nothing submit.\n\n- The java layer is no longer passing a 2.  It is now passing the 0 or 1, thus making this code block never run.  We have to pass it this way for the IRK Resolving List since it takes 0 or 1 but not 2.  The APCF takes 0, 1, 2.\n- The APCF 2 is now hard-coded.",
+      "parentUuid": "2f9063f5_e8302f8b",
+      "range": {
+        "startLine": 481,
+        "startChar": 4,
+        "endLine": 481,
+        "endChar": 74
+      },
+      "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
