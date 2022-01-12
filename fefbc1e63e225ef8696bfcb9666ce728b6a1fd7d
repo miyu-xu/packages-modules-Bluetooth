@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019146129",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945141?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ac308b89_49905593",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T11:59:03Z",
+      "side": 1,
+      "message": "#gd-refactor can\u0027t be used because this change does not have changes in system/bt/gd",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "fefbc1e63e225ef8696bfcb9666ce728b6a1fd7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019146130",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945141?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b4ce71ca_d3aed28b",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T11:59:03Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 107
+      },
+      "revId": "fefbc1e63e225ef8696bfcb9666ce728b6a1fd7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
