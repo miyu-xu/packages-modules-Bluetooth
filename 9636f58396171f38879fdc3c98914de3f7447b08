@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0583da11_6c6c0ddd",
+        "filename": "system/binder/android/bluetooth/IBluetoothLeCallControl.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-01-12T14:54:11Z",
+      "side": 0,
+      "message": "I didn\u0027t notice your interface was already oneway. That mean every method here are already asynchronous and you could just remove the `allowBlocking` (AllowGBlocking on a non-blocking interface will not do anything).\n\nBut doing so will keep all method asynchronous and that may not be what you want, as the SynchronousResultReceiver you are using in this CL ensure the method is completed before returning.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 6
+      },
+      "revId": "9636f58396171f38879fdc3c98914de3f7447b08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
