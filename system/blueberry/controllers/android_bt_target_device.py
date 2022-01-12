@@ -69,6 +69,7 @@ class AndroidBtTargetDevice(object):
     if self.serial:
       # self._ad for accessing the device at the end of the test
       self._ad = android_device.AndroidDevice(self.serial)
+      self._ad.services.logcat.start()
       self.aud = adb_ui_device.AdbUiDevice(self._ad)
       self.pri_ad = android_bluetooth_decorator.AndroidBluetoothDecorator(
           self._ad)
