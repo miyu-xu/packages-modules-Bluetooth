@@ -34,6 +34,24 @@
       "parentUuid": "da0cf51b_b580736a",
       "revId": "896164ad1a3168884a61ebf8d797ceb76da04f5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06527cd2_a659b63c",
+        "filename": "system/tools/scripts/yapf_checker.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-01-12T16:09:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31d1d9b8_6ceeb149",
+      "revId": "896164ad1a3168884a61ebf8d797ceb76da04f5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
