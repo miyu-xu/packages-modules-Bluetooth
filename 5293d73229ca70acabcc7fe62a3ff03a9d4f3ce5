@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d509cf2_b3b9202d",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T17:31:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccdef62f_60476dd8",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c55d8a12_d1bcd06a",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "This is to ensure that the input config is using LC3 codec so caller doesn\u0027t need to check the codec before calling this function. and function could get the LC3config without any concern.",
       "parentUuid": "c55d8a12_d1bcd06a",
+      "range": {
+        "startLine": 117,
+        "startChar": 55,
+        "endLine": 117,
+        "endChar": 68
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85543c8e_b867f049",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T17:31:45Z",
+      "side": 1,
+      "message": "If we are not using LC3, should it satisfies the adspConfig.id.coding_format !\u003d types::kLeAudioCodingFormatLC3 all the time?",
+      "parentUuid": "fb4369f7_0a0e080d",
       "range": {
         "startLine": 117,
         "startChar": 55,
@@ -189,6 +237,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0852c128_5caf835a",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T17:31:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b89f20e1_19031ee5",
+      "range": {
+        "startLine": 254,
+        "startChar": 2,
+        "endLine": 254,
+        "endChar": 70
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3176e468_e75749e9",
@@ -236,6 +308,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85eb0edc_cbf852a6",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T17:31:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92308ad7_884c2d8c",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "551f20fc_7ca2ec04",
@@ -273,6 +369,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "551f20fc_7ca2ec04",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa26d3c9_a7531919",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T17:31:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "510d842b_ad2d50f3",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -332,6 +452,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92c6719b_da11e60d",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T17:31:45Z",
+      "side": 1,
+      "message": "We may need to switch session for this case. Could you add todo here?",
+      "parentUuid": "d7b7aad0_c43cd60c",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 235,
+        "endChar": 36
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33ce4d99_ee560f2c",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 2
@@ -367,6 +511,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "33ce4d99_ee560f2c",
+      "range": {
+        "startLine": 955,
+        "startChar": 41,
+        "endLine": 955,
+        "endChar": 64
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6301189d_9d93c3b1",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T17:31:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4bff802_5c10a6be",
       "range": {
         "startLine": 955,
         "startChar": 41,
