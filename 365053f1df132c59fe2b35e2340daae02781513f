@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "015152fa_221a9034",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-12T15:54:36Z",
+      "side": 0,
+      "message": "What if we move the pause condition up a bit and remove the else?\n\n    if (status \u003d\u003d ErrorCode::UNKNOWN_CONNECTION \u0026\u0026 pause_connection) {\n      // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()\n      return;\n    }\n    on_common_le_connection_complete(remote_address);",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 10
+      },
+      "revId": "365053f1df132c59fe2b35e2340daae02781513f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
