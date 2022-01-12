@@ -36,6 +36,8 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     self.watch.sl4a.mediaPlayOpen(self.audio_file_on_watch)
     self.watch.sl4a.mediaPlayStart()
     self.watch.connect_bluetooth(self.headset.mac_address)
+    self.assert_headset_a2dp_connection(connected=True, device=self.watch)
+    self.assert_headset_hsp_connection(connected=True, device=self.watch)
     self.assert_headset_a2dp_connection(connected=False, device=self.phone)
     self.assert_headset_hsp_connection(connected=False, device=self.phone)
     self.watch.sl4a.mediaPlayStop()
@@ -54,9 +56,11 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     """
     logging.info('Power off Headset and wait 1 minute.')
     self.headset.power_off()
+    self.watch.wait_for_disconnection_success(self.headset.mac_address)
     time.sleep(triangle_constants.WAITING_TIME_SEC)
     logging.info('Power on Headset.')
     self.headset.power_on()
+    self.watch.wait_for_connection_success(self.headset.mac_address)
     self.assert_headset_a2dp_connection(connected=True, device=self.phone)
     self.assert_headset_hsp_connection(connected=True, device=self.phone)
 
@@ -95,6 +99,7 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     """
     logging.info('Power off Headset and wait 1 minute.')
     self.headset.power_off()
+    self.watch.wait_for_disconnection_success(self.headset.mac_address)
     time.sleep(triangle_constants.WAITING_TIME_SEC)
     self.watch.log.info('Play and then pause media.')
     self.watch.sl4a.mediaPlayOpen(self.audio_file_on_watch)
@@ -102,6 +107,7 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     self.watch.sl4a.mediaPlayPause()
     logging.info('Power on Headset.')
     self.headset.power_on()
+    self.watch.wait_for_connection_success(self.headset.mac_address)
     self.assert_headset_a2dp_connection(connected=True, device=self.phone)
     self.assert_headset_hsp_connection(connected=True, device=self.phone)
 
@@ -123,12 +129,14 @@ class ConnectionSwitchingTest(base_test.TriangleBaseTest):
     audio_file_on_phone = f'file://{sine_wave_file}'
     logging.info('Power off Headset and wait 1 minute.')
     self.headset.power_off()
+    self.watch.wait_for_disconnection_success(self.headset.mac_address)
     time.sleep(triangle_constants.WAITING_TIME_SEC)
     self.phone.log.info('Play media.')
     self.phone.sl4a.mediaPlayOpen(audio_file_on_phone)
     self.phone.sl4a.mediaPlayStart()
     logging.info('Power on Headset.')
     self.headset.power_on()
+    self.watch.wait_for_connection_success(self.headset.mac_address)
     self.assert_headset_a2dp_connection(connected=True, device=self.phone)
     self.assert_headset_hsp_connection(connected=True, device=self.phone)
     bt_test_utils.wait_until(
