@@ -22,6 +22,47 @@
       },
       "revId": "66f7c62aee297b22d99d149d98a1dd70ad3d4271",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b40a48_18a039c1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1211,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-01-12T19:47:21Z",
+      "side": 1,
+      "message": "Without the logging it is impossible to debug a bugreport.  The only way currently is to make a build with the logging in GattServiceConfig.java set to true.  This was a pain point for working with the API consumer\u0027s bugreports.",
+      "parentUuid": "1b1f427d_b9f9dce7",
+      "range": {
+        "startLine": 1211,
+        "startChar": 0,
+        "endLine": 1211,
+        "endChar": 49
+      },
+      "revId": "66f7c62aee297b22d99d149d98a1dd70ad3d4271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08fccd8c_e5a818d8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1223,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-01-12T19:47:21Z",
+      "side": 1,
+      "message": "For example here; this was being hit but we couldn\u0027t see it even with debugging enabled.  I had to add a log line here in order to realize it was getting stuck here.\n\nI think info should be sufficient since it isn\u0027t flagged by a debug flag.",
+      "revId": "66f7c62aee297b22d99d149d98a1dd70ad3d4271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
