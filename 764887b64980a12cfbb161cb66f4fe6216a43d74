@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019147798",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1943098?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3fd096af_a7ce7c10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T13:21:07Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "764887b64980a12cfbb161cb66f4fe6216a43d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019147798",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1943098?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "004ed841_4540ec42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T13:21:07Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "764887b64980a12cfbb161cb66f4fe6216a43d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019147798",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1943098?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "16f111e6_5186a0e5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T13:21:07Z",
+      "side": 1,
+      "message": "\"Verified BAP Client QoS Configuration settings values are used\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 68
+      },
+      "revId": "764887b64980a12cfbb161cb66f4fe6216a43d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
