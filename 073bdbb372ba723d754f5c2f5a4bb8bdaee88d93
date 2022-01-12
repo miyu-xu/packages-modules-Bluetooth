@@ -33,6 +33,24 @@
       "message": "Please note BAP specification present only recommended values and not THE values.\nI suggest that we add here target_latecy: (low latency/high reliability/balance) and let the audio server to choose the parameters they like.\n\nWould it work for you?\n\nIn addition - we are moving this configuration to the json file: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1911879/3\n\nhaving this, I believe we could allow for additional .qos_config field, but having it implemented in the way, that BT stack does no required it but use it when it is present. In this way, if some vendors would like to force audio server to use specific parameters, they could use it.",
       "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2b54f51_7816ecda",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-12T03:44:02Z",
+      "side": 1,
+      "message": "Hi Lukasz,\n\nYes you are right, Target_Latency may be a possible way to indicate to BAP Server during Config Codec operation to choose for Low Latency or High Reliability QoS Configuration settings, may not be a dependable though as it is left to BAP Server\u0027s implementations.\n\nHence, as you are also suggesting QoS Config may also be added if BAP Client wants to enforce QoS Configuration settings.\n\nAs you are already implementing to move the configuration to the json file, can you please incorporate this also ? Is there an ETA when the patch will be available ?\n\nWe are facing interoperability issues otherwise, raised a Buganizer request now related to this https://partnerissuetracker.corp.google.com/issues/214009192\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "1182d093_217d29e2",
+      "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
