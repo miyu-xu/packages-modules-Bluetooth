@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d6799b0_bf9e19fb",
+        "filename": "system/bta/sdp/bta_sdp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1220282
+      },
+      "writtenOn": "2022-01-12T19:21:40Z",
+      "side": 1,
+      "message": "I\u0027m just curious, is this what we usually do to split the dependency?  Would it be easier if we have an empty implementation in test code?",
+      "range": {
+        "startLine": 448,
+        "startChar": 2,
+        "endLine": 450,
+        "endChar": 1
+      },
+      "revId": "b5b04f681f486be8d18f10788912e8aed4d5e0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
