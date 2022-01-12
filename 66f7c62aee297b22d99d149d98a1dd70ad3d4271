@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b1f427d_b9f9dce7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1211,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-12T19:01:45Z",
+      "side": 1,
+      "message": "It feels like this adds a lot of logging.  Should they be Log.d ?",
+      "range": {
+        "startLine": 1211,
+        "startChar": 0,
+        "endLine": 1211,
+        "endChar": 49
+      },
+      "revId": "66f7c62aee297b22d99d149d98a1dd70ad3d4271",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
