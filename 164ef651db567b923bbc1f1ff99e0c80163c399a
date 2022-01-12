@@ -94,6 +94,30 @@
       },
       "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfa8d2a1_915c356e",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-12T21:16:33Z",
+      "side": 1,
+      "message": "Why would the caller pass in a random pseudo address with a type public?  Sorry I\u0027m still confused.",
+      "parentUuid": "3639ea7c_2ecd0a59",
+      "range": {
+        "startLine": 481,
+        "startChar": 4,
+        "endLine": 481,
+        "endChar": 74
+      },
+      "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
