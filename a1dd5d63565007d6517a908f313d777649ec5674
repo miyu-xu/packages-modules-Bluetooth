@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b77f7cb7_ceaa30cb",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-01-12T13:38:38Z",
+      "side": 1,
+      "message": "Method `getMainThreadHandler` is hidden and cannot be called from bluetooth.\nYou can find an example of such modification here: https://android-review.googlesource.com/c/platform/packages/apps/Bluetooth/+/1814600/",
+      "range": {
+        "startLine": 415,
+        "startChar": 21,
+        "endLine": 415,
+        "endChar": 41
+      },
+      "revId": "a1dd5d63565007d6517a908f313d777649ec5674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
