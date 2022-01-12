@@ -70,6 +70,30 @@
       },
       "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3639ea7c_2ecd0a59",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-01-12T21:08:37Z",
+      "side": 1,
+      "message": "So we have this concept of first address seen.  This becomes the pseudo address.  The identity address is the public address.\n\nThe logic here is such that anything related to public address (in this case we will likely only hit the BLE_ADDR_PUBLIC_ID and could possibly remove the BLE_ADDR_PUBLIC.\n\nif a caller passes the pseudo address, then we look it up and replace it with the identity address for public identity address before we pass it to the APCF.\n\nif the pseudo address doesn\u0027t exist, then its a NOP.\n\nSo in the case of it being the real identity address it won\u0027t be modified.\n\nI don\u0027t think we want to do this for the random address as the function doesn\u0027t support random static conversion.\n\nAdditionally, for the address type.  It was being modified by the `btm_random_pseudo_to_identity_addr` function to an incorrect value when a 2 was passed in as the original type.\n\nSince we are now passing the correct types from Java, the `dummy_addr_type` might not be needed anymore.",
+      "parentUuid": "5fcc8f01_a8511200",
+      "range": {
+        "startLine": 481,
+        "startChar": 4,
+        "endLine": 481,
+        "endChar": 74
+      },
+      "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
