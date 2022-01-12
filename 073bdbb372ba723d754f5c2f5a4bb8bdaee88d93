@@ -69,6 +69,24 @@
       "parentUuid": "f2b54f51_7816ecda",
       "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f0fdb59_20c2af16",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-12T12:29:30Z",
+      "side": 1,
+      "message": "Target_Latency and Codec_Specific_Configuration information from BAP Client during Config Codec operation alone might not be enough to indicate to BAP Server the use case it is intended for, for BAP Server to give meaningful Preferred_Retransmission_Number and Max_Transport_Latency for BAP Client to directly use for QoS Configuration settings.",
+      "parentUuid": "664b85d7_96ffbfd6",
+      "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
