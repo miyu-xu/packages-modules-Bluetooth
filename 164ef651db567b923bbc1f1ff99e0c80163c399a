@@ -46,6 +46,30 @@
       },
       "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fcc8f01_a8511200",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-12T18:58:55Z",
+      "side": 1,
+      "message": "BLE_ADDR_PUBLIC_ID \u003d 2\nBLE_ADDR_PUBLIC \u003d 0\n\nDid you mean to check BLE_ADDR_RANDOM if you\u0027re looking for 0 or 1?\n\nI don\u0027t understand the \"If public then call btm_random_pseudo_to_identity_addr()\" logic.",
+      "parentUuid": "c2fc50b3_141b0975",
+      "range": {
+        "startLine": 481,
+        "startChar": 4,
+        "endLine": 481,
+        "endChar": 74
+      },
+      "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
