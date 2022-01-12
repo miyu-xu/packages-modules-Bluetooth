@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ccdef62f_60476dd8",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8334e5c7_4f9b0e89",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c55d8a12_d1bcd06a",
         "filename": "system/bta/le_audio/codec_manager.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-12T04:48:47Z",
       "side": 1,
       "message": "The function is LC3 config matched. Why we need to check the other codec?",
+      "range": {
+        "startLine": 117,
+        "startChar": 55,
+        "endLine": 117,
+        "endChar": 68
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb4369f7_0a0e080d",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "This is to ensure that the input config is using LC3 codec so caller doesn\u0027t need to check the codec before calling this function. and function could get the LC3config without any concern.",
+      "parentUuid": "c55d8a12_d1bcd06a",
       "range": {
         "startLine": 117,
         "startChar": 55,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "da46f125_90c946f0",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "will check",
+      "parentUuid": "43b7174c_ecf169ca",
+      "range": {
+        "startLine": 162,
+        "startChar": 0,
+        "endLine": 164,
+        "endChar": 7
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15277daf_05890232",
         "filename": "system/bta/le_audio/codec_manager.cc",
         "patchSetId": 2
@@ -83,6 +155,30 @@
       "writtenOn": "2022-01-12T04:48:47Z",
       "side": 1,
       "message": "Please check   \nif (pimpl_-\u003eIsRunning())",
+      "range": {
+        "startLine": 254,
+        "startChar": 2,
+        "endLine": 254,
+        "endChar": 70
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89f20e1_19031ee5",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15277daf_05890232",
       "range": {
         "startLine": 254,
         "startChar": 2,
@@ -118,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "92308ad7_884c2d8c",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3176e468_e75749e9",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 16
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "551f20fc_7ca2ec04",
         "filename": "system/bta/le_audio/le_audio_types.cc",
         "patchSetId": 2
@@ -129,6 +249,30 @@
       "writtenOn": "2022-01-12T04:48:47Z",
       "side": 1,
       "message": "Could it put inside namespace le_audio?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 31
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "510d842b_ad2d50f3",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "551f20fc_7ca2ec04",
       "range": {
         "startLine": 33,
         "startChar": 0,
@@ -164,6 +308,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7b7aad0_c43cd60c",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "Offload should support the mandatory config, so it should not be empty.\nWhat I though is that if the offload doesn\u0027t support conversation scenario, it  may be empty, and for the conversation case, ideally, it should use sw encode rather than hw offload.",
+      "parentUuid": "71f9ff98_a83ded31",
+      "range": {
+        "startLine": 235,
+        "startChar": 4,
+        "endLine": 235,
+        "endChar": 36
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "33ce4d99_ee560f2c",
         "filename": "system/bta/le_audio/le_audio_types.h",
         "patchSetId": 2
@@ -175,6 +343,30 @@
       "writtenOn": "2022-01-12T04:48:47Z",
       "side": 1,
       "message": "Why we need this? When we set this value false? Could we just check the CodecLocation?",
+      "range": {
+        "startLine": 955,
+        "startChar": 41,
+        "endLine": 955,
+        "endChar": 64
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4bff802_5c10a6be",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-12T06:52:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "33ce4d99_ee560f2c",
       "range": {
         "startLine": 955,
         "startChar": 41,
