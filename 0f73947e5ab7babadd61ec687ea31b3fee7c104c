@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019163566",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1947607?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "772b7d37_6e6ac538",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T21:59:12Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "0f73947e5ab7babadd61ec687ea31b3fee7c104c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019163566",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1947607?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "02b00cc5_f444d7a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T21:59:12Z",
+      "side": 1,
+      "message": "\"Bug:\" is not a valid bug number. Must be only digits with no prefixes.",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 4
+      },
+      "revId": "0f73947e5ab7babadd61ec687ea31b3fee7c104c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019163566",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1947607?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b6ae74be_b00d34c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-12T21:59:12Z",
+      "side": 1,
+      "message": "\"Manual test audio on single earbud.\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "0f73947e5ab7babadd61ec687ea31b3fee7c104c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
