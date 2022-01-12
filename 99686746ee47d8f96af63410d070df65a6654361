@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd6e3a07_a0010509",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-12T00:31:18Z",
+      "side": 1,
+      "message": "WA patch. If no time to fix, there\u0027s a quick one.",
+      "revId": "99686746ee47d8f96af63410d070df65a6654361",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
