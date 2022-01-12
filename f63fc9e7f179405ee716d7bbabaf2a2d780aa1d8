@@ -33,6 +33,24 @@
       "message": "Please use ///\n\nhttps://doc.rust-lang.org/rustdoc/what-is-rustdoc.html#outer-and-inner-documentation",
       "revId": "f63fc9e7f179405ee716d7bbabaf2a2d780aa1d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f10f7a5b_9a705414",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-12T07:25:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27926197_ac74ca04",
+      "revId": "f63fc9e7f179405ee716d7bbabaf2a2d780aa1d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
