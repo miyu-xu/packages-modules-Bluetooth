@@ -3,6 +3,7 @@
 import os
 import random
 import re
+import tempfile
 import time
 from typing import Mapping, Optional
 
@@ -379,6 +380,61 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     return True if not diff_in_pse and not diff_in_pce else False
 
+  def _export_device_contacts_to_vcf(self, device: android_device.AndroidDevice,
+                                     vcf_file: str) -> str:
+    """Exports device contacts to VCF file.
+
+    This method shall be used to export device contacts to a VCF file.
+    The exported file will be copied to the MH running server.
+
+    Args:
+      device: Mobly Android controller class. It should be PSE or PCE
+      vcf_file: VCF file base name
+
+    Returns:
+      destination path: exported VCF path in MH server.
+    """
+
+    source_path = os.path.join(STORAGE_PATH, vcf_file)
+    dest_path = os.path.join(tempfile.gettempdir(), vcf_file)
+    # Export to VCF and copy file to dest_path
+    device.sl4a.exportVcf(source_path)
+    device.adb.pull([source_path, dest_path])
+    # Remove file after copying
+    device.adb.shell('rm -rf {}'.format(source_path))
+
+    return dest_path
+
+  def _compare_contacts(self) -> bool:
+    """Compares PSE and PCE contacts.
+
+    This method shall be used for PSE and PCE contacts comparison.
+
+    Returns:
+      True: All contacts between PSE and PCE are the same.
+      False: Some contacts between PSE and PCE are different.
+    """
+
+    # Get the exported VCF file
+    pse_path = self._export_device_contacts_to_vcf(self.pri_phone, 'pse.vcf')
+    pce_path = self._export_device_contacts_to_vcf(self.derived_bt_device,
+                                                   'pce.vcf')
+
+    # Compare length and exported VCF file
+    with open(pse_path) as f_pse, open(pce_path) as f_pce:
+      if len(f_pse.readlines()) != len(f_pce.readlines()):
+        self.pri_phone.log.error('PSE and PCE count are difference')
+        return False
+      else:
+        difference_not_found = True
+        for i, j in zip(f_pce, f_pse):
+          if i != j:
+            self.pri_phone.log.error('%s in pse is different is %s in pce', i,
+                                     j)
+            difference_not_found = False
+
+    return difference_not_found
+
   def test_download_empty_contacts(self):
     """Tests that PCE can download contacts from PSE."""
     default_contact_count = 0
@@ -401,6 +457,11 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
         'PCE failed to download %d contact(s) within %ds, '
         'actually downloaded %d contact(s).' %
         (TEST_DATA_COUNT, WAITING_TIMEOUT_SEC, current_count))
+
+    # Compare contacts
+    result = self._compare_contacts()
+    asserts.assert_true(result,
+                        'The contacts between PSE and PCE are different')
 
   def test_download_empty_call_logs(self):
     """Tests for the feature of downloading empty call logs.
