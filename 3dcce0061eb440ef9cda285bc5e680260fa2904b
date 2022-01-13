@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f42fb28_e24bc004",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-13T10:29:42Z",
+      "side": 1,
+      "message": "It ends up a real build breakage by including the log.h.\nAbhishek, please help take another look at the latest change. \nI\u0027m able to have a fix that makes the topshim build pass but not certain if it is the correct way or simply a hack. I\u0027m not familiar with soong at all 😂.",
+      "revId": "3dcce0061eb440ef9cda285bc5e680260fa2904b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

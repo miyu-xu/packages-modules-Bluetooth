@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9726fc6_01900756",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-13T10:29:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c14ddba_b896fb81",
+      "revId": "4002e427b583dc3a690954ebe110c22864f45a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "059bc1d7_b3ddd2fb",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-12T05:34:49Z",
       "side": 1,
       "message": "nit: Prefer TODO(bug) to enable WBS (I\u0027m guessing the same applies to the BTIF_HF_FEATURES below)",
+      "revId": "4002e427b583dc3a690954ebe110c22864f45a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6076857_5a4760b4",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-01-13T10:29:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "059bc1d7_b3ddd2fb",
       "revId": "4002e427b583dc3a690954ebe110c22864f45a1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
