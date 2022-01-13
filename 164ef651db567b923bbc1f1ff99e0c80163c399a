@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a52265b7_0095a7e7",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-13T14:52:26Z",
+      "side": 1,
+      "message": "Offline discussion, we could remove the condition, since it only changes the address when there\u0027s an RPA that\u0027s in the resolving list.\n\nbool btm_random_pseudo_to_identity_addr(RawAddress* random_pseudo,\n                                        uint8_t* p_identity_addr_type) {\n  tBTM_SEC_DEV_REC* p_dev_rec \u003d btm_find_dev(*random_pseudo);\n\n  if (p_dev_rec !\u003d NULL) {\n    if (p_dev_rec-\u003eble.in_controller_list \u0026 BTM_RESOLVING_LIST_BIT) { \u003c- Need to make sure that the device has already been added to the resolving list.\n      *p_identity_addr_type \u003d p_dev_rec-\u003eble.identity_address_with_type.type;\n      *random_pseudo \u003d p_dev_rec-\u003eble.identity_address_with_type.bda;\n      if (controller_get_interface()-\u003esupports_ble_privacy())\n        *p_identity_addr_type |\u003d BLE_ADDR_TYPE_ID_BIT; \u003c- We\u0027re ignoring this, but it\u0027s interesting that we\u0027re adding that bit at the end.\n      return true;\n    }\n  }\n  return false;\n}",
+      "parentUuid": "dfa8d2a1_915c356e",
+      "range": {
+        "startLine": 481,
+        "startChar": 4,
+        "endLine": 481,
+        "endChar": 74
+      },
+      "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19616442_f998c961",
         "filename": "system/stack/btm/btm_ble_adv_filter.cc",
         "patchSetId": 2
