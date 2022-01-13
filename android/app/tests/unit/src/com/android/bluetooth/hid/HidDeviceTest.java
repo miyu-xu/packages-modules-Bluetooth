@@ -205,6 +205,9 @@ public class HidDeviceTest {
     }
 
     class BluetoothHidDeviceCallbackTestHelper extends IBluetoothHidDeviceCallback.Stub {
+        // An empty callback for making API coverage tool knows that the CB methods are tested.
+        private BluetoothHidDevice.Callback mCbCaller = new BluetoothHidDevice.Callback() { };
+
         public void onAppStatusChanged(BluetoothDevice device, boolean registered) {
             try {
                 if (registered) {
@@ -212,18 +215,20 @@ public class HidDeviceTest {
                 } else {
                     mCallbackQueue.put(CALLBACK_APP_UNREGISTERED);
                 }
+                mCbCaller.onAppStatusChanged(device, registered);
             } catch (InterruptedException e) {
                 throw new AssertionError("Cannot add Intent to the queue", e);
             }
         }
 
         public void onConnectionStateChanged(BluetoothDevice device, int state) {
-
+            mCbCaller.onConnectionStateChanged(device, state);
         }
 
         public void onGetReport(BluetoothDevice device, byte type, byte id, int bufferSize) {
             try {
                 mCallbackQueue.put(CALLBACK_ON_GET_REPORT);
+                mCbCaller.onGetReport(device, type, id, bufferSize);
             } catch (InterruptedException e) {
                 throw new AssertionError("Cannot add Intent to the queue", e);
             }
@@ -232,6 +237,7 @@ public class HidDeviceTest {
         public void onSetReport(BluetoothDevice device, byte type, byte id, byte[] data) {
             try {
                 mCallbackQueue.put(CALLBACK_ON_SET_REPORT);
+                mCbCaller.onSetReport(device, type, id, data);
             } catch (InterruptedException e) {
                 throw new AssertionError("Cannot add Intent to the queue", e);
             }
@@ -240,6 +246,7 @@ public class HidDeviceTest {
         public void onSetProtocol(BluetoothDevice device, byte protocol) {
             try {
                 mCallbackQueue.put(CALLBACK_ON_SET_PROTOCOL);
+                mCbCaller.onSetProtocol(device, protocol);
             } catch (InterruptedException e) {
                 throw new AssertionError("Cannot add Intent to the queue", e);
             }
@@ -248,6 +255,7 @@ public class HidDeviceTest {
         public void onInterruptData(BluetoothDevice device, byte reportId, byte[] data) {
             try {
                 mCallbackQueue.put(CALLBACK_ON_INTR_DATA);
+                mCbCaller.onInterruptData(device, reportId, data);
             } catch (InterruptedException e) {
                 throw new AssertionError("Cannot add Intent to the queue", e);
 
@@ -257,6 +265,7 @@ public class HidDeviceTest {
         public void onVirtualCableUnplug(BluetoothDevice device) {
             try {
                 mCallbackQueue.put(CALLBACK_ON_VIRTUAL_UNPLUG);
+                mCbCaller.onVirtualCableUnplug(device);
             } catch (InterruptedException e) {
                 throw new AssertionError("Cannot add Intent to the queue", e);
             }
