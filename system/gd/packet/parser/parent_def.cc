@@ -549,6 +549,20 @@ std::map<std::string, std::variant<int64_t, std::string>> ParentDef::GetAllConst
   return res;
 }
 
+std::vector<std::string> ParentDef::GetAllConstraintsInOrder() const {
+  std::vector<std::string> res;
+  std::set<std::string> dup_res;
+  for (auto c : children_) {
+    for (auto constraint : c->parent_constraints_) {
+      if (dup_res.find(constraint.first) == dup_res.end()) {
+        res.push_back(constraint.first);
+        dup_res.insert(constraint.first);
+      }
+    }
+  }
+  return res;
+}
+
 bool ParentDef::HasAncestorNamed(std::string name) const {
   auto parent = parent_;
   while (parent != nullptr) {

@@ -24,6 +24,22 @@
 #include "fields/packet_field.h"
 #include "parent_def.h"
 
+class RustParseAndMatchFields {
+ private:
+  std::map<std::string, std::vector<std::string>> parse_and_match_fields;
+  std::set<std::string> CollectInitialParseAndMatchFields(
+      const ParentDef* parent, std::map<std::string, std::set<std::string>>& initial_parse_and_match_fields) const;
+  void FinalizeParseAndMatchFields(
+      const ParentDef* parent,
+      std::map<std::string, std::set<std::string>>& initial_parse_and_match_fields,
+      std::vector<std::string>& available_fields);
+
+ public:
+  RustParseAndMatchFields(const ParentDef* root);
+  std::vector<std::string>& GetParseMethodParams(const std::string& packet_name);
+  std::vector<std::string>& GetMatchVariables(const std::string& packet_name);
+};
+
 class PacketDef : public ParentDef {
  public:
   PacketDef(std::string name, FieldList fields);

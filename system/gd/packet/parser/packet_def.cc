@@ -883,8 +883,9 @@ void PacketDef::GenRustStructFieldNames(std::ostream& s) const {
 }
 
 void PacketDef::GenRustStructImpls(std::ostream& s) const {
-  s << "impl " << name_ << "Data {";
+  auto pm_fields = RustParseAndMatchFields(GetRootDef());
 
+  s << "impl " << name_ << "Data {";
   // conforms function
   s << "fn conforms(bytes: &[u8]) -> bool {";
   GenRustConformanceCheck(s);
@@ -904,15 +905,15 @@ void PacketDef::GenRustStructImpls(std::ostream& s) const {
   s << " true";
   s << "}";
 
-  // parse function
-  if (parent_constraints_.empty() && children_.size() > 1 && parent_ != nullptr) {
-    auto constraint = FindConstraintField();
-    auto constraint_field = GetParamList().GetField(constraint);
+  auto parse_params = pm_fields.GetParseMethodParams(name_);
+  s << "fn parse(bytes: &[u8]";
+  for (auto field_name : parse_params) {
+    auto constraint_field = GetParamList().GetField(field_name);
     auto constraint_type = constraint_field->GetRustDataType();
-    s << "fn parse(bytes: &[u8], " << constraint << ": " << constraint_type << ") -> Result<Self> {";
-  } else {
-    s << "fn parse(bytes: &[u8]) -> Result<Self> {";
+    s << ", " << field_name << ": " << constraint_type;
   }
+  s << ") -> Result<Self> {";
+
   fields = fields_.GetFieldsWithoutTypes({
       BodyField::kFieldType,
   });
@@ -940,51 +941,120 @@ void PacketDef::GenRustStructImpls(std::ostream& s) const {
     payload_offset = GetOffsetForField(payload_field[0]->GetName(), false);
   }
 
-  auto constraint_name = FindConstraintField();
-  auto constrained_descendants = FindDescendantsWithConstraint(constraint_name);
-
   if (children_.size() > 1) {
-    s << "let child = match " << constraint_name << " {";
+    auto match_on_variables = pm_fields.GetMatchVariables(name_);
+    // If match_on_variables is empty, this means there are multiple abstract packets which will specialize to a child
+    // down the packet tree. In this case match variables will be the union of parent fields and parse params of
+    // children.
+    if (match_on_variables.empty()) {
+      for (auto& field : fields_) {
+        if (std::any_of(children_.begin(), children_.end(), [&](auto child) {
+              auto pass_me = pm_fields.GetParseMethodParams(child->name_);
+              return std::find(pass_me.begin(), pass_me.end(), field->GetName()) != pass_me.end();
+            })) {
+          match_on_variables.push_back(field->GetName());
+        }
+      }
+    }
 
-    for (const auto& desc : constrained_descendants) {
-      auto desc_path = FindPathToDescendant(desc.first->name_);
-      std::reverse(desc_path.begin(), desc_path.end());
-      auto constraint_field = GetParamList().GetField(constraint_name);
+    s << "let child = match (";
+
+    for (auto var : match_on_variables) {
+      if (var == match_on_variables[match_on_variables.size() - 1]) {
+        s << var;
+      } else {
+        s << var << ", ";
+      }
+    }
+    s << ") {";
+
+    auto get_match_val = [&](std::string& match_var, std::variant<int64_t, std::string> constraint) -> std::string {
+      auto constraint_field = GetParamList().GetField(match_var);
       auto constraint_type = constraint_field->GetFieldType();
 
       if (constraint_type == EnumField::kFieldType) {
-        auto type = std::get<std::string>(desc.second);
+        auto type = std::get<std::string>(constraint);
         auto variant_name = type.substr(type.find("::") + 2, type.length());
         auto enum_type = type.substr(0, type.find("::"));
-        auto enum_variant = enum_type + "::"
-            + util::UnderscoreToCamelCase(util::ToLowerCase(variant_name));
-        s << enum_variant;
-        s << " if " << desc_path[0]->name_ << "Data::conforms(&bytes[..])";
-        s << " => {";
-        s << name_ << "DataChild::";
-        s << desc_path[0]->name_ << "(Arc::new(";
-        if (desc_path[0]->parent_constraints_.empty()) {
-          s << desc_path[0]->name_ << "Data::parse(&bytes[..]";
-          s << ", " << enum_variant << ")?))";
-        } else {
-          s << desc_path[0]->name_ << "Data::parse(&bytes[..])?))";
-        }
-      } else if (constraint_type == ScalarField::kFieldType) {
-        s << std::get<int64_t>(desc.second) << " => {";
-        s << "unimplemented!();";
+        return enum_type + "::" + util::UnderscoreToCamelCase(util::ToLowerCase(variant_name));
       }
+      if (constraint_type == ScalarField::kFieldType) {
+        return std::to_string(std::get<int64_t>(constraint));
+      }
+      return "_";
+    };
+
+    for (auto& child : children_) {
+      s << "(";
+      for (auto var : match_on_variables) {
+        std::string match_val = "_";
+
+        if (child->parent_constraints_.find(var) != child->parent_constraints_.end()) {
+          match_val = get_match_val(var, child->parent_constraints_[var]);
+        } else {
+          auto dcs = child->FindDescendantsWithConstraint(var);
+          std::vector<std::string> all_match_vals;
+          for (auto& desc : dcs) {
+            all_match_vals.push_back(get_match_val(var, desc.second));
+          }
+          match_val = "";
+          for (std::size_t i = 0; i < all_match_vals.size(); ++i) {
+            match_val += all_match_vals[i];
+            if (i != all_match_vals.size() - 1) {
+              match_val += " | ";
+            }
+          }
+          match_val = (match_val == "") ? "_" : match_val;
+        }
+
+        if (var == match_on_variables[match_on_variables.size() - 1]) {
+          s << match_val << ")";
+        } else {
+          s << match_val << ", ";
+        }
+      }
+      s << " if " << child->name_ << "Data::conforms(&bytes[..])";
+      s << " => {";
+      s << name_ << "DataChild::";
+      s << child->name_ << "(Arc::new(";
+
+      auto child_parse_params = pm_fields.GetParseMethodParams(child->name_);
+      if (child_parse_params.size() == 0) {
+        s << child->name_ << "Data::parse(&bytes[..]";
+      } else {
+        s << child->name_ << "Data::parse(&bytes[..], ";
+      }
+
+      for (auto var : child_parse_params) {
+        if (var == child_parse_params[child_parse_params.size() - 1]) {
+          s << var;
+        } else {
+          s << var << ", ";
+        }
+      }
+      s << ")?))";
       s << "}\n";
     }
 
-    if (!constrained_descendants.empty()) {
-      s << "v => return Err(Error::ConstraintOutOfBounds{field: \"" << constraint_name
-        << "\".to_string(), value: v as u64}),";
+    s << "(";
+    for (int i = 1; i <= match_on_variables.size(); i++) {
+      if (i == match_on_variables.size()) {
+        s << "_";
+      } else {
+        s << "_, ";
+      }
     }
-
+    s << ")";
+    s << " => return Err(Error::InvalidPacketError),";
     s << "};\n";
   } else if (children_.size() == 1) {
     auto child = children_.at(0);
-    s << "let child = match " << child->name_ << "Data::parse(&bytes[..]) {";
+    auto params = pm_fields.GetParseMethodParams(child->name_);
+    s << "let child = match " << child->name_ << "Data::parse(&bytes[..]";
+    for (auto field_name : params) {
+      s << ", " << field_name;
+    }
+    s << ") {";
     s << " Ok(c) if " << child->name_ << "Data::conforms(&bytes[..]) => {";
     s << name_ << "DataChild::" << child->name_ << "(Arc::new(c))";
     s << " },";
@@ -1351,4 +1421,132 @@ void PacketDef::GenRustDef(std::ostream& s) const {
   GenRustAccessStructImpls(s);
   GenRustBuilderStructImpls(s);
   GenRustBuilderTest(s);
+}
+
+RustParseAndMatchFields::RustParseAndMatchFields(const ParentDef* root) {
+  std::map<std::string, std::set<std::string>> initial_parse_and_match_fields;
+  std::vector<std::string> available_fields;
+  CollectInitialParseAndMatchFields(root, initial_parse_and_match_fields);
+  FinalizeParseAndMatchFields(root, initial_parse_and_match_fields, available_fields);
+}
+
+std::vector<std::string>& RustParseAndMatchFields::GetParseMethodParams(const std::string& packet_name) {
+  return parse_and_match_fields[packet_name + "--parse-params"];
+}
+
+std::vector<std::string>& RustParseAndMatchFields::GetMatchVariables(const std::string& packet_name) {
+  return parse_and_match_fields[packet_name + "--match-variables"];
+}
+
+std::set<std::string> RustParseAndMatchFields::CollectInitialParseAndMatchFields(
+    const ParentDef* parent, std::map<std::string, std::set<std::string>>& initial_parse_and_match_fields) const {
+  // Case Leaf Packet: Return all of its constraints
+  if (parent->children_.empty()) {
+    auto constraints = parent->GetAllConstraints();
+    auto constraints_set = std::set<std::string>{};
+    for (auto& c : constraints) {
+      constraints_set.insert(c.first);
+    }
+    return constraints_set;
+  }
+
+  auto children_constraints = std::set<std::string>{};
+  auto parent_constraints = parent->GetAllConstraints();
+  auto parent_fields = parent->fields_;
+
+  for (const auto child : parent->children_) {
+    auto child_constraints = CollectInitialParseAndMatchFields(child, initial_parse_and_match_fields);
+    auto child_only_constraints = std::set<std::string>{};
+    for (auto c : child_constraints) {
+      //             __PARENT__
+      //          c1/   c2|     \c3
+      //           /      |      \.
+      //         CH1     CH2     CH3
+      //        c4|
+      //          |
+      //        CH11
+      // GetAllConstraints on leaf packet CH11 will return (C4, c1)
+      // GetAllConstraints on packet CH1 will return C1
+      // Thus CH11 only constraint is: (C4, C1) - (C1) => (C4)
+      if (parent_constraints.find(c) == parent_constraints.end()) {
+        child_only_constraints.insert(c);
+      }
+      // If the constraint can be satisfied by the immediate parent, no need to accumulate it
+      if (parent_fields.GetField(c) != nullptr) {
+        continue;
+      }
+      // Accumulate constraints from all the children so parent packet can accurately
+      // figure out which constraints it should be getting from its parents.
+      children_constraints.insert(c);
+    }
+    // child_only_constraints contains the variables required to be passed in when calling parse
+    initial_parse_and_match_fields[child->name_] = child_only_constraints;
+  }
+  return children_constraints;
+}
+
+void RustParseAndMatchFields::FinalizeParseAndMatchFields(
+    const ParentDef* parent,
+    std::map<std::string, std::set<std::string>>& initial_parse_and_match_fields,
+    std::vector<std::string>& available_fields) {
+  // Root does not have any constraints on anything
+  if (parent->parent_ == nullptr) {
+    parse_and_match_fields[parent->name_ + "--match-variables"] = std::vector<std::string>{};
+    parse_and_match_fields[parent->name_ + "--parse-params"] = std::vector<std::string>{};
+  }
+
+  // Collect the available fields, required to fix the order of pass and match vectors
+  for (auto& pf : parent->fields_) {
+    available_fields.push_back(pf->GetName());
+  }
+
+  auto children_constraints_to_me = std::set<std::string>{};
+  parse_and_match_fields[parent->name_ + "--match-variables"] = std::vector<std::string>{};
+
+  // Accumulate direct constraints from all the children to parent
+  //             __PARENT__
+  //          c1/   c2|     \c3
+  //           /      |      \.
+  //         CH1     CH2     CH3
+  //        c4|
+  //          |
+  //        CH11
+  // For this case: children_constraints_to_me = (c1, c2, c3)
+  for (auto& child : parent->children_) {
+    for (auto pcons : child->parent_constraints_) {
+      children_constraints_to_me.insert(pcons.first);
+    }
+  }
+
+  // If children constraints to the parent are (c1, c2, c3) and so far parent has
+  // fields (c1, c2) available, then parent will match its children on (c1, c2)
+  for (auto avf : available_fields) {
+    if (children_constraints_to_me.find(avf) != children_constraints_to_me.end()) {
+      auto& match_variables = parse_and_match_fields[parent->name_ + "--match-variables"];
+      if (std::find(match_variables.begin(), match_variables.end(), avf) == match_variables.end()) {
+        match_variables.push_back(avf);
+      }
+    }
+  }
+
+  for (auto& child : parent->children_) {
+    auto child_initial_parse_params = initial_parse_and_match_fields[child->name_];
+    auto child_actual_parse_params = std::vector<std::string>{};
+
+    // Remove all the params from parse method of this child
+    // if these variables are the ones parent will match its children.
+    for (auto pcons : child->parent_constraints_) {
+      child_initial_parse_params.erase(pcons.first);
+    }
+
+    // Store unique vars from child_initial_parse_params to child_actual_parse_params
+    // in the same order as fields are defined in the packets
+    for (auto avf : available_fields) {
+      if (child_initial_parse_params.find(avf) != child_initial_parse_params.end()) {
+        child_actual_parse_params.push_back(avf);
+      }
+    }
+    parse_and_match_fields[child->name_ + "--parse-params"] = child_actual_parse_params;
+    FinalizeParseAndMatchFields(child, initial_parse_and_match_fields, available_fields);
+  }
 }

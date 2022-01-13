@@ -74,6 +74,8 @@ class ParentDef : public TypeDef {
 
   std::string FindConstraintField() const;
 
+  std::vector<std::string> GetAllConstraintsInOrder() const;
+
   std::map<const ParentDef*, const std::variant<int64_t, std::string>>
       FindDescendantsWithConstraint(std::string constraint_name) const;
   std::vector<const ParentDef*> FindPathToDescendant(std::string descendant) const;
