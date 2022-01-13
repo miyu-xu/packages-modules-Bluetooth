@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f537602a_672682ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-13T18:28:27Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "4bc796311861cf311d3263022adf3198855f8a11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cf34dd92_49923589",
         "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
         "patchSetId": 2
@@ -14,6 +31,24 @@
       "writtenOn": "2022-01-13T18:21:28Z",
       "side": 1,
       "message": "It seems that gtest need to be included before the test_packets.h when `PACKET_TESTING` is enabled\n\nBy moving the includes it seems that clang-format reorganised them :/",
+      "revId": "4bc796311861cf311d3263022adf3198855f8a11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5753c55f_39b00b58",
+        "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-13T18:28:27Z",
+      "side": 1,
+      "message": "We could put the gtest include in the test_packets files, but as long as this works, I don\u0027t have a problem with it.",
+      "parentUuid": "cf34dd92_49923589",
       "revId": "4bc796311861cf311d3263022adf3198855f8a11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
