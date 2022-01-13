@@ -22,6 +22,30 @@
       },
       "revId": "f510b6010f0efebb267eb4b5eb16f248ede3dbb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e31c0af_5b52c292",
+        "filename": "system/binder/android/bluetooth/IBluetoothCarProjection.aidl",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-13T07:58:42Z",
+      "side": 1,
+      "message": "For the new mechanism, it can\u0027t be oneway because we close the binder after we transact the fd.",
+      "parentUuid": "2adb2617_e5eb7786",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 85
+      },
+      "revId": "f510b6010f0efebb267eb4b5eb16f248ede3dbb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
