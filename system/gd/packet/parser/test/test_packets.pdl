@@ -442,3 +442,8 @@ struct EightByteStructNoZero : AtLeastFourByteStructNoZero (struct_type = FOUR_B
 packet OneGenericStructArrayNoZero {
   an_array : UnusedParentStructNoZero[],
 }
+
+enum BigValues: 64 {
+    MIN = 0,
+    MAX = 0xffffffffffffffff,
+}

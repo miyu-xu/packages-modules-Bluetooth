@@ -34,12 +34,12 @@
 %verbose
 
 %union {
-  int integer;
+  uint64_t integer;
   std::string* string;
 
   EnumDef* enum_definition;
-  std::map<int, std::string>* enumeration_values;
-  std::pair<int, std::string>* enumeration_value;
+  std::map<uint64_t, std::string>* enumeration_values;
+  std::pair<uint64_t, std::string>* enumeration_value;
 
   PacketDef* packet_definition_value;
   FieldList* packet_field_definitions;
@@ -173,7 +173,7 @@ enumeration_list
   : enumeration
     {
       DEBUG() << "Enumerator with comma\n";
-      $$ = new std::map<int, std::string>();
+      $$ = new std::map<uint64_t, std::string>();
       $$->insert(std::move(*$1));
       delete $1;
     }
