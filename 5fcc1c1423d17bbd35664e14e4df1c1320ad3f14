@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71cf1772_7150dee5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-13T18:41:04Z",
+      "side": 1,
+      "message": "I think both Jakub and I have tried to submit a very similar patch in the past and we weren\u0027t allowed to (:\n\nThis crash, while potentially annoying, is indicative of a greater issue down below in the stack. It means something about the hardware is off or that we didn\u0027t initialize correctly. The direction has been to explode here instead of trying to carry on without OBEX server sockets, where functionality either wont work at all, or we\u0027ll crash in a new place.",
+      "revId": "5fcc1c1423d17bbd35664e14e4df1c1320ad3f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
