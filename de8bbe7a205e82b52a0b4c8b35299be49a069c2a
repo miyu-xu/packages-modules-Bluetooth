@@ -1,0 +1,2163 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193978",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8ed207b3_ee073cdf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193978",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ce6cd5de_75dd0822",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "\"compile\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193978",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fc9c4f1f_50f0f063",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "#feature requires a tracking bug number",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 13
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d097f913_aae56e72",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 759,
+        "startChar": 0,
+        "endLine": 759,
+        "endChar": 103
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "319d71af_76ec1c90",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 773,
+        "startChar": 0,
+        "endLine": 773,
+        "endChar": 105
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "102fb491_ca9a5eea",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 829,
+        "startChar": 0,
+        "endLine": 829,
+        "endChar": 120
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ef28985b_28179eeb",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 845,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027complex\u0027, \u0027unexpected\u0027, or \u0027placeholder\u0027; see https://developers.google.com/style/inclusive-documentation#ableist-language for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 845,
+        "startChar": 10,
+        "endLine": 845,
+        "endChar": 15
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "98026177_59c335b0",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 849,
+        "startChar": 0,
+        "endLine": 849,
+        "endChar": 106
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f2b64017_d9387139",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 851,
+        "startChar": 0,
+        "endLine": 851,
+        "endChar": 122
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9d80f2a7_0718dec7",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 852,
+        "startChar": 0,
+        "endLine": 852,
+        "endChar": 118
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "af2a483b_941d37c5",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 855,
+        "startChar": 0,
+        "endLine": 855,
+        "endChar": 134
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "374b62e4_76b411f4",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 887,
+        "startChar": 0,
+        "endLine": 887,
+        "endChar": 102
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d186a553_b1c93c53",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 920,
+        "startChar": 0,
+        "endLine": 920,
+        "endChar": 112
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1e05a0c0_a5c72d52",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 934,
+        "startChar": 0,
+        "endLine": 934,
+        "endChar": 111
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "49337af3_83cf52d9",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 342,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 113
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "812d15e7_7736df6c",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 348,
+        "startChar": 0,
+        "endLine": 348,
+        "endChar": 103
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "422de503_f4f21396",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 115
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b95b2843_ba9242f1",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 434,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 114
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7f6d1311_95e1ce5a",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 448,
+        "startChar": 0,
+        "endLine": 448,
+        "endChar": 111
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ce5c42f3_193a3d0f",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 449,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 113
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ba768dfd_a6592fb4",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 465,
+        "startChar": 0,
+        "endLine": 465,
+        "endChar": 142
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3cf5e42f_66e6845c",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 144
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a3ce5128_6b519cc8",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 107
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "444348cd_2410ca94",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 508,
+        "startChar": 0,
+        "endLine": 508,
+        "endChar": 104
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ef925034_3ad91c3a",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 594,
+        "startChar": 0,
+        "endLine": 594,
+        "endChar": 103
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a7a1462b_6f3625a4",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 614,
+        "startChar": 0,
+        "endLine": 614,
+        "endChar": 103
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "5fc93193_ac62df7e",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 701,
+                "startChar": 29,
+                "endLine": 701,
+                "endChar": 39
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a59574ae_68722604",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 701,
+        "startChar": 29,
+        "endLine": 701,
+        "endChar": 39
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "819bf3c4_a3c93d5d",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 706,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 706,
+        "startChar": 0,
+        "endLine": 706,
+        "endChar": 104
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2bd064ce_91b1a56c",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 732,
+        "startChar": 0,
+        "endLine": 732,
+        "endChar": 114
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b0114f39_72e55dcb",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 764,
+        "startChar": 0,
+        "endLine": 764,
+        "endChar": 107
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b37a067b_af5b77b1",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 770,
+        "startChar": 0,
+        "endLine": 770,
+        "endChar": 106
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "07b074bc_53ed0860",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 771,
+        "startChar": 0,
+        "endLine": 771,
+        "endChar": 108
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "777e69c1_ff8ea28a",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 773,
+        "startChar": 0,
+        "endLine": 773,
+        "endChar": 119
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c91590ae_609e1d1f",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 783,
+        "startChar": 0,
+        "endLine": 783,
+        "endChar": 106
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c0c63674_f4964866",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 784,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 784,
+        "startChar": 0,
+        "endLine": 784,
+        "endChar": 109
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "c6327d70_00e35b97",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 892,
+                "startChar": 71,
+                "endLine": 892,
+                "endChar": 79
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4e3d9d54_92deaa1f",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 892,
+        "startChar": 71,
+        "endLine": 892,
+        "endChar": 79
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "8bd7de9b_8264b740",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 892,
+                "startChar": 55,
+                "endLine": 892,
+                "endChar": 63
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e3fb83e5_bde4b2eb",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 892,
+        "startChar": 55,
+        "endLine": 892,
+        "endChar": 63
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "4fb1fd13_57da3ab2",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 893,
+                "startChar": 44,
+                "endLine": 893,
+                "endChar": 52
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3f56b3cb_ba3de128",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 893,
+        "startChar": 44,
+        "endLine": 893,
+        "endChar": 52
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "2c670d0f_ffa5e034",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 895,
+                "startChar": 25,
+                "endLine": 895,
+                "endChar": 33
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e3d802b7_23c07281",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 895,
+        "startChar": 25,
+        "endLine": 895,
+        "endChar": 33
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "50c070ce_7d826b9b",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 895,
+                "startChar": 41,
+                "endLine": 895,
+                "endChar": 49
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3be57ef2_d0121d8c",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 895,
+        "startChar": 41,
+        "endLine": 895,
+        "endChar": 49
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "402738f8_1dc6a929",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 896,
+                "startChar": 18,
+                "endLine": 896,
+                "endChar": 26
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e08ec925_36e25958",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 896,
+        "startChar": 18,
+        "endLine": 896,
+        "endChar": 26
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "5b93ba03_dfc10f3d",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 897,
+                "startChar": 20,
+                "endLine": 897,
+                "endChar": 28
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d33cd986_0c2d2cd1",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 897,
+        "startChar": 20,
+        "endLine": 897,
+        "endChar": 28
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "55826638_5efdfd95",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 900,
+                "startChar": 21,
+                "endLine": 900,
+                "endChar": 29
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "fc2b757f_219f8fdc",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 900,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 900,
+        "startChar": 21,
+        "endLine": 900,
+        "endChar": 29
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "2e62f5da_e6796a7e",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 903,
+                "startChar": 29,
+                "endLine": 903,
+                "endChar": 37
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e01648e4_754f1ba8",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 903,
+        "startChar": 29,
+        "endLine": 903,
+        "endChar": 37
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "4de6efef_a1c50aef",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 903,
+                "startChar": 15,
+                "endLine": 903,
+                "endChar": 23
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "aa4083a2_5c180ff4",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 903,
+        "startChar": 15,
+        "endLine": 903,
+        "endChar": 23
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "4b0996b2_44e0dc73",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 906,
+                "startChar": 20,
+                "endLine": 906,
+                "endChar": 28
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "27c301fc_870de66f",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 906,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 906,
+        "startChar": 20,
+        "endLine": 906,
+        "endChar": 28
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "a2d216f8_880d2207",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1005,
+                "startChar": 73,
+                "endLine": 1005,
+                "endChar": 82
+              },
+              "replacement": "available"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "faf0eeff_c4e10b85",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"avaialble\" -- should it be \"available\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1005,
+        "startChar": 73,
+        "endLine": 1005,
+        "endChar": 82
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "85383c32_46b20fe7",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1012,
+                "startChar": 48,
+                "endLine": 1012,
+                "endChar": 56
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ddfe3cc2_b6d2945c",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1012,
+        "startChar": 48,
+        "endLine": 1012,
+        "endChar": 56
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "ee2b6bd5_f0f63242",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1517,
+                "startChar": 84,
+                "endLine": 1517,
+                "endChar": 92
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f0019b0f_f58734f1",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1517,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1517,
+        "startChar": 84,
+        "endLine": 1517,
+        "endChar": 92
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "78e1753e_c004bbe6",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1519,
+                "startChar": 15,
+                "endLine": 1519,
+                "endChar": 23
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "01d8760f_b439679b",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1519,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1519,
+        "startChar": 15,
+        "endLine": 1519,
+        "endChar": 23
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "3719e2b4_7b0c5eed",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1520,
+                "startChar": 31,
+                "endLine": 1520,
+                "endChar": 39
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "5f69eb10_fb968e93",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1520,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1520,
+        "startChar": 31,
+        "endLine": 1520,
+        "endChar": 39
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "98a17390_81295ceb",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1521,
+                "startChar": 65,
+                "endLine": 1521,
+                "endChar": 73
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "09139325_fbbd8c4d",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1521,
+        "startChar": 65,
+        "endLine": 1521,
+        "endChar": 73
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "d4480ddf_55f6007b",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1521,
+                "startChar": 23,
+                "endLine": 1521,
+                "endChar": 31
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "2e9fb3fa_465adc15",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1521,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1521,
+        "startChar": 23,
+        "endLine": 1521,
+        "endChar": 31
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "6c0d8146_660cb494",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1522,
+                "startChar": 59,
+                "endLine": 1522,
+                "endChar": 67
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e426228a_2f17357e",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1522,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1522,
+        "startChar": 59,
+        "endLine": 1522,
+        "endChar": 67
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "91d3b93f_4bdef31b",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1523,
+                "startChar": 44,
+                "endLine": 1523,
+                "endChar": 52
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d17c7280_4a2732bd",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1523,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1523,
+        "startChar": 44,
+        "endLine": 1523,
+        "endChar": 52
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "fad7df3d_ead50dc8",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1527,
+                "startChar": 20,
+                "endLine": 1527,
+                "endChar": 28
+              },
+              "replacement": "Indices"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6be4a55d_f8d83898",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1527,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"Indicies\" -- should it be \"Indices\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1527,
+        "startChar": 20,
+        "endLine": 1527,
+        "endChar": 28
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193981",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "144039bc_a9550511",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 1555,
+                "startChar": 86,
+                "endLine": 1555,
+                "endChar": 94
+              },
+              "replacement": "available"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d4274ac5_7b2370d0",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1555,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Common typo found: \"avaiable\" -- should it be \"available\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1555,
+        "startChar": 86,
+        "endLine": 1555,
+        "endChar": 94
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "67016caa_e0328eec",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 102
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "865b20ad_3a56d3a0",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 105
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "73dc2c10_2e880736",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027complex\u0027, \u0027unexpected\u0027, or \u0027placeholder\u0027; see https://developers.google.com/style/inclusive-documentation#ableist-language for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 311,
+        "startChar": 35,
+        "endLine": 311,
+        "endChar": 40
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "18ffbaf2_36eacb34",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027complex\u0027, \u0027unexpected\u0027, or \u0027placeholder\u0027; see https://developers.google.com/style/inclusive-documentation#ableist-language for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 342,
+        "startChar": 31,
+        "endLine": 342,
+        "endChar": 36
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "13946da0_11f66826",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 103
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cfc94f9f_2caff552",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 446,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 446,
+        "endChar": 131
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f1c6b046_1b271a42",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 451,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 451,
+        "startChar": 0,
+        "endLine": 451,
+        "endChar": 105
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8f441203_1d6ddbe4",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 462,
+        "startChar": 0,
+        "endLine": 462,
+        "endChar": 103
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "467657d9_952a4926",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 466,
+        "startChar": 0,
+        "endLine": 466,
+        "endChar": 129
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9f03a554_95068a77",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 467,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 113
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019193979",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "faa4e15c_a9f08c2e",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-13T10:00:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 468,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 126
+      },
+      "revId": "de8bbe7a205e82b52a0b4c8b35299be49a069c2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
