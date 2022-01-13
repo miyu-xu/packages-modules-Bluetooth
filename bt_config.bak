@@ -1,0 +1,74 @@
+[Info]
+FileSource = Empty
+TimeCreated = 2022-01-13 14:39:23
+
+[Adapter]
+Address = da:4c:10:de:17:0f
+ScanMode = 1
+LE_LOCAL_KEY_IRK = 5bb52a526ac43efdd0811bdaaed47fcb
+LE_LOCAL_KEY_IR = 917dd7b4afc4e7585b622fc05b7ae0f5
+LE_LOCAL_KEY_DHK = cd7000e3eb1210f74161d31dc0034398
+LE_LOCAL_KEY_ER = f16f0a46861c704aaa866c76d70668c5
+
+[Metrics]
+Salt256Bit = ba0926ebe289278d6371f1a39fa2b61a2fcbe83ae2a9234a98d0aa2aa781123d
+
+[da:4c:10:de:17:06]
+Name = PTS-A2DP-LICORNE
+DevClass = 7936
+DevType = 1
+LinkKeyType = 8
+PinLength = 0
+LinkKey = 01000d0c0b0a0908070605552079656b
+AddrType = 0
+MetricsId = 1
+Service = 0000110b-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb
+AvdtpVersion = 0001
+
+[da:4c:10:de:17:08]
+Name = PTS-A2DP-LICORNE
+DevClass = 7936
+DevType = 1
+LinkKeyType = 8
+PinLength = 0
+LinkKey = 01000d0c0b0a0908070605552079656b
+AddrType = 0
+MetricsId = 2
+Service = 0000110b-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb
+AvdtpVersion = 0001
+
+[da:4c:10:de:17:0a]
+Name = PTS-A2DP-LICORNE
+DevClass = 7936
+DevType = 1
+LinkKeyType = 8
+PinLength = 0
+LinkKey = 01000d0c0b0a0908070605552079656b
+AddrType = 0
+MetricsId = 3
+Service = 0000110b-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb
+
+[da:4c:10:de:17:0c]
+Name = PTS-A2DP-LICORNE
+DevClass = 7936
+DevType = 1
+LinkKeyType = 8
+PinLength = 0
+LinkKey = 01000d0c0b0a0908070605552079656b
+AddrType = 0
+MetricsId = 4
+Service = 0000110b-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb
+AvdtpVersion = 0001
+
+[da:4c:10:de:17:0e]
+Name = PTS-A2DP-LICORNE
+DevClass = 7936
+DevType = 1
+LinkKeyType = 8
+PinLength = 0
+LinkKey = 01000d0c0b0a0908070605552079656b
+AddrType = 0
+MetricsId = 5
+Service = 0000110b-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb 00000000-0000-1000-8000-00805f9b34fb
+AvdtpVersion = 0001
+
