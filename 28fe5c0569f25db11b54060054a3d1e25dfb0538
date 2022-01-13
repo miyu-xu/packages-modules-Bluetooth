@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35a69701_269b1eef",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-01-13T04:32:10Z",
+      "side": 1,
+      "message": "I like this idea.\nso with this CRAS can handle A2DP and HFP separately at this moment.",
+      "revId": "28fe5c0569f25db11b54060054a3d1e25dfb0538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
