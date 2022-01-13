@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d81b509e_c7a6ef92",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-13T22:26:18Z",
+      "side": 1,
+      "message": "Can we just remove the const here, and avoid the const_cast on line 985?  I don\u0027t understand what this buys us.",
+      "range": {
+        "startLine": 953,
+        "startChar": 0,
+        "endLine": 953,
+        "endChar": 7
+      },
+      "revId": "3c64468e084b0e4aefb962df304bbf361b81ce2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
