@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "824413b8_218c9624",
+        "filename": "system/gd/packet/parser/test/test_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-13T16:07:25Z",
+      "side": 1,
+      "message": "Could you add a test?\n\nenum BigValue: 64 {\n    MIN \u003d 0,\n    TOO_BIG_FOR_32 \u003d 0x0706050403020100,\n    MAX \u003d 0xffffffffffffffff,\n}\n\npacket OneBigValue {\n  big : BigValue,\n}\n\ntest OneBigValue {\n  \"\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\",\n  \"\\xff\\xff\\xff\\xff\\xff\\xff\\xff\\xff\",\n  \"\\x00\\x01\\x02\\x03\\x04\\x05\\x06\\x07\",\n}",
+      "range": {
+        "startLine": 449,
+        "startChar": 0,
+        "endLine": 449,
+        "endChar": 1
+      },
+      "revId": "e337942a17a72f82f9e96fedd976525ac3fd8d3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
