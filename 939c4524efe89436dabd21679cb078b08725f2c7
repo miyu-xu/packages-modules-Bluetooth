@@ -22,6 +22,30 @@
       },
       "revId": "939c4524efe89436dabd21679cb078b08725f2c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec1af7f3_7558b552",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-13T22:15:24Z",
+      "side": 1,
+      "message": "Sorry, misread it.",
+      "parentUuid": "ba1e83fe_fb5810cf",
+      "range": {
+        "startLine": 183,
+        "startChar": 2,
+        "endLine": 183,
+        "endChar": 28
+      },
+      "revId": "939c4524efe89436dabd21679cb078b08725f2c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
