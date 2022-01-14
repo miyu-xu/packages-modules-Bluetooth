@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c18f3c0_1d45f6c0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1479,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-01-14T11:28:15Z",
+      "side": 1,
+      "message": "if activeAudioDevices is empty, is\u0027t produce a crash cf b/214496804",
+      "range": {
+        "startLine": 1479,
+        "startChar": 19,
+        "endLine": 1479,
+        "endChar": 74
+      },
+      "revId": "12d519e5d56b1df2de5f1c11a79652be33c1e2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
