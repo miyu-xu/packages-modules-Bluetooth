@@ -33,6 +33,7 @@ cc_binary_host {
         "fields/variable_length_struct_field.cc",
         "checksum_def.cc",
         "custom_field_def.cc",
+        "dependency_tree.cc",
         "enum_def.cc",
         "enum_gen.cc",
         "packet_def.cc",
