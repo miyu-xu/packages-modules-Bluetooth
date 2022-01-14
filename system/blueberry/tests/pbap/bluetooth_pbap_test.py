@@ -490,7 +490,7 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
       compare_result = self._compare_call_logs(call_log_type)
       asserts.assert_true(
           compare_result,
-          'PCE download call log: %s are different then PSE', call_log_type)
+          f'PCE download call log: {call_log_type} are different then PSE')
 
   def test_download_call_logs(self):
     """Test for the feature of downloading call logs.
@@ -530,7 +530,7 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
       compare_result = self._compare_call_logs(call_log_type)
       asserts.assert_true(
           compare_result,
-          'PCE download call log: %s are different then PSE', call_log_type)
+          f'PCE download call log: {call_log_type} are different then PSE')
 
   def test_show_caller_name(self):
     """Test for caller name of the incoming phone call is correct on PCE.
