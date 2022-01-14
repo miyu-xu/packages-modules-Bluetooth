@@ -2381,7 +2381,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * Create an RFCOMM {@link BluetoothSocket} ready to start a secure
      * outgoing connection to this remote device using SDP lookup of uuid.
      * <p>This is designed to be used with {@link
-     * BluetoothAdapter#listenUsingRfcommWithServiceRecord} for peer-peer
+     * BluetoothAdapter#startRfcommServer} for peer-peer
      * Bluetooth applications.
      * <p>Use {@link BluetoothSocket#connect} to initiate the outgoing
      * connection. This will also perform an SDP lookup of the given uuid to
