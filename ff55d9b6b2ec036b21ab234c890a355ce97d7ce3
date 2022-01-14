@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5abc2782_10c25c26",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 2626,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T18:37:15Z",
+      "side": 1,
+      "message": "Central and Peripheral instead of Master and Slave.",
+      "range": {
+        "startLine": 2626,
+        "startChar": 2,
+        "endLine": 2626,
+        "endChar": 19
+      },
+      "revId": "ff55d9b6b2ec036b21ab234c890a355ce97d7ce3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
