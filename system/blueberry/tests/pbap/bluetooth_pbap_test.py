@@ -410,6 +410,11 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     This method shall be used for PSE and PCE contacts comparison.
 
+    Conditions:
+    1. Number of contacts should be the same.
+    2. VCF should be encoded with UTF-8.
+    3. The content of contacts should be the same.
+
     Returns:
       True: All contacts between PSE and PCE are the same.
       False: Some contacts between PSE and PCE are different.
@@ -421,7 +426,9 @@ class BluetoothPbapTest(blueberry_ui_base_test.BlueberryUiBaseTest):
                                                    'pce.vcf')
 
     # Compare length and exported VCF file
-    with open(pse_path) as f_pse, open(pce_path) as f_pce:
+    with open(
+        pse_path, encoding='utf-8', errors='strict') as f_pse, open(
+            pce_path, encoding='utf-8', errors='strict') as f_pce:
       if len(f_pse.readlines()) != len(f_pce.readlines()):
         self.pri_phone.log.error('PSE and PCE count are difference')
         return False
