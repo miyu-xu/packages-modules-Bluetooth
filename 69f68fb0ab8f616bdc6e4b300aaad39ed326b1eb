@@ -1,0 +1,151 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019253763",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ef63386f_a9aaa61c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T10:46:58Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "69f68fb0ab8f616bdc6e4b300aaad39ed326b1eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019253763",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2a1a8a5c_fdff0924",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T10:46:58Z",
+      "side": 1,
+      "message": "\"compile\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "69f68fb0ab8f616bdc6e4b300aaad39ed326b1eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019253763",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7a9b4523_1f1bbd2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T10:46:58Z",
+      "side": 1,
+      "message": "#feature requires a tracking bug number",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 13
+      },
+      "revId": "69f68fb0ab8f616bdc6e4b300aaad39ed326b1eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019253764",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "20a07ff6_646b8874",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T10:46:58Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 854,
+        "startChar": 0,
+        "endLine": 854,
+        "endChar": 103
+      },
+      "revId": "69f68fb0ab8f616bdc6e4b300aaad39ed326b1eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019253766",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1945026?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "0ac3691a_7b945138",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 704,
+                "startChar": 29,
+                "endLine": 704,
+                "endChar": 39
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "c5c09f9d_ab4fb41b",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T10:46:58Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 704,
+        "startChar": 29,
+        "endLine": 704,
+        "endChar": 39
+      },
+      "revId": "69f68fb0ab8f616bdc6e4b300aaad39ed326b1eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
