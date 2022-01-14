@@ -302,7 +302,7 @@ BluetoothAudioClientInterface::GetAudioCapabilities_2_1(
 
 std::vector<AudioCapabilities_2_2>
 BluetoothAudioClientInterface::GetAudioCapabilities_2_2(
-    SessionType_2_1 session_type_2_1) {
+    SessionType_2_2 session_type_2_2) {
   std::vector<AudioCapabilities_2_2> capabilities_2_2(0);
   if (HalVersionManager::GetHalVersion() !=
       BluetoothAudioHalVersion::VERSION_2_2) {
@@ -322,7 +322,7 @@ BluetoothAudioClientInterface::GetAudioCapabilities_2_2(
         }
       };
   auto hidl_retval = providersFactory->getProviderCapabilities_2_2(
-      session_type_2_1, getProviderCapabilities_cb);
+      session_type_2_2, getProviderCapabilities_cb);
   if (!hidl_retval.isOk()) {
     LOG(FATAL) << __func__
                << ": BluetoothAudioHal::getProviderCapabilities failure: "
@@ -475,33 +475,33 @@ void BluetoothAudioClientInterface::FetchAudioProvider_2_2() {
   android::sp<IBluetoothAudioProvidersFactory_2_2> providersFactory =
       HalVersionManager::GetProvidersFactory_2_2();
   CHECK(providersFactory != nullptr)
-      << "IBluetoothAudioProvidersFactory_2_1::getService() failed";
+      << "IBluetoothAudioProvidersFactory_2_2::getService() failed";
 
   auto getProviderCapabilities_cb =
-      [&capabilities_2_1 = this->capabilities_2_1_](
-          const hidl_vec<AudioCapabilities_2_1>& audioCapabilities_2_1) {
-        capabilities_2_1.clear();
-        for (auto capability_2_1 : audioCapabilities_2_1) {
-          capabilities_2_1.push_back(capability_2_1);
+      [&capabilities_2_2 = this->capabilities_2_2_](
+          const hidl_vec<AudioCapabilities_2_2>& audioCapabilities_2_2) {
+        capabilities_2_2.clear();
+        for (auto capability_2_2 : audioCapabilities_2_2) {
+          capabilities_2_2.push_back(capability_2_2);
         }
       };
-  auto hidl_retval = providersFactory->getProviderCapabilities_2_1(
-      transport_->GetSessionType_2_1(), getProviderCapabilities_cb);
+  auto hidl_retval = providersFactory->getProviderCapabilities_2_2(
+      transport_->GetSessionType_2_2(), getProviderCapabilities_cb);
   if (!hidl_retval.isOk()) {
     LOG(FATAL) << __func__
                << ": BluetoothAudioHal::getProviderCapabilities failure: "
                << hidl_retval.description();
     return;
   }
-  if (capabilities_2_1_.empty()) {
+  if (capabilities_2_2_.empty()) {
     LOG(WARNING) << __func__ << ": SessionType="
-                 << toString(transport_->GetSessionType_2_1())
+                 << toString(transport_->GetSessionType_2_2())
                  << " Not supported by BluetoothAudioHal";
     return;
   }
   LOG(INFO) << __func__ << ": BluetoothAudioHal SessionType="
             << toString(transport_->GetSessionType_2_1()) << " has "
-            << capabilities_2_1_.size() << " AudioCapabilities";
+            << capabilities_2_2_.size() << " AudioCapabilities";
 
   std::promise<void> openProvider_promise;
   auto openProvider_future = openProvider_promise.get_future();
@@ -517,7 +517,7 @@ void BluetoothAudioClientInterface::FetchAudioProvider_2_2() {
         openProvider_promise.set_value();
       };
   hidl_retval = providersFactory->openProvider_2_2(
-      transport_->GetSessionType_2_1(), openProvider_cb);
+      transport_->GetSessionType_2_2(), openProvider_cb);
   openProvider_future.get();
   if (!hidl_retval.isOk()) {
     LOG(FATAL) << __func__ << ": BluetoothAudioHal::openProvider failure: "
@@ -549,7 +549,7 @@ BluetoothAudioSinkClientInterface::BluetoothAudioSinkClientInterface(
 
   if ((HalVersionManager::GetHalVersion() ==
        BluetoothAudioHalVersion::VERSION_2_2) &&
-      (sink_->GetSessionType_2_1() != SessionType_2_1::UNKNOWN)) {
+      (sink_->GetSessionType_2_2() != SessionType_2_2::UNKNOWN)) {
     FetchAudioProvider_2_2();
     return;
   }
@@ -601,7 +601,7 @@ BluetoothAudioSourceClientInterface::BluetoothAudioSourceClientInterface(
 
   if ((HalVersionManager::GetHalVersion() ==
        BluetoothAudioHalVersion::VERSION_2_2) &&
-      (source_->GetSessionType_2_1() != SessionType_2_1::UNKNOWN)) {
+      (source_->GetSessionType_2_2() != SessionType_2_2::UNKNOWN)) {
     FetchAudioProvider_2_2();
     return;
   }
@@ -1087,7 +1087,7 @@ void BluetoothAudioClientInterface::RenewAudioProviderAndSession() {
   // BluetoothAudioClientInterface is running
   auto hal_version = HalVersionManager::GetHalVersion();
   if ((hal_version == BluetoothAudioHalVersion::VERSION_2_2) &&
-      (transport_->GetSessionType_2_1() != SessionType_2_1::UNKNOWN)) {
+      (transport_->GetSessionType_2_2() != SessionType_2_2::UNKNOWN)) {
     FetchAudioProvider_2_2();
   } else if ((hal_version == BluetoothAudioHalVersion::VERSION_2_1) &&
              (transport_->GetSessionType_2_1() != SessionType_2_1::UNKNOWN)) {

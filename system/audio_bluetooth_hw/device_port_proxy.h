@@ -28,8 +28,8 @@ namespace android {
 namespace bluetooth {
 namespace audio {
 
-using SessionType_2_1 =
-    ::android::hardware::bluetooth::audio::V2_1::SessionType;
+using SessionType_2_2 =
+    ::android::hardware::bluetooth::audio::V2_2::SessionType;
 
 // Proxy for Bluetooth Audio HW Module to communicate with Bluetooth Audio
 // Session Control. All methods are not thread safe, so users must acquire a
@@ -87,8 +87,8 @@ class BluetoothAudioPort {
   void SetState(BluetoothStreamState state);
 
   bool IsA2dp() const {
-    return session_type_ == SessionType_2_1::A2DP_SOFTWARE_ENCODING_DATAPATH ||
-           session_type_ == SessionType_2_1::A2DP_HARDWARE_OFFLOAD_DATAPATH;
+    return session_type_ == SessionType_2_2::A2DP_SOFTWARE_ENCODING_DATAPATH ||
+           session_type_ == SessionType_2_2::A2DP_HARDWARE_OFFLOAD_DATAPATH;
   }
 
   bool GetPreferredDataIntervalUs(size_t* interval_us) const;
@@ -96,7 +96,7 @@ class BluetoothAudioPort {
  protected:
   uint16_t cookie_;
   BluetoothStreamState state_;
-  SessionType_2_1 session_type_;
+  SessionType_2_2 session_type_;
   // WR to support Mono: True if fetching Stereo and mixing into Mono
   bool is_stereo_to_mono_ = false;
   bool in_use() const;

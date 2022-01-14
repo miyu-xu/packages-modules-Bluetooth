@@ -64,6 +64,8 @@ using SampleRate_2_1 = ::android::hardware::bluetooth::audio::V2_1::SampleRate;
 using SessionType = ::android::hardware::bluetooth::audio::V2_0::SessionType;
 using SessionType_2_1 =
     ::android::hardware::bluetooth::audio::V2_1::SessionType;
+using SessionType_2_2 =
+    ::android::hardware::bluetooth::audio::V2_2::SessionType;
 using ::android::hardware::bluetooth::audio::V2_0::TimeSpec;
 using BluetoothAudioStatus =
     ::android::hardware::bluetooth::audio::V2_0::Status;
@@ -106,6 +108,7 @@ class IBluetoothTransportInstance {
                               AudioConfiguration audioConfig)
       : session_type_(sessionType),
         session_type_2_1_(SessionType_2_1::UNKNOWN),
+        session_type_2_2_(SessionType_2_2::UNKNOWN),
         audio_config_(std::move(audioConfig)),
         audio_config_2_1_({}),
         audio_config_2_2_({}){};
@@ -113,13 +116,15 @@ class IBluetoothTransportInstance {
                               AudioConfiguration_2_1 audioConfig_2_1)
       : session_type_(SessionType::UNKNOWN),
         session_type_2_1_(sessionType_2_1),
+        session_type_2_2_(SessionType_2_2::UNKNOWN),
         audio_config_({}),
         audio_config_2_1_(std::move(audioConfig_2_1)),
         audio_config_2_2_({}){};
-  IBluetoothTransportInstance(SessionType_2_1 sessionType_2_1,
+  IBluetoothTransportInstance(SessionType_2_2 sessionType_2_2,
                               AudioConfiguration_2_2 audioConfig_2_2)
       : session_type_(SessionType::UNKNOWN),
-        session_type_2_1_(sessionType_2_1),
+        session_type_2_1_(SessionType_2_1::UNKNOWN),
+        session_type_2_2_(sessionType_2_2),
         audio_config_({}),
         audio_config_2_1_({}),
         audio_config_2_2_(std::move(audioConfig_2_2)){};
@@ -127,6 +132,7 @@ class IBluetoothTransportInstance {
 
   SessionType GetSessionType() const { return session_type_; }
   SessionType_2_1 GetSessionType_2_1() const { return session_type_2_1_; }
+  SessionType_2_2 GetSessionType_2_2() const { return session_type_2_2_; }
 
   AudioConfiguration GetAudioConfiguration() const { return audio_config_; }
   AudioConfiguration_2_1 GetAudioConfiguration_2_1() const {
@@ -167,6 +173,7 @@ class IBluetoothTransportInstance {
  private:
   const SessionType session_type_;
   const SessionType_2_1 session_type_2_1_;
+  const SessionType_2_2 session_type_2_2_;
   AudioConfiguration audio_config_;
   AudioConfiguration_2_1 audio_config_2_1_;
   AudioConfiguration_2_2 audio_config_2_2_;
@@ -177,9 +184,9 @@ class IBluetoothTransportInstance {
 // from Audio HAL.
 class IBluetoothSinkTransportInstance : public IBluetoothTransportInstance {
  public:
-  IBluetoothSinkTransportInstance(SessionType_2_1 sessionType_2_1,
+  IBluetoothSinkTransportInstance(SessionType_2_2 sessionType_2_2,
                                   AudioConfiguration_2_2 audioConfig_2_2)
-      : IBluetoothTransportInstance{sessionType_2_1, audioConfig_2_2} {}
+      : IBluetoothTransportInstance{sessionType_2_2, audioConfig_2_2} {}
   IBluetoothSinkTransportInstance(SessionType_2_1 sessionType_2_1,
                                   AudioConfiguration_2_1 audioConfig_2_1)
       : IBluetoothTransportInstance{sessionType_2_1, audioConfig_2_1} {}
@@ -200,9 +207,9 @@ class IBluetoothSourceTransportInstance : public IBluetoothTransportInstance {
   IBluetoothSourceTransportInstance(SessionType_2_1 sessionType_2_1,
                                     AudioConfiguration_2_1 audioConfig_2_1)
       : IBluetoothTransportInstance{sessionType_2_1, audioConfig_2_1} {}
-  IBluetoothSourceTransportInstance(SessionType_2_1 sessionType_2_1,
+  IBluetoothSourceTransportInstance(SessionType_2_2 sessionType_2_2,
                                     AudioConfiguration_2_2 audioConfig_2_2)
-      : IBluetoothTransportInstance{sessionType_2_1, audioConfig_2_2} {}
+      : IBluetoothTransportInstance{sessionType_2_2, audioConfig_2_2} {}
   virtual ~IBluetoothSourceTransportInstance() = default;
 
   // Invoked when the transport is requested to log bytes written
@@ -234,7 +241,7 @@ class BluetoothAudioClientInterface {
   static std::vector<AudioCapabilities_2_1> GetAudioCapabilities_2_1(
       SessionType_2_1 session_type_2_1);
   static std::vector<AudioCapabilities_2_2> GetAudioCapabilities_2_2(
-      SessionType_2_1 session_type_2_1);
+      SessionType_2_2 session_type_2_2);
 
   void StreamStarted(const BluetoothAudioCtrlAck& ack);
 
