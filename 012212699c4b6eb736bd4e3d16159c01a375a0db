@@ -118,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ec05cd3_c12267d8",
+        "filename": "system/audio_hal_interface/le_audio_software.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-14T13:49:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa067500_13632642",
+      "range": {
+        "startLine": 74,
+        "startChar": 17,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa246c31_717dd8ed",
@@ -131,6 +155,24 @@
       "writtenOn": "2022-01-03T12:24:38Z",
       "side": 1,
       "message": "lets make client.cc the only place which is talking to audio framework.\nThere is already a callback to client.cc which saying that stream is suspended.\nIf stream is suspended then\n  state_machine_callbacks_-\u003eStatusReportCb(group_id,GroupStreamStatus::SUSPENDED);\n  \n Could you please use it?",
+      "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5756193f_ec0ea67b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1899,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-14T13:49:00Z",
+      "side": 1,
+      "message": "I think the StatusReportCb may be the different thing to update to the Bluetooth audio HAL. I need to look into the current start/suspend design to think more about the patch. For not without this patch, offload start/suspend would fail on the wrong state.",
+      "parentUuid": "aa246c31_717dd8ed",
       "revId": "012212699c4b6eb736bd4e3d16159c01a375a0db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
