@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019256900",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1884652?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b636ec30_3258784f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T12:48:40Z",
+      "side": 1,
+      "message": "\"compilation\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 17
+      },
+      "revId": "72a3305fa5d258cb6e2518b923b5474560a9aa55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
