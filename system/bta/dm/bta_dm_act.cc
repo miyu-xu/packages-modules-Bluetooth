@@ -77,20 +77,20 @@ static void bta_dm_inq_results_cb(tBTM_INQ_RESULTS* p_inq, const uint8_t* p_eir,
 static void bta_dm_inq_cmpl_cb(void* p_result);
 static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
                                                 DEV_CLASS dc,
-                                                tBTM_BD_NAME bd_name);
+                                                const BD_NAME& bd_name);
 static void bta_dm_remname_cback(void* p);
 static void bta_dm_find_services(const RawAddress& bd_addr);
 static void bta_dm_discover_next_device(void);
 static void bta_dm_sdp_callback(tSDP_STATUS sdp_status);
 static uint8_t bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_class,
-                                const tBTM_BD_NAME bd_name, bool min_16_digit);
+                                const tBTM_BD_NAME& bd_name, bool min_16_digit);
 static uint8_t bta_dm_new_link_key_cback(const RawAddress& bd_addr,
                                          DEV_CLASS dev_class,
-                                         tBTM_BD_NAME bd_name,
+                                         const tBTM_BD_NAME& bd_name,
                                          const LinkKey& key, uint8_t key_type);
 static void bta_dm_authentication_complete_cback(const RawAddress& bd_addr,
                                                  DEV_CLASS dev_class,
-                                                 tBTM_BD_NAME bd_name,
+                                                 const tBTM_BD_NAME& bd_name,
                                                  tHCI_REASON result);
 static void bta_dm_local_name_cback(void* p_name);
 static void bta_dm_check_av();
@@ -1886,7 +1886,7 @@ static void bta_dm_inq_cmpl_cb(void* p_result) {
  ******************************************************************************/
 static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
                                                 UNUSED_ATTR DEV_CLASS dc,
-                                                tBTM_BD_NAME bd_name) {
+                                                const BD_NAME& bd_name) {
   tBTM_REMOTE_DEV_NAME rem_name;
   tBTM_STATUS btm_status;
 
@@ -1894,8 +1894,8 @@ static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
 
   /* if this is what we are looking for */
   if (bta_dm_search_cb.peer_bdaddr == bd_addr) {
-    rem_name.length = strlcpy((char*)rem_name.remote_bd_name, (char*)bd_name,
-                              BD_NAME_LEN + 1);
+    rem_name.length = strlcpy((char*)rem_name.remote_bd_name,
+                              (const char*)&bd_name, BD_NAME_LEN + 1);
     if (rem_name.length > BD_NAME_LEN) {
       rem_name.length = BD_NAME_LEN;
     }
@@ -2037,7 +2037,8 @@ static void bta_dm_pinname_cback(void* p_data) {
  *
  ******************************************************************************/
 static uint8_t bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_class,
-                                const tBTM_BD_NAME bd_name, bool min_16_digit) {
+                                const tBTM_BD_NAME& bd_name,
+                                bool min_16_digit) {
   if (!bta_dm_cb.p_sec_cback) return BTM_NOT_AUTHORIZED;
 
   /* If the device name is not known, save bdaddr and devclass and initiate a
@@ -2076,7 +2077,7 @@ static uint8_t bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_class,
  ******************************************************************************/
 static uint8_t bta_dm_new_link_key_cback(const RawAddress& bd_addr,
                                          UNUSED_ATTR DEV_CLASS dev_class,
-                                         tBTM_BD_NAME bd_name,
+                                         const tBTM_BD_NAME& bd_name,
                                          const LinkKey& key, uint8_t key_type) {
   tBTA_DM_SEC sec_event;
   tBTA_DM_AUTH_CMPL* p_auth_cmpl;
@@ -2122,7 +2123,7 @@ static uint8_t bta_dm_new_link_key_cback(const RawAddress& bd_addr,
  ******************************************************************************/
 static void bta_dm_authentication_complete_cback(
     const RawAddress& bd_addr, UNUSED_ATTR DEV_CLASS dev_class,
-    tBTM_BD_NAME bd_name, tHCI_REASON reason) {
+    const tBTM_BD_NAME& bd_name, tHCI_REASON reason) {
   if (reason != HCI_SUCCESS) {
     if (bta_dm_cb.p_sec_cback) {
       // Build out the security event data structure
