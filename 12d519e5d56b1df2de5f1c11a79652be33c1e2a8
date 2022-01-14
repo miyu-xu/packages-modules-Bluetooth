@@ -22,6 +22,30 @@
       },
       "revId": "12d519e5d56b1df2de5f1c11a79652be33c1e2a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eeef4cf_6e290418",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1479,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-14T19:02:42Z",
+      "side": 1,
+      "message": "Crash is fixed and this change cannot be merged to AOSP, so I will be abandoning the change,",
+      "parentUuid": "1c18f3c0_1d45f6c0",
+      "range": {
+        "startLine": 1479,
+        "startChar": 19,
+        "endLine": 1479,
+        "endChar": 74
+      },
+      "revId": "12d519e5d56b1df2de5f1c11a79652be33c1e2a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
