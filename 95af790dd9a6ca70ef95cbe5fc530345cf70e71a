@@ -16,6 +16,24 @@
       "message": "Any updates on this topic? Do we need to rebase it to the latest codebase? ",
       "revId": "95af790dd9a6ca70ef95cbe5fc530345cf70e71a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa83e147_d9a13cde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-01-14T12:55:49Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "8303d770_b208ec78",
+      "revId": "95af790dd9a6ca70ef95cbe5fc530345cf70e71a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
