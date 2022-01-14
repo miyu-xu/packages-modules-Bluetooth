@@ -22,6 +22,30 @@
       },
       "revId": "9636f58396171f38879fdc3c98914de3f7447b08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "124fadbe_63b370f9",
+        "filename": "system/binder/android/bluetooth/IBluetoothLeCallControl.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-14T13:03:45Z",
+      "side": 0,
+      "message": "you are right. I checked with the code author and indeed receiver is not needed. I will just add AttributionSource. Thanks!",
+      "parentUuid": "0583da11_6c6c0ddd",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 6
+      },
+      "revId": "9636f58396171f38879fdc3c98914de3f7447b08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
