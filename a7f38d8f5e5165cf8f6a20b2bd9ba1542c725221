@@ -16,6 +16,23 @@
       "message": "Fixing up some build issues seen during automerge",
       "revId": "a7f38d8f5e5165cf8f6a20b2bd9ba1542c725221",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb5192e0_356c9ec7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-14T18:24:50Z",
+      "side": 1,
+      "message": "re: uint8_t fix, this is the error message that necessitated it:\n\n  ../../../../../../../tmp/portage/net-wireless/floss-9999/work/floss- \n  9999/platform2/bt/system/stack/btm/btm_ble_multi_adv.cc:407:34: error: result of \n  comparison of constant 255 with expression of type \u0027int8_t\u0027 (aka \u0027signed char\u0027) \n  is always true [-Werror,-Wtautological-constant-out-of-range-compare]\n    if (params-\u003eown_address_type !\u003d BLE_ADDR_ANONYMOUS) {\n\n\n",
+      "revId": "a7f38d8f5e5165cf8f6a20b2bd9ba1542c725221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
