@@ -40,7 +40,7 @@ import java.io.IOException;
  * the Android APIs. RFCOMM is a connection-oriented, streaming transport over Bluetooth BR/EDR. It
  * is also known as the Serial Port Profile (SPP). To create a listening
  * {@link BluetoothServerSocket} that's ready for incoming Bluetooth BR/EDR connections, use {@link
- * BluetoothAdapter#listenUsingRfcommWithServiceRecord
+ * BluetoothAdapter#startRfcommServer
  * BluetoothAdapter.listenUsingRfcommWithServiceRecord()}.
  *
  * <p>For Bluetooth LE, the socket uses LE Connection-oriented Channel (CoC). LE CoC is a
