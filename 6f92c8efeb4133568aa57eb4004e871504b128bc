@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7904e4f_93b92e53",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T18:24:52Z",
+      "side": 1,
+      "message": "I\u0027d suggest something like:\nPDL: Add a constraint tree for parsing in order\n\n(In general, \"Fix this\" isn\u0027t as useful, since we\u0027re usually fixing, and this probably won\u0027t be the last fix for this code)",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "6f92c8efeb4133568aa57eb4004e871504b128bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edf519fd_99b6be83",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T18:24:52Z",
+      "side": 1,
+      "message": "Thanks Bid",
+      "revId": "6f92c8efeb4133568aa57eb4004e871504b128bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "965d4200_9f7c7375",
+        "filename": "system/gd/packet/parser/packet_def.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T18:24:52Z",
+      "side": 1,
+      "message": "In general, we do one class per file.  I think this one deserves its own file.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 2
+      },
+      "revId": "6f92c8efeb4133568aa57eb4004e871504b128bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4128efa6_6f4d202d",
+        "filename": "system/gd/packet/parser/parent_def.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T18:24:52Z",
+      "side": 1,
+      "message": "I can\u0027t find this function being used.  Is it needed?",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 60
+      },
+      "revId": "6f92c8efeb4133568aa57eb4004e871504b128bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "009e7ece_3d8f9154",
+        "filename": "system/gd/packet/parser/parent_def.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T18:24:52Z",
+      "side": 1,
+      "message": "should we change parent_constraints_ to be ordered?  Is there a benefit to having them out of order?  Would it make sense to have ordered_parent_constraints_ so we don\u0027t have to order them multiple times?",
+      "range": {
+        "startLine": 92,
+        "startChar": 2,
+        "endLine": 92,
+        "endChar": 80
+      },
+      "revId": "6f92c8efeb4133568aa57eb4004e871504b128bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
