@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019257321",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950060?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b6ff16e7_8e2fb79b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T13:05:03Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "c9c94a8a3bc6da778234651de106e0deb898e284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019257321",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950060?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "648c6bb8_77afc136",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T13:05:03Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "c9c94a8a3bc6da778234651de106e0deb898e284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019257321",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950060?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "625f79fc_3edf4854",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-14T13:05:03Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "c9c94a8a3bc6da778234651de106e0deb898e284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
