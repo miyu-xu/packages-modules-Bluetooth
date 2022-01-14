@@ -43,7 +43,7 @@ import java.util.Arrays;
  * service discovery is done through SDP requests, which are automatically
  * performed when creating an RFCOMM socket with {@link
  * BluetoothDevice#createRfcommSocketToServiceRecord} and {@link
- * BluetoothAdapter#listenUsingRfcommWithServiceRecord}</p>
+ * BluetoothAdapter#startRfcommServer}</p>
  *
  * <p>Use {@link BluetoothDevice#getBluetoothClass} to retrieve the class for
  * a remote device.
