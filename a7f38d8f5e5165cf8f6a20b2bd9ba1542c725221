@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522db51f_7f3e4ca8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-14T18:23:14Z",
+      "side": 1,
+      "message": "Fixing up some build issues seen during automerge",
+      "revId": "a7f38d8f5e5165cf8f6a20b2bd9ba1542c725221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
