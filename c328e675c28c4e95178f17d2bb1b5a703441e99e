@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fcdb2083_be6a42fa",
+        "filename": "system/binder/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-14T17:33:04Z",
+      "side": 1,
+      "message": "yup, that looks right",
+      "parentUuid": "6d49bbf4_73770180",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5eb2e95_5661bc07",
         "filename": "system/btif/src/bluetooth.cc",
         "patchSetId": 1
