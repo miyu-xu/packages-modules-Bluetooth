@@ -1714,6 +1714,22 @@ static int getMetricIdNative(JNIEnv* env, jobject obj, jbyteArray address) {
   return sBluetoothInterface->get_metric_id(addr_obj);
 }
 
+static jboolean enableAudioLowLatencyNative(JNIEnv* env, jobject obj,
+                                            jboolean enabled,
+                                            jbyteArray address) {
+  ALOGV("%s", __func__);
+  if (!sBluetoothInterface) return false;
+  jbyte* addr = env->GetByteArrayElements(address, nullptr);
+  if (addr == nullptr) {
+    jniThrowIOException(env, EINVAL);
+    return false;
+  }
+  RawAddress addr_obj = {};
+  addr_obj.FromOctets((uint8_t*)addr);
+  sBluetoothInterface->enable_audio_low_latency(enabled, addr_obj);
+  return true;
+}
+
 static JNINativeMethod sMethods[] = {
     /* name, signature, funcPtr */
     {"classInitNative", "()V", (void*)classInitNative},
@@ -1753,7 +1769,10 @@ static JNINativeMethod sMethods[] = {
     {"createSocketChannelNative", "(ILjava/lang/String;[BIII)I",
      (void*)createSocketChannelNative},
     {"requestMaximumTxDataLengthNative", "([B)V",
-     (void*)requestMaximumTxDataLengthNative}};
+     (void*)requestMaximumTxDataLengthNative},
+    {"enableAudioLowLatencyNative", "(Z[B)Z",
+     (void*)enableAudioLowLatencyNative},
+};
 
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
   return jniRegisterNativeMethods(

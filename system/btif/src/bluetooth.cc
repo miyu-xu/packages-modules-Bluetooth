@@ -596,6 +596,14 @@ static int set_dynamic_audio_buffer_size(int codec, int size) {
   return btif_set_dynamic_audio_buffer_size(codec, size);
 }
 
+static bool enable_audio_low_latency(bool enabled, const RawAddress& address) {
+  // Don't print mac address
+  LOG_INFO("%s %s %s", __func__, enabled ? "true" : "false",
+           address.ToString().c_str());
+  // Call HAL here
+  return true;
+}
+
 EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     sizeof(bluetoothInterface),
     init,
@@ -634,7 +642,8 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     obfuscate_address,
     get_metric_id,
     set_dynamic_audio_buffer_size,
-    generate_local_oob_data};
+    generate_local_oob_data,
+    enable_audio_low_latency};
 
 // callback reporting helpers
 

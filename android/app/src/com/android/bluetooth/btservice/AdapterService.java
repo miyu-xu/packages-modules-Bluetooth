@@ -2627,6 +2627,16 @@ public class AdapterService extends Service {
             service.dump(fd, writer, args);
             writer.close();
         }
+
+        @Override
+        public boolean enableAudioLowLatency(boolean enabled, BluetoothDevice device) {
+            AdapterService service = getService();
+            if (service == null) {
+                return false;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+            return service.enableAudioLowLatency(enabled, device);
+        }
     }
 
     // ----API Methods--------
@@ -4110,6 +4120,17 @@ public class AdapterService extends Service {
         return getMetricIdNative(Utils.getByteAddress(device));
     }
 
+    /**
+     *  Enable audio low latency
+     *
+     *  @param enabled true if audio low latency is being enabled
+     *  @param device device whose audio low latency will be disabled or enabled
+     *  @return boolean true if audio low latency is successfully enabled or disabled
+     */
+    public boolean enableAudioLowLatency(boolean enabled, BluetoothDevice device) {
+        return enableAudioLowLatencyNative(enabled, Utils.getByteAddress(device));
+    }
+
     static native void classInitNative();
 
     native boolean initNative(boolean startRestricted, boolean isCommonCriteriaMode,
@@ -4201,6 +4222,8 @@ public class AdapterService extends Service {
             int type, String serviceName, byte[] uuid, int port, int flag, int callingUid);
 
     /*package*/ native void requestMaximumTxDataLengthNative(byte[] address);
+
+    private native boolean enableAudioLowLatencyNative(boolean enabled, byte[] address);
 
     // Returns if this is a mock object. This is currently used in testing so that we may not call
     // System.exit() while finalizing the object. Otherwise GC of mock objects unfortunately ends up

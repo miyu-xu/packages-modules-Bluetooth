@@ -754,6 +754,15 @@ typedef struct {
    * Fetches the local Out of Band data.
    */
   int (*generate_local_oob_data)(tBT_TRANSPORT transport);
+
+  /**
+   * Enable or disable audio low latency
+   *
+   * @param enabled true if enabling audio low latency
+   * @param address Bluetooth MAC address of Bluetooth device
+   * @return true if audio low latency is successfully enabled or disabled
+   */
+  bool (*enable_audio_low_latency)(bool enabled, const RawAddress& address);
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"
