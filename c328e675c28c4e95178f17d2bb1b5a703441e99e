@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dd7a448_2abd399a",
+        "filename": "system/binder/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T23:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcdb2083_be6a42fa",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5eb2e95_5661bc07",
@@ -66,6 +84,24 @@
       "writtenOn": "2022-01-14T02:07:20Z",
       "side": 1,
       "message": "Will remove mac address logging before merge",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a15440f_4a9ebee1",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T23:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5eb2e95_5661bc07",
       "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -87,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec70c6c_d80e6e3b",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T23:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16621910_0bd85cd7",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce24bc82_c7dc08c1",
@@ -104,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9a7c96_37ab3ec8",
+        "filename": "system/service/bluetooth_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T23:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce24bc82_c7dc08c1",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64ba75c8_24059252",
@@ -117,6 +189,24 @@
       "writtenOn": "2022-01-14T02:07:20Z",
       "side": 1,
       "message": "Call HAL here once it\u0027s ready?",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "842d5690_e20fe5a9",
+        "filename": "system/service/bluetooth_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T23:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64ba75c8_24059252",
       "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
