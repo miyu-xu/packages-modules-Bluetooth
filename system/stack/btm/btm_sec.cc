@@ -2284,8 +2284,12 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
         btm_cb.api.p_pin_callback) {
       BTM_TRACE_EVENT("%s() calling pin_callback", __func__);
       btm_cb.pairing_flags |= BTM_PAIR_FLAGS_PIN_REQD;
+      tBTM_BD_NAME bd_name = {};
+      if (p_bd_name != nullptr)
+        strlcpy((char*)bd_name, (const char*)p_bd_name,
+                BTM_MAX_REM_BD_NAME_LEN + 1);
       (*btm_cb.api.p_pin_callback)(
-          p_dev_rec->bd_addr, p_dev_rec->dev_class, p_bd_name,
+          p_dev_rec->bd_addr, p_dev_rec->dev_class, bd_name,
           (p_dev_rec->required_security_flags_for_pairing &
            BTM_SEC_IN_MIN_16_DIGIT_PIN));
     }
