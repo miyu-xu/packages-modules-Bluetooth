@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4db9c546_74e262d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T02:07:20Z",
+      "side": 1,
+      "message": "Hey Zach, could you help me take a look at this prototype CL? I commented my questions, mainly on permission issue. Debugging code will be removed before merging. Style will be refined before merging.",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d49bbf4_73770180",
+        "filename": "system/binder/android/bluetooth/IBluetooth.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T02:07:20Z",
+      "side": 1,
+      "message": "Right permissions here?",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5eb2e95_5661bc07",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T02:07:20Z",
+      "side": 1,
+      "message": "Will remove mac address logging before merge",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16621910_0bd85cd7",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T02:07:20Z",
+      "side": 1,
+      "message": "Add call to HAL here once it\u0027s ready?",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce24bc82_c7dc08c1",
+        "filename": "system/service/bluetooth_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T02:07:20Z",
+      "side": 1,
+      "message": "Will remove mac address logging before merge",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ba75c8_24059252",
+        "filename": "system/service/bluetooth_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-14T02:07:20Z",
+      "side": 1,
+      "message": "Call HAL here once it\u0027s ready?",
+      "revId": "c328e675c28c4e95178f17d2bb1b5a703441e99e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
