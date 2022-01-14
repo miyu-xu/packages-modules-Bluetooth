@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "941c43f6_c2963350",
+        "filename": "system/gd/packet/parser/packet_dependency.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T21:44:42Z",
+      "side": 1,
+      "message": "I would remove \"my\" since you\u0027re passing in the packet_name.",
+      "range": {
+        "startLine": 29,
+        "startChar": 47,
+        "endLine": 29,
+        "endChar": 49
+      },
+      "revId": "07a8e6a2be7450ad1fc68f708b69798e1f439336",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "143f335b_322417f8",
+        "filename": "system/gd/packet/parser/packet_dependency.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-14T21:44:42Z",
+      "side": 1,
+      "message": "I wonder if it would be simpler to have two maps, one for parse parameters and one for match fields.\n\nIt was surprising to me that we\u0027re looking up both in the same map.",
+      "range": {
+        "startLine": 30,
+        "startChar": 47,
+        "endLine": 30,
+        "endChar": 61
+      },
+      "revId": "07a8e6a2be7450ad1fc68f708b69798e1f439336",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
