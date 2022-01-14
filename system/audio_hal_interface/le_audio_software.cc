@@ -357,12 +357,12 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
 
   if (HalVersionManager::GetHalTransport() ==
       BluetoothAudioHalTransport::HIDL) {
-    hidl::SessionType_2_1 session_type =
-        hidl::SessionType_2_1::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
+    hidl::SessionType_2_2 session_type =
+        hidl::SessionType_2_2::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
     if (CodecManager::GetInstance()->GetCodecLocation() !=
         CodecLocation::HOST) {
       session_type =
-          hidl::SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH;
+          hidl::SessionType_2_2::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH;
     }
     hidl::le_audio::LeAudioSinkTransport::instance =
         new hidl::le_audio::LeAudioSinkTransport(session_type,
@@ -419,12 +419,12 @@ LeAudioClientInterface::Source* LeAudioClientInterface::GetSource(
 
   if (HalVersionManager::GetHalTransport() ==
       BluetoothAudioHalTransport::HIDL) {
-    hidl::SessionType_2_1 session_type =
-        hidl::SessionType_2_1::LE_AUDIO_SOFTWARE_DECODED_DATAPATH;
+    hidl::SessionType_2_2 session_type =
+        hidl::SessionType_2_2::LE_AUDIO_SOFTWARE_DECODED_DATAPATH;
     if (CodecManager::GetInstance()->GetCodecLocation() !=
         CodecLocation::HOST) {
       session_type =
-          hidl::SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH;
+          hidl::SessionType_2_2::LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH;
     }
 
     hidl::le_audio::LeAudioSourceTransport::instance =

@@ -109,7 +109,7 @@ class LeAudioTransport {
 class LeAudioSinkTransport
     : public ::bluetooth::audio::hidl::IBluetoothSinkTransportInstance {
  public:
-  LeAudioSinkTransport(SessionType_2_1 session_type, StreamCallbacks stream_cb);
+  LeAudioSinkTransport(SessionType_2_2 session_type, StreamCallbacks stream_cb);
 
   ~LeAudioSinkTransport();
 
@@ -152,7 +152,7 @@ class LeAudioSinkTransport
 class LeAudioSourceTransport
     : public ::bluetooth::audio::hidl::IBluetoothSourceTransportInstance {
  public:
-  LeAudioSourceTransport(SessionType_2_1 session_type,
+  LeAudioSourceTransport(SessionType_2_2 session_type,
                          StreamCallbacks stream_cb);
 
   ~LeAudioSourceTransport();

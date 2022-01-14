@@ -277,7 +277,7 @@ void flush_sink() {
   LeAudioSinkTransport::interface->FlushAudioData();
 }
 
-LeAudioSinkTransport::LeAudioSinkTransport(SessionType_2_1 session_type,
+LeAudioSinkTransport::LeAudioSinkTransport(SessionType_2_2 session_type,
                                            StreamCallbacks stream_cb)
     : IBluetoothSinkTransportInstance(session_type,
                                       (AudioConfiguration_2_2){}) {
@@ -352,7 +352,7 @@ void flush_source() {
   LeAudioSourceTransport::interface->FlushAudioData();
 }
 
-LeAudioSourceTransport::LeAudioSourceTransport(SessionType_2_1 session_type,
+LeAudioSourceTransport::LeAudioSourceTransport(SessionType_2_2 session_type,
                                                StreamCallbacks stream_cb)
     : IBluetoothSourceTransportInstance(session_type,
                                         (AudioConfiguration_2_2){}) {
@@ -510,7 +510,7 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
   std::vector<AudioSetConfiguration> offload_capabilities;
   std::vector<AudioCapabilities_2_2> le_audio_hal_capabilities =
       BluetoothAudioSinkClientInterface::GetAudioCapabilities_2_2(
-          SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
+          SessionType_2_2::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
   std::string strCapabilityLog;
 
   for (auto halCapability : le_audio_hal_capabilities) {

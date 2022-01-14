@@ -116,7 +116,7 @@ constexpr unsigned int kMaxWaitingTimeMs = 4500;
 BluetoothAudioPort::BluetoothAudioPort()
     : cookie_(android::bluetooth::audio::kObserversCookieUndefined),
       state_(BluetoothStreamState::DISABLED),
-      session_type_(SessionType_2_1::UNKNOWN) {}
+      session_type_(SessionType_2_2::UNKNOWN) {}
 
 bool BluetoothAudioPort::SetUp(audio_devices_t devices) {
   if (!init_session_type(devices)) return false;
@@ -165,30 +165,30 @@ bool BluetoothAudioPort::init_session_type(audio_devices_t device) {
     case AUDIO_DEVICE_OUT_BLUETOOTH_A2DP_SPEAKER:
       LOG(VERBOSE) << __func__ << ": device=AUDIO_DEVICE_OUT_BLUETOOTH_A2DP (HEADPHONES/SPEAKER) ("
                    << StringPrintf("%#x", device) << ")";
-      session_type_ = SessionType_2_1::A2DP_SOFTWARE_ENCODING_DATAPATH;
+      session_type_ = SessionType_2_2::A2DP_SOFTWARE_ENCODING_DATAPATH;
       break;
     case AUDIO_DEVICE_OUT_HEARING_AID:
       LOG(VERBOSE) << __func__ << ": device=AUDIO_DEVICE_OUT_HEARING_AID (MEDIA/VOICE) (" << StringPrintf("%#x", device)
                    << ")";
-      session_type_ = SessionType_2_1::HEARING_AID_SOFTWARE_ENCODING_DATAPATH;
+      session_type_ = SessionType_2_2::HEARING_AID_SOFTWARE_ENCODING_DATAPATH;
       break;
     case AUDIO_DEVICE_OUT_BLE_HEADSET:
       LOG(VERBOSE) << __func__
                    << ": device=AUDIO_DEVICE_OUT_BLE_HEADSET (MEDIA/VOICE) ("
                    << StringPrintf("%#x", device) << ")";
-      session_type_ = SessionType_2_1::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
+      session_type_ = SessionType_2_2::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
       break;
     case AUDIO_DEVICE_OUT_BLE_SPEAKER:
       LOG(VERBOSE) << __func__
                    << ": device=AUDIO_DEVICE_OUT_BLE_SPEAKER (MEDIA) ("
                    << StringPrintf("%#x", device) << ")";
-      session_type_ = SessionType_2_1::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
+      session_type_ = SessionType_2_2::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
       break;
     case AUDIO_DEVICE_IN_BLE_HEADSET:
       LOG(VERBOSE) << __func__
                    << ": device=AUDIO_DEVICE_IN_BLE_HEADSET (VOICE) ("
                    << StringPrintf("%#x", device) << ")";
-      session_type_ = SessionType_2_1::LE_AUDIO_SOFTWARE_DECODED_DATAPATH;
+      session_type_ = SessionType_2_2::LE_AUDIO_SOFTWARE_DECODED_DATAPATH;
       break;
     default:
       LOG(ERROR) << __func__ << ": unknown device=" << StringPrintf("%#x", device);
