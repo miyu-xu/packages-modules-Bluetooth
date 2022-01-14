@@ -46,6 +46,30 @@
       },
       "revId": "9636f58396171f38879fdc3c98914de3f7447b08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ad7d83_7db83330",
+        "filename": "system/binder/android/bluetooth/IBluetoothLeCallControl.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-01-14T13:08:06Z",
+      "side": 0,
+      "message": "Just to be sure it\u0027s ok for you: \nWithout the receiver you will lost any Exception occuring in the service.\nWith the receiver you will catch only the RuntimeException (SecurityException is part of it), store them into the receiver and throw them again in the caller process at the getValue time.",
+      "parentUuid": "124fadbe_63b370f9",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 6
+      },
+      "revId": "9636f58396171f38879fdc3c98914de3f7447b08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
