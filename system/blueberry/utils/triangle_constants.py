@@ -9,6 +9,7 @@ WAITING_TIME_SEC = 60
 
 NEARBY_PACKAGE = 'com.google.android.gms.nearby'
 WEARABLE_PACKAGE = 'com.google.android.gms.wearable'
+WEARABLE_APP_PACKAGE = 'com.google.android.wearable.app'
 
 SET_SCREEN_OFF_TIMEOUT_HALF_HOUR = (
     'settings put system screen_off_timeout 1800000')
@@ -37,6 +38,11 @@ CONNECTION_SWITCHING_FLAGS = (
         'value': 'true'
     },
     {
+        'name': 'fast_pair_enable_triangle_audio_switch_for_calling',
+        'type': FLAG_TYPE.BOOLEAN,
+        'value': 'true'
+    },
+    {
         'name': 'fast_pair_manual_connect_affect_duration_millis',
         'type': FLAG_TYPE.LONG,
         'value': '60000'
@@ -51,6 +57,13 @@ PHONE_PHENOTYPE_FLAGS = {
                 'type': FLAG_TYPE.BOOLEAN,
                 'value': 'true'
             },
+            {
+                'name': (
+                    'fast_pair_prevent_wearable_from_unwanted_hfp_active_device'
+                    ),
+                'type': FLAG_TYPE.BOOLEAN,
+                'value': 'true'
+            }
         ) + CONNECTION_SWITCHING_FLAGS
     ,
     WEARABLE_PACKAGE:
