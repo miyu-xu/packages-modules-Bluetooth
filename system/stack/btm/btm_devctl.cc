@@ -327,8 +327,7 @@ tBTM_STATUS BTM_SetLocalDeviceName(const char* p_name) {
   if (!controller_get_interface()->get_is_ready()) return (BTM_DEV_RESET);
   /* Save the device name if local storage is enabled */
   p = (uint8_t*)btm_cb.cfg.bd_name;
-  if (p != (uint8_t*)p_name)
-    strlcpy(btm_cb.cfg.bd_name, p_name, BTM_MAX_LOC_BD_NAME_LEN + 1);
+  if (p != (uint8_t*)p_name) btm_loc_bd_name_set(btm_cb.cfg.bd_name, p_name);
 
   btsnd_hcic_change_name(p);
   return (BTM_CMD_STARTED);
@@ -348,7 +347,7 @@ tBTM_STATUS BTM_SetLocalDeviceName(const char* p_name) {
  *
  ******************************************************************************/
 tBTM_STATUS BTM_ReadLocalDeviceName(const char** p_name) {
-  *p_name = btm_cb.cfg.bd_name;
+  *p_name = btm_loc_bd_name_text(btm_cb.cfg.bd_name);
   return (BTM_SUCCESS);
 }
 
