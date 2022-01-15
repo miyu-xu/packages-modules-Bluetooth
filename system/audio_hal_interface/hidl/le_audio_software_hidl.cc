@@ -468,11 +468,6 @@ std::unordered_map<AudioLocation, uint32_t> audio_location_map{
 
 bool halConfigToCodecCapabilitySetting(
     UnicastCapability halConfig, CodecCapabilitySetting& codecCapability) {
-  if (halConfig.codecType != CodecType::LC3) {
-    LOG(WARNING) << "Unsupported codecType: " << toString(halConfig.codecType);
-    return false;
-  }
-
   Lc3Parameters halLc3Config = halConfig.capabilities;
   AudioLocation supportedChannel = halConfig.supportedChannel;
 
@@ -513,7 +508,15 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
           SessionType_2_1::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
   std::string strCapabilityLog;
 
-  for (auto halCapability : le_audio_hal_capabilities) {
+  for (auto& halCapability : le_audio_hal_capabilities) {
+    if (halCapability.leAudioCapabilities().unicastCodecType !=
+        CodecType::LC3) {
+      LOG(WARNING) << "Unsupported codecType: "
+                   << toString(
+                          halCapability.leAudioCapabilities().unicastCodecType);
+      continue;
+    }
+
     CodecCapabilitySetting encodeCapability;
     CodecCapabilitySetting decodeCapability;
     UnicastCapability halEncodeConfig =
@@ -523,7 +526,8 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
     AudioSetConfiguration audioSetConfig = {.name = "offload capability"};
     strCapabilityLog.clear();
 
-    if (halConfigToCodecCapabilitySetting(halEncodeConfig, encodeCapability)) {
+    if (halEncodeConfig.channelCountPerDevice != 0 &&
+        halConfigToCodecCapabilitySetting(halEncodeConfig, encodeCapability)) {
       audioSetConfig.confs.push_back(SetConfiguration(
           ::le_audio::types::kLeAudioDirectionSink, halEncodeConfig.deviceCount,
           halEncodeConfig.deviceCount * halEncodeConfig.channelCountPerDevice,
@@ -531,7 +535,8 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
       strCapabilityLog = " Encode Capability: " + toString(halEncodeConfig);
     }
 
-    if (halConfigToCodecCapabilitySetting(halDecodeConfig, decodeCapability)) {
+    if (halDecodeConfig.channelCountPerDevice != 0 &&
+        halConfigToCodecCapabilitySetting(halDecodeConfig, decodeCapability)) {
       audioSetConfig.confs.push_back(SetConfiguration(
           ::le_audio::types::kLeAudioDirectionSource,
           halDecodeConfig.deviceCount,
