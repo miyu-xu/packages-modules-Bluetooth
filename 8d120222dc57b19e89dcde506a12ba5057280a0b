@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa1d821b_6eb63ea5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-15T11:15:13Z",
+      "side": 1,
+      "message": "please remove one change id.",
+      "revId": "8d120222dc57b19e89dcde506a12ba5057280a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ea31c06_2da20a3f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-15T11:15:13Z",
+      "side": 1,
+      "message": "this is some fake uuid. made cleare it is place holder and rather use all EEEE uuid instead. maybe next week uuid will be available in public",
+      "revId": "8d120222dc57b19e89dcde506a12ba5057280a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a13d4fbd_86045fe5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-15T11:15:13Z",
+      "side": 1,
+      "message": "use EEEEE...",
+      "revId": "8d120222dc57b19e89dcde506a12ba5057280a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
