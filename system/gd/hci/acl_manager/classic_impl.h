@@ -33,12 +33,14 @@ namespace acl_manager {
 
 struct acl_connection {
   acl_connection(AddressWithType address_with_type, AclConnection::QueueDownEnd* queue_down_end, os::Handler* handler)
-      : assembler_(address_with_type, queue_down_end, handler), address_with_type_(address_with_type) {}
-  ~acl_connection() = default;
-  struct acl_manager::assembler assembler_;
+      : address_with_type_(address_with_type),
+        assembler_(new acl_manager::assembler(address_with_type, queue_down_end, handler)) {}
+  ~acl_connection() {
+    delete assembler_;
+  }
   AddressWithType address_with_type_;
+  struct acl_manager::assembler* assembler_;
   ConnectionManagementCallbacks* connection_management_callbacks_ = nullptr;
-  std::shared_ptr<std::atomic<bool>> is_callback_valid_ = std::make_shared<std::atomic<bool>>(true);
 };
 
 struct classic_impl : public security::ISecurityManagerListener {
@@ -64,16 +66,8 @@ struct classic_impl : public security::ISecurityManagerListener {
 
   ~classic_impl() {
     hci_layer_->PutAclConnectionInterface();
-    acl_connections_.clear();
+    callbacks.reset();
     security_manager_.reset();
-  }
-
-  ConnectionManagementCallbacks* get_callbacks(uint16_t handle) {
-    auto connection = acl_connections_.find(handle);
-    if (connection == acl_connections_.end()) {
-      return nullptr;
-    }
-    return (connection->second.is_callback_valid_) ? connection->second.connection_management_callbacks_ : nullptr;
   }
 
   void on_classic_event(EventView event_packet) {
@@ -129,33 +123,90 @@ struct classic_impl : public security::ISecurityManagerListener {
     }
   }
 
-  void on_classic_disconnect(uint16_t handle, ErrorCode reason) {
-    auto callbacks = get_callbacks(handle);
-    if (callbacks != nullptr) {
-      round_robin_scheduler_->Unregister(handle);
-      callbacks->OnDisconnection(reason);
-      acl_connections_.erase(handle);
-    } else {
-      // This handle is probably for SCO, so we use the callback workaround.
-      if (non_acl_disconnect_callback_ != nullptr) {
-        non_acl_disconnect_callback_(handle, static_cast<uint8_t>(reason));
+ private:
+  struct {
+   private:
+    std::map<uint16_t, acl_connection> acl_connections_;
+    std::mutex acl_connections_guard_;
+    ConnectionManagementCallbacks* find_callbacks(uint16_t handle) {
+      auto connection = acl_connections_.find(handle);
+      if (connection == acl_connections_.end()) return nullptr;
+      return connection->second.connection_management_callbacks_;
+    }
+    void remove_connection(uint16_t handle) {
+      auto connection = acl_connections_.find(handle);
+      if (connection != acl_connections_.end()) {
+        connection->second.connection_management_callbacks_ = nullptr;
+        acl_connections_.erase(handle);
       }
     }
+
+   public:
+    bool is_empty() {
+      std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      return acl_connections_.empty();
+    }
+    void reset() {
+      std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      acl_connections_.clear();
+    }
+    void invalidate(uint16_t handle) {
+      std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      remove_connection(handle);
+    }
+    void execute(
+        uint16_t handle,
+        std::function<void(ConnectionManagementCallbacks* callbacks)> execute,
+        bool remove_afterwards = false) {
+      std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      auto callbacks = find_callbacks(handle);
+      if (callbacks != nullptr) execute(callbacks);
+      if (remove_afterwards) remove_connection(handle);
+    }
+    void send_packet(uint16_t handle, std::function<void(struct acl_manager::assembler* assembler)> cb) {
+      std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      auto connection = acl_connections_.find(handle);
+      cb((connection != acl_connections_.end()) ? connection->second.assembler_ : nullptr);
+    }
+    void add(
+        uint16_t handle,
+        const AddressWithType& remote_address,
+        AclConnection::QueueDownEnd* queue_end,
+        os::Handler* handler,
+        ConnectionManagementCallbacks* connection_management_callbacks) {
+      std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      auto emplace_pair = acl_connections_.emplace(
+          std::piecewise_construct,
+          std::forward_as_tuple(handle),
+          std::forward_as_tuple(remote_address, queue_end, handler));
+      ASSERT(emplace_pair.second);  // Make sure the connection is unique
+      emplace_pair.first->second.connection_management_callbacks_ = connection_management_callbacks;
+    }
+    uint16_t HACK_get_handle(Address address) {
+      //          std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      //          for (auto it = acl_connections_.begin(); it != acl_connections_.end(); it++) {
+      //              if (it->second.remote_address_.GetAddress() == address) {
+      //                  return it->first;
+      //              }
+      //          }
+      return 0xFFFF;
+    }
+  } callbacks;
+
+ public:
+  void send_packet(uint16_t handle, std::function<void(struct acl_manager::assembler* assembler)> cb) {
+    callbacks.send_packet(handle, cb);
   }
 
-  void handle_register_callbacks(ConnectionCallbacks* callbacks, os::Handler* handler) {
-    ASSERT(client_callbacks_ == nullptr);
-    ASSERT(client_handler_ == nullptr);
-    client_callbacks_ = callbacks;
-    client_handler_ = handler;
-  }
-
-  void handle_unregister_callbacks(ConnectionCallbacks* callbacks, std::promise<void> promise) {
-    ASSERT_LOG(client_callbacks_ == callbacks, "Registered callback entity is different then unregister request");
-    client_callbacks_ = nullptr;
-    client_handler_ = nullptr;
-    promise.set_value();
-  }
+  //  void invalidate_callbacks(uint16_t handle) {
+  //    std::unique_lock<std::mutex> lock(acl_connections_guard_);
+  //    auto connection = acl_connections_.find(handle);
+  //    if (connection == acl_connections_.end()) {
+  //      return;
+  //    }
+  //    connection->second.connection_management_callbacks_ = nullptr;
+  //    acl_connections_.erase(handle);
+  //  }
 
   void on_incoming_connection(EventView packet) {
     ConnectionRequestView request = ConnectionRequestView::Create(packet);
@@ -278,7 +329,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     connection->locally_initiated_ = locally_initiated;
     auto& connection_proxy = conn_pair.first->second;
     connection_proxy.connection_management_callbacks_ =
-        connection->GetEventCallbacks(connection_proxy.is_callback_valid_);
+        connection->GetEventCallbacks([this](uint16_t handle) { this->callbacks.invalidate(handle); });
     if (delayed_role_change_ != nullptr) {
       if (delayed_role_change_->GetBdAddr() == address) {
         LOG_INFO("Sending delayed role change for %s", delayed_role_change_->GetBdAddr().ToString().c_str());
@@ -306,6 +357,31 @@ struct classic_impl : public security::ISecurityManagerListener {
     }
   }
 
+  void cancel_connect(Address address) {
+    if (outgoing_connecting_address_ == address) {
+      LOG_INFO("Cannot cancel non-existent connection to %s", address.ToString().c_str());
+      return;
+    }
+    std::unique_ptr<CreateConnectionCancelBuilder> packet = CreateConnectionCancelBuilder::Create(address);
+    acl_connection_interface_->EnqueueCommand(
+        std::move(packet), handler_->BindOnce(&check_command_complete<CreateConnectionCancelCompleteView>));
+  }
+
+  static constexpr bool kRemoveConnectionAfterwards = true;
+  void on_classic_disconnect(uint16_t handle, ErrorCode reason) {
+    callbacks.execute(
+        handle,
+        [=](ConnectionManagementCallbacks* callbacks) {
+          round_robin_scheduler_->Unregister(handle);
+          callbacks->OnDisconnection(reason);
+        },
+        kRemoveConnectionAfterwards);
+    // This handle is probably for SCO, so we use the callback workaround.
+    if (non_acl_disconnect_callback_ != nullptr) {
+      non_acl_disconnect_callback_(handle, static_cast<uint8_t>(reason));
+    }
+  }
+
   void on_connection_packet_type_changed(EventView packet) {
     ConnectionPacketTypeChangedView packet_type_changed = ConnectionPacketTypeChangedView::Create(packet);
     if (!packet_type_changed.IsValid()) {
@@ -318,13 +394,9 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = packet_type_changed.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    // We don't handle this event; we didn't do this in legacy stack either.
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      // We don't handle this event; we didn't do this in legacy stack either.
+    });
   }
 
   void on_central_link_key_complete(EventView packet) {
@@ -339,14 +411,10 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = complete_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    KeyFlag key_flag = complete_view.GetKeyFlag();
-    callbacks->OnCentralLinkKeyComplete(key_flag);
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      KeyFlag key_flag = complete_view.GetKeyFlag();
+      callbacks->OnCentralLinkKeyComplete(key_flag);
+    });
   }
 
   void on_authentication_complete(EventView packet) {
@@ -356,23 +424,186 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = authentication_complete.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnAuthenticationComplete(authentication_complete.GetStatus());
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      callbacks->OnAuthenticationComplete(authentication_complete.GetStatus());
+    });
   }
 
-  void cancel_connect(Address address) {
-    if (outgoing_connecting_address_ == address) {
-      LOG_INFO("Cannot cancel non-existent connection to %s", address.ToString().c_str());
+  void on_change_connection_link_key_complete(EventView packet) {
+    ChangeConnectionLinkKeyCompleteView complete_view = ChangeConnectionLinkKeyCompleteView::Create(packet);
+    if (!complete_view.IsValid()) {
+      LOG_ERROR("Received on_change_connection_link_key_complete with invalid packet");
+      return;
+    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
+      auto status = complete_view.GetStatus();
+      std::string error_code = ErrorCodeText(status);
+      LOG_ERROR("Received on_change_connection_link_key_complete with error code %s", error_code.c_str());
       return;
     }
-    std::unique_ptr<CreateConnectionCancelBuilder> packet = CreateConnectionCancelBuilder::Create(address);
-    acl_connection_interface_->EnqueueCommand(
-        std::move(packet), handler_->BindOnce(&check_command_complete<CreateConnectionCancelCompleteView>));
+    uint16_t handle = complete_view.GetConnectionHandle();
+    callbacks.execute(
+        handle, [=](ConnectionManagementCallbacks* callbacks) { callbacks->OnChangeConnectionLinkKeyComplete(); });
+  }
+
+  void on_read_clock_offset_complete(EventView packet) {
+    ReadClockOffsetCompleteView complete_view = ReadClockOffsetCompleteView::Create(packet);
+    if (!complete_view.IsValid()) {
+      LOG_ERROR("Received on_read_clock_offset_complete with invalid packet");
+      return;
+    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
+      auto status = complete_view.GetStatus();
+      std::string error_code = ErrorCodeText(status);
+      LOG_ERROR("Received on_read_clock_offset_complete with error code %s", error_code.c_str());
+      return;
+    }
+    uint16_t handle = complete_view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      uint16_t clock_offset = complete_view.GetClockOffset();
+      callbacks->OnReadClockOffsetComplete(clock_offset);
+    });
+  }
+
+  void on_mode_change(EventView packet) {
+    ModeChangeView mode_change_view = ModeChangeView::Create(packet);
+    if (!mode_change_view.IsValid()) {
+      LOG_ERROR("Received on_mode_change with invalid packet");
+      return;
+    }
+    uint16_t handle = mode_change_view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      callbacks->OnModeChange(
+          mode_change_view.GetStatus(), mode_change_view.GetCurrentMode(), mode_change_view.GetInterval());
+    });
+  }
+
+  void on_sniff_subrating(EventView packet) {
+    SniffSubratingEventView sniff_subrating_view = SniffSubratingEventView::Create(packet);
+    if (!sniff_subrating_view.IsValid()) {
+      LOG_ERROR("Received on_sniff_subrating with invalid packet");
+      return;
+    }
+    uint16_t handle = sniff_subrating_view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      callbacks->OnSniffSubrating(
+          sniff_subrating_view.GetStatus(),
+          sniff_subrating_view.GetMaximumTransmitLatency(),
+          sniff_subrating_view.GetMaximumReceiveLatency(),
+          sniff_subrating_view.GetMinimumRemoteTimeout(),
+          sniff_subrating_view.GetMinimumLocalTimeout());
+    });
+  }
+
+  void on_qos_setup_complete(EventView packet) {
+    QosSetupCompleteView complete_view = QosSetupCompleteView::Create(packet);
+    if (!complete_view.IsValid()) {
+      LOG_ERROR("Received on_qos_setup_complete with invalid packet");
+      return;
+    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
+      auto status = complete_view.GetStatus();
+      std::string error_code = ErrorCodeText(status);
+      LOG_ERROR("Received on_qos_setup_complete with error code %s", error_code.c_str());
+      return;
+    }
+    uint16_t handle = complete_view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      ServiceType service_type = complete_view.GetServiceType();
+      uint32_t token_rate = complete_view.GetTokenRate();
+      uint32_t peak_bandwidth = complete_view.GetPeakBandwidth();
+      uint32_t latency = complete_view.GetLatency();
+      uint32_t delay_variation = complete_view.GetDelayVariation();
+      callbacks->OnQosSetupComplete(service_type, token_rate, peak_bandwidth, latency, delay_variation);
+    });
+  }
+
+  void on_flow_specification_complete(EventView packet) {
+    FlowSpecificationCompleteView complete_view = FlowSpecificationCompleteView::Create(packet);
+    if (!complete_view.IsValid()) {
+      LOG_ERROR("Received on_flow_specification_complete with invalid packet");
+      return;
+    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
+      auto status = complete_view.GetStatus();
+      std::string error_code = ErrorCodeText(status);
+      LOG_ERROR("Received on_flow_specification_complete with error code %s", error_code.c_str());
+      return;
+    }
+    uint16_t handle = complete_view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      FlowDirection flow_direction = complete_view.GetFlowDirection();
+      ServiceType service_type = complete_view.GetServiceType();
+      uint32_t token_rate = complete_view.GetTokenRate();
+      uint32_t token_bucket_size = complete_view.GetTokenBucketSize();
+      uint32_t peak_bandwidth = complete_view.GetPeakBandwidth();
+      uint32_t access_latency = complete_view.GetAccessLatency();
+      callbacks->OnFlowSpecificationComplete(
+          flow_direction, service_type, token_rate, token_bucket_size, peak_bandwidth, access_latency);
+    });
+  }
+
+  void on_flush_occurred(EventView packet) {
+    FlushOccurredView flush_occurred_view = FlushOccurredView::Create(packet);
+    if (!flush_occurred_view.IsValid()) {
+      LOG_ERROR("Received on_flush_occurred with invalid packet");
+      return;
+    }
+    uint16_t handle = flush_occurred_view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) { callbacks->OnFlushOccurred(); });
+  }
+
+  void on_read_remote_version_information(
+      hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      callbacks->OnReadRemoteVersionInformationComplete(hci_status, version, manufacturer_name, sub_version);
+    });
+  }
+
+  void on_read_remote_supported_features_complete(EventView packet) {
+    auto view = ReadRemoteSupportedFeaturesCompleteView::Create(packet);
+    ASSERT_LOG(view.IsValid(), "Read remote supported features packet invalid");
+    uint16_t handle = view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      callbacks->OnReadRemoteSupportedFeaturesComplete(view.GetLmpFeatures());
+    });
+  }
+
+  void on_read_remote_extended_features_complete(EventView packet) {
+    auto view = ReadRemoteExtendedFeaturesCompleteView::Create(packet);
+    ASSERT_LOG(view.IsValid(), "Read remote extended features packet invalid");
+    uint16_t handle = view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      callbacks->OnReadRemoteExtendedFeaturesComplete(
+          view.GetPageNumber(), view.GetMaximumPageNumber(), view.GetExtendedLmpFeatures());
+    });
+  }
+
+  void OnEncryptionStateChanged(EncryptionChangeView encryption_change_view) override {
+    if (!encryption_change_view.IsValid()) {
+      LOG_ERROR("Invalid packet");
+      return;
+    } else if (encryption_change_view.GetStatus() != ErrorCode::SUCCESS) {
+      auto status = encryption_change_view.GetStatus();
+      std::string error_code = ErrorCodeText(status);
+      LOG_ERROR("error_code %s", error_code.c_str());
+      return;
+    }
+    uint16_t handle = encryption_change_view.GetConnectionHandle();
+    callbacks.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      EncryptionEnabled enabled = encryption_change_view.GetEncryptionEnabled();
+      callbacks->OnEncryptionChange(enabled);
+    });
+  }
+
+  void on_link_supervision_timeout_changed(EventView packet) {
+    auto view = LinkSupervisionTimeoutChangedView::Create(packet);
+    ASSERT_LOG(view.IsValid(), "Link supervision timeout changed packet invalid");
+    LOG_INFO("UNIMPLEMENTED called");
+  }
+
+  void on_accept_connection_status(Address address, CommandStatusView status) {
+    auto accept_status = AcceptConnectionRequestStatusView::Create(status);
+    ASSERT(accept_status.IsValid());
+    if (status.GetStatus() != ErrorCode::SUCCESS) {
+      cancel_connect(address);
+    }
   }
 
   void central_link_key(KeyFlag key_flag) {
@@ -383,8 +614,8 @@ struct classic_impl : public security::ISecurityManagerListener {
 
   void switch_role(Address address, Role role) {
     std::unique_ptr<SwitchRoleBuilder> packet = SwitchRoleBuilder::Create(address, role);
-    acl_connection_interface_->EnqueueCommand(std::move(packet),
-                                              handler_->BindOnce(&check_command_status<SwitchRoleStatusView>));
+    acl_connection_interface_->EnqueueCommand(
+        std::move(packet), handler_->BindOnce(&check_command_status<SwitchRoleStatusView>));
   }
 
   void write_default_link_policy_settings(uint16_t default_link_policy_settings) {
@@ -401,111 +632,31 @@ struct classic_impl : public security::ISecurityManagerListener {
         handler_->BindOnceOn(this, &classic_impl::on_accept_connection_status, address));
   }
 
-  void on_change_connection_link_key_complete(EventView packet) {
-    ChangeConnectionLinkKeyCompleteView complete_view = ChangeConnectionLinkKeyCompleteView::Create(packet);
-    if (!complete_view.IsValid()) {
-      LOG_ERROR("Received on_change_connection_link_key_complete with invalid packet");
-      return;
-    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
-      auto status = complete_view.GetStatus();
-      std::string error_code = ErrorCodeText(status);
-      LOG_ERROR("Received on_change_connection_link_key_complete with error code %s", error_code.c_str());
-      return;
-    }
-    uint16_t handle = complete_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnChangeConnectionLinkKeyComplete();
+  void reject_connection(std::unique_ptr<RejectConnectionRequestBuilder> builder) {
+    acl_connection_interface_->EnqueueCommand(
+        std::move(builder), handler_->BindOnce(&check_command_status<RejectConnectionRequestStatusView>));
   }
 
-  void on_read_clock_offset_complete(EventView packet) {
-    ReadClockOffsetCompleteView complete_view = ReadClockOffsetCompleteView::Create(packet);
-    if (!complete_view.IsValid()) {
-      LOG_ERROR("Received on_read_clock_offset_complete with invalid packet");
-      return;
-    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
-      auto status = complete_view.GetStatus();
-      std::string error_code = ErrorCodeText(status);
-      LOG_ERROR("Received on_read_clock_offset_complete with error code %s", error_code.c_str());
-      return;
-    }
-    uint16_t handle = complete_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    uint16_t clock_offset = complete_view.GetClockOffset();
-    callbacks->OnReadClockOffsetComplete(clock_offset);
+  void OnDeviceBonded(bluetooth::hci::AddressWithType device) override {}
+  void OnDeviceUnbonded(bluetooth::hci::AddressWithType device) override {}
+  void OnDeviceBondFailed(bluetooth::hci::AddressWithType device, security::PairingFailure status) override {}
+
+  void set_security_module(security::SecurityModule* security_module) {
+    security_manager_ = security_module->GetSecurityManager();
+    security_manager_->RegisterCallbackListener(this, handler_);
   }
 
-  void on_mode_change(EventView packet) {
-    ModeChangeView mode_change_view = ModeChangeView::Create(packet);
-    if (!mode_change_view.IsValid()) {
-      LOG_ERROR("Received on_mode_change with invalid packet");
-      return;
+  uint16_t HACK_get_handle(Address address) {
+    for (auto it = acl_connections_.begin(); it != acl_connections_.end(); it++) {
+      if (it->second.address_with_type_.GetAddress() == address) {
+        return it->first;
+      }
     }
-    uint16_t handle = mode_change_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnModeChange(
-        mode_change_view.GetStatus(), mode_change_view.GetCurrentMode(), mode_change_view.GetInterval());
+    return 0xFFFF;
   }
 
-  void on_sniff_subrating(EventView packet) {
-    SniffSubratingEventView sniff_subrating_view = SniffSubratingEventView::Create(packet);
-    if (!sniff_subrating_view.IsValid()) {
-      LOG_ERROR("Received on_sniff_subrating with invalid packet");
-      return;
-    }
-    uint16_t handle = sniff_subrating_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnSniffSubrating(
-        sniff_subrating_view.GetStatus(),
-        sniff_subrating_view.GetMaximumTransmitLatency(),
-        sniff_subrating_view.GetMaximumReceiveLatency(),
-        sniff_subrating_view.GetMinimumRemoteTimeout(),
-        sniff_subrating_view.GetMinimumLocalTimeout());
-  }
-
-  void on_qos_setup_complete(EventView packet) {
-    QosSetupCompleteView complete_view = QosSetupCompleteView::Create(packet);
-    if (!complete_view.IsValid()) {
-      LOG_ERROR("Received on_qos_setup_complete with invalid packet");
-      return;
-    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
-      auto status = complete_view.GetStatus();
-      std::string error_code = ErrorCodeText(status);
-      LOG_ERROR("Received on_qos_setup_complete with error code %s", error_code.c_str());
-      return;
-    }
-    uint16_t handle = complete_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    ServiceType service_type = complete_view.GetServiceType();
-    uint32_t token_rate = complete_view.GetTokenRate();
-    uint32_t peak_bandwidth = complete_view.GetPeakBandwidth();
-    uint32_t latency = complete_view.GetLatency();
-    uint32_t delay_variation = complete_view.GetDelayVariation();
-    callbacks->OnQosSetupComplete(service_type, token_rate, peak_bandwidth, latency, delay_variation);
+  void HACK_SetNonAclDisconnectCallback(std::function<void(uint16_t, uint8_t)> callback) {
+    non_acl_disconnect_callback_ = callback;
   }
 
   void on_role_change(EventView packet) {
@@ -536,148 +687,18 @@ struct classic_impl : public security::ISecurityManagerListener {
     }
   }
 
-  void on_flow_specification_complete(EventView packet) {
-    FlowSpecificationCompleteView complete_view = FlowSpecificationCompleteView::Create(packet);
-    if (!complete_view.IsValid()) {
-      LOG_ERROR("Received on_flow_specification_complete with invalid packet");
-      return;
-    } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
-      auto status = complete_view.GetStatus();
-      std::string error_code = ErrorCodeText(status);
-      LOG_ERROR("Received on_flow_specification_complete with error code %s", error_code.c_str());
-      return;
-    }
-    uint16_t handle = complete_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    FlowDirection flow_direction = complete_view.GetFlowDirection();
-    ServiceType service_type = complete_view.GetServiceType();
-    uint32_t token_rate = complete_view.GetTokenRate();
-    uint32_t token_bucket_size = complete_view.GetTokenBucketSize();
-    uint32_t peak_bandwidth = complete_view.GetPeakBandwidth();
-    uint32_t access_latency = complete_view.GetAccessLatency();
-    callbacks->OnFlowSpecificationComplete(
-        flow_direction, service_type, token_rate, token_bucket_size, peak_bandwidth, access_latency);
+  void handle_register_callbacks(ConnectionCallbacks* callbacks, os::Handler* handler) {
+    ASSERT(client_callbacks_ == nullptr);
+    ASSERT(client_handler_ == nullptr);
+    client_callbacks_ = callbacks;
+    client_handler_ = handler;
   }
 
-  void on_flush_occurred(EventView packet) {
-    FlushOccurredView flush_occurred_view = FlushOccurredView::Create(packet);
-    if (!flush_occurred_view.IsValid()) {
-      LOG_ERROR("Received on_flush_occurred with invalid packet");
-      return;
-    }
-    uint16_t handle = flush_occurred_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnFlushOccurred();
-  }
-
-  void on_read_remote_version_information(
-      hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnReadRemoteVersionInformationComplete(hci_status, version, manufacturer_name, sub_version);
-  }
-
-  void on_read_remote_supported_features_complete(EventView packet) {
-    auto view = ReadRemoteSupportedFeaturesCompleteView::Create(packet);
-    ASSERT_LOG(view.IsValid(), "Read remote supported features packet invalid");
-    uint16_t handle = view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnReadRemoteSupportedFeaturesComplete(view.GetLmpFeatures());
-  }
-
-  void on_read_remote_extended_features_complete(EventView packet) {
-    auto view = ReadRemoteExtendedFeaturesCompleteView::Create(packet);
-    ASSERT_LOG(view.IsValid(), "Read remote extended features packet invalid");
-    uint16_t handle = view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    callbacks->OnReadRemoteExtendedFeaturesComplete(
-        view.GetPageNumber(), view.GetMaximumPageNumber(), view.GetExtendedLmpFeatures());
-  }
-
-  void on_link_supervision_timeout_changed(EventView packet) {
-    auto view = LinkSupervisionTimeoutChangedView::Create(packet);
-    ASSERT_LOG(view.IsValid(), "Link supervision timeout changed packet invalid");
-    LOG_INFO("UNIMPLEMENTED called");
-  }
-
-  void on_accept_connection_status(Address address, CommandStatusView status) {
-    auto accept_status = AcceptConnectionRequestStatusView::Create(status);
-    ASSERT(accept_status.IsValid());
-    if (status.GetStatus() != ErrorCode::SUCCESS) {
-      cancel_connect(address);
-    }
-  }
-
-  void reject_connection(std::unique_ptr<RejectConnectionRequestBuilder> builder) {
-    acl_connection_interface_->EnqueueCommand(
-        std::move(builder), handler_->BindOnce(&check_command_status<RejectConnectionRequestStatusView>));
-  }
-
-  void OnDeviceBonded(bluetooth::hci::AddressWithType device) override {}
-  void OnDeviceUnbonded(bluetooth::hci::AddressWithType device) override {}
-  void OnDeviceBondFailed(bluetooth::hci::AddressWithType device, security::PairingFailure status) override {}
-
-  void OnEncryptionStateChanged(EncryptionChangeView encryption_change_view) override {
-    if (!encryption_change_view.IsValid()) {
-      LOG_ERROR("Invalid packet");
-      return;
-    } else if (encryption_change_view.GetStatus() != ErrorCode::SUCCESS) {
-      auto status = encryption_change_view.GetStatus();
-      std::string error_code = ErrorCodeText(status);
-      LOG_ERROR("error_code %s", error_code.c_str());
-      return;
-    }
-    uint16_t handle = encryption_change_view.GetConnectionHandle();
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      LOG_WARN("Unknown connection handle 0x%04hx", handle);
-      ASSERT(!crash_on_unknown_handle_);
-      return;
-    }
-    EncryptionEnabled enabled = encryption_change_view.GetEncryptionEnabled();
-    callbacks->OnEncryptionChange(enabled);
-  }
-
-  void set_security_module(security::SecurityModule* security_module) {
-    security_manager_ = security_module->GetSecurityManager();
-    security_manager_->RegisterCallbackListener(this, handler_);
-  }
-
-  uint16_t HACK_get_handle(Address address) {
-    for (auto it = acl_connections_.begin(); it != acl_connections_.end(); it++) {
-      if (it->second.address_with_type_.GetAddress() == address) {
-        return it->first;
-      }
-    }
-    return 0xFFFF;
-  }
-
-  void HACK_SetNonAclDisconnectCallback(std::function<void(uint16_t, uint8_t)> callback) {
-    non_acl_disconnect_callback_ = callback;
+  void handle_unregister_callbacks(ConnectionCallbacks* callbacks, std::promise<void> promise) {
+    ASSERT_LOG(client_callbacks_ == callbacks, "Registered callback entity is different then unregister request");
+    client_callbacks_ = nullptr;
+    client_handler_ = nullptr;
+    promise.set_value();
   }
 
   HciLayer* hci_layer_ = nullptr;
@@ -687,6 +708,7 @@ struct classic_impl : public security::ISecurityManagerListener {
   os::Handler* handler_ = nullptr;
   ConnectionCallbacks* client_callbacks_ = nullptr;
   os::Handler* client_handler_ = nullptr;
+  std::mutex acl_connections_guard_;
   std::map<uint16_t, acl_connection> acl_connections_;
   Address outgoing_connecting_address_{Address::kEmpty};
   Address incoming_connecting_address_{Address::kEmpty};
