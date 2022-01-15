@@ -42,3 +42,10 @@ typedef uint8_t BD_NAME[BD_NAME_LEN + 1]; /* Device name */
 typedef uint8_t tBTM_BD_NAME[BTM_MAX_REM_BD_NAME_LEN + 1];
 
 typedef uint8_t tBTM_LOC_BD_NAME[BTM_MAX_LOC_BD_NAME_LEN + 1];
+
+#ifdef __cplusplus
+bool btm_loc_bd_name_is_set(const tBTM_LOC_BD_NAME& btm_loc_bd_name);
+const char* btm_loc_bd_name_text(const tBTM_LOC_BD_NAME& btm_loc_bd_name);
+size_t btm_loc_bd_name_length(const tBTM_LOC_BD_NAME& btm_loc_bd_name);
+size_t btm_loc_bd_name_set(tBTM_LOC_BD_NAME& btm_loc_bd_name, const char* name);
+#endif  // __cplusplus
