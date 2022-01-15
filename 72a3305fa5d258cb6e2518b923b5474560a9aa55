@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "336fc894_1c668522",
+        "filename": "system/binder/android/bluetooth/IBluetoothHapClient.aidl",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-15T11:25:13Z",
+      "side": 1,
+      "message": "Bluetooth profiles should use result receiver: Similar as it is done here: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1927379",
+      "revId": "72a3305fa5d258cb6e2518b923b5474560a9aa55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
