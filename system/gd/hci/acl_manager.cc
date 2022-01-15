@@ -94,16 +94,22 @@ struct AclManager::impl {
     if (handle == kQualcommDebugHandle) {
       return;
     }
-    auto connection_pair = classic_impl_->acl_connections_.find(handle);
-    if (connection_pair != classic_impl_->acl_connections_.end()) {
-      connection_pair->second.assembler_.on_incoming_packet(*packet);
-    } else {
-      auto le_connection_pair = le_impl_->le_acl_connections_.find(handle);
-      if (le_connection_pair == le_impl_->le_acl_connections_.end()) {
-        LOG_INFO("Dropping packet of size %zu to unknown connection 0x%0hx", packet->size(), handle);
-        return;
+    bool was_sent = false;
+    classic_impl_->send_packet_upward(handle, [&packet, &was_sent](struct acl_manager::assembler* assembler) {
+      if (assembler != nullptr) {
+        was_sent = true;
+        assembler->on_incoming_packet(*packet);
       }
-      le_connection_pair->second.assembler_.on_incoming_packet(*packet);
+    });
+    le_impl_->send_packet_upward(handle, [&packet, &was_sent](struct acl_manager::assembler* assembler) {
+      if (assembler != nullptr) {
+        was_sent = true;
+        assembler->on_incoming_packet(*packet);
+      }
+    });
+    if (!was_sent) {
+      LOG_INFO("Dropping packet of size %zu to unknown connection 0x%0hx", packet->size(), packet->GetHandle());
+      return;
     }
   }
 
