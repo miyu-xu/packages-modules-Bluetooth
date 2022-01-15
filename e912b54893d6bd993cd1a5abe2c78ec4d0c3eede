@@ -1,0 +1,134 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019291269",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950596?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "57ae04c2_811d219f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-15T00:29:09Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "e912b54893d6bd993cd1a5abe2c78ec4d0c3eede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019291269",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950596?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "50d98111_608ccc74",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-15T00:29:09Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "e912b54893d6bd993cd1a5abe2c78ec4d0c3eede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019291270",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950596?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1277202c_2d19242a",
+        "filename": "system/gd/packet/parser/packet_def.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 947,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-15T00:29:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 947,
+        "startChar": 0,
+        "endLine": 947,
+        "endChar": 118
+      },
+      "revId": "e912b54893d6bd993cd1a5abe2c78ec4d0c3eede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019291270",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950596?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b0deaf68_f5fe5792",
+        "filename": "system/gd/packet/parser/packet_def.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 948,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-15T00:29:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 948,
+        "startChar": 0,
+        "endLine": 948,
+        "endChar": 112
+      },
+      "revId": "e912b54893d6bd993cd1a5abe2c78ec4d0c3eede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019291270",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1950596?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9f79f6b0_4b9b584e",
+        "filename": "system/gd/packet/parser/packet_def.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 972,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-15T00:29:09Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 972,
+        "startChar": 0,
+        "endLine": 972,
+        "endChar": 116
+      },
+      "revId": "e912b54893d6bd993cd1a5abe2c78ec4d0c3eede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
