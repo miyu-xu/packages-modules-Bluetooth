@@ -98,12 +98,13 @@ struct AclManager::impl {
     if (connection_pair != classic_impl_->acl_connections_.end()) {
       connection_pair->second.assembler_.on_incoming_packet(*packet);
     } else {
-      auto le_connection_pair = le_impl_->le_acl_connections_.find(handle);
-      if (le_connection_pair == le_impl_->le_acl_connections_.end()) {
-        LOG_INFO("Dropping packet of size %zu to unknown connection 0x%0hx", packet->size(), handle);
-        return;
-      }
-      le_connection_pair->second.assembler_.on_incoming_packet(*packet);
+      le_impl_->send_packet(handle, [&packet](struct acl_manager::assembler* assembler) {
+        if (assembler == nullptr) {
+          LOG_INFO("Dropping packet of size %zu to unknown connection 0x%0hx", packet->size(), packet->GetHandle());
+          return;
+        }
+        assembler->on_incoming_packet(*packet);
+      });
     }
   }
 
