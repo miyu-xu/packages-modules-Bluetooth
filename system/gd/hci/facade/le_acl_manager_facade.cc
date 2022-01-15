@@ -54,9 +54,10 @@ class LeAclManagerFacadeService : public LeAclManagerFacade::Service, public LeC
     for (auto& conn : acl_connections_) {
       if (conn.second.connection_ != nullptr) {
         conn.second.connection_->GetAclQueueEnd()->UnregisterDequeue();
-        conn.second.connection_.reset();
+        //        conn.second.connection_.reset();
       }
     }
+    acl_connections_.clear();
   }
 
   ::grpc::Status CreateConnection(
