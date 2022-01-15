@@ -69,11 +69,12 @@ struct classic_impl : public security::ISecurityManagerListener {
   }
 
   ConnectionManagementCallbacks* get_callbacks(uint16_t handle) {
+    // TODO Must ensure called with acl_connections_guard_ set
     auto connection = acl_connections_.find(handle);
     if (connection == acl_connections_.end()) {
       return nullptr;
     }
-    return (connection->second.is_callback_valid_) ? connection->second.connection_management_callbacks_ : nullptr;
+    return connection->second.connection_management_callbacks_;
   }
 
   void on_classic_event(EventView event_packet) {
@@ -129,7 +130,18 @@ struct classic_impl : public security::ISecurityManagerListener {
     }
   }
 
+  void invalidate_callbacks(uint16_t handle) {
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
+    auto connection = acl_connections_.find(handle);
+    if (connection == acl_connections_.end()) {
+      return;
+    }
+    connection->second.connection_management_callbacks_ = nullptr;
+    acl_connections_.erase(handle);
+  }
+
   void on_classic_disconnect(uint16_t handle, ErrorCode reason) {
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks != nullptr) {
       round_robin_scheduler_->Unregister(handle);
@@ -278,7 +290,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     connection->locally_initiated_ = locally_initiated;
     auto& connection_proxy = conn_pair.first->second;
     connection_proxy.connection_management_callbacks_ =
-        connection->GetEventCallbacks(connection_proxy.is_callback_valid_);
+        connection->GetEventCallbacks([this](uint16_t handle) { this->invalidate_callbacks(handle); });
     if (delayed_role_change_ != nullptr) {
       if (delayed_role_change_->GetBdAddr() == address) {
         LOG_INFO("Sending delayed role change for %s", delayed_role_change_->GetBdAddr().ToString().c_str());
@@ -318,6 +330,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = packet_type_changed.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -339,6 +352,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = complete_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -356,6 +370,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = authentication_complete.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -413,6 +428,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = complete_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -434,6 +450,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = complete_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -451,6 +468,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = mode_change_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -468,6 +486,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = sniff_subrating_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -494,6 +513,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = complete_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -548,6 +568,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = complete_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -571,6 +592,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = flush_occurred_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -582,6 +604,7 @@ struct classic_impl : public security::ISecurityManagerListener {
 
   void on_read_remote_version_information(
       hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -595,6 +618,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     auto view = ReadRemoteSupportedFeaturesCompleteView::Create(packet);
     ASSERT_LOG(view.IsValid(), "Read remote supported features packet invalid");
     uint16_t handle = view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -608,6 +632,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     auto view = ReadRemoteExtendedFeaturesCompleteView::Create(packet);
     ASSERT_LOG(view.IsValid(), "Read remote extended features packet invalid");
     uint16_t handle = view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -652,6 +677,7 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = encryption_change_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Unknown connection handle 0x%04hx", handle);
@@ -687,6 +713,7 @@ struct classic_impl : public security::ISecurityManagerListener {
   os::Handler* handler_ = nullptr;
   ConnectionCallbacks* client_callbacks_ = nullptr;
   os::Handler* client_handler_ = nullptr;
+  std::mutex acl_connections_guard_;
   std::map<uint16_t, acl_connection> acl_connections_;
   Address outgoing_connecting_address_{Address::kEmpty};
   Address incoming_connecting_address_{Address::kEmpty};

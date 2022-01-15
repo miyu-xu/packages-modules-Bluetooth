@@ -53,7 +53,6 @@ struct le_acl_connection {
   struct acl_manager::assembler assembler_;
   AddressWithType remote_address_;
   LeConnectionManagementCallbacks* le_connection_management_callbacks_ = nullptr;
-  std::shared_ptr<std::atomic<bool>> is_callback_valid_ = std::make_shared<std::atomic<bool>>(true);
 };
 
 struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
@@ -118,14 +117,26 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   LeConnectionManagementCallbacks* get_callbacks(uint16_t handle) {
+    // TODO Must ensure called with acl_connections_guard_ set
     auto connection = le_acl_connections_.find(handle);
     if (connection == le_acl_connections_.end()) {
       return nullptr;
     }
-    return (connection->second.is_callback_valid_) ? connection->second.le_connection_management_callbacks_ : nullptr;
+    return connection->second.le_connection_management_callbacks_;
+  }
+
+  void invalidate_callbacks(uint16_t handle) {
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
+    auto connection = le_acl_connections_.find(handle);
+    if (connection == le_acl_connections_.end()) {
+      return;
+    }
+    connection->second.le_connection_management_callbacks_ = nullptr;
+    le_acl_connections_.erase(handle);
   }
 
   void on_le_disconnect(uint16_t handle, ErrorCode reason) {
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       return;
@@ -205,7 +216,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
     connection_proxy.le_connection_management_callbacks_ =
-        connection->GetEventCallbacks(connection_proxy.is_callback_valid_);
+        connection->GetEventCallbacks([this](uint16_t handle) { this->invalidate_callbacks(handle); });
     le_client_handler_->Post(common::BindOnce(&LeConnectionCallbacks::OnLeConnectSuccess,
                                               common::Unretained(le_client_callbacks_), remote_address,
                                               std::move(connection)));
@@ -278,7 +289,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
     connection_proxy.le_connection_management_callbacks_ =
-        connection->GetEventCallbacks(connection_proxy.is_callback_valid_);
+        connection->GetEventCallbacks([this](uint16_t handle) { this->invalidate_callbacks(handle); });
     le_client_handler_->Post(common::BindOnce(&LeConnectionCallbacks::OnLeConnectSuccess,
                                               common::Unretained(le_client_callbacks_), remote_address,
                                               std::move(connection)));
@@ -291,6 +302,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
     auto handle = complete_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Can't find connection 0x%hx", handle);
@@ -311,6 +323,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
     auto handle = complete_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Can't find connection 0x%hx", handle);
@@ -322,6 +335,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   void on_le_read_remote_version_information(
       hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_INFO("No le connection registered for 0x%hx", handle);
@@ -343,6 +357,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
     auto handle = data_length_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Can't find connection 0x%hx", handle);
@@ -364,6 +379,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     }
 
     auto handle = request_view.GetConnectionHandle();
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Can't find connection 0x%hx", handle);
@@ -715,6 +731,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void UpdateLocalAddress(uint16_t handle, hci::AddressWithType address_with_type) {
+    std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
     auto callbacks = get_callbacks(handle);
     if (callbacks == nullptr) {
       LOG_WARN("Can't find connection 0x%hx", handle);
@@ -752,6 +769,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   LeConnectionCallbacks* le_client_callbacks_ = nullptr;
   os::Handler* le_client_handler_ = nullptr;
   std::map<uint16_t, le_acl_connection> le_acl_connections_;
+  std::mutex le_acl_connections_guard_;
   std::set<AddressWithType> connecting_le_;
   std::set<AddressWithType> canceled_connections_;
   std::set<AddressWithType> direct_connections_;
