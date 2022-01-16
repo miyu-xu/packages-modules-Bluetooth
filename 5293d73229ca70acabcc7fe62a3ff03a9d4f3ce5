@@ -193,6 +193,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d521343_ccfa3b37",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-16T01:19:07Z",
+      "side": 1,
+      "message": "So is the pupose, adspConfig.id.coding_format !\u003d targetConfig.id.coding_format, used to check if targetConfig.id.coding_format is LC3 or not?\n\nIf yes, could we check targeetConfig codec format direcly. It would be more logical, and improve the readability a lot.\ntargetConfig.id.coding_format !\u003d types::kLeAudioCodingFormatLC3",
+      "parentUuid": "1cff9ba7_d602425d",
+      "range": {
+        "startLine": 117,
+        "startChar": 55,
+        "endLine": 117,
+        "endChar": 68
+      },
+      "revId": "5293d73229ca70acabcc7fe62a3ff03a9d4f3ce5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43b7174c_ecf169ca",
         "filename": "system/bta/le_audio/codec_manager.cc",
         "patchSetId": 2

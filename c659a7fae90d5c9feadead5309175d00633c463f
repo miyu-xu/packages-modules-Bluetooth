@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d8a88f_69f66591",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-16T01:19:07Z",
+      "side": 1,
+      "message": "Could it be renamed to isAudioSetConfiguration matched?\n\nIt would map the variable type name, and will improve the readability.",
+      "range": {
+        "startLine": 155,
+        "startChar": 7,
+        "endLine": 155,
+        "endChar": 29
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb4ae43_b45c0aaa",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-16T01:19:07Z",
+      "side": 1,
+      "message": "Could we make the function generic to just check the isSetConfigurationMatched?",
+      "range": {
+        "startLine": 172,
+        "startChar": 14,
+        "endLine": 172,
+        "endChar": 32
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff03f83_b1a2e6ab",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-16T01:19:07Z",
+      "side": 1,
+      "message": "Should we break two loops as isMatch \u003d true?",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 18
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8a2d7b1_4d5f349c",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-16T01:19:07Z",
+      "side": 1,
+      "message": "Why we need to limit it for LC3? could we please just check the combination, and don\u0027t add any limitation in the function?\n\nIf the combination only contain LC3, it should work. And in the future, if we plan to support the other codec, it could work via the combination, and we don\u0027t need to modify this part.",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 5
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e53e4a1f_58314591",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-16T01:19:07Z",
+      "side": 1,
+      "message": "nit: Map?",
+      "range": {
+        "startLine": 223,
+        "startChar": 6,
+        "endLine": 223,
+        "endChar": 37
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
