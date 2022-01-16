@@ -79,7 +79,9 @@ class LeAclConnectionTracker : public LeConnectionManagementCallbacks {
   os::Handler* client_handler_ = nullptr;
   LeConnectionManagementCallbacks* client_callbacks_ = nullptr;
   std::list<common::OnceClosure> queued_callbacks_;
+  uint16_t handle_;
   uint16_t connection_handle_;
+  std::function<void(uint16_t)> cb_;
 };
 
 struct LeAclConnection::impl {
@@ -95,6 +97,8 @@ struct LeAclConnection::impl {
   std::shared_ptr<Queue> queue_;
   LeAclConnectionTracker tracker;
   std::shared_ptr<std::atomic<bool>> is_callback_valid_;
+  uint16_t connection_handle_;
+  std::function<void(uint16_t)> cb_;
 };
 
 LeAclConnection::LeAclConnection()
@@ -116,7 +120,10 @@ LeAclConnection::LeAclConnection(
 }
 
 LeAclConnection::~LeAclConnection() {
-  if (pimpl_->is_callback_valid_) *pimpl_->is_callback_valid_ = false;
+  if (pimpl_->is_callback_valid_) {
+    *pimpl_->is_callback_valid_ = false;
+    pimpl_->cb_(pimpl_->connection_handle_);
+  }
   delete pimpl_;
 }
 
@@ -140,8 +147,10 @@ void LeAclConnection::Disconnect(DisconnectReason reason) {
 }
 
 LeConnectionManagementCallbacks* LeAclConnection::GetEventCallbacks(
-    std::shared_ptr<std::atomic<bool>> is_callback_valid) {
+    std::shared_ptr<std::atomic<bool>> is_callback_valid, uint16_t handle, std::function<void(uint16_t)> cb) {
   pimpl_->is_callback_valid_ = is_callback_valid;
+  //  pimpl_->handle_ = handle;
+  pimpl_->cb_ = cb;
   return pimpl_->GetEventCallbacks();
 }
 

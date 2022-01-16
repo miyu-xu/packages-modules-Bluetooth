@@ -278,7 +278,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     connection->locally_initiated_ = locally_initiated;
     auto& connection_proxy = conn_pair.first->second;
     connection_proxy.connection_management_callbacks_ =
-        connection->GetEventCallbacks(connection_proxy.is_callback_valid_);
+        connection->GetEventCallbacks(connection_proxy.is_callback_valid_, 0, [](uint16_t) {});
     if (delayed_role_change_ != nullptr) {
       if (delayed_role_change_->GetBdAddr() == address) {
         LOG_INFO("Sending delayed role change for %s", delayed_role_change_->GetBdAddr().ToString().c_str());

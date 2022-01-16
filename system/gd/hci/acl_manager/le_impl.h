@@ -54,6 +54,7 @@ struct le_acl_connection {
   AddressWithType remote_address_;
   LeConnectionManagementCallbacks* le_connection_management_callbacks_ = nullptr;
   std::shared_ptr<std::atomic<bool>> is_callback_valid_ = std::make_shared<std::atomic<bool>>(true);
+  std::mutex callback_guard_;
 };
 
 struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
@@ -125,14 +126,35 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     return (connection->second.is_callback_valid_) ? connection->second.le_connection_management_callbacks_ : nullptr;
   }
 
-  void on_le_disconnect(uint16_t handle, ErrorCode reason) {
-    auto callbacks = get_callbacks(handle);
-    if (callbacks == nullptr) {
-      return;
+  // TODO invalidate_callbacks(handle);
+  void on_remote_connection(uint16_t handle) {
+    {
+      std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
+      auto connection = le_acl_connections_.find(handle);
+      if (connection == le_acl_connections_.end()) {
+        return;
+      }
+      connection->second.le_connection_management_callbacks_ = nullptr;
+      le_acl_connections_.erase(handle);
     }
-    round_robin_scheduler_->Unregister(handle);
-    callbacks->OnDisconnection(reason);
-    le_acl_connections_.erase(handle);
+  }
+
+  void on_le_disconnect(uint16_t handle, ErrorCode reason) {
+    {
+      std::unique_lock<std::mutex> lock(le_acl_connections_guard_);
+
+      auto connection = le_acl_connections_.find(handle);
+      if (connection == le_acl_connections_.end()) {
+        return;
+      }
+      auto callbacks = connection->second.le_connection_management_callbacks_;
+      if (callbacks == nullptr) {
+        return;
+      }
+      round_robin_scheduler_->Unregister(handle);
+      callbacks->OnDisconnection(reason);
+      le_acl_connections_.erase(handle);
+    }
   }
 
   void on_common_le_connection_complete(AddressWithType address_with_type) {
@@ -204,8 +226,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
         std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
+    std::function<void(uint16_t)> cb = [this](uint16_t handle) { this->on_remote_connection(handle); };
     connection_proxy.le_connection_management_callbacks_ =
-        connection->GetEventCallbacks(connection_proxy.is_callback_valid_);
+        connection->GetEventCallbacks(connection_proxy.is_callback_valid_, handle, cb);
     le_client_handler_->Post(common::BindOnce(&LeConnectionCallbacks::OnLeConnectSuccess,
                                               common::Unretained(le_client_callbacks_), remote_address,
                                               std::move(connection)));
@@ -277,8 +300,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
         std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
+    std::function<void(uint16_t)> cb = [this](uint16_t handle) { this->on_remote_connection(handle); };
     connection_proxy.le_connection_management_callbacks_ =
-        connection->GetEventCallbacks(connection_proxy.is_callback_valid_);
+        connection->GetEventCallbacks(connection_proxy.is_callback_valid_, handle, cb);
     le_client_handler_->Post(common::BindOnce(&LeConnectionCallbacks::OnLeConnectSuccess,
                                               common::Unretained(le_client_callbacks_), remote_address,
                                               std::move(connection)));
@@ -752,6 +776,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   LeConnectionCallbacks* le_client_callbacks_ = nullptr;
   os::Handler* le_client_handler_ = nullptr;
   std::map<uint16_t, le_acl_connection> le_acl_connections_;
+  std::mutex le_acl_connections_guard_;
   std::set<AddressWithType> connecting_le_;
   std::set<AddressWithType> canceled_connections_;
   std::set<AddressWithType> direct_connections_;
