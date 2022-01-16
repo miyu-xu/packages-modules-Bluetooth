@@ -355,7 +355,7 @@ ClassicAclConnection::~ClassicAclConnection() {
 }
 
 ConnectionManagementCallbacks* ClassicAclConnection::GetEventCallbacks(
-    std::shared_ptr<std::atomic<bool>> is_callback_valid) {
+    std::shared_ptr<std::atomic<bool>> is_callback_valid, uint16_t handle, std::function<void(uint16_t)> cb) {
   pimpl_->is_callback_valid_ = is_callback_valid;
   return pimpl_->GetEventCallbacks();
 }
