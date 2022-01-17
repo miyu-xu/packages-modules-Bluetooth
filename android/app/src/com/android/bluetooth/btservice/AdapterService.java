@@ -104,6 +104,7 @@ import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
+import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
 import com.android.bluetooth.btservice.activityattribution.ActivityAttributionService;
 import com.android.bluetooth.btservice.bluetoothkeystore.BluetoothKeystoreService;
@@ -326,6 +327,7 @@ public class AdapterService extends Service {
     private VolumeControlService mVolumeControlService;
     private CsipSetCoordinatorService mCsipSetCoordinatorService;
     private LeAudioService mLeAudioService;
+    private BatteryService mBatteryService;
 
     private BinderCallsStats.SettingsObserver mBinderCallsSettingsObserver;
 
@@ -370,7 +372,7 @@ public class AdapterService extends Service {
     /**
      * Confirm whether the ProfileService is started expectedly.
      *
-     * @param string the service simple name.
+     * @param serviceSampleName the service simple name.
      * @return true if the service is started expectedly, false otherwise.
      */
     public boolean isStartedProfile(String serviceSampleName) {
@@ -1130,6 +1132,9 @@ public class AdapterService extends Service {
         if (profile == BluetoothProfile.HAP_CLIENT) {
             return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.HAS);
         }
+        if (profile == BluetoothProfile.BATTERY) {
+            return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.BATTERY);
+        }
 
         Log.e(TAG, "isSupported: Unexpected profile passed in to function: " + profile);
         return false;
@@ -1143,7 +1148,6 @@ public class AdapterService extends Service {
      */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     boolean isAnyProfileEnabled(BluetoothDevice device) {
-
         if (mA2dpService != null && mA2dpService.getConnectionPolicy(device)
                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return true;
@@ -1197,12 +1201,16 @@ public class AdapterService extends Service {
                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return true;
         }
+        if (mBatteryService != null && mBatteryService.getConnectionPolicy(device)
+                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            return true;
+        }
         return false;
     }
 
     /**
      * Connects only available profiles
-     * (those with {@link BluetoothProfile.CONNECTION_POLICY_ALLOWED})
+     * (those with {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED})
      *
      * @param device is the device with which we are connecting the profiles
      * @return {@link BluetoothStatusCodes#SUCCESS}
@@ -1302,6 +1310,13 @@ public class AdapterService extends Service {
             Log.i(TAG, "connectEnabledProfiles: Connecting LeAudio profile (BAP)");
             mLeAudioService.connect(device);
         }
+        if (mBatteryService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
+                BluetoothProfile.BATTERY, device)
+                && mBatteryService.getConnectionPolicy(device)
+                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            Log.i(TAG, "connectEnabledProfiles: Connecting Battery Service");
+            mBatteryService.connect(device);
+        }
         return BluetoothStatusCodes.SUCCESS;
     }
 
@@ -1342,6 +1357,7 @@ public class AdapterService extends Service {
         mVolumeControlService = VolumeControlService.getVolumeControlService();
         mCsipSetCoordinatorService = CsipSetCoordinatorService.getCsipSetCoordinatorService();
         mLeAudioService = LeAudioService.getLeAudioService();
+        mBatteryService = BatteryService.getBatteryService();
     }
 
     @BluetoothAdapter.RfcommListenerResult
@@ -3919,7 +3935,7 @@ public class AdapterService extends Service {
      * Fetches the local OOB data to give out to remote.
      *
      * @param transport - specify data transport.
-     * @param callback - callback used to receive the requested {@link Oobdata}; null will be
+     * @param callback - callback used to receive the requested {@link OobData}; null will be
      * ignored silently.
      *
      * @hide
@@ -5265,6 +5281,13 @@ public class AdapterService extends Service {
      */
     public boolean allowLowLatencyAudio(boolean allowed, BluetoothDevice device) {
         return allowLowLatencyAudioNative(allowed, Utils.getByteAddress(device));
+    }
+
+    /**
+     * Sets the battery level of the remote device
+     */
+    public void setBatteryLevel(BluetoothDevice device, int batteryLevel) {
+        mRemoteDevices.updateBatteryLevel(device, batteryLevel);
     }
 
     static native void classInitNative();
