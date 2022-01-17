@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "078cb501_50e3f3c0",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-17T13:09:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6001ae41_0b99734f",
+      "range": {
+        "startLine": 155,
+        "startChar": 7,
+        "endLine": 155,
+        "endChar": 29
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cb4ae43_b45c0aaa",
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "This is to map ::bluetooth::le_audio::{codec} to types::{codec} and store in the preference set.\nIf there are any codec are supported should add the condition to insert to the preference as well, or when there are more and more codec, we could store in a map and insert the codec to preference set if the map has the mapping of the codec.",
       "parentUuid": "a8a2d7b1_4d5f349c",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 5
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c67939a8_76e19351",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-17T13:09:51Z",
+      "side": 1,
+      "message": "I see. Could we do the type transition first and if it\u0027s valid, insert to offload_preference_set? The logic will be more clear. It would improve the readability.",
+      "parentUuid": "a70155d2_092532bd",
       "range": {
         "startLine": 193,
         "startChar": 0,
