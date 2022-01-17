@@ -1353,6 +1353,18 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public String getIdentityAddress(String address) {
+            AdapterService service = getService();
+            if (service == null || !callerIsSystemOrActiveUser(TAG, "getIdentityAddress")
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service, Utils.getCallingAttributionSource(mService),
+                                "AdapterService getIdentityAddress")) {
+                return null;
+            }
+            return service.getIdentityAddress(address);
+        }
+
+        @Override
         public String getName(AttributionSource attributionSource) {
             AdapterService service = getService();
             if (service == null || !callerIsSystemOrActiveUser(TAG, "getName")
