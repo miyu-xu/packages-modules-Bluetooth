@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62f3e2fe_d4af253c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-17T19:00:58Z",
+      "side": 1,
+      "message": "Thanks Lukasz for reviewing and sharing your feedback with explanation, done the change now.\n\nRegards,\nPartha Sarathi",
+      "parentUuid": "9af168b5_535ee20c",
+      "revId": "56fc85ca011cc38b0e21ba0f3d5b915753318ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06d60658_f1055015",
