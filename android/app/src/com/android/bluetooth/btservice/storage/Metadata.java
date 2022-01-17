@@ -122,6 +122,9 @@ class Metadata {
             case BluetoothProfile.LE_CALL_CONTROL:
                 profileConnectionPolicies.le_call_control_connection_policy = connectionPolicy;
                 break;
+            case BluetoothProfile.BATTERY:
+                profileConnectionPolicies.battery_connection_policy = connectionPolicy;
+                break;
             default:
                 throw new IllegalArgumentException("invalid profile " + profile);
         }
@@ -161,6 +164,8 @@ class Metadata {
                 return profileConnectionPolicies.csip_set_coordinator_connection_policy;
             case BluetoothProfile.LE_CALL_CONTROL:
                 return profileConnectionPolicies.le_call_control_connection_policy;
+            case BluetoothProfile.BATTERY:
+                return profileConnectionPolicies.battery_connection_policy;
         }
         return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
     }
