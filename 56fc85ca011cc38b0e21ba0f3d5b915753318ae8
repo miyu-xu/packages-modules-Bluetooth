@@ -68,6 +68,24 @@
       "message": "This is inline with the VC profile behavior (that also puts to BG connection mode on GATT disconnect)",
       "revId": "56fc85ca011cc38b0e21ba0f3d5b915753318ae8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b817d6c_dca83acd",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-17T20:18:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06d60658_f1055015",
+      "revId": "56fc85ca011cc38b0e21ba0f3d5b915753318ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
