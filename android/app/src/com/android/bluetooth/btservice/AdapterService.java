@@ -1367,6 +1367,20 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public String getIdentityAddress(String address) {
+            AdapterService service = getService();
+            if (service == null || !callerIsSystemOrActiveUser(TAG, "getIdentityAddress")
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                            service, Utils.getCallingAttributionSource(mService),
+                                "AdapterService getIdentityAddress")) {
+                return null;
+            }
+            enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
+                    "Need BLUETOOTH_PRIVILEGED permission");
+            return service.getIdentityAddress(address);
+        }
+
+        @Override
         public String getName(AttributionSource attributionSource) {
             AdapterService service = getService();
             if (service == null || !callerIsSystemOrActiveUser(TAG, "getName")
@@ -2788,7 +2802,7 @@ public class AdapterService extends Service {
 
     public byte[] getByteIdentityAddress(BluetoothDevice device) {
         DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
-        if (deviceProp.isConsolidated()) {
+        if (deviceProp != null && deviceProp.isConsolidated()) {
             return Utils.getBytesFromAddress(deviceProp.getIdentityAddress());
         } else {
             return Utils.getByteAddress(device);
@@ -2806,7 +2820,7 @@ public class AdapterService extends Service {
     public String getIdentityAddress(String address) {
         BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address.toUpperCase());
         DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
-        if (deviceProp.isConsolidated()) {
+        if (deviceProp != null && deviceProp.isConsolidated()) {
             return deviceProp.getIdentityAddress();
         } else {
             return address;
