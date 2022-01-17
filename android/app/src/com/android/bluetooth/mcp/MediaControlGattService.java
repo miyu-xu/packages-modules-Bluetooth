@@ -65,7 +65,7 @@ import java.util.UUID;
 public class MediaControlGattService implements MediaControlGattServiceInterface {
     private static final String TAG = "BluetoothMediaControlGattService";
     private static final boolean DBG = true;
-    private static final boolean VDBG = false;
+    private static final boolean VDBG = true;
 
     /* MCS assigned UUIDs */
     public static final UUID UUID_PLAYER_NAME =

@@ -79,8 +79,8 @@ public class VolumeControlServiceTest {
     @Before
     public void setUp() throws Exception {
         mTargetContext = InstrumentationRegistry.getTargetContext();
-        Assume.assumeTrue("Ignore test when VolumeControl is not enabled",
-                mTargetContext.getResources().getBoolean(R.bool.profile_supported_vc));
+        Assume.assumeTrue("Ignore test when Battery service is not enabled",
+                mTargetContext.getResources().getBoolean(R.bool.profile_supported_battery));
         // Set up mocks and test assets
         MockitoAnnotations.initMocks(this);
 
