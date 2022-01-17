@@ -253,12 +253,18 @@ public interface BluetoothProfile {
     int HAP_CLIENT = 28;
 
     /**
+     * @hide
+     * Battery Service Profile
+     */
+    int BATTERY = 29;
+
+    /**
      * Max profile ID. This value should be updated whenever a new profile is added to match
      * the largest value assigned to a profile.
      *
      * @hide
      */
-    int MAX_PROFILE_ID = 28;
+    int MAX_PROFILE_ID = 29;
 
     /**
      * Default priority for devices that we try to auto-connect to and
@@ -460,6 +466,8 @@ public interface BluetoothProfile {
                 return "LE_AUDIO";
             case HAP_CLIENT:
                 return "HAP_CLIENT";
+            case BATTERY:
+                return "BATTERY";
             default:
                 return "UNKNOWN_PROFILE";
         }

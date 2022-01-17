@@ -33,6 +33,7 @@ import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
 import com.android.bluetooth.avrcp.AvrcpTargetService;
 import com.android.bluetooth.avrcpcontroller.AvrcpControllerService;
+import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hap.HapClientService;
@@ -136,6 +137,8 @@ public class Config {
                     (1 << BluetoothProfile.CSIP_SET_COORDINATOR)),
             new ProfileConfig(HapClientService.class, R.bool.profile_supported_hap_client,
                     (1 << BluetoothProfile.HAP_CLIENT)),
+            new ProfileConfig(BatteryService.class, R.bool.profile_supported_battery,
+                    (1 << BluetoothProfile.BATTERY)),
     };
 
     private static Class[] sSupportedProfiles = new Class[0];

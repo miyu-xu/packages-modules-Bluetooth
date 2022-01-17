@@ -39,6 +39,7 @@ class ProfilePrioritiesEntity {
     public int volume_control_connection_policy;
     public int csip_set_coordinator_connection_policy;
     public int le_call_control_connection_policy;
+    public int battery_connection_policy;
 
     ProfilePrioritiesEntity() {
         a2dp_connection_policy = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
@@ -57,6 +58,7 @@ class ProfilePrioritiesEntity {
         volume_control_connection_policy = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
         csip_set_coordinator_connection_policy = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
         le_call_control_connection_policy = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        battery_connection_policy = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
     }
 
     public String toString() {
@@ -76,7 +78,8 @@ class ProfilePrioritiesEntity {
                 .append("|HEARING_AID=").append(hearing_aid_connection_policy)
                 .append("|LE_AUDIO=").append(le_audio_connection_policy)
                 .append("|VOLUME_CONTROL=").append(volume_control_connection_policy)
-                .append("|LE_CALL_CONTROL=").append(le_call_control_connection_policy);
+                .append("|LE_CALL_CONTROL=").append(le_call_control_connection_policy)
+                .append("|BATTERY=").append(battery_connection_policy);
 
         return builder.toString();
     }
