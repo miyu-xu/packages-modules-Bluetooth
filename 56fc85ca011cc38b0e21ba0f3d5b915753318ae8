@@ -1,6 +1,40 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a7be8f_fed2f806",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-17T14:09:34Z",
+      "side": 1,
+      "message": "Thanks, looks good. Just minor comment.",
+      "revId": "56fc85ca011cc38b0e21ba0f3d5b915753318ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9af168b5_535ee20c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-17T14:09:34Z",
+      "side": 1,
+      "message": "Please add return here.\n\nThis is in case, we actually where trying to remove the device, but link was disconnected by the peer just before.",
+      "revId": "56fc85ca011cc38b0e21ba0f3d5b915753318ae8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06d60658_f1055015",
