@@ -4404,12 +4404,16 @@ static bool btm_sec_start_get_name(tBTM_SEC_DEV_REC* p_dev_rec) {
  *
  ******************************************************************************/
 static void btm_sec_wait_and_start_authentication(tBTM_SEC_DEV_REC* p_dev_rec) {
-  if (alarm_is_scheduled(btm_cb.execution_wait_timer)) {
-    BTM_TRACE_EVENT("%s: alarm already scheduled", __func__);
-    return;
+  p_dev_rec->sec_state = BTM_SEC_STATE_AUTHENTICATING;
+  auto addr = new RawAddress(p_dev_rec->bd_addr);
+  bt_status_t status = do_in_main_thread_delayed(
+      FROM_HERE, base::Bind(&btm_sec_auth_timer_timeout, addr),
+      base::TimeDelta::FromMilliseconds(BTM_DELAY_AUTH_MS));
+  if (status != BT_STATUS_SUCCESS) {
+    LOG(ERROR) << __func__
+               << ": do_in_main_thread_delayed failed. directly calling.";
+    btm_sec_auth_timer_timeout(addr);
   }
-  alarm_set(btm_cb.execution_wait_timer, BTM_DELAY_AUTH_MS,
-            btm_sec_auth_timer_timeout, p_dev_rec);
 }
 
 /*******************************************************************************
@@ -4420,9 +4424,17 @@ static void btm_sec_wait_and_start_authentication(tBTM_SEC_DEV_REC* p_dev_rec) {
  *
  ******************************************************************************/
 static void btm_sec_auth_timer_timeout(void* data) {
-  tBTM_SEC_DEV_REC* p_dev_rec = (tBTM_SEC_DEV_REC*)data;
-  p_dev_rec->sec_state = BTM_SEC_STATE_AUTHENTICATING;
-  btsnd_hcic_auth_request(p_dev_rec->hci_handle);
+  RawAddress* p_addr = (RawAddress*)data;
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(*p_addr);
+  delete p_addr;
+  if (p_dev_rec == NULL) {
+    LOG_INFO(LOG_TAG, "%s: invalid device or not found", __func__);
+  } else if (btm_dev_authenticated(p_dev_rec)) {
+    LOG_INFO(LOG_TAG, "%s: device is already authenticated", __func__);
+  } else {
+    LOG_INFO(LOG_TAG, "%s: starting authentication", __func__);
+    btsnd_hcic_auth_request(p_dev_rec->hci_handle);
+  }
 }
 
 /*******************************************************************************
