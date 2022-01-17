@@ -32,6 +32,7 @@ import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
 import com.android.bluetooth.avrcp.AvrcpTargetService;
 import com.android.bluetooth.avrcpcontroller.AvrcpControllerService;
+import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hearingaid.HearingAidService;
@@ -48,8 +49,8 @@ import com.android.bluetooth.pan.PanService;
 import com.android.bluetooth.pbap.BluetoothPbapService;
 import com.android.bluetooth.pbapclient.PbapClientService;
 import com.android.bluetooth.sap.SapService;
-import com.android.bluetooth.vc.VolumeControlService;
 import com.android.bluetooth.tbs.TbsService;
+import com.android.bluetooth.vc.VolumeControlService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -132,6 +133,8 @@ public class Config {
             new ProfileConfig(CsipSetCoordinatorService.class,
                     R.bool.profile_supported_csip_set_coordinator,
                     (1 << BluetoothProfile.CSIP_SET_COORDINATOR)),
+            new ProfileConfig(BatteryService.class, R.bool.profile_supported_battery,
+                    (1 << BluetoothProfile.BATTERY)),
     };
 
     private static Class[] sSupportedProfiles = new Class[0];

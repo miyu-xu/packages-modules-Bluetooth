@@ -99,7 +99,7 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
-import com.android.bluetooth.btservice.MetricsLogger;
+import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
 import com.android.bluetooth.btservice.activityattribution.ActivityAttributionService;
 import com.android.bluetooth.btservice.bluetoothkeystore.BluetoothKeystoreService;
@@ -306,6 +306,7 @@ public class AdapterService extends Service {
     private VolumeControlService mVolumeControlService;
     private CsipSetCoordinatorService mCsipSetCoordinatorService;
     private LeAudioService mLeAudioService;
+    private BatteryService mBatteryService;
 
     private BinderCallsStats.SettingsObserver mBinderCallsSettingsObserver;
 
@@ -1040,6 +1041,10 @@ public class AdapterService extends Service {
         if (profile == BluetoothProfile.LE_AUDIO) {
             return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.LE_AUDIO);
         }
+        if (profile == BluetoothProfile.BATTERY) {
+            // As battery service is not exposed explicitly
+            return true;
+        }
 
         Log.e(TAG, "isSupported: Unexpected profile passed in to function: " + profile);
         return false;
@@ -1100,6 +1105,10 @@ public class AdapterService extends Service {
             return true;
         }
         if (mLeAudioService != null && mLeAudioService.getConnectionPolicy(device)
+                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            return true;
+        }
+        if (mBatteryService != null && mBatteryService.getConnectionPolicy(device)
                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return true;
         }
@@ -1201,6 +1210,13 @@ public class AdapterService extends Service {
             Log.i(TAG, "connectEnabledProfiles: Connecting LeAudio profile (BAP)");
             mLeAudioService.connect(device);
         }
+        if (mBatteryService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
+                BluetoothProfile.BATTERY, device)
+                && mBatteryService.getConnectionPolicy(device)
+                > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            Log.i(TAG, "connectEnabledProfiles: Connecting Battery Service");
+            mBatteryService.connect(device);
+        }
         return BluetoothStatusCodes.SUCCESS;
     }
 
@@ -1240,6 +1256,7 @@ public class AdapterService extends Service {
         mVolumeControlService = VolumeControlService.getVolumeControlService();
         mCsipSetCoordinatorService = CsipSetCoordinatorService.getCsipSetCoordinatorService();
         mLeAudioService = LeAudioService.getLeAudioService();
+        mBatteryService = BatteryService.getBatteryService();
     }
 
     private boolean isAvailable() {
@@ -4114,6 +4131,13 @@ public class AdapterService extends Service {
             return 0;
         }
         return getMetricIdNative(Utils.getByteAddress(device));
+    }
+
+    /**
+     * Sets the battery level of the remote device
+     */
+    public void setBatteryLevel(BluetoothDevice device, int batteryLevel) {
+        mRemoteDevices.updateBatteryLevel(device, batteryLevel);
     }
 
     static native void classInitNative();
