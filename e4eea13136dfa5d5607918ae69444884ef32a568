@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019319804",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1940865?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ae12a029_28a2c824",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-17T02:31:53Z",
+      "side": 1,
+      "message": "\"When offloading the codec configuration could be selected based on the offload capability\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 95
+      },
+      "revId": "e4eea13136dfa5d5607918ae69444884ef32a568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
