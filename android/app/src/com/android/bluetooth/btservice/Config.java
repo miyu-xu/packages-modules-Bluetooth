@@ -33,6 +33,7 @@ import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.a2dpsink.A2dpSinkService;
 import com.android.bluetooth.avrcp.AvrcpTargetService;
 import com.android.bluetooth.avrcpcontroller.AvrcpControllerService;
+import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hap.HapClientService;
@@ -61,6 +62,9 @@ import java.util.List;
 
 public class Config {
     private static final String TAG = "AdapterServiceConfig";
+
+    private static final String FEATURE_HEARING_AID = "settings_bluetooth_hearing_aid";
+    private static final String FEATURE_BATTERY = "settings_bluetooth_battery";
 
     private static class ProfileConfig {
         Class mClass;
@@ -136,6 +140,8 @@ public class Config {
                     (1 << BluetoothProfile.CSIP_SET_COORDINATOR)),
             new ProfileConfig(HapClientService.class, R.bool.profile_supported_hap_client,
                     (1 << BluetoothProfile.HAP_CLIENT)),
+            new ProfileConfig(BatteryService.class, 0,
+                    (1 << BluetoothProfile.BATTERY)),
     };
 
     private static Class[] sSupportedProfiles = new Class[0];
@@ -159,11 +165,18 @@ public class Config {
                 supported =
                         BluetoothProperties.isProfileAshaCentralEnabled().orElse(false);
             } else {
-                supported = resources.getBoolean(config.mSupported);
+                supported = config.mSupported > 0 ? resources.getBoolean(config.mSupported) : false;
             }
 
-            if (!supported && (config.mClass == HearingAidService.class) && isHearingAidSettingsEnabled(ctx)) {
+            if (!supported && (config.mClass == HearingAidService.class)
+                    && isFeatureEnabled(ctx, FEATURE_HEARING_AID)) {
                 Log.v(TAG, "Feature Flag enables support for HearingAidService");
+                supported = true;
+            }
+
+            if (!supported && (config.mClass == BatteryService.class)
+                    && isFeatureEnabled(ctx, FEATURE_BATTERY)) {
+                Log.v(TAG, "Feature Flag enables support for BatteryService");
                 supported = true;
             }
 
@@ -239,29 +252,27 @@ public class Config {
         return (disabledProfilesBitMask & profileMask) != 0;
     }
 
-    private static boolean isHearingAidSettingsEnabled(Context context) {
+    private static boolean isFeatureEnabled(Context context, String feature) {
         final String flagOverridePrefix = "sys.fflag.override.";
-        final String hearingAidSettings = "settings_bluetooth_hearing_aid";
-
         // Override precedence:
         // Settings.Global -> sys.fflag.override.* -> static list
 
-        // Step 1: check if hearing aid flag is set in Settings.Global.
+        // Step 1: check if feature flag is set in Settings.Global.
         String value;
         if (context != null) {
-            value = Settings.Global.getString(context.getContentResolver(), hearingAidSettings);
+            value = Settings.Global.getString(context.getContentResolver(), feature);
             if (!TextUtils.isEmpty(value)) {
                 return Boolean.parseBoolean(value);
             }
         }
 
-        // Step 2: check if hearing aid flag has any override.
-        value = SystemProperties.get(flagOverridePrefix + hearingAidSettings);
+        // Step 2: check if feature flag has any override.
+        // Flag name: [persist.]sys.fflag.override.<feature>
+        value = SystemProperties.get(flagOverridePrefix + feature);
         if (!TextUtils.isEmpty(value)) {
             return Boolean.parseBoolean(value);
         }
-
-        // Step 3: return default value.
+        // Step 3: return default value
         return false;
     }
 

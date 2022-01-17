@@ -1,6 +1,5 @@
 /*
- * Copyright 2021 HIMSA II K/S - www.himsa.com.
- * Represented by EHIMA - www.ehima.com
+ * Copyright (C) 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.bluetooth.vc;
+package com.android.bluetooth.bas;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
@@ -24,72 +23,50 @@ import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
-import android.bluetooth.BluetoothUuid;
-import android.bluetooth.BluetoothVolumeControl;
-import android.bluetooth.IBluetoothVolumeControl;
+import android.bluetooth.IBluetoothBattery;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.media.AudioDeviceAttributes;
-import android.media.AudioDeviceInfo;
-import android.media.AudioManager;
 import android.os.HandlerThread;
-import android.os.ParcelUuid;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-public class VolumeControlService extends ProfileService {
-    private static final boolean DBG = true;
-    private static final String TAG = "VolumeControlService";
+/**
+ * A profile service that connects to the Battery service (BAS) of BLE devices
+ */
+public class BatteryService extends ProfileService {
+    private static final boolean DBG = false;
+    private static final String TAG = "BatteryService";
 
     // Timeout for state machine thread join, to prevent potential ANR.
-    private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1000;
+    private static final int SM_THREAD_JOIN_TIMEOUT_MS = 1_000;
 
-    // Upper limit of all VolumeControl devices: Bonded or Connected
-    private static final int MAX_VC_STATE_MACHINES = 10;
-    private static final int LE_AUDIO_MAX_VOL = 255;
-    private static final int LE_AUDIO_MIN_VOL = 0;
-
-    private static VolumeControlService sVolumeControlService;
+    private static final int MAX_BATTERY_STATE_MACHINES = 10;
+    private static BatteryService sBatteryService;
 
     private AdapterService mAdapterService;
     private HandlerThread mStateMachinesThread;
-    private BluetoothDevice mPreviousAudioDevice;
-
-    private int mMusicMaxVolume = 0;
-    private int mMusicMinVolume = 0;
-    private int mVoiceCallMaxVolume = 0;
-    private int mVoiceCallMinVolume = 0;
-
-    @VisibleForTesting
-    VolumeControlNativeInterface mVolumeControlNativeInterface;
-    @VisibleForTesting
-    AudioManager mAudioManager;
-
-    private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
+    private final Map<BluetoothDevice, BatteryStateMachine> mStateMachines = new HashMap<>();
 
     private BroadcastReceiver mBondStateChangedReceiver;
-    private BroadcastReceiver mConnectionStateChangedReceiver;
-
-    private final ServiceFactory mFactory = new ServiceFactory();
 
     @Override
     protected IProfileServiceBinder initBinder() {
-        return new BluetoothVolumeControlBinder(this);
+        return new BluetoothBatteryBinder(this);
     }
 
     @Override
@@ -104,29 +81,15 @@ public class VolumeControlService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "start()");
         }
-        if (sVolumeControlService != null) {
+        if (sBatteryService != null) {
             throw new IllegalStateException("start() called twice");
         }
 
-        // Get AdapterService, VolumeControlNativeInterface, AudioManager.
-        // None of them can be null.
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
-                "AdapterService cannot be null when VolumeControlService starts");
-        mVolumeControlNativeInterface = Objects.requireNonNull(
-                VolumeControlNativeInterface.getInstance(),
-                "VolumeControlNativeInterface cannot be null when VolumeControlService starts");
-        mAudioManager =  getSystemService(AudioManager.class);
-        Objects.requireNonNull(mAudioManager,
-                "AudioManager cannot be null when VolumeControlService starts");
+                "AdapterService cannot be null when BatteryService starts");
 
-        mMusicMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        mMusicMinVolume = mAudioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC);
-        mVoiceCallMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_VOICE_CALL);
-        mVoiceCallMinVolume = mAudioManager.getStreamMinVolume(AudioManager.STREAM_VOICE_CALL);
-
-        // Start handler thread for state machines
         mStateMachines.clear();
-        mStateMachinesThread = new HandlerThread("VolumeControlService.StateMachines");
+        mStateMachinesThread = new HandlerThread("BatteryService.StateMachines");
         mStateMachinesThread.start();
 
         // Setup broadcast receivers
@@ -134,16 +97,8 @@ public class VolumeControlService extends ProfileService {
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         mBondStateChangedReceiver = new BondStateChangedReceiver();
         registerReceiver(mBondStateChangedReceiver, filter);
-        filter = new IntentFilter();
-        filter.addAction(BluetoothVolumeControl.ACTION_CONNECTION_STATE_CHANGED);
-        mConnectionStateChangedReceiver = new ConnectionStateChangedReceiver();
-        registerReceiver(mConnectionStateChangedReceiver, filter);
 
-        // Mark service as started
-        setVolumeControlService(this);
-
-        // Initialize native interface
-        mVolumeControlNativeInterface.init();
+        setBatteryService(this);
 
         return true;
     }
@@ -153,27 +108,19 @@ public class VolumeControlService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "stop()");
         }
-        if (sVolumeControlService == null) {
+        if (sBatteryService == null) {
             Log.w(TAG, "stop() called before start()");
             return true;
         }
 
-        // Cleanup native interface
-        mVolumeControlNativeInterface.cleanup();
-        mVolumeControlNativeInterface = null;
-
-        // Mark service as stopped
-        setVolumeControlService(null);
-
+        setBatteryService(null);
         // Unregister broadcast receivers
         unregisterReceiver(mBondStateChangedReceiver);
         mBondStateChangedReceiver = null;
-        unregisterReceiver(mConnectionStateChangedReceiver);
-        mConnectionStateChangedReceiver = null;
 
         // Destroy state machines and stop handler thread
         synchronized (mStateMachines) {
-            for (VolumeControlStateMachine sm : mStateMachines.values()) {
+            for (BatteryStateMachine sm : mStateMachines.values()) {
                 sm.doQuit();
                 sm.cleanup();
             }
@@ -191,9 +138,6 @@ public class VolumeControlService extends ProfileService {
             }
         }
 
-        // Clear AdapterService, VolumeControlNativeInterface
-        mAudioManager = null;
-        mVolumeControlNativeInterface = null;
         mAdapterService = null;
 
         return true;
@@ -207,29 +151,31 @@ public class VolumeControlService extends ProfileService {
     }
 
     /**
-     * Get the VolumeControlService instance
-     * @return VolumeControlService instance
+     * Gets the BatteryService instance
      */
-    public static synchronized VolumeControlService getVolumeControlService() {
-        if (sVolumeControlService == null) {
-            Log.w(TAG, "getVolumeControlService(): service is NULL");
+    public static synchronized BatteryService getBatteryService() {
+        if (sBatteryService == null) {
+            Log.w(TAG, "getBatteryService(): service is NULL");
             return null;
         }
 
-        if (!sVolumeControlService.isAvailable()) {
-            Log.w(TAG, "getVolumeControlService(): service is not available");
+        if (!sBatteryService.isAvailable()) {
+            Log.w(TAG, "getBatteryService(): service is not available");
             return null;
         }
-        return sVolumeControlService;
+        return sBatteryService;
     }
 
-    private static synchronized void setVolumeControlService(VolumeControlService instance) {
+    private static synchronized void setBatteryService(BatteryService instance) {
         if (DBG) {
-            Log.d(TAG, "setVolumeControlService(): set to: " + instance);
+            Log.d(TAG, "setBatteryService(): set to: " + instance);
         }
-        sVolumeControlService = instance;
+        sBatteryService = instance;
     }
 
+    /**
+     * Connects to the battery service of the given device.
+     */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean connect(BluetoothDevice device) {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
@@ -244,25 +190,21 @@ public class VolumeControlService extends ProfileService {
         if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             return false;
         }
-        ParcelUuid[] featureUuids = mAdapterService.getRemoteUuids(device);
-        if (!Utils.arrayContains(featureUuids, BluetoothUuid.VOLUME_CONTROL)) {
-            Log.e(TAG, "Cannot connect to " + device
-                    + " : Remote does not have Volume Control UUID");
-            return false;
-        }
-
 
         synchronized (mStateMachines) {
-            VolumeControlStateMachine smConnect = getOrCreateStateMachine(device);
-            if (smConnect == null) {
+            BatteryStateMachine sm = getOrCreateStateMachine(device);
+            if (sm == null) {
                 Log.e(TAG, "Cannot connect to " + device + " : no state machine");
             }
-            smConnect.sendMessage(VolumeControlStateMachine.CONNECT);
+            sm.sendMessage(BatteryStateMachine.CONNECT);
         }
 
         return true;
     }
 
+    /**
+     * Disconnects from the battery service of the given device.
+     */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean disconnect(BluetoothDevice device) {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
@@ -274,22 +216,26 @@ public class VolumeControlService extends ProfileService {
             return false;
         }
         synchronized (mStateMachines) {
-            VolumeControlStateMachine sm = getOrCreateStateMachine(device);
+            BatteryStateMachine sm = getOrCreateStateMachine(device);
             if (sm != null) {
-                sm.sendMessage(VolumeControlStateMachine.DISCONNECT);
+                sm.sendMessage(BatteryStateMachine.DISCONNECT);
             }
         }
 
         return true;
     }
 
+    /**
+     * Gets devices that battery service is connected.
+     * @return
+     */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public List<BluetoothDevice> getConnectedDevices() {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");
         synchronized (mStateMachines) {
             List<BluetoothDevice> devices = new ArrayList<>();
-            for (VolumeControlStateMachine sm : mStateMachines.values()) {
+            for (BatteryStateMachine sm : mStateMachines.values()) {
                 if (sm.isConnected()) {
                     devices.add(sm.getDevice());
                 }
@@ -299,7 +245,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     /**
-     * Check whether can connect to a peer device.
+     * Check whether it can connect to a peer device.
      * The check considers a number of factors during the evaluation.
      *
      * @param device the peer device to connect to
@@ -307,11 +253,6 @@ public class VolumeControlService extends ProfileService {
      */
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
     public boolean okToConnect(BluetoothDevice device) {
-        // Check if this is an incoming connection in Quiet mode.
-        if (mAdapterService.isQuietModeEnabled()) {
-            Log.e(TAG, "okToConnect: cannot connect to " + device + " : quiet mode enabled");
-            return false;
-        }
         // Check connectionPolicy and accept or reject the connection.
         int connectionPolicy = getConnectionPolicy(device);
         int bondState = mAdapterService.getBondState(device);
@@ -329,6 +270,31 @@ public class VolumeControlService extends ProfileService {
         return true;
     }
 
+    /**
+     * Called when the connection state of a state machine is changed
+     */
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public void connectionStateChanged(BatteryStateMachine sm,
+            int fromState, int toState) {
+        BluetoothDevice device = sm.getDevice();
+        if ((sm == null) || (fromState == toState)) {
+            Log.e(TAG, "connectionStateChanged: unexpected invocation. device=" + device
+                    + " fromState=" + fromState + " toState=" + toState);
+            return;
+        }
+
+        // Check if the device is disconnected - if unbonded, remove the state machine
+        if (toState == BluetoothProfile.STATE_DISCONNECTED) {
+            int bondState = mAdapterService.getBondState(device);
+            if (bondState == BluetoothDevice.BOND_NONE) {
+                if (DBG) {
+                    Log.d(TAG, device + " is unbonded. Remove state machine");
+                }
+                removeStateMachine(device);
+            }
+        }
+    }
+
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
@@ -343,12 +309,8 @@ public class VolumeControlService extends ProfileService {
         }
         synchronized (mStateMachines) {
             for (BluetoothDevice device : bondedDevices) {
-                final ParcelUuid[] featureUuids = device.getUuids();
-                if (!Utils.arrayContains(featureUuids, BluetoothUuid.VOLUME_CONTROL)) {
-                    continue;
-                }
                 int connectionState = BluetoothProfile.STATE_DISCONNECTED;
-                VolumeControlStateMachine sm = mStateMachines.get(device);
+                BatteryStateMachine sm = mStateMachines.get(device);
                 if (sm != null) {
                     connectionState = sm.getConnectionState();
                 }
@@ -372,19 +334,22 @@ public class VolumeControlService extends ProfileService {
     List<BluetoothDevice> getDevices() {
         List<BluetoothDevice> devices = new ArrayList<>();
         synchronized (mStateMachines) {
-            for (VolumeControlStateMachine sm : mStateMachines.values()) {
+            for (BatteryStateMachine sm : mStateMachines.values()) {
                 devices.add(sm.getDevice());
             }
             return devices;
         }
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    /**
+     * Gets the connection state of the given device's battery service
+     */
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public int getConnectionState(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
+        enforceCallingOrSelfPermission(BLUETOOTH_CONNECT,
+                "Need BLUETOOTH_CONNECT permission");
         synchronized (mStateMachines) {
-            VolumeControlStateMachine sm = mStateMachines.get(device);
+            BatteryStateMachine sm = mStateMachines.get(device);
             if (sm == null) {
                 return BluetoothProfile.STATE_DISCONNECTED;
             }
@@ -415,7 +380,7 @@ public class VolumeControlService extends ProfileService {
             Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
         }
         mAdapterService.getDatabase()
-                .setProfileConnectionPolicy(device, BluetoothProfile.VOLUME_CONTROL,
+                .setProfileConnectionPolicy(device, BluetoothProfile.BATTERY,
                         connectionPolicy);
         if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
             connect(device);
@@ -425,140 +390,42 @@ public class VolumeControlService extends ProfileService {
         return true;
     }
 
+    /**
+     * Gets the connection policy for the battery service of the given device.
+     */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public int getConnectionPolicy(BluetoothDevice device) {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");
         return mAdapterService.getDatabase()
-                .getProfileConnectionPolicy(device, BluetoothProfile.VOLUME_CONTROL);
+                .getProfileConnectionPolicy(device, BluetoothProfile.BATTERY);
     }
 
-    void setVolumeOffset(BluetoothDevice device, int volumeOffset) {
-        // TODO Implement
+    void handleBatteryChanged(BluetoothDevice device, int batteryLevel) {
+        mAdapterService.setBatteryLevel(device, batteryLevel);
     }
 
-    /**
-     * {@hide}
-     */
-    public void setVolumeGroup(int groupId, int volume) {
-        mVolumeControlNativeInterface.setVolumeGroup(groupId, volume);
-    }
-
-    void handleVolumeControlChanged(BluetoothDevice device, int groupId,
-                                    int volume, boolean mute, boolean isAutonomous) {
-        if (!isAutonomous) {
-            // If the change is triggered by Android device, the stream is already changed.
-            return;
-        }
-        // TODO: Handle the other arguments: device, groupId, mute.
-
-        int streamType = getBluetoothContextualVolumeStream();
-        mAudioManager.setStreamVolume(streamType, getDeviceVolume(streamType, volume),
-                AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_BLUETOOTH_ABS_VOLUME);
-    }
-
-    int getDeviceVolume(int streamType, int bleVolume) {
-        int bleMaxVolume = 255; // min volume is zero
-        int deviceMaxVolume = (streamType == AudioManager.STREAM_VOICE_CALL)
-                ? mVoiceCallMaxVolume : mMusicMaxVolume;
-        int deviceMinVolume = (streamType == AudioManager.STREAM_VOICE_CALL)
-                ? mVoiceCallMinVolume : mMusicMinVolume;
-
-        // TODO: Investigate what happens in classic BT when BT volume is changed to zero.
-        return (int) Math.floor(
-                (double) bleVolume * (deviceMaxVolume - deviceMinVolume) / bleMaxVolume);
-    }
-
-    // Copied from AudioService.getBluetoothContextualVolumeStream() and modified it.
-    int getBluetoothContextualVolumeStream() {
-        int mode = mAudioManager.getMode();
-        switch (mode) {
-            case AudioManager.MODE_IN_COMMUNICATION:
-            case AudioManager.MODE_IN_CALL:
-                return AudioManager.STREAM_VOICE_CALL;
-            case AudioManager.MODE_NORMAL:
-            default:
-                // other conditions will influence the stream type choice, read on...
-                break;
-        }
-        return AudioManager.STREAM_MUSIC;
-    }
-
-    void messageFromNative(VolumeControlStackEvent stackEvent) {
-
-        if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED) {
-            handleVolumeControlChanged(stackEvent.device, stackEvent.valueInt1,
-                                       stackEvent.valueInt2, stackEvent.valueBool1,
-                                       stackEvent.valueBool2);
-          return;
-        }
-
-        Objects.requireNonNull(stackEvent.device,
-                "Device should never be null, event: " + stackEvent);
-
-        Intent intent = null;
-
-        if (intent != null) {
-            intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
-                    | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-            sendBroadcast(intent, BLUETOOTH_CONNECT);
-            return;
-        }
-
-        synchronized (mStateMachines) {
-            BluetoothDevice device = stackEvent.device;
-            VolumeControlStateMachine sm = mStateMachines.get(device);
-            if (sm == null) {
-                if (stackEvent.type
-                        == VolumeControlStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED) {
-                    switch (stackEvent.valueInt1) {
-                        case VolumeControlStackEvent.CONNECTION_STATE_CONNECTED:
-                        case VolumeControlStackEvent.CONNECTION_STATE_CONNECTING:
-                            sm = getOrCreateStateMachine(device);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            if (sm == null) {
-                Log.e(TAG, "Cannot process stack event: no state machine: " + stackEvent);
-                return;
-            }
-            sm.sendMessage(VolumeControlStateMachine.STACK_EVENT, stackEvent);
-        }
-    }
-
-    private VolumeControlStateMachine getOrCreateStateMachine(BluetoothDevice device) {
+    private BatteryStateMachine getOrCreateStateMachine(BluetoothDevice device) {
         if (device == null) {
-            Log.e(TAG, "getOrCreateStateMachine failed: device cannot be null");
+            Log.e(TAG, "getOrCreateGatt failed: device cannot be null");
             return null;
         }
         synchronized (mStateMachines) {
-            VolumeControlStateMachine sm = mStateMachines.get(device);
+            BatteryStateMachine sm = mStateMachines.get(device);
             if (sm != null) {
                 return sm;
             }
             // Limit the maximum number of state machines to avoid DoS attack
-            if (mStateMachines.size() >= MAX_VC_STATE_MACHINES) {
-                Log.e(TAG, "Maximum number of VolumeControl state machines reached: "
-                        + MAX_VC_STATE_MACHINES);
+            if (mStateMachines.size() >= MAX_BATTERY_STATE_MACHINES) {
+                Log.e(TAG, "Maximum number of Battery state machines reached: "
+                        + MAX_BATTERY_STATE_MACHINES);
                 return null;
             }
             if (DBG) {
                 Log.d(TAG, "Creating a new state machine for " + device);
             }
-            sm = VolumeControlStateMachine.make(device, this,
-                    mVolumeControlNativeInterface, mStateMachinesThread.getLooper());
+            sm = BatteryStateMachine.make(device, this, mStateMachinesThread.getLooper());
             mStateMachines.put(device, sm);
-
-            mAudioManager.setDeviceVolumeBehavior(
-                    new AudioDeviceAttributes(
-                            AudioDeviceAttributes.ROLE_OUTPUT,
-                            // Currently, TYPE_BLUETOOTH_A2DP is the only thing that works.
-                            AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
-                            ""),
-                    AudioManager.DEVICE_VOLUME_BEHAVIOR_ABSOLUTE);
             return sm;
         }
     }
@@ -598,7 +465,7 @@ public class VolumeControlService extends ProfileService {
         }
 
         synchronized (mStateMachines) {
-            VolumeControlStateMachine sm = mStateMachines.get(device);
+            BatteryStateMachine sm = mStateMachines.get(device);
             if (sm == null) {
                 return;
             }
@@ -610,51 +477,20 @@ public class VolumeControlService extends ProfileService {
     }
 
     private void removeStateMachine(BluetoothDevice device) {
+        if (device == null) {
+            Log.e(TAG, "removeGatt failed: device cannot be null");
+            return;
+        }
         synchronized (mStateMachines) {
-            VolumeControlStateMachine sm = mStateMachines.get(device);
+            BatteryStateMachine sm = mStateMachines.remove(device);
             if (sm == null) {
                 Log.w(TAG, "removeStateMachine: device " + device
                         + " does not have a state machine");
                 return;
             }
-            Log.i(TAG, "removeStateMachine: removing state machine for device: " + device);
+            Log.i(TAG, "removeGatt: removing bluetooth gatt for device: " + device);
             sm.doQuit();
             sm.cleanup();
-            mStateMachines.remove(device);
-        }
-    }
-
-    @VisibleForTesting
-    synchronized void connectionStateChanged(BluetoothDevice device, int fromState,
-                                             int toState) {
-        if ((device == null) || (fromState == toState)) {
-            Log.e(TAG, "connectionStateChanged: unexpected invocation. device=" + device
-                    + " fromState=" + fromState + " toState=" + toState);
-            return;
-        }
-
-        // Check if the device is disconnected - if unbond, remove the state machine
-        if (toState == BluetoothProfile.STATE_DISCONNECTED) {
-            int bondState = mAdapterService.getBondState(device);
-            if (bondState == BluetoothDevice.BOND_NONE) {
-                if (DBG) {
-                    Log.d(TAG, device + " is unbond. Remove state machine");
-                }
-                removeStateMachine(device);
-            }
-        }
-    }
-
-    private class ConnectionStateChangedReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (!BluetoothVolumeControl.ACTION_CONNECTION_STATE_CHANGED.equals(intent.getAction())) {
-                return;
-            }
-            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-            int toState = intent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1);
-            int fromState = intent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, -1);
-            connectionStateChanged(device, fromState, toState);
         }
     }
 
@@ -662,34 +498,36 @@ public class VolumeControlService extends ProfileService {
      * Binder object: must be a static class or memory leak may occur
      */
     @VisibleForTesting
-    static class BluetoothVolumeControlBinder extends IBluetoothVolumeControl.Stub
+    static class BluetoothBatteryBinder extends IBluetoothBattery.Stub
             implements IProfileServiceBinder {
-        private VolumeControlService mService;
+        private final WeakReference<BatteryService> mServiceRef;
 
         @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-        private VolumeControlService getService(AttributionSource source) {
+        private BatteryService getService(AttributionSource source) {
+            BatteryService service = mServiceRef.get();
+
             if (!Utils.checkCallerIsSystemOrActiveUser(TAG)
-                    || !Utils.checkServiceAvailable(mService, TAG)
-                    || !Utils.checkConnectPermissionForDataDelivery(mService, source, TAG)) {
+                    || !Utils.checkServiceAvailable(service, TAG)
+                    || !Utils.checkConnectPermissionForDataDelivery(service, source, TAG)) {
                 return null;
             }
-            return mService;
+            return service;
         }
 
-        BluetoothVolumeControlBinder(VolumeControlService svc) {
-            mService = svc;
+        BluetoothBatteryBinder(BatteryService svc) {
+            mServiceRef = new WeakReference<>(svc);
         }
 
         @Override
         public void cleanup() {
-            mService = null;
+            mServiceRef.clear();
         }
 
         @Override
         public void connect(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
             try {
-                VolumeControlService service = getService(source);
+                BatteryService service = getService(source);
                 boolean defaultValue = false;
                 if (service != null) {
                     defaultValue = service.connect(device);
@@ -704,7 +542,7 @@ public class VolumeControlService extends ProfileService {
         public void disconnect(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
             try {
-                VolumeControlService service = getService(source);
+                BatteryService service = getService(source);
                 boolean defaultValue = false;
                 if (service != null) {
                     defaultValue = service.disconnect(device);
@@ -719,7 +557,7 @@ public class VolumeControlService extends ProfileService {
         public void getConnectedDevices(AttributionSource source,
                 SynchronousResultReceiver receiver) {
             try {
-                VolumeControlService service = getService(source);
+                BatteryService service = getService(source);
                 List<BluetoothDevice> defaultValue = new ArrayList<>();
                 if (service != null) {
                     enforceBluetoothPrivilegedPermission(service);
@@ -735,7 +573,7 @@ public class VolumeControlService extends ProfileService {
         public void getDevicesMatchingConnectionStates(int[] states,
                 AttributionSource source, SynchronousResultReceiver receiver) {
             try {
-                VolumeControlService service = getService(source);
+                BatteryService service = getService(source);
                 List<BluetoothDevice> defaultValue = new ArrayList<>();
                 if (service != null) {
                     defaultValue = service.getDevicesMatchingConnectionStates(states);
@@ -750,7 +588,7 @@ public class VolumeControlService extends ProfileService {
         public void getConnectionState(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
             try {
-                VolumeControlService service = getService(source);
+                BatteryService service = getService(source);
                 int defaultValue = BluetoothProfile.STATE_DISCONNECTED;
                 if (service != null) {
                     defaultValue = service.getConnectionState(device);
@@ -765,7 +603,7 @@ public class VolumeControlService extends ProfileService {
         public void setConnectionPolicy(BluetoothDevice device, int connectionPolicy,
                 AttributionSource source, SynchronousResultReceiver receiver) {
             try {
-                VolumeControlService service = getService(source);
+                BatteryService service = getService(source);
                 boolean defaultValue = false;
                 if (service != null) {
                     defaultValue = service.setConnectionPolicy(device, connectionPolicy);
@@ -780,7 +618,7 @@ public class VolumeControlService extends ProfileService {
         public void getConnectionPolicy(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
             try {
-                VolumeControlService service = getService(source);
+                BatteryService service = getService(source);
                 int defaultValue = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
                 if (service != null) {
                     defaultValue = service.getConnectionPolicy(device);
@@ -790,40 +628,12 @@ public class VolumeControlService extends ProfileService {
                 receiver.propagateException(e);
             }
         }
-
-        @Override
-        public void setVolumeOffset(BluetoothDevice device, int volumeOffset,
-                AttributionSource source, SynchronousResultReceiver receiver) {
-            try {
-                VolumeControlService service = getService(source);
-                if (service != null) {
-                    service.setVolumeOffset(device, volumeOffset);
-                }
-                receiver.send(null);
-            } catch (RuntimeException e) {
-                receiver.propagateException(e);
-            }
-        }
-
-        @Override
-        public void setVolumeGroup(int groupId, int volume, AttributionSource source,
-                SynchronousResultReceiver receiver) {
-            try {
-                VolumeControlService service = getService(source);
-                if (service != null) {
-                    service.setVolumeGroup(groupId, volume);
-                }
-                receiver.send(null);
-            } catch (RuntimeException e) {
-                receiver.propagateException(e);
-            }
-        }
     }
 
     @Override
     public void dump(StringBuilder sb) {
         super.dump(sb);
-        for (VolumeControlStateMachine sm : mStateMachines.values()) {
+        for (BatteryStateMachine sm : mStateMachines.values()) {
             sm.dump(sb);
         }
     }
