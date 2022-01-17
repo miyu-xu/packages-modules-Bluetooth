@@ -2261,6 +2261,23 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void setBatteryLevel(BluetoothDevice device, AttributionSource attributionSource,
+                int batteryLevel) {
+            AdapterService service = getService();
+            if (service == null || !callerIsSystemOrActiveUser(TAG, "setBatteryLevel")
+                    || !Utils.checkConnectPermissionForDataDelivery(
+                    service, attributionSource, "AdapterService setBatteryLevel")) {
+                return;
+            }
+
+            DeviceProperties deviceProp = service.mRemoteDevices.getDeviceProperties(device);
+            if (deviceProp == null) {
+                return;
+            }
+            deviceProp.setBatteryLevel(batteryLevel);
+        }
+
+        @Override
         public int getMaxConnectedAudioDevices(AttributionSource attributionSource) {
             // don't check caller, may be called from system UI
             AdapterService service = getService();
