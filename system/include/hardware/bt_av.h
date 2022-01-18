@@ -55,6 +55,7 @@ typedef enum {
   BTAV_A2DP_CODEC_INDEX_SOURCE_APTX,
   BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD,
   BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC,
+  BTAV_A2DP_CODEC_INDEX_SOURCE_LC3,
 
   BTAV_A2DP_CODEC_INDEX_SOURCE_MAX,
 
@@ -93,8 +94,17 @@ typedef enum {
   BTAV_A2DP_CODEC_SAMPLE_RATE_176400 = 0x1 << 4,
   BTAV_A2DP_CODEC_SAMPLE_RATE_192000 = 0x1 << 5,
   BTAV_A2DP_CODEC_SAMPLE_RATE_16000 = 0x1 << 6,
-  BTAV_A2DP_CODEC_SAMPLE_RATE_24000 = 0x1 << 7
+  BTAV_A2DP_CODEC_SAMPLE_RATE_24000 = 0x1 << 7,
+  BTAV_A2DP_CODEC_SAMPLE_RATE_32000 = 0x1 << 9
 } btav_a2dp_codec_sample_rate_t;
+
+typedef enum {
+  BTAV_A2DP_CODEC_FRAME_SIZE_NONE = 0x0,
+  BTAV_A2DP_CODEC_FRAME_SIZE_2000 = 0x1 << 0,
+  BTAV_A2DP_CODEC_FRAME_SIZE_1500 = 0x1 << 1,
+  BTAV_A2DP_CODEC_FRAME_SIZE_1000 = 0x1 << 2,
+  BTAV_A2DP_CODEC_FRAME_SIZE_750 = 0x1 << 3,
+} btav_a2dp_codec_frame_size_t;
 
 typedef enum {
   BTAV_A2DP_CODEC_BITS_PER_SAMPLE_NONE = 0x0,
@@ -154,6 +164,9 @@ typedef struct {
         break;
       case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
         codec_name_str = "LDAC";
+        break;
+      case BTAV_A2DP_CODEC_INDEX_SOURCE_LC3:
+        codec_name_str = "LC3";
         break;
       case BTAV_A2DP_CODEC_INDEX_SINK_SBC:
         codec_name_str = "SBC (Sink)";
