@@ -32,6 +32,7 @@
 #if !defined(EXCLUDE_NONSTANDARD_CODECS)
 #include "a2dp_vendor_aptx.h"
 #include "a2dp_vendor_aptx_hd.h"
+#include "a2dp_vendor_lc3.h"
 #include "a2dp_vendor_ldac.h"
 #endif
 
@@ -139,6 +140,9 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
       break;
     case BTAV_A2DP_CODEC_INDEX_SINK_LDAC:
       codec_config = new A2dpCodecConfigLdacSink(codec_priority);
+      break;
+    case BTAV_A2DP_CODEC_INDEX_SOURCE_LC3:
+      codec_config = new A2dpCodecConfigLc3Source(codec_priority);
       break;
 #endif
     case BTAV_A2DP_CODEC_INDEX_MAX:
@@ -606,6 +610,7 @@ bool A2dpCodecs::init() {
 
     // In offload mode, disable the codecs based on the property
     if ((codec_index < BTAV_A2DP_CODEC_INDEX_SOURCE_MAX) &&
+        (codec_index != BTAV_A2DP_CODEC_INDEX_SOURCE_LC3) &&
         a2dp_offload_status && (offload_codec_support[i] != true)) {
       codec_priority = BTAV_A2DP_CODEC_PRIORITY_DISABLED;
     }
