@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e338cad_4448be0e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-01-18T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa1d821b_6eb63ea5",
+      "revId": "8d120222dc57b19e89dcde506a12ba5057280a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ea31c06_2da20a3f",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10f55876_be618ccc",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-01-18T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ea31c06_2da20a3f",
+      "revId": "8d120222dc57b19e89dcde506a12ba5057280a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a13d4fbd_86045fe5",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-01-15T11:15:13Z",
       "side": 1,
       "message": "use EEEEE...",
+      "revId": "8d120222dc57b19e89dcde506a12ba5057280a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0a13ffa_f11b7e7a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-01-18T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a13d4fbd_86045fe5",
       "revId": "8d120222dc57b19e89dcde506a12ba5057280a0b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
