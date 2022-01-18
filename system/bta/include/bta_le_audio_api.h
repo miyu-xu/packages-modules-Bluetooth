@@ -38,7 +38,7 @@ class LeAudioClient {
   static void Initialize(bluetooth::le_audio::LeAudioClientCallbacks* callbacks,
                          base::Closure initCb,
                          base::Callback<bool()> hal_2_1_verifier);
-  static void Cleanup(void);
+  static void Cleanup(base::Callback<void()> cleanupCb);
   static LeAudioClient* Get(void);
   static void DebugDump(int fd);
 

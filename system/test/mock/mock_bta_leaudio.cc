@@ -30,6 +30,7 @@ extern std::map<std::string, int> mock_function_count_map;
 #include <hardware/bt_le_audio.h>
 
 #include "bta/include/bta_le_audio_api.h"
+#include "bta/le_audio/le_audio_set_configuration_provider.h"
 #include "types/raw_address.h"
 
 #ifndef UNUSED_ATTR
@@ -48,11 +49,23 @@ class HalVersionManager {
 }  // namespace audio
 }  // namespace bluetooth
 
+namespace le_audio {
+void AudioSetConfigurationProvider::Initialize() {
+  mock_function_count_map[__func__]++;
+}
+void AudioSetConfigurationProvider::Cleanup() {
+  mock_function_count_map[__func__]++;
+}
+}  // namespace le_audio
+
 void LeAudioClient::AddFromStorage(const RawAddress& address,
                                    bool auto_connect) {
   mock_function_count_map[__func__]++;
 }
-void LeAudioClient::Cleanup() { mock_function_count_map[__func__]++; }
+void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {
+  std::move(cleanupCb).Run();
+  mock_function_count_map[__func__]++;
+}
 
 LeAudioClient* LeAudioClient::Get(void) {
   mock_function_count_map[__func__]++;

@@ -21,6 +21,7 @@
 
 #include <vector>
 
+#include "bta/le_audio/le_audio_set_configuration_provider.h"
 #include "bta_le_audio_api.h"
 #include "btif_common.h"
 #include "btif_storage.h"
@@ -79,6 +80,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
       LOG_DEBUG("supported codec: %s", codec.ToString().c_str());
     }
 
+    le_audio::AudioSetConfigurationProvider::Initialize();
     do_in_main_thread(
         FROM_HERE, Bind(&LeAudioClient::Initialize, this,
                         jni_thread_wrapper(
@@ -90,7 +92,12 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
 
   void Cleanup(void) override {
     DVLOG(2) << __func__;
-    do_in_main_thread(FROM_HERE, Bind(&LeAudioClient::Cleanup));
+    do_in_main_thread(
+        FROM_HERE,
+        Bind(&LeAudioClient::Cleanup,
+             jni_thread_wrapper(
+                 FROM_HERE,
+                 Bind(&le_audio::AudioSetConfigurationProvider::Cleanup))));
   }
 
   void RemoveDevice(const RawAddress& address) override {
