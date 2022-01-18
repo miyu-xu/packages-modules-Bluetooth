@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9acc0594_8d2df967",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3379,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2022-01-18T21:06:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "64f9def3_0a0ee67f",
+      "range": {
+        "startLine": 3379,
+        "startChar": 0,
+        "endLine": 3379,
+        "endChar": 56
+      },
+      "revId": "74fe145ac07903e7d8bb6986a69a5684cbdb4709",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7557d52c_fba58c1b",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-01-13T09:18:50Z",
       "side": 1,
       "message": "alarm_free(sync_timeout_alarm);\nsync_timeout_alarm \u003d nullptr;",
+      "range": {
+        "startLine": 3388,
+        "startChar": 0,
+        "endLine": 3388,
+        "endChar": 53
+      },
+      "revId": "74fe145ac07903e7d8bb6986a69a5684cbdb4709",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25bb4ee3_9352b4c8",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3388,
+      "author": {
+        "id": 1903070
+      },
+      "writtenOn": "2022-01-18T21:06:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7557d52c_fba58c1b",
       "range": {
         "startLine": 3388,
         "startChar": 0,
