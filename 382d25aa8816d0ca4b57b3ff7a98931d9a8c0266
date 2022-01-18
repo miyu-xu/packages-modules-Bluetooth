@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019381600",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952299?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8da10e5e_8f1c3e2f",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-18T19:24:49Z",
+      "side": 1,
+      "message": "It looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)",
+      "range": {
+        "startLine": 343,
+        "startChar": 14,
+        "endLine": 343,
+        "endChar": 58
+      },
+      "revId": "382d25aa8816d0ca4b57b3ff7a98931d9a8c0266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
