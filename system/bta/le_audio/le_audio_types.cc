@@ -225,18 +225,6 @@ bool IsCodecCapabilitySettingSupported(
   }
 }
 
-const AudioSetConfigurations* get_confs_by_type(LeAudioContextType type) {
-  switch (type) {
-    case LeAudioContextType::MEDIA:
-      return &audio_set_conf_media;
-    case LeAudioContextType::CONVERSATIONAL:
-      return &audio_set_conf_conversational;
-    case LeAudioContextType::RINGTONE:
-      return &audio_set_conf_ringtone;
-    default:
-      return &audio_set_conf_default;
-  }
-}
 uint32_t CodecCapabilitySetting::GetConfigSamplingFrequency() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
