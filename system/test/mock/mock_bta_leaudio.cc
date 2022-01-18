@@ -52,7 +52,10 @@ void LeAudioClient::AddFromStorage(const RawAddress& address,
                                    bool auto_connect) {
   mock_function_count_map[__func__]++;
 }
-void LeAudioClient::Cleanup() { mock_function_count_map[__func__]++; }
+void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {
+  std::move(cleanupCb).Run();
+  mock_function_count_map[__func__]++;
+}
 
 LeAudioClient* LeAudioClient::Get(void) {
   mock_function_count_map[__func__]++;
