@@ -139,14 +139,15 @@ public class HeadsetClientStateMachineTest {
         mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, connStCh);
 
         // Verify that only DISCONNECTED -> DISCONNECTED broadcast is fired
-        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS)).sendBroadcast(MockitoHamcrest
-                .argThat(
+        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS))
+                .sendBroadcastMultiplePermissions(MockitoHamcrest.argThat(
                 AllOf.allOf(IntentMatchers.hasAction(
                         BluetoothHeadsetClient.ACTION_CONNECTION_STATE_CHANGED),
                         IntentMatchers.hasExtra(BluetoothProfile.EXTRA_STATE,
                                 BluetoothProfile.STATE_DISCONNECTED),
                         IntentMatchers.hasExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE,
-                                BluetoothProfile.STATE_DISCONNECTED))), anyString(),
+                                BluetoothProfile.STATE_DISCONNECTED))),
+                any(String[].class),
                 any(Bundle.class));
         // Check we are in disconnected state still.
         Assert.assertThat(mHeadsetClientStateMachine.getCurrentState(),
@@ -171,9 +172,9 @@ public class HeadsetClientStateMachineTest {
 
         // Verify that one connection state broadcast is executed
         ArgumentCaptor<Intent> intentArgument1 = ArgumentCaptor.forClass(Intent.class);
-        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS)).sendBroadcast(intentArgument1
-                .capture(),
-                anyString(), any(Bundle.class));
+        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS))
+                .sendBroadcastMultiplePermissions(intentArgument1.capture(),
+                any(String[].class), any(Bundle.class));
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTING,
                 intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
 
@@ -190,8 +191,9 @@ public class HeadsetClientStateMachineTest {
 
         // Verify that one connection state broadcast is executed
         ArgumentCaptor<Intent> intentArgument2 = ArgumentCaptor.forClass(Intent.class);
-        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(2)).sendBroadcast(
-                intentArgument2.capture(), anyString(), any(Bundle.class));
+        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(2))
+                .sendBroadcastMultiplePermissions(intentArgument2.capture(),
+                any(String[].class), any(Bundle.class));
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED,
                 intentArgument2.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
         // Check we are in connecting state now.
@@ -217,9 +219,9 @@ public class HeadsetClientStateMachineTest {
 
         // Verify that one connection state broadcast is executed
         ArgumentCaptor<Intent> intentArgument1 = ArgumentCaptor.forClass(Intent.class);
-        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS)).sendBroadcast(intentArgument1
-                .capture(),
-                anyString(), any(Bundle.class));
+        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS))
+                .sendBroadcastMultiplePermissions(intentArgument1.capture(),
+                any(String[].class), any(Bundle.class));
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTING,
                 intentArgument1.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
 
@@ -230,9 +232,9 @@ public class HeadsetClientStateMachineTest {
         // Verify that one connection state broadcast is executed
         ArgumentCaptor<Intent> intentArgument2 = ArgumentCaptor.forClass(Intent.class);
         verify(mHeadsetClientService,
-                timeout(HeadsetClientStateMachine.CONNECTING_TIMEOUT_MS * 2).times(
-                        2)).sendBroadcast(intentArgument2.capture(), anyString(),
-                any(Bundle.class));
+                timeout(HeadsetClientStateMachine.CONNECTING_TIMEOUT_MS * 2).times(2))
+                .sendBroadcastMultiplePermissions(intentArgument2.capture(),
+                any(String[].class), any(Bundle.class));
         Assert.assertEquals(BluetoothProfile.STATE_DISCONNECTED,
                 intentArgument2.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
 
@@ -262,9 +264,9 @@ public class HeadsetClientStateMachineTest {
 
         // Verify that one connection state broadcast is executed
         ArgumentCaptor<Intent> intentArgument = ArgumentCaptor.forClass(Intent.class);
-        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS)).sendBroadcast(intentArgument
-                .capture(),
-                anyString(), any(Bundle.class));
+        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS))
+                .sendBroadcastMultiplePermissions(intentArgument.capture(),
+                any(String[].class), any(Bundle.class));
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTING,
                 intentArgument.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
 
@@ -275,9 +277,9 @@ public class HeadsetClientStateMachineTest {
         slcEvent.device = mTestDevice;
         mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, slcEvent);
 
-        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(2)).sendBroadcast(
-                intentArgument.capture(),
-                anyString(), any(Bundle.class));
+        verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(2))
+                .sendBroadcastMultiplePermissions(intentArgument.capture(),
+                any(String[].class), any(Bundle.class));
 
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED,
                 intentArgument.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
@@ -359,7 +361,8 @@ public class HeadsetClientStateMachineTest {
         mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, connStCh);
         ArgumentCaptor<Intent> intentArgument = ArgumentCaptor.forClass(Intent.class);
         verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(startBroadcastIndex))
-                .sendBroadcast(intentArgument.capture(), anyString(), any(Bundle.class));
+                .sendBroadcastMultiplePermissions(intentArgument.capture(),
+                                                  any(String[].class), any(Bundle.class));
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTING,
                 intentArgument.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
         startBroadcastIndex++;
@@ -377,7 +380,8 @@ public class HeadsetClientStateMachineTest {
         mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, slcEvent);
         ArgumentCaptor<Intent> intentArgument = ArgumentCaptor.forClass(Intent.class);
         verify(mHeadsetClientService, timeout(STANDARD_WAIT_MILLIS).times(startBroadcastIndex))
-                .sendBroadcast(intentArgument.capture(), anyString(), any(Bundle.class));
+                .sendBroadcastMultiplePermissions(intentArgument.capture(),
+                                                  any(String[].class), any(Bundle.class));
         Assert.assertEquals(BluetoothProfile.STATE_CONNECTED,
                 intentArgument.getValue().getIntExtra(BluetoothProfile.EXTRA_STATE, -1));
         startBroadcastIndex++;
