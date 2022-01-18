@@ -128,6 +128,9 @@
  */
 #define A2DP_BAD_CP_FORMAT 0xE1
 
+/* Frame size  is not supported */
+#define A2DP_NS_FRAME_SIZE 0xE2
+
 typedef uint8_t tA2DP_STATUS;
 
 #endif  // A2DP_ERROR_CODES_H
