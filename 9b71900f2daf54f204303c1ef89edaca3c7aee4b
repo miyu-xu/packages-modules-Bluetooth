@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e99d887_4dc29d9b",
+        "filename": "system/service/bluetooth_interface.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-18T19:59:44Z",
+      "side": 1,
+      "message": "wrong symbol?",
+      "range": {
+        "startLine": 632,
+        "startChar": 4,
+        "endLine": 632,
+        "endChar": 28
+      },
+      "revId": "9b71900f2daf54f204303c1ef89edaca3c7aee4b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
