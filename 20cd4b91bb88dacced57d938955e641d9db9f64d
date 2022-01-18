@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019360399",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1951996?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b769c028_75ef46c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-18T08:56:57Z",
+      "side": 1,
+      "message": "\"build pass\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 16
+      },
+      "revId": "20cd4b91bb88dacced57d938955e641d9db9f64d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
