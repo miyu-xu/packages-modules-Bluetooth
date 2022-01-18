@@ -68,6 +68,7 @@ cc_library_static {
         "packages/modules/Bluetooth/system/bta/sys",
         "packages/modules/Bluetooth/system/utils/include",
         "packages/modules/Bluetooth/system/gd/rust/shim",
+        "packages/modules/Bluetooth/system/embdrv/lc3/include",
     ],
     srcs: crypto_toolbox_srcs + [
         "a2dp/a2dp_aac.cc",
@@ -84,6 +85,8 @@ cc_library_static {
         "a2dp/a2dp_vendor_aptx_hd.cc",
         "a2dp/a2dp_vendor_aptx_encoder.cc",
         "a2dp/a2dp_vendor_aptx_hd_encoder.cc",
+        "a2dp/a2dp_vendor_lc3.cc",
+        "a2dp/a2dp_vendor_lc3_encoder.cc",
         "a2dp/a2dp_vendor_ldac.cc",
         "a2dp/a2dp_vendor_ldac_abr.cc",
         "a2dp/a2dp_vendor_ldac_decoder.cc",
