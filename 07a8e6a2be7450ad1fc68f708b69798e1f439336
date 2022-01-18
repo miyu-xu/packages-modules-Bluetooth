@@ -93,6 +93,30 @@
       },
       "revId": "07a8e6a2be7450ad1fc68f708b69798e1f439336",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e621d593_545e85fa",
+        "filename": "system/gd/packet/parser/packet_dependency.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-18T17:40:15Z",
+      "side": 1,
+      "message": "Are you planning on splitting the maps?",
+      "parentUuid": "05314877_98cfc246",
+      "range": {
+        "startLine": 30,
+        "startChar": 47,
+        "endLine": 30,
+        "endChar": 61
+      },
+      "revId": "07a8e6a2be7450ad1fc68f708b69798e1f439336",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
