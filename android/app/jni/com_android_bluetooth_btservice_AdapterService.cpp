@@ -71,6 +71,7 @@ static jmethodID method_addressConsolidateCallback;
 static jmethodID method_aclStateChangeCallback;
 static jmethodID method_discoveryStateChangeCallback;
 static jmethodID method_linkQualityReportCallback;
+static jmethodID method_switchBufferSizeCallback;
 static jmethodID method_setWakeAlarm;
 static jmethodID method_acquireWakeLock;
 static jmethodID method_releaseWakeLock;
@@ -598,6 +599,19 @@ static void link_quality_report_callback(
       (jint)negative_acknowledgement_count);
 }
 
+static void switch_buffer_size_callback(RawAddress* bd_addr,
+                                        bool is_low_latency_buffer_size) {
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid()) return;
+
+  ALOGV("%s: SwitchBufferSizeCallback: %s", __func__,
+        is_low_latency_buffer_size ? "true" : "false");
+
+  sCallbackEnv->CallVoidMethod(
+      sJniCallbacksObj, method_switchBufferSizeCallback, (jbyteArray)bd_addr,
+      (jboolean)is_low_latency_buffer_size);
+}
+
 static void callback_thread_event(bt_cb_thread_evt event) {
   if (event == ASSOCIATE_JVM) {
     JavaVMAttachArgs args;
@@ -674,7 +688,8 @@ static bt_callbacks_t sBluetoothCallbacks = {sizeof(sBluetoothCallbacks),
                                              le_test_mode_recv_callback,
                                              energy_info_recv_callback,
                                              link_quality_report_callback,
-                                             generate_local_oob_data_callback};
+                                             generate_local_oob_data_callback,
+                                             switch_buffer_size_callback};
 
 // The callback to call when the wake alarm fires.
 static alarm_cb sAlarmCallback;
@@ -892,6 +907,9 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
 
   method_linkQualityReportCallback = env->GetMethodID(
       jniCallbackClass, "linkQualityReportCallback", "(JIIIIII)V");
+
+  method_switchBufferSizeCallback =
+      env->GetMethodID(jniCallbackClass, "switchBufferSizeCallback", "([BZ)V");
 
   method_setWakeAlarm = env->GetMethodID(clazz, "setWakeAlarm", "(JZ)Z");
   method_acquireWakeLock =
