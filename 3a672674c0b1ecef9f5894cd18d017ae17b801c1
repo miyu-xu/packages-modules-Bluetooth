@@ -1,0 +1,203 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019402139",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4cf7d681_232d3a95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T02:39:56Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "3a672674c0b1ecef9f5894cd18d017ae17b801c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019402139",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e428096e_4b313c3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T02:39:56Z",
+      "side": 1,
+      "message": "\"compile\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "3a672674c0b1ecef9f5894cd18d017ae17b801c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019402139",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3cb1ed2c_f4d19315",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T02:39:56Z",
+      "side": 1,
+      "message": "#feature requires a tracking bug number",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 13
+      },
+      "revId": "3a672674c0b1ecef9f5894cd18d017ae17b801c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019402141",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dd7213de_2a1f6861",
+        "filename": "android/app/src/com/android/bluetooth/bc/BCService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1712,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T02:39:56Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1712,
+        "startChar": 0,
+        "endLine": 1712,
+        "endChar": 102
+      },
+      "revId": "3a672674c0b1ecef9f5894cd18d017ae17b801c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019402143",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d6",
+      "fixSuggestions": [
+        {
+          "fixId": "4c62006e_bb452e05",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 708,
+                "startChar": 29,
+                "endLine": 708,
+                "endChar": 39
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "7a1fe10c_301a9cdb",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T02:39:56Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 708,
+        "startChar": 29,
+        "endLine": 708,
+        "endChar": 39
+      },
+      "revId": "3a672674c0b1ecef9f5894cd18d017ae17b801c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019402141",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "724ecf2b_cf936242",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T02:39:56Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 285,
+        "startChar": 0,
+        "endLine": 285,
+        "endChar": 101
+      },
+      "revId": "3a672674c0b1ecef9f5894cd18d017ae17b801c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019402141",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9ea3882b_087688d8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 3302,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T02:39:56Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 3302,
+        "startChar": 0,
+        "endLine": 3302,
+        "endChar": 101
+      },
+      "revId": "3a672674c0b1ecef9f5894cd18d017ae17b801c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
