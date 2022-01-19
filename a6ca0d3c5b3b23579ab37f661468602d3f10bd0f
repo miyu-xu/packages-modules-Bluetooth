@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019413332",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952559?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "65ae0928_d094a6d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T07:43:12Z",
+      "side": 1,
+      "message": "{#compatibility %!s(int\u003d4) %!s(int\u003d4) %!s(int\u003d19)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "a6ca0d3c5b3b23579ab37f661468602d3f10bd0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019413332",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952559?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7fb41c71_199c128a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T07:43:12Z",
+      "side": 1,
+      "message": "\"IOP, BCST, GTS\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "a6ca0d3c5b3b23579ab37f661468602d3f10bd0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
