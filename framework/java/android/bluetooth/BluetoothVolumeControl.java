@@ -217,10 +217,10 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
     }
 
     /**
-     * Tells remote device to set an absolute volume.
+     * Tells the remote device to set a volume offset to the absolute volume.
      *
-     * @param volume Absolute volume to be set on remote device.
-     *               Minimum value is 0 and maximum value is 255
+     * @param volumeOffset volume offset to be set on the remote device
+     *
      * @hide
      */
     @SystemApi
@@ -229,9 +229,9 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
             android.Manifest.permission.BLUETOOTH_CONNECT,
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
-    public void setVolume(@Nullable BluetoothDevice device,
-            @IntRange(from = 0, to = 255) int volume) {
-        if (DBG) log("setVolume(" + volume + ")");
+    public void setVolumeOffset(@Nullable BluetoothDevice device,
+            @IntRange(from = -255, to = 255) int volumeOffset) {
+        if (DBG) log("setVolumeOffset(" + volumeOffset + ")");
         final IBluetoothVolumeControl service = getService();
         if (service == null) {
             Log.w(TAG, "Proxy not attached to service");
@@ -239,7 +239,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         } else if (isEnabled()) {
             try {
                 final SynchronousResultReceiver recv = new SynchronousResultReceiver();
-                service.setVolume(device, volume, mAttributionSource, recv);
+                service.setVolumeOffset(device, volumeOffset, mAttributionSource, recv);
                 recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
             } catch (RemoteException | TimeoutException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
