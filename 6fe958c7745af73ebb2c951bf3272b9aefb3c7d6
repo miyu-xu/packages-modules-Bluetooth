@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d189f81d_36f782a9",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-19T23:27:38Z",
+      "side": 1,
+      "message": "Should it be std::atomic_uint16_t to avoid the race condition?",
+      "range": {
+        "startLine": 65,
+        "startChar": 2,
+        "endLine": 65,
+        "endChar": 10
+      },
+      "revId": "6fe958c7745af73ebb2c951bf3272b9aefb3c7d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
