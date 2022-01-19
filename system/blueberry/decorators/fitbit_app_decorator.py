@@ -119,6 +119,7 @@ class FitbitAppDecorator(android_device.AndroidDevice):
           (f'Target BT device has MAC address={target_device_mac_address}',
            f'which is different than given MAC address={mac_address} !'))
 
+    self.ui_context.regr_page_call(pairing_pages.BTPermissionRequestPopup, 'ok')
     self.ui_context.regr_page_call(pairing_pages.CancelPairPage, 'yes')
     self.ui_context.regr_page_call(other_pages.FitbitLocationPermissionPopup,
                                    'back')
