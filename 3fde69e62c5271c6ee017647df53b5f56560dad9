@@ -16,6 +16,24 @@
       "message": "Param should be camel case: \"groupId\" instead of \"group_id\"",
       "revId": "3fde69e62c5271c6ee017647df53b5f56560dad9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef45c056_4791c9e5",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-19T23:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab3863e4_319aecac",
+      "revId": "3fde69e62c5271c6ee017647df53b5f56560dad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
