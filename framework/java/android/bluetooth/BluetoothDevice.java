@@ -232,6 +232,19 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.device.action.BATTERY_LEVEL_CHANGED";
 
     /**
+     * Broadcast Action: Indicates the audio buffer size will be switched.
+     * <p>Always contains the extra fields {@link #EXTRA_DEVICE} and {@link
+     * #EXTRA_NAME}.
+     */
+    @SuppressLint("ActionValue")
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
+    public static final String ACTION_SWITCH_BUFFER_SIZE =
+            "android.bluetooth.device.action.SWITCH_BUFFER_SIZE";
+
+    /**
      * Used as an Integer extra field in {@link #ACTION_BATTERY_LEVEL_CHANGED}
      * intent. It contains the most recently retrieved battery level information
      * ranging from 0% to 100% for a remote device, {@link #BATTERY_LEVEL_UNKNOWN}
@@ -310,6 +323,14 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     public static final String EXTRA_PREVIOUS_BOND_STATE =
             "android.bluetooth.device.extra.PREVIOUS_BOND_STATE";
+
+    /**
+     * Used as a boolean extra field to indicate if audio buffer size is low latency or not
+     */
+    @SuppressLint("ActionValue")
+    public static final String EXTRA_LOW_LATENCY_BUFFER_SIZE =
+            "android.bluetooth.device.extra.LOW_LATENCY_BUFFER_SIZE";
+
     /**
      * Indicates the remote device is not bonded (paired).
      * <p>There is no shared link key with the remote device, so communication
