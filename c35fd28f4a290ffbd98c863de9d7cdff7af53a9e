@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019407857",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952558?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b5cc9c76_817f1aca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T05:39:02Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "c35fd28f4a290ffbd98c863de9d7cdff7af53a9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019407857",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952558?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "84d95e78_ff818b11",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T05:39:02Z",
+      "side": 1,
+      "message": "\"dump ISO data with ase handle assign on the log without pairing process\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 77
+      },
+      "revId": "c35fd28f4a290ffbd98c863de9d7cdff7af53a9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
