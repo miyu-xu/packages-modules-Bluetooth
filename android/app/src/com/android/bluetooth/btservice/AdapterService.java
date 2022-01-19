@@ -811,6 +811,11 @@ public class AdapterService extends Service {
         }
     }
 
+    void switchBufferSizeCallback(byte[] address, boolean isLowLatencyBufferSize) {
+        BluetoothDevice device = getDeviceFromByte(address);
+        device.switchBufferSize(isLowLatencyBufferSize);
+    }
+
     /**
      * Enable/disable BluetoothInCallService
      *

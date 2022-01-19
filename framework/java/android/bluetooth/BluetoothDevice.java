@@ -232,6 +232,18 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.device.action.BATTERY_LEVEL_CHANGED";
 
     /**
+     * Broadcast Action: Indicates the audio buffer size will be switched.
+     * <p>Always contains the extra fields {@link #EXTRA_DEVICE} and {@link
+     * #EXTRA_NAME}.
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
+    public static final String ACTION_SWITCH_BUFFER_SIZE =
+            "android.bluetooth.device.action.SWITCH_BUFFER_SIZE";
+
+    /**
      * Used as an Integer extra field in {@link #ACTION_BATTERY_LEVEL_CHANGED}
      * intent. It contains the most recently retrieved battery level information
      * ranging from 0% to 100% for a remote device, {@link #BATTERY_LEVEL_UNKNOWN}
@@ -310,6 +322,13 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     public static final String EXTRA_PREVIOUS_BOND_STATE =
             "android.bluetooth.device.extra.PREVIOUS_BOND_STATE";
+
+    /**
+     * Used as a boolean extra field to indicate if audio buffer size is low latency or not
+     */
+    public static final String EXTRA_BUFFER_SIZE_IN_LOW_LATENCY =
+            "android.bluetooth.device.extra.BUFFER_SIZE_IN_LOW_LATENCY";
+
     /**
      * Indicates the remote device is not bonded (paired).
      * <p>There is no shared link key with the remote device, so communication
@@ -2790,6 +2809,21 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             Log.e(TAG, "setMetadata fail", e);
             return false;
         }
+    }
+
+    /**
+     * Send buffer size switching signal to fast pair
+     *
+     * @param isLowLatencyBufferSize if buffer size should be for low latency or not
+     * @hide
+     */
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void switchBufferSize(boolean isLowLatencyBufferSize) {
+        // Send intent to fastpair
+        Log.i(TAG, "aaaaaaaaa " + isLowLatencyBufferSize + " aaaaa " + getAddress());
     }
 
     /**
