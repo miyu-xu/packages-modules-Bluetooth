@@ -67,6 +67,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.UserRestrictionsCallback;
 import android.os.Looper;
 import android.os.Message;
 import android.os.PowerExemptionManager;
@@ -89,8 +90,6 @@ import com.android.internal.R;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.DumpUtils;
 import com.android.internal.util.FrameworkStatsLog;
-import com.android.server.pm.UserManagerInternal;
-import com.android.server.pm.UserManagerInternal.UserRestrictionsListener;
 import com.android.server.pm.UserRestrictionsUtils;
 
 import java.io.FileDescriptor;
@@ -270,8 +269,8 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         }
     };
 
-    private final UserRestrictionsListener mUserRestrictionsListener =
-            new UserRestrictionsListener() {
+    private final UserRestrictionsCallback mUserRestrictionsCallback =
+            new UserRestrictionsCallback() {
                 @Override
                 public void onUserRestrictionsChanged(int userId, Bundle newRestrictions,
                         Bundle prevRestrictions) {
@@ -1401,9 +1400,8 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
             Slog.d(TAG, "Bluetooth boot completed");
         }
         mAppOps = mContext.getSystemService(AppOpsManager.class);
-        UserManagerInternal userManagerInternal =
-                LocalServices.getService(UserManagerInternal.class);
-        userManagerInternal.addUserRestrictionsListener(mUserRestrictionsListener);
+        UserManager userManager = mContext.getSystemService(UserManager.class);
+        userManager.registerUserRestrictionsCallback(mUserRestrictionsCallback);
         final boolean isBluetoothDisallowed = isBluetoothDisallowed();
         if (isBluetoothDisallowed) {
             return;
