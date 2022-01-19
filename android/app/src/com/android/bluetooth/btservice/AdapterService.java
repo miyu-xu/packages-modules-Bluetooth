@@ -811,6 +811,19 @@ public class AdapterService extends Service {
         }
     }
 
+    void switchBufferSizeCallback(byte[] address, boolean isLowLatencyBufferSize) {
+        BluetoothDevice device = getDeviceFromByte(address);
+        // Send intent to fastpair
+        Intent switchBufferSizeIntent = new Intent(BluetoothDevice.ACTION_SWITCH_BUFFER_SIZE);
+        switchBufferSizeIntent.setClassName(
+                getString(com.android.bluetooth.R.string.fastpair_package),
+                getString(com.android.bluetooth.R.string.fastpair_package)
+                        + getString(com.android.bluetooth.R.string.fastpair_service));
+        switchBufferSizeIntent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
+        switchBufferSizeIntent.putExtra(BluetoothDevice.EXTRA_BUFFER_SIZE_IN_LOW_LATENCY, isLowLatencyBufferSize);
+        sendBroadcast(switchBufferSizeIntent);
+    }
+
     /**
      * Enable/disable BluetoothInCallService
      *
