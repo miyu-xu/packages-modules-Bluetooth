@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019446347",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1949758?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9b4aeb33_390162d4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T20:53:10Z",
+      "side": 1,
+      "message": "\"Manually test signal passing from framework to bluetooth/system\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 69
+      },
+      "revId": "b86b7ca85dddd027f835242644078e022a25310a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
