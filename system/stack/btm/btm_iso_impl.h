@@ -62,6 +62,7 @@ struct iso_base {
   struct iso_sync_info sync_info;
   uint8_t state_flags;
   uint32_t sdu_itv;
+  uint16_t used_credits;
 };
 
 typedef iso_base iso_cis;
@@ -434,6 +435,7 @@ struct iso_impl {
     }
 
     iso_credits_--;
+    iso->used_credits++;
 
     BT_HDR* packet =
         prepare_ts_hci_packet(iso_handle, ts, iso->sync_info.seq_nb, data_len);
@@ -495,6 +497,11 @@ struct iso_impl {
 
       cig_callbacks_->OnCisEvent(kIsoEventCisDisconnected, &evt);
       cis->state_flags &= ~kStateFlagIsConnected;
+
+      /* return used credits */
+      iso_credits_ += cis->used_credits;
+      cis->used_credits = 0;
+
       /* Data path is considered still valid, but can be reconfigured only once
        * CIS is reestablished.
        */
@@ -514,20 +521,35 @@ struct iso_impl {
       STREAM_TO_UINT16(handle, p);
       STREAM_TO_UINT16(num_sent, p);
 
-      if ((conn_hdl_to_cis_map_.find(handle) == conn_hdl_to_cis_map_.end()) &&
-          (conn_hdl_to_bis_map_.find(handle) == conn_hdl_to_bis_map_.end()))
+      auto iter = conn_hdl_to_cis_map_.find(handle);
+      if (conn_hdl_to_cis_map_.find(handle) != conn_hdl_to_cis_map_.end()) {
+        iter->second->used_credits -= num_sent;
+        iso_credits_ += num_sent;
         continue;
+      }
 
-      iso_credits_ += num_sent;
+      iter = conn_hdl_to_bis_map_.find(handle);
+      if (conn_hdl_to_bis_map_.find(handle) != conn_hdl_to_bis_map_.end()) {
+        iter->second->used_credits -= num_sent;
+        iso_credits_ += num_sent;
+        continue;
+      }
     }
   }
 
   void handle_gd_num_completed_pkts(uint16_t handle, uint16_t credits) {
-    if ((conn_hdl_to_cis_map_.find(handle) == conn_hdl_to_cis_map_.end()) &&
-        (conn_hdl_to_bis_map_.find(handle) == conn_hdl_to_bis_map_.end()))
+    auto iter = conn_hdl_to_cis_map_.find(handle);
+    if (conn_hdl_to_cis_map_.find(handle) != conn_hdl_to_cis_map_.end()) {
+      iter->second->used_credits -= credits;
+      iso_credits_ += credits;
       return;
+    }
 
-    iso_credits_ += credits;
+    iter = conn_hdl_to_bis_map_.find(handle);
+    if (conn_hdl_to_bis_map_.find(handle) != conn_hdl_to_bis_map_.end()) {
+      iter->second->used_credits -= credits;
+      iso_credits_ += credits;
+    }
   }
 
   void process_create_big_cmpl_pkt(uint8_t len, uint8_t* data) {
