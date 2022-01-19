@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5741be8_39bc80e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-19T17:45:42Z",
+      "side": 1,
+      "message": "Note: Originally uploaded with aosp/1940077, but the code was migrated to this repo instead. You can find previous review comments on that change even thought it\u0027s been abandoned.",
+      "revId": "82bc8bb9b0b1851856525f0a5229b91162067504",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
