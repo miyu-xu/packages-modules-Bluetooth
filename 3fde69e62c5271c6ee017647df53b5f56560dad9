@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019419552",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1948605?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8d358b65_b6be95b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-19T11:11:36Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "3fde69e62c5271c6ee017647df53b5f56560dad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
