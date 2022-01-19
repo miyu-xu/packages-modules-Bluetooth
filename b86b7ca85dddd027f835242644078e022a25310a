@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17a624a4_fdbb6cb8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2844,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-19T22:31:17Z",
+      "side": 1,
+      "message": "indent smaller like other requirespermission allof attributes here?",
+      "range": {
+        "startLine": 2840,
+        "startChar": 4,
+        "endLine": 2844,
+        "endChar": 34
+      },
+      "revId": "b86b7ca85dddd027f835242644078e022a25310a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
