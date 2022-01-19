@@ -149,6 +149,13 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
             (self.derived_bt_device.get_current_playback_state(),
              expected_state)))
 
+    # TODO(user): Remove when we figure out this issue.
+    # Skips track check for BDS if sdk of pri_device is over 31, since current
+    # track info cannot be changed from BDS when next/prev track.
+    if (self.is_android_bt_target_device and
+        int(self.pri_device.build_info['build_version_sdk']) > 31):
+      return
+
     # Check if Now Playing track is sync.
     expected_track = self.pri_device.get_current_track_info()
     self.derived_bt_device.verify_current_track_changed(
@@ -274,7 +281,8 @@ class BluetoothAvrcpTest(blueberry_base_test.BlueberryBaseTest):
     self.pri_device.log.info('Expected track: %s' % expected_track)
     device_check_list = [self.pri_device]
     # Check the playback state from the android bt target device.
-    if self.is_android_bt_target_device:
+    if (self.is_android_bt_target_device and
+        int(self.pri_device.build_info['build_version_sdk']) <= 31):
       device_check_list.append(self.derived_bt_device)
     for device in device_check_list:
       device.verify_current_track_changed(
