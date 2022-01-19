@@ -397,7 +397,7 @@ class SearchDevicePage(ui_core.UIPage):
   """Fitbit Companion App's page to search device."""
 
   PAGE_TEXT = ("Turn on your phone's Bluetooth, and keep your Fitbit device "
-               "nearby to establish a connection.")
+               'nearby to establish a connection.')
   _NODE_SEARCH_BTN_TEXT = 'SEARCHING'
 
   def search(self) -> ui_core.UIPage:
@@ -407,3 +407,19 @@ class SearchDevicePage(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_text(self._NODE_SEARCH_BTN_TEXT)
+
+
+class BTPermissionRequestPopup(ui_core.UIPage):
+  """Fitbit Companion App's page to request BT permission."""
+
+  PAGE_TEXT = ('Requesting permission to turn on Bluetooth. Do you want to do '
+               'this?')
+  NODE_OK_BTN_TEXT = 'OK'
+
+  def ok(self) -> ui_core.UIPage:
+    """Accepts the request.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self.NODE_OK_BTN_TEXT)
