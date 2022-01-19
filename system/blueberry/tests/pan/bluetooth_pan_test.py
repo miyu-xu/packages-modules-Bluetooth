@@ -53,11 +53,6 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
       device.sl4a_setup()
       device.mac_address = device.get_bluetooth_mac_address()
 
-      # Check if the device has inserted a SIM card.
-      if device.sl4a.telephonyGetSimState() != SIM_STATE_READY:
-        raise signals.TestError('SIM card is not ready on Device "%s".' %
-                                device.serial)
-
     self.primary_device = self.android_devices[0]
     self.secondary_device = self.android_devices[1]
 
@@ -182,6 +177,11 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
       signals.TestError: raised if a step fails.
       signals.TestFailure: raised if PANU device fails to access internet.
     """
+    # Check if the device has inserted a SIM card.
+    if nap_device.sl4a.telephonyGetSimState() != SIM_STATE_READY:
+      raise signals.TestError('SIM card is not ready on Device "%s".' %
+                              nap_device.serial)
+
     nap_device.debug_tag = 'NAP'
     panu_device.debug_tag = 'PANU'
     try:
