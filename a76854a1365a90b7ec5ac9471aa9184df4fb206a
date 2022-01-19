@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "901a9089_3dc9ece2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-19T21:51:09Z",
+      "side": 1,
+      "message": "nit: typo on \"bitfiled\", should be \"bit field\"",
+      "revId": "a76854a1365a90b7ec5ac9471aa9184df4fb206a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c348c8a7_123f2749",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-19T21:51:09Z",
+      "side": 1,
+      "message": "Same with \"bitfiled\" here",
+      "range": {
+        "startLine": 741,
+        "startChar": 19,
+        "endLine": 741,
+        "endChar": 27
+      },
+      "revId": "a76854a1365a90b7ec5ac9471aa9184df4fb206a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
