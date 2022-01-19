@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab3863e4_319aecac",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-19T22:45:21Z",
+      "side": 1,
+      "message": "Param should be camel case: \"groupId\" instead of \"group_id\"",
+      "revId": "3fde69e62c5271c6ee017647df53b5f56560dad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
