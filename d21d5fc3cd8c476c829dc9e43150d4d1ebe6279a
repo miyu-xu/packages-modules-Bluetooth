@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd0a1602_7f58403f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T21:11:08Z",
+      "side": 1,
+      "message": "nit: consider making the text consistent with start scan and suspend scan",
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5febed39_ff89f649",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T21:11:08Z",
+      "side": 1,
+      "message": "nit: wouldn\u0027t this be more readable if written as\n\nint newScanMode \u003d isAppForeground(client) ? client.scanModeApp : ScanSettings.SCAN_MODE_BACKGROUND ;",
+      "range": {
+        "startLine": 550,
+        "startChar": 20,
+        "endLine": 551,
+        "endChar": 45
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5bff7b1_d98b7f81",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T21:11:08Z",
+      "side": 1,
+      "message": "Now that we are changing these, I think we should switch to BT (.625ms) units. \n\nCome to think of it, it\u0027s not even possible to set some values using integer ms",
+      "range": {
+        "startLine": 615,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 80
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88838aec_f01f2475",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T21:11:08Z",
+      "side": 1,
+      "message": "150,000 or 15,000?",
+      "range": {
+        "startLine": 644,
+        "startChar": 74,
+        "endLine": 644,
+        "endChar": 80
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d430c26_840a302e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T21:11:08Z",
+      "side": 1,
+      "message": "Now that we are changing the code, we should update the variable names to end in Ms if they are in ms",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 718,
+        "endChar": 78
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20348c40_6f694619",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T21:11:08Z",
+      "side": 1,
+      "message": "These seem to be in ms at this stage, no? We should clarify\n\nnit: maybe make it more concise too\n\n                        Log.d(TAG, \"Start gattClientScanNative\"\n                                + \" old mode \" + mLastConfiguredScanSetting\n                                + \" new mode \" + curScanSetting\n                                + \" (\" + scanWindow + \"/\" + scanInterval + \") ms\" \n                                + client);",
+      "range": {
+        "startLine": 720,
+        "startChar": 0,
+        "endLine": 723,
+        "endChar": 90
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8438ad80_56383b84",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T21:11:08Z",
+      "side": 1,
+      "message": "nit: I feel the coding style for this file actively avoids \"continue\" statements, which can be somewhat more bug-prone. Consider rewriting",
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
