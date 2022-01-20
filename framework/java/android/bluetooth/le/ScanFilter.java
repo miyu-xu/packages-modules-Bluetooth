@@ -83,15 +83,16 @@ public final class ScanFilter implements Parcelable {
     @Nullable
     private final byte[] mManufacturerDataMask;
 
+    private int mAdType = -1;
+
     /** @hide */
     public static final ScanFilter EMPTY = new ScanFilter.Builder().build();
 
-    private ScanFilter(String name, String deviceAddress, ParcelUuid uuid,
-            ParcelUuid uuidMask, ParcelUuid solicitationUuid,
-            ParcelUuid solicitationUuidMask, ParcelUuid serviceDataUuid,
-            byte[] serviceData, byte[] serviceDataMask,
+    private ScanFilter(String name, String deviceAddress, ParcelUuid uuid, ParcelUuid uuidMask,
+            ParcelUuid solicitationUuid, ParcelUuid solicitationUuidMask,
+            ParcelUuid serviceDataUuid, byte[] serviceData, byte[] serviceDataMask,
             int manufacturerId, byte[] manufacturerData, byte[] manufacturerDataMask,
-            @AddressType int addressType, @Nullable byte[] irk) {
+            @AddressType int addressType, @Nullable byte[] irk, int adType) {
         mDeviceName = name;
         mServiceUuid = uuid;
         mServiceUuidMask = uuidMask;
@@ -106,6 +107,7 @@ public final class ScanFilter implements Parcelable {
         mManufacturerDataMask = manufacturerDataMask;
         mAddressType = addressType;
         mIrk = irk;
+        mAdType = adType;
     }
 
     @Override
@@ -175,6 +177,9 @@ public final class ScanFilter implements Parcelable {
                 dest.writeByteArray(mIrk);
             }
         }
+
+        // AD type filter
+        dest.writeInt(mAdType);
     }
 
     /**
@@ -265,6 +270,10 @@ public final class ScanFilter implements Parcelable {
                     builder.setDeviceAddress(address, addressType);
                 }
             }
+
+            int adType = in.readInt();
+            builder.setAdType(adType);
+
             return builder.build();
         }
     };
@@ -358,6 +367,13 @@ public final class ScanFilter implements Parcelable {
     @Nullable
     public byte[] getManufacturerDataMask() {
         return mManufacturerDataMask;
+    }
+
+    /**
+     * Returns the AD type. -1 if the AD type is not set.
+     */
+    public int getAdType() {
+        return mAdType;
     }
 
     /**
@@ -503,15 +519,15 @@ public final class ScanFilter implements Parcelable {
     @Override
     public String toString() {
         return "BluetoothLeScanFilter [mDeviceName=" + mDeviceName + ", mDeviceAddress="
-                + mDeviceAddress
-                + ", mUuid=" + mServiceUuid + ", mUuidMask=" + mServiceUuidMask
+                + mDeviceAddress + ", mUuid=" + mServiceUuid + ", mUuidMask=" + mServiceUuidMask
                 + ", mServiceSolicitationUuid=" + mServiceSolicitationUuid
                 + ", mServiceSolicitationUuidMask=" + mServiceSolicitationUuidMask
-                + ", mServiceDataUuid=" + Objects.toString(mServiceDataUuid) + ", mServiceData="
-                + Arrays.toString(mServiceData) + ", mServiceDataMask="
+                + ", mServiceDataUuid=" + Objects.toString(mServiceDataUuid)
+                + ", mServiceData=" + Arrays.toString(mServiceData) + ", mServiceDataMask="
                 + Arrays.toString(mServiceDataMask) + ", mManufacturerId=" + mManufacturerId
                 + ", mManufacturerData=" + Arrays.toString(mManufacturerData)
-                + ", mManufacturerDataMask=" + Arrays.toString(mManufacturerDataMask) + "]";
+                + ", mManufacturerDataMask=" + Arrays.toString(mManufacturerDataMask)
+                + ", mAdType=" + mAdType + "]";
     }
 
     @Override
@@ -588,6 +604,8 @@ public final class ScanFilter implements Parcelable {
         private int mManufacturerId = -1;
         private byte[] mManufacturerData;
         private byte[] mManufacturerDataMask;
+
+        private int mAdType = -1;
 
         /**
          * Set filter on device name.
@@ -894,17 +912,30 @@ public final class ScanFilter implements Parcelable {
         }
 
         /**
+         * Set filter on advertising data type
+         *
+         * @param adType The advertising data type for the filter.
+         *
+         */
+        @NonNull
+        public Builder setAdType(int adType) {
+            if (adType < 0) {
+                throw new IllegalArgumentException("invalid AD Type");
+            }
+            mAdType = adType;
+            return this;
+        }
+
+        /**
          * Build {@link ScanFilter}.
          *
          * @throws IllegalArgumentException If the filter cannot be built.
          */
         public ScanFilter build() {
-            return new ScanFilter(mDeviceName, mDeviceAddress,
-                    mServiceUuid, mUuidMask, mServiceSolicitationUuid,
-                    mServiceSolicitationUuidMask,
-                    mServiceDataUuid, mServiceData, mServiceDataMask,
-                    mManufacturerId, mManufacturerData, mManufacturerDataMask,
-                    mAddressType, mIrk);
+            return new ScanFilter(mDeviceName, mDeviceAddress, mServiceUuid, mUuidMask,
+                    mServiceSolicitationUuid, mServiceSolicitationUuidMask, mServiceDataUuid,
+                    mServiceData, mServiceDataMask, mManufacturerId, mManufacturerData,
+                    mManufacturerDataMask, mAddressType, mIrk, mAdType);
         }
     }
 }
