@@ -16,6 +16,57 @@
       "message": "migrated from frameworks/base to packages/modules/Bluetooth, original at aosp/1944166",
       "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d32d3e4_31cbe021",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-20T22:22:35Z",
+      "side": 1,
+      "message": "The permission enforcement should happen when we send the broadcast. Please make sure we include that within this CL! We should update the code in PbapClientStateMachine to call sendBroadcastMultiplePermissions instead of sendBroadcast.",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4805d70_64287822",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-20T22:22:35Z",
+      "side": 1,
+      "message": "nit: We should prefer to return Collections.emptyList() as the default value and can get rid of this variable",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0284c50_c0af7ffd",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-20T22:22:35Z",
+      "side": 1,
+      "message": "Make sure we have @param tags for all API docs where relevant",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
