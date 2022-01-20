@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019474296",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907511?revision\u003d7",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f6ad2e56_29311ecd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T05:23:09Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "9fcb64dff0d917a20aa7fbd7864a9d51d970045a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019474296",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907511?revision\u003d7",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4d3e405c_150abd28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T05:23:09Z",
+      "side": 1,
+      "message": "\"Connect with remote PBAP Client supporting PBAP SIM and verify\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 68
+      },
+      "revId": "9fcb64dff0d917a20aa7fbd7864a9d51d970045a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019474296",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1907511?revision\u003d7",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "172edd10_f9c7ac80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T05:23:09Z",
+      "side": 1,
+      "message": "\"Used Mecapp PC tool as PBAP Client for validating SIM features.\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 69
+      },
+      "revId": "9fcb64dff0d917a20aa7fbd7864a9d51d970045a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
