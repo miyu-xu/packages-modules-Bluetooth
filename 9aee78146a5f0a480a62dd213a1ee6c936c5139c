@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019493908",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956178?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "33008b86_db5f3428",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T14:04:30Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "9aee78146a5f0a480a62dd213a1ee6c936c5139c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019493908",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956178?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6a5888bc_ee34e377",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T14:04:30Z",
+      "side": 1,
+      "message": "\"TbsGattTest\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "9aee78146a5f0a480a62dd213a1ee6c936c5139c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
