@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f77739d7_9e5adfdd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-20T22:01:51Z",
+      "side": 1,
+      "message": "I know Settings doesn\u0027t need this, but should we add an address type at the same time?",
+      "revId": "6a4668f21af1157f4072ec00ca50f8f8c8fd2a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
