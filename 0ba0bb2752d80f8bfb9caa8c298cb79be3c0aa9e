@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90036c56_4bb8f275",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 2147,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-20T23:05:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74894ab7_aef18388",
+      "revId": "0ba0bb2752d80f8bfb9caa8c298cb79be3c0aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4a8a67d_bd6715ae",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-11T10:27:28Z",
       "side": 1,
       "message": "Looking at the code, if in case we will miss ISO data from CIS 2 (eg. CRC error or whatever), data from CIS 1 will be lost.\n\nI think, we need to add here timeout and if there is no CIS 2 data we should decode only one channel.\n\nFor this we also need to look at the sequence number of the incoming iso data.",
+      "revId": "0ba0bb2752d80f8bfb9caa8c298cb79be3c0aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa263e56_77bf9c74",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-20T23:05:49Z",
+      "side": 1,
+      "message": "As already discussed, this would be extended in next CL.",
+      "parentUuid": "c4a8a67d_bd6715ae",
       "revId": "0ba0bb2752d80f8bfb9caa8c298cb79be3c0aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
