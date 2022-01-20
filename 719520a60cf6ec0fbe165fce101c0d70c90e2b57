@@ -1,0 +1,411 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501044",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8956a7a1_83da58c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501044",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1142266b_3d0fe619",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "\"streaming with LC3 codec config\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 37
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "81c2e5ab_788cc070",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 793,
+        "startChar": 2,
+        "endLine": 793,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a3647c0a_74912fb7",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 794,
+        "startChar": 2,
+        "endLine": 794,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "97d04c6e_e2e5b7a5",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 796,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 796,
+        "startChar": 2,
+        "endLine": 796,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a4d9a71f_f693040b",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 810,
+        "startChar": 2,
+        "endLine": 810,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f244399f_7045c040",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 1104,
+        "startChar": 2,
+        "endLine": 1104,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d21ac84c_ba331426",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1105,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 1105,
+        "startChar": 2,
+        "endLine": 1105,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d6acf8a8_b88352e0",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 1107,
+        "startChar": 2,
+        "endLine": 1107,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "31e46aee_3c15ab45",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 1123,
+        "startChar": 2,
+        "endLine": 1123,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8a33ac4f_0ecb849b",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1173,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 1173,
+        "startChar": 2,
+        "endLine": 1173,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "96c8660d_8cf28222",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 129,
+        "startChar": 2,
+        "endLine": 129,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9cc6565a_c20a89e6",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 249,
+        "startChar": 2,
+        "endLine": 249,
+        "endChar": 9
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501050",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "dccca4e9_2af770dc",
+          "description": "Change to \"system/stack/a2dp/a2dp_vendor_lc3_encoder.cc\"",
+          "replacements": [
+            {
+              "path": "system/stack/a2dp/a2dp_vendor_lc3_encoder.cc",
+              "range": {
+                "startLine": 467,
+                "startChar": 21,
+                "endLine": 467,
+                "endChar": 26
+              },
+              "replacement": " i.e. "
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "df1ff348_17fe5f93",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Common typo found: \" i.e \" -- should it be \" i.e. \"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 467,
+        "startChar": 21,
+        "endLine": 467,
+        "endChar": 26
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501046",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952978?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "946f093e_75c64c3a",
+        "filename": "system/stack/a2dp/a2dp_vendor_lc3_encoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:29Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 501,
+        "startChar": 4,
+        "endLine": 501,
+        "endChar": 11
+      },
+      "revId": "719520a60cf6ec0fbe165fce101c0d70c90e2b57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
