@@ -1215,6 +1215,8 @@ bool BTM_IsAclConnectionUp(const RawAddress& remote_bda,
     return bluetooth::shim::L2CA_IsLinkEstablished(remote_bda, transport);
   }
 
+  VLOG(2) << __func__ << " RemBdAddr: " << remote_bda << " transport: " << (int)transport;
+
   return internal_.btm_bda_to_acl(remote_bda, transport) != nullptr;
 }
 
