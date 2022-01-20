@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5da42b9_289827a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1355743
+      },
+      "writtenOn": "2022-01-20T05:37:46Z",
+      "side": 1,
+      "message": "Hi Chienyuan and Johnson \n\nChange lost review bits after update commit message, could you please review once again and provide required approvals.  ",
+      "revId": "1c1c1f884e7ebde2337104f41518e330f890a29e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
