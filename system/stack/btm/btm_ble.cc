@@ -64,9 +64,6 @@ void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
   if (bluetooth::shim::is_gd_shim_enabled()) {
     return bluetooth::shim::BTM_SecAddBleDevice(bd_addr, dev_type, addr_type);
   }
-
-  BTM_TRACE_DEBUG("%s: dev_type=0x%x", __func__, dev_type);
-
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   if (!p_dev_rec) {
     p_dev_rec = btm_sec_allocate_dev_rec();
@@ -81,9 +78,15 @@ void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
     p_dev_rec->conn_params.supervision_tout = BTM_BLE_CONN_PARAM_UNDEF;
     p_dev_rec->conn_params.peripheral_latency = BTM_BLE_CONN_PARAM_UNDEF;
 
-    BTM_TRACE_DEBUG("%s: Device added, handle=0x%x, p_dev_rec=%p, bd_addr=%s",
-                    __func__, p_dev_rec->ble_hci_handle, p_dev_rec,
-                    bd_addr.ToString().c_str());
+    VLOG(2) << __func__ << " add dev " << p_dev_rec->index <<
+      " handle: " << std::hex << p_dev_rec->ble_hci_handle << std::dec <<
+      " bdadr: " << p_dev_rec->bd_addr <<
+      " addr_type: " << (int)addr_type;
+  } else {
+    VLOG(2) << __func__ << " reuse dev " << p_dev_rec->index <<
+      " bdadr: " << p_dev_rec->bd_addr <<
+      "; old addr_type: " << (int)p_dev_rec->ble.ble_addr_type <<
+      "; new addr_type: " << (int)addr_type;
   }
 
   memset(p_dev_rec->sec_bd_name, 0, sizeof(tBTM_BD_NAME));
@@ -96,8 +99,8 @@ void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
   if (p_info) {
     p_info->results.ble_addr_type = p_dev_rec->ble.ble_addr_type;
     p_info->results.device_type = p_dev_rec->device_type;
-    BTM_TRACE_DEBUG("InqDb  device_type =0x%x  addr_type=0x%x",
-                    p_info->results.device_type, p_info->results.ble_addr_type);
+    VLOG(2) << "update InqDb  device_type: " << (int)p_info->results.device_type <<
+      " addr_type: " << (int)p_info->results.ble_addr_type << " (loding LE device)";
   }
 }
 
@@ -1119,12 +1122,12 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
   tBTM_SEC_DEV_REC* p_rec;
   tBTM_LE_EVT_DATA cb_data;
 
-  BTM_TRACE_DEBUG("btm_sec_save_le_key key_type=0x%x pass_to_application=%d",
-                  key_type, pass_to_application);
+
+  VLOG(1) << __func__ << " " << bd_addr <<
+    " keys: 0x" << std::hex << (int)key_type <<
+    (pass_to_application? " smp": " loading");
+
   /* Store the updated key in the device database */
-
-  VLOG(1) << "bd_addr:" << bd_addr;
-
   if ((p_rec = btm_find_dev(bd_addr)) != NULL &&
       (p_keys || key_type == BTM_LE_KEY_LID)) {
     btm_ble_init_pseudo_addr(p_rec, bd_addr);
@@ -1154,12 +1157,10 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
         p_rec->ble.identity_address_with_type.type =
             p_keys->pid_key.identity_addr_type;
         p_rec->ble.key_type |= BTM_LE_KEY_PID;
-        BTM_TRACE_DEBUG(
-            "%s: BTM_LE_KEY_PID key_type=0x%x save peer IRK, change bd_addr=%s "
-            "to id_addr=%s id_addr_type=0x%x",
-            __func__, p_rec->ble.key_type, p_rec->bd_addr.ToString().c_str(),
-            p_keys->pid_key.identity_addr.ToString().c_str(),
-            p_keys->pid_key.identity_addr_type);
+        VLOG(2) << __func__ << " LE PID key_type: 0x" << std::hex << (int)p_rec->ble.key_type <<
+            " change bda " << p_rec->bd_addr << " to identity " << p_keys->pid_key.identity_addr <<
+            " pseudo: " << p_rec->ble.pseudo_addr;
+
         /* update device record address as identity address */
         p_rec->bd_addr = p_keys->pid_key.identity_addr;
         /* combine DUMO device security record if needed */
@@ -1221,7 +1222,7 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
         return;
     }
 
-    VLOG(1) << "BLE key type 0x" << loghex(key_type)
+    VLOG(1) << "BLE key type 0x" << std::hex << (int)key_type
             << " updated for BDA: " << bd_addr << " (btm_sec_save_le_key)";
 
     /* Notify the application that one of the BLE keys has been updated

@@ -670,3 +670,30 @@ void BTA_DmBleCsisObserve(bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb) {
  *
  ******************************************************************************/
 void BTA_VendorInit(void) { APPL_TRACE_API("BTA_VendorInit"); }
+
+static void bta_sec_dump(const std::string& label) {
+  BTM_SecDump(label);
+}
+
+/** Dump all BTM Sec records into logcat  */
+void BTA_SecDump(const std::string& label) {
+  if (VLOG_IS_ON(2)) {
+    VLOG(2) << "scheduling SecDump:  " <<  label;
+    do_in_main_thread(FROM_HERE, base::Bind(bta_sec_dump, label));
+  }
+}
+
+static void bta_sec_dump_dev(const RawAddress& bd_addr, const std::string& label) {
+  VLOG(2) << label;
+  BTM_SecDumpDev(bd_addr);
+}
+
+/** Dump BTM Sec record for device with bd_addr. */
+void BTA_SecDumpDev(const RawAddress& bd_addr, const std::string& label) {
+  if (VLOG_IS_ON(2)) {
+    VLOG(2) << "scheduling SecDumpDev " << bd_addr << ": " << label;
+    do_in_main_thread(FROM_HERE, base::Bind(bta_sec_dump_dev, bd_addr, label));
+  }
+}
+
+

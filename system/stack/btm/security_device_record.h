@@ -441,4 +441,6 @@ struct tBTM_SEC_DEV_REC {
         (remote_supports_secure_connections) ? 'T' : 'F',
         PRIVATE_NAME(sec_bd_name));
   }
+
+  int index;
 };

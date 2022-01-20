@@ -644,6 +644,9 @@ void bta_dm_remove_device(const RawAddress& bd_addr) {
     }
   }
 
+  VLOG(2) << __func__ << ": " << bd_addr << "  " << is_bd_addr_connected <<
+    "; other: " << other_address << " " << other_address_connected;
+
   /* Delete the device mentioned in the msg */
   if (!is_bd_addr_connected) {
     bta_dm_process_remove_device(bd_addr);
@@ -691,7 +694,7 @@ void bta_dm_close_acl(const RawAddress& bd_addr, bool remove_dev,
                       tBT_TRANSPORT transport) {
   uint8_t index;
 
-  APPL_TRACE_DEBUG("bta_dm_close_acl");
+  VLOG(2) << __func__ << " " << bd_addr << " " << remove_dev << " " << (int)transport;
 
   if (BTM_IsAclConnectionUp(bd_addr, transport)) {
     for (index = 0; index < bta_dm_cb.device_list.count; index++) {
@@ -755,6 +758,8 @@ void bta_dm_bond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
       sec_event.auth_cmpl.success = true;
     } else {
       /* delete this device entry from Sec Dev DB */
+      VLOG(2) << __func__ << " failed bond " << bd_addr <<
+        ", transport " << (int)transport;
       bta_dm_remove_sec_dev_entry(bd_addr);
     }
     bta_dm_cb.p_sec_cback(BTA_DM_AUTH_CMPL_EVT, &sec_event);
@@ -2106,6 +2111,7 @@ static uint8_t bta_dm_new_link_key_cback(const RawAddress& bd_addr,
 static void bta_dm_authentication_complete_cback(
     const RawAddress& bd_addr, UNUSED_ATTR DEV_CLASS dev_class,
     tBTM_BD_NAME bd_name, tHCI_REASON reason) {
+  VLOG(2) << __func__ << " bda: " << bd_addr << " reason: " << reason;
   if (reason != HCI_SUCCESS) {
     if (bta_dm_cb.p_sec_cback) {
       // Build out the security event data structure
@@ -2442,6 +2448,8 @@ void BTA_dm_acl_up(const RawAddress bd_addr, tBT_TRANSPORT transport) {
 
 static void bta_dm_acl_down(const RawAddress& bd_addr,
                             tBT_TRANSPORT transport) {
+  VLOG(2) <<  __func__ << ": disconnecting " << bd_addr << " transport: " << (int)transport;
+
   bool issue_unpair_cb = false;
   bool remove_device = false;
 
@@ -3479,6 +3487,8 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
 
   if (!bta_dm_cb.p_sec_cback) return BTM_NOT_AUTHORIZED;
 
+  VLOG(2) << __func__ << " bda: " << bda << " event: " << (int)event;
+
   memset(&sec_event, 0, sizeof(tBTA_DM_SEC));
   switch (event) {
     case BTM_LE_IO_REQ_EVT:
@@ -3563,6 +3573,8 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
       break;
 
     case BTM_LE_COMPLT_EVT:
+      VLOG(2) << __func__ << " BTM_LE_COMPLT_EVT " << bda
+          << " reason:" << (int)p_data->complt.reason;
       sec_event.auth_cmpl.bd_addr = bda;
       BTM_ReadDevInfo(bda, &sec_event.auth_cmpl.dev_type,
                       &sec_event.auth_cmpl.addr_type);
