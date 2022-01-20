@@ -62,6 +62,23 @@ public final class ScanSettings implements Parcelable {
     public static final int SCAN_MODE_AMBIENT_DISCOVERY = 3;
 
     /**
+     * Default Bluetooth LE scan mode when the screen is off or App is in the background.
+     * This mode has the low duty cycle and long scan interval which results in the lowest
+     * power consumption among all modes. It is for the framework internal use only.
+     *
+     * @hide
+     */
+    public static final int SCAN_MODE_BACKGROUND = 4;
+
+    /**
+     * Balanced/ambient Bluetooth LE scan mode for foreground service when the screen is off.
+     * It is for the framework internal use only.
+     *
+     * @hide
+     */
+    public static final int SCAN_MODE_BACKGROUND_AMBIENT = 5;
+
+    /**
      * Trigger a callback for every Bluetooth advertisement found that matches the filter criteria.
      * If no filter is active, all advertisement packets are reported.
      */
@@ -292,6 +309,8 @@ public final class ScanSettings implements Parcelable {
                 case SCAN_MODE_BALANCED:
                 case SCAN_MODE_LOW_LATENCY:
                 case SCAN_MODE_AMBIENT_DISCOVERY:
+                case SCAN_MODE_BACKGROUND:
+                case SCAN_MODE_BACKGROUND_AMBIENT:
                     mScanMode = scanMode;
                     break;
                 default:

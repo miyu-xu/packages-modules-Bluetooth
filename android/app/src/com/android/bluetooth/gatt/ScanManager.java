@@ -39,6 +39,7 @@ import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.Display;
 
 import com.android.bluetooth.Utils;
@@ -78,6 +79,8 @@ public class ScanManager {
     private static final int MSG_SUSPEND_SCANS = 4;
     private static final int MSG_RESUME_SCANS = 5;
     private static final int MSG_IMPORTANCE_CHANGE = 6;
+    private static final int MSG_SCREEN_ON = 7;
+    private static final int MSG_SCREEN_OFF = 8;
     private static final String ACTION_REFRESH_BATCHED_SCAN =
             "com.android.bluetooth.gatt.REFRESH_BATCHED_SCAN";
 
@@ -108,6 +111,8 @@ public class ScanManager {
     private LocationManager mLocationManager;
     private static final int FOREGROUND_IMPORTANCE_CUTOFF =
             ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
+    private static final boolean DEFAULT_UID_IS_FOREGROUND = true;
+    private final SparseBooleanArray mIsUidForegroundMap = new SparseBooleanArray();
 
     private class UidImportance {
         public int uid;
@@ -133,10 +138,13 @@ public class ScanManager {
         mLocationManager = mService.getSystemService(LocationManager.class);
 
         mPriorityMap.put(ScanSettings.SCAN_MODE_OPPORTUNISTIC, 0);
-        mPriorityMap.put(ScanSettings.SCAN_MODE_LOW_POWER, 1);
-        mPriorityMap.put(ScanSettings.SCAN_MODE_BALANCED, 2);
-        mPriorityMap.put(ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY, 3);
-        mPriorityMap.put(ScanSettings.SCAN_MODE_LOW_LATENCY, 4);
+        mPriorityMap.put(ScanSettings.SCAN_MODE_BACKGROUND, 1);
+        mPriorityMap.put(ScanSettings.SCAN_MODE_LOW_POWER, 2);
+        mPriorityMap.put(ScanSettings.SCAN_MODE_BACKGROUND_AMBIENT, 3);
+        // BALANCED and SCAN_MODE_AMBIENT_DISCOVERY have the same settings and priority.
+        mPriorityMap.put(ScanSettings.SCAN_MODE_BALANCED, 4);
+        mPriorityMap.put(ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY, 4);
+        mPriorityMap.put(ScanSettings.SCAN_MODE_LOW_LATENCY, 5);
     }
 
     void start() {
@@ -228,6 +236,9 @@ public class ScanManager {
     }
 
     void startScan(ScanClient client) {
+        if (DBG) {
+            Log.d(TAG, "startScan() " + client);
+        }
         sendMessage(MSG_START_BLE_SCAN, client);
     }
 
@@ -298,6 +309,12 @@ public class ScanManager {
                 case MSG_RESUME_SCANS:
                     handleResumeScans();
                     break;
+                case MSG_SCREEN_OFF:
+                    handleScreenOff();
+                    break;
+                case MSG_SCREEN_ON:
+                    handleScreenOn();
+                    break;
                 case MSG_IMPORTANCE_CHANGE:
                     handleImportanceChange((UidImportance) msg.obj);
                     break;
@@ -348,6 +365,7 @@ public class ScanManager {
                 mBatchClients.add(client);
                 mScanNative.startBatchScan(client);
             } else {
+                updateScanModeIfBackgroundOrScreenOff(client);
                 mRegularScanClients.add(client);
                 mScanNative.startRegularScan(client);
                 if (!mScanNative.isOpportunisticScanClient(client)) {
@@ -377,6 +395,9 @@ public class ScanManager {
         void handleStopScan(ScanClient client) {
             if (client == null) {
                 return;
+            }
+            if (DBG) {
+                Log.d(TAG, "handling stop scan " + client);
             }
 
             if (mSuspendedScanClients.contains(client)) {
@@ -432,6 +453,11 @@ public class ScanManager {
                     && settings.getReportDelayMillis() == 0;
         }
 
+        void handleScreenOff() {
+            handleSuspendScans();
+            updateRegularScanClientsScreenOff();
+        }
+
         @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
         void handleSuspendScans() {
             for (ScanClient client : mRegularScanClients) {
@@ -441,10 +467,65 @@ public class ScanManager {
                     if (client.stats != null) {
                         client.stats.recordScanSuspend(client.scannerId);
                     }
+                    if (DBG) {
+                        Log.d(TAG, "suspend scan " + client);
+                    }
                     handleStopScan(client);
                     mSuspendedScanClients.add(client);
                 }
             }
+        }
+
+        private void updateRegularScanClientsScreenOff() {
+            boolean updatedScanParams = false;
+            for (ScanClient client : mRegularScanClients) {
+                if (updateScanModeIfBackgroundOrScreenOff(client)) {
+                    updatedScanParams = true;
+                    if (DBG) {
+                        Log.d(TAG, client.toString());
+                    }
+                }
+            }
+            if (updatedScanParams) {
+                mScanNative.configureRegularScanParams();
+            }
+        }
+
+        boolean updateScanModeIfBackgroundOrScreenOff(ScanClient client) {
+            if (!isAppForeground(client)) {
+                // Make sure background Apps stay in the background scan mode
+                return client.updateScanMode(ScanSettings.SCAN_MODE_BACKGROUND);
+            }
+
+            if (isScreenOn()) {
+                return false;
+            }
+            // The following codes are effectively only for services
+            // Apps are either already or will be soon handled by handleImportanceChange().
+            switch (client.scanModeApp) {
+                case ScanSettings.SCAN_MODE_LOW_POWER:
+                    return client.updateScanMode(ScanSettings.SCAN_MODE_BACKGROUND);
+                case ScanSettings.SCAN_MODE_BALANCED:
+                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
+                    return client.updateScanMode(ScanSettings.SCAN_MODE_BACKGROUND_AMBIENT);
+                case ScanSettings.SCAN_MODE_OPPORTUNISTIC:
+                case ScanSettings.SCAN_MODE_LOW_LATENCY:
+                default:
+                    return false;
+            }
+        }
+
+        /**
+         * Services and Apps are assumed to be in the foreground by default unless it changes to the
+         * background triggering onUidImportance().
+         */
+        private boolean isAppForeground(ScanClient client) {
+            return mIsUidForegroundMap.get(client.appUid, DEFAULT_UID_IS_FOREGROUND);
+        }
+
+        void handleScreenOn() {
+            handleResumeScans();
+            updateRegularScanClientsScreenOn();
         }
 
         void handleResumeScans() {
@@ -454,10 +535,28 @@ public class ScanManager {
                     if (client.stats != null) {
                         client.stats.recordScanResume(client.scannerId);
                     }
+                    if (DBG) {
+                        Log.d(TAG, "resume scan " + client);
+                    }
                     handleStartScan(client);
                 }
             }
             mSuspendedScanClients.clear();
+        }
+
+        void updateRegularScanClientsScreenOn() {
+            boolean updatedScanParams = false;
+            for (ScanClient client : mRegularScanClients) {
+                int newScanMode = (!isAppForeground(client)) ? ScanSettings.SCAN_MODE_BACKGROUND
+                        : client.scanModeApp;
+
+                if (client.updateScanMode(newScanMode)) {
+                    updatedScanParams = true;
+                }
+            }
+            if (updatedScanParams) {
+                mScanNative.configureRegularScanParams();
+            }
         }
     }
 
@@ -513,14 +612,16 @@ public class ScanManager {
         /**
          * Scan params corresponding to regular scan setting
          */
-        private static final int SCAN_MODE_LOW_POWER_WINDOW_MS = 512;
-        private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS = 5120;
-        private static final int SCAN_MODE_BALANCED_WINDOW_MS = 1024;
-        private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 4096;
+        private static final int SCAN_MODE_LOW_POWER_WINDOW_MS = 35;
+        private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS = 350;
+        private static final int SCAN_MODE_BALANCED_WINDOW_MS = 35;
+        private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 175;
         private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 4096;
         private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 4096;
-        private static final int SCAN_MODE_AMBIENT_DISCOVERY_WINDOW_MS = 128;
-        private static final int SCAN_MODE_AMBIENT_DISCOVERY_INTERVAL_MS = 640;
+        private static final int SCAN_MODE_BACKGROUND_WINDOW_MS = 512;
+        private static final int SCAN_MODE_BACKGROUND_INTERVAL_MS = 10240;
+        private static final int SCAN_MODE_BACKGROUND_AMBIENT_WINDOW_MS = 128;
+        private static final int SCAN_MODE_BACKGROUND_AMBIENT_INTERVAL_MS = 640;
 
         /**
          * Onfound/onlost for scan settings
@@ -539,8 +640,8 @@ public class ScanManager {
         private static final int SCAN_MODE_BATCH_BALANCED_INTERVAL_MS = 15000;
         private static final int SCAN_MODE_BATCH_LOW_LATENCY_WINDOW_MS = 1500;
         private static final int SCAN_MODE_BATCH_LOW_LATENCY_INTERVAL_MS = 5000;
-        private static final int SCAN_MODE_BATCH_AMBIENT_DISCOVERY_WINDOW_MS = 1500;
-        private static final int SCAN_MODE_BATCH_AMBIENT_DISCOVERY_INTERVAL_MS = 15000;
+        private static final int SCAN_MODE_BATCH_BACKGROUND_WINDOW_MS = 1500;
+        private static final int SCAN_MODE_BATCH_BACKGROUND_INTERVAL_MS = 150000;
 
         // The logic is AND for each filter field.
         private static final int LIST_LOGIC_TYPE = 0x1111111;
@@ -610,23 +711,24 @@ public class ScanManager {
                 curScanSetting = client.settings.getScanMode();
             }
 
-            if (DBG) {
-                Log.d(TAG, "configureRegularScanParams() - ScanSetting Scan mode=" + curScanSetting
-                        + " mLastConfiguredScanSetting=" + mLastConfiguredScanSetting);
-            }
-
             if (curScanSetting != Integer.MIN_VALUE
                     && curScanSetting != ScanSettings.SCAN_MODE_OPPORTUNISTIC) {
                 if (curScanSetting != mLastConfiguredScanSetting) {
                     int scanWindow = getScanWindowMillis(client.settings);
                     int scanInterval = getScanIntervalMillis(client.settings);
+                    if (DBG) {
+                        Log.d(TAG, "Start gattClientScanNative with"
+                                + " old scanMode " + mLastConfiguredScanSetting
+                                + " new scanMode " + curScanSetting
+                                + " int " + scanInterval + " win " + scanWindow + client);
+                    }
                     // convert scanWindow and scanInterval from ms to LE scan units(0.625ms)
                     scanWindow = Utils.millsToUnit(scanWindow);
                     scanInterval = Utils.millsToUnit(scanInterval);
                     gattClientScanNative(false);
                     if (DBG) {
-                        Log.d(TAG, "configureRegularScanParams - scanInterval = " + scanInterval
-                                + "configureRegularScanParams - scanWindow = " + scanWindow);
+                        Log.d(TAG, "New scan in LE scan units, int " + scanInterval
+                                + " win " + scanWindow);
                     }
                     gattSetScanParametersNative(client.scannerId, scanInterval, scanWindow);
                     gattClientScanNative(true);
@@ -665,6 +767,9 @@ public class ScanManager {
             if (numRegularScanClients() == 1
                     && client.settings != null
                     && client.settings.getScanMode() != ScanSettings.SCAN_MODE_OPPORTUNISTIC) {
+                if (DBG) {
+                    Log.d(TAG, "start gattClientScanNative from startRegularScan()");
+                }
                 gattClientScanNative(true);
             }
         }
@@ -784,11 +889,13 @@ public class ScanManager {
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
                     return SCAN_MODE_BATCH_LOW_LATENCY_WINDOW_MS;
                 case ScanSettings.SCAN_MODE_BALANCED:
+                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
                     return SCAN_MODE_BATCH_BALANCED_WINDOW_MS;
                 case ScanSettings.SCAN_MODE_LOW_POWER:
                     return SCAN_MODE_BATCH_LOW_POWER_WINDOW_MS;
-                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
-                    return SCAN_MODE_BATCH_AMBIENT_DISCOVERY_WINDOW_MS;
+                case ScanSettings.SCAN_MODE_BACKGROUND:
+                case ScanSettings.SCAN_MODE_BACKGROUND_AMBIENT:
+                    return SCAN_MODE_BATCH_BACKGROUND_WINDOW_MS;
                 default:
                     return SCAN_MODE_BATCH_LOW_POWER_WINDOW_MS;
             }
@@ -799,11 +906,13 @@ public class ScanManager {
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
                     return SCAN_MODE_BATCH_LOW_LATENCY_INTERVAL_MS;
                 case ScanSettings.SCAN_MODE_BALANCED:
+                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
                     return SCAN_MODE_BATCH_BALANCED_INTERVAL_MS;
                 case ScanSettings.SCAN_MODE_LOW_POWER:
                     return SCAN_MODE_BATCH_LOW_POWER_INTERVAL_MS;
-                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
-                    return SCAN_MODE_BATCH_AMBIENT_DISCOVERY_INTERVAL_MS;
+                case ScanSettings.SCAN_MODE_BACKGROUND:
+                case ScanSettings.SCAN_MODE_BACKGROUND_AMBIENT:
+                    return SCAN_MODE_BATCH_BACKGROUND_INTERVAL_MS;
                 default:
                     return SCAN_MODE_BATCH_LOW_POWER_INTERVAL_MS;
             }
@@ -850,7 +959,7 @@ public class ScanManager {
             mRegularScanClients.remove(client);
             if (numRegularScanClients() == 0) {
                 if (DBG) {
-                    Log.d(TAG, "stop scan");
+                    Log.d(TAG, "stop gattClientScanNative");
                 }
                 gattClientScanNative(false);
             }
@@ -870,7 +979,7 @@ public class ScanManager {
             configureRegularScanParams();
             if (numRegularScanClients() == 0) {
                 if (DBG) {
-                    Log.d(TAG, "stop scan");
+                    Log.d(TAG, "stop gattClientScanNative");
                 }
                 gattClientScanNative(false);
             }
@@ -1160,6 +1269,7 @@ public class ScanManager {
                         Settings.Global.BLE_SCAN_LOW_LATENCY_WINDOW_MS,
                         SCAN_MODE_LOW_LATENCY_WINDOW_MS);
                 case ScanSettings.SCAN_MODE_BALANCED:
+                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
                     return Settings.Global.getInt(
                         resolver,
                         Settings.Global.BLE_SCAN_BALANCED_WINDOW_MS,
@@ -1169,8 +1279,10 @@ public class ScanManager {
                         resolver,
                         Settings.Global.BLE_SCAN_LOW_POWER_WINDOW_MS,
                         SCAN_MODE_LOW_POWER_WINDOW_MS);
-                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
-                    return SCAN_MODE_AMBIENT_DISCOVERY_WINDOW_MS;
+                case ScanSettings.SCAN_MODE_BACKGROUND:
+                    return SCAN_MODE_BACKGROUND_WINDOW_MS;
+                case ScanSettings.SCAN_MODE_BACKGROUND_AMBIENT:
+                    return SCAN_MODE_BACKGROUND_AMBIENT_WINDOW_MS;
                 default:
                     return Settings.Global.getInt(
                         resolver,
@@ -1194,6 +1306,7 @@ public class ScanManager {
                         Settings.Global.BLE_SCAN_LOW_LATENCY_INTERVAL_MS,
                         SCAN_MODE_LOW_LATENCY_INTERVAL_MS);
                 case ScanSettings.SCAN_MODE_BALANCED:
+                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
                     return Settings.Global.getInt(
                         resolver,
                         Settings.Global.BLE_SCAN_BALANCED_INTERVAL_MS,
@@ -1203,8 +1316,10 @@ public class ScanManager {
                         resolver,
                         Settings.Global.BLE_SCAN_LOW_POWER_INTERVAL_MS,
                         SCAN_MODE_LOW_POWER_INTERVAL_MS);
-                case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
-                    return SCAN_MODE_AMBIENT_DISCOVERY_INTERVAL_MS;
+                case ScanSettings.SCAN_MODE_BACKGROUND:
+                    return SCAN_MODE_BACKGROUND_INTERVAL_MS;
+                case ScanSettings.SCAN_MODE_BACKGROUND_AMBIENT:
+                    return SCAN_MODE_BACKGROUND_AMBIENT_INTERVAL_MS;
                 default:
                     return Settings.Global.getInt(
                         resolver,
@@ -1361,9 +1476,9 @@ public class ScanManager {
                 @Override
                 public void onDisplayChanged(int displayId) {
                     if (isScreenOn()) {
-                        sendMessage(MSG_RESUME_SCANS, null);
+                        sendMessage(MSG_SCREEN_ON, null);
                     } else {
-                        sendMessage(MSG_SUSPEND_SCANS, null);
+                        sendMessage(MSG_SCREEN_OFF, null);
                     }
                 }
             };
@@ -1406,30 +1521,31 @@ public class ScanManager {
         boolean updatedScanParams = false;
         if (importance <= ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE) {
             for (ScanClient client : mRegularScanClients) {
-                if (client.appUid == uid && client.passiveSettings != null) {
-                    client.settings = client.passiveSettings;
-                    client.passiveSettings = null;
+                if (client.appUid != uid) {
+                    continue;
+                }
+                mIsUidForegroundMap.put(uid, true);
+                if (client.updateScanMode(client.scanModeApp)) {
                     updatedScanParams = true;
+                    if (DBG) {
+                        Log.d(TAG, " changed to foreground with importance " + importance
+                                + " scanMode " + client.settings.getScanMode());
+                    }
                 }
             }
         } else {
-            ContentResolver resolver = mService.getContentResolver();
-            int backgroundScanMode = Settings.Global.getInt(
-                    resolver,
-                    Settings.Global.BLE_SCAN_BACKGROUND_MODE,
-                    ScanSettings.SCAN_MODE_LOW_POWER);
             for (ScanClient client : mRegularScanClients) {
-                if (client.appUid == uid && !mScanNative.isOpportunisticScanClient(client)) {
-                    client.passiveSettings = client.settings;
-                    ScanSettings.Builder builder = new ScanSettings.Builder();
-                    ScanSettings settings = client.settings;
-                    builder.setScanMode(backgroundScanMode);
-                    builder.setCallbackType(settings.getCallbackType());
-                    builder.setScanResultType(settings.getScanResultType());
-                    builder.setReportDelay(settings.getReportDelayMillis());
-                    builder.setNumOfMatches(settings.getNumOfMatches());
-                    client.settings = builder.build();
+                if (client.appUid != uid) {
+                    continue;
+                }
+                mIsUidForegroundMap.put(uid, false);
+                if (!mScanNative.isOpportunisticScanClient(client)
+                        && client.updateScanMode(ScanSettings.SCAN_MODE_BACKGROUND)) {
                     updatedScanParams = true;
+                    if (DBG) {
+                        Log.d(TAG, " changed to background with importance " + importance
+                                + " scanMode " + client.settings.getScanMode());
+                    }
                 }
             }
         }
