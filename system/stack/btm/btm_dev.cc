@@ -43,6 +43,62 @@
 
 extern tBTM_CB btm_cb;
 
+bool btm_dump_dev(void* data,void* context) {
+  tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
+  static const char* device_type_name[] = {"???", "Classic", "LE", "DUAL"};
+
+  if (context != NULL) {
+      // match device by addres; unlike is_address_equal also check identity_addr.
+      const RawAddress* bd_addr = (const RawAddress*)context;
+      if (*bd_addr != p_dev_rec->bd_addr && *bd_addr != p_dev_rec->ble.pseudo_addr &&
+             !p_dev_rec->ble.identity_address_with_type.AddressEquals(*bd_addr)) {
+          // skip non-matching device; continue dumping next records.
+          return true;
+      }
+  }
+
+  VLOG(2) << p_dev_rec->index << ": " << p_dev_rec->bd_addr
+    << " " << device_type_name[p_dev_rec->device_type]
+    << " f=" << loghex(p_dev_rec->sec_flags)
+    << " s=" << (int)p_dev_rec->sec_state
+    << " " <<  (p_dev_rec->IsLocallyInitiated()? "originator " : "")
+    << (p_dev_rec->role_central? "master " : "")
+    << (p_dev_rec->link_key_not_sent? "" : "link-sent ")
+    << "link=" << (int)p_dev_rec->link_key_type
+    << " " << (p_dev_rec->remote_supports_secure_connections? "SC " : "");
+
+  if((p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) ==  BT_DEVICE_TYPE_BLE) {
+    VLOG(2) << "BLE"
+      << " keys=" << loghex(p_dev_rec->ble.key_type)
+      << " active=" << (int)p_dev_rec->ble.active_addr_type
+      << " addr-type=" << (int)p_dev_rec->ble.ble_addr_type
+      << " static=" << p_dev_rec->ble.identity_address_with_type.ToString()
+#if (BLE_PRIVACY_SPT == TRUE)
+      << " rra=" << p_dev_rec->ble.cur_rand_addr
+#endif
+      << " pseudo=" << p_dev_rec->ble.pseudo_addr;
+  }
+
+  return true;
+}
+
+/*
+ * Dump all Sec records into logcat
+ */
+void BTM_SecDump(const std::string& label) {
+  if (VLOG_IS_ON(2)) {
+    VLOG(2) << label << " BTM SEC records count: " << list_length(btm_cb.sec_dev_rec);
+    list_foreach(btm_cb.sec_dev_rec, btm_dump_dev, NULL);
+  }
+}
+
+void BTM_SecDumpDev(const RawAddress& bd_addr) {
+  if (VLOG_IS_ON(2)) {
+    VLOG(2) << "DUMP SEC DEV: " << bd_addr;
+    list_foreach(btm_cb.sec_dev_rec, btm_dump_dev, (void*)&bd_addr);
+  }
+}
+
 /*******************************************************************************
  *
  * Function         BTM_SecAddDevice
@@ -160,6 +216,9 @@ bool BTM_SecDeleteDevice(const RawAddress& bd_addr) {
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   if (p_dev_rec != NULL) {
+    VLOG(2) << __func__ << " bd_addr: " << bd_addr;
+    btm_dump_dev(p_dev_rec, NULL);
+
     RawAddress bda = p_dev_rec->bd_addr;
 
     /* Clear out any saved BLE keys */
@@ -370,11 +429,13 @@ tBTM_SEC_DEV_REC* btm_find_dev(const RawAddress& bd_addr) {
 void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
   tBTM_SEC_DEV_REC temp_rec = *p_target_rec;
 
-  BTM_TRACE_DEBUG("%s", __func__);
+  VLOG(2) << __func__ <<
+    " index: " << p_target_rec->index <<
+    " bda: " << p_target_rec->bd_addr;
 
   list_node_t* end = list_end(btm_cb.sec_dev_rec);
   list_node_t* node = list_begin(btm_cb.sec_dev_rec);
-  while (node != end) {
+  for( int i=0; node != end; i++ ) {
     tBTM_SEC_DEV_REC* p_dev_rec =
         static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
 
@@ -384,6 +445,10 @@ void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
     if (p_target_rec == p_dev_rec) continue;
 
     if (p_dev_rec->bd_addr == p_target_rec->bd_addr) {
+      VLOG(3) << __func__ << " " << i << " bda match: " << p_dev_rec->bd_addr <<
+        "; index: " << p_dev_rec->index <<
+       // "; conn_params " << p_dev_rec->conn_params << " -> " << temp_rec.conn_params <<
+        "; enc_key_size " << p_dev_rec->enc_key_size << " -> " << temp_rec.enc_key_size;
       memcpy(p_target_rec, p_dev_rec, sizeof(tBTM_SEC_DEV_REC));
       p_target_rec->ble = temp_rec.ble;
       p_target_rec->ble_hci_handle = temp_rec.ble_hci_handle;
@@ -395,6 +460,7 @@ void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
       p_target_rec->new_encryption_key_is_p256 =
           temp_rec.new_encryption_key_is_p256;
       p_target_rec->bond_type = temp_rec.bond_type;
+      p_target_rec->index = temp_rec.index;
 
       /* remove the combined record */
       wipe_secrets_and_remove(p_dev_rec);
@@ -404,7 +470,13 @@ void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
 
     /* an RPA device entry is a duplicate of the target record */
     if (btm_ble_addr_resolvable(p_dev_rec->bd_addr, p_target_rec)) {
+      VLOG(3) << __func__ << " resolvable match " << i <<
+        " index: " << p_dev_rec->index <<
+        " bda: " << p_dev_rec->bd_addr << " pseudo: " << p_target_rec->ble.pseudo_addr;
       if (p_target_rec->ble.pseudo_addr == p_dev_rec->bd_addr) {
+        VLOG(3) << __func__ << " target addr_type " << (int)p_target_rec->ble.ble_addr_type
+                << " <- " << (int)p_dev_rec->ble.ble_addr_type;
+
         p_target_rec->ble.ble_addr_type = p_dev_rec->ble.ble_addr_type;
         p_target_rec->device_type |= p_dev_rec->device_type;
 
@@ -427,7 +499,7 @@ void btm_consolidate_dev(tBTM_SEC_DEV_REC* p_target_rec) {
  ******************************************************************************/
 tBTM_SEC_DEV_REC* btm_find_or_alloc_dev(const RawAddress& bd_addr) {
   tBTM_SEC_DEV_REC* p_dev_rec;
-  BTM_TRACE_EVENT("btm_find_or_alloc_dev");
+  VLOG(3) << __func__ << " " << bd_addr;
   p_dev_rec = btm_find_dev(bd_addr);
   if (p_dev_rec == NULL) {
     /* Allocate a new device record or reuse the oldest one */
@@ -493,6 +565,8 @@ static tBTM_SEC_DEV_REC* btm_find_oldest_dev_rec(void) {
  * Returns          Pointer to the newly allocated record
  *
  ******************************************************************************/
+static int gIndex = 0;
+
 tBTM_SEC_DEV_REC* btm_sec_allocate_dev_rec(void) {
   tBTM_SEC_DEV_REC* p_dev_rec = NULL;
 
@@ -510,6 +584,7 @@ tBTM_SEC_DEV_REC* btm_sec_allocate_dev_rec(void) {
   p_dev_rec->bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_UNKNOWN;
   p_dev_rec->timestamp = btm_cb.dev_rec_count++;
   p_dev_rec->rmt_io_caps = BTM_IO_CAP_UNKNOWN;
+  p_dev_rec->index = gIndex++;
 
   return p_dev_rec;
 }

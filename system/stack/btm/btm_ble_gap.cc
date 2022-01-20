@@ -622,7 +622,7 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
   if (btm_cb.cmn_ble_vsc_cb.max_filter > 0) btm_ble_adv_filter_init();
 
   /* VS capability included and non-4.2 device */
-  if (controller_get_interface()->supports_ble() && 
+  if (controller_get_interface()->supports_ble() &&
       controller_get_interface()->supports_ble_privacy() &&
       btm_cb.cmn_ble_vsc_cb.max_irk_list_sz > 0 &&
       controller_get_interface()->get_ble_resolving_list_max_size() == 0)
@@ -1772,9 +1772,11 @@ void btm_clear_all_pending_le_entry(void) {
 
 void btm_ble_process_adv_addr(RawAddress& bda, uint8_t* addr_type) {
   /* map address to security record */
+  VLOG(2) << __func__ << ": bda=" << bda << " addr_type: " << (int)(*addr_type);
+
   bool match = btm_identity_addr_to_random_pseudo(&bda, addr_type, false);
 
-  VLOG(1) << __func__ << ": bda=" << bda;
+  VLOG(1) << "bda=" << bda  << " addr_type: " << (int)(*addr_type) << (match ? " match" : "");
   /* always do RRA resolution on host */
   if (!match && BTM_BLE_IS_RESOLVE_BDA(bda)) {
     tBTM_SEC_DEV_REC* match_rec = btm_ble_resolve_random_addr(bda);
@@ -1789,6 +1791,7 @@ void btm_ble_process_adv_addr(RawAddress& bda, uint8_t* addr_type) {
         bda = match_rec->ble.pseudo_addr;
         *addr_type = match_rec->ble.ble_addr_type;
       }
+      VLOG(1) <<  "resolved random bda " << bda  << " rec " << match_rec->index;
     }
   }
 }
@@ -1880,6 +1883,9 @@ void btm_ble_process_adv_pkt(uint8_t data_len, const uint8_t* data) {
   STREAM_TO_UINT8(num_reports, p);
 
   constexpr int report_header_size = 10;
+
+  VLOG(2) << __func__ << " num: " << (int)num_reports;
+
   while (num_reports--) {
     if (p + report_header_size > data + data_len) {
       // TODO(jpawlowski): we should crash the stack here
@@ -1911,6 +1917,7 @@ void btm_ble_process_adv_pkt(uint8_t data_len, const uint8_t* data) {
     // ScanFilter#matches
     RawAddress original_bda = bda;
 
+    VLOG(2) << __func__ << " legacy_evt_type: " << (int)legacy_evt_type;
     btm_ble_process_adv_addr(bda, &addr_type);
 
     uint16_t event_type;

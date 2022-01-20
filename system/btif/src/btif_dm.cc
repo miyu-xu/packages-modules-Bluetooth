@@ -1333,7 +1333,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
 /* Returns true if |uuid| should be passed as device property */
 static bool btif_is_interesting_le_service(bluetooth::Uuid uuid) {
   return (uuid.As16Bit() == UUID_SERVCLASS_LE_HID || uuid == UUID_HEARING_AID ||
-          uuid == UUID_VC || uuid == UUID_CSIS || uuid == UUID_LE_AUDIO || 
+          uuid == UUID_VC || uuid == UUID_CSIS || uuid == UUID_LE_AUDIO ||
           uuid == UUID_LE_MIDI);
 }
 
@@ -1551,6 +1551,8 @@ void BTIF_dm_enable() {
   */
   btif_storage_load_bonded_devices();
   bluetooth::bqr::EnableBtQualityReport(true);
+
+  BTA_SecDump("loaded bonded BTA_DM_ENABLE");
   btif_enable_bluetooth_evt();
 }
 
@@ -1590,6 +1592,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
 
     case BTA_DM_AUTH_CMPL_EVT:
       btif_dm_auth_cmpl_evt(&p_data->auth_cmpl);
+      BTA_SecDump("after btif_dm_auth_cmpl_evt");
       break;
 
     case BTA_DM_BOND_CANCEL_CMPL_EVT:
@@ -1600,6 +1603,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
         bond_state_changed((bt_status_t)p_data->bond_cancel_cmpl.result,
                            bd_addr, BT_BOND_STATE_NONE);
       }
+      BTA_SecDump("on bond cancel");
       break;
 
     case BTA_DM_SP_CFM_REQ_EVT:
@@ -1635,6 +1639,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
 
       btif_storage_remove_bonded_device(&bd_addr);
       bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_NONE);
+      BTA_SecDump("after unpaired");
       break;
 
     case BTA_DM_LINK_UP_EVT:
@@ -1642,6 +1647,8 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       BTIF_TRACE_DEBUG("BTA_DM_LINK_UP_EVT. Sending BT_ACL_STATE_CONNECTED");
 
       btif_update_remote_version_property(&bd_addr);
+
+      BTA_SecDumpDev(bd_addr, "link up");
 
       invoke_acl_state_changed_cb(
           BT_STATUS_SUCCESS, bd_addr, BT_ACL_STATE_CONNECTED,
@@ -1653,6 +1660,8 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       btm_set_bond_type_dev(p_data->link_down.bd_addr,
                             tBTM_SEC_DEV_REC::BOND_TYPE_UNKNOWN);
       btif_av_acl_disconnected(bd_addr);
+
+      BTA_SecDumpDev(bd_addr, "link down");
       invoke_acl_state_changed_cb(
           BT_STATUS_SUCCESS, bd_addr, BT_ACL_STATE_DISCONNECTED,
           (int)p_data->link_down.transport_link_type,
@@ -1664,6 +1673,7 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
           hci_reason_code_text(
               static_cast<tHCI_REASON>(btm_get_acl_disc_reason_code()))
               .c_str());
+      BTA_SecDumpDev(bd_addr, "link down");
       break;
 
     case BTA_DM_BLE_KEY_EVT:
