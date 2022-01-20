@@ -107,6 +107,8 @@ uint64_t btm_get_next_private_addrress_interval_ms() {
 bool btm_ble_init_pseudo_addr(tBTM_SEC_DEV_REC* p_dev_rec,
                               const RawAddress& new_pseudo_addr) {
   if (p_dev_rec->ble.pseudo_addr.IsEmpty()) {
+    VLOG(2) << __func__ << " " << p_dev_rec->bd_addr << " " << p_dev_rec->index <<
+      " set pseudo: " << new_pseudo_addr;
     p_dev_rec->ble.pseudo_addr = new_pseudo_addr;
     return true;
   }
@@ -163,6 +165,10 @@ bool btm_ble_addr_resolvable(const RawAddress& rpa,
 static bool btm_ble_match_random_bda(void* data, void* context) {
   tBTM_SEC_DEV_REC* p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(data);
   RawAddress* random_bda = static_cast<RawAddress*>(context);
+
+  VLOG(2) << __func__ << " [" << p_dev_rec->index << "] sec_flags: "
+      << std::hex << (int)p_dev_rec->sec_flags << std::dec
+      << " device_type: " << (int)p_dev_rec->device_type;
 
   if (!(p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) ||
       !(p_dev_rec->ble.key_type & BTM_LE_KEY_PID))
