@@ -267,6 +267,9 @@ bool a2dp_get_selected_hal_codec_config(CodecConfiguration* codec_config) {
       }
       break;
     }
+    case BTAV_A2DP_CODEC_INDEX_SOURCE_LC3: {
+      return true;
+    }
     case BTAV_A2DP_CODEC_INDEX_MAX:
       [[fallthrough]];
     default:
