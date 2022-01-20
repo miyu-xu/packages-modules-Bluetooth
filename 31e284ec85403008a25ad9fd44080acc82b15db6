@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019514588",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956456?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "69e3c222_1e49920f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T22:11:13Z",
+      "side": 1,
+      "message": "\"Run scan in low power, low latency and balanced scan modes with filtered and unfiltered settings both continuously and periodically.\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 138
+      },
+      "revId": "31e284ec85403008a25ad9fd44080acc82b15db6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
