@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501072",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956004?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "588d973e_365bb2c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:58Z",
+      "side": 1,
+      "message": "\"Bypass get hal audio config for LC3 codec\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 7,
+        "startChar": 5,
+        "endLine": 7,
+        "endChar": 47
+      },
+      "revId": "cf0076153a23fcb3f10950babdbb0730c47e8716",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019501072",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956004?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f9d44e0d_71cd8c0a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T17:07:58Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "cf0076153a23fcb3f10950babdbb0730c47e8716",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
