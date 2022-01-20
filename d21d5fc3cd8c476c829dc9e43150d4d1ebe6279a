@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e439d00_d58e1c2b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-20T22:19:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd0a1602_7f58403f",
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5febed39_ff89f649",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-01-20T21:11:08Z",
       "side": 1,
       "message": "nit: wouldn\u0027t this be more readable if written as\n\nint newScanMode \u003d isAppForeground(client) ? client.scanModeApp : ScanSettings.SCAN_MODE_BACKGROUND ;",
+      "range": {
+        "startLine": 550,
+        "startChar": 20,
+        "endLine": 551,
+        "endChar": 45
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d90919e5_f5df13ce",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-20T22:19:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5febed39_ff89f649",
       "range": {
         "startLine": 550,
         "startChar": 20,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7885844b_ccd99df9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-20T22:19:23Z",
+      "side": 1,
+      "message": "Note that existing P/H flags are relying on this definition. To avoid further complications between old releases and T+ releases and also all folks who get familiar with this definition, I would prefer to leave it as is.",
+      "parentUuid": "b5bff7b1_d98b7f81",
+      "range": {
+        "startLine": 615,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 80
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88838aec_f01f2475",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-01-20T21:11:08Z",
       "side": 1,
       "message": "150,000 or 15,000?",
+      "range": {
+        "startLine": 644,
+        "startChar": 74,
+        "endLine": 644,
+        "endChar": 80
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c3685a0_c3d0c3de",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-20T22:19:23Z",
+      "side": 1,
+      "message": "150,000 is the intended value. BACKGROUND is close to low power mode",
+      "parentUuid": "88838aec_f01f2475",
       "range": {
         "startLine": 644,
         "startChar": 74,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e6943c4_5e29b2e8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-20T22:19:23Z",
+      "side": 1,
+      "message": "Change the name to xxxMs.",
+      "parentUuid": "7d430c26_840a302e",
+      "range": {
+        "startLine": 717,
+        "startChar": 0,
+        "endLine": 718,
+        "endChar": 78
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20348c40_6f694619",
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41cdabbe_be26b3d8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-20T22:19:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20348c40_6f694619",
+      "range": {
+        "startLine": 720,
+        "startChar": 0,
+        "endLine": 723,
+        "endChar": 90
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8438ad80_56383b84",
@@ -146,6 +284,24 @@
       "writtenOn": "2022-01-20T21:11:08Z",
       "side": 1,
       "message": "nit: I feel the coding style for this file actively avoids \"continue\" statements, which can be somewhat more bug-prone. Consider rewriting",
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0877c51a_cf83a5cc",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-20T22:19:23Z",
+      "side": 1,
+      "message": "I could change it back to add another layer of if{}. I think less nesting is more readable.",
+      "parentUuid": "8438ad80_56383b84",
       "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
