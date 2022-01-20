@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd85b310_ff2be1b6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-20T21:20:00Z",
+      "side": 1,
+      "message": "this won\u0027t be guaranteed to close it at exactly 1 min, but it will guarantee at least 1 min - until the next wake up\n\nwhich seems good by me",
+      "range": {
+        "startLine": 1368,
+        "startChar": 12,
+        "endLine": 1368,
+        "endChar": 32
+      },
+      "revId": "de3561609a08777a5b8495ff6e8c5bae28f00458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3851f1d7_75b4a557",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-20T21:20:00Z",
+      "side": 1,
+      "message": "worried about creating a new thread for every call here (DoS attacks), ok to submit to get the API shape in but we should rework the backend to avoid blocking IO and the need for a new thread for each.\n\nthe good news is, now that the connect waiting is happening inside the same process as the rest of the native BT stack, we don\u0027t have to wait for the connected IO signal that creates the blocking nightmare and instead use a callback from native through JNI\n\nhere\u0027s where the connected signal is sent from where we\u0027d need to add the callback: https://source.corp.google.com/android/packages/modules/Bluetooth/system/btif/src/btif_sock_rfc.cc;l\u003d523\n\nafter we get the callback from native, we can dispatch the connected socket to the app (and calling accept() at that point will not block)",
+      "range": {
+        "startLine": 1415,
+        "startChar": 8,
+        "endLine": 1415,
+        "endChar": 84
+      },
+      "revId": "de3561609a08777a5b8495ff6e8c5bae28f00458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56958dc1_572cb66c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2991,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-20T21:20:00Z",
+      "side": 1,
+      "message": "thinking about naming for the three functions, about about:\n\nstartRfcommServer\ncloseRfcommServer\nretrieveConnectedRfcommSocket",
+      "range": {
+        "startLine": 2991,
+        "startChar": 27,
+        "endLine": 2991,
+        "endChar": 53
+      },
+      "revId": "de3561609a08777a5b8495ff6e8c5bae28f00458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
