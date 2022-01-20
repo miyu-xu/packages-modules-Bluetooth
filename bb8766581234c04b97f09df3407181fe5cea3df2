@@ -16,6 +16,29 @@
       "message": "Thank you for looking into that. CL updated.",
       "revId": "bb8766581234c04b97f09df3407181fe5cea3df2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db1cc381_e2a3750f",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-20T08:35:14Z",
+      "side": 1,
+      "message": "nite: remove empty line",
+      "range": {
+        "startLine": 1487,
+        "startChar": 0,
+        "endLine": 1487,
+        "endChar": 0
+      },
+      "revId": "bb8766581234c04b97f09df3407181fe5cea3df2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
