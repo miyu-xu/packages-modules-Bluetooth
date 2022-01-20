@@ -16,6 +16,23 @@
       "message": "What\u0027s the chance that this CL increases boot time by 8 seconds?",
       "revId": "606d9edd713c54c0d23cc6fd7cd4c0b0994aff14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1297d75_826e6069",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-20T18:45:45Z",
+      "side": 1,
+      "message": "It makes sense to gather this functionality together.  I think it would be easier to read if it were defined outside of this struct, though.",
+      "revId": "606d9edd713c54c0d23cc6fd7cd4c0b0994aff14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
