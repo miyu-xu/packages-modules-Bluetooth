@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "065d8709_7b84b990",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-01-20T06:59:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9dfb4901_2fe07c81",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "29651e2dde08aff244a820f30bc97b4aecb1ca72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9c828af_1ce94386",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "no, because  DoDisconnectCleanUp() will clear this flag. This is also why bool connected is here.",
       "parentUuid": "76b3e734_4c5b551f",
+      "range": {
+        "startLine": 1462,
+        "startChar": 9,
+        "endLine": 1462,
+        "endChar": 28
+      },
+      "revId": "29651e2dde08aff244a820f30bc97b4aecb1ca72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "594cf17f_1ba10a1d",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1462,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-01-20T06:59:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "290cb414_f543341e",
       "range": {
         "startLine": 1462,
         "startChar": 9,
