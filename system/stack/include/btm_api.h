@@ -943,4 +943,7 @@ extern tBTM_STATUS BTM_BT_Quality_Report_VSE_Register(
 
 uint8_t btm_ble_read_sec_key_size(const RawAddress& bd_addr);
 
+extern void BTM_SecDump(const std::string& label);
+extern void BTM_SecDumpDev(const RawAddress& bd_addr);
+
 #endif /* BTM_API_H */

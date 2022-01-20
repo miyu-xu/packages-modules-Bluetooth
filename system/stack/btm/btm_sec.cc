@@ -3050,10 +3050,10 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
   if (p_dev_rec) {
     VLOG(2) << __func__ << ": Security Manager: in state: "
             << btm_pair_state_descr(btm_cb.pairing_state)
-            << " handle:" << handle << " status:" << status
-            << "dev->sec_state:" << p_dev_rec->sec_state
+            << " handle:" << handle << " status:" << (int)status
+            << " dev->sec_state:" << (int)p_dev_rec->sec_state
             << " bda:" << p_dev_rec->bd_addr
-            << "RName:" << p_dev_rec->sec_bd_name;
+            << " rname:" << p_dev_rec->sec_bd_name;
   } else {
     VLOG(2) << __func__ << ": Security Manager: in state: "
             << btm_pair_state_descr(btm_cb.pairing_state)
@@ -3261,6 +3261,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
   if (BTM_IsBleConnection(handle)) {
     if (status == HCI_ERR_KEY_MISSING || status == HCI_ERR_AUTH_FAILURE ||
         status == HCI_ERR_ENCRY_MODE_NOT_ACCEPTABLE) {
+      LOG(WARNING) << __func__ << " LE FAILED status:" << status;
       p_dev_rec->sec_flags &= ~(BTM_SEC_LE_LINK_KEY_KNOWN);
       p_dev_rec->ble.key_type = BTM_LE_KEY_NONE;
     }
@@ -3271,8 +3272,9 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
     p_dev_rec->enc_key_size = 16;
   }
 
-  BTM_TRACE_DEBUG("in %s new_encr_key_256 is %d", __func__,
-                  p_dev_rec->new_encryption_key_is_p256);
+  VLOG(2) << __func__ << " after sec_flags=0x" << std::hex << (int)p_dev_rec->sec_flags <<
+          " new_encr_key_256=" << p_dev_rec->new_encryption_key_is_p256;
+
 
   if ((status == HCI_SUCCESS) && encr_enable &&
       (p_dev_rec->hci_handle == handle)) {

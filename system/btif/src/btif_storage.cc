@@ -438,6 +438,7 @@ static bt_status_t btif_in_fetch_bonded_device(const std::string& bdstr) {
   if ((btif_in_fetch_bonded_ble_device(bdstr, false, NULL) !=
        BT_STATUS_SUCCESS) &&
       (!bt_linkkey_file_found)) {
+    VLOG(2) << __func__ << bdstr << ": no link key or ble key found";
     return BT_STATUS_FAIL;
   }
   return BT_STATUS_SUCCESS;
@@ -457,15 +458,18 @@ static bt_status_t btif_in_fetch_bonded_devices(
     btif_bonded_devices_t* p_bonded_devices, int add) {
   memset(p_bonded_devices, 0, sizeof(btif_bonded_devices_t));
 
-  bool bt_linkkey_file_found = false;
   int device_type;
 
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Remote device:%s", name.c_str());
+    if (add) {
+      VLOG(2) << __func__ << " " << name;
+    }
+
     LinkKey link_key;
     size_t size = sizeof(link_key);
+    bool bt_linkkey_file_found = false;
     if (btif_config_get_bin(name, "LinkKey", link_key.data(), &size)) {
       int linkkey_type;
       if (btif_config_get_int(name, "LinkKeyType", &linkkey_type)) {
@@ -476,6 +480,9 @@ static bt_status_t btif_in_fetch_bonded_devices(
           if (btif_config_get_int(name, "DevClass", &cod))
             uint2devclass((uint32_t)cod, dev_class);
           btif_config_get_int(name, "PinLength", &pin_length);
+          VLOG(2) << __func__ << " adding SEC " << bd_addr <<
+            " index: " << p_bonded_devices->num_devices << " cod: " << cod <<
+            " lk: " << linkkey_type << " pin: " << pin_length;
           BTA_DmAddDevice(bd_addr, dev_class, link_key, (uint8_t)linkkey_type,
                           pin_length);
 
@@ -486,8 +493,6 @@ static bt_status_t btif_in_fetch_bonded_devices(
         }
         bt_linkkey_file_found = true;
         p_bonded_devices->devices[p_bonded_devices->num_devices++] = bd_addr;
-      } else {
-        bt_linkkey_file_found = false;
       }
     }
     if (!btif_in_fetch_bonded_ble_device(name, add, p_bonded_devices) && !bt_linkkey_file_found) {
@@ -1109,6 +1114,10 @@ bt_status_t btif_storage_load_bonded_devices(void) {
 
       btif_remote_properties_evt(BT_STATUS_SUCCESS, p_remote_addr, num_props,
                                  remote_properties);
+
+
+      VLOG(3) << "bonded device " << p_remote_addr << "name: "
+              << name.name << " props: " << num_props;
     }
   }
   return BT_STATUS_SUCCESS;
@@ -1330,14 +1339,16 @@ static bt_status_t btif_in_fetch_bonded_ble_device(
 
   if ((device_type & BT_DEVICE_TYPE_BLE) == BT_DEVICE_TYPE_BLE ||
       btif_has_ble_keys(remote_bd_addr)) {
-    BTIF_TRACE_DEBUG("%s Found a LE device: %s", __func__,
-                     remote_bd_addr.c_str());
+    if (add) {
+      VLOG(2) << __func__ << " LE device " <<  remote_bd_addr;
+    }
 
     RawAddress bd_addr;
     RawAddress::FromString(remote_bd_addr, bd_addr);
 
     if (btif_storage_get_remote_addr_type(&bd_addr, &addr_type) !=
         BT_STATUS_SUCCESS) {
+      LOG(INFO) << __func__ << " not found addr type; default PUBLIC";
       addr_type = BLE_ADDR_PUBLIC;
       btif_storage_set_remote_addr_type(&bd_addr, BLE_ADDR_PUBLIC);
     }
@@ -1362,6 +1373,9 @@ static bt_status_t btif_in_fetch_bonded_ble_device(
 
     // Fill in the bonded devices
     if (device_added) {
+      VLOG(2) << __func__ << " add bonded_devices " << bd_addr <<
+        " index: " << p_bonded_devices->num_devices <<
+        (key_found? " LE keys found" : " NO KEYS FOUND");
       p_bonded_devices->devices[p_bonded_devices->num_devices++] = bd_addr;
       btif_gatts_add_bonded_dev_from_nv(bd_addr);
     }

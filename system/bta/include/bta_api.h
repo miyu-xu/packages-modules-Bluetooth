@@ -1187,4 +1187,7 @@ extern void BTA_DmBleGetEnergyInfo(tBTA_BLE_ENERGY_INFO_CBACK* p_cmpl_cback);
  ******************************************************************************/
 extern void BTA_VendorInit(void);
 
+void BTA_SecDump(const std::string& label);
+void BTA_SecDumpDev(const RawAddress& bd_addr, const std::string& label);
+
 #endif /* BTA_API_H */
