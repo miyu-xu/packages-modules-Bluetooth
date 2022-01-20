@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0a36829_9cef0ac6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2059,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-20T23:19:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "29d02b7a_77d3c0ca",
+      "range": {
+        "startLine": 2059,
+        "startChar": 30,
+        "endLine": 2059,
+        "endChar": 34
+      },
+      "revId": "89d29368769f081315cf1dfa932155fb00590011",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "424b3372_bac14b5d",
