@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e256694_fbde5d7e",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-01-20T17:17:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a52265b7_0095a7e7",
+      "range": {
+        "startLine": 481,
+        "startChar": 4,
+        "endLine": 481,
+        "endChar": 74
+      },
+      "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19616442_f998c961",
@@ -157,6 +181,30 @@
       "writtenOn": "2022-01-12T22:24:15Z",
       "side": 1,
       "message": "I would remove this, since we\u0027re in AOSP",
+      "range": {
+        "startLine": 494,
+        "startChar": 0,
+        "endLine": 495,
+        "endChar": 72
+      },
+      "revId": "164ef651db567b923bbc1f1ff99e0c80163c399a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8387547_de46ac17",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-01-20T17:17:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19616442_f998c961",
       "range": {
         "startLine": 494,
         "startChar": 0,
