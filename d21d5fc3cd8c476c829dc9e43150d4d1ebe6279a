@@ -130,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9568b317_322495c7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T23:51:25Z",
+      "side": 1,
+      "message": "Makes sense",
+      "parentUuid": "7885844b_ccd99df9",
+      "range": {
+        "startLine": 615,
+        "startChar": 0,
+        "endLine": 624,
+        "endChar": 80
+      },
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88838aec_f01f2475",
@@ -302,6 +326,24 @@
       "side": 1,
       "message": "I could change it back to add another layer of if{}. I think less nesting is more readable.",
       "parentUuid": "8438ad80_56383b84",
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d637cf20_c692e9f0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1704691
+      },
+      "writtenOn": "2022-01-20T23:51:25Z",
+      "side": 1,
+      "message": "nit: IMO, another layer of if would be better readable code, but I\u0027ll leave it up to the code owners",
+      "parentUuid": "0877c51a_cf83a5cc",
       "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
