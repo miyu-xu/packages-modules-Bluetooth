@@ -67,6 +67,23 @@
       "message": "Make sure we have @param tags for all API docs where relevant",
       "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6363d497_248bb3e8",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-20T22:40:49Z",
+      "side": 1,
+      "message": "nit: Split RemoteException and TimeoutException. RemoteException should be rethrown as a RuntimeException with e.rethrowFromSystemServer(): go/android-api-guidelines#rethrow-remoteexception.",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
