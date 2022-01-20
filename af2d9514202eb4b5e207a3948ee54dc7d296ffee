@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019515967",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956202?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d4a26f93_96f3a2cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T22:32:07Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "af2d9514202eb4b5e207a3948ee54dc7d296ffee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019515967",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956202?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "12b56b67_5491e396",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T22:32:07Z",
+      "side": 1,
+      "message": "\"50\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 74
+      },
+      "revId": "af2d9514202eb4b5e207a3948ee54dc7d296ffee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019515967",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956202?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c11ea588_c61c59a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-20T22:32:07Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_client_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 74
+      },
+      "revId": "af2d9514202eb4b5e207a3948ee54dc7d296ffee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
