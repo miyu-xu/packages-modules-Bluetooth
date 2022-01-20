@@ -1494,9 +1494,6 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
             if (mIntent != null && mService == null && doBind(mIntent, this, 0,
                     UserHandle.CURRENT_OR_SELF)) {
-                Message msg = mHandler.obtainMessage(MESSAGE_BIND_PROFILE_SERVICE);
-                msg.obj = this;
-                mHandler.sendMessageDelayed(msg, TIMEOUT_BIND_MS);
                 return true;
             }
             Slog.w(TAG, "Unable to bind with intent: " + mIntent);
