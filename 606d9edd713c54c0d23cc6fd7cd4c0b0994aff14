@@ -33,6 +33,24 @@
       "message": "It makes sense to gather this functionality together.  I think it would be easier to read if it were defined outside of this struct, though.",
       "revId": "606d9edd713c54c0d23cc6fd7cd4c0b0994aff14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b013e44b_def411bf",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-20T22:32:24Z",
+      "side": 1,
+      "message": "This can be done in a future CL.",
+      "parentUuid": "b1297d75_826e6069",
+      "revId": "606d9edd713c54c0d23cc6fd7cd4c0b0994aff14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
