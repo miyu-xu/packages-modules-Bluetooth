@@ -28,6 +28,7 @@ import android.util.SparseArray;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -80,6 +81,8 @@ public final class ScanRecord {
 
     // Raw bytes of scan record.
     private final byte[] mBytes;
+
+    private final HashMap<Integer, byte[]> mAdDataMap;
 
     /**
      * Returns the advertising flags indicating the discoverable mode and capability of the device.
@@ -165,6 +168,23 @@ public final class ScanRecord {
     }
 
     /**
+     * Returns if specific AD type exist or not.
+     */
+    public boolean containsAdType(int adType) {
+        return mAdDataMap.containsKey(adType);
+    }
+
+
+    /**
+     * Returns the AD data for specific AD type. Returns
+     * {@code null} if the {@code adType} is not found.
+     */
+    @Nullable
+    public byte[] getAdData(int adType) {
+        return mAdDataMap.get(adType);
+    }
+
+    /**
      * Returns raw bytes of scan record.
      */
     public byte[] getBytes() {
@@ -197,7 +217,7 @@ public final class ScanRecord {
             SparseArray<byte[]> manufacturerData,
             Map<ParcelUuid, byte[]> serviceData,
             int advertiseFlags, int txPowerLevel,
-            String localName, byte[] bytes) {
+            String localName, HashMap<Integer, byte[]> adDataMap, byte[] bytes) {
         mServiceSolicitationUuids = serviceSolicitationUuids;
         mServiceUuids = serviceUuids;
         mManufacturerSpecificData = manufacturerData;
@@ -205,6 +225,7 @@ public final class ScanRecord {
         mDeviceName = localName;
         mAdvertiseFlags = advertiseFlags;
         mTxPowerLevel = txPowerLevel;
+        mAdDataMap = new HashMap<Integer, byte[]>(adDataMap);
         mBytes = bytes;
     }
 
@@ -234,6 +255,7 @@ public final class ScanRecord {
 
         SparseArray<byte[]> manufacturerData = new SparseArray<byte[]>();
         Map<ParcelUuid, byte[]> serviceData = new ArrayMap<ParcelUuid, byte[]>();
+        HashMap<Integer, byte[]> adDataMap = new HashMap<Integer, byte[]>();
 
         try {
             while (currentPos < scanRecord.length) {
@@ -246,6 +268,8 @@ public final class ScanRecord {
                 int dataLength = length - 1;
                 // fieldType is unsigned int.
                 int fieldType = scanRecord[currentPos++] & 0xFF;
+                byte[] adData = extractBytes(scanRecord, currentPos, dataLength);
+                adDataMap.put(fieldType, adData);
                 switch (fieldType) {
                     case DATA_TYPE_FLAGS:
                         advertiseFlag = scanRecord[currentPos] & 0xFF;
@@ -323,12 +347,13 @@ public final class ScanRecord {
                 serviceUuids = null;
             }
             return new ScanRecord(serviceUuids, serviceSolicitationUuids, manufacturerData,
-                    serviceData, advertiseFlag, txPowerLevel, localName, scanRecord);
+                    serviceData, advertiseFlag, txPowerLevel, localName, adDataMap, scanRecord);
         } catch (Exception e) {
             Log.e(TAG, "unable to parse scan record: " + Arrays.toString(scanRecord));
             // As the record is invalid, ignore all the parsed results for this packet
             // and return an empty record with raw scanRecord bytes in results
-            return new ScanRecord(null, null, null, null, -1, Integer.MIN_VALUE, null, scanRecord);
+            return new ScanRecord(null, null, null, null, -1, Integer.MIN_VALUE, null, adDataMap,
+                    scanRecord);
         }
     }
 
