@@ -35,6 +35,12 @@ java_library {
 }
 
 java_library {
+    name: "bluetooth.obex",
+
+    srcs: ["lib/obex/**/*.java"],
+}
+
+java_library {
     name: "mmslib",
 
     srcs: [":framework-mms-shared-srcs"],
@@ -98,6 +104,7 @@ android_app {
         "androidx.lifecycle_lifecycle-livedata",
         "androidx.room_room-runtime",
         "bluetooth.mapsapi",
+        "bluetooth.obex",
         "bluetooth-protos-lite",
         "com.android.vcard",
         "guava",
