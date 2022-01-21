@@ -69,6 +69,24 @@
       "parentUuid": "c4a8a67d_bd6715ae",
       "revId": "0ba0bb2752d80f8bfb9caa8c298cb79be3c0aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a40a371_ed208185",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-21T15:01:54Z",
+      "side": 1,
+      "message": "Can we have issue number for tracking this?",
+      "parentUuid": "aa263e56_77bf9c74",
+      "revId": "0ba0bb2752d80f8bfb9caa8c298cb79be3c0aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

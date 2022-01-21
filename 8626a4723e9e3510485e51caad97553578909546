@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a60f5ab_84e4f12b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-21T15:01:54Z",
+      "side": 1,
+      "message": "Did you test phone call scenario if single microphone still works?",
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d213f62a_e9870804",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2165,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-21T15:01:54Z",
+      "side": 1,
+      "message": "Where this is set?\n\n\nAlso, should we do some cis_conn_hdl checks here as well?",
+      "range": {
+        "startLine": 2165,
+        "startChar": 8,
+        "endLine": 2165,
+        "endChar": 35
+      },
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a43695_ecf3bf66",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2199,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-21T15:01:54Z",
+      "side": 1,
+      "message": "do we need to do this calculations per each received data?\nWhy not to do it once when starting receiving data and then just compare it here?",
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e377e1_422a391e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2210,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-21T15:01:54Z",
+      "side": 1,
+      "message": "can we have some simpler way in case group-\u003estream_conf.source_streams.size() \u003d\u003d 1?",
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550d5f51_c85addc5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2220,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-21T15:01:54Z",
+      "side": 1,
+      "message": "can we have some helper functions for decoding each stream and then  another helper for mixing left and right?",
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
