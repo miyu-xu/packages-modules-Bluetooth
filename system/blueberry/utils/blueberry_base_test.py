@@ -1,5 +1,6 @@
 """Base test class for Blueberry."""
 
+import datetime
 import importlib
 import re
 from typing import Union
@@ -7,6 +8,7 @@ from typing import Union
 from mobly import base_test
 from mobly import records
 from mobly import signals
+from mobly import utils
 from mobly.controllers import android_device
 from mobly.controllers.android_device_lib import adb
 
@@ -192,11 +194,13 @@ class BlueberryBaseTest(base_test.BaseTestClass):
       for d in self.derived_bt_devices:
         if hasattr(d, 'take_bug_report'):
           devices = devices + [d]
-      android_device.take_bug_reports(
-          devices,
-          record.test_name,
-          record.begin_time,
-          destination=self.current_test_info.output_path)
+      take_br = lambda ad, *args: ad.take_bug_report(*args)
+      args = []
+      for ad in devices:
+        args.append((ad, record.test_name, record.begin_time,
+                     datetime.timedelta(minutes=8).seconds,
+                     self.current_test_info.output_path))
+      utils.concurrent_exec(take_br, args)
 
   def _init_spanner_utils(self) -> None:
     """Imports spanner_utils and creates SpannerUtils object."""
