@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d3d5847_51fe69d6",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-21T19:29:01Z",
+      "side": 1,
+      "message": "Would you like to define the invalid static final int, and add the error handle in java layer?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 29
+      },
+      "revId": "227bf75d4ab6e8672c41fe3154e8c3e107e4ab9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
