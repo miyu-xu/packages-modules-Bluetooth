@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86fc4d31_d9cbc099",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-01-21T15:43:41Z",
+      "side": 1,
+      "message": "Hey,\n\nI tested this by booting a phone, starting bluetooth, switching to an other user/guest and re-starting bluetooth again.\nIt works but... how do I trigger any restriction change ?",
+      "revId": "22dcab711d5b98b0a704d8453be5482485beaf4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
