@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "277e602d_f43f2aa8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2856,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-21T01:17:15Z",
+      "side": 1,
+      "message": "Should be \"e.rethrowFromSystemServer()\" to throw this as a RuntimeException",
+      "revId": "4a47a00d15dc831aaa15a3e9116e97faf2676de8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
