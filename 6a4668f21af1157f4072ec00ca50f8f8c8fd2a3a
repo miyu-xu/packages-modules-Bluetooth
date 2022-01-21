@@ -16,6 +16,52 @@
       "message": "I know Settings doesn\u0027t need this, but should we add an address type at the same time?",
       "revId": "6a4668f21af1157f4072ec00ca50f8f8c8fd2a3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32cb5ba1_8a85bfd2",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1270,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-21T18:28:12Z",
+      "side": 1,
+      "message": "This should be exposed as a @SystemApi here so that it works with mainline module",
+      "range": {
+        "startLine": 1269,
+        "startChar": 4,
+        "endLine": 1270,
+        "endChar": 9
+      },
+      "revId": "6a4668f21af1157f4072ec00ca50f8f8c8fd2a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c06c93_6d4b825b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1272,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-21T18:28:12Z",
+      "side": 1,
+      "message": "Could this be replaced with BLUETOOTH_PRIVILEGED ?",
+      "range": {
+        "startLine": 1272,
+        "startChar": 52,
+        "endLine": 1272,
+        "endChar": 69
+      },
+      "revId": "6a4668f21af1157f4072ec00ca50f8f8c8fd2a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
