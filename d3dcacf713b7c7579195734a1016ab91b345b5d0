@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37f840af_d636b741",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-21T23:56:25Z",
+      "side": 1,
+      "message": "since fastpair is a gms thing, let\u0027s call it \"peripheral_link_package\"? and peripheral_link_service?",
+      "range": {
+        "startLine": 147,
+        "startChar": 18,
+        "endLine": 147,
+        "endChar": 26
+      },
+      "revId": "d3dcacf713b7c7579195734a1016ab91b345b5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e8d82c1_bdebe09b",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 3
@@ -31,6 +54,47 @@
       "writtenOn": "2022-01-21T23:04:14Z",
       "side": 1,
       "message": "Is it the ideal way?\n\nI can\u0027t build without @SuppressLint. The builder tells me to remove \".device\" from action name (i.e. change the name to \"android.bluetooth.action.SWITCH_BUFFER_SIZE\") or add the @SuppressLint",
+      "revId": "d3dcacf713b7c7579195734a1016ab91b345b5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6129c4c_dc897c45",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-21T23:56:25Z",
+      "side": 1,
+      "message": "yup being consistent is the right action",
+      "parentUuid": "2e8d82c1_bdebe09b",
+      "revId": "d3dcacf713b7c7579195734a1016ab91b345b5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e58fb7f_163ff34b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-21T23:56:25Z",
+      "side": 1,
+      "message": "LOW_LATENCY_BUFFER_SIZE?",
+      "range": {
+        "startLine": 332,
+        "startChar": 44,
+        "endLine": 332,
+        "endChar": 70
+      },
       "revId": "d3dcacf713b7c7579195734a1016ab91b345b5d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
