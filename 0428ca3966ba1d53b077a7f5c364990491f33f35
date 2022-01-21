@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bc3c042_970eed65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-21T18:54:24Z",
+      "side": 1,
+      "message": "Thanks, Bidhya!",
+      "revId": "0428ca3966ba1d53b077a7f5c364990491f33f35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e548827d_e1f1646b",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-21T18:54:24Z",
+      "side": 1,
+      "message": "I was hoping we could do something like this, so we add your tests to Rust and C++.  I\u0027d also like the other test packets to be tested in Rust.\n\nBluetoothPacketParserTestPacketPdlGen_rs ?\n\nIt would end up here:\npackages/modules/Bluetooth/system/gd/packet/parser/test/Android.bp",
+      "range": {
+        "startLine": 407,
+        "startChar": 9,
+        "endLine": 407,
+        "endChar": 48
+      },
+      "revId": "0428ca3966ba1d53b077a7f5c364990491f33f35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
