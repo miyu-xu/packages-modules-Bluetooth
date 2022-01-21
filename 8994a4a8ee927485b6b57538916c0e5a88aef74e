@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019579822",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957002?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b174016a_8da0d930",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T22:00:27Z",
+      "side": 1,
+      "message": "\"Build + start bt\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "8994a4a8ee927485b6b57538916c0e5a88aef74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019579823",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957002?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "58299b0d_b49bd1b1",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2768,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T22:00:27Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 2768,
+        "startChar": 0,
+        "endLine": 2768,
+        "endChar": 109
+      },
+      "revId": "8994a4a8ee927485b6b57538916c0e5a88aef74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019579823",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957002?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b5675d9b_241ada3e",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2775,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T22:00:27Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 2775,
+        "startChar": 0,
+        "endLine": 2775,
+        "endChar": 121
+      },
+      "revId": "8994a4a8ee927485b6b57538916c0e5a88aef74e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
