@@ -837,6 +837,27 @@ public final class BluetoothAdapter {
 
     /**
      * Get a {@link BluetoothDevice} object for the given Bluetooth hardware
+     * address and addressType.
+     * <p>Valid Bluetooth hardware addresses must be upper case, in a format
+     * such as "00:11:22:33:AA:BB". The helper {@link #checkBluetoothAddress} is
+     * available to validate a Bluetooth address.
+     * <p>The address type must be a valid ADDRESS_TYPE_* from {@link BluetoothDevice}
+     * <p>A {@link BluetoothDevice} will always be returned for a valid
+     * hardware address and type, even if this adapter has never seen that device.
+     *
+     * @param address valid Bluetooth MAC address
+     * @param addressType Bluetooth address type
+     * @throws IllegalArgumentException if address is invalid
+     */
+    @RequiresNoPermission
+    @NonNull public BluetoothDevice getRemoteLeDevice(@NonNull String address, int addressType) {
+        final BluetoothDevice res = new BluetoothDevice(address, addressType);
+        res.setAttributionSource(mAttributionSource);
+        return res;
+    }
+
+    /**
+     * Get a {@link BluetoothDevice} object for the given Bluetooth hardware
      * address.
      * <p>Valid Bluetooth hardware addresses must be 6 bytes. This method
      * expects the address in network byte order (MSB first).
