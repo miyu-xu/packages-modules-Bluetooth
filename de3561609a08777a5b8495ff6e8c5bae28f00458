@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3d7e399_856b4c09",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1368,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-21T00:12:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "dd85b310_ff2be1b6",
+      "range": {
+        "startLine": 1368,
+        "startChar": 12,
+        "endLine": 1368,
+        "endChar": 32
+      },
+      "revId": "de3561609a08777a5b8495ff6e8c5bae28f00458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3851f1d7_75b4a557",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c2ef3e_22baf8b9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1415,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-21T00:12:46Z",
+      "side": 1,
+      "message": "sg, I\u0027ve filed a bug against myself to clean this up b/215606884",
+      "parentUuid": "3851f1d7_75b4a557",
+      "range": {
+        "startLine": 1415,
+        "startChar": 8,
+        "endLine": 1415,
+        "endChar": 84
+      },
+      "revId": "de3561609a08777a5b8495ff6e8c5bae28f00458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56958dc1_572cb66c",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-01-20T21:20:00Z",
       "side": 1,
       "message": "thinking about naming for the three functions, about about:\n\nstartRfcommServer\ncloseRfcommServer\nretrieveConnectedRfcommSocket",
+      "range": {
+        "startLine": 2991,
+        "startChar": 27,
+        "endLine": 2991,
+        "endChar": 53
+      },
+      "revId": "de3561609a08777a5b8495ff6e8c5bae28f00458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0a977be_cb2e2549",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 2991,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-21T00:12:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56958dc1_572cb66c",
       "range": {
         "startLine": 2991,
         "startChar": 27,
