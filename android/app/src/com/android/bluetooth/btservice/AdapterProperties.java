@@ -1090,11 +1090,12 @@ class AdapterProperties {
         writer.println("  " + "A2dpOffloadEnabled: " + mA2dpOffloadEnabled);
         writer.println("  " + "Discovering: " + mDiscovering);
         writer.println("  " + "DiscoveryEndMs: " + mDiscoveryEndMs);
-
         writer.println("  " + "Bonded devices:");
+
         for (BluetoothDevice device : mBondedDevices) {
             writer.println(
-                    "    " + device.getAddress() + " [" + dumpDeviceType(device.getType()) + "] "
+                    "    " + mService.getIdentityAddress(device.getAddress())
+                            + " [" + dumpDeviceType(device.getType()) + "] "
                             + Utils.getName(device));
         }
     }
