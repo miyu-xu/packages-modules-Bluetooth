@@ -34,6 +34,29 @@
       "parentUuid": "919cc0d1_adcacd24",
       "revId": "6c00c5ea4b6b9650a045bfb159a0d1d45603d460",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c99e0579_dccba2aa",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-21T19:22:08Z",
+      "side": 1,
+      "message": "a builder implies immutability of the constructed object, so a setter is out of place here.\n\nif this value needs change, provide a toBuilder() function to convert an existing BluetoothLeAudioCodecConfig to a builder object which the user can make modifications to and then rebuild into the immutable type.",
+      "range": {
+        "startLine": 271,
+        "startChar": 4,
+        "endLine": 280,
+        "endChar": 5
+      },
+      "revId": "6c00c5ea4b6b9650a045bfb159a0d1d45603d460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
