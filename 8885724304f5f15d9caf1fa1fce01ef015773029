@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44c757ce_3a82cab8",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-01-21T22:37:53Z",
+      "side": 1,
+      "message": "Thanks, done!",
+      "parentUuid": "8d32d3e4_31cbe021",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4805d70_64287822",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-01-20T22:22:35Z",
       "side": 1,
       "message": "nit: We should prefer to return Collections.emptyList() as the default value and can get rid of this variable",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8426372f_5206842e",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-01-21T22:37:53Z",
+      "side": 1,
+      "message": "Since this shouldn\u0027t impact or be impacted by the API changes, I think I\u0027ll keep this to remain consistent with the pattern used in the other profiles.",
+      "parentUuid": "b4805d70_64287822",
       "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acf6b068_17463018",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-01-21T22:37:53Z",
+      "side": 1,
+      "message": "Thanks, got it!",
+      "parentUuid": "d0284c50_c0af7ffd",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6363d497_248bb3e8",
@@ -82,6 +136,24 @@
       "writtenOn": "2022-01-20T22:40:49Z",
       "side": 1,
       "message": "nit: Split RemoteException and TimeoutException. RemoteException should be rethrown as a RuntimeException with e.rethrowFromSystemServer(): go/android-api-guidelines#rethrow-remoteexception.",
+      "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b141334_ae35562b",
+        "filename": "framework/java/android/bluetooth/BluetoothPbapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2022-01-21T22:37:53Z",
+      "side": 1,
+      "message": "Thanks, got it!",
+      "parentUuid": "6363d497_248bb3e8",
       "revId": "8885724304f5f15d9caf1fa1fce01ef015773029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
