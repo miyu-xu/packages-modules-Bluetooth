@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c0298f_cec50209",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-21T22:45:31Z",
+      "side": 1,
+      "message": "Looks like you might need to add enforcement for BLUETOOTH_PRIVILEGED to this broadcast as well!",
+      "revId": "6605b0ae9008be719e077049ad283243ded1e7e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
