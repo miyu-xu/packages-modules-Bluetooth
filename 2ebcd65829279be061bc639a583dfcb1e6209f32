@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019581122",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957002?revision\u003d7",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3c18c734_3ef2c13b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T22:26:40Z",
+      "side": 1,
+      "message": "\"Build + start bt\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 22
+      },
+      "revId": "2ebcd65829279be061bc639a583dfcb1e6209f32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
