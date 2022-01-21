@@ -794,6 +794,22 @@ const AudioSetConfiguration kSingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2 = {
             codec_lc3_16_2(
                 codec_spec_caps::kLeAudioCodecLC3ChannelCountSingleChannel))}};
 
+const AudioSetConfiguration kSingleDev_TwoChanStereoSnk_OneChanStereoSrc_16_2 = {
+    .name = "kSingleDev_TwoChanStereoSnk_OneChanStereoSrc_16_2",
+    .confs = {
+        SetConfiguration(
+            types::kLeAudioDirectionSink, 1, 1,
+            codec_lc3_16_2(
+                codec_spec_caps::kLeAudioCodecLC3ChannelCountTwoChannel),
+            le_audio::types::LeAudioConfigurationStrategy::
+                STEREO_ONE_CIS_PER_DEVICE),
+        SetConfiguration(
+            types::kLeAudioDirectionSource, 1, 1,
+            codec_lc3_16_2(
+                codec_spec_caps::kLeAudioCodecLC3ChannelCountSingleChannel),
+            le_audio::types::LeAudioConfigurationStrategy::
+                STEREO_ONE_CIS_PER_DEVICE)}};
+
 const AudioSetConfiguration kSingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2 = {
     .name = "kSingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2",
     .confs = {
@@ -835,6 +851,18 @@ const AudioSetConfiguration kSingleDev_OneChanStereoSnk_OneChanMonoSrc_16_2 = {
                 STEREO_TWO_CISES_PER_DEVICE),
         SetConfiguration(
             types::kLeAudioDirectionSource, 1, 1,
+            codec_lc3_16_2(
+                codec_spec_caps::kLeAudioCodecLC3ChannelCountSingleChannel))}};
+
+const AudioSetConfiguration kDualDev_OneChanStereoSnk_OneChanStereoSrc_16_2 = {
+    .name = "kDualDev_OneChanStereoSnk_OneChanStereoSrc_16_2",
+    .confs = {
+        SetConfiguration(
+            types::kLeAudioDirectionSink, 2, 2,
+            codec_lc3_16_2(
+                codec_spec_caps::kLeAudioCodecLC3ChannelCountSingleChannel)),
+        SetConfiguration(
+            types::kLeAudioDirectionSource, 2, 2,
             codec_lc3_16_2(
                 codec_spec_caps::kLeAudioCodecLC3ChannelCountSingleChannel))}};
 
@@ -915,10 +943,12 @@ const AudioSetConfigurations audio_set_conf_ringtone = {
 };
 
 const AudioSetConfigurations audio_set_conf_conversational = {
+    &kDualDev_OneChanStereoSnk_OneChanStereoSrc_16_2,
     &kDualDev_OneChanStereoSnk_OneChanMonoSrc_16_2,
     &kDualDev_OneChanStereoSnk_OneChanMonoSrc_16_1,
     &kDualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_2,
     &kDualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_1,
+    &kSingleDev_TwoChanStereoSnk_OneChanStereoSrc_16_2,
     &kSingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2,
     &kSingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_1,
     &kSingleDev_OneChanStereoSnk_OneChanMonoSrc_16_2,
