@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "562ed82c_4c6eb891",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2833,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-21T02:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "82f31eed_c3fac209",
+      "revId": "4a47a00d15dc831aaa15a3e9116e97faf2676de8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9c6496b_9e24d890",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-21T01:43:03Z",
       "side": 1,
       "message": "I would explicitly state what true and false represent to make it clearer",
+      "revId": "4a47a00d15dc831aaa15a3e9116e97faf2676de8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64e9748d_d388656b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2835,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-21T02:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9c6496b_9e24d890",
       "revId": "4a47a00d15dc831aaa15a3e9116e97faf2676de8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c405dafa_949fda1e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2836,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-21T02:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaf81449_61afb23f",
+      "revId": "4a47a00d15dc831aaa15a3e9116e97faf2676de8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "277e602d_f43f2aa8",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-01-21T01:17:15Z",
       "side": 1,
       "message": "Should be \"e.rethrowFromSystemServer()\" to throw this as a RuntimeException",
+      "revId": "4a47a00d15dc831aaa15a3e9116e97faf2676de8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c33f1830_4609234f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2856,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-21T02:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "277e602d_f43f2aa8",
       "revId": "4a47a00d15dc831aaa15a3e9116e97faf2676de8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
