@@ -16,6 +16,23 @@
       "message": "z",
       "revId": "d3dcacf713b7c7579195734a1016ab91b345b5d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e8d82c1_bdebe09b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-21T23:04:14Z",
+      "side": 1,
+      "message": "Is it the ideal way?\n\nI can\u0027t build without @SuppressLint. The builder tells me to remove \".device\" from action name (i.e. change the name to \"android.bluetooth.action.SWITCH_BUFFER_SIZE\") or add the @SuppressLint",
+      "revId": "d3dcacf713b7c7579195734a1016ab91b345b5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
