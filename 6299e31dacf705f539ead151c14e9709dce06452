@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f873d75e_133c8378",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-21T21:14:23Z",
+      "side": 1,
+      "message": "Hi Ahmad,\n\nI made some additional changes. PTAL.\n1) fall back to low power mode if app is in background but the screen is on\n2) rename BACKGROUND_XXX to SCREEN_OFF since they are now used only when the screen is off\n3) improve the caching of isForeground which is now always cached regardless if the app is scanning or not.\n4) refactor codes around screen on/off transition and handleStartScan()\n5) Fix the bug of opportunistic scan. No overriding if this scan is used.\n\nThanks,\nKai",
+      "revId": "6299e31dacf705f539ead151c14e9709dce06452",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

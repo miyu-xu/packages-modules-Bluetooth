@@ -346,6 +346,24 @@
       "parentUuid": "0877c51a_cf83a5cc",
       "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7f6a79c_ac53ff92",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-01-21T21:14:23Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d637cf20_c692e9f0",
+      "revId": "d21d5fc3cd8c476c829dc9e43150d4d1ebe6279a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
