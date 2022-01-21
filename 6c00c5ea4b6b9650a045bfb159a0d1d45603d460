@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "919cc0d1_adcacd24",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-21T07:48:08Z",
+      "side": 1,
+      "message": "Is it feasible to set the sample rate and bits per sample via the developer option?",
+      "revId": "6c00c5ea4b6b9650a045bfb159a0d1d45603d460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
