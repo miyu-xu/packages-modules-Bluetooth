@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11abba3f_b927f362",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2839,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-21T00:38:01Z",
+      "side": 1,
+      "message": "Should add @RequiresBluetoothConnectPermission",
+      "revId": "8f984531c87204b4d2ec805abeff3749f3946803",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6463f5fd_cb8e6eb6",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2844,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-21T00:38:01Z",
+      "side": 1,
+      "message": "New APIs should return an int with and IntDef over a boolean. Error codes give more insight when API calls fail. See go/bluetooth-api-error-codes-itd for more info.",
+      "revId": "8f984531c87204b4d2ec805abeff3749f3946803",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1e0ea2e_358dee11",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2845,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-21T00:38:01Z",
+      "side": 1,
+      "message": "setLowLatencyAudioAllowed? Also, we should be able to have the entire signature on one line (unless it\u0027s exceeding 100 chars)",
+      "revId": "8f984531c87204b4d2ec805abeff3749f3946803",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
