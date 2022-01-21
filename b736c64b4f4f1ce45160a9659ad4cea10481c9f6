@@ -1,0 +1,1660 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575469",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c47438ca_faf19437",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "\"build\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5b1077a3_2aa1a898",
+        "filename": "android/app/lib/obex/NOTICE",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 43
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f5f3f41b_b69761f1",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ApplicationParameter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7a7b469f_6f362a3c",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/Authenticator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4861744a_7df7b35d",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/BaseStream.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5952e680_4a3984a5",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "da148ced_2b79a468",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java",
+              "range": {
+                "startLine": 388,
+                "startChar": 46,
+                "endLine": 388,
+                "endChar": 54
+              },
+              "replacement": "received"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "e93763fc_e9bc8f88",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"recieved\" -- should it be \"received\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 388,
+        "startChar": 46,
+        "endLine": 388,
+        "endChar": 54
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "535b393b_3d5f0438",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java",
+              "range": {
+                "startLine": 585,
+                "startChar": 46,
+                "endLine": 585,
+                "endChar": 55
+              },
+              "replacement": "more than"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a689c955_89a3cc78",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"more then\" -- should it be \"more than\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 585,
+        "startChar": 46,
+        "endLine": 585,
+        "endChar": 55
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "be77c448_9b6831cb",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "0b7f1be5_2ea7d1f0",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java",
+              "range": {
+                "startLine": 281,
+                "startChar": 8,
+                "endLine": 281,
+                "endChar": 13
+              },
+              "replacement": " */"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6dba533d_3bf3cd04",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \" * */\" -- should it be \" */\"?\nMalformatted comment.\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 281,
+        "startChar": 8,
+        "endLine": 281,
+        "endChar": 13
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "79516656_f068bf89",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java",
+              "range": {
+                "startLine": 495,
+                "startChar": 40,
+                "endLine": 495,
+                "endChar": 50
+              },
+              "replacement": "transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1d0d9646_ae360f06",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"transfered\" -- should it be \"transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 495,
+        "startChar": 40,
+        "endLine": 495,
+        "endChar": 50
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575470",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "94d3620b_d12295b4",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 578,
+        "startChar": 0,
+        "endLine": 578,
+        "endChar": 103
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5430f543_ef44837a",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/HeaderSet.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575470",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "974d5de3_5cc30c15",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/HeaderSet.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 474,
+        "startChar": 0,
+        "endLine": 474,
+        "endChar": 107
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3927c849_6e28b908",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "5a78f688_c740278e",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+              "range": {
+                "startLine": 357,
+                "startChar": 51,
+                "endLine": 357,
+                "endChar": 58
+              },
+              "replacement": "the"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "26abddfd_276b4a7e",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"the the\" -- should it be \"the\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 357,
+        "startChar": 51,
+        "endLine": 357,
+        "endChar": 58
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575470",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d2d68570_021fbebe",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 384,
+        "endChar": 101
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "15233e42_14f8e5f3",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+              "range": {
+                "startLine": 803,
+                "startChar": 25,
+                "endLine": 803,
+                "endChar": 34
+              },
+              "replacement": "less than"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "67197e69_2334d061",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"less then\" -- should it be \"less than\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 803,
+        "startChar": 25,
+        "endLine": 803,
+        "endChar": 34
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "42fd3c4a_1fd022cd",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+              "range": {
+                "startLine": 1002,
+                "startChar": 50,
+                "endLine": 1002,
+                "endChar": 59
+              },
+              "replacement": "less than"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "5ac67e89_3a126204",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1002,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"less then\" -- should it be \"less than\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1002,
+        "startChar": 50,
+        "endLine": 1002,
+        "endChar": 59
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "ef6557f3_d9a44972",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+              "range": {
+                "startLine": 1035,
+                "startChar": 66,
+                "endLine": 1035,
+                "endChar": 75
+              },
+              "replacement": "less than"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "aad96a97_96948e60",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"less then\" -- should it be \"less than\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 1035,
+        "startChar": 66,
+        "endLine": 1035,
+        "endChar": 75
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575470",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0960486b_99ff71fe",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1078,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Prefer to use inclusive terms like \u0027they\u0027, \u0027them\u0027, or \u0027person\u0027; see https://developers.google.com/style/word-list#gender for more details. In the case of a false positive add BYPASS_INCLUSIVE_LANGUAGE_REASON\u003dmy_reason_here to your commit message to disable this check.",
+      "range": {
+        "startLine": 1078,
+        "startChar": 14,
+        "endLine": 1078,
+        "endChar": 18
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4b7dcbc3_33e624fc",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "56dee1c0_69e9aa04",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ObexSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ObexSession.java",
+              "range": {
+                "startLine": 132,
+                "startChar": 41,
+                "endLine": 132,
+                "endChar": 48
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "8b9fc7fd_f781828d",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 132,
+        "startChar": 41,
+        "endLine": 132,
+        "endChar": 48
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "18b149f2_4b677c3c",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexTransport.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "074b33f6_848bf6e6",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/Operation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7e2fe122_15a94aa5",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/PasswordAuthentication.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "708aede7_9d41ac98",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/PrivateInputStream.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c0be2eb5_0baa1b70",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/PrivateOutputStream.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5211dd22_3ab8d0f9",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ResponseCodes.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "baf87182_4729eb8d",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "eec36392_4b01f8e7",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+              "range": {
+                "startLine": 410,
+                "startChar": 12,
+                "endLine": 410,
+                "endChar": 19
+              },
+              "replacement": "original"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a1169e24_e0764aeb",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"orginal\" -- should it be \"original\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 410,
+        "startChar": 12,
+        "endLine": 410,
+        "endChar": 19
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "44212524_7033649e",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+              "range": {
+                "startLine": 414,
+                "startChar": 12,
+                "endLine": 414,
+                "endChar": 19
+              },
+              "replacement": "original"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "47350e75_b7ecdafa",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"orginal\" -- should it be \"original\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 414,
+        "startChar": 12,
+        "endLine": 414,
+        "endChar": 19
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "d277a8ce_57396f50",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+              "range": {
+                "startLine": 523,
+                "startChar": 70,
+                "endLine": 523,
+                "endChar": 77
+              },
+              "replacement": "original"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "cace4092_9330b616",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"orginal\" -- should it be \"original\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 523,
+        "startChar": 70,
+        "endLine": 523,
+        "endChar": 77
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "e5ce0aab_d20838b2",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+              "range": {
+                "startLine": 526,
+                "startChar": 16,
+                "endLine": 526,
+                "endChar": 23
+              },
+              "replacement": "original"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "64f926b8_5263fbe6",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"orginal\" -- should it be \"original\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 526,
+        "startChar": 16,
+        "endLine": 526,
+        "endChar": 23
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "c60ee0f1_38cd5d8b",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+              "range": {
+                "startLine": 527,
+                "startChar": 33,
+                "endLine": 527,
+                "endChar": 40
+              },
+              "replacement": "original"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "ac311d84_ad4324bb",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 527,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"orginal\" -- should it be \"original\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 527,
+        "startChar": 33,
+        "endLine": 527,
+        "endChar": 40
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "5da782db_ee205a82",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+              "range": {
+                "startLine": 528,
+                "startChar": 32,
+                "endLine": 528,
+                "endChar": 39
+              },
+              "replacement": "original"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "444f695d_be040b35",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"orginal\" -- should it be \"original\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 528,
+        "startChar": 32,
+        "endLine": 528,
+        "endChar": 39
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1fbd09df_e997d207",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "edbd58d6_10bc1485",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerRequestHandler.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerRequestHandler.java",
+              "range": {
+                "startLine": 78,
+                "startChar": 53,
+                "endLine": 78,
+                "endChar": 63
+              },
+              "replacement": "connection"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4b14579d_1aea9e4b",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerRequestHandler.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"conenction\" -- should it be \"connection\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 78,
+        "startChar": 53,
+        "endLine": 78,
+        "endChar": 63
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e460c52e_6ba459ed",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "aa051ba6_0b4ac482",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 149,
+                "startChar": 34,
+                "endLine": 149,
+                "endChar": 41
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "2855f84a_141b289d",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 149,
+        "startChar": 34,
+        "endLine": 149,
+        "endChar": 41
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "31d08b62_f0811c5f",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 151,
+                "startChar": 34,
+                "endLine": 151,
+                "endChar": 41
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "43c66ed2_c7321c59",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 151,
+        "startChar": 34,
+        "endLine": 151,
+        "endChar": 41
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "654b0f71_fa1aa28a",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 224,
+                "startChar": 39,
+                "endLine": 224,
+                "endChar": 46
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "c4fd49e3_6f781fc3",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 224,
+        "startChar": 39,
+        "endLine": 224,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "62c05649_b3df0c14",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 253,
+                "startChar": 39,
+                "endLine": 253,
+                "endChar": 46
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "9b305d32_70f395a7",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 253,
+        "startChar": 39,
+        "endLine": 253,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "b4c99d97_22a9c86d",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 371,
+                "startChar": 47,
+                "endLine": 371,
+                "endChar": 54
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "160a5a96_f07061de",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 371,
+        "startChar": 47,
+        "endLine": 371,
+        "endChar": 54
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "b042320c_6a009f70",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 480,
+                "startChar": 47,
+                "endLine": 480,
+                "endChar": 54
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "cf19fb37_0502c66b",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 480,
+        "startChar": 47,
+        "endLine": 480,
+        "endChar": 54
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "6938b756_5f73dd1c",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 644,
+                "startChar": 47,
+                "endLine": 644,
+                "endChar": 54
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "1d5914bc_2bee5e00",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 644,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 644,
+        "startChar": 47,
+        "endLine": 644,
+        "endChar": 54
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "27e3cb10_1bcbb500",
+          "description": "Change to \"android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java\"",
+          "replacements": [
+            {
+              "path": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+              "range": {
+                "startLine": 704,
+                "startChar": 39,
+                "endLine": 704,
+                "endChar": 46
+              },
+              "replacement": "occurred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "4917f971_fda1d387",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Common typo found: \"occured\" -- should it be \"occurred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 704,
+        "startChar": 39,
+        "endLine": 704,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019575451",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f2ccf5be_2f768094",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/SessionNotifier.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-21T20:27:41Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "b736c64b4f4f1ce45160a9659ad4cea10481c9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
