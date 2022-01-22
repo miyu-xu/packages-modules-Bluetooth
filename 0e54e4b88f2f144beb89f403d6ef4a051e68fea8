@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbc44e64_33f20795",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930335
+      },
+      "writtenOn": "2022-01-22T16:46:37Z",
+      "side": 1,
+      "message": "refactor code:\n1. reduce locks for syncing.\n2. record last 5 advertising start/stop time for each advertisingSet when invoking advertising enabled/disabled function.\n\nAdvertising Logger is a need since many logcat logs might be lost for issues that costs long time for reproducing and organize information for debugging.\n",
+      "revId": "0e54e4b88f2f144beb89f403d6ef4a051e68fea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
