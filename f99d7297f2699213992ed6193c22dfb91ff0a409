@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ab87f33_1bb69156",
+        "filename": "framework/java/android/bluetooth/BluetoothPan.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-22T02:18:47Z",
+      "side": 1,
+      "message": "thinking through this, we might run into an attack vector here where apps could send random hashcodes to unregister other apps\u0027 callbacks\n\ncan we send the current app\u0027s user id too, and on the other side validate it belongs to the app\n\nand then make the hashmap key the uid + the hash code of the callback?",
+      "range": {
+        "startLine": 591,
+        "startChar": 24,
+        "endLine": 591,
+        "endChar": 43
+      },
+      "revId": "f99d7297f2699213992ed6193c22dfb91ff0a409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
