@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef10404a_2d7d3b02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-01-22T04:33:44Z",
+      "side": 1,
+      "message": "Dont we have to delete in javax/obex as well or are we copying over.",
+      "revId": "77415f49a7ed500962dce791e899644f442b81c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
