@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019607965",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957880?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a1d96cad_77c9da68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T15:01:38Z",
+      "side": 1,
+      "message": "#gd-refactor can\u0027t be used because this change does not have changes in system/bt/gd",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "34f7195c7132a30078b8e2bfc17f63487c024ce7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
