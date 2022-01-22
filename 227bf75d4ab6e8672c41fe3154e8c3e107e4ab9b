@@ -22,6 +22,30 @@
       },
       "revId": "227bf75d4ab6e8672c41fe3154e8c3e107e4ab9b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f4c8bb4_2edca6ae",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-22T17:21:56Z",
+      "side": 1,
+      "message": "Add check when setAdType, but I think invalid static final int is not necessary, because all negative value are invalid, we can just follow the logic of manufacturerId.\nThanks!",
+      "parentUuid": "7d3d5847_51fe69d6",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 29
+      },
+      "revId": "227bf75d4ab6e8672c41fe3154e8c3e107e4ab9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
