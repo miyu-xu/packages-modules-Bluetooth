@@ -22,6 +22,30 @@
       },
       "revId": "d884695cdd91835730c41bad913db73932a25389",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15d62091_31a9e7df",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-01-22T19:42:55Z",
+      "side": 1,
+      "message": "Done, also added check for same callback registering.\nQuick question though, as this method enforces BLUETOOTH_PRIVILEGED permission, non system apps can\u0027t call this right? (of course hash collision was possible before the modification so the fix is still necessary)",
+      "parentUuid": "31b31d1a_818dd941",
+      "range": {
+        "startLine": 464,
+        "startChar": 49,
+        "endLine": 464,
+        "endChar": 63
+      },
+      "revId": "d884695cdd91835730c41bad913db73932a25389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
