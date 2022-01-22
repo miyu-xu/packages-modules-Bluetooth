@@ -93,6 +93,16 @@ class NeighborTest(gd_base_test.GdBaseTestClass):
         assertThat(session).emits(
             NeighborMatchers.ExtendedInquiryResult(self.cert_address), timeout=timedelta(seconds=20))
 
+    def test_no_inquiry_from_dut(self):
+        self._set_name()
+        inquiry_msg = neighbor_facade.InquiryMsg(
+            inquiry_mode=neighbor_facade.DiscoverabilityMode.GENERAL,
+            result_mode=neighbor_facade.ResultMode.EXTENDED,
+            length_1_28s=3,
+            max_results=0)
+        session = self.dut_neighbor.set_inquiry_mode(inquiry_msg)
+        assertThat(session).emits(NeighborMatchers.InquiryComplete(), timeout=timedelta(seconds=10))
+
     def test_remote_name(self):
         self._set_name()
         session = self.dut_neighbor.get_remote_name(self.cert_address)
