@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31b31d1a_818dd941",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-22T18:40:21Z",
+      "side": 1,
+      "message": "I think this still opens up the opportunity for collisions since we\u0027re sharing the same integer bits for the id and the caller uid, the easiest way avoid is probably to combine into a string like:\n\nid + \"/\" + callerUid",
+      "range": {
+        "startLine": 464,
+        "startChar": 49,
+        "endLine": 464,
+        "endChar": 63
+      },
+      "revId": "d884695cdd91835730c41bad913db73932a25389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
