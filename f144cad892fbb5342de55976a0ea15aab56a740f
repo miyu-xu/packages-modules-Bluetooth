@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019597992",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1954496?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ab30a3aa_80b87413",
+        "filename": "HeadsetClientStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T05:31:32Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "f144cad892fbb5342de55976a0ea15aab56a740f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019597992",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1954496?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "14695ec9_35c581ba",
+        "filename": "HeadsetClientStateMachineTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T05:31:32Z",
+      "side": 1,
+      "message": "Use go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 23
+      },
+      "revId": "f144cad892fbb5342de55976a0ea15aab56a740f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
