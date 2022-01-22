@@ -1,0 +1,524 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600711",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "58d7b041_1c5de0eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "\"build\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 11
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7ced7d3b_59af3e90",
+        "filename": "android/app/lib/obex/NOTICE",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 5,
+        "startChar": 1,
+        "endLine": 17,
+        "endChar": 43
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f1d5e075_9f2fa1e8",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ApplicationParameter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f4070641_a6a13f64",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/Authenticator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "de60ad36_fc02d720",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/BaseStream.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9434a73e_5797ac89",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientOperation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f7829fca_d74240a6",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ClientSession.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "689867cb_ad13d8bc",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/HeaderSet.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "203c575c_77e8edd0",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexHelper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "107c9846_fe4368cd",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexSession.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "683962e4_8c2235fe",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ObexTransport.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f8499ceb_14f52271",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/Operation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a0a83d93_9d8bd080",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/PasswordAuthentication.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "90251c19_c8f33450",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/PrivateInputStream.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f48339c9_6259c645",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/PrivateOutputStream.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "913f1385_10a2e258",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ResponseCodes.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5cae6141_4f84c780",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerOperation.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "77c1aafd_9c76e0c2",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerRequestHandler.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "03f8d92f_cd640c91",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/ServerSession.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 8,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019600706",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1957165?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5ba46ed8_ff470b19",
+        "filename": "android/app/lib/obex/com/android/bluetooth/obex/SessionNotifier.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T06:53:45Z",
+      "side": 1,
+      "message": "Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution....may be used to endorse or promote products derived from this software without specific prior written permission.\n",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 46
+      },
+      "revId": "a376bbf4ac4a6eb9e21e01a96db074e2bb6666b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
