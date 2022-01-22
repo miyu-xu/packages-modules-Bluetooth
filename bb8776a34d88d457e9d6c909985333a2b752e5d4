@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2af150e_35866bdf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-22T00:27:43Z",
+      "side": 1,
+      "message": "Sorry missed that two when rebasing. ",
+      "revId": "bb8776a34d88d457e9d6c909985333a2b752e5d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d612a8a6_edd33d9f",
@@ -24,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c777cf_6b2356af",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-22T00:27:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d612a8a6_edd33d9f",
+      "range": {
+        "startLine": 123,
+        "startChar": 4,
+        "endLine": 123,
+        "endChar": 49
+      },
+      "revId": "bb8776a34d88d457e9d6c909985333a2b752e5d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e9c38ad_df08f5ba",
@@ -37,6 +78,30 @@
       "writtenOn": "2022-01-21T23:34:55Z",
       "side": 1,
       "message": "Please remove this. It is contained in\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1952563",
+      "range": {
+        "startLine": 1020,
+        "startChar": 0,
+        "endLine": 1020,
+        "endChar": 83
+      },
+      "revId": "bb8776a34d88d457e9d6c909985333a2b752e5d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3415df97_3a8e5f7a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1020,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-22T00:27:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e9c38ad_df08f5ba",
       "range": {
         "startLine": 1020,
         "startChar": 0,
