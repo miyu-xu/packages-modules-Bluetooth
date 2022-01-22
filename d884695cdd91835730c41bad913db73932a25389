@@ -46,6 +46,30 @@
       },
       "revId": "d884695cdd91835730c41bad913db73932a25389",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7072529_9cb07f35",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-22T20:19:31Z",
+      "side": 1,
+      "message": "yup would only be system apps, but technically there could be 3p apps on the phone in a privileged state because they came in the priv-app folder at build time. so best to be safe 😊",
+      "parentUuid": "15d62091_31a9e7df",
+      "range": {
+        "startLine": 464,
+        "startChar": 49,
+        "endLine": 464,
+        "endChar": 63
+      },
+      "revId": "d884695cdd91835730c41bad913db73932a25389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
