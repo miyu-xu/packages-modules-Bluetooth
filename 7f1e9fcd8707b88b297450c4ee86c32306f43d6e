@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d11bb9c_f44101e7",
+        "filename": "system/gd/packet/parser/gen_rust.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-22T00:10:32Z",
+      "side": 1,
+      "message": "nit: It would probably be better to name these response and notification instead of status and complete.",
+      "range": {
+        "startLine": 161,
+        "startChar": 21,
+        "endLine": 161,
+        "endChar": 27
+      },
+      "revId": "7f1e9fcd8707b88b297450c4ee86c32306f43d6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
