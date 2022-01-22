@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019586022",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1954936?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "71e81026_06836360",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T00:08:38Z",
+      "side": 1,
+      "message": "\"Manually test signal passing from bluetooth/system to framework\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 69
+      },
+      "revId": "9073071133f7705ee7152ebe9d30670d4cec2242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019586023",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1954936?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dec79ef8_db08af51",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T00:08:38Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 823,
+        "startChar": 0,
+        "endLine": 823,
+        "endChar": 114
+      },
+      "revId": "9073071133f7705ee7152ebe9d30670d4cec2242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
