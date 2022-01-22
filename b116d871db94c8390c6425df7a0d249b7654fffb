@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019605393",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956010?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4a0f5412_5b820709",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T10:18:34Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "b116d871db94c8390c6425df7a0d249b7654fffb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019605393",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956010?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1b914f78_16ffe468",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T10:18:34Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "b116d871db94c8390c6425df7a0d249b7654fffb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019605394",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956010?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6f2a1701_a1018bd7",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-22T10:18:34Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 477,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 139
+      },
+      "revId": "b116d871db94c8390c6425df7a0d249b7654fffb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
