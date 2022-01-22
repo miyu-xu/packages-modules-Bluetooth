@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b934fd4_b328fc59",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-22T00:34:34Z",
+      "side": 1,
+      "message": "please add @hide for this",
+      "range": {
+        "startLine": 423,
+        "startChar": 4,
+        "endLine": 428,
+        "endChar": 5
+      },
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
