@@ -16,268 +16,507 @@
 
 package android.bluetooth;
 
+import android.annotation.CallbackExecutor;
 import android.annotation.IntDef;
+import android.annotation.NonNull;
+import android.annotation.Nullable;
+import android.annotation.RequiresPermission;
+import android.annotation.SystemApi;
+import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.Context;
 import android.util.Log;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 /**
- * This class provides the public APIs to control the Bluetooth LE Broadcast Source profile.
+ * This class provides the public APIs to control the BAP Broadcast Source profile.
  *
- * <p>BluetoothLeBroadcast is a proxy object for controlling the Bluetooth LE Broadcast
- * Source Service via IPC. Use {@link BluetoothAdapter#getProfileProxy}
- * to get the BluetoothLeBroadcast proxy object.
+ * <p>BluetoothLeBroadcast is a proxy object for controlling the Bluetooth LE Broadcast Source
+ * Service via IPC. Use {@link BluetoothAdapter#getProfileProxy} to get the BluetoothLeBroadcast
+ * proxy object.
  *
  * @hide
  */
+@SystemApi
 public final class BluetoothLeBroadcast implements BluetoothProfile {
     private static final String TAG = "BluetoothLeBroadcast";
     private static final boolean DBG = true;
-    private static final boolean VDBG = false;
 
     /**
-     * Constants used by the LE Audio Broadcast profile for the Broadcast state
-     *
+     * Interface for receiving events related to Broadcast Source
      * @hide
      */
-    @IntDef(prefix = {"LE_AUDIO_BROADCAST_STATE_"}, value = {
-      LE_AUDIO_BROADCAST_STATE_DISABLED,
-      LE_AUDIO_BROADCAST_STATE_ENABLING,
-      LE_AUDIO_BROADCAST_STATE_ENABLED,
-      LE_AUDIO_BROADCAST_STATE_DISABLING,
-      LE_AUDIO_BROADCAST_STATE_PLAYING,
-      LE_AUDIO_BROADCAST_STATE_NOT_PLAYING
-    })
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface LeAudioBroadcastState {}
-
-    /**
-     * Indicates that LE Audio Broadcast mode is currently disabled
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_STATE_DISABLED = 10;
-
-    /**
-     * Indicates that LE Audio Broadcast mode is being enabled
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_STATE_ENABLING = 11;
-
-    /**
-     * Indicates that LE Audio Broadcast mode is currently enabled
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_STATE_ENABLED = 12;
-    /**
-     * Indicates that LE Audio Broadcast mode is being disabled
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_STATE_DISABLING = 13;
-
-    /**
-     * Indicates that an LE Audio Broadcast mode is currently playing
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_STATE_PLAYING = 14;
-
-    /**
-     * Indicates that LE Audio Broadcast is currently not playing
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_STATE_NOT_PLAYING = 15;
-
-    /**
-     * Constants used by the LE Audio Broadcast profile for encryption key length
-     *
-     * @hide
-     */
-    @IntDef(prefix = {"LE_AUDIO_BROADCAST_ENCRYPTION_KEY_"}, value = {
-      LE_AUDIO_BROADCAST_ENCRYPTION_KEY_32BIT,
-      LE_AUDIO_BROADCAST_ENCRYPTION_KEY_128BIT
-    })
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface LeAudioEncryptionKeyLength {}
-
-    /**
-     * Indicates that the LE Audio Broadcast encryption key size is 32 bits.
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_ENCRYPTION_KEY_32BIT = 16;
-
-    /**
-     * Indicates that the LE Audio Broadcast encryption key size is 128 bits.
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_ENCRYPTION_KEY_128BIT = 17;
-
-    /**
-     * Interface for receiving events related to broadcasts
-     */
+    @SystemApi
     public interface Callback {
+        /** @hide */
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef(value = {
+                REASON_UNKNOWN,
+                REASON_LOCAL_APP_REQUEST,
+                REASON_SYSTEM_POLICY,
+                REASON_HARDWARE_ERROR,
+                REASON_INVALID_CODE,
+                REASON_ALREADY_BROADCASTING,
+                REASON_ALREADY_ENCRYPTED,
+                REASON_BROADCAST_ALREADY_STOPPED,
+                REASON_ENCRYPTION_ALREADY_DISABLED,
+        })
+        @interface Reason {}
+
         /**
-         * Called when broadcast state has changed
-         *
-         * @param prevState broadcast state before the change
-         * @param newState broadcast state after the change
+         * Indicates that the callback happened due to unknown reason
+         * @hide
          */
-        @LeAudioBroadcastState
-        void onBroadcastStateChange(int prevState, int newState);
+        @SystemApi
+        int REASON_UNKNOWN = 0;
+
         /**
-         * Called when encryption key has been updated
-         *
-         * @param success true if the key was updated successfully, false otherwise
+         * Indicates that some local application caused the change
+         * @hide
          */
-        void onEncryptionKeySet(boolean success);
+        @SystemApi
+        int REASON_LOCAL_APP_REQUEST = 1;
+
+        /**
+         * Indicates that the local system policy caused the change, such
+         * as privacy policy, power management policy, permissions, and more.
+         * @hide
+         */
+        @SystemApi
+        int REASON_SYSTEM_POLICY = 2;
+
+        /**
+         * Indicates that the underlying hardware incurred some error when processing this request,
+         * maybe try again later or toggle the hardware state
+         * @hide
+         */
+        @SystemApi
+        int REASON_HARDWARE_ERROR = 3;
+
+        /**
+         * Indicates that encryption code entered is not valid
+         * @hide
+         */
+        @SystemApi
+        int REASON_INVALID_CODE = 4;
+
+        /**
+         * Indicates that system is already broadcasting. In encryption context, please stop
+         * broadcasting before changing encryption state
+         * @hide
+         */
+        @SystemApi
+        int REASON_ALREADY_BROADCASTING = 5;
+
+        /**
+         * Indicates that encryption is already enabled and cannot be enabled with a different code
+         * @hide
+         */
+        @SystemApi
+        int REASON_ALREADY_ENCRYPTED = 6;
+
+        /**
+         * Indicates that broadcast has already stopped before trying to stop it again
+         * @hide
+         */
+        @SystemApi
+        int REASON_BROADCAST_ALREADY_STOPPED = 7;
+
+        /**
+         * Indicates that encryption is already disabled before trying to disable it again
+         * @hide
+         */
+        @SystemApi
+        int REASON_ENCRYPTION_ALREADY_DISABLED = 8;
+
+        /**
+         * Callback invoked when broadcast is started, but audio may not be playing.
+         *
+         * @param reason for broadcast start
+         * @hide
+         */
+        @SystemApi
+        void onBroadcastStarted(@Reason int reason);
+
+        /**
+         * Callback invoked when broadcast failed to start
+         *
+         * @param reason for broadcast start failure
+         * @hide
+         */
+        @SystemApi
+        void onBroadcastStartFailed(@Reason int reason);
+
+        /**
+         * Callback invoked when broadcast is stopped
+         *
+         * @param reason for broadcast stop
+         * @hide
+         */
+        @SystemApi
+        void onBroadcastStopped(@Reason int reason);
+
+        /**
+         * Callback invoked when broadcast failed to stop
+         *
+         * @param reason for broadcast stop failure
+         * @hide
+         */
+        @SystemApi
+        void onBroadcastStopFailed(@Reason int reason);
+
+        /**
+         * Callback invoked when broadcast audio is playing
+         *
+         * @param reason for playback start
+         * @hide
+         */
+        @SystemApi
+        void onPlaybackStarted(@Reason int reason);
+
+        /**
+         * Callback invoked when broadcast audio is not playing
+         *
+         * @param reason for playback stop
+         * @hide
+         */
+        @SystemApi
+        void onPlaybackStopped(@Reason int reason);
+
+        /**
+         * Callback invoked when encryption is enabled
+         *
+         * @param reason for encryption enable
+         * @hide
+         */
+        @SystemApi
+        void onEncryptionEnabled(@Reason int reason);
+
+        /**
+         * Callback invoked when broadcast audio is not playing
+         *
+         * @param reason for encryption enable failure
+         * @hide
+         */
+        @SystemApi
+        void onEncryptionEnableFailed(int reason);
+
+        /**
+         * Callback invoked when broadcast audio is not playing
+         *
+         * @param reason for encryption disable
+         * @hide
+         */
+        @SystemApi
+        void onEncryptionDisabled(int reason);
+
+        /**
+         * Callback invoked when broadcast audio is not playing
+         *
+         * @param reason for encryption disable failure
+         * @hide
+         */
+        @SystemApi
+        void onEncryptionDisableFailed(int reason);
+
+        /**
+         * Callback invoked when Broadcast Source metadata is updated
+         *
+         * @param metadata updated Broadcast Source metadata
+         * @hide
+         */
+        @SystemApi
+        void onBroadcastMetadataChanged(BluetoothLeBroadcastMetadata metadata);
     }
 
     /**
-     * Create a BluetoothLeBroadcast proxy object for interacting with the local
-     * LE Audio Broadcast Source service.
+     * Create a BluetoothLeBroadcast proxy object for interacting with the local LE Audio Broadcast
+     * Source service.
+     *
+     * @param context  for to operate this API class
+     * @param listener listens for service callbacks across binder
+     * @hide
+     */
+    /*package*/ BluetoothLeBroadcast(Context context, BluetoothProfile.ServiceListener listener) {}
+
+    /**
+     * Not supported since LE Audio Broadcasts do not establish a connection
      *
      * @hide
      */
-    /*package*/ BluetoothLeBroadcast(Context context,
-                                     BluetoothProfile.ServiceListener listener) {
+    @Override
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public int getConnectionState(@NonNull BluetoothDevice device) {
+        throw new UnsupportedOperationException("LE Audio Broadcasts are not connection-oriented.");
     }
 
     /**
      * Not supported since LE Audio Broadcasts do not establish a connection
      *
-     * @throws UnsupportedOperationException
-     *
      * @hide
      */
+    @NonNull
     @Override
-    public int getConnectionState(BluetoothDevice device) {
-        throw new UnsupportedOperationException(
-                   "LE Audio Broadcasts are not connection-oriented.");
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public List<BluetoothDevice> getDevicesMatchingConnectionStates(@NonNull int[] states) {
+        throw new UnsupportedOperationException("LE Audio Broadcasts are not connection-oriented.");
     }
 
     /**
      * Not supported since LE Audio Broadcasts do not establish a connection
      *
-     * @throws UnsupportedOperationException
-     *
      * @hide
      */
     @Override
-    public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
-        throw new UnsupportedOperationException(
-                   "LE Audio Broadcasts are not connection-oriented.");
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @NonNull List<BluetoothDevice> getConnectedDevices() {
+        throw new UnsupportedOperationException("LE Audio Broadcasts are not connection-oriented.");
     }
 
     /**
-     * Not supported since LE Audio Broadcasts do not establish a connection
+     * Register a {@link Callback} that will be invoked during the
+     * operation of this profile.
      *
-     * @throws UnsupportedOperationException
+     * Repeated registration of the same <var>callback</var> object will have no effect after
+     * the first call to this method, even when the <var>executor</var> is different. API caller
+     * would have to call {@link #unregisterCallback(Callback)} with
+     * the same callback object before registering it again.
      *
+     * @param executor an {@link Executor} to execute given callback
+     * @param callback user implementation of the {@link Callback}
+     * @throws IllegalArgumentException if a null executor, sink, or callback is given
      * @hide
      */
-    @Override
-    public List<BluetoothDevice> getConnectedDevices() {
-        throw new UnsupportedOperationException(
-                   "LE Audio Broadcasts are not connection-oriented.");
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void registerCallback(@NonNull @CallbackExecutor Executor executor,
+            @NonNull Callback callback) {
+        if (executor == null) {
+            throw new IllegalArgumentException("executor cannot be null");
+        }
+        if (callback == null) {
+            throw new IllegalArgumentException("callback cannot be null");
+        }
+        log("registerCallback");
+        throw new UnsupportedOperationException("Not Implemented");
     }
 
     /**
-     * Enable LE Audio Broadcast mode.
+     * Unregister the specified {@link Callback}
+     * <p>The same {@link Callback} object used when calling
+     * {@link #registerCallback(Executor, Callback)} must be used.
      *
-     * Generates a new broadcast ID and enables sending of encrypted or unencrypted
-     * isochronous PDUs
+     * <p>Callbacks are automatically unregistered when application process goes away
      *
+     * @param callback user implementation of the {@link Callback}
+     * @throws IllegalArgumentException when callback is null or when no callback is registered
      * @hide
      */
-    public int enableBroadcastMode() {
-        if (DBG) log("enableBroadcastMode");
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED;
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void unregisterCallback(@NonNull Callback callback) {
+        if (callback == null) {
+            throw new IllegalArgumentException("callback cannot be null");
+        }
+        log("unregisterCallback");
+        throw new UnsupportedOperationException("Not Implemented");
     }
 
     /**
-     * Disable LE Audio Broadcast mode.
+     * Start broadcasting to nearby devices using current encryption setting and system audio and
+     * media policy settings
+     *
+     * On success, {@link Callback#onBroadcastStarted(int)} will be invoked with
+     * {@link Callback#REASON_LOCAL_APP_REQUEST} reason code.
+     * On failure, {@link Callback#onBroadcastStartFailed(int)} will be invoked  with reason code.
+     *
+     * After broadcast is started,
+     * {@link Callback#onBroadcastMetadataChanged(BluetoothLeBroadcastMetadata)}
+     * will be invoked to expose the latest Broadcast Group metadata that can be shared out of band
+     * to set up Broadcast Sink without scanning.
+     *
+     * Alternatively, one can also get the latest Broadcast Source meta via
+     * {@link #getBroadcastMetadata()}
      *
      * @hide
      */
-    public int disableBroadcastMode() {
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void startBroadcasting() {
+        if (DBG) log("startBroadcasting");
+    }
+
+    /**
+     * Stop broadcasting.
+     *
+     * On success, {@link Callback#onBroadcastStopped(int)} will be invoked with reason code
+     * {@link Callback#REASON_LOCAL_APP_REQUEST}
+     * On failure, {@link Callback#onBroadcastStopFailed(int)} will be invoked with reason code
+     *
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void stopBroadcasting() {
         if (DBG) log("disableBroadcastMode");
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED;
     }
 
     /**
-     * Get the current LE Audio broadcast state
+     * Return true if broadcasting is enabled
      *
+     * @return true if broadcasting is enabled
      * @hide
      */
-    @LeAudioBroadcastState
-    public int getBroadcastState() {
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public boolean isBroadcasting() {
         if (DBG) log("getBroadcastState");
-        return LE_AUDIO_BROADCAST_STATE_DISABLED;
+        return false;
     }
 
     /**
-     * Enable LE Audio broadcast encryption
+     * Return true if audio is being broadcasted
      *
-     * @param keyLength if useExisting is true, this specifies the length of the key that should
-     *                  be generated
-     * @param useExisting true, if an existing key should be used
-     *                    false, if a new key should be generated
-     *
+     * @return true if audio is being broadcasted
      * @hide
      */
-    @LeAudioEncryptionKeyLength
-    public int enableEncryption(boolean useExisting, int keyLength) {
-        if (DBG) log("enableEncryption useExisting=" + useExisting + " keyLength=" + keyLength);
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_ENABLE_ENCRYPTION_FAILED;
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public boolean isPlaying() {
+        return false;
     }
 
     /**
-     * Disable LE Audio broadcast encryption
+     * Enable encryption with a Broadcast Code
      *
-     * @param removeExisting true, if the existing key should be removed
-     *                       false, otherwise
+     * <p>As defined in Volume 3, Part C, Section 3.2.6 of Bluetooth Core Specification, Version
+     * 5.3, Broadcast Code is used to encrypt a broadcast audio stream.
+     * <p>It must be a UTF-8 string that has at least 4 octets and should not exceed 16 octets.
      *
+     * If the provided string is non-null and does not meet the above requirements, encryption will
+     * fail to enable with reason code {@link Callback#REASON_INVALID_CODE}
+     *
+     * On success, {@link Callback#onEncryptionEnabled(int)} will be invoked with reason code
+     * {@link Callback#REASON_LOCAL_APP_REQUEST}.
+     * On failure, {@link Callback#onEncryptionEnableFailed(int)} will be invoked with reason code.
+     *
+     * @param customizedCode if non-null, use the provided broadcast, generate a new code if null
      * @hide
      */
-    public int disableEncryption(boolean removeExisting) {
-        if (DBG) log("disableEncryption removeExisting=" + removeExisting);
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED;
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void enableEncryption(@Nullable byte[] customizedCode) {
+        if (DBG) log("enableEncryptionWithCode code=" + customizedCode);
     }
 
     /**
-     * Enable or disable LE Audio broadcast encryption
+     * Disable LE Audio broadcast encryption and clear the broadcast code
      *
-     * @param key use the provided key if non-null, generate a new key if null
-     * @param keyLength 0 if encryption is disabled, 4 bytes (low security),
-     *                  16 bytes (high security)
+     * On success, {@link Callback#onEncryptionDisabled(int)} will be invoked with reason code
+     * {@link Callback#REASON_LOCAL_APP_REQUEST}.
+     * On failure, {@link Callback#onEncryptionDisableFailed(int)} will be invoked with reason code.
      *
      * @hide
      */
-    @LeAudioEncryptionKeyLength
-    public int setEncryptionKey(byte[] key, int keyLength) {
-        if (DBG) log("setEncryptionKey key=" + key + " keyLength=" + keyLength);
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_ENCRYPTION_KEY_FAILED;
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public void disableEncryption() {
+        if (DBG) log("disableEncryption");
     }
 
-
     /**
-     * Get the encryption key that was set before
+     * Return true if encryption is currently enabled
      *
-     * @return encryption key as a byte array or null if no encryption key was set
-     *
+     * @return true if encryption is currently enabled
      * @hide
      */
-    public byte[] getEncryptionKey() {
-        if (DBG) log("getEncryptionKey");
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public boolean isEncryptionEnabled() {
+        return false;
+    }
+
+    /**
+     * Get the that was set before
+     *
+     * @return encryption key as a byte array or null if encryption is disabled
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @Nullable byte[] getBroadcastCode() {
+        if (DBG) log("getBroadcastCode");
+        return null;
+    }
+
+    /**
+     * Get the {@link BluetoothLeBroadcastMetadata} information needed to set up Broadcast Sink
+     *
+     * @return {@link BluetoothLeBroadcastMetadata} information
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public BluetoothLeBroadcastMetadata getBroadcastMetadata() {
         return null;
     }
 
