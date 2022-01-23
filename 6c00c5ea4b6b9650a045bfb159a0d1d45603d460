@@ -81,6 +81,30 @@
       },
       "revId": "6c00c5ea4b6b9650a045bfb159a0d1d45603d460",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66164227_52fcae8f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T15:26:09Z",
+      "side": 1,
+      "message": "Patches are created: \np/m/Bluetooth: aosp/1956013\nframeworks/base: aosp/1958143\ncts: aosp/1957866\nPlease help to review it, thanks.",
+      "parentUuid": "3d3a2369_9df805d5",
+      "range": {
+        "startLine": 271,
+        "startChar": 4,
+        "endLine": 280,
+        "endChar": 5
+      },
+      "revId": "6c00c5ea4b6b9650a045bfb159a0d1d45603d460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
