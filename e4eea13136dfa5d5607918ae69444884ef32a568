@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60d3ec27_7caf377e",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T14:36:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c35f7b32_2008c4df",
+      "range": {
+        "startLine": 161,
+        "startChar": 6,
+        "endLine": 161,
+        "endChar": 27
+      },
+      "revId": "e4eea13136dfa5d5607918ae69444884ef32a568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78933f87_2fe0ce17",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-01-17T13:09:51Z",
       "side": 1,
       "message": "nit: Could it rename to software_set_config?",
+      "range": {
+        "startLine": 166,
+        "startChar": 13,
+        "endLine": 166,
+        "endChar": 30
+      },
+      "revId": "e4eea13136dfa5d5607918ae69444884ef32a568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be9423d_40787c22",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T14:36:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78933f87_2fe0ce17",
       "range": {
         "startLine": 166,
         "startChar": 13,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdea780c_36743ec5",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T14:36:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "404ede2b_7aed3cbc",
+      "range": {
+        "startLine": 171,
+        "startChar": 13,
+        "endLine": 171,
+        "endChar": 30
+      },
+      "revId": "e4eea13136dfa5d5607918ae69444884ef32a568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e27f9c_f625177c",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f3832d8_f2506b40",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T14:36:41Z",
+      "side": 1,
+      "message": "refactor to make it more simple",
+      "parentUuid": "74e27f9c_f625177c",
+      "range": {
+        "startLine": 179,
+        "startChar": 10,
+        "endLine": 179,
+        "endChar": 25
+      },
+      "revId": "e4eea13136dfa5d5607918ae69444884ef32a568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc49a689_13a4e254",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-01-17T13:09:51Z",
       "side": 1,
       "message": "nit:context_type_offload_config_map_",
+      "range": {
+        "startLine": 240,
+        "startChar": 6,
+        "endLine": 240,
+        "endChar": 37
+      },
+      "revId": "e4eea13136dfa5d5607918ae69444884ef32a568",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb8313a3_68b5234d",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T14:36:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc49a689_13a4e254",
       "range": {
         "startLine": 240,
         "startChar": 6,

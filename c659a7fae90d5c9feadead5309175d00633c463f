@@ -237,6 +237,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ba4d375_b96ffe59",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T14:36:41Z",
+      "side": 1,
+      "message": "Use an unordered map to store the mapping",
+      "parentUuid": "c67939a8_76e19351",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 198,
+        "endChar": 5
+      },
+      "revId": "c659a7fae90d5c9feadead5309175d00633c463f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e53e4a1f_58314591",
