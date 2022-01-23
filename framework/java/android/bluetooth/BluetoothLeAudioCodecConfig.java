@@ -190,7 +190,7 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
     public static final int FRAME_DURATION_10000 = 2;
 
     private final @SourceCodecType int mCodecType;
-    private @CodecPriority int mCodecPriority;
+    private final @CodecPriority int mCodecPriority;
     private final @SampleRate int mSampleRate;
     private final @BitsPerSample int mBitsPerSample;
     private final @ChannelMode int mChannelMode;
@@ -309,17 +309,6 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
     public @CodecPriority int getCodecPriority() { return mCodecPriority; }
 
     /**
-     * Sets the codec selection priority.
-     * <p>The codec selection priority is relative to other codecs: larger value
-     * means higher priority.
-     *
-     * @param codecPriority the priority this codec should have
-     */
-    public void setCodecPriority(@CodecPriority int codecPriority) {
-        mCodecPriority = codecPriority;
-    }
-
-    /**
      * Returns the codec sample rate.
      */
     public @SampleRate int getSampleRate() { return mSampleRate; }
@@ -345,6 +334,15 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
     public @ChannelMode int getOctetsPerFrame() { return mOctetsPerFrame; }
 
     /**
+     * Creates and returns a new {@link Builder} initialized with this
+     * BluetoothLeAudioCodecConfig's data
+     */
+    @NonNull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    /**
      * Builder for {@link BluetoothLeAudioCodecConfig}.
      * <p> By default, the codec type will be set to
      * {@link BluetoothLeAudioCodecConfig#SOURCE_CODEC_TYPE_INVALID}
@@ -357,6 +355,18 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
         private int mChannelMode = BluetoothLeAudioCodecConfig.CHANNEL_MODE_NONE;
         private int mFrameDuration = BluetoothLeAudioCodecConfig.FRAME_DURATION_NONE;
         private int mOctetsPerFrame = 0;
+
+        public Builder() {}
+
+        private Builder(BluetoothLeAudioCodecConfig config) {
+            mCodecType = config.mCodecType;
+            mCodecPriority = config.mCodecPriority;
+            mSampleRate = config.mSampleRate;
+            mBitsPerSample = config.mBitsPerSample;
+            mChannelMode = config.mChannelMode;
+            mFrameDuration = config.mFrameDuration;
+            mOctetsPerFrame = config.mOctetsPerFrame;
+        }
 
         /**
          * Set codec type for Bluetooth LE audio codec config.
