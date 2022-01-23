@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019617538",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1931007?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "80041edc_487ce5ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-23T12:34:49Z",
+      "side": 1,
+      "message": "\"build, Logging retrieved configs\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 23,
+        "startChar": 5,
+        "endLine": 23,
+        "endChar": 38
+      },
+      "revId": "538cd85df49812d68ba15c2a33cbeffc4a9d7ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019617538",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1931007?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a0181179_c70a3a56",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-23T12:34:49Z",
+      "side": 1,
+      "message": "\"make RunSettingsRoboTests\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "revId": "538cd85df49812d68ba15c2a33cbeffc4a9d7ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
