@@ -16,41 +16,50 @@
 
 package android.bluetooth;
 
+import android.annotation.CallbackExecutor;
 import android.annotation.IntDef;
+import android.annotation.NonNull;
+import android.annotation.Nullable;
+import android.annotation.RequiresPermission;
+import android.annotation.SystemApi;
+import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.Context;
 import android.util.Log;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
+import java.util.concurrent.Executor;
 
 /**
  * This class provides the public APIs to control the Bluetooth LE Broadcast Source profile.
  *
- * <p>BluetoothLeBroadcast is a proxy object for controlling the Bluetooth LE Broadcast
- * Source Service via IPC. Use {@link BluetoothAdapter#getProfileProxy}
- * to get the BluetoothLeBroadcast proxy object.
+ * <p>BluetoothLeBroadcast is a proxy object for controlling the Bluetooth LE Broadcast Source
+ * Service via IPC. Use {@link BluetoothAdapter#getProfileProxy} to get the BluetoothLeBroadcast
+ * proxy object.
  *
  * @hide
  */
+@SystemApi
 public final class BluetoothLeBroadcast implements BluetoothProfile {
     private static final String TAG = "BluetoothLeBroadcast";
     private static final boolean DBG = true;
-    private static final boolean VDBG = false;
 
     /**
      * Constants used by the LE Audio Broadcast profile for the Broadcast state
      *
      * @hide
      */
-    @IntDef(prefix = {"LE_AUDIO_BROADCAST_STATE_"}, value = {
-      LE_AUDIO_BROADCAST_STATE_DISABLED,
-      LE_AUDIO_BROADCAST_STATE_ENABLING,
-      LE_AUDIO_BROADCAST_STATE_ENABLED,
-      LE_AUDIO_BROADCAST_STATE_DISABLING,
-      LE_AUDIO_BROADCAST_STATE_PLAYING,
-      LE_AUDIO_BROADCAST_STATE_NOT_PLAYING
-    })
+    @IntDef(
+            prefix = {"LE_AUDIO_BROADCAST_STATE_"},
+            value = {
+                    LE_AUDIO_BROADCAST_STATE_DISABLED,
+                    LE_AUDIO_BROADCAST_STATE_ENABLING,
+                    LE_AUDIO_BROADCAST_STATE_ENABLED,
+                    LE_AUDIO_BROADCAST_STATE_DISABLING,
+                    LE_AUDIO_BROADCAST_STATE_PLAYING,
+                    LE_AUDIO_BROADCAST_STATE_NOT_PLAYING
+            })
     @Retention(RetentionPolicy.SOURCE)
     public @interface LeAudioBroadcastState {}
 
@@ -59,6 +68,7 @@ public final class BluetoothLeBroadcast implements BluetoothProfile {
      *
      * @hide
      */
+    @SystemApi
     public static final int LE_AUDIO_BROADCAST_STATE_DISABLED = 10;
 
     /**
@@ -66,6 +76,7 @@ public final class BluetoothLeBroadcast implements BluetoothProfile {
      *
      * @hide
      */
+    @SystemApi
     public static final int LE_AUDIO_BROADCAST_STATE_ENABLING = 11;
 
     /**
@@ -73,12 +84,15 @@ public final class BluetoothLeBroadcast implements BluetoothProfile {
      *
      * @hide
      */
+    @SystemApi
     public static final int LE_AUDIO_BROADCAST_STATE_ENABLED = 12;
+
     /**
      * Indicates that LE Audio Broadcast mode is being disabled
      *
      * @hide
      */
+    @SystemApi
     public static final int LE_AUDIO_BROADCAST_STATE_DISABLING = 13;
 
     /**
@@ -86,6 +100,7 @@ public final class BluetoothLeBroadcast implements BluetoothProfile {
      *
      * @hide
      */
+    @SystemApi
     public static final int LE_AUDIO_BROADCAST_STATE_PLAYING = 14;
 
     /**
@@ -93,114 +108,144 @@ public final class BluetoothLeBroadcast implements BluetoothProfile {
      *
      * @hide
      */
+    @SystemApi
     public static final int LE_AUDIO_BROADCAST_STATE_NOT_PLAYING = 15;
 
     /**
-     * Constants used by the LE Audio Broadcast profile for encryption key length
-     *
-     * @hide
-     */
-    @IntDef(prefix = {"LE_AUDIO_BROADCAST_ENCRYPTION_KEY_"}, value = {
-      LE_AUDIO_BROADCAST_ENCRYPTION_KEY_32BIT,
-      LE_AUDIO_BROADCAST_ENCRYPTION_KEY_128BIT
-    })
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface LeAudioEncryptionKeyLength {}
-
-    /**
-     * Indicates that the LE Audio Broadcast encryption key size is 32 bits.
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_ENCRYPTION_KEY_32BIT = 16;
-
-    /**
-     * Indicates that the LE Audio Broadcast encryption key size is 128 bits.
-     *
-     * @hide
-     */
-    public static final int LE_AUDIO_BROADCAST_ENCRYPTION_KEY_128BIT = 17;
-
-    /**
      * Interface for receiving events related to broadcasts
+     *
+     * @hide
      */
+    @SystemApi
     public interface Callback {
         /**
          * Called when broadcast state has changed
          *
          * @param prevState broadcast state before the change
-         * @param newState broadcast state after the change
+         * @param newState  broadcast state after the change
          */
-        @LeAudioBroadcastState
-        void onBroadcastStateChange(int prevState, int newState);
+        void onBroadcastStateChange(@LeAudioBroadcastState int prevState,
+                @LeAudioBroadcastState int newState);
+
         /**
-         * Called when encryption key has been updated
-         *
-         * @param success true if the key was updated successfully, false otherwise
+         * Called when broadcast code has been updated
          */
-        void onEncryptionKeySet(boolean success);
+        void onBroadcastCodeSet(@SetBroadcastCodeReturnValues int status);
     }
 
     /**
-     * Create a BluetoothLeBroadcast proxy object for interacting with the local
-     * LE Audio Broadcast Source service.
+     * Create a BluetoothLeBroadcast proxy object for interacting with the local LE Audio Broadcast
+     * Source service.
+     *
+     * @param context  for to operate this API class
+     * @param listener listens for service callbacks across binder
+     * @hide
+     */
+    /*package*/ BluetoothLeBroadcast(Context context, BluetoothProfile.ServiceListener listener) {}
+
+    /**
+     * Not supported since LE Audio Broadcasts do not establish a connection
      *
      * @hide
      */
-    /*package*/ BluetoothLeBroadcast(Context context,
-                                     BluetoothProfile.ServiceListener listener) {
+    @SystemApi
+    @Override
+    public int getConnectionState(@NonNull BluetoothDevice device) {
+        throw new UnsupportedOperationException("LE Audio Broadcasts are not connection-oriented.");
     }
 
     /**
      * Not supported since LE Audio Broadcasts do not establish a connection
      *
-     * @throws UnsupportedOperationException
-     *
      * @hide
      */
+    @SystemApi
+    @NonNull
     @Override
-    public int getConnectionState(BluetoothDevice device) {
-        throw new UnsupportedOperationException(
-                   "LE Audio Broadcasts are not connection-oriented.");
+    public List<BluetoothDevice> getDevicesMatchingConnectionStates(@NonNull int[] states) {
+        throw new UnsupportedOperationException("LE Audio Broadcasts are not connection-oriented.");
     }
 
     /**
      * Not supported since LE Audio Broadcasts do not establish a connection
      *
-     * @throws UnsupportedOperationException
-     *
      * @hide
      */
+    @SystemApi
     @Override
-    public List<BluetoothDevice> getDevicesMatchingConnectionStates(int[] states) {
-        throw new UnsupportedOperationException(
-                   "LE Audio Broadcasts are not connection-oriented.");
+    public @NonNull List<BluetoothDevice> getConnectedDevices() {
+        throw new UnsupportedOperationException("LE Audio Broadcasts are not connection-oriented.");
     }
 
     /**
-     * Not supported since LE Audio Broadcasts do not establish a connection
+     * Register a {@link Callback} that will be invoked during the
+     * operation of this profile.
      *
-     * @throws UnsupportedOperationException
+     * Repeated registration of the same <var>callback</var> object will have no effect after
+     * the first call to this method, even when the <var>executor</var> is different. API caller
+     * would have to call {@link #unregisterCallback(Callback)} with
+     * the same callback object before registering it again.
      *
+     * @param executor an {@link Executor} to execute given callback
+     * @param callback user implementation of the {@link Callback}
+     * @throws IllegalArgumentException if a null executor, sink, or callback is given
      * @hide
      */
-    @Override
-    public List<BluetoothDevice> getConnectedDevices() {
-        throw new UnsupportedOperationException(
-                   "LE Audio Broadcasts are not connection-oriented.");
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public void registerCallback(@NonNull @CallbackExecutor Executor executor,
+            @NonNull Callback callback) {
+        if (executor == null) {
+            throw new IllegalArgumentException("executor cannot be null");
+        }
+        if (callback == null) {
+            throw new IllegalArgumentException("callback cannot be null");
+        }
+        log("registerCallback");
+        throw new UnsupportedOperationException("Not Implemented");
     }
+
+    /**
+     * Unregister the specified {@link Callback}
+     * <p>The same {@link Callback} object used when calling
+     * {@link #registerCallback(Executor, Callback)} must be used.
+     *
+     * <p>Callbacks are automatically unregistered when application process goes away
+     *
+     * @param callback user implementation of the {@link Callback}
+     * @throws IllegalArgumentException when callback is null or when no callback is registered
+     * @hide
+     */
+    @SystemApi
+    public void unregisterCallback(@NonNull Callback callback) {
+        if (callback == null) {
+            throw new IllegalArgumentException("callback cannot be null");
+        }
+        log("unregisterCallback");
+        throw new UnsupportedOperationException("Not Implemented");
+    }
+
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {
+            BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED,
+            BluetoothStatusCodes.SUCCESS
+    })
+    public @interface ChangeBroadcastModeReturnValues {}
 
     /**
      * Enable LE Audio Broadcast mode.
      *
-     * Generates a new broadcast ID and enables sending of encrypted or unencrypted
-     * isochronous PDUs
+     * <p>Generates a new broadcast ID and enables sending of encrypted or unencrypted isochronous
+     * PDUs
      *
      * @hide
      */
-    public int enableBroadcastMode() {
+    @SystemApi
+    public @ChangeBroadcastModeReturnValues int enableBroadcastMode() {
         if (DBG) log("enableBroadcastMode");
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED;
+        return BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED;
     }
 
     /**
@@ -208,9 +253,10 @@ public final class BluetoothLeBroadcast implements BluetoothProfile {
      *
      * @hide
      */
-    public int disableBroadcastMode() {
+    @SystemApi
+    public @ChangeBroadcastModeReturnValues int disableBroadcastMode() {
         if (DBG) log("disableBroadcastMode");
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED;
+        return BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED;
     }
 
     /**
@@ -218,66 +264,97 @@ public final class BluetoothLeBroadcast implements BluetoothProfile {
      *
      * @hide
      */
-    @LeAudioBroadcastState
-    public int getBroadcastState() {
+    @SystemApi
+    public @LeAudioBroadcastState int getBroadcastState() {
         if (DBG) log("getBroadcastState");
         return LE_AUDIO_BROADCAST_STATE_DISABLED;
     }
 
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {
+            BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_ENABLE_ENCRYPTION_FAILED,
+            BluetoothStatusCodes.SUCCESS
+    })
+    public @interface EnableEncryptionReturnValues {}
+
     /**
      * Enable LE Audio broadcast encryption
      *
-     * @param keyLength if useExisting is true, this specifies the length of the key that should
-     *                  be generated
-     * @param useExisting true, if an existing key should be used
-     *                    false, if a new key should be generated
-     *
      * @hide
      */
-    @LeAudioEncryptionKeyLength
-    public int enableEncryption(boolean useExisting, int keyLength) {
-        if (DBG) log("enableEncryption useExisting=" + useExisting + " keyLength=" + keyLength);
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_ENABLE_ENCRYPTION_FAILED;
+    @SystemApi
+    public @EnableEncryptionReturnValues int enableEncryption() {
+        if (DBG) log("enableEncryption");
+        return BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_ENABLE_ENCRYPTION_FAILED;
     }
+
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {
+            BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED,
+            BluetoothStatusCodes.SUCCESS
+    })
+    public @interface DisableEncryptionReturnValues {}
 
     /**
      * Disable LE Audio broadcast encryption
      *
-     * @param removeExisting true, if the existing key should be removed
-     *                       false, otherwise
-     *
+     * @param removeExisting true, if the existing key should be removed false, otherwise
      * @hide
      */
-    public int disableEncryption(boolean removeExisting) {
+    @SystemApi
+    public @DisableEncryptionReturnValues int disableEncryption(boolean removeExisting) {
         if (DBG) log("disableEncryption removeExisting=" + removeExisting);
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED;
+        return BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED;
     }
 
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(value = {
+            BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_SET_BROADCAST_CODE_FAILED,
+            BluetoothStatusCodes.SUCCESS
+    })
+    public @interface SetBroadcastCodeReturnValues {}
+
     /**
-     * Enable or disable LE Audio broadcast encryption
+     * Set the broadcast code
      *
-     * @param key use the provided key if non-null, generate a new key if null
-     * @param keyLength 0 if encryption is disabled, 4 bytes (low security),
-     *                  16 bytes (high security)
+     * <p>As defined in Volume 3, Part C, Section 3.2.6 of Bluetooth Core Specification, Version
+     * 5.3, Broadcast Code is used to encrypt a broadcast audio stream.
+     * <p>It must be a UTF-8 string that has at least 4 octets and should not exceed 16 octets.
+     * If the provided string is non-null and does not meet the above requirements, an error
+     * will be returned.
      *
+     * @param code if non-null, use the provided broadcast, generate a new code if null
      * @hide
      */
-    @LeAudioEncryptionKeyLength
-    public int setEncryptionKey(byte[] key, int keyLength) {
-        if (DBG) log("setEncryptionKey key=" + key + " keyLength=" + keyLength);
-        return BluetoothStatusCodes.ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_ENCRYPTION_KEY_FAILED;
+    @SystemApi
+    public @SetBroadcastCodeReturnValues int setBroadcastCode(@Nullable String code) {
+        if (DBG) log("setBroadcastCode code=" + code);
+        return BluetoothStatusCodes.ERROR_LE_BROADCAST_SOURCE_SET_BROADCAST_CODE_FAILED;
     }
 
-
     /**
-     * Get the encryption key that was set before
+     * Get the that was set before
      *
      * @return encryption key as a byte array or null if no encryption key was set
-     *
      * @hide
      */
-    public byte[] getEncryptionKey() {
-        if (DBG) log("getEncryptionKey");
+    @SystemApi
+    public @Nullable String getBroadcastCode() {
+        if (DBG) log("getBroadcastCode");
+        return null;
+    }
+
+    /**
+     * Get the {@link BluetoothLeBroadcastGroup} information needed to setup Broadcast Sink
+     *
+     * @return {@link BluetoothLeBroadcastGroup} information
+     * @hide
+     */
+    @SystemApi
+    public BluetoothLeBroadcastGroup getBroadcastGroup() {
         return null;
     }
 

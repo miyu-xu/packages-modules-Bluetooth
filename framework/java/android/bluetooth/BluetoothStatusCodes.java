@@ -233,37 +233,19 @@ public final class BluetoothStatusCodes {
      *
      * @hide
      */
-    public static final int ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED = 1110;
+    @SystemApi
+    public static final int ERROR_LE_BROADCAST_SOURCE_SET_BROADCAST_MODE_FAILED = 1110;
 
     /**
-     * Indicates that setting a new encryption key for Bluetooth LE Audio Broadcast Source failed.
+     * Indicates that setting a new Broadcast Code for Bluetooth LE Audio Broadcast Source failed.
      * <p>
      * Example solution: Change parameters and try again. If error persists, the app can report
      * telemetry and/or log the error in a bugreport.
      *
      * @hide
      */
-    public static final int ERROR_LE_AUDIO_BROADCAST_SOURCE_SET_ENCRYPTION_KEY_FAILED = 1111;
-
-    /**
-     * Indicates that connecting to a remote Broadcast Audio Scan Service failed.
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_AUDIO_SCAN_SERVICE_CONNECT_FAILED = 1112;
-
-    /**
-     * Indicates that disconnecting from a remote Broadcast Audio Scan Service failed.
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_AUDIO_SCAN_SERVICE_DISCONNECT_FAILED = 1113;
+    @SystemApi
+    public static final int ERROR_LE_BROADCAST_SOURCE_SET_BROADCAST_CODE_FAILED = 1111;
 
     /**
      * Indicates that enabling LE Audio Broadcast encryption failed
@@ -273,7 +255,8 @@ public final class BluetoothStatusCodes {
      *
      * @hide
      */
-    public static final int ERROR_LE_AUDIO_BROADCAST_SOURCE_ENABLE_ENCRYPTION_FAILED = 1114;
+    @SystemApi
+    public static final int ERROR_LE_BROADCAST_SOURCE_ENABLE_ENCRYPTION_FAILED = 1114;
 
     /**
      * Indicates that disabling LE Audio Broadcast encryption failed
@@ -283,90 +266,20 @@ public final class BluetoothStatusCodes {
      *
      * @hide
      */
-    public static final int ERROR_LE_AUDIO_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED = 1115;
+    @SystemApi
+    public static final int ERROR_LE_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED = 1115;
 
-    /**
-     * Indicates that starting the search for LE Audio Broadcast Sources failed
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_START_SEARCH_FAILED = 1116;
 
-    /**
-     * Indicates that stopping the search for LE Audio Broadcast Sources failed
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_STOP_SEARCH_FAILED = 1117;
-
-    /**
-     * Indicates that selecting an LE Audio Broadcast Source failed
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_SELECT_SOURCE_FAILED = 1118;
-
-    /**
-     * Indicates that adding information about an LE Audio Broadcast Source to a
-     *  Scan Delegator failed
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_ADD_SOURCE_FAILED = 1119;
-
-    /**
-     * Indicates that updating information about an LE Audio Broadcast Source that exists on a
-     *  Scan Delegator failed
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_UPDATE_SOURCE_FAILED = 1120;
-
-    /**
-     * Indicates that removing information about an LE Audio Broadcast Source that exists on a
-     *  Scan Delegator failed
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_REMOVE_SOURCE_FAILED = 1121;
-
-    /**
-     * Indicates that registering Broadcast Assistant callbacks for a Scan Delegator failed.
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_REGISTER_CALLBACK_FAILED = 1124;
-
-    /**
-     * Indicates that unregistering Broadcast Assistant callbacks for a Scan Delegator failed.
-     * <p>
-     * Example solution: Change parameters and try again. If error persists, the app can report
-     * telemetry and/or log the error in a bugreport.
-     *
-     * @hide
-     */
-    public static final int ERROR_LE_AUDIO_BROADCAST_ASSISTANT_UNREGISTER_CALLBACK_FAILED = 1125;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_OPERATION_NOT_SUPPORTED = 1116;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_INVALID_SOURCE_ID = 1117;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_CODE_REQUIRED = 1118;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_BAD_CODE = 1119;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_DUPLICATE_ADDITION = 1120;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_BASS_UPDATE_TIMEOUT = 1120;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_SOURCE_SYNC_TIMEOUT = 1121;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_SYSTEM_POLICY = 1122;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_NO_EMPTY_SLOT = 1123;
+    public static final int ERROR_LE_BROADCAST_ASSISTANT_INVALID_GROUP_OPERATION = 1123;
 
     /**
      * Indicates that an unknown error has occurred has occurred.
