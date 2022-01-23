@@ -237,6 +237,7 @@ public interface BluetoothProfile {
      *
      * @hide
      */
+    @SystemApi
     int LE_AUDIO_BROADCAST = 26;
 
     /**
@@ -257,6 +258,7 @@ public interface BluetoothProfile {
      *
      * @hide
      */
+    @SystemApi
     int LE_AUDIO_BROADCAST_ASSISTANT = 29;
 
     /**
