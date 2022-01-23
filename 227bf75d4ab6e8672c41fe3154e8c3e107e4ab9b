@@ -46,6 +46,30 @@
       },
       "revId": "227bf75d4ab6e8672c41fe3154e8c3e107e4ab9b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8222ea5d_764330a8",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-23T08:33:39Z",
+      "side": 1,
+      "message": "I see.\nnit: The predefined ad type range starts from 0x01.",
+      "parentUuid": "9f4c8bb4_2edca6ae",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 29
+      },
+      "revId": "227bf75d4ab6e8672c41fe3154e8c3e107e4ab9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
