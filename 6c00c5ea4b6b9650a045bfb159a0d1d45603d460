@@ -57,6 +57,30 @@
       },
       "revId": "6c00c5ea4b6b9650a045bfb159a0d1d45603d460",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3a2369_9df805d5",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-23T07:33:17Z",
+      "side": 1,
+      "message": "Thanks for pointing out this, I will create another patch to remove the set function and add a toBuilder function.",
+      "parentUuid": "c99e0579_dccba2aa",
+      "range": {
+        "startLine": 271,
+        "startChar": 4,
+        "endLine": 280,
+        "endChar": 5
+      },
+      "revId": "6c00c5ea4b6b9650a045bfb159a0d1d45603d460",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
