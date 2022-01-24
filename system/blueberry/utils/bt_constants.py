@@ -210,3 +210,32 @@ class BluetoothA2dpCodec(enum.IntEnum):
   APTX = 2
   APTX_HD = 3
   LDAC = 4
+
+GMT_TO_OLSON = {
+    '-0900': 'America/Anchorage',
+    '-0800': 'US/Pacific',
+    '-0700': 'US/Mountain',
+    '-0600': 'US/Central',
+    '-0500': 'US/Eastern',
+    '-0400': 'America/Barbados',
+    '-0300': 'America/Buenos_Aires',
+    '-0200': 'Atlantic/South_Georgia',
+    '-0100': 'Atlantic/Azores',
+    '+0000': 'Africa/Casablanca',
+    '+0100': 'Europe/Amsterdam',
+    '+0200': 'Europe/Athens',
+    '+0300': 'Europe/Moscow',
+    '+0400': 'Asia/Baku',
+    '+0500': 'Asia/Oral',
+    '+0600': 'Asia/Almaty',
+    '+0700': 'Asia/Bangkok',
+    '+0800': 'Asia/Hong_Kong',
+    '+0900': 'Asia/Tokyo',
+    '+1000': 'Pacific/Guam',
+    '+1100': 'Pacific/Noumea',
+    '+1200': 'Pacific/Fiji',
+    '+1300': 'Pacific/Tongatapu',
+    '-1100': 'Pacific/Midway',
+    '-1000': 'Pacific/Honolulu'
+}
+
