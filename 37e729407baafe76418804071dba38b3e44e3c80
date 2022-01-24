@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7f5989_31ed2d00",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68a7857c_4d17d8dd",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc5a95ae_9a5384fb",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-24T02:22:44Z",
       "side": 1,
       "message": "Please move all the failure status codes to the BluetoothStatusCodes class (following the conventions the class specifies for constant values) and make them all @SystemApi. You can keep the IntDef in this class.",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c58a3a97_f1de45cf",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc5a95ae_9a5384fb",
       "revId": "37e729407baafe76418804071dba38b3e44e3c80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e0a779_0044944c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2944,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "Android Auto does have the BLUETOOTH_PRIVILEGED permission. Added the permission as a requirement.",
+      "parentUuid": "43c5cc80_4def44fb",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a3b40cc_8bb6c40a",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-01-24T02:22:44Z",
       "side": 1,
       "message": "We should ideally not throw non-runtime exceptions. I would prefer this method be updated to return an int (pass back the status code you get from the service class). This would make it clearer to developers why the failure happened without needing to throw a checked exception which the developer needs to catch.",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f35981bd_04e8fded",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2946,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a3b40cc_8bb6c40a",
       "revId": "37e729407baafe76418804071dba38b3e44e3c80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b6e8bb_a584d0bc",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like there\u0027s a generic timeout error code (only one for ACL connect timing out). I\u0027ve added an RFCOMM specific one.",
+      "parentUuid": "e1b78921_3a3220c8",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e9ae41e_1c94335b",
@@ -99,6 +189,24 @@
       "writtenOn": "2022-01-24T02:22:44Z",
       "side": 1,
       "message": "Same feedback as startRfcommServer",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7efac9fd_1a3d6ba9",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2987,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e9ae41e_1c94335b",
       "revId": "37e729407baafe76418804071dba38b3e44e3c80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8619cd2_6e7b5f16",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3030,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06f48f17_8142562e",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "846a2519_e33937ba",
@@ -133,6 +259,24 @@
       "writtenOn": "2022-01-24T02:22:44Z",
       "side": 1,
       "message": "Similarly here, Exceptions should only be thrown if there is a case of developer error. If the app did not register that socket, then I think it is fair to throw some kind of RuntimeException.",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59dec6a5_90ab5d30",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 3031,
+      "author": {
+        "id": 1540418
+      },
+      "writtenOn": "2022-01-24T22:53:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "846a2519_e33937ba",
       "revId": "37e729407baafe76418804071dba38b3e44e3c80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
