@@ -333,7 +333,9 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     return re.sub(r'\D', '', phone_number)
 
-  def _compare_call_logs(self, call_log_type: str) -> bool:
+  def _compare_call_logs(self,
+                         call_log_type: str,
+                         offset_in_secs: int = 0) -> bool:
     """Compares the call logs between PSE and PCE.
 
     This method shall be used to compare the call logs between PSE and PCE after
@@ -341,6 +343,7 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     Args:
       call_log_type: type of call log
+      offset_in_secs: timezone offset in secs. Default = 0
 
     Returns:
       True: the call logs between PSE and PCE are the same.
@@ -359,8 +362,9 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     # Normalize date
     for i in range(len(pse_call_logs)):
-      pse_call_logs[i]['date'] = str(int(pse_call_logs[i]['date'])//1000)
-      pce_call_logs[i]['date'] = str(int(pce_call_logs[i]['date'])//1000)
+      pse_call_logs[i]['date'] = str(int(pse_call_logs[i]['date']) // 1000)
+      pce_call_logs[i]['date'] = str(
+          int(pce_call_logs[i]['date']) // 1000 + offset_in_secs)
 
     # Compare diff between PSE and PCE
     diff_in_pse = [i for i in pse_call_logs if i not in pce_call_logs]
