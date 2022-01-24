@@ -51,8 +51,8 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
           ui_timeout=constants.UI_HALF_MIN_WAIT_TIMEOUT_MS):
         self.watch.log.info('Pair and connect to Headset.')
         return
-    raise signals.TestFailure('Headset did not appear in Bluetooth device list '
-                              'of Watch.')
+    raise signals.TestError('Headset did not appear in Bluetooth device list '
+                            'of Watch.')
 
   def test_subsequent_pairing(self):
     """Test for Subsequent pairing.
