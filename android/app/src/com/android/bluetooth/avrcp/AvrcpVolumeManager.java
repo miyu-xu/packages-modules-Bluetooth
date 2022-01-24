@@ -175,13 +175,16 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
     }
 
     void setVolume(@NonNull BluetoothDevice device, int avrcpVolume) {
+        Log.d("XXX", "[AvrcpVolManager] setVolume stack trace", new Exception());
         int deviceVolume =
                 (int) Math.floor((double) avrcpVolume * sDeviceMaxVolume / AVRCP_MAX_VOL);
-        mVolumeEventLogger.logd(DEBUG, TAG, "setVolume:"
+        Log.d("XXX", "[AVRCP] setVolume:"
                         + " device=" + device
                         + " avrcpVolume=" + avrcpVolume
                         + " deviceVolume=" + deviceVolume
                         + " sDeviceMaxVolume=" + sDeviceMaxVolume);
+        Log.d("XXX", "[AVRCP] ((double) avrcpVolume * sDeviceMaxVolume / AVRCP_MAX_VOL)="
+                + ((double) avrcpVolume * sDeviceMaxVolume / AVRCP_MAX_VOL));
         mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, deviceVolume,
                 (deviceVolume != getVolume(device, -1) ? AudioManager.FLAG_SHOW_UI : 0)
                     | AudioManager.FLAG_BLUETOOTH_ABS_VOLUME);
@@ -189,14 +192,15 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
     }
 
     void sendVolumeChanged(@NonNull BluetoothDevice device, int deviceVolume) {
+        Log.d("XXX", "[AvrcpVolManager] sendVolumeChanged stack trace", new Exception());
         if (deviceVolume == getVolume(device, -1)) {
-            d("sendVolumeChanged: Skipping update volume to same as current.");
+            Log.d("XXX", "sendVolumeChanged: Skipping update volume to same as current.");
             return;
         }
         int avrcpVolume =
                 (int) Math.floor((double) deviceVolume * AVRCP_MAX_VOL / sDeviceMaxVolume);
         if (avrcpVolume > 127) avrcpVolume = 127;
-        mVolumeEventLogger.logd(DEBUG, TAG, "sendVolumeChanged:"
+        Log.d("XXX", "[AVRCP] sendVolumeChanged:"
                         + " device=" + device
                         + " avrcpVolume=" + avrcpVolume
                         + " deviceVolume=" + deviceVolume

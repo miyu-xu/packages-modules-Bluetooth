@@ -32,6 +32,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.AudioDeviceAttributes;
+import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.HandlerThread;
 import android.os.ParcelUuid;
@@ -57,6 +59,9 @@ public class VolumeControlService extends ProfileService {
     // Upper limit of all VolumeControl devices: Bonded or Connected
     private static final int MAX_VC_STATE_MACHINES = 10;
     private static VolumeControlService sVolumeControlService;
+
+    // TODO: Need sNewDeviceVolume too.
+    private static int sDeviceMaxVolume = 0;
 
     private AdapterService mAdapterService;
     private HandlerThread mStateMachinesThread;
@@ -105,6 +110,7 @@ public class VolumeControlService extends ProfileService {
         mAudioManager =  getSystemService(AudioManager.class);
         Objects.requireNonNull(mAudioManager,
                 "AudioManager cannot be null when VolumeControlService starts");
+        sDeviceMaxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 
         // Start handler thread for state machines
         mStateMachines.clear();
@@ -427,6 +433,26 @@ public class VolumeControlService extends ProfileService {
          * or per device in case of broadcast or simple remote controller.
          * Note: minimum volume is 0 and maximum 255.
          */
+        final int maxVolume = 255;
+        int deviceVolume =
+                (int) Math.floor((double) volume * sDeviceMaxVolume / maxVolume);
+        Log.d("XXX", "[BLE] handleVolumeControlChanged: device=" + device + ", groupId=" + groupId);
+        Log.d("XXX", "[BLE] ((double) volume * sDeviceMaxVolume / maxVolume)=" + ((double) volume * sDeviceMaxVolume / maxVolume));
+        Log.d("XXX", "[BLE] sDeviceMaxVolume=" + sDeviceMaxVolume + ", leMaxVolume=" + maxVolume + ", LeCurrentVolume=" + volume
+                + " ===> calculated deviceVolume=" + deviceVolume);
+
+
+//        mVolumeEventLogger.logd(DEBUG, TAG, "setVolume:"
+//                + " device=" + device
+//                + " avrcpVolume=" + avrcpVolume
+//                + " deviceVolume=" + deviceVolume
+//                + " sDeviceMaxVolume=" + sDeviceMaxVolume);
+//        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, deviceVolume,
+//                (deviceVolume != getVolume(device, -1) ? AudioManager.FLAG_SHOW_UI : 0)
+//                        | AudioManager.FLAG_BLUETOOTH_ABS_VOLUME);
+
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, deviceVolume,
+                AudioManager.FLAG_SHOW_UI | AudioManager.FLAG_BLUETOOTH_ABS_VOLUME);
     }
 
     void messageFromNative(VolumeControlStackEvent stackEvent) {
@@ -495,6 +521,16 @@ public class VolumeControlService extends ProfileService {
             sm = VolumeControlStateMachine.make(device, this,
                     mVolumeControlNativeInterface, mStateMachinesThread.getLooper());
             mStateMachines.put(device, sm);
+
+            Log.d("XXX", "Calling setDeviceVolumeBehavior. device=" + device);
+            // POC it through the A2DP
+            mAudioManager.setDeviceVolumeBehavior(
+                    new AudioDeviceAttributes(
+                            AudioDeviceAttributes.ROLE_OUTPUT,
+                            AudioDeviceInfo.TYPE_BLUETOOTH_A2DP,
+                            ""),
+                    AudioManager.DEVICE_VOLUME_BEHAVIOR_ABSOLUTE);
+
             return sm;
         }
     }
