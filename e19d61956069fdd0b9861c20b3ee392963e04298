@@ -1,0 +1,134 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019633333",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1958040?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0b7fce8a_2940f0a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-24T08:31:44Z",
+      "side": 1,
+      "message": "{#stability %!s(int\u003d5) %!s(int\u003d4) %!s(int\u003d15)} requires you include cert test changes to ensure this issue does not happen in the future",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 15
+      },
+      "revId": "e19d61956069fdd0b9861c20b3ee392963e04298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019633333",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1958040?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9266a202_b3ddec17",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-24T08:31:44Z",
+      "side": 1,
+      "message": "\"GattServiceTest\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "e19d61956069fdd0b9861c20b3ee392963e04298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019633334",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1958040?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7ba5a690_31811872",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/GattServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-24T08:31:44Z",
+      "side": 1,
+      "message": "Thread.sleep should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 139,
+        "startChar": 12,
+        "endLine": 139,
+        "endChar": 24
+      },
+      "revId": "e19d61956069fdd0b9861c20b3ee392963e04298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019633334",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1958040?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "aa2296d8_5cee3c1c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/GattServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-24T08:31:44Z",
+      "side": 1,
+      "message": "Thread.sleep should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 142,
+        "startChar": 12,
+        "endLine": 142,
+        "endChar": 24
+      },
+      "revId": "e19d61956069fdd0b9861c20b3ee392963e04298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019633334",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1958040?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cf4c2009_028d8e37",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/GattServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-24T08:31:44Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 101
+      },
+      "revId": "e19d61956069fdd0b9861c20b3ee392963e04298",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
