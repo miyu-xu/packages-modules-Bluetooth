@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9f81bed_7d031ab4",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-24T23:19:20Z",
+      "side": 1,
+      "message": "In this API, could we also include AD data mask or content even though we may need to do it in software? \n\nsimilar to:\n\n\tsetManufacturerData(int manufacturerId, byte[] manufacturerData, byte[] manufacturerDataMask)\n\t\n\nsetAdDataWithType(int adType, @Nullable byte[] adData, @Nullable byte[] adDataMask)\n\nwith adData and adDataMask nullable",
+      "range": {
+        "startLine": 921,
+        "startChar": 33,
+        "endLine": 921,
+        "endChar": 43
+      },
+      "revId": "ef23d99c54e26b825a045e9b336d8e4fdae10096",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "928882e9_18c52e0c",
         "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
         "patchSetId": 7
