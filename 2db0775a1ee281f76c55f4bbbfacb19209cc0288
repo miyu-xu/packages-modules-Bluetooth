@@ -16,6 +16,24 @@
       "message": "can we add here default values? I\u0027m thinking about value -1 which would mean - \"ANY\". This is in ase, somebody would like to fix sample frequency only or just set priority on codec type without setting parameters?",
       "revId": "2db0775a1ee281f76c55f4bbbfacb19209cc0288",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49b0e6eb_c0556063",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-24T11:45:33Z",
+      "side": 1,
+      "message": "For each param we declare a value {param}_NONE(ex:SAMPLE_RATE_NONE, FRAME_DURATION_NONE) as its default value, this could indicate the param is not set.",
+      "parentUuid": "544a0afd_3c2fa32d",
+      "revId": "2db0775a1ee281f76c55f4bbbfacb19209cc0288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
