@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89b6817c_99ed4e41",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1482,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-24T19:01:10Z",
+      "side": 1,
+      "message": "Don\u0027t we want to `return` here rather than send a second packet indicating ok ?",
+      "revId": "34f7195c7132a30078b8e2bfc17f63487c024ce7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
