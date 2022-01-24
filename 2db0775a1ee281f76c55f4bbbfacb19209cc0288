@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "544a0afd_3c2fa32d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-24T10:15:30Z",
+      "side": 1,
+      "message": "can we add here default values? I\u0027m thinking about value -1 which would mean - \"ANY\". This is in ase, somebody would like to fix sample frequency only or just set priority on codec type without setting parameters?",
+      "revId": "2db0775a1ee281f76c55f4bbbfacb19209cc0288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
