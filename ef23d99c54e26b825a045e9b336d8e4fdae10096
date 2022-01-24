@@ -22,6 +22,30 @@
       },
       "revId": "ef23d99c54e26b825a045e9b336d8e4fdae10096",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e161e60_8168970f",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-24T11:12:37Z",
+      "side": 1,
+      "message": "If adType is not set, createFromParcel in line 275 will set it with default value ( -1). We shouldn\u0027t avoid this to throw exception. (See presubmit of patchset 6)",
+      "parentUuid": "928882e9_18c52e0c",
+      "range": {
+        "startLine": 922,
+        "startChar": 16,
+        "endLine": 922,
+        "endChar": 27
+      },
+      "revId": "ef23d99c54e26b825a045e9b336d8e4fdae10096",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
