@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "928882e9_18c52e0c",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 922,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-24T00:57:57Z",
+      "side": 1,
+      "message": "Should it be adType \u003c\u003d 0?",
+      "range": {
+        "startLine": 922,
+        "startChar": 16,
+        "endLine": 922,
+        "endChar": 27
+      },
+      "revId": "ef23d99c54e26b825a045e9b336d8e4fdae10096",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
