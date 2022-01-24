@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8bb7a78_c6a1a062",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-01-24T16:09:17Z",
+      "side": 1,
+      "message": "Do you mean to call the new constructor here?",
+      "range": {
+        "startLine": 854,
+        "startChar": 40,
+        "endLine": 854,
+        "endChar": 65
+      },
+      "revId": "1f16ca376760351e1dc5efd08f3ea5255dc97f6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
