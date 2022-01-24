@@ -87,6 +87,24 @@
       "parentUuid": "664b85d7_96ffbfd6",
       "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f8c891c_f0e58955",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-24T15:01:07Z",
+      "side": 1,
+      "message": "let us say we will set target latency to LOW_LATENCY. How QoS Params would differ based on the MEDIA or PhoneCall content type?",
+      "parentUuid": "8f0fdb59_20c2af16",
+      "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
