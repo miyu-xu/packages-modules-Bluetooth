@@ -88,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b71f33_7a415b83",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-24T17:11:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ae8b6a6_17aab8d0",
+      "range": {
+        "startLine": 729,
+        "startChar": 43,
+        "endLine": 729,
+        "endChar": 56
+      },
+      "revId": "9248dbd1235e2cbb53e632884eb013b8cb6e7c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45d9bef1_0dd8ecc1",
@@ -101,6 +125,30 @@
       "writtenOn": "2022-01-11T08:07:12Z",
       "side": 1,
       "message": "same as above, do we ever use a controller id differ from LOCAL_BR_EDR_CONTROLLER_ID ?",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 757,
+        "endChar": 1
+      },
+      "revId": "9248dbd1235e2cbb53e632884eb013b8cb6e7c04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "038ee51b_aef2d4ba",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 757,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-24T17:11:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45d9bef1_0dd8ecc1",
       "range": {
         "startLine": 754,
         "startChar": 0,
