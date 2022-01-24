@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f938301a_f576d0e1",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "We don\u0027t need this annotation throughout the class. It\u0027s only for methods \u0026 fields that existed before S (we made a permission overhaul).",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "117c2735_a381b977",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "Any method or field that requires BLUETOOTH_PRIVILEGED should also also require one of the other publicly accessible bluetooth permissions (BLUETOOTH_CONNECT, BLUETOOTH_SCAN, or BLUETOOTH_ADVERTISE)",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b934fd4_b328fc59",
         "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
         "patchSetId": 4
@@ -20,6 +54,125 @@
         "endLine": 428,
         "endChar": 5
       },
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29caaee4_0d23f8a4",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "We can delete connect \u0026 disconnect (replaced by setConnectionPolicy)",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "938ad2da_14a2d600",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 554,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "nit: can be on previous line",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32f4477b_69eb17d9",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "Same nit, can be on previous line",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e306e2a9_323df90f",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "There is no permission enforcement in the constructor, so we should remove this",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffe1560c_97b49095",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "I strongly recommend keeping the constructors private and creating a Builder instead. This allows you to add parameters as needed down the line without needing to deprecate old constructors and introduce new ones to the API surface.",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea752ff1_08b79eb4",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "Same point on permission here.",
+      "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a05292a3_1a47f11c",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T02:40:11Z",
+      "side": 1,
+      "message": "Keep @hide, serves no functional purpose",
       "revId": "01e1972ba59b4c467d77495be66d9f476f759473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
