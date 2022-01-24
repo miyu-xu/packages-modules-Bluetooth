@@ -16,6 +16,24 @@
       "message": "I\u0027m not that familiar with this portion of the code, but the NULL address field has been there for a loooong time.  \n\nIt makes sense to include this in the callback and I would have no idea why this field would be overlooked.\n\nAdding extra information in an already expected field should (in theory) not cause further problems, as the consumer would then ignore/process accordingly.\n\nIf this causes other problems then the search scope should be obvious with a failure to adequately process a valid address in the\n-\u003ep_ctrl_cback(AVCT_BROWSE_DISCONN_IND_EVT...) \npath.\n\nAnd if this fixes...anything...well bonus !\n\n\n\n\n",
       "revId": "8a2f153dbc60f9f8bc423255a73b5976f026a717",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bab48088_fab8b256",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-01-24T08:55:28Z",
+      "side": 1,
+      "message": "Thanks Chris for the review and the additional info!",
+      "parentUuid": "0de45164_0dc43bf8",
+      "revId": "8a2f153dbc60f9f8bc423255a73b5976f026a717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
