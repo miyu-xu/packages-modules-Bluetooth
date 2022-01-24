@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2994c926_6ea68a8b",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2548,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T19:01:42Z",
+      "side": 1,
+      "message": "Make sure you also have the @RequiresBluetoothConnectPermission annotation for any API that requires the BLUETOOTH_CONNECT permission.",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10f76f77_6631b0d6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2549,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T19:01:42Z",
+      "side": 1,
+      "message": "You might have accidentally added this. The function returns a List of Integers and the annotation indicates that the return value is in the set of values contained within the IntDef.",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f76c7dfd_4ff62dd5",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2576,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T19:01:42Z",
+      "side": 1,
+      "message": "After this line, we should call \"e.rethrowFromSystemServer()\" to throw this as a Runtime exception: go/android-api-guidelines#rethrow-remoteexception",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "890cf833_9c85d0e4",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T19:01:42Z",
+      "side": 1,
+      "message": "Need a @return tag",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97785ffe_fdba7f08",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T19:01:42Z",
+      "side": 1,
+      "message": "RemoteException and TimeoutException should be separated for all APIs. In case of a RemoteException, we should rethrow as a Runtime exception (see comment in BluetoothAdapter). In case of a TimeoutException, we should return BluetoothStatusCodes.ERROR_TIMEOUT",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
