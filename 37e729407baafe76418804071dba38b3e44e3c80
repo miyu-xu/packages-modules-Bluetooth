@@ -178,6 +178,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6242119_f9c16dbc",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 2968,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-24T22:58:13Z",
+      "side": 1,
+      "message": "There is actually a generic error code for it checked into internal master, but not in AOSP. I would recommend you check in this change to throw an Exception here for this CL \u0026 then update the file in internal master to use the error code instead.",
+      "parentUuid": "f3b6e8bb_a584d0bc",
+      "revId": "37e729407baafe76418804071dba38b3e44e3c80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7e9ae41e_1c94335b",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 13
