@@ -34,6 +34,24 @@
       "parentUuid": "544a0afd_3c2fa32d",
       "revId": "2db0775a1ee281f76c55f4bbbfacb19209cc0288",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9232e37e_850b665d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-24T12:20:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "49b0e6eb_c0556063",
+      "revId": "2db0775a1ee281f76c55f4bbbfacb19209cc0288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
