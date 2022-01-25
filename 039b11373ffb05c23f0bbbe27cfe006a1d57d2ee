@@ -34,6 +34,24 @@
       "parentUuid": "8dcf2835_85d6bc63",
       "revId": "039b11373ffb05c23f0bbbe27cfe006a1d57d2ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fec8500_ef8511f0",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T05:38:39Z",
+      "side": 1,
+      "message": "Whoops, yeah we should do that. It\u0027s more akin to a copy constructor, but generates a builder instead :)",
+      "parentUuid": "f96f8d03_54c7c460",
+      "revId": "039b11373ffb05c23f0bbbe27cfe006a1d57d2ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
