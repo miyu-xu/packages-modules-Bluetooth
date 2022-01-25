@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4fc3788_288d2a29",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2165,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-25T17:10:02Z",
+      "side": 1,
+      "message": "Looks like I didn\u0027t included such handler for this in this CL. Looks like this is not so easy to include such checker for this for now. I\u0027ll create issue for this to track and just remove this feature from CL.",
+      "parentUuid": "d213f62a_e9870804",
+      "range": {
+        "startLine": 2165,
+        "startChar": 8,
+        "endLine": 2165,
+        "endChar": 35
+      },
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "83a43695_ecf3bf66",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 15
@@ -54,6 +78,24 @@
       "writtenOn": "2022-01-21T15:01:54Z",
       "side": 1,
       "message": "do we need to do this calculations per each received data?\nWhy not to do it once when starting receiving data and then just compare it here?",
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58cbb065_05cbd82e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2199,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-25T17:10:02Z",
+      "side": 1,
+      "message": "Just followed previous implementation. Didn\u0027t plan to do additional optimization on this.",
+      "parentUuid": "83a43695_ecf3bf66",
       "revId": "8626a4723e9e3510485e51caad97553578909546",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -77,6 +119,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12fc9390_544dd1a6",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2210,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-25T17:10:02Z",
+      "side": 1,
+      "message": "Intention is to not limit to 1 or 2 channels. Function intention is to be generic for multiple and variable audio locations is stream.",
+      "parentUuid": "44e377e1_422a391e",
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "550d5f51_c85addc5",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 15
@@ -88,6 +148,24 @@
       "writtenOn": "2022-01-21T15:01:54Z",
       "side": 1,
       "message": "can we have some helper functions for decoding each stream and then  another helper for mixing left and right?",
+      "revId": "8626a4723e9e3510485e51caad97553578909546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "515c9f68_b2cb991a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 2220,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-01-25T17:10:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "550d5f51_c85addc5",
       "revId": "8626a4723e9e3510485e51caad97553578909546",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
