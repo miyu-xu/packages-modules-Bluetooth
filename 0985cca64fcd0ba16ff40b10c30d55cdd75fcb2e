@@ -16,6 +16,40 @@
       "message": "Still WIP uploaded for some early review",
       "revId": "0985cca64fcd0ba16ff40b10c30d55cdd75fcb2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a27cbdd4_48b37415",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-25T15:09:07Z",
+      "side": 1,
+      "message": "in general looks good. One comment",
+      "revId": "0985cca64fcd0ba16ff40b10c30d55cdd75fcb2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d937bbd2_3011f6cf",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-25T15:09:07Z",
+      "side": 1,
+      "message": "sourceId is unique per device. It might be the same but not necessary.\nThis creates issue with a isGroupOp flag. How the code will know SourceId for the group device? I think having those two in the API might be confusing.\n\nI think we have two option here:\n1) Remove groupOps and handle grouping it in Settings App.\n2) we keep groupOps but that implies Broadcast Assistant implementation need to keep information about groups along with BluetoothLeBroadcastGroup and SourceId. Then SourceID does not have to me exposed to the user and BluetoothLeBroadcastGroup would be used as a key to find proper SourceId and do the operation on BASS",
+      "revId": "0985cca64fcd0ba16ff40b10c30d55cdd75fcb2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
