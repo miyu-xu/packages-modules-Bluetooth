@@ -266,7 +266,7 @@ public final class BluetoothSocket implements Closeable {
         }
 
         as.mPfd = ParcelFileDescriptor.dup(fds[0]);
-        as.mSocket = LocalSocket.createConnectedLocalSocket(fds[0]);
+        as.mSocket = new LocalSocket(fds[0]);
         as.mSocketIS = as.mSocket.getInputStream();
         as.mSocketOS = as.mSocket.getOutputStream();
         as.mAddress = remoteAddr;
