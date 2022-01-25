@@ -25,6 +25,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a693b45a_0c81894a",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-25T23:07:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b9264c1_52e2e7ee",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 108
+      },
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c8e3f73_2b18a585",
@@ -38,6 +62,24 @@
       "writtenOn": "2022-01-25T22:13:01Z",
       "side": 1,
       "message": "Also should require BLUETOOTH_PRIVILEGED as a system API",
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bfbc1b1_e19afac3",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-25T23:07:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c8e3f73_2b18a585",
       "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -78,6 +120,24 @@
       "writtenOn": "2022-01-25T22:13:01Z",
       "side": 1,
       "message": "Should also require BLUETOOTH_CONNECT + BLUETOOTH_PRIVILEGED",
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3547938_b60a3326",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-01-25T23:07:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ccab37d_bbd4deaf",
       "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
