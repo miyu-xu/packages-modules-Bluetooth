@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf0465d7_b3611f69",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1267,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T05:56:54Z",
+      "side": 1,
+      "message": "nit: \"as string\" --\u003e \"as a string\"",
+      "revId": "33da8ca12f4defeb8467700e42573273ae4213c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "524be7ce_4db4bba1",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1271,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T05:56:54Z",
+      "side": 1,
+      "message": "Move to after \"public\" for consistency",
+      "revId": "33da8ca12f4defeb8467700e42573273ae4213c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f579a39c_520834ab",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1272,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T05:56:54Z",
+      "side": 1,
+      "message": "We can remove this, only necessary for APIs introduced prior to our new permissions being introduced",
+      "revId": "33da8ca12f4defeb8467700e42573273ae4213c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cb752ed_095d3c82",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T05:56:54Z",
+      "side": 1,
+      "message": "Should require all of BLUETOOTH_CONNECT and BLUETOOTH_PRIVILEGED",
+      "revId": "33da8ca12f4defeb8467700e42573273ae4213c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
