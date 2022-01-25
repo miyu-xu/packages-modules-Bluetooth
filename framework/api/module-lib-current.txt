@@ -1,6 +1,12 @@
 // Signature format: 2.0
 package android.bluetooth {
 
+  public final class BluetoothHeadsetClient implements java.lang.AutoCloseable android.bluetooth.BluetoothProfile {
+    method @NonNull @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public java.util.List<android.bluetooth.BluetoothDevice> getConnectedBvraDevices();
+    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean startVoiceRecognition(@Nullable android.bluetooth.BluetoothDevice);
+    method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean stopVoiceRecognition(@Nullable android.bluetooth.BluetoothDevice);
+  }
+
   public final class BluetoothPan implements android.bluetooth.BluetoothProfile {
     method @Nullable @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED, android.Manifest.permission.TETHER_PRIVILEGED}) public android.net.TetheringManager.TetheredInterfaceRequest requestTetheredInterface(@NonNull java.util.concurrent.Executor, @NonNull android.net.TetheringManager.TetheredInterfaceCallback);
   }
