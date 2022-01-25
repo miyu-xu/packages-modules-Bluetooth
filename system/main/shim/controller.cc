@@ -423,3 +423,9 @@ const controller_t* bluetooth::shim::controller_get_interface() {
 void bluetooth::shim::controller_clear_event_mask() {
   bluetooth::shim::GetController()->SetEventMask(0);
 }
+
+bool bluetooth::shim::
+    controller_is_write_link_superversion_timeout_supported() {
+  return bluetooth::shim::GetController()->IsSupported(
+      bluetooth::hci::OpCode::WRITE_LINK_SUPERVISION_TIMEOUT);
+}
