@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019696005",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959203?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "99da53c3_f4b43137",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T13:41:24Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "32c06d5a3e25cb6bdea58aea68ca19cb584504a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019696005",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959203?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1b9aed98_0f6968c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T13:41:24Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "32c06d5a3e25cb6bdea58aea68ca19cb584504a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019696006",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959203?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "eea1e98c_2ef14085",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T13:41:24Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 980,
+        "startChar": 0,
+        "endLine": 980,
+        "endChar": 4
+      },
+      "revId": "32c06d5a3e25cb6bdea58aea68ca19cb584504a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019696006",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959203?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "72b41ef0_66269cd1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T13:41:24Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 1015,
+        "startChar": 5,
+        "endLine": 1015,
+        "endChar": 7
+      },
+      "revId": "32c06d5a3e25cb6bdea58aea68ca19cb584504a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
