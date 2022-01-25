@@ -1,0 +1,125 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019689789",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d16",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c3973124_b2640b9e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T10:52:04Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019689789",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d16",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c21afc13_b4a277ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T10:52:04Z",
+      "side": 1,
+      "message": "\"compile\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019689789",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d16",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "46b76217_c217dca7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T10:52:04Z",
+      "side": 1,
+      "message": "#feature requires a tracking bug number",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 13
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019689783",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1952637?revision\u003d16",
+      "fixSuggestions": [
+        {
+          "fixId": "60ffc28f_7b275e80",
+          "description": "Change to \"android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+              "range": {
+                "startLine": 707,
+                "startChar": 29,
+                "endLine": 707,
+                "endChar": 39
+              },
+              "replacement": "Transferred"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "fbefcd53_daa02944",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T10:52:04Z",
+      "side": 1,
+      "message": "Common typo found: \"Transfered\" -- should it be \"Transferred\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 707,
+        "startChar": 29,
+        "endLine": 707,
+        "endChar": 39
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
