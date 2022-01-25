@@ -35,6 +35,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c0fe0ae_6a1029d8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-25T02:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a787e50e_ab6af5fa",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c8adb9_a6978668",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-25T02:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b76a32bd_5c8ead3b",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a3fb25e_35ba457f",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-01-25T01:42:26Z",
       "side": 1,
       "message": "Replace this with EXTRA_LOW_LATENCY_BUFFER_SIZE",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33fdd256_8881505d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-25T02:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a3fb25e_35ba457f",
       "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cd91291_65613931",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-25T02:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e63bf7f_83ad46ba",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b4326a1_b608d709",
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "759bf249_b8e09a95",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-25T02:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b4326a1_b608d709",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "293f73af_f72c568c",
@@ -99,6 +189,24 @@
       "writtenOn": "2022-01-25T01:42:26Z",
       "side": 1,
       "message": "Make this System API",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6caa7914_41e878b5",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-01-25T02:00:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "293f73af_f72c568c",
       "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
