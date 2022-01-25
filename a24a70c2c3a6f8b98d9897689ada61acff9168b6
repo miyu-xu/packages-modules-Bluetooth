@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019705664",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1960539?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "21b8a431_82ca5cf2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T18:21:18Z",
+      "side": 1,
+      "message": "#refactor requires a tracking bug number",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "a24a70c2c3a6f8b98d9897689ada61acff9168b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019705665",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1960539?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "190d2741_f5115052",
+        "filename": "system/gd/rust/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T18:21:18Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 20,
+        "startChar": 67,
+        "endLine": 20,
+        "endChar": 68
+      },
+      "revId": "a24a70c2c3a6f8b98d9897689ada61acff9168b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
