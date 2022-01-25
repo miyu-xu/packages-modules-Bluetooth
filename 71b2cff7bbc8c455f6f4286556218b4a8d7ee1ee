@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9d74ac9_3c52e93c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T19:44:00Z",
+      "side": 1,
+      "message": "We will migrate directly in one step from packages/modules/Bluetooth to platform/external instead of reverting and then migrating.",
+      "revId": "71b2cff7bbc8c455f6f4286556218b4a8d7ee1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
