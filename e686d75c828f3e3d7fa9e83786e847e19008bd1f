@@ -1,0 +1,85 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b9264c1_52e2e7ee",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:13:01Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nPlease fix.",
+      "parentUuid": "6c7c565d_9157b358",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 108
+      },
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8e3f73_2b18a585",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:13:01Z",
+      "side": 1,
+      "message": "Also should require BLUETOOTH_PRIVILEGED as a system API",
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90cbd73a_23d05ea2",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:13:01Z",
+      "side": 1,
+      "message": "nit: End the first sentence in a period so the doc parser can properly interpret it.",
+      "range": {
+        "startLine": 274,
+        "startChar": 22,
+        "endLine": 274,
+        "endChar": 31
+      },
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ccab37d_bbd4deaf",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:13:01Z",
+      "side": 1,
+      "message": "Should also require BLUETOOTH_CONNECT + BLUETOOTH_PRIVILEGED",
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
