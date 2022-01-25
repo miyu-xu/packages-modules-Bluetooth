@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69ed05d3_c9d06f9c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:36:56Z",
+      "side": 1,
+      "message": "For consistency with other LE Audio profiles, this should implement AutoClosable",
+      "revId": "fa8fc3da2aca5a3dbc9d6909ea4e7c86db9894c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "565a5d30_5709a3e9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:36:56Z",
+      "side": 1,
+      "message": "nit: End sentence with a period",
+      "revId": "fa8fc3da2aca5a3dbc9d6909ea4e7c86db9894c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddae987_238b686d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:36:56Z",
+      "side": 1,
+      "message": "nit: summary should not start with an upper case character",
+      "revId": "fa8fc3da2aca5a3dbc9d6909ea4e7c86db9894c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e65a34bb_f08f04d0",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:36:56Z",
+      "side": 1,
+      "message": "For all callbacks, we need more than just a generic error. There should be reasons for the callback registration to fail (e.g. profile service not bound, BT not on, etc.). We can keep the generic error as a fallback, but there should be more descriptive and actionable errors too. I know the implementation is still pending, but make sure you think through possible error codes as they are subject to the 1/26 deadline. You can add to the IntDef after 1/26.",
+      "revId": "fa8fc3da2aca5a3dbc9d6909ea4e7c86db9894c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f22a50d5_0b9be311",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:36:56Z",
+      "side": 1,
+      "message": "Use \"{@link BluetoothDevice}\" instead of \"BluetoothDevice\"",
+      "revId": "fa8fc3da2aca5a3dbc9d6909ea4e7c86db9894c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "953b02e1_0eae0e88",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:36:56Z",
+      "side": 1,
+      "message": "nit: second line onward should always line up with the start of the param name.",
+      "revId": "fa8fc3da2aca5a3dbc9d6909ea4e7c86db9894c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b2f88c_10d7abae",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T22:36:56Z",
+      "side": 1,
+      "message": "A few nits:\n1. Can remove \"set to\"\n2. Use \"{@code true}\" instead of \"true\" for doc formatting reasons\n3. \"If\" and \"Application\" can be lowercase and there should be a \"the\" between them\n4. Same as #2 for false\n\nSo this can be replaced with \"{@code true} if the application wants to perform this operation for all coordinated set members, {@code false} otherwise\".",
+      "revId": "fa8fc3da2aca5a3dbc9d6909ea4e7c86db9894c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
