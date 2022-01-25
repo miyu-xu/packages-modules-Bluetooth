@@ -139,10 +139,11 @@ class BlueberryBaseTest(base_test.BaseTestClass):
 
     for device in self.android_devices:
       need_restart_bluetooth = False
-      # Turn off airplane mode
-      device.disable_airplane_mode(3)
-      # Turn on BT and check status
-      device.toggle_bluetooth(enabled=True)
+      if self.enable_airplane_mode_after_test:
+        # Turn off airplane mode
+        device.disable_airplane_mode(3)
+        # Turn on BT and check status
+        device.toggle_bluetooth(enabled=True)
       device.wait_for_bluetooth_toggle_state(enabled=True)
       if (self.enable_bluetooth_verbose_logging or
           self.enable_all_bluetooth_logging):
