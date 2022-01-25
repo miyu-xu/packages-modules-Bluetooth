@@ -54,6 +54,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eaf6fca8_f4bc4b55",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-25T23:48:07Z",
+      "side": 1,
+      "message": "Could we clean this function to check if HAL is hidl or aidl, and do the compatible handle under hidl folder?",
+      "range": {
+        "startLine": 354,
+        "startChar": 39,
+        "endLine": 354,
+        "endChar": 54
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6788afe9_3b650be0",
         "filename": "system/audio_hal_interface/le_audio_software.cc",
         "patchSetId": 16
