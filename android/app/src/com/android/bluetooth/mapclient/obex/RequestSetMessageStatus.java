@@ -18,10 +18,10 @@ package com.android.bluetooth.mapclient;
 
 import android.util.Log;
 
-import com.android.bluetooth.obex.ClientSession;
-import com.android.bluetooth.obex.HeaderSet;
-
 import java.io.IOException;
+
+import javax.obex.ClientSession;
+import javax.obex.HeaderSet;
 
 final class RequestSetMessageStatus extends Request {
     public enum StatusIndicator { READ, DELETED }

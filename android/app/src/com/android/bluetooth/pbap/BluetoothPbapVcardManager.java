@@ -52,9 +52,6 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.bluetooth.R;
-import com.android.bluetooth.obex.Operation;
-import com.android.bluetooth.obex.ResponseCodes;
-import com.android.bluetooth.obex.ServerOperation;
 import com.android.bluetooth.util.DevicePolicyUtils;
 import com.android.vcard.VCardComposer;
 import com.android.vcard.VCardConfig;
@@ -65,6 +62,10 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import javax.obex.Operation;
+import javax.obex.ResponseCodes;
+import javax.obex.ServerOperation;
 
 public class BluetoothPbapVcardManager {
     private static final String TAG = "BluetoothPbapVcardManager";
@@ -752,7 +753,7 @@ public class BluetoothPbapVcardManager {
 
             while (!contactIdCursor.isAfterLast()) {
                 if (BluetoothPbapObexServer.sIsAborted) {
-                    ((ServerOperation) op).setAborted(true);
+                    ((ServerOperation) op).isAborted = true;
                     BluetoothPbapObexServer.sIsAborted = false;
                     break;
                 }
@@ -857,7 +858,7 @@ public class BluetoothPbapVcardManager {
 
             while (!contactIdCursor.isAfterLast()) {
                 if (BluetoothPbapObexServer.sIsAborted) {
-                    ((ServerOperation) op).setAborted(true);
+                    ((ServerOperation) op).isAborted = true;
                     BluetoothPbapObexServer.sIsAborted = false;
                     break;
                 }
@@ -945,7 +946,7 @@ public class BluetoothPbapVcardManager {
 
             while (!composer.isAfterLast()) {
                 if (BluetoothPbapObexServer.sIsAborted) {
-                    ((ServerOperation) op).setAborted(true);
+                    ((ServerOperation) op).isAborted = true;
                     BluetoothPbapObexServer.sIsAborted = false;
                     break;
                 }

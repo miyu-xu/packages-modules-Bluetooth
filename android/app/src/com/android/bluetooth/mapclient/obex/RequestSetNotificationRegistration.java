@@ -17,10 +17,10 @@
 package com.android.bluetooth.mapclient;
 
 
-import com.android.bluetooth.obex.ClientSession;
-import com.android.bluetooth.obex.HeaderSet;
-
 import java.io.IOException;
+
+import javax.obex.ClientSession;
+import javax.obex.HeaderSet;
 
 /* Request MSE to connect or disconnect from MCE Notification Server. */
 final class RequestSetNotificationRegistration extends Request {

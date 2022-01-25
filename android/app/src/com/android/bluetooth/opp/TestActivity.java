@@ -48,13 +48,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.bluetooth.R;
-import com.android.bluetooth.obex.Authenticator;
-import com.android.bluetooth.obex.HeaderSet;
-import com.android.bluetooth.obex.ObexTransport;
-import com.android.bluetooth.obex.Operation;
-import com.android.bluetooth.obex.ResponseCodes;
-import com.android.bluetooth.obex.ServerRequestHandler;
-import com.android.bluetooth.obex.ServerSession;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -66,6 +59,14 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+
+import javax.obex.Authenticator;
+import javax.obex.HeaderSet;
+import javax.obex.ObexTransport;
+import javax.obex.Operation;
+import javax.obex.ResponseCodes;
+import javax.obex.ServerRequestHandler;
+import javax.obex.ServerSession;
 
 public class TestActivity extends Activity {
 
@@ -529,7 +530,7 @@ class TestTcpServer extends ServerRequestHandler implements Runnable {
             java.io.InputStream is = op.openInputStream();
 
             updateStatus("Got data bytes " + is.available() + " name " + op.getReceivedHeader()
-                    .getHeader(HeaderSet.NAME));
+                    .getHeader(HeaderSet.NAME) + " type " + op.getType());
 
             File f = new File((String) op.getReceivedHeader().getHeader(HeaderSet.NAME));
             fos = new FileOutputStream(f);

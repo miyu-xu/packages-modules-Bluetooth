@@ -47,9 +47,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import com.android.bluetooth.obex.HeaderSet;
-import com.android.bluetooth.obex.Operation;
-import com.android.bluetooth.obex.ResponseCodes;
+import javax.obex.HeaderSet;
+import javax.obex.Operation;
+import javax.obex.ResponseCodes;
 
 @RunWith(AndroidJUnit4.class)
 public class AvrcpBipObexServerTest {

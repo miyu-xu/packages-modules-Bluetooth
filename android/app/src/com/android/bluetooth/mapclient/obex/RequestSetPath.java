@@ -16,11 +16,11 @@
 
 package com.android.bluetooth.mapclient;
 
-import com.android.bluetooth.obex.ClientSession;
-import com.android.bluetooth.obex.HeaderSet;
-import com.android.bluetooth.obex.ResponseCodes;
-
 import java.io.IOException;
+
+import javax.obex.ClientSession;
+import javax.obex.HeaderSet;
+import javax.obex.ResponseCodes;
 
 /* Change current subdirectory on MSE. */
 class RequestSetPath extends Request {

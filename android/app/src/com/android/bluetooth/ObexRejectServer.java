@@ -23,10 +23,10 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 
-import com.android.bluetooth.obex.HeaderSet;
-import com.android.bluetooth.obex.ServerRequestHandler;
-
 import java.io.IOException;
+
+import javax.obex.HeaderSet;
+import javax.obex.ServerRequestHandler;
 
 /**
  * A simple ObexServer used to handle connection rejection in two cases:
