@@ -33,6 +33,46 @@
       "message": "Hi all, please help me review this patch so that AIDL can be ready before LNY.",
       "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637cc32f_9e0e24c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-25T23:36:51Z",
+      "side": 1,
+      "message": "Could you please rename the file under aidl folder to have postfix _aidl?\nIt would be consistent with the naming under hidl, and will not have the same file name with just under the parent folder.",
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6788afe9_3b650be0",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-25T23:36:51Z",
+      "side": 1,
+      "message": "Please add aidl support for this function.",
+      "range": {
+        "startLine": 438,
+        "startChar": 37,
+        "endLine": 438,
+        "endChar": 59
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
