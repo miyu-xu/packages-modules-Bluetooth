@@ -18,6 +18,7 @@ package android.bluetooth;
 import static android.bluetooth.BluetoothUtils.getSyncTimeout;
 
 import android.annotation.NonNull;
+import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
@@ -781,6 +782,51 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
         }
         return defaultValue;
     }
+
+    /**
+     * Gets connected devices that support a given AG feature, i.e., the type boolean extras
+     * {@code EXTRA_AG_FEATURE_*}.
+     *
+     * @param agFeature a {@code String} corresponding to a {@code EXTRA_AG_FEATURE_*}.
+     * @return a list of connected devices that support the specified AG feature.
+     */
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    private List<BluetoothDevice> getConnectedDevicesSupportingAgFeature(String agFeature) {
+        List<BluetoothDevice> filteredDevices = new ArrayList<BluetoothDevice>();
+        if (agFeature == null) {
+            return filteredDevices;
+        }
+        List<BluetoothDevice> devices = getConnectedDevices();
+        for (BluetoothDevice device : devices) {
+            Bundle bundle = getCurrentAgFeatures(device);
+            if (bundle != null && bundle.getBoolean(agFeature)) {
+                filteredDevices.add(device);
+            }
+        }
+        return filteredDevices;
+    }
+
+    /**
+     * Gets connected devices that support BVRA.
+     *
+     * @return a list of connected devices that support BVRA.
+     *
+     * @hide
+     */
+    @SystemApi(client = SystemApi.Client.MODULE_LIBRARIES)
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(allOf = {
+            android.Manifest.permission.BLUETOOTH_CONNECT,
+            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+    })
+    public @NonNull List<BluetoothDevice> getConnectedBvraDevices() {
+        return getConnectedDevicesSupportingAgFeature(EXTRA_AG_FEATURE_VOICE_RECOGNITION);
+    }
+
     /**
      * Returns list of remote devices in a particular state
      *
@@ -986,9 +1032,10 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *
      * @hide
      */
+    @SystemApi(client = SystemApi.Client.MODULE_LIBRARIES)
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    public boolean startVoiceRecognition(BluetoothDevice device) {
+    public boolean startVoiceRecognition(@Nullable BluetoothDevice device) {
         if (DBG) log("startVoiceRecognition()");
         final IBluetoothHeadsetClient service = getService();
         final boolean defaultValue = false;
@@ -1050,9 +1097,10 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
      *
      * @hide
      */
+    @SystemApi(client = SystemApi.Client.MODULE_LIBRARIES)
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    public boolean stopVoiceRecognition(BluetoothDevice device) {
+    public boolean stopVoiceRecognition(@Nullable BluetoothDevice device) {
         if (DBG) log("stopVoiceRecognition()");
         final IBluetoothHeadsetClient service = getService();
         final boolean defaultValue = false;
