@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a69d12ae_e2d44096",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-25T20:33:21Z",
+      "side": 1,
+      "message": "nit: prefer to have {} around the statements so that the nesting won\u0027t be broken if someone accidentally removed the ident.",
+      "revId": "10218786e0f4e45d595b3c2ee24e420bfb0447d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
