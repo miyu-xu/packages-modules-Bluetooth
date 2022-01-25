@@ -1,0 +1,186 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019667879",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959742?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4a48cf70_c80b2755",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T00:04:50Z",
+      "side": 1,
+      "message": "#gd-refactor can\u0027t be used because this change does not have changes in system/bt/gd",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 17
+      },
+      "revId": "69d860b0fa1f779dc65ed18ca50b14872005d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019667881",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959742?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "da0d5e2a_d9b49428",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T00:04:50Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 108
+      },
+      "revId": "69d860b0fa1f779dc65ed18ca50b14872005d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019667881",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959742?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "99a12d43_f4a608fd",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T00:04:50Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 347,
+        "startChar": 0,
+        "endLine": 347,
+        "endChar": 102
+      },
+      "revId": "69d860b0fa1f779dc65ed18ca50b14872005d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019667881",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959742?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b6a83f12_e66ead1b",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T00:04:50Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 349,
+        "endChar": 104
+      },
+      "revId": "69d860b0fa1f779dc65ed18ca50b14872005d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019667881",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959742?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4f97b46e_21370e7a",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T00:04:50Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 112
+      },
+      "revId": "69d860b0fa1f779dc65ed18ca50b14872005d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019667881",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959742?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9875e9fb_492d4e53",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T00:04:50Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 364,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 113
+      },
+      "revId": "69d860b0fa1f779dc65ed18ca50b14872005d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019667881",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959742?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6eaab5ba_7580abfc",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T00:04:50Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 113
+      },
+      "revId": "69d860b0fa1f779dc65ed18ca50b14872005d0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
