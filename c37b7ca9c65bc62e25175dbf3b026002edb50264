@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "279a8577_e5e59146",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T02:53:49Z",
+      "side": 1,
+      "message": "nit: \"Tells remote device\" --\u003e \"Tells the remote device\"",
+      "revId": "c37b7ca9c65bc62e25175dbf3b026002edb50264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1fdd559_3995251f",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T02:53:49Z",
+      "side": 1,
+      "message": "nit: summary should start with a lowercase letter and no period at the end of the summary (go/android-api-guidelines#docs-param-return)",
+      "revId": "c37b7ca9c65bc62e25175dbf3b026002edb50264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be77e99_fa8cc5ef",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T02:53:49Z",
+      "side": 1,
+      "message": "Can omit this line as it is implied by the IntRange",
+      "revId": "c37b7ca9c65bc62e25175dbf3b026002edb50264",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
