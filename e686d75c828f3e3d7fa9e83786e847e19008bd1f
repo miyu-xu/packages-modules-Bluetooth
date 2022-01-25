@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019702175",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1954637?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6c7c565d_9157b358",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-25T17:03:53Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 108
+      },
+      "revId": "e686d75c828f3e3d7fa9e83786e847e19008bd1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
