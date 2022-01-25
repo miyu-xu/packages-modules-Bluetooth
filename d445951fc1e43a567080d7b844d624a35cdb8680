@@ -16,6 +16,24 @@
       "message": "point that this is used in \"codec_configuration\"",
       "revId": "d445951fc1e43a567080d7b844d624a35cdb8680",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64922ada_db6aa1ee",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-01-25T09:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9ce9b4e_c7aebcb6",
+      "revId": "d445951fc1e43a567080d7b844d624a35cdb8680",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
