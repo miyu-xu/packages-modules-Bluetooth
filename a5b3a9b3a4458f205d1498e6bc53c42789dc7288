@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b5ab888_f0869518",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T05:45:05Z",
+      "side": 1,
+      "message": "Small nit here: We should use the getters rather than directly access the fields from the config object.",
+      "revId": "a5b3a9b3a4458f205d1498e6bc53c42789dc7288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
