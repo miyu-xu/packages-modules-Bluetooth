@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2808affe_5cd4bf29",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2548,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-25T08:18:01Z",
+      "side": 1,
+      "message": "I thought if is not necessary if you mention the permission in @RequiresPermission(allOf \u003d {...})",
+      "parentUuid": "2994c926_6ea68a8b",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10f76f77_6631b0d6",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-24T19:01:42Z",
       "side": 1,
       "message": "You might have accidentally added this. The function returns a List of Integers and the annotation indicates that the return value is in the set of values contained within the IntDef.",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c72b88e1_d2a7b5cc",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2549,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-25T08:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10f76f77_6631b0d6",
       "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c92dc61_26c01ce6",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2576,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-25T08:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f76c7dfd_4ff62dd5",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "890cf833_9c85d0e4",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0de7578e_c8ee6dc0",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 975,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-25T08:18:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "890cf833_9c85d0e4",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97785ffe_fdba7f08",
@@ -82,6 +154,24 @@
       "writtenOn": "2022-01-24T19:01:42Z",
       "side": 1,
       "message": "RemoteException and TimeoutException should be separated for all APIs. In case of a RemoteException, we should rethrow as a Runtime exception (see comment in BluetoothAdapter). In case of a TimeoutException, we should return BluetoothStatusCodes.ERROR_TIMEOUT",
+      "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b644015_352f89d6",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 998,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-25T08:18:01Z",
+      "side": 1,
+      "message": "Done. There should be a return value for the RemoteException too so I added another status code for it.",
+      "parentUuid": "97785ffe_fdba7f08",
       "revId": "40293e4b69af1356da76b9ee4962f39ecd3bd7f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
