@@ -87,6 +87,24 @@
       "parentUuid": "aa263e56_77bf9c74",
       "revId": "0ba0bb2752d80f8bfb9caa8c298cb79be3c0aa9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "509425a0_753ad97e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 2183,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-01-25T17:09:44Z",
+      "side": 1,
+      "message": "https://buganizer.corp.google.com/issues/216299528",
+      "parentUuid": "0a40a371_ed208185",
+      "revId": "0ba0bb2752d80f8bfb9caa8c298cb79be3c0aa9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
