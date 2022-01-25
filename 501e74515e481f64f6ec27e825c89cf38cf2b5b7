@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71c1a82d_0d4e1551",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-01-25T13:36:58Z",
+      "side": 1,
+      "message": "`arrayUtils.contains` is hidden api.\nPlease use `Utils.arrayContains` defined here:  https://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/Utils.java;l\u003d1008?q\u003dUtils.arrayContains\u0026sq\u003dp:%5Eandroid$",
+      "range": {
+        "startLine": 277,
+        "startChar": 32,
+        "endLine": 277,
+        "endChar": 40
+      },
+      "revId": "501e74515e481f64f6ec27e825c89cf38cf2b5b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
