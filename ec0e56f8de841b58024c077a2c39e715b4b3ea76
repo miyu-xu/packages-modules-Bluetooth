@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a787e50e_ab6af5fa",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T01:12:09Z",
+      "side": 1,
+      "message": "I don\u0027t understand what it means for the buffer size to be switched. Are there two different sizes that are toggled between? Is the size relevant to developers receiving this broadcast?",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b76a32bd_5c8ead3b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T01:12:09Z",
+      "side": 1,
+      "message": "Curious about the language around \"will be switched\". Is this broadcast before the buffer size is changed?",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e63bf7f_83ad46ba",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T01:12:09Z",
+      "side": 1,
+      "message": "We can remove this. It\u0027s only there for target SDKs lower than the one in which the new permissions were introduced, so it\u0027s not relevant for new APIs.",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
