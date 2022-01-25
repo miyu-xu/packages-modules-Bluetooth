@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a3fb25e_35ba457f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T01:42:26Z",
+      "side": 1,
+      "message": "Replace this with EXTRA_LOW_LATENCY_BUFFER_SIZE",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e63bf7f_83ad46ba",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 6
@@ -48,6 +65,40 @@
       "writtenOn": "2022-01-25T01:12:09Z",
       "side": 1,
       "message": "We can remove this. It\u0027s only there for target SDKs lower than the one in which the new permissions were introduced, so it\u0027s not relevant for new APIs.",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b4326a1_b608d709",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T01:42:26Z",
+      "side": 1,
+      "message": "Add BLUETOOTH_PRIVILEGED",
+      "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "293f73af_f72c568c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T01:42:26Z",
+      "side": 1,
+      "message": "Make this System API",
       "revId": "ec0e56f8de841b58024c077a2c39e715b4b3ea76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
