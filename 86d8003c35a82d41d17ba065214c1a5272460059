@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19a8e343_67408261",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/ActiveDeviceManagerTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-25T03:44:14Z",
+      "side": 1,
+      "message": "we should probably centralize this so the default value logic is the same, but that can be a follow up change",
+      "range": {
+        "startLine": 241,
+        "startChar": 16,
+        "endLine": 241,
+        "endChar": 88
+      },
+      "revId": "86d8003c35a82d41d17ba065214c1a5272460059",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
