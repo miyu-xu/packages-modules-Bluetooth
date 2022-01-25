@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dcf2835_85d6bc63",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-25T02:24:40Z",
+      "side": 1,
+      "message": "As per API guidelines, this is not permitted: go/android-api-guidelines#builders-copy. The policy should be to create a new Builder and populate it with values from the getters.",
+      "revId": "039b11373ffb05c23f0bbbe27cfe006a1d57d2ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
