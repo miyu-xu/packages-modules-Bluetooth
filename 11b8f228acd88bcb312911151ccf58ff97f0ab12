@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad572ece_a42ed424",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T00:54:29Z",
+      "side": 1,
+      "message": "The linter is complaining about the indentation here.  It says it wants 12 spaces before public.  If I give it 12, it says 20.  I didn\u0027t try 20 :)",
+      "revId": "11b8f228acd88bcb312911151ccf58ff97f0ab12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
