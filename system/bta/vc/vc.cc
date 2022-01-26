@@ -285,7 +285,7 @@ class VolumeControlImpl : public VolumeControl {
     if (!csis_api) {
       DLOG(INFO) << __func__ << " Csis is not available";
       callbacks_->OnVolumeStateChanged(device->address, device->volume,
-                                       device->mute);
+                                       device->mute, true);
       return;
     }
 
@@ -294,7 +294,7 @@ class VolumeControlImpl : public VolumeControl {
     if (group_id == bluetooth::groups::kGroupUnknown) {
       DLOG(INFO) << __func__ << " No group for device " << device->address;
       callbacks_->OnVolumeStateChanged(device->address, device->volume,
-                                       device->mute);
+                                       device->mute, true);
       return;
     }
 
@@ -310,6 +310,7 @@ class VolumeControlImpl : public VolumeControl {
 
     if (is_volume_change) {
       std::vector<uint8_t> arg({device->volume});
+      ongoing_autonomous_volume_change_group_ids_.push_back(group_id);
       PrepareVolumeControlOperation(devices, group_id,
                                     kControlPointOpcodeSetAbsoluteVolume, arg);
     }
@@ -318,6 +319,7 @@ class VolumeControlImpl : public VolumeControl {
       std::vector<uint8_t> arg;
       uint8_t opcode =
           device->mute ? kControlPointOpcodeMute : kControlPointOpcodeUnmute;
+      ongoing_autonomous_volume_change_group_ids_.push_back(group_id);
       PrepareVolumeControlOperation(devices, group_id, opcode, arg);
     }
 
@@ -354,7 +356,7 @@ class VolumeControlImpl : public VolumeControl {
     /* This is just a read, send single notification */
     if (!is_notification) {
       callbacks_->OnVolumeStateChanged(device->address, device->volume,
-                                       device->mute);
+                                       device->mute, false);
       return;
     }
 
@@ -384,12 +386,21 @@ class VolumeControlImpl : public VolumeControl {
       return;
     }
 
-    if (op->IsGroupOperation())
-      callbacks_->OnGroupVolumeStateChanged(op->group_id_, device->volume,
-                                            device->mute);
-    else
+    if (op->IsGroupOperation()) {
+      auto iter = find(ongoing_autonomous_volume_change_group_ids_.begin(),
+         ongoing_autonomous_volume_change_group_ids_.end(), op->group_id_);
+      if (iter != ongoing_autonomous_volume_change_group_ids_.end()) {
+        ongoing_autonomous_volume_change_group_ids_.erase(iter);
+        callbacks_->OnGroupVolumeStateChanged(op->group_id_, device->volume,
+                                              device->mute, true);
+      } else {
+        callbacks_->OnGroupVolumeStateChanged(op->group_id_, device->volume,
+                                              device->mute, false);
+      }
+    } else {
       callbacks_->OnVolumeStateChanged(device->address, device->volume,
-                                       device->mute);
+                                           device->mute, false);
+    }
 
     ongoing_operations_.erase(op);
     StartQueueOperation();
@@ -652,6 +663,7 @@ class VolumeControlImpl : public VolumeControl {
     volume_control_devices_.Disconnect(gatt_if_);
     volume_control_devices_.Clear();
     ongoing_operations_.clear();
+    ongoing_autonomous_volume_change_group_ids_.clear();
     BTA_GATTC_AppDeregister(gatt_if_);
   }
 
@@ -663,6 +675,8 @@ class VolumeControlImpl : public VolumeControl {
   /* Used to track volume control operations */
   std::list<VolumeOperation> ongoing_operations_;
   int latest_operation_id_;
+
+  std::list<int> ongoing_autonomous_volume_change_group_ids_;
 
   void verify_device_ready(VolumeControlDevice* device, uint16_t handle) {
     if (device->device_ready) return;
@@ -680,8 +694,10 @@ class VolumeControlImpl : public VolumeControl {
       device->first_connection = false;
 
       // once profile connected we can notify current states
+      // TODO: Should isAutonomous be true here?
+      //       Check whether the volume bar changes just after connected to BLE.
       callbacks_->OnVolumeStateChanged(device->address, device->volume,
-                                       device->mute);
+                                       device->mute, false);
 
       device->EnqueueRemainingRequests(gatt_if_, chrc_read_callback_static,
                                        OnGattWriteCccStatic);
