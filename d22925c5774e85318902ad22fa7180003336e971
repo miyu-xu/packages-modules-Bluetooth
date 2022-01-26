@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3620e20d_c51ed91b",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-01-26T05:13:15Z",
+      "side": 1,
+      "message": "No test for the new system api added.\nPlease add tests for the new APIs ASAP before IC22.01",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 48,
+        "endChar": 10
+      },
+      "revId": "d22925c5774e85318902ad22fa7180003336e971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
