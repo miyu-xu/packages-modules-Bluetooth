@@ -821,6 +821,7 @@ impl BluetoothInterface {
             link_quality_report_cb: None,
             generate_local_oob_data_cb: None,
             switch_buffer_size_cb: None,
+            clear_event_filter_cb: None,
         });
 
         let rawcb: *mut bindings::bt_callbacks_t = &mut *callbacks;
