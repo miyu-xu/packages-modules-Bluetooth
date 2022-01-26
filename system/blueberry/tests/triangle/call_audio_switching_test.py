@@ -155,7 +155,8 @@ class CallAudioSwitchingTest(base_test.TriangleBaseTest):
     if not self._wait_for_call_state(
         device=self.phone,
         call_state=_CALL_STATE.OFFHOOK):
-      raise signals.TestError(f'{device.debug_tag} is not in the active call.')
+      raise signals.TestError(
+          f'{self.phone.debug_tag} is not in the active call.')
     self._assert_call_audio_routed_to_headset()
 
 
