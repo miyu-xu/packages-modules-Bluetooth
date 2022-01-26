@@ -15,6 +15,11 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
   def test_download_empty_contacts(self):
     """Tests that PCE can download contacts from PSE."""
     default_contact_count = 0
+
+    # Make sure no any contacts existed on the devices.
+    for device in [self.pri_phone, self.derived_bt_device]:
+      device.sl4a.contactsEraseAll()
+
     current_count = self._download_contacts(default_contact_count)
     asserts.assert_true(
         current_count == default_contact_count,
@@ -29,6 +34,11 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
     Tests that PCE can download contacts from PSE.
     """
     test_data_count = 200
+
+    # Make sure no any contacts existed on the devices.
+    for device in [self.pri_phone, self.derived_bt_device]:
+      device.sl4a.contactsEraseAll()
+
     current_count = self._download_contacts(test_data_count)
 
     asserts.assert_true(
@@ -41,7 +51,7 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
     # Compare contacts
     result = self._compare_contacts()
     asserts.assert_true(result,
-                        'The contacts between PSE and PCE are different')
+                        'The contacts between PSE and PCE are difference')
 
   def test_download_empty_call_logs(self):
     """Tests for the feature of downloading empty call logs.
