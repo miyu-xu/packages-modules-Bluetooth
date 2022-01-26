@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cd5fa60_7cacb39f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T00:34:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3563bb99_ccbbb100",
+      "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d20cae6d_4540955e",
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "d20cae6d_4540955e",
+      "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7adb5af7_59181c6d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T00:34:04Z",
+      "side": 1,
+      "message": "I\u0027m not sure how to use IntDef.  Do I need to point it to the other file?  Is @AddressType enough?",
+      "parentUuid": "d69f47d0_9ce42382",
       "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
