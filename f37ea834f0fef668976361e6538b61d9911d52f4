@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0420c68b_4e8cc1c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-01-26T18:40:46Z",
+      "side": 1,
+      "message": "don\u0027t you want to squash this patch with the previous one, where BluetoothLeBroadcastAssistant API is defined?",
+      "revId": "f37ea834f0fef668976361e6538b61d9911d52f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
