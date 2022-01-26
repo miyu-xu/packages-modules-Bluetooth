@@ -1,23 +1,17 @@
 """Android Device decorator to control functionality of the Fitbit companion App."""
 
 import logging
-import time
 from typing import Any, Dict, Tuple
 
 import immutabledict  # pylint: disable=no-name-in-module,import-error
-from mobly import asserts
-from mobly import signals
 from mobly.controllers import android_device
 
 # Internal import
-# Internal import
 from blueberry.controllers import derived_bt_device
 from blueberry.utils.ui_pages import fitbit_companion  # pylint: disable=no-name-in-module,import-error
-from blueberry.utils.ui_pages import ui_core
 from blueberry.utils.ui_pages.fitbit_companion import account_pages  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import context  # pylint: disable=no-name-in-module,import-error
 from blueberry.utils.ui_pages.fitbit_companion import other_pages  # pylint: disable=no-name-in-module,import-error
-from blueberry.utils.ui_pages.fitbit_companion import pairing_pages  # pylint: disable=no-name-in-module,import-error
 
 _FITBIT_PACKAGE_NAME = 'com.fitbit.FitbitMobile'
 _LOG_PREFIX_MESSAGE = 'Fitbit Companion App'
@@ -119,162 +113,20 @@ class FitbitAppDecorator(android_device.AndroidDevice):
           (f'Target BT device has MAC address={target_device_mac_address}',
            f'which is different than given MAC address={mac_address} !'))
 
-    self.ui_context.regr_page_call(pairing_pages.BTPermissionRequestPopup, 'ok')
-    self.ui_context.regr_page_call(pairing_pages.CancelPairPage, 'yes')
-    self.ui_context.regr_page_call(other_pages.FitbitLocationPermissionPopup,
-                                   'back')
-    self.ui_context.regr_page_call(ui_core.NonePage, 'swipe_left')
-    self.ui_context.regr_page_call(pairing_pages.PairRetryPage, 'retry')
-    self.ui_context.regr_page_call(other_pages.NetworkOpFailPage, 'cancel')
-    self.ui_context.regr_page_call(other_pages.PlayfulPage, 'skip')
-    self.ui_context.regr_page_call(other_pages.LinkConfirmPage, 'ok')
-    self.ui_context.regr_page_call(other_pages.PurchaseFail, 'ok')
-    self.ui_context.regr_page_call(pairing_pages.PremiumPage, 'done')
-    self.ui_context.regr_page_call(other_pages.PurchaseFail, 'ok')
-    self.ui_context.regr_page_call(pairing_pages.UpdateDevicePage,
-                                   'update_later')
-
-    log.info('Entering account page...')
-    self.ui_context.go_page(account_pages.AccountPage)
-
-    log.info('Removing all paired device(s) before testing...')
-    removed_count = fitbit_companion.remove_all_paired_devices(self.ui_context)
-
-    log.info('Total %d device(s) being removed!', removed_count)
-
-    log.debug('Start the pair-pin subscription...')
     try:
-      fitbit_device._device.bt.pair_pin_start()
-    except fitbit_tracker_cli.CliError as err:
-      if err and 'Already subscribed on pubsub' in err.output[0]:
-        log.warning('Fitbit device already subscribed on pubsub!')
-      else:
-        raise err
+      log.info('Entering account page...')
+      self.ui_context.go_page(account_pages.AccountPage)
 
-    fitbit_prod_name = _MODEL_TO_PRODUCT_NAME_MAPPING[fitbit_device.model]
-    log.info('Pairing with %s...', fitbit_prod_name)
+      log.info('Firmware version: %s', fitbit_device.firmware_version)
+      log.info('Removing all paired device(s) before testing...')
+      removed_count = fitbit_companion.remove_all_paired_devices(
+          self.ui_context)
+      log.info('Total %d device(s) being removed!', removed_count)
 
-    def _eval_existence_of_fitbit_product_name(node, name=fitbit_prod_name):
-      return name in node.text
-
-    self.ui_context.page.add_device()
-    self.ui_context.expect_page(
-        pairing_pages.ChooseTrackerPage,
-        node_eval=_eval_existence_of_fitbit_product_name)
-    self.ui_context.page.select_device(fitbit_prod_name)
-    self.ui_context.page.confirm()
-
-    log.info('Accept pairing privacy requirement...')
-    self.ui_context.expect_page(pairing_pages.PairPrivacyConfirmPage)
-    self.ui_context.page.accept()
-    self.ui_context.expect_page(pairing_pages.ConfirmChargePage)
-    self.ui_context.page.next()
-    if self.ui_context.is_page(other_pages.LocationDisabledPage):
-      # Optional page when you are required to enable location
-      # permission for Fitbit device.
-      log.info('Enabling location permission...')
-      self.ui_context.page.enable()
-      self.ui_context.expect_page(other_pages.SettingLocation)
-      self.ui_context.page.set(True)
-      self.ui_context.page.back()
-
-    # TODO(user): Move pairing logic into fitbit_companion package while
-    #   it may be used in many places.
-    self.ui_context.expect_page(pairing_pages.Pairing4DigitPage, wait_sec=300)
-    pins = fitbit_device._device.bt.pair_pin_show()
-    log.info('Pairing pins=%s...', pins)
-    self.ui_context.page.input_pins(pins)
-    pair_retry = 0
-    while (self.ui_context.is_page(pairing_pages.Pairing4DigitPage) and
-           self.ui_context.page.get_node_by_func(
-               lambda n: _INVALID_PAIRING_CODE_MESSAGE in n.text) is not None):
-      pair_retry += 1
-      if pair_retry >= _MAX_PAIRING_RETRIES:
-        raise signals.TestError(
-            f'Failed in pairing pins matching after {pair_retry} tries!')
-      pins = fitbit_device._device.bt.pair_pin_show()
-      log.warning('Retrying on pairing pins=%s...', pins)
-      self.ui_context.page.input_pins(pins)
-      time.sleep(1)
-
-    pair_retry = 0
-    while True:
-      self.ui_context.expect_pages([
-          pairing_pages.PairRetryPage,
-          pairing_pages.PairAndLinkPage,
-          pairing_pages.PairingIntroPage,
-          pairing_pages.PairingConfirmPage,
-          pairing_pages.CancelPairPage,
-          pairing_pages.CancelPair2Page,
-          other_pages.AllowNotification,
-          other_pages.LinkConfirmPage,
-      ],
-                                   wait_sec=90)
-      if self.ui_context.is_page(pairing_pages.PairingConfirmPage):
-        log.info('Accept pairing confirm page...')
-        self.ui_context.page.confirm()
-      elif self.ui_context.is_page(pairing_pages.PairRetryPage):
-        log.warning('Skip pair retry page...')
-        self.ui_context.back()
-      elif self.ui_context.is_page(pairing_pages.PairAndLinkPage):
-        log.warning('Skip pair and link page...')
-        self.ui_context.page.cancel()
-      elif (
-          self.ui_context.is_page(pairing_pages.CancelPairPage) or
-          self.ui_context.is_page(pairing_pages.CancelPair2Page)):
-        log.warning('Skip cancel pair page...')
-        self.ui_context.page.yes()
-      elif self.ui_context.is_page(other_pages.AllowNotification):
-        log.warning('Allow notification page...')
-        self.ui_context.page.allow()
-      elif self.ui_context.is_page(other_pages.LinkConfirmPage):
-        log.warning('Allow Fitbit to manage device page...')
-        self.ui_context.page.ok()
-      elif self.ui_context.is_page(pairing_pages.PairingIntroPage):
-        log.info('Passing through Fitbit introduction pages...')
-        break
-
-      pair_retry += 1
-      if pair_retry >= _MAX_PAIRING_RETRIES:
-        raise signals.TestError(
-            f'Failed in pairing process after {pair_retry} tries!')
-
-    self.ui_context.expect_page(pairing_pages.PairingIntroPage)
-    while self.ui_context.is_page(pairing_pages.PairingIntroPage):
-      self.ui_context.page.next()
-
-    self.ui_context.expect_pages([
-        pairing_pages.PremiumPage, other_pages.PurchaseFail,
-        account_pages.AccountPage
-    ])
-
-    if self.ui_context.is_page(pairing_pages.PremiumPage):
-      # Preminum page is optional.
-      self.ui_context.page.done()
-    elif self.ui_context.is_page(other_pages.PurchaseFail):
-      # Optional page observed during manual pairing experiment.
-      self.ui_context.page.ok()
-
-    try:
-      log.info('Completing pairing process and start evaluation process...')
-      if self.ui_context.is_page(account_pages.AccountPage):
-        paired_device_nodes = self.ui_context.page.get_paired_devices()
-        asserts.assert_true(
-            len(paired_device_nodes) >= 1,
-            f'Unexpected paired device nodes={paired_device_nodes}',
-        )
-        asserts.assert_true(
-            fitbit_prod_name in [node.text for node in paired_device_nodes],
-            f'Unexpected paired device nodes={paired_device_nodes}',
-        )
-      else:
-        raise signals.TestError(
-            'Failed in evaluation of Fitbit pairing result!')
-
-      log.info('Stop the pair-pin subscription...')
-      fitbit_device._device.bt.pair_pin_stop()
-      log.info('Pairing and connection with %s(%s) is all done!',
-               fitbit_prod_name, mac_address)
+      log.info('Pairing %s ...', fitbit_device)
+      fitbit_companion.pair_device(self.ui_context, fitbit_device)
+      log.info('Pairing and connection with %s(%s) is all done!', fitbit_device,
+               mac_address)
     finally:
       removed_count = fitbit_companion.remove_all_paired_devices(
           self.ui_context)
