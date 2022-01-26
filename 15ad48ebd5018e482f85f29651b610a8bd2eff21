@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2cc2777_ef66537b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "nit: parse",
+      "range": {
+        "startLine": 54,
+        "startChar": 19,
+        "endLine": 54,
+        "endChar": 25
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92edb59f_34c237e1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "Was this checked?",
+      "range": {
+        "startLine": 310,
+        "startChar": 22,
+        "endLine": 310,
+        "endChar": 27
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f21c81c_fda30cf7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "UNKNOWN LANGUAGE ?",
+      "range": {
+        "startLine": 397,
+        "startChar": 31,
+        "endLine": 397,
+        "endChar": 38
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58cb08b_b46f98dc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "It would be nice to be able to tell the difference between DESCRIPTION and default, otherwise we can remove this case.",
+      "range": {
+        "startLine": 401,
+        "startChar": 23,
+        "endLine": 401,
+        "endChar": 30
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22ceb83a_39a74afe",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "UNKNOWN codec parameter?",
+      "range": {
+        "startLine": 469,
+        "startChar": 23,
+        "endLine": 469,
+        "endChar": 30
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c44a0a2_be3da56a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "Was the formatter skipped?  I would have expected spaces here.  I hate to do formatting checks by hand.",
+      "range": {
+        "startLine": 530,
+        "startChar": 22,
+        "endLine": 530,
+        "endChar": 25
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c8d59d3_1000cd6b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 531,
+        "startChar": 12,
+        "endLine": 531,
+        "endChar": 38
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69aba113_a8329707",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "Why do we want to ensure duplicate entries?\n\nDid you mean that you\u0027re ensuring that there are no duplicates?",
+      "range": {
+        "startLine": 590,
+        "startChar": 29,
+        "endLine": 590,
+        "endChar": 54
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "027626aa_5157238d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 634,
+        "startChar": 13,
+        "endLine": 634,
+        "endChar": 33
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3efffb4_09800ed9",
+        "filename": "framework/java/android/bluetooth/le/ScanResult.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "Now that there\u0027s an Address Type in Device, can we use that instead?\n\nIt doesn\u0027t look like we need any changes in this file if we do that correctly.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76ca3769_74f8211d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T18:51:57Z",
+      "side": 1,
+      "message": "nit: We could fix this while we\u0027re here.",
+      "range": {
+        "startLine": 1337,
+        "startChar": 74,
+        "endLine": 1337,
+        "endChar": 75
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
