@@ -34,6 +34,54 @@
       "parentUuid": "3d97d465_52fd52a8",
       "revId": "8e4ee623a712cea6acd1b88c65700477423fab65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b476ed75_4ed741b7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T23:50:11Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \" atleast \" -- should it be \" at least \"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "88329eb6_9f2bdc4c",
+      "range": {
+        "startLine": 852,
+        "startChar": 26,
+        "endLine": 852,
+        "endChar": 35
+      },
+      "revId": "8e4ee623a712cea6acd1b88c65700477423fab65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c63e629_7975b1f4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 20
+      },
+      "lineNbr": 1639,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T23:50:11Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \" shouldnt \" -- should it be \" shouldn\u0027t \"?\n\u003e Check whether the apostrophe needs to be escaped.\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "f5df6dcd_c5fedf9a",
+      "range": {
+        "startLine": 1639,
+        "startChar": 26,
+        "endLine": 1639,
+        "endChar": 36
+      },
+      "revId": "8e4ee623a712cea6acd1b88c65700477423fab65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
