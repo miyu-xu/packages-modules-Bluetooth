@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8841d3a_a485ee17",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 844,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:42:43Z",
+      "side": 1,
+      "message": "Looks like you might have accidentally left part of it in there",
+      "parentUuid": "0cd5fa60_7cacb39f",
+      "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d20cae6d_4540955e",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 5
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "I\u0027m not sure how to use IntDef.  Do I need to point it to the other file?  Is @AddressType enough?",
       "parentUuid": "d69f47d0_9ce42382",
+      "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d88d1b7d_d9863cf7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:42:43Z",
+      "side": 1,
+      "message": "You\u0027ll need to point it to the other class. You need to \"import android.bluetooth.BluetoothDevice.AddressType\" at the top of the file and then you can use it as-is.",
+      "parentUuid": "7adb5af7_59181c6d",
       "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
