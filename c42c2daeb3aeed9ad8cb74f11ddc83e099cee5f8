@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "268301c0_911e28dc",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-01-26T20:14:31Z",
+      "side": 1,
+      "message": "add a constant? (and then we can omit the comment)",
+      "range": {
+        "startLine": 134,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 44
+      },
+      "revId": "c42c2daeb3aeed9ad8cb74f11ddc83e099cee5f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
