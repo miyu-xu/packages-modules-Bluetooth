@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019754447",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1961302?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d03d0f0c_0077fa7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T12:00:33Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "1bd46a05a9ea4f48de11068caf3e92910cf6e446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019754447",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1961302?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f1ee3013_8f177f54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T12:00:33Z",
+      "side": 1,
+      "message": "\"spatial audio over Bluetooth A2DP\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "1bd46a05a9ea4f48de11068caf3e92910cf6e446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019754448",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1961302?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1466ebb3_121070eb",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T12:00:33Z",
+      "side": 1,
+      "message": "sleep and its variants should never be used in tests or in production code - prefer event driven systems.",
+      "range": {
+        "startLine": 509,
+        "startChar": 6,
+        "endLine": 509,
+        "endChar": 13
+      },
+      "revId": "1bd46a05a9ea4f48de11068caf3e92910cf6e446",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
