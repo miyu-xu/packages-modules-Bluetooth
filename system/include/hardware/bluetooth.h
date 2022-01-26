@@ -508,6 +508,8 @@ typedef void (*energy_info_callback)(bt_activity_energy_info* energy_info,
 typedef void (*generate_local_oob_data_callback)(tBT_TRANSPORT transport,
                                                  bt_oob_data_t oob_data);
 
+typedef void (*clear_event_filter_callback)();
+
 /** TODO: Add callbacks for Link Up/Down and other generic
  *  notifications/callbacks */
 
@@ -532,6 +534,7 @@ typedef struct {
   link_quality_report_callback link_quality_report_cb;
   generate_local_oob_data_callback generate_local_oob_data_cb;
   switch_buffer_size_callback switch_buffer_size_cb;
+  clear_event_filter_callback clear_event_filter_cb;
 } bt_callbacks_t;
 
 typedef void (*alarm_cb)(void* data);
@@ -771,6 +774,11 @@ typedef struct {
    * @return true if audio low latency is successfully allowed or disallowed
    */
   bool (*allow_low_latency_audio)(bool allowed, const RawAddress& address);
+
+  /**
+   * Set the event filter for the controller
+   */
+  int (*clear_event_filter)();
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"

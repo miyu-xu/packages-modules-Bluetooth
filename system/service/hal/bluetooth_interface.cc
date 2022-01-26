@@ -246,7 +246,8 @@ bt_callbacks_t bt_callbacks = {
     nullptr, /* energy_info_cb */
     LinkQualityReportCallback,
     nullptr /* generate_local_oob_data_cb */,
-    SwitchBufferSizeCallback
+    SwitchBufferSizeCallback,
+    nullptr /* clear_event_filter */
 };
 
 bt_os_callouts_t bt_os_callouts = {sizeof(bt_os_callouts_t),
