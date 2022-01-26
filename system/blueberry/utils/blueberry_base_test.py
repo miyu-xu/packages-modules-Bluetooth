@@ -50,8 +50,8 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     Don't use "test_case_selector" when using "test_iterations", and please use
     "test_method_selector" to replace it.
     """
-    test_iterations = int(self.user_params.get('test_iterations', 0))
-    if test_iterations < 2:
+    self.test_iterations = int(self.user_params.get('test_iterations', 0))
+    if self.test_iterations < 2:
       return
 
     test_method_selector = self.user_params.get('test_method_selector', 'all')
@@ -71,8 +71,9 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     for test_name in selected_test_names:
       test_method = getattr(self.__class__, test_name)
       # List of (<new test name>, <test method>).
-      test_arg_sets = [('%s_%s_of_%s' % (test_name, i + 1, test_iterations),
-                        test_method) for i in range(test_iterations)]
+      test_arg_sets = [('%s_%s_of_%s' %
+                        (test_name, i + 1, self.test_iterations),
+                        test_method) for i in range(self.test_iterations)]
       # pylint: disable=cell-var-from-loop
       self.generate_tests(
           test_logic=lambda _, test: test(self),
