@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019764050",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959800?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3d6891e7_11159674",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T18:08:13Z",
+      "side": 1,
+      "message": "\"make\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 26,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 10
+      },
+      "revId": "f37ea834f0fef668976361e6538b61d9911d52f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019764053",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959800?revision\u003d5",
+      "fixSuggestions": [
+        {
+          "fixId": "d8102c0e_ce13f1ae",
+          "description": "Change to \"framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java\"",
+          "replacements": [
+            {
+              "path": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+              "range": {
+                "startLine": 642,
+                "startChar": 87,
+                "endLine": 642,
+                "endChar": 93
+              },
+              "replacement": "device"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "2257bb36_aa89c261",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T18:08:13Z",
+      "side": 1,
+      "message": "Common typo found: \"deivce\" -- should it be \"device\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 642,
+        "startChar": 87,
+        "endLine": 642,
+        "endChar": 93
+      },
+      "revId": "f37ea834f0fef668976361e6538b61d9911d52f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
