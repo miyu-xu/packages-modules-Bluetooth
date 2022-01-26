@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe342c7_d54e42ef",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T01:26:51Z",
+      "side": 1,
+      "message": "Also need to add the enforcement of the BLUETOOTH_PRIVILEGED permission",
+      "revId": "01e5439099469c6953bf20ecdd850134c824d1e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
