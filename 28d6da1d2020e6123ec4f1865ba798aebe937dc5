@@ -69,6 +69,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed2f0794_5fcbd17b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:59:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "637cc32f_9e0e24c1",
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f81ed461_51f87c30",
@@ -82,6 +100,30 @@
       "writtenOn": "2022-01-26T03:57:36Z",
       "side": 1,
       "message": "The same with the other comment. Is it possible to check the transport here, and handle the version compatible work in the file under the transport folder.",
+      "range": {
+        "startLine": 121,
+        "startChar": 35,
+        "endLine": 121,
+        "endChar": 47
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66e7fdfa_a39afda4",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:59:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f81ed461_51f87c30",
       "range": {
         "startLine": 121,
         "startChar": 35,
@@ -138,6 +180,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d4b0f7_f131c4d1",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:59:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "eaf6fca8_f4bc4b55",
+      "range": {
+        "startLine": 354,
+        "startChar": 39,
+        "endLine": 354,
+        "endChar": 54
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42a58a89_1edfdac4",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:59:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "965bc8f0_b93797a8",
+      "range": {
+        "startLine": 354,
+        "startChar": 39,
+        "endLine": 354,
+        "endChar": 54
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6788afe9_3b650be0",
@@ -151,6 +241,30 @@
       "writtenOn": "2022-01-25T23:36:51Z",
       "side": 1,
       "message": "Please add aidl support for this function.",
+      "range": {
+        "startLine": 438,
+        "startChar": 37,
+        "endLine": 438,
+        "endChar": 59
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1535095_d32c253b",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:59:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6788afe9_3b650be0",
       "range": {
         "startLine": 438,
         "startChar": 37,
