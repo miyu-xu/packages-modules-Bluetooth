@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e285dd4_c6217cb0",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-26T03:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64388b43_053ca856",
+      "range": {
+        "startLine": 88,
+        "startChar": 24,
+        "endLine": 88,
+        "endChar": 25
+      },
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c7c604d_49b41538",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6ab35f6_0b1d1c73",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 986,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-26T03:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c7c604d_49b41538",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98fe5c03_f478f288",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-01-26T00:23:31Z",
       "side": 1,
       "message": "Move to after \"public\"",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "639a25e6_2a67ebd6",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 990,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-26T03:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98fe5c03_f478f288",
       "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +152,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cf421d7_a28c07d2",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-26T03:43:40Z",
+      "side": 1,
+      "message": "After discussion, this function is not redundant and be removed.\nThanks!",
+      "parentUuid": "4c022ca7_2a36d896",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b9c0c9b_e92964de",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-26T03:43:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "be9db56c_bf255479",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffbb4c24_ef3728fc",
@@ -109,6 +205,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "835ef4a1_ee712c08",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-26T03:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffbb4c24_ef3728fc",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7bfe97ff_24b7d7ae",
@@ -122,6 +236,24 @@
       "writtenOn": "2022-01-26T00:23:31Z",
       "side": 1,
       "message": "Move to after \"public\" for consistency",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "106e5ffc_256bb3bb",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-01-26T03:43:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7bfe97ff_24b7d7ae",
       "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
