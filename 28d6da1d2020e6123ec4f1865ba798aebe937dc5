@@ -89,6 +89,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a30e8ee2_4501f4b7",
+        "filename": "system/audio_hal_interface/aidl/client_interface.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-01-26T15:38:43Z",
+      "side": 1,
+      "message": "It looks like we reversed this nullptr check, so we end up returning early if \u0027client\u0027 is non-null, and dereferencing \u0027client\u0027 on if it is null.\n\nI\u0027ve put up a follow-up fix: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1960690",
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f81ed461_51f87c30",
         "filename": "system/audio_hal_interface/le_audio_software.cc",
         "patchSetId": 16
