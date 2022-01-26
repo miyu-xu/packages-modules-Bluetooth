@@ -144,7 +144,7 @@ class BlueberryBaseTest(base_test.BaseTestClass):
         device.disable_airplane_mode(3)
         # Turn on BT and check status
         device.toggle_bluetooth(enabled=True)
-      device.wait_for_bluetooth_toggle_state(enabled=True)
+        device.wait_for_bluetooth_toggle_state(enabled=True)
       if (self.enable_bluetooth_verbose_logging or
           self.enable_all_bluetooth_logging):
         if self.set_bt_trc_level_verbose(device):
