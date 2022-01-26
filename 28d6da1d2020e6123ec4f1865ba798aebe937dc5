@@ -52,6 +52,46 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f8c3d9_85935499",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:57:36Z",
+      "side": 1,
+      "message": "You could fix my comment in the other patch.",
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81ed461_51f87c30",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:57:36Z",
+      "side": 1,
+      "message": "The same with the other comment. Is it possible to check the transport here, and handle the version compatible work in the file under the transport folder.",
+      "range": {
+        "startLine": 121,
+        "startChar": 35,
+        "endLine": 121,
+        "endChar": 47
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eaf6fca8_f4bc4b55",
@@ -65,6 +105,29 @@
       "writtenOn": "2022-01-25T23:48:07Z",
       "side": 1,
       "message": "Could we clean this function to check if HAL is hidl or aidl, and do the compatible handle under hidl folder?",
+      "range": {
+        "startLine": 354,
+        "startChar": 39,
+        "endLine": 354,
+        "endChar": 54
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "965bc8f0_b93797a8",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-26T03:57:36Z",
+      "side": 1,
+      "message": "Could we refactor the HAL version checker check AIDL or HIDL, and then if the hal is HIDL, check the HIDL version?",
       "range": {
         "startLine": 354,
         "startChar": 39,
