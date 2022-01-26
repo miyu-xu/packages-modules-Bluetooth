@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019752500",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902973?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "09ae10ae_131ed831",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T10:53:54Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "0cb7f2a4d047e9ba255e8418b9bf749786ec60a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019752500",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902973?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8bd9c01a_bb1ed5aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T10:53:54Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "0cb7f2a4d047e9ba255e8418b9bf749786ec60a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019752500",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902973?revision\u003d9",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a4315a9f_1fc1740d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T10:53:54Z",
+      "side": 1,
+      "message": "\"manual, the RC reconnects after forget device\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 51
+      },
+      "revId": "0cb7f2a4d047e9ba255e8418b9bf749786ec60a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
