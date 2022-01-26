@@ -24,6 +24,18 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
     self.headset_name = self.user_params.get('subsequent_pairing_headset_name',
                                              _DEFAULT_HEADSET_NAME)
 
+    # Sets False since the device setups have been completed in this stage.
+    self._need_reset = False
+
+  def setup_test(self):
+    """Executes factory reset Watch for the next run if needed."""
+    super().setup_test()
+    if self._need_reset:
+      self.cleanup_app_and_reset_watch()
+
+    # Sets True for next test run if the test iterations > 1.
+    self._need_reset = self.test_iterations > 1
+
   def _execute_subsequent_pairing_logic(self):
     """Executes Subsequent pairing between Watch and Headset.
 
