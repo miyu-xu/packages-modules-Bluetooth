@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d40e5a38_4bf9f5cb",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-26T05:22:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cb89a0d_7a18551b",
+      "revId": "bbf18118d9178d0563839834c7b314348d95d4d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c71188e_1f83330f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-01-25T23:53:24Z",
       "side": 1,
       "message": "Missing JavaDoc for the constructor",
+      "revId": "bbf18118d9178d0563839834c7b314348d95d4d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22d9290f_c3b66f66",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-01-26T05:22:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c71188e_1f83330f",
       "revId": "bbf18118d9178d0563839834c7b314348d95d4d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
