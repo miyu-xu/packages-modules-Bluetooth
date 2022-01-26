@@ -22,6 +22,30 @@
       },
       "revId": "d22925c5774e85318902ad22fa7180003336e971",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbaa22a2_9b35cf1e",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-01-26T17:53:19Z",
+      "side": 1,
+      "message": "GTS tests were uploaded directly following this patch making it through automerger! As I understand it, you can\u0027t upload GTS tests to AOSP, so that\u0027s why we had to do it that way. You can find them attached to this same bug number. They\u0027ll be the only ag/ patch.",
+      "parentUuid": "3620e20d_c51ed91b",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 48,
+        "endChar": 10
+      },
+      "revId": "d22925c5774e85318902ad22fa7180003336e971",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
