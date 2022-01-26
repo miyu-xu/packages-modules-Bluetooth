@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ab79dee_7a5580d0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T00:30:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d20cae6d_4540955e",
+      "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "230e6721_c3317af1",
@@ -69,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc304076_bd244ce3",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1160,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T00:30:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "230e6721_c3317af1",
+      "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fca16ddd_608fb922",
@@ -82,6 +118,24 @@
       "writtenOn": "2022-01-25T22:45:34Z",
       "side": 1,
       "message": "We shouldn\u0027t use this annotation for the new constructor. It\u0027s only meant for older @hide APIs that were being called by reflection prior to our blocking that. It forms an allowlist that allows 3P apps to continue to call said methods with reflection. No need to add it for any new code!",
+      "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1d8f079_d86c7da3",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T00:30:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fca16ddd_608fb922",
       "revId": "f6f05d79535ab3e2d5169045ee68dcef3b359772",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
