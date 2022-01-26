@@ -25,6 +25,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35fbc4c6_c342d853",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b471ab22_d40378f5",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d917f22b_f82b7184",
@@ -38,6 +62,30 @@
       "writtenOn": "2022-01-26T00:42:58Z",
       "side": 1,
       "message": "Please fix the commit message to remove license headers in commit message and describe what is added in this commit",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 86
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78594156_044e65f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d917f22b_f82b7184",
       "range": {
         "startLine": 9,
         "startChar": 0,
@@ -88,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a835d11_4af2425b",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77c48175_7b9dce23",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65e57278_da602037",
@@ -111,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "421e9cda_0d0cba46",
+        "filename": "android/app/src/com/android/bluetooth/bc/BaseData.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "65e57278_da602037",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 79,
+        "endChar": 34
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b6ea8fb_4b291b0a",
@@ -124,6 +220,24 @@
       "writtenOn": "2022-01-26T00:42:58Z",
       "side": 1,
       "message": "Please use the correct year for this file: 2022",
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1c37721_5851b9bc",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b6ea8fb_4b291b0a",
       "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -175,6 +289,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58b87b30_1cdc8dfa",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b2ea1be_d43bf95e",
+      "range": {
+        "startLine": 707,
+        "startChar": 29,
+        "endLine": 707,
+        "endChar": 39
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4314bed_bce8d461",
@@ -188,6 +326,30 @@
       "writtenOn": "2022-01-26T00:42:58Z",
       "side": 1,
       "message": "nit: please remove spaces between method name and ( for every method in this change",
+      "range": {
+        "startLine": 933,
+        "startChar": 46,
+        "endLine": 933,
+        "endChar": 47
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2eb715_2eea4b7e",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassClientStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4314bed_bce8d461",
       "range": {
         "startLine": 933,
         "startChar": 46,
@@ -215,6 +377,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38939db0_41f74c52",
+        "filename": "android/app/src/com/android/bluetooth/bc/BassUtils.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37b21b6a_4818e0d0",
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "823f30a6_401ec46a",
@@ -228,6 +408,30 @@
       "writtenOn": "2022-01-26T00:42:58Z",
       "side": 1,
       "message": "could we change this to LE_BROADCAST_ASSISTANT_ so that the meaning is clear to everyone reading the code and database?",
+      "range": {
+        "startLine": 82,
+        "startChar": 26,
+        "endLine": 82,
+        "endChar": 28
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20b8eb34_696e729c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/ProfilePrioritiesEntity.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "823f30a6_401ec46a",
       "range": {
         "startLine": 82,
         "startChar": 26,
@@ -261,6 +465,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f208f06d_313c094d",
+        "filename": "system/binder/android/bluetooth/BluetoothLeBroadcastSourceInfo.aidl",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "499fda06_1aea0747",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b97b7c4a_564b5b9c",
@@ -274,6 +502,30 @@
       "writtenOn": "2022-01-26T00:42:58Z",
       "side": 1,
       "message": "please change it to 2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70fa169f_ce6138cd",
+        "filename": "system/binder/android/bluetooth/IBluetoothLeBroadcastAssistant.aidl",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b97b7c4a_564b5b9c",
       "range": {
         "startLine": 2,
         "startChar": 13,
@@ -307,6 +559,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f16aa6ab_d095c7de",
+        "filename": "system/binder/android/bluetooth/IBluetoothLeBroadcastAssistantCallback.aidl",
+        "patchSetId": 16
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49662e5d_f10959e0",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9781c43b_faa67b5d",
@@ -320,6 +596,30 @@
       "writtenOn": "2022-01-26T00:42:58Z",
       "side": 1,
       "message": "Please change to a more readable name such as UUID_BASS",
+      "range": {
+        "startLine": 98,
+        "startChar": 11,
+        "endLine": 98,
+        "endChar": 18
+      },
+      "revId": "485b5c5b730e72be7808b1671c54badf4d65cb0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5693f257_805de13b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-01-26T10:56:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9781c43b_faa67b5d",
       "range": {
         "startLine": 98,
         "startChar": 11,
