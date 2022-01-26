@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019748106",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1938521?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "6fed204d_7f7ea838",
+          "description": "Change to \"system/audio_bluetooth_hw/device_port_proxy.h\"",
+          "replacements": [
+            {
+              "path": "system/audio_bluetooth_hw/device_port_proxy.h",
+              "range": {
+                "startLine": 72,
+                "startChar": 50,
+                "endLine": 72,
+                "endChar": 54
+              },
+              "replacement": "true"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "bfa06b4b_ca0dd215",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T08:58:15Z",
+      "side": 1,
+      "message": "Common typo found: \"ture\" -- should it be \"true\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 72,
+        "startChar": 50,
+        "endLine": 72,
+        "endChar": 54
+      },
+      "revId": "779af5338b992c59b3170d44029d5c67161e60fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019748106",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1938521?revision\u003d4",
+      "fixSuggestions": [
+        {
+          "fixId": "41749b76_94f5023d",
+          "description": "Change to \"system/audio_bluetooth_hw/device_port_proxy.h\"",
+          "replacements": [
+            {
+              "path": "system/audio_bluetooth_hw/device_port_proxy.h",
+              "range": {
+                "startLine": 89,
+                "startChar": 50,
+                "endLine": 89,
+                "endChar": 61
+              },
+              "replacement": "information"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f0c3db1a_5c12e44f",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T08:58:15Z",
+      "side": 1,
+      "message": "Common typo found: \"informaiton\" -- should it be \"information\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 89,
+        "startChar": 50,
+        "endLine": 89,
+        "endChar": 61
+      },
+      "revId": "779af5338b992c59b3170d44029d5c67161e60fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
