@@ -581,6 +581,8 @@ static void generate_local_oob_data_callback(tBT_TRANSPORT transport,
   }
 }
 
+static void clear_event_filter_callback() { ALOGV("%s", __func__); }
+
 static void link_quality_report_callback(
     uint64_t timestamp, int report_id, int rssi, int snr,
     int retransmission_count, int packets_not_receive_count,
@@ -704,7 +706,8 @@ static bt_callbacks_t sBluetoothCallbacks = {sizeof(sBluetoothCallbacks),
                                              energy_info_recv_callback,
                                              link_quality_report_callback,
                                              generate_local_oob_data_callback,
-                                             switch_buffer_size_callback};
+                                             switch_buffer_size_callback,
+                                             clear_event_filter_callback};
 
 // The callback to call when the wake alarm fires.
 static alarm_cb sAlarmCallback;
