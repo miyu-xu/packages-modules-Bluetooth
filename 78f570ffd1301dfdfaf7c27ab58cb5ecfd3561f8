@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64388b43_053ca856",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:23:31Z",
+      "side": 1,
+      "message": "Same advice here, it would be great to use the full form for clarity.",
+      "range": {
+        "startLine": 88,
+        "startChar": 24,
+        "endLine": 88,
+        "endChar": 25
+      },
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c7c604d_49b41538",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 986,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:23:31Z",
+      "side": 1,
+      "message": "nit: can remove the or here (only need it for the last item in the list.",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98fe5c03_f478f288",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 990,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:23:31Z",
+      "side": 1,
+      "message": "Move to after \"public\"",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be9db56c_bf255479",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:23:31Z",
+      "side": 1,
+      "message": "Need @param and @return tags for both methods",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c022ca7_2a36d896",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:23:31Z",
+      "side": 1,
+      "message": "I would also call out where to refer to for the valid ad types",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffbb4c24_ef3728fc",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:23:31Z",
+      "side": 1,
+      "message": "I would prefer if we write the full form (advertising data instead of ad) for the method names \u0026 implementation for clarity. It also clears up some variable names.\n\ne.g. mAdData --\u003e mAdvertisingData, mAdType --\u003e mAdvertisingDataType, etc.",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bfe97ff_24b7d7ae",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-01-26T00:23:31Z",
+      "side": 1,
+      "message": "Move to after \"public\" for consistency",
+      "revId": "78f570ffd1301dfdfaf7c27ab58cb5ecfd3561f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
