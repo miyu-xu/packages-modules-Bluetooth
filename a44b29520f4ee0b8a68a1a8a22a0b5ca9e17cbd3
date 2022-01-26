@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7d84473_485930b0",
+        "filename": "system/blueberry/tests/gd/rust/topshim/facade/adapter_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-01-26T22:23:18Z",
+      "side": 1,
+      "message": "Technicality nit:\nIs it possible to make this derive from system/gd/rust/topshim/facade/adapter_test.py instead?\n\nSince the file content is the same, it\u0027s clearer/cleaner that it\u0027s the same, existing file.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "a44b29520f4ee0b8a68a1a8a22a0b5ca9e17cbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
