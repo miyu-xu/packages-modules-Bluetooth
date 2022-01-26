@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019725723",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1956855?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9cd501da_13ba7eb6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T00:31:12Z",
+      "side": 1,
+      "message": "\"cts\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 9
+      },
+      "revId": "b98e62f5c3a1873b3da7550b06d2197d1d066195",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
