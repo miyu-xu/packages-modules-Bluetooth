@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019777959",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1949059?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0b288995_efc13fc8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T23:04:30Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "2c0dc3ce69cff2cb8e407aae8e69e5f66238c237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019777959",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1949059?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9a7465d4_ac82f95f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T23:04:30Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "2c0dc3ce69cff2cb8e407aae8e69e5f66238c237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019777959",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1949059?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "853632a8_12fe6531",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-26T23:04:30Z",
+      "side": 1,
+      "message": "\"Verified LE Audio is getting connected after Remote disconnect.\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 69
+      },
+      "revId": "2c0dc3ce69cff2cb8e407aae8e69e5f66238c237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
