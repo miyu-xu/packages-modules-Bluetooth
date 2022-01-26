@@ -39,6 +39,30 @@
       },
       "revId": "0428ca3966ba1d53b077a7f5c364990491f33f35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f913ad9_98bea5af",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-26T00:07:34Z",
+      "side": 1,
+      "message": "It turns out that our C++ PDL tests have checksums (needed for L2CAP, but not implemented in Rust yet) and external types like \"six-bytes\" that aren\u0027t implemented for Rust.\n\nIn the future, we\u0027ll need to add more tests for Rust, but let\u0027s start with what you have.",
+      "parentUuid": "e548827d_e1f1646b",
+      "range": {
+        "startLine": 407,
+        "startChar": 9,
+        "endLine": 407,
+        "endChar": 48
+      },
+      "revId": "0428ca3966ba1d53b077a7f5c364990491f33f35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
