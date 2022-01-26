@@ -71,10 +71,10 @@ class MockVolumeControlCallbacks : public VolumeControlCallbacks {
   MOCK_METHOD((void), OnConnectionState,
               (ConnectionState state, const RawAddress& address), (override));
   MOCK_METHOD((void), OnVolumeStateChanged,
-              (const RawAddress& address, uint8_t volume, bool mute),
+              (const RawAddress& address, uint8_t volume, bool mute, bool isAutonomous),
               (override));
   MOCK_METHOD((void), OnGroupVolumeStateChanged,
-              (int group_id, uint8_t volume, bool mute), (override));
+              (int group_id, uint8_t volume, bool mute, bool isAutonomous), (override));
 
  private:
   DISALLOW_COPY_AND_ASSIGN(MockVolumeControlCallbacks);
