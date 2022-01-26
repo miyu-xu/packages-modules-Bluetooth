@@ -118,11 +118,6 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
     self.pri_phone.log.info('Importing "%s"...' % file_name)
     current_count = self._wait_and_get_contact_count(
         self.pri_phone, expected_contact_count, WAITING_TIMEOUT_SEC)
-    if current_count != expected_contact_count:
-      raise android_device.DeviceError(
-          self.pri_phone,
-          'Failed to import %d contact(s) within %ds. Actual count: %d' %
-          (expected_contact_count, WAITING_TIMEOUT_SEC, current_count))
     self.pri_phone.log.info(
         'Successfully added %d contact(s).' % current_count)
 
@@ -272,9 +267,6 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
     Returns:
       current_count: number of PCE contacts after connecting with PSE.
     """
-    # Make sure no any contacts existed on the devices.
-    for device in [self.pri_phone, self.derived_bt_device]:
-      device.sl4a.contactsEraseAll()
 
     # Add contacts to PSE.
     if contact_count != 0:
