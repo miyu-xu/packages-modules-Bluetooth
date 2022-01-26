@@ -11,7 +11,7 @@ from blueberry.utils import triangle_constants
 # Internal import
 
 _DEFAULT_HEADSET_NAME = '.*Pixel Buds A-Series.*'
-_SUBSEQUENT_PAIRING_RETRIES = 2
+_SUBSEQUENT_PAIRING_RETRIES = 5
 _FOOTPRINTS_SYNC_WAITING_TIME_SEC = 90
 
 
