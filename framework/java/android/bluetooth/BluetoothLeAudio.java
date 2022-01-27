@@ -239,7 +239,6 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
     /**
      * This represents an invalid group ID.
      *
-     * @hide
      */
     public static final int GROUP_ID_INVALID = IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
