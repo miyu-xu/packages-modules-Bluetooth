@@ -34,6 +34,402 @@
       "parentUuid": "8c28a2a5_4e639a2c",
       "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24531fc6_a3a50bd3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Thanks for addressing our previous comments. There are still some issues to be resolved. In general, I observed the following systematic issue with the change set:\n\n1. Lack of documentation\n\nThere has been almost no JavaDoc throughout this change set and it is hard for a reader to understand the flow of code without comments and JavaDoc. Could you please add more documentation and comments to this patch? \n\n2. Unformatted use of whitespaces\n\nLots of code has random gaps that break the code flow, for example:\n\nin android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java\n```\n                    log(\n                            \"onSyncEstablished\"\n                                    + \"syncHandle\"\n                                    + syncHandle\n                                    + \"device\"\n                                    + device\n                                    + \"advertisingSid\"\n                                    + advertisingSid\n                                    + \"skip\"\n                                    + skip\n                                    + \"timeout\"\n                                    + timeout\n                                    + \"status\"\n                                    + status);\n```\n\nThe gaps in the above code is not necessary and should be reformatted to make the code more readable. \n\nAlso some code has random blank lines that should be removed.\n\n3. C-style use of Java: Separated variable declaration and assignment\n\nMany parts of the code have separate variable declaration and assignment. In Java and modern C++, they should stay close to each other so that their scope is minimized. For example:\n\nIn `convertSourceInfoToAddSourceByteArray` in android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java\n\n```\n    private byte[] convertSourceInfoToAddSourceByteArray(BluetoothLeBroadcastSourceInfo srcInfo) {\n        byte[] res;\n        /*fixed length for add source op*/\n        int addSourceFixedLength \u003d 16;\n        .................................\n        .................................\n            }\n            totalMetadataLength \u003d totalMetadataLength + metaDataLength[i];\n        }\n        res \u003d new byte[addSourceFixedLength + numSubGroups * 5 + totalMetadataLength];\n        srcInfo.setSourceDevice(broadcastSource);\n```\nres is not used until much further down the code\n\nMoreover\n\n```\n        boolean setSuccessfully;\n        setSuccessfully \u003d\n```\nThis one has declaration one line away from assignment and can be simplified into one line. \n\n4. Constants and Magic Numbers\n\nLots of magic numbers were used without a constant definition. Please declare them into named constants so that a reader knows the meaning of the constant. Such as\n\n```\n    private void notifyLocalBroadcastSourceFound(\n            ArrayList\u003cIBluetoothLeBroadcastAssistantCallback\u003e cbs) {\n.....\n        ScanResult scanRes \u003d new ScanResult(localDev, 1, 1, 1, 2, 0, 0, 0, record, 0);\n```\n\nThe numbers `1, 1, 1, 2,` are not readable\n\nand\n\n```\n\n    private int convertConfigurationSRToCapabilitySR(byte sampleRate) {\n        int ret \u003d BluetoothCodecConfig.SAMPLE_RATE_NONE;\n        switch (sampleRate) {\n            case 1:\n                ret \u003d BluetoothCodecConfig.SAMPLE_RATE_NONE;\n                break;\n            case 2:\n                ret \u003d BluetoothCodecConfig.SAMPLE_RATE_NONE;\n                break;\n            case 3:\n                ret \u003d BluetoothCodecConfig.SAMPLE_RATE_NONE;\n```\n\nThe meaning of 1, 2 and 3 is not clear\n\nMoreover there are constants everywhere in the codebase. Instead, it would be better to organize constants in groups into a single file such as BassConstants.java\n\n5. Too much nesting\n\nFor example, in `searchforBroadcastSources`, instead of \n```\n                        if (scanRecord !\u003d null) {\n                                ...\n                                if (listOfUuids !\u003d null) {\n                                    ...\n                                    if (isBroadcastSource) {\n                                        ...\n                                        if (cbs !\u003d null) {\n                                            for (...) {\n                                                try {\n                                                    ...\n                                                } catch (RemoteException e) {\n                                                    Log.e(TAG,\n                                                }\n                                            }\n                                        } else {\n```\n\nPlease adopt check error early and return first pattern to reduce the nesting\n\n```\nif (scanRecord \u003d\u003d null) {\n  log(ERROR)\n  return;\n}\n```\n\nThis will make the code much easier to read. \n\n6. Architecture is ready for unit testing\n\nThe entire BASS Client implementation is done in 4 classes.\nBaseData.java: 662 lines\nBassClientStateMachine.java: 1996 lines\nBassUtils.java: 348 lines\nBCService.java: 1554 lines\n\nIt is not very clear what are the functions of each class and how we can test each of these classes without exposing all its private variables. Could we think about how we can break these classes into smaller layers (e.g. SystemInterface, BassScanManager, BassGattClient, etc) so that unit tests can be written for the implementation and dependency classes can be mocked. \n\nThanks",
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "144a8237_1d661666",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BCService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Please use a more readable name such as BroadcastAssistantService or BassClientService",
+      "range": {
+        "startLine": 47,
+        "startChar": 13,
+        "endLine": 47,
+        "endChar": 22
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9429126_b71472e1",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BCService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "same as above, please use ParcelUUID",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 78
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99cdcf2d_8439d4ce",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BCService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 564,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Please avoid accessing other class\u0027 package private variables directly. Instead, please put the constant in a dedicated class such as BassConstants.java \n\nAlso please use ParcelUUID since the beginning and avoid constructing it on the go",
+      "range": {
+        "startLine": 564,
+        "startChar": 53,
+        "endLine": 564,
+        "endChar": 85
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379c334b_b2f1a398",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BCService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 613,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Please avoid C99 patterns like this whether declaration and assignment are separated. \n\nInstead\n\n```\nboolean setSuccessfully \u003d XXXX\n```",
+      "range": {
+        "startLine": 612,
+        "startChar": 1,
+        "endLine": 613,
+        "endChar": 25
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc531fa_2ed9cd1b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "nit: please do not put variable assignment in if statements",
+      "range": {
+        "startLine": 1037,
+        "startChar": 25,
+        "endLine": 1047,
+        "endChar": 49
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2fbb4d9_f2dbf54f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1085,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "could we remove the whitespace?",
+      "range": {
+        "startLine": 1084,
+        "startChar": 12,
+        "endLine": 1085,
+        "endChar": 20
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99dbc36e_cefd19f8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "same for all methods below",
+      "range": {
+        "startLine": 1096,
+        "startChar": 0,
+        "endLine": 1097,
+        "endChar": 20
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21dcf2e1_3930d7ce",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "please move variable declaration close to assignment",
+      "range": {
+        "startLine": 1185,
+        "startChar": 8,
+        "endLine": 1185,
+        "endChar": 19
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61710e0e_db3a8e8b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "please do not make App internal class final since final class cannot be mocked in unit tests",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 5
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55f6ebae_ad65a4d9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Please use ParcelUUID or UUID instead of raw String to represent UUIDs\n\nhttps://developer.android.com/reference/android/os/ParcelUuid",
+      "range": {
+        "startLine": 54,
+        "startChar": 31,
+        "endLine": 54,
+        "endChar": 40
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8006365e_cddc9bb4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Could we move all constant definitions to a single file such as \n\nbass_client/BassConstants.java ?\n\nSame for all other constants in this change set",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 55
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4afcfe5b_a21a98b5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Please remove all unnecessary empty lines in this change set",
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "824197b8_5a7a6a37",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "lots of magic numbers in the code, could we make sure to declare them as named constants before using magic numbers?",
+      "range": {
+        "startLine": 170,
+        "startChar": 53,
+        "endLine": 170,
+        "endChar": 75
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "629c82dd_51f7de9d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "Please define scan callback as a separate class instead of nesting it in this function",
+      "range": {
+        "startLine": 196,
+        "startChar": 24,
+        "endLine": 196,
+        "endChar": 36
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b4ffd31_b12c440b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "please follow the check on error and return early pattern to reduce indent\n\ne.g.\n\n```\nif (scanRecord \u003d\u003d null) {\n   Log.e(TAG, \"Scan record is null, ignoring this Scan res\");\n   return;\n}\n```",
+      "range": {
+        "startLine": 206,
+        "startChar": 28,
+        "endLine": 206,
+        "endChar": 53
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e536ccde_4352e1ff",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "same as above\n\n```\nif (mBluetoothAdapter \u003d\u003d null) {\n    Log.e(TAG, \"searchforBroadcastSources: Adapter is NULL\");\n    return false;\n}\n```",
+      "range": {
+        "startLine": 252,
+        "startChar": 12,
+        "endLine": 252,
+        "endChar": 43
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36bec4a7_3e966d60",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassUtils.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:30:53Z",
+      "side": 1,
+      "message": "why is it commented out? \n\nIf we do not want it, should we just remove the case?",
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
