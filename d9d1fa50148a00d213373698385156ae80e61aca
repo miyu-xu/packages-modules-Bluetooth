@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019813227",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1962740?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "379c9f7c_c8375e43",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T11:04:30Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "d9d1fa50148a00d213373698385156ae80e61aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019813227",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1962740?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f3380fc7_51ad2a04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T11:04:30Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_client_test (module-abi\u003dx86_64) passes: https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI91700010012326977\u0026testResultId\u003dTR51027873086851525\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 184
+      },
+      "revId": "d9d1fa50148a00d213373698385156ae80e61aca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
