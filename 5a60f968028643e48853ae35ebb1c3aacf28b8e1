@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f9fda1_99f08fe5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-27T10:30:00Z",
+      "side": 1,
+      "message": "Assuming the revert is done because of the Presubmit failures seen, but not sure regarding the cause of the Presubmit failures seen related to the change reverted (https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1949058). If it is related to the change https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1949059, can we hold with this revert gerrit merge until tip code Presubmit sanity can be re-assessed for https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1962739.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "5a60f968028643e48853ae35ebb1c3aacf28b8e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
