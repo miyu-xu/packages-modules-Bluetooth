@@ -1,0 +1,116 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019840469",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1963420?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f86b4345_92ec2c15",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T21:47:48Z",
+      "side": 1,
+      "message": "\"compile\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 13
+      },
+      "revId": "e7562e27b7f0b37000cd7f5025efed7ecc92e6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019840463",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1963420?revision\u003d6",
+      "fixSuggestions": [
+        {
+          "fixId": "61ad1bd4_75027e1e",
+          "description": "Change to \"android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+              "range": {
+                "startLine": 622,
+                "startChar": 62,
+                "endLine": 622,
+                "endChar": 68
+              },
+              "replacement": "SUCCESS"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6a1664f7_60f0a476",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T21:47:48Z",
+      "side": 1,
+      "message": "Common typo found: \"SUCCES\" -- should it be \"SUCCESS\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 622,
+        "startChar": 62,
+        "endLine": 622,
+        "endChar": 68
+      },
+      "revId": "e7562e27b7f0b37000cd7f5025efed7ecc92e6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019840463",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1963420?revision\u003d6",
+      "fixSuggestions": [
+        {
+          "fixId": "f6daf3bb_d14de91b",
+          "description": "Change to \"android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java\"",
+          "replacements": [
+            {
+              "path": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+              "range": {
+                "startLine": 636,
+                "startChar": 30,
+                "endLine": 636,
+                "endChar": 36
+              },
+              "replacement": "Unknown"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "b30b8e48_3f166e3b",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T21:47:48Z",
+      "side": 1,
+      "message": "Common typo found: \"Unknow\" -- should it be \"Unknown\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 636,
+        "startChar": 30,
+        "endLine": 636,
+        "endChar": 36
+      },
+      "revId": "e7562e27b7f0b37000cd7f5025efed7ecc92e6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
