@@ -310,6 +310,70 @@ public final class BluetoothStatusCodes {
     public static final int ERROR_LE_AUDIO_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED = 1115;
 
     /**
+     * Indicates that setting the preset name is not allowed
+     * <p>
+     * Example cause: Preset is read-only.
+     * <p>
+     * Example solution: Try different preset.
+     *
+     * @hide
+     */
+    public static final int ERROR_HAP_SET_NAME_NOT_ALLOWED = 1211;
+
+    /**
+     * Indicates that the requested operation is not supported by the remote device
+     *
+     * @hide
+     */
+    public static final int ERROR_HAP_OPERATION_NOT_SUPPORTED = 1212;
+
+    /**
+     * Indicates a temporary denial of certain operation. Remote device may report this
+     * status due to various implementation specific reasons.
+     * <p>
+     * Example solution: Try again later
+     *
+     * @hide
+     */
+    public static final int ERROR_HAP_OPERATION_NOT_POSSIBLE = 1213;
+
+    /**
+     * Indicates that the set presed name was to long
+     * <p>
+     * Example solution: Try using shorter name.
+     *
+     * @hide
+     */
+    public static final int ERROR_HAP_INVALID_PRESET_NAME_LENGTH = 1214;
+
+    /**
+     * Indicates that the remote device does not support group operations
+     * <p>
+     * Example solution: Use the API dedicated to a single remote device instead.
+     *
+     * @hide
+     */
+    public static final int ERROR_HAP_GROUP_OPERATION_NOT_SUPPORTED = 1215;
+
+    /**
+     * Indicates that the procedure is already in progress
+     * <p>
+     * Example solution: Try again later.
+     *
+     * @hide
+     */
+    public static final int ERROR_HAP_PROCEDURE_ALREADY_IN_PROGRESS = 1216;
+
+    /**
+     * Indicates that provided preset index parameters is invalid
+     * <p>
+     * Example solution: Use preset index of a known existing preset.
+     *
+     * @hide
+     */
+    public static final int ERROR_HAP_INVALID_PRESET_INDEX = 1217;
+
+    /**
      * Indicates that an unknown error has occurred has occurred.
      */
     public static final int ERROR_UNKNOWN = Integer.MAX_VALUE;
