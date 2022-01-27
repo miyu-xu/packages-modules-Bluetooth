@@ -310,6 +310,47 @@ public final class BluetoothStatusCodes {
     public static final int ERROR_LE_AUDIO_BROADCAST_SOURCE_DISABLE_ENCRYPTION_FAILED = 1115;
 
     /**
+     * Indicating that Coordinated Set (CSIP) group locked failed due to invalid group ID.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int ERROR_CSIP_GROUP_LOCK_FAILED_INVALID_GROUP = 1207;
+
+    /**
+     * Indicating that CSIP group locked failed due to empty group.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int ERROR_CSIP_GROUP_LOCK_FAILED_GROUP_EMPTY = 1208;
+
+    /**
+     * Indicating that CSIP group locked failed due to group members being disconnected.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int ERROR_CSIP_GROUP_LOCK_FAILED_GROUP_NOT_CONNECTED = 1209;
+
+    /**
+     * Indicating that CSIP group locked failed due to group member being already locked.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int ERROR_CSIP_GROUP_LOCK_FAILED_LOCKED_BY_OTHER = 1210;
+
+
+    /**
+     * Indicating that CSIP device has been lost while being locked.
+     *
+     * @hide
+     */
+    @SystemApi
+    public static final int ERROR_CSIP_LOCKED_GROUP_MEMBER_LOST = 1211;
+
+    /**
      * Indicates that an unknown error has occurred has occurred.
      */
     public static final int ERROR_UNKNOWN = Integer.MAX_VALUE;

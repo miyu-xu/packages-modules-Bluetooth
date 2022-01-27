@@ -82,6 +82,7 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public boolean setConnectionPolicy(@Nullable android.bluetooth.BluetoothDevice, int);
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public static final String ACTION_CSIS_DEVICE_AVAILABLE = "android.bluetooth.action.CSIS_DEVICE_AVAILABLE";
     field @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public static final String ACTION_CSIS_SET_MEMBER_AVAILABLE = "android.bluetooth.action.CSIS_SET_MEMBER_AVAILABLE";
+    field public static final int GROUP_ID_INVALID = -1; // 0xffffffff
   }
 
   public static interface BluetoothCsipSetCoordinator.ClientLockCallback {
@@ -259,6 +260,11 @@ package android.bluetooth {
     field public static final int ALLOWED = 400; // 0x190
     field public static final int ERROR_ANOTHER_ACTIVE_OOB_REQUEST = 1000; // 0x3e8
     field public static final int ERROR_TIMEOUT = 15; // 0xf
+    field public static final int LE_CSIP_GROUP_LOCK_FAILED_GROUP_EMPTY = 1208; // 0x4b8
+    field public static final int LE_CSIP_GROUP_LOCK_FAILED_GROUP_NOT_CONNECTED = 1209; // 0x4b9
+    field public static final int LE_CSIP_GROUP_LOCK_FAILED_INVALID_GROUP = 1207; // 0x4b7
+    field public static final int LE_CSIP_GROUP_LOCK_FAILED_LOCKED_BY_OTHER = 1210; // 0x4ba
+    field public static final int LE_CSIP_LOCKED_GROUP_MEMBER_LOST = 1211; // 0x4bb
     field public static final int NOT_ALLOWED = 401; // 0x191
   }
 
