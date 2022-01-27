@@ -164,6 +164,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e8f8290_17239ad6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:33:23Z",
+      "side": 1,
+      "message": "package name should match directory name\n\nhence\n\ncom.android.bluetooth.bass_client",
+      "range": {
+        "startLine": 17,
+        "startChar": 8,
+        "endLine": 17,
+        "endChar": 33
+      },
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bdc531fa_2ed9cd1b",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
         "patchSetId": 23
