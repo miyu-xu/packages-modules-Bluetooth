@@ -1258,6 +1258,14 @@ class LeAudioClientImpl : public LeAudioClient {
         group_remove_node(group, address, true);
       }
       leAudioDevices_.Remove(address);
+      return;
+    }
+    /* Add device into BG connection for non-local initiated disconnection */
+    if (reason != GATT_CONN_TERMINATE_LOCAL_HOST &&
+        reason != GATT_CONN_TERMINATE_PEER_USER) {
+      LOG_ERROR("CMM got non local terminated connection:%s",
+                gatt_disconnection_reason_text(reason).c_str());
+      //  BTA_GATTC_Open(gatt_if_, address, false, false);
     }
   }
 
