@@ -26,6 +26,7 @@ import android.annotation.Nullable;
 import android.bluetooth.BluetoothCsipSetCoordinator;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothCsipSetCoordinator;
 import android.bluetooth.IBluetoothCsipSetCoordinatorCallback;
@@ -488,7 +489,7 @@ public class CsipSetCoordinatorService extends ProfileService {
             if (mLocks.containsKey(groupId)) {
                 try {
                     callback.onGroupLockSet(groupId,
-                            BluetoothCsipSetCoordinator.GROUP_LOCK_FAILED_LOCKED_BY_OTHER, true);
+                            BluetoothStatusCodes.LE_CSIP_GROUP_LOCK_FAILED_LOCKED_BY_OTHER, true);
                 } catch (RemoteException e) {
                     throw e.rethrowFromSystemServer();
                 }
@@ -623,6 +624,7 @@ public class CsipSetCoordinatorService extends ProfileService {
 
             IBluetoothCsipSetCoordinatorLockCallback cb = mLocks.get(groupId).second;
             try {
+                /* TODO b/216634457 */
                 cb.onGroupLockSet(groupId, status, isLocked);
             } catch (RemoteException e) {
                 throw e.rethrowFromSystemServer();
