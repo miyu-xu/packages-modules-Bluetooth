@@ -99,6 +99,11 @@ WATCH_PHENOTYPE_FLAGS = {
             'value': 'true'
         },
         {
+            'name': 'fast_pair_enable_footprints_scheduler_sync_at_boot_up',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        },
+        {
             'name': 'fast_pair_footprints_access_strategy',
             'type': FLAG_TYPE.STRING,
             'value': 'geller'
