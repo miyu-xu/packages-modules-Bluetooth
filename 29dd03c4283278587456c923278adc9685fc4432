@@ -1,0 +1,584 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b6ee8e4_77d02c0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Features to expose in SystemApi\n- setConnectionPolicy\n- getConnectionPolicy\n... (other base class methods) ....\n- selectPreset(device)\n- selectPresetForGroup(int)\n- PresetInfo getAllPresetInfo(device)\n- PresetInfo getActivePresetInfo(device)",
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af968918_b0192a65",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Please move this to BluetoothStatusCodes.java",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 64
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2340470_050b5e2c",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "onActivePresetChanged",
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9a3fd73_beaf18b0",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "onGroupActivePresetChanged\n\nprobably not needed, we should always deliver the update via individual devices",
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c337197_178b5f47",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 126,
+        "startChar": 13,
+        "endLine": 126,
+        "endChar": 39
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de75789b_f30f85df",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "onSelectActivePresetForGroupFailed -\u003e just to align with the selection method",
+      "range": {
+        "startLine": 138,
+        "startChar": 13,
+        "endLine": 138,
+        "endChar": 44
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19ca1ee8_fefc3370",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Let\u0027s remove this one",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 176,
+        "endChar": 56
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c8254ab_f9fa797a",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Let\u0027s @hide this one",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 77
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5805838a_e79f3742",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "onSetPresetNameForGroupFailed",
+      "range": {
+        "startLine": 217,
+        "startChar": 13,
+        "endLine": 217,
+        "endChar": 39
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "035b460e_fdbf3b46",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "let\u0027s use the same permission\n\n    @RequiresBluetoothConnectPermission\n    @RequiresPermission(allOf \u003d {\n            android.Manifest.permission.BLUETOOTH_CONNECT,\n            android.Manifest.permission.BLUETOOTH_PRIVILEGED,\n    })",
+      "range": {
+        "startLine": 736,
+        "startChar": 0,
+        "endLine": 736,
+        "endChar": 70
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be2f66b7_82d72242",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "same as above for permissions",
+      "range": {
+        "startLine": 763,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 70
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c08a70b_4e75ec85",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Let\u0027s double check to see if this is needed as a SystemApi",
+      "range": {
+        "startLine": 790,
+        "startChar": 0,
+        "endLine": 790,
+        "endChar": 77
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9987e986_4162bdd5",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 817,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Let\u0027s double check to see if this is needed as a SystemApi\n\nand use the BLUETOOTH_PRIVILEGED permission",
+      "range": {
+        "startLine": 817,
+        "startChar": 0,
+        "endLine": 817,
+        "endChar": 67
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98145954_930e1625",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 858,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Let\u0027s hide it for system api and advise user to make CSIP to get the group ID",
+      "range": {
+        "startLine": 855,
+        "startChar": 0,
+        "endLine": 858,
+        "endChar": 61
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321511e7_70a887da",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 886,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "public int getActivePresetIndex(@NonNull BluetoothDevice device)",
+      "range": {
+        "startLine": 886,
+        "startChar": 0,
+        "endLine": 886,
+        "endChar": 74
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6181e372_42882966",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 916,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "same as below, please return void",
+      "range": {
+        "startLine": 916,
+        "startChar": 0,
+        "endLine": 916,
+        "endChar": 89
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc0a2c0b_0bc8114a",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "public void selectPresetForGroup()\n\nand mention the success and failure cases\n\nonPresetChangedForGroup()\n\nonSelectPresetForGroupFailed()",
+      "range": {
+        "startLine": 949,
+        "startChar": 0,
+        "endLine": 949,
+        "endChar": 74
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2be753_1623c31e",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 980,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "please format them into something like\n\n    @RequiresBluetoothConnectPermission\n    @RequiresPermission(allOf \u003d {\n            android.Manifest.permission.BLUETOOTH_CONNECT,\n            android.Manifest.permission.BLUETOOTH_PRIVILEGED,\n    })\n    \n also let\u0027s hide this",
+      "range": {
+        "startLine": 979,
+        "startChar": 0,
+        "endLine": 980,
+        "endChar": 63
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a51815_6e30d3c3",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "switchToNextPresetForGroup()\n\nAlso this is not really needed if we can select preset by index",
+      "range": {
+        "startLine": 1015,
+        "startChar": 19,
+        "endLine": 1015,
+        "endChar": 40
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6de077c_b217bae6",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1047,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "switchToPreviousActivePreset\n\nWe can keep this one hidden",
+      "range": {
+        "startLine": 1047,
+        "startChar": 19,
+        "endLine": 1047,
+        "endChar": 39
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948323d2_13e0508b",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1081,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "switchToPreviousPresetForGroup()\n\nalso not needed as a @SystemApi\n\nlet\u0027s keep this one hidden",
+      "range": {
+        "startLine": 1081,
+        "startChar": 19,
+        "endLine": 1081,
+        "endChar": 44
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "411f55cc_eba3df2e",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Could we make this API synchronous to return the cached value? \n\n// This one can remain hidden\nBluetoothHapPresetInfo getPresetInfo(@NonNull BluetoothDevice device, int presetIndex);\n\n// Open this as a SystemApi\nList\u003cBluetoothHapPresetInfo\u003e getAllPresetInfo(@NonNull BluetoothDevice device);",
+      "range": {
+        "startLine": 1111,
+        "startChar": 19,
+        "endLine": 1111,
+        "endChar": 32
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "571efbbe_3d6aac05",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1140,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "Let\u0027s make this synchronized and return a list of all preset info and mark it @NonNull",
+      "range": {
+        "startLine": 1140,
+        "startChar": 0,
+        "endLine": 1140,
+        "endChar": 71
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dbe306b_1d4ca589",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1169,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "let\u0027s @hide this",
+      "range": {
+        "startLine": 1169,
+        "startChar": 19,
+        "endLine": 1169,
+        "endChar": 30
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35c24234_96d306c3",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1202,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "public void setPresetName()\n\nThe result is always delivered via callback",
+      "range": {
+        "startLine": 1202,
+        "startChar": 0,
+        "endLine": 1202,
+        "endChar": 82
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beb10ccf_93423111",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1236,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:27:50Z",
+      "side": 1,
+      "message": "public void setPresetNameforGroup()",
+      "range": {
+        "startLine": 1236,
+        "startChar": 19,
+        "endLine": 1236,
+        "endChar": 37
+      },
+      "revId": "29dd03c4283278587456c923278adc9685fc4432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
