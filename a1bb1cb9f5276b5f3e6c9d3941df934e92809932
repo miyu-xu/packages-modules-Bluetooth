@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019811265",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902972?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "644dc0cf_6c5b2865",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T10:05:03Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "a1bb1cb9f5276b5f3e6c9d3941df934e92809932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019811265",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902972?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dc9f769f_ed8af96b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T10:05:03Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "a1bb1cb9f5276b5f3e6c9d3941df934e92809932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019811265",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1902972?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1fc054f1_a7277736",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T10:05:03Z",
+      "side": 1,
+      "message": "\"manual, reconnect 2 devices concurrently\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "a1bb1cb9f5276b5f3e6c9d3941df934e92809932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
