@@ -86,6 +86,11 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
     # Make sure PBAP is not connected before running tests.
     self._terminate_pbap_connection()
 
+    # Make sure no any call logs and contacts exist on the devices.
+    for device in [self.pri_phone, self.derived_bt_device]:
+      device.sl4a.callLogsEraseAll()
+      device.sl4a.contactsEraseAll()
+
   def _import_vcf_to_pse(self, file_name: str,
                          expected_contact_count: int) -> None:
     """Imports the vcf file to PSE."""
