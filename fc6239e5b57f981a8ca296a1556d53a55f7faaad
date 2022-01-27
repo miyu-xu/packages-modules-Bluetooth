@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c13b098f_dbbfa799",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1869660
+      },
+      "writtenOn": "2022-01-27T10:51:27Z",
+      "side": 1,
+      "message": "Bypassing lint because GTS test were submitted in internal master",
+      "revId": "fc6239e5b57f981a8ca296a1556d53a55f7faaad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
