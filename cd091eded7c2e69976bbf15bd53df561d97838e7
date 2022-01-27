@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019835129",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1963419?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "a0db61ed_6ae50c50",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T20:30:35Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "cd091eded7c2e69976bbf15bd53df561d97838e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019835129",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1963419?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5167b1f9_48f343f7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T20:30:35Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "cd091eded7c2e69976bbf15bd53df561d97838e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019835113",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1963419?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7525a395_675ab60c",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-27T20:30:35Z",
+      "side": 1,
+      "message": "This CL adds new API(s), but it doesn\u0027t include any CTS test to test them. Please add CTS test(s) in a change and include the change in the same topic. After adding that change, you may need to upload a new patchset such as updating commit message to rerun this presubmit test. If you are unable to add CTS test(s) now, please file a tracking bug via go/new-cts-coverage-bug and add \"CTS-Coverage-Bug: \u003cbug id\u003e\" in this CL\u0027s commit message to pass this presubmit. For more information, please refer to go/api-test-coverage.",
+      "revId": "cd091eded7c2e69976bbf15bd53df561d97838e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
