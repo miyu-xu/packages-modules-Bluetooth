@@ -55,6 +55,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ab88bbb_41c6b041",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:32:13Z",
+      "side": 1,
+      "message": "Also, as a reference, please follow the AOSP Java style guide\n\nhttps://source.android.com/setup/contribute/code-style\n\nand the Google Java Style guide when contributing source code to AOSP:\n\nhttps://google.github.io/styleguide/javaguide.html",
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "144a8237_1d661666",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BCService.java",
         "patchSetId": 23
