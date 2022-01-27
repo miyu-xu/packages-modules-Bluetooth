@@ -41,6 +41,32 @@ namespace bluetooth {
 namespace os {
 using common::Closure;
 
+Reactor::Handler::Handler() : fd_(eventfd(0, EFD_SEMAPHORE | EFD_NONBLOCK)) {
+  ASSERT(fd_ != -1);
+}
+bool Reactor::Handler::Read() {
+  uint64_t val = 0;
+  return eventfd_read(fd_, &val) == 0;
+}
+int Reactor::Handler::Id() const {
+  return fd_;
+}
+void Reactor::Handler::Clear() {
+  uint64_t val;
+  while (eventfd_read(fd_, &val) == 0) {
+  }
+}
+void Reactor::Handler::Close() {
+  int close_status;
+  RUN_NO_INTR(close_status = close(fd_));
+  ASSERT(close_status != -1);
+}
+void Reactor::Handler::Notify() {
+  uint64_t val = 1;
+  auto write_result = eventfd_write(fd_, val);
+  ASSERT(write_result != -1);
+}
+
 class Reactor::Reactable {
  public:
   Reactable(int fd, Closure on_read_ready, Closure on_write_ready)
@@ -163,6 +189,10 @@ void Reactor::Stop() {
   }
   auto control = eventfd_write(control_fd_, kStopReactor);
   ASSERT(control != -1);
+}
+
+std::unique_ptr<Reactor::Handler> Reactor::NewHandler() const {
+  return std::make_unique<Reactor::Handler>();
 }
 
 Reactor::Reactable* Reactor::Register(int fd, Closure on_read_ready, Closure on_write_ready) {
