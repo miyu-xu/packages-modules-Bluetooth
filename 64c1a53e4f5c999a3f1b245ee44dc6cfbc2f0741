@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff9a86b_777da50b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-01-27T08:29:46Z",
+      "side": 1,
+      "message": "Update the patch to make it support for aidl first. I will fix the flow later.",
+      "revId": "64c1a53e4f5c999a3f1b245ee44dc6cfbc2f0741",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
