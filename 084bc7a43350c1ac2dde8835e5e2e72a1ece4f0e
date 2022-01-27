@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c28a2a5_4e639a2c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T07:44:50Z",
+      "side": 1,
+      "message": "A few more check style errors during repo upload\n\n[platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/bass_client/BCService.java:174:8: Unused @param tag for \u0027addessType\u0027.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/bass_client/BassUtils.java:221: \u0027\"Exception while calling \"\u0027 has incorrect indentation level 56, expected level should be 60.\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/btservice/Config.java:54: Wrong order for com.android.bluetooth.tbs.TbsService import. Use Ctrl+Shift+O (Eclipse) or Ctrl+Alt+O (Intellij) to sort imports. https://source.android.com/setup/code-style#order-import-statements\n",
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
