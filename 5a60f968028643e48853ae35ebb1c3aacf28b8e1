@@ -34,6 +34,24 @@
       "parentUuid": "01f9fda1_99f08fe5",
       "revId": "5a60f968028643e48853ae35ebb1c3aacf28b8e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1464f315_02eabd7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-27T16:31:45Z",
+      "side": 1,
+      "message": "We can try to submit and see if it passes presubmit when all is settled; however, it appears that at least one of tests broke:\nbluetooth_le_audio_client_test.UnicastTestNoInit#LoadStoredEarbudsCsisGroupedDifferently \nThere could be others, but often they will fail as a result of a single failure and should be individually tested.\n\nI tried running these tests manually but they are device side tests, and I don\u0027t have the proper devices to test.\n\nHaving said that, the issue may be the test needs to be updated to handle the new error code, it needs investigation.",
+      "parentUuid": "9df5e561_dbd7d485",
+      "revId": "5a60f968028643e48853ae35ebb1c3aacf28b8e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
