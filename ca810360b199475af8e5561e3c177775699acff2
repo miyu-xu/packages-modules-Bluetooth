@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea45c6d_e0f5b58b",
+        "filename": "framework/java/android/bluetooth/BluetoothStatusCodes.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T17:30:21Z",
+      "side": 1,
+      "message": "Please update the numbers start with 1207",
+      "range": {
+        "startLine": 323,
+        "startChar": 70,
+        "endLine": 323,
+        "endChar": 74
+      },
+      "revId": "ca810360b199475af8e5561e3c177775699acff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
