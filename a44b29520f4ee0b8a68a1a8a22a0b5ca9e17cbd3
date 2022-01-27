@@ -46,6 +46,30 @@
       },
       "revId": "a44b29520f4ee0b8a68a1a8a22a0b5ca9e17cbd3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77c7c0fc_ff0d5ceb",
+        "filename": "system/blueberry/tests/gd/rust/topshim/facade/adapter_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1220282
+      },
+      "writtenOn": "2022-01-27T21:31:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e4e058b_c8ea5fb4",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "a44b29520f4ee0b8a68a1a8a22a0b5ca9e17cbd3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
