@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d7c2ab2_13ad9f7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-27T00:21:12Z",
+      "side": 1,
+      "message": "This broke ChromeOS. We\u0027re currently holding a CHROMIUM patch to fix this -- merging this upstream to get rid of that.",
+      "revId": "f7bbc5b301e7ed90d7e4b4c128bcc90cba276d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
