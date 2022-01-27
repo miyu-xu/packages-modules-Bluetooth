@@ -34,6 +34,24 @@
       "parentUuid": "ad572ece_a42ed424",
       "revId": "11b8f228acd88bcb312911151ccf58ff97f0ab12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cc4e676_768bef7c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-27T18:56:08Z",
+      "side": 1,
+      "message": "This makes the linter happy now.  Is it too ugly?",
+      "parentUuid": "b5abb024_701d9656",
+      "revId": "11b8f228acd88bcb312911151ccf58ff97f0ab12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
