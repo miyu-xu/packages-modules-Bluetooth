@@ -16,10 +16,6 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
     """Tests that PCE can download contacts from PSE."""
     default_contact_count = 0
 
-    # Make sure no any contacts existed on the devices.
-    for device in [self.pri_phone, self.derived_bt_device]:
-      device.sl4a.contactsEraseAll()
-
     current_count = self._download_contacts(default_contact_count)
     asserts.assert_true(
         current_count == default_contact_count,
@@ -34,11 +30,6 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
     Tests that PCE can download contacts from PSE.
     """
     test_data_count = 200
-
-    # Make sure no any contacts existed on the devices.
-    for device in [self.pri_phone, self.derived_bt_device]:
-      device.sl4a.contactsEraseAll()
-
     current_count = self._download_contacts(test_data_count)
 
     asserts.assert_true(
@@ -60,10 +51,6 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
     PSE.
     """
     default_call_log_count = 0
-
-    # Make sure no any call logs exist on the devices.
-    for device in [self.pri_phone, self.derived_bt_device]:
-      device.sl4a.callLogsEraseAll()
 
     for call_log_type in bluetooth_pbap_base.CALL_LOG_TYPES:
       current_count = self._download_call_logs(default_call_log_count,
@@ -89,10 +76,6 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
     Tests that PCE can download incoming/outgoing/missed call logs from PSE.
     """
     test_data_count = 200
-    # Make sure no any call logs exist on the devices.
-    for device in [self.pri_phone, self.derived_bt_device]:
-      device.sl4a.callLogsEraseAll()
-
     for call_log_type in bluetooth_pbap_base.CALL_LOG_TYPES:
       # Add call logs to PSE.
       self._generate_call_logs_on_pse(call_log_type, test_data_count)
@@ -147,9 +130,6 @@ class BluetoothPbapTest(bluetooth_pbap_base.BluetoothPbapBase):
       if not phone.phone_number:
         raise signals.TestError(f'Please add "phone_number" to support '
                                 f'dimensions of the phone "{phone.serial}".')
-    # Make sure no any contacts exist on the devices.
-    for device in [primary_phone, self.derived_bt_device]:
-      device.sl4a.contactsEraseAll()
     # Generate a contact name randomly.
     first_name = utils.rand_ascii_str(4)
     last_name = utils.rand_ascii_str(4)
