@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d802e2fe_30c54900",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T09:38:23Z",
+      "side": 1,
+      "message": "This one is false alarm. After syncing with my local tree, the warning is gone.",
+      "parentUuid": "9a822a1d_cf461779",
+      "revId": "084bc7a43350c1ac2dde8835e5e2e72a1ece4f0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "144a8237_1d661666",
