@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "362ba611_f07a3895",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-01-27T11:05:49Z",
+      "side": 1,
+      "message": "besides ACTION_HAP_CONNECTION_STATE_CHANGED, we should replace all action intents with callbacks with clear success and failure callbacks",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 62
+      },
+      "revId": "e40ac70e20c763e1f3f8f58610d906040b1386cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
