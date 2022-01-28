@@ -37,6 +37,7 @@ import android.app.AppOpsManager;
 import android.app.BroadcastOptions;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothUtils;
 import android.companion.Association;
 import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
@@ -316,12 +317,12 @@ public final class Utils {
         }
     }
 
-    static int sSystemUiUid = UserHandle.USER_NULL;
+    static int sSystemUiUid = BluetoothUtils.USER_HANDLE_NULL.getIdentifier();
     public static void setSystemUiUid(int uid) {
         Utils.sSystemUiUid = uid;
     }
 
-    static int sForegroundUserId = UserHandle.USER_NULL;
+    static int sForegroundUserId = BluetoothUtils.USER_HANDLE_NULL.getIdentifier();
     public static void setForegroundUserId(int uid) {
         Utils.sForegroundUserId = uid;
     }
@@ -633,7 +634,8 @@ public final class Utils {
         try {
             UserManager um = context.getSystemService(UserManager.class);
             UserHandle uh = um.getProfileParent(callingUser);
-            int parentUser = (uh != null) ? uh.getIdentifier() : UserHandle.USER_NULL;
+            int parentUser = (uh != null) ? uh.getIdentifier() :
+                    BluetoothUtils.USER_HANDLE_NULL.getIdentifier();
 
             // Always allow SystemUI/System access.
             return (sForegroundUserId == callingUser.getIdentifier())
