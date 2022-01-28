@@ -1367,7 +1367,7 @@ public final class BluetoothAdapter {
                 return true;
             }
             Log.e(TAG, "factoryReset(): Setting persist.bluetooth.factoryreset to retry later");
-            BluetoothProperties.factory_reset(true);
+            BluetoothProperties.getFactoryReset(true);
         } catch (RemoteException e) {
             Log.e(TAG, "", e);
         } finally {

@@ -778,12 +778,12 @@ public class AdapterService extends Service {
             mDefaultSnoopLogSettingAtEnable =
                     Settings.Global.getString(getContentResolver(),
                             Settings.Global.BLUETOOTH_BTSNOOP_DEFAULT_MODE);
-            BluetoothProperties.snoop_default_mode(
-                    BluetoothProperties.snoop_default_mode_values.DISABLED);
-            for (BluetoothProperties.snoop_default_mode_values value :
-                    BluetoothProperties.snoop_default_mode_values.values()) {
+            BluetoothProperties.getSnoopDefaultMode(
+                    BluetoothProperties.getSnoopDefaultMode_values.DISABLED);
+            for (BluetoothProperties.getSnoopDefaultMode_values value :
+                    BluetoothProperties.getSnoopDefaultMode_values.values()) {
                 if (value.getPropValue().equals(mDefaultSnoopLogSettingAtEnable)) {
-                    BluetoothProperties.snoop_default_mode(value);
+                    BluetoothProperties.getSnoopDefaultMode(value);
                 }
             }
         } else if (newState == BluetoothAdapter.STATE_BLE_ON
