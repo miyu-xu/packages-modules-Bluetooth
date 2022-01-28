@@ -178,6 +178,7 @@ cc_defaults {
                 "libbinder_ndk",
                 "libfmq",
                 "libstatslog_bt",
+                "PlatformProperties",
             ],
             srcs: ["src/btif_avrcp_audio_track.cc"],
         },
