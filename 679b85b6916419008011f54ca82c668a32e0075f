@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0318bc1b_51c44352",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-28T02:28:23Z",
+      "side": 1,
+      "message": "+Partha Sarathi Saha\n\nThe checks must include both typical local and remote disconnect reasons, and only atypical reasons may the device be put onto the background list.  Does this work your your application ?",
+      "revId": "679b85b6916419008011f54ca82c668a32e0075f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
