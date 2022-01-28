@@ -179,6 +179,9 @@ cc_defaults {
                 "libfmq",
                 "libstatslog_bt",
             ],
+            static_libs: [
+                "PlatformProperties",
+            ],
             srcs: ["src/btif_avrcp_audio_track.cc"],
         },
         host: {
@@ -263,6 +266,9 @@ cc_test {
             shared_libs: [
                 "libbinder_ndk",
                 "android.hardware.bluetooth.audio-V1-ndk",
+            ],
+            static_libs: [
+                "PlatformProperties",
             ],
         },
     },

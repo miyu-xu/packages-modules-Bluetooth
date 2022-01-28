@@ -279,6 +279,13 @@ cc_test {
     whole_static_libs: [
         "libbluetooth-for-tests",
     ],
+    target: {
+        android: {
+            static_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
 }
 
 cc_test {

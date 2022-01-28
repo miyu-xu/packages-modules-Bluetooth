@@ -82,4 +82,11 @@ cc_test {
     sanitize: {
       cfi: false,
     },
+    target: {
+        android: {
+            static_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
 }

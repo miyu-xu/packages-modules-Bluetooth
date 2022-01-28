@@ -102,6 +102,13 @@ cc_defaults {
         ],
         componentid: 155276,
     },
+    target: {
+        android: {
+            static_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
 }
 
 cc_fuzz {

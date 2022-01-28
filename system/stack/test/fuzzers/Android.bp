@@ -62,4 +62,11 @@ cc_defaults {
         "libutils",
         "libcrypto",
     ],
+    target: {
+        android: {
+            static_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
 }
