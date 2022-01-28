@@ -34,6 +34,24 @@
       "parentUuid": "0318bc1b_51c44352",
       "revId": "679b85b6916419008011f54ca82c668a32e0075f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebc44d1_02fb6998",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-28T12:19:08Z",
+      "side": 1,
+      "message": "Hi Chris,\n\nThinking more, as the change you added in the current patchset is able to handle some reconnect scenarios and as it has passed Presubmit tests, we can merge these gerrits. May post separate gerrit to cover additional reconnect scenario (earbud in/out of its cradle) later when figured out fix for associated test failures.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "cded1def_bd4b02f6",
+      "revId": "679b85b6916419008011f54ca82c668a32e0075f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
