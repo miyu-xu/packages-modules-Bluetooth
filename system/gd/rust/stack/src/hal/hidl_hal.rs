@@ -1,6 +1,6 @@
 //! Implementation of the HAl that talks to BT controller over Android's HIDL
 use crate::hal::internal::{InnerHal, RawHal};
-use bt_packets::hci::{AclPacket, CommandPacket, EventPacket, IsoPacket, Packet};
+use bt_packets::hci::{AclPacket, CommandPacket, EventPacket, IsoPacket, Packet, ScoPacket};
 use gddi::{module, provides};
 use std::sync::Arc;
 use std::sync::Mutex;
@@ -24,6 +24,7 @@ async fn provide_hidl_hal(rt: Arc<Runtime>) -> RawHal {
         evt_tx: inner_hal.evt_tx,
         acl_tx: inner_hal.acl_tx,
         iso_tx: inner_hal.iso_tx,
+        sco_tx: inner_hal.sco_tx,
     });
     ffi::start_hal();
     init_rx.recv().await.unwrap();
@@ -61,6 +62,7 @@ struct Callbacks {
     evt_tx: UnboundedSender<EventPacket>,
     acl_tx: UnboundedSender<AclPacket>,
     iso_tx: UnboundedSender<IsoPacket>,
+    sco_tx: UnboundedSender<ScoPacket>,
 }
 
 lazy_static! {
@@ -89,7 +91,13 @@ fn on_acl(data: &[u8]) {
     }
 }
 
-fn on_sco(_data: &[u8]) {}
+fn on_sco(data: &[u8]) {
+    let callbacks = CALLBACKS.lock().unwrap();
+    match ScoPacket::parse(data) {
+        Ok(p) => callbacks.as_ref().unwrap().sco_tx.send(p).unwrap(),
+        Err(e) => log::error!("failure to parse incoming SCO: {:?} data: {:02x?}", e, data),
+    }
+}
 
 fn on_iso(data: &[u8]) {
     let callbacks = CALLBACKS.lock().unwrap();
