@@ -139,6 +139,9 @@ cc_library_shared {
                 "libutils",
                 "libz",
             ],
+            static_libs: [
+                "PlatformProperties",
+            ],
             required: [
                 "libldacBT_enc",
                 "libldacBT_abr",
