@@ -16,6 +16,23 @@
       "message": "This broke ChromeOS. We\u0027re currently holding a CHROMIUM patch to fix this -- merging this upstream to get rid of that.",
       "revId": "f7bbc5b301e7ed90d7e4b4c128bcc90cba276d4e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ba03fdf_1fe85c47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-01-28T23:57:21Z",
+      "side": 1,
+      "message": "Last one seems to have failed due to lack of devices. Re-queuing for pre-submit tests.",
+      "revId": "f7bbc5b301e7ed90d7e4b4c128bcc90cba276d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
