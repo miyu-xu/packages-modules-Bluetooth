@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1f48d2c_6e030b4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-28T08:12:07Z",
+      "side": 1,
+      "message": "Is it possible to abandon https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1964000/5 and retain this patch, as this patch looks fine independently.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "be7128c60dc539d13daa5f9c2b6339e9b2764ed0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
