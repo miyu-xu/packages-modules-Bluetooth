@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38877fc6_e99337f4",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-01-28T17:51:07Z",
+      "side": 1,
+      "message": "Did we want this to be:\n\n  .metadata \u003d std::move(metadata),\n\nThat would seem to make it similar to other functions in this file.  Alternatively, if we don\u0027t want to use std::move() here, should we change the function to take \"metadata\" by const reference?\n\nSpecifically, we\u0027re making one copy of this vector when calling this method, and then another copy of the vector on this assignment.  It seems like we should only need one of these copies.",
+      "revId": "8604826cb698ceba70718747145fb4bb302a32f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
