@@ -16,6 +16,24 @@
       "message": "+Partha Sarathi Saha\n\nThe checks must include both typical local and remote disconnect reasons, and only atypical reasons may the device be put onto the background list.  Does this work your your application ?",
       "revId": "679b85b6916419008011f54ca82c668a32e0075f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cded1def_bd4b02f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-28T08:05:41Z",
+      "side": 1,
+      "message": "Thanks Chris for the suggestion.\n\nThe problem that we are facing ignoring the remote initiated disconnection (reason \u003d GATT_CONN_TERMINATE_PEER_USER), for adding to the background list is, for the use case, where when Buds is put to cradle, disconnects with reason \u003d GATT_CONN_TERMINATE_PEER_USER, subsequently when Buds is removed from the cradle, want the phone to connect back automatically.\n\nWe have debugged the issue to be related to the atest receiving a GATT open during a link disconnect.\n\nThe patch https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1963999/4 looks fine though.\n\nIs it possible to abandon this patch, will upload a new patch for this, but retain the patch https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1963999/4 for review and merge.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "0318bc1b_51c44352",
+      "revId": "679b85b6916419008011f54ca82c668a32e0075f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
