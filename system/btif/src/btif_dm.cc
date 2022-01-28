@@ -29,6 +29,7 @@
 
 #include "btif_dm.h"
 
+#include <android/sysprop/BluetoothProperties.sysprop.h>
 #include <base/bind.h>
 #include <base/logging.h>
 #include <bluetooth/uuid.h>
@@ -3063,8 +3064,11 @@ void btif_dm_read_energy_info() { BTA_DmBleGetEnergyInfo(bta_energy_info_cb); }
 static const char* btif_get_default_local_name() {
   if (btif_default_local_name[0] == '\0') {
     int max_len = sizeof(btif_default_local_name) - 1;
-    if (BTM_DEF_LOCAL_NAME[0] != '\0') {
-      strncpy(btif_default_local_name, BTM_DEF_LOCAL_NAME, max_len);
+    std::optional<std::string> default_local_name =
+        android::sysprop::BluetoothProperties::getDefaultDeviceName();
+    if (default_local_name.has_value() && default_local_name.value() != "") {
+      strncpy(btif_default_local_name, default_local_name.value().c_str(),
+              max_len);
     } else {
       char prop_model[PROPERTY_VALUE_MAX];
       osi_property_get(PROPERTY_PRODUCT_MODEL, prop_model, "");

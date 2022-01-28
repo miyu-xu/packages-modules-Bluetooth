@@ -108,6 +108,7 @@ cc_library_shared {
         "libbluetooth_gd", // Gabeldorsche
         "libbluetooth-dumpsys",
         "libbluetooth_rust_interop",
+        "PlatformProperties",
     ],
     whole_static_libs: [
         "libbt-bta",

@@ -166,6 +166,9 @@ cc_defaults {
         "libtinyxml2",
         "libz",
     ],
+    static_libs: [
+        "PlatformProperties",
+    ],
     target: {
         android: {
             shared_libs: [
