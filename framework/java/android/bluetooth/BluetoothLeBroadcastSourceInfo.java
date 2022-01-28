@@ -44,7 +44,7 @@ import java.util.Objects;
  * Delegator on a Broadcast Sink. This is achieved using the Periodic Advertising Synchronization
  * Transfer (PAST) procedure. This procedure uses information contained within an instance of this
  * class.
- *
+ * This is sample change
  * @hide
  */
 public final class BluetoothLeBroadcastSourceInfo implements Parcelable {
