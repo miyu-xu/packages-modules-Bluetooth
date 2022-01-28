@@ -4,8 +4,9 @@
 
 use crate::hal::internal::{InnerHal, RawHal};
 use crate::hal::{Result, H4_HEADER_SIZE};
-use bt_packets::hci::{AclPacket, CommandPacket, EventPacket, IsoPacket, Packet};
+use bt_packets::hci::{AclPacket, CommandPacket, EventPacket, IsoPacket, Packet, ScoPacket};
 use bytes::{BufMut, Bytes, BytesMut};
+use futures::channel::mpsc::UnboundedSender;
 use gddi::{module, provides, Stoppable};
 use num_derive::{FromPrimitive, ToPrimitive};
 use std::net::{IpAddr, SocketAddr};
@@ -27,7 +28,7 @@ enum HciPacketType {
 }
 
 const SIZE_OF_EVENT_HEADER: usize = 2;
-const _SIZE_OF_SCO_HEADER: usize = 3;
+const SIZE_OF_SCO_HEADER: usize = 3;
 const SIZE_OF_ACL_HEADER: usize = 4;
 const SIZE_OF_ISO_HEADER: usize = 4;
 
@@ -46,8 +47,20 @@ async fn provide_rootcanal_hal(config: RootcanalConfig, rt: Arc<Runtime>) -> Raw
         .expect("unable to create stream to rootcanal")
         .into_split();
 
-    rt.spawn(dispatch_incoming(inner_hal.evt_tx, inner_hal.acl_tx, inner_hal.iso_tx, reader));
-    rt.spawn(dispatch_outgoing(inner_hal.cmd_rx, inner_hal.acl_rx, inner_hal.iso_rx, writer));
+    rt.spawn(dispatch_incoming(
+        inner_hal.evt_tx,
+        inner_hal.acl_tx,
+        inner_hal.iso_tx,
+        inner_hal.sco_tx,
+        reader,
+    ));
+    rt.spawn(dispatch_outgoing(
+        inner_hal.cmd_rx,
+        inner_hal.acl_rx,
+        inner_hal.iso_rx,
+        inner_hal.sco_rx,
+        writer,
+    ));
 
     raw_hal
 }
@@ -75,6 +88,7 @@ async fn dispatch_incoming<R>(
     evt_tx: UnboundedSender<EventPacket>,
     acl_tx: UnboundedSender<AclPacket>,
     iso_tx: UnboundedSender<IsoPacket>,
+    sco_tx: UnboundedSender<ScoPacket>,
     reader: R,
 ) -> Result<()>
 where
@@ -124,6 +138,20 @@ where
                 Ok(p) => iso_tx.send(p).unwrap(),
                 Err(e) => log::error!("dropping invalid ISO packet: {}: {:02x}", e, frozen),
             }
+        } else if buffer[0] == HciPacketType::Sco as u8 {
+            buffer.resize(SIZE_OF_SCO_HEADER, 0);
+            reader.read_exact(&mut buffer).await?;
+            // TODO(bidsharma): Find out the correct len for Sco
+            let len: usize = (buffer[2] as u16 + (((buffer[3] & 0x3f) as u16) << 8)).into();
+            let mut payload = buffer.split_off(SIZE_OF_SCO_HEADER);
+            payload.resize(len, 0);
+            reader.read_exact(&mut payload).await?;
+            buffer.unsplit(payload);
+            let frozen = buffer.freeze();
+            match ScoPacket::parse(&frozen) {
+                Ok(p) => sco_tx.send(p).unwrap(),
+                Err(e) => log::error!("dropping invalid ISO packet: {}: {:02x}", e, frozen),
+            }
         }
     }
 }
@@ -133,6 +161,7 @@ async fn dispatch_outgoing<W>(
     mut cmd_rx: UnboundedReceiver<CommandPacket>,
     mut acl_rx: UnboundedReceiver<AclPacket>,
     mut iso_rx: UnboundedReceiver<IsoPacket>,
+    mut sco_rx: UnboundedReceiver<ScoPacket>,
     mut writer: W,
 ) -> Result<()>
 where
@@ -143,6 +172,7 @@ where
             Some(cmd) = cmd_rx.recv() => write_with_type(&mut writer, HciPacketType::Command, cmd.to_bytes()).await?,
             Some(acl) = acl_rx.recv() => write_with_type(&mut writer, HciPacketType::Acl, acl.to_bytes()).await?,
             Some(iso) = iso_rx.recv() => write_with_type(&mut writer, HciPacketType::Iso, iso.to_bytes()).await?,
+            Some(sco) = sco_rx.recv() => write_with_type(&mut writer, HciPacketType::Sco, sco.to_bytes()).await?,
             else => break,
         }
     }
