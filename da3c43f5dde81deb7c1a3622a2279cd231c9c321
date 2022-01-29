@@ -1,0 +1,341 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895515",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "717db067_59bc03e7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "\"Discovery works without segfault on ChromeOS\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 50
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895508",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0d128dd5_bfde8db5",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 109
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895508",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6bb77a10_7590483d",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 106
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895510",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "dc894b29_26ab2d0d",
+          "description": "Change to \"system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+              "range": {
+                "startLine": 45,
+                "startChar": 31,
+                "endLine": 45,
+                "endChar": 39
+              },
+              "replacement": "parameter"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f5ee3c3a_609a7104",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Common typo found: \"paramter\" -- should it be \"parameter\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 39
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895508",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "814c8bcf_caac26af",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 109
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895508",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "de312600_959095b5",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 111
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895508",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0b8a5479_867e073e",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 107
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895508",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "10939852_1a35e5f8",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 103
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895508",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "60184d56_9cc89b31",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 105
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895510",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "35110952_d0e38a4a",
+          "description": "Change to \"system/gd/rust/topshim/src/profiles/gatt.rs\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/src/profiles/gatt.rs",
+              "range": {
+                "startLine": 90,
+                "startChar": 40,
+                "endLine": 90,
+                "endChar": 48
+              },
+              "replacement": "parameter"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "04649f2e_102a9c2d",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Common typo found: \"paramter\" -- should it be \"parameter\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 90,
+        "startChar": 40,
+        "endLine": 90,
+        "endChar": 48
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019895510",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "7070866c_760bf654",
+          "description": "Change to \"system/gd/rust/topshim/src/profiles/gatt.rs\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/src/profiles/gatt.rs",
+              "range": {
+                "startLine": 501,
+                "startChar": 26,
+                "endLine": 501,
+                "endChar": 34
+              },
+              "replacement": "parameter"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "a4c250f5_36e7edbe",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-29T01:18:26Z",
+      "side": 1,
+      "message": "Common typo found: \"paramter\" -- should it be \"parameter\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 501,
+        "startChar": 26,
+        "endLine": 501,
+        "endChar": 34
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
