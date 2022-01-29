@@ -16,6 +16,23 @@
       "message": "Did we want this to be:\n\n  .metadata \u003d std::move(metadata),\n\nThat would seem to make it similar to other functions in this file.  Alternatively, if we don\u0027t want to use std::move() here, should we change the function to take \"metadata\" by const reference?\n\nSpecifically, we\u0027re making one copy of this vector when calling this method, and then another copy of the vector on this assignment.  It seems like we should only need one of these copies.",
       "revId": "8604826cb698ceba70718747145fb4bb302a32f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63d9c2a8_21bfe2d7",
+        "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1005967
+      },
+      "writtenOn": "2022-01-29T00:15:58Z",
+      "side": 1,
+      "message": "This check seems to cause an infinite crash loop of com.android.bluetooth on T GSI + S vendor, because apparently the vendor image does not provide VERSION_2_1. AFAIK this is a supported configuration. Should there be some sort of fallback in this code?",
+      "revId": "8604826cb698ceba70718747145fb4bb302a32f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
