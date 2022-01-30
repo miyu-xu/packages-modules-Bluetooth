@@ -11,6 +11,9 @@ NEARBY_PACKAGE = 'com.google.android.gms.nearby'
 WEARABLE_PACKAGE = 'com.google.android.gms.wearable'
 WEARABLE_APP_PACKAGE = 'com.google.android.wearable.app'
 
+# Package name of Dialer app on Wear.
+DIALER_WEAR_PACKAGE = 'dialer_wear#com.google.android.dialer'
+
 SET_SCREEN_OFF_TIMEOUT_HALF_HOUR = (
     'settings put system screen_off_timeout 1800000')
 START_BLUETOOTH_SETTINGS = 'am start -S -a android.settings.BLUETOOTH_SETTINGS'
@@ -108,5 +111,24 @@ WATCH_PHENOTYPE_FLAGS = {
             'type': FLAG_TYPE.STRING,
             'value': 'geller'
         }
-        ) + CONNECTION_SWITCHING_FLAGS
+        ) + CONNECTION_SWITCHING_FLAGS,
+    WEARABLE_APP_PACKAGE: (
+        {
+            'name': '45354660',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        },
+        {
+            'name': '45362364',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        }
+        ),
+    DIALER_WEAR_PACKAGE: (
+        {
+            'name': '45358795',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        },
+        )
 }
