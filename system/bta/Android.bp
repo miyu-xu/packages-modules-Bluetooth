@@ -138,6 +138,9 @@ cc_library_static {
         "sys/bta_sys_main.cc",
         "sys/utl.cc",
     ],
+    generated_headers: [
+        "BluetoothGeneratedPackets_h",
+    ],
     static_libs: [
         "avrcp-target-service",
         "lib-bt-packets",
@@ -321,6 +324,9 @@ cc_test {
         "test/common/bta_gatt_api_mock.cc",
         "test/common/bta_gatt_queue_mock.cc",
         "test/common/btm_api_mock.cc",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedPackets_h",
     ],
     shared_libs: [
         "libprotobuf-cpp-lite",
