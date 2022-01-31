@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019958489",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "29e234ec_fa0aff29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-31T22:13:06Z",
+      "side": 1,
+      "message": "\"Discovery works without segfault on ChromeOS\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 50
+      },
+      "revId": "5d143624a01bd80932a52864f2a327a870a9be0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019958476",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d2",
+      "fixSuggestions": [
+        {
+          "fixId": "2c2fddd4_48aec085",
+          "description": "Change to \"system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc\"",
+          "replacements": [
+            {
+              "path": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+              "range": {
+                "startLine": 45,
+                "startChar": 31,
+                "endLine": 45,
+                "endChar": 39
+              },
+              "replacement": "parameter"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f750b6e7_548ef1d9",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-31T22:13:06Z",
+      "side": 1,
+      "message": "Common typo found: \"paramter\" -- should it be \"parameter\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 39
+      },
+      "revId": "5d143624a01bd80932a52864f2a327a870a9be0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
