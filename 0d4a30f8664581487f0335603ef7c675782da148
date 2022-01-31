@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019937183",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964917?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fcf00f93_0f7f6d5c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-01-31T07:35:11Z",
+      "side": 1,
+      "message": "\"FEATURES\u003dtest emerge-hatch floss\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 38
+      },
+      "revId": "0d4a30f8664581487f0335603ef7c675782da148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
