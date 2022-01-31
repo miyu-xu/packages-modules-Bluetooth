@@ -22,6 +22,30 @@
       },
       "revId": "c68e3cdbd4368a68f2f08ebde43510cf195e465e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498fa4c6_bd2cf67b",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-01-31T16:41:32Z",
+      "side": 1,
+      "message": "thanks",
+      "parentUuid": "5d5bb392_24e6e6aa",
+      "range": {
+        "startLine": 1189,
+        "startChar": 12,
+        "endLine": 1189,
+        "endChar": 65
+      },
+      "revId": "c68e3cdbd4368a68f2f08ebde43510cf195e465e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
