@@ -43,6 +43,8 @@ void cleanup();
 // Set up the codec into BluetoothAudio HAL
 bool setup_codec();
 
+void set_audio_low_latency_mode_allowed(bool allowed);
+
 // Send command to the BluetoothAudio HAL: StartSession, EndSession,
 // StreamStarted, StreamSuspended
 void start_session();
@@ -55,7 +57,6 @@ size_t read(uint8_t* p_buf, uint32_t len);
 
 // Update A2DP delay report to BluetoothAudio HAL
 void set_remote_delay(uint16_t delay_report);
-
 }  // namespace a2dp
 }  // namespace audio
 }  // namespace bluetooth

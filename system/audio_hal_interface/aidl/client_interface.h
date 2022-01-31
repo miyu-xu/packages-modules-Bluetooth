@@ -90,6 +90,8 @@ class BluetoothAudioClientInterface {
 
   static bool is_aidl_available();
 
+  void SetLowLatencyModeAllowed(bool allowed);
+
  protected:
   mutable std::mutex internal_mutex_;
   /***

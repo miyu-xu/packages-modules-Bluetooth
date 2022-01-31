@@ -588,7 +588,7 @@ static int set_dynamic_audio_buffer_size(int codec, int size) {
 
 static bool allow_low_latency_audio(bool allowed, const RawAddress& address) {
   LOG_INFO("%s %s", __func__, allowed ? "true" : "false");
-  // Call HAL here
+  bluetooth::a2dp::set_low_latency_mode_allowellld(allowed);
   return true;
 }
 
