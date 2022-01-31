@@ -1,0 +1,7 @@
+include platform/packages/modules/Bluetooth:/OWNERS
+
+# Project owners
+girardier@google.com
+licorne@google.com
+uael@google.com
+charliebout@google.com
