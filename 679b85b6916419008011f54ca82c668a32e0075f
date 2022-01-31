@@ -75,6 +75,30 @@
       },
       "revId": "679b85b6916419008011f54ca82c668a32e0075f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e727008_6597a66e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-01-31T11:16:24Z",
+      "side": 1,
+      "message": "Thanks Myles for the suggestion.\n\nHi Chris, tried uploading new patchset with the comment update change, somehow uploading new patchset is failing for me, was considering the following comment:\n\n/* Add device into BG connection for unintended disconnections */\n\nCan you please check and try uploading the new patchset from your end with appropriate comment update.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "bdc2d94d_3a60950b",
+      "range": {
+        "startLine": 1263,
+        "startChar": 41,
+        "endLine": 1263,
+        "endChar": 74
+      },
+      "revId": "679b85b6916419008011f54ca82c668a32e0075f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
