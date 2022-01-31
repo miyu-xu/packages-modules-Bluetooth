@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5bb392_24e6e6aa",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-01-31T16:40:25Z",
+      "side": 1,
+      "message": "This seems like the wrong check here.\n\n7.3.30 Write Automatic Flush Timeout\n\nvs\n\n7.3.42 Write Link Supervision Timeout",
+      "range": {
+        "startLine": 1189,
+        "startChar": 12,
+        "endLine": 1189,
+        "endChar": 65
+      },
+      "revId": "c68e3cdbd4368a68f2f08ebde43510cf195e465e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
