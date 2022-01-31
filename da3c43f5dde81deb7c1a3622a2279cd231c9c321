@@ -1,0 +1,76 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f841bea_e764a6d5",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-01-31T21:58:39Z",
+      "side": 1,
+      "message": "\u003e Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.\n\nTip: You can add\n```\nBYPASS_LONG_LINES_REASON: Bluetooth likes 120 lines\n```\nto the commit description, e.g. CL:1950979.",
+      "parentUuid": "10939852_1a35e5f8",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 103
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cc5d9f6_666c82bc",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-01-31T21:58:39Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"paramter\" -- should it be \"parameter\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "04649f2e_102a9c2d",
+      "range": {
+        "startLine": 90,
+        "startChar": 40,
+        "endLine": 90,
+        "endChar": 48
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22200f3f_50a8d7fc",
+        "filename": "system/gd/rust/topshim/src/profiles/gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-01-31T21:58:39Z",
+      "side": 1,
+      "message": "\u003e Common typo found: \"paramter\" -- should it be \"parameter\"?\n\u003e Note: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.\n\nPlease fix.",
+      "parentUuid": "a4c250f5_36e7edbe",
+      "range": {
+        "startLine": 501,
+        "startChar": 26,
+        "endLine": 501,
+        "endChar": 34
+      },
+      "revId": "da3c43f5dde81deb7c1a3622a2279cd231c9c321",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
