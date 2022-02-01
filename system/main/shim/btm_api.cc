@@ -1341,3 +1341,9 @@ tBTM_STATUS bluetooth::shim::BTM_SetDeviceClass(DEV_CLASS dev_class) {
   LOG_WARN("Unimplemented");
   return BTM_SUCCESS;
 }
+
+tBTM_STATUS bluetooth::shim::BTM_ClearEventFilter() {
+  LOG_WARN("Unimplented!");
+  //  controller_get_interface()->clear_event_filter();
+  return BTM_SUCCESS;
+}
