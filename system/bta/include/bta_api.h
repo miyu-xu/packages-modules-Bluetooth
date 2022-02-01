@@ -47,32 +47,32 @@
 /*
  * Service ID
  */
+typedef enum : uint8_t {
+  BTA_UNASSIGNED_SERVICE_ID = 0,
+  BTA_A2DP_SOURCE_SERVICE_ID = 3, /* A2DP Source profile. */
+  BTA_HSP_SERVICE_ID = 5,         /* Headset profile. */
+  BTA_HFP_SERVICE_ID = 6,         /* Hands-free profile. */
+  BTA_BIP_SERVICE_ID = 13,        /* Basic Imaging profile */
+  BTA_A2DP_SINK_SERVICE_ID = 18,  /* A2DP Sink */
+  BTA_HID_SERVICE_ID = 20,        /* HID */
+  BTA_PBAP_SERVICE_ID = 22,       /* PhoneBook Access Server*/
+  BTA_HFP_HS_SERVICE_ID = 24,     /* HSP HS role */
+  BTA_MAP_SERVICE_ID = 25,        /* Message Access Profile */
+  BTA_MN_SERVICE_ID = 26,         /* Message Notification Service */
+  BTA_PCE_SERVICE_ID = 28,        /* PhoneBook Access Client */
+  BTA_SDP_SERVICE_ID = 29,        /* SDP Search */
+  BTA_HIDD_SERVICE_ID = 30,       /* HID Device */
 
-#define BTA_A2DP_SOURCE_SERVICE_ID 3 /* A2DP Source profile. */
-#define BTA_HSP_SERVICE_ID 5         /* Headset profile. */
-#define BTA_HFP_SERVICE_ID 6         /* Hands-free profile. */
-#define BTA_BIP_SERVICE_ID 13        /* Basic Imaging profile */
-#define BTA_A2DP_SINK_SERVICE_ID 18  /* A2DP Sink */
-#define BTA_HID_SERVICE_ID 20        /* HID */
-#define BTA_PBAP_SERVICE_ID 22       /* PhoneBook Access Server*/
-#define BTA_HFP_HS_SERVICE_ID 24     /* HSP HS role */
-#define BTA_MAP_SERVICE_ID 25        /* Message Access Profile */
-#define BTA_MN_SERVICE_ID 26         /* Message Notification Service */
-#define BTA_PCE_SERVICE_ID 28        /* PhoneBook Access Client */
-#define BTA_SDP_SERVICE_ID 29        /* SDP Search */
-#define BTA_HIDD_SERVICE_ID 30       /* HID Device */
+  /* BLE profile service ID */
+  BTA_BLE_SERVICE_ID = 31,  /* GATT profile */
+  BTA_USER_SERVICE_ID = 32, /* User requested UUID */
+  BTA_MAX_SERVICE_ID = 33,
 
-/* BLE profile service ID */
-#define BTA_BLE_SERVICE_ID 31  /* GATT profile */
-#define BTA_USER_SERVICE_ID 32 /* User requested UUID */
-#define BTA_MAX_SERVICE_ID 33
-
-/* service IDs (BTM_SEC_SERVICE_FIRST_EMPTY + 1) to (BTM_SEC_MAX_SERVICES - 1)
- * are used by BTA JV */
-#define BTA_FIRST_JV_SERVICE_ID (BTM_SEC_SERVICE_FIRST_EMPTY + 1)
-#define BTA_LAST_JV_SERVICE_ID (BTM_SEC_MAX_SERVICES - 1)
-
-typedef uint8_t tBTA_SERVICE_ID;
+  /* service IDs (BTM_SEC_SERVICE_FIRST_EMPTY + 1) to (BTM_SEC_MAX_SERVICES - 1)
+   * are used by BTA JV */
+  BTA_FIRST_JV_SERVICE_ID = (BTM_SEC_SERVICE_FIRST_EMPTY + 1),
+  BTA_LAST_JV_SERVICE_ID = (BTM_SEC_MAX_SERVICES - 1),
+} tBTA_SERVICE_ID;
 
 /* Service ID Mask */
 #define BTA_RES_SERVICE_MASK 0x00000001    /* Reserved */
