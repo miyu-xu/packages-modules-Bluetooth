@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6f41ae1_9acb12f8",
+        "filename": "system/gd/rust/stack/src/hal/rootcanal_hal.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-02-01T23:44:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61b9ed8c_37e5a3c3",
+      "range": {
+        "startLine": 144,
+        "startChar": 29,
+        "endLine": 144,
+        "endChar": 91
+      },
+      "revId": "3535cdf93482354749d6c152101d07c314d63f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80983ae9_64ff94e6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-01T22:34:23Z",
       "side": 1,
       "message": "SCO",
+      "range": {
+        "startLine": 152,
+        "startChar": 56,
+        "endLine": 152,
+        "endChar": 59
+      },
+      "revId": "3535cdf93482354749d6c152101d07c314d63f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd5d41f_5a48962c",
+        "filename": "system/gd/rust/stack/src/hal/rootcanal_hal.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-02-01T23:44:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80983ae9_64ff94e6",
       "range": {
         "startLine": 152,
         "startChar": 56,
