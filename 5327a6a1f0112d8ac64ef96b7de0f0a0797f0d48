@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019964069",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964606?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "50c25252_9735f0b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-01T00:42:29Z",
+      "side": 1,
+      "message": "\"Discovery works without segfault on ChromeOS\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 50
+      },
+      "revId": "5327a6a1f0112d8ac64ef96b7de0f0a0797f0d48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
