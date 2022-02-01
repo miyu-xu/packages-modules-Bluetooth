@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebaa96fc_8fa29f69",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-01T04:27:24Z",
+      "side": 1,
+      "message": "What about adding an get_opcode_supported(bluetooth::hci::OpCode op) To the interface?  It seems like it might scale better.",
+      "range": {
+        "startLine": 427,
+        "startChar": 22,
+        "endLine": 427,
+        "endChar": 76
+      },
+      "revId": "165f80348953202abffa42dd9ad584d567854057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
