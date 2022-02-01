@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019979322",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1966719?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "ce323807_a299d5b0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-01T14:13:24Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "3122af02562730d180ea123707c6afa9367ef1d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019979322",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1966719?revision\u003d4",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0665f55f_ccf3eb40",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-01T14:13:24Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "3122af02562730d180ea123707c6afa9367ef1d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
