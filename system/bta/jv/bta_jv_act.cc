@@ -101,7 +101,7 @@ tBTA_JV_CFG* p_bta_jv_cfg = &bta_jv_cfg;
  * Returns
  *
  ******************************************************************************/
-uint8_t bta_jv_alloc_sec_id(void) {
+tBTA_SERVICE_ID bta_jv_alloc_sec_id(void) {
   uint8_t ret = 0;
   int i;
   for (i = 0; i < BTA_JV_NUM_SERVICE_ID; i++) {
@@ -111,7 +111,7 @@ uint8_t bta_jv_alloc_sec_id(void) {
       break;
     }
   }
-  return ret;
+  return (tBTA_SERVICE_ID)ret;
 }
 static int get_sec_id_used(void) {
   int i;
@@ -145,9 +145,9 @@ static int get_rfc_cb_used(void) {
  * Returns
  *
  ******************************************************************************/
-static void bta_jv_free_sec_id(uint8_t* p_sec_id) {
-  uint8_t sec_id = *p_sec_id;
-  *p_sec_id = 0;
+static void bta_jv_free_sec_id(tBTA_SERVICE_ID* p_sec_id) {
+  tBTA_SERVICE_ID sec_id = *p_sec_id;
+  *p_sec_id = BTA_UNASSIGNED_SERVICE_ID;
   if (sec_id >= BTA_JV_FIRST_SERVICE_ID && sec_id <= BTA_JV_LAST_SERVICE_ID) {
     BTM_SecClrService(sec_id);
     bta_jv_cb.sec_id[sec_id - BTA_JV_FIRST_SERVICE_ID] = 0;
@@ -986,7 +986,7 @@ void bta_jv_l2cap_connect(int32_t type, tBTA_SEC sec_mask, tBTA_JV_ROLE role,
   cfg.mtu_present = true;
   cfg.mtu = rx_mtu;
 
-  uint8_t sec_id = bta_jv_alloc_sec_id();
+  tBTA_SERVICE_ID sec_id = bta_jv_alloc_sec_id();
   tBTA_JV_L2CAP_CL_INIT evt_data;
   evt_data.sec_id = sec_id;
   evt_data.status = BTA_JV_FAILURE;
@@ -1135,10 +1135,10 @@ void bta_jv_l2cap_start_server(int32_t type, tBTA_SEC sec_mask,
     cfg.mtu = 0;
   }
 
-  uint8_t sec_id = bta_jv_alloc_sec_id();
+  tBTA_SERVICE_ID sec_id = bta_jv_alloc_sec_id();
   uint16_t max_mps = 0xffff;  // Let GAP_ConnOpen set the max_mps.
   /* PSM checking is not required for LE COC */
-  if (0 == sec_id ||
+  if (BTA_UNASSIGNED_SERVICE_ID == sec_id ||
       ((type == BTA_JV_CONN_TYPE_L2CAP) && (!bta_jv_check_psm(local_psm))) ||
       (handle = GAP_ConnOpen("JV L2CAP", sec_id, 1, nullptr, local_psm, max_mps,
                              &cfg, ertm_info.get(), sec_mask,

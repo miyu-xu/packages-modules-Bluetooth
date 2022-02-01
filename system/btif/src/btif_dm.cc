@@ -2120,7 +2120,7 @@ void BTIF_dm_enable() {
   tBTA_SERVICE_MASK service_mask = btif_get_enabled_services_mask();
   for (uint32_t i = 0; i <= BTA_MAX_SERVICE_ID; i++) {
     if (service_mask & (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(i))) {
-      btif_in_execute_service_request(i, true);
+      btif_in_execute_service_request((tBTA_SERVICE_ID)i, true);
     }
   }
   /* clear control blocks */
@@ -2143,9 +2143,9 @@ void BTIF_dm_disable() {
   /* for each of the enabled services in the mask, trigger the profile
    * disable */
   tBTA_SERVICE_MASK service_mask = btif_get_enabled_services_mask();
-  for (uint32_t i = 0; i <= BTA_MAX_SERVICE_ID; i++) {
+  for (tBTA_SERVICE_MASK i = 0; i <= BTA_MAX_SERVICE_ID; i++) {
     if (service_mask & (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(i))) {
-      btif_in_execute_service_request(i, false);
+      btif_in_execute_service_request((tBTA_SERVICE_ID)i, false);
     }
   }
   bluetooth::bqr::EnableBtQualityReport(false);
