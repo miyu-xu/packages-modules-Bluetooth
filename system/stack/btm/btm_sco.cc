@@ -69,6 +69,13 @@ static const char kPropertyDisableEnhancedConnection[] =
     "bluetooth.sco.disable_enhanced_connection";
 
 namespace {
+
+typedef struct {
+  uint16_t max_latency_ms;
+  uint16_t packet_types;
+  uint8_t retransmission_effort;
+} tBTM_CHG_ESCO_PARAMS;
+
 constexpr char kBtmLogTag[] = "SCO";
 
 const bluetooth::legacy::hci::Interface& GetLegacyHciInterface() {

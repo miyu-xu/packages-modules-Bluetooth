@@ -197,11 +197,6 @@ typedef uint8_t tBTM_ESCO_EVT;
 /* Structure passed with SCO change command and events.
  * Used by both Sync and Enhanced sync messaging
  */
-typedef struct {
-  uint16_t max_latency_ms;
-  uint16_t packet_types;
-  uint8_t retransmission_effort;
-} tBTM_CHG_ESCO_PARAMS;
 
 /* Returned by BTM_ReadEScoLinkParms() */
 struct tBTM_ESCO_DATA {
