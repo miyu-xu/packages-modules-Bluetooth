@@ -41,6 +41,47 @@ namespace bluetooth {
 namespace os {
 using common::Closure;
 
+struct Reactor::Handler::impl {
+  impl() {
+    fd_ = eventfd(0, EFD_SEMAPHORE | EFD_NONBLOCK);
+    ASSERT_LOG(fd_ != -1, "Unable to create nonblocking event file descriptor semaphore");
+  }
+  ~impl() {
+    ASSERT_LOG(fd_ != -1, "Unable to close a never-opened event file descriptor");
+    close(fd_);
+    fd_ = -1;
+  }
+  int fd_ = -1;
+};
+
+Reactor::Handler::Handler() : pimpl_(new impl()) {}
+Reactor::Handler::~Handler() {
+  delete pimpl_;
+}
+
+bool Reactor::Handler::Read() {
+  uint64_t val = 0;
+  return eventfd_read(pimpl_->fd_, &val) == 0;
+}
+int Reactor::Handler::Id() const {
+  return pimpl_->fd_;
+}
+void Reactor::Handler::Clear() {
+  uint64_t val;
+  while (eventfd_read(pimpl_->fd_, &val) == 0) {
+  }
+}
+void Reactor::Handler::Close() {
+  int close_status;
+  RUN_NO_INTR(close_status = close(pimpl_->fd_));
+  ASSERT(close_status != -1);
+}
+void Reactor::Handler::Notify() {
+  uint64_t val = 1;
+  auto write_result = eventfd_write(pimpl_->fd_, val);
+  ASSERT(write_result != -1);
+}
+
 class Reactor::Reactable {
  public:
   Reactable(int fd, Closure on_read_ready, Closure on_write_ready)
@@ -163,6 +204,10 @@ void Reactor::Stop() {
   }
   auto control = eventfd_write(control_fd_, kStopReactor);
   ASSERT(control != -1);
+}
+
+std::unique_ptr<Reactor::Handler> Reactor::NewHandler() const {
+  return std::make_unique<Reactor::Handler>();
 }
 
 Reactor::Reactable* Reactor::Register(int fd, Closure on_read_ready, Closure on_write_ready) {

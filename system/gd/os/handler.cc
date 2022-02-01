@@ -16,9 +16,6 @@
 
 #include "os/handler.h"
 
-#include <sys/eventfd.h>
-#include <unistd.h>
-
 #include <cstring>
 
 #include "common/bind.h"
@@ -27,19 +24,15 @@
 #include "os/reactor.h"
 #include "os/utils.h"
 
-#ifndef EFD_SEMAPHORE
-#define EFD_SEMAPHORE 1
-#endif
-
 namespace bluetooth {
 namespace os {
 using common::OnceClosure;
 
 Handler::Handler(Thread* thread)
-    : tasks_(new std::queue<OnceClosure>()), thread_(thread), fd_(eventfd(0, EFD_SEMAPHORE | EFD_NONBLOCK)) {
-  ASSERT(fd_ != -1);
+    : tasks_(new std::queue<OnceClosure>()), thread_(thread) {  //, fd_(eventfd(0, EFD_SEMAPHORE | EFD_NONBLOCK)) {
+  handler_ = thread_->GetReactor()->NewHandler();
   reactable_ = thread_->GetReactor()->Register(
-      fd_, common::Bind(&Handler::handle_next_event, common::Unretained(this)), common::Closure());
+      handler_->Id(), common::Bind(&Handler::handle_next_event, common::Unretained(this)), common::Closure());
 }
 
 Handler::~Handler() {
@@ -47,10 +40,7 @@ Handler::~Handler() {
     std::lock_guard<std::mutex> lock(mutex_);
     ASSERT_LOG(was_cleared(), "Handlers must be cleared before they are destroyed");
   }
-
-  int close_status;
-  RUN_NO_INTR(close_status = close(fd_));
-  ASSERT(close_status != -1);
+  handler_->Close();
 }
 
 void Handler::Post(OnceClosure closure) {
@@ -62,9 +52,7 @@ void Handler::Post(OnceClosure closure) {
     }
     tasks_->emplace(std::move(closure));
   }
-  uint64_t val = 1;
-  auto write_result = eventfd_write(fd_, val);
-  ASSERT(write_result != -1);
+  handler_->Notify();
 }
 
 void Handler::Clear() {
@@ -76,9 +64,7 @@ void Handler::Clear() {
   }
   delete tmp;
 
-  uint64_t val;
-  while (eventfd_read(fd_, &val) == 0) {
-  }
+  handler_->Clear();
 
   thread_->GetReactor()->Unregister(reactable_);
   reactable_ = nullptr;
@@ -93,13 +79,12 @@ void Handler::handle_next_event() {
   common::OnceClosure closure;
   {
     std::lock_guard<std::mutex> lock(mutex_);
-    uint64_t val = 0;
-    auto read_result = eventfd_read(fd_, &val);
+    bool has_data = handler_->Read();
 
     if (was_cleared()) {
       return;
     }
-    ASSERT_LOG(read_result != -1, "eventfd read error %d %s", errno, strerror(errno));
+    ASSERT_LOG(has_data, "Notified for work but no work available");
 
     closure = std::move(tasks_->front());
     tasks_->pop();
