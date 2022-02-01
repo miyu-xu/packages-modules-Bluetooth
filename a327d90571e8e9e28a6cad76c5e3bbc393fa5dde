@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019993952",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964604?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b20f54ca_b5269cdc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-01T21:27:16Z",
+      "side": 1,
+      "message": "\"Build on ChromeOS\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 23
+      },
+      "revId": "a327d90571e8e9e28a6cad76c5e3bbc393fa5dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
