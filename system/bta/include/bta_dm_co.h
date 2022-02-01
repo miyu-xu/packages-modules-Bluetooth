@@ -146,18 +146,6 @@ void bta_dm_sco_co_out_data(BT_HDR** p_buf);
 
 /*******************************************************************************
  *
- * Function         bta_dm_sco_co_in_data
- *
- * Description      This function is called to send incoming SCO data to
- *                  application.
- *
- * Returns          void
- *
- ******************************************************************************/
-void bta_dm_sco_co_in_data(BT_HDR* p_buf, tBTM_SCO_DATA_FLAG status);
-
-/*******************************************************************************
- *
  * Function         bta_dm_co_ble_io_req
  *
  * Description      This callout function is executed by DM to get BLE IO
