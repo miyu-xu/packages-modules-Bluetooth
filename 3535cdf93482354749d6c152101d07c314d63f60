@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61b9ed8c_37e5a3c3",
+        "filename": "system/gd/rust/stack/src/hal/rootcanal_hal.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-01T22:34:23Z",
+      "side": 1,
+      "message": "buffer[2];\n\n5.4.3 HCI Synchronous Data packets (In the Bluetooth spec) one byte of size in byte #3\n\nYou can also look at the PDL 😊\n\npacket Sco {\n  handle : 12,\n  packet_status_flag : PacketStatusFlag,\n  _reserved_ : 2, // BroadcastFlag\n  _size_(data) : 8,\n  data : 8[],\n}",
+      "range": {
+        "startLine": 144,
+        "startChar": 29,
+        "endLine": 144,
+        "endChar": 91
+      },
+      "revId": "3535cdf93482354749d6c152101d07c314d63f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80983ae9_64ff94e6",
+        "filename": "system/gd/rust/stack/src/hal/rootcanal_hal.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-01T22:34:23Z",
+      "side": 1,
+      "message": "SCO",
+      "range": {
+        "startLine": 152,
+        "startChar": 56,
+        "endLine": 152,
+        "endChar": 59
+      },
+      "revId": "3535cdf93482354749d6c152101d07c314d63f60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
