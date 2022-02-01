@@ -410,7 +410,8 @@ static const controller_t interface = {
     .get_ble_resolving_list_max_size = get_le_resolving_list_size,
     .set_ble_resolving_list_max_size = set_ble_resolving_list_max_size,
     .get_local_supported_codecs = get_local_supported_codecs,
-    .get_le_all_initiating_phys = get_le_all_initiating_phys};
+    .get_le_all_initiating_phys = get_le_all_initiating_phys,
+    .clear_event_filter = bluetooth::shim::controller_clear_event_filter};
 
 const controller_t* bluetooth::shim::controller_get_interface() {
   static bool loaded = false;
@@ -422,4 +423,9 @@ const controller_t* bluetooth::shim::controller_get_interface() {
 
 void bluetooth::shim::controller_clear_event_mask() {
   bluetooth::shim::GetController()->SetEventMask(0);
+}
+
+uint8_t bluetooth::shim::controller_clear_event_filter() {
+  bluetooth::shim::GetController()->SetEventFilterClearAll();
+  return BTM_SUCCESS;
 }

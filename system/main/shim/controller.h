@@ -27,5 +27,7 @@ const controller_t* controller_get_interface();
 
 void controller_clear_event_mask();
 
+uint8_t controller_clear_event_filter(void);
+
 }  // namespace shim
 }  // namespace bluetooth
