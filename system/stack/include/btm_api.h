@@ -926,6 +926,18 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
  ******************************************************************************/
 tBTM_CONTRL_STATE BTM_PM_ReadControllerState(void);
 
+/*******************************************************************************
+ *
+ * Function         BTM_ClearEventFilter
+ *
+ * Description      This function is called to clear the controller's event
+ *filter
+ *
+ * Returns          tBTM_STATUS
+ *
+ ******************************************************************************/
+tBTM_STATUS BTM_ClearEventFilter(void);
+
 /**
  * Send remote name request, either to legacy HCI, or to GD shim Name module
  */

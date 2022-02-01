@@ -163,6 +163,7 @@ struct btm_client_interface_t btm_client_interface = {
             .BTM_SetLocalDeviceName = BTM_SetLocalDeviceName,
             .BTM_IsDeviceUp = BTM_IsDeviceUp,
             .BTM_ReadDeviceClass = BTM_ReadDeviceClass,
+            .BTM_ClearEventFilter = BTM_ClearEventFilter,
         },
 
     .eir =

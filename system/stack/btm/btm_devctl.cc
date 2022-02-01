@@ -809,3 +809,8 @@ tBTM_STATUS BTM_BT_Quality_Report_VSE_Register(
             << " is_register: " << logbool(is_register);
   return retval;
 }
+
+tBTM_STATUS BTM_ClearEventFilter() {
+  LOG(ERROR) << __func__ << ": Clear event filter!";
+  return bluetooth::shim::BTM_ClearEventFilter();
+}
