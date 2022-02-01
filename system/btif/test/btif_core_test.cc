@@ -638,3 +638,11 @@ TEST_F(BtifCoreTest, dump_rc_pdu) {
   ASSERT_STREQ(oss.str().c_str(),
                dump_rc_pdu(std::numeric_limits<uint8_t>::max()));
 }
+
+TEST_F(BtifCoreTest, tBTA_SERVICE_MASK) {
+  tBTA_SERVICE_MASK service_mask;
+  for (uint64_t i = 0; i < BTA_MAX_SERVICE_ID; i++) {
+    service_mask = ((tBTA_SERVICE_MASK)1 << i);
+    LOG_INFO("%x", service_mask);
+  }
+}
