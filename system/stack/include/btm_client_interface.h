@@ -209,6 +209,7 @@ struct btm_client_interface_t {
     tBTM_STATUS (*BTM_SetDeviceClass)(DEV_CLASS dev_class);
     bool (*BTM_IsDeviceUp)();
     uint8_t* (*BTM_ReadDeviceClass)();
+    tBTM_STATUS (*BTM_ClearEventFilter)(void);
   } local;
 
   struct {
