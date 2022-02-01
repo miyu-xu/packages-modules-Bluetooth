@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019993974",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964605?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9e6ccecf_86316b1f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-01T21:27:20Z",
+      "side": 1,
+      "message": "\"Build on ChromeOS + Android presubmit build\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 49
+      },
+      "revId": "ea183db477032e11d38d5b4790735fd9862e4aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000019993967",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1964605?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1f182f93_4ce8d1b2",
+        "filename": "system/gd/rust/topshim/gatt/gatt_shim.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-01T21:27:20Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 109
+      },
+      "revId": "ea183db477032e11d38d5b4790735fd9862e4aa4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
