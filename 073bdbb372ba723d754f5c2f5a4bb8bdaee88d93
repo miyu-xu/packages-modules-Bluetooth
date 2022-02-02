@@ -105,6 +105,24 @@
       "parentUuid": "8f0fdb59_20c2af16",
       "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d8e6f1d_a1b7f62f",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-02-02T18:13:53Z",
+      "side": 1,
+      "message": "Hi Lukasz, thanks for your comments. Uploaded now a new patchset, that handles BAP Client choosing different QoS Configuration settings based on Context Type. Please let know of any comments.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "7f8c891c_f0e58955",
+      "revId": "073bdbb372ba723d754f5c2f5a4bb8bdaee88d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
