@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01016a58_e7341d9c",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-02T23:10:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "978a4493_57c174e1",
+      "revId": "11f8dd2c515b414cc1be4b4d7cd51c97df6523a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f351a32f_f57500b8",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-02-02T06:00:35Z",
       "side": 1,
       "message": "You need to add an implementation of set_audio_low_latency_mode_allowed to this file.",
+      "revId": "11f8dd2c515b414cc1be4b4d7cd51c97df6523a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22eeb12a_5df74e3a",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-02T23:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f351a32f_f57500b8",
       "revId": "11f8dd2c515b414cc1be4b4d7cd51c97df6523a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +102,24 @@
       "side": 1,
       "message": "This file is not included in any module and never built, which is why the typo here doesn\u0027t cause any errors.",
       "parentUuid": "d26e4fb3_81bf454d",
+      "revId": "11f8dd2c515b414cc1be4b4d7cd51c97df6523a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4f647de_35f50181",
+        "filename": "system/service/bluetooth_interface.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-02T23:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fb9b172_3623529e",
       "revId": "11f8dd2c515b414cc1be4b4d7cd51c97df6523a5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
