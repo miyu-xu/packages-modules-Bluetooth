@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020019624",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959204?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "31e1e741_4a0ae6cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T13:29:59Z",
+      "side": 1,
+      "message": "\"build\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 11
+      },
+      "revId": "8b2de65b79ec638e7d7cd433ebb41675dbac23ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020019624",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1959204?revision\u003d5",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2035e7f9_c8bafd6f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T13:29:59Z",
+      "side": 1,
+      "message": "\"frameworks\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 138
+      },
+      "revId": "8b2de65b79ec638e7d7cd433ebb41675dbac23ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
