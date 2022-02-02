@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e4c1a5e_3e90fee5",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-02T21:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd5773d0_daf8d8d3",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 6
+      },
+      "revId": "819385145f1613e25e5ac70f5ba35a08aa0b21f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "473d098a_5db00aa9",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec4f65db_75ee8b57",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-02T21:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "473d098a_5db00aa9",
+      "range": {
+        "startLine": 414,
+        "startChar": 26,
+        "endLine": 414,
+        "endChar": 43
+      },
+      "revId": "819385145f1613e25e5ac70f5ba35a08aa0b21f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c894aeb_585c8e0d",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-01T19:41:10Z",
       "side": 1,
       "message": "Can we make this static like the others (no need to add it here)",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "819385145f1613e25e5ac70f5ba35a08aa0b21f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e81d2fcb_636932ac",
+        "filename": "system/main/shim/controller.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-02T21:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c894aeb_585c8e0d",
       "range": {
         "startLine": 30,
         "startChar": 0,
