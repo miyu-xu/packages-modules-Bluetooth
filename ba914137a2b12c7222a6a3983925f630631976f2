@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8a78c94_f32d7c3b",
+        "filename": "system/gd/os/handler.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-02T16:55:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac9171bd_9fe238bd",
+      "range": {
+        "startLine": 32,
+        "startChar": 64,
+        "endLine": 32,
+        "endChar": 115
+      },
+      "revId": "ba914137a2b12c7222a6a3983925f630631976f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99bfc73f_4b0773fb",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96c9fb5a_c84615e6",
+        "filename": "system/gd/os/linux_generic/reactor.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-02T16:55:57Z",
+      "side": 1,
+      "message": "This does, but pushes handling to the upper layer",
+      "parentUuid": "99bfc73f_4b0773fb",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 21
+      },
+      "revId": "ba914137a2b12c7222a6a3983925f630631976f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5987e8b_bf8192a7",
         "filename": "system/gd/os/reactor.h",
         "patchSetId": 11
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-02T16:38:14Z",
       "side": 1,
       "message": "Handler in it\u0027s own file?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 55
+      },
+      "revId": "ba914137a2b12c7222a6a3983925f630631976f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "898cc286_007d1ae6",
+        "filename": "system/gd/os/reactor.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-02T16:55:57Z",
+      "side": 1,
+      "message": "The idea here was to maintain an inner class, similar to Reactable, to indicate the tight association.  But unlike Reactable, it does have an API.",
+      "parentUuid": "c5987e8b_bf8192a7",
       "range": {
         "startLine": 75,
         "startChar": 0,
