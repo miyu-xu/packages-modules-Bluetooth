@@ -18,11 +18,37 @@
 #include "bta_le_audio_api.h"
 
 bool LeAudioHalVerifier::SupportsLeAudio() {
-  return bluetooth::audio::HalVersionManager::GetHalVersion() >=
-         bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
+  auto version = bluetooth::audio::HalVersionManager::GetHalVersion();
+  if (version ==
+      bluetooth::audio::BluetoothAudioHalVersion::VERSION_UNAVAILABLE)
+    return false;
+
+  return version > bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_0;
 }
 
 bool LeAudioHalVerifier::SupportsLeAudioHardwareOffload() {
-  return bluetooth::audio::HalVersionManager::GetHalVersion() >
-         bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
+  auto version = bluetooth::audio::HalVersionManager::GetHalVersion();
+  if (version ==
+      bluetooth::audio::BluetoothAudioHalVersion::VERSION_UNAVAILABLE)
+    return false;
+
+  return version > bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
+}
+
+bool LeAudioHalVerifier::SupportsLeAudioBroadcast() {
+  auto version = bluetooth::audio::HalVersionManager::GetHalVersion();
+  if (version ==
+      bluetooth::audio::BluetoothAudioHalVersion::VERSION_UNAVAILABLE)
+    return false;
+
+  return version > bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
+}
+
+bool LeAudioHalVerifier::SupportsLeAudioBroadcastHardwareOffload() {
+  auto version = bluetooth::audio::HalVersionManager::GetHalVersion();
+  if (version ==
+      bluetooth::audio::BluetoothAudioHalVersion::VERSION_UNAVAILABLE)
+    return false;
+
+  return version > bluetooth::audio::BluetoothAudioHalVersion::VERSION_2_1;
 }
