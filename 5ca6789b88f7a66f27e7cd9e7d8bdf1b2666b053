@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036496",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1969220?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6ae99e23_f051a2ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:06:57Z",
+      "side": 1,
+      "message": "\"Manual, set value in system.prop, see that it\u0027s reflected\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 63
+      },
+      "revId": "5ca6789b88f7a66f27e7cd9e7d8bdf1b2666b053",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
