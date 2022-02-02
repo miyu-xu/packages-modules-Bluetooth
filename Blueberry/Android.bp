@@ -13,9 +13,11 @@ android_test {
     static_libs: [
         "androidx.test.runner",
         "androidx.test.core",
+        "kotlinx_coroutines",
         "grpc-java-netty-shaded",
         "blueberry-grpc-java",
         "blueberry-proto-java",
+        "opencensus-java-contrib-grpc-metrics",
     ],
 
     dex_preopt: {
