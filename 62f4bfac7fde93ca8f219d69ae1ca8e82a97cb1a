@@ -1,0 +1,342 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "41ca58bf_eee56f22",
+        "filename": "android/app/jni/com_android_bluetooth_hap_client.cpp",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Verbose debugging should only be enabled in local builds; see https://source.android.com/setup/contribute/code-style#log-sparingly for more details.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 20
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e052732d_95bb34b5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientStateMachineTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 36
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4fcc072e_469f9452",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientStateMachineTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6da71f25_02d2ccc5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fda81183_5cd1ead9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Import specific classes instead of wildcard imports",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1cdce613_0342a203",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Use go/truth instead of junit asserts.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 23
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cb8f7af9_eb934e9e",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1191,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "It looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)",
+      "range": {
+        "startLine": 1191,
+        "startChar": 12,
+        "endLine": 1191,
+        "endChar": 47
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9b3cd2d7_9667a281",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1431,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "It looks like you\u0027re taking the address of a vector element - this is unsafe (the underlying element can move)",
+      "range": {
+        "startLine": 1431,
+        "startChar": 14,
+        "endLine": 1431,
+        "endChar": 49
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bcebc829_62ade300",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "assert() gets compiled out - use ASSERT() instead",
+      "range": {
+        "startLine": 803,
+        "startChar": 6,
+        "endLine": 803,
+        "endChar": 13
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "41ed46b6_13c0b263",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "General logging asserts don\u0027t do what you expect in tests - use gtest\u0027s ASSERT_TRUE() instead",
+      "range": {
+        "startLine": 959,
+        "startChar": 8,
+        "endLine": 959,
+        "endChar": 15
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "7175a06a_f1d08a04",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 994,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "General logging asserts don\u0027t do what you expect in tests - use gtest\u0027s ASSERT_TRUE() instead",
+      "range": {
+        "startLine": 994,
+        "startChar": 8,
+        "endLine": 994,
+        "endChar": 15
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "68ad8c32_e90a7ca6",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 2942,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Use ASSERT_EQ() instead",
+      "range": {
+        "startLine": 2942,
+        "startChar": 2,
+        "endLine": 2942,
+        "endChar": 12
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020036298",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1903553?revision\u003d14",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c6f765b5_ac86d283",
+        "filename": "system/bta/has/has_ctp.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-02T22:03:30Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 176,
+        "startChar": 6,
+        "endLine": 176,
+        "endChar": 13
+      },
+      "revId": "62f4bfac7fde93ca8f219d69ae1ca8e82a97cb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
