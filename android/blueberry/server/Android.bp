@@ -14,8 +14,10 @@ android_test {
         "grpc-java-lite",
         "guava",
         "opencensus-java-api",
+        "kotlinx_coroutines",
         "blueberry-grpc-java",
         "blueberry-proto-java",
+        "opencensus-java-contrib-grpc-metrics",
     ],
 
     dex_preopt: {

@@ -16,9 +16,11 @@
 
 package com.android.blueberry
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Debug
 import android.util.Log
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.runner.MonitoringInstrumentation
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
 
@@ -26,6 +28,8 @@ class Server : MonitoringInstrumentation() {
 
   private val TAG = "BlueberryServer"
   private val GRPC_PORT = 8999
+
+  private lateinit var host: Host
 
   override fun onCreate(arguments: Bundle) {
     super.onCreate(arguments)
@@ -44,7 +48,11 @@ class Server : MonitoringInstrumentation() {
   override fun onStart() {
     super.onStart()
 
-    NettyServerBuilder.forPort(GRPC_PORT).build().start()
+    val context: Context = getApplicationContext()
+    host = Host(context)
+
+    Log.d(TAG, "Starting Blueberry Server")
+    NettyServerBuilder.forPort(GRPC_PORT).addService(host).build().start()
     Log.d(TAG, "Blueberry Server started at $GRPC_PORT")
   }
 }
