@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7b8bd1bb_a7d7e783",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-03T17:29:22Z",
+      "side": 1,
+      "message": "I jittered the power a tiny bit because I wanted it to be repeatable and obvious that different packets were being sent with different power.  +/- a few dB seemed reasonable to me.  I was expecting any simulation tool to unwrap the packet and rewrap it with it\u0027s new signal strength (original - attenuation).",
+      "parentUuid": "a4b3a708_95438426",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87df0285_fb0016f8",
         "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "I tried that, but it felt like there were too many places where the information was going to be meaningless.  This felt like an easy way to enable RSSI information for discovery without having to care about connections, etc.",
       "parentUuid": "87df0285_fb0016f8",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54bd66be_937a76fb",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-03T17:29:22Z",
+      "side": 1,
+      "message": "I also think it would be nice not to have to understand all the packets to simulate signal strength.",
+      "parentUuid": "a64e3df5_13cff1cd",
       "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
