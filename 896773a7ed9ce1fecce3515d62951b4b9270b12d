@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020059182",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1970759?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3b9db8f6_c54129a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-03T09:55:24Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "896773a7ed9ce1fecce3515d62951b4b9270b12d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020059182",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1970759?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "fa35068f_60dc3674",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-03T09:55:24Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "896773a7ed9ce1fecce3515d62951b4b9270b12d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020059183",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1970759?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1a1796aa_e16477e1",
+        "filename": "Blueberry/src/com/android/blueberry/Server.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-03T09:55:24Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 4
+      },
+      "revId": "896773a7ed9ce1fecce3515d62951b4b9270b12d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
