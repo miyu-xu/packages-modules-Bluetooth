@@ -30,6 +30,7 @@ class Server : MonitoringInstrumentation() {
   private val GRPC_PORT = 8999
 
   private lateinit var host: Host
+  private lateinit var a2dp: A2dp
 
   override fun onCreate(arguments: Bundle) {
     super.onCreate(arguments)
@@ -49,12 +50,15 @@ class Server : MonitoringInstrumentation() {
     super.onStart()
 
     val context: Context = getApplicationContext()
+
     host = Host(context)
+    a2dp = A2dp(context, host)
 
     Log.d(TAG, "Starting Blueberry Server")
     NettyServerBuilder
       .forPort(GRPC_PORT)
       .addService(host)
+      .addService(a2dp)
       .build()
       .start()
     Log.d(TAG, "Blueberry Server started at $GRPC_PORT")
