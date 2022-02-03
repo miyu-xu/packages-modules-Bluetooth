@@ -60,7 +60,7 @@ class TestController : public Controller {
  protected:
   void Start() override {}
   void Stop() override {}
-  void ListDependencies(ModuleList* list) override {}
+  void ListDependencies(ModuleList* list) const override {}
 
  private:
   std::set<OpCode> supported_opcodes_{};
@@ -167,7 +167,7 @@ class TestHciLayer : public HciLayer {
     command_status_callbacks.pop_front();
   }
 
-  void ListDependencies(ModuleList* list) override {}
+  void ListDependencies(ModuleList* list) const override {}
   void Start() override {
     RegisterEventHandler(EventCode::COMMAND_COMPLETE,
                          GetHandler()->BindOn(this, &TestHciLayer::CommandCompleteCallback));
@@ -225,7 +225,7 @@ class TestAclManager : public AclManager {
     delete thread_;
   }
 
-  void ListDependencies(ModuleList* list) override {}
+  void ListDependencies(ModuleList* list) const override {}
 
   void SetRandomAddress(Address address) {}
 

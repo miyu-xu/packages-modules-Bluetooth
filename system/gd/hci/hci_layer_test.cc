@@ -290,7 +290,7 @@ class DependsOnHci : public Module {
     hci_->GetIsoQueueEnd()->UnregisterDequeue();
   }
 
-  void ListDependencies(ModuleList* list) {
+  void ListDependencies(ModuleList* list) const override {
     list->add<HciLayer>();
   }
 

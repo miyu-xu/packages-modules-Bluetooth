@@ -216,6 +216,7 @@ TEST_F(LeAddressManagerTest, rotator_address_for_single_client) {
       LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS,
       remote_address,
       irk,
+      true,
       minimum_rotation_time,
       maximum_rotation_time);
 
@@ -238,6 +239,7 @@ TEST_F(LeAddressManagerTest, rotator_non_resolvable_address_for_single_client) {
       LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS,
       remote_address,
       irk,
+      true,
       minimum_rotation_time,
       maximum_rotation_time);
 
@@ -262,6 +264,7 @@ TEST_F(LeAddressManagerTest, DISABLED_rotator_address_for_multiple_clients) {
       LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS,
       remote_address,
       irk,
+      true,
       minimum_rotation_time,
       maximum_rotation_time);
   le_address_manager_->Register(clients[0].get());
@@ -299,6 +302,7 @@ class LeAddressManagerWithSingleClientTest : public LeAddressManagerTest {
         LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS,
         remote_address,
         irk,
+        true,
         minimum_rotation_time,
         maximum_rotation_time);
 
