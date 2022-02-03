@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020058139",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1970699?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "612b7b97_d6a9dbc6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-03T08:25:21Z",
+      "side": 1,
+      "message": "\"bluetooth_test_broadcaster\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "b1da6bab081bc9e59c3bb1e8dbf2843bd701ff9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
