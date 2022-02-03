@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58be20ea_a2f46704",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-03T08:28:19Z",
+      "side": 1,
+      "message": "Yes, that\u0027s a missing std::move(). Thanks! The broadcaster code calls the `prepareAnnouncement()` with moved `metadata` argument and it should be moved here as well to avoid any copies.\n\nIf the caller decides not to pass the metadata ownership by std::move(), we would make a single copy at the function call and then move it into the announcement structure. In that case its the same as if the method would accept the reference and we did a single copy when `announcement.subgroup_configs` is being filled.",
+      "parentUuid": "38877fc6_e99337f4",
+      "revId": "8604826cb698ceba70718747145fb4bb302a32f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "63d9c2a8_21bfe2d7",
         "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
         "patchSetId": 23
