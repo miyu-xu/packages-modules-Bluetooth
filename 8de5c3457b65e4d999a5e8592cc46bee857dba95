@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020059208",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1970759?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dedcbab4_dc1c4822",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-03T09:56:36Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "8de5c3457b65e4d999a5e8592cc46bee857dba95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020059208",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1970759?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3b5f2f95_f7d3fa0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-03T09:56:36Z",
+      "side": 1,
+      "message": "\"m Blueberry + manual\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 26
+      },
+      "revId": "8de5c3457b65e4d999a5e8592cc46bee857dba95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020059202",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1970759?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "558a9ab6_7803caee",
+        "filename": "Blueberry/src/com/android/blueberry/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-03T09:56:36Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 4
+      },
+      "revId": "8de5c3457b65e4d999a5e8592cc46bee857dba95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
