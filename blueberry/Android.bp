@@ -32,7 +32,7 @@ java_library {
     name: "blueberry-grpc-java",
     visibility: ["//visibility:private"],
     srcs: [
-        "proto/blueberry/host.proto",
+        "proto/blueberry/*.proto",
     ],
     static_libs: [
         "blueberry-proto-java",
@@ -44,6 +44,7 @@ java_library {
     ],
     proto: {
         include_dirs: [
+            "packages/modules/Bluetooth/Blueberry/proto",
             "external/protobuf/src",
         ],
         plugin: "grpc-java-plugin",
@@ -57,7 +58,7 @@ java_library {
     name: "blueberry-proto-java",
     visibility: ["//visibility:private"],
     srcs: [
-        "proto/blueberry/host.proto",
+        "proto/blueberry/*.proto",
         ":libprotobuf-internal-protos",
     ],
     static_libs: [
@@ -65,6 +66,9 @@ java_library {
     ],
     proto: {
         type: "lite",
-        include_dirs: ["external/protobuf/src"],
+        include_dirs: [
+            "packages/modules/Bluetooth/Blueberry/proto",
+            "external/protobuf/src",
+        ],
     },
 }
