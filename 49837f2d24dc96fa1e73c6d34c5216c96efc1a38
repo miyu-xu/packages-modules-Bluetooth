@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78f28b77_3376c505",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-02-03T14:58:23Z",
+      "side": 1,
+      "message": "aosp/1956001 is the CL that introduced it",
+      "revId": "49837f2d24dc96fa1e73c6d34c5216c96efc1a38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
