@@ -220,6 +220,26 @@ public final class BluetoothCodecConfig implements Parcelable {
      */
     public static final int CHANNEL_MODE_STEREO = 0x1 << 1;
 
+    /**
+     * Codec specific value for LDAC high quality bitrate.
+     */
+    public static final int CODEC_SPECIFIC_1_LDAC_QUALITY_HIGH = 1000;
+
+    /**
+     * Codec specific value for LDAC medium quality bitrate.
+     */
+    public static final int CODEC_SPECIFIC_1_LDAC_QUALITY_MID = 1001;
+
+    /**
+     * Codec specific value for LDAC low quality bitrate.
+     */
+    public static final int CODEC_SPECIFIC_1_LDAC_QUALITY_LOW = 1002;
+
+    /**
+     * Codec specific value for LDAC adaptive bitrate.
+     */
+    public static final int CODEC_SPECIFIC_1_LDAC_QUALITY_ADAPTIVE = 1003;
+
     private final @SourceCodecType int mCodecType;
     private @CodecPriority int mCodecPriority;
     private final @SampleRate int mSampleRate;

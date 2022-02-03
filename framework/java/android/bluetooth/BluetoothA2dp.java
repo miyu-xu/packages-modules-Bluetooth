@@ -25,6 +25,7 @@ import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
+import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
@@ -142,14 +143,12 @@ public final class BluetoothA2dp implements BluetoothProfile {
      * <li> {@link BluetoothDevice#EXTRA_DEVICE} - The remote device if the device is currently
      * connected, otherwise it is not included.</li>
      * </ul>
-     *
-     * @hide
      */
+    @SuppressLint("ActionValue")
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
-    @UnsupportedAppUsage(trackingBug = 181103983)
     public static final String ACTION_CODEC_CONFIG_CHANGED =
             "android.bluetooth.a2dp.profile.action.CODEC_CONFIG_CHANGED";
 
@@ -767,9 +766,7 @@ public final class BluetoothA2dp implements BluetoothProfile {
      *
      * @param device the remote Bluetooth device.
      * @return the current codec status
-     * @hide
      */
-    @UnsupportedAppUsage(trackingBug = 181103983)
     @Nullable
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
@@ -800,9 +797,7 @@ public final class BluetoothA2dp implements BluetoothProfile {
      *
      * @param device the remote Bluetooth device.
      * @param codecConfig the codec configuration preference
-     * @hide
      */
-    @UnsupportedAppUsage(trackingBug = 181103983)
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
