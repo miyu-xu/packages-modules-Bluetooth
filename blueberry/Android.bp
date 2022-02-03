@@ -44,7 +44,7 @@ java_library {
     ],
     proto: {
         include_dirs: [
-            "packages/modules/Bluetooth/Blueberry/proto",
+            "packages/modules/Bluetooth/blueberry/proto",
             "external/protobuf/src",
         ],
         plugin: "grpc-java-plugin",
@@ -67,7 +67,7 @@ java_library {
     proto: {
         type: "lite",
         include_dirs: [
-            "packages/modules/Bluetooth/Blueberry/proto",
+            "packages/modules/Bluetooth/blueberry/proto",
             "external/protobuf/src",
         ],
     },
