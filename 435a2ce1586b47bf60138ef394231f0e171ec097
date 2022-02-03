@@ -16,6 +16,41 @@
       "message": "Awesome!\n\nAlthough TX_POWER is not in BLE\u0027s phy it is present in Eddystone and Nearby (and iBeacon) advertisements as \"Calibrated Tx power at 0 m.\" This is used along with the Rssi to do ranging at the receiver.\n\nSo if betosim (or other tools) want to re-write the received signal strength (RSSI) in between the sender-receiver they would need to know the sender\u0027s TX_POWER.\n\nSo I\u0027m thinking that TX_POWER should be included in the RssiWrapper (perhaps now PowerWrapper). And le_advertiser.cc should not store tx_power_jittered in the rssi field but instead store the requested tx_power in the tx_power field of PowerWrapper.\n\nWDYT?\n",
       "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4b3a708_95438426",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-02-03T17:08:59Z",
+      "side": 1,
+      "message": "I might be wrong but can we not consider the original RSSI (Before modification by betosim) in the packet as the sender TX_POWER ?",
+      "parentUuid": "9b3db08a_4531f8f8",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87df0285_fb0016f8",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-02-03T17:08:59Z",
+      "side": 1,
+      "message": "Could we not include the RSSI in every Link Layer packets ?",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
