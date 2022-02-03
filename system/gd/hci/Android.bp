@@ -46,7 +46,7 @@ filegroup {
     name: "BluetoothHciTestSources",
     srcs: [
 //        "acl_manager/round_robin_scheduler_test.cc",
-//        "acl_manager_test.cc",
+        "acl_manager_test.cc",
         "controller_test.cc",
         "hci_layer_test.cc",
 //        "le_address_manager_test.cc",
