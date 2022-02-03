@@ -334,6 +334,45 @@ public class BluetoothCodecConfigTest extends TestCase {
         assertFalse(bcc1.equals(bcc11_codec_specific4));
     }
 
+    @SmallTest
+    public void testBluetoothCodecConfig_equals() {
+        BluetoothCodecConfig bcc1_codec_specific1 =
+                buildBluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC,
+                                     BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT,
+                                     BluetoothCodecConfig.SAMPLE_RATE_44100,
+                                     BluetoothCodecConfig.BITS_PER_SAMPLE_16,
+                                     BluetoothCodecConfig.CHANNEL_MODE_STEREO,
+                                     BluetoothCodecConfig.CODEC_SPECIFIC_1_LDAC_QUALITY_HIGH,
+                                     2000, 3000, 4004);
+        BluetoothCodecConfig bcc2_codec_specific1 =
+                buildBluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC,
+                                     BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT,
+                                     BluetoothCodecConfig.SAMPLE_RATE_44100,
+                                     BluetoothCodecConfig.BITS_PER_SAMPLE_16,
+                                     BluetoothCodecConfig.CHANNEL_MODE_STEREO,
+                                     BluetoothCodecConfig.CODEC_SPECIFIC_1_LDAC_QUALITY_MID,
+                                     2000, 3000, 4004);
+        assertFalse(bcc1_codec_specific1.equals(bcc2_codec_specific1));
+        BluetoothCodecConfig bcc3_codec_specific1 =
+                buildBluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC,
+                                     BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT,
+                                     BluetoothCodecConfig.SAMPLE_RATE_44100,
+                                     BluetoothCodecConfig.BITS_PER_SAMPLE_16,
+                                     BluetoothCodecConfig.CHANNEL_MODE_STEREO,
+                                     BluetoothCodecConfig.CODEC_SPECIFIC_1_LDAC_QUALITY_LOW,
+                                     2000, 3000, 4004);
+        assertFalse(bcc1_codec_specific1.equals(bcc3_codec_specific1));
+        BluetoothCodecConfig bcc4_codec_specific1 =
+                buildBluetoothCodecConfig(BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC,
+                                     BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT,
+                                     BluetoothCodecConfig.SAMPLE_RATE_44100,
+                                     BluetoothCodecConfig.BITS_PER_SAMPLE_16,
+                                     BluetoothCodecConfig.CHANNEL_MODE_STEREO,
+                                     BluetoothCodecConfig.CODEC_SPECIFIC_1_LDAC_QUALITY_ADAPTIVE,
+                                     2000, 3000, 4004);
+        assertFalse(bcc1_codec_specific1.equals(bcc4_codec_specific1));
+    }
+
     private BluetoothCodecConfig buildBluetoothCodecConfig(int sourceCodecType,
             int codecPriority, int sampleRate, int bitsPerSample, int channelMode,
             long codecSpecific1, long codecSpecific2, long codecSpecific3, long codecSpecific4) {
