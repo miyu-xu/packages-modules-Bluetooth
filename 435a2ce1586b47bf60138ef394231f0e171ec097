@@ -54,6 +54,41 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70074da5_0c88c764",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-02-03T23:42:39Z",
+      "side": 1,
+      "message": "Found the Tx Power is in ADV PDU as either 0x0a (Tx Power Level) or buried in a 0x16 (Service Data). We\u0027ll need to look at both so no wrapping is needed.",
+      "parentUuid": "7b8bd1bb_a7d7e783",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7936bb66_1d50c770",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-02-03T23:42:39Z",
+      "side": 1,
+      "message": "Looks good.",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87df0285_fb0016f8",
