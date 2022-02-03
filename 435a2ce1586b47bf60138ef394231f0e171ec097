@@ -51,6 +51,24 @@
       "message": "Could we not include the RSSI in every Link Layer packets ?",
       "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a64e3df5_13cff1cd",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-03T17:19:58Z",
+      "side": 1,
+      "message": "I tried that, but it felt like there were too many places where the information was going to be meaningless.  This felt like an easy way to enable RSSI information for discovery without having to care about connections, etc.",
+      "parentUuid": "87df0285_fb0016f8",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
