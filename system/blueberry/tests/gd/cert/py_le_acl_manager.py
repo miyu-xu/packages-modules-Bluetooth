@@ -23,7 +23,6 @@ from blueberry.tests.gd.cert.closable import Closable
 from blueberry.tests.gd.cert.closable import safeClose
 from bluetooth_packets_python3 import hci_packets
 from blueberry.tests.gd.cert.truth import assertThat
-from datetime import timedelta
 from hci.facade import le_acl_manager_facade_pb2 as le_acl_manager_facade
 
 
@@ -103,7 +102,7 @@ class PyLeAclManager(Closable):
         assertThat(self.outgoing_connection_event_streams[token]).isNotNone()
         event_stream = self.outgoing_connection_event_streams[token][0]
         connection_fail = HciCaptures.LeConnectionCompleteCapture()
-        assertThat(event_stream).emits(connection_fail, timeout=timedelta(seconds=35))
+        assertThat(event_stream).emits(connection_fail)
         complete = connection_fail.get()
         assertThat(complete.GetStatus() == hci_packets.ErrorCode.CONNECTION_ACCEPT_TIMEOUT).isTrue()
 
