@@ -130,7 +130,6 @@ class Host(private val context: Context) : HostImplBase() {
                   }
                   val pairingConfirmation =
                     intent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
-                  Log.w(TAG, "pairingConfirmation: $pairingConfirmation")
                   if (pairingConfirmation == BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION ||
                       pairingConfirmation == PAIRING_VARIANT_CONSENT
                   ) {
