@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d134ec4_f54e0fce",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-03T01:23:35Z",
+      "side": 1,
+      "message": "Please wrap if block in #ifndef TARGET_FLOSS",
+      "revId": "b87fc995f2e21c0cbcac9b0f9374203f90c9ece8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
