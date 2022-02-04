@@ -456,6 +456,52 @@ class AclManagerTest : public AclManagerNoCallbacksTest {
     future.wait();
     AclManagerNoCallbacksTest::TearDown();
   }
+
+ public:
+  AclManagerTest& await(hci::OpCode opcode) {
+    auto last_command = test_hci_layer_->GetCommand(opcode);
+    while (!last_command.IsValid()) {
+      last_command = test_hci_layer_->GetCommand(opcode);
+    }
+    return *this;
+  }
+
+  AclManagerTest& sync(int ms = 20) {
+    fake_registry_.SynchronizeModuleHandler(&HciLayer::Factory, std::chrono::milliseconds(ms));
+    fake_registry_.SynchronizeModuleHandler(&AclManager::Factory, std::chrono::milliseconds(ms));
+    return *this;
+  }
+
+  AclManagerTest& create_local_initiated_connection(const std::string remote) {
+    Address address;
+    Address::FromString(remote, address);
+    acl_manager_->CreateConnection(address);
+
+    return *this;
+  }
+
+  AclManagerTest& create_remote_initiated_connection(const std::string remote) {
+    Address address;
+    Address::FromString(remote, address);
+    ClassOfDevice class_of_device;
+
+    test_hci_layer_->IncomingEvent(
+        ConnectionRequestBuilder::Create(address, class_of_device, ConnectionRequestLinkType::ACL));
+    return *this;
+  }
+
+  AclManagerTest& send_connection_complete_event(
+      const std::string& remote, hci::ErrorCode error_code, uint16_t handle = 0) {
+    Address address;
+    Address::FromString(remote, address);
+
+    // ErrorCode::SUCCESS get put into connection list
+    if (error_code != ErrorCode::SUCCESS) EXPECT_CALL(mock_connection_callback_, OnConnectFail(address, error_code));
+
+    test_hci_layer_->IncomingEvent(
+        ConnectionCompleteBuilder::Create(error_code, handle, address, LinkType::ACL, Enable::DISABLED));
+    return *this;
+  }
 };
 
 class AclManagerWithConnectionTest : public AclManagerTest {
@@ -1570,6 +1616,32 @@ TEST_F(AclManagerWithConnectionTest, DISABLED_remote_esco_connect_request) {
   fake_registry_.SynchronizeModuleHandler(&HciLayer::Factory, std::chrono::milliseconds(20));
   fake_registry_.SynchronizeModuleHandler(&AclManager::Factory, std::chrono::milliseconds(20));
   fake_registry_.SynchronizeModuleHandler(&HciLayer::Factory, std::chrono::milliseconds(20));
+}
+
+TEST_F(AclManagerTest, single_incoming_multiple_outgoing_page_timeout) {
+  create_local_initiated_connection("A1:A2:A3:A4:A5:A6").await(OpCode::CREATE_CONNECTION);
+  create_local_initiated_connection("B1:B2:B3:B4:B5:B6");
+
+  create_remote_initiated_connection("C1:C2:C3:C4:C5:C6").await(OpCode::ACCEPT_CONNECTION_REQUEST).sync();
+
+  send_connection_complete_event("C1:C2:C3:C4:C5:C6", ErrorCode::SUCCESS, 1 /* hci_handle */);
+  send_connection_complete_event("A1:A2:A3:A4:A5:A6", ErrorCode::PAGE_TIMEOUT);
+  send_connection_complete_event("B1:B2:B3:B4:B5:B6", ErrorCode::PAGE_TIMEOUT).sync();
+
+  ASSERT_EQ(1, mock_connection_callback_.connections_.size());
+}
+
+TEST_F(AclManagerTest, single_incoming_multiple_outgoing_success) {
+  create_local_initiated_connection("A1:A2:A3:A4:A5:A6").await(OpCode::CREATE_CONNECTION);
+  create_local_initiated_connection("B1:B2:B3:B4:B5:B6");
+
+  create_remote_initiated_connection("C1:C2:C3:C4:C5:C6").await(OpCode::ACCEPT_CONNECTION_REQUEST).sync();
+
+  send_connection_complete_event("C1:C2:C3:C4:C5:C6", ErrorCode::SUCCESS, 1 /* hci_handle */);
+  send_connection_complete_event("A1:A2:A3:A4:A5:A6", ErrorCode::SUCCESS, 2 /* hci_handle */);
+  send_connection_complete_event("B1:B2:B3:B4:B5:B6", ErrorCode::SUCCESS, 3 /* hci_handle */).sync();
+
+  ASSERT_EQ(3, mock_connection_callback_.connections_.size());
 }
 
 }  // namespace
