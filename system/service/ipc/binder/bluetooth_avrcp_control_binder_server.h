@@ -40,6 +40,11 @@ class BluetoothAvrcpControlBinderServer
       public bluetooth::AvrcpControl::Delegate {
  public:
   explicit BluetoothAvrcpControlBinderServer(bluetooth::Adapter* adapter);
+  BluetoothAvrcpControlBinderServer(const BluetoothAvrcpControlBinderServer&) =
+      delete;
+  BluetoothAvrcpControlBinderServer& operator=(
+      const BluetoothAvrcpControlBinderServer&) = delete;
+
   ~BluetoothAvrcpControlBinderServer() override = default;
 
   // IBluetoothAvrcpControl implementation:
@@ -81,8 +86,6 @@ class BluetoothAvrcpControlBinderServer
   std::shared_ptr<bluetooth::AvrcpControl> GetAvrcpControl(int id);
 
   bluetooth::Adapter* adapter_;  // weak
-
-  DISALLOW_COPY_AND_ASSIGN(BluetoothAvrcpControlBinderServer);
 };
 
 }  // namespace binder

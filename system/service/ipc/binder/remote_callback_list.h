@@ -53,6 +53,9 @@ template <typename T>
 class RemoteCallbackList final {
  public:
   RemoteCallbackList() = default;
+  RemoteCallbackList(const RemoteCallbackList&) = delete;
+  RemoteCallbackList& operator=(const RemoteCallbackList&) = delete;
+
   ~RemoteCallbackList();
 
   // Register and unregister a callback interface. Registering will
@@ -91,8 +94,6 @@ class RemoteCallbackList final {
 
   std::mutex map_lock_;
   CallbackMap callbacks_;
-
-  DISALLOW_COPY_AND_ASSIGN(RemoteCallbackList);
 };
 
 // Template Implementation details below

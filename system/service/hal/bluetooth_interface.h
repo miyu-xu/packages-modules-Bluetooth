@@ -127,10 +127,10 @@ class BluetoothInterface {
 
  protected:
   BluetoothInterface() = default;
-  virtual ~BluetoothInterface() = default;
+  BluetoothInterface(const BluetoothInterface&) = delete;
+  BluetoothInterface& operator=(const BluetoothInterface&) = delete;
 
- private:
-  DISALLOW_COPY_AND_ASSIGN(BluetoothInterface);
+  virtual ~BluetoothInterface() = default;
 };
 
 }  // namespace hal

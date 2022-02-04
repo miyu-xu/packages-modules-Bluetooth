@@ -49,16 +49,19 @@ class LowEnergyScanner : private hal::BluetoothGattInterface::ScannerObserver,
   class Delegate {
    public:
     Delegate() = default;
+    Delegate(const Delegate&) = delete;
+    Delegate& operator=(const Delegate&) = delete;
+
     virtual ~Delegate() = default;
 
     // Called asynchronously to notify the delegate of nearby BLE advertisers
     // found during a device scan.
     virtual void OnScanResult(LowEnergyScanner* client,
                               const ScanResult& scan_result) = 0;
-
-   private:
-    DISALLOW_COPY_AND_ASSIGN(Delegate);
   };
+
+  LowEnergyScanner(const LowEnergyScanner&) = delete;
+  LowEnergyScanner& operator=(const LowEnergyScanner&) = delete;
 
   // The destructor automatically unregisters this client instance from the
   // stack.
@@ -120,8 +123,6 @@ class LowEnergyScanner : private hal::BluetoothGattInterface::ScannerObserver,
   // instance.
   std::mutex delegate_mutex_;
   Delegate* delegate_;
-
-  DISALLOW_COPY_AND_ASSIGN(LowEnergyScanner);
 };
 
 // LowEnergyScannerFactory is used to register and obtain a per-application
@@ -135,6 +136,9 @@ class LowEnergyScannerFactory
   // Don't construct/destruct directly except in tests. Instead, obtain a handle
   // from an Adapter instance.
   explicit LowEnergyScannerFactory(Adapter& adapter);
+  LowEnergyScannerFactory(const LowEnergyScannerFactory&) = delete;
+  LowEnergyScannerFactory& operator=(const LowEnergyScannerFactory&) = delete;
+
   ~LowEnergyScannerFactory() override;
 
   // BluetoothInstanceFactory override:
@@ -155,8 +159,6 @@ class LowEnergyScannerFactory
 
   // Raw pointer to the Adapter that owns this factory.
   Adapter& adapter_;
-
-  DISALLOW_COPY_AND_ASSIGN(LowEnergyScannerFactory);
 };
 
 }  // namespace bluetooth

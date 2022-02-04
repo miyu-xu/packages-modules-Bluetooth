@@ -297,6 +297,9 @@ class BluetoothInterfaceImpl : public BluetoothInterface {
  public:
   BluetoothInterfaceImpl() : hal_iface_(nullptr) {}
 
+  BluetoothInterfaceImpl(const BluetoothInterfaceImpl&) = delete;
+  BluetoothInterfaceImpl& operator=(const BluetoothInterfaceImpl&) = delete;
+
   ~BluetoothInterfaceImpl() override {
     if (hal_iface_) hal_iface_->cleanup();
   }
@@ -358,8 +361,6 @@ class BluetoothInterfaceImpl : public BluetoothInterface {
   // The HAL handle obtained from the shared library. We hold a weak reference
   // to this since the actual data resides in the shared Bluetooth library.
   const bt_interface_t* hal_iface_;
-
-  DISALLOW_COPY_AND_ASSIGN(BluetoothInterfaceImpl);
 };
 
 namespace {

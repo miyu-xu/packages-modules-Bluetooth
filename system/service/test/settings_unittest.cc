@@ -31,6 +31,8 @@ namespace {
 class SettingsTest : public ::testing::Test {
  public:
   SettingsTest() = default;
+  SettingsTest(const SettingsTest&) = delete;
+  SettingsTest& operator=(const SettingsTest&) = delete;
 
   void SetUp() override { base::CommandLine::Reset(); }
 
@@ -39,9 +41,6 @@ class SettingsTest : public ::testing::Test {
  protected:
   base::AtExitManager exit_manager_;
   Settings settings_;
-
- private:
-  DISALLOW_COPY_AND_ASSIGN(SettingsTest);
 };
 
 TEST_F(SettingsTest, EmptyCommandLine) {

@@ -102,6 +102,9 @@ class Adapter {
   // in tests; use MockAdapter instead.
   static std::unique_ptr<Adapter> Create();
 
+  Adapter(const Adapter&) = delete;
+  Adapter& operator=(const Adapter&) = delete;
+
   virtual ~Adapter() = default;
 
   // Add or remove an observer.
@@ -221,9 +224,6 @@ class Adapter {
 
  protected:
   Adapter() = default;
-
- private:
-  DISALLOW_COPY_AND_ASSIGN(Adapter);
 };
 
 }  // namespace bluetooth

@@ -45,6 +45,9 @@ class GattServer : public BluetoothInstance,
   class Delegate {
    public:
     Delegate() = default;
+    Delegate(const Delegate&) = delete;
+    Delegate& operator=(const Delegate&) = delete;
+
     virtual ~Delegate() = default;
 
     // Called when there is an incoming read request for the characteristic with
@@ -104,12 +107,12 @@ class GattServer : public BluetoothInstance,
     virtual void OnConnectionStateChanged(GattServer* gatt_server,
                                           const std::string& device_addres,
                                           bool connected) = 0;
-
-   private:
-    DISALLOW_COPY_AND_ASSIGN(Delegate);
   };
 
   // The desctructor automatically unregisters this instance from the stack.
+  GattServer(const GattServer&) = delete;
+  GattServer& operator=(const GattServer&) = delete;
+
   ~GattServer() override;
 
   // Assigns a delegate to this instance. |delegate| must out-live this
@@ -262,8 +265,6 @@ class GattServer : public BluetoothInstance,
 
   // Raw handle to the Delegate, which must outlive this GattServer instance.
   Delegate* delegate_;
-
-  DISALLOW_COPY_AND_ASSIGN(GattServer);
 };
 
 // GattServerFactory is used to register and obtain a per-application GattServer
@@ -275,6 +276,9 @@ class GattServerFactory : public BluetoothInstanceFactory,
   // Don't construct/destruct directly except in tests. Instead, obtain a handle
   // from an Adapter instance.
   GattServerFactory();
+  GattServerFactory(const GattServerFactory&) = delete;
+  GattServerFactory& operator=(const GattServerFactory&) = delete;
+
   ~GattServerFactory() override;
 
   // BluetoothInstanceFactory override:
@@ -290,8 +294,6 @@ class GattServerFactory : public BluetoothInstanceFactory,
   // Map of pending calls to register.
   std::mutex pending_calls_lock_;
   std::unordered_map<Uuid, RegisterCallback> pending_calls_;
-
-  DISALLOW_COPY_AND_ASSIGN(GattServerFactory);
 };
 
 }  // namespace bluetooth

@@ -68,6 +68,9 @@ class AvrcpTarget : public BluetoothInstance,
     virtual ~Delegate() = default;
   };
 
+  AvrcpTarget(const AvrcpTarget&) = delete;
+  AvrcpTarget& operator=(const AvrcpTarget&) = delete;
+
   // The destructor automatically unregisters this instance from the stack.
   ~AvrcpTarget() override;
 
@@ -150,8 +153,6 @@ class AvrcpTarget : public BluetoothInstance,
   // Raw handle to the Delegate, which must outlive this AvrcpTarget instance.
   std::mutex delegate_mutex_;
   Delegate* delegate_ = nullptr;
-
-  DISALLOW_COPY_AND_ASSIGN(AvrcpTarget);
 };
 
 // AvrcpTargetFactory is used to register and obtain a per-application
@@ -165,14 +166,14 @@ class AvrcpTargetFactory
   // Don't construct/destruct directly except in tests. Instead, obtain a handle
   // from an Adapter instance.
   AvrcpTargetFactory();
+  AvrcpTargetFactory(const AvrcpTargetFactory&) = delete;
+  AvrcpTargetFactory& operator=(const AvrcpTargetFactory&) = delete;
+
   ~AvrcpTargetFactory() override;
 
   // BluetoothInstanceFactory override:
   bool RegisterInstance(const Uuid& uuid,
                         const RegisterCallback& callback) override;
-
- private:
-  DISALLOW_COPY_AND_ASSIGN(AvrcpTargetFactory);
 };
 
 }  // namespace bluetooth

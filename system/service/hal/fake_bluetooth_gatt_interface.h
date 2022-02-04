@@ -75,6 +75,11 @@ class FakeBluetoothGattInterface : public BluetoothGattInterface {
       std::shared_ptr<BleScannerInterface> scanner_handler,
       std::shared_ptr<TestClientHandler> client_handler,
       std::shared_ptr<TestServerHandler> server_handler);
+
+  FakeBluetoothGattInterface(const FakeBluetoothGattInterface&) = delete;
+  FakeBluetoothGattInterface& operator=(const FakeBluetoothGattInterface&) =
+      delete;
+
   ~FakeBluetoothGattInterface();
 
   // The methods below can be used to notify observers with certain events and
@@ -148,8 +153,6 @@ class FakeBluetoothGattInterface : public BluetoothGattInterface {
   std::shared_ptr<BleScannerInterface> scanner_handler_;
   std::shared_ptr<TestClientHandler> client_handler_;
   std::shared_ptr<TestServerHandler> server_handler_;
-
-  DISALLOW_COPY_AND_ASSIGN(FakeBluetoothGattInterface);
 };
 
 }  // namespace hal

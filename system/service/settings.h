@@ -32,6 +32,9 @@ class Settings {
   static const char kHelp[];
 
   Settings();
+  Settings(const Settings&) = delete;
+  Settings& operator=(const Settings&) = delete;
+
   ~Settings();
 
   // TODO(armansito): Write an instance method for storing things into a file.
@@ -67,8 +70,6 @@ class Settings {
   bool enable_on_start_;
   std::string android_ipc_socket_suffix_;
   base::FilePath create_ipc_socket_path_;
-
-  DISALLOW_COPY_AND_ASSIGN(Settings);
 };
 
 }  // namespace bluetooth
