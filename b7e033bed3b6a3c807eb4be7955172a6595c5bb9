@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "32b836ac_55b26cae",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-04T17:57:10Z",
+      "side": 1,
+      "message": "There is a bta dependency with this CL.\n\nThe Csis active observer sets an le filter\n  CsisActiveObserverSet\n  \nbta/csis/csis_client.cc calls bluetooth::shim::set_empty_filter\n\nDefined here:\nmain/shim/le_scanning_manager.h::set_empty_filter\n\nWhich then sets (\"deletes\") the active filters\n\nvoid bluetooth::shim::set_empty_filter(bool enable) {\n  bluetooth::hci::AdvertisingFilterParameter advertising_filter_parameter;\n  bluetooth::shim::GetScanning()-\u003eScanFilterParameterSetup(\n      bluetooth::hci::ApcfAction::DELETE, 0x00, advertising_filter_parameter);\n      \nOne option is to break up `system/main/shim/le_scanning_manager.h` and put impl in it\u0027s own file",
+      "parentUuid": "48c48aa4_482cefef",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 6
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2950ba30_016da48b",
         "filename": "system/bta/Android.bp",
         "patchSetId": 4
