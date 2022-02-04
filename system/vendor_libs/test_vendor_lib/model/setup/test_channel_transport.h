@@ -28,7 +28,7 @@ namespace test_vendor_lib {
 
 using android::net::AsyncDataChannel;
 using android::net::AsyncDataChannelServer;
-using android::net::ConnectCallback;
+using ConnectCallback = android::net::AsyncDataChannelServer::ConnectCallback;
 
 // Manages communications between test channel and the controller. Mirrors the
 // HciTransport for the test channel.
