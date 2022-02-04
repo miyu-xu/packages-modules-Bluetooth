@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a77ec81_8b23ad4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-04T17:28:26Z",
+      "side": 1,
+      "message": "(Previous presubmits failing due to devices not booting; probably unrelated to this change)",
+      "revId": "9931137c66d211c86729d46902abf4b91cdbba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
