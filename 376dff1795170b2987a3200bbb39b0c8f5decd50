@@ -46,6 +46,30 @@
       },
       "revId": "376dff1795170b2987a3200bbb39b0c8f5decd50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4301a45_ab2470e6",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-04T20:36:14Z",
+      "side": 1,
+      "message": "Yep.  Thanks for pointing it out :)",
+      "parentUuid": "02f184ef_a872a7b2",
+      "range": {
+        "startLine": 361,
+        "startChar": 13,
+        "endLine": 361,
+        "endChar": 46
+      },
+      "revId": "376dff1795170b2987a3200bbb39b0c8f5decd50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
