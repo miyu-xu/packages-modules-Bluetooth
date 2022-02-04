@@ -47,6 +47,9 @@ class A2dpSink : public BluetoothInstance,
     virtual ~Delegate() = default;
   };
 
+  A2dpSink(const A2dpSink&) = delete;
+  A2dpSink& operator=(const A2dpSink&) = delete;
+
   ~A2dpSink() override;
 
   void SetDelegate(Delegate* delegate);
@@ -84,21 +87,19 @@ class A2dpSink : public BluetoothInstance,
   std::mutex mutex_;
   std::mutex delegate_mutex_;
   Delegate* delegate_ = nullptr;
-
-  DISALLOW_COPY_AND_ASSIGN(A2dpSink);
 };
 
 class A2dpSinkFactory : public BluetoothInstanceFactory {
  public:
   A2dpSinkFactory();
+  A2dpSinkFactory(const A2dpSinkFactory&) = delete;
+  A2dpSinkFactory& operator=(const A2dpSinkFactory&) = delete;
+
   ~A2dpSinkFactory() override;
 
   // BluetoothInstanceFactory override:
   bool RegisterInstance(const Uuid& uuid,
                         const RegisterCallback& callback) override;
-
- private:
-  DISALLOW_COPY_AND_ASSIGN(A2dpSinkFactory);
 };
 
 }  // namespace bluetooth

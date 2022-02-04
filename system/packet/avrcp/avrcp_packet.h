@@ -62,6 +62,9 @@ class PacketBuilder : public ::bluetooth::PacketBuilder {
 
 class Packet : public ::bluetooth::Packet {
  public:
+  Packet(const Packet&) = delete;
+  Packet& operator=(const Packet&) = delete;
+
   virtual ~Packet() = default;
 
   // TODO (apanicke): Right now we can use this to build an AvrcpPacket from
@@ -104,7 +107,6 @@ class Packet : public ::bluetooth::Packet {
 
  private:
   virtual std::pair<size_t, size_t> GetPayloadIndecies() const override;
-  DISALLOW_COPY_AND_ASSIGN(Packet);
 };
 
 }  // namespace avrcp

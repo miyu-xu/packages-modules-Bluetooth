@@ -47,6 +47,9 @@ class IPCManager {
   class Delegate {
    public:
     Delegate() = default;
+    Delegate(const Delegate&) = delete;
+    Delegate& operator=(const Delegate&) = delete;
+
     virtual ~Delegate() = default;
 
     // Called when an IPC mechanism has successfully started and is ready for
@@ -56,12 +59,12 @@ class IPCManager {
     // Called when an IPC mechanism has stopped. This may happen due to an error
     // in initialization or due to a regular shut down routine.
     virtual void OnIPCHandlerStopped(Type type) = 0;
-
-   private:
-    DISALLOW_COPY_AND_ASSIGN(Delegate);
   };
 
   explicit IPCManager(bluetooth::Adapter* adapter);
+  IPCManager(const IPCManager&) = delete;
+  IPCManager& operator=(const IPCManager&) = delete;
+
   ~IPCManager();
 
   // Initialize the underlying IPC handler based on |type|, if that type has not
@@ -96,8 +99,6 @@ class IPCManager {
   // The Bluetooth adapter instance. This is owned by Daemon so we keep a raw
   // pointer to it.
   bluetooth::Adapter* adapter_;
-
-  DISALLOW_COPY_AND_ASSIGN(IPCManager);
 };
 
 }  // namespace ipc

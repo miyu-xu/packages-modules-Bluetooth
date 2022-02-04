@@ -52,6 +52,9 @@ class BrowsePacketBuilder : public ::bluetooth::PacketBuilder {
 
 class BrowsePacket : public ::bluetooth::Packet {
  public:
+  BrowsePacket(const BrowsePacket&) = delete;
+  BrowsePacket& operator=(const BrowsePacket&) = delete;
+
   virtual ~BrowsePacket() = default;
 
   static std::shared_ptr<BrowsePacket> Parse(
@@ -76,7 +79,6 @@ class BrowsePacket : public ::bluetooth::Packet {
 
  private:
   virtual std::pair<size_t, size_t> GetPayloadIndecies() const override;
-  DISALLOW_COPY_AND_ASSIGN(BrowsePacket);
 };
 
 }  // namespace avrcp

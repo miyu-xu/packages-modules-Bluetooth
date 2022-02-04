@@ -38,6 +38,9 @@ template <typename K, typename V>
 class RemoteCallbackMap final {
  public:
   RemoteCallbackMap() = default;
+  RemoteCallbackMap(const RemoteCallbackMap&) = delete;
+  RemoteCallbackMap& operator=(const RemoteCallbackMap&) = delete;
+
   ~RemoteCallbackMap();
 
   // The Delegate interface is used to notify when a registered callback is
@@ -104,8 +107,6 @@ class RemoteCallbackMap final {
 
   std::mutex map_lock_;
   CallbackMap map_;
-
-  DISALLOW_COPY_AND_ASSIGN(RemoteCallbackMap);
 };
 
 // Template Implementation details below
