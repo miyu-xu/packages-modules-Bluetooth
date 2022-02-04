@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b0fc34_e000a457",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-04T08:14:43Z",
+      "side": 1,
+      "message": "why is this needed? \n\nBluetoothGeneratedPackets_h is from GD and BTA in legacy stack should not depend on it",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 6
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2950ba30_016da48b",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-04T08:14:43Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 330,
+        "endChar": 6
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7214089a_a31c429f",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-04T08:14:43Z",
+      "side": 1,
+      "message": "why are these methods not defined in cc file?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 3
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
