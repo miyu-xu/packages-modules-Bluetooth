@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3451babd_d8e07e9f",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-04T20:10:31Z",
+      "side": 1,
+      "message": "If the classic link is already connected, should we remove it from this list (in an else)?",
+      "range": {
+        "startLine": 361,
+        "startChar": 13,
+        "endLine": 361,
+        "endChar": 46
+      },
+      "revId": "376dff1795170b2987a3200bbb39b0c8f5decd50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
