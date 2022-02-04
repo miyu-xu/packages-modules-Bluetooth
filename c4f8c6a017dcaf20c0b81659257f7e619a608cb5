@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020100541",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1962925?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0b47713b_36c02b07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-04T08:56:38Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "c4f8c6a017dcaf20c0b81659257f7e619a608cb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020100541",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1962925?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c0e86175_90238081",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-04T08:56:38Z",
+      "side": 1,
+      "message": "\"Tested volume changes from earbuds and from phone\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 55
+      },
+      "revId": "c4f8c6a017dcaf20c0b81659257f7e619a608cb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
