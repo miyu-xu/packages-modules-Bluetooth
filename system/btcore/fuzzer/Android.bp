@@ -31,6 +31,7 @@ cc_defaults {
         "libbluetooth",
         "android.hardware.bluetooth@1.0",
         "android.hardware.bluetooth@1.1",
+        "android.hardware.bluetooth.audio-V1-ndk",
     ],
     static_libs: [
         "libosi",
