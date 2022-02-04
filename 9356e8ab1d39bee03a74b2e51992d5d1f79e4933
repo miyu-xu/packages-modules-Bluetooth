@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020099078",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972519?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "0b93e091_ebb8e660",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-04T07:44:23Z",
+      "side": 1,
+      "message": "\"FEATURES\u003dtest emerge-hatch floss\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 38
+      },
+      "revId": "9356e8ab1d39bee03a74b2e51992d5d1f79e4933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020099074",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972519?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "863cc383_1aeb59e6",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-04T07:44:23Z",
+      "side": 1,
+      "message": "Changes in the preceding block may need to be reflected in these files: /system/gd/hci/fuzz/fuzz_hci_layer.h If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 43
+      },
+      "revId": "9356e8ab1d39bee03a74b2e51992d5d1f79e4933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
