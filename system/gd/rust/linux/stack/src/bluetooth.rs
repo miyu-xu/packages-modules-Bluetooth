@@ -120,6 +120,9 @@ pub trait IBluetooth {
 
     /// Disconnect all profiles supported by device and enabled on adapter.
     fn disconnect_all_enabled_profiles(&self, device: BluetoothDevice) -> bool;
+
+    /// Clears the event filter
+    fn clear_event_filter(&self) -> bool;
 }
 
 /// Serializable device used in various apis.
@@ -1112,6 +1115,10 @@ impl IBluetooth for Bluetooth {
         }
 
         return true;
+    }
+
+    fn clear_event_filter(&self) -> bool {
+        self.intf.lock().unwrap().clear_event_filter() == 0
     }
 }
 
