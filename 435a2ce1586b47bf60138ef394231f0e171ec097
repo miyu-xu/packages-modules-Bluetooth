@@ -108,6 +108,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "68771d2c_0de12892",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-04T15:56:23Z",
+      "side": 1,
+      "message": "Should this default to 0x7f (power not available) ?",
+      "range": {
+        "startLine": 91,
+        "startChar": 20,
+        "endLine": 91,
+        "endChar": 21
+      },
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87df0285_fb0016f8",
         "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
         "patchSetId": 1
@@ -173,6 +196,24 @@
       "side": 1,
       "message": "By every packet I was meaning directly in the root `LinkLayerPacket`.\nFor the rest, your explanation makes sense, so it\u0027s ok for me",
       "parentUuid": "54bd66be_937a76fb",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45126206_b7c1720a",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-04T15:56:23Z",
+      "side": 1,
+      "message": "Yes.  I tried putting it into LinkLayerPacket, but since PDL doesn\u0027t have default values, it felt like it complicated the code to add values for every packet.",
+      "parentUuid": "45636188_75f4af71",
       "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
