@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75250ecd_1c3b17d0",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1014288
+      },
+      "writtenOn": "2022-02-04T21:26:28Z",
+      "side": 1,
+      "message": "I think you want to say \"Only registered receivers will receive this broadcast.\"\n\nIt\u0027s important here to distinguish that if an app tries to create a BroadcastReceiver in their AndroidManifest.xml, it won\u0027t receive the broadcast. See here: https://developer.android.com/guide/components/broadcasts#receiving-broadcasts",
+      "range": {
+        "startLine": 237,
+        "startChar": 7,
+        "endLine": 237,
+        "endChar": 56
+      },
+      "revId": "f1f06735d3d5b6f510bb672a9da14f0a4490e100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
