@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020122088",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1966106?revision\u003d7",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "3901ccbd_702560e4",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 536,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-04T21:01:10Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 536,
+        "startChar": 8,
+        "endLine": 536,
+        "endChar": 15
+      },
+      "revId": "f77951be8393e88b7da930cf6517014bfc2f84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
