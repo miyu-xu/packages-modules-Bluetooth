@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e20974fa_a1c808a6",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-04T15:28:55Z",
+      "side": 1,
+      "message": "Just leave them out?",
+      "range": {
+        "startLine": 441,
+        "startChar": 0,
+        "endLine": 445,
+        "endChar": 41
+      },
+      "revId": "8cfdb49a719351cdda4f6c5c89f0fa10c52661b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11a4a737_d3ef6116",
+        "filename": "system/gd/hci/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-04T15:28:55Z",
+      "side": 1,
+      "message": "same thing",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 40
+      },
+      "revId": "8cfdb49a719351cdda4f6c5c89f0fa10c52661b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
