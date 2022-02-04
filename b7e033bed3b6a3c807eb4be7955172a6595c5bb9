@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48c48aa4_482cefef",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-04T15:35:50Z",
+      "side": 1,
+      "message": "The gd APIs use generated types from .pdl as inputs or outputs.  Any clients using these APIs must also include the hci .pdl headers.\n\nI will double check the need for this build change with this CL.",
+      "parentUuid": "e8b0fc34_e000a457",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 6
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2950ba30_016da48b",
         "filename": "system/bta/Android.bp",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-04T08:14:43Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 330,
+        "endChar": 6
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92ea77a2_7ef11995",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-04T15:35:50Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2950ba30_016da48b",
       "range": {
         "startLine": 328,
         "startChar": 0,
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-04T08:14:43Z",
       "side": 1,
       "message": "why are these methods not defined in cc file?",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 3
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec7fffe1_164a5b54",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-04T15:35:50Z",
+      "side": 1,
+      "message": "parse_filter_command and handle_remote_properties *are* defined in *.cc\n\nThe cache methods are not defined in *.cc b/c they manipulate class internal data only (They don\u0027t access APIs in other modules)\n\nIn some respect, this logic could all be separated out into another class (cache?)",
+      "parentUuid": "7214089a_a31c429f",
       "range": {
         "startLine": 110,
         "startChar": 0,
