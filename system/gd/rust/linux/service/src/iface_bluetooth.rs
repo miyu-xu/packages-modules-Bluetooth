@@ -219,4 +219,9 @@ impl IBluetooth for IBluetoothDBus {
     fn disconnect_all_enabled_profiles(&self, _device: BluetoothDevice) -> bool {
         true
     }
+
+    // Not exposed over D-Bus. This will only be called from internal methods of btadapterd
+    fn clear_event_filter(&self) -> bool {
+        true
+    }
 }

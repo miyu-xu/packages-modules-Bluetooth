@@ -395,6 +395,10 @@ impl IBluetooth for BluetoothDBus {
         self.client_proxy
             .method("DisconnectAllEnabledProfiles", (BluetoothDevice::to_dbus(device).unwrap(),))
     }
+
+    fn clear_event_filter(&self) -> bool {
+        self.client_proxy.method("ClearEventFilter", ())
+    }
 }
 
 #[dbus_propmap(AdapterWithEnabled)]
