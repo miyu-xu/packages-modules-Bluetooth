@@ -884,7 +884,12 @@ class BleAdvertisingManagerImpl
       GetHciInterface()->SetPeriodicAdvertisingEnable(false, inst_id,
                                                       base::DoNothing());
     }
-
+    if (p_inst->timeout_timer) {
+      VLOG(2) << __func__ << " Cancelling timer for inst_id: " << +inst_id;
+        alarm_cancel(p_inst->timeout_timer);
+        alarm_free(p_inst->timeout_timer);
+        p_inst->timeout_timer = nullptr;
+    }
     alarm_cancel(p_inst->adv_raddr_timer);
     p_inst->in_use = false;
     GetHciInterface()->RemoveAdvertisingSet(inst_id, base::DoNothing());
