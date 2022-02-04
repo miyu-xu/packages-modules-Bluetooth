@@ -135,10 +135,12 @@ class DynamicChannelManager {
     ASSERT(link_manager_ != nullptr);
     ASSERT(l2cap_layer_handler_ != nullptr);
   }
+  DynamicChannelManager(const DynamicChannelManager&) = delete;
+  DynamicChannelManager& operator=(const DynamicChannelManager&) = delete;
+
   internal::DynamicChannelServiceManagerImpl* service_manager_ = nullptr;
   internal::LinkManager* link_manager_ = nullptr;
   os::Handler* l2cap_layer_handler_ = nullptr;
-  DISALLOW_COPY_AND_ASSIGN(DynamicChannelManager);
 };
 
 }  // namespace le

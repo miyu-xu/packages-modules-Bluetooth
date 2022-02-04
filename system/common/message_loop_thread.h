@@ -51,6 +51,9 @@ class MessageLoopThread final {
   /**
    * Destroys the message loop thread automatically when it goes out of scope
    */
+  MessageLoopThread(const MessageLoopThread&) = delete;
+  MessageLoopThread& operator=(const MessageLoopThread&) = delete;
+
   ~MessageLoopThread();
 
   /**
@@ -199,8 +202,6 @@ class MessageLoopThread final {
   bool shutting_down_;
   bool is_main_;
   ::rust::Box<shim::rust::MessageLoopThread>* rust_thread_ = nullptr;
-
-  DISALLOW_COPY_AND_ASSIGN(MessageLoopThread);
 };
 
 inline std::ostream& operator<<(std::ostream& os,

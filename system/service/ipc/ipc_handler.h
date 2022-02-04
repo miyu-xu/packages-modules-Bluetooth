@@ -32,6 +32,9 @@ namespace ipc {
 class IPCHandler : public base::RefCountedThreadSafe<IPCHandler> {
  public:
   IPCHandler(bluetooth::Adapter* adapter, IPCManager::Delegate* delegate);
+  IPCHandler(const IPCHandler&) = delete;
+  IPCHandler& operator=(const IPCHandler&) = delete;
+
   virtual ~IPCHandler();
 
   // Initializes and runs the IPC mechanism. Returns true on success, false
@@ -55,8 +58,6 @@ class IPCHandler : public base::RefCountedThreadSafe<IPCHandler> {
 
   // The delegate that is interested in notifications from us.
   IPCManager::Delegate* delegate_;
-
-  DISALLOW_COPY_AND_ASSIGN(IPCHandler);
 };
 
 }  // namespace ipc

@@ -53,12 +53,13 @@ class DynamicChannelService {
     ASSERT(manager_ != nullptr);
     ASSERT(l2cap_layer_handler_ != nullptr);
   }
+  DynamicChannelService(const DynamicChannelService&) = delete;
+  DynamicChannelService& operator=(const DynamicChannelService&) = delete;
 
  private:
   Psm psm_ = kDefaultPsm;
   internal::DynamicChannelServiceManagerImpl* manager_ = nullptr;
   os::Handler* l2cap_layer_handler_;
-  DISALLOW_COPY_AND_ASSIGN(DynamicChannelService);
 };
 
 }  // namespace le

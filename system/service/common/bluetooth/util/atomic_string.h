@@ -27,6 +27,9 @@ namespace util {
 class AtomicString final {
  public:
   explicit AtomicString(const std::string& str);
+  AtomicString(const AtomicString&) = delete;
+  AtomicString& operator=(const AtomicString&) = delete;
+
   ~AtomicString() = default;
 
   std::string Get() const;
@@ -35,8 +38,6 @@ class AtomicString final {
  private:
   std::mutex lock_;
   std::string str_;
-
-  DISALLOW_COPY_AND_ASSIGN(AtomicString);
 };
 
 }  // namespace util

@@ -50,6 +50,8 @@ class Link : public l2cap::internal::ILink, public hci::acl_manager::ConnectionM
        l2cap::internal::ParameterProvider* parameter_provider,
        DynamicChannelServiceManagerImpl* dynamic_service_manager, FixedChannelServiceManagerImpl* fixed_service_manager,
        LinkManager* link_manager);
+  Link(const Link&) = delete;
+  Link& operator=(const Link&) = delete;
 
   hci::AddressWithType GetDevice() const override {
     return {acl_connection_->GetAddress(), hci::AddressType::PUBLIC_DEVICE_ADDRESS};
@@ -234,7 +236,6 @@ class Link : public l2cap::internal::ILink, public hci::acl_manager::ConnectionM
   bool has_requested_authentication_ = false;
   std::list<EncryptionChangeListener> encryption_change_listener_;
   std::atomic_int remaining_packets_to_be_sent_ = 0;
-  DISALLOW_COPY_AND_ASSIGN(Link);
 };
 
 }  // namespace internal

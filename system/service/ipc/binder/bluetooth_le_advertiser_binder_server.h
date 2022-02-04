@@ -45,6 +45,11 @@ class BluetoothLeAdvertiserBinderServer : public BnBluetoothLeAdvertiser,
                                           public InterfaceWithInstancesBase {
  public:
   explicit BluetoothLeAdvertiserBinderServer(bluetooth::Adapter* adapter);
+  BluetoothLeAdvertiserBinderServer(const BluetoothLeAdvertiserBinderServer&) =
+      delete;
+  BluetoothLeAdvertiserBinderServer& operator=(
+      const BluetoothLeAdvertiserBinderServer&) = delete;
+
   ~BluetoothLeAdvertiserBinderServer() override;
 
   // IBluetoothLowEnergy overrides:
@@ -77,8 +82,6 @@ class BluetoothLeAdvertiserBinderServer : public BnBluetoothLeAdvertiser,
                               bluetooth::BluetoothInstance* instance) override;
 
   bluetooth::Adapter* adapter_;  // weak
-
-  DISALLOW_COPY_AND_ASSIGN(BluetoothLeAdvertiserBinderServer);
 };
 
 }  // namespace binder

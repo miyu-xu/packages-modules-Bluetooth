@@ -171,10 +171,10 @@ class BluetoothAvrcpInterface {
 
  protected:
   BluetoothAvrcpInterface() = default;
-  virtual ~BluetoothAvrcpInterface() = default;
+  BluetoothAvrcpInterface(const BluetoothAvrcpInterface&) = delete;
+  BluetoothAvrcpInterface& operator=(const BluetoothAvrcpInterface&) = delete;
 
- private:
-  DISALLOW_COPY_AND_ASSIGN(BluetoothAvrcpInterface);
+  virtual ~BluetoothAvrcpInterface() = default;
 };
 
 }  // namespace hal

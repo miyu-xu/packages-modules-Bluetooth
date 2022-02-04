@@ -35,6 +35,9 @@ namespace ipc {
 class IPCHandlerLinux : public IPCHandler {
  public:
   IPCHandlerLinux(bluetooth::Adapter* adapter, IPCManager::Delegate* delegate);
+  IPCHandlerLinux(const IPCHandlerLinux&) = delete;
+  IPCHandlerLinux& operator=(const IPCHandlerLinux&) = delete;
+
   ~IPCHandlerLinux() override;
 
   // IPCHandler overrides:
@@ -81,8 +84,6 @@ class IPCHandlerLinux : public IPCHandler {
 
   // The origin thread's task runner.
   scoped_refptr<base::SingleThreadTaskRunner> origin_task_runner_;
-
-  DISALLOW_COPY_AND_ASSIGN(IPCHandlerLinux);
 };
 
 }  // namespace ipc
