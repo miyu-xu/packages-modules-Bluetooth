@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020106555",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972839?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f3fdf207_5410dc87",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-04T15:13:37Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "8d8256d3108b10b8d1159cd87b7c26ff80eeed8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020106555",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972839?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "cf754e5e_e6568082",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-04T15:13:37Z",
+      "side": 1,
+      "message": "\"Bug:\" is not a valid bug number. Must be only digits with no prefixes.",
+      "range": {
+        "startLine": 12,
+        "startChar": 4,
+        "endLine": 12,
+        "endChar": 4
+      },
+      "revId": "8d8256d3108b10b8d1159cd87b7c26ff80eeed8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
