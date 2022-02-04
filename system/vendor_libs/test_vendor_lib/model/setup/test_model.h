@@ -32,6 +32,7 @@
 #include "phy.h"                               // for Phy, Phy::Type
 #include "phy_layer_factory.h"                 // for PhyLayerFactory
 #include "test_channel_transport.h"            // for AsyncDataChannel
+#include "model/devices/hci_device.h"
 
 namespace test_vendor_lib {
 class Device;
@@ -83,12 +84,11 @@ class TestModel {
                               Phy::Type phy_type);
   void IncomingLinkLayerConnection(std::shared_ptr<AsyncDataChannel> socket_fd);
   void IncomingLinkBleLayerConnection(std::shared_ptr<AsyncDataChannel> socket_fd);
-  void IncomingHciConnection(std::shared_ptr<AsyncDataChannel> socket_fd,
+  void IncomingHciConnection(std::shared_ptr<HciTransport> transport,
                              std::string properties_filename = "");
 
   // Handle closed remote connections (both hci & link layer)
-  void OnConnectionClosed(std::shared_ptr<AsyncDataChannel> socket_fd,
-                             size_t index, AsyncUserId user_id);
+  void OnConnectionClosed(size_t index, AsyncUserId user_id);
 
   // Connect to a remote device
   void AddRemote(const std::string& server, int port, Phy::Type phy_type);

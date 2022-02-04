@@ -28,6 +28,7 @@
 #include "model/setup/test_command_handler.h"       // for TestCommandHandler
 #include "model/setup/test_model.h"                 // for TestModel
 #include "net/async_data_channel_server.h"          // for AsyncDataChannelS...
+#include "model/devices/hci_transport_server.h"
 
 namespace android {
 namespace net {
@@ -41,19 +42,21 @@ namespace root_canal {
 using android::net::AsyncDataChannel;
 using android::net::AsyncDataChannelConnector;
 using android::net::AsyncDataChannelServer;
-using android::net::ConnectCallback;
+using test_vendor_lib::HciTransportServer;
+using test_vendor_lib::HciTransportConnectCallback;
+
 
 class TestEnvironment {
  public:
   TestEnvironment(std::shared_ptr<AsyncDataChannelServer> test_port,
-                  std::shared_ptr<AsyncDataChannelServer> hci_server_port,
+                  std::shared_ptr<HciTransportServer> hci_server_port,
                   std::shared_ptr<AsyncDataChannelServer> link_server_port,
                   std::shared_ptr<AsyncDataChannelServer> link_ble_server_port,
                   std::shared_ptr<AsyncDataChannelConnector> connector,
                   const std::string& controller_properties_file = "",
                   const std::string& default_commands_file = "")
       : test_socket_server_(test_port),
-        hci_socket_server_(hci_server_port),
+        hci_transport_server_(hci_server_port),
         link_socket_server_(link_server_port),
         link_ble_socket_server_(link_ble_server_port),
         connector_(connector),
@@ -69,7 +72,7 @@ class TestEnvironment {
  private:
   test_vendor_lib::AsyncManager async_manager_;
   std::shared_ptr<AsyncDataChannelServer> test_socket_server_;
-  std::shared_ptr<AsyncDataChannelServer> hci_socket_server_;
+  std::shared_ptr<HciTransportServer> hci_transport_server_;
   std::shared_ptr<AsyncDataChannelServer> link_socket_server_;
   std::shared_ptr<AsyncDataChannelServer> link_ble_socket_server_;
   std::shared_ptr<AsyncDataChannelConnector> connector_;
@@ -80,7 +83,7 @@ class TestEnvironment {
 
 
   void SetUpTestChannel();
-  void SetUpHciServer(ConnectCallback on_connect);
+  void SetUpHciServer(HciTransportConnectCallback on_connect);
   void SetUpLinkLayerServer();
   void SetUpLinkBleLayerServer();
   std::shared_ptr<AsyncDataChannel> ConnectToRemoteServer(
@@ -89,7 +92,6 @@ class TestEnvironment {
   std::shared_ptr<test_vendor_lib::DualModeController> controller_;
 
   test_vendor_lib::TestChannelTransport test_channel_transport_;
-  test_vendor_lib::TestChannelTransport remote_hci_transport_;
   test_vendor_lib::TestChannelTransport remote_link_layer_transport_;
   test_vendor_lib::TestChannelTransport remote_link_ble_layer_transport_;
 

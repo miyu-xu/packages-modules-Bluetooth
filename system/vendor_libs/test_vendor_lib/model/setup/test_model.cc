@@ -34,7 +34,7 @@
 #include "model/devices/beacon_swarm.h"              // for BeaconSwarm
 #include "model/devices/car_kit.h"                   // for CarKit
 #include "model/devices/classic.h"                   // for Classic
-#include "model/devices/hci_socket_device.h"         // for HciSocketDevice
+#include "model/devices/hci_device.h"
 #include "model/devices/keyboard.h"                  // for Keyboard
 #include "model/devices/link_layer_socket_device.h"  // for LinkLayerSocketD...
 #include "model/devices/remote_loopback_device.h"    // for RemoteLoopbackDe...
@@ -189,7 +189,8 @@ void TestModel::AddLinkLayerConnection(std::shared_ptr<AsyncDataChannel> socket,
   dev->RegisterCloseCallback([this, socket, index, user_id] {
     schedule_task_(user_id, std::chrono::milliseconds(0),
                    [this, socket, index, user_id]() {
-                     OnConnectionClosed(socket, index, user_id);
+                     socket->Close();
+                     OnConnectionClosed(index, user_id);
                    });
   });
 
@@ -217,9 +218,9 @@ void TestModel::AddRemote(const std::string& server, int port,
   AddLinkLayerConnection(socket, phy_type);
 }
 
-void TestModel::IncomingHciConnection(std::shared_ptr<AsyncDataChannel> socket,
+void TestModel::IncomingHciConnection(std::shared_ptr<HciTransport> transport,
                                       std::string properties_filename) {
-  auto dev = HciSocketDevice::Create(socket, properties_filename);
+  auto dev = HciDevice::Create(transport);
   size_t index = Add(std::static_pointer_cast<Device>(dev));
   std::string addr = "da:4c:10:de:17:";  // Da HCI dev
   std::stringstream stream;
@@ -237,21 +238,21 @@ void TestModel::IncomingHciConnection(std::shared_ptr<AsyncDataChannel> socket,
     return schedule_task_(user_id, delay, std::move(task_callback));
   });
   dev->RegisterTaskCancel(cancel_task_);
-  dev->RegisterCloseCallback([this, socket, index, user_id] {
+  dev->RegisterCloseCallback([this, transport, index, user_id] {
     schedule_task_(user_id, std::chrono::milliseconds(0),
-                   [this, socket, index, user_id]() {
-                     OnConnectionClosed(socket, index, user_id);
+                   [this, transport, index, user_id]() {
+                    transport->Close();
+                     OnConnectionClosed(index, user_id);
                    });
   });
 }
 
-void TestModel::OnConnectionClosed(std::shared_ptr<AsyncDataChannel> socket,
+void TestModel::OnConnectionClosed(
                                       size_t index, AsyncUserId user_id) {
   if (index >= devices_.size() || devices_[index] == nullptr) {
     LOG_WARN("Unknown device %zu", index);
     return;
   }
-  socket->Close();
 
   cancel_tasks_from_user_(user_id);
   devices_[index]->UnregisterPhyLayers();

@@ -16,12 +16,16 @@
 
 #include "test_environment.h"
 
-#include <type_traits>  // for remove_extent_t
-#include <utility>      // for move
-#include <vector>       // for vector
+#include <type_traits>            // for remove_extent_t
+#include <utility>                // for move
+#include <vector>                 // for vector
 
-#include "net/async_data_channel.h"  // for AsyncDataChannel
-#include "os/log.h"                  // for LOG_INFO, LOG_ERROR, LOG_WARN
+#include "android/utils/debug.h"  // for VERBOSE_bluetooth
+#include "os/log.h"               // for LOG_INFO, LOG_ERROR, LOG_WARN
+
+namespace test_vendor_lib {
+class HciTransport;
+}  // namespace test_vendor_lib
 
 namespace android {
 namespace bluetooth {
@@ -29,6 +33,7 @@ namespace root_canal {
 
 using test_vendor_lib::AsyncTaskId;
 using test_vendor_lib::TaskCallback;
+using test_vendor_lib::HciTransport;
 
 void TestEnvironment::initialize(std::promise<void> barrier) {
   LOG_INFO("Initialized barrier");
@@ -50,10 +55,10 @@ void TestEnvironment::initialize(std::promise<void> barrier) {
       });
 
   SetUpTestChannel();
-  SetUpHciServer([this](std::shared_ptr<AsyncDataChannel> socket,
-                        AsyncDataChannelServer* srv) {
-    test_model_.IncomingHciConnection(socket, controller_properties_file_);
-    srv->StartListening();
+  SetUpHciServer([this](auto transport,
+                        auto server) {
+    test_model_.IncomingHciConnection(transport, controller_properties_file_);
+    server->StartListening();
   });
   SetUpLinkLayerServer();
   SetUpLinkBleLayerServer();
@@ -66,15 +71,13 @@ void TestEnvironment::close() {
   test_model_.Reset();
 }
 
-void TestEnvironment::SetUpHciServer(ConnectCallback connection_callback) {
+void TestEnvironment::SetUpHciServer(HciTransportConnectCallback connection_callback) {
   test_channel_.RegisterSendResponse([](const std::string& response) {
     LOG_INFO("No HCI Response channel: %s", response.c_str());
   });
 
-  if (!remote_hci_transport_.SetUp(hci_socket_server_, connection_callback)) {
-    LOG_ERROR("Remote HCI channel SetUp failed.");
-    return;
-  }
+  hci_transport_server_->SetOnConnectCallback(connection_callback);
+  hci_transport_server_->StartListening();
 }
 
 void TestEnvironment::SetUpLinkBleLayerServer() {

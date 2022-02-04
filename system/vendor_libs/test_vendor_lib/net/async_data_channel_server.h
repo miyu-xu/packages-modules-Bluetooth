@@ -21,19 +21,13 @@
 namespace android {
 namespace net {
 
-class AsyncDataChannelServer;
-
-// Callback thas is called when a new client connection has been accepted.
-using ConnectCallback = std::function<void(std::shared_ptr<AsyncDataChannel>,
-                                           AsyncDataChannelServer* server)>;
-
 // An AsyncDataChannelServer is capable of listening to incoming connections.
 //
 // A Callback will be invoked whenever a new connection has been accepted.
-class AsyncDataChannelServer {
+class AsyncServer {
  public:
   // Destructor.
-  virtual ~AsyncDataChannelServer() = default;
+  virtual ~AsyncServer() = default;
 
   // Start listening for new connections. The callback will be invoked
   // when a new socket has been accepted.
@@ -55,6 +49,14 @@ class AsyncDataChannelServer {
   // True if this server is connected and can accept incoming
   // connections.
   virtual bool Connected() = 0;
+};
+
+template <class T>
+class AsyncConnectionServer : public AsyncServer {
+public:
+  // Callback thas is called when a new client connection has been accepted.
+  using ConnectCallback =
+      std::function<void(std::shared_ptr<T>, AsyncConnectionServer<T>* server)>;
 
   // Registers the callback that should be invoked whenever a new socket was
   // accepted.
@@ -70,5 +72,6 @@ class AsyncDataChannelServer {
   ConnectCallback callback_;
 };
 
+using AsyncDataChannelServer = AsyncConnectionServer<AsyncDataChannel>;
 }  // namespace net
 }  // namespace android
