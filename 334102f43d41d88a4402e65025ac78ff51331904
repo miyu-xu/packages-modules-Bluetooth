@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe471da_c02ca701",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-04T12:58:46Z",
+      "side": 1,
+      "message": "Chris, can you abandon this gerrit?\n\nI have posted new gerrit (based on Partha\u0027s original changes) with pre-submit test fixed. Let us use that for review and merge. Here is the link:\n\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1972520\n",
+      "revId": "334102f43d41d88a4402e65025ac78ff51331904",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
