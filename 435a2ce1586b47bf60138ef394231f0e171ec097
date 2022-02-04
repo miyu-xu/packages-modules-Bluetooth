@@ -89,6 +89,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5262aaf2_e4cbca60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-02-04T10:17:19Z",
+      "side": 1,
+      "message": "Looks Good To Me, I\u0027m unable to put a +2 here, but if it was possible it would be a +2 😊",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87df0285_fb0016f8",
@@ -138,6 +155,24 @@
       "side": 1,
       "message": "I also think it would be nice not to have to understand all the packets to simulate signal strength.",
       "parentUuid": "a64e3df5_13cff1cd",
+      "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45636188_75f4af71",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-02-04T10:17:19Z",
+      "side": 1,
+      "message": "By every packet I was meaning directly in the root `LinkLayerPacket`.\nFor the rest, your explanation makes sense, so it\u0027s ok for me",
+      "parentUuid": "54bd66be_937a76fb",
       "revId": "435a2ce1586b47bf60138ef394231f0e171ec097",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
