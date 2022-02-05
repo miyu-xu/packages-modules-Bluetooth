@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020131967",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973084?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d93aa2a5_ed02a945",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-05T01:09:40Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "8e2aeea75168a2b267b252e91e496c7ab4dafa04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020131967",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973084?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f0c5cf9a_44e6a0d5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-05T01:09:40Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "8e2aeea75168a2b267b252e91e496c7ab4dafa04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020131968",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973084?revision\u003d3",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "632c79e0_33f7cb23",
+        "filename": "system/vendor_libs/test_vendor_lib/model/devices/hci_transport_server.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-05T01:09:40Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 103
+      },
+      "revId": "8e2aeea75168a2b267b252e91e496c7ab4dafa04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
