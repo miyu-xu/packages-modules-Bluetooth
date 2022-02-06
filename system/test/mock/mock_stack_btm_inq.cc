@@ -184,3 +184,8 @@ void btm_set_eir_uuid(const uint8_t* p_eir, tBTM_INQ_RESULTS* p_results) {
   mock_function_count_map[__func__]++;
 }
 void btm_sort_inq_result(void) { mock_function_count_map[__func__]++; }
+void btm_process_remote_name_request(RawAddress const*,
+                                     unsigned char const (&)[249],
+                                     unsigned short, tHCI_ERROR_CODE) {
+  mock_function_count_map[__func__]++;
+}

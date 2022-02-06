@@ -34,3 +34,7 @@ extern void btm_process_cancel_complete(uint8_t status, uint8_t mode);
 
 extern void btm_acl_process_sca_cmpl_pkt(uint8_t len, uint8_t* data);
 extern tINQ_DB_ENT* btm_inq_db_new(const RawAddress& p_bda);
+extern void btm_process_remote_name_request(const RawAddress* bda,
+                                            const BD_NAME& bdn,
+                                            uint16_t evt_len,
+                                            tHCI_STATUS hci_status);

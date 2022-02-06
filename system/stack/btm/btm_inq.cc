@@ -1460,6 +1460,12 @@ void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
   }
 }
 
+void btm_process_remote_name_request(const RawAddress* bda, const BD_NAME& bdn,
+                                     uint16_t evt_len, tHCI_STATUS hci_status) {
+  btm_process_remote_name(bda, bdn, evt_len, hci_status);
+  btm_sec_rmt_name_request_complete(bda, bdn, hci_status);
+}
+
 void btm_inq_remote_name_timer_timeout(UNUSED_ATTR void* data) {
   btm_inq_rmt_name_failed_cancelled();
 }

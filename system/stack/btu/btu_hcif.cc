@@ -1089,12 +1089,15 @@ static void btu_hcif_rmt_name_request_comp_evt(const uint8_t* p,
   STREAM_TO_UINT8(status, p);
   STREAM_TO_BDADDR(bd_addr, p);
 
-  evt_len -= (1 + BD_ADDR_LEN);
+  // Minimum size is checked by lower layer
+  evt_len -= (sizeof(uint8_t) + BD_ADDR_LEN);
 
+  btm_process_remote_name_request(&bd_addr, (const BD_NAME&)p, evt_len,
+                                  to_hci_status_code(status));
+#if 0
   btm_process_remote_name(&bd_addr, p, evt_len, status);
-
-  btm_sec_rmt_name_request_complete(&bd_addr, p,
-                                    static_cast<tHCI_STATUS>(status));
+  btm_sec_rmt_name_request_complete(&bd_addr, p, static_cast<tHCI_STATUS>(status));
+#endif
 }
 
 constexpr uint8_t MIN_KEY_SIZE = 7;
@@ -1460,9 +1463,9 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
     case HCI_RMT_NAME_REQUEST:
       if (status != HCI_SUCCESS) {
         // Tell inquiry processing that we are done
-        btm_process_remote_name(nullptr, nullptr, 0, status);
-        btm_sec_rmt_name_request_complete(nullptr, nullptr,
-                                          static_cast<tHCI_STATUS>(status));
+        const BD_NAME bd_name = {0};
+        btm_process_remote_name_request(nullptr, bd_name, 0,
+                                        static_cast<tHCI_STATUS>(status));
       }
       break;
     case HCI_READ_RMT_EXT_FEATURES:
