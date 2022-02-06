@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020144481",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972520?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9aee9669_d52d3a2b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-06T06:35:50Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020144481",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972520?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "600e83df_eb1fb913",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-06T06:35:50Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020144481",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972520?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e347b716_1548c254",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-06T06:35:50Z",
+      "side": 1,
+      "message": "\"Fix: Added background reconnection request during disconnect\" is not a valid bug number. Must be only digits with no prefixes.",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 60
+      },
+      "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020144481",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972520?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1f297ab6_524d8372",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-06T06:35:50Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_client_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 49
+      },
+      "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
