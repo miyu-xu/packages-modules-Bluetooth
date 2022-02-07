@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020171807",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972828?revision\u003d2",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "addc95b5_29fa8c6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-07T19:49:12Z",
+      "side": 1,
+      "message": "#refactor requires a tracking bug number",
+      "range": {
+        "startLine": 10,
+        "startChar": 4,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "55924c98178b484fefff76163e58f965beb643ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
