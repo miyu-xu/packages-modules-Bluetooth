@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a251a74_d32f1ad7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-07T13:14:37Z",
+      "side": 1,
+      "message": "Thanks. In general looks good. Please consider one suggestion ",
+      "revId": "8003da644a6875016d84faaa9a19b6be63d9a8e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47146e01_df0793d9",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-07T13:14:37Z",
+      "side": 1,
+      "message": "Could you consider extending `struct VolumeOperation` with a autonomous change flag here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/vc/types.h;l\u003d48\n\ninstead of adding `ongoing_autonomous_volume_change_group_ids` ?",
+      "revId": "8003da644a6875016d84faaa9a19b6be63d9a8e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
