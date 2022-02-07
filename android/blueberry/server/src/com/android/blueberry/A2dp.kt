@@ -68,6 +68,64 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
       .setBufferSizeInBytes(44100 * 2 * 2)
       .build()
 
+  fun BluetoothA2dp.connect(device: BluetoothDevice) =
+    this.javaClass.getMethod("connect", BluetoothDevice::class.java).invoke(this, device)
+
+  override fun openSource(
+    request: OpenSourceRequest,
+    responseObserver: StreamObserver<OpenSourceResponse>
+  ) {
+    Log.d(TAG, "openSource")
+    val address = request.connection.cookie.toByteArray().decodeToString()
+    val bluetoothDevice = host.getConnectedBluetoothDevice()
+    if (address != bluetoothDevice.address) {
+      responseObserver.onError(Status.UNKNOWN.asException())
+    } else {
+      val a2dpState = bluetoothA2dp!!.getConnectionState(bluetoothDevice)
+      if (a2dpState == BluetoothProfile.STATE_CONNECTING) {
+        Log.d(TAG, "a2dp is already connecting")
+        runBlocking {
+          val flow = callbackFlow {
+            val a2dpBroadcastReceiver: BroadcastReceiver =
+              object : BroadcastReceiver() {
+                override fun onReceive(context: Context, intent: Intent) {
+                  val state =
+                    intent.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR)
+                  if (state == BluetoothProfile.STATE_CONNECTED) {
+                    val source = Source.newBuilder().setCookie(request.connection.cookie).build()
+                    responseObserver.onNext(OpenSourceResponse.newBuilder().setSource(source).build())
+                    responseObserver.onCompleted()
+                    trySendBlocking(null)
+                  } else if (state == BluetoothProfile.STATE_DISCONNECTED) {
+                    responseObserver.onError(Status.UNKNOWN.asException())
+                    trySendBlocking(null)
+                  }
+                }
+              }
+            val intentFilter = IntentFilter(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
+            mContext.registerReceiver(a2dpBroadcastReceiver, intentFilter)
+
+            awaitClose { mContext.unregisterReceiver(a2dpBroadcastReceiver) }
+          }
+
+          flow.first()
+        }
+      } else if (a2dpState == BluetoothProfile.STATE_CONNECTED) {
+        Log.d(TAG, "a2dp is already open")
+        val source = Source.newBuilder().setCookie(request.connection.cookie).build()
+        responseObserver.onNext(OpenSourceResponse.newBuilder().setSource(source).build())
+        responseObserver.onCompleted()
+      } else if (!bluetoothA2dp!!.connect(bluetoothDevice)) {
+        Log.d(TAG, "failed to connect")
+        responseObserver.onError(Status.UNKNOWN.asException())
+      } else {
+        val source = Source.newBuilder().setCookie(request.connection.cookie).build()
+        responseObserver.onNext(OpenSourceResponse.newBuilder().setSource(source).build())
+        responseObserver.onCompleted()
+      }
+    }
+  }
+
   override fun waitSource(
     request: WaitSourceRequest,
     responseObserver: StreamObserver<WaitSourceResponse>

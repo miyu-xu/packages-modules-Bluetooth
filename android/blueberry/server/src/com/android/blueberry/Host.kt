@@ -127,6 +127,8 @@ class Host(private val context: Context) : HostImplBase() {
                       bluetoothDevice = device
                       trySendBlocking(true)
                     }
+                  } else if (deviceState == BluetoothAdapter.STATE_DISCONNECTED) {
+                    trySendBlocking(false)
                   }
                   val pairingConfirmation =
                     intent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
