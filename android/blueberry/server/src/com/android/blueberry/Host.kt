@@ -166,5 +166,48 @@ class Host(private val context: Context) : HostImplBase() {
     responseObserver.onError(Status.UNKNOWN.asException())
   }
 
+  override fun disconnect(
+    request: DisconnectRequest,
+    responseObserver: StreamObserver<DisconnectResponse>
+  ) {
+    val address = request.connection.cookie.toByteArray().decodeToString()
+    Log.d(TAG, "disconnect: $address")
+    if (address != bluetoothDevice.address ||
+        bluetoothDevice.getBondState() == BluetoothDevice.BOND_NONE
+    ) {
+      responseObserver.onError(Status.UNKNOWN.asException())
+    } else {
+      runBlocking {
+        val flow = callbackFlow {
+          val connectionStateBroadcastReceiver: BroadcastReceiver =
+            object : BroadcastReceiver() {
+              override fun onReceive(context: Context, intent: Intent) {
+                if (intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) ==
+                    BluetoothAdapter.STATE_DISCONNECTED
+                ) {
+                  val device =
+                    intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)!!
+                  if (device.address == address) {
+                    trySendBlocking(null)
+                  }
+                }
+              }
+            }
+          val intentFilter = IntentFilter(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
+          context.registerReceiver(connectionStateBroadcastReceiver, intentFilter)
+          bluetoothDevice!!.disconnect()
+
+          awaitClose { context.unregisterReceiver(connectionStateBroadcastReceiver) }
+        }
+
+        flow.first()
+
+        responseObserver.onNext(DisconnectResponse.getDefaultInstance())
+        responseObserver.onCompleted()
+      }
+    }
+  }
+
+  fun BluetoothDevice.disconnect() = this.javaClass.getMethod("disconnect").invoke(this)
   fun getConnectedBluetoothDevice() = bluetoothDevice
 }
