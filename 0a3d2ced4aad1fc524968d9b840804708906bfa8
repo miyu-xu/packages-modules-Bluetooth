@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5b45e74_993ecd8a",
+        "filename": "system/test/common/jni_thread.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-07T16:58:04Z",
+      "side": 1,
+      "message": "closures? tasks? task_queue?",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 61
+      },
+      "revId": "0a3d2ced4aad1fc524968d9b840804708906bfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
