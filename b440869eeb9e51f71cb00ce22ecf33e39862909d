@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020150065",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973772?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f0fc7780_fd75341e",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-07T02:19:20Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 232,
+        "startChar": 8,
+        "endLine": 232,
+        "endChar": 15
+      },
+      "revId": "b440869eeb9e51f71cb00ce22ecf33e39862909d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020150065",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973772?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2333884b_b7c7f311",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-07T02:19:20Z",
+      "side": 1,
+      "message": "Please use language idioms to initialize or assign",
+      "range": {
+        "startLine": 233,
+        "startChar": 8,
+        "endLine": 233,
+        "endChar": 15
+      },
+      "revId": "b440869eeb9e51f71cb00ce22ecf33e39862909d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
