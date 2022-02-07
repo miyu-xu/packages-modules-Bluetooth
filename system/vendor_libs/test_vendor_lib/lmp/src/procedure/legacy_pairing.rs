@@ -1,0 +1,68 @@
+//use std::convert::TryInto;
+
+//use num_traits::{FromPrimitive, ToPrimitive};
+
+use crate::packets::{hci, lmp};
+use crate::procedure::Context;
+
+pub async fn initiate(ctx: &impl Context) -> bool {
+    let bd_addr = hci::Address { bytes: [0; 6] };
+
+    ctx.send_hci_event(hci::PinCodeRequestBuilder { bd_addr }.build());
+
+    let _pin_code = ctx.receive_hci_command::<hci::PinCodeRequestReplyPacket>().await;
+
+    ctx.send_hci_event(
+        hci::PinCodeRequestReplyCompleteBuilder {
+            num_hci_command_packets: 1,
+            status: hci::ErrorCode::Success,
+            bd_addr,
+        }
+        .build(),
+    );
+
+    // TODO: handle result
+    let _ = ctx
+        .send_accepted_lmp_packet(
+            lmp::InRandBuilder { transaction_id: 0, random_number: [0; 16] }.build(),
+        )
+        .await;
+
+    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: [0; 16] }.build());
+
+    let _ = ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await;
+
+    true
+}
+
+pub async fn respond(ctx: &impl Context, _request: lmp::InRandPacket) -> bool {
+    let bd_addr = hci::Address { bytes: [0; 6] };
+
+    ctx.send_hci_event(hci::PinCodeRequestBuilder { bd_addr }.build());
+
+    let _pin_code = ctx.receive_hci_command::<hci::PinCodeRequestReplyPacket>().await;
+
+    ctx.send_hci_event(
+        hci::PinCodeRequestReplyCompleteBuilder {
+            num_hci_command_packets: 1,
+            status: hci::ErrorCode::Success,
+            bd_addr,
+        }
+        .build(),
+    );
+
+    ctx.send_lmp_packet(
+        lmp::AcceptedBuilder { transaction_id: 0, accepted_opcode: lmp::Opcode::InRand }.build(),
+    );
+
+    let _ = ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await;
+
+    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: [0; 16] }.build());
+
+    true
+}
+
+#[cfg(test)]
+mod tests {
+    //use super::super::test_macro::sequence;
+}
