@@ -47,10 +47,13 @@ class Host(private val context: Context) : HostImplBase() {
   private val localMacAddress = MacAddress.fromString(bluetoothAdapter.getAddress())
   private val PAIRING_VARIANT_CONSENT = 3 // hide in BluetoothDevice.java
 
-  private lateinit var bluetoothDevice: BluetoothDevice
+  private var bluetoothDevice: BluetoothDevice? = null
 
   override fun reset(request: Empty, responseObserver: StreamObserver<Empty>) {
     Log.i(TAG, "reset")
+
+    bluetoothDevice?.removeBond()
+    bluetoothDevice = null
 
     runBlocking {
       val flow = callbackFlow {
@@ -105,7 +108,6 @@ class Host(private val context: Context) : HostImplBase() {
   ) {
     try {
       val address = MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
-
       Log.d(TAG, "waitConnection: address=$address")
 
       if (bluetoothAdapter.isEnabled) {
@@ -120,21 +122,30 @@ class Host(private val context: Context) : HostImplBase() {
                       BluetoothAdapter.EXTRA_CONNECTION_STATE,
                       BluetoothAdapter.ERROR
                     )
-                  if (deviceState == BluetoothAdapter.STATE_CONNECTED) {
-                    val device =
-                      intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)!!
-                    if (device.address == address) {
-                      bluetoothDevice = device
-                      trySendBlocking(true)
-                    }
+                  val prevState =
+                    intent.getIntExtra(
+                      BluetoothAdapter.EXTRA_PREVIOUS_STATE,
+                      BluetoothAdapter.ERROR
+                    )
+                  val device =
+                    intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)!!
+                  if (device.address == address) {
+                    bluetoothDevice = device
+                  } else {
+                    Log.d(TAG, "resp false")
+                    trySendBlocking(false)
+                  }
+                  Log.e(TAG, "deviceState: $deviceState")
+                  if (deviceState == BluetoothAdapter.STATE_CONNECTED ||
+                      deviceState == BluetoothAdapter.STATE_CONNECTING
+                  ) {
+                    trySendBlocking(true)
                   }
                   val pairingConfirmation =
                     intent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
                   if (pairingConfirmation == BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION ||
                       pairingConfirmation == PAIRING_VARIANT_CONSENT
                   ) {
-                    val device =
-                      intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)!!
                     device.setPairingConfirmation(true)
                   }
                 }
@@ -146,16 +157,16 @@ class Host(private val context: Context) : HostImplBase() {
             awaitClose { context.unregisterReceiver(bluetoothBroadcastReceiver) }
           }
 
-          if (flow.first()) {
-            val connection =
-              Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build()
-
-            val waitConnectionResponse =
+          val waitConnectionResponse =
+            if (flow.first()) {
+              val connection =
+                Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build()
               WaitConnectionResponse.newBuilder().setConnection(connection).build()
-
-            responseObserver.onNext(waitConnectionResponse)
-            responseObserver.onCompleted()
-          }
+            } else {
+              WaitConnectionResponse.getDefaultInstance()
+            }
+          responseObserver.onNext(waitConnectionResponse)
+          responseObserver.onCompleted()
         }
 
         return
@@ -173,16 +184,16 @@ class Host(private val context: Context) : HostImplBase() {
   ) {
     val addr = request.connection.cookie.toByteArray().decodeToString()
     Log.d(TAG, "disconnect: $addr")
-    if (addr != bluetoothDevice.address ||
-        bluetoothDevice.getBondState() == BluetoothDevice.BOND_NONE
+    if (addr != bluetoothDevice!!.address ||
+        bluetoothDevice!!.getBondState() == BluetoothDevice.BOND_NONE
     ) {
       responseObserver.onError(Status.UNKNOWN.asException())
     } else {
-      bluetoothDevice.removeBond()
+      bluetoothDevice!!.removeBond()
       responseObserver.onNext(DisconnectResponse.getDefaultInstance())
       responseObserver.onCompleted()
     }
   }
 
-  fun getConnectedBluetoothDevice() = bluetoothDevice
+  fun getConnectedBluetoothDevice(): BluetoothDevice? = bluetoothDevice
 }
