@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c49bdee_98be1d5c",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadsetClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-02-07T19:09:05Z",
+      "side": 1,
+      "message": "It might be an okay idea to put a TODO(bug number) or the like to capture the fact that we intend on removing this but can\u0027t until (1) a suitable replacement is created and (2) we\u0027ve reached the end of the Car built-in support period.",
+      "range": {
+        "startLine": 823,
+        "startChar": 4,
+        "endLine": 823,
+        "endChar": 6
+      },
+      "revId": "dbc310cecc5a4ad126930393c6eab9af3d6259d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
