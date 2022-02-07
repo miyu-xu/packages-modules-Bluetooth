@@ -13,6 +13,7 @@ import android.media.*
 import android.util.Log
 import blueberry.A2DPGrpc.A2DPImplBase
 import blueberry.A2dpProto.*
+import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -188,6 +189,29 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
         responseObserver.onNext(PlaybackAudioResponse.getDefaultInstance())
         responseObserver.onCompleted()
       }
+    }
+  }
+
+  override fun getAudioEncoding(
+    request: GetAudioEncodingRequest,
+    responseObserver: StreamObserver<GetAudioEncodingResponse>
+  ) {
+    Log.d(TAG, "captureAudio")
+    val sampleRate = audioTrack.getSampleRate()
+    val encoding = audioTrack.getFormat().getEncoding()
+    if (sampleRate != 44100 || sampleRate != 4800 || encoding != AudioFormat.ENCODING_PCM_16BIT) {
+      responseObserver.onError(Status.UNKNOWN.asException())
+    } else {
+      val audioEncoding =
+        if (sampleRate == 44100) {
+          AudioEncoding.PCM_S16_LE_44K1_STEREO
+        } else {
+          AudioEncoding.PCM_S16_LE_48K_STEREO
+        }
+      responseObserver.onNext(
+        GetAudioEncodingResponse.newBuilder().setEncoding(audioEncoding).build()
+      )
+      responseObserver.onCompleted()
     }
   }
 }
