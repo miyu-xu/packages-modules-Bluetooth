@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67a0c012_55e53d93",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-02-07T10:57:57Z",
+      "side": 1,
+      "message": "ArrayUtils is not exposed in the Android SDK, please use com.android.bluetooth.Utils.arrayContains instead",
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b87873a_b0e874e0",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 30
