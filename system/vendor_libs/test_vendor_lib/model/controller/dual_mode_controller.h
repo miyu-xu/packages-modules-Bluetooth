@@ -28,7 +28,6 @@
 #include "link_layer_controller.h"
 #include "model/devices/device.h"
 #include "model/setup/async_manager.h"
-#include "security_manager.h"
 
 namespace test_vendor_lib {
 
@@ -627,8 +626,6 @@ class DualModeController : public Device {
       active_hci_commands_;
 
   bluetooth::hci::LoopbackMode loopback_mode_;
-
-  SecurityManager security_manager_;
 
   DualModeController(const DualModeController& cmdPckt) = delete;
   DualModeController& operator=(const DualModeController& cmdPckt) = delete;
