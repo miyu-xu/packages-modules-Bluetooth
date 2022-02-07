@@ -167,5 +167,23 @@ class Host(private val context: Context) : HostImplBase() {
     responseObserver.onError(Status.UNKNOWN.asException())
   }
 
+  override fun disconnect(
+    request: DisconnectRequest,
+    responseObserver: StreamObserver<DisconnectResponse>
+  ) {
+    val addr = request.connection.cookie.toByteArray().decodeToString()
+    Log.d(TAG, "disconnect: $addr")
+    if (addr != bluetoothDevice.address ||
+        bluetoothDevice.getBondState() == BluetoothDevice.BOND_NONE
+    ) {
+      responseObserver.onError(Status.UNKNOWN.asException())
+    } else {
+      bluetoothDevice.removeBond()
+      responseObserver.onNext(DisconnectResponse.getDefaultInstance())
+      responseObserver.onCompleted()
+    }
+  }
+
+  fun BluetoothDevice.removeBond() = this.javaClass.getMethod("removeBond").invoke(this)
   fun getConnectedBluetoothDevice() = bluetoothDevice
 }
