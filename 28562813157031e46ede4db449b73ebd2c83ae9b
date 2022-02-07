@@ -22,6 +22,30 @@
       },
       "revId": "28562813157031e46ede4db449b73ebd2c83ae9b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "977fabff_25c16e1d",
+        "filename": "system/gd/rust/facade_proto/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-07T23:51:53Z",
+      "side": 1,
+      "message": "The ChromeOS recipe (and build.py) provide the env value but calling `cargo build` directly on this would not. We supported calling Cargo directly on specific Cargo.toml for debugging and I\u0027d like to keep that support until we move to Bazel.",
+      "parentUuid": "84333e9a_53161675",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 95
+      },
+      "revId": "28562813157031e46ede4db449b73ebd2c83ae9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
