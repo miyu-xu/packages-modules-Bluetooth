@@ -46,6 +46,30 @@
       },
       "revId": "f77951be8393e88b7da930cf6517014bfc2f84aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68eb4751_0c0f7e4e",
+        "filename": "system/main/shim/ble_scanner_interface_impl.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-07T17:54:46Z",
+      "side": 1,
+      "message": "I was wrong.  I should have paid more attention.\n\nAs long as impl.h is only included in one place, that seems reasonable.  I agree with you that keeping the functions in the impl file is better than keeping them in the scanning manager class.",
+      "parentUuid": "dad4a9d6_26217eda",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 3
+      },
+      "revId": "f77951be8393e88b7da930cf6517014bfc2f84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
