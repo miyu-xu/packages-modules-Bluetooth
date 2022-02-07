@@ -18,6 +18,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.os.Binder;
 import android.util.Log;
 
 import com.android.bluetooth.obex.ResponseCodes;
@@ -125,6 +126,7 @@ public class ObexServerSockets {
         // It's possible that create will fail in some cases. retry for 10 times
         for (int i = 0; i < CREATE_RETRY_TIME; i++) {
             initSocketOK = true;
+            long callingIdentity = Binder.clearCallingIdentity();
             try {
                 if (rfcommSocket == null) {
                     if (isSecure) {
@@ -147,6 +149,8 @@ public class ObexServerSockets {
                 Log.e(STAG, "Error create ServerSockets ", e);
                 initSocketOK = false;
                 break;
+            } finally {
+                Binder.restoreCallingIdentity(callingIdentity);
             }
             if (!initSocketOK) {
                 // Need to break out of this loop if BT is being turned off.
