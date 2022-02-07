@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fd1a14b_55a79c08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-07T15:41:12Z",
+      "side": 1,
+      "message": "Thanks. Could you also fix commit message i.e. use prefix in in the topic and make it shorter",
+      "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb6b5b5_e13f0b67",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-07T15:41:12Z",
+      "side": 1,
+      "message": "I know this is not related - but here should be return I believe.",
+      "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e4caa27_3cc0730d",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-07T15:41:12Z",
+      "side": 1,
+      "message": "Instead `continue` here, I believe we should clear `p_lcb-\u003epending_ecoc_conn_cnt` and do `return`",
+      "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
