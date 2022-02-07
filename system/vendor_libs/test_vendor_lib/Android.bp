@@ -25,7 +25,6 @@ cc_library_static {
         "model/controller/le_advertiser.cc",
         "model/controller/link_layer_controller.cc",
         "model/controller/sco_connection.cc",
-        "model/controller/security_manager.cc",
         "model/devices/beacon.cc",
         "model/devices/beacon_swarm.cc",
         "model/devices/broken_adv.cc",
@@ -62,6 +61,7 @@ cc_library_static {
         "-Wextra",
         "-Werror",
         "-fvisibility=hidden",
+        "-DROOTCANAL_LMP",
     ],
     local_include_dirs: [
         "include",
@@ -81,6 +81,9 @@ cc_library_static {
     ],
     shared_libs: [
         "liblog",
+    ],
+    whole_static_libs: [
+        "liblmp",
     ],
     static_libs: [
         "libjsoncpp",
