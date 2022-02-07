@@ -70,6 +70,30 @@
       },
       "revId": "f77951be8393e88b7da930cf6517014bfc2f84aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "754da44a_e154e1ad",
+        "filename": "system/main/shim/ble_scanner_interface_impl.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-07T18:51:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "68eb4751_0c0f7e4e",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 3
+      },
+      "revId": "f77951be8393e88b7da930cf6517014bfc2f84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
