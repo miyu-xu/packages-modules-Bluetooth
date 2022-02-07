@@ -69,8 +69,56 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
 
   override fun start(request: StartRequest, responseObserver: StreamObserver<StartResponse>) {
     Log.d(TAG, "start")
-    audioTrack.play()
+    waitForA2dpPlayingState(BluetoothA2dp.STATE_PLAYING)
     responseObserver.onNext(StartResponse.getDefaultInstance())
+    responseObserver.onCompleted()
+  }
+
+  override fun suspend(request: SuspendRequest, responseObserver: StreamObserver<SuspendResponse>) {
+    Log.d(TAG, "suspend")
+    waitForA2dpPlayingState(BluetoothA2dp.STATE_NOT_PLAYING)
+    responseObserver.onNext(SuspendResponse.getDefaultInstance())
+    responseObserver.onCompleted()
+  }
+
+  fun waitForA2dpPlayingState(playingState: Int) {
+    if (playingState != BluetoothA2dp.STATE_NOT_PLAYING ||
+        playingState != BluetoothA2dp.STATE_PLAYING
+    ) {
+      Log.e(TAG, "waitForA2dpPlayingState: unknown state: $playingState")
+      return
+    }
+    runBlocking {
+      val flow = callbackFlow {
+        val playingStateBroadcastReceiver: BroadcastReceiver =
+          object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+              if (intent.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) ==
+                  playingState
+              ) {
+                trySendBlocking(null)
+              }
+            }
+          }
+        val intentFilter = IntentFilter(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED)
+        mContext.registerReceiver(playingStateBroadcastReceiver, intentFilter)
+        audioTrack.pause()
+
+        awaitClose { mContext.unregisterReceiver(playingStateBroadcastReceiver) }
+      }
+
+      flow.first()
+    }
+  }
+
+  override fun isSuspended(
+    request: IsSuspendedRequest,
+    responseObserver: StreamObserver<IsSuspendedResponse>
+  ) {
+    Log.d(TAG, "isSuspended")
+    val isSuspended = bluetoothA2dp!!.isA2dpPlaying(host.getConnectedBluetoothDevice())
+    val resp = IsSuspendedResponse.newBuilder().setIsSuspended(isSuspended).build()
+    responseObserver.onNext(resp)
     responseObserver.onCompleted()
   }
 
