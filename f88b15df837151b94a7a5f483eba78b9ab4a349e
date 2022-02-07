@@ -16,6 +16,207 @@
       "message": "+mainline team to check if there is any code that is not compatible with mainline effort",
       "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2650362_65247398",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "Please rebase the change and align the change with the latest broadcast APIs on AOSP. Thanks! ",
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b87873a_b0e874e0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "nit: please rename to sService to simplify the code",
+      "range": {
+        "startLine": 50,
+        "startChar": 37,
+        "endLine": 50,
+        "endChar": 47
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e312bef_5464a9ce",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "Please update to the latest API class",
+      "range": {
+        "startLine": 55,
+        "startChar": 43,
+        "endLine": 55,
+        "endChar": 81
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eef6d74_bbbfa163",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "nit: better renamed to PeriodicAdvertisementResult",
+      "range": {
+        "startLine": 75,
+        "startChar": 17,
+        "endLine": 75,
+        "endChar": 26
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc8c171_29ec906a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "in other services, we check if sBCService is null to detect if start() has been called twice and throw illegal state exception when it starts twice\n\nthis helps prevent further catastrophic failures when the same service is started twice",
+      "range": {
+        "startLine": 266,
+        "startChar": 22,
+        "endLine": 266,
+        "endChar": 29
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3e5fe9_a9091db7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "nit: hasRoomForBroadcastSourceAddition",
+      "range": {
+        "startLine": 853,
+        "startChar": 20,
+        "endLine": 853,
+        "endChar": 22
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e081842_490a6429",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 861,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "please update to use the lastest BluetoothLeBroadcastReceiveState",
+      "range": {
+        "startLine": 861,
+        "startChar": 15,
+        "endLine": 861,
+        "endChar": 54
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "516cd046_d593c1a2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 912,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "nit: getSourceIdForSetMember",
+      "range": {
+        "startLine": 912,
+        "startChar": 17,
+        "endLine": 912,
+        "endChar": 36
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ff77a5_0c7e7faf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 30
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-07T08:31:16Z",
+      "side": 1,
+      "message": "system properties are in limited support in mainline module\n\nCould you please explain what each of these property does? Maybe we can use a different way to configure this on Android and set some default configurations",
+      "range": {
+        "startLine": 233,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 91
+      },
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
