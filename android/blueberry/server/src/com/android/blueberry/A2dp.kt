@@ -1,16 +1,25 @@
 package com.android.blueberry
 
 import android.bluetooth.BluetoothA2dp
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.media.*
 import android.util.Log
 import blueberry.A2DPGrpc.A2DPImplBase
 import blueberry.A2dpProto.*
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
 class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
   private val TAG = "BlueberryA2dp"
@@ -58,6 +67,49 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
       .setTransferMode(AudioTrack.MODE_STREAM)
       .setBufferSizeInBytes(44100 * 2 * 2)
       .build()
+
+  override fun waitSource(
+    request: WaitSourceRequest,
+    responseObserver: StreamObserver<WaitSourceResponse>
+  ) {
+    Log.d(TAG, "waitSource")
+    val address = request.connection.cookie.toByteArray().decodeToString()
+    val bluetoothDevice = host.getConnectedBluetoothDevice()
+    if (address != bluetoothDevice.address) {
+      responseObserver.onError(Status.UNKNOWN.asException())
+    } else {
+      val resp = {
+        val source = Source.newBuilder().setCookie(request.connection.cookie).build()
+        responseObserver.onNext(WaitSourceResponse.newBuilder().setSource(source).build())
+        responseObserver.onCompleted()
+      }
+      if (bluetoothA2dp!!.getConnectionState(bluetoothDevice) == BluetoothProfile.STATE_CONNECTED) {
+        resp()
+      } else {
+        runBlocking {
+          val flow = callbackFlow {
+            val a2dpBroadcastReceiver: BroadcastReceiver =
+              object : BroadcastReceiver() {
+                override fun onReceive(context: Context, intent: Intent) {
+                  val state =
+                    intent.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR)
+                  if (state == BluetoothProfile.STATE_CONNECTED) {
+                    resp()
+                    trySendBlocking(null)
+                  }
+                }
+              }
+            val intentFilter = IntentFilter(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
+            mContext.registerReceiver(a2dpBroadcastReceiver, intentFilter)
+
+            awaitClose { mContext.unregisterReceiver(a2dpBroadcastReceiver) }
+          }
+          // TODO: Timeout ? Ask if user want to block ?
+          flow.first()
+        }
+      }
+    }
+  }
 
   override fun start(request: StartRequest, responseObserver: StreamObserver<StartResponse>) {
     Log.d(TAG, "start")
