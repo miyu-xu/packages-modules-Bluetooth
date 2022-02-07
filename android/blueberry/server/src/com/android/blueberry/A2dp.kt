@@ -1,7 +1,7 @@
 package com.android.blueberry
 
-import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothA2dp
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
@@ -82,6 +82,46 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
     }
     audioTrack.play()
     responseObserver.onNext(StartResponse.getDefaultInstance())
+    responseObserver.onCompleted()
+  }
+
+  override fun suspend(request: SuspendRequest, responseObserver: StreamObserver<SuspendResponse>) {
+    Log.d(TAG, "suspend")
+    runBlocking {
+      val flow = callbackFlow {
+        val playingStateBroadcastReceiver: BroadcastReceiver =
+          object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
+              if (intent.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) ==
+                  BluetoothA2dp.STATE_NOT_PLAYING
+              ) {
+                trySendBlocking(null)
+              }
+            }
+          }
+        val intentFilter = IntentFilter(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED)
+        mContext.registerReceiver(playingStateBroadcastReceiver, intentFilter)
+        audioTrack.pause()
+
+        awaitClose { mContext.unregisterReceiver(playingStateBroadcastReceiver) }
+      }
+
+      flow.first()
+
+      responseObserver.onNext(SuspendResponse.getDefaultInstance())
+      responseObserver.onCompleted()
+    }
+  }
+
+  override fun isSuspended(
+    request: IsSuspendedRequest,
+    responseObserver: StreamObserver<IsSuspendedResponse>
+  ) {
+    Log.d(TAG, "isSuspended")
+    val state = audioTrack.getPlayState()
+    val isSuspended = state == AudioTrack.PLAYSTATE_STOPPED || state == AudioTrack.PLAYSTATE_PAUSED
+    val resp = IsSuspendedResponse.newBuilder().setIsSuspended(isSuspended).build()
+    responseObserver.onNext(resp)
     responseObserver.onCompleted()
   }
 
