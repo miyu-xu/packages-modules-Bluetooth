@@ -56,7 +56,7 @@ service A2DP {
   // return it. The server must return the same sink only once.
   rpc WaitSink(WaitSinkRequest) returns (WaitSinkResponse);
   // Get if the stream is suspended
-  rpc IsSuspended(IsSuspendedRequest) returns (google.protobuf.BoolValue);
+  rpc IsSuspended(IsSuspendedRequest) returns (IsSuspendedResponse);
   // Start a suspended stream.
   rpc Start(StartRequest) returns (StartResponse);
   // Suspend a started stream.
@@ -164,6 +164,11 @@ message IsSuspendedRequest {
     Sink sink = 1;
     Source source = 2;
   }
+}
+
+// Response for the `IsSuspended` method.
+message IsSuspendedResponse {
+  bool is_suspended = 1;
 }
 
 // Request for the `Start` method.
