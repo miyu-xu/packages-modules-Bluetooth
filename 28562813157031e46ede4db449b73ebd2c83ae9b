@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84333e9a_53161675",
+        "filename": "system/gd/rust/facade_proto/build.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-07T23:49:42Z",
+      "side": 1,
+      "message": "Is there a reason this behavior is desirable? On first glance this feels like it should just be an error.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 95
+      },
+      "revId": "28562813157031e46ede4db449b73ebd2c83ae9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
