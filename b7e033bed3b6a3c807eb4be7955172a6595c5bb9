@@ -212,6 +212,30 @@
       },
       "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8ec1bd9_5b5da0c6",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-07T16:59:42Z",
+      "side": 1,
+      "message": "Two of the private methods *are* in a cc file (but they are highlighted here ?)\n\nThe others, *address_cache*, simply keep state entirely within the module itself and are independent of external surfaces.\n\nI think it makes sense to abstract the *address_cache* into a separate class and then it may be encapsulated within a *.cc file.",
+      "parentUuid": "ec7fffe1_164a5b54",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 3
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
