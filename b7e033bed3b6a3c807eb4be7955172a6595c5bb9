@@ -188,6 +188,30 @@
       },
       "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "329cdb63_76bdd5a6",
+        "filename": "system/main/shim/le_scanning_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-07T16:54:22Z",
+      "side": 1,
+      "message": "That\u0027s why they\u0027re private, right?  I think the code should be in a .cc file so it doesn\u0027t get compiled everywhere it\u0027s included.",
+      "parentUuid": "ec7fffe1_164a5b54",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 3
+      },
+      "revId": "b7e033bed3b6a3c807eb4be7955172a6595c5bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
