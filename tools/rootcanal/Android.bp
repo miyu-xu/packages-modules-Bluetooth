@@ -100,12 +100,16 @@ cc_library_static {
         ":BluetoothCryptoToolboxSources",
         ":libbt-rootcanal-devices",
     ],
+    cflags: ["-DROOTCANAL_LMP"],
     export_include_dirs: [
         "include",
         ".",
     ],
     shared_libs: [
         "liblog",
+    ],
+    whole_static_libs: [
+        "liblmp",
     ],
     static_libs: [
         "libjsoncpp",
