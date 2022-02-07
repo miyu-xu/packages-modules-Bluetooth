@@ -25,7 +25,10 @@
 #include "model/devices/device_properties.h"
 #include "model/setup/async_manager.h"
 #include "packets/link_layer_packets.h"
-#include "security_manager.h"
+
+extern "C" {
+struct link_manager;
+}
 
 namespace test_vendor_lib {
 
@@ -37,7 +40,7 @@ class LinkLayerController {
  public:
   static constexpr size_t kIrkSize = 16;
 
-  LinkLayerController(const DeviceProperties& properties) : properties_(properties) {}
+  LinkLayerController(const DeviceProperties& properties);
   ErrorCode SendCommandToRemoteByAddress(
       OpCode opcode, bluetooth::packet::PacketView<true> args,
       const Address& remote);
@@ -48,10 +51,6 @@ class LinkLayerController {
   ErrorCode SendScoToRemote(bluetooth::hci::ScoView sco_packet);
   ErrorCode SendAclToRemote(bluetooth::hci::AclView acl_packet);
 
-  void StartSimplePairing(const Address& address);
-  void AuthenticateRemoteStage1(const Address& address, PairingType pairing_type);
-  void AuthenticateRemoteStage2(const Address& address);
-  void SaveKeyAndAuthenticate(uint8_t key_type, const Address& peer);
   ErrorCode LinkKeyRequestReply(const Address& address,
                                 const std::array<uint8_t, 16>& key);
   ErrorCode LinkKeyRequestNegativeReply(const Address& address);
@@ -79,9 +78,7 @@ class LinkLayerController {
   ErrorCode SendKeypressNotification(
       const Address& peer,
       bluetooth::hci::KeypressNotificationType notification_type);
-  void HandleSetConnectionEncryption(const Address& address, uint16_t handle, uint8_t encryption_enable);
   ErrorCode SetConnectionEncryption(uint16_t handle, uint8_t encryption_enable);
-  void HandleAuthenticationRequest(const Address& address, uint16_t handle);
   ErrorCode AuthenticationRequested(uint16_t handle);
 
   ErrorCode AcceptConnectionRequest(const Address& addr, bool try_role_switch);
@@ -324,6 +321,8 @@ class LinkLayerController {
   void SetInquiryScanEnable(bool enable);
   void SetPageScanEnable(bool enable);
 
+  void ForwardToLmp(bluetooth::hci::CommandView command);
+
   ErrorCode ChangeConnectionPacketType(uint16_t handle, uint16_t types);
   ErrorCode ChangeConnectionLinkKey(uint16_t handle);
   ErrorCode CentralLinkKey(uint8_t key_flag);
@@ -375,6 +374,12 @@ class LinkLayerController {
 
   void HandleIso(bluetooth::hci::IsoView iso);
 
+  friend uint16_t get_handle(void* user, uint8_t const address[6]);
+  friend void get_address(void* user, uint16_t handle, uint8_t result[6]);
+  friend void send_hci_event(void* user, uint8_t const* data, size_t len);
+  friend void send_lmp_packet(void* user, uint8_t const to[6],
+                              uint8_t const* data, size_t len);
+
  protected:
   void SendLeLinkLayerPacket(
       std::unique_ptr<model::packets::LinkLayerPacketBuilder> packet);
@@ -389,18 +394,10 @@ class LinkLayerController {
   void IncomingInquiryPacket(model::packets::LinkLayerPacketView packet);
   void IncomingInquiryResponsePacket(
       model::packets::LinkLayerPacketView packet);
-  void IncomingIoCapabilityRequestPacket(
-      model::packets::LinkLayerPacketView packet);
-  void IncomingIoCapabilityResponsePacket(
-      model::packets::LinkLayerPacketView packet);
-  void IncomingIoCapabilityNegativeResponsePacket(
-      model::packets::LinkLayerPacketView packet);
   void IncomingIsoPacket(model::packets::LinkLayerPacketView packet);
   void IncomingIsoConnectionRequestPacket(
       model::packets::LinkLayerPacketView packet);
   void IncomingIsoConnectionResponsePacket(
-      model::packets::LinkLayerPacketView packet);
-  void IncomingKeypressNotificationPacket(
       model::packets::LinkLayerPacketView packet);
   void IncomingLeAdvertisementPacket(
       model::packets::LinkLayerPacketView packet);
@@ -422,10 +419,6 @@ class LinkLayerController {
   void IncomingPagePacket(model::packets::LinkLayerPacketView packet);
   void IncomingPageRejectPacket(model::packets::LinkLayerPacketView packet);
   void IncomingPageResponsePacket(model::packets::LinkLayerPacketView packet);
-  void IncomingPasskeyPacket(model::packets::LinkLayerPacketView packet);
-  void IncomingPasskeyFailedPacket(model::packets::LinkLayerPacketView packet);
-  void IncomingPinRequestPacket(model::packets::LinkLayerPacketView packet);
-  void IncomingPinResponsePacket(model::packets::LinkLayerPacketView packet);
   void IncomingReadRemoteLmpFeatures(
       model::packets::LinkLayerPacketView packet);
   void IncomingReadRemoteLmpFeaturesResponse(
@@ -453,6 +446,7 @@ class LinkLayerController {
   void IncomingScoConnectionResponse(
       model::packets::LinkLayerPacketView packet);
   void IncomingScoDisconnect(model::packets::LinkLayerPacketView packet);
+  void IncomingLmp(model::packets::LinkLayerPacketView packet);
 
  private:
   const DeviceProperties& properties_;
@@ -525,7 +519,7 @@ class LinkLayerController {
 
   // Classic state
 
-  SecurityManager security_manager_{10};
+  struct link_manager* lmp_;
   std::chrono::steady_clock::time_point last_inquiry_;
   model::packets::InquiryType inquiry_mode_{
       model::packets::InquiryType::STANDARD};
