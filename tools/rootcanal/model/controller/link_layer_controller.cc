@@ -17,6 +17,9 @@
 #include "link_layer_controller.h"
 
 #include <hci/hci_packets.h>
+#ifdef ROOTCANAL_LMP
+#include <lmp.h>
+#endif /* ROOTCANAL_LMP */
 
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "os/log.h"
@@ -61,6 +64,74 @@ void LinkLayerController::SendLeLinkLayerPacketWithRssi(
     send_to_remote_(shared_packet, Phy::Type::LOW_ENERGY);
   });
 }
+
+#ifdef ROOTCANAL_LMP
+LinkLayerController::LinkLayerController(const DeviceProperties& properties)
+    : properties_(properties), lm_(nullptr, link_manager_destroy) {
+  auto ops = (struct link_manager_ops){
+      .user_pointer = this,
+      .get_handle =
+          [](void* user, uint8_t const address[6]) {
+            auto controller = static_cast<LinkLayerController*>(user);
+
+            Address a;
+            a.FromOctets(address);
+
+            return controller->connections_.GetHandleOnlyAddress(a);
+          },
+
+      .get_address =
+          [](void* user, uint16_t handle, uint8_t result[6]) {
+            auto controller = static_cast<LinkLayerController*>(user);
+
+            auto address =
+                controller->connections_.GetAddress(handle).GetAddress();
+            std::copy(address.data(), address.data() + 6, result);
+          },
+
+      .extended_features =
+          [](void* user, uint8_t features_page, uint8_t result[8]) {
+            auto controller = static_cast<LinkLayerController*>(user);
+
+            uint64_t features =
+                controller->properties_.GetExtendedFeatures(features_page);
+            std::copy((uint8_t*)&features, (uint8_t*)&features + 8, result);
+          },
+
+      .send_hci_event =
+          [](void* user, uint8_t const* data, size_t size) {
+            auto controller = static_cast<LinkLayerController*>(user);
+
+            auto event_code = static_cast<EventCode>(data[0]);
+            auto payload = std::make_unique<bluetooth::packet::RawBuilder>(
+                std::vector(data + 2, data + size));
+
+            controller->send_event_(bluetooth::hci::EventBuilder::Create(
+                event_code, std::move(payload)));
+          },
+
+      .send_lmp_packet =
+          [](void* user, uint8_t const to[6], uint8_t const* data,
+             size_t size) {
+            auto controller = static_cast<LinkLayerController*>(user);
+
+            auto payload = std::make_unique<bluetooth::packet::RawBuilder>(
+                std::vector(data, data + size));
+
+            Address source = controller->properties_.GetAddress();
+            Address dest;
+            dest.FromOctets(to);
+
+            controller->SendLinkLayerPacket(model::packets::LmpBuilder::Create(
+                source, dest, std::move(payload)));
+          }};
+
+  lm_.reset(link_manager_create(ops));
+}
+#else
+LinkLayerController::LinkLayerController(const DeviceProperties& properties)
+    : properties_(properties) {}
+#endif
 
 void LinkLayerController::SendLeLinkLayerPacket(
     std::unique_ptr<model::packets::LinkLayerPacketBuilder> packet) {
@@ -295,19 +366,16 @@ void LinkLayerController::IncomingPacketWithRssi(
     case model::packets::PacketType::DISCONNECT:
       IncomingDisconnectPacket(incoming);
       break;
+#ifdef ROOTCANAL_LMP
+    case model::packets::PacketType::LMP:
+      IncomingLmpPacket(incoming);
+      break;
+#else
     case model::packets::PacketType::ENCRYPT_CONNECTION:
       IncomingEncryptConnection(incoming);
       break;
     case model::packets::PacketType::ENCRYPT_CONNECTION_RESPONSE:
       IncomingEncryptConnectionResponse(incoming);
-      break;
-    case model::packets::PacketType::INQUIRY:
-      if (inquiry_scans_enabled_) {
-        IncomingInquiryPacket(incoming, rssi);
-      }
-      break;
-    case model::packets::PacketType::INQUIRY_RESPONSE:
-      IncomingInquiryResponsePacket(incoming);
       break;
     case model::packets::PacketType::IO_CAPABILITY_REQUEST:
       IncomingIoCapabilityRequestPacket(incoming);
@@ -318,6 +386,30 @@ void LinkLayerController::IncomingPacketWithRssi(
     case model::packets::PacketType::IO_CAPABILITY_NEGATIVE_RESPONSE:
       IncomingIoCapabilityNegativeResponsePacket(incoming);
       break;
+    case PacketType::KEYPRESS_NOTIFICATION:
+      IncomingKeypressNotificationPacket(incoming);
+      break;
+    case (model::packets::PacketType::PASSKEY):
+      IncomingPasskeyPacket(incoming);
+      break;
+    case (model::packets::PacketType::PASSKEY_FAILED):
+      IncomingPasskeyFailedPacket(incoming);
+      break;
+    case (model::packets::PacketType::PIN_REQUEST):
+      IncomingPinRequestPacket(incoming);
+      break;
+    case (model::packets::PacketType::PIN_RESPONSE):
+      IncomingPinResponsePacket(incoming);
+      break;
+#endif /* ROOTCANAL_LMP */
+    case model::packets::PacketType::INQUIRY:
+      if (inquiry_scans_enabled_) {
+        IncomingInquiryPacket(incoming, rssi);
+      }
+      break;
+    case model::packets::PacketType::INQUIRY_RESPONSE:
+      IncomingInquiryResponsePacket(incoming);
+      break;
     case PacketType::ISO:
       IncomingIsoPacket(incoming);
       break;
@@ -326,9 +418,6 @@ void LinkLayerController::IncomingPacketWithRssi(
       break;
     case PacketType::ISO_CONNECTION_RESPONSE:
       IncomingIsoConnectionResponsePacket(incoming);
-      break;
-    case PacketType::KEYPRESS_NOTIFICATION:
-      IncomingKeypressNotificationPacket(incoming);
       break;
     case model::packets::PacketType::LE_ADVERTISEMENT:
       if (le_scan_enable_ != bluetooth::hci::OpCode::NONE || le_connect_) {
@@ -380,18 +469,6 @@ void LinkLayerController::IncomingPacketWithRssi(
     case model::packets::PacketType::PAGE_REJECT:
       IncomingPageRejectPacket(incoming);
       break;
-    case (model::packets::PacketType::PASSKEY):
-      IncomingPasskeyPacket(incoming);
-      break;
-    case (model::packets::PacketType::PASSKEY_FAILED):
-      IncomingPasskeyFailedPacket(incoming);
-      break;
-    case (model::packets::PacketType::PIN_REQUEST):
-      IncomingPinRequestPacket(incoming);
-      break;
-    case (model::packets::PacketType::PIN_RESPONSE):
-      IncomingPinResponsePacket(incoming);
-      break;
     case (model::packets::PacketType::REMOTE_NAME_REQUEST):
       IncomingRemoteNameRequest(incoming);
       break;
@@ -440,7 +517,6 @@ void LinkLayerController::IncomingPacketWithRssi(
     case model::packets::PacketType::SCO_DISCONNECT:
       IncomingScoDisconnect(incoming);
       break;
-
     default:
       LOG_WARN("Dropping unhandled packet of type %s",
                model::packets::PacketTypeText(incoming.GetType()).c_str());
@@ -698,8 +774,12 @@ void LinkLayerController::IncomingDisconnectPacket(
 
   uint8_t reason = disconnect.GetReason();
   SendDisconnectionCompleteEvent(handle, reason);
+#ifdef ROOTCANAL_LMP
+  link_manager_remove_link(lm_.get(), peer.data());
+#endif
 }
 
+#ifndef ROOTCANAL_LMP
 void LinkLayerController::IncomingEncryptConnection(
     model::packets::LinkLayerPacketView incoming) {
   LOG_INFO("IncomingEncryptConnection");
@@ -743,6 +823,7 @@ void LinkLayerController::IncomingEncryptConnectionResponse(
         ErrorCode::SUCCESS, handle, bluetooth::hci::EncryptionEnabled::ON));
   }
 }
+#endif /* !ROOTCANAL_LMP */
 
 void LinkLayerController::IncomingInquiryPacket(
     model::packets::LinkLayerPacketView incoming, uint8_t rssi) {
@@ -867,6 +948,7 @@ void LinkLayerController::IncomingInquiryResponsePacket(
   }
 }
 
+#ifndef ROOTCANAL_LMP
 void LinkLayerController::IncomingIoCapabilityRequestPacket(
     model::packets::LinkLayerPacketView incoming) {
   Address peer = incoming.GetSourceAddress();
@@ -988,6 +1070,7 @@ void LinkLayerController::IncomingIoCapabilityNegativeResponsePacket(
         incoming.GetSourceAddress()));
   }
 }
+#endif /* !ROOTCANAL_LMP */
 
 void LinkLayerController::IncomingIsoPacket(LinkLayerPacketView incoming) {
   auto iso = IsoDataPacketView::Create(incoming);
@@ -1207,6 +1290,7 @@ void LinkLayerController::IncomingIsoConnectionResponsePacket(
   }
 }
 
+#ifndef ROOTCANAL_LMP
 void LinkLayerController::IncomingKeypressNotificationPacket(
     model::packets::LinkLayerPacketView incoming) {
   auto keypress = model::packets::KeypressNotificationView::Create(incoming);
@@ -1225,6 +1309,7 @@ void LinkLayerController::IncomingKeypressNotificationPacket(
             notification_type)));
   }
 }
+#endif /* !ROOTCANAL_LMP */
 
 static bool rpa_matches_irk(
     Address rpa, std::array<uint8_t, LinkLayerController::kIrkSize> irk) {
@@ -1553,6 +1638,20 @@ void LinkLayerController::IncomingScoDisconnect(
   }
 }
 
+#ifdef ROOTCANAL_LMP
+void LinkLayerController::IncomingLmpPacket(
+    model::packets::LinkLayerPacketView incoming) {
+  Address address = incoming.GetSourceAddress();
+  auto request = model::packets::LmpView::Create(incoming);
+  ASSERT(request.IsValid());
+  auto payload = request.GetPayload();
+  auto packet = std::vector(payload.begin(), payload.end());
+
+  link_manager_ingest_lmp(lm_.get(), address.data(), packet.data(),
+                          packet.size());
+}
+#endif /* ROOTCANAL_LMP */
+
 uint16_t LinkLayerController::HandleLeConnection(AddressWithType address,
                                                  AddressWithType own_address,
                                                  uint8_t role,
@@ -1865,6 +1964,7 @@ void LinkLayerController::IncomingLeScanResponsePacket(
   }
 }
 
+#ifndef ROOTCANAL_LMP
 void LinkLayerController::IncomingPasskeyPacket(
     model::packets::LinkLayerPacketView incoming) {
   auto passkey = model::packets::PasskeyView::Create(incoming);
@@ -1998,6 +2098,7 @@ void LinkLayerController::IncomingPinResponsePacket(
     });
   }
 }
+#endif /* !ROOTCANAL_LMP */
 
 void LinkLayerController::IncomingPagePacket(
     model::packets::LinkLayerPacketView incoming) {
@@ -2011,6 +2112,10 @@ void LinkLayerController::IncomingPagePacket(
     LOG_WARN("Failed to create a pending connection for %s",
              incoming.GetSourceAddress().ToString().c_str());
   }
+
+#ifdef ROOTCANAL_LMP
+  link_manager_add_link(lm_.get(), incoming.GetSourceAddress().data());
+#endif
 
   bluetooth::hci::Address source_address{};
   bluetooth::hci::Address::FromString(page.GetSourceAddress().ToString(),
@@ -2041,7 +2146,9 @@ void LinkLayerController::IncomingPageResponsePacket(
     model::packets::LinkLayerPacketView incoming) {
   Address peer = incoming.GetSourceAddress();
   LOG_INFO("%s", peer.ToString().c_str());
+#ifndef ROOTCANAL_LMP
   bool awaiting_authentication = connections_.AuthenticatePendingConnection();
+#endif /* !ROOTCANAL_LMP */
   uint16_t handle =
       connections_.CreateConnection(peer, incoming.GetDestinationAddress());
   if (handle == kReservedHandle) {
@@ -2054,16 +2161,21 @@ void LinkLayerController::IncomingPageResponsePacket(
         bluetooth::hci::LinkType::ACL, bluetooth::hci::Enable::DISABLED));
   }
 
+#ifndef ROOTCANAL_LMP
   if (awaiting_authentication) {
     ScheduleTask(kShortDelayMs, [this, peer, handle]() {
       HandleAuthenticationRequest(peer, handle);
     });
   }
+#endif /* !ROOTCANAL_LMP */
 }
 
 void LinkLayerController::TimerTick() {
   if (inquiry_timer_task_id_ != kInvalidTaskId) Inquiry();
   LeAdvertising();
+#ifdef ROOTCANAL_LMP
+  link_manager_tick(lm_.get());
+#endif /* ROOTCANAL_LMP */
 }
 
 void LinkLayerController::Close() {
@@ -2151,6 +2263,12 @@ void LinkLayerController::RegisterTaskCancel(
   cancel_task_ = task_cancel;
 }
 
+#ifdef ROOTCANAL_LMP
+void LinkLayerController::ForwardToLm(bluetooth::hci::CommandView command) {
+  auto packet = std::vector(command.begin(), command.end());
+  link_manager_ingest_hci(lm_.get(), packet.data(), packet.size());
+}
+#else
 void LinkLayerController::StartSimplePairing(const Address& address) {
   // IO Capability Exchange (See the Diagram in the Spec)
   if (properties_.IsUnmasked(EventCode::IO_CAPABILITY_REQUEST)) {
@@ -2597,6 +2715,7 @@ ErrorCode LinkLayerController::SetConnectionEncryption(
   });
   return ErrorCode::SUCCESS;
 }
+#endif /* ROOTCANAL_LMP */
 
 ErrorCode LinkLayerController::AcceptConnectionRequest(const Address& bd_addr,
                                                        bool try_role_switch) {
@@ -2706,6 +2825,10 @@ ErrorCode LinkLayerController::CreateConnection(const Address& addr, uint16_t,
           addr, properties_.GetAuthenticationEnable() == 1)) {
     return ErrorCode::CONTROLLER_BUSY;
   }
+#ifdef ROOTCANAL_LMP
+  link_manager_add_link(lm_.get(), addr.data());
+#endif
+
   SendLinkLayerPacket(model::packets::PageBuilder::Create(
       properties_.GetAddress(), addr, properties_.GetClassOfDevice(),
       allow_role_switch));
@@ -2775,6 +2898,9 @@ ErrorCode LinkLayerController::Disconnect(uint16_t handle, uint8_t reason) {
 
   connections_.Disconnect(handle);
   SendDisconnectionCompleteEvent(handle, reason);
+#ifdef ROOTCANAL_LMP
+  link_manager_remove_link(lm_.get(), remote.GetAddress().data());
+#endif
   return ErrorCode::SUCCESS;
 }
 
