@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020154726",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973543?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "bdc5b0c2_86be5d54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-07T09:10:24Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "f26130958b7d955df797fa23d60cb1e1ec116df2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020154726",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973543?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d7031663_fda0b6e0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-07T09:10:24Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "f26130958b7d955df797fa23d60cb1e1ec116df2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020154726",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1973543?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1b31cc0c_7e0437ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-07T09:10:24Z",
+      "side": 1,
+      "message": "\"Verified with PTS cases (L2CAP/ECFC/BV-11-C)\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 54
+      },
+      "revId": "f26130958b7d955df797fa23d60cb1e1ec116df2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
