@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a6f5b8f_fbd2c3f3",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-07T16:07:53Z",
+      "side": 1,
+      "message": "After more thinking we are considering now to not start background connection if remote or the user disconnects intentional.\nIn fact we would reconnect only when there would be supervision timeout. What do you think about that approach?\n\nIt would help audio servers to have some control on not having phone to connect to them while they might be busy with other e.g. bonding ?",
+      "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
