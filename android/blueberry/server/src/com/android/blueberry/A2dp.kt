@@ -76,6 +76,25 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
     responseObserver.onCompleted()
   }
 
+  override fun suspend(request: SuspendRequest, responseObserver: StreamObserver<SuspendResponse>) {
+    Log.d(TAG, "suspend")
+    audioTrack.pause()
+    responseObserver.onNext(SuspendResponse.getDefaultInstance())
+    responseObserver.onCompleted()
+  }
+
+  override fun isSuspended(
+    request: IsSuspendedRequest,
+    responseObserver: StreamObserver<IsSuspendedResponse>
+  ) {
+    Log.d(TAG, "isSuspended")
+    val state = audioTrack.getPlayState()
+    val isSuspended = state == AudioTrack.PLAYSTATE_STOPPED || state == AudioTrack.PLAYSTATE_PAUSED
+    val resp = IsSuspendedResponse.newBuilder().setIsSuspended(isSuspended).build()
+    responseObserver.onNext(resp)
+    responseObserver.onCompleted()
+  }
+
   fun BluetoothA2dp.disconnect(device: BluetoothDevice): Boolean =
     this.javaClass.getMethod("disconnect", BluetoothDevice::class.java).invoke(this, device) as
       Boolean
