@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c04224c_0b862bb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-07T15:47:56Z",
+      "side": 1,
+      "message": "Looks good. Would it be possible to put btsnoop logs into the commit message with bad and good behavior for all the patches you did in this CL?",
+      "revId": "2d19ca3da91a87aa52d82f789e3351c0e6ea7b5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
