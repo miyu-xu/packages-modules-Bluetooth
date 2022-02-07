@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdbd8e2f_d1dde1db",
+        "filename": "system/main/shim/ble_scanner_interface_impl.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-07T16:55:58Z",
+      "side": 1,
+      "message": "These implementations should still be in a .cc file.",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 3
+      },
+      "revId": "f77951be8393e88b7da930cf6517014bfc2f84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
