@@ -46,6 +46,30 @@
       },
       "revId": "0a3d2ced4aad1fc524968d9b840804708906bfa8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d7a3285_05b997a9",
+        "filename": "system/test/common/jni_thread.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-07T17:07:30Z",
+      "side": 1,
+      "message": "do_in_jni_thread_task_queue is great.  I guess I\u0027ll have to go read the callback vs callbacks naming guide.  A queue full of callbacks named callback seems odd.",
+      "parentUuid": "8275b7dc_93f11092",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 61
+      },
+      "revId": "0a3d2ced4aad1fc524968d9b840804708906bfa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
