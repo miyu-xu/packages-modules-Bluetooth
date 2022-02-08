@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e58816b4_5ece5601",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1853606
+      },
+      "writtenOn": "2022-02-08T15:34:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cb6b5b5_e13f0b67",
+      "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e4caa27_3cc0730d",
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Is the comment assuming that peer response data rcid list once it has encountered an \u00270\u0027 value rcid, subsequent ones will also be zero?\n\nThough unlikely below (an example) is still legal peer response data rcid list:\n[0]\u003d 0\n[1]\u003d 0\n[2]\u003d valid rcid\n[3]\u003d 0\n[4]\u003d valid rcid",
       "parentUuid": "4e4caa27_3cc0730d",
+      "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3a111b9_0ed8d7c4",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1853606
+      },
+      "writtenOn": "2022-02-08T15:34:11Z",
+      "side": 1,
+      "message": "Manoj is right. other rcids should be proceed.",
+      "parentUuid": "992d2fd6_0645f142",
       "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
