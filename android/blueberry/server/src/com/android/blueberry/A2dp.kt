@@ -42,6 +42,11 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
     override fun onServiceDisconnected(profile: Int) {
       Log.d(TAG, "bluetoothA2dpDisconnected")
       bluetoothA2dp = null
+      if (audioTrack.getPlayState() == AudioTrack.PLAYSTATE_PLAYING) {
+        audioTrack.pause()
+        audioTrack.flush()
+        audioTrack.stop()
+      }
     }
   }
 
@@ -181,6 +186,10 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
           AudioManager.FLAG_SHOW_UI
         )
       }
+    }
+    if (audioTrack.getPlayState() == AudioTrack.PLAYSTATE_PLAYING) {
+      audioTrack.pause()
+      audioTrack.flush()
     }
     audioTrack.play()
     responseObserver.onNext(StartResponse.getDefaultInstance())
