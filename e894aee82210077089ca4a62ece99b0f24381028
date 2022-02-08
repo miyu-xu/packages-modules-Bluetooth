@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b013c0eb_12f3c7a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-08T17:51:39Z",
+      "side": 1,
+      "message": "Thanks for the fix.  Feel free to add me as the sponsor to make the linter happy.",
+      "revId": "e894aee82210077089ca4a62ece99b0f24381028",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
