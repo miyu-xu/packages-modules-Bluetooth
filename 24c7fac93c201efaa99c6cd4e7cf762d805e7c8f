@@ -22,6 +22,30 @@
       },
       "revId": "24c7fac93c201efaa99c6cd4e7cf762d805e7c8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81b41b5d_a88b05d9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1097,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-02-08T12:52:43Z",
+      "side": 1,
+      "message": "Sure.\nTo make it more readable, I move the consolidated addresses to the end with StringBuilder.\n\n\"  Bonded devices:\n    C0:25:AD:0B:4E:AA [  LE  ] M585/M5901\n    C0:25:AD:0B:4E:BB [  LE  ] M585/M5902\n    C0:25:AD:0B:4E:CC [  LE  ] M585/M5903\n    6D:9F:71:52:73:12 \u003d\u003e 58:24:29:DB:8C:12 [ DUAL ] Pixel 6 cy1\n    6D:9F:71:52:73:34 \u003d\u003e 58:24:29:DB:8C:34 [ DUAL ] Pixel 6 cy2\n    6D:9F:71:52:73:56 \u003d\u003e 58:24:29:DB:8C:56 [ DUAL ] Pixel 6 cy3\"",
+      "parentUuid": "ac8902c9_d6a9c278",
+      "range": {
+        "startLine": 1097,
+        "startChar": 29,
+        "endLine": 1097,
+        "endChar": 77
+      },
+      "revId": "24c7fac93c201efaa99c6cd4e7cf762d805e7c8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
