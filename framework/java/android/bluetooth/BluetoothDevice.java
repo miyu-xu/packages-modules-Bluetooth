@@ -2322,31 +2322,15 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * @return true if pairing cancelled successfully, false otherwise
      *
      * @hide
+     * @deprecated use {@link cancelBondProcess()}
      */
-    @SystemApi
+    @Deprecated
+    @UnsupportedAppUsage
     @RequiresLegacyBluetoothAdminPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(allOf = {
-            android.Manifest.permission.BLUETOOTH_CONNECT,
-            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-    })
-    public boolean cancelPairing() {
-        if (DBG) log("cancelPairing()");
-        final IBluetooth service = sService;
-        final boolean defaultValue = false;
-        if (service == null) {
-            Log.e(TAG, "BT not enabled. Cannot cancel pairing");
-            if (DBG) log(Log.getStackTraceString(new Throwable()));
-        } else {
-            try {
-                final SynchronousResultReceiver<Boolean> recv = new SynchronousResultReceiver();
-                service.cancelBondProcess(this, mAttributionSource, recv);
-                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
-            } catch (RemoteException | TimeoutException e) {
-                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-            }
-        }
-        return defaultValue;
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public boolean cancelPairingYOLO() {
+        return cancelBondProcess();
     }
 
     boolean isBluetoothEnabled() {
