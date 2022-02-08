@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020229473",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972520?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4ca73607_2cf96c3c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T21:04:26Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "09f53b05e48c4cfb5080c3703b7fbf8317d792fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020229473",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972520?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4897a6c8_8fa9dd66",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T21:04:26Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_client_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 49
+      },
+      "revId": "09f53b05e48c4cfb5080c3703b7fbf8317d792fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020229473",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972520?revision\u003d12",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "06d9988e_48d154f0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 12
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T21:04:26Z",
+      "side": 1,
+      "message": "\"Fix: Added background reconnection request during disconnect\" is not a valid bug number. Must be only digits with no prefixes.",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 60
+      },
+      "revId": "09f53b05e48c4cfb5080c3703b7fbf8317d792fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
