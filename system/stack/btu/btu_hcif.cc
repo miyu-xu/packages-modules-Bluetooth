@@ -136,13 +136,6 @@ void btu_hcif_log_event_metrics(uint8_t evt_code, const uint8_t* p_event) {
       log_classic_pairing_event(bda, handle, cmd, evt_code, status, reason,
                                 value);
       break;
-    case HCI_AUTHENTICATION_COMP_EVT:
-      STREAM_TO_UINT8(status, p_event);
-      STREAM_TO_UINT16(handle, p_event);
-      handle = HCID_GET_HANDLE(handle);
-      log_classic_pairing_event(bda, handle, cmd, evt_code, status, reason,
-                                value);
-      break;
     case HCI_ENCRYPTION_CHANGE_EVT: {
       uint8_t encryption_enabled;
       STREAM_TO_UINT8(status, p_event);
@@ -150,79 +143,6 @@ void btu_hcif_log_event_metrics(uint8_t evt_code, const uint8_t* p_event) {
       STREAM_TO_UINT8(encryption_enabled, p_event);
       log_classic_pairing_event(bda, handle, cmd, evt_code, status, reason,
                                 encryption_enabled);
-      break;
-    }
-    case HCI_CONNECTION_COMP_EVT: {
-      uint8_t link_type;
-      STREAM_TO_UINT8(status, p_event);
-      STREAM_TO_UINT16(handle, p_event);
-      STREAM_TO_BDADDR(bda, p_event);
-      STREAM_TO_UINT8(link_type, p_event);
-      handle = HCID_GET_HANDLE(handle);
-      log_link_layer_connection_event(
-          &bda, handle, android::bluetooth::DIRECTION_UNKNOWN, link_type, cmd,
-          evt_code, android::bluetooth::hci::BLE_EVT_UNKNOWN, status, reason);
-
-      // Read SDP_DI manufacturer, model, HW version from config,
-      // and log them
-      int sdp_di_manufacturer_id = 0;
-      int sdp_di_model_id = 0;
-      int sdp_di_hw_version = 0;
-      int sdp_di_vendor_id_source = 0;
-      std::string bda_string = bda.ToString();
-      btif_config_get_int(bda_string, BT_CONFIG_KEY_SDP_DI_MANUFACTURER,
-                          &sdp_di_manufacturer_id);
-      btif_config_get_int(bda_string, BT_CONFIG_KEY_SDP_DI_MODEL,
-                          &sdp_di_model_id);
-      btif_config_get_int(bda_string, BT_CONFIG_KEY_SDP_DI_HW_VERSION,
-                          &sdp_di_hw_version);
-      btif_config_get_int(bda_string, BT_CONFIG_KEY_SDP_DI_VENDOR_ID_SRC,
-                          &sdp_di_vendor_id_source);
-
-      std::stringstream ss;
-      // [N - native]::SDP::[DIP - Device ID Profile]
-      ss << "N:SDP::DIP::" << loghex(sdp_di_vendor_id_source);
-      log_manufacturer_info(
-          bda, android::bluetooth::DeviceInfoSrcEnum::DEVICE_INFO_INTERNAL,
-          ss.str(), loghex(sdp_di_manufacturer_id), loghex(sdp_di_model_id),
-          loghex(sdp_di_hw_version), "");
-
-      // Read LMP version, subversion and  manufacturer from config,
-      // and log them
-      int lmp_version = -1;
-      int lmp_subversion = -1;
-      int lmp_manufacturer_id = -1;
-      btif_config_get_int(bda_string, BT_CONFIG_KEY_REMOTE_VER_VER,
-                          &lmp_version);
-      btif_config_get_int(bda_string, BT_CONFIG_KEY_REMOTE_VER_SUBVER,
-                          &lmp_subversion);
-      btif_config_get_int(bda_string, BT_CONFIG_KEY_REMOTE_VER_MFCT,
-                          &lmp_manufacturer_id);
-      bluetooth::common::LogRemoteVersionInfo(
-          handle, status, lmp_version, lmp_manufacturer_id, lmp_subversion);
-      break;
-    }
-    case HCI_CONNECTION_REQUEST_EVT: {
-      DEV_CLASS dc;
-      uint8_t link_type;
-      STREAM_TO_BDADDR(bda, p_event);
-      STREAM_TO_DEVCLASS(dc, p_event);
-      STREAM_TO_UINT8(link_type, p_event);
-      log_link_layer_connection_event(
-          &bda, bluetooth::common::kUnknownConnectionHandle,
-          android::bluetooth::DIRECTION_INCOMING, link_type, cmd, evt_code,
-          android::bluetooth::hci::BLE_EVT_UNKNOWN, status, reason);
-      break;
-    }
-    case HCI_DISCONNECTION_COMP_EVT: {
-      STREAM_TO_UINT8(status, p_event);
-      STREAM_TO_UINT16(handle, p_event);
-      STREAM_TO_UINT8(reason, p_event);
-      handle = HCID_GET_HANDLE(handle);
-      log_link_layer_connection_event(
-          nullptr, handle, android::bluetooth::DIRECTION_UNKNOWN,
-          android::bluetooth::LINK_TYPE_UNKNOWN, cmd, evt_code,
-          android::bluetooth::hci::BLE_EVT_UNKNOWN, status, reason);
       break;
     }
     case HCI_ESCO_CONNECTION_COMP_EVT: {
@@ -246,6 +166,16 @@ void btu_hcif_log_event_metrics(uint8_t evt_code, const uint8_t* p_event) {
           android::bluetooth::LINK_TYPE_UNKNOWN, cmd, evt_code,
           android::bluetooth::hci::BLE_EVT_UNKNOWN, status, reason);
       break;
+
+      case HCI_DISCONNECTION_COMP_EVT:
+      case HCI_CONNECTION_REQUEST_EVT:
+      case HCI_CONNECTION_COMP_EVT:
+      case HCI_AUTHENTICATION_COMP_EVT:
+        LOG_ERROR(
+            "Unexpectedly received event_code:0x%02x that should not be "
+            "handled here",
+            evt_code);
+        break;
     }
   }
 }
@@ -290,18 +220,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
     case HCI_EXTENDED_INQUIRY_RESULT_EVT:
       btm_process_inq_results(p, hci_evt_len, BTM_INQ_RESULT_EXTENDED);
       break;
-    case HCI_CONNECTION_COMP_EVT:
-      btu_hcif_connection_comp_evt(p, hci_evt_len);
-      break;
-    case HCI_CONNECTION_REQUEST_EVT:
-      btu_hcif_connection_request_evt(p);
-      break;
-    case HCI_DISCONNECTION_COMP_EVT:
-      btu_hcif_disconnection_comp_evt(p);
-      break;
-    case HCI_AUTHENTICATION_COMP_EVT:
-      btu_hcif_authentication_comp_evt(p);
-      break;
     case HCI_RMT_NAME_REQUEST_COMP_EVT:
       btu_hcif_rmt_name_request_comp_evt(p, hci_evt_len);
       break;
@@ -311,38 +229,8 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
     case HCI_ENCRYPTION_KEY_REFRESH_COMP_EVT:
       btu_hcif_encryption_key_refresh_cmpl_evt(p);
       break;
-    case HCI_READ_RMT_FEATURES_COMP_EVT:
-      btm_read_remote_features_complete_raw(p);
-      break;
-    case HCI_READ_RMT_EXT_FEATURES_COMP_EVT:
-      btu_hcif_read_rmt_ext_features_comp_evt(p, hci_evt_len);
-      break;
-    case HCI_READ_RMT_VERSION_COMP_EVT:
-      btm_read_remote_version_complete_raw(p);
-      break;
-    case HCI_COMMAND_COMPLETE_EVT:
-      LOG_ERROR(
-          "%s should not have received a command complete event. "
-          "Someone didn't go through the hci transmit_command function.",
-          __func__);
-      break;
-    case HCI_COMMAND_STATUS_EVT:
-      LOG_ERROR(
-          "%s should not have received a command status event. "
-          "Someone didn't go through the hci transmit_command function.",
-          __func__);
-      break;
     case HCI_HARDWARE_ERROR_EVT:
       btu_hcif_hardware_error_evt(p);
-      break;
-    case HCI_ROLE_CHANGE_EVT:
-      btu_hcif_role_change_evt(p);
-      break;
-    case HCI_NUM_COMPL_DATA_PKTS_EVT:
-      acl_process_num_completed_pkts(p, hci_evt_len);
-      break;
-    case HCI_MODE_CHANGE_EVT:
-      btu_hcif_mode_change_evt(p);
       break;
     case HCI_PIN_CODE_REQUEST_EVT:
       btm_sec_pin_code_request(p);
@@ -353,17 +241,11 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
     case HCI_LINK_KEY_NOTIFICATION_EVT:
       btu_hcif_link_key_notification_evt(p);
       break;
-    case HCI_READ_CLOCK_OFF_COMP_EVT:
-      btu_hcif_read_clock_off_comp_evt(p);
-      break;
     case HCI_ESCO_CONNECTION_COMP_EVT:
       btu_hcif_esco_connection_comp_evt(p);
       break;
     case HCI_ESCO_CONNECTION_CHANGED_EVT:
       btu_hcif_esco_connection_chg_evt(p);
-      break;
-    case HCI_SNIFF_SUB_RATE_EVT:
-      btm_pm_proc_ssr_evt(p, hci_evt_len);
       break;
     case HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT:
       btm_sec_rmt_host_support_feat_evt(p);
@@ -390,86 +272,26 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
       btm_proc_sp_req_evt(BTM_SP_KEY_NOTIF_EVT, p);
       break;
 
-    case HCI_BLE_EVENT: {
-      STREAM_TO_UINT8(ble_sub_code, p);
-
-      uint8_t ble_evt_len = hci_evt_len - 1;
-      switch (ble_sub_code) {
-        case HCI_BLE_ADV_PKT_RPT_EVT: /* result of inquiry */
-          btm_ble_process_adv_pkt(ble_evt_len, p);
-          break;
-        case HCI_BLE_CONN_COMPLETE_EVT:
-          btm_ble_conn_complete(p, hci_evt_len, false);
-          break;
-        case HCI_BLE_LL_CONN_PARAM_UPD_EVT:
-          btu_ble_ll_conn_param_upd_evt(p, hci_evt_len);
-          break;
-        case HCI_BLE_READ_REMOTE_FEAT_CMPL_EVT:
-          btm_ble_read_remote_features_complete(p);
-          break;
-        case HCI_BLE_LTK_REQ_EVT: /* received only at peripheral device */
-          btu_ble_proc_ltk_req(p);
-          break;
-        case HCI_BLE_ENHANCED_CONN_COMPLETE_EVT:
-          btm_ble_conn_complete(p, hci_evt_len, true);
-          break;
-        case HCI_BLE_RC_PARAM_REQ_EVT:
-          btu_ble_rc_param_req_evt(p);
-          break;
-        case HCI_BLE_DATA_LENGTH_CHANGE_EVT:
-          btu_ble_data_length_change_evt(p, hci_evt_len);
-          break;
-
-        case HCI_BLE_PHY_UPDATE_COMPLETE_EVT:
-          btm_ble_process_phy_update_pkt(ble_evt_len, p);
-          break;
-
-        case HCI_LE_EXTENDED_ADVERTISING_REPORT_EVT:
-          btm_ble_process_ext_adv_pkt(hci_evt_len, p);
-          break;
-
-        case HCI_LE_ADVERTISING_SET_TERMINATED_EVT:
-          btm_le_on_advertising_set_terminated(p, hci_evt_len);
-          break;
-
-        case HCI_BLE_REQ_PEER_SCA_CPL_EVT:
-          btm_acl_process_sca_cmpl_pkt(ble_evt_len, p);
-          break;
-
-        case HCI_BLE_PERIODIC_ADV_SYNC_EST_EVT:
-          btm_ble_process_periodic_adv_sync_est_evt(
-              ble_evt_len, const_cast<const uint8_t*>(p));
-          break;
-
-        case HCI_BLE_PERIODIC_ADV_REPORT_EVT:
-          btm_ble_process_periodic_adv_pkt(ble_evt_len,
-                                           const_cast<const uint8_t*>(p));
-          break;
-
-        case HCI_BLE_PERIODIC_ADV_SYNC_LOST_EVT:
-          btm_ble_process_periodic_adv_sync_lost_evt(ble_evt_len, p);
-          break;
-
-        case HCI_BLE_CIS_EST_EVT:
-        case HCI_BLE_CREATE_BIG_CPL_EVT:
-        case HCI_BLE_TERM_BIG_CPL_EVT:
-        case HCI_BLE_CIS_REQ_EVT:
-        case HCI_BLE_BIG_SYNC_EST_EVT:
-        case HCI_BLE_BIG_SYNC_LOST_EVT:
-          IsoManager::GetInstance()->HandleHciEvent(ble_sub_code, p,
-                                                    ble_evt_len);
-          break;
-
-        case HCI_LE_PERIODIC_ADV_SYNC_TRANSFERE_RECEIVED_EVT:
-          btm_ble_periodic_adv_sync_tx_rcvd(p, hci_evt_len);
-          break;
-
-        case HCI_LE_BIGINFO_ADVERTISING_REPORT_EVT:
-          btm_ble_biginfo_adv_report_rcvd(p, hci_evt_len);
-          break;
-      }
+    case HCI_SNIFF_SUB_RATE_EVT:
+    case HCI_ROLE_CHANGE_EVT:
+    case HCI_READ_RMT_VERSION_COMP_EVT:
+    case HCI_READ_RMT_FEATURES_COMP_EVT:
+    case HCI_READ_RMT_EXT_FEATURES_COMP_EVT:
+    case HCI_READ_CLOCK_OFF_COMP_EVT:
+    case HCI_NUM_COMPL_DATA_PKTS_EVT:
+    case HCI_MODE_CHANGE_EVT:
+    case HCI_BLE_EVENT:
+    case HCI_COMMAND_COMPLETE_EVT:
+    case HCI_COMMAND_STATUS_EVT:
+    case HCI_AUTHENTICATION_COMP_EVT:
+    case HCI_CONNECTION_COMP_EVT:
+    case HCI_CONNECTION_REQUEST_EVT:
+    case HCI_DISCONNECTION_COMP_EVT:
+      LOG_ERROR(
+          "Unexpectedly received event_code:0x%02x that should not be handled "
+          "here",
+          hci_evt_code);
       break;
-    }
 
     case HCI_VENDOR_SPECIFIC_EVT:
       btm_vendor_specific_evt(const_cast<const uint8_t*>(p), hci_evt_len);
