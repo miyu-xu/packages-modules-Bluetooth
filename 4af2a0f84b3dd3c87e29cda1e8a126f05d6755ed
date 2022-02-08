@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020232813",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976749?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9de05aae_e6fd3ba3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:15:31Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "4af2a0f84b3dd3c87e29cda1e8a126f05d6755ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020232813",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976749?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c48f1fcb_7f82f961",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:15:31Z",
+      "side": 1,
+      "message": "\"Compile and test again apex presubmits\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 44
+      },
+      "revId": "4af2a0f84b3dd3c87e29cda1e8a126f05d6755ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
