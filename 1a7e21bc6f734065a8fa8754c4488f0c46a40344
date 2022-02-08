@@ -1,0 +1,420 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233685",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "f490de74_77c60b2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "\"emerge-zork floss\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "84c3dde2_d247e811",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 106
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "09f1aa2d_458e8a57",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 115
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "beffc2e5_064f15d6",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 186,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 111
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5174556f_33c332aa",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 206,
+        "endChar": 111
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c0e942b0_a84a40e3",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 210,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 113
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "28b57ad4_b35f8397",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 213,
+        "endChar": 106
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5a3599e4_dca89290",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 111
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9905e7ec_b224b817",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 246,
+        "startChar": 0,
+        "endLine": 246,
+        "endChar": 108
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "af310ccb_3f385726",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 102
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "8b4396a6_bed407b0",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 104
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "205c2695_f4d5b784",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 120
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d9704508_503c9f12",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 112
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2062d552_2fe7e7d5",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 115
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5b04149c_5c619101",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 101
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020233689",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1976754?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "85903c29_7400c3ec",
+        "filename": "system/gd/rust/topshim/gatt/gatt_ble_scanner_shim.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-08T22:30:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 117
+      },
+      "revId": "1a7e21bc6f734065a8fa8754c4488f0c46a40344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
