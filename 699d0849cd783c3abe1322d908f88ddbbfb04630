@@ -16,6 +16,24 @@
       "message": "After more thinking we are considering now to not start background connection if remote or the user disconnects intentional.\nIn fact we would reconnect only when there would be supervision timeout. What do you think about that approach?\n\nIt would help audio servers to have some control on not having phone to connect to them while they might be busy with other e.g. bonding ?",
       "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "074b00e3_65edfcd7",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-08T15:04:16Z",
+      "side": 1,
+      "message": "Thanks for the comment. With the suggested approach, any way to get below use case to work without user accessing phone\u0027s BT settings):\nTWS earbuds disconnect gracefully when user places them in cradle. User later picks them out to answer a phone call on earbuds.\n\nAlso, VC profile currently seems to enable background connection in all\ndisconnects scenarios (except when disconnect is initiated locally or there\nwas an error during connect).",
+      "parentUuid": "5a6f5b8f_fbd2c3f3",
+      "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
