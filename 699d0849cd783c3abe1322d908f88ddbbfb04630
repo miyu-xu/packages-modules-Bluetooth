@@ -34,6 +34,24 @@
       "parentUuid": "5a6f5b8f_fbd2c3f3",
       "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "340c813b_b4e4ca17",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-08T20:05:42Z",
+      "side": 1,
+      "message": "Yes it is about right. User would have to go to settings then. If we decide to change it would affect all the profiles.\n\nAnyway, for now we are fine with this change.",
+      "parentUuid": "074b00e3_65edfcd7",
+      "revId": "699d0849cd783c3abe1322d908f88ddbbfb04630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
