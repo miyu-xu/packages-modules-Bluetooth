@@ -63,6 +63,9 @@ TEST_URL = 'http://www.google.com'
 # Timeout to wait for device boot success in second.
 WAIT_FOR_DEVICE_TIMEOUT_SEC = 180
 
+# Tethering type for Bluetooth (ConnectivityManager.TETHERING_BLUETOOTH).
+_BLUETOOTH_TETHERING_TYPE = 2
+
 
 class DeviceBootError(signals.ControllerError):
   """Exception raised for Android device boot failures."""
@@ -844,7 +847,10 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
 
     self._ad.log.info('%s Bluetooth tethering.' %
                       ('Enable' if status_enabled else 'Disable'))
-    self._ad.sl4a.bluetoothPanSetBluetoothTethering(status_enabled)
+    if status_enabled:
+      self._ad.sl4a.connectivityStartTethering(_BLUETOOTH_TETHERING_TYPE, True)
+    else:
+      self._ad.sl4a.connectivityStopTethering(_BLUETOOTH_TETHERING_TYPE)
 
     bt_test_utils.wait_until(
         timeout_sec=COMMON_TIMEOUT_SECONDS,
