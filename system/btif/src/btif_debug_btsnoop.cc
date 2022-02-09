@@ -23,6 +23,7 @@
 #include <zlib.h>
 
 #include "internal_include/bt_target.h"
+#include "osi/include/properties.h"
 #include "osi/include/ringbuffer.h"
 
 #define REDUCE_HCI_TYPE_TO_SIGNIFICANT_BITS(type) ((type) >> 8)
