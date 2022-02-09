@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020262615",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1911878?revision\u003d7",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "194c2e06_94fc9d30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T13:02:08Z",
+      "side": 1,
+      "message": "\"bluetooth_le_audio_test\" is not on the list of allowed atest tests. Expected one of: bluetooth_test_gd OR BluetoothInstrumentationTests OR CtsBluetoothTestCases",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 42
+      },
+      "revId": "46ba546dd17af5c6123af357b8efaa89c2eeb8ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
