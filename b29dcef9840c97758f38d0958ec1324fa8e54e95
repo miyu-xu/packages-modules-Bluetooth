@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "468e0131_41b0c64e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-09T17:13:38Z",
+      "side": 1,
+      "message": "Something went wrong with the rebase I think. Cleanup() was lost in bta_le_audio_api.h.",
+      "revId": "b29dcef9840c97758f38d0958ec1324fa8e54e95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
