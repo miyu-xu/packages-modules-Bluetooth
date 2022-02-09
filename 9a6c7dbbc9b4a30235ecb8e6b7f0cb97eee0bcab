@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33bb9453_cc50f69d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T01:06:39Z",
+      "side": 1,
+      "message": "Verified it for a2dp software/offload, le audio software with bluetooth.audio@2.1 HIDL and bluetooth.audio AIDL HAL.\n\n+2 for the strategy merge first.",
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
