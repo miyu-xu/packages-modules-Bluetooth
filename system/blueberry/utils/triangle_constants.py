@@ -46,6 +46,11 @@ CONNECTION_SWITCHING_FLAGS = (
         'value': 'true'
     },
     {
+        'name': 'FastPairFeature__log_switch_performance',
+        'type': FLAG_TYPE.BOOLEAN,
+        'value': 'true'
+    },
+    {
         'name': 'fast_pair_manual_connect_affect_duration_millis',
         'type': FLAG_TYPE.LONG,
         'value': '60000'
