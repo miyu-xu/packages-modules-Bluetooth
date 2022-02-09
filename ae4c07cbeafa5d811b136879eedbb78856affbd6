@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "693eb494_3b87252e",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-09T22:11:39Z",
+      "side": 1,
+      "message": "We are trying to re-root all include path to\n\n-I packages/modules/Bluetooth/system\n\nSo that in C++ code there is ambiguity among relative include paths. \n\nCould the include path be rebased to the above instead?",
+      "range": {
+        "startLine": 450,
+        "startChar": 28,
+        "endLine": 450,
+        "endChar": 77
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66d1f16f_a5ef8c9b",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-09T22:11:39Z",
+      "side": 1,
+      "message": "nit: please have a space between genrules",
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f418164a_9de528d3",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-09T22:11:39Z",
+      "side": 1,
+      "message": "Could the schema genrules be combined into a single rule with multiple inputs and outputs?",
+      "range": {
+        "startLine": 465,
+        "startChar": 81,
+        "endLine": 465,
+        "endChar": 89
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9516558a_ddc11243",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-09T22:11:39Z",
+      "side": 1,
+      "message": "Could these files be combined into a single rule? \n\ne.g. bluetooth_le_audio_config_data",
+      "range": {
+        "startLine": 486,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 1
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8941747_6cadb6ef",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-09T22:11:39Z",
+      "side": 1,
+      "message": "nit: please new LOG_WARN for new code, same for all logging functions in this change. LOG_* macros will print __func__ automatically",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 32
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8834b698_047a7dba",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-09T22:11:39Z",
+      "side": 1,
+      "message": "this can be replaced with LOG_DEBUG() and it can be enabled at runtime with\n\nadb shell device_config put bluetooth INIT_logging_debug_enabled_for_all true",
+      "range": {
+        "startLine": 431,
+        "startChar": 2,
+        "endLine": 431,
+        "endChar": 6
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
