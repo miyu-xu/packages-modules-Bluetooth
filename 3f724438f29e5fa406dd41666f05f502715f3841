@@ -1,0 +1,56 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020257739",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1958889?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "dc98bcb7_e12f1488",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T09:50:04Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "3f724438f29e5fa406dd41666f05f502715f3841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020257739",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1958889?revision\u003d6",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "1e4b684e_7e14ac2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T09:50:04Z",
+      "side": 1,
+      "message": "\"verified with a2dp software/offload, le audio software\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 60
+      },
+      "revId": "3f724438f29e5fa406dd41666f05f502715f3841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
