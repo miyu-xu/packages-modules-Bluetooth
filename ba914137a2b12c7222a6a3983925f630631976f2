@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc166950_a8154547",
+        "filename": "system/gd/os/linux_generic/reactor.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-09T06:22:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "96c9fb5a_c84615e6",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 21
+      },
+      "revId": "ba914137a2b12c7222a6a3983925f630631976f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5987e8b_bf8192a7",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "The idea here was to maintain an inner class, similar to Reactable, to indicate the tight association.  But unlike Reactable, it does have an API.",
       "parentUuid": "c5987e8b_bf8192a7",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 55
+      },
+      "revId": "ba914137a2b12c7222a6a3983925f630631976f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f125d226_baec357c",
+        "filename": "system/gd/os/reactor.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-09T06:22:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "898cc286_007d1ae6",
       "range": {
         "startLine": 75,
         "startChar": 0,
