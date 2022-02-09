@@ -1,0 +1,108 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020245341",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972522?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "e8924ce8_d834f9f5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T03:23:09Z",
+      "side": 1,
+      "message": "Change must include a \"Sponsor:\" stanza indicating who at Google has personally signed up to take responsibility in case of any potential fallout.",
+      "range": {
+        "startLine": 6,
+        "startChar": 0,
+        "endLine": 6,
+        "endChar": 0
+      },
+      "revId": "fe44b709b7e5983db7a2eb49ac587cf303b8e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020245341",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972522?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4ca6b336_dc19dfaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T03:23:09Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "fe44b709b7e5983db7a2eb49ac587cf303b8e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020245341",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972522?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "af108d18_18afb242",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T03:23:09Z",
+      "side": 1,
+      "message": "\"Fix:\" is not a valid bug number. Must be only digits with no prefixes.",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "fe44b709b7e5983db7a2eb49ac587cf303b8e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020245341",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1972522?revision\u003d8",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "4a095f98_c78dacd1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T03:23:09Z",
+      "side": 1,
+      "message": "\"After above change, issue not seen. Tested with internal\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 62
+      },
+      "revId": "fe44b709b7e5983db7a2eb49ac587cf303b8e722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
