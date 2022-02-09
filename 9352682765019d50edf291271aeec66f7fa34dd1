@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020250283",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1978048?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "d0017c17_c19f31bf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-09T06:14:12Z",
+      "side": 1,
+      "message": "\"manually checked content of partial btsnoop log\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 53
+      },
+      "revId": "9352682765019d50edf291271aeec66f7fa34dd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
