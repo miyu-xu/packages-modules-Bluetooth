@@ -952,7 +952,7 @@ static void btu_hcif_inquiry_comp_evt(uint8_t* p) {
   STREAM_TO_UINT8(status, p);
 
   /* Tell inquiry processing that we are done */
-  btm_process_inq_complete(status, BTM_BR_INQUIRY_MASK);
+  btm_process_inq_complete(to_hci_status_code(status), BTM_BR_INQUIRY_MASK);
 }
 
 /*******************************************************************************
@@ -1423,7 +1423,8 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
     case HCI_INQUIRY:
       if (status != HCI_SUCCESS) {
         // Tell inquiry processing that we are done
-        btm_process_inq_complete(status, BTM_BR_INQUIRY_MASK);
+        btm_process_inq_complete(to_hci_status_code(status),
+                                 BTM_BR_INQUIRY_MASK);
       }
       break;
     case HCI_SWITCH_ROLE:
@@ -1460,9 +1461,8 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
     case HCI_RMT_NAME_REQUEST:
       if (status != HCI_SUCCESS) {
         // Tell inquiry processing that we are done
-        btm_process_remote_name(nullptr, nullptr, 0, status);
-        btm_sec_rmt_name_request_complete(nullptr, nullptr,
-                                          static_cast<tHCI_STATUS>(status));
+        btm_process_remote_name_request(nullptr, kBdNameEmpty, 0,
+                                        to_hci_status_code(status));
       }
       break;
     case HCI_READ_RMT_EXT_FEATURES:
