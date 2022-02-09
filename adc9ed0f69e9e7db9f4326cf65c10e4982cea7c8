@@ -16,6 +16,24 @@
       "message": "How you triggered this?",
       "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6221d9c8_dbf29d27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-09T20:19:42Z",
+      "side": 1,
+      "message": "By running `atest BluetoothInstrumentationTests`.\n\nFor some reason after the repo sync today it showed up first on HAP tests, then on CSIP. My test runs became so flaky that I decided to fix everything just in case.\nThe adapter was disappearing in the middle of the okToConnect() call from the state machine, just after it was used few lines above. That was weird, but when you think about it\u0027s quite possible. When you make the state machine quit, and stop the sm. thread with quitSafely() you allow it to complete the existing job and quit in it\u0027s own thread. And If in the main service thread you tear down the stuff which this sm message handler depends on (like adapter service used in okToConnect() call), weird stuff can happen. Unit tests are often turning these services on, do one thing and tear it down, but in normal usage it will less likely to happen.\n\nNot sure what has changed, and why it showed up now. Maybe I\u0027m just unlucky to stumble upon stuff that no one else is. 😂 Like with the deadlock some time ago.",
+      "parentUuid": "925c4033_64e33759",
+      "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
