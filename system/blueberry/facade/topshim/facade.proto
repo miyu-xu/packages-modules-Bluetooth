@@ -6,6 +6,7 @@ service AdapterService {
   rpc FetchEvents(FetchEventsRequest) returns (stream FetchEventsResponse) {}
   rpc ToggleStack(ToggleStackRequest) returns (ToggleStackResponse) {}
   rpc SetDiscoveryMode(SetDiscoveryModeRequest) returns (SetDiscoveryModeResponse) {}
+  rpc ClearEventFilter(EmptyRequest) returns (EmptyResponse) {}
 }
 
 enum EventType {
@@ -55,3 +56,6 @@ message A2dpSourceSetActiveDeviceRequest {
 }
 
 message A2dpSourceSetActiveDevicetResponse {}
+
+message EmptyRequest {}
+message EmptyResponse {}

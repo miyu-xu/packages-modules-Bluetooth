@@ -60,6 +60,9 @@ class AdapterAutomationHelper():
     async def verify_adapter_started(self):
         await asyncio.wait_for(self.pending_future, AdapterAutomationHelper.DEFAULT_TIMEOUT)
 
+    async def clear_event_filter(self):
+        await self.adapter_stub.ClearEventFilter(facade_pb2.EmptyRequest())
+
 
 class A2dpAutomationHelper():
     """Invoke gRPC on topshim for A2DP testing"""
