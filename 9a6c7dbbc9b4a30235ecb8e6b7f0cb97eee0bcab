@@ -16,6 +16,161 @@
       "message": "Verified it for a2dp software/offload, le audio software with bluetooth.audio@2.1 HIDL and bluetooth.audio AIDL HAL.\n\n+2 for the strategy merge first.",
       "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5e6f420_db50e5c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T10:51:26Z",
+      "side": 1,
+      "message": "Looks good to me. Left some comments, you could fix in the other patch.",
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8f328b4_c12d8346",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T10:51:26Z",
+      "side": 1,
+      "message": "Should we add .audio_configuration_changed_cb_ for aidl?",
+      "range": {
+        "startLine": 135,
+        "startChar": 2,
+        "endLine": 135,
+        "endChar": 21
+      },
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbf1e7d1_530833b7",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T10:51:26Z",
+      "side": 1,
+      "message": "The interface doesn\u0027t be supported in HIDL HAL, only for AIDL HAL. Should we remove it? And that we may not expect all the new API should add the empty function in BluetoothAudioPortHidl.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 65
+      },
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82dda732_6855a757",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T10:51:26Z",
+      "side": 1,
+      "message": "nit: 2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ecaaec0_a41508d5",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T10:51:26Z",
+      "side": 1,
+      "message": "nit: 2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a708daa_d02281e5",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T10:51:26Z",
+      "side": 1,
+      "message": "nit: remove?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 19
+      },
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6ee1613_691bbd24",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-09T10:51:26Z",
+      "side": 1,
+      "message": "nit: remove?",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "9a6c7dbbc9b4a30235ecb8e6b7f0cb97eee0bcab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
