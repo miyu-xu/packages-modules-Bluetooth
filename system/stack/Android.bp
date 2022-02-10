@@ -1597,6 +1597,7 @@ cc_test {
         "btm/hfp_msbc_encoder.cc",
         "btm/security_event_parser.cc",
         "metrics/stack_metrics_logging.cc",
+        "test/btm/bt_name_test.cc",
         "test/btm/peer_packet_types_test.cc",
         "test/btm/sco_hci_test.cc",
         "test/btm/sco_pkt_status_test.cc",

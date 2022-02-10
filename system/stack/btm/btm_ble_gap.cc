@@ -1984,8 +1984,8 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
  * Returns          void
  *
  ******************************************************************************/
-void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
-                                   uint16_t length, char* p_name) {
+static void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
+                                          uint16_t length, char* p_name) {
   tHCI_STATUS hci_status = HCI_SUCCESS;
   BD_NAME bd_name;
 
