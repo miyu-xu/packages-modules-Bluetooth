@@ -37,6 +37,12 @@
 
 #define BD_NAME_LEN 248
 typedef uint8_t BD_NAME[BD_NAME_LEN + 1]; /* Device name */
+#ifdef __cplusplus
+typedef const uint8_t (&BD_NAME_IN_STREAM)[BD_NAME_LEN + 1];
+inline BD_NAME_IN_STREAM bd_name_in_stream(const uint8_t& p) {
+  return reinterpret_cast<BD_NAME_IN_STREAM>(p);
+}
+#endif
 
 /* Device name of peer (may be truncated to save space in BTM database) */
 typedef uint8_t tBTM_BD_NAME[BTM_MAX_REM_BD_NAME_LEN + 1];
