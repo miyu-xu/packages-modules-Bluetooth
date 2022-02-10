@@ -89,6 +89,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2f4f53ca_b7499ba2",
+        "filename": "system/audio_hal_interface/a2dp_encoding.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-10T10:17:06Z",
+      "side": 1,
+      "message": "nit: would we like to align the function design with the other function? check hidl first and then do the aidl work without checking?",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 45
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83ac2b88_d43e17df",
+        "filename": "system/audio_hal_interface/a2dp_encoding.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-10T10:17:06Z",
+      "side": 1,
+      "message": "aidl::a2dp::ack_stream_started(status);",
+      "range": {
+        "startLine": 110,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 48
+      },
+      "revId": "28d6da1d2020e6123ec4f1865ba798aebe937dc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a30e8ee2_4501f4b7",
         "filename": "system/audio_hal_interface/aidl/client_interface.cc",
         "patchSetId": 16
