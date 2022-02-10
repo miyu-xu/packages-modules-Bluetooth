@@ -26,7 +26,11 @@ import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothLeCallControl;
 import android.bluetooth.BluetoothLeCall;
 import android.bluetooth.IBluetoothLeCallControlCallback;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.net.Uri;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
@@ -115,6 +119,29 @@ public class TbsGeneric {
     private Bearer mForegroundBearer = null;
     private int mLastRequestIdAssigned = 0;
     private List<String> mUriSchemes = new ArrayList<>(Arrays.asList("tel"));
+    private final Receiver mReceiver = new Receiver();
+    private int mStoredRingerMode = -1;
+    private final IntentFilter filter = new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION);
+
+    private final class Receiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if (action.equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
+                int ringerMode = intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE, -1);
+
+                if (ringerMode < 0 || ringerMode == mStoredRingerMode) return;
+
+                mStoredRingerMode = ringerMode;
+
+                if (isSilentModeEnabled()) {
+                    mTbsGatt.setSilentModeFlag();
+                } else {
+                    mTbsGatt.clearSilentModeFlag();
+                }
+            }
+        }
+    };
 
     public boolean init(TbsGatt tbsGatt) {
         if (DBG) {
@@ -128,8 +155,29 @@ public class TbsGeneric {
             return false;
         }
 
-        return mTbsGatt.init(ccid, UCI, mUriSchemes, true, true, DEFAULT_PROVIDER_NAME,
+        boolean result = mTbsGatt.init(ccid, UCI, mUriSchemes, true, true, DEFAULT_PROVIDER_NAME,
                 DEFAULT_BEARER_TECHNOLOGY, mTbsGattCallback);
+        if (!result) return false;
+
+        // read initial value of ringer mode
+
+        AudioManager mAudioManager = mTbsGatt.getContext().
+            getSystemService(AudioManager.class);
+        if (mAudioManager == null) {
+            Log.w(TAG, " AudioManager is not available");
+            return result;
+        }
+
+        mStoredRingerMode = mAudioManager.getRingerMode();
+
+        if (isSilentModeEnabled()) {
+            mTbsGatt.setSilentModeFlag();
+        } else {
+            mTbsGatt.clearSilentModeFlag();
+        }
+
+        mTbsGatt.getContext().registerReceiver(mReceiver, filter);
+        return result;
     }
 
     public void cleanup() {
@@ -138,9 +186,14 @@ public class TbsGeneric {
         }
 
         if (mTbsGatt != null) {
+            mTbsGatt.getContext().unregisterReceiver(mReceiver);
             mTbsGatt.cleanup();
             mTbsGatt = null;
         }
+    }
+
+    private boolean isSilentModeEnabled() {
+        return mStoredRingerMode != AudioManager.RINGER_MODE_NORMAL;
     }
 
     private Bearer getBearerByToken(String token) {
