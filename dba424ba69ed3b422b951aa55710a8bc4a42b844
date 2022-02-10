@@ -1,0 +1,82 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020310282",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1977214?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c9c5fe9d_1834ac4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-10T09:54:48Z",
+      "side": 1,
+      "message": "\"m -j85 sl4a; adb install -r \u003cpath_to_sl4a_apk\u003e; system/gd/cert/run --sl4a\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 79
+      },
+      "revId": "dba424ba69ed3b422b951aa55710a8bc4a42b844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020310282",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1977214?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "93d4a9ac_17cbf56f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-10T09:54:48Z",
+      "side": 1,
+      "message": "#test is not a valid tag. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 10
+      },
+      "revId": "dba424ba69ed3b422b951aa55710a8bc4a42b844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020310275",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1977214?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b57628a8_99b859c8",
+        "filename": "system/blueberry/tests/gd_sl4a/lib/ble_lib.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-10T09:54:48Z",
+      "side": 1,
+      "message": "time.sleep should never be used in tests or production code - prefer event driven systems.",
+      "range": {
+        "startLine": 221,
+        "startChar": 12,
+        "endLine": 221,
+        "endChar": 22
+      },
+      "revId": "dba424ba69ed3b422b951aa55710a8bc4a42b844",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
