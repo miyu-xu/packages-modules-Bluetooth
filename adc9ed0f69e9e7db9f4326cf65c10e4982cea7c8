@@ -52,6 +52,24 @@
       "parentUuid": "6221d9c8_dbf29d27",
       "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ec9f6b5_7ead7954",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-11T07:29:20Z",
+      "side": 1,
+      "message": "nvm, from https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/os/MessageQueue.java;l\u003d425?q\u003dframeworks%2Fbase%2Fcore%2Fjava%2Fandroid%2Fos%2FMessageQueue.java\n\nit seems quitSafely is not blocking, but while the join() is pending, is is still possible to receive callbacks from native layer to jni",
+      "parentUuid": "6e14739f_82cd2f02",
+      "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
