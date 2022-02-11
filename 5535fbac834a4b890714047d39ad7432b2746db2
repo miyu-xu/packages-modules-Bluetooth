@@ -22,6 +22,47 @@
       },
       "revId": "5535fbac834a4b890714047d39ad7432b2746db2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efe25261_f48504af",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-11T20:12:05Z",
+      "side": 1,
+      "message": "this can happen if we have no memory for the channel, or peer wants to connect to already connected cid. This is rather something which should not happen, then I think WARN is ok.",
+      "parentUuid": "28df9272_ac814b5e",
+      "range": {
+        "startLine": 827,
+        "startChar": 12,
+        "endLine": 827,
+        "endChar": 71
+      },
+      "revId": "5535fbac834a4b890714047d39ad7432b2746db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db79ea0a_2c6a02f6",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-11T20:12:05Z",
+      "side": 1,
+      "message": "missed that: please add {}",
+      "revId": "5535fbac834a4b890714047d39ad7432b2746db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
