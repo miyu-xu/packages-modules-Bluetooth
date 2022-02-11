@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46051ec1_9d898485",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-11T17:48:55Z",
+      "side": 1,
+      "message": "The majority of implementation LGTM, but with one question on how callbacks are handled. ",
+      "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7d3ef07_dccf5f46",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-11T17:48:55Z",
+      "side": 1,
+      "message": "Do we assume only one client side App can register for callback? \n\nWhat if two Apps (e.g. Settings and SystemUI) both register callbacks? \n\nAlso, with callbacks, we should subscribe to death notification of the client App and unregister the callback automatically when the client side App dies\n\nSince this is a very common pattern in Android, it has the RemoteCallbackList API that can do it pretty easily\n\nhttps://developer.android.com/reference/android/os/RemoteCallbackList\n\nAnd we already use this in AdapterService\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;l\u003d3152;drc\u003dmaster;bpv\u003d1;bpt\u003d1?q\u003dAdapterService",
+      "range": {
+        "startLine": 970,
+        "startChar": 12,
+        "endLine": 970,
+        "endChar": 33
+      },
+      "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00cd6cae_dbcb6f60",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-11T17:48:55Z",
+      "side": 1,
+      "message": "Here do we assume only one callback can be registered per client App? \n\nWe should be able to handle multiple callback registrations. \n\nWe recently did this with UWB AdapterStateListener by creating a local HashMap of callbacks. Could we implement it the same way here?\n\nSee: https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/uwb/AdapterStateListener.java\n\nfor the UWB code",
+      "range": {
+        "startLine": 410,
+        "startChar": 7,
+        "endLine": 416,
+        "endChar": 9
+      },
+      "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
