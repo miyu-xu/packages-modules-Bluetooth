@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9b884c7_b20d12f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2022-02-11T15:16:52Z",
+      "side": 1,
+      "message": "Minor comments only",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd8d69a_7ba93694",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2022-02-11T15:16:52Z",
+      "side": 1,
+      "message": "I would name it mAudioManagerIntentFilter",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0df69523_5c79bed4",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2022-02-11T15:16:52Z",
+      "side": 1,
+      "message": "is the result variable needed?",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "582752ca_f4965436",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2022-02-11T15:16:52Z",
+      "side": 1,
+      "message": "move this comment to line 171",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5dac0d3_6af7a522",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2022-02-11T15:16:52Z",
+      "side": 1,
+      "message": "return true",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
