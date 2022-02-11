@@ -34,6 +34,24 @@
       "parentUuid": "925c4033_64e33759",
       "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e14739f_82cd2f02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-11T07:24:14Z",
+      "side": 1,
+      "message": "Adding join is fine, but per \n\nhttps://developer.android.com/reference/android/os/HandlerThread#quitSafely()\n\n\"Causes the handler thread\u0027s looper to terminate as soon as all remaining messages in the message queue that are already due to be delivered have been handled. Pending delayed messages with due times in the future will not be delivered.\"\n\n\nShouldn\u0027t all messages be handled before quitSafely() returns? \n\n\nOr maybe I understand it wrong, that quitSafely() only ask the thread to quit instead of waiting for it to quit?",
+      "parentUuid": "6221d9c8_dbf29d27",
+      "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
