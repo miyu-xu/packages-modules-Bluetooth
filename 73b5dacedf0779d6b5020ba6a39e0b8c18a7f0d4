@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020365668",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982206?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "b5c60456_d4c8abeb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hap/HapClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T12:57:36Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 637,
+        "startChar": 0,
+        "endLine": 637,
+        "endChar": 103
+      },
+      "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
