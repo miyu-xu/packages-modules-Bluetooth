@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28df9272_ac814b5e",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T14:18:12Z",
+      "side": 1,
+      "message": "If this is expected behavior, should it be INFO?\n\nAre we planning on removing the pending CIDs so this doesn\u0027t happen over and over?",
+      "range": {
+        "startLine": 827,
+        "startChar": 12,
+        "endLine": 827,
+        "endChar": 71
+      },
+      "revId": "5535fbac834a4b890714047d39ad7432b2746db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
