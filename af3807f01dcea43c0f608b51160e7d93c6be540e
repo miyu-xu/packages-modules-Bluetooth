@@ -16,6 +16,24 @@
       "message": "The internal master CL removed this method, so just curious why it\u0027s being kept for the AOSP CL?",
       "revId": "af3807f01dcea43c0f608b51160e7d93c6be540e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96f5c986_094a0c50",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2332,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-02-11T22:56:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b73e207_1b5aa130",
+      "revId": "af3807f01dcea43c0f608b51160e7d93c6be540e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
