@@ -78,20 +78,34 @@ void LeAdvertiser::SetScanResponse(const std::vector<uint8_t>& data) {
 
 void LeAdvertiser::Enable() {
   enabled_ = true;
-  last_le_advertisement_ = std::chrono::steady_clock::now() - interval_;
+  extended_ = false;
   num_events_ = 0;
+  ending_time_ = std::chrono::steady_clock::now() - interval_;
+  last_le_advertisement_ = std::chrono::steady_clock::now() - interval_;
+
   LOG_INFO("%s -> %s type = %hhx ad length %zu, scan length %zu",
            address_.ToString().c_str(), peer_address_.ToString().c_str(), type_,
            advertisement_.size(), scan_response_.size());
 }
 
-void LeAdvertiser::EnableExtended(
-    std::chrono::steady_clock::duration duration) {
-  Enable();
+void LeAdvertiser::EnableExtended(unsigned advertising_handle,
+                                  std::chrono::milliseconds duration) {
+
+  enabled_ = true;
+  extended_ = true;
+  num_events_ = 0;
+  advertising_handle_ = advertising_handle;
+  ending_time_ = std::chrono::steady_clock::now() - interval_;
+  last_le_advertisement_ = std::chrono::steady_clock::now() - interval_;
+
+  if (duration == std::chrono::milliseconds(0) && IsDirected()) {
+    duration = std::chrono::milliseconds(10000);
+  }
+
   if (duration != std::chrono::milliseconds(0)) {
     ending_time_ = std::chrono::steady_clock::now() + duration;
   }
-  extended_ = true;
+
   LOG_INFO("%s -> %s type = %hhx ad length %zu, scan length %zu",
            address_.ToString().c_str(), peer_address_.ToString().c_str(), type_,
            advertisement_.size(), scan_response_.size());
@@ -108,7 +122,41 @@ bool LeAdvertiser::IsConnectable() const {
          type_ != model::packets::AdvertisementType::ADV_SCAN_IND;
 }
 
+bool LeAdvertiser::IsDirected() const {
+  return type_ == model::packets::AdvertisementType::ADV_DIRECT_IND ||
+         type_ == model::packets::AdvertisementType::SCAN_RESPONSE;
+}
+
 uint8_t LeAdvertiser::GetNumAdvertisingEvents() const { return num_events_; }
+
+std::unique_ptr<bluetooth::hci::EventBuilder>
+LeAdvertiser::GetEvent(std::chrono::steady_clock::time_point now) {
+  // Disabled or no timeout set for this advertiser.
+  if (!enabled_) {
+    return nullptr;
+  }
+
+  // [Vol 4] Part E 7.8.9   LE Set Advertising Enable command
+  // [Vol 4] Part E 7.8.56  LE Set Extended Advertising Enable command
+  if (IsDirected() && now >= ending_time_) {
+    enabled_ = false;
+    return bluetooth::hci::LeConnectionCompleteBuilder::Create(
+        ErrorCode::ADVERTISING_TIMEOUT, 0,
+        bluetooth::hci::Role::CENTRAL,
+        bluetooth::hci::AddressType::PUBLIC_DEVICE_ADDRESS,
+        bluetooth::hci::Address(), 0, 0, 0,
+        bluetooth::hci::ClockAccuracy::PPM_500);
+  }
+
+  // [Vol 4] Part E 7.8.56  LE Set Extended Advertising Enable command
+  if (extended_ && now >= ending_time_) {
+    enabled_ = false;
+    return bluetooth::hci::LeAdvertisingSetTerminatedBuilder::Create(
+        ErrorCode::SUCCESS, advertising_handle_, 0, num_events_);
+  }
+
+  return nullptr;
+}
 
 std::unique_ptr<model::packets::LeAdvertisementBuilder>
 LeAdvertiser::GetAdvertisement(std::chrono::steady_clock::time_point now) {
@@ -117,11 +165,6 @@ LeAdvertiser::GetAdvertisement(std::chrono::steady_clock::time_point now) {
   }
 
   if (now - last_le_advertisement_ < interval_) {
-    return nullptr;
-  }
-
-  if (last_le_advertisement_ < ending_time_ && ending_time_ < now) {
-    enabled_ = false;
     return nullptr;
   }
 
