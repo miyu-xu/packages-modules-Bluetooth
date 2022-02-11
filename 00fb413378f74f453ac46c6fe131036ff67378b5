@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4781a7c_06af5663",
+        "filename": "android/blueberry/server/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-11T13:05:18Z",
+      "side": 1,
+      "message": "a Cuttlefish virtual device",
+      "range": {
+        "startLine": 33,
+        "startChar": 17,
+        "endLine": 33,
+        "endChar": 23
+      },
+      "revId": "00fb413378f74f453ac46c6fe131036ff67378b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2db87d17_397184eb",
+        "filename": "android/blueberry/server/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-11T13:05:18Z",
+      "side": 1,
+      "message": "Cuttlefish",
+      "range": {
+        "startLine": 37,
+        "startChar": 17,
+        "endLine": 37,
+        "endChar": 20
+      },
+      "revId": "00fb413378f74f453ac46c6fe131036ff67378b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0322269d_f53edb37",
+        "filename": "android/blueberry/server/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-11T13:05:18Z",
+      "side": 1,
+      "message": "Cuttlefish when running it using the `acloud` command",
+      "range": {
+        "startLine": 44,
+        "startChar": 45,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "00fb413378f74f453ac46c6fe131036ff67378b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c19a2cab_54403c80",
+        "filename": "android/blueberry/server/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-11T13:05:18Z",
+      "side": 1,
+      "message": "We should add the example using a physical DUT with a physical dongle",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 29
+      },
+      "revId": "00fb413378f74f453ac46c6fe131036ff67378b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae069cd_2c1a3fa3",
+        "filename": "android/blueberry/server/README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-11T13:05:18Z",
+      "side": 1,
+      "message": "To remove",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 35
+      },
+      "revId": "00fb413378f74f453ac46c6fe131036ff67378b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
