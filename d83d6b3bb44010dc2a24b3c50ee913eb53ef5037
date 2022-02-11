@@ -84,6 +84,23 @@
       "message": "Is this triple asterisk intended ? This is specified in some style guide ?",
       "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eea0772d_78b80160",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-02-11T12:52:12Z",
+      "side": 1,
+      "message": "Just a short style issue here \"static cast\u003c ::\" I believe this space is unintended here",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
