@@ -16,6 +16,74 @@
       "message": "Looks good.",
       "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af95bbc_7a8300d4",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-02-11T11:25:45Z",
+      "side": 1,
+      "message": "this should be uint8_t",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80012614_08783a53",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-02-11T11:25:45Z",
+      "side": 1,
+      "message": "What about checking rest of pcm parameters ?",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2db52fc7_4fb2d486",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-02-11T11:25:45Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754454bb_e2a260d9",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-02-11T11:25:45Z",
+      "side": 1,
+      "message": "Is this triple asterisk intended ? This is specified in some style guide ?",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
