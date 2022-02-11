@@ -22,6 +22,30 @@
       },
       "revId": "a29db5a3efd10fb35f1d95e317afde8f47ce3d2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f87a0ae5_ee8bac0f",
+        "filename": "system/gd/hci/acl_manager/classic_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-11T17:33:59Z",
+      "side": 1,
+      "message": "There are 2 constructors; the default one with no args doesn\u0027t create a private impl.  However, all constructors use the same destructor.\n\nThe obvious stack trace only occurs in test modules that surface a subset of functionality.",
+      "parentUuid": "0c0a946d_8e3a8eaa",
+      "range": {
+        "startLine": 356,
+        "startChar": 2,
+        "endLine": 356,
+        "endChar": 13
+      },
+      "revId": "a29db5a3efd10fb35f1d95e317afde8f47ce3d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
