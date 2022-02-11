@@ -1,0 +1,392 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373469",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "5f9a08b0_1c8744e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Must include a \"Test:\" stanza indicating how you tested this change.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373469",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "9b2267f9_d794fdf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Change must include a \"Tag:\" stanza. Valid tags are #compatibility #stability #security #feature #floss #gd-refactor #refactor. See: go/managing-bluetooth-cl-risk",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373470",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "6c96fdb4_b988c989",
+        "filename": "system/gd/packet/parser/packet_def.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1141,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1141,
+        "startChar": 0,
+        "endLine": 1141,
+        "endChar": 102
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373470",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c14ba07f_6a48ea4e",
+        "filename": "system/gd/packet/parser/packet_def.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1263,
+        "startChar": 0,
+        "endLine": 1263,
+        "endChar": 103
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373470",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "c283c08d_bb432a67",
+        "filename": "system/gd/packet/parser/packet_def.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details.",
+      "range": {
+        "startLine": 1276,
+        "startChar": 0,
+        "endLine": 1276,
+        "endChar": 102
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "8eaebbf5_5213ce1d",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-06-C.in\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-06-C.in",
+              "range": {
+                "startLine": 94,
+                "startChar": 31,
+                "endLine": 94,
+                "endChar": 39
+              },
+              "replacement": "Numeric"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "fb427907_6538e5ce",
+        "filename": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-06-C.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Common typo found: \"Numberic\" -- should it be \"Numeric\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 94,
+        "startChar": 31,
+        "endLine": 94,
+        "endChar": 39
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "26369a93_312e868a",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-07-C.in\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-07-C.in",
+              "range": {
+                "startLine": 76,
+                "startChar": 31,
+                "endLine": 76,
+                "endChar": 39
+              },
+              "replacement": "Numeric"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "6671ab2f_557eb32f",
+        "filename": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-07-C.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Common typo found: \"Numberic\" -- should it be \"Numeric\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 39
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "ee447e95_d1b16017",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-08-C.in\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-08-C.in",
+              "range": {
+                "startLine": 94,
+                "startChar": 31,
+                "endLine": 94,
+                "endChar": 39
+              },
+              "replacement": "Numeric"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "d26b2080_9b751ee5",
+        "filename": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-08-C.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Common typo found: \"Numberic\" -- should it be \"Numeric\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 94,
+        "startChar": 31,
+        "endLine": 94,
+        "endChar": 39
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "c7261f4a_86a133e2",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-09-C.in\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-09-C.in",
+              "range": {
+                "startLine": 76,
+                "startChar": 31,
+                "endLine": 76,
+                "endChar": 39
+              },
+              "replacement": "Numeric"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "bffab91c_1c15dba3",
+        "filename": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-09-C.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Common typo found: \"Numberic\" -- should it be \"Numeric\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 39
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "bd7c701b_3105d036",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-10-C.in\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-10-C.in",
+              "range": {
+                "startLine": 94,
+                "startChar": 31,
+                "endLine": 94,
+                "endChar": 39
+              },
+              "replacement": "Numeric"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "f450fe5e_7a3f7254",
+        "filename": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-10-C.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Common typo found: \"Numberic\" -- should it be \"Numeric\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 94,
+        "startChar": 31,
+        "endLine": 94,
+        "endChar": 39
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020373472",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982806?revision\u003d1",
+      "fixSuggestions": [
+        {
+          "fixId": "4529e777_aa291e2f",
+          "description": "Change to \"system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-11-C.in\"",
+          "replacements": [
+            {
+              "path": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-11-C.in",
+              "range": {
+                "startLine": 76,
+                "startChar": 31,
+                "endLine": 76,
+                "endChar": 39
+              },
+              "replacement": "Numeric"
+            }
+          ]
+        }
+      ],
+      "key": {
+        "uuid": "3d0c7c8c_31be13cf",
+        "filename": "system/vendor_libs/test_vendor_lib/lmp/test/SP/BV-11-C.in",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T17:19:00Z",
+      "side": 1,
+      "message": "Common typo found: \"Numberic\" -- should it be \"Numeric\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 76,
+        "startChar": 31,
+        "endLine": 76,
+        "endChar": 39
+      },
+      "revId": "592eb3c62e818d6682a70d1f94c43c99d5e81f40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
