@@ -104,6 +104,24 @@
       "parentUuid": "992d2fd6_0645f142",
       "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03713ccb_9a70f65a",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-11T11:19:48Z",
+      "side": 1,
+      "message": "You are right, forget we are calling l2c_csm_execute() per single l2cap channel.",
+      "parentUuid": "a3a111b9_0ed8d7c4",
+      "revId": "fa886fe400bf21e0f31881c8231bb3ff5db427e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
