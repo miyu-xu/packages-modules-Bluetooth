@@ -262,6 +262,24 @@
       "parentUuid": "4f063e98_8b20eb01",
       "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c177ad1a_59cd8d72",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T23:27:33Z",
+      "side": 1,
+      "message": "Since this is the link layer, the values don\u0027t have to be tied to HCI commands.  We can also have a bit mask of properties (no need for \"legacy\"), and translate from that when we need it.  I guess we only need these three bits:\n\n0 Connectable advertising\n1 Scannable advertising\n2 Directed advertising\n\nWe don\u0027t need to know at the link layer if it\u0027s legacy, high-duty-cycle, anonymous, etc.",
+      "parentUuid": "9309fce2_717b7f38",
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
