@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fac767d2_55569be5",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T13:59:41Z",
+      "side": 1,
+      "message": "Would it make sense to make this a default case and change the error to:\n\"Unhandled event 0x%02x\"\n\nThat way we would catch any other event that slipped through.",
+      "revId": "aa77a5bfdcf7463582863ba1a0c6727d9c476190",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba7420e4_e784c100",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T13:59:41Z",
+      "side": 1,
+      "message": "Same thing here.",
+      "revId": "aa77a5bfdcf7463582863ba1a0c6727d9c476190",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
