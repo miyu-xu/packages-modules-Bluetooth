@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48bd8156_d10fc3d6",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-11T15:40:25Z",
+      "side": 1,
+      "message": "actually I removed it :)",
+      "parentUuid": "cbd8d69a_7ba93694",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0df69523_5c79bed4",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-02-11T15:16:52Z",
       "side": 1,
       "message": "is the result variable needed?",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "952cd790_d146a460",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-11T15:40:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0df69523_5c79bed4",
       "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6798757a_86be24df",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-11T15:40:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "582752ca_f4965436",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5dac0d3_6af7a522",
@@ -82,6 +136,24 @@
       "writtenOn": "2022-02-11T15:16:52Z",
       "side": 1,
       "message": "return true",
+      "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ed2dc2_0dc4afc0",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-11T15:40:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5dac0d3_6af7a522",
       "revId": "ce609f4b5c7dde20df2ab971eac55bbc311f63c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
