@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2c08c05_c56af576",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-11T13:13:54Z",
+      "side": 1,
+      "message": "I have just one concern.",
+      "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a392f6cd_253a2347",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-11T13:13:54Z",
+      "side": 1,
+      "message": "I think that codec manager has a different life cycle than  `AudioSetConfigurationProvider`. In theory it might happen that `Get()` will return `nullptr` here.",
+      "range": {
+        "startLine": 238,
+        "startChar": 10,
+        "endLine": 238,
+        "endChar": 46
+      },
+      "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
