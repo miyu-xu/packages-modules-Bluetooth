@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada591f2_54e6cd45",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-11T12:15:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "693eb494_3b87252e",
+      "range": {
+        "startLine": 450,
+        "startChar": 28,
+        "endLine": 450,
+        "endChar": 77
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66d1f16f_a5ef8c9b",
@@ -54,6 +78,24 @@
       "writtenOn": "2022-02-10T13:56:33Z",
       "side": 1,
       "message": "Ack",
+      "parentUuid": "66d1f16f_a5ef8c9b",
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "045cab7a_94e0f113",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-11T12:15:48Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "66d1f16f_a5ef8c9b",
       "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -176,6 +218,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "603bf970_7dd64901",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-11T12:15:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8941747_6cadb6ef",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 32
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8834b698_047a7dba",
@@ -189,6 +255,30 @@
       "writtenOn": "2022-02-09T22:11:39Z",
       "side": 1,
       "message": "this can be replaced with LOG_DEBUG() and it can be enabled at runtime with\n\nadb shell device_config put bluetooth INIT_logging_debug_enabled_for_all true",
+      "range": {
+        "startLine": 431,
+        "startChar": 2,
+        "endLine": 431,
+        "endChar": 6
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2481afb1_fe32413c",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-11T12:15:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8834b698_047a7dba",
       "range": {
         "startLine": 431,
         "startChar": 2,
