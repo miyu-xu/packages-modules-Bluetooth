@@ -93,6 +93,30 @@
       },
       "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "109962b3_60d3637c",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-11T08:05:14Z",
+      "side": 1,
+      "message": "Do you have any specific timeout value in mind?",
+      "parentUuid": "05bf6da8_3b95f521",
+      "range": {
+        "startLine": 221,
+        "startChar": 37,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "adc9ed0f69e9e7db9f4326cf65c10e4982cea7c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
