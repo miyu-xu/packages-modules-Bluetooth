@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "494e2dbd_13dcf2ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T21:56:59Z",
+      "side": 1,
+      "message": "Thanks!  This is going to be nice :)",
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f368d51c_1d49c313",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T21:56:59Z",
+      "side": 1,
+      "message": "Maybe just gd_hci::ScanEnableText(scan_enable).c_str() ?\n\nDo we need the logging here?",
+      "range": {
+        "startLine": 1431,
+        "startChar": 0,
+        "endLine": 1443,
+        "endChar": 0
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b4a236f_8f17d2d6",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1740,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T21:56:59Z",
+      "side": 1,
+      "message": "Same thing.  I\u0027m not sure I want to log every packet in the controller.",
+      "range": {
+        "startLine": 1740,
+        "startChar": 2,
+        "endLine": 1740,
+        "endChar": 10
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e405019_4c05ad36",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T21:56:59Z",
+      "side": 1,
+      "message": "I don\u0027t see this in the spec.  I\u0027d rather check thing like this in dual_mode_controller.cc with other parameter checks.\n\nIf the advertising is high duty cycle connectable directed advertising, then\nDuration[i] shall be less than or equal to 1.28 seconds and shall not be equal to 0.",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a6d9136_3dc6c3d6",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T21:56:59Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 0
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38c9f1ef_0796ee95",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T21:56:59Z",
+      "side": 1,
+      "message": "Could we add the handle here?  Is there a reason to have it in enable?",
+      "range": {
+        "startLine": 43,
+        "startChar": 7,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f063e98_8b20eb01",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T21:56:59Z",
+      "side": 1,
+      "message": "Good reminder. I think it would be better to add more types here.\n\nWe could follow along with the table in the spec \nTable 7.2: Advertising_Event_Properties values for legacy PDUs\n\nADV_IND 0b00010011 (0x13)\nADV_DIRECT_IND 0b00010101 (0x15)\nADV_DIRECT_IND 0b00011101 (0x1d)\nADV_SCAN_IND 0b00010010 (0x12)\nADV_NONCONN_IND 0b00010000 (0x10)\nAnd we could use the other bits like\nADV_CONNECTABLE 0x01\n...\n\nOr we could use the LMP definition.",
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
