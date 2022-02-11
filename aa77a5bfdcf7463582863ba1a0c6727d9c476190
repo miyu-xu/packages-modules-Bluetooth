@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17ba6b4e_55804e99",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-11T20:00:37Z",
+      "side": 1,
+      "message": "This is for metrics and continues legacy behavior but will make that change.\n\nDone",
+      "parentUuid": "fac767d2_55569be5",
+      "revId": "aa77a5bfdcf7463582863ba1a0c6727d9c476190",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba7420e4_e784c100",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-02-11T13:59:41Z",
       "side": 1,
       "message": "Same thing here.",
+      "revId": "aa77a5bfdcf7463582863ba1a0c6727d9c476190",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2968937_4511e6e7",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-11T20:00:37Z",
+      "side": 1,
+      "message": "This is also legacy behavior but will also add a default case block\n\nDone",
+      "parentUuid": "ba7420e4_e784c100",
       "revId": "aa77a5bfdcf7463582863ba1a0c6727d9c476190",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
