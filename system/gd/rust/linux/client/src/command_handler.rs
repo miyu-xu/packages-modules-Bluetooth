@@ -85,7 +85,8 @@ fn build_commands() -> HashMap<String, CommandOption> {
         String::from("adapter"),
         CommandOption {
             description: String::from(
-                "Enable/Disable/Show default bluetooth adapter. (e.g. adapter enable)",
+                "Enable/Disable/Show default bluetooth adapter. (e.g. adapter enable)\n
+                 DiscoverableOn/DiscoverableOff (e.g. adapter discoverableon)",
             ),
             function_pointer: CommandHandler::cmd_adapter,
         },
@@ -244,49 +245,90 @@ impl CommandHandler {
         }
 
         let default_adapter = self.context.lock().unwrap().default_adapter;
-        enforce_arg_len(args, 1, "adapter <enable|disable|show>", || match &args[0][0..] {
-            "enable" => {
-                self.context.lock().unwrap().manager_dbus.start(default_adapter);
-            }
-            "disable" => {
-                self.context.lock().unwrap().manager_dbus.stop(default_adapter);
-            }
-            "show" => {
-                if !self.context.lock().unwrap().adapter_ready {
-                    self.adapter_not_ready();
-                    return;
+        enforce_arg_len(
+            args,
+            1,
+            "adapter <enable|disable|show|discoverableon|discoverableoff>",
+            || match &args[0][0..] {
+                "enable" => {
+                    self.context.lock().unwrap().manager_dbus.start(default_adapter);
                 }
+                "disable" => {
+                    self.context.lock().unwrap().manager_dbus.stop(default_adapter);
+                }
+                "show" => {
+                    if !self.context.lock().unwrap().adapter_ready {
+                        self.adapter_not_ready();
+                        return;
+                    }
 
-                let enabled = self.context.lock().unwrap().enabled;
-                let address = match self.context.lock().unwrap().adapter_address.as_ref() {
-                    Some(x) => x.clone(),
-                    None => String::from(""),
-                };
-                let name = self.context.lock().unwrap().adapter_dbus.as_ref().unwrap().get_name();
-                let uuids = self.context.lock().unwrap().adapter_dbus.as_ref().unwrap().get_uuids();
-                let cod = self
-                    .context
-                    .lock()
-                    .unwrap()
-                    .adapter_dbus
-                    .as_ref()
-                    .unwrap()
-                    .get_bluetooth_class();
-                print_info!("Address: {}", address);
-                print_info!("Name: {}", name);
-                print_info!("State: {}", if enabled { "enabled" } else { "disabled" });
-                print_info!("Class: {:#06x}", cod);
-                print_info!(
-                    "Uuids: {}",
-                    DisplayList(
-                        uuids.iter().map(|&x| UuidHelper::to_string(&x)).collect::<Vec<String>>()
-                    )
-                );
-            }
-            _ => {
-                println!("Invalid argument '{}'", args[0]);
-            }
-        });
+                    let enabled = self.context.lock().unwrap().enabled;
+                    let address = match self.context.lock().unwrap().adapter_address.as_ref() {
+                        Some(x) => x.clone(),
+                        None => String::from(""),
+                    };
+                    let name =
+                        self.context.lock().unwrap().adapter_dbus.as_ref().unwrap().get_name();
+                    let uuids =
+                        self.context.lock().unwrap().adapter_dbus.as_ref().unwrap().get_uuids();
+                    let is_discoverable = self
+                        .context
+                        .lock()
+                        .unwrap()
+                        .adapter_dbus
+                        .as_ref()
+                        .unwrap()
+                        .get_discoverable();
+                    let cod = self
+                        .context
+                        .lock()
+                        .unwrap()
+                        .adapter_dbus
+                        .as_ref()
+                        .unwrap()
+                        .get_bluetooth_class();
+                    print_info!("Address: {}", address);
+                    print_info!("Name: {}", name);
+                    print_info!("State: {}", if enabled { "enabled" } else { "disabled" });
+                    print_info!("IsDiscoverable: {}", is_discoverable);
+                    print_info!("Class: {:#06x}", cod);
+                    print_info!(
+                        "Uuids: {}",
+                        DisplayList(
+                            uuids
+                                .iter()
+                                .map(|&x| UuidHelper::to_string(&x))
+                                .collect::<Vec<String>>()
+                        )
+                    );
+                }
+                "discoverableon" => {
+                    let discoverable = self
+                        .context
+                        .lock()
+                        .unwrap()
+                        .adapter_dbus
+                        .as_ref()
+                        .unwrap()
+                        .set_discoverable(true, 60);
+                    print_info!("set_discoverable on: {}", discoverable);
+                }
+                "discoverableoff" => {
+                    let discoverable = self
+                        .context
+                        .lock()
+                        .unwrap()
+                        .adapter_dbus
+                        .as_ref()
+                        .unwrap()
+                        .set_discoverable(false, 60);
+                    print_info!("set_discoverable off: {}", discoverable);
+                }
+                _ => {
+                    println!("Invalid argument '{}'", args[0]);
+                }
+            },
+        );
     }
 
     fn cmd_get_address(&mut self, _args: &Vec<String>) {
