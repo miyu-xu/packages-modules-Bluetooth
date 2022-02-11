@@ -1,0 +1,30 @@
+{
+  "comments": [
+    {
+      "robotId": "ayeaye",
+      "robotRunId": "AR00000000000020377688",
+      "url": "https://android-build.googleplex.com/builds/treetop/android-review/1982987?revision\u003d1",
+      "fixSuggestions": [],
+      "key": {
+        "uuid": "2137d4f3_a653ee96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1757831
+      },
+      "writtenOn": "2022-02-11T19:01:40Z",
+      "side": 1,
+      "message": "\"SetDiscoverable on/off using btclient\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 43
+      },
+      "revId": "5305a879c2907b4686295abdcd5ace11edf40449",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
