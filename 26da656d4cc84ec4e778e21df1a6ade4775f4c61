@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aae0137e_abefcb59",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-11T23:10:47Z",
+      "side": 1,
+      "message": "I found it useful to validate what the PTS was doing, but this is not strictly linked to the object of this CL.",
+      "parentUuid": "f368d51c_1d49c313",
+      "range": {
+        "startLine": 1431,
+        "startChar": 0,
+        "endLine": 1443,
+        "endChar": 0
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b4a236f_8f17d2d6",
         "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
         "patchSetId": 1
@@ -89,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5c67d04_464cc7bf",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-11T23:10:47Z",
+      "side": 1,
+      "message": "Yes sorry, I put this value down and I forgot to check the actual timeout from the specification, 1.28s is required for high duty cycle extended advertising only. I haven\u0027t been able to find the recommended directed advertising timeout hinted at by [Vol 6] Part D. 3.2.",
+      "parentUuid": "5e405019_4c05ad36",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a6d9136_3dc6c3d6",
         "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
         "patchSetId": 1
@@ -100,6 +148,30 @@
       "writtenOn": "2022-02-11T21:56:59Z",
       "side": 1,
       "message": "?",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 0
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33632740_bdc65aa7",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-11T23:10:47Z",
+      "side": 1,
+      "message": "Match directed advertising by advertising type. DIRECT_IND is directed advertising high duty cycle, SCAN_RESPONSE is an alias for directed advertising low duty cycle. Sadly PDL cannot do aliases yet...",
+      "parentUuid": "9a6d9136_3dc6c3d6",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -135,6 +207,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5b25512_9584efea",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-11T23:10:47Z",
+      "side": 1,
+      "message": "It would be the same, the handle is equal to the advertiser index anyway.\nI passed it in EnableExtended since it was readily available, but I can change that.",
+      "parentUuid": "38c9f1ef_0796ee95",
+      "range": {
+        "startLine": 43,
+        "startChar": 7,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4f063e98_8b20eb01",
         "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
         "patchSetId": 1
@@ -146,6 +242,24 @@
       "writtenOn": "2022-02-11T21:56:59Z",
       "side": 1,
       "message": "Good reminder. I think it would be better to add more types here.\n\nWe could follow along with the table in the spec \nTable 7.2: Advertising_Event_Properties values for legacy PDUs\n\nADV_IND 0b00010011 (0x13)\nADV_DIRECT_IND 0b00010101 (0x15)\nADV_DIRECT_IND 0b00011101 (0x1d)\nADV_SCAN_IND 0b00010010 (0x12)\nADV_NONCONN_IND 0b00010000 (0x10)\nAnd we could use the other bits like\nADV_CONNECTABLE 0x01\n...\n\nOr we could use the LMP definition.",
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9309fce2_717b7f38",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-11T23:10:47Z",
+      "side": 1,
+      "message": "The issue is that these values are used in HCI commands and events, while LMP values are hidden. My initial move was to add an alias ADV_DIREC._IND_LOW \u003d 4, but that is not supported by the PDL generator. I think it is possible to modify PDL to allow this though, what do you think ?",
+      "parentUuid": "4f063e98_8b20eb01",
       "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
