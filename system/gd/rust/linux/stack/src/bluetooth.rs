@@ -2,8 +2,8 @@
 
 use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
-    BtBondState, BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType, BtSspVariant,
-    BtState, BtStatus, BtTransport, RawAddress, Uuid, Uuid128Bit,
+    BtBondState, BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode,
+    BtSspVariant, BtState, BtStatus, BtTransport, RawAddress, Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     profiles::hid_host::{HHCallbacksDispatcher, HidHost},
@@ -66,6 +66,12 @@ pub trait IBluetooth {
 
     /// Sets the bluetooth class.
     fn set_bluetooth_class(&self, cod: u32) -> bool;
+
+    /// Gets whether discoverable.
+    fn get_discoverable(&self) -> bool;
+
+    /// Sets whether discoverable.
+    fn set_discoverable(&self, mode: bool, duration: u32) -> bool;
 
     /// Starts BREDR Inquiry.
     fn start_discovery(&self) -> bool;
@@ -243,6 +249,7 @@ pub struct Bluetooth {
     state: BtState,
     tx: Sender<Message>,
     uuid_helper: UuidHelper,
+    is_connectable: bool,
 }
 
 impl Bluetooth {
@@ -269,6 +276,7 @@ impl Bluetooth {
             state: BtState::Off,
             tx,
             uuid_helper: UuidHelper::new(),
+            is_connectable: false,
         }
     }
 
@@ -320,6 +328,29 @@ impl Bluetooth {
         for (_, callback) in self.connection_callbacks.iter() {
             f(&callback);
         }
+    }
+
+    fn get_connectable(&self) -> bool {
+        match self.properties.get(&BtPropertyType::AdapterScanMode) {
+            Some(prop) => match prop {
+                BluetoothProperty::AdapterScanMode(mode) => match *mode {
+                    BtScanMode::Connectable | BtScanMode::ConnectableDiscoverable => true,
+                    _ => false,
+                },
+                _ => false,
+            },
+            _ => false,
+        }
+    }
+
+    fn set_connectable(&mut self, mode: bool) -> bool {
+        self.is_connectable = mode;
+        if mode && self.get_discoverable() {
+            return true;
+        }
+        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
+            if mode { BtScanMode::Connectable } else { BtScanMode::None_ },
+        )) == 0
     }
 
     pub(crate) fn callback_disconnected(&mut self, id: u32, cb_type: BluetoothCallbackType) {
@@ -784,6 +815,37 @@ impl IBluetooth for Bluetooth {
 
     fn set_bluetooth_class(&self, cod: u32) -> bool {
         self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::ClassOfDevice(cod)) == 0
+    }
+
+    fn get_discoverable(&self) -> bool {
+        match self.properties.get(&BtPropertyType::AdapterScanMode) {
+            Some(prop) => match prop {
+                BluetoothProperty::AdapterScanMode(mode) => match mode {
+                    BtScanMode::ConnectableDiscoverable => true,
+                    _ => false,
+                },
+                _ => false,
+            },
+            _ => false,
+        }
+    }
+
+    fn set_discoverable(&self, mode: bool, duration: u32) -> bool {
+        self.intf
+            .lock()
+            .unwrap()
+            .set_adapter_property(BluetoothProperty::AdapterDiscoveryTimeout(duration));
+        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
+            if mode {
+                BtScanMode::ConnectableDiscoverable
+            } else {
+                if self.is_connectable {
+                    BtScanMode::Connectable
+                } else {
+                    BtScanMode::None_
+                }
+            },
+        )) == 0
     }
 
     fn start_discovery(&self) -> bool {
