@@ -63,6 +63,30 @@
       },
       "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e67a72a_101b91d4",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-11T15:19:35Z",
+      "side": 1,
+      "message": "CodecManager is started as LeAudioClient::Initialized. From this patch, the `AudioSetConfigurationProvider` is initialized before LeAudioClient initialed. In most of case, I think it would not be nullptr, but if we could add the error handle to return the function, it would be great.\n\nMore thinking about the patch.Would you like to convergence all the codec config things into codec manager no matter it\u0027s offload or software. Move Audio SetConfigurationProvider interface into CodecManager. They would be in the same life cycle, and we don\u0027t need to handle the some timing issue.",
+      "parentUuid": "c2c0c24f_74e1a1f5",
+      "range": {
+        "startLine": 238,
+        "startChar": 10,
+        "endLine": 238,
+        "endChar": 46
+      },
+      "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
