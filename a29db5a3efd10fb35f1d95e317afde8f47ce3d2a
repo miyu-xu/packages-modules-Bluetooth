@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c0a946d_8e3a8eaa",
+        "filename": "system/gd/hci/acl_manager/classic_acl_connection.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-11T14:09:03Z",
+      "side": 1,
+      "message": "How can the destructor be called if the constructor didn\u0027t finish?  Do we have a stack trace where this is obvious?",
+      "range": {
+        "startLine": 356,
+        "startChar": 2,
+        "endLine": 356,
+        "endChar": 13
+      },
+      "revId": "a29db5a3efd10fb35f1d95e317afde8f47ce3d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
