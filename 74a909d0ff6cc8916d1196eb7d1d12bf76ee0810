@@ -119,6 +119,24 @@
       "parentUuid": "4d83fb82_2a6538e1",
       "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3351d18_0ddbf562",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-12T00:55:47Z",
+      "side": 1,
+      "message": "Hm, I may have gotten this wrong. I was looking at how they do this in android, and I thought that they just set the adapter property: https://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;l\u003d1906",
+      "parentUuid": "11ac98dc_9ce94a34",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
