@@ -148,6 +148,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b2aac63_1e065330",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-12T00:30:46Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "07aa8b96_7b1d4c9a",
+      "range": {
+        "startLine": 465,
+        "startChar": 81,
+        "endLine": 465,
+        "endChar": 89
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9516558a_ddc11243",
@@ -185,6 +209,30 @@
       "side": 1,
       "message": "not sure if it is possible. Event test code for prebuilt_etc uses single file per entry:\n\nhttps://cs.android.com/android/platform/superproject/+/master:build/soong/etc/prebuilt_etc_test.go;l\u003d61?q\u003dprebuilt_etc",
       "parentUuid": "9516558a_ddc11243",
+      "range": {
+        "startLine": 486,
+        "startChar": 0,
+        "endLine": 509,
+        "endChar": 1
+      },
+      "revId": "ae4c07cbeafa5d811b136879eedbb78856affbd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "858f465b_6f851c62",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 9
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-12T00:30:46Z",
+      "side": 1,
+      "message": "I see. You are right, src only takes a single file or a genrule module. \n\nsrc string, Source file of this prebuilt. Can reference a genrule type module with the \":module\" syntax.",
+      "parentUuid": "1215a5ee_ca07e836",
       "range": {
         "startLine": 486,
         "startChar": 0,
