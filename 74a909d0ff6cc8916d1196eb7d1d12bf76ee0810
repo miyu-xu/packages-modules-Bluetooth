@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04cacaca_6f1b3424",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-12T00:34:10Z",
+      "side": 1,
+      "message": "why not `adapter discoverable on`?",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b627ad4b_cc061383",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-12T00:34:10Z",
+      "side": 1,
+      "message": "Just `Discoverable: `",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e54375c_4815c4a0",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-12T00:34:10Z",
+      "side": 1,
+      "message": "prefer single \"discoverable\" arm that also accepts \"on|off\"",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03658638_48cf3f24",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-12T00:34:10Z",
+      "side": 1,
+      "message": "nit: Returns whether the adapter is discoverable.",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0910f306_ffb7610e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-12T00:34:10Z",
+      "side": 1,
+      "message": "nit: Sets discoverability. If discoverable, limits the duration with given value.",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d83fb82_2a6538e1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-12T00:34:10Z",
+      "side": 1,
+      "message": "If this sets Discoverable timeout, we should rename this at topshim and eventually in bluetooth.h\n\nKeeping this named as discovery timeout is confusing.",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
