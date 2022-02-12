@@ -101,6 +101,24 @@
       "message": "If this sets Discoverable timeout, we should rename this at topshim and eventually in bluetooth.h\n\nKeeping this named as discovery timeout is confusing.",
       "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11ac98dc_9ce94a34",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-12T00:51:32Z",
+      "side": 1,
+      "message": "Could it actually mean Discovery Timeout?",
+      "parentUuid": "4d83fb82_2a6538e1",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
