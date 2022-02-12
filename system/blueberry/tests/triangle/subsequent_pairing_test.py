@@ -4,6 +4,8 @@ import time
 
 from mobly import test_runner
 from mobly import signals
+
+from mobly.controllers.android_device_lib.services import sl4a_service
 from blueberry.utils import triangle_base_test as base_test
 from blueberry.utils import triangle_constants
 
@@ -11,6 +13,7 @@ from blueberry.utils import triangle_constants
 # Internal import
 
 _DEFAULT_HEADSET_NAME = '.*Pixel Buds A-Series.*'
+_SL4A_ALIAS = 'sl4a'
 _SUBSEQUENT_PAIRING_RETRIES = 5
 _FOOTPRINTS_SYNC_WAITING_TIME_SEC = 90
 
@@ -81,6 +84,12 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
     self.pair_and_connect_phone_to_watch()
     self.headset.factory_reset_bluetooth()
     self.pair_and_connect_phone_to_headset()
+    # Unregisters sl4a service to avoid raising AdbError before reboot().
+    self.watch.services.unregister(_SL4A_ALIAS)
+    # Reboots Watch to force sync footprints.
+    self.watch.reboot()
+    self.watch.services.register(_SL4A_ALIAS, sl4a_service.Sl4aService)
+    self.wait_for_watch_connection(connected=True)
     # TODO(user): Trigger syncing or detect completion to avoid sleeping.
     time.sleep(_FOOTPRINTS_SYNC_WAITING_TIME_SEC)
     self._execute_subsequent_pairing_logic()
