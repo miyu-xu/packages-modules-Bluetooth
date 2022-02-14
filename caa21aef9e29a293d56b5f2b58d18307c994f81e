@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b2507c_573f04e3",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-02-14T12:29:12Z",
+      "side": 1,
+      "message": "It already do in JNI thread?",
+      "range": {
+        "startLine": 344,
+        "startChar": 2,
+        "endLine": 348,
+        "endChar": 40
+      },
+      "revId": "caa21aef9e29a293d56b5f2b58d18307c994f81e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
