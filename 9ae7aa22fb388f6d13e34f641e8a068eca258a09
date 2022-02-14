@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7675c30_d314b3ac",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T22:46:01Z",
+      "side": 1,
+      "message": "nit: private final AdapterService mAdapterService;\n\nto indicate it is assigned in constructor and never changes",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "9ae7aa22fb388f6d13e34f641e8a068eca258a09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be7b5f10_f7269771",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T22:46:01Z",
+      "side": 1,
+      "message": "nit: private final AdapterService mAdapterService;\n\nto indicate it is assigned in constructor and never changes",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 43
+      },
+      "revId": "9ae7aa22fb388f6d13e34f641e8a068eca258a09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
