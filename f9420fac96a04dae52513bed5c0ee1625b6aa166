@@ -159,6 +159,30 @@
       },
       "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61258963_d726e6f0",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-14T09:13:21Z",
+      "side": 1,
+      "message": "Maybe it\u0027s not to move the `AudioSetConfigurationProvider` into the CodecManager and do the initialization there. Just to move the methods and members from `AudioSetConfigurationProvider` to `CodecManager`. \n\nWe could move the codec manager initialized timing before LeAudioClient::Initialized, and then use the codec manager to control all the codec thing.\n\nAgree it could be nice to have and refactor work later.",
+      "parentUuid": "7a5d8d7f_be68b6a1",
+      "range": {
+        "startLine": 238,
+        "startChar": 10,
+        "endLine": 238,
+        "endChar": 46
+      },
+      "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
