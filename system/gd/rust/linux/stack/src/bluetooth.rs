@@ -803,20 +803,12 @@ impl IBluetooth for Bluetooth {
             return 0;
         }
 
-        match self.properties.get(&BtPropertyType::AdapterDiscoveryTimeout) {
-            Some(variant) => match variant {
-                BluetoothProperty::AdapterDiscoveryTimeout(timeout) => {
-                    let seconds: u64 = (*timeout).into();
-                    let elapsed = self.discovering_started.elapsed();
-                    if elapsed.as_secs() >= seconds {
-                        0
-                    } else {
-                        seconds * 1000 - elapsed.as_millis() as u64
-                    }
-                }
-                _ => 0,
-            },
-            _ => 0,
+        let default_timeout_ms: u64 = 12800;
+        let elapsed_ms = self.discovering_started.elapsed().as_millis() as u64;
+        if elapsed_ms >= default_timeout_ms {
+            0
+        } else {
+            default_timeout_ms - elapsed_ms
         }
     }
 
