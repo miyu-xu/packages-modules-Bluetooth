@@ -55,3 +55,8 @@ pub async fn respond(ctx: &impl Context, _request: lmp::InRandPacket) -> bool {
 
     true
 }
+
+#[cfg(test)]
+mod tests {
+    //use super::super::test_macro::sequence;
+}
