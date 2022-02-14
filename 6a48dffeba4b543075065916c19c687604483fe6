@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519686f6_89659d76",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-02-14T07:27:00Z",
+      "side": 1,
+      "message": "Should be hearingDevice-\u003egap_handle !\u003d GAP_INVALID_HANDLE",
+      "range": {
+        "startLine": 591,
+        "startChar": 8,
+        "endLine": 591,
+        "endChar": 55
+      },
+      "revId": "6a48dffeba4b543075065916c19c687604483fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b46f6709_d23fc679",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-02-14T07:27:00Z",
+      "side": 1,
+      "message": "Should be hearingDevice-\u003egap_handle !\u003d GAP_INVALID_HANDLE",
+      "range": {
+        "startLine": 1551,
+        "startChar": 8,
+        "endLine": 1551,
+        "endChar": 55
+      },
+      "revId": "6a48dffeba4b543075065916c19c687604483fe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
