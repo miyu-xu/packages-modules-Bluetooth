@@ -24,6 +24,7 @@
 #include "common/circular_buffer.h"
 #include "hal/hci_hal.h"
 #include "module.h"
+#include "os/repeating_alarm.h"
 
 namespace bluetooth {
 namespace hal {
@@ -100,6 +101,8 @@ class SnoopLogger : public ::bluetooth::Module {
   void CloseCurrentSnoopLogFile();
   void OpenNextSnoopLogFile();
   void DumpSnoozLogToFile(const std::vector<std::string>& data) const;
+  virtual std::chrono::milliseconds GetSnoozLogLifeTime() const;
+  virtual std::chrono::milliseconds GetSnoozLogDeleteAlarmInterval() const;
 
  private:
   std::string snoop_log_path_;
@@ -111,6 +114,7 @@ class SnoopLogger : public ::bluetooth::Module {
   common::CircularBuffer<std::string> btsnooz_buffer_;
   size_t packet_counter_ = 0;
   mutable std::recursive_mutex file_mutex_;
+  std::unique_ptr<os::RepeatingAlarm> alarm_;
 };
 
 }  // namespace hal
