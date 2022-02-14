@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7781ec0_49673eb3",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 871,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-02-14T05:57:38Z",
+      "side": 1,
+      "message": "hearingDevice-\u003egap_handle is 0 not GAP_INVALID_HANDLE 0xffff\nIt will cause it doesn\u0027t trigger BLE Coc Connection.",
+      "range": {
+        "startLine": 871,
+        "startChar": 8,
+        "endLine": 871,
+        "endChar": 33
+      },
+      "revId": "f6a8b15ebe4670a3d2ef62894b8e86f4fbb8a5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
