@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adf4af34_3d8e099b",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-14T23:36:05Z",
+      "side": 1,
+      "message": "We should print that it was set discoverable for 60s.\n\nAlso, `set_discoverable on: true` isn\u0027t too clear. Let\u0027s change the language a bit:\n\n```\nprint_info!(\"Set discoverable for 60s: {}\", if discoverable { \"succeeded\" } else {\"failed\"});\n```\n\nSame for `off` below (but it doesn\u0027t need a duration printed).",
+      "revId": "f5b185ee86a5d62439f47d8fe2130fbe4622ef60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45024c7d_1c29435f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-14T23:36:05Z",
+      "side": 1,
+      "message": "spelling: adapter",
+      "revId": "f5b185ee86a5d62439f47d8fe2130fbe4622ef60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
