@@ -65,6 +65,8 @@ import java.util.Objects;
     // Battery stats is used to keep track of scans and result stats
     BatteryStatsManager mBatteryStatsManager;
 
+    private AdapterService mAdapterService;
+
     class LastScan {
         public long duration;
         public long suspendDuration;
@@ -102,28 +104,6 @@ import java.util.Objects;
             this.isSuspended = false;
             this.filterString = "";
         }
-    }
-
-    static int getNumScanDurationsKept() {
-        return AdapterService.getAdapterService().getScanQuotaCount();
-    }
-
-    // This constant defines the time window an app can scan multiple times.
-    // Any single app can scan up to |NUM_SCAN_DURATIONS_KEPT| times during
-    // this window. Once they reach this limit, they must wait until their
-    // earliest recorded scan exits this window.
-    static long getExcessiveScanningPeriodMillis() {
-        return AdapterService.getAdapterService().getScanQuotaWindowMillis();
-    }
-
-    // Maximum msec before scan gets downgraded to opportunistic
-    static long getScanTimeoutMillis() {
-        return AdapterService.getAdapterService().getScanTimeoutMillis();
-    }
-
-    // Scan mode upgrade duration after scanStart()
-    static long getScanUpgradeDurationMillis() {
-        return AdapterService.getAdapterService().getScanUpgradeDurationMillis();
     }
 
     public String appName;
@@ -164,6 +144,7 @@ import java.util.Objects;
         }
         mWorkSource = source;
         mWorkSourceUtil = new WorkSourceUtil(source);
+        mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService());
     }
 
     synchronized void addResult(int scannerId) {
@@ -272,7 +253,7 @@ import java.util.Objects;
             mTotalSuspendTime += suspendDuration;
         }
         mOngoingScans.remove(scannerId);
-        if (mLastScans.size() >= getNumScanDurationsKept()) {
+        if (mLastScans.size() >= mAdapterService.getScanQuotaCount()) {
             mLastScans.remove(0);
         }
         mLastScans.add(scan);
@@ -355,19 +336,20 @@ import java.util.Objects;
     }
 
     synchronized boolean isScanningTooFrequently() {
-        if (mLastScans.size() < getNumScanDurationsKept()) {
+        if (mLastScans.size() < mAdapterService.getScanQuotaCount()) {
             return false;
         }
 
         return (SystemClock.elapsedRealtime() - mLastScans.get(0).timestamp)
-                < getExcessiveScanningPeriodMillis();
+                < mAdapterService.getScanQuotaWindowMillis();
     }
 
     synchronized boolean isScanningTooLong() {
         if (!isScanning()) {
             return false;
         }
-        return (SystemClock.elapsedRealtime() - mScanStartTime) > getScanTimeoutMillis();
+        return (SystemClock.elapsedRealtime() - mScanStartTime)
+                > mAdapterService.getScanTimeoutMillis();
     }
 
     synchronized boolean hasRecentScan() {
