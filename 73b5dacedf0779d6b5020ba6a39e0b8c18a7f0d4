@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8990f452_136db050",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-14T16:45:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e7d3ef07_dccf5f46",
+      "range": {
+        "startLine": 970,
+        "startChar": 12,
+        "endLine": 970,
+        "endChar": 33
+      },
+      "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "00cd6cae_dbcb6f60",
         "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2022-02-11T17:48:55Z",
       "side": 1,
       "message": "Here do we assume only one callback can be registered per client App? \n\nWe should be able to handle multiple callback registrations. \n\nWe recently did this with UWB AdapterStateListener by creating a local HashMap of callbacks. Could we implement it the same way here?\n\nSee: https://cs.android.com/android/platform/superproject/+/master:frameworks/base/core/java/android/uwb/AdapterStateListener.java\n\nfor the UWB code",
+      "range": {
+        "startLine": 410,
+        "startChar": 7,
+        "endLine": 416,
+        "endChar": 9
+      },
+      "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab98de88_8988bdea",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-14T16:45:12Z",
+      "side": 1,
+      "message": "Please correct me if I\u0027m wrong. The framework part would become stateful, so we would need the service to notify back here when callback dies, so we could remove the callback and attribution source from the HashMap, right? If so, then are you aware of any efficient way to do that without introducing yet another .aidl for onCallbackDied() callback alone?\n\nWhat if the Bluetooth Stack dies instead? We either have to remove the callbacks from the HashMap or re-register the callbacks automatically without the app being involved once the stack is up again. I guess we would need to somehow monitor the BT state then. I can\u0027t really see any other BluetoothProfile doing it, or did I miss something?",
+      "parentUuid": "00cd6cae_dbcb6f60",
       "range": {
         "startLine": 410,
         "startChar": 7,
