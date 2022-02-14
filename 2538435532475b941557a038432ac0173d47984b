@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819f2818_c5588483",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T21:33:41Z",
+      "side": 1,
+      "message": "I would recommend using Objects.requireNonNull() here to guarantee that AdapterService.getAdapterService() is not null when AppScanStats is being created",
+      "range": {
+        "startLine": 147,
+        "startChar": 26,
+        "endLine": 147,
+        "endChar": 61
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dadfd0ae_ae4d27fe",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T21:33:41Z",
+      "side": 1,
+      "message": "AdapterService should never be null when the BT stack is running. If AdapterService is null and this method is called, there must be some serious state error. \n\nAre there any instances to show that AdapterService is null here?",
+      "range": {
+        "startLine": 243,
+        "startChar": 24,
+        "endLine": 243,
+        "endChar": 54
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fc1ca8c_e326549c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T21:33:41Z",
+      "side": 1,
+      "message": "null check is not needed if we obtain the reference in constructor and assert non null over there",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 341,
+        "endChar": 9
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8a2668d_547ed94f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T21:33:41Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 351,
+        "startChar": 28,
+        "endLine": 351,
+        "endChar": 52
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76f8cdde_ac2c67ac",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T21:33:41Z",
+      "side": 1,
+      "message": "Could we add AdapterService as a constructor argument instead? \n\nSo that it is easier to mock ScanManager\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d320?q\u003dpackages%2Fmodules%2FBluetooth%2Fandroid%2Fapp%2Fsrc%2Fcom%2Fandroid%2Fbluetooth%2Fgatt%2FGattService.java",
+      "range": {
+        "startLine": 133,
+        "startChar": 15,
+        "endLine": 133,
+        "endChar": 35
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea3794c3_d5a7cbd3",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T21:33:41Z",
+      "side": 1,
+      "message": "same as above we should assume and require that AdapterService is not null when  AdapterService.getAdapterService(); is called in the constructor",
+      "range": {
+        "startLine": 145,
+        "startChar": 8,
+        "endLine": 145,
+        "endChar": 61
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae65672_c2b2265f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-14T21:33:41Z",
+      "side": 1,
+      "message": "not needed if we require non null above\n\nalso this may hide some more serious state mismatch issues",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 13
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
