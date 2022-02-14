@@ -698,8 +698,8 @@ public class ScanManager {
          */
         private static final int SCAN_MODE_LOW_POWER_WINDOW_MS = 35;
         private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS = 350;
-        private static final int SCAN_MODE_BALANCED_WINDOW_MS = 35;
-        private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 175;
+        private static final int SCAN_MODE_BALANCED_WINDOW_MS = 191;
+        private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 956;
         private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 4096;
         private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 4096;
         private static final int SCAN_MODE_SCREEN_OFF_WINDOW_MS = 512;
