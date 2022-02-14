@@ -473,6 +473,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "19f937bf_8d7391ed",
+        "filename": "framework/java/android/bluetooth/le/ScanResult.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-02-14T06:41:50Z",
+      "side": 1,
+      "message": "Do you mean BluetoothDevice.mAddressType?\nAs per the code, BluetoothDevice.mAddressType is always equal to ADDRESS_TYPE_PUBLIC.\nMoreover, It doesn\u0027t export mAddressType.",
+      "parentUuid": "aebaee77_ec252442",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "15ad48ebd5018e482f85f29651b610a8bd2eff21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "76ca3769_74f8211d",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 19
