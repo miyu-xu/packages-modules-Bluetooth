@@ -195,5 +195,14 @@ bool RemoveFile(const std::string& path) {
   return true;
 }
 
+std::optional<timespec> FileCreatedTime(const std::string& path) {
+  struct stat file_info;
+  if (stat(path.c_str(), &file_info) != 0) {
+    LOG_ERROR("unable to read '%s' file metadata, error: %s", path.c_str(), strerror(errno));
+    return std::nullopt;
+  }
+  return file_info.st_ctim;
+}
+
 }  // namespace os
 }  // namespace bluetooth
