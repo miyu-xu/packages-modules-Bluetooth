@@ -22,6 +22,30 @@
       },
       "revId": "caa21aef9e29a293d56b5f2b58d18307c994f81e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fb2dd61_a28dde55",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-02-14T15:25:09Z",
+      "side": 1,
+      "message": "Good point... from b/216287845/comment#2 I assumed in stack trace main was run, but jni also has MessageLoop base class which would have similar failing behavior.\n\nstatic MessageLoopThread jni_thread(\"bt_jni_thread\");\n\nFrom the stack trace I *didn\u0027t* see bt_jni_thread in name, so I assumed it was on the main thread.  But the name of the failing thread also is a mystery as I can\u0027t find it.\n\npid: 13661, tid: 13713, name: BT Service Call  \u003e\u003e\u003e com.android.bluetooth \u003c\u003c\u003c\n\n\"BT Service Call\"",
+      "parentUuid": "77b2507c_573f04e3",
+      "range": {
+        "startLine": 344,
+        "startChar": 2,
+        "endLine": 348,
+        "endChar": 40
+      },
+      "revId": "caa21aef9e29a293d56b5f2b58d18307c994f81e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
