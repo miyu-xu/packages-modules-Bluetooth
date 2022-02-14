@@ -154,6 +154,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c51f2243_1d974e4b",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-14T16:34:56Z",
+      "side": 1,
+      "message": "Fixed, confirmed that the timeout value is 1.28s in _high duty cycle_ directed advertising. There is not timeout for low duty cycle. Patched the code to reflect this.",
+      "parentUuid": "b5c67d04_464cc7bf",
+      "range": {
+        "startLine": 102,
+        "startChar": 4,
+        "endLine": 102,
+        "endChar": 48
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a6d9136_3dc6c3d6",
         "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
         "patchSetId": 1
@@ -189,6 +213,30 @@
       "side": 1,
       "message": "Match directed advertising by advertising type. DIRECT_IND is directed advertising high duty cycle, SCAN_RESPONSE is an alias for directed advertising low duty cycle. Sadly PDL cannot do aliases yet...",
       "parentUuid": "9a6d9136_3dc6c3d6",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 0
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "235a5397_d3cb639d",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-14T16:34:56Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "33632740_bdc65aa7",
       "range": {
         "startLine": 125,
         "startChar": 0,
@@ -295,6 +343,24 @@
       "side": 1,
       "message": "Since this is the link layer, the values don\u0027t have to be tied to HCI commands.  We can also have a bit mask of properties (no need for \"legacy\"), and translate from that when we need it.  I guess we only need these three bits:\n\n0 Connectable advertising\n1 Scannable advertising\n2 Directed advertising\n\nWe don\u0027t need to know at the link layer if it\u0027s legacy, high-duty-cycle, anonymous, etc.",
       "parentUuid": "9309fce2_717b7f38",
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb8e866_2870364c",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-02-14T16:34:56Z",
+      "side": 1,
+      "message": "I would rather keep the current AdvertisementType type in link_layer_packets.pdl to spare the additional conversions in IncomingLeAdvertisementPacket and LeSetAdvertisingParameters. \n\nI do think it will become necessary to rewrite the type to support extended advertising PDUs. This would be done in another CL.",
+      "parentUuid": "c177ad1a_59cd8d72",
       "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
