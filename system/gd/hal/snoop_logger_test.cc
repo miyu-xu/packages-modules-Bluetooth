@@ -51,6 +51,7 @@ std::vector<uint8_t> kHfpAtNrec0 = {0x02, 0x02, 0x20, 0x13, 0x00, 0x0f, 0x00, 0x
 
 using bluetooth::TestModuleRegistry;
 using bluetooth::hal::SnoopLogger;
+using namespace std::chrono_literals;
 
 // Expose protected constructor for test
 class TestSnoopLoggerModule : public SnoopLogger {
@@ -65,9 +66,24 @@ class TestSnoopLoggerModule : public SnoopLogger {
   std::string ToString() const override {
     return std::string("TestSnoopLoggerModule");
   }
+
+  std::chrono::milliseconds GetSnoozLogLifeTime() const override {
+    return 20ms;
+  }
+
+  std::chrono::milliseconds GetSnoozLogDeleteAlarmInterval() const override {
+    return 5ms;
+  }
+
+  void CallGetDumpsysData(flatbuffers::FlatBufferBuilder* builder) {
+    GetDumpsysData(builder);
+  }
 };
 
 class SnoopLoggerModuleTest : public Test {
+ public:
+  flatbuffers::FlatBufferBuilder* builder_;
+
  protected:
   void SetUp() override {
     temp_dir_ = std::filesystem::temp_directory_path();
@@ -75,6 +91,8 @@ class SnoopLoggerModuleTest : public Test {
     temp_snoop_log_last_ = temp_dir_ / "btsnoop_hci.log.last";
     temp_snooz_log_ = temp_dir_ / "btsnooz_hci.log";
     temp_snooz_log_last_ = temp_dir_ / "btsnooz_hci.log.last";
+    builder_ = new flatbuffers::FlatBufferBuilder();
+
     DeleteSnoopLogFiles();
     ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_));
     ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
@@ -84,6 +102,7 @@ class SnoopLoggerModuleTest : public Test {
 
   void TearDown() override {
     DeleteSnoopLogFiles();
+    delete builder_;
   }
 
   void DeleteSnoopLogFiles() {
@@ -133,7 +152,7 @@ TEST_F(SnoopLoggerModuleTest, disable_snoop_log_test) {
   // Verify states after test
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_));
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
-  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
 }
 
 TEST_F(SnoopLoggerModuleTest, capture_one_packet_test) {
@@ -163,16 +182,19 @@ TEST_F(SnoopLoggerModuleTest, capture_hci_cmd_btsnooz_test) {
   test_registry.InjectTestModule(&SnoopLogger::Factory, snoop_looger);
 
   snoop_looger->Capture(kInformationRequest, SnoopLogger::Direction::OUTGOING, SnoopLogger::PacketType::CMD);
+  snoop_looger->CallGetDumpsysData(builder_);
+
+  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  ASSERT_EQ(
+      std::filesystem::file_size(temp_snooz_log_),
+      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + kInformationRequest.size());
 
   test_registry.StopAll();
 
   // Verify states after test
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_));
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
-  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
-  ASSERT_EQ(
-      std::filesystem::file_size(temp_snooz_log_),
-      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + kInformationRequest.size());
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
 }
 
 TEST_F(SnoopLoggerModuleTest, capture_l2cap_signal_packet_btsnooz_test) {
@@ -183,16 +205,19 @@ TEST_F(SnoopLoggerModuleTest, capture_l2cap_signal_packet_btsnooz_test) {
   test_registry.InjectTestModule(&SnoopLogger::Factory, snoop_looger);
 
   snoop_looger->Capture(kSdpConnectionRequest, SnoopLogger::Direction::OUTGOING, SnoopLogger::PacketType::ACL);
+  snoop_looger->CallGetDumpsysData(builder_);
+
+  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  ASSERT_EQ(
+      std::filesystem::file_size(temp_snooz_log_),
+      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + kSdpConnectionRequest.size());
 
   test_registry.StopAll();
 
   // Verify states after test
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_));
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
-  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
-  ASSERT_EQ(
-      std::filesystem::file_size(temp_snooz_log_),
-      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + kSdpConnectionRequest.size());
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
 }
 
 TEST_F(SnoopLoggerModuleTest, capture_l2cap_short_data_packet_btsnooz_test) {
@@ -203,16 +228,19 @@ TEST_F(SnoopLoggerModuleTest, capture_l2cap_short_data_packet_btsnooz_test) {
   test_registry.InjectTestModule(&SnoopLogger::Factory, snoop_looger);
 
   snoop_looger->Capture(kAvdtpSuspend, SnoopLogger::Direction::OUTGOING, SnoopLogger::PacketType::ACL);
+  snoop_looger->CallGetDumpsysData(builder_);
+
+  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  ASSERT_EQ(
+      std::filesystem::file_size(temp_snooz_log_),
+      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + kAvdtpSuspend.size());
 
   test_registry.StopAll();
 
   // Verify states after test
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_));
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
-  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
-  ASSERT_EQ(
-      std::filesystem::file_size(temp_snooz_log_),
-      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + kAvdtpSuspend.size());
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
 }
 
 TEST_F(SnoopLoggerModuleTest, capture_l2cap_long_data_packet_btsnooz_test) {
@@ -223,16 +251,36 @@ TEST_F(SnoopLoggerModuleTest, capture_l2cap_long_data_packet_btsnooz_test) {
   test_registry.InjectTestModule(&SnoopLogger::Factory, snoop_looger);
 
   snoop_looger->Capture(kHfpAtNrec0, SnoopLogger::Direction::OUTGOING, SnoopLogger::PacketType::ACL);
+  snoop_looger->CallGetDumpsysData(builder_);
+
+  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  ASSERT_EQ(
+      std::filesystem::file_size(temp_snooz_log_),
+      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + 14);
 
   test_registry.StopAll();
 
   // Verify states after test
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_));
   ASSERT_FALSE(std::filesystem::exists(temp_snoop_log_last_));
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
+}
+
+TEST_F(SnoopLoggerModuleTest, delete_old_snooz_log_files) {
+  // Actual test
+  auto* snoop_looger = new TestSnoopLoggerModule(
+      temp_snoop_log_.string(), temp_snooz_log_.string(), 10, SnoopLogger::kBtSnoopLogModeDisabled);
+  TestModuleRegistry test_registry;
+  test_registry.InjectTestModule(&SnoopLogger::Factory, snoop_looger);
+
+  std::filesystem::create_directories(temp_snooz_log_);
+
   ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
-  ASSERT_EQ(
-      std::filesystem::file_size(temp_snooz_log_),
-      sizeof(SnoopLogger::FileHeaderType) + sizeof(SnoopLogger::PacketHeaderType) + 14);
+  std::this_thread::sleep_for(10ms);
+  ASSERT_TRUE(std::filesystem::exists(temp_snooz_log_));
+  std::this_thread::sleep_for(15ms);
+  ASSERT_FALSE(std::filesystem::exists(temp_snooz_log_));
+  test_registry.StopAll();
 }
 
 TEST_F(SnoopLoggerModuleTest, rotate_file_at_new_session_test) {
