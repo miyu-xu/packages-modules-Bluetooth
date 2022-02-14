@@ -5,6 +5,9 @@ mod future;
 mod packets;
 mod procedure;
 
+#[cfg(test)]
+mod test;
+
 use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::convert::{TryFrom, TryInto};
