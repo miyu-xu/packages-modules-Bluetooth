@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "679f4c26_91b553d4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-02-14T22:44:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "819f2818_c5588483",
+      "range": {
+        "startLine": 147,
+        "startChar": 26,
+        "endLine": 147,
+        "endChar": 61
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dadfd0ae_ae4d27fe",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-14T21:33:41Z",
       "side": 1,
       "message": "AdapterService should never be null when the BT stack is running. If AdapterService is null and this method is called, there must be some serious state error. \n\nAre there any instances to show that AdapterService is null here?",
+      "range": {
+        "startLine": 243,
+        "startChar": 24,
+        "endLine": 243,
+        "endChar": 54
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "980eedf5_02523a56",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-02-14T22:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dadfd0ae_ae4d27fe",
       "range": {
         "startLine": 243,
         "startChar": 24,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac7ac44_fd20e64e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-02-14T22:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fc1ca8c_e326549c",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 341,
+        "endChar": 9
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8a2668d_547ed94f",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-02-14T21:33:41Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 351,
+        "startChar": 28,
+        "endLine": 351,
+        "endChar": 52
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf1a7d3_c89d5f4d",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-02-14T22:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8a2668d_547ed94f",
       "range": {
         "startLine": 351,
         "startChar": 28,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f37e9244_3f525f78",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-02-14T22:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76f8cdde_ac2c67ac",
+      "range": {
+        "startLine": 133,
+        "startChar": 15,
+        "endLine": 133,
+        "endChar": 35
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea3794c3_d5a7cbd3",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "317156de_e8efef9c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-02-14T22:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea3794c3_d5a7cbd3",
+      "range": {
+        "startLine": 145,
+        "startChar": 8,
+        "endLine": 145,
+        "endChar": 61
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bae65672_c2b2265f",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-02-14T21:33:41Z",
       "side": 1,
       "message": "not needed if we require non null above\n\nalso this may hide some more serious state mismatch issues",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 340,
+        "endChar": 13
+      },
+      "revId": "2538435532475b941557a038432ac0173d47984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6c62ae2_51733ee9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2022-02-14T22:44:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bae65672_c2b2265f",
       "range": {
         "startLine": 338,
         "startChar": 0,
