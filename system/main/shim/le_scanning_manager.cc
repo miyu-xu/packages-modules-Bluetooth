@@ -39,6 +39,7 @@
 #include "main/shim/shim.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/btm_log_history.h"
+#include "stack/include/btu.h"
 #include "storage/device.h"
 #include "storage/le_device.h"
 #include "storage/storage_module.h"
@@ -520,25 +521,28 @@ void BleScannerInterfaceImpl::handle_remote_properties(
 
   // update device name
   if ((addr_type != BLE_ADDR_RANDOM) || (p_eir_remote_name)) {
-    if (!address_cache_.find(bd_addr)) {
-      address_cache_.add(bd_addr);
+    if (remote_name_len > BD_NAME_LEN + 1 ||
+        (remote_name_len == BD_NAME_LEN + 1 &&
+         p_eir_remote_name[BD_NAME_LEN] != '\0')) {
+      LOG_INFO("%s dropping invalid packet - device name too long: %d",
+               __func__, remote_name_len);
+      return;
+    }
 
-      if (p_eir_remote_name) {
-        if (remote_name_len > BD_NAME_LEN + 1 ||
-            (remote_name_len == BD_NAME_LEN + 1 &&
-             p_eir_remote_name[BD_NAME_LEN] != '\0')) {
-          LOG_INFO("%s dropping invalid packet - device name too long: %d",
-                   __func__, remote_name_len);
-          return;
+    bt_bdname_t bdname;
+    memcpy(bdname.name, p_eir_remote_name, remote_name_len);
+    if (remote_name_len < BD_NAME_LEN + 1) bdname.name[remote_name_len] = '\0';
+
+    if (p_eir_remote_name) {
+      post_on_bt_jni([this, bd_addr, bdname, device_type]() {
+        if (!address_cache_.find(bd_addr)) {
+          address_cache_.add(bd_addr);
+          post_on_bt_main([bd_addr, bdname, device_type]() {
+            btif_dm_update_ble_remote_properties(bd_addr, (uint8_t*)bdname.name,
+                                                 device_type);
+          });
         }
-
-        bt_bdname_t bdname;
-        memcpy(bdname.name, p_eir_remote_name, remote_name_len);
-        if (remote_name_len < BD_NAME_LEN + 1)
-          bdname.name[remote_name_len] = '\0';
-
-        btif_dm_update_ble_remote_properties(bd_addr, bdname.name, device_type);
-      }
+      });
     }
   }
   if (!bluetooth::shim::is_gd_stack_started_up()) {
