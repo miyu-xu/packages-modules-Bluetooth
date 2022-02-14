@@ -87,6 +87,30 @@
       },
       "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5afa849f_d617445f",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-14T08:49:58Z",
+      "side": 1,
+      "message": "hmm indeed it would be nicer to have `AudioSetConfigurationProvider` in the CodecManager, however I double check code and if provider is not there when codec manager needs it then, codecmanager needs to wait basically. Let\u0027s handle such possible situation and schedule moving provide to codecmanager for the future as `nice to have` feature.",
+      "parentUuid": "8e67a72a_101b91d4",
+      "range": {
+        "startLine": 238,
+        "startChar": 10,
+        "endLine": 238,
+        "endChar": 46
+      },
+      "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
