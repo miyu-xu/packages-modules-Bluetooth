@@ -111,6 +111,30 @@
       },
       "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61e5380f_656e24fb",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-14T08:51:33Z",
+      "side": 1,
+      "message": "Would be nice to sync their life cycle. We have to keep in mind one thing though. The SetConfigurationProvider loads files at init, therefore should not be initialized in the main stack thread but in the jni thread, just like the profile specific persistent storage functions.",
+      "parentUuid": "8e67a72a_101b91d4",
+      "range": {
+        "startLine": 238,
+        "startChar": 10,
+        "endLine": 238,
+        "endChar": 46
+      },
+      "revId": "f9420fac96a04dae52513bed5c0ee1625b6aa166",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
