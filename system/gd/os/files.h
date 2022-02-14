@@ -45,5 +45,8 @@ bool WriteToFile(const std::string& path, const std::string& data);
 // Return true on success, false on failure (e.g. file not exist, failed to remove, etc)
 bool RemoveFile(const std::string& path);
 
+// Return created timespec of given file, return std::nullopt on failure
+std::optional<timespec> FileCreatedTime(const std::string& path);
+
 }  // namespace os
 }  // namespace bluetooth
