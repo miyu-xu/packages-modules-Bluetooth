@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdc59eea_04c237d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 30
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-02-14T10:10:02Z",
+      "side": 1,
+      "message": "Checked 14/02: LGTM\n\nsmall nit, the api added are not added to the *.txt file\nThis concern system `BASS_ID` and public `ET_CONNECTABLE_MASK` \u0026 `ET_LEGACY_MASK`",
+      "parentUuid": "5cccfdca_b28fa171",
+      "revId": "f88b15df837151b94a7a5f483eba78b9ab4a349e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67a0c012_55e53d93",
