@@ -104,8 +104,15 @@ async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> [u8; 48] 
     key
 }
 
-async fn send_commitment(ctx: &impl Context) {
+async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
     let commitment_value = [0; 16];
+
+    if !skip_first {
+        let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirmPacket>().await;
+        if confirm.get_commitment_value() != &commitment_value {
+            todo!();
+        }
+    }
 
     ctx.send_lmp_packet(
         lmp::SimplePairingConfirmBuilder { transaction_id: 0, commitment_value }.build(),
@@ -131,10 +138,16 @@ async fn send_commitment(ctx: &impl Context) {
         .await;
 }
 
-async fn receive_commitment(ctx: &impl Context) {
-    let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirmPacket>().await;
-
+async fn send_commitment(ctx: &impl Context, skip_first: bool) {
     let commitment_value = [0; 16];
+
+    if !skip_first {
+        ctx.send_lmp_packet(
+            lmp::SimplePairingConfirmBuilder { transaction_id: 0, commitment_value }.build(),
+        );
+    }
+
+    let confirm = ctx.receive_lmp_packet::<lmp::SimplePairingConfirmPacket>().await;
 
     if confirm.get_commitment_value() != &commitment_value {
         todo!();
@@ -348,7 +361,7 @@ pub async fn initiate(ctx: &impl Context) -> bool {
     // Authentication Stage 1
     match authentication_method(initiator, responder) {
         AuthenticationMethod::NumericComparaison => {
-            receive_commitment(ctx).await;
+            send_commitment(ctx, true).await;
 
             let user_confirmation = user_confirmation_request(ctx).await;
 
@@ -390,7 +403,7 @@ pub async fn initiate(ctx: &impl Context) -> bool {
                 );
             }
             for _ in 0..20 {
-                send_commitment(ctx).await;
+                send_commitment(ctx, false).await;
             }
         }
         AuthenticationMethod::OutOfBand => {
@@ -420,7 +433,7 @@ pub async fn initiate(ctx: &impl Context) -> bool {
                 }
             }
 
-            send_commitment(ctx).await;
+            send_commitment(ctx, false).await;
         }
     }
     // Authentication Stage 2
@@ -529,7 +542,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
 
     let negative_user_confirmation = match authentication_method(initiator, responder) {
         AuthenticationMethod::NumericComparaison => {
-            send_commitment(ctx).await;
+            receive_commitment(ctx, true).await;
 
             let user_confirmation = user_confirmation_request(ctx).await;
             user_confirmation.is_err()
@@ -545,7 +558,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
                 );
             }
             for _ in 0..20 {
-                receive_commitment(ctx).await;
+                receive_commitment(ctx, false).await;
             }
             false
         }
@@ -555,7 +568,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
                 let _remote_oob_data = remote_oob_data_request(ctx).await;
             }
 
-            receive_commitment(ctx).await;
+            receive_commitment(ctx, false).await;
             false
         }
     };
@@ -621,4 +634,91 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     );
 
     true
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::test::sequence;
+    // simple pairing is part of authentication procedure
+    use super::super::authentication::initiate;
+    use super::super::authentication::respond;
+
+    #[test]
+    fn initiate_size() {
+        let context = crate::test::TestContext::new();
+        let procedure = super::initiate(&context);
+
+        fn assert_max_size<T>(_value: T, limit: usize) {
+            let type_name = std::any::type_name::<T>();
+            let size = std::mem::size_of::<T>();
+            println!("Size of {}: {}", type_name, size);
+            assert!(size < limit)
+        }
+
+        assert_max_size(procedure, 250);
+    }
+
+    #[test]
+    fn numeric_comparaison_initiator_success() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = initiate;
+
+        include!("../../test/SP/BV-06-C.in");
+    }
+
+    #[test]
+    fn numeric_comparaison_responder_success() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = respond;
+
+        include!("../../test/SP/BV-07-C.in");
+    }
+
+    #[test]
+    fn numeric_comparaison_initiator_failure_on_initiating_side() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = initiate;
+
+        include!("../../test/SP/BV-08-C.in");
+    }
+
+    #[test]
+    fn numeric_comparaison_responder_failure_on_initiating_side() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = respond;
+
+        include!("../../test/SP/BV-09-C.in");
+    }
+
+    #[test]
+    fn numeric_comparaison_initiator_failure_on_responding_side() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = initiate;
+
+        include!("../../test/SP/BV-10-C.in");
+    }
+
+    #[test]
+    fn numeric_comparaison_responder_failure_on_responding_side() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = respond;
+
+        include!("../../test/SP/BV-11-C.in");
+    }
+
+    #[test]
+    fn passkey_entry_initiator_success() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = initiate;
+
+        include!("../../test/SP/BV-12-C.in");
+    }
+
+    #[test]
+    fn passkey_entry_responder_success() {
+        let tester_addr = crate::packets::hci::Address { bytes: [0; 6] };
+        let procedure = initiate;
+
+        include!("../../test/SP/BV-12-C.in");
+    }
 }
