@@ -48,13 +48,6 @@ extern void btsnd_hcic_per_inq_mode(uint16_t max_period, uint16_t min_period,
 extern void btsnd_hcic_exit_per_inq(void);
 
 /* Create Connection */
-extern void btsnd_hcic_create_conn(const RawAddress& dest,
-                                   uint16_t packet_types,
-                                   uint8_t page_scan_rep_mode,
-                                   uint8_t page_scan_mode,
-                                   uint16_t clock_offset, uint8_t allow_switch);
-
-/* Create Connection */
 
 /* Disconnect */
 namespace bluetooth {
@@ -154,7 +147,6 @@ extern void btsnd_hcic_rmt_ver_req(
     uint16_t handle); /* Remote Version Info Request */
 extern void btsnd_hcic_read_rmt_clk_offset(
     uint16_t handle); /* Remote Clock Offset */
-extern void btsnd_hcic_read_lmp_handle(uint16_t handle); /* Remote LMP Handle */
 extern void btsnd_hcic_setup_esco_conn(uint16_t handle,
                                        uint32_t transmit_bandwidth,
                                        uint32_t receive_bandwidth,
@@ -369,8 +361,6 @@ extern void btsnd_hcic_vendor_spec_cmd(void* buffer, uint16_t opcode,
 /* ULP HCI command */
 extern void btsnd_hcic_ble_set_local_used_feat(uint8_t feat_set[8]);
 
-extern void btsnd_hcic_ble_set_random_addr(const RawAddress& random_addr);
-
 extern void btsnd_hcic_ble_write_adv_params(
     uint16_t adv_int_min, uint16_t adv_int_max, uint8_t adv_type,
     tBLE_ADDR_TYPE addr_type_own, tBLE_ADDR_TYPE addr_type_dir,
@@ -393,27 +383,9 @@ extern void btsnd_hcic_ble_set_scan_params(uint8_t scan_type, uint16_t scan_int,
 extern void btsnd_hcic_ble_set_scan_enable(uint8_t scan_enable,
                                            uint8_t duplicate);
 
-extern void btsnd_hcic_ble_create_ll_conn(
-    uint16_t scan_int, uint16_t scan_win, uint8_t init_filter_policy,
-    tBLE_ADDR_TYPE addr_type_peer, const RawAddress& bda_peer,
-    tBLE_ADDR_TYPE addr_type_own, uint16_t conn_int_min, uint16_t conn_int_max,
-    uint16_t conn_latency, uint16_t conn_timeout, uint16_t min_ce_len,
-    uint16_t max_ce_len);
-
 extern void btsnd_hcic_ble_create_conn_cancel(void);
 
 extern void btsnd_hcic_ble_read_acceptlist_size(void);
-
-extern void btsnd_hcic_ble_clear_acceptlist(
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb);
-
-extern void btsnd_hcic_ble_add_acceptlist(
-    tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb);
-
-extern void btsnd_hcic_ble_remove_from_acceptlist(
-    tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb);
 
 extern void btsnd_hcic_ble_upd_ll_conn_params(
     uint16_t handle, uint16_t conn_int_min, uint16_t conn_int_max,
@@ -445,8 +417,6 @@ extern void btsnd_hcic_ble_read_supported_states(void);
 
 extern void btsnd_hcic_ble_write_host_supported(uint8_t le_host_spt,
                                                 uint8_t simul_le_host_spt);
-
-extern void btsnd_hcic_ble_read_host_supported(void);
 
 extern void btsnd_hcic_ble_receiver_test(uint8_t rx_freq);
 
@@ -498,30 +468,15 @@ struct EXT_CONN_PHY_CFG {
   uint16_t max_ce_len;
 };
 
-extern void btsnd_hcic_ble_ext_create_conn(uint8_t init_filter_policy,
-                                           uint8_t addr_type_own,
-                                           uint8_t addr_type_peer,
-                                           const RawAddress& bda_peer,
-                                           uint8_t initiating_phys,
-                                           EXT_CONN_PHY_CFG* phy_cfg);
-
-extern void btsnd_hcic_ble_rm_device_resolving_list(
-    tBLE_ADDR_TYPE addr_type_peer, const RawAddress& bda_peer);
-
 extern void btsnd_hcic_ble_set_privacy_mode(tBLE_ADDR_TYPE addr_type_peer,
                                             const RawAddress& bda_peer,
                                             uint8_t privacy_type);
-
-extern void btsnd_hcic_ble_clear_resolving_list(void);
 
 extern void btsnd_hcic_ble_read_resolvable_addr_peer(
     uint8_t addr_type_peer, const RawAddress& bda_peer);
 
 extern void btsnd_hcic_ble_read_resolvable_addr_local(
     uint8_t addr_type_peer, const RawAddress& bda_peer);
-
-extern void btsnd_hcic_ble_set_addr_resolution_enable(
-    uint8_t addr_resolution_enable);
 
 extern void btsnd_hcic_ble_set_rand_priv_addr_timeout(uint16_t rpa_timout);
 
