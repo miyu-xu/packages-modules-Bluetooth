@@ -1620,6 +1620,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private boolean createBondInternal(int transport, @Nullable OobData remoteP192Data,
             @Nullable OobData remoteP256Data) {
+        setLowLatencyAudioAllowed(true);
         if (DBG) log("createBondOutOfBand()");
         final IBluetooth service = sService;
         final boolean defaultValue = false;
@@ -1875,6 +1876,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         if (!BluetoothAdapter.checkBluetoothAddress(getAddress())) {
             throw new IllegalArgumentException("device cannot have an invalid address");
         }
+        setLowLatencyAudioAllowed(true);
         final IBluetooth service = sService;
         final int defaultValue = BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
         if (service == null) {
