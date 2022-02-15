@@ -46,6 +46,30 @@
       },
       "revId": "caa21aef9e29a293d56b5f2b58d18307c994f81e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbd8d34a_fb586d89",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-02-15T16:14:30Z",
+      "side": 1,
+      "message": "The full name is \"BT Service Callback Thread\", it can be find in com_android_bluetooth_btservice_AdapterService.cpp\n\nIt is JNI thread, I think the name of JNI thread is replaced in line 250 of packages/modules/Bluetooth/system/btif/src/btif_core.cc",
+      "parentUuid": "2fb2dd61_a28dde55",
+      "range": {
+        "startLine": 344,
+        "startChar": 2,
+        "endLine": 348,
+        "endChar": 40
+      },
+      "revId": "caa21aef9e29a293d56b5f2b58d18307c994f81e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
