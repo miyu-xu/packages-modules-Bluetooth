@@ -16,6 +16,24 @@
       "message": "Please run the unit test and check for IllegalArgumentException\n\njava.lang.IllegalArgumentException: Receiver not registered: com.android.bluetooth.tbs.TbsGeneric$Receiver@9e4ccac\njava.lang.RuntimeException: Unable to start service com.android.bluetooth.tbs.TbsService@f7cd3bd with Intent { cmp\u003dcom.android.bluetooth/.tbs.TbsService (has extras) }: java.lang.IllegalArgumentException: Receiver not registered: com.android.bluetooth.tbs.TbsGeneric$Receiver@9e4ccac\n\tat android.app.ActivityThread.handleServiceArgs(ActivityThread.java:4699)\n\tat android.app.ActivityThread.-$$Nest$mhandleServiceArgs(Unknown Source:0)\n\tat android.app.ActivityThread$H.handleMessage(ActivityThread.java:2172)",
       "revId": "938571ec4467cd61dd397486ce811fb99e53f44a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "984015d8_b05db613",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-15T10:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42a5ee91_17da63d6",
+      "revId": "938571ec4467cd61dd397486ce811fb99e53f44a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
