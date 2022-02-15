@@ -223,7 +223,7 @@ public class LeAudioService extends ProfileService {
             if (descriptor.mIsActive) {
                 descriptor.mIsActive = false;
                 updateActiveDevices(group_id, descriptor.mActiveContexts,
-                        ACTIVE_CONTEXTS_NONE, descriptor.mIsActive);
+                        ACTIVE_CONTEXTS_NONE, descriptor.mIsActive, true);
                 break;
             }
         }
@@ -702,8 +702,8 @@ public class LeAudioService extends ProfileService {
     }
 
     private boolean updateActiveOutDevice(BluetoothDevice device, Integer groupId,
-                                       Integer oldActiveContexts,
-                                       Integer newActiveContexts) {
+                                          Integer oldActiveContexts, Integer newActiveContexts,
+                                          boolean forceStopPlayingAudio) {
         Integer oldSupportedAudioDirections =
                 getAudioDirectionsFromActiveContextsMap(oldActiveContexts);
         Integer newSupportedAudioDirections =
@@ -746,13 +746,14 @@ public class LeAudioService extends ProfileService {
         if (!Objects.equals(device, previousOutDevice)
                 || (oldSupportedByDeviceOutput != newSupportedByDeviceOutput)) {
             mActiveAudioOutDevice = newSupportedByDeviceOutput ? device : null;
-            final boolean suppressNoisyIntent = (mActiveAudioOutDevice != null)
-                    || (getConnectionState(previousOutDevice) == BluetoothProfile.STATE_CONNECTED);
+            final boolean suppressNoisyIntent = !forceStopPlayingAudio
+                    && ((mActiveAudioOutDevice != null)
+                    || (getConnectionState(previousOutDevice) == BluetoothProfile.STATE_CONNECTED));
 
             if (DBG) {
                 Log.d(TAG, " handleBluetoothActiveDeviceChanged previousOutDevice: "
                             + previousOutDevice + ", mActiveOutDevice: " + mActiveAudioOutDevice
-                            + " isLeOutput: true");
+                            + " isLeOutput: true, suppressNoisyIntent: " + suppressNoisyIntent);
             }
             mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                     previousOutDevice,
@@ -767,9 +768,10 @@ public class LeAudioService extends ProfileService {
      * Report the active devices change to the active device manager and the media framework.
      * @param groupId id of group which devices should be updated
      * @param newActiveContexts new active contexts for group of devices
+     * @param forceStopPlayingAudio whether to stop the current audio playback
      */
     private void updateActiveDevices(Integer groupId, Integer oldActiveContexts,
-            Integer newActiveContexts, boolean isActive) {
+            Integer newActiveContexts, boolean isActive, boolean forceStopPlayingAudio) {
 
         BluetoothDevice device = null;
 
@@ -777,7 +779,8 @@ public class LeAudioService extends ProfileService {
             device = getFirstDeviceFromGroup(groupId);
 
         boolean outReplaced =
-            updateActiveOutDevice(device, groupId, oldActiveContexts, newActiveContexts);
+            updateActiveOutDevice(device, groupId, oldActiveContexts, newActiveContexts,
+                    forceStopPlayingAudio);
         boolean inReplaced =
             updateActiveInDevice(device, groupId, oldActiveContexts, newActiveContexts);
 
@@ -975,7 +978,7 @@ public class LeAudioService extends ProfileService {
             if (descriptor != null) {
                 if (descriptor.mIsActive) {
                     updateActiveDevices(group_id, descriptor.mActiveContexts,
-                                        available_contexts, descriptor.mIsActive);
+                                        available_contexts, descriptor.mIsActive, true);
                 }
                 descriptor.mActiveContexts = available_contexts;
             } else {
@@ -1001,7 +1004,8 @@ public class LeAudioService extends ProfileService {
                         if (!descriptor.mIsActive) {
                             descriptor.mIsActive = true;
                             updateActiveDevices(group_id, ACTIVE_CONTEXTS_NONE,
-                                                descriptor.mActiveContexts, descriptor.mIsActive);
+                                                descriptor.mActiveContexts, descriptor.mIsActive,
+                                                false);
                             send_intent = true;
                         }
                     } else {
@@ -1015,7 +1019,7 @@ public class LeAudioService extends ProfileService {
                         if (descriptor.mIsActive) {
                             descriptor.mIsActive = false;
                             updateActiveDevices(group_id, descriptor.mActiveContexts,
-                                    ACTIVE_CONTEXTS_NONE, descriptor.mIsActive);
+                                    ACTIVE_CONTEXTS_NONE, descriptor.mIsActive, false);
                             send_intent = true;
                         }
                     } else {
@@ -1244,7 +1248,7 @@ public class LeAudioService extends ProfileService {
                     updateActiveDevices(myGroupId,
                                     descriptor.mActiveContexts,
                                     descriptor.mActiveContexts,
-                                    descriptor.mIsActive);
+                                    descriptor.mIsActive, false);
                     return;
                 }
             }
@@ -1253,7 +1257,7 @@ public class LeAudioService extends ProfileService {
                 updateActiveDevices(myGroupId,
                                     descriptor.mActiveContexts,
                                     descriptor.mActiveContexts,
-                                    descriptor.mIsActive);
+                                    descriptor.mIsActive, false);
             }
         }
     }
