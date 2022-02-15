@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1555f6fb_1950dd80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1853606
+      },
+      "writtenOn": "2022-02-15T09:09:45Z",
+      "side": 1,
+      "message": "Hi Chris,\nCould you share the information regarding Presubmit-Verified failure?",
+      "revId": "c8130dee1110db1821d60bda5b7712d1ea75bf9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
