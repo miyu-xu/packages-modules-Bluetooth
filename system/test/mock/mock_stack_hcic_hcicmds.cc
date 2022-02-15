@@ -44,7 +44,6 @@ struct btsnd_hcic_add_SCO_conn btsnd_hcic_add_SCO_conn;
 struct btsnd_hcic_auth_request btsnd_hcic_auth_request;
 struct btsnd_hcic_change_conn_type btsnd_hcic_change_conn_type;
 struct btsnd_hcic_change_name btsnd_hcic_change_name;
-struct btsnd_hcic_create_conn btsnd_hcic_create_conn;
 struct btsnd_hcic_create_conn_cancel btsnd_hcic_create_conn_cancel;
 struct btsnd_hcic_delete_stored_key btsnd_hcic_delete_stored_key;
 struct btsnd_hcic_enable_test_mode btsnd_hcic_enable_test_mode;
@@ -74,7 +73,6 @@ struct btsnd_hcic_read_encryption_key_size btsnd_hcic_read_encryption_key_size;
 struct btsnd_hcic_read_failed_contact_counter
     btsnd_hcic_read_failed_contact_counter;
 struct btsnd_hcic_read_inq_tx_power btsnd_hcic_read_inq_tx_power;
-struct btsnd_hcic_read_lmp_handle btsnd_hcic_read_lmp_handle;
 struct btsnd_hcic_read_local_oob_data btsnd_hcic_read_local_oob_data;
 struct btsnd_hcic_read_name btsnd_hcic_read_name;
 struct btsnd_hcic_read_rmt_clk_offset btsnd_hcic_read_rmt_clk_offset;
@@ -155,14 +153,6 @@ void btsnd_hcic_change_conn_type(uint16_t handle, uint16_t packet_types) {
 void btsnd_hcic_change_name(BD_NAME name) {
   mock_function_count_map[__func__]++;
   test::mock::stack_hcic_hcicmds::btsnd_hcic_change_name(name);
-}
-void btsnd_hcic_create_conn(const RawAddress& dest, uint16_t packet_types,
-                            uint8_t page_scan_rep_mode, uint8_t page_scan_mode,
-                            uint16_t clock_offset, uint8_t allow_switch) {
-  mock_function_count_map[__func__]++;
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_create_conn(
-      dest, packet_types, page_scan_rep_mode, page_scan_mode, clock_offset,
-      allow_switch);
 }
 void btsnd_hcic_create_conn_cancel(const RawAddress& dest) {
   mock_function_count_map[__func__]++;
@@ -293,10 +283,6 @@ void btsnd_hcic_read_failed_contact_counter(uint16_t handle) {
 void btsnd_hcic_read_inq_tx_power(void) {
   mock_function_count_map[__func__]++;
   test::mock::stack_hcic_hcicmds::btsnd_hcic_read_inq_tx_power();
-}
-void btsnd_hcic_read_lmp_handle(uint16_t handle) {
-  mock_function_count_map[__func__]++;
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_read_lmp_handle(handle);
 }
 void btsnd_hcic_read_local_oob_data(void) {
   mock_function_count_map[__func__]++;
