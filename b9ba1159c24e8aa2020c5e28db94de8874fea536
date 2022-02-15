@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d169e3c6_474114e8",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-15T22:43:37Z",
+      "side": 1,
+      "message": "nit:\n\nA recommend pattern is to return early on error to reduce nesting\n\n```\nif (!opt_created_ts) {\n  return;\n}\nusing namespace std::chrono;\n\nauto created_tp \u003d opt_created_ts.value();\nauto current_tp \u003d std::chrono::system_clock::now();\n\nauto diff \u003d duration_cast\u003cmilliseconds\u003e(current_tp - created_tp);\nif (diff \u003e\u003d log_life_time) {\n  delete_btsnoop_files(log_path);\n}\n```",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 35
+      },
+      "revId": "b9ba1159c24e8aa2020c5e28db94de8874fea536",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
