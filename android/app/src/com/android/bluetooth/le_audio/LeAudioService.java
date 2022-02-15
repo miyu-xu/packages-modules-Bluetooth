@@ -704,6 +704,8 @@ public class LeAudioService extends ProfileService {
     private boolean updateActiveOutDevice(BluetoothDevice device, Integer groupId,
                                           Integer oldActiveContexts, Integer newActiveContexts,
                                           boolean forceStopPlayingAudio) {
+        Log.d("XXX", "updateActiveOutDevice. forceStopPlayingAudio=" + forceStopPlayingAudio);
+
         Integer oldSupportedAudioDirections =
                 getAudioDirectionsFromActiveContextsMap(oldActiveContexts);
         Integer newSupportedAudioDirections =
@@ -737,6 +739,8 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
+        Log.d("XXX", "Checkpoint 1");
+
         /*
          * Update output if:
          * - Device changed
@@ -745,21 +749,27 @@ public class LeAudioService extends ProfileService {
          */
         if (!Objects.equals(device, previousOutDevice)
                 || (oldSupportedByDeviceOutput != newSupportedByDeviceOutput)) {
+            Log.d("XXX", "Checkpoint 2");
+
             mActiveAudioOutDevice = newSupportedByDeviceOutput ? device : null;
             final boolean suppressNoisyIntent = !forceStopPlayingAudio
                     && ((mActiveAudioOutDevice != null)
                     || (getConnectionState(previousOutDevice) == BluetoothProfile.STATE_CONNECTED));
 
             if (DBG) {
-                Log.d(TAG, " handleBluetoothActiveDeviceChanged previousOutDevice: "
+                Log.d("XXX", " handleBluetoothActiveDeviceChanged previousOutDevice: "
                             + previousOutDevice + ", mActiveOutDevice: " + mActiveAudioOutDevice
-                            + " isLeOutput: true, suppressNoisyIntent: " + suppressNoisyIntent);
+                            + " isLeOutput: true, suppressNoisyIntent: " + suppressNoisyIntent,
+                        new Exception());
             }
             mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                     previousOutDevice,
                     BluetoothProfileConnectionInfo.createLeAudioInfo(suppressNoisyIntent, true));
             return true;
         }
+
+        Log.d("XXX", "Checkpoint None - Nothing to do here...");
+
         Log.d(TAG, "updateActiveOutDevice: Nothing to do.");
         return false;
     }
