@@ -39,6 +39,9 @@ cc_test {
         "packages/modules/Bluetooth/system/",
         "packages/modules/Bluetooth/system/include",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "tests/base/iterator_test.cc",
+    ],
     srcs: [
         "tests/avrcp/avrcp_browse_packet_test.cc",
         "tests/avrcp/avrcp_packet_test.cc",

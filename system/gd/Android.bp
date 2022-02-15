@@ -345,6 +345,15 @@ cc_test {
             ],
         },
     },
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "common/list_map_test.cc",
+        "common/lru_cache_test.cc",
+        "dumpsys/internal/filter_internal_test.cc",
+        "hci/hci_packets_test.cc",
+        "packet/packet_view_unittest.cc",
+        "storage/config_cache_test.cc",
+        "storage/device_test.cc",
+    ],
     srcs: [
         "module_unittest.cc",
         "stack_manager_unittest.cc",
@@ -401,6 +410,9 @@ cc_test {
     test_options: {
         unit_test: true,
     },
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "packet/parser/test/generated_packet_test.cc",
+    ],
     srcs: [
         "hci/address.cc",
         ":BluetoothPacketSources",
@@ -795,6 +807,9 @@ cc_library_host_shared {
     defaults: [
         "gd_defaults",
         "bluetooth_py3_native_extension_defaults",
+    ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        ":BluetoothGeneratedPackets_python3_cc", // at least *_shard_[02789].cc timed out
     ],
     srcs: [
         "common/strings.cc",
