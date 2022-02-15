@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b056a5a_afa40254",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-02-15T17:34:17Z",
+      "side": 1,
+      "message": "\"hap client\" ?",
+      "range": {
+        "startLine": 373,
+        "startChar": 29,
+        "endLine": 373,
+        "endChar": 45
+      },
+      "revId": "284724b448bda09a4b9efb3ac95919919b7628eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
