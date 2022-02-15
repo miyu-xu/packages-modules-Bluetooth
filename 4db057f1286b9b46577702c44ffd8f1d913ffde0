@@ -16,6 +16,24 @@
       "message": "nit: Implement",
       "revId": "4db057f1286b9b46577702c44ffd8f1d913ffde0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba38fe6_93cdb916",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-02-15T17:23:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "706d1db4_ad63afeb",
+      "revId": "4db057f1286b9b46577702c44ffd8f1d913ffde0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
