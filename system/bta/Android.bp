@@ -215,6 +215,9 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
     ],
+    tidy_timeout_srcs: [
+        ":TestMockMainShimTimedOut",
+    ],
     srcs: [
         ":OsiCompatSources",
         ":TestCommonMainHandler",
@@ -321,6 +324,9 @@ cc_test {
         "packages/modules/Bluetooth/system/btif/include",
         "packages/modules/Bluetooth/system/osi/include",
     ],
+    tidy_timeout_srcs: [
+        "csis/csis_client_test.cc",
+    ],
     srcs : [
         ":TestMockBtif",
         ":TestMockMainShimLeScanning",
@@ -370,6 +376,9 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/bta/include",
     ],
+    tidy_timeout_srcs: [
+        "groups/groups_test.cc",
+    ],
     srcs : [
         ":TestMockBtif",
         "groups/groups_test.cc",
@@ -412,6 +421,10 @@ cc_test {
         "packages/modules/Bluetooth/system/bta/include",
         "packages/modules/Bluetooth/system/bta/test/common",
         "packages/modules/Bluetooth/system/stack/include",
+    ],
+    tidy_timeout_srcs: [
+        "vc/devices_test.cc",
+        "vc/vc_test.cc",
     ],
     srcs : [
         ":TestMockOsi",
@@ -545,6 +558,12 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/stack/include",
     ],
+    tidy_timeout_srcs: [
+        "le_audio/client_audio_test.cc",
+        "le_audio/client_parser_test.cc",
+        "le_audio/devices_test.cc",
+        "le_audio/state_machine_test.cc",
+    ],
     srcs : [
         ":TestStubOsi",
         ":TestMockBtaLeAudioHalVerifier",
@@ -605,6 +624,9 @@ cc_test {
         "packages/modules/Bluetooth/system/bta/include",
         "packages/modules/Bluetooth/system/bta/test/common",
         "packages/modules/Bluetooth/system/stack/include",
+    ],
+    tidy_timeout_srcs: [
+        "le_audio/le_audio_client_test.cc",
     ],
     srcs : [
         ":TestStubOsi",
@@ -691,6 +713,9 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/stack/btm",
     ],
+    tidy_timeout_srcs: [
+        "le_audio/broadcaster/state_machine_test.cc",
+    ],
     srcs : [
         "le_audio/broadcaster/broadcaster_types.cc",
         "le_audio/broadcaster/mock_ble_advertising_manager.cc",
@@ -738,6 +763,9 @@ cc_test {
         "packages/modules/Bluetooth/system/btif/include",
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/stack/btm",
+    ],
+    tidy_timeout_srcs: [
+        "le_audio/broadcaster/broadcaster_test.cc",
     ],
     srcs : [
         ":TestStubOsi",
@@ -788,6 +816,9 @@ cc_test {
         "packages/modules/Bluetooth/system/bta/include",
         "packages/modules/Bluetooth/system/bta/test/common",
         "packages/modules/Bluetooth/system/stack/include",
+    ],
+    tidy_timeout_srcs: [
+        "has/has_client_test.cc",
     ],
     srcs : [
         "gatt/database.cc",

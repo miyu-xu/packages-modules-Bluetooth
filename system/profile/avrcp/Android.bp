@@ -57,6 +57,10 @@ cc_test {
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/stack/include",
     ],
+    tidy_timeout_srcs: [
+        "tests/avrcp_connection_handler_test.cc",
+        "tests/avrcp_device_test.cc",
+    ],
     srcs: [
         "tests/avrcp_connection_handler_test.cc",
         "tests/avrcp_device_test.cc",

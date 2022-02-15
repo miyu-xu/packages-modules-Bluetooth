@@ -424,6 +424,9 @@ cc_test {
         "system/libfmq/include",
         "system/libhwbinder/include",
         ],
+      tidy_timeout_srcs: [
+          ":TestMockMainShimTimedOut",
+      ],
       srcs: [
           ":LibBluetoothSources",
           ":TestCommonMainHandler",

@@ -230,6 +230,9 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/internal_include",
     ],
+    tidy_timeout_srcs: [
+        "test/stack_a2dp_test.cc",
+    ],
     srcs: [
         "test/stack_a2dp_test.cc",
         "test/stack_avrcp_test.cc",
@@ -301,6 +304,10 @@ cc_test {
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/utils/include",
     ],
+    tidy_timeout_srcs: [
+        "test/rfcomm/stack_rfcomm_test.cc",
+        "test/rfcomm/stack_rfcomm_test_utils_test.cc",
+    ],
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockHci",
@@ -357,6 +364,9 @@ cc_test {
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/utils/include",
     ],
+    tidy_timeout_srcs: [
+        ":TestMockMainShimTimedOut",
+    ],
     srcs: crypto_toolbox_srcs + [
         ":TestCommonMainHandler",
         ":TestMockBtif",
@@ -412,6 +422,9 @@ cc_test {
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/utils/include",
+    ],
+    tidy_timeout_srcs: [
+        "test/ble_advertiser_test.cc",
     ],
     srcs: [
         ":TestMockDevice",
@@ -679,6 +692,9 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
+    tidy_timeout_srcs: [
+        "test/btm_iso_test.cc",
+    ],
     srcs: [
         "btm/btm_iso.cc",
         "test/btm_iso_test.cc",
@@ -728,6 +744,9 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
+    tidy_timeout_srcs: [
+        "test/eatt/eatt_test.cc",
+    ],
     srcs: [
         "eatt/eatt.cc",
         "test/common/mock_btm_api_layer.cc",
@@ -776,6 +795,9 @@ cc_test {
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
+    ],
+    tidy_timeout_srcs: [
+        ":TestMockMainShimTimedOut",
     ],
     srcs: crypto_toolbox_srcs + [
         ":BluetoothBtaaSources_host",
@@ -961,6 +983,9 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
     ],
+    tidy_timeout_srcs: [
+        ":TestMockMainShimTimedOut",
+    ],
     srcs: [
         ":TestMockBta",
         ":TestMockBtif",
@@ -1020,6 +1045,9 @@ cc_test {
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
+    ],
+    tidy_timeout_srcs: [
+        ":TestMockMainShimTimedOut",
     ],
     srcs: [
         ":OsiCompatSources",

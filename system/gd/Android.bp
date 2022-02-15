@@ -345,6 +345,16 @@ cc_test {
             ],
         },
     },
+    tidy_timeout_srcs: [
+        "common/list_map_test.cc",
+        "common/lru_cache_test.cc",
+        "dumpsys/internal/filter_internal_test.cc",
+        "hci/hci_packets_test.cc",
+        "packet/packet_view_unittest.cc",
+        "storage/config_cache_test.cc",
+        "storage/config_cache_helper_test.cc",
+        "storage/device_test.cc",
+    ],
     srcs: [
         "module_unittest.cc",
         "stack_manager_unittest.cc",
@@ -401,6 +411,9 @@ cc_test {
     test_options: {
         unit_test: true,
     },
+    tidy_timeout_srcs: [
+        "packet/parser/test/generated_packet_test.cc",
+    ],
     srcs: [
         "hci/address.cc",
         ":BluetoothPacketSources",
@@ -795,6 +808,9 @@ cc_library_host_shared {
     defaults: [
         "gd_defaults",
         "bluetooth_py3_native_extension_defaults",
+    ],
+    tidy_timeout_srcs: [
+        ":BluetoothGeneratedPackets_python3_cc", // at least *_shard_[02789].cc timed out
     ],
     srcs: [
         "common/strings.cc",

@@ -178,6 +178,16 @@ filegroup {
 }
 
 filegroup {
+    name: "TestMockMainShimTimedOut",
+    srcs: [
+      "mock/mock_main_shim_entry.cc",
+      "mock/mock_main_shim_l2cap_api.cc",
+      "mock/mock_main_shim_link_policy.cc",
+      "mock/mock_main_shim_metrics_api.cc",
+    ],
+}
+
+filegroup {
     name: "TestMockCommon",
     srcs: [
       "mock/mock_common_*.cc",
@@ -263,6 +273,13 @@ filegroup {
 
 filegroup {
     name: "TestMockMainShimEntry",
+    srcs: [
+      "mock/mock_main_shim_entry.cc",
+    ],
+}
+
+filegroup {
+    name: "TestMockMainShimEntryTimedOut",
     srcs: [
       "mock/mock_main_shim_entry.cc",
     ],

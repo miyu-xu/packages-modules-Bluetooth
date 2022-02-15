@@ -222,6 +222,10 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/stack/include",
     ],
+    tidy_timeout_srcs: [
+        ":TestMockMainShimEntryTimedOut",
+        "test/main_shim_test.cc",
+    ],
     srcs: [
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
