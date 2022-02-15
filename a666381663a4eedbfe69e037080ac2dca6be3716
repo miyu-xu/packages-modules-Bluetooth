@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60dbd34b_596109af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-15T20:24:13Z",
+      "side": 1,
+      "message": "Add\n\nBYPASS_LONG_LINES_REASON: Bluetooth likes 120 lines\n\nto avoid getting the line length lint messages\n\nAlso add\n\nTag: #gd-refactor\n\nto avoid the Tag lint message",
+      "revId": "a666381663a4eedbfe69e037080ac2dca6be3716",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65f2bbfc_a7ab8939",
+        "filename": "system/gd/os/linux_generic/files.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-15T20:24:13Z",
+      "side": 1,
+      "message": "Could we return a time_point\u003csystem_clock, nanoseconds\u003e here so that you don\u0027t have to do the conversion outside this method? \n\nAnd the time_point API is more portable as well.",
+      "range": {
+        "startLine": 198,
+        "startChar": 14,
+        "endLine": 198,
+        "endChar": 22
+      },
+      "revId": "a666381663a4eedbfe69e037080ac2dca6be3716",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
