@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "778a7c7b_dc865130",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "04cacaca_6f1b3424",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b627ad4b_cc061383",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-02-12T00:34:10Z",
       "side": 1,
       "message": "Just `Discoverable: `",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c695d6e2_e100951d",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b627ad4b_cc061383",
       "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce7ce4e_37d77ec8",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5e54375c_4815c4a0",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03658638_48cf3f24",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "002dd7a4_fce8cfc6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "03658638_48cf3f24",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0910f306_ffb7610e",
@@ -82,6 +154,24 @@
       "writtenOn": "2022-02-12T00:34:10Z",
       "side": 1,
       "message": "nit: Sets discoverability. If discoverable, limits the duration with given value.",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1be16aa2_179d7435",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0910f306_ffb7610e",
       "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -135,6 +225,24 @@
       "side": 1,
       "message": "Hm, I may have gotten this wrong. I was looking at how they do this in android, and I thought that they just set the adapter property: https://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;l\u003d1906",
       "parentUuid": "11ac98dc_9ce94a34",
+      "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "694d5d83_432927fc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3351d18_0ddbf562",
       "revId": "74a909d0ff6cc8916d1196eb7d1d12bf76ee0810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

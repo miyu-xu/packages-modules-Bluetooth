@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e10a3cf_d09aa10f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "adf4af34_3d8e099b",
+      "revId": "f5b185ee86a5d62439f47d8fe2130fbe4622ef60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45024c7d_1c29435f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-02-14T23:36:05Z",
       "side": 1,
       "message": "spelling: adapter",
+      "revId": "f5b185ee86a5d62439f47d8fe2130fbe4622ef60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7128097_5e1b1d77",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-15T00:29:08Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "45024c7d_1c29435f",
       "revId": "f5b185ee86a5d62439f47d8fe2130fbe4622ef60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
