@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5bf4df8_9b65eb03",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-15T20:30:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb8cb678_64db5e9d",
+      "range": {
+        "startLine": 416,
+        "startChar": 2,
+        "endLine": 416,
+        "endChar": 10
+      },
+      "revId": "242c5a408a94cae930d8a9c759d25ad380dcc528",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee2d78a4_0a9f8c9b",
