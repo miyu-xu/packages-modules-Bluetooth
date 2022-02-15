@@ -219,6 +219,10 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/stack/include",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        ":TestMockMainShimEntry",
+        "test/main_shim_test.cc",
+    ],
     srcs: [
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",

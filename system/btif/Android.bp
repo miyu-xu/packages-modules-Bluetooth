@@ -425,6 +425,9 @@ cc_test {
         "system/libfmq/include",
         "system/libhwbinder/include",
         ],
+      tidy_disabled_srcs: [ // slow/large files, b/219646063
+          ":TestMockMainShim",
+      ],
       srcs: [
           ":LibBluetoothSources",
           ":TestCommonMainHandler",

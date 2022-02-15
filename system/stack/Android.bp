@@ -230,6 +230,9 @@ cc_test {
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/internal_include",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "test/stack_a2dp_test.cc",
+    ],
     srcs: [
         "test/stack_a2dp_test.cc",
         "test/stack_avrcp_test.cc",
@@ -358,6 +361,9 @@ cc_test {
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/utils/include",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        ":TestMockMainShim",
+    ],
     srcs: crypto_toolbox_srcs + [
         ":TestCommonMainHandler",
         ":TestMockBtif",
@@ -413,6 +419,9 @@ cc_test {
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/utils/include",
+    ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "test/ble_advertiser_test.cc",
     ],
     srcs: [
         ":TestMockDevice",
@@ -680,6 +689,9 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "test/btm_iso_test.cc",
+    ],
     srcs: [
         "btm/btm_iso.cc",
         "test/btm_iso_test.cc",
@@ -729,6 +741,9 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "test/eatt/eatt_test.cc",
+    ],
     srcs: [
         "eatt/eatt.cc",
         "test/common/mock_btm_api_layer.cc",
@@ -777,6 +792,9 @@ cc_test {
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
+    ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        ":TestMockMainShim",
     ],
     srcs: crypto_toolbox_srcs + [
         ":BluetoothBtaaSources_host",
@@ -962,6 +980,9 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        ":TestMockMainShim",
+    ],
     srcs: [
         ":TestMockBta",
         ":TestMockBtif",
@@ -1021,6 +1042,9 @@ cc_test {
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
+    ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        ":TestMockMainShim",
     ],
     srcs: [
         ":OsiCompatSources",

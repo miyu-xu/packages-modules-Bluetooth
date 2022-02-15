@@ -64,6 +64,9 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/gd/rust/shim",
     ],
+    tidy_disabled_srcs: [ // slow/large files, b/219646063
+        "metrics_unittest.cc",
+    ],
     srcs: [
         "address_obfuscator_unittest.cc",
         "base_bind_unittest.cc",
