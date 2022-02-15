@@ -100,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "415076fa_19a7a2fb",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1443,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-15T17:11:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "aae0137e_abefcb59",
+      "range": {
+        "startLine": 1431,
+        "startChar": 0,
+        "endLine": 1443,
+        "endChar": 0
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b4a236f_8f17d2d6",
@@ -113,6 +137,30 @@
       "writtenOn": "2022-02-11T21:56:59Z",
       "side": 1,
       "message": "Same thing.  I\u0027m not sure I want to log every packet in the controller.",
+      "range": {
+        "startLine": 1740,
+        "startChar": 2,
+        "endLine": 1740,
+        "endChar": 10
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e09ea54d_32aaae75",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1740,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-15T17:11:16Z",
+      "side": 1,
+      "message": "I\u0027d rather remove this from this CL.",
+      "parentUuid": "1b4a236f_8f17d2d6",
       "range": {
         "startLine": 1740,
         "startChar": 2,
@@ -336,6 +384,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecd2880c_0fde8aa9",
+        "filename": "system/vendor_libs/test_vendor_lib/model/controller/le_advertiser.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-15T17:11:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d5b25512_9584efea",
+      "range": {
+        "startLine": 43,
+        "startChar": 7,
+        "endLine": 43,
+        "endChar": 25
+      },
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f063e98_8b20eb01",
@@ -403,6 +475,24 @@
       "side": 1,
       "message": "I would rather keep the current AdvertisementType type in link_layer_packets.pdl to spare the additional conversions in IncomingLeAdvertisementPacket and LeSetAdvertisingParameters. \n\nI do think it will become necessary to rewrite the type to support extended advertising PDUs. This would be done in another CL.",
       "parentUuid": "c177ad1a_59cd8d72",
+      "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97155c17_8fcbf131",
+        "filename": "system/vendor_libs/test_vendor_lib/packets/link_layer_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-15T17:11:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ceb8e866_2870364c",
       "revId": "26da656d4cc84ec4e778e21df1a6ade4775f4c61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
