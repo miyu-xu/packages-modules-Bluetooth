@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0daff3a_89f1e278",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-02-15T02:53:45Z",
+      "side": 1,
+      "message": "Since apct/device_boot_health_check_extra is Known Breakages. Not related with this patch.",
+      "revId": "c004f6c730f0ce9f62d1cb9995a3a3070432cdaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
