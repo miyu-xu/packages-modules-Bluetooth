@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2606c144_f0886646",
+        "filename": "android/app/res/values/config.xml",
+        "patchSetId": 37
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-16T03:30:11Z",
+      "side": 1,
+      "message": "profile_supported_bass_client?",
+      "range": {
+        "startLine": 41,
+        "startChar": 16,
+        "endLine": 41,
+        "endChar": 38
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea74908_91bb36f2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-16T03:30:11Z",
+      "side": 1,
+      "message": "Could it be getBassClientService?",
+      "range": {
+        "startLine": 369,
+        "startChar": 49,
+        "endLine": 369,
+        "endChar": 61
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e75b7a1_35ae952d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-16T03:30:11Z",
+      "side": 1,
+      "message": "Should we use the one in BluetoothUuid.BASS_UUID and define the correct uuid there?",
+      "range": {
+        "startLine": 28,
+        "startChar": 35,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "317bce9e_eada5ccd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-16T03:30:11Z",
+      "side": 1,
+      "message": "Could it be mBassClientService?",
+      "range": {
+        "startLine": 328,
+        "startChar": 30,
+        "endLine": 328,
+        "endChar": 40
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a40bb5e_8c88a2e4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-16T03:30:11Z",
+      "side": 1,
+      "message": "BASE_UUID?",
+      "range": {
+        "startLine": 1090,
+        "startChar": 72,
+        "endLine": 1090,
+        "endChar": 79
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f15e0444_3701182a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/Metadata.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-16T03:30:11Z",
+      "side": 1,
+      "message": "nit: bass_client_connection_policy?",
+      "range": {
+        "startLine": 173,
+        "startChar": 49,
+        "endLine": 173,
+        "endChar": 69
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29289d5b_554a09a5",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistantCallback.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-16T03:30:11Z",
+      "side": 1,
+      "message": "nit: 2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
