@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7ed5aec_c687cc04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-16T22:12:03Z",
+      "side": 1,
+      "message": "Could this be rebased now that we use the JSON config file? ",
+      "revId": "e015c9583368bdebc57dabe763409aab7ec16e9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
