@@ -16,6 +16,24 @@
       "message": "Please rebase the change",
       "revId": "938bb0acf6665ad6b175a8927d4842592b5c23e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdd2c90d_12f5e239",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1853606
+      },
+      "writtenOn": "2022-02-16T13:51:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5ee5506_edd2441b",
+      "revId": "938bb0acf6665ad6b175a8927d4842592b5c23e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
