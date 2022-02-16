@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "234b4736_f9ad9815",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-16T00:11:50Z",
+      "side": 1,
+      "message": "it was my suggestion, but you are right. On the other hand return makes thing clear here.",
+      "parentUuid": "45258e23_a9096d86",
+      "range": {
+        "startLine": 674,
+        "startChar": 0,
+        "endLine": 674,
+        "endChar": 15
+      },
+      "revId": "69085f35f0d57f8a4132060e32476f289b53b5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f63bbcd1_a3c4f99b",
         "filename": "system/stack/l2cap/l2c_ble.cc",
         "patchSetId": 3
