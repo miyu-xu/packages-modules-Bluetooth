@@ -2,8 +2,8 @@
 
 use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
-    BtBondState, BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType, BtSspVariant,
-    BtState, BtStatus, BtTransport, RawAddress, Uuid, Uuid128Bit,
+    BtBondState, BtDiscoveryState, BtHciErrorCode, BtLocalLeFeatures, BtPinCode, BtPropertyType,
+    BtSspVariant, BtState, BtStatus, BtTransport, RawAddress, Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     profiles::hid_host::{HHCallbacksDispatcher, HidHost},
@@ -24,6 +24,8 @@ use tokio::sync::mpsc::Sender;
 use crate::bluetooth_media::{BluetoothMedia, IBluetoothMedia, MediaActions};
 use crate::uuid::{Profile, UuidHelper};
 use crate::{BluetoothCallbackType, Message, RPCProxy};
+
+const MIN_ADV_INSTANCES_FOR_MULTI_ADV: u8 = 5;
 
 /// Defines the adapter API.
 pub trait IBluetooth {
@@ -66,6 +68,12 @@ pub trait IBluetooth {
 
     /// Sets the bluetooth class.
     fn set_bluetooth_class(&self, cod: u32) -> bool;
+
+    /// Returns whether multi-advertisement is supported.
+    fn is_multi_advertisement_supported(&self) -> bool;
+
+    /// Returns whether LE extended advertising is supported.
+    fn is_le_extended_advertising_supported(&self) -> bool;
 
     /// Starts BREDR Inquiry.
     fn start_discovery(&self) -> bool;
@@ -784,6 +792,28 @@ impl IBluetooth for Bluetooth {
 
     fn set_bluetooth_class(&self, cod: u32) -> bool {
         self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::ClassOfDevice(cod)) == 0
+    }
+
+    fn is_multi_advertisement_supported(&self) -> bool {
+        match self.properties.get(&BtPropertyType::LocalLeFeatures) {
+            Some(prop) => match prop {
+                BluetoothProperty::LocalLeFeatures(llf) => {
+                    llf.max_adv_instance >= MIN_ADV_INSTANCES_FOR_MULTI_ADV
+                }
+                _ => false,
+            },
+            _ => false,
+        }
+    }
+
+    fn is_le_extended_advertising_supported(&self) -> bool {
+        match self.properties.get(&BtPropertyType::LocalLeFeatures) {
+            Some(prop) => match prop {
+                BluetoothProperty::LocalLeFeatures(llf) => llf.le_extended_advertising_supported,
+                _ => false,
+            },
+            _ => false,
+        }
     }
 
     fn start_discovery(&self) -> bool {

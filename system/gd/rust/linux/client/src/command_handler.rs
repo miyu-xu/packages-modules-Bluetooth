@@ -272,10 +272,28 @@ impl CommandHandler {
                     .as_ref()
                     .unwrap()
                     .get_bluetooth_class();
+                let multi_adv_supported = self
+                    .context
+                    .lock()
+                    .unwrap()
+                    .adapter_dbus
+                    .as_ref()
+                    .unwrap()
+                    .is_multi_advertisement_supported();
+                let le_ext_adv_supported = self
+                    .context
+                    .lock()
+                    .unwrap()
+                    .adapter_dbus
+                    .as_ref()
+                    .unwrap()
+                    .is_le_extended_advertising_supported();
                 print_info!("Address: {}", address);
                 print_info!("Name: {}", name);
                 print_info!("State: {}", if enabled { "enabled" } else { "disabled" });
                 print_info!("Class: {:#06x}", cod);
+                print_info!("IsMultiAdvertisementSupported: {}", multi_adv_supported);
+                print_info!("IsLeExtendedAdvertisingSupported: {}", le_ext_adv_supported);
                 print_info!(
                     "Uuids: {}",
                     DisplayList(
