@@ -103,7 +103,7 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
         'com.google.android.apps.contacts.vcard.ImportVCardActivity')
 
     # Grants Notification permission for T build. Internal link
-    if (int(self.pri_phone.build_info['build_version_sdk']) <= 32 and
+    if (int(self.pri_phone.build_info['build_version_sdk']) >= 32 and
         self.pri_phone.aud(
             text=_NOTIFICATION_DIALOG_MSG).exists(timeout_sec=5)):
       self.pri_phone.aud(text='Allow').click()
