@@ -671,8 +671,13 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     if (active_group_id_ != bluetooth::groups::kGroupUnknown) {
-      LOG(WARNING) << __func__ << ", Another group already active: "
-                   << static_cast<int>(active_group_id_);
+      if (active_group_id_ == group_id) {
+        LOG(INFO) << __func__ << " Group " << group_id << " is already active";
+        callbacks_->OnGroupStatus(active_group_id_, GroupStatus::ACTIVE);
+      } else {
+        LOG(WARNING) << __func__ << ", Another group is already active: "
+                     << active_group_id_;
+      }
       return;
     }
 
@@ -712,7 +717,7 @@ class LeAudioClientImpl : public LeAudioClient {
                                     audioSinkReceiver);
 
     audio_framework_sink_config.data_interval_us =
-          current_source_codec_config.data_interval_us;
+        current_source_codec_config.data_interval_us;
 
     LeAudioClientAudioSink::Start(audio_framework_sink_config,
                                   audioSourceReceiver);
@@ -2341,6 +2346,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
   void Cleanup(base::Callback<void()> cleanupCb) {
     if (alarm_is_scheduled(suspend_timeout_)) alarm_cancel(suspend_timeout_);
+    groupStateMachine_->Cleanup();
     leAudioDevices_.Cleanup();
     aseGroups_.Cleanup();
     StopAudio();
