@@ -37,7 +37,7 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
-class Host(private val context: Context) : HostImplBase() {
+class Host(private val context: Context, private val server: Server) : HostImplBase() {
   private val TAG = "BlueberryHost"
 
   private val bluetoothManager =
@@ -86,6 +86,9 @@ class Host(private val context: Context) : HostImplBase() {
 
       responseObserver.onNext(Empty.getDefaultInstance())
       responseObserver.onCompleted()
+
+      Log.i(TAG, "shutdownNow the gRPC Server")
+      server.shutdownNow()
     }
   }
 
