@@ -20,13 +20,17 @@ package com.android.bluetooth.le_audio;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
+import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
+
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
+import android.bluetooth.BluetoothLeAudioContentMetadata;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothLeAudio;
+import android.bluetooth.IBluetoothLeBroadcastCallback;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -38,6 +42,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.ParcelUuid;
+import android.os.RemoteCallbackList;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
@@ -100,6 +105,9 @@ public class LeAudioService extends ProfileService {
     LeAudioBroadcasterNativeInterface mLeAudioBroadcasterNativeInterface = null;
     @VisibleForTesting
     AudioManager mAudioManager;
+
+    @VisibleForTesting
+    RemoteCallbackList<IBluetoothLeBroadcastCallback> mBroadcastCallbacks;
 
     private class LeAudioGroupDescriptor {
         LeAudioGroupDescriptor() {
@@ -255,6 +263,10 @@ public class LeAudioService extends ProfileService {
 
         mDeviceGroupIdMap.clear();
         mGroupDescriptors.clear();
+
+        if (mBroadcastCallbacks != null) {
+            mBroadcastCallbacks.kill();
+        }
 
         mBroadcastStateMap.clear();
         if (mLeAudioBroadcasterNativeInterface != null) {
@@ -1627,84 +1639,79 @@ public class LeAudioService extends ProfileService {
         }
 
         @Override
-        public void createBroadcast(byte[] metadata, int audioProfile, byte[] broadcastCode,
+        public void registerLeBroadcastCallback(IBluetoothLeBroadcastCallback callback,
                 AttributionSource source) {
             LeAudioService service = getService(source);
             if (service == null) {
-                return;
+                throw new IllegalStateException("Service is unavailable");
             }
 
-            service.createBroadcast(metadata, audioProfile, broadcastCode);
+            enforceBluetoothPrivilegedPermission(service);
+            try {
+                service.mBroadcastCallbacks.register(callback);
+            } catch (RuntimeException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                throw e;
+            }
         }
 
         @Override
-        public void updateMetadata(int instanceId, byte[] metadata, AttributionSource source) {
+        public void unregisterLeBroadcastCallback(IBluetoothLeBroadcastCallback callback,
+                AttributionSource source) {
             LeAudioService service = getService(source);
             if (service == null) {
-                return;
+                throw new IllegalStateException("Service is unavailable");
             }
 
-            service.updateMetadata(instanceId, metadata);
+            enforceBluetoothPrivilegedPermission(service);
+            try {
+                service.mBroadcastCallbacks.unregister(callback);
+            } catch (RuntimeException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                throw e;
+            }
         }
 
         @Override
-        public void startBroadcast(int instanceId, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service == null) {
-                return;
-            }
-
-            service.startBroadcast(instanceId);
+        public void startBroadcast(BluetoothLeAudioContentMetadata contentMetadata,
+                byte[] broadcastCode, AttributionSource attributionSource) {
+            // TODO: Implement
+            throw new UnsupportedOperationException("Not Implemented");
         }
 
         @Override
-        public void stopBroadcast(int instanceId, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service == null) {
-                return;
-            }
-
-            service.stopBroadcast(instanceId);
+        public void stopBroadcast(int broadcastId, AttributionSource attributionSource) {
+            // TODO: Implement
+            throw new UnsupportedOperationException("Not Implemented");
         }
 
         @Override
-        public void pauseBroadcast(int instanceId, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service == null) {
-                return;
-            }
-
-            service.pauseBroadcast(instanceId);
+        public void updateBroadcast(int broadcastId,
+                BluetoothLeAudioContentMetadata contentMetadata,
+                AttributionSource attributionSource) {
+            // TODO: Implement
+            throw new UnsupportedOperationException("Not Implemented");
         }
 
         @Override
-        public void destroyBroadcast(int instanceId, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service == null) {
-                return;
-            }
-
-            service.destroyBroadcast(instanceId);
+        public void isPlaying(int broadcastId, AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            // TODO: Implement
+            throw new UnsupportedOperationException("Not Implemented");
         }
 
         @Override
-        public void getBroadcastId(int instanceId, AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service == null) {
-                return;
-            }
-
-            service.getBroadcastId(instanceId);
+        public void getAllBroadcastMetadata(AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            // TODO: Implement
+            throw new UnsupportedOperationException("Not Implemented");
         }
 
         @Override
-        public void getAllBroadcastStates(AttributionSource source) {
-            LeAudioService service = getService(source);
-            if (service == null) {
-                return;
-            }
-
-            service.getAllBroadcastStates();
+        public void getMaximumNumberOfBroadcast(AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            // TODO: Implement
+            throw new UnsupportedOperationException("Not Implemented");
         }
     }
 
