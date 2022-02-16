@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "390e84e5_ccd0e216",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-16T00:40:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f63bbcd1_a3c4f99b",
+      "range": {
+        "startLine": 704,
+        "startChar": 55,
+        "endLine": 704,
+        "endChar": 59
+      },
+      "revId": "69085f35f0d57f8a4132060e32476f289b53b5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef434cda_e2246db7",
@@ -125,6 +149,30 @@
       "writtenOn": "2022-02-15T23:51:34Z",
       "side": 1,
       "message": "nit: please use \n\nif (temp_p_ccb !\u003d nullptr) {\n}\n\nto explicitly check for nullptr instead of using the bool() overload.",
+      "range": {
+        "startLine": 705,
+        "startChar": 12,
+        "endLine": 705,
+        "endChar": 22
+      },
+      "revId": "69085f35f0d57f8a4132060e32476f289b53b5d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3da74cd_ff4a5b53",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-16T00:40:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef434cda_e2246db7",
       "range": {
         "startLine": 705,
         "startChar": 12,
