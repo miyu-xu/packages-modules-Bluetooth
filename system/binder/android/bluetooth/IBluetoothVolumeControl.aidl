@@ -18,6 +18,7 @@
 package android.bluetooth;
 
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.IBluetoothVolumeControlCallback;
 import android.content.AttributionSource;
 
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -48,4 +49,9 @@ oneway interface IBluetoothVolumeControl {
     void setVolumeOffset(in BluetoothDevice device, int volumeOffset, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void setVolumeGroup(int group_id, int volume, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    void registerCallback(in IBluetoothVolumeControlCallback callback, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    void unregisterCallback(in IBluetoothVolumeControlCallback callback, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
 }
