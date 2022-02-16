@@ -37,7 +37,7 @@ class BluetoothAudioPortImpl : public BnBluetoothAudioPort {
       IBluetoothTransportInstance* transport_instance,
       const std::shared_ptr<IBluetoothAudioProvider>& provider);
 
-  ndk::ScopedAStatus startStream() override;
+  ndk::ScopedAStatus startStream(bool is_low_latency) override;
 
   ndk::ScopedAStatus suspendStream() override;
 
