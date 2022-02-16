@@ -55,6 +55,10 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
     bluetoothAdapter.getProfileProxy(mContext, A2dpServiceListener(), BluetoothProfile.A2DP)
   }
 
+  fun close() {
+    bluetoothAdapter.closeProfileProxy(BluetoothProfile.A2DP, bluetoothA2dp)
+  }
+
   private var audioTrack: AudioTrack =
     AudioTrack.Builder()
       .setAudioAttributes(
@@ -159,7 +163,6 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
         responseObserver.onCompleted()
       }
       val a2dpState = bluetoothA2dp!!.getConnectionState(bluetoothDevice)
-      Log.d(TAG, "a2dpState: $a2dpState")
       if (a2dpState == BluetoothProfile.STATE_CONNECTED) {
         resp(true)
       } else {
@@ -170,7 +173,6 @@ class A2dp(val mContext: Context, val host: Host) : A2DPImplBase() {
                 override fun onReceive(context: Context, intent: Intent) {
                   val state =
                     intent.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR)
-                  Log.d(TAG, "state: $state")
                   if (state == BluetoothProfile.STATE_CONNECTED ||
                       state == BluetoothProfile.STATE_CONNECTING
                   ) {
