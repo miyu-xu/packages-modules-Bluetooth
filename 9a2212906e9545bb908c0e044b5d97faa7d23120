@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c10d0ba_ebeb17dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1052399
+      },
+      "writtenOn": "2022-02-16T00:29:00Z",
+      "side": 1,
+      "message": "This is a simple attempt to reduce timeout warnings and save time in global WITH_TIDY\u003d1 builds. It depends on aosp/1987286 to correctly disable clang-tidy for all the selected files.\n\nI only randomly picked a few file owners to the reviewers list. Please advise (1) what CL tags and tests should be used, (2) if you prefer any other way to reduce the timeout cases.\nThanks.\n",
+      "revId": "9a2212906e9545bb908c0e044b5d97faa7d23120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
