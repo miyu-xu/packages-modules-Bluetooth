@@ -72,6 +72,52 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
                           Unretained(callbacks_), group_id, volume, mute, isAutonomous));
   }
 
+  void OnDeviceAvailable(const RawAddress& address,
+                         uint8_t num_offset) override {
+    DVLOG(2) << __func__ << " address: " << address;
+    do_in_jni_thread(FROM_HERE,
+                     Bind(&VolumeControlCallbacks::OnDeviceAvailable,
+                          Unretained(callbacks_), address, num_offset));
+  }
+
+  /* Callbacks for Volume Offset Control Service (VOCS) - Extended Audio Outputs
+   */
+
+  void OnExtAudioOutVolumeOffsetChanged(const RawAddress& address,
+                                        uint8_t ext_output_id,
+                                        int16_t offset) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id: " << ext_output_id << "offset:" << offset;
+
+    do_in_jni_thread(
+        FROM_HERE,
+        Bind(&VolumeControlCallbacks::OnExtAudioOutVolumeOffsetChanged,
+             Unretained(callbacks_), address, ext_output_id, offset));
+  }
+
+  void OnExtAudioOutLocationChanged(const RawAddress& address,
+                                    uint8_t ext_output_id,
+                                    uint16_t location) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id: " << ext_output_id << "location:" << location;
+
+    do_in_jni_thread(
+        FROM_HERE,
+        Bind(&VolumeControlCallbacks::OnExtAudioOutLocationChanged,
+             Unretained(callbacks_), address, ext_output_id, location));
+  }
+
+  void OnExtAudioOutDescriptionChanged(const RawAddress& address,
+                                       uint8_t ext_output_id,
+                                       std::string descr) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id: " << ext_output_id << "descr:" << descr;
+    do_in_jni_thread(
+        FROM_HERE,
+        Bind(&VolumeControlCallbacks::OnExtAudioOutDescriptionChanged,
+             Unretained(callbacks_), address, ext_output_id, descr));
+  }
+
   void Connect(const RawAddress& address) override {
     DVLOG(2) << __func__ << " address: " << address;
     do_in_main_thread(FROM_HERE,
@@ -105,6 +151,68 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
     }
 
     /* Placeholder: Remove things from storage here */
+  }
+
+  void GetExtAudioOutVolumeOffset(const RawAddress& address,
+                                  uint8_t ext_output_id) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id:" << ext_output_id;
+    do_in_main_thread(
+        FROM_HERE,
+        Bind(&VolumeControl::GetExtAudioOutVolumeOffset,
+             Unretained(VolumeControl::Get()), address, ext_output_id));
+  }
+
+  void SetExtAudioOutVolumeOffset(const RawAddress& address,
+                                  uint8_t ext_output_id,
+                                  int16_t offset_val) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id:" << ext_output_id
+             << "ext_output_id:" << offset_val;
+    do_in_main_thread(FROM_HERE,
+                      Bind(&VolumeControl::SetExtAudioOutVolumeOffset,
+                           Unretained(VolumeControl::Get()), address,
+                           ext_output_id, offset_val));
+  }
+
+  void GetExtAudioOutLocation(const RawAddress& address,
+                              uint8_t ext_output_id) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id:" << ext_output_id;
+
+    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::GetExtAudioOutLocation,
+                                      Unretained(VolumeControl::Get()), address,
+                                      ext_output_id));
+  }
+
+  void SetExtAudioOutLocation(const RawAddress& address, uint8_t ext_output_id,
+                              uint16_t location) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id:" << ext_output_id << "location:" << location;
+    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::SetExtAudioOutLocation,
+                                      Unretained(VolumeControl::Get()), address,
+                                      ext_output_id, location));
+  }
+
+  void GetExtAudioOutDescription(const RawAddress& address,
+                                 uint8_t ext_output_id) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id:" << ext_output_id;
+
+    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::GetExtAudioOutDescription,
+                                      Unretained(VolumeControl::Get()), address,
+                                      ext_output_id));
+  }
+
+  void SetExtAudioOutDescription(const RawAddress& address,
+                                 uint8_t ext_output_id,
+                                 std::string descr) override {
+    DVLOG(2) << __func__ << " address: " << address
+             << "ext_output_id:" << ext_output_id << "description:" << descr;
+
+    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::SetExtAudioOutDescription,
+                                      Unretained(VolumeControl::Get()), address,
+                                      ext_output_id, descr));
   }
 
   void Cleanup(void) override {
