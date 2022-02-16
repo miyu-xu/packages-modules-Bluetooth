@@ -37,6 +37,8 @@ CALL_LOG_TYPES = [
     bt_constants.MISSED_CALL_LOG_TYPE,
 ]
 
+_NOTIFICATION_DIALOG_MSG = 'Allow Contacts to send you notifications?'
+
 
 class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
   """Base Test Class for Bluetooth PBAP Test."""
@@ -99,6 +101,12 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
     self.pri_phone.adb.shell(
         'am start com.google.android.contacts/'
         'com.google.android.apps.contacts.vcard.ImportVCardActivity')
+
+    # Grants Notification permission for T build. Internal link
+    if (int(self.pri_phone.build_info['build_version_sdk']) <= 32 and
+        self.pri_phone.aud(
+            text=_NOTIFICATION_DIALOG_MSG).exists(timeout_sec=5)):
+      self.pri_phone.aud(text='Allow').click()
     self.pri_phone.aud(text='OK').click()
 
     # Check if the vcf file appears in the PickActivity.
