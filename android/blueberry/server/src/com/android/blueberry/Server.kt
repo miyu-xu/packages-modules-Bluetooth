@@ -17,45 +17,33 @@
 package com.android.blueberry
 
 import android.content.Context
-import android.os.Bundle
-import android.os.Debug
 import android.util.Log
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import androidx.test.runner.MonitoringInstrumentation
+import io.grpc.Server as GrpcServer
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
 
-class Server : MonitoringInstrumentation() {
+class Server(context: Context) {
 
   private val TAG = "BlueberryServer"
   private val GRPC_PORT = 8999
 
   private lateinit var host: Host
   private lateinit var a2dp: A2dp
+  private lateinit var grpcServer: GrpcServer
 
-  override fun onCreate(arguments: Bundle) {
-    super.onCreate(arguments)
-
-    // Activate debugger
-    if (arguments.getString("debug").toBoolean()) {
-      Log.i(TAG, "Waiting for debugger to connect...")
-      Debug.waitForDebugger()
-      Log.i(TAG, "Debugger connected")
-    }
-
-    // Start instrumentation thread
-    start()
-  }
-
-  override fun onStart() {
-    super.onStart()
-
-    val context: Context = getApplicationContext()
-
-    host = Host(context)
+  init {
+    host = Host(context, this)
     a2dp = A2dp(context, host)
+    grpcServer = NettyServerBuilder.forPort(GRPC_PORT).addService(host).addService(a2dp).build()
 
     Log.d(TAG, "Starting Blueberry Server")
-    NettyServerBuilder.forPort(GRPC_PORT).addService(host).addService(a2dp).build().start()
+    grpcServer.start()
     Log.d(TAG, "Blueberry Server started at $GRPC_PORT")
   }
+
+  fun shutdownNow() {
+    a2dp.deinit()
+    grpcServer.shutdownNow()
+  }
+
+  fun awaitTermination() = grpcServer.awaitTermination()
 }
