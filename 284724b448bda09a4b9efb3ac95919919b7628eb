@@ -22,6 +22,30 @@
       },
       "revId": "284724b448bda09a4b9efb3ac95919919b7628eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b5216e3_6a122d0b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-16T21:54:07Z",
+      "side": 1,
+      "message": "existing code checked in already use the hap directory\n\nOn Android, we make HAP client the default assumption for HAP. Hence if HAP server is needed, there will be hap_service\n\nThis is similar to hfp for HFP server and hfp_client for HAP client on Auto",
+      "parentUuid": "3b056a5a_afa40254",
+      "range": {
+        "startLine": 373,
+        "startChar": 29,
+        "endLine": 373,
+        "endChar": 45
+      },
+      "revId": "284724b448bda09a4b9efb3ac95919919b7628eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

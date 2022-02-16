@@ -158,6 +158,30 @@
       },
       "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8e58d84_f4360d99",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-16T21:54:07Z",
+      "side": 1,
+      "message": "Saw the latest change and yes that is what we need. Each app\u0027s client side Java instance has to track the framework level state.",
+      "parentUuid": "bce20986_79150c3b",
+      "range": {
+        "startLine": 410,
+        "startChar": 7,
+        "endLine": 416,
+        "endChar": 9
+      },
+      "revId": "73b5dacedf0779d6b5020ba6a39e0b8c18a7f0d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
