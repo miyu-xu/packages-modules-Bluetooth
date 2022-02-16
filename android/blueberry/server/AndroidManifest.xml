@@ -27,7 +27,7 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_PRIVILEGED" />
 
-    <instrumentation android:name="com.android.blueberry.Server"
+    <instrumentation android:name="com.android.blueberry.Main"
                      android:targetPackage="com.android.blueberry"
                      android:label="Blueberry Android Server" />
 </manifest>
