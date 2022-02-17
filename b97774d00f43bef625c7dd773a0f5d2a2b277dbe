@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cfc1f4a_92e36ec6",
+        "filename": "android/blueberry/server/AndroidManifest.xml",
+        "patchSetId": 17
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-17T15:59:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d0623e0_f931efaf",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 78
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c53950a_cad9c27a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-17T15:18:17Z",
       "side": 1,
       "message": "To remove",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 60
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f217861f_49567f3e",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-17T15:59:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c53950a_cad9c27a",
       "range": {
         "startLine": 46,
         "startChar": 2,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "959e3751_300d80ee",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-17T15:59:15Z",
+      "side": 1,
+      "message": "Behavior changed in the updated CLs:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1973909/9\n\nI will change the response either it\u0027s successful or not. That\u0027s why I need a boolean here. Furthermore we would need to rethink the proto interface here, there is no mechanics to answer if the connection was successful or not. So If it\u0027s successful i return the address otherwise I return the default instance.",
+      "parentUuid": "060b8d75_70655226",
+      "range": {
+        "startLine": 128,
+        "startChar": 22,
+        "endLine": 128,
+        "endChar": 43
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "196aa266_0373d770",
         "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
         "patchSetId": 17
@@ -83,6 +155,30 @@
       "writtenOn": "2022-02-17T15:18:17Z",
       "side": 1,
       "message": "Looking at the code it\u0027s not clear in which state you could have the pairing confirmation. I assume that it\u0027s only in STATE_CONNECTING, if it\u0027s the case I would make it clear by adding it in a new branch before the `if (deviceState \u003d\u003d BluetoothAdapter.STATE_CONNECTED)`",
+      "range": {
+        "startLine": 131,
+        "startChar": 18,
+        "endLine": 132,
+        "endChar": 100
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "303be1cd_90f58746",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-17T15:59:15Z",
+      "side": 1,
+      "message": "Same as above, I\u0027m checking the CONNECTING state in the CLs:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1973909/9\n\nThe reason why I don\u0027t wait for the CONNECTED it\u0027s because for some test the PTS trigger an L2CAP disconnect Req even before we enter the CONNECTED state",
+      "parentUuid": "196aa266_0373d770",
       "range": {
         "startLine": 131,
         "startChar": 18,
