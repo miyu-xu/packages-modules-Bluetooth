@@ -1,4 +1,21 @@
 {
-  "comments": [],
-  "submitRequirementResults": []
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0345bc9b_89a1b823",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-17T01:33:16Z",
+      "side": 1,
+      "message": "Could the parameter move to AudioConfiguration? like\n\nparcelable CodecConfiguration {\n  ...\n  LatencyMode lowLatencyMode\n}",
+      "revId": "c989bf8e23bff9c421966539690eb9217a9597c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
 }
