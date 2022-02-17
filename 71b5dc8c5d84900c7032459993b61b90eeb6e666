@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "516b9be3_4238b8d7",
+        "filename": "system/blueberry/tests/gd/cert/gd_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-02-17T02:38:11Z",
+      "side": 1,
+      "message": "Please document the possible return values.\nI had to read line ~ #286 to know that 0 is \"bad\".",
+      "range": {
+        "startLine": 806,
+        "startChar": 8,
+        "endLine": 806,
+        "endChar": 39
+      },
+      "revId": "71b5dc8c5d84900c7032459993b61b90eeb6e666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "205d5f19_6ac1ac66",
+        "filename": "system/blueberry/tests/gd/cert/gd_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-02-17T02:38:11Z",
+      "side": 1,
+      "message": "which segment of self.cmd is the command *running* on the Android device.\n?\nOr something else. Please clarify.",
+      "range": {
+        "startLine": 808,
+        "startChar": 57,
+        "endLine": 808,
+        "endChar": 76
+      },
+      "revId": "71b5dc8c5d84900c7032459993b61b90eeb6e666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab77578e_39e86d80",
+        "filename": "system/blueberry/tests/gd/cert/gd_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-02-17T02:38:11Z",
+      "side": 1,
+      "message": "Remove, since there\u0027s some action (logging) on the line above?",
+      "range": {
+        "startLine": 828,
+        "startChar": 16,
+        "endLine": 828,
+        "endChar": 20
+      },
+      "revId": "71b5dc8c5d84900c7032459993b61b90eeb6e666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
