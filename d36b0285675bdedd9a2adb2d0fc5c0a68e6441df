@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "748e47c0_8cad7139",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-17T03:35:45Z",
+      "side": 1,
+      "message": "Thanks for the info. Done.",
+      "parentUuid": "db010faa_1d1dda2d",
+      "range": {
+        "startLine": 155,
+        "startChar": 16,
+        "endLine": 155,
+        "endChar": 28
+      },
+      "revId": "d36b0285675bdedd9a2adb2d0fc5c0a68e6441df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8377938_c4f80652",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-17T03:17:48Z",
       "side": 1,
       "message": "If mEntries is COWArrayList, we don\u0027t need to return a new array list.",
+      "range": {
+        "startLine": 161,
+        "startChar": 16,
+        "endLine": 161,
+        "endChar": 41
+      },
+      "revId": "d36b0285675bdedd9a2adb2d0fc5c0a68e6441df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7c2e673_4119f4fe",
+        "filename": "android/app/src/com/android/bluetooth/gatt/HandleMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-17T03:35:45Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "d8377938_c4f80652",
       "range": {
         "startLine": 161,
         "startChar": 16,
