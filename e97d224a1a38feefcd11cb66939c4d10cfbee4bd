@@ -94,6 +94,30 @@
       },
       "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "751f775e_4646339f",
+        "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-17T16:51:35Z",
+      "side": 1,
+      "message": "Thanks for the fix.",
+      "parentUuid": "a5350150_d31fc61d",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 54
+      },
+      "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
