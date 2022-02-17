@@ -18,11 +18,12 @@ package com.android.bluetooth.gatt;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 class HandleMap {
     private static final boolean DBG = GattServiceConfig.DBG;
@@ -88,8 +89,8 @@ class HandleMap {
     int mLastCharacteristic = 0;
 
     HandleMap() {
-        mEntries = new ArrayList<Entry>();
-        mRequestMap = new HashMap<Integer, Integer>();
+        mEntries = new CopyOnWriteArrayList<Entry>();
+        mRequestMap = new ConcurrentHashMap<Integer, Integer>();
     }
 
     void clear() {
@@ -157,7 +158,7 @@ class HandleMap {
     }
 
     List<Entry> getEntries() {
-        return mEntries;
+        return new ArrayList<>(mEntries);
     }
 
     void addRequest(int requestId, int handle) {
