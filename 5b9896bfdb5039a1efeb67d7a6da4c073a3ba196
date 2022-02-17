@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6be5010_dcb41e34",
+        "filename": "system/bta/le_audio/hal_verifier.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:42:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f56c5a49_8c370833",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "5b9896bfdb5039a1efeb67d7a6da4c073a3ba196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccb74ecb_a6da5abe",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03d88f2a_ce3b932b",
+        "filename": "system/bta/le_audio/hal_verifier.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:42:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ccb74ecb_a6da5abe",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 75
+      },
+      "revId": "5b9896bfdb5039a1efeb67d7a6da4c073a3ba196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "236a4935_6aadc4d3",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-17T16:04:31Z",
       "side": 1,
       "message": "Could we use SupportsLeAudioBroadcast for SW path and offload path both in case their requirement is the same.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 68
+      },
+      "revId": "5b9896bfdb5039a1efeb67d7a6da4c073a3ba196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff0417c_5cca4610",
+        "filename": "system/bta/le_audio/hal_verifier.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:42:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "236a4935_6aadc4d3",
       "range": {
         "startLine": 47,
         "startChar": 0,
