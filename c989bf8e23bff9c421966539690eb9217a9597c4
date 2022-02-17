@@ -16,6 +16,24 @@
       "message": "Could the parameter move to AudioConfiguration? like\n\nparcelable CodecConfiguration {\n  ...\n  LatencyMode lowLatencyMode\n}",
       "revId": "c989bf8e23bff9c421966539690eb9217a9597c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c524ba_6ce7c60d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-17T02:12:41Z",
+      "side": 1,
+      "message": "AudioConfiguration is a union. We don\u0027t know which item is currently used when passing low latency mode allowed/disallowed signal to audio. \n\nAlso the signal is a universal thing so it shouldn\u0027t just belong to one item.\n\nat startSession(), we use that signal to indicate if the device support low latency\nthe signal is sent at connection\nTherefore, no matter what codec/buffer mode the device is currently in, we need this signal to be passed to audio",
+      "parentUuid": "0345bc9b_89a1b823",
+      "revId": "c989bf8e23bff9c421966539690eb9217a9597c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
