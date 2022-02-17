@@ -70,6 +70,30 @@
       },
       "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5350150_d31fc61d",
+        "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T15:32:19Z",
+      "side": 1,
+      "message": "Got it. It makes no sense to merge this as is. I\u0027ll fix it here. Thank you.",
+      "parentUuid": "822eb6e2_f8be66d6",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 54
+      },
+      "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
