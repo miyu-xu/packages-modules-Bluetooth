@@ -1,4 +1,21 @@
 {
-  "comments": [],
-  "submitRequirementResults": []
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c20151b0_987ce113",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2098,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-17T08:41:22Z",
+      "side": 1,
+      "message": "we have const for that.https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/le_audio_types.h;l\u003d235;bpv\u003d1;bpt\u003d1?q\u003dle_audio_types\n\nbetter use it instead of magic numbers 😊\n\nAlso, can we create a helper for pcm_size calculation? Or maybe we could ask to make it a part of lc3 codec implementation?",
+      "revId": "68fe8ba45f7d70d9752d3798bb1e2cf63d8a3b62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
 }
