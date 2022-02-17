@@ -22,6 +22,30 @@
       },
       "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e77994_d6bd980f",
+        "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-02-17T13:01:47Z",
+      "side": 1,
+      "message": "I can\u0027t seem to find it. Can you please point me to a specific commit where this was added? Thank you.",
+      "parentUuid": "fb9325b6_b7bd5327",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 54
+      },
+      "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
