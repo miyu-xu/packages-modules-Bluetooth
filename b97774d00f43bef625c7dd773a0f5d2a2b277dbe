@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0623e0_f931efaf",
+        "filename": "android/blueberry/server/AndroidManifest.xml",
+        "patchSetId": 17
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-17T15:18:17Z",
+      "side": 1,
+      "message": "Let\u0027s order permissions by alphabetical order, will be clearer if we have a lot of them in the future",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 78
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c53950a_cad9c27a",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-17T15:18:17Z",
+      "side": 1,
+      "message": "To remove",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 60
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060b8d75_70655226",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-17T15:18:17Z",
+      "side": 1,
+      "message": "Why use `trySendBlocking(true)` instead of `trySendBlocking(null)` as above?",
+      "range": {
+        "startLine": 128,
+        "startChar": 22,
+        "endLine": 128,
+        "endChar": 43
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "196aa266_0373d770",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-17T15:18:17Z",
+      "side": 1,
+      "message": "Looking at the code it\u0027s not clear in which state you could have the pairing confirmation. I assume that it\u0027s only in STATE_CONNECTING, if it\u0027s the case I would make it clear by adding it in a new branch before the `if (deviceState \u003d\u003d BluetoothAdapter.STATE_CONNECTED)`",
+      "range": {
+        "startLine": 131,
+        "startChar": 18,
+        "endLine": 132,
+        "endChar": 100
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "030fcc2f_f3e76f3e",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-17T15:18:17Z",
+      "side": 1,
+      "message": "Why a warning log and not debug?",
+      "range": {
+        "startLine": 133,
+        "startChar": 22,
+        "endLine": 133,
+        "endChar": 23
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
