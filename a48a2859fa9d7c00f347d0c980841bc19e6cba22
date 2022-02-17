@@ -22,6 +22,30 @@
       },
       "revId": "a48a2859fa9d7c00f347d0c980841bc19e6cba22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76cb9e2f_b6a3ec24",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-17T14:56:52Z",
+      "side": 1,
+      "message": "I just found here from the stack trace when clicking \u0027forget device\u0027 button from Bluetooth Settings. Will upload a new CL for review when it is ready.",
+      "parentUuid": "4bbea333_c4f49154",
+      "range": {
+        "startLine": 981,
+        "startChar": 82,
+        "endLine": 981,
+        "endChar": 86
+      },
+      "revId": "a48a2859fa9d7c00f347d0c980841bc19e6cba22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
