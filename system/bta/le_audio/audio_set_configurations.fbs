@@ -62,12 +62,24 @@ table AudioSetSubConfiguration {
 /// all must be configurable with the current set of audio devices. For example,
 /// one can define multiple output stream configurations with different
 /// qualities, or assign different configurations to each stream direction.
-table AudioSetConfiguration {
+table CodecConfiguration {
     name: string (key, required);
     subconfigurations: [AudioSetSubConfiguration] (required);
 }
-table AudioSetConfigurations {
-    _comments_: [string];
-    configurations: [AudioSetConfiguration] (required);
+table QosConfiguration {
+    name: string (key, required);
+    retransmission_number: ubyte;
+    max_transport_latency : ushort;
 }
-root_type AudioSetConfigurations;
+table AudioSetConfig {
+    name: string (key, required);
+    codec_config_name: string (required);
+    qos_config_name: string (required);
+}
+table AudioSetConfigs {
+    _comments_: [string];
+    configurations: [AudioSetConfig] (required);
+    codec_configurations: [CodecConfiguration];
+    qos_configurations: [QosConfiguration];
+}
+root_type AudioSetConfigs;
