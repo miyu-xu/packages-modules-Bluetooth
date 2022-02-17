@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "809ad2eb_676aaab6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:54:22Z",
+      "side": 1,
+      "message": "just nitpicking",
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2bbc0f9_62bbc330",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:54:22Z",
+      "side": 1,
+      "message": "nit: `+` is needed for types which are the same size as char type (1 octet).",
+      "range": {
+        "startLine": 96,
+        "startChar": 57,
+        "endLine": 96,
+        "endChar": 58
+      },
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58bf4096_592adc54",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:54:22Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 170,
+        "startChar": 57,
+        "endLine": 170,
+        "endChar": 58
+      },
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ca301b5_ff625841",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:54:22Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 210,
+        "startChar": 34,
+        "endLine": 210,
+        "endChar": 35
+      },
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13013e1d_34d105a9",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:54:22Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 224,
+        "startChar": 44,
+        "endLine": 224,
+        "endChar": 45
+      },
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c9b484d_8eb9b44d",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:54:22Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 319,
+        "startChar": 64,
+        "endLine": 319,
+        "endChar": 65
+      },
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "467e6ae9_9e4e55f5",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-17T16:54:22Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 461,
+        "startChar": 53,
+        "endLine": 461,
+        "endChar": 54
+      },
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
