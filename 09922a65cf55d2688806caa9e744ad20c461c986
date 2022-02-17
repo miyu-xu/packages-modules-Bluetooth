@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9f06615_e4b2e067",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T22:19:40Z",
+      "side": 1,
+      "message": "/mnt/disks/build-disk/src/android/master/packages/modules/Bluetooth/system/embdrv/lc3/fuzzer/liblc3encoder_fuzzer.cpp:40:32: error: no matching function for call to \u0027lc3_setup_encoder\u0027 [clang-diagnostic-error]\n  lc3_encoder_t  lc3_encoder \u003d lc3_setup_encoder(dt_us, sr_hz, lc3_encoder_mem);\n                               ^~~~~~~~~~~~~~~~~\npackages/modules/Bluetooth/system/embdrv/lc3/include/lc3.h:228:15: note: candidate function not viable: requires 4 arguments, but 3 were provided\nlc3_encoder_t lc3_setup_encoder(\n              ^\n/mnt/disks/build-disk/src/android/master/packages/modules/Bluetooth/system/embdrv/lc3/include/lc3_private.h:33:7: warning: macro argument should be enclosed in parentheses [bugprone-macro-parentheses]\n    ((dt_us * sr_hz) / 1000 / 1000)\n      ^\n      (    )\n/mnt/disks/build-disk/src/android/master/packages/modules/Bluetooth/system/embdrv/lc3/include/lc3_private.h:33:15: warning: macro argument should be enclosed in parentheses [bugprone-macro-parentheses]\n    ((dt_us * sr_hz) / 1000 / 1000)\n              ^\n              (    )\n/mnt/disks/build-disk/src/android/master/packages/modules/Bluetooth/system/embdrv/lc3/include/lc3_private.h:40:13: warning: macro argument should be enclosed in parentheses [bugprone-macro-parentheses]\n    ( (18 * sr_hz) / 1000 )\n            ^\n            (    )\n390 warnings and 1 error generated.\nError while processing /mnt/disks/build-disk/src/android/master/packages/modules/Bluetooth/system/embdrv/lc3/fuzzer/liblc3encoder_fuzzer.cpp.\nSuppressed 387 warnings (387 in non-user code).\nUse -header-filter\u003d.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.\nFound compiler error(s).",
+      "revId": "09922a65cf55d2688806caa9e744ad20c461c986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6361e5cf_d5b9a87a",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 2
