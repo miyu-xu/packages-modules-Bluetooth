@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aebfd699_b3e0f3dc",
+        "filename": "framework/java/android/bluetooth/BluetoothUuid.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-02-17T22:33:54Z",
+      "side": 1,
+      "message": "Please add docs for all of these",
+      "revId": "4bc19ebc0ab8c767e94a0f0240fbabf1ed63516b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
