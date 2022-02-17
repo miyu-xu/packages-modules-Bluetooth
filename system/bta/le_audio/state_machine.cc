@@ -1141,12 +1141,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         }
         ase->framing = rsp.framing;
         ase->preferred_phy = rsp.preferred_phy;
-        ase->max_transport_latency = rsp.max_transport_latency;
+        if (ase->max_transport_latency > rsp.max_transport_latency) {
+          ase->max_transport_latency = rsp.max_transport_latency;
+        }
         ase->pres_delay_min = rsp.pres_delay_min;
         ase->pres_delay_max = rsp.pres_delay_max;
         ase->preferred_pres_delay_min = rsp.preferred_pres_delay_min;
         ase->preferred_pres_delay_max = rsp.preferred_pres_delay_max;
-        ase->retrans_nb = rsp.preferred_retrans_nb;
 
         ase->state = AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
 
@@ -1210,12 +1211,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         ase->framing = rsp.framing;
         ase->preferred_phy = rsp.preferred_phy;
-        ase->max_transport_latency = rsp.max_transport_latency;
+        if (ase->max_transport_latency > rsp.max_transport_latency) {
+          ase->max_transport_latency = rsp.max_transport_latency;
+        }
         ase->pres_delay_min = rsp.pres_delay_min;
         ase->pres_delay_max = rsp.pres_delay_max;
         ase->preferred_pres_delay_min = rsp.preferred_pres_delay_min;
         ase->preferred_pres_delay_max = rsp.preferred_pres_delay_max;
-        ase->retrans_nb = rsp.preferred_retrans_nb;
 
         /* This may be a notification from a re-configured ASE */
         ase->reconfigure = false;
