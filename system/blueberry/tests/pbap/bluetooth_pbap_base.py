@@ -37,7 +37,7 @@ CALL_LOG_TYPES = [
     bt_constants.MISSED_CALL_LOG_TYPE,
 ]
 
-_NOTIFICATION_DIALOG_MSG = 'Allow Contacts to send you notifications?'
+_NOTIFICATION_DIALOG_MSG_PATTERN = 'Allow Contacts.* you notifications?'
 
 
 class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
@@ -105,7 +105,8 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
     # Grants Notification permission for T build. Internal link
     if (int(self.pri_phone.build_info['build_version_sdk']) >= 32 and
         self.pri_phone.aud(
-            text=_NOTIFICATION_DIALOG_MSG).exists(timeout_sec=5)):
+            text_regex=_NOTIFICATION_DIALOG_MSG_PATTERN).exists(timeout_sec=5)):
+      self.pri_phone.log.info('Allow Contacts to send notifications.')
       self.pri_phone.aud(text='Allow').click()
     self.pri_phone.aud(text='OK').click()
 
