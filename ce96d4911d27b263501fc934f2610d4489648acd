@@ -22,6 +22,30 @@
       },
       "revId": "ce96d4911d27b263501fc934f2610d4489648acd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e32bf82a_559d183d",
+        "filename": "android/blueberry/server/src/com/android/blueberry/A2dp.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-17T16:18:59Z",
+      "side": 1,
+      "message": "I do not think it\u0027s needed here since the A2DP interface doesn\u0027t expose anything to tell if the disconnection was successful or not ; The PTS will tell us",
+      "parentUuid": "3796fc92_7482ab81",
+      "range": {
+        "startLine": 83,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 3
+      },
+      "revId": "ce96d4911d27b263501fc934f2610d4489648acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
