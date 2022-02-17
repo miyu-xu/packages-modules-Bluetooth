@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4577646e_bb650713",
+        "filename": "system/blueberry/tests/gd/cert/gd_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 806,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "516b9be3_4238b8d7",
+      "range": {
+        "startLine": 806,
+        "startChar": 8,
+        "endLine": 806,
+        "endChar": 39
+      },
+      "revId": "71b5dc8c5d84900c7032459993b61b90eeb6e666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "205d5f19_6ac1ac66",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d79ed3e6_3a31a2ca",
+        "filename": "system/blueberry/tests/gd/cert/gd_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "205d5f19_6ac1ac66",
+      "range": {
+        "startLine": 808,
+        "startChar": 57,
+        "endLine": 808,
+        "endChar": 76
+      },
+      "revId": "71b5dc8c5d84900c7032459993b61b90eeb6e666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab77578e_39e86d80",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-17T02:38:11Z",
       "side": 1,
       "message": "Remove, since there\u0027s some action (logging) on the line above?",
+      "range": {
+        "startLine": 828,
+        "startChar": 16,
+        "endLine": 828,
+        "endChar": 20
+      },
+      "revId": "71b5dc8c5d84900c7032459993b61b90eeb6e666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c59d11f3_d4bbb4b3",
+        "filename": "system/blueberry/tests/gd/cert/gd_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 828,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T16:44:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab77578e_39e86d80",
       "range": {
         "startLine": 828,
         "startChar": 16,
