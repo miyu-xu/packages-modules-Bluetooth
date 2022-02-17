@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bbea333_c4f49154",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-02-17T11:20:43Z",
+      "side": 1,
+      "message": "Why do you want to stop audio in this case ?",
+      "range": {
+        "startLine": 981,
+        "startChar": 82,
+        "endLine": 981,
+        "endChar": 86
+      },
+      "revId": "a48a2859fa9d7c00f347d0c980841bc19e6cba22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
