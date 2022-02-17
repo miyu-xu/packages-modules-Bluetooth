@@ -46,6 +46,30 @@
       },
       "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "822eb6e2_f8be66d6",
+        "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-17T13:27:10Z",
+      "side": 1,
+      "message": "LeAudio could be used with HIDL 2.1. The offload would go for AIDL, and the broadcast is so on.\n\nYou could add the function here.\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/hal_verifier.cc;drc\u003d422f55d13fc2927b7c9e766521815efe5ca0b78f;l\u003d20\n\nThe HAL versions are defined here\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/audio_hal_interface/hal_version_manager.h;drc\u003dmaster;l\u003d41\n\nWe may need to add the handle to check it shouldn\u0027t be the VERSION_UNAVAILABLE. I would add the other patch to fix it.",
+      "parentUuid": "f4e77994_d6bd980f",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 54
+      },
+      "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
