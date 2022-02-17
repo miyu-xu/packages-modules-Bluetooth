@@ -114,6 +114,30 @@
       },
       "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5509df16_0e7002d3",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-17T15:18:47Z",
+      "side": 1,
+      "message": "Ok it seems that the log is actually being removed later ;)",
+      "parentUuid": "030fcc2f_f3e76f3e",
+      "range": {
+        "startLine": 133,
+        "startChar": 22,
+        "endLine": 133,
+        "endChar": 23
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
