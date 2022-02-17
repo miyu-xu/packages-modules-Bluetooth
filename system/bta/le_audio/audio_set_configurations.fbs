@@ -50,6 +50,10 @@ enum AudioSetConfigurationDirection : byte {
     SINK = 0x01,
     SOURCE = 0x02,
 }
+table QosConfigurationKey {
+    name: string (required);
+}
+
 table AudioSetSubConfiguration {
     device_cnt: ubyte;
     ase_cnt: ubyte;
@@ -57,7 +61,9 @@ table AudioSetSubConfiguration {
     configuration_strategy: AudioSetConfigurationStrategy;
     codec_id : CodecId (required);
     codec_configuration: [CodecSpecificConfiguration] (required);
+    qos_configuration: QosConfigurationKey (required);
 }
+
 /// Each set configration can contain multiple logical subconfigurations, which
 /// all must be configurable with the current set of audio devices. For example,
 /// one can define multiple output stream configurations with different
@@ -66,8 +72,14 @@ table AudioSetConfiguration {
     name: string (key, required);
     subconfigurations: [AudioSetSubConfiguration] (required);
 }
+table QosConfiguration {
+    name: string (key, required);
+    retransmission_number: ubyte;
+    max_transport_latency : ushort;
+}
 table AudioSetConfigurations {
     _comments_: [string];
     configurations: [AudioSetConfiguration] (required);
+    qos_configurations: [QosConfiguration] (required);
 }
 root_type AudioSetConfigurations;

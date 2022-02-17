@@ -97,7 +97,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanStereoSnk_16_2_2"
+                    },
                 }
             ]
         },
@@ -164,7 +167,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanStereoSnk_16_1_2"
+                    },
                 }
             ]
         },
@@ -231,7 +237,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanStereoSnk_16_2_2",
+                    },
                 }
             ]
         },
@@ -298,7 +307,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanStereoSnk_16_1_2"
+                    },
                 }
             ]
         },
@@ -365,7 +377,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_TwoChanStereoSnk_16_2_2"
+                    },
                 }
             ]
         },
@@ -432,7 +447,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_TwoChanStereoSnk_16_1_2"
+                    },
                 }
             ]
         },
@@ -499,7 +517,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanMonoSnk_16_2_2"
+                    },
                 }
             ]
         },
@@ -566,7 +587,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanMonoSnk_16_1_2"
+                    },
                 }
             ]
         },
@@ -632,7 +656,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -693,7 +720,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 }
             ]
         },
@@ -759,7 +789,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -820,7 +853,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 }
             ]
         },
@@ -887,7 +923,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -948,7 +987,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 }
             ]
         },
@@ -1015,7 +1057,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -1076,7 +1121,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 }
             ]
         },
@@ -1143,7 +1191,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -1204,7 +1255,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 }
             ]
         },
@@ -1271,7 +1325,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -1332,7 +1389,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 }
             ]
         },
@@ -1399,7 +1459,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -1460,7 +1523,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 }
             ]
         },
@@ -1527,7 +1593,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -1588,7 +1657,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 }
             ]
         },
@@ -1654,7 +1726,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -1715,7 +1790,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2_1"
+                    },
                 }
             ]
         },
@@ -1781,7 +1859,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 },
                 {
                     "device_cnt": 1,
@@ -1842,7 +1923,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_1"
+                    },
                 }
             ]
         },
@@ -1909,7 +1993,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "DualDev_OneChanStereoSnk_48_4_2"
+                    },
                 }
             ]
         },
@@ -1976,7 +2063,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanStereoSnk_48_4_2"
+                    },
                 }
             ]
         },
@@ -2043,7 +2133,10 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_TwoChanStereoSnk_48_4_2"
+                    },
                 }
             ]
         },
@@ -2110,9 +2203,234 @@
                                 ]
                             }
                         }
-                    ]
+                    ],
+                    "qos_configuration": {
+                        "name": "SingleDev_OneChanMonoSnk_48_4_2"
+                    },
                 }
             ]
+        }
+    ],
+    "qos_configurations": [
+        {
+            "name": "DualDev_OneChanStereoSnk_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_OneChanMonoSrc_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "DualDev_OneChanDoubleStereoSnk_OneChanMonoSrc_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 10
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 95
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_1",
+            "retransmission_number": 2,
+            "max_transport_latency": 8
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 75
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_48_4_1",
+            "retransmission_number": 5,
+            "max_transport_latency": 20
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_48_4_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 100
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_48_4_1",
+            "retransmission_number": 5,
+            "max_transport_latency": 20
+        },
+        {
+            "name": "SingleDev_OneChanStereoSnk_48_4_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 100
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_48_4_1",
+            "retransmission_number": 5,
+            "max_transport_latency": 20
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_48_4_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 100
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_48_4_1",
+            "retransmission_number": 5,
+            "max_transport_latency": 20
+        },
+        {
+            "name": "SingleDev_OneChanMonoSnk_48_4_2",
+            "retransmission_number": 13,
+            "max_transport_latency": 100
         }
     ]
 }
