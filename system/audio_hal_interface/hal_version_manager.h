@@ -35,10 +35,10 @@ constexpr char kFullyQualifiedInterfaceName_2_1[] =
     "android.hardware.bluetooth.audio@2.1::IBluetoothAudioProvidersFactory";
 
 enum class BluetoothAudioHalVersion : uint8_t {
-  VERSION_2_0 = 0,
+  VERSION_UNAVAILABLE = 0,
+  VERSION_2_0,
   VERSION_2_1,
   VERSION_AIDL_V1,
-  VERSION_UNAVAILABLE,
 };
 
 enum class BluetoothAudioHalTransport : uint8_t {
