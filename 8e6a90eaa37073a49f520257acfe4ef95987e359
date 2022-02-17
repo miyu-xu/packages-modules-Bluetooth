@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01456f42_20311cf0",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-17T21:14:21Z",
+      "side": 1,
+      "message": "I think uint16_t also needs that.",
+      "parentUuid": "c2bbc0f9_62bbc330",
+      "range": {
+        "startLine": 96,
+        "startChar": 57,
+        "endLine": 96,
+        "endChar": 58
+      },
+      "revId": "8e6a90eaa37073a49f520257acfe4ef95987e359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "58bf4096_592adc54",
         "filename": "system/stack/btm/btm_iso_impl.h",
         "patchSetId": 1
