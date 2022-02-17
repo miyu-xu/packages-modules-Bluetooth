@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a693bf5b_643702b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-17T20:35:39Z",
+      "side": 1,
+      "message": "The soong command is missing an include.\n\nLooks like -Iexternal/protobuf/src",
+      "revId": "976c92427df8e8c6b03e47a08618f7314da94c34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
