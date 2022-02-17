@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef318f3_2bf6e9af",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T10:48:33Z",
+      "side": 1,
+      "message": "nit: unknown",
+      "range": {
+        "startLine": 397,
+        "startChar": 33,
+        "endLine": 397,
+        "endChar": 39
+      },
+      "revId": "96a6d70c5e9f81b043db4f79c44c6cf7b1e268d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83497cf0_a09cbc09",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T10:48:33Z",
+      "side": 1,
+      "message": "please use the latest one so that it compiles\n\nBluetoothUuid.BASS",
+      "range": {
+        "startLine": 494,
+        "startChar": 52,
+        "endLine": 494,
+        "endChar": 59
+      },
+      "revId": "96a6d70c5e9f81b043db4f79c44c6cf7b1e268d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ada3758_150ec2c2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 38
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T10:48:33Z",
+      "side": 1,
+      "message": "This one can be replaced with the newly added BluetoothUuid.BASS",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 68
+      },
+      "revId": "96a6d70c5e9f81b043db4f79c44c6cf7b1e268d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -829,6 +829,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "faf51c50_c97815a2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 37
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-17T10:48:33Z",
+      "side": 1,
+      "message": "This is BAAS, Broadcast Audio Announcement Service",
+      "parentUuid": "6e75b7a1_35ae952d",
+      "range": {
+        "startLine": 28,
+        "startChar": 35,
+        "endLine": 28,
+        "endChar": 44
+      },
+      "revId": "5cb3b596d9a8000b90c993aeb74b493bd3cf8cad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee76bf19_2a280dcb",
