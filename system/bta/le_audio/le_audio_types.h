@@ -504,6 +504,11 @@ struct LeAudioCodecId {
   }
 };
 
+struct LeAudioLC3QoSConfig {
+  uint8_t retransmission_number;
+  uint16_t max_transport_latency;
+};
+
 struct hdl_pair {
   hdl_pair() = default;
   hdl_pair(uint16_t val_hdl, uint16_t ccc_hdl)
@@ -582,6 +587,9 @@ struct CodecCapabilitySetting {
 
   /* Codec Specific Configuration variant */
   std::variant<types::LeAudioLc3Config> config;
+
+  /* QoS Configuration */
+  types::LeAudioLC3QoSConfig qos_config;
 
   /* Sampling freqency requested for codec */
   uint32_t GetConfigSamplingFrequency() const;

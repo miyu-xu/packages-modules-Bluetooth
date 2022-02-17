@@ -109,7 +109,8 @@ struct AudioSetConfigurationProviderJson {
       const bluetooth::le_audio::CodecId* flat_codec_id,
       const flatbuffers::Vector<
           flatbuffers::Offset<bluetooth::le_audio::CodecSpecificConfiguration>>*
-          flat_codec_specific_params) {
+          flat_codec_specific_params,
+      const bluetooth::le_audio::QosConfiguration* flat_qos_configuration) {
     CodecCapabilitySetting codec;
 
     /* Cache the le_audio::types::CodecId type value */
@@ -181,6 +182,15 @@ struct AudioSetConfigurationProviderJson {
             (uint8_t)std::bitset<32>(audio_channel_allocation).count(),
         .audio_channel_allocation = audio_channel_allocation,
     });
+
+    /* Cache the le_audio::types::LeAudioLC3QoSConfig type value */
+    codec.qos_config = types::LeAudioLC3QoSConfig({
+        .retransmission_number =
+            flat_qos_configuration->retransmission_number(),
+        .max_transport_latency =
+            flat_qos_configuration->max_transport_latency(),
+    });
+
     return codec;
   }
 
@@ -203,7 +213,8 @@ struct AudioSetConfigurationProviderJson {
         flat_subconfig->direction(), flat_subconfig->device_cnt(),
         flat_subconfig->ase_cnt(),
         CodecCapabilitySettingFromFlat(flat_subconfig->codec_id(),
-                                       flat_subconfig->codec_configuration()),
+                                       flat_subconfig->codec_configuration(),
+                                       flat_subconfig->qos_configuration()),
         strategy);
   }
 
