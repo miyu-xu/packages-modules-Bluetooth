@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb9325b6_b7bd5327",
+        "filename": "system/btif/src/btif_le_audio_broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-17T01:21:52Z",
+      "side": 1,
+      "message": "It need to be changed, the SupportsLeAudio is to check VERSION_2_1. For broadcast, we add the new interface in AIDL. Please add SupportsLeAudioBroadcast to check AIDL version,",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 54
+      },
+      "revId": "e97d224a1a38feefcd11cb66939c4d10cfbee4bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
