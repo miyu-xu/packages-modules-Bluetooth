@@ -16,6 +16,23 @@
       "message": "Update the patch to make it support for aidl first. I will fix the flow later.",
       "revId": "64c1a53e4f5c999a3f1b245ee44dc6cfbc2f0741",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb88abcd_16395b91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-02-17T18:29:52Z",
+      "side": 1,
+      "message": "After synced and did the verification, we don\u0027t need the additional handle for offload suspend flow. The current is good.",
+      "revId": "64c1a53e4f5c999a3f1b245ee44dc6cfbc2f0741",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
