@@ -73,7 +73,7 @@ constexpr size_t kDefaultBtSnoozMaxPayloadBytesPerPacket =
     kDefaultBtSnoozMaxBytesPerPacket - sizeof(SnoopLogger::PacketHeaderType);
 
 using namespace std::chrono_literals;
-constexpr std::chrono::hours kBtSnoozLogLifeTime = 12h;
+constexpr std::chrono::hours kBtSnoozLogLifeTime = 1h;
 constexpr std::chrono::hours kBtSnoozLogDeleteRepeatingAlarmInterval = 1h;
 
 std::string get_btsnoop_log_path(std::string log_dir, bool filtered) {
