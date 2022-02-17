@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8353db59_7715f821",
+        "filename": "android/blueberry/server/src/com/android/blueberry/A2dp.kt",
+        "patchSetId": 12
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-17T15:21:10Z",
+      "side": 1,
+      "message": "Add a comment to explain why we need to max out the volume",
+      "range": {
+        "startLine": 41,
+        "startChar": 6,
+        "endLine": 47,
+        "endChar": 7
+      },
+      "revId": "526b23d5a0b9c8dee69e46d3ead4ad3c87bdafd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
