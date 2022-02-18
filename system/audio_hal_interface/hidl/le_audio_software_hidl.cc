@@ -525,7 +525,9 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
 
     if (halConfigToCodecCapabilitySetting(halEncodeConfig, encodeCapability)) {
       audioSetConfig.confs.push_back(SetConfiguration(
-          ::le_audio::types::kLeAudioDirectionSink, halEncodeConfig.deviceCount,
+          ::le_audio::types::kLeAudioDirectionSink,
+          ::le_audio::types::kTargetLatencyBalancedLatencyReliability,
+          halEncodeConfig.deviceCount,
           halEncodeConfig.deviceCount * halEncodeConfig.channelCountPerDevice,
           encodeCapability));
       strCapabilityLog = " Encode Capability: " + toString(halEncodeConfig);
@@ -534,6 +536,7 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
     if (halConfigToCodecCapabilitySetting(halDecodeConfig, decodeCapability)) {
       audioSetConfig.confs.push_back(SetConfiguration(
           ::le_audio::types::kLeAudioDirectionSource,
+          ::le_audio::types::kTargetLatencyBalancedLatencyReliability,
           halDecodeConfig.deviceCount,
           halDecodeConfig.deviceCount * halDecodeConfig.channelCountPerDevice,
           decodeCapability));
