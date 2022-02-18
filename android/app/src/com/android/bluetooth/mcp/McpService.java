@@ -122,6 +122,7 @@ public class McpService extends ProfileService {
         }
 
         if (sGmcs != null) {
+            mHandler.removeCallbacksAndEqualMessages(null);
             sGmcs.cleanup();
             sGmcs = null;
         }
