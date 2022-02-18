@@ -408,11 +408,10 @@ public class HapClientTest {
         /* Prepare CAS groups */
         int base_group_id = 0x03;
         Map groups = new HashMap<Integer, ParcelUuid>();
-        groups.put(base_group_id, ParcelUuid.fromString("00001853-0000-1000-8000-00805F9B34FB"));
+        groups.put(base_group_id, BluetoothUuid.CAP);
 
         Map groups2 = new HashMap<Integer, ParcelUuid>();
-        groups2.put(base_group_id + 1,
-                ParcelUuid.fromString("00001853-0000-1000-8000-00805F9B34FB"));
+        groups2.put(base_group_id + 1, BluetoothUuid.CAP);
 
         doReturn(groups).when(mCsipService).getGroupUuidMapByDevice(mDevice);
         doReturn(groups).when(mCsipService).getGroupUuidMapByDevice(mDevice3);
