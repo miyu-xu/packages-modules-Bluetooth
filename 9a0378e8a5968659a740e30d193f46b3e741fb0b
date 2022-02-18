@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74103d7b_c72a2390",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-18T16:23:12Z",
+      "side": 1,
+      "message": "True, BluetoothDevice#disconnect is used instead 👍",
+      "parentUuid": "e919498c_bd734bbf",
+      "range": {
+        "startLine": 181,
+        "startChar": 6,
+        "endLine": 181,
+        "endChar": 34
+      },
+      "revId": "9a0378e8a5968659a740e30d193f46b3e741fb0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94ce8a12_ed76b93d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-17T15:29:12Z",
       "side": 1,
       "message": "Shouldn\u0027t we listen for https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#ACTION_CONNECTION_STATE_CHANGED and wait for STATE_DISCONNECTED?",
+      "range": {
+        "startLine": 182,
+        "startChar": 6,
+        "endLine": 183,
+        "endChar": 36
+      },
+      "revId": "9a0378e8a5968659a740e30d193f46b3e741fb0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa6f9142_f88c9010",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-18T16:23:12Z",
+      "side": 1,
+      "message": "Indeed :), done",
+      "parentUuid": "94ce8a12_ed76b93d",
       "range": {
         "startLine": 182,
         "startChar": 6,
