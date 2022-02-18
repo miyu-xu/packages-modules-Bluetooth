@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e229c5bf_4ed81c10",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "55cb6743_4724b320",
+      "range": {
+        "startLine": 599,
+        "startChar": 32,
+        "endLine": 599,
+        "endChar": 55
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da9fd907_3d785cc5",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "Since this is on the service side and RemoteException is caused by Apps, we should not throw an exception here. Instead we should just pass this callback and continue to the next one.",
+      "range": {
+        "startLine": 634,
+        "startChar": 32,
+        "endLine": 634,
+        "endChar": 55
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14c771ec_4e5b64f3",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 634,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da9fd907_3d785cc5",
       "range": {
         "startLine": 634,
         "startChar": 32,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed9f42f2_7481b177",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb8dbac4_37e45304",
+      "range": {
+        "startLine": 715,
+        "startChar": 15,
+        "endLine": 715,
+        "endChar": 32
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3aeb2feb_69ff6171",
@@ -100,6 +172,30 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "Since this is on the service side and RemoteException is caused by Apps, we should not throw an exception here. Instead we should just pass this callback and continue to the next one.",
+      "range": {
+        "startLine": 759,
+        "startChar": 20,
+        "endLine": 759,
+        "endChar": 54
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c0841f0_b3edc707",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3aeb2feb_69ff6171",
       "range": {
         "startLine": 759,
         "startChar": 20,
@@ -127,6 +223,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab0b4213_d588586b",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ee80823_952e1dc9",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3419aaf0_c6ed467d",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "Since this is on the service side and RemoteException is caused by Apps, we should not throw an exception here. Instead we should just pass this callback and continue to the next one.",
+      "range": {
+        "startLine": 781,
+        "startChar": 28,
+        "endLine": 781,
+        "endChar": 51
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5faad968_6df7be5a",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 781,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3419aaf0_c6ed467d",
       "range": {
         "startLine": 781,
         "startChar": 28,
@@ -173,6 +311,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70034e5a_3b19e633",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1072669_af5c4a1a",
+      "range": {
+        "startLine": 795,
+        "startChar": 27,
+        "endLine": 795,
+        "endChar": 28
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4c22d58_753032ac",
@@ -186,6 +348,24 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "Since this is on the service side and RemoteException is caused by Apps, we should not throw an exception here. Instead we should just pass this callback and continue to the next one.",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c807681_25ca7af4",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4c22d58_753032ac",
       "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -207,6 +387,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07ec71c7_771f45cf",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 883,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76e1e965_64fac72f",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6ba42a8_bf5bf8a4",
@@ -220,6 +418,24 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "Since this is on the service side and RemoteException is caused by Apps, we should not throw an exception here. Instead we should just pass this callback and continue to the next one.",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fac44c6_3c6d1127",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 940,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6ba42a8_bf5bf8a4",
       "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -247,6 +463,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f236dc_d6fe7e05",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f67a4a3_97836510",
+      "range": {
+        "startLine": 977,
+        "startChar": 32,
+        "endLine": 977,
+        "endChar": 55
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22a2c8d4_c860b47d",
@@ -260,6 +500,24 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "Please throw one of the exceptions listed in\n\nhttps://developer.android.com/reference/android/os/Parcel#writeException(java.lang.Exception)\n\nMaybe IllegalArgumentException since this is bad registration of callbacks",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "405568a6_cd3320e3",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1475,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Uhm, right. On the other hand I guess we could make Register/Unregister calls synchronous with SynchronousResultReceiver even though there\u0027s no real value to return so that the App would wait on the registerCallback call instead of using the service already, not really knowing yet if the callback was registered successfully.",
+      "parentUuid": "22a2c8d4_c860b47d",
       "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -281,6 +539,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c078cf7b_d39975ac",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1492,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c35c3fc4_b8dc832f",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d174043_ccf40185",
@@ -294,6 +570,24 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "the exception should be re-thrown to caller\n\nthrow e.rethrowFromSystemServer();",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41cdb620_c7f38715",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d174043_ccf40185",
       "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -321,6 +615,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a56f24e1_3177036e",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fe444e7_c481aa0c",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 459,
+        "endChar": 87
+      },
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "002b5d4e_16a4ae58",
@@ -334,6 +652,24 @@
       "writtenOn": "2022-02-16T21:54:07Z",
       "side": 1,
       "message": "the RemoteException should be re-thrown to caller instead of silently failing\n\nthrow e.rethrowFromSystemServer();",
+      "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "653aa53c_53d41d4a",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 728,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "002b5d4e_16a4ae58",
       "revId": "db391d2076b38c39f317c0fb44fd0ac98ab09e8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
