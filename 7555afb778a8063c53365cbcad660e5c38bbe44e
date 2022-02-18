@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9462595_732fdb55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T15:18:15Z",
+      "side": 1,
+      "message": "Exception handling is still wrong here. In next revision I\u0027ll adjust it to match the approach taken in HAP patches.",
+      "revId": "7555afb778a8063c53365cbcad660e5c38bbe44e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
