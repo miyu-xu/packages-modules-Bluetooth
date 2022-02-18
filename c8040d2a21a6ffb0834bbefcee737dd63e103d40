@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af0f1f38_20b40fdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2022-02-18T18:45:26Z",
+      "side": 1,
+      "message": "Thanks for the update; LGTM!",
+      "revId": "c8040d2a21a6ffb0834bbefcee737dd63e103d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
