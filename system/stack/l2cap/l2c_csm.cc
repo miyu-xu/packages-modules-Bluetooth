@@ -881,7 +881,7 @@ static void l2c_csm_w4_l2ca_connect_rsp(tL2C_CCB* p_ccb, tL2CEVT event,
 
     case L2CEVT_L2CA_CREDIT_BASED_CONNECT_RSP_NEG:
       p_ci = (tL2C_CONN_INFO*)p_data;
-      if (p_ccb->p_lcb && p_ccb->p_lcb->transport == BT_TRANSPORT_LE) {
+      if (p_ccb->p_lcb->transport == BT_TRANSPORT_LE) {
         l2cu_send_peer_credit_based_conn_res(p_ccb, p_ci->lcids,
                                              p_ci->l2cap_result);
       }
