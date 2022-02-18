@@ -16,6 +16,24 @@
       "message": "Could this be rebased now that we use the JSON config file? ",
       "revId": "e015c9583368bdebc57dabe763409aab7ec16e9e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7cb5a3c_e5252bb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-02-18T16:41:15Z",
+      "side": 1,
+      "message": "Actually this doesn\u0027t need to be rebased on JSON since JSON configuration is transparent for this change, only requirement thing should be - which is in another CL (https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1956996/4)",
+      "parentUuid": "a7ed5aec_c687cc04",
+      "revId": "e015c9583368bdebc57dabe763409aab7ec16e9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
