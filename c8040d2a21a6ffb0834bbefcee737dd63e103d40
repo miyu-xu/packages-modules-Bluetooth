@@ -16,6 +16,23 @@
       "message": "Thanks for the update; LGTM!",
       "revId": "c8040d2a21a6ffb0834bbefcee737dd63e103d40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f316ea2e_ba288184",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2022-02-18T18:46:02Z",
+      "side": 1,
+      "message": "(Looks like a code owner stamp is also needed; are you able to +1 and submit?)",
+      "revId": "c8040d2a21a6ffb0834bbefcee737dd63e103d40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
