@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41bb5a90_2e03b01b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1588128
+      },
+      "writtenOn": "2022-02-18T02:03:48Z",
+      "side": 1,
+      "message": "Hi Hansong, I refactored all DISALLOW_* macros into delete ctor (isntead of using common/utils.h from floss/bluetooth repo) as discussed offline previously.\n\nTo clarify, the change was made on top of cros/main branch and tested with that version. It was then cherry-picked to the aosp branch with a conflict (system/bta/vc/vc_test.cc redefined a mock function, happens to be close to the removed macro) resolved.\nI assume this is because cros is a bit behind and will catch up in some near future merge.",
+      "revId": "3f4c8efbccbf9743df688c51595e60e6a965e0e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
