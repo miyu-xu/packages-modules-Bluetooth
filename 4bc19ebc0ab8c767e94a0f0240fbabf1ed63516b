@@ -34,6 +34,24 @@
       "parentUuid": "aebfd699_b3e0f3dc",
       "revId": "4bc19ebc0ab8c767e94a0f0240fbabf1ed63516b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c19cd12_aa060fa0",
+        "filename": "framework/java/android/bluetooth/BluetoothUuid.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T21:13:50Z",
+      "side": 1,
+      "message": "I think Rahul means documentation for what this UUID field is. We can add it in a future CL.",
+      "parentUuid": "765436c5_15096d44",
+      "revId": "4bc19ebc0ab8c767e94a0f0240fbabf1ed63516b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
