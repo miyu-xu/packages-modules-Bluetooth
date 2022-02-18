@@ -33,6 +33,7 @@ import android.os.RemoteException;
 import android.util.Log;
 
 import com.android.bluetooth.le_audio.ContentControlIdKeeper;
+import com.android.internal.annotations.GuardedBy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,6 +109,9 @@ public class TbsGeneric {
         }
     }
 
+    private final Object mLock = new Object();
+
+    @GuardedBy("mLock")
     private TbsGatt mTbsGatt = null;
     private List<Bearer> mBearerList = new ArrayList<>();
     private int mLastIndexAssigned = TbsCall.INDEX_UNASSIGNED;
@@ -121,14 +125,16 @@ public class TbsGeneric {
             Log.d(TAG, "init");
         }
 
-        mTbsGatt = tbsGatt;
+        synchronized (mLock) {
+            mTbsGatt = tbsGatt;
+        }
 
         int ccid = ContentControlIdKeeper.acquireCcid();
         if (!isCcidValid(ccid)) {
             return false;
         }
 
-        return mTbsGatt.init(ccid, UCI, mUriSchemes, true, true, DEFAULT_PROVIDER_NAME,
+        return tbsGatt.init(ccid, UCI, mUriSchemes, true, true, DEFAULT_PROVIDER_NAME,
                 DEFAULT_BEARER_TECHNOLOGY, mTbsGattCallback);
     }
 
@@ -137,9 +143,13 @@ public class TbsGeneric {
             Log.d(TAG, "cleanup");
         }
 
-        if (mTbsGatt != null) {
-            mTbsGatt.cleanup();
+        TbsGatt tbsGatt;
+        synchronized (mLock) {
+            tbsGatt = mTbsGatt;
             mTbsGatt = null;
+        }
+        if (tbsGatt != null) {
+            tbsGatt.cleanup();
         }
     }
 
@@ -385,8 +395,14 @@ public class TbsGeneric {
             return;
         }
 
+        TbsGatt tbsGatt = getTbsGatt();
+        if (tbsGatt == null) {
+            Log.e(TAG, "requestResult: tbsGatt is null!");
+            return;
+        }
+
         int tbsResult = getTbsResult(result, request.requestedOpcode);
-        mTbsGatt.setCallControlPointResult(request.device, request.requestedOpcode,
+        tbsGatt.setCallControlPointResult(request.device, request.requestedOpcode,
                 request.callIndex, tbsResult);
     }
 
@@ -412,20 +428,26 @@ public class TbsGeneric {
             return;
         }
 
+        TbsGatt tbsGatt = getTbsGatt();
+        if (tbsGatt == null) {
+            Log.e(TAG, "callAdded: tbsGatt is null!");
+            return;
+        }
+
         bearer.callIdIndexMap.put(callId, callIndex);
         TbsCall tbsCall = TbsCall.create(call);
         mCurrentCallsList.put(callIndex, tbsCall);
 
         checkRequestComplete(bearer, callId, tbsCall);
         if (tbsCall.isIncoming()) {
-            mTbsGatt.setIncomingCall(callIndex, tbsCall.getUri());
+            tbsGatt.setIncomingCall(callIndex, tbsCall.getUri());
         }
 
         String friendlyName = tbsCall.getFriendlyName();
         if (friendlyName == null) {
             friendlyName = UNKNOWN_FRIENDLY_NAME;
         }
-        mTbsGatt.setCallFriendlyName(callIndex, friendlyName);
+        tbsGatt.setCallFriendlyName(callIndex, friendlyName);
 
         notifyCclc();
         if (mForegroundBearer != bearer) {
@@ -455,19 +477,25 @@ public class TbsGeneric {
             return;
         }
 
+        TbsGatt tbsGatt = getTbsGatt();
+        if (tbsGatt == null) {
+            Log.e(TAG, "callRemoved: tbsGatt is null!");
+            return;
+        }
+
         checkRequestComplete(bearer, callId, tbsCall);
-        mTbsGatt.setTerminationReason(callIndex, reason);
+        tbsGatt.setTerminationReason(callIndex, reason);
         notifyCclc();
 
-        Integer incomingCallIndex = mTbsGatt.getIncomingCallIndex();
+        Integer incomingCallIndex = tbsGatt.getIncomingCallIndex();
         if (incomingCallIndex != null && incomingCallIndex.equals(callIndex)) {
-            mTbsGatt.clearIncomingCall();
+            tbsGatt.clearIncomingCall();
             // TODO: check if there's any incoming call more???
         }
 
-        Integer friendlyNameCallIndex = mTbsGatt.getCallFriendlyNameIndex();
+        Integer friendlyNameCallIndex = tbsGatt.getCallFriendlyNameIndex();
         if (friendlyNameCallIndex != null && friendlyNameCallIndex.equals(callIndex)) {
-            mTbsGatt.clearFriendlyName();
+            tbsGatt.clearFriendlyName();
             // TODO: check if there's any incoming/outgoing call more???
         }
     }
@@ -493,14 +521,20 @@ public class TbsGeneric {
             return;
         }
 
+        TbsGatt tbsGatt = getTbsGatt();
+        if (tbsGatt == null) {
+            Log.e(TAG, "callStateChanged: tbsGatt is null!");
+            return;
+        }
+
         tbsCall.setState(state);
 
         checkRequestComplete(bearer, callId, tbsCall);
         notifyCclc();
 
-        Integer incomingCallIndex = mTbsGatt.getIncomingCallIndex();
+        Integer incomingCallIndex = tbsGatt.getIncomingCallIndex();
         if (incomingCallIndex != null && incomingCallIndex.equals(callIndex)) {
-            mTbsGatt.clearIncomingCall();
+            tbsGatt.clearIncomingCall();
             // TODO: check if there's any incoming call more???
         }
     }
@@ -576,18 +610,29 @@ public class TbsGeneric {
         }
 
         if (bearer == mForegroundBearer) {
+            TbsGatt tbsGatt = getTbsGatt();
+            if (tbsGatt == null) {
+                Log.e(TAG, "networkStateChanged: tbsGatt is null!");
+                return;
+            }
+
             if (providerChanged) {
-                mTbsGatt.setBearerProviderName(bearer.providerName);
+                tbsGatt.setBearerProviderName(bearer.providerName);
             }
 
             if (technologyChanged) {
-                mTbsGatt.setBearerTechnology(bearer.technology);
+                tbsGatt.setBearerTechnology(bearer.technology);
             }
         }
     }
 
     private int processOriginateCall(BluetoothDevice device, String uri) {
         if (uri.startsWith("tel")) {
+            TbsGatt tbsGatt = getTbsGatt();
+            if (tbsGatt == null) {
+                Log.e(TAG, "processOriginateCall: tbsGatt is null!");
+                return TbsGatt.CALL_CONTROL_POINT_RESULT_STATE_MISMATCH;
+            }
             /*
              * FIXME: For now, process telephone call originate request here, as
              * BluetoothInCallService might be not running. The BluetoothInCallService is active
@@ -596,8 +641,8 @@ public class TbsGeneric {
             Log.i(TAG, "originate uri=" + uri);
             Intent intent = new Intent(Intent.ACTION_CALL_PRIVILEGED, Uri.parse(uri));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mTbsGatt.getContext().startActivity(intent);
-            mTbsGatt.setCallControlPointResult(device, TbsGatt.CALL_CONTROL_POINT_OPCODE_ORIGINATE,
+            tbsGatt.getContext().startActivity(intent);
+            tbsGatt.setCallControlPointResult(device, TbsGatt.CALL_CONTROL_POINT_OPCODE_ORIGINATE,
                     TbsCall.INDEX_UNASSIGNED, TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS);
         } else {
             UUID callId = UUID.randomUUID();
@@ -623,6 +668,12 @@ public class TbsGeneric {
 
 
         return TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
+    }
+
+    private TbsGatt getTbsGatt() {
+        synchronized (mLock) {
+            return mTbsGatt;
+        }
     }
 
     private final TbsGatt.Callback mTbsGattCallback = new TbsGatt.Callback() {
@@ -765,7 +816,13 @@ public class TbsGeneric {
                 return;
             }
 
-            mTbsGatt.setCallControlPointResult(device, opcode, 0, result);
+            TbsGatt tbsGatt = getTbsGatt();
+            if (tbsGatt == null) {
+                Log.e(TAG, "onCallControlPointRequest: tbsGatt is null!");
+                return;
+            }
+
+            tbsGatt.setCallControlPointResult(device, opcode, 0, result);
         }
     };
 
@@ -863,19 +920,25 @@ public class TbsGeneric {
             Log.d(TAG, "setForegroundBearer: bearer=" + bearer);
         }
 
+        TbsGatt tbsGatt = getTbsGatt();
+        if (tbsGatt == null) {
+            Log.e(TAG, "setForegroundBearer: tbsGatt is null!");
+            return;
+        }
+
         if (bearer == null) {
-            mTbsGatt.setBearerProviderName(DEFAULT_PROVIDER_NAME);
-            mTbsGatt.setBearerTechnology(DEFAULT_BEARER_TECHNOLOGY);
+            tbsGatt.setBearerProviderName(DEFAULT_PROVIDER_NAME);
+            tbsGatt.setBearerTechnology(DEFAULT_BEARER_TECHNOLOGY);
         } else if (mForegroundBearer == null) {
-            mTbsGatt.setBearerProviderName(bearer.providerName);
-            mTbsGatt.setBearerTechnology(bearer.technology);
+            tbsGatt.setBearerProviderName(bearer.providerName);
+            tbsGatt.setBearerTechnology(bearer.technology);
         } else {
             if (!bearer.providerName.equals(mForegroundBearer.providerName)) {
-                mTbsGatt.setBearerProviderName(bearer.providerName);
+                tbsGatt.setBearerProviderName(bearer.providerName);
             }
 
             if (bearer.technology != mForegroundBearer.technology) {
-                mTbsGatt.setBearerTechnology(bearer.technology);
+                tbsGatt.setBearerTechnology(bearer.technology);
             }
         }
 
@@ -886,8 +949,14 @@ public class TbsGeneric {
         if (DBG) {
             Log.d(TAG, "notifyCclc");
         }
-        mTbsGatt.setCallState(mCurrentCallsList);
-        mTbsGatt.setBearerListCurrentCalls(mCurrentCallsList);
+
+        TbsGatt tbsGatt = getTbsGatt();
+        if (tbsGatt == null) {
+            Log.e(TAG, "notifyCclc: tbsGatt is null!");
+            return;
+        }
+        tbsGatt.setCallState(mCurrentCallsList);
+        tbsGatt.setBearerListCurrentCalls(mCurrentCallsList);
     }
 
     private void updateUriSchemesSupported() {
@@ -903,7 +972,14 @@ public class TbsGeneric {
         }
 
         mUriSchemes = new ArrayList<>(newUriSchemes);
-        mTbsGatt.setBearerUriSchemesSupportedList(mUriSchemes);
+
+        TbsGatt tbsGatt = getTbsGatt();
+        if (tbsGatt == null) {
+            Log.e(TAG, "updateUriSchemesSupported: tbsGatt is null!");
+            return;
+        }
+
+        tbsGatt.setBearerUriSchemesSupportedList(mUriSchemes);
     }
 
     private static boolean isCallStateTransitionValid(int callState, int requestedOpcode) {
