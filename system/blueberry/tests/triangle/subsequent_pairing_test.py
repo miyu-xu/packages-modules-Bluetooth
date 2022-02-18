@@ -59,6 +59,8 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
       self.watch.log.info('Check if the headset appears in Bluetooth device '
                           'list and then perform subsequent pairing.')
       self.watch.adb.shell(triangle_constants.START_BLUETOOTH_SETTINGS)
+      # Searches subsequent pairing HUN with swiping up.
+      self.phone.uia(textMatches=self.headset_name).swipe.up(steps=5)
       if wear_pairing_util.search_and_click(
           device=self.watch,
           matching_text=self.headset_name,
