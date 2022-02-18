@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b9349c0_6ce86ec4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T10:29:59Z",
+      "side": 1,
+      "message": "ThreadLocal is a good idea indeed! It does provide a safe implementation. \n\nThe main issue with ThreadLocal is that it makes the three parser functions stateful and stateful functions are harder to test against. \n\nFor example, if we want to test parseLevelTwo() in a Java JUnit test, in a stateless implementation, we only need to prepare it with different inputs and observe the output. However, in a stateful implementation, we have to first modify the underlying state (i.e. sParseOffset) before we can start doing a test. \n\nMoreover ThreadLocal still uses slightly more resource than accessing a pure integer whenever get() and set() are called since a typical JVM has to store a \u003cthreadId, value\u003e map to keep track of these ThreadLocal variables behind the scene.  \n\nIf defining BaseInformationWithOffset is too complicated, there is actually a simpler version of my suggestion:\n\nhttps://developer.android.com/reference/android/util/Pair\n\nparseLevelTwo can simply return Pair\u003cBaseInformation, Integer\u003e and the values can be accessed via pair.first and pair.second. Would this simplify the solution?",
+      "parentUuid": "4401da5a_5f0aba02",
+      "range": {
+        "startLine": 37,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c3a4728_d8d1f87f",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
         "patchSetId": 40
@@ -595,6 +619,30 @@
       "side": 1,
       "message": "I see there are corresponding handler for below events.\nbit 13 LE Periodic Advertising Sync Established event\nbit 14 LE Periodic Advertising Report event\nbit 15 LE Periodic Advertising Sync Lost event\nbit 25 LE CIS Request event\nbit 33 33 LE BIGInfo Advertising Report event\n\nHowever no handlers for below 2  events. They are not required in the case.\nbit 16 LE Scan Timeout event\nbit 19 LE Channel Selection Algorithm event\n\nActually we only need below 3 events in the BASS case.\nbit 13 LE Periodic Advertising Sync Established event\nbit 14 LE Periodic Advertising Report event\nbit 15 LE Periodic Advertising Sync Lost event\n\n Will remove other bits mask.",
       "parentUuid": "5f5cb6ea_980f47a5",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 69
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c55100e_29aa68a4",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 40
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T10:29:59Z",
+      "side": 1,
+      "message": "Thanks!\n\n          3         2         1\n 9876543210987654321098765432109876543210\nold: 000001001101000000100001111001111111\nv01: 001001001111000010111111111001111111\nv02: 000001001101000000101111111001111111\n\nSee that in latest patch\n\nbit 16, bit 29, bit 25, and bit 33 are removed in the latest patch. \n\nYou mentioned that bit 25 LE CIS Request event and bit 33 LE BIGInfo Advertising Report event both have handlers, so is are they still needed by the BT stack?",
+      "parentUuid": "c6d1b179_381666b2",
       "range": {
         "startLine": 183,
         "startChar": 0,
