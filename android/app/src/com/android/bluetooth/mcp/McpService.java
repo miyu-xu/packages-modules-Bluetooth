@@ -122,6 +122,8 @@ public class McpService extends ProfileService {
         }
 
         if (sGmcs != null) {
+            // A runnable for calling sGmcs.init() could be pending on mHandler
+            mHandler.removeCallbacksAndMessages(null);
             sGmcs.cleanup();
             sGmcs = null;
         }
