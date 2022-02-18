@@ -434,7 +434,8 @@ class LeAudioAseConfigurationTest : public Test {
         ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft |
         ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
     device->src_audio_locations_ =
-        ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft;
+        ::le_audio::codec_spec_conf::kLeAudioLocationFrontLeft |
+        ::le_audio::codec_spec_conf::kLeAudioLocationFrontRight;
 
     device->conn_id_ = index;
     return device.get();
