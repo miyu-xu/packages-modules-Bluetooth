@@ -16,6 +16,24 @@
       "message": "Please add docs for all of these",
       "revId": "4bc19ebc0ab8c767e94a0f0240fbabf1ed63516b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "765436c5_15096d44",
+        "filename": "framework/java/android/bluetooth/BluetoothUuid.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-02-18T05:27:47Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t understand it. What docs need to be added?",
+      "parentUuid": "aebfd699_b3e0f3dc",
+      "revId": "4bc19ebc0ab8c767e94a0f0240fbabf1ed63516b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
