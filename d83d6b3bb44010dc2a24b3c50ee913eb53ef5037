@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ffa161e_48f764ae",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-02-18T02:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6af95bbc_7a8300d4",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80012614_08783a53",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-02-11T11:25:45Z",
       "side": 1,
       "message": "What about checking rest of pcm parameters ?",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9e1da56_4dc4bb35",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-02-18T02:26:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "80012614_08783a53",
       "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6142aa2_0bf5b649",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-02-18T02:26:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2db52fc7_4fb2d486",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "754454bb_e2a260d9",
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97e7af91_dfdc0c8e",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-02-18T02:26:34Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "754454bb_e2a260d9",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eea0772d_78b80160",
@@ -99,6 +171,24 @@
       "writtenOn": "2022-02-11T12:52:12Z",
       "side": 1,
       "message": "Just a short style issue here \"static cast\u003c ::\" I believe this space is unintended here",
+      "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b095e480_acd4f266",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1193,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-02-18T02:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eea0772d_78b80160",
       "revId": "d83d6b3bb44010dc2a24b3c50ee913eb53ef5037",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
