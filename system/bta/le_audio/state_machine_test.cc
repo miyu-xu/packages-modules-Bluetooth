@@ -1428,7 +1428,7 @@ TEST_F(StateMachineTest, testStreamSkipEnablingSinkSource) {
             types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
 }
 
-TEST_F(StateMachineTest, testStreamMultipleConversational) {
+TEST_F(StateMachineTest, DISABLED_testStreamMultipleConversational) {
   const auto context_type = kContextTypeConversational;
   const auto leaudio_group_id = 4;
   const auto num_devices = 2;
@@ -2177,7 +2177,7 @@ TEST_F(StateMachineTest, testAseAutonomousRelease) {
   }
 }
 
-TEST_F(StateMachineTest, testAseAutonomousRelease2Devices) {
+TEST_F(StateMachineTest, DISABLED_testAseAutonomousRelease2Devices) {
   const auto context_type = kContextTypeConversational;
   const int leaudio_group_id = 4;
   const int num_of_devices = 2;
