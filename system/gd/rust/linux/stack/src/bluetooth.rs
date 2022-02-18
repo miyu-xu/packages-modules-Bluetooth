@@ -365,6 +365,34 @@ impl Bluetooth {
             }
         };
     }
+
+    fn get_remote_device_if_found(
+        &self,
+        device: BluetoothDevice,
+    ) -> Option<&BluetoothDeviceContext> {
+        match self.bonded_devices.contains_key(&device.address)
+            || self.found_devices.contains_key(&device.address)
+        {
+            true => self
+                .bonded_devices
+                .get(&device.address)
+                .or_else(|| self.found_devices.get(&device.address)),
+            _ => None,
+        }
+    }
+
+    fn get_remote_device_property(
+        &self,
+        device: BluetoothDevice,
+        property_type: &BtPropertyType,
+    ) -> Option<BluetoothProperty> {
+        self.get_remote_device_if_found(device).and_then(|d| {
+            match d.properties.get(property_type) {
+                Some(p) => return Some(p.clone()),
+                _ => None,
+            }
+        })
+    }
 }
 
 #[btif_callbacks_dispatcher(Bluetooth, dispatch_base_callbacks, BaseCallbacks)]
@@ -1025,35 +1053,16 @@ impl IBluetooth for Bluetooth {
     }
 
     fn get_remote_uuids(&self, device: BluetoothDevice) -> Vec<Uuid128Bit> {
-        // Device must exist in either bonded or found list
-        let found = self
-            .bonded_devices
-            .get(&device.address)
-            .or_else(|| self.found_devices.get(&device.address));
-
-        // Extract property from the device
-        return found
-            .and_then(|d| {
-                if let Some(u) = d.properties.get(&BtPropertyType::Uuids) {
-                    match u {
-                        BluetoothProperty::Uuids(uuids) => {
-                            return Some(
-                                uuids.iter().map(|&x| x.uu.clone()).collect::<Vec<Uuid128Bit>>(),
-                            );
-                        }
-                        _ => (),
-                    }
-                }
-
-                None
-            })
-            .unwrap_or(vec![]);
+        match self.get_remote_device_property(device, &BtPropertyType::Uuids) {
+            Some(BluetoothProperty::Uuids(uuids)) => {
+                return uuids.iter().map(|&x| x.uu.clone()).collect::<Vec<Uuid128Bit>>()
+            }
+            _ => return vec![],
+        }
     }
 
     fn fetch_remote_uuids(&self, device: BluetoothDevice) -> bool {
-        if !self.bonded_devices.contains_key(&device.address)
-            && !self.found_devices.contains_key(&device.address)
-        {
+        if let None = self.get_remote_device_if_found(device.clone()) {
             warn!("Won't fetch UUIDs on unknown device {}", device.address);
             return false;
         }
