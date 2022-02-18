@@ -46,6 +46,30 @@
       },
       "revId": "ce96d4911d27b263501fc934f2610d4489648acd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25a8716f_3fe6809a",
+        "filename": "android/blueberry/server/src/com/android/blueberry/A2dp.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-18T13:29:49Z",
+      "side": 1,
+      "message": "I\u0027ve added the Broadcast receiver :) !",
+      "parentUuid": "e32bf82a_559d183d",
+      "range": {
+        "startLine": 83,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 3
+      },
+      "revId": "ce96d4911d27b263501fc934f2610d4489648acd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
