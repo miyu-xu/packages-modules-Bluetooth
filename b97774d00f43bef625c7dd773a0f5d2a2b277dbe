@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2fa0252c_b25da595",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-02-18T14:33:36Z",
+      "side": 1,
+      "message": "In this case, we should rather listen for the https://developer.android.com/reference/android/bluetooth/BluetoothDevice#ACTION_ACL_CONNECTED intent (which should be sent before profiles are connected).",
+      "parentUuid": "303be1cd_90f58746",
+      "range": {
+        "startLine": 131,
+        "startChar": 18,
+        "endLine": 132,
+        "endChar": 100
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "030fcc2f_f3e76f3e",
         "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
         "patchSetId": 17
