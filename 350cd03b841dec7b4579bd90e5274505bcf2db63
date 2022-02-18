@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02c49ef1_0067fefa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 40
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "Thanks for the updated patch, some last round of comments and close to ready! ",
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d4e6d7_a8b1f816",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "Understand that this is needed to keep track of current index when parsing the input array and Java does not provide a good way to return both result and index after each parsing step, neither does Java have a standard mutable integer implementation. \n\nHowever, having a static counter may create race conditions in the future. For example, multiple threads might be calling BassData.parseBaseData() at the same time and the sParseOffset value might be modified by these threads. \n\nA simple way to fix this is to add \"synchronized\" to parseBaseData, but this will hurt the code\u0027s performance since we would only be able to parse one BASE array at a time. \n\nHence, after some thinking, a better way might be this:\n\nCreate a helper class\n\n```\nclass BaseInformationWithOffset {\n    private BaseInformation mBaseInformation;\n    private int mParseOffset;\n    \n    BaseInformationWithOffset(BaseInformation baseInformation, int parseOffset) {\n        mBaseInformation \u003d baseInformation;\n        mParseOffset \u003d parseOffset;\n    }\n    \n    BaseInformation getBaseInformation() {\n        return mBaseInformation;\n    }\n    \n    int getParseOffset() {\n        return mParseOffset;\n    }\n}\n```\n\nThen change the following method\u0027s signature to accept an offset and return the BaseInformationWithOffset helper class\n\n```\nprivate static BaseInformationWithOffset parseLevelTwo(byte[] serviceData, int groupIndex, int parseOffset) {\n    // Parse the BASE level two information\n    // Change parseOffset in this method as needed\n    // When you are ready to return\n    return new BaseInformationWithOffset(node, parseOffset);\n}\n\nprivate static BaseInformationWithOffset parseLevelThree(byte[] serviceData, int parseOffset) {\n    // Same as above\n    return new BaseInformationWithOffset(node, parseOffset);\n}\n```\n\nThen in `parseBaseData`, you can declare parseOffset as a local variable and update it using the return values from the above two methods\n\n```\nstatic BaseData parseBaseData(byte[] serviceData) {\n    int parseOffset \u003d 0;\n    // do level one parsing\n    // when it is time to do level two parsing\n    BaseInformationWithOffset levelBaseInformationWithOffset \u003d parseLevelTwo(serviceData, groupIndex, parsetOffset);\n    BaseInformation levelTwo \u003d levelBaseInformationWithOffset.getBaseInformation();\n    parseOffset \u003d levelBaseInformationWithOffset.getParseOffset();\n}\n```\n\nUsing this algorithm, you can avoid declaring a globally static sParseOffset variable and the code will be able to parse multiple BASE arrays in parallel. \n\nThanks!",
+      "range": {
+        "startLine": 37,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c3a4728_d8d1f87f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "nit: UNKNOWN",
+      "range": {
+        "startLine": 50,
+        "startChar": 29,
+        "endLine": 50,
+        "endChar": 57
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29280ec5_c3461071",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "see above comments",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 243,
+        "endChar": 86
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ef588e_5d76087b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "see above comments",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 72
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc8a01de_89feda20",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "nit: split this into two lines for readability",
+      "range": {
+        "startLine": 294,
+        "startChar": 8,
+        "endLine": 294,
+        "endChar": 39
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531f3dd9_43bd64ef",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "nit: updateBase \n\nreference: https://google.github.io/styleguide/javaguide.html#s5.3-camel-case",
+      "range": {
+        "startLine": 157,
+        "startChar": 9,
+        "endLine": 157,
+        "endChar": 19
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbcf602b_41456387",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "nit: getBase",
+      "range": {
+        "startLine": 166,
+        "startChar": 13,
+        "endLine": 166,
+        "endChar": 20
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9f0bd78_1197557b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "Thank you!",
+      "range": {
+        "startLine": 669,
+        "startChar": 0,
+        "endLine": 672,
+        "endChar": 13
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b09ca12f_79aa8ac3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "Does this change cover CSIP operations? If not, we should handle isGroupOp in the next change.",
+      "range": {
+        "startLine": 735,
+        "startChar": 20,
+        "endLine": 735,
+        "endChar": 29
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "453534d4_46ef0324",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "this piece of code repeated twice in this class, maybe take it out into BassUtils as a static method?\n\ne.g.\n\n```\nclass BassUtils {\n    static int parseBroadcastId(byte[] broadcastIdBytes) {\n    }\n}\n```\n\nThen, in the state machine code, you can just call\n\n```\nint broadcastId \u003d BassUtils.parseBroadcastId(broadcastIdBytes);\n```\n\nThe same principle goes with other parser code that could be reused to reduce code length.",
+      "range": {
+        "startLine": 605,
+        "startChar": 12,
+        "endLine": 607,
+        "endChar": 62
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbeaabfb_981aed27",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "nit: move this down",
+      "range": {
+        "startLine": 1159,
+        "startChar": 0,
+        "endLine": 1159,
+        "endChar": 19
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e0d6532_e251f74e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "byte[] res\n\ncan be declared here",
+      "range": {
+        "startLine": 1184,
+        "startChar": 8,
+        "endLine": 1184,
+        "endChar": 11
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f5cb6ea_980f47a5",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 40
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-18T00:04:03Z",
+      "side": 1,
+      "message": "Change in LE event mask:\n\n```\n          3         2         1\n 9876543210987654321098765432109876543210\nold: 000001001101000000100001111001111111\nnew: 001001001111000010111111111001111111\n\nadded bits are\n\nbit 13 LE Periodic Advertising Sync Established event\nbit 14 LE Periodic Advertising Report event\nbit 15 LE Periodic Advertising Sync Lost event\nbit 16 LE Scan Timeout event\nbit 19 LE Channel Selection Algorithm event\nbit 25 LE CIS Request event\nbit 33 33 LE BIGInfo Advertising Report event\n```\n\nSince we are handling more events, are there any changes in C++ needed besides the existing Periodic Sync change that was merged last month? \n\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1908371",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 69
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
