@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c562b2b3_44d37ac8",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ee0b019_4ae657e4",
+      "range": {
+        "startLine": 410,
+        "startChar": 21,
+        "endLine": 410,
+        "endChar": 36
+      },
+      "revId": "7b5c3941b154757f6d53c1682080da4522dcb807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4dbc6391_c0fe1fcc",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-16T22:01:01Z",
       "side": 1,
       "message": "remote exception should be rethrown",
+      "range": {
+        "startLine": 544,
+        "startChar": 21,
+        "endLine": 544,
+        "endChar": 36
+      },
+      "revId": "7b5c3941b154757f6d53c1682080da4522dcb807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0f596c0_d6d555b0",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-18T14:05:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dbc6391_c0fe1fcc",
       "range": {
         "startLine": 544,
         "startChar": 21,
