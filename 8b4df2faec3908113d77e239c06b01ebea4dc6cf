@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50d6a3c1_bc4a4df8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1059499
+      },
+      "writtenOn": "2022-02-20T22:53:54Z",
+      "side": 1,
+      "message": "Please sync with your regular API councillor to review the CL.",
+      "revId": "8b4df2faec3908113d77e239c06b01ebea4dc6cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
