@@ -215,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c46ed3e1_322d5aa1",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 17
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-21T14:01:40Z",
+      "side": 1,
+      "message": "Just done some tests while listening to ACTION_ACL_CONNECTED and it doesn\u0027t work properly. It seems cleaner to listen to STATE_CONNECTING, which works smoothly. However I clarified the code here:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1973909/20",
+      "parentUuid": "2fa0252c_b25da595",
+      "range": {
+        "startLine": 131,
+        "startChar": 18,
+        "endLine": 132,
+        "endChar": 100
+      },
+      "revId": "b97774d00f43bef625c7dd773a0f5d2a2b277dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "030fcc2f_f3e76f3e",
         "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
         "patchSetId": 17
