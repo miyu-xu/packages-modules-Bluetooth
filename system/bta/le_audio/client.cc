@@ -1066,6 +1066,17 @@ class LeAudioClientImpl : public LeAudioClient {
           std::optional<AudioContexts> updated_contexts =
               group->UpdateActiveContextsMap(updated_avail_contexts);
           if (updated_contexts) {
+            /* Update of available context may happen during state transition
+             * or while streaming. Don't bother current transition or streaming
+             * process. Update configuration once group became idle.
+             */
+            if (group->IsInTransition() ||
+                (group->GetState() !=
+                 AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
+              group->SetPendingUpdateAvailableContexts(updated_contexts);
+              return;
+            }
+
             callbacks_->OnAudioConf(group->audio_directions_, group->group_id_,
                                     group->snk_audio_locations_.to_ulong(),
                                     group->src_audio_locations_.to_ulong(),
@@ -3196,6 +3207,25 @@ class LeAudioClientImpl : public LeAudioClient {
 
         if (!RestartStreamingAfterReconfiguration(group_id))
           CancelStreamingRequest();
+
+        /* Update group configuration with pending available context */
+        LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
+        if (!group) {
+          LOG(ERROR) << __func__ << ", Failed to update pending available "
+                     << "contexts for group: " << group_id;
+          return;
+        }
+        std::optional<AudioContexts> pending_update_available_contexts =
+            group->GetPendingUpdateAvailableContexts();
+        if (pending_update_available_contexts) {
+          group->SetPendingUpdateAvailableContexts(std::nullopt);
+
+          callbacks_->OnAudioConf(
+              group->audio_directions_, group->group_id_,
+              group->snk_audio_locations_.to_ulong(),
+              group->src_audio_locations_.to_ulong(),
+              pending_update_available_contexts->to_ulong());
+        }
 
         break;
       }
