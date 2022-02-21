@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c807855c_1eb86d54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-21T08:05:00Z",
+      "side": 1,
+      "message": "The assumption was that if the target does not support this, it should not even initialize the service in the upper layers, thus this crash serves as a very last mechanism preventing us from having useless empty shells to call in from the upper layer and was suppose to detect badly configured targets. This also has this implication that the `LeAudioClient::Get()` always returns not null (and if it happens to return null, then it\u0027s a bad usage as it should never be called, thus this `CHECK()` is there). I\u0027m afraid that other parts of the code, call `LeAudioClient::Get()` with this assumption without checking the returned value for null, and in its current form, this patch might not be enough and cause other problems there.\n\nI\u0027m aware of the existence of GSI, where everything should be enabled and I guess detected and configured at run time. However my knowledge of how GSI works is very limited. Is there any GSI specific way to figure out what the vendor part is capable of, before going into the service initialization? It would be nice to know that before we even start enabling services in java.\n\nOh, and there are tests expecting the stack to die, so they will now fail.",
+      "revId": "710da99e932864c2f25ed271054757952abd7365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93d6202a_2f873cb7",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-21T08:05:00Z",
+      "side": 1,
+      "message": "I think this would crash the stack as well.",
+      "range": {
+        "startLine": 719,
+        "startChar": 1,
+        "endLine": 719,
+        "endChar": 18
+      },
+      "revId": "710da99e932864c2f25ed271054757952abd7365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54a7c316_df91003d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3331,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-21T08:05:00Z",
+      "side": 1,
+      "message": "I think this would crash the stack as well.",
+      "range": {
+        "startLine": 3331,
+        "startChar": 2,
+        "endLine": 3331,
+        "endChar": 18
+      },
+      "revId": "710da99e932864c2f25ed271054757952abd7365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
