@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8294067a_13992b62",
+        "filename": "android/blueberry/server/src/com/android/blueberry/A2dp.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-21T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fffcb5a1_e3820c1f",
+      "range": {
+        "startLine": 57,
+        "startChar": 2,
+        "endLine": 57,
+        "endChar": 11
+      },
+      "revId": "f233ee0b71096490786e5def8c67666441868dd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9b2520c_bcb2e850",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86e2dc33_db56cb37",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-21T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9b2520c_bcb2e850",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 26
+      },
+      "revId": "f233ee0b71096490786e5def8c67666441868dd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c16813c_e0aca5ec",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-02-17T16:37:12Z",
       "side": 1,
       "message": "Use disconnect instead of removeBond",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 194,
+        "endChar": 36
+      },
+      "revId": "f233ee0b71096490786e5def8c67666441868dd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a098d01f_b8f947d0",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-21T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c16813c_e0aca5ec",
       "range": {
         "startLine": 194,
         "startChar": 6,
