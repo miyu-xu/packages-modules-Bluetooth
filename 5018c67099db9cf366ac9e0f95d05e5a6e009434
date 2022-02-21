@@ -22,6 +22,30 @@
       },
       "revId": "5018c67099db9cf366ac9e0f95d05e5a6e009434",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e80ca97_69528153",
+        "filename": "android/blueberry/server/src/com/android/blueberry/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-02-21T14:54:38Z",
+      "side": 1,
+      "message": "Done in a new CL",
+      "parentUuid": "398fd816_fc4f76fb",
+      "range": {
+        "startLine": 199,
+        "startChar": 2,
+        "endLine": 200,
+        "endChar": 1
+      },
+      "revId": "5018c67099db9cf366ac9e0f95d05e5a6e009434",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
