@@ -3335,7 +3335,7 @@ LeAudioClient* LeAudioClient::Get() {
 /* Initializer of main le audio implementation class and its instance */
 void LeAudioClient::Initialize(
     bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
-    base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
+    base::Closure initCb, base::Callback<bool()> hal_verifier,
     const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
         offloading_preference) {
   if (instance) {
@@ -3352,10 +3352,12 @@ void LeAudioClient::Initialize(
     return;
   }
 
-  LOG_ASSERT(std::move(hal_2_1_verifier).Run())
-      << __func__
-      << ", LE Audio Client requires Bluetooth Audio HAL V2.1 at least. Either "
-         "disable LE Audio Profile, or update your HAL";
+  if (!std::move(hal_verifier).Run()) {
+    LOG(ERROR) << __func__
+               << ", LE Audio Client requires Bluetooth Audio HAL V2.1 at "
+                  "least. Initial failed.";
+    return;
+  }
 
   // TODO: The capability list should pass to the codec manager once it's ready
   std::vector<::le_audio::set_configurations::AudioSetConfiguration>

@@ -686,7 +686,7 @@ LeAudioBroadcasterImpl::LeAudioClientAudioSinkReceiverImpl
 
 void LeAudioBroadcaster::Initialize(
     bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks,
-    base::Callback<bool()> hal_2_1_verifier) {
+    base::Callback<bool()> hal_verifier) {
   LOG(INFO) << "Broadcaster " << __func__;
   if (instance) {
     LOG(ERROR) << "Already initialized";
@@ -701,8 +701,9 @@ void LeAudioBroadcaster::Initialize(
 
   IsoManager::GetInstance()->Start();
 
-  if (!std::move(hal_2_1_verifier).Run()) {
-    LOG_ASSERT(false) << __func__ << ", HAL 2.1 not supported, Init aborted.";
+  if (!std::move(hal_verifier).Run()) {
+    LOG(ERROR) << __func__
+               << ", bluetooth.audio AIDL HAL not supported, Init failed.";
     return;
   }
 

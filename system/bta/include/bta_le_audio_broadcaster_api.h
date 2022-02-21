@@ -40,7 +40,7 @@ class LeAudioBroadcaster {
 
   static void Initialize(
       bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks,
-      base::Callback<bool()> hal_2_1_verifier);
+      base::Callback<bool()> hal_verifier);
   static void Stop(void);
   static void Cleanup(void);
   static LeAudioBroadcaster* Get(void);

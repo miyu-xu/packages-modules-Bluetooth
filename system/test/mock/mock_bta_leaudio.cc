@@ -67,7 +67,7 @@ bool LeAudioClient::IsLeAudioClientRunning(void) {
 }
 void LeAudioClient::Initialize(
     bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
-    base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
+    base::Closure initCb, base::Callback<bool()> hal_verifier,
     const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
         offloading_preference) {
   mock_function_count_map[__func__]++;
