@@ -32,7 +32,7 @@ class Server(context: Context) {
 
   init {
     host = Host(context, this)
-    a2dp = A2dp(context, host)
+    a2dp = A2dp(context)
     grpcServer = NettyServerBuilder.forPort(GRPC_PORT).addService(host).addService(a2dp).build()
 
     Log.d(TAG, "Starting Blueberry Server")

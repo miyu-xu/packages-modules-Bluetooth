@@ -231,5 +231,4 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   }
 
   fun BluetoothDevice.disconnect() = this.javaClass.getMethod("disconnect").invoke(this)
-  fun getConnectedBluetoothDevice() = bluetoothDevice
 }
