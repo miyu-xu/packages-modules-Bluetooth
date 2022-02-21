@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2c22856_9d22747e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-21T05:42:44Z",
+      "side": 1,
+      "message": "Not a review, but just some minor comments:",
+      "revId": "8717b65336ff639e8299db44212f07419d219f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acea4a92_22ad964b",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-21T05:42:44Z",
+      "side": 1,
+      "message": "Please remove spaces, here and below",
+      "range": {
+        "startLine": 493,
+        "startChar": 24,
+        "endLine": 493,
+        "endChar": 27
+      },
+      "revId": "8717b65336ff639e8299db44212f07419d219f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa73c5f_416dc515",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-21T05:42:44Z",
+      "side": 1,
+      "message": "false?",
+      "range": {
+        "startLine": 56,
+        "startChar": 39,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "8717b65336ff639e8299db44212f07419d219f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95acb321_04d893a2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-21T05:42:44Z",
+      "side": 1,
+      "message": "vc?",
+      "range": {
+        "startLine": 83,
+        "startChar": 82,
+        "endLine": 83,
+        "endChar": 89
+      },
+      "revId": "8717b65336ff639e8299db44212f07419d219f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
