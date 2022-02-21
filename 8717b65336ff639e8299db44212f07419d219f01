@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "809e4a0e_0f3be722",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 7
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-02-21T06:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acea4a92_22ad964b",
+      "range": {
+        "startLine": 493,
+        "startChar": 24,
+        "endLine": 493,
+        "endChar": 27
+      },
+      "revId": "8717b65336ff639e8299db44212f07419d219f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8aa73c5f_416dc515",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e44b27b_7bd34658",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-02-21T06:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8aa73c5f_416dc515",
+      "range": {
+        "startLine": 56,
+        "startChar": 39,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "8717b65336ff639e8299db44212f07419d219f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95acb321_04d893a2",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-02-21T05:42:44Z",
       "side": 1,
       "message": "vc?",
+      "range": {
+        "startLine": 83,
+        "startChar": 82,
+        "endLine": 83,
+        "endChar": 89
+      },
+      "revId": "8717b65336ff639e8299db44212f07419d219f01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df1c5f38_7f3c8512",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/vc/VolumeControlServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-02-21T06:00:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95acb321_04d893a2",
       "range": {
         "startLine": 83,
         "startChar": 82,
