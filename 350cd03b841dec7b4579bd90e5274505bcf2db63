@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b09ea777_3981e194",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 40
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-02-21T05:18:33Z",
+      "side": 1,
+      "message": "It is just what I need. Thanks Jack.",
+      "parentUuid": "5b9349c0_6ce86ec4",
+      "range": {
+        "startLine": 37,
+        "startChar": 23,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c3a4728_d8d1f87f",
@@ -643,6 +667,30 @@
       "side": 1,
       "message": "Thanks!\n\n          3         2         1\n 9876543210987654321098765432109876543210\nold: 000001001101000000100001111001111111\nv01: 001001001111000010111111111001111111\nv02: 000001001101000000101111111001111111\n\nSee that in latest patch\n\nbit 16, bit 29, bit 25, and bit 33 are removed in the latest patch. \n\nYou mentioned that bit 25 LE CIS Request event and bit 33 LE BIGInfo Advertising Report event both have handlers, so is are they still needed by the BT stack?",
       "parentUuid": "c6d1b179_381666b2",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 69
+      },
+      "revId": "350cd03b841dec7b4579bd90e5274505bcf2db63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fc8d9b3_fa5b72cf",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 40
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-02-21T05:18:33Z",
+      "side": 1,
+      "message": "Yes, these two events both have handlers:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/btu/btu_hcif.cc;drc\u003d296d92eb9c898c8b0fa6e07a3601aafe22d944a6;l\u003d456\n        case HCI_BLE_CIS_REQ_EVT:\n        case HCI_BLE_BIG_SYNC_EST_EVT:\n        case HCI_BLE_BIG_SYNC_LOST_EVT:\n          IsoManager::GetInstance()-\u003eHandleHciEvent(ble_sub_code, p,\n                                                    ble_evt_len);\n          break;\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/btu/btu_hcif.cc;drc\u003d296d92eb9c898c8b0fa6e07a3601aafe22d944a6;l\u003d467\n        case HCI_LE_BIGINFO_ADVERTISING_REPORT_EVT:\n          btm_ble_biginfo_adv_report_rcvd(p, hci_evt_len);\n          break;\n\nBut it should be not related to BASS, so I removed event mask for this two events.\nOnly add event masks for below events. They are required for BASS.\nbit 13 LE Periodic Advertising Sync Established event\nbit 14 LE Periodic Advertising Report event\nbit 15 LE Periodic Advertising Sync Lost event\n\nThanks,\nXiaoyang",
+      "parentUuid": "4c55100e_29aa68a4",
       "range": {
         "startLine": 183,
         "startChar": 0,
