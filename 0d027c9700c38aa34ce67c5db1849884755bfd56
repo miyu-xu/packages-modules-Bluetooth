@@ -16,6 +16,24 @@
       "message": "We have just left and right channels. vector for 2 elements is overkill",
       "revId": "0d027c9700c38aa34ce67c5db1849884755bfd56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a20ca14_ee2f6ce5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 3260,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-02-22T12:43:29Z",
+      "side": 1,
+      "message": "this CL is rather generic/multi-microphone than limited to mono-stereo, there can be multiple decoders assigned to different channels.",
+      "parentUuid": "eed556f8_bd171eea",
+      "revId": "0d027c9700c38aa34ce67c5db1849884755bfd56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
