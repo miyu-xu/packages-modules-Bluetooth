@@ -27,6 +27,8 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <memory>
+
 #include "BluetoothAudioSession.h"
 #include "stream_apis.h"
 #include "utils.h"
@@ -1203,7 +1205,7 @@ int adev_open_input_stream(struct audio_hw_device* dev,
                            const char* address __unused,
                            audio_source_t source __unused) {
   *stream_in = nullptr;
-  auto* in = new BluetoothStreamIn{};
+  auto in = std::make_unique<BluetoothStreamIn>();
   if (::aidl::android::hardware::bluetooth::audio::BluetoothAudioSession::
           IsAidlAvailable()) {
     in->bluetooth_input_ = std::make_unique<
@@ -1217,7 +1219,6 @@ int adev_open_input_stream(struct audio_hw_device* dev,
   if (!in->bluetooth_input_->SetUp(devices)) {
     in->bluetooth_input_ = nullptr;
     LOG(ERROR) << __func__ << ": cannot init HAL";
-    delete in;
     return -EINVAL;
   }
 
@@ -1273,13 +1274,14 @@ int adev_open_input_stream(struct audio_hw_device* dev,
       frame_count(in->preferred_data_interval_us, in->sample_rate_);
   in->frames_presented_ = 0;
 
-  *stream_in = &in->stream_in_;
-  LOG(INFO) << __func__ << ": state=" << in->bluetooth_input_->GetState()
-            << ", sample_rate=" << in->sample_rate_
-            << ", channels=" << StringPrintf("%#x", in->channel_mask_)
-            << ", format=" << in->format_
-            << ", preferred_data_interval_us=" << in->preferred_data_interval_us
-            << ", frames=" << in->frames_count_;
+  BluetoothStreamIn* in_ptr = in.release();
+  *stream_in = &in_ptr->stream_in_;
+  LOG(INFO) << __func__ << ": state=" << in_ptr->bluetooth_input_->GetState()
+            << ", sample_rate=" << in_ptr->sample_rate_
+            << ", channels=" << StringPrintf("%#x", in_ptr->channel_mask_)
+            << ", format=" << in_ptr->format_ << ", preferred_data_interval_us="
+            << in_ptr->preferred_data_interval_us
+            << ", frames=" << in_ptr->frames_count_;
 
   return 0;
 }
