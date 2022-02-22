@@ -1138,7 +1138,8 @@ void PacketDef::GenRustAccessStructImpls(std::ostream& s) const {
     s << "impl CommandExpectations for " << name_ << "Packet {";
     s << " type ResponseType = " << complement_->name_ << "Packet;";
     s << " fn _to_response_type(pkt: EventPacket) -> Self::ResponseType { ";
-    s << complement_->name_ << "Packet::new(pkt." << complement_root_accessor << ".clone()).unwrap()";
+    s << complement_->name_ << "Packet::new(pkt." << complement_root_accessor << ".clone())"
+      << ".unwrap()";
     s << " }";
     s << "}";
   }
@@ -1260,7 +1261,8 @@ void PacketDef::GenRustAccessStructImpls(std::ostream& s) const {
     auto def = *it;
     s << "impl Into<" << def->name_ << "Packet> for " << name_ << "Packet {";
     s << " fn into(self) -> " << def->name_ << "Packet {";
-    s << def->name_ << "Packet::new(self." << util::CamelCaseToUnderScore(root->name_) << ").unwrap()";
+    s << def->name_ << "Packet::new(self." << util::CamelCaseToUnderScore(root->name_) << ")"
+      << ".unwrap()";
     s << " }";
     s << "}\n";
   }
@@ -1273,7 +1275,8 @@ void PacketDef::GenRustBuilderStructImpls(std::ostream& s) const {
     s << "impl CommandExpectations for " << name_ << "Builder {";
     s << " type ResponseType = " << complement_->name_ << "Packet;";
     s << " fn _to_response_type(pkt: EventPacket) -> Self::ResponseType { ";
-    s << complement_->name_ << "Packet::new(pkt." << complement_root_accessor << ".clone()).unwrap()";
+    s << complement_->name_ << "Packet::new(pkt." << complement_root_accessor << ".clone())"
+      << ".unwrap()";
     s << " }";
     s << "}";
   }
