@@ -21,14 +21,15 @@ import android.util.Log
 import io.grpc.Server as GrpcServer
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
 
+@kotlinx.coroutines.ExperimentalCoroutinesApi
 class Server(context: Context) {
 
   private val TAG = "BlueberryServer"
   private val GRPC_PORT = 8999
 
-  private lateinit var host: Host
-  private lateinit var a2dp: A2dp
-  private lateinit var grpcServer: GrpcServer
+  private var host: Host
+  private var a2dp: A2dp
+  private var grpcServer: GrpcServer
 
   init {
     host = Host(context, this)
@@ -41,6 +42,7 @@ class Server(context: Context) {
   }
 
   fun shutdownNow() {
+    host.deinit()
     a2dp.deinit()
     grpcServer.shutdownNow()
   }
