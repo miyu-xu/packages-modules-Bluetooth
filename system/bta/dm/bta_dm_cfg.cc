@@ -60,6 +60,8 @@ const tBTA_DM_CFG bta_dm_cfg = {
     /* true to avoid scatternet when av is streaming (be the central) */
     BTA_DM_AVOID_SCATTER_A2DP};
 
+const tBTA_DM_CFG* p_bta_dm_cfg = &bta_dm_cfg;
+
 #ifndef BTA_DM_SCATTERNET
 /* By default, allow partial scatternet */
 #define BTA_DM_SCATTERNET BTA_DM_PARTIAL_SCATTERNET
@@ -86,15 +88,15 @@ const tBTA_DM_CFG bta_dm_cfg = {
    app_id = # of entries table, cfg is
    device scatternet support */
 const tBTA_DM_RM bta_dm_rm_cfg[] = {
-    {BTA_ID_SYS, BTA_DM_NUM_RM_ENTRY, BTA_DM_SCATTERNET},
-    {BTA_ID_PAN, BTUI_PAN_ID_NAP, BTA_ANY_ROLE},
-    {BTA_ID_PAN, BTUI_PAN_ID_GN, BTA_ANY_ROLE},
-    {BTA_ID_PAN, BTA_APP_ID_PAN_MULTI, BTA_CENTRAL_ROLE_ONLY},
-    {BTA_ID_PAN, BTUI_PAN_ID_PANU, BTA_PANU_ROLE},
-    {BTA_ID_HH, BTA_ALL_APP_ID, BTA_HH_ROLE},
-    {BTA_ID_AV, BTA_ALL_APP_ID, BTA_CENTRAL_ROLE_PREF}};
-
-const tBTA_DM_CFG* p_bta_dm_cfg = &bta_dm_cfg;
+    {.id = BTA_ID_SYS, .app_id = BTA_DM_NUM_RM_ENTRY, .cfg = BTA_DM_SCATTERNET},
+    {.id = BTA_ID_PAN, .app_id = BTUI_PAN_ID_NAP, .cfg = BTA_ANY_ROLE},
+    {.id = BTA_ID_PAN, .app_id = BTUI_PAN_ID_GN, .cfg = BTA_ANY_ROLE},
+    {.id = BTA_ID_PAN,
+     .app_id = BTA_APP_ID_PAN_MULTI,
+     .cfg = BTA_CENTRAL_ROLE_ONLY},
+    {.id = BTA_ID_PAN, .app_id = BTUI_PAN_ID_PANU, .cfg = BTA_PANU_ROLE},
+    {.id = BTA_ID_HH, .app_id = BTA_ALL_APP_ID, .cfg = BTA_HH_ROLE},
+    {.id = BTA_ID_AV, .app_id = BTA_ALL_APP_ID, .cfg = BTA_CENTRAL_ROLE_PREF}};
 
 const tBTA_DM_RM* p_bta_dm_rm_cfg = &bta_dm_rm_cfg[0];
 

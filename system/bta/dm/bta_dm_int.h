@@ -403,7 +403,7 @@ typedef struct {
 extern const uint32_t bta_service_id_to_btm_srv_id_lkup_tbl[];
 
 typedef struct {
-  uint8_t id;
+  tBTA_SYS_ID id;
   uint8_t app_id;
   uint8_t cfg;
 
