@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e673a4de_9b2478c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-22T18:22:17Z",
+      "side": 1,
+      "message": "Some API changes are not captured\n\n--- packages/modules/Bluetooth/framework/api/system-current.txt\t2022-02-22 17:34:41.849517651 +0000\n+++ out/soong/.intermediates/packages/modules/Bluetooth/framework/framework-bluetooth.stubs.source.system/android_common/metalava/framework-bluetooth.stubs.source.system_api.txt\t2022-02-22 17:38:39.109466566 +0000\n@@ -349,7 +349,7 @@ public final class BluetoothLeAudio impl\n     method @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getAudioLocation(@NonNull android.bluetooth.BluetoothDevice);\n     method @Nullable @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public android.bluetooth.BluetoothLeAudioCodecStatus getCodecStatus(@NonNull android.bluetooth.BluetoothDevice);\n     method @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int getConnectionPolicy(@Nullable android.bluetooth.BluetoothDevice);\n-    method @Nullable @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void setCodecConfigPreference(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.bluetooth.BluetoothLeAudioCodecConfig);\n+    method @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void setCodecConfigPreference(@NonNull android.bluetooth.BluetoothDevice, @NonNull android.bluetooth.BluetoothLeAudioCodecConfig);\n     method @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setConnectionPolicy(@NonNull android.bluetooth.BluetoothDevice, int);\n     method @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public void setVolume(int);\n     field @RequiresPermission(allOf\u003d{android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public static final String ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED \u003d \"android.bluetooth.action.LE_AUDIO_ACTIVE_DEVICE_CHANGED\";\n-e ",
+      "revId": "b181767329cc224ada74283769b3abc9491a9781",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
