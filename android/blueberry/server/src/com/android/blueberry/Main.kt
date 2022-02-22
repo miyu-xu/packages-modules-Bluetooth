@@ -23,6 +23,7 @@ import android.util.Log
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.runner.MonitoringInstrumentation
 
+@kotlinx.coroutines.ExperimentalCoroutinesApi
 class Main : MonitoringInstrumentation() {
 
   private val TAG = "BlueberryMain"
@@ -30,14 +31,14 @@ class Main : MonitoringInstrumentation() {
   override fun onCreate(arguments: Bundle) {
     super.onCreate(arguments)
 
-    // Activate debugger
+    // Activate debugger.
     if (arguments.getString("debug").toBoolean()) {
       Log.i(TAG, "Waiting for debugger to connect...")
       Debug.waitForDebugger()
       Log.i(TAG, "Debugger connected")
     }
 
-    // Start instrumentation thread
+    // Start instrumentation thread.
     start()
   }
 

@@ -19,7 +19,6 @@ package com.android.blueberry
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -31,204 +30,168 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.channels.trySendBlocking
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.launch
 
+@kotlinx.coroutines.ExperimentalCoroutinesApi
 class Host(private val context: Context, private val server: Server) : HostImplBase() {
   private val TAG = "BlueberryHost"
+
+  private val scope: CoroutineScope
+  private var flow: Flow<Intent>
 
   private val bluetoothManager =
     context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
   private val bluetoothAdapter = bluetoothManager.adapter
-  private val localMacAddress = MacAddress.fromString(bluetoothAdapter.getAddress())
-  private val PAIRING_VARIANT_CONSENT = 3 // hide in BluetoothDevice.java
+  private val PAIRING_VARIANT_CONSENT = 3 // hiden in BluetoothDevice.java
 
-  private var bluetoothDevice: BluetoothDevice? = null
+  init {
+    scope = CoroutineScope(Dispatchers.Default)
+
+    // Add all intent actions to be listened.
+    val intentFilter = IntentFilter()
+    intentFilter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED)
+    intentFilter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED)
+    intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
+    intentFilter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
+
+    // Creates a shared flow of intents that can be used in all methods in the coroutine scope.
+    // This flow is started eagerly to make sure that the broadcast receiver is registered before
+    // any function call. This flow is only cancelled when the corresponding scope is cancelled.
+    flow = intentFlow(context, intentFilter).shareIn(scope, SharingStarted.Eagerly)
+  }
 
   override fun reset(request: Empty, responseObserver: StreamObserver<Empty>) {
-    Log.i(TAG, "reset")
+    grpcUnary<Empty>(scope, responseObserver) {
+      Log.i(TAG, "reset")
 
-    bluetoothAdapter.getBondedDevices()?.forEach { bondedDevice ->
-      bondedDevice.removeBond()
-    }
-    bluetoothDevice = null
+      // Remove all bonded devices to avoid autoconnect.
+      bluetoothAdapter.getBondedDevices()?.forEach { bondedDevice -> bondedDevice.removeBond() }
 
-    runBlocking {
-      val flow = callbackFlow {
-        // Register broadcast receiver for callbacks
-        val bluetoothBroadcastReceiver: BroadcastReceiver =
-          object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-              when (intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.STATE_OFF)) {
-                BluetoothAdapter.STATE_OFF -> {
-                  bluetoothAdapter.enable()
-                }
-                BluetoothAdapter.STATE_ON -> {
-                  trySendBlocking(null)
-                }
-              }
-            }
-          }
-        val intentFilter = IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED)
-        context.registerReceiver(bluetoothBroadcastReceiver, intentFilter)
+      val stateFlow = flow
+        .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
+        .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
-        awaitClose { context.unregisterReceiver(bluetoothBroadcastReceiver) }
-      }
-
-      if (!bluetoothAdapter.isEnabled) {
-        bluetoothAdapter.enable()
-      } else {
+      if (bluetoothAdapter.isEnabled) {
         bluetoothAdapter.disable()
+        stateFlow.filter { it == BluetoothAdapter.STATE_OFF }.first()
       }
+      bluetoothAdapter.enable()
+      stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
 
-      flow.first()
-
-      responseObserver.onNext(Empty.getDefaultInstance())
-      responseObserver.onCompleted()
-
-      Log.i(TAG, "shutdownNow the gRPC Server")
+      // The last expression is the return value.
+      Empty.getDefaultInstance()
+  }.invokeOnCompletion {
+      Log.i(TAG, "Shutdown the gRPC Server")
       server.shutdownNow()
     }
   }
 
-  override fun readLocalAddress(
+ override fun readLocalAddress(
     request: Empty,
     responseObserver: StreamObserver<ReadLocalAddressResponse>
   ) {
-    val res =
+    grpcUnary<ReadLocalAddressResponse>(scope, responseObserver) {
+      Log.i(TAG, "readLocalAddress")
+      val localMacAddress = MacAddress.fromString(bluetoothAdapter.getAddress())
       ReadLocalAddressResponse.newBuilder()
         .setAddress(ByteString.copyFrom(localMacAddress.toByteArray()))
         .build()
-    responseObserver.onNext(res)
-    responseObserver.onCompleted()
+    }
   }
 
   override fun waitConnection(
     request: WaitConnectionRequest,
     responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
-    try {
+    grpcUnary<WaitConnectionResponse>(scope, responseObserver) {
       val address = MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
-      Log.d(TAG, "waitConnection: address=$address")
+      Log.i(TAG, "waitConnection: address=$address")
 
-      if (bluetoothAdapter.isEnabled) {
-        runBlocking {
-          val flow = callbackFlow {
-            // Register broadcast receiver for callbacks
-            val bluetoothBroadcastReceiver: BroadcastReceiver =
-              object : BroadcastReceiver() {
-                override fun onReceive(context: Context, intent: Intent) {
-                  when (intent.getAction()) {
-                    BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED -> {
-                      val device =
-                        intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)!!
-                      if (device.address == address) {
-                        bluetoothDevice = device
-                        val state =
-                          intent.getIntExtra(
-                            BluetoothAdapter.EXTRA_CONNECTION_STATE,
-                            BluetoothAdapter.ERROR
-                          )
-                        Log.d(TAG, "state: $state")
-                        if (state == BluetoothAdapter.STATE_CONNECTING) {
-                          trySendBlocking(true)
-                        }
-                      }
-                    }
-                    BluetoothDevice.ACTION_PAIRING_REQUEST -> {
-                      val pairingConfirmation =
-                        intent.getIntExtra(
-                          BluetoothDevice.EXTRA_PAIRING_VARIANT,
-                          BluetoothDevice.ERROR
-                        )
-                      Log.d(TAG, "pairing confirmation: $pairingConfirmation")
-                      if (pairingConfirmation ==
-                          BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION ||
-                          pairingConfirmation == PAIRING_VARIANT_CONSENT ||
-                          pairingConfirmation == BluetoothDevice.PAIRING_VARIANT_PIN
-                      ) {
-                        val device =
-                          intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)!!
-                        if (device.address == address) {
-                          device.setPairingConfirmation(true)
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            val intentFilter = IntentFilter(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
-            intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
-            context.registerReceiver(bluetoothBroadcastReceiver, intentFilter)
-
-            awaitClose { context.unregisterReceiver(bluetoothBroadcastReceiver) }
-          }
-
-          val waitConnectionResponse =
-            if (flow.first()) {
-              val connection =
-                Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build()
-              WaitConnectionResponse.newBuilder().setConnection(connection).build()
-            } else {
-              WaitConnectionResponse.getDefaultInstance()
-            }
-          responseObserver.onNext(waitConnectionResponse)
-          responseObserver.onCompleted()
-        }
-
-        return
+      if (!bluetoothAdapter.isEnabled) {
+        Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
+        throw Status.UNKNOWN.asException()
       }
-    } catch (e: IllegalArgumentException) {
-      Log.e(TAG, e.toString())
-    }
 
-    responseObserver.onError(Status.UNKNOWN.asException())
+      // Start a new coroutine that will accept any pairing request from the device.
+      val acceptPairingJob = scope.launch {
+        val pairingRequestIntent = flow
+          .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
+          .filter {
+            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
+          }
+          .first()
+
+        val bluetoothDevice = pairingRequestIntent
+          .getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+        val pairingVariant = pairingRequestIntent
+          .getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
+
+        if (pairingVariant == BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION ||
+            pairingVariant == PAIRING_VARIANT_CONSENT ||
+            pairingVariant == BluetoothDevice.PAIRING_VARIANT_PIN
+        ) {
+          bluetoothDevice.setPairingConfirmation(true)
+        }
+      }
+
+      flow
+        .filter { it.getAction() == BluetoothDevice.ACTION_ACL_CONNECTED }
+        .filter {
+          it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
+        }
+        .first()
+
+      // Cancel the accept pairing coroutine if still active.
+      if (acceptPairingJob.isActive) {
+        acceptPairingJob.cancel()
+      }
+
+      WaitConnectionResponse.newBuilder()
+        .setConnection(
+          Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build()
+        )
+        .build()
+    }
   }
 
   override fun disconnect(
     request: DisconnectRequest,
     responseObserver: StreamObserver<DisconnectResponse>
   ) {
-    val address = request.connection.cookie.toByteArray().decodeToString()
-    Log.d(TAG, "disconnect: $address")
-    if (address != bluetoothDevice!!.address ||
-        bluetoothDevice!!.getBondState() == BluetoothDevice.BOND_NONE
-    ) {
-      responseObserver.onError(Status.UNKNOWN.asException())
-    } else {
-      runBlocking {
-        val flow = callbackFlow {
-          val connectionStateBroadcastReceiver: BroadcastReceiver =
-            object : BroadcastReceiver() {
-              override fun onReceive(context: Context, intent: Intent) {
-                if (intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) ==
-                    BluetoothAdapter.STATE_DISCONNECTED
-                ) {
-                  val device =
-                    intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)!!
-                  if (device.address == address) {
-                    trySendBlocking(null)
-                  }
-                }
-              }
-            }
-          val intentFilter = IntentFilter(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
-          context.registerReceiver(connectionStateBroadcastReceiver, intentFilter)
-          bluetoothDevice!!.disconnect()
+    grpcUnary<DisconnectResponse>(scope, responseObserver) {
+      val address = request.connection.cookie.toByteArray().decodeToString()
+      Log.i(TAG, "disconnect: address=$address")
 
-          awaitClose { context.unregisterReceiver(connectionStateBroadcastReceiver) }
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+
+      if (!bluetoothDevice.isConnected()) {
+        Log.e(TAG, "Device is not connected, cannot disconnect")
+        throw Status.UNKNOWN.asException()
+      }
+
+      val aclDisconnectedFlow = flow
+        .filter { it.getAction() == BluetoothDevice.ACTION_ACL_DISCONNECTED }
+        .filter {
+          it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
         }
 
-        flow.first()
+      bluetoothDevice.disconnect()
+      aclDisconnectedFlow.first()
 
-        responseObserver.onNext(DisconnectResponse.getDefaultInstance())
-        responseObserver.onCompleted()
-      }
+      DisconnectResponse.getDefaultInstance()
     }
   }
 
-  fun BluetoothDevice.disconnect() = this.javaClass.getMethod("disconnect").invoke(this)
+  fun deinit() {
+    scope.cancel()
+  }
 }
