@@ -106,36 +106,83 @@ const tBTA_DM_RM* p_bta_dm_rm_cfg = &bta_dm_rm_cfg[0];
 
 tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_CFG
     bta_dm_pm_cfg[BTA_DM_NUM_PM_ENTRY + 1] = {
-        {BTA_ID_SYS, BTA_DM_NUM_PM_ENTRY,
-         0}, /* reserved: specifies length of this table. */
-        {BTA_ID_AG, BTA_ALL_APP_ID,
-         0},               /* ag uses first spec table for app id 0 */
-        {BTA_ID_CT, 1, 1}, /* ct (BTA_ID_CT,APP ID=1) spec table */
-        {BTA_ID_CG, BTA_ALL_APP_ID, 1},     /* cg resue ct spec table */
-        {BTA_ID_DG, BTA_ALL_APP_ID, 2},     /* dg spec table */
-        {BTA_ID_AV, BTA_ALL_APP_ID, 4},     /* av spec table */
-        {BTA_ID_FTC, BTA_ALL_APP_ID, 7},    /* ftc spec table */
-        {BTA_ID_FTS, BTA_ALL_APP_ID, 8},    /* fts spec table */
-        {BTA_ID_HD, BTA_ALL_APP_ID, 3},     /* hd spec table */
-        {BTA_ID_HH, BTA_HH_APP_ID_JOY, 5},  /* app BTA_HH_APP_ID_JOY,
-                                               similar to hh spec table */
-        {BTA_ID_HH, BTA_HH_APP_ID_GPAD, 5}, /* app BTA_HH_APP_ID_GPAD,
-                                               similar to hh spec table */
-        {BTA_ID_HH, BTA_ALL_APP_ID, 6},     /* hh spec table */
-        {BTA_ID_PBC, BTA_ALL_APP_ID, 2},    /* reuse dg spec table */
-        {BTA_ID_PBS, BTA_ALL_APP_ID, 8},    /* reuse fts spec table */
-        {BTA_ID_OPC, BTA_ALL_APP_ID, 7},    /* reuse ftc spec table */
-        {BTA_ID_OPS, BTA_ALL_APP_ID, 8},    /* reuse fts spec table */
-        {BTA_ID_MSE, BTA_ALL_APP_ID, 8},    /* reuse fts spec table */
-        {BTA_ID_JV, BTA_JV_PM_ID_1,
-         7}, /* app BTA_JV_PM_ID_1, reuse ftc spec table */
-        {BTA_ID_JV, BTA_ALL_APP_ID, 8},     /* reuse fts spec table */
-        {BTA_ID_HL, BTA_ALL_APP_ID, 9},     /* reuse fts spec table */
-        {BTA_ID_PAN, BTUI_PAN_ID_PANU, 10}, /* PANU spec table */
-        {BTA_ID_PAN, BTUI_PAN_ID_NAP, 11},  /* NAP spec table */
-        {BTA_ID_HS, BTA_ALL_APP_ID, 12},    /* HS spec table */
-        {BTA_ID_GATTC, BTA_ALL_APP_ID, 14}, /* gattc spec table */
-        {BTA_ID_GATTS, BTA_ALL_APP_ID, 15}  /* gatts spec table */
+        {.id = BTA_ID_SYS,
+         .app_id = BTA_DM_NUM_PM_ENTRY,
+         .spec_idx = 0}, /* reserved: specifies length of this table. */
+        {.id = BTA_ID_AG,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 0}, /* ag uses first spec table for app id 0 */
+        {.id = BTA_ID_CT,
+         .app_id = 1,
+         .spec_idx = 1}, /* ct (BTA_ID_CT,APP ID=1) spec table */
+        {.id = BTA_ID_CG,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 1}, /* cg resue ct spec table */
+        {.id = BTA_ID_DG,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 2}, /* dg spec table */
+        {.id = BTA_ID_AV,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 4}, /* av spec table */
+        {.id = BTA_ID_FTC,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 7}, /* ftc spec table */
+        {.id = BTA_ID_FTS,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 8}, /* fts spec table */
+        {.id = BTA_ID_HD,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 3}, /* hd spec table */
+        {.id = BTA_ID_HH,
+         .app_id = BTA_HH_APP_ID_JOY,
+         .spec_idx = 5}, /* app BTA_HH_APP_ID_JOY,
+similar to hh spec table */
+        {.id = BTA_ID_HH,
+         .app_id = BTA_HH_APP_ID_GPAD,
+         .spec_idx = 5}, /* app BTA_HH_APP_ID_GPAD,
+similar to hh spec table */
+        {.id = BTA_ID_HH,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 6}, /* hh spec table */
+        {.id = BTA_ID_PBC,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 2}, /* reuse dg spec table */
+        {.id = BTA_ID_PBS,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 8}, /* reuse fts spec table */
+        {.id = BTA_ID_OPC,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 7}, /* reuse ftc spec table */
+        {.id = BTA_ID_OPS,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 8}, /* reuse fts spec table */
+        {.id = BTA_ID_MSE,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 8}, /* reuse fts spec table */
+        {.id = BTA_ID_JV,
+         .app_id = BTA_JV_PM_ID_1,
+         .spec_idx = 7}, /* app BTA_JV_PM_ID_1, reuse ftc spec table */
+        {.id = BTA_ID_JV,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 8}, /* reuse fts spec table */
+        {.id = BTA_ID_HL,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 9}, /* reuse fts spec table */
+        {.id = BTA_ID_PAN,
+         .app_id = BTUI_PAN_ID_PANU,
+         .spec_idx = 10}, /* PANU spec table */
+        {.id = BTA_ID_PAN,
+         .app_id = BTUI_PAN_ID_NAP,
+         .spec_idx = 11}, /* NAP spec table */
+        {.id = BTA_ID_HS,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 12}, /* HS spec table */
+        {.id = BTA_ID_GATTC,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 14}, /* gattc spec table */
+        {.id = BTA_ID_GATTS,
+         .app_id = BTA_ALL_APP_ID,
+         .spec_idx = 15} /* gatts spec table */
 };
 
 tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_SPEC bta_dm_pm_spec[BTA_DM_NUM_PM_SPEC] = {
