@@ -762,9 +762,8 @@ void bta_dm_pm_sniff(tBTA_DM_PEER_DEVICE* p_peer_dev, uint8_t index) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_pm_ssr(const RawAddress& peer_addr, int ssr) {
+static void bta_dm_pm_ssr(const RawAddress& peer_addr, int ssr_index) {
   int current_ssr_index;
-  int ssr_index = ssr;
   tBTA_DM_SSR_SPEC* p_spec = &p_bta_dm_ssr_spec[ssr_index];
 
   LOG_DEBUG("Request to put link to device:%s into power_mode:%s",
