@@ -110,7 +110,8 @@ struct AudioSetConfigurationProviderJson {
       const flatbuffers::Vector<
           flatbuffers::Offset<bluetooth::le_audio::CodecSpecificConfiguration>>*
           flat_codec_specific_params,
-      const bluetooth::le_audio::QosConfiguration* flat_qos_configuration) {
+      const char* qos_cfg_key,
+      std::vector<const bluetooth::le_audio::QosConfiguration*>* qos_cfgs) {
     CodecCapabilitySetting codec;
 
     /* Cache the le_audio::types::CodecId type value */
@@ -184,18 +185,30 @@ struct AudioSetConfigurationProviderJson {
     });
 
     /* Cache the le_audio::types::LeAudioLC3QoSConfig type value */
-    codec.qos_config = types::LeAudioLC3QoSConfig({
-        .retransmission_number =
-            flat_qos_configuration->retransmission_number(),
-        .max_transport_latency =
-            flat_qos_configuration->max_transport_latency(),
-    });
+    const bluetooth::le_audio::QosConfiguration* qos_config = NULL;
+    for (auto i = qos_cfgs->begin(); i != qos_cfgs->end(); ++i) {
+      if (0 == strcmp((*i)->name()->c_str(), qos_cfg_key)) {
+        qos_config = *i;
+        break;
+      }
+    }
+    if (qos_config != NULL) {
+      codec.qos_config = types::LeAudioLC3QoSConfig({
+          .retransmission_number = qos_config->retransmission_number(),
+          .max_transport_latency = qos_config->max_transport_latency(),
+      });
+    } else {
+      LOG_WARN("No QoS config defined for %s", qos_cfg_key);
+    }
 
     return codec;
   }
 
   SetConfiguration SetConfigurationFromFlatSubconfig(
-      const bluetooth::le_audio::AudioSetSubConfiguration* flat_subconfig) {
+      const bluetooth::le_audio::AudioSetSubConfiguration* flat_subconfig,
+      std::vector<const bluetooth::le_audio::QosConfiguration*>* qos_cfgs) {
+    const char* qos_cfg_key =
+        flat_subconfig->qos_configuration()->name()->c_str();
     auto strategy_int =
         static_cast<int>(flat_subconfig->configuration_strategy());
 
@@ -214,17 +227,19 @@ struct AudioSetConfigurationProviderJson {
         flat_subconfig->ase_cnt(),
         CodecCapabilitySettingFromFlat(flat_subconfig->codec_id(),
                                        flat_subconfig->codec_configuration(),
-                                       flat_subconfig->qos_configuration()),
+                                       qos_cfg_key, qos_cfgs),
         strategy);
   }
 
   AudioSetConfiguration AudioSetConfigurationFromFlat(
-      const bluetooth::le_audio::AudioSetConfiguration* flat_cfg) {
+      const bluetooth::le_audio::AudioSetConfiguration* flat_cfg,
+      std::vector<const bluetooth::le_audio::QosConfiguration*>* qos_cfgs) {
     std::vector<SetConfiguration> subconfigs;
     if (flat_cfg->subconfigurations()) {
       /* Load subconfigurations */
       for (auto subconfig : *flat_cfg->subconfigurations()) {
-        subconfigs.push_back(SetConfigurationFromFlatSubconfig(subconfig));
+        subconfigs.push_back(
+            SetConfigurationFromFlatSubconfig(subconfig, qos_cfgs));
       }
 
     } else {
@@ -239,6 +254,7 @@ struct AudioSetConfigurationProviderJson {
                                    const char* content_file) {
     flatbuffers::Parser configurations_parser_;
     std::string configurations_schema_binary_content;
+    std::vector<const bluetooth::le_audio::QosConfiguration*> qos_cfgs;
     bool ok = flatbuffers::LoadFile(schema_file, true,
                                     &configurations_schema_binary_content);
     if (!ok) return ok;
@@ -264,13 +280,23 @@ struct AudioSetConfigurationProviderJson {
         configurations_parser_.builder_.GetBufferPointer());
     if (!configurations_root) return false;
 
+    auto flat_qos_configs = configurations_root->qos_configurations();
+    if ((flat_qos_configs == nullptr) || (flat_qos_configs->size() == 0))
+      return false;
+
+    LOG_DEBUG(": Updating %d qos config entries.", flat_qos_configs->size());
+    for (auto const& flat_qos_cfg : *flat_qos_configs) {
+      qos_cfgs.push_back(flat_qos_cfg);
+    }
+
     auto flat_configs = configurations_root->configurations();
     if ((flat_configs == nullptr) || (flat_configs->size() == 0)) return false;
 
     LOG_DEBUG(": Updating %d config entries.", flat_configs->size());
     for (auto const& flat_cfg : *flat_configs) {
       configurations_.insert(
-          {flat_cfg->name()->str(), AudioSetConfigurationFromFlat(flat_cfg)});
+          {flat_cfg->name()->str(),
+           AudioSetConfigurationFromFlat(flat_cfg, &qos_cfgs)});
     }
 
     return true;
