@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc7aa17_801e6c3a",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-22T15:48:30Z",
+      "side": 1,
+      "message": "When we could get here?\n\n1) If remote disconnects CoC (or cannot create it) after BT restart on Android (this will trigger autoconnection).\n2) On service changed https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/hearing_aid/hearing_aid.cc;l\u003d1552?q\u003dhearing\u0026ss\u003dandroid%2Fplatform%2Fsuperproject\n\n3) any other usecase?\n\nIn case of 2) it will work, but not sure if in case of 1) we should keep connection to the profile.",
+      "revId": "1b5bc7f840dfc2c8fe29e282e2726f2fc53bda3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
