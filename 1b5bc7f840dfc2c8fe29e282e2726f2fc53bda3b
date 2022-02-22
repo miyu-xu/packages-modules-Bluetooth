@@ -16,6 +16,24 @@
       "message": "When we could get here?\n\n1) If remote disconnects CoC (or cannot create it) after BT restart on Android (this will trigger autoconnection).\n2) On service changed https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/hearing_aid/hearing_aid.cc;l\u003d1552?q\u003dhearing\u0026ss\u003dandroid%2Fplatform%2Fsuperproject\n\n3) any other usecase?\n\nIn case of 2) it will work, but not sure if in case of 1) we should keep connection to the profile.",
       "revId": "1b5bc7f840dfc2c8fe29e282e2726f2fc53bda3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab2363e5_a36b6fc3",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-02-22T22:29:43Z",
+      "side": 1,
+      "message": "This is good point.\nFor case 1, if the remote disconnects CoC, I think it should be causing by some condiction.\n1) The remote doesn\u0027t have resource (Only support one phone connect).\nFor this case, it should be connected by other phone and it should not broadcast adv (because it has one connection and no resource to handle other connect request), so we can monitor it and trigger connect request again if it has resource (other phone disconnect).\n2) The remote have some connection error when doing negotiation, for this, I suggest disconnect connection and trigger connection again. Don\u0027t keep connection to the profile without BLE CoC, because we don\u0027t have any thing to do on this condition.\n3) any other usecase?\n\nFor original design, the upper layer will lost connection control after calling Disconnect. (The upper assume this device should be in the auto connection list, but it is not.) Then cause the connection confused on the upper layer side.",
+      "parentUuid": "6cc7aa17_801e6c3a",
+      "revId": "1b5bc7f840dfc2c8fe29e282e2726f2fc53bda3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
