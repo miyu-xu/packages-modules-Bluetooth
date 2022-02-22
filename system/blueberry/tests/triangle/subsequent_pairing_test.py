@@ -1,5 +1,6 @@
 """Tests for Subsequent pairing feature of Triangle."""
 
+import datetime
 import time
 
 from mobly import test_runner
@@ -15,7 +16,7 @@ from blueberry.utils import triangle_constants
 _DEFAULT_HEADSET_NAME = '.*Pixel Buds A-Series.*'
 _SL4A_ALIAS = 'sl4a'
 _SUBSEQUENT_PAIRING_RETRIES = 5
-_FOOTPRINTS_SYNC_WAITING_TIME_SEC = 90
+_FOOTPRINTS_SYNC_TIMEOUT_SEC = datetime.timedelta(minutes=5).seconds
 
 
 class SubsequentPairingTest(base_test.TriangleBaseTest):
@@ -71,6 +72,34 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
     raise signals.TestError('Headset did not appear in Bluetooth device list '
                             'of Watch.')
 
+  def _wait_for_footprints_sync(self):
+    """Waits for Footprints sync.
+
+    Footprints sync means Footprints server sync happens on Watch side. After
+    sync, the watch can obtain information of the headset which has paired with
+    the connected phone, then perform Subsequent Pairing in further.
+
+    Raises:
+      signals.TestError: Footprints sync is not executed.
+    """
+    logcat_start_time = self.watch.get_device_time()
+    self.watch.log.info('Waiting for Footprints sync...')
+    start_time = time.time()
+    end_time = start_time + _FOOTPRINTS_SYNC_TIMEOUT_SEC
+    while time.time() < end_time:
+      output = self.watch.logcat_filter(
+          start_time=logcat_start_time,
+          text_filter='executes the footprints force sync')
+      if bool(output):
+        sync_time = time.time()
+        self.watch.log.info('Executed Footprints sync after approximately'
+                            ' %s seconds.', (sync_time - start_time))
+        return
+      # Buffer between logcat commands.
+      time.sleep(datetime.timedelta(seconds=1).seconds)
+    raise signals.TestError(f'Failed to execute Footprints sync within '
+                            f'{_FOOTPRINTS_SYNC_TIMEOUT_SEC} seconds.')
+
   def test_subsequent_pairing(self):
     """Test for Subsequent pairing.
 
@@ -92,8 +121,7 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
     self.watch.reboot()
     self.watch.services.register(_SL4A_ALIAS, sl4a_service.Sl4aService)
     self.wait_for_watch_connection(connected=True)
-    # TODO(user): Trigger syncing or detect completion to avoid sleeping.
-    time.sleep(_FOOTPRINTS_SYNC_WAITING_TIME_SEC)
+    self._wait_for_footprints_sync()
     self._execute_subsequent_pairing_logic()
     self.assert_headset_a2dp_connection(connected=True, device=self.watch)
     self.assert_headset_hsp_connection(connected=True, device=self.watch)
