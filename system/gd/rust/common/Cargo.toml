@@ -26,6 +26,10 @@ lazy_static = "*"
 log = "*"
 nix = "*"
 tokio = { version = "*", features = ['bytes', 'macros', 'net', 'rt-multi-thread', 'time'] }
+futures = "*"
+
+[build-dependencies]
+cxx-build = "1.0"
 
 # Proc Macro dependency
 paste = "*"

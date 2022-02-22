@@ -88,7 +88,10 @@ init_flags!(
 );
 
 lazy_static! {
+    /// Store some flag values
     static ref FLAGS: Mutex<InitFlags> = Mutex::new(InitFlags::default());
+    /// Store the uid of bluetooth
+    pub static ref AID_BLUETOOTH: Mutex<u32> = Mutex::new(1002);
 }
 
 /// Loads the flag values from the passed-in vector of string values
