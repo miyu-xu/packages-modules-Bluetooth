@@ -761,14 +761,13 @@ void bta_dm_pm_sniff(tBTA_DM_PEER_DEVICE* p_peer_dev, uint8_t index) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_pm_ssr(const RawAddress& peer_addr, int ssr) {
-  int current_ssr_index;
-  int ssr_index = ssr;
+static void bta_dm_pm_ssr(const RawAddress& peer_addr, const int ssr_index) {
   tBTA_DM_SSR_SPEC* p_spec = &p_bta_dm_ssr_spec[ssr_index];
 
   LOG_DEBUG("Request to put link to device:%s into power_mode:%s",
             PRIVATE_ADDRESS(peer_addr), p_spec->name);
   /* go through the connected services */
+  int current_ssr_index = -1;
   for (int i = 0; i < bta_dm_conn_srvcs.count; i++) {
     const tBTA_DM_SRVCS& service = bta_dm_conn_srvcs.conn_srvc[i];
     if (service.peer_bdaddr != peer_addr) {
@@ -788,6 +787,12 @@ static void bta_dm_pm_ssr(const RawAddress& peer_addr, int ssr) {
         break;
       }
     }
+    if (current_ssr_index == -1) {
+      LOG_ERROR("Unable to find power management connected service peer:%s",
+                PRIVATE_ADDRESS(peer_addr));
+      current_ssr_index = 0;
+    }
+
     /* find the ssr index with the smallest max latency. */
     tBTA_DM_SSR_SPEC* p_spec_cur = &p_bta_dm_ssr_spec[current_ssr_index];
 #if (BTA_HH_INCLUDED == TRUE)
@@ -807,8 +812,7 @@ static void bta_dm_pm_ssr(const RawAddress& peer_addr, int ssr) {
           "%s[%d]",
           PRIVATE_ADDRESS(peer_addr), p_spec->name, ssr_index, p_spec_cur->name,
           current_ssr_index);
-      ssr_index = current_ssr_index;
-      p_spec = &p_bta_dm_ssr_spec[ssr_index];
+      p_spec = &p_bta_dm_ssr_spec[current_ssr_index];
     }
   }
 
