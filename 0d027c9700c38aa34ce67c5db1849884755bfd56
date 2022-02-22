@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eed556f8_bd171eea",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 3260,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-02-22T11:39:48Z",
+      "side": 1,
+      "message": "We have just left and right channels. vector for 2 elements is overkill",
+      "revId": "0d027c9700c38aa34ce67c5db1849884755bfd56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
