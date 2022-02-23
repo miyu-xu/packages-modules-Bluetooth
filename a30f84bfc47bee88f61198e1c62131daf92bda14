@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a55abbfd_430dc7b1",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-23T19:04:31Z",
+      "side": 1,
+      "message": "We talked about this offline, and there\u0027s no clean way of doing this for now. Will revisit if the code gets bigger and more difficult to write all this.",
+      "parentUuid": "003731c8_2378b1b3",
+      "range": {
+        "startLine": 275,
+        "startChar": 42,
+        "endLine": 281,
+        "endChar": 29
+      },
+      "revId": "a30f84bfc47bee88f61198e1c62131daf92bda14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45132088_4394a97b",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-02-16T22:32:58Z",
       "side": 1,
       "message": "is this to match the logic in Android? If so maybe make it clear in the interface doc that 5 adv slots is needed to be considered having multi adv.",
+      "revId": "a30f84bfc47bee88f61198e1c62131daf92bda14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dd71004_934325a5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-23T19:04:31Z",
+      "side": 1,
+      "message": "Yes, matches the logic in Android. Added more info in the doc.",
+      "parentUuid": "45132088_4394a97b",
       "revId": "a30f84bfc47bee88f61198e1c62131daf92bda14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
