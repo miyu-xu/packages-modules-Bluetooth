@@ -16,6 +16,23 @@
       "message": "Exception handling is still wrong here. In next revision I\u0027ll adjust it to match the approach taken in HAP patches.",
       "revId": "7555afb778a8063c53365cbcad660e5c38bbe44e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff82edb7_8d70e87e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-23T06:31:09Z",
+      "side": 1,
+      "message": "Any updates on this one?",
+      "revId": "7555afb778a8063c53365cbcad660e5c38bbe44e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
