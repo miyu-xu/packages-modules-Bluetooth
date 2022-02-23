@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05e124ed_a29f0870",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-02-23T06:46:56Z",
+      "side": 1,
+      "message": "Done. (and removed \u0027Equal\u0027 which was added by mistake)",
+      "parentUuid": "169bf443_09f3b5c3",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 125,
+        "endChar": 59
+      },
+      "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "870cf237_b5faf71e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-23T06:15:43Z",
       "side": 1,
       "message": "Q) What if sGmcs.cleanup() is called without sGmcs.init()?\nWill it be okay?",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 28
+      },
+      "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ce012d_29cee780",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-02-23T06:46:56Z",
+      "side": 1,
+      "message": "removeCallbacksAndMessages(null) will be no-op if mHandler is empty.",
+      "parentUuid": "870cf237_b5faf71e",
       "range": {
         "startLine": 126,
         "startChar": 12,
