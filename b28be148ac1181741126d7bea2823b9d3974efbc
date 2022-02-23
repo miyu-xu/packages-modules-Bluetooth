@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "169bf443_09f3b5c3",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-02-23T06:15:43Z",
+      "side": 1,
+      "message": "How about adding a comment why this is required?",
+      "range": {
+        "startLine": 125,
+        "startChar": 12,
+        "endLine": 125,
+        "endChar": 59
+      },
+      "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "870cf237_b5faf71e",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-02-23T06:15:43Z",
+      "side": 1,
+      "message": "Q) What if sGmcs.cleanup() is called without sGmcs.init()?\nWill it be okay?",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 28
+      },
+      "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
