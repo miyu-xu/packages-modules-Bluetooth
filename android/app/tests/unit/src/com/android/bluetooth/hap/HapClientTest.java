@@ -746,9 +746,8 @@ public class HapClientTest {
 
         int info_reason = HapClientStackEvent.PRESET_INFO_REASON_PRESET_INFO_UPDATE;
         BluetoothHapPresetInfo[] info =
-                {new BluetoothHapPresetInfo.Builder()
+                {new BluetoothHapPresetInfo.Builder("OneChangedToUnavailable")
                         .setIndex(0x01)
-                        .setName("OneChangedToUnavailable")
                         .setWritable(true)
                         .setAvailable(false)
                         .build()};

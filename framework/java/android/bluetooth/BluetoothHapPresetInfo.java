@@ -22,6 +22,8 @@ import android.annotation.SystemApi;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.android.internal.util.Preconditions;
+
 /**
  * Represents the Hearing Access Profile preset.
  * @hide
@@ -138,6 +140,17 @@ public final class BluetoothHapPresetInfo implements Parcelable {
         private boolean mIsAvailable = false;
 
         /**
+         * Creates a new builder.
+         *
+         * @param name The preset name for HAP preset info.
+         */
+        public Builder(@NonNull String name) {
+            Preconditions.checkStringNotEmpty(name,
+                    "The size of the preset name for HAP shall at least one character long.");
+            mPresetName = name;
+        }
+
+        /**
          * Set preset index for HAP preset info.
          *
          * @param index of this preset
@@ -145,17 +158,6 @@ public final class BluetoothHapPresetInfo implements Parcelable {
          */
         public @NonNull Builder setIndex(int index) {
             mPresetIndex = index;
-            return this;
-        }
-
-        /**
-         * Set preset name for HAP preset info.
-         *
-         * @param name of this preset
-         * @return the same Builder instance
-         */
-        public @NonNull Builder setName(@NonNull String name) {
-            mPresetName = name;
             return this;
         }
 
