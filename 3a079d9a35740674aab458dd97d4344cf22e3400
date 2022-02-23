@@ -16,6 +16,24 @@
       "message": "I don\u0027t know enough Rust to understand why we need to unwrap here.  Are there any tests we could add to illustrate the usage?",
       "revId": "3a079d9a35740674aab458dd97d4344cf22e3400",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb1f18b9_ec16b2ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-02-23T08:58:19Z",
+      "side": 1,
+      "message": "Thank for the review ! The unwrap(s) here where \"already\" here in the form of a panic, I just changed the panic to a Result to be able to return it as part of the TryFrom implementation and added an `unwrap` to all the old call to \"Packet::new\".\nSo the old behaviour was to panic in the callee, now it\u0027s also to panic but in the caller",
+      "parentUuid": "00efac5a_14315219",
+      "revId": "3a079d9a35740674aab458dd97d4344cf22e3400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
