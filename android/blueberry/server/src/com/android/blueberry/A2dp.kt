@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -15,14 +14,22 @@ import blueberry.A2DPGrpc.A2DPImplBase
 import blueberry.A2dpProto.*
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
-import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.channels.trySendBlocking
-import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.shareIn
 
+@kotlinx.coroutines.ExperimentalCoroutinesApi
 class A2dp(val mContext: Context) : A2DPImplBase() {
   private val TAG = "BlueberryA2dp"
+
+  private val scope: CoroutineScope
+  private val flow: Flow<Intent>
 
   private var audioManager: AudioManager =
     mContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
@@ -54,10 +61,19 @@ class A2dp(val mContext: Context) : A2DPImplBase() {
 
   init {
     bluetoothAdapter.getProfileProxy(mContext, A2dpServiceListener(), BluetoothProfile.A2DP)
+
+    scope = CoroutineScope(Dispatchers.Default)
+    val intentFilter = IntentFilter()
+    intentFilter.addAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED)
+    intentFilter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
+
+    flow = intentFlow(mContext, intentFilter).shareIn(scope, SharingStarted.Eagerly)
+
   }
 
   fun deinit() {
     bluetoothAdapter.closeProfileProxy(BluetoothProfile.A2DP, bluetoothA2dp)
+    scope.cancel()
   }
 
   private var audioTrack: AudioTrack =
@@ -86,58 +102,30 @@ class A2dp(val mContext: Context) : A2DPImplBase() {
     request: OpenSourceRequest,
     responseObserver: StreamObserver<OpenSourceResponse>
   ) {
-    Log.d(TAG, "openSource")
     val address = request.connection.cookie.toByteArray().decodeToString()
-    ptsDevice = getPTSDevice(address)
-    if (address != ptsDevice.address) {
-      Log.e(TAG, "error !! addr: $address | ptsDevice: ${ptsDevice.address}")
-      responseObserver.onError(Status.UNKNOWN.asException())
-    } else {
-      val a2dpState = bluetoothA2dp!!.getConnectionState(ptsDevice)
-      if (a2dpState == BluetoothProfile.STATE_CONNECTED) {
-        Log.d(TAG, "a2dp is already open")
-        val source = Source.newBuilder().setCookie(request.connection.cookie).build()
-        responseObserver.onNext(OpenSourceResponse.newBuilder().setSource(source).build())
-        responseObserver.onCompleted()
-      } else if (a2dpState == BluetoothProfile.STATE_CONNECTING) {
-        Log.d(TAG, "connecting: waiting to be connected")
-        runBlocking {
-          val flow = callbackFlow {
-            val a2dpBroadcastReceiver: BroadcastReceiver =
-              object : BroadcastReceiver() {
-                override fun onReceive(context: Context, intent: Intent) {
-                  val state =
-                    intent.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR)
-                  Log.d(TAG, "state: $state")
-                  if (state == BluetoothProfile.STATE_CONNECTED) {
-                    val source = Source.newBuilder().setCookie(request.connection.cookie).build()
-                    responseObserver.onNext(
-                      OpenSourceResponse.newBuilder().setSource(source).build()
-                    )
-                    responseObserver.onCompleted()
-                    trySendBlocking(null)
-                  } else if (state == BluetoothProfile.STATE_DISCONNECTED) {
-                    responseObserver.onNext(OpenSourceResponse.getDefaultInstance())
-                    responseObserver.onCompleted()
-                    trySendBlocking(null)
-                  }
-                }
-              }
-            val intentFilter = IntentFilter(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
-            mContext.registerReceiver(a2dpBroadcastReceiver, intentFilter)
-
-            awaitClose { mContext.unregisterReceiver(a2dpBroadcastReceiver) }
+    Log.i(TAG, "openSource: $address")
+    grpcUnary<OpenSourceResponse>(scope, responseObserver) {
+      ptsDevice = getPTSDevice(address)
+      if (address == ptsDevice.address) {
+        // CHECK DISCONNECTED TO ANSWER AN ERROR AS WELL
+        val a2dpState = bluetoothA2dp!!.getConnectionState(ptsDevice)
+        if (a2dpState != BluetoothA2dp.STATE_CONNECTED) {
+          if (a2dpState != BluetoothA2dp.STATE_CONNECTING) {
+            bluetoothA2dp!!.connect(ptsDevice)
           }
-
-          flow.first()
+          flow
+            .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
+            .filter {
+              it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) ==
+                BluetoothProfile.STATE_CONNECTED
+            }
+            .first()
         }
-      } else if (bluetoothA2dp!!.connect(ptsDevice)) {
         val source = Source.newBuilder().setCookie(request.connection.cookie).build()
-        responseObserver.onNext(OpenSourceResponse.newBuilder().setSource(source).build())
-        responseObserver.onCompleted()
+        OpenSourceResponse.newBuilder().setSource(source).build()
       } else {
-        Log.d(TAG, "failed to connect")
-        responseObserver.onError(Status.UNKNOWN.asException())
+        Log.e(TAG, "wrong address, found: $address expected: ${ptsDevice.address}")
+        throw Status.UNKNOWN.asException()
       }
     }
   }
@@ -148,97 +136,61 @@ class A2dp(val mContext: Context) : A2DPImplBase() {
   ) {
     val address = request.connection.cookie.toByteArray().decodeToString()
     Log.i(TAG, "waitSource: $address")
-    ptsDevice = getPTSDevice(address)
-    if (address != ptsDevice.address) {
-      Log.d(TAG, "address doesn't match")
-      responseObserver.onError(Status.UNKNOWN.asException())
-    } else {
-      val resp = { success: Boolean ->
-        val source =
-          if (success) {
-            Source.newBuilder().setCookie(request.connection.cookie).build()
-          } else {
-            Source.getDefaultInstance()
-          }
-        responseObserver.onNext(WaitSourceResponse.newBuilder().setSource(source).build())
-        responseObserver.onCompleted()
-      }
-      val a2dpState = bluetoothA2dp!!.getConnectionState(ptsDevice)
-      if (a2dpState == BluetoothProfile.STATE_CONNECTED) {
-        resp(true)
-      } else {
-        runBlocking {
-          val flow = callbackFlow {
-            val a2dpBroadcastReceiver: BroadcastReceiver =
-              object : BroadcastReceiver() {
-                override fun onReceive(context: Context, intent: Intent) {
-                  val state =
-                    intent.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR)
-                  if (state == BluetoothProfile.STATE_CONNECTED ||
-                      state == BluetoothProfile.STATE_CONNECTING
-                  ) {
-                    resp(true)
-                    trySendBlocking(null)
-                  } else if (state == BluetoothProfile.STATE_DISCONNECTED) {
-                    resp(false)
-                    trySendBlocking(null)
-                  }
-                }
-              }
-            val intentFilter = IntentFilter(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
-            mContext.registerReceiver(a2dpBroadcastReceiver, intentFilter)
 
-            awaitClose { mContext.unregisterReceiver(a2dpBroadcastReceiver) }
-          }
-
-          flow.first()
+    grpcUnary<WaitSourceResponse>(scope, responseObserver) {
+      ptsDevice = getPTSDevice(address)
+      if (address == ptsDevice.address) {
+        val a2dpState = bluetoothA2dp!!.getConnectionState(ptsDevice)
+        Log.d(TAG, "a2dpState: $a2dpState")
+        if (a2dpState != BluetoothProfile.STATE_CONNECTING) {
+          val stateFlow =
+          // TODO: ANSWER AN ERROR ON DISCONNECTED
+          flow
+              .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
+              .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
+              .filter { it == BluetoothProfile.STATE_CONNECTED }
+              .first()
         }
+        val source = Source.newBuilder().setCookie(request.connection.cookie).build()
+        WaitSourceResponse.newBuilder().setSource(source).build()
+      } else {
+        Log.e(TAG, "wrong address, found: $address expected: ${ptsDevice.address}")
+        throw Status.UNKNOWN.asException()
       }
     }
   }
 
   override fun start(request: StartRequest, responseObserver: StreamObserver<StartResponse>) {
-    Log.d(TAG, "start")
-    audioTrack.play()
-    waitForA2dpPlayingState(BluetoothA2dp.STATE_PLAYING)
-    responseObserver.onNext(StartResponse.getDefaultInstance())
-    responseObserver.onCompleted()
+    Log.i(TAG, "start")
+    grpcUnary<StartResponse>(scope, responseObserver) {
+      if (audioTrack.getPlayState() != AudioTrack.PLAYSTATE_PLAYING) {
+        audioTrack.play()
+        val stateFlow =
+          flow
+            .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
+            .filter {
+              it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) ==
+                BluetoothA2dp.STATE_PLAYING
+            }
+            .first()
+      }
+      StartResponse.getDefaultInstance()
+    }
   }
 
   override fun suspend(request: SuspendRequest, responseObserver: StreamObserver<SuspendResponse>) {
-    Log.d(TAG, "suspend")
-    waitForA2dpPlayingState(BluetoothA2dp.STATE_NOT_PLAYING)
-    responseObserver.onNext(SuspendResponse.getDefaultInstance())
-    responseObserver.onCompleted()
-  }
-
-  fun waitForA2dpPlayingState(playingState: Int) {
-    if (playingState != BluetoothA2dp.STATE_NOT_PLAYING ||
-        playingState != BluetoothA2dp.STATE_PLAYING
-    ) {
-      Log.e(TAG, "waitForA2dpPlayingState: unknown state: $playingState")
-      return
-    }
-    runBlocking {
-      val flow = callbackFlow {
-        val playingStateBroadcastReceiver: BroadcastReceiver =
-          object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-              if (intent.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) ==
-                  playingState
-              ) {
-                trySendBlocking(null)
-              }
-            }
+    Log.i(TAG, "suspend")
+    grpcUnary<SuspendResponse>(scope, responseObserver) {
+      audioTrack.pause()
+      val stateFlow =
+        flow
+          .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
+          .filter {
+            it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) ==
+              BluetoothA2dp.STATE_NOT_PLAYING
           }
-        val intentFilter = IntentFilter(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED)
-        mContext.registerReceiver(playingStateBroadcastReceiver, intentFilter)
-        audioTrack.pause()
-
-        awaitClose { mContext.unregisterReceiver(playingStateBroadcastReceiver) }
-      }
-
-      flow.first()
+          .first()
+      SuspendResponse.getDefaultInstance()
     }
   }
 
@@ -258,31 +210,18 @@ class A2dp(val mContext: Context) : A2DPImplBase() {
       Boolean
 
   override fun close(request: CloseRequest, responseObserver: StreamObserver<CloseResponse>) {
-    Log.d(TAG, "close")
-
-    runBlocking {
-      val flow = callbackFlow {
-        val connectionStateBroadcastReceiver: BroadcastReceiver =
-          object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-              if (intent.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) ==
-                  BluetoothA2dp.STATE_DISCONNECTED
-              ) {
-                trySendBlocking(null)
-              }
-            }
+    Log.i(TAG, "close")
+    grpcUnary<CloseResponse>(scope, responseObserver) {
+      bluetoothA2dp!!.disconnect(ptsDevice)
+      val stateFlow =
+        flow
+          .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
+          .filter {
+            it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) ==
+              BluetoothA2dp.STATE_DISCONNECTED
           }
-        val intentFilter = IntentFilter(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
-        mContext.registerReceiver(connectionStateBroadcastReceiver, intentFilter)
-        bluetoothA2dp!!.disconnect(ptsDevice)
-
-        awaitClose { mContext.unregisterReceiver(connectionStateBroadcastReceiver) }
-      }
-
-      flow.first()
-
-      responseObserver.onNext(CloseResponse.getDefaultInstance())
-      responseObserver.onCompleted()
+          .first()
+      CloseResponse.getDefaultInstance()
     }
   }
 
@@ -307,9 +246,7 @@ class A2dp(val mContext: Context) : A2DPImplBase() {
     return object : StreamObserver<PlaybackAudioRequest> {
       override fun onNext(value: PlaybackAudioRequest) {
         val data = value.data.toByteArray()
-        if (bluetoothA2dp!!.getConnectionState(ptsDevice) ==
-            BluetoothProfile.STATE_CONNECTED
-        ) {
+        if (bluetoothA2dp!!.getConnectionState(ptsDevice) == BluetoothProfile.STATE_CONNECTED) {
           audioTrack.write(data, 0, data.size)
         }
       }
@@ -349,7 +286,7 @@ class A2dp(val mContext: Context) : A2DPImplBase() {
     }
   }
 
-  fun getPTSDevice(address: String) : BluetoothDevice {
+  fun getPTSDevice(address: String): BluetoothDevice {
     return bluetoothAdapter.getBondedDevices()?.first { bondedDevice ->
       bondedDevice.address == address
     }!!
