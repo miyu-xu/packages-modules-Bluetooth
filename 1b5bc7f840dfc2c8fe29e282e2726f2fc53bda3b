@@ -52,6 +52,24 @@
       "parentUuid": "ab2363e5_a36b6fc3",
       "revId": "1b5bc7f840dfc2c8fe29e282e2726f2fc53bda3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7c7ce82_392d1671",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-02-23T21:44:49Z",
+      "side": 1,
+      "message": "Yes, this patch is just the solution as you said \"Other solution\"\n\n1) For receiving the GAP_EVT_CONN_CLOSED during connecting case, it should be some reason error during connecting (No resource or some error on the remote Hearing Aid side.). Line.1339 will trigger profile disconnect. Then this device will add into the background connection on the OnGattDisconnected.\n2) For receiving the GAP_EVT_CONN_CLOSED after connected case, it should be the called Diconnect from the upper layer or receive the disconnection completed from the remote HearingAid device. Will receive the Gatt callback with BTA_GATTC_CLOSE_EVT event then call OnGattDisconnected so Line.1343 just clear the GAP related parameters is fine. Sure, we still will add this hearing aid device into background connection.\n\nDo you have more questions about this?",
+      "parentUuid": "b721e65b_e7cf60b3",
+      "revId": "1b5bc7f840dfc2c8fe29e282e2726f2fc53bda3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
