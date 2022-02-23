@@ -46,6 +46,30 @@
       },
       "revId": "5a2fdd077ea854d0136c407af1da549f495f5bff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4160f675_dbb8e5c8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-23T16:59:09Z",
+      "side": 1,
+      "message": "Ah ok, so when switching between Active Bluetooth Devices, we don\u0027t want to pause the music ?\n\nDo we have any document specifying how we should behave in certain scenarios?",
+      "parentUuid": "5003ce80_1e8eab52",
+      "range": {
+        "startLine": 752,
+        "startChar": 26,
+        "endLine": 752,
+        "endChar": 35
+      },
+      "revId": "5a2fdd077ea854d0136c407af1da549f495f5bff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
