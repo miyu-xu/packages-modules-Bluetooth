@@ -34,6 +34,24 @@
       "parentUuid": "6cc7aa17_801e6c3a",
       "revId": "1b5bc7f840dfc2c8fe29e282e2726f2fc53bda3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b721e65b_e7cf60b3",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1343,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-23T13:48:00Z",
+      "side": 1,
+      "message": "1) You are right, they should not advertise if cannot take more CoC channels. But if they advertised but in the same time have not resources for CoC, maybe we should try to setup CoC again when stream starts?\n\n2) Maybe here we should retry CoC creation couple times?\n\n\nOther solution would be to disconnect profile but put device on the background connection if it was on autoconnect list.",
+      "parentUuid": "ab2363e5_a36b6fc3",
+      "revId": "1b5bc7f840dfc2c8fe29e282e2726f2fc53bda3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
