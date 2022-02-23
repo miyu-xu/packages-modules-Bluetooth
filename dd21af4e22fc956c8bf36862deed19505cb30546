@@ -22,6 +22,52 @@
       },
       "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31e22bf4_77ad08c4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-02-23T10:46:12Z",
+      "side": 1,
+      "message": "will this cause a call to AudioManager.handleBluetoothActiveDeviceChanged() indicating the new codec?\n\nThis is important to know because the audio framework would have to minimise disruption in case the codec change does not cause a reconfiguration of the audio path from SW encoder to HW offload encoder",
+      "range": {
+        "startLine": 897,
+        "startChar": 0,
+        "endLine": 897,
+        "endChar": 81
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "316a0501_bbcce18d",
+        "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-02-23T10:46:12Z",
+      "side": 1,
+      "message": "I don\u0027t know the details of the buffer size switching logic inside the BT stack but I think we should only call this when the low latency is actually requested by setLatencyMode(LOW). \nHere is_low_latency only indicates that this stream may ask for low latency in the future but not necessarily from the start.\nIt is possible that setLatencyMode() has been called before startStream() and the requested mode should be somehow persisted and used when the stream starts instead of overriding it here.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 47
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
