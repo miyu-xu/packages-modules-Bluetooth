@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef3265a9_f86dd84d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-23T14:05:44Z",
+      "side": 1,
+      "message": "if instead we would do\n\n`suppressNoisyIntent \u003d (mActiveAudioOutDevice !\u003d null);` \n\nwould\u0027t it work?",
+      "range": {
+        "startLine": 752,
+        "startChar": 26,
+        "endLine": 752,
+        "endChar": 35
+      },
+      "revId": "5a2fdd077ea854d0136c407af1da549f495f5bff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
