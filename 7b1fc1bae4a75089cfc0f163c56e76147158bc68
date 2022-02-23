@@ -16,6 +16,24 @@
       "message": "Why is this needed only for docker? What base OS is used in the docker image? Can we generalize the need to set libdir, maybe we should parameterize \"libdir\" to be settable to \"/usr/lib/x86_64-linux-gnu\" instead of specifically mentioning docker, because looks like this need is not due to docker.\n\nSo the `.install.template` file could look like:\n```\nout/Release/lib/libbase*.so $libdir\nout/Release/libbase*.a $libdir\nout/Release/obj/libchrome/libchrome*.pc $libdir/pkgconfig\nusr/include /usr\n```\n\nand `gen-src-pkg.sh` can `sed` it to replace $libdir with the right one.",
       "revId": "7b1fc1bae4a75089cfc0f163c56e76147158bc68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dfeac52_81bf12a2",
+        "filename": "system/build/dpkg/libchrome/debian/libchrome.install.docker",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-23T22:18:28Z",
+      "side": 1,
+      "message": "Ack -- will send up another with the cleanup.\n\nThe base OS for docker is debian testing and it has this different location. I think parameterizing is a good idea with the default set to `/usr/lib`.",
+      "parentUuid": "dc4e430b_964ff917",
+      "revId": "7b1fc1bae4a75089cfc0f163c56e76147158bc68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
