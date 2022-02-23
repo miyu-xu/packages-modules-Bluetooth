@@ -675,6 +675,7 @@ public class AdapterService extends Service {
             debugLog("stateChangeCallback: disableNative() completed");
             mAdapterStateMachine.sendMessage(AdapterState.BLE_STOPPED);
         } else if (status == AbstractionLayer.BT_STATE_ON) {
+            getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_LOCAL_LE_FEATURES);
             mAdapterStateMachine.sendMessage(AdapterState.BLE_STARTED);
         } else {
             Log.e(TAG, "Incorrect status " + status + " in stateChangeCallback");
