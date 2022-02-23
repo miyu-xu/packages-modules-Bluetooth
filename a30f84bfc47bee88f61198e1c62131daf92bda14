@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48ba18e8_69f3e962",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-23T21:11:51Z",
+      "side": 1,
+      "message": "Abhishek has a suggestion in line #267 that would reduce the boilerplate as well. Maybe you can try that?",
+      "parentUuid": "a55abbfd_430dc7b1",
+      "range": {
+        "startLine": 275,
+        "startChar": 42,
+        "endLine": 281,
+        "endChar": 29
+      },
+      "revId": "a30f84bfc47bee88f61198e1c62131daf92bda14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45132088_4394a97b",
