@@ -16,6 +16,24 @@
       "message": "Patch set 48 solved merge conflict.(New HAP client merged).\nAnd run dos2unix (0d 0a -\u003e 0a) for PeriodicAdvertisementResult.java and BluetoothLeBroadcastAsistantCallback.java",
       "revId": "e97a09e1865a759d0704333fa1e92b47c2b989cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3877c82_0151cee0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 48
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-23T22:25:18Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "98bcb20c_39b6f6b7",
+      "revId": "e97a09e1865a759d0704333fa1e92b47c2b989cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
