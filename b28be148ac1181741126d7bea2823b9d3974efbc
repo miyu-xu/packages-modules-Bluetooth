@@ -93,6 +93,30 @@
       },
       "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c0c7f29_713dfc13",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-02-23T08:57:16Z",
+      "side": 1,
+      "message": "I meant that if implementation of MediaControlProfile#cleanup() has no assumptions that MediaControlProfile#init() is called before.\n\nAnd another question:\nWhat happens sGmcs.cleanup() is called \"handling sGmcs.init() in another thread\"?\nWill it be okay?",
+      "parentUuid": "08ce012d_29cee780",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 28
+      },
+      "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
