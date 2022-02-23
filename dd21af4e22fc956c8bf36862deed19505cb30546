@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29854695_7215580b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-02-23T03:15:39Z",
+      "side": 1,
+      "message": "Can you change the code priority like this, and let A2DP to handle it?\ncodecConfig.setCodecPriority(BluetoothCodecConfig.CODEC_PRIORITY_HIGHEST);\n\nhttps://android.googlesource.com/platform/packages/modules/Bluetooth/+/refs/heads/master/android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java#155",
+      "range": {
+        "startLine": 866,
+        "startChar": 0,
+        "endLine": 866,
+        "endChar": 37
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
