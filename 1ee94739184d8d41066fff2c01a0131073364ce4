@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c68464e6_21bb9a95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1003224
+      },
+      "writtenOn": "2022-02-23T17:15:18Z",
+      "side": 1,
+      "message": "adding other OWNERS for OWNERS +2...",
+      "revId": "1ee94739184d8d41066fff2c01a0131073364ce4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b4cda056_b2e81238",
         "filename": "system/vendor_libs/test_vendor_lib/net/posix/posix_async_socket.cc",
         "patchSetId": 1
