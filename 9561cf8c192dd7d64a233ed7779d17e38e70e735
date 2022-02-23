@@ -16,6 +16,29 @@
       "message": "LGTM",
       "revId": "9561cf8c192dd7d64a233ed7779d17e38e70e735",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa4f496_15a5d40c",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-23T06:27:14Z",
+      "side": 1,
+      "message": "in the future, please consider switch to LOG_WARN macros as it is the preferred new method in Gd. It will ad line number and __func__ automatically.",
+      "range": {
+        "startLine": 423,
+        "startChar": 0,
+        "endLine": 423,
+        "endChar": 72
+      },
+      "revId": "9561cf8c192dd7d64a233ed7779d17e38e70e735",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
