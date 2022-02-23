@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62204d9c_6ed07221",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-02-23T11:06:29Z",
+      "side": 1,
+      "message": "All, LE Connection Interval being a multiple of SDU_Interval helps in scheduling these links better. Can you help review \u0026 merge this change?",
+      "revId": "fa97f8d060ca426be09f679f0a62b1d2f86152db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
