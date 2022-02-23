@@ -749,13 +749,16 @@ public class LeAudioService extends ProfileService {
         if (!Objects.equals(device, previousOutDevice)
                 || (oldSupportedByDeviceOutput != newSupportedByDeviceOutput)) {
             mActiveAudioOutDevice = newSupportedByDeviceOutput ? device : null;
-            final boolean suppressNoisyIntent = (mActiveAudioOutDevice != null)
-                    || (getConnectionState(previousOutDevice) == BluetoothProfile.STATE_CONNECTED);
+            final boolean forceStop = oldSupportedByDeviceOutput && !newSupportedByDeviceOutput;
+            final boolean suppressNoisyIntent = !forceStop
+                    && ((mActiveAudioOutDevice != null)
+                    || (getConnectionState(previousOutDevice) == BluetoothProfile.STATE_CONNECTED));
 
             if (DBG) {
                 Log.d(TAG, " handleBluetoothActiveDeviceChanged previousOutDevice: "
                             + previousOutDevice + ", mActiveOutDevice: " + mActiveAudioOutDevice
-                            + " isLeOutput: true");
+                            + " isLeOutput: true, forceStop: " + forceStop
+                            + ", suppressNoisyIntent: " + suppressNoisyIntent);
             }
             mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                     previousOutDevice,
