@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e92acce2_1f4c1f3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-23T20:49:58Z",
+      "side": 1,
+      "message": "lgtm. left one comment about improving how the code looks but it looks correct to me.\n\nwill let Sonny finish with +2 for submission",
+      "revId": "c23c77abf20c8bc9a800ffe2006f90826d2909dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d514bcc_3fece12b",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-23T20:49:58Z",
+      "side": 1,
+      "message": "You could potentially replace this whole section with a block like this:\n\n```\n{\n  let context \u003d self.context.lock().unwrap();\n  let adapter_dbus \u003d context.adapter_dbus.as_ref().unwrap();\n  let name \u003d adapter_dbus.get_name();\n  let uuids \u003d adapter_dbus.get_uuids();\n  let is_discoverable \u003d adapter_dbus.get_discoverable();\n  ...\n  \n  print_info!(...);\n}\n```\n\nThe additional block should keep context locked until it is dropped at the end of the block.\n\nSince there\u0027s no callbacks expected by any of these calls (they\u0027re just async dbus calls), you should be able to just keep them in one block like this.",
+      "revId": "c23c77abf20c8bc9a800ffe2006f90826d2909dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
