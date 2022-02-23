@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c62291d_40c54770",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-23T19:17:01Z",
+      "side": 1,
+      "message": "So besides doing it in the constructor, I have to setCodecPriority() again?",
+      "parentUuid": "29854695_7215580b",
+      "range": {
+        "startLine": 866,
+        "startChar": 0,
+        "endLine": 866,
+        "endChar": 37
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31e22bf4_77ad08c4",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 4
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "+1.\nI also have the question about why we need to change the latency mode while trying to resume the playback, but won\u0027t it be too late to change the latency mode? Can it be ready while idle?",
       "parentUuid": "316a0501_bbcce18d",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 47
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a520514d_a3f269f3",
+        "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-23T19:17:01Z",
+      "side": 1,
+      "message": "Sure, will not call buffer size swithcing here. Thanks folks for pointing it out!",
+      "parentUuid": "9168f98c_b9c12b4a",
       "range": {
         "startLine": 38,
         "startChar": 0,
