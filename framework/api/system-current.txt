@@ -186,6 +186,7 @@ package android.bluetooth {
     field public static final int METADATA_COMPANION_APP = 4; // 0x4
     field public static final int METADATA_DEVICE_TYPE = 17; // 0x11
     field public static final int METADATA_ENHANCED_SETTINGS_UI_URI = 16; // 0x10
+    field public static final int METADATA_FAST_PAIR_CUSTOMIZED_FIELDS = 25; // 0x19
     field public static final int METADATA_HARDWARE_VERSION = 3; // 0x3
     field public static final int METADATA_IS_UNTETHERED_HEADSET = 6; // 0x6
     field public static final int METADATA_MAIN_BATTERY = 18; // 0x12
@@ -196,6 +197,7 @@ package android.bluetooth {
     field public static final int METADATA_MAX_LENGTH = 2048; // 0x800
     field public static final int METADATA_MODEL_NAME = 1; // 0x1
     field public static final int METADATA_SOFTWARE_VERSION = 2; // 0x2
+    field public static final int METADATA_SPATIAL_AUDIO = 24; // 0x18
     field public static final int METADATA_UNTETHERED_CASE_BATTERY = 12; // 0xc
     field public static final int METADATA_UNTETHERED_CASE_CHARGING = 15; // 0xf
     field public static final int METADATA_UNTETHERED_CASE_ICON = 9; // 0x9
