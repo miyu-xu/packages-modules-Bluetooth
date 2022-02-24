@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2ea54da_09a9a4f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-02-24T16:41:52Z",
+      "side": 1,
+      "message": "Partha, You can abandon this.\n\nWe can continue review on new gerrit @ https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1998182",
+      "revId": "1920f9046947bcbef9d7304527c0a4924fe5964c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
