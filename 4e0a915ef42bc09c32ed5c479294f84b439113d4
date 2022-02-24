@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33a6bb45_8ca8d0af",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T23:32:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6205c452_72f38c91",
+      "revId": "4e0a915ef42bc09c32ed5c479294f84b439113d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8b3b332_b879711d",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-02-24T23:24:26Z",
       "side": 1,
       "message": "nit:\n\n```\nif self.get_remote_device_if_found(\u0026device).is_none() {\n}\n```",
+      "revId": "4e0a915ef42bc09c32ed5c479294f84b439113d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f443a9f4_953f9c1c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T23:32:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8b3b332_b879711d",
       "revId": "4e0a915ef42bc09c32ed5c479294f84b439113d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
