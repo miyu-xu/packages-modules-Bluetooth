@@ -687,8 +687,7 @@ public class HapClientService extends ProfileService {
      * @return a preset Info corresponding to the requested preset index
      */
     public BluetoothHapPresetInfo getPresetInfo(BluetoothDevice device, int presetIndex) {
-        BluetoothHapPresetInfo defaultValue = new BluetoothHapPresetInfo.Builder().build();
-
+        BluetoothHapPresetInfo defaultValue = null;
         if (presetIndex == BluetoothHapClient.PRESET_INDEX_UNAVAILABLE) return defaultValue;
 
         List<BluetoothHapPresetInfo> current_presets = mPresetsMap.get(device);
@@ -1400,7 +1399,7 @@ public class HapClientService extends ProfileService {
         public void getPresetInfo(BluetoothDevice device, int presetIndex,
                 AttributionSource source, SynchronousResultReceiver receiver) {
             try {
-                BluetoothHapPresetInfo defaultValue = new BluetoothHapPresetInfo.Builder().build();
+                BluetoothHapPresetInfo defaultValue = null;
                 HapClientService service = getService(source);
                 if (service != null) {
                     defaultValue = service.getPresetInfo(device, presetIndex);
