@@ -16,6 +16,24 @@
       "message": "could you do a little manual test if not already done?",
       "revId": "1009db53c51719cbe37570c2b11f988b6dc30ec9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "067523d3_8694ccc9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T23:11:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73a39652_980aceda",
+      "revId": "1009db53c51719cbe37570c2b11f988b6dc30ec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
