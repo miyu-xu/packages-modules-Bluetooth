@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3d93fc6_fc451e7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-24T16:41:38Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothHapPresetInfo.java:25: error: package com.android.internal.util does not exist\nimport com.android.internal.util.Preconditions;\n                                ^\n1 error\n1 warning",
+      "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
