@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "706daa62_facdad21",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-24T12:53:52Z",
+      "side": 1,
+      "message": "Commit message can be revised. How about:\n\nleaudio: Apply QoS settings based on use scenarios\n\nUse scenarios (voice, media, etc..) can be classified into\nlow latency or high reliability type. Values defined\nin BAP spec can be applied to those use scenaros accordingly.\nIn future when more use scenarios are added, QoS settings\nmay need to be bifurcated direction wise.\n\nTest: atest --host bluetooth_le_audio_test",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 21
+      },
+      "revId": "4c0cc06c2172bcc0f202a8b1afd23badf478fefd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
