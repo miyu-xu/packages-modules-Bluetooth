@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f172dadd_e05db2dd",
+        "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-02-24T05:36:22Z",
+      "side": 1,
+      "message": "elaurent@, will audio service always resume the streaming with an assigned latency mode (FREE or LOW)? Will it be done by IStreamOut::setLatencyMode(LatencyMode mode) API before resuming? Since the audio HAL needs to specify the latency mode while resuming, I am not sure whether the HAL knows what mode it should use, but what\u0027s the default value if audio service does not specify it?",
+      "range": {
+        "startLine": 35,
+        "startChar": 43,
+        "endLine": 35,
+        "endChar": 75
+      },
+      "revId": "63cee1a4fdb10b844e280b4e96a1a6a51e8f36f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
