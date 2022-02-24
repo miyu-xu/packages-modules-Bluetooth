@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d51902ce_63076677",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-02-24T07:39:48Z",
+      "side": 1,
+      "message": "max_transport_latency and retransmission_number values are picked up from BAP spec now",
+      "parentUuid": "50f916e5_eaa5774f",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 52
+      },
+      "revId": "739b35b8f31c181d4b23ca0e4365c88e33d7e138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4c2a71c_d2d87809",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-02-18T08:24:36Z",
       "side": 1,
       "message": "are these all numbers picked from BAP spec tables? It would be good to use that (and deviation from it should be specifically brought out in commit description or can be deferred to a separate gerrit). Also commit description, the values has been picked from BAP spec)",
+      "revId": "739b35b8f31c181d4b23ca0e4365c88e33d7e138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee18a71d_c1c7cfb2",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2238,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-02-24T07:39:48Z",
+      "side": 1,
+      "message": "max_transport_latency and retransmission_number values are picked up from BAP spec now",
+      "parentUuid": "b4c2a71c_d2d87809",
       "revId": "739b35b8f31c181d4b23ca0e4365c88e33d7e138",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9bf3dd5_2d68bcf3",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-02-24T07:39:48Z",
+      "side": 1,
+      "message": "not needed anymore",
+      "parentUuid": "98f170fd_4c108a38",
+      "range": {
+        "startLine": 187,
+        "startChar": 37,
+        "endLine": 187,
+        "endChar": 39
+      },
+      "revId": "739b35b8f31c181d4b23ca0e4365c88e33d7e138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6d22451_70354fdc",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-02-18T08:24:36Z",
       "side": 1,
       "message": "is this check needed? If needed, should this be other way or what is the logic in choosing the minimum of the transport latencies here?",
+      "range": {
+        "startLine": 1144,
+        "startChar": 13,
+        "endLine": 1144,
+        "endChar": 65
+      },
+      "revId": "739b35b8f31c181d4b23ca0e4365c88e33d7e138",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "106f0d6b_f668734f",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-02-24T07:39:48Z",
+      "side": 1,
+      "message": "yes minimum of the transport latencies are chosen",
+      "parentUuid": "b6d22451_70354fdc",
       "range": {
         "startLine": 1144,
         "startChar": 13,
