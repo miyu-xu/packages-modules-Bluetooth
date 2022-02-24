@@ -70,6 +70,30 @@
       },
       "revId": "5a2fdd077ea854d0136c407af1da549f495f5bff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6491692d_91da7447",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-02-24T04:37:19Z",
+      "side": 1,
+      "message": "This CL was incorrect - The audio also stops when user switch output to speaker from the UI, which is not desired behavior. I\u0027ll find a new way for doing this.\n\nFor Lukasz\u0027s information, AFAIK the desired behavior is:\n1. User changes output directly via UI - Keep playing music\n2. When headset is plugged in (Speaker -\u003e Headset) - Keep playing music\n3. When headset is plugged out (Headset -\u003e Speaker) - Stop music",
+      "parentUuid": "4160f675_dbb8e5c8",
+      "range": {
+        "startLine": 752,
+        "startChar": 26,
+        "endLine": 752,
+        "endChar": 35
+      },
+      "revId": "5a2fdd077ea854d0136c407af1da549f495f5bff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
