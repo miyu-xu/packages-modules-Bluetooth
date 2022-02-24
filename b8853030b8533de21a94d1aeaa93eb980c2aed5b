@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c68c892_a7999e12",
+        "filename": "android/app/jni/com_android_bluetooth_vc.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-02-24T13:20:38Z",
+      "side": 1,
+      "message": "nit: external ?",
+      "revId": "b8853030b8533de21a94d1aeaa93eb980c2aed5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
