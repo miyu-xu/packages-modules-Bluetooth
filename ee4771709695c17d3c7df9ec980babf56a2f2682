@@ -22,6 +22,30 @@
       },
       "revId": "ee4771709695c17d3c7df9ec980babf56a2f2682",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cd7752d_d94858cc",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2022-02-24T21:56:54Z",
+      "side": 1,
+      "message": "Good catch! Cleaned this one up, too :)",
+      "parentUuid": "faee57b5_c80f48bd",
+      "range": {
+        "startLine": 702,
+        "startChar": 2,
+        "endLine": 702,
+        "endChar": 39
+      },
+      "revId": "ee4771709695c17d3c7df9ec980babf56a2f2682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
