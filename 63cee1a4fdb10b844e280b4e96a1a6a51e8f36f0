@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04a6ad82_8c3e7d69",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-24T19:32:56Z",
+      "side": 1,
+      "message": "What\u0027s the difference between set priority and simply set config? \n\nI assume you are ok with other parts in AdapterService.java. How about merging it for now since this CL has been hanging here and one iteration always take a day since we need opinion from 3 time zones. The topic has AIDL change and should have been merged by Feb IC.\n\nIf there is a big difference between the 2 ways. Let\u0027s send another CL to modify it.",
+      "parentUuid": "97b5c460_178e92c8",
+      "range": {
+        "startLine": 887,
+        "startChar": 0,
+        "endLine": 889,
+        "endChar": 0
+      },
+      "revId": "63cee1a4fdb10b844e280b4e96a1a6a51e8f36f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f172dadd_e05db2dd",
         "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
         "patchSetId": 5
