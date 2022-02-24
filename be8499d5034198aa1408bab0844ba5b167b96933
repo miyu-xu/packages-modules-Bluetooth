@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "29e394c4_63c53403",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-24T20:00:06Z",
+      "side": 1,
+      "message": "if there is no need to consume the object, this is better to be a borrow reference `\u0026BluetoothDevice`",
+      "range": {
+        "startLine": 371,
+        "startChar": 16,
+        "endLine": 371,
+        "endChar": 31
+      },
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51dd0b87_8e3b6857",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
