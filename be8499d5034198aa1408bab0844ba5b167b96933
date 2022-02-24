@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c2801b9_29ea129c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-24T19:57:09Z",
+      "side": 1,
+      "message": "nit: please add one blankline before the tags",
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51dd0b87_8e3b6857",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-24T19:57:09Z",
+      "side": 1,
+      "message": "Nit: can the outer match be removed?\n```\n        self\n            .bonded_devices\n            .get(\u0026device.address)\n            .or_else(|| self.found_devices.get(\u0026device.address))\n```",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 9
+      },
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af12fc1_32ad0e12",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-24T19:57:09Z",
+      "side": 1,
+      "message": "Since you are already using `and_then` style, how about using it also in the inner and_then? like:\n\n```\n        self.get_remote_device_if_found(device)\n            .and_then(|d| d.properties.get(property_type)\n                .and_then(|p| Some(p.clone())))\n```",
+      "range": {
+        "startLine": 389,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 10
+      },
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
