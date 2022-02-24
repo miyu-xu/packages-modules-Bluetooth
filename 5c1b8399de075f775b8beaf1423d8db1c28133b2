@@ -16,6 +16,75 @@
       "message": "packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothHapPresetInfo.java:25: error: package com.android.internal.util does not exist\nimport com.android.internal.util.Preconditions;\n                                ^\n1 error\n1 warning",
       "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4f2cd92_6f29c84d",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-24T16:45:56Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothHapPresetInfo.java:25: error: package com.android.internal.util does not exist\nimport com.android.internal.util.Preconditions;\n                                ^\n1 error\n1 warning",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 47
+      },
+      "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfc5f8d4_fa8a8293",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-24T16:45:56Z",
+      "side": 1,
+      "message": "Check with TextUtils#isEmpty and raise explicit IllegalArgumentException instead\n\nhttps://developer.android.com/reference/android/text/TextUtils#isEmpty(java.lang.CharSequence)",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 51
+      },
+      "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee84af6f_32211fbd",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-02-24T16:45:56Z",
+      "side": 1,
+      "message": "same here, please do the check explicitly and raise explicit IllegalArgumentException instead",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 75
+      },
+      "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
