@@ -16,6 +16,23 @@
       "message": "Hi All, can you please help review and merge this? We have a peer device that publishes max_codec_frames_blocks_per_sdu of 2. Without this gerrit change, Android side simply enables this peer provided max setting as functional value (even though Android currently does not support a value \u003e1 well).",
       "revId": "63a358d6466d55ca7918c00cd56ac8ed211f55fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb6a7c3b_bde04d7d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-02-24T08:22:15Z",
+      "side": 1,
+      "message": "Thanks, looks good.",
+      "revId": "63a358d6466d55ca7918c00cd56ac8ed211f55fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
