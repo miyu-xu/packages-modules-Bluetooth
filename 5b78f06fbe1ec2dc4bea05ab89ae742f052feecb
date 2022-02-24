@@ -16,6 +16,24 @@
       "message": "Actually I\u0027m thinking that at Floss, we need to be more general than this, like `get_multi_advertisement_max_slot()`. This method `is_multi_advertisement_supported` defined with 5 advertising slots is very Android specific. But it\u0027s okay to leave it here as well because ARC++ will be easy to integrate if we keep it here. When the need comes we can expose the more general method.",
       "revId": "5b78f06fbe1ec2dc4bea05ab89ae742f052feecb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1af3dd40_ef1b6941",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-02-24T00:38:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "53e21d34_567378ae",
+      "revId": "5b78f06fbe1ec2dc4bea05ab89ae742f052feecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
