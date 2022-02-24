@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab90abc4_cd424d00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T19:25:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf88d26c_915e74ae",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "0fdb2a15486a3bbd24622e4ae0f4558335c97934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61faa46f_bc2aaf2f",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-23T23:31:13Z",
       "side": 1,
       "message": "This description should be right below commit title (above all tags like Bug: etc)",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 49
+      },
+      "revId": "0fdb2a15486a3bbd24622e4ae0f4558335c97934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c3cd8b9_df2852e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T19:25:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61faa46f_bc2aaf2f",
       "range": {
         "startLine": 12,
         "startChar": 0,
