@@ -244,6 +244,12 @@ class Metadata {
             case BluetoothDevice.METADATA_UNTETHERED_CASE_LOW_BATTERY_THRESHOLD:
                 publicMetadata.untethered_case_low_battery_threshold = value;
                 break;
+            case BluetoothDevice.METADATA_SPATIAL_AUDIO:
+                publicMetadata.spatial_audio = value;
+                break;
+            case BluetoothDevice.METADATA_FAST_PAIR_CUSTOMIZED_FIELDS:
+                publicMetadata.fastpair_customized = value;
+                break;
         }
     }
 
@@ -321,6 +327,12 @@ class Metadata {
                 break;
             case BluetoothDevice.METADATA_UNTETHERED_CASE_LOW_BATTERY_THRESHOLD:
                 value = publicMetadata.untethered_case_low_battery_threshold;
+                break;
+            case BluetoothDevice.METADATA_SPATIAL_AUDIO:
+                value = publicMetadata.spatial_audio;
+                break;
+            case BluetoothDevice.METADATA_FAST_PAIR_CUSTOMIZED_FIELDS:
+                value = publicMetadata.fastpair_customized;
                 break;
         }
         return value;
