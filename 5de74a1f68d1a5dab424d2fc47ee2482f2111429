@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e85c2e7_d10d055a",
+        "filename": "system/bta/le_audio/audio_set_configurations.fbs",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-24T08:01:05Z",
+      "side": 1,
+      "message": "nit: For consistency in naming, this can be retained as AudioSetConfiguration",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 19
+      },
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e55815a3_1b3ba647",
+        "filename": "system/bta/le_audio/audio_set_configurations.fbs",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-24T08:01:05Z",
+      "side": 1,
+      "message": "nit: For consistency in naming, this can be retained as AudioSetConfigurations",
+      "range": {
+        "startLine": 79,
+        "startChar": 6,
+        "endLine": 79,
+        "endChar": 21
+      },
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c77b236_d7599b2d",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-24T08:01:05Z",
+      "side": 1,
+      "message": "nit: redundant new line addition?",
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c375d7_bfdec2ab",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-24T08:01:05Z",
+      "side": 1,
+      "message": "nit: this line look out of indentation (was so previously as well). can this be aligned to above line?",
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c48ed59_8bd0edf8",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-24T08:01:05Z",
+      "side": 1,
+      "message": "nit: these definitions can be placed just before their use/reference in the below code.",
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "945e010a_985ac96f",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-02-24T08:01:05Z",
+      "side": 1,
+      "message": "nit: this can be on previous line itself, did the cstyle auto-format this?",
+      "range": {
+        "startLine": 306,
+        "startChar": 14,
+        "endLine": 306,
+        "endChar": 42
+      },
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
