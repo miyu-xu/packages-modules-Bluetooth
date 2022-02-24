@@ -135,6 +135,11 @@ impl IBluetooth for IBluetoothDBus {
         true
     }
 
+    #[dbus_method("GetDiscoverableTimeout")]
+    fn get_discoverable_timeout(&self) -> u32 {
+        0
+    }
+
     #[dbus_method("SetDiscoverable")]
     fn set_discoverable(&self, mode: bool, duration: u32) -> bool {
         true
