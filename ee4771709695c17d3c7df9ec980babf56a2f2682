@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "faee57b5_c80f48bd",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 702,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-02-24T18:33:46Z",
+      "side": 1,
+      "message": "This pattern is similar but no unhandled early exit",
+      "range": {
+        "startLine": 702,
+        "startChar": 2,
+        "endLine": 702,
+        "endChar": 39
+      },
+      "revId": "ee4771709695c17d3c7df9ec980babf56a2f2682",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
