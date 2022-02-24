@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "274e41b9_9a7cda8a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T20:24:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c2801b9_29ea129c",
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29e394c4_63c53403",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce1d2e87_c9c81246",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T20:24:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0a26030_429a4ca2",
+      "range": {
+        "startLine": 371,
+        "startChar": 16,
+        "endLine": 371,
+        "endChar": 31
+      },
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "51dd0b87_8e3b6857",
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55c5ba00_b9011c47",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T20:24:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "51dd0b87_8e3b6857",
+      "range": {
+        "startLine": 373,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 9
+      },
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0af12fc1_32ad0e12",
@@ -101,6 +167,30 @@
       "writtenOn": "2022-02-24T19:57:09Z",
       "side": 1,
       "message": "Since you are already using `and_then` style, how about using it also in the inner and_then? like:\n\n```\n        self.get_remote_device_if_found(device)\n            .and_then(|d| d.properties.get(property_type)\n                .and_then(|p| Some(p.clone())))\n```",
+      "range": {
+        "startLine": 389,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 10
+      },
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a33de56_0a884e40",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-24T20:24:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0af12fc1_32ad0e12",
       "range": {
         "startLine": 389,
         "startChar": 0,
