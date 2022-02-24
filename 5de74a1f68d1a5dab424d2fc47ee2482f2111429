@@ -114,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58f403a8_c5e809cd",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-02-24T12:31:26Z",
+      "side": 1,
+      "message": "Kept the same order as configurations were defined earlier. But will sort as suggested. Do we need to sort \"codec_configurations\" also Or Ok as is?",
+      "parentUuid": "b911b34f_47904fd7",
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67251e5e_b8f64b8f",
         "filename": "system/bta/le_audio/audio_set_configurations.json",
         "patchSetId": 5
@@ -131,6 +149,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bf7ac042_ba0c3978",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 2352,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-02-24T12:31:26Z",
+      "side": 1,
+      "message": "Ok. Will sort this order.",
+      "parentUuid": "67251e5e_b8f64b8f",
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "760f6d41_60f5cb3c",
         "filename": "system/bta/le_audio/audio_set_scenarios.json",
         "patchSetId": 5
@@ -142,6 +178,24 @@
       "writtenOn": "2022-02-24T12:21:32Z",
       "side": 1,
       "message": "my understanding was that Ringtone was actually using Voice. If so, this needs to be _1?",
+      "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6703c7e_741277ac",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-02-24T12:31:26Z",
+      "side": 1,
+      "message": "Not sure what Ringtone is using.\nPartha/Manoj, Do you know?",
+      "parentUuid": "760f6d41_60f5cb3c",
       "revId": "5de74a1f68d1a5dab424d2fc47ee2482f2111429",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
