@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0a26030_429a4ca2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-24T20:04:20Z",
+      "side": 1,
+      "message": "also applies to `get_remote_device_property` below",
+      "parentUuid": "29e394c4_63c53403",
+      "range": {
+        "startLine": 371,
+        "startChar": 16,
+        "endLine": 371,
+        "endChar": 31
+      },
+      "revId": "be8499d5034198aa1408bab0844ba5b167b96933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "51dd0b87_8e3b6857",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
