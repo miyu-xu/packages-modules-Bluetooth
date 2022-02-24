@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0895ed5f_31dcaafd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 866,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-02-24T05:43:05Z",
+      "side": 1,
+      "message": "No, you don\u0027t need to setCodecPriority() twice.",
+      "parentUuid": "9c62291d_40c54770",
+      "range": {
+        "startLine": 866,
+        "startChar": 0,
+        "endLine": 866,
+        "endChar": 37
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31e22bf4_77ad08c4",

@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97b5c460_178e92c8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-02-24T05:43:05Z",
+      "side": 1,
+      "message": "Would you like to low the LC3 priority to the lowest, and let A2DP to help you do the selection?",
+      "range": {
+        "startLine": 887,
+        "startChar": 0,
+        "endLine": 889,
+        "endChar": 0
+      },
+      "revId": "63cee1a4fdb10b844e280b4e96a1a6a51e8f36f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f172dadd_e05db2dd",
         "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
         "patchSetId": 5
