@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df4747c_c286033c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-24T19:37:20Z",
+      "side": 1,
+      "message": "Bypass presubmit because\n1) the patchset 5 had been PV +2ed. The build error is on master branch.\n2) the CL need to merged ASAP to catched API freeze",
+      "revId": "63cee1a4fdb10b844e280b4e96a1a6a51e8f36f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97b5c460_178e92c8",
