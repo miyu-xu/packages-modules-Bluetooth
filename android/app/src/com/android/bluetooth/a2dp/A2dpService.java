@@ -1600,4 +1600,10 @@ public class A2dpService extends ProfileService {
             sm.dump(sb);
         }
     }
+
+    public void switchCodecByBufferSize(
+            BluetoothDevice device, boolean isLowLatency, BluetoothCodecStatus codecStatus) {
+        mA2dpCodecConfig.switchCodecByBufferSize(
+                device, isLowLatency, codecStatus.getCodecConfig().getCodecType());
+    }
 }
