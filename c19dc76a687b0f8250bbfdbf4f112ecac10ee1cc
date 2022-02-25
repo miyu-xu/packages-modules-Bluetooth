@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58ab2237_f435af95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-25T13:06:42Z",
+      "side": 1,
+      "message": "Thanks. I Like it :) Minor comment.\n@Jakub T: What do you think?",
+      "revId": "c19dc76a687b0f8250bbfdbf4f112ecac10ee1cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afebcd4d_e98aaf5a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-02-25T13:06:42Z",
+      "side": 1,
+      "message": "I think that if peer for some reason would like to have more retransmissions, we should try to ask controller about that. In the end this is controller decision.",
+      "revId": "c19dc76a687b0f8250bbfdbf4f112ecac10ee1cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
