@@ -207,6 +207,125 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
     gen.into()
 }
 
+/// Generates a client implementation of a D-Bus interface.
+///
+/// Example:
+///   #[generate_dbus_interface_client()]
+///
+/// The impl containing #[dbus_method()] will contain a generated code to call
+/// the method via D-Bus.
+#[proc_macro_attribute]
+pub fn generate_dbus_interface_client(_attr: TokenStream, item: TokenStream) -> TokenStream {
+    let ast: ItemImpl = syn::parse(item.clone()).unwrap();
+    let trait_path = ast.trait_.unwrap().1;
+    let struct_path = match *ast.self_ty {
+        Type::Path(path) => path,
+        _ => panic!("Struct path not available"),
+    };
+
+    let mut methods = quote! {};
+
+    for item in ast.items {
+        if let ImplItem::Method(method) = item {
+            // If the method is not marked with #[dbus_method], just copy the
+            // original method body.
+            if method.attrs.len() != 1 {
+                methods = quote! {
+                    #methods
+
+                    #method
+                };
+                continue;
+            }
+
+            let attr = &method.attrs[0];
+            if !attr.path.get_ident().unwrap().to_string().eq("dbus_method") {
+                continue;
+            }
+
+            let sig = &method.sig;
+
+            let dbus_method_name = if let Meta::List(meta_list) = attr.parse_meta().unwrap() {
+                Some(meta_list.nested[0].clone())
+            } else {
+                None
+            };
+
+            if dbus_method_name.is_none() {
+                continue;
+            }
+
+            let mut input_list = quote! {};
+
+            for input in &method.sig.inputs {
+                if let FnArg::Typed(ref typed) = input {
+                    let arg_type = &typed.ty;
+                    if let Pat::Ident(pat_ident) = &*typed.pat {
+                        let ident = pat_ident.ident.clone();
+
+                        input_list = quote! {
+                            #input_list
+                            <#arg_type as DBusArg>::to_dbus(#ident).unwrap(),
+                        };
+                    }
+                }
+            }
+
+            let mut output_as_dbus_arg = quote! {};
+            if let ReturnType::Type(_, t) = &method.sig.output {
+                output_as_dbus_arg = quote! {<#t as DBusArg>};
+            }
+
+            let input_tuple = quote! {
+                (#input_list)
+            };
+
+            let body = match &method.sig.output {
+                ReturnType::Default => {
+                    quote! {
+                        self.client_proxy.method_noreturn(#dbus_method_name, #input_tuple)
+                    }
+                }
+                _ => {
+                    quote! {
+                        let ret: #output_as_dbus_arg::DBusType = self.client_proxy.method(
+                            #dbus_method_name,
+                            #input_tuple,
+                        );
+                        #output_as_dbus_arg::from_dbus(ret, None, None, None).unwrap()
+                    }
+                }
+            };
+
+            let generated_method = quote! {
+                #sig {
+                    #body
+                }
+            };
+
+            methods = quote! {
+                #methods
+
+                #generated_method
+            };
+        }
+    }
+
+    let gen = quote! {
+        impl #trait_path for #struct_path {
+            #methods
+        }
+    };
+
+    // TODO: Have a switch to turn on/off this debug.
+    debug_output_to_file(
+        &gen,
+        format!("/tmp/out-{}.rs", struct_path.path.get_ident().unwrap().to_string()),
+    );
+
+    gen.into()
+}
+
 fn copy_without_attributes(item: &TokenStream) -> TokenStream {
     let mut ast: ItemStruct = syn::parse(item.clone()).unwrap();
     for field in &mut ast.fields {
