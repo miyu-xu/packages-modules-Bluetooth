@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32e7a194_0c7680e7",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-25T02:10:18Z",
+      "side": 1,
+      "message": "I just merged https://r.android.com/c/1999750. Please rebase and you can use `dbus_generated!()` instead of `0` as placeholder.",
+      "revId": "f6b2891d400d23290407efb944ef63e759365890",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
