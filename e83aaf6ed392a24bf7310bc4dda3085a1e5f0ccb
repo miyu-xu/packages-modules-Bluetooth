@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f77cf22c_4350623e",
+        "filename": "system/embdrv/lc3/src/bits.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-02-25T15:22:09Z",
+      "side": 1,
+      "message": "Could we do something like this instead?\n\nuint16_t masked_range \u003d ac-\u003erange \u0026 0xf300;  // Zero botomm 10 bits\nac-\u003eerror |\u003d (ac-\u003elow \u003e\u003d masked_range);\n\nor:\nac-\u003eerror |\u003d (ac-\u003elow \u003e\u003d (ac-\u003erange \u0026 0xf300));",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 291,
+        "endChar": 54
+      },
+      "revId": "e83aaf6ed392a24bf7310bc4dda3085a1e5f0ccb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
