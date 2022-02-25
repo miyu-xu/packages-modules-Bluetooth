@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47ec96ba_d0b8388c",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpCodecConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-02-25T02:59:53Z",
+      "side": 1,
+      "message": "You have to apply the codec config\nmA2dpNativeInterface.setCodecConfigPreference(device, codecConfigArray);",
+      "revId": "770732b3d59d124ec1299d84d08b041813e73bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d41c5c0_1749c206",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-02-25T02:59:53Z",
+      "side": 1,
+      "message": "Can we retrieve the config here inside the A2dpService?",
+      "range": {
+        "startLine": 1605,
+        "startChar": 63,
+        "endLine": 1605,
+        "endChar": 79
+      },
+      "revId": "770732b3d59d124ec1299d84d08b041813e73bb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
