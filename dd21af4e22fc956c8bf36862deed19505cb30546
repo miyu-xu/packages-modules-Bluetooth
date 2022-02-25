@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f140fb0f_749e5891",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-02-25T07:28:49Z",
+      "side": 1,
+      "message": "Hi Eric, AudioManager.handleBluetoothActiveDeviceChanged() will be called by signal from native Bluetooth later when codec change happens, not directly from setCodecConfigPreference(). Therefore it\u0027s hard to achieve such checking in bt as Cheney said. If we just save the flag here, when both audio buffer switching signal and another component ask bt to switch codec at the same time, we\u0027ll end up with race condition.\n\nCould audio ignore handleBluetoothActiveDeviceChanged() if it just sends buffer switching signal to bt?",
+      "parentUuid": "697ce177_eac6d9b4",
+      "range": {
+        "startLine": 897,
+        "startChar": 0,
+        "endLine": 897,
+        "endChar": 81
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "316a0501_bbcce18d",
         "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
         "patchSetId": 4
