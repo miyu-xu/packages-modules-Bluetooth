@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eccef03_7c786eaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-02-25T16:43:22Z",
+      "side": 1,
+      "message": "Rebase on top of AOSP, we can merge this already",
+      "revId": "e31e2adec05f11c3dc247d5f7f418018e3df8215",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
