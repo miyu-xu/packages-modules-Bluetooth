@@ -16,6 +16,24 @@
       "message": "I forgot about `Tag: #floss`",
       "revId": "2a19921156560f7580566e0002942968b5c8cf29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e909d8f_a9d4b598",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-02-25T17:30:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b63815d_691fe3a8",
+      "revId": "2a19921156560f7580566e0002942968b5c8cf29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
