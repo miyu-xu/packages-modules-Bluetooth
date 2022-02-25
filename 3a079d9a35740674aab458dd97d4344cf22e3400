@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b17cdf50_7ed40087",
+        "filename": "system/blueberry/tests/gd/security/cert_security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-25T17:33:21Z",
+      "side": 0,
+      "message": "why are these removed?",
+      "revId": "3a079d9a35740674aab458dd97d4344cf22e3400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
