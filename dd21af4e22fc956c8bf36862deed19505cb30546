@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b44c36e7_d8d1051e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-02-25T09:33:41Z",
+      "side": 1,
+      "message": "The problem is similar in the audio framework: the layer that receives the handleBluetoothActiveDeviceChanged() is way above the layer that controls the latency over BT link. It does not have the necessary information to ignore the config update request. Besides there is also a risk of race condition between this config update and a legit one that would be received because a new device is made active or the user actually requests a codec change from the UI.",
+      "parentUuid": "f140fb0f_749e5891",
+      "range": {
+        "startLine": 897,
+        "startChar": 0,
+        "endLine": 897,
+        "endChar": 81
+      },
+      "revId": "dd21af4e22fc956c8bf36862deed19505cb30546",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "316a0501_bbcce18d",
         "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
         "patchSetId": 4
