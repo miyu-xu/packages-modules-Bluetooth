@@ -48,12 +48,43 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
   DBusHeadsetCallbacks(headset::Interface* headset) : headset_(headset){};
 
   void ConnectionStateCallback(headset::bthf_connection_state_t state, RawAddress* bd_addr) override {
-    LOG_WARN("ConnectionStateCallback from %s", bd_addr->ToString().c_str());
+    LOG_INFO("ConnectionStateCallback from %s", bd_addr->ToString().c_str());
     topshim::rust::internal::connection_state_cb(state, bd_addr);
   }
 
-  void AudioStateCallback(
-      [[maybe_unused]] headset::bthf_audio_state_t state, [[maybe_unused]] RawAddress* bd_addr) override {}
+  void AudioStateCallback(headset::bthf_audio_state_t state, RawAddress* bd_addr) override {
+    LOG_INFO("AudioStateCallback %u from %s", state, bd_addr->ToString().c_str());
+    switch (state) {
+      case headset::bthf_audio_state_t::BTHF_AUDIO_STATE_CONNECTED:
+        /* This triggers a +CIEV command to set the call status for HFP
+         * devices. It is required along with the SCO establishment for some
+         * devices to provide sound.
+         */
+        headset_->PhoneStateChange(
+            1, 0, headset::bthf_call_state_t::BTHF_CALL_STATE_IDLE, "", (headset::bthf_call_addrtype_t)0, "", bd_addr);
+        /* This triggers a +VGS command to set the speaker volume for HFP
+         * devices.
+         * TODO(b/215089433): Add a set volume API and have client to handle the
+         * set volume when start.
+         */
+        headset_->VolumeControl(headset::bthf_volume_type_t::BTHF_VOLUME_TYPE_SPK, 5, bd_addr);
+        return;
+      case headset::bthf_audio_state_t::BTHF_AUDIO_STATE_DISCONNECTED:
+        headset_->PhoneStateChange(
+            0,
+            0,
+            headset::bthf_call_state_t::BTHF_CALL_STATE_DISCONNECTED,
+            "",
+            (headset::bthf_call_addrtype_t)0,
+            "",
+            bd_addr);
+        headset_->PhoneStateChange(
+            0, 0, headset::bthf_call_state_t::BTHF_CALL_STATE_IDLE, "", (headset::bthf_call_addrtype_t)0, "", bd_addr);
+        return;
+      default:
+        return;
+    }
+  }
 
   void VoiceRecognitionCallback(
       [[maybe_unused]] headset::bthf_vr_state_t state, [[maybe_unused]] RawAddress* bd_addr) override {}
@@ -84,7 +115,7 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
     /* This is required to setup the SLC, the format of the response should be
      * +CIND: <call>,<callsetup>,<service>,<signal>,<roam>,<battery>,<callheld>
      */
-    LOG_WARN("Respond +CIND: 0,0,0,0,0,0,0 to AT+CIND? from %s", bd_addr->ToString().c_str());
+    LOG_WARN("Respond +CIND: 0,0,1,5,0,5,0 to AT+CIND? from %s", bd_addr->ToString().c_str());
 
     /* headset::Interface::CindResponse's parameters are similar but different
      * from the actual CIND response. It will construct the final response for
@@ -93,7 +124,7 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
      *              held_call_num, callsetup_state, signal_strength,
      *              roam_state, battery_level, bd_addr);
      */
-    headset_->CindResponse(0, 0, 0, headset::BTHF_CALL_STATE_IDLE, 0, 0, 0, bd_addr);
+    headset_->CindResponse(1, 0, 0, headset::BTHF_CALL_STATE_IDLE, 5, 0, 5, bd_addr);
   }
 
   void AtCopsCallback(RawAddress* bd_addr) override {
@@ -116,6 +147,7 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
         headset::BTHF_CALL_ADDRTYPE_UNKNOWN,
         bd_addr);
     */
+    headset_->AtResponse(headset::BTHF_AT_RESPONSE_OK, 0, bd_addr);
   }
 
   void UnknownAtCallback(char* at_string, RawAddress* bd_addr) override {
