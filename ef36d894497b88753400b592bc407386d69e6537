@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7717011_37e6b2ef",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-02-25T00:57:58Z",
+      "side": 1,
+      "message": "You can throw the fixes under the same one as BleScanner since I introduced a bunch of these warnings",
+      "revId": "ef36d894497b88753400b592bc407386d69e6537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "56b6e7c3_f76d3d6a",
