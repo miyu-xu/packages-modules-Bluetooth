@@ -462,6 +462,18 @@ TEST_F(ControllerTest, aclCreditCallbackListenerUnregistered) {
 
   test_hci_layer_->IncomingCredit();
 }
+
+std::promise<void> le_rand_set;
+
+void le_rand_callback() {
+  le_rand_set.set_value();
+}
+
+TEST_F(ControllerTest, leRandTest) {
+  controller_->LeRand(client_handler_->Bind(&le_rand_callback));
+  le_rand_set.get_future().wait();
+}
+
 }  // namespace
 }  // namespace hci
 }  // namespace bluetooth
