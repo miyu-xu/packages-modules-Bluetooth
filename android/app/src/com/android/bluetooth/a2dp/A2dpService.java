@@ -1600,4 +1600,8 @@ public class A2dpService extends ProfileService {
             sm.dump(sb);
         }
     }
+
+    public void switchCodecByBufferSize(boolean isLowLatency, int currentCodecType) {
+        mA2dpCodecConfig.switchCodecByBufferSize(isLowLatency, currentCodecType);
+    }
 }

@@ -279,5 +279,25 @@ class A2dpCodecConfig {
 
         return codecConfigArray;
     }
+
+    public void switchCodecByBufferSize(boolean isLowLatency, int currentCodecType) {
+        if ((isLowLatency && currentCodecType == BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3)
+        || (!isLowLatency && currentCodecType != BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3)) {
+            return;
+        }
+        BluetoothCodecConfig[] codecConfigArray = assignCodecConfigPriorities();
+        for (int i = 0; i < codecConfigArray.length; i++){
+            BluetoothCodecConfig codecConfig = codecConfigArray[i];
+            if (codecConfig.getCodecType() == BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3) {
+                if (isLowLatency) {
+                    codecConfig.setCodecPriority(BluetoothCodecConfig.CODEC_PRIORITY_HIGHEST);
+                } else {
+                    codecConfig.setCodecPriority(BluetoothCodecConfig.CODEC_PRIORITY_DISABLED);
+                }
+            } else {
+                codecConfigArray[i] = null;
+            }
+        }
+    }
 }
 
