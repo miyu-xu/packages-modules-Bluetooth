@@ -139,8 +139,8 @@ static void btm_esco_conn_rsp(uint16_t sco_inx, uint8_t hci_status,
       *p_setup = btm_cb.sco_cb.def_esco_parms;
     }
     /* Use Enhanced Synchronous commands if supported */
-    if (controller_get_interface()
-            ->supports_enhanced_setup_synchronous_connection()) {
+    if (false && controller_get_interface()
+                     ->supports_enhanced_setup_synchronous_connection()) {
       /* Use the saved SCO routing */
       p_setup->input_data_path = p_setup->output_data_path = ESCO_DATA_PATH;
 
@@ -341,8 +341,8 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
     p_setup->packet_types = temp_packet_types;
 
     /* Use Enhanced Synchronous commands if supported */
-    if (controller_get_interface()
-            ->supports_enhanced_setup_synchronous_connection()) {
+    if (false && controller_get_interface()
+                     ->supports_enhanced_setup_synchronous_connection()) {
       LOG_INFO("Sending enhanced SCO connect request over handle:0x%04x",
                acl_handle);
       /* Use the saved SCO routing */
@@ -493,6 +493,8 @@ tBTM_STATUS BTM_CreateSco(const RawAddress* remote_bda, bool is_orig,
             (pkt_types & BTM_SCO_EXCEPTION_PKTS_MASK) |
             (btm_cb.btm_sco_pkt_types_supported & BTM_SCO_EXCEPTION_PKTS_MASK);
       }
+
+      p_setup->packet_types = 0x0380;
 
       p->p_conn_cb = p_conn_cb;
       p->p_disc_cb = p_disc_cb;
@@ -1114,6 +1116,7 @@ tBTM_STATUS BTM_RegForEScoEvts(uint16_t sco_inx,
  ******************************************************************************/
 static tBTM_STATUS BTM_ChangeEScoLinkParms(uint16_t sco_inx,
                                            tBTM_CHG_ESCO_PARAMS* p_parms) {
+  LOG_WARN("BTM_ChangeEScoLinkParms");
   /* Make sure sco handle is valid and on an active link */
   if (sco_inx >= BTM_MAX_SCO_LINKS ||
       btm_cb.sco_cb.sco_db[sco_inx].state != SCO_ST_CONNECTED)
@@ -1161,8 +1164,8 @@ static tBTM_STATUS BTM_ChangeEScoLinkParms(uint16_t sco_inx,
         temp_packet_types);
 
     /* Use Enhanced Synchronous commands if supported */
-    if (controller_get_interface()
-            ->supports_enhanced_setup_synchronous_connection()) {
+    if (false && controller_get_interface()
+                     ->supports_enhanced_setup_synchronous_connection()) {
       /* Use the saved SCO routing */
       p_setup->input_data_path = p_setup->output_data_path = ESCO_DATA_PATH;
 
