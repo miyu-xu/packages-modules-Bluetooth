@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52352a15_09b3a386",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-25T08:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28a87cca_030ed6e7",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 47
+      },
+      "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bfc5f8d4_fa8a8293",
@@ -88,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90a6c657_0142f7af",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-25T08:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfc5f8d4_fa8a8293",
+      "range": {
+        "startLine": 150,
+        "startChar": 0,
+        "endLine": 150,
+        "endChar": 51
+      },
+      "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee84af6f_32211fbd",
@@ -101,6 +149,30 @@
       "writtenOn": "2022-02-24T16:45:56Z",
       "side": 1,
       "message": "same here, please do the check explicitly and raise explicit IllegalArgumentException instead",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 75
+      },
+      "revId": "5c1b8399de075f775b8beaf1423d8db1c28133b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "957e744a_3ee2839c",
+        "filename": "framework/java/android/bluetooth/BluetoothHapPresetInfo.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-02-25T08:19:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee84af6f_32211fbd",
       "range": {
         "startLine": 152,
         "startChar": 0,
