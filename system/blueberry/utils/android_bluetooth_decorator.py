@@ -733,6 +733,17 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
                    attempts)
     return False
 
+  def dump_bluetooth_manager(self, args: Sequence[str] = ()) -> str:
+    """Dumps Bluetooth Manager log for the device.
+
+    Args:
+      args: Other arguments to be used in the dump command.
+
+    Returns:
+      Output of the dump command.
+    """
+    return self._ad.adb.shell(('dumpsys', 'bluetooth_manager', *args)).decode()
+
   def is_bt_paired(self, mac_address: str) -> bool:
     """Check if the bluetooth device with mac_address is paired to ad.
 
