@@ -127,6 +127,9 @@ class Controller : public Module {
 
   virtual void Reset();
 
+  using LeRandCallback = common::ContextualCallback<void()>;
+  virtual void LeRand(LeRandCallback cb);
+
   virtual void SetEventFilterClearAll();
 
   virtual void SetEventFilterInquiryResultAllDevices();
