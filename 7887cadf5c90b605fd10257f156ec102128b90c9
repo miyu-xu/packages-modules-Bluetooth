@@ -1,0 +1,28 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d6783da_5a72a48d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1939305
+      },
+      "writtenOn": "2022-02-28T18:37:14Z",
+      "side": 1,
+      "message": "\u003e \"manually with BLE keyboard\" is not a valid test stanza. Expected one of: gd/cert/run (--device|--rust|--rhost) (\u003cfilter\u003e) OR gd/fuzz/run (--host) \u003ctest\u003e OR atest (--host) \u003ctest\u003e\n\nPlease fix.",
+      "parentUuid": "193fd85f_13e8f497",
+      "range": {
+        "startLine": 11,
+        "startChar": 5,
+        "endLine": 11,
+        "endChar": 32
+      },
+      "revId": "7887cadf5c90b605fd10257f156ec102128b90c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
