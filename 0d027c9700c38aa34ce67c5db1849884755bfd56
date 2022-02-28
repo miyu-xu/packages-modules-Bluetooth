@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88030515_b569db68",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-02-28T22:52:29Z",
+      "side": 1,
+      "message": "Done - https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2002294",
+      "parentUuid": "d298e784_c7d94691",
+      "range": {
+        "startLine": 1958,
+        "startChar": 1,
+        "endLine": 1959,
+        "endChar": 53
+      },
+      "revId": "0d027c9700c38aa34ce67c5db1849884755bfd56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d17affa_08e26b3e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-02-25T16:42:55Z",
       "side": 1,
       "message": "Is that anyhow related to https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1989868/2/system/bta/le_audio/le_audio_set_configuration_provider_json.cc ?\n\nPlease move this code into separate patch.",
+      "range": {
+        "startLine": 2016,
+        "startChar": 0,
+        "endLine": 2026,
+        "endChar": 0
+      },
+      "revId": "0d027c9700c38aa34ce67c5db1849884755bfd56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b5fc3f9_3795593f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 2026,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-02-28T22:52:29Z",
+      "side": 1,
+      "message": "Not related to json configuration - I don\u0027t think that stack would like to have a preference over this value.\n\nbtw. moved to another CL https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2002294",
+      "parentUuid": "3d17affa_08e26b3e",
       "range": {
         "startLine": 2016,
         "startChar": 0,
