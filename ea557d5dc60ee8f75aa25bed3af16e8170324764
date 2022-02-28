@@ -68,6 +68,24 @@
       "message": "Correct.  Since all of the HCI calls we rely on for suspend are asynchronous and provide us no callback, the idea is to make an LeRand call and receive the callback.  This won\u0027t be bubbled up to apps, just the suspend module in btadapterd.",
       "revId": "ea557d5dc60ee8f75aa25bed3af16e8170324764",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f9a064_242e5f02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-28T18:52:39Z",
+      "side": 1,
+      "message": "Understood. Thanks for explaining.",
+      "parentUuid": "9e53779a_c78d0853",
+      "revId": "ea557d5dc60ee8f75aa25bed3af16e8170324764",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
