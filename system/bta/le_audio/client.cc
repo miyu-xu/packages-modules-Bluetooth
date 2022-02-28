@@ -18,6 +18,8 @@
 #include <base/bind.h>
 #include <base/strings/string_number_conversions.h>
 
+#include <numeric>
+
 #include "advertise_data_parser.h"
 #include "audio_hal_interface/le_audio_software.h"
 #include "bta/csis/csis_types.h"
@@ -174,8 +176,6 @@ class LeAudioClientImpl : public LeAudioClient {
         current_sink_codec_config({0, 0, 0, 0}),
         lc3_encoder_left_mem(nullptr),
         lc3_encoder_right_mem(nullptr),
-        lc3_decoder_mem(nullptr),
-        lc3_decoder(nullptr),
         audio_source_instance_(nullptr),
         audio_sink_instance_(nullptr),
         suspend_timeout_(alarm_new("LeAudioSuspendTimeout")) {
@@ -2107,14 +2107,110 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
+  /* Cache channel data function for decoding session. Handle data from
+   * multiple possible connection channels of one audio stream.
+   */
+  bool CacheDecoderChannelsData(uint8_t* data, LeAudioDeviceGroup* group,
+                                uint32_t audio_locations,
+                                uint8_t codec_frames_blocks_per_sdu) {
+    uint8_t channel_count = 0;
+
+    /* XXX: Assumption of channel allocation in stream (mapping between Audio
+     * Channels and Audio Locations according to BAP v1.0, pt.4)
+     */
+    for (int block_count = 0; block_count < codec_frames_blocks_per_sdu;
+         block_count++) {
+      for (auto& location :
+           le_audio::codec_spec_conf::kLeAudioLocationAllArray) {
+        if (!(audio_locations & location)) continue;
+
+        /* Group event should not contain mutliplied location channel data */
+        if (decoder_channels_data_cache.find(location) !=
+            decoder_channels_data_cache.end()) {
+          LOG(WARNING) << __func__
+                       << ", not expected data from channel with "
+                          "location: "
+                       << loghex(location);
+          decoder_channels_data_cache.clear();
+          return false;
+        }
+
+        /* Cache channel data */
+        int begin_index =
+            group->stream_conf.source_octets_per_codec_frame *
+            (channel_count +
+             (block_count * current_source_codec_config.num_channels));
+        int end_index =
+            begin_index + group->stream_conf.source_octets_per_codec_frame;
+        decoder_channels_data_cache[location].insert(
+            decoder_channels_data_cache[location].end(), &data[begin_index],
+            &data[end_index]);
+        channel_count++;
+      }
+    }
+
+    return true;
+  }
+
+  bool IsCacheDecoderChannelsSatisfied(LeAudioDeviceGroup* group) {
+    uint32_t decoder_channels_data_cache_allocations = 0x0000;
+    std::for_each(
+        decoder_channels_data_cache.begin(), decoder_channels_data_cache.end(),
+        [&decoder_channels_data_cache_allocations](
+            std::pair<const uint32_t&, std::vector<uint8_t>&> element) {
+          decoder_channels_data_cache_allocations |= element.first;
+        });
+
+    /* Not enought channels for single decoding entity */
+    if (group->stream_conf.source_audio_channel_allocation !=
+        decoder_channels_data_cache_allocations)
+      return false;
+
+    return true;
+  }
+
+  bool DecodeChannelsDataCache(LeAudioDeviceGroup* group,
+                               std::vector<int16_t>& pcm_data_decoded,
+                               int pcm_size) {
+    uint8_t decoder_channel_number = 0;
+    /* XXX: This has to be updated once support for other than 16 bit PCM
+     * samples will be add.
+     */
+    std::vector<int16_t> decoded_channel_buffer(
+        pcm_size * group->stream_conf.source_codec_frames_blocks_per_sdu);
+
+    for (auto& channel : decoder_channels_data_cache) {
+      /* Decode single channel buffer */
+      auto err = lc3_decode(lc3_decoders[decoder_channel_number],
+                            (channel.second).data(), (channel.second).size(),
+                            pcm_data_decoded.data(), 1 /* pitch */);
+
+      if (err < 0) {
+        LOG(ERROR) << " error while decoding error code: "
+                   << static_cast<int>(err);
+        return false;
+      }
+
+      /* Multiplex decoded channel data to single audio server buffer */
+      for (size_t i = 0; i < decoded_channel_buffer.size(); i++) {
+        pcm_data_decoded[(i * current_source_codec_config.num_channels) +
+                         decoder_channel_number] = decoded_channel_buffer[i];
+      }
+
+      decoder_channel_number++;
+    }
+
+    return true;
+  }
+
+  /* Handle received ISO data from source ASEs. Method caches all necesarry data
+   * for single multi-channel and multiplexed by every sample data package with
+   * which it feeds audio server. Data package is forwarded to upper layer once
+   * every expected channel comes.
+   */
   void SendAudioData(uint8_t* data, uint16_t size, uint16_t cis_conn_hdl,
                      uint32_t timestamp) {
-    /* Get only one channel for MONO microphone */
-    /* Gather data for channel */
-
-    if ((active_group_id_ == bluetooth::groups::kGroupUnknown) ||
-        (audio_sender_state_ != AudioState::STARTED))
-      return;
+    if (active_group_id_ == bluetooth::groups::kGroupUnknown) return;
 
     LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
     if (!group) {
@@ -2122,18 +2218,33 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    auto stream_conf = group->stream_conf;
+    auto stream_ent = std::find_if(
+        group->stream_conf.source_streams.begin(),
+        group->stream_conf.source_streams.end(),
+        [&cis_conn_hdl](auto& stream) { return stream.first == cis_conn_hdl; });
 
-    uint16_t required_for_channel_byte_count =
-        stream_conf.source_octets_per_codec_frame;
-    size_t required_byte_count = current_sink_codec_config.num_channels *
-                                 required_for_channel_byte_count;
-
-    if (required_byte_count != size) {
-      LOG(ERROR) << "Insufficient data for decoding and send, required: "
-                 << int(required_byte_count) << ", received: " << int(size);
+    /* CIS data may not be for this group */
+    if (stream_ent == group->stream_conf.source_streams.end() ||
+        (decoder_required_channel_data_size.find(cis_conn_hdl) ==
+         decoder_required_channel_data_size.end())) {
+      LOG(ERROR) << "Not expected data from out of group cis, hdl: "
+                 << loghex(cis_conn_hdl);
       return;
     }
+
+    if (decoder_required_channel_data_size[cis_conn_hdl] < size) {
+      LOG(ERROR) << "Insufficient data for decoding and send, required: "
+                 << static_cast<int>(
+                        decoder_required_channel_data_size[cis_conn_hdl])
+                 << ", received: " << static_cast<int>(size);
+      return;
+    }
+
+    if (!CacheDecoderChannelsData(
+            data, group, (*stream_ent).second,
+            group->stream_conf.source_codec_frames_blocks_per_sdu))
+      return;
+    if (!IsCacheDecoderChannelsSatisfied(group)) return;
 
     int dt_us = current_sink_codec_config.data_interval_us;
     int af_hz = audio_framework_sink_config.sample_rate;
@@ -2154,23 +2265,18 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    std::vector<int16_t> pcm_data_decoded(pcm_size, 0);
+    std::vector<int16_t> pcm_data_decoded(
+        pcm_size * current_source_codec_config.num_channels *
+            group->stream_conf.source_codec_frames_blocks_per_sdu,
+        0);
 
-    auto err = lc3_decode(lc3_decoder, data, size, pcm_data_decoded.data(),
-                          1 /* pitch */);
-
-    /* TODO: How handle failing decoding ? */
-    if (err < 0) {
-      LOG(ERROR) << " error while decoding error code: "
-                 << static_cast<int>(err);
-      return;
-    }
+    if (!DecodeChannelsDataCache(group, pcm_data_decoded, pcm_size)) return;
 
     uint16_t to_write = sizeof(int16_t) * pcm_data_decoded.size();
     uint16_t written = LeAudioClientAudioSink::SendData(
         (uint8_t*)pcm_data_decoded.data(), to_write);
+    decoder_channels_data_cache.clear();
 
-    /* TODO: What to do if not all data sinked ? */
     if (written != to_write) LOG(ERROR) << __func__ << ", not all data sinked";
   }
 
@@ -2250,20 +2356,37 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (CodecManager::GetInstance()->GetCodecLocation() ==
         le_audio::types::CodecLocation::HOST) {
-      if (lc3_decoder_mem) {
+      if (!lc3_decoder_mems.empty()) {
         LOG(WARNING)
-            << " The decoder instance should have been already released.";
-        free(lc3_decoder_mem);
-        lc3_decoder_mem = nullptr;
+            << " The decoder instances should have been already released.";
+        std::for_each(lc3_decoder_mems.begin(), lc3_decoder_mems.end(), free);
+        lc3_decoder_mems.clear();
+        lc3_decoder_mems.shrink_to_fit();
       }
 
       int dt_us = current_sink_codec_config.data_interval_us;
       int sr_hz = current_sink_codec_config.sample_rate;
       int af_hz = audio_framework_sink_config.sample_rate;
       unsigned dec_size = lc3_decoder_size(dt_us, af_hz);
-      lc3_decoder_mem = malloc(dec_size);
 
-      lc3_decoder = lc3_setup_decoder(dt_us, sr_hz, af_hz, lc3_decoder_mem);
+      lc3_decoder_mems.resize(current_sink_codec_config.num_channels);
+      lc3_decoders.resize(current_sink_codec_config.num_channels);
+
+      for (int i = 0; i < current_sink_codec_config.num_channels; i++) {
+        lc3_decoder_mems[i] = malloc(dec_size);
+        lc3_decoders[i] =
+            lc3_setup_decoder(dt_us, sr_hz, af_hz, lc3_decoder_mems[i]);
+      }
+
+      /* Cache size of required data bytes for each CIS, to not calculate on
+       * every RX ISO data event
+       */
+      for (auto& stream : stream_conf->source_streams) {
+        decoder_required_channel_data_size[stream.first] =
+            group->stream_conf.source_octets_per_codec_frame *
+            group->stream_conf.source_codec_frames_blocks_per_sdu *
+            popcount(stream.second);
+      }
     } else if (CodecManager::GetInstance()->GetCodecLocation() ==
                le_audio::types::CodecLocation::ADSP) {
       CodecManager::GetInstance()->UpdateActiveSinkAudioConfig(*stream_conf,
@@ -2286,10 +2409,11 @@ class LeAudioClientImpl : public LeAudioClient {
       lc3_encoder_right_mem = nullptr;
     }
 
-    if (lc3_decoder_mem) {
+    if (!lc3_decoder_mems.empty()) {
       LOG(INFO) << __func__ << " stopping sink";
-      free(lc3_decoder_mem);
-      lc3_decoder_mem = nullptr;
+      std::for_each(lc3_decoder_mems.begin(), lc3_decoder_mems.end(), free);
+      lc3_decoder_mems.clear();
+      lc3_decoder_mems.shrink_to_fit();
     }
   }
 
@@ -3168,10 +3292,12 @@ class LeAudioClientImpl : public LeAudioClient {
   lc3_encoder_t lc3_encoder_left;
   lc3_encoder_t lc3_encoder_right;
 
-  void* lc3_decoder_mem;
-  lc3_decoder_t lc3_decoder;
+  std::vector<void*> lc3_decoder_mems;
+  std::vector<lc3_decoder_t> lc3_decoders;
 
-  std::vector<uint8_t> encoded_data;
+  std::map<uint16_t, size_t> decoder_required_channel_data_size;
+  std::map<uint32_t, std::vector<uint8_t>> decoder_channels_data_cache;
+
   const void* audio_source_instance_;
   const void* audio_sink_instance_;
   static constexpr uint64_t kAudioSuspentKeepIsoAliveTimeoutMs = 5000;

@@ -169,6 +169,23 @@ constexpr uint32_t kLeAudioLocationAnyRight =
 constexpr uint32_t kLeAudioLocationStereo =
     kLeAudioLocationFrontLeft | kLeAudioLocationFrontRight;
 
+constexpr uint32_t kLeAudioLocationAllArray[] = {
+    kLeAudioLocationMonoUnspecified,    kLeAudioLocationFrontLeft,
+    kLeAudioLocationFrontRight,         kLeAudioLocationFrontCenter,
+    kLeAudioLocationLowFreqEffects1,    kLeAudioLocationBackLeft,
+    kLeAudioLocationBackRight,          kLeAudioLocationFrontLeftOfCenter,
+    kLeAudioLocationFrontRightOfCenter, kLeAudioLocationBackCenter,
+    kLeAudioLocationLowFreqEffects2,    kLeAudioLocationSideLeft,
+    kLeAudioLocationSideRight,          kLeAudioLocationTopFrontLeft,
+    kLeAudioLocationTopFrontRight,      kLeAudioLocationTopFrontCenter,
+    kLeAudioLocationTopCenter,          kLeAudioLocationTopBackLeft,
+    kLeAudioLocationTopBackRight,       kLeAudioLocationTopSideLeft,
+    kLeAudioLocationTopSideRight,       kLeAudioLocationTopSideCenter,
+    kLeAudioLocationBottomFrontCenter,  kLeAudioLocationBottomFrontLeft,
+    kLeAudioLocationBottomFrontRight,   kLeAudioLocationFrontLeftWide,
+    kLeAudioLocationFrontRightWide,     kLeAudioLocationLeftSurround,
+    kLeAudioLocationRightSurround};
+
 /* Octets Per Frame */
 constexpr uint16_t kLeAudioCodecLC3FrameLen30 = 30;
 constexpr uint16_t kLeAudioCodecLC3FrameLen40 = 40;
