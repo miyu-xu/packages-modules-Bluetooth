@@ -256,16 +256,46 @@ pub fn generate_dbus_interface_client(_attr: TokenStream, item: TokenStream) -> 
 
             let mut input_list = quote! {};
 
+            let mut object_conversions = quote! {};
+
             for input in &method.sig.inputs {
                 if let FnArg::Typed(ref typed) = input {
                     let arg_type = &typed.ty;
                     if let Pat::Ident(pat_ident) = &*typed.pat {
                         let ident = pat_ident.ident.clone();
 
-                        input_list = quote! {
-                            #input_list
-                            <#arg_type as DBusArg>::to_dbus(#ident).unwrap(),
+                        let is_box = if let Type::Path(type_path) = &**arg_type {
+                            if type_path.path.segments[0].ident.to_string().eq("Box") {
+                                true
+                            } else {
+                                false
+                            }
+                        } else {
+                            false
                         };
+
+                        if is_box {
+                            // A Box<dyn> parameter means this is an object that should be exported
+                            // on D-Bus.
+                            object_conversions = quote! {
+                                #object_conversions
+                                    let #ident = {
+                                        let path = dbus::Path::new(#ident.get_object_id()).unwrap();
+                                        #ident.export_for_rpc();
+                                        path
+                                    };
+                            };
+
+                            input_list = quote! {
+                                #input_list
+                                #ident,
+                            };
+                        } else {
+                            input_list = quote! {
+                                #input_list
+                                <#arg_type as DBusArg>::to_dbus(#ident).unwrap(),
+                            };
+                        }
                     }
                 }
             }
@@ -294,6 +324,12 @@ pub fn generate_dbus_interface_client(_attr: TokenStream, item: TokenStream) -> 
                         #output_as_dbus_arg::from_dbus(ret, None, None, None).unwrap()
                     }
                 }
+            };
+
+            let body = quote! {
+                #object_conversions
+
+                #body
             };
 
             let generated_method = quote! {
