@@ -16,6 +16,23 @@
       "message": "just -1 until we get clarification for the link key request events",
       "revId": "86fdc775d66ee5105872a9b0f5520ac6ba004ce3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0389deeb_22563b76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-28T17:15:39Z",
+      "side": 1,
+      "message": "I\u0027d also recommend running the tests on some devices. and update the Test line in the comment.",
+      "revId": "86fdc775d66ee5105872a9b0f5520ac6ba004ce3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
