@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e62fac0_93d81901",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-02-28T18:42:54Z",
+      "side": 1,
+      "message": "Could you provide a little more background on how LeRand is needed for suspend/resume?",
+      "revId": "ea557d5dc60ee8f75aa25bed3af16e8170324764",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
