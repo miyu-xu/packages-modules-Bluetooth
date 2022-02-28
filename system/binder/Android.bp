@@ -10,6 +10,10 @@ package {
 // AIDL interface between libbluetooth-binder and framework.jar
 filegroup {
     name: "libbluetooth-binder-aidl",
+    visibility: [
+        "//frameworks/base",
+        "//packages/modules/Bluetooth:__subpackages__",
+    ],
     srcs: [
         ":modules-utils-synchronous-result-receiver-aidl",
         "android/bluetooth/IBluetooth.aidl",
