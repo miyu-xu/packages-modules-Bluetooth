@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "022aefd5_857981a8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-02-28T10:38:39Z",
+      "side": 1,
+      "message": "This is not because of service not being advertised, it must be added in btif_dm.cc to be passed to Java. See my other comment.",
+      "range": {
+        "startLine": 1307,
+        "startChar": 0,
+        "endLine": 1312,
+        "endChar": 9
+      },
+      "revId": "78053a410a3d4a08e1aafc22bbfd8eb5f2e5398e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11c18468_50912a71",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1336,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-02-28T10:38:39Z",
+      "side": 1,
+      "message": "Add battery service UUID here to have it passed to Java.",
+      "revId": "78053a410a3d4a08e1aafc22bbfd8eb5f2e5398e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
