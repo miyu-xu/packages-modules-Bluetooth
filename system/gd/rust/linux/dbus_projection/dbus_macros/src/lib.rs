@@ -560,6 +560,7 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                 String::from("")
             }
             fn unregister(&mut self, _id: u32) -> bool { false }
+            fn export_for_rpc(self: Box<Self>) {}
         }
 
         struct #struct_ident {
@@ -585,6 +586,7 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
             fn unregister(&mut self, id: u32) -> bool {
                 self.disconnect_watcher.lock().unwrap().remove(self.remote.clone(), id)
             }
+            fn export_for_rpc(self: Box<Self>) {}
         }
 
         impl DBusArg for Box<dyn #trait_ + Send> {
