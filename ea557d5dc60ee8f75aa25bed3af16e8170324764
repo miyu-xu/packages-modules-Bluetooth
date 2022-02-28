@@ -16,6 +16,23 @@
       "message": "Could you provide a little more background on how LeRand is needed for suspend/resume?",
       "revId": "ea557d5dc60ee8f75aa25bed3af16e8170324764",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5ff69a0_52cec38a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-02-28T18:47:18Z",
+      "side": 1,
+      "message": "I gave some details in the chat and in our weekly updates.  Basically, we need this in order to synchronize our call since all HCI calls are asynchronous and serialized.  There will be more plumbing for this all they way up to floss.",
+      "revId": "ea557d5dc60ee8f75aa25bed3af16e8170324764",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
