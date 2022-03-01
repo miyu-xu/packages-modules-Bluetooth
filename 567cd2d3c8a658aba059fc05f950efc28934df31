@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b62b139c_346295f0",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1606,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-03-01T01:48:30Z",
+      "side": 1,
+      "message": "Is there any reason that you need this as an input from the caller, but why not query it here within the switchCodecByBufferSize()?",
+      "range": {
+        "startLine": 1606,
+        "startChar": 57,
+        "endLine": 1606,
+        "endChar": 90
+      },
+      "revId": "567cd2d3c8a658aba059fc05f950efc28934df31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
