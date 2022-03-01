@@ -22,6 +22,30 @@
       },
       "revId": "95ba91a336f3ede9976e0311c438146eed33d37e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aa6edc9_d37d2f30",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-01T17:12:28Z",
+      "side": 1,
+      "message": "hmm...I don\u0027t prefer the original OR this one...",
+      "parentUuid": "54229f1a_2189f202",
+      "range": {
+        "startLine": 810,
+        "startChar": 6,
+        "endLine": 810,
+        "endChar": 15
+      },
+      "revId": "95ba91a336f3ede9976e0311c438146eed33d37e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
