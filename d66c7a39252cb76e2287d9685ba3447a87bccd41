@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4edf449_33c7efda",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-01T18:16:30Z",
+      "side": 1,
+      "message": "Are you sure this still means the same thing?\n\nNow that ssr_index doesn\u0027t get updated...",
+      "range": {
+        "startLine": 809,
+        "startChar": 8,
+        "endLine": 809,
+        "endChar": 79
+      },
+      "revId": "d66c7a39252cb76e2287d9685ba3447a87bccd41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
