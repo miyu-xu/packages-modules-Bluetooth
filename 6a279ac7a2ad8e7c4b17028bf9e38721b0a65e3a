@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb684142_39e600cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-01T00:07:26Z",
+      "side": 1,
+      "message": "Rather than convention, lets just create a Callback trait and a Box\u003canything + callback\u003e would be treated as a callback.",
+      "revId": "6a279ac7a2ad8e7c4b17028bf9e38721b0a65e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
