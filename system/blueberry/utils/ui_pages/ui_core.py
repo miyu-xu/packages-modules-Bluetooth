@@ -326,6 +326,28 @@ class Context(abc.ABC):
     _search_node(self.root_node)
     return ParsedUI(ui_xml, clickable_nodes, enabled_nodes, all_nodes)
 
+  def safe_expect_page(self, page_class: Type[UIPage],
+                       wait_sec: int = _EXPECT_PAGE_WAIT_TIME_IN_SECOND,
+                       node_eval: NodeEvaluator = None) -> bool:
+    """Waits for expected pages for certain time.
+
+    Args:
+      page_class: The expected page class.
+      wait_sec: The waiting time.
+      node_eval: Function to search the node. Here it is used to confirm that
+        the target page contain the desired node.
+
+    Returns:
+      True iff the expected page(s) are reached.
+    """
+    try:
+      self.expect_page(page_class, wait_sec, node_eval)
+      return True
+    except errors.ContextError:
+      self.log.warning('Failed to reach page(s) as %s (current page is %s)',
+                       page_class, self.page)
+    return False
+
   def expect_pages(self,
                    page_class_list: Sequence[Type[UIPage]],
                    wait_sec: int = _EXPECT_PAGE_WAIT_TIME_IN_SECOND,
