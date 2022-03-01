@@ -501,11 +501,22 @@ void bta_gattc_conn(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
       p_clcb->p_srcb->state != BTA_GATTC_SERV_IDLE) {
     if (p_clcb->p_srcb->state == BTA_GATTC_SERV_IDLE) {
       p_clcb->p_srcb->state = BTA_GATTC_SERV_LOAD;
-      if (bta_gattc_cache_load(p_clcb->p_srcb)) {
+      // Consider the case that if GATT Server is changed, but no service
+      // changed indication is received, the database might be out of date. So
+      // if robust caching is enabled, any time when connection is established,
+      // always check the db hash first, not just load the stored database.
+      if (!bta_gattc_is_robust_caching_enabled() &&
+          bta_gattc_cache_load(p_clcb->p_srcb)) {
         p_clcb->p_srcb->state = BTA_GATTC_SERV_IDLE;
         bta_gattc_reset_discover_st(p_clcb->p_srcb, GATT_SUCCESS);
       } else {
         p_clcb->p_srcb->state = BTA_GATTC_SERV_DISC;
+
+        /* set true to read database hash before service discovery */
+        if (bta_gattc_is_robust_caching_enabled()) {
+          p_clcb->p_srcb->srvc_hdl_db_hash = true;
+        }
+
         /* cache load failure, start discovery */
         bta_gattc_start_discover(p_clcb, NULL);
       }
