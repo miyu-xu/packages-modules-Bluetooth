@@ -258,6 +258,7 @@ typedef struct {
 #define BTA_GATTC_DISCOVER_REQ_NONE 0
 #define BTA_GATTC_DISCOVER_REQ_READ_EXT_PROP_DESC 1
 #define BTA_GATTC_DISCOVER_REQ_READ_DB_HASH 2
+#define BTA_GATTC_DISCOVER_REQ_READ_DB_HASH_FOR_SVC_CHG 3
 
   uint8_t request_during_discovery; /* request during discover state */
 
