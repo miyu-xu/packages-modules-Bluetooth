@@ -8,7 +8,8 @@ use bt_topshim::profiles::a2dp::{
 };
 use bt_topshim::profiles::avrcp::{Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher};
 use bt_topshim::profiles::hfp::{
-    BthfConnectionState, Hfp, HfpCallbacks, HfpCallbacksDispatcher, HfpCodecCapability,
+    BthfAudioState, BthfConnectionState, Hfp, HfpCallbacks, HfpCallbacksDispatcher,
+    HfpCodecCapability,
 };
 
 use bt_topshim::topstack;
@@ -217,6 +218,30 @@ impl BluetoothMedia {
                     }
                     BthfConnectionState::Disconnecting => {
                         info!("HFP disconnecting.");
+                    }
+                }
+
+                self.hfp_states.insert(addr, state);
+            }
+            HfpCallbacks::AudioState(state, addr) => {
+                if self.hfp_states.get(&addr).is_none()
+                    || BthfConnectionState::SlcConnected != *self.hfp_states.get(&addr).unwrap()
+                {
+                    warn!("{} not connected or SLC not ready", addr.to_string());
+                    return;
+                }
+                match state {
+                    BthfAudioState::Connected => {
+                        info!("HFP audio connected.");
+                    }
+                    BthfAudioState::Disconnected => {
+                        info!("HFP audio disconnected.");
+                    }
+                    BthfAudioState::Connecting => {
+                        info!("HFP audio connecting.");
+                    }
+                    BthfAudioState::Disconnecting => {
+                        info!("HFP audio disconnecting.");
                     }
                 }
             }
