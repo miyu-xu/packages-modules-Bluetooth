@@ -62,6 +62,8 @@ class LeAclConnection : public AclConnection {
 
   // The peer address and type returned from the Connection Complete Event
   AddressWithType peer_address_with_type_;
+  Address remote_initiator_address_;
+  Address local_initiator_address_;
 
   virtual void RegisterCallbacks(LeConnectionManagementCallbacks* callbacks, os::Handler* handler);
   virtual void Disconnect(DisconnectReason reason);

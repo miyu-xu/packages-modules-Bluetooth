@@ -284,6 +284,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     auto address = connection_complete.GetPeerAddress();
     auto peer_address_type = connection_complete.GetPeerAddressType();
     auto peer_resolvable_address = connection_complete.GetPeerResolvablePrivateAddress();
+    auto local_resolvable_address = connection_complete.GetLocalResolvablePrivateAddress();
     if (status == ErrorCode::UNKNOWN_CONNECTION && pause_connection) {
       // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()
       return;
@@ -338,6 +339,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
         std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
+    connection->remote_initiator_address_ = peer_resolvable_address;
+    connection->local_initiator_address_ = local_resolvable_address;
     connections.add(
         handle, remote_address, queue_down_end, handler_, connection->GetEventCallbacks([this](uint16_t handle) {
           this->connections.invalidate(handle);
