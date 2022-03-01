@@ -36,6 +36,11 @@ static void connection_state_cb(bluetooth::headset::bthf_connection_state_t stat
   rusty::hfp_connection_state_callback(state, raddr);
 }
 
+static void audio_state_cb(bluetooth::headset::bthf_audio_state_t state, RawAddress* addr) {
+  RustRawAddress raddr = rusty::CopyToRustAddress(*addr);
+  rusty::hfp_audio_state_callback(state, raddr);
+}
+
 }  // namespace internal
 
 class DBusHeadsetCallbacks : public headset::Callbacks {
@@ -54,6 +59,8 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
 
   void AudioStateCallback(headset::bthf_audio_state_t state, RawAddress* bd_addr) override {
     LOG_INFO("AudioStateCallback %u from %s", state, bd_addr->ToString().c_str());
+    topshim::rust::internal::audio_state_cb(state, bd_addr);
+
     switch (state) {
       case headset::bthf_audio_state_t::BTHF_AUDIO_STATE_CONNECTED:
         /* This triggers a +CIEV command to set the call status for HFP
@@ -64,8 +71,8 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
             1, 0, headset::bthf_call_state_t::BTHF_CALL_STATE_IDLE, "", (headset::bthf_call_addrtype_t)0, "", bd_addr);
         /* This triggers a +VGS command to set the speaker volume for HFP
          * devices.
-         * TODO(b/215089433): have a set volume api exposed and have client to
-         * handle the set volume when start.
+         * TODO(b/215089433): Add a set volume API and have client to handle the
+         * set volume when start.
          */
         headset_->VolumeControl(headset::bthf_volume_type_t::BTHF_VOLUME_TYPE_SPK, 5, bd_addr);
         return;
