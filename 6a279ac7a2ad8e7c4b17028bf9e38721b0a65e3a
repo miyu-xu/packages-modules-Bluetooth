@@ -16,6 +16,24 @@
       "message": "Rather than convention, lets just create a Callback trait and a Box\u003canything + callback\u003e would be treated as a callback.",
       "revId": "6a279ac7a2ad8e7c4b17028bf9e38721b0a65e3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "340e5b62_92dbfcfb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-01T00:12:25Z",
+      "side": 1,
+      "message": "unfortunately Rust doesn\u0027t allow Box\u003ctrait1 + trait2\u003e, only 1 trait is allowed. The convention is enough because in RPC there are only 2 classes of objects: Object that is entirely passed (serialized), and object that is proxied at remote side. Anything with Box\u003cdyn\u003e has been considered a proxied object.",
+      "parentUuid": "eb684142_39e600cb",
+      "revId": "6a279ac7a2ad8e7c4b17028bf9e38721b0a65e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
