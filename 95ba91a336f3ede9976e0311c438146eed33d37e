@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54229f1a_2189f202",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-01T16:57:58Z",
+      "side": 1,
+      "message": "I\u0027m a little conflicted on this one.  I don\u0027t like using input parameters as variables, so I prefer the original.  This logic",
+      "range": {
+        "startLine": 810,
+        "startChar": 6,
+        "endLine": 810,
+        "endChar": 15
+      },
+      "revId": "95ba91a336f3ede9976e0311c438146eed33d37e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
