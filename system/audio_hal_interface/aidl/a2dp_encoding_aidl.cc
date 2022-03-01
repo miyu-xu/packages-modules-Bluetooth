@@ -15,7 +15,7 @@
  */
 #define LOG_TAG "a2dp_encoding"
 
-#include "a2dp_encoding.h"
+#include "a2dp_encoding_aidl.h"
 
 #include "a2dp_transport.h"
 #include "audio_aidl_interfaces.h"

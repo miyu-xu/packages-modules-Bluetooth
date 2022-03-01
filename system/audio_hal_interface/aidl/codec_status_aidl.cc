@@ -16,7 +16,7 @@
 
 #define LOG_TAG "bluetooth"
 
-#include "codec_status.h"
+#include "codec_status_aidl.h"
 
 #include <unordered_set>
 

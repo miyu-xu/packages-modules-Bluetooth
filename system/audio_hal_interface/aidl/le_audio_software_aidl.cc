@@ -17,7 +17,7 @@
 
 #define LOG_TAG "BTAudioClientLeAudioAIDL"
 
-#include "le_audio_software.h"
+#include "le_audio_software_aidl.h"
 
 #include <unordered_map>
 #include <vector>
