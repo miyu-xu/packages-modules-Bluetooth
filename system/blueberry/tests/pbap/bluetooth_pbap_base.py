@@ -340,8 +340,7 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
     return re.sub(r'\D', '', phone_number)
 
   def _compare_call_logs(self,
-                         call_log_type: str,
-                         offset_in_secs: int = 0) -> bool:
+                         call_log_type: str) -> bool:
     """Compares the call logs between PSE and PCE.
 
     This method shall be used to compare the call logs between PSE and PCE after
@@ -349,7 +348,6 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
 
     Args:
       call_log_type: type of call log
-      offset_in_secs: timezone offset in secs. Default = 0
 
     Returns:
       True: the call logs between PSE and PCE are the same.
@@ -365,6 +363,19 @@ class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
           pse_call_logs[i]['number'])
       pce_call_logs[i]['number'] = self._normalize_phonenumber(
           pce_call_logs[i]['number'])
+
+    # Get timezone,for example: adb shell returns CST +0800 and then gets +0800.
+    def _get_tz(dut: android_device.AndroidDevice) -> str:
+      return dut.adb.shell('date +"%Z %z"').decode().strip().split()[-1]
+
+    pce_timezone = _get_tz(self.derived_bt_device)
+    pse_timezone = _get_tz(self.pri_phone)
+
+    # Changes to secs
+    offset_in_secs = (int(pce_timezone) - int(pse_timezone))*36
+    self.pri_phone.log.debug(
+        'pse_timezone: %s, pce_timezone: %s, (pce-pse)=offset_in_secs: %d',
+        pse_timezone, pce_timezone, offset_in_secs)
 
     # Normalize date
     for i in range(len(pse_call_logs)):
