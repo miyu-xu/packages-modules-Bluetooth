@@ -121,20 +121,23 @@ class LoginPage(ui_core.UIPage):
   def login(self,
             account: str,
             password: str,
-            allow_google_smartlock: bool = True) -> ui_core.UIPage:
+            allow_google_smartlock: bool = True,
+            wait_in_sec: int = 5) -> ui_core.UIPage:
     """Logins the Fitbit Companion App.
 
     Args:
       account: Login account
       password: Login password
       allow_google_smartlock: True to allow Google SmartLock feature.
+      wait_in_sec: Wait in second after clicking `Log in` to wait for
+        `GoogleSmartLockPage` to ease unstable test case(s).
 
     Returns:
       The transformed page.
     """
     self.click_node_by_text(self.PAGE_TEXT)
-    self.ctx.expect_pages([GoogleSmartLockPage, LoginInputPage])
-    if self.ctx.is_page(GoogleSmartLockPage):
+    if self.ctx.safe_expect_page(GoogleSmartLockPage,
+                                 wait_sec=wait_in_sec):
       if allow_google_smartlock:
         return self.ctx.page.yes()
       else:
