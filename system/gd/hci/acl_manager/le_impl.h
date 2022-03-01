@@ -221,12 +221,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     LeConnectionCompleteView connection_complete = LeConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
-    auto address = connection_complete.GetPeerAddress();
-    auto peer_address_type = connection_complete.GetPeerAddressType();
     if (status == ErrorCode::UNKNOWN_CONNECTION && pause_connection) {
       // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()
       return;
     }
+    auto address = connection_complete.GetPeerAddress();
+    auto peer_address_type = connection_complete.GetPeerAddressType();
     // TODO: find out which address and type was used to initiate the connection
     AddressWithType remote_address(address, peer_address_type);
     AddressWithType local_address = le_address_manager_->GetCurrentAddress();
@@ -268,6 +268,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
         std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
+    connection->interval_ = conn_interval;
+    connection->latency_ = conn_latency;
+    connection->supervision_timeout_ = supervision_timeout;
     connections.add(
         handle, remote_address, queue_down_end, handler_, connection->GetEventCallbacks([this](uint16_t handle) {
           this->connections.invalidate(handle);
@@ -281,13 +284,25 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     LeEnhancedConnectionCompleteView connection_complete = LeEnhancedConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
-    auto address = connection_complete.GetPeerAddress();
-    auto peer_address_type = connection_complete.GetPeerAddressType();
-    auto peer_resolvable_address = connection_complete.GetPeerResolvablePrivateAddress();
     if (status == ErrorCode::UNKNOWN_CONNECTION && pause_connection) {
       // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()
       return;
     }
+    const AddressWithType own_address_with_type = le_address_manager_->GetCurrentAddress();
+    const OwnAddressType own_address_type = static_cast<OwnAddressType>(own_address_with_type.GetAddressType());
+    const bool is_controller =
+        true;  // Controller generated a resolvable private address for the local device using a non-zero local IRK();
+    const bool is_local_rpa_valid =
+        ((own_address_type == OwnAddressType::RESOLVABLE_OR_PUBLIC_ADDRESS ||
+          own_address_type == OwnAddressType::RESOLVABLE_OR_RANDOM_ADDRESS) &&
+         is_controller);
+
+    auto address = connection_complete.GetPeerAddress();
+    auto peer_address_type = connection_complete.GetPeerAddressType();
+    auto peer_resolvable_address = connection_complete.GetPeerResolvablePrivateAddress();
+    auto local_resolvable_address = (is_local_rpa_valid) ? own_address_with_type.GetAddress()
+                                                         : connection_complete.GetLocalResolvablePrivateAddress();
+
     AddressWithType remote_address(address, peer_address_type);
     if (!peer_resolvable_address.IsEmpty()) {
       remote_address = AddressWithType(peer_resolvable_address, AddressType::RANDOM_DEVICE_ADDRESS);
@@ -338,6 +353,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     std::unique_ptr<LeAclConnection> connection(new LeAclConnection(
         std::move(queue), le_acl_connection_interface_, handle, local_address, remote_address, role));
     connection->peer_address_with_type_ = AddressWithType(address, peer_address_type);
+    connection->remote_initiator_address_ = peer_resolvable_address;
+    connection->local_initiator_address_ = local_resolvable_address;
+    connection->interval_ = conn_interval;
+    connection->latency_ = conn_latency;
+    connection->supervision_timeout_ = supervision_timeout;
+
     connections.add(
         handle, remote_address, queue_down_end, handler_, connection->GetEventCallbacks([this](uint16_t handle) {
           this->connections.invalidate(handle);
