@@ -34,6 +34,24 @@
       "parentUuid": "eb684142_39e600cb",
       "revId": "6a279ac7a2ad8e7c4b17028bf9e38721b0a65e3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25d12988_b1b93e1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-01T00:13:32Z",
+      "side": 1,
+      "message": "Also, a proxied object does not need to be a callback. So having a more specific Callback convention does not help more. It\u0027s more useful to have a convention for any object that is a proxy at remote.",
+      "parentUuid": "340e5b62_92dbfcfb",
+      "revId": "6a279ac7a2ad8e7c4b17028bf9e38721b0a65e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
