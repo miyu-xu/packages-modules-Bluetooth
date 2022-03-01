@@ -802,6 +802,8 @@ void btm_sco_connected(tHCI_STATUS hci_status, const RawAddress& bda,
                     .c_str()));
       }
 
+      LOG_ERROR("%s esco_supported: %d", __func__,
+                btm_cb.sco_cb.esco_supported);
       if (!btm_cb.sco_cb.esco_supported) {
         p->esco.data.link_type = BTM_LINK_TYPE_SCO;
         if (spt) {
@@ -819,6 +821,11 @@ void btm_sco_connected(tHCI_STATUS hci_status, const RawAddress& bda,
       (*p->p_conn_cb)(xx);
 
       bluetooth::audio::sco::open();
+
+      LOG_ERROR("%s write sco packet", __func__);
+      uint8_t out_buf[48];
+      auto data = std::vector<uint8_t>(out_buf, out_buf + 48);
+      btm_send_sco_packet(std::move(data));
 
       return;
     }
