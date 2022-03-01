@@ -22,6 +22,30 @@
       },
       "revId": "d66c7a39252cb76e2287d9685ba3447a87bccd41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f607a94f_cce6257e",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-01T19:09:23Z",
+      "side": 1,
+      "message": "ssr/ssr_index is effectively `const` but it\u0027s obfuscated that way.\n\nI\u0027m pretty sure it means the same thing.\n\nI read this function as handling a new index (ssr_index) and then comparing it to the current cached ssr index (current_ssr_index).\n\nAnd this line checks if the requested mode is SSR0 but we are not in SSR0 mode we should put it into SSR0 mode (if the max latency condition is satisfied) by updating the p_spec pointer.\n\nThen later it updates via the BTM api based upon the p_spec pointer.",
+      "parentUuid": "d4edf449_33c7efda",
+      "range": {
+        "startLine": 809,
+        "startChar": 8,
+        "endLine": 809,
+        "endChar": 79
+      },
+      "revId": "d66c7a39252cb76e2287d9685ba3447a87bccd41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
