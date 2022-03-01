@@ -46,6 +46,30 @@
       },
       "revId": "95ba91a336f3ede9976e0311c438146eed33d37e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f6a05a0_6b91e7b5",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 810,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-01T17:57:18Z",
+      "side": 1,
+      "message": "I agree we should not modify inputs but I missed that it was unnecessarily modified.\n\nThis is a very convoluted way to got from prev-\u003enext, and there is a hole if the `current_ssr_index` is not set, which I think is impossible but unclear from how the code is structured, so I put in a little error message in case that ever happens.",
+      "parentUuid": "2aa6edc9_d37d2f30",
+      "range": {
+        "startLine": 810,
+        "startChar": 6,
+        "endLine": 810,
+        "endChar": 15
+      },
+      "revId": "95ba91a336f3ede9976e0311c438146eed33d37e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
