@@ -71,7 +71,10 @@ namespace sco {
 void init() { sco_uipc = UIPC_Init(); }
 
 void open() {
-  UIPC_Open(*sco_uipc, UIPC_CH_ID_AV_AUDIO, sco_data_cb, SCO_HOST_DATA_PATH);
+  bool rc;
+  rc = UIPC_Open(*sco_uipc, UIPC_CH_ID_AV_AUDIO, sco_data_cb,
+                 SCO_HOST_DATA_PATH);
+  LOG_ERROR("%s path:%s ret:%d", __func__, SCO_HOST_DATA_PATH, rc);
   struct group* grp = getgrnam(SCO_HOST_DATA_GROUP);
   chmod(SCO_HOST_DATA_PATH, 0770);
   if (grp) {
@@ -80,6 +83,10 @@ void open() {
       LOG_ERROR("%s failed: %s", __func__, strerror(errno));
     }
   }
+
+  uint8_t buf[48];
+//  read(buf, 48);
+  write(buf, 48);
 }
 
 void cleanup() {
@@ -89,14 +96,22 @@ void cleanup() {
 }
 
 size_t read(uint8_t* p_buf, uint32_t len) {
+  bool rc;
   if (sco_uipc == nullptr) {
     return 0;
   }
-  return UIPC_Read(*sco_uipc, UIPC_CH_ID_AV_AUDIO, p_buf, len);
+  rc = UIPC_Read(*sco_uipc, UIPC_CH_ID_AV_AUDIO, p_buf, len);
+  LOG_ERROR("%s read %lu bytes", __func__, rc);
+  return rc;
+  //  return UIPC_Read(*sco_uipc, UIPC_CH_ID_AV_AUDIO, p_buf, len);
 }
 
 size_t write(const uint8_t* p_buf, uint32_t len) {
-  return UIPC_Send(*sco_uipc, UIPC_CH_ID_AV_AUDIO, 0, p_buf, len);
+  bool rc;
+  rc = UIPC_Send(*sco_uipc, UIPC_CH_ID_AV_AUDIO, 0, p_buf, len);
+  LOG_ERROR("%s send %lu bytes ret:%d", __func__, len, rc);
+  return rc;
+  //  return UIPC_Send(*sco_uipc, UIPC_CH_ID_AV_AUDIO, 0, p_buf, len);
 }
 
 }  // namespace sco
