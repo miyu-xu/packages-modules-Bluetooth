@@ -46,6 +46,30 @@
       },
       "revId": "d66c7a39252cb76e2287d9685ba3447a87bccd41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2ea624_c4627d2d",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-01T19:17:27Z",
+      "side": 1,
+      "message": "Re-reading it again...it there may be multiple services checked for the same peer, which increased the complexity.\n\n```\n    const tBTA_DM_SRVCS\u0026 service \u003d bta_dm_conn_srvcs.conn_srvc[i];\n    if (service.peer_bdaddr !\u003d peer_addr) {\n      continue;\n    }    \n```",
+      "parentUuid": "f607a94f_cce6257e",
+      "range": {
+        "startLine": 809,
+        "startChar": 8,
+        "endLine": 809,
+        "endChar": 79
+      },
+      "revId": "d66c7a39252cb76e2287d9685ba3447a87bccd41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
