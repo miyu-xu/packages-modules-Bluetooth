@@ -241,6 +241,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       remove_device_from_connect_list(remote_address);
     }
 
+    LOG_INFO("CYDBG %d", (uint16_t)connect_list.size());
+    if (!connect_list.empty()) {
+      LOG_INFO("CYDBG create_le_connection!!!!!!!!!");
+      AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
+      create_le_connection(empty, false, false);
+    }
+
     if (le_client_handler_ == nullptr) {
       LOG_ERROR("No callbacks to call");
       return;
@@ -303,6 +310,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       remove_device_from_connect_list(remote_address);
     }
 
+    LOG_INFO("CYDBG %d", (uint16_t)connect_list.size());
+    if (!connect_list.empty()) {
+      LOG_INFO("CYDBG create_le_connection!!!!!!!!!");
+      AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
+      create_le_connection(empty, false, false);
+    }
+
     if (le_client_handler_ == nullptr) {
       LOG_ERROR("No callbacks to call");
       return;
@@ -349,6 +363,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   static constexpr bool kRemoveConnectionAfterwards = true;
   void on_le_disconnect(uint16_t handle, ErrorCode reason) {
+    LOG_INFO("CYDBG On_le_disconnect handle %d", handle);
     bool event_also_routes_to_other_receivers = connections.crash_on_unknown_handle_;
     connections.crash_on_unknown_handle_ = false;
     connections.execute(
@@ -447,12 +462,20 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void add_device_to_connect_list(AddressWithType address_with_type) {
+    LOG_INFO("CYDBG %s", address_with_type.ToString().c_str());
+    LOG_INFO("CYDBG %d", (uint16_t)connect_list.size());
+    connect_list.insert(address_with_type);
+    LOG_INFO("CYDBG %d", (uint16_t)connect_list.size());
     register_with_address_manager();
     le_address_manager_->AddDeviceToConnectList(
         address_with_type.ToConnectListAddressType(), address_with_type.GetAddress());
   }
 
   void remove_device_from_connect_list(AddressWithType address_with_type) {
+    LOG_INFO("CYDBG %s", address_with_type.ToString().c_str());
+    LOG_INFO("CYDBG %d", (uint16_t)connect_list.size());
+    connect_list.erase(address_with_type);
+    LOG_INFO("CYDBG %d", (uint16_t)connect_list.size());
     direct_connections_.erase(address_with_type);
     register_with_address_manager();
     le_address_manager_->RemoveDeviceFromConnectList(
@@ -460,6 +483,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void clear_connect_list() {
+    LOG_INFO("CYDBG clear_connect_list");
+    connect_list.clear();
     register_with_address_manager();
     le_address_manager_->ClearConnectList();
   }
@@ -723,6 +748,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void add_device_to_background_connection_list(AddressWithType address_with_type) {
+    LOG_INFO("CYDBG %s", address_with_type.ToString().c_str());
     background_connections_.insert(address_with_type);
   }
 
@@ -795,6 +821,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   std::set<AddressWithType> direct_connections_;
   // Set of devices that will not be removed from connect list after direct connect timeout
   std::set<AddressWithType> background_connections_;
+  std::unordered_set<AddressWithType> connect_list;
   bool address_manager_registered = false;
   bool ready_to_unregister = false;
   bool pause_connection = false;

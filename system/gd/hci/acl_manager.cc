@@ -154,6 +154,7 @@ void AclManager::CreateConnection(Address address) {
 }
 
 void AclManager::CreateLeConnection(AddressWithType address_with_type, bool is_direct) {
+  LOG_INFO("CYDBG CreateLeConnection is_direct %d", (uint16_t)is_direct);
   if (!is_direct) {
     CallOn(pimpl_->le_impl_, &le_impl::add_device_to_background_connection_list, address_with_type);
   }
