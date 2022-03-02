@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de73cda0_7f7b5a43",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-02T15:40:18Z",
+      "side": 1,
+      "message": "Does this make sense to re-post onto the handler rather than execute right there ?\n\nThen we defer this on the same handler until after the current packet is processed.\n\ne.g.\nhandler_-\u003ePost(this, create_le_connection, empty, false, false)",
+      "revId": "7eb059c92e8a2cb8f9473329da3462b92b4280ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
