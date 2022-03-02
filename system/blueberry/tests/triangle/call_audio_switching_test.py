@@ -138,9 +138,8 @@ class CallAudioSwitchingTest(base_test.TriangleBaseTest):
       1. Receive a call on Phone.
       2. Wait for ringing on Watch and Phone.
       3. Check if Headset connection is switched from Watch to Phone.
-      4. Check if Call audio is routed to Headset.
-      5. Answer the call on Watch and then wait for offhook state on Phone.
-      6. Check if Call audio is still routed to Headset.
+      4. Answer the call on Watch and then wait for offhook state on Phone.
+      5. Check if Call audio is routed to Headset.
     """
     self._make_call(caller=self.secondary_phone, callee=self.phone)
     for device in (self.phone, self.watch):
@@ -149,7 +148,6 @@ class CallAudioSwitchingTest(base_test.TriangleBaseTest):
           call_state=_CALL_STATE.RINGING):
         raise signals.TestError(f'{device.debug_tag} is not ringing.')
     self.assert_headset_hsp_connection(connected=True, device=self.phone)
-    self._assert_call_audio_routed_to_headset()
     self.watch.log.info('Answer the incoming call.')
     self.watch.sl4a.telecomAcceptRingingCall()
     if not self._wait_for_call_state(
