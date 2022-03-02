@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f670b650_dc195332",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-02T11:20:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "022aefd5_857981a8",
+      "range": {
+        "startLine": 1307,
+        "startChar": 0,
+        "endLine": 1312,
+        "endChar": 9
+      },
+      "revId": "78053a410a3d4a08e1aafc22bbfd8eb5f2e5398e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c921eabf_48507e39",
@@ -71,6 +95,24 @@
       "writtenOn": "2022-02-28T10:38:39Z",
       "side": 1,
       "message": "Add battery service UUID here to have it passed to Java.",
+      "revId": "78053a410a3d4a08e1aafc22bbfd8eb5f2e5398e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec34dd9d_8a8358a9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1336,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-02T11:20:13Z",
+      "side": 1,
+      "message": "Thanks for pointing out the right place. It works like a charm.",
+      "parentUuid": "11c18468_50912a71",
       "revId": "78053a410a3d4a08e1aafc22bbfd8eb5f2e5398e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
