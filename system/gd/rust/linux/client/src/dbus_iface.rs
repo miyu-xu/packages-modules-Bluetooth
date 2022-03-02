@@ -381,6 +381,31 @@ impl IBluetooth for BluetoothDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("GetRemoteName")]
+    fn get_remote_name(&self, device: BluetoothDevice) -> String {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteType")]
+    fn get_remote_type(&self, device: BluetoothDevice) -> u32 {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteAlias")]
+    fn get_remote_alias(&self, device: BluetoothDevice) -> String {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetRemoteAlias")]
+    fn set_remote_alias(&mut self, device: BluetoothDevice, new_alias: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteClass")]
+    fn get_remote_class(&self, device: BluetoothDevice) -> u32 {
+        dbus_generated!()
+    }
+
     #[dbus_method("GetConnectionState")]
     fn get_connection_state(&self, device: BluetoothDevice) -> u32 {
         dbus_generated!()
