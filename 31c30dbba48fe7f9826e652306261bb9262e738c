@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bcc58299_64bdc81a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-02T13:18:26Z",
+      "side": 1,
+      "message": "Actually Jakub just double check speck and you are about right\nPreferred retransmission number is what we shall to use in the Config QoS as per specification.\n\n\"Server preferred value for the\nRetransmission_Number parameter to be written\nby the client for this ASE in the Config QoS\noperation defined in Section\"\n\n\nThis brings me to my first thinking, that we should stick only to the Target Latency.\n\nFor sure this part we need to remove or hide for testing only.",
+      "parentUuid": "99fa45df_fa92fffe",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
