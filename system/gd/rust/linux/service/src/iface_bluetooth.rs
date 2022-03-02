@@ -1,6 +1,6 @@
 extern crate bt_shim;
 
-use bt_topshim::btif::{BtSspVariant, BtTransport, Uuid128Bit};
+use bt_topshim::btif::{BtDeviceType, BtSspVariant, BtTransport, Uuid128Bit};
 
 use btstack::bluetooth::{
     BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback,
@@ -62,8 +62,9 @@ impl IBluetoothCallback for BluetoothCallbackDBus {
     }
 }
 
-impl_dbus_arg_enum!(BtTransport);
+impl_dbus_arg_enum!(BtDeviceType);
 impl_dbus_arg_enum!(BtSspVariant);
+impl_dbus_arg_enum!(BtTransport);
 
 #[allow(dead_code)]
 struct BluetoothConnectionCallbackDBus {}
@@ -227,6 +228,31 @@ impl IBluetooth for IBluetoothDBus {
 
     #[dbus_method("SetPairingConfirmation")]
     fn set_pairing_confirmation(&self, _device: BluetoothDevice, _accept: bool) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteName")]
+    fn get_remote_name(&self, _device: BluetoothDevice) -> String {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteType")]
+    fn get_remote_type(&self, _device: BluetoothDevice) -> BtDeviceType {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteAlias")]
+    fn get_remote_alias(&self, _device: BluetoothDevice) -> String {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetRemoteAlias")]
+    fn set_remote_alias(&mut self, _device: BluetoothDevice, new_alias: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetRemoteClass")]
+    fn get_remote_class(&self, _device: BluetoothDevice) -> u32 {
         dbus_generated!()
     }
 
