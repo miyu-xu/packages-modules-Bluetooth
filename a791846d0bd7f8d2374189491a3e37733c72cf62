@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5695d2d_095a80e9",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-02T17:25:03Z",
+      "side": 1,
+      "message": "We\u0027re missing an ASSERT(view.IsValid()); here.  Without it, this line will crash.",
+      "range": {
+        "startLine": 336,
+        "startChar": 25,
+        "endLine": 336,
+        "endChar": 48
+      },
+      "revId": "a791846d0bd7f8d2374189491a3e37733c72cf62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
