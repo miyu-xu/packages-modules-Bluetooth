@@ -832,10 +832,26 @@ public final class BluetoothAdapter {
         return sAdapter;
     }
 
+    private static final Map<String, BluetoothAdapter> sAdapterList = new HashMap<>();
+
+    static synchronized BluetoothAdapter getBluetoothAdapter(AttributionSource attributionSource) {
+	if (attributionSource != null && attributionSource.getAttributionTag() != null) {
+            Log.d(TAG, "attrTag =" + attributionSource.getAttributionTag());
+	    return sAdapterList.get(attributionSource.getAttributionTag());
+	}
+	return null;
+    }
+
+
     /** {@hide} */
     public static BluetoothAdapter createAdapter(AttributionSource attributionSource) {
         IBinder binder = ServiceManager.getService(BLUETOOTH_MANAGER_SERVICE);
         if (binder != null) {
+	    BluetoothAdapter adapter = BluetoothAdapter.getBluetoothAdapter(attributionSource);
+	    Log.d(TAG, "adapter =" + adapter);
+	    if (adapter != null) {
+                return adapter;
+	    }
             return new BluetoothAdapter(IBluetoothManager.Stub.asInterface(binder),
                     attributionSource);
         } else {
