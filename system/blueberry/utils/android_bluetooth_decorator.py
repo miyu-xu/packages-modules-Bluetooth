@@ -218,10 +218,13 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
   def is_sim_state_loaded(self) -> bool:
     """Checks if SIM state is loaded.
 
+    This method checks the first SIM only.
+
     Returns:
       True if SIM state is loaded else False.
     """
-    state = self._ad.adb.shell('getprop gsm.sim.state').decode().strip()
+    state = self._ad.adb.shell(
+        'getprop gsm.sim.state').decode().strip().split(',')[0]
     return state == 'LOADED'
 
   def is_package_installed(self, package_name: str) -> bool:
