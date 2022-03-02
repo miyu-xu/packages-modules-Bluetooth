@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99fa45df_fa92fffe",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-02T13:01:55Z",
+      "side": 1,
+      "message": "We intentionally want to allow peer device to ask for more re transmissions if it is needed. \n\nWhere is the issue? Is it controller or peer device issue?",
+      "parentUuid": "d47ced23_36961ace",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
