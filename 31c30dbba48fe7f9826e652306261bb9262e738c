@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a902f461_51df81db",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-02T14:38:23Z",
+      "side": 1,
+      "message": "We had some internal discussion and we are not 100% sure if we should allow to force QoS configurations. Especially that what BAP spec provides are only values for Low latency and High Reliable. In fact remote always can come up with other parameters, and what is important is if controller accepts it.\n\nAnyway as for now, to fix our issue with test device please create additional qos_configuration:\n\n```\n{\n   \"name\": \"QoS_Config_Server_Preferred\",\n   \"retransmission_number\": 0,\n   \"max_transport_latency\": 0\n},\n```\n\nAnd also please create additional configuration with this new QoS and make them highier prio in set_scenarios.",
+      "parentUuid": "bcc58299_64bdc81a",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
