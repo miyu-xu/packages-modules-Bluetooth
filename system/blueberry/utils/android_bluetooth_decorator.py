@@ -396,12 +396,12 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     while time.time() < end_time:
       if self._is_device_connected(mac_address):
         connection_time = (time.time() - start_time)
-        logging.info('Connected device %s in %d seconds', mac_address,
+        logging.info('Connected device "%s" in %.4f seconds', mac_address,
                      connection_time)
         return connection_time
 
     raise signals.ControllerError(
-        'Failed to connect device within %d seconds.' % timeout)
+        f'Failed to connect device "{mac_address}" within {timeout} seconds.')
 
   def factory_reset_bluetooth(self) -> None:
     """Factory resets Bluetooth on an AndroidDevice."""
