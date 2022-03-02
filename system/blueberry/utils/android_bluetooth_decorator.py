@@ -765,8 +765,10 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     Returns:
       True if connected else False.
     """
-    connected_devices = self._ad.sl4a.bluetoothA2dpGetConnectedDevices()
-    return mac_address in [d['address'] for d in connected_devices]
+    output = self.dump_bluetooth_manager(
+        ('|', 'grep', '-A20', '"Profile: A2dpService"'))
+    return (f'A2dpStateMachine for {mac_address.upper()}' in output and
+            'mConnectionState: CONNECTED' in output)
 
   def hfp_connect(self, ag_ad: android_device.AndroidDevice) -> bool:
     """Hfp connecting hf android device to ag android device.
