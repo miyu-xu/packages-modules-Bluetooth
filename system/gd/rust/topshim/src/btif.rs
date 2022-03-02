@@ -358,9 +358,7 @@ impl BluetoothProperty {
                 devlist.len() * mem::size_of::<RawAddress>()
             }
             BluetoothProperty::AdapterDiscoverableTimeout(_) => mem::size_of::<u32>(),
-            BluetoothProperty::RemoteFriendlyName(name) => {
-                cmp::min(PROPERTY_NAME_MAX, name.len() + 1)
-            }
+            BluetoothProperty::RemoteFriendlyName(name) => cmp::min(PROPERTY_NAME_MAX, name.len()),
             BluetoothProperty::RemoteRssi(_) => mem::size_of::<i8>(),
             BluetoothProperty::RemoteVersionInfo(_) => mem::size_of::<BtRemoteVersion>(),
             BluetoothProperty::LocalLeFeatures(_) => mem::size_of::<BtLocalLeFeatures>(),
