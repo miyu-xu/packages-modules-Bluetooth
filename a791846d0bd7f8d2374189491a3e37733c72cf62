@@ -22,6 +22,23 @@
       },
       "revId": "a791846d0bd7f8d2374189491a3e37733c72cf62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92670367_4234ad31",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-02T17:32:30Z",
+      "side": 1,
+      "message": "same here...part of the PDL contract to guarantee packet validity.",
+      "revId": "a791846d0bd7f8d2374189491a3e37733c72cf62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
