@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d47ced23_36961ace",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-02T12:49:00Z",
+      "side": 1,
+      "message": "This should be \"\u003e\" ?\n\nI have test device that would support maximum transport latency of 20ms, and maximum retransmission number of 5 for media streams.\nWith this patch applied, it fails to stream media, this fixes the issue",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39186449_21f2e6c8",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1240,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-02T12:49:00Z",
+      "side": 1,
+      "message": "This should be \"\u003e\" ?",
+      "range": {
+        "startLine": 1240,
+        "startChar": 48,
+        "endLine": 1240,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
