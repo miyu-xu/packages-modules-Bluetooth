@@ -329,10 +329,24 @@ struct HciLayer::impl {
     ASSERT(event.IsValid());
     if (command_queue_.empty()) {
       auto event_code = event.GetEventCode();
-      ASSERT_LOG(
-          event_code != EventCode::COMMAND_COMPLETE && event_code != EventCode::COMMAND_STATUS,
-          "Received %s without a waiting command (is the HAL sending commands, but not handling the events?)",
-          EventCodeText(event_code).c_str());
+      // BT Core spec 5.2 (Volume 4, Part E section 4.4) allows anytime
+      // COMMAND_COMPLETE and COMMAND_STATUS with opcode 0x0 for flow control
+      if (event_code == EventCode::COMMAND_COMPLETE) {
+          auto view = CommandCompleteView::Create(event);
+          auto op_code = view.GetOpCode();
+          ASSERT_LOG(opcode == OpCode::NONE,
+            "Received event %s opcode %s without a waiting command"
+            "(is the HAL sending commands, but not handling the events?)",
+            EventCodeText(event_code).c_str(), OpCodeText(op_code).c_str());
+      }
+      if (event_code == EventCode::COMMAND_STATUS) {
+          auto view = CommandStatusView::Create(event);
+          auto op_code = view.GetOpCode();
+          ASSERT_LOG(opcode == OpCode::NONE,
+            "Received event %s opcode %s without a waiting command"
+            "(is the HAL sending commands, but not handling the events?)",
+            EventCodeText(event_code).c_str(), OpCodeText(op_code).c_str());
+      }
       std::unique_ptr<CommandView> no_waiting_command{nullptr};
       log_hci_event(no_waiting_command, event, module_.GetDependency<storage::StorageModule>());
     } else {
