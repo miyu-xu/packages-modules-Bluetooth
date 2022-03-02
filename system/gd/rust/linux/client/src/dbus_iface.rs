@@ -384,6 +384,29 @@ impl IBluetooth for BluetoothDBus {
             .method("SetPairingConfirmation", (BluetoothDevice::to_dbus(device).unwrap(), accept))
     }
 
+    fn get_remote_name(&self, device: BluetoothDevice) -> String {
+        self.client_proxy.method("GetRemoteName", (BluetoothDevice::to_dbus(device).unwrap(),))
+    }
+
+    fn get_remote_type(&self, device: BluetoothDevice) -> u32 {
+        self.client_proxy.method("GetRemoteType", (BluetoothDevice::to_dbus(device).unwrap(),))
+    }
+
+    fn get_remote_alias(&self, device: BluetoothDevice) -> String {
+        self.client_proxy.method("GetRemoteAlias", (BluetoothDevice::to_dbus(device).unwrap(),))
+    }
+
+    fn set_remote_alias(&mut self, device: BluetoothDevice, new_alias: String) {
+        self.client_proxy.method_noreturn(
+            "SetRemoteAlias",
+            (BluetoothDevice::to_dbus(device).unwrap(), new_alias),
+        );
+    }
+
+    fn get_remote_class(&self, device: BluetoothDevice) -> u32 {
+        self.client_proxy.method("GetRemoteClass", (BluetoothDevice::to_dbus(device).unwrap(),))
+    }
+
     fn get_connection_state(&self, device: BluetoothDevice) -> u32 {
         self.client_proxy.method("GetConnectionState", (BluetoothDevice::to_dbus(device).unwrap(),))
     }
