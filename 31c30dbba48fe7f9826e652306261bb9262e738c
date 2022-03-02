@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5f4bb87_2c736c7b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-02T13:08:26Z",
+      "side": 1,
+      "message": "Remote wants to use what we have as QoS_Config_48_4_1\n\n        {\n            \"name\": \"QoS_Config_48_4_1\",\n            \"retransmission_number\": 5,\n            \"max_transport_latency\": 20\n        },\n        \nWe want to use latency of 100, retransmission of 13.\n\nLogic in line 1158 would negotiate latency to be 20, but retransmissions would stay at 13, which is incorrect configuration.\n\n\nIf  max transport latency matches QoS_Config_48_4_1, we should use retransmissions number from same QoS configuration.",
+      "parentUuid": "99fa45df_fa92fffe",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
