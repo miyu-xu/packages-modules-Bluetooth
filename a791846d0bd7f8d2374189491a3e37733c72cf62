@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3350693_8f8e8f77",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-02T19:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5695d2d_095a80e9",
+      "range": {
+        "startLine": 336,
+        "startChar": 25,
+        "endLine": 336,
+        "endChar": 48
+      },
+      "revId": "a791846d0bd7f8d2374189491a3e37733c72cf62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92670367_4234ad31",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-03-02T17:32:30Z",
       "side": 1,
       "message": "same here...part of the PDL contract to guarantee packet validity.",
+      "revId": "a791846d0bd7f8d2374189491a3e37733c72cf62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc97a3de_799de6cc",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-02T19:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92670367_4234ad31",
       "revId": "a791846d0bd7f8d2374189491a3e37733c72cf62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
