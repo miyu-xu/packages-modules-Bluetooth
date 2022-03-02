@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b8d29ef_03390004",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-02T05:49:44Z",
+      "side": 1,
+      "message": "I\u0027m not sure this works.  We generally set our own random address instead of letting the controller handle it.\n\nFrom the spec:\n\nResolvable Private Address being used by the local device for this\nconnection. This is only valid when the Own_Address_Type (from the\nHCI_LE_Create_Connection, HCI_LE_Set_Advertising_Parameters,\nHCI_LE_Set_Extended_Advertising_Parameters, or\nHCI_LE_Extended_Create_Connection commands) is set to 0x02 or\n0x03, and the Controller generated a resolvable private address for the\nlocal device using a non-zero local IRK. For other Own_Address_Type\nvalues, the Controller shall return all zeros.\n\nI expect it to return all zeros.",
+      "range": {
+        "startLine": 294,
+        "startChar": 36,
+        "endLine": 294,
+        "endChar": 91
+      },
+      "revId": "9ca9655fd30ca9c058a3b3280df8f5917e57a99a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
