@@ -2,8 +2,8 @@
 
 use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
-    BtBondState, BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode,
-    BtSspVariant, BtState, BtStatus, BtTransport, RawAddress, Uuid, Uuid128Bit,
+    BtBondState, BtDeviceType, BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType,
+    BtScanMode, BtSspVariant, BtState, BtStatus, BtTransport, RawAddress, Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     profiles::hid_host::{HHCallbacksDispatcher, HidHost},
@@ -121,6 +121,21 @@ pub trait IBluetooth {
 
     /// Confirm that a pairing should be completed on a bonding device.
     fn set_pairing_confirmation(&self, device: BluetoothDevice, accept: bool) -> bool;
+
+    /// Gets the name of the remote device.
+    fn get_remote_name(&self, device: BluetoothDevice) -> String;
+
+    /// Gets the type of the remote device.
+    fn get_remote_type(&self, device: BluetoothDevice) -> BtDeviceType;
+
+    /// Gets the alias of the remote device.
+    fn get_remote_alias(&self, device: BluetoothDevice) -> String;
+
+    /// Sets the alias of the remote device.
+    fn set_remote_alias(&mut self, device: BluetoothDevice, new_alias: String);
+
+    /// Gets the class of the remote device.
+    fn get_remote_class(&self, device: BluetoothDevice) -> u32;
 
     /// Gets the connection state of a single device.
     fn get_connection_state(&self, device: BluetoothDevice) -> u32;
@@ -384,6 +399,16 @@ impl Bluetooth {
         self.bonded_devices.get(&device.address).or_else(|| self.found_devices.get(&device.address))
     }
 
+    fn get_remote_device_if_found_mut(
+        &mut self,
+        device: &BluetoothDevice,
+    ) -> Option<&mut BluetoothDeviceContext> {
+        match self.bonded_devices.get_mut(&device.address) {
+            None => self.found_devices.get_mut(&device.address),
+            some => some,
+        }
+    }
+
     fn get_remote_device_property(
         &self,
         device: &BluetoothDevice,
@@ -391,6 +416,30 @@ impl Bluetooth {
     ) -> Option<BluetoothProperty> {
         self.get_remote_device_if_found(&device)
             .and_then(|d| d.properties.get(property_type).and_then(|p| Some(p.clone())))
+    }
+
+    fn set_remote_device_property(
+        &mut self,
+        device: &BluetoothDevice,
+        property_type: BtPropertyType,
+        property: BluetoothProperty,
+    ) -> Result<(), ()> {
+        let mut remote_device = match self.get_remote_device_if_found_mut(&device) {
+            Some(d) => d,
+            None => {
+                return Err(());
+            }
+        };
+        remote_device.properties.insert(property_type, property.clone());
+
+        let mut addr = RawAddress::from_string(device.address.clone());
+        if addr.is_none() {
+            return Err(());
+        }
+        let addr = addr.as_mut().unwrap();
+
+        self.intf.lock().unwrap().set_remote_device_property(addr, property);
+        Ok(())
     }
 }
 
@@ -1073,6 +1122,42 @@ impl IBluetooth for Bluetooth {
             accept as u8,
             0,
         ) == 0
+    }
+
+    fn get_remote_name(&self, device: BluetoothDevice) -> String {
+        match self.get_remote_device_property(&device, &BtPropertyType::BdName) {
+            Some(BluetoothProperty::BdName(name)) => return name.clone(),
+            _ => return "".to_string(),
+        }
+    }
+
+    fn get_remote_type(&self, device: BluetoothDevice) -> BtDeviceType {
+        match self.get_remote_device_property(&device, &BtPropertyType::TypeOfDevice) {
+            Some(BluetoothProperty::TypeOfDevice(device_type)) => return device_type,
+            _ => return BtDeviceType::Unknown,
+        }
+    }
+
+    fn get_remote_alias(&self, device: BluetoothDevice) -> String {
+        match self.get_remote_device_property(&device, &BtPropertyType::RemoteFriendlyName) {
+            Some(BluetoothProperty::RemoteFriendlyName(name)) => return name.clone(),
+            _ => "".to_string(),
+        }
+    }
+
+    fn set_remote_alias(&mut self, device: BluetoothDevice, new_alias: String) {
+        let _ = self.set_remote_device_property(
+            &device,
+            BtPropertyType::RemoteFriendlyName,
+            BluetoothProperty::RemoteFriendlyName(new_alias),
+        );
+    }
+
+    fn get_remote_class(&self, device: BluetoothDevice) -> u32 {
+        match self.get_remote_device_property(&device, &BtPropertyType::ClassOfDevice) {
+            Some(BluetoothProperty::ClassOfDevice(class)) => return class,
+            _ => 0,
+        }
     }
 
     fn get_connection_state(&self, device: BluetoothDevice) -> u32 {
