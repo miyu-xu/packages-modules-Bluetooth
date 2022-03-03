@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9469fc63_5d334559",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-03T00:40:53Z",
+      "side": 1,
+      "message": "Could you document what the parsing is doing here? It\u0027s not clear from reading the code.",
+      "revId": "676daef583b61878950e8da59b101de1249a7d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9258e0fa_4f28e7e3",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-03T00:40:53Z",
+      "side": 1,
+      "message": "We shouldn\u0027t be checking in this debug code. \n\nIf it must be used, it should be writing to `PathBuf::from(env::var(\"OUT_DIR\").unwrap().join(format!(\"out-{}.rs\", ...))`",
+      "revId": "676daef583b61878950e8da59b101de1249a7d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
