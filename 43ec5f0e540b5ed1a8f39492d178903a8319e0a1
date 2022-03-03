@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9f69ac0_764ddd59",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e9d7ffa_bd88fcb7",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f6bfdca7_cd6da26b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-03T01:43:48Z",
       "side": 1,
       "message": "What do you want to prevent?\nIs it \"start() called twice\" for 1) this instance or 2)this class?",
+      "range": {
+        "startLine": 87,
+        "startChar": 45,
+        "endLine": 87,
+        "endChar": 65
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d45f1e32_01075a0f",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "2)this class.\nstart() is expected to be called only in AdapaterService#startProfileServices()\n\nThis line ensures that the service is not started by another mean.",
+      "parentUuid": "f6bfdca7_cd6da26b",
       "range": {
         "startLine": 87,
         "startChar": 45,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7001ab61_632aa2c8",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "I followed other ProfileService instances.\n\nUp to my investigation, it prevents NPE in getBatteryService().",
+      "parentUuid": "6765192d_eb2f1f7d",
+      "range": {
+        "startLine": 171,
+        "startChar": 19,
+        "endLine": 171,
+        "endChar": 31
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f161b462_ac6d835d",
         "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
         "patchSetId": 12
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-03T01:43:48Z",
       "side": 1,
       "message": "What about canConnect?",
+      "range": {
+        "startLine": 263,
+        "startChar": 19,
+        "endLine": 263,
+        "endChar": 30
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c211c0b_5ef8d09e",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f161b462_ac6d835d",
       "range": {
         "startLine": 263,
         "startChar": 19,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d602c726_804897e8",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d387fe_5d410afd",
+      "range": {
+        "startLine": 285,
+        "startChar": 16,
+        "endLine": 285,
+        "endChar": 38
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "295a2d67_6c60ebf3",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef2e8028_fd307e6c",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "295a2d67_6c60ebf3",
+      "range": {
+        "startLine": 461,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 43
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bec9c771_e3db2026",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-03-03T01:43:48Z",
       "side": 1,
       "message": "what about handleBondStateChanged?",
+      "range": {
+        "startLine": 466,
+        "startChar": 9,
+        "endLine": 466,
+        "endChar": 25
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "130ebd32_11c56f65",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bec9c771_e3db2026",
       "range": {
         "startLine": 466,
         "startChar": 9,
@@ -187,6 +355,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d6db9c26_1232cc6a",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "A state machine is created when the battery service profile is connected and removed when the remote bluetooth device is unbonded.\n\nThe state machine could be reused if the service profile is connected/disconnected.\n(e.g. toggle from System UI)",
+      "parentUuid": "3ba61749_cd4af78b",
+      "range": {
+        "startLine": 487,
+        "startChar": 17,
+        "endLine": 487,
+        "endChar": 35
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "21b90e54_938fbbfd",
         "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
         "patchSetId": 12
@@ -198,6 +390,30 @@
       "writtenOn": "2022-03-03T01:43:48Z",
       "side": 1,
       "message": "Looks the default value is changed.\nMaybe \"result\"?\n\nditto for others",
+      "range": {
+        "startLine": 539,
+        "startChar": 24,
+        "endLine": 539,
+        "endChar": 36
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ace8de33_f629d23c",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21b90e54_938fbbfd",
       "range": {
         "startLine": 539,
         "startChar": 24,
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d32314e_ea01a493",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed179085_e1c7cbaf",
+      "range": {
+        "startLine": 71,
+        "startChar": 39,
+        "endLine": 71,
+        "endChar": 41
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae7d2999_b55faf03",
@@ -244,6 +484,30 @@
       "writtenOn": "2022-03-03T01:43:48Z",
       "side": 1,
       "message": "What about having consist prefix for logging or using different TAGs?\nex. Log.i(TAG, \"[Disconnected] log message.\"); or TAG \u003d BAS_DISCONNECTED, etc.",
+      "range": {
+        "startLine": 218,
+        "startChar": 18,
+        "endLine": 218,
+        "endChar": 21
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "103c4c9a_2e831e3b",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae7d2999_b55faf03",
       "range": {
         "startLine": 218,
         "startChar": 18,
@@ -279,6 +543,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0aaa78d9_5f6dafd4",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "It could happen if CONNECT_TIMEOUT and CONNECTION_STATE_CHANGED are sent simultaneously in the order.",
+      "parentUuid": "36262cab_67296d44",
+      "range": {
+        "startLine": 281,
+        "startChar": 35,
+        "endLine": 281,
+        "endChar": 50
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "174ca0e5_7d3b8ad4",
         "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
         "patchSetId": 12
@@ -290,6 +578,30 @@
       "writtenOn": "2022-03-03T01:43:48Z",
       "side": 1,
       "message": "mDisconnecting?",
+      "range": {
+        "startLine": 339,
+        "startChar": 33,
+        "endLine": 339,
+        "endChar": 46
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fabf91a_419bc639",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "174ca0e5_7d3b8ad4",
       "range": {
         "startLine": 339,
         "startChar": 33,
@@ -313,6 +625,24 @@
       "writtenOn": "2022-03-03T01:43:48Z",
       "side": 1,
       "message": "indentation.\n8 more spaces",
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d202e706_9e0fd006",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1316,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-03T11:18:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fe1bd61_56e8ec9f",
       "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
