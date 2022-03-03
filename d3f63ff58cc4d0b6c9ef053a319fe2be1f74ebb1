@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f795c98_cc16f662",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1168,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-03-03T17:18:54Z",
+      "side": 1,
+      "message": "We are honoring server\u0027s the \"max\" transport_latency. If we have to accommodate the \"preferred\" RTN (which is higher than the client\u0027s RTN), then indirectly we may be accepting to support a higher transport latency. Hence our preference is to stick with the client QoS parameters as long as the Max_Transport_Latency of the server is greater than or equal our preferred Max_Transport_Latency.",
+      "range": {
+        "startLine": 1168,
+        "startChar": 8,
+        "endLine": 1168,
+        "endChar": 31
+      },
+      "revId": "d3f63ff58cc4d0b6c9ef053a319fe2be1f74ebb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

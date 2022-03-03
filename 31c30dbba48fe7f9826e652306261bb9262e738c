@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd3d4b2e_b8470d29",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-03-03T17:18:54Z",
+      "side": 1,
+      "message": "Lukasz, Jakub,\n\nIn order to address the issue Jakub was facing, Can you please check uploaded patch once?\n\nOur intention is to let the client/phone drive the QoS selection, as the client has the information on the ContextType and user\u0027s audio preference. In cases, where the client preference is not supported by the remote, we will fall back to remote preferred values.\n\nTable 4.3 (ASCS): \"Server preferred value for the Retransmission_Number parameter to be written by the client for this ASE in the Config QoS operation defined in Section 5.2.\". Our understanding of the spec is that this is just indicating the server\u0027s preferred value and not mandating that this value be used in Config QoS.",
+      "parentUuid": "a902f461_51df81db",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
