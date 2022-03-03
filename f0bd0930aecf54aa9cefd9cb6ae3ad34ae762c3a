@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d6fb2e5_8fa633ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-03T01:20:10Z",
+      "side": 1,
+      "message": "Generally LGTM, some small issues ",
+      "revId": "f0bd0930aecf54aa9cefd9cb6ae3ad34ae762c3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f209cee7_372d6d73",
@@ -60,6 +77,30 @@
       "writtenOn": "2022-03-03T00:37:29Z",
       "side": 1,
       "message": "\"ENG\"\n\nThe spec uses ISO 639-3 Code as defined here:",
+      "range": {
+        "startLine": 157,
+        "startChar": 33,
+        "endLine": 157,
+        "endChar": 36
+      },
+      "revId": "f0bd0930aecf54aa9cefd9cb6ae3ad34ae762c3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f7b6def_677614cf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-03T01:20:10Z",
+      "side": 1,
+      "message": "https://iso639-3.sil.org/code_tables/639/data",
+      "parentUuid": "6e121a06_fcf5b105",
       "range": {
         "startLine": 157,
         "startChar": 33,
