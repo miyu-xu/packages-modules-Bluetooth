@@ -16,6 +16,24 @@
       "message": "nit: external ?",
       "revId": "b8853030b8533de21a94d1aeaa93eb980c2aed5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "156ef6e8_96e3f2f1",
+        "filename": "android/app/jni/com_android_bluetooth_vc.cpp",
+        "patchSetId": 5
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-03T23:11:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c68c892_a7999e12",
+      "revId": "b8853030b8533de21a94d1aeaa93eb980c2aed5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
