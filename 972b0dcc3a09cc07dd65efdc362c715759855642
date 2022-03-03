@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cab57b0a_c49c1f1c",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-03T11:02:37Z",
+      "side": 1,
+      "message": "Hi Jack, thanks for the comment.\n\nAbout the async issue, I thought it would not make much difference since the API is already asynchronous - the IBluetoothLeCallControl is oneway (https://source.corp.google.com/aosp-master/packages/modules/Bluetooth/system/binder/android/bluetooth/IBluetoothLeCallControl.aidl;l\u003d28).",
+      "parentUuid": "7a2b4330_9fd8cb97",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 29
+      },
+      "revId": "972b0dcc3a09cc07dd65efdc362c715759855642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ff4e431_d69e1759",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "if we do not expect unregisterBearer() to be called after stop(), we can just make methods in TbsService synchronized",
       "parentUuid": "2ff4e431_d69e1759",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 44
+      },
+      "revId": "972b0dcc3a09cc07dd65efdc362c715759855642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "166de710_230faf62",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-03T11:02:37Z",
+      "side": 1,
+      "message": "I tried to avoid making methods synchronized since holding lock while outgoing binder call can lead to deadlock (TbsGatt\u0027s methods make binder calls to system Bluetooth service).\n\nhttps://docs.google.com/document/d/1raSGHAFQZY8iq7PCHHLNwK8RcmC5_jmpEj4l817SXbA/edit#heading\u003dh.586244sxj4cs\n\nIn order to get both goals (preventing NPE and not changing running thread), the patch set 5 in this CL could be the solution. Could you take a look? This could be a better solution than current patch set.\n\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1991492/5",
+      "parentUuid": "60dcc58f_8f8c2eae",
       "range": {
         "startLine": 293,
         "startChar": 0,
