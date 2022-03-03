@@ -24,6 +24,8 @@ import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
+import android.bluetooth.BluetoothLeAudioCodecConfig;
+import android.bluetooth.BluetoothLeAudioCodecStatus;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothLeAudio;
@@ -1402,6 +1404,52 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
+     * Gets the current codec status (configuration and capability).
+     *
+     * @param device the remote Bluetooth device.
+     * @return the current codec status
+     * @hide
+     */
+    public BluetoothLeAudioCodecStatus getCodecStatus(BluetoothDevice device) {
+        if (DBG) {
+            Log.d(TAG, "getCodecStatus(" + device + ")");
+        }
+
+        return null;
+    }
+
+    /**
+     * Sets the codec configuration preference.
+     *
+     * @param device the remote Bluetooth device.
+     * @param codecConfig the codec configuration preference
+     * @hide
+     */
+    public void setCodecConfigPreference(BluetoothDevice device,
+                                         BluetoothLeAudioCodecConfig codecConfig) {
+        if (DBG) {
+            Log.d(TAG, "setCodecConfigPreference(" + device + "): "
+                    + Objects.toString(codecConfig));
+        }
+        if (device == null) {
+            Log.e(TAG, "setCodecConfigPreference: Invalid device");
+            return;
+        }
+        if (codecConfig == null) {
+            Log.e(TAG, "setCodecConfigPreference: Codec config can't be null");
+            return;
+        }
+        BluetoothLeAudioCodecStatus codecStatus = getCodecStatus(device);
+        if (codecStatus == null) {
+            Log.e(TAG, "setCodecConfigPreference: Codec status is null");
+            return;
+        }
+
+        // TODO: pass the information to bt stack
+    }
+
+
+    /**
      * Binder object: must be a static class or memory leak may occur
      */
     @VisibleForTesting
@@ -1716,6 +1764,31 @@ public class LeAudioService extends ProfileService {
             }
 
             service.getAllBroadcastStates();
+        }
+
+        @Override
+        public void getCodecStatus(BluetoothDevice device,
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                LeAudioService service = getService(source);
+                BluetoothLeAudioCodecStatus codecStatus = null;
+                if (service != null) {
+                    codecStatus = service.getCodecStatus(device);
+                }
+                receiver.send(codecStatus);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void setCodecConfigPreference(BluetoothDevice device,
+                BluetoothLeAudioCodecConfig codecConfig, AttributionSource source) {
+            LeAudioService service = getService(source);
+            if (service == null) {
+                return;
+            }
+            service.setCodecConfigPreference(device, codecConfig);
         }
     }
 
