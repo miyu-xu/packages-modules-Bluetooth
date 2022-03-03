@@ -17,32 +17,23 @@
 
 package com.android.bluetooth.tbs;
 
-import android.Manifest;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCharacteristic;
-import android.bluetooth.BluetoothGattDescriptor;
-import android.bluetooth.BluetoothGattServerCallback;
-import android.bluetooth.BluetoothGattService;
-import android.bluetooth.BluetoothLeCallControl;
+import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
+
 import android.bluetooth.BluetoothLeCall;
 import android.bluetooth.IBluetoothLeCallControl;
 import android.bluetooth.IBluetoothLeCallControlCallback;
 import android.content.AttributionSource;
-import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
 
-import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
-
-import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.Utils;
+import com.android.bluetooth.btservice.ProfileService;
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 public class TbsService extends ProfileService {
@@ -53,6 +44,7 @@ public class TbsService extends ProfileService {
     private static TbsService sTbsService;
 
     private final TbsGeneric mTbsGeneric = new TbsGeneric();
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected IProfileServiceBinder initBinder() {
@@ -96,6 +88,7 @@ public class TbsService extends ProfileService {
 
         // Mark service as stopped
         setTbsService(null);
+        mHandler.removeCallbacksAndMessages(null);
 
         if (mTbsGeneric != null) {
             mTbsGeneric.cleanup();
@@ -266,91 +259,109 @@ public class TbsService extends ProfileService {
     @VisibleForTesting
     void registerBearer(String token, IBluetoothLeCallControlCallback callback, String uci,
             List<String> uriSchemes, int capabilities, String providerName, int technology) {
-        if (DBG) {
-            Log.d(TAG, "registerBearer: token=" + token);
-        }
-
-        boolean success = mTbsGeneric.addBearer(token, callback, uci, uriSchemes, capabilities,
-                providerName, technology);
-        if (success) {
-            try {
-                callback.asBinder().linkToDeath(() -> {
-                    Log.e(TAG, token + " application died, removing...");
-                    unregisterBearer(token);
-                }, 0);
-            } catch (RemoteException e) {
-                e.printStackTrace();
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "registerBearer: token=" + token);
             }
-        }
 
-        if (DBG) {
-            Log.d(TAG, "registerBearer: token=" + token + " success=" + success);
-        }
+            boolean success = mTbsGeneric.addBearer(token, callback, uci, uriSchemes, capabilities,
+                    providerName, technology);
+            if (success) {
+                try {
+                    callback.asBinder().linkToDeath(() -> {
+                        Log.e(TAG, token + " application died, removing...");
+                        unregisterBearer(token);
+                    }, 0);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (DBG) {
+                Log.d(TAG, "registerBearer: token=" + token + " success=" + success);
+            }
+        });
     }
 
     @VisibleForTesting
     void unregisterBearer(String token) {
-        if (DBG) {
-            Log.d(TAG, "unregisterBearer: token=" + token);
-        }
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "unregisterBearer: token=" + token);
+            }
 
-        mTbsGeneric.removeBearer(token);
+            mTbsGeneric.removeBearer(token);
+        });
     }
 
     @VisibleForTesting
     public void requestResult(int ccid, int requestId, int result) {
-        if (DBG) {
-            Log.d(TAG, "requestResult: ccid=" + ccid + " requestId=" + requestId + " result="
-                    + result);
-        }
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "requestResult: ccid=" + ccid + " requestId=" + requestId + " result="
+                        + result);
+            }
 
-        mTbsGeneric.requestResult(ccid, requestId, result);
+            mTbsGeneric.requestResult(ccid, requestId, result);
+        });
     }
 
     @VisibleForTesting
     void callAdded(int ccid, BluetoothLeCall call) {
-        if (DBG) {
-            Log.d(TAG, "callAdded: ccid=" + ccid + " call=" + call);
-        }
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "callAdded: ccid=" + ccid + " call=" + call);
+            }
 
-        mTbsGeneric.callAdded(ccid, call);
+            mTbsGeneric.callAdded(ccid, call);
+        });
     }
 
     @VisibleForTesting
     void callRemoved(int ccid, UUID callId, int reason) {
-        if (DBG) {
-            Log.d(TAG, "callRemoved: ccid=" + ccid + " callId=" + callId + " reason=" + reason);
-        }
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "callRemoved: ccid=" + ccid + " callId=" + callId
+                        + " reason=" + reason);
+            }
 
-        mTbsGeneric.callRemoved(ccid, callId, reason);
+            mTbsGeneric.callRemoved(ccid, callId, reason);
+        });
     }
 
     @VisibleForTesting
     void callStateChanged(int ccid, UUID callId, int state) {
-        if (DBG) {
-            Log.d(TAG, "callStateChanged: ccid=" + ccid + " callId=" + callId + " state=" + state);
-        }
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "callStateChanged: ccid=" + ccid + " callId=" + callId
+                        + " state=" + state);
+            }
 
-        mTbsGeneric.callStateChanged(ccid, callId, state);
+            mTbsGeneric.callStateChanged(ccid, callId, state);
+        });
     }
 
     @VisibleForTesting
     void currentCallsList(int ccid, List<BluetoothLeCall> calls) {
-        if (DBG) {
-            Log.d(TAG, "currentCallsList: ccid=" + ccid + " calls=" + calls);
-        }
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "currentCallsList: ccid=" + ccid + " calls=" + calls);
+            }
 
-        mTbsGeneric.currentCallsList(ccid, calls);
+            mTbsGeneric.currentCallsList(ccid, calls);
+        });
     }
 
     @VisibleForTesting
     void networkStateChanged(int ccid, String providerName, int technology) {
-        if (DBG) {
-            Log.d(TAG, "networkStateChanged: ccid=" + ccid + " providerName=" + providerName
-                    + " technology=" + technology);
-        }
+        mHandler.post(() -> {
+            if (DBG) {
+                Log.d(TAG, "networkStateChanged: ccid=" + ccid + " providerName=" + providerName
+                        + " technology=" + technology);
+            }
 
-        mTbsGeneric.networkStateChanged(ccid, providerName, technology);
+            mTbsGeneric.networkStateChanged(ccid, providerName, technology);
+        });
     }
 
     @Override
