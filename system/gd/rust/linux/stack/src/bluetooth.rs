@@ -13,7 +13,7 @@ use bt_topshim::{
 
 use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 
-use log::{debug, warn};
+use log::{debug, info, warn};
 use num_traits::cast::ToPrimitive;
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -367,6 +367,7 @@ impl Bluetooth {
     }
 
     pub(crate) fn callback_disconnected(&mut self, id: u32, cb_type: BluetoothCallbackType) {
+        info!("melhuishj: callback_disconnected");
         match cb_type {
             BluetoothCallbackType::Adapter => {
                 self.callbacks.remove(&id);
@@ -732,6 +733,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
                     });
                 }
                 BtAclState::Disconnected => {
+                    self.set_connectable(true);
                     self.for_all_connection_callbacks(|callback| {
                         callback.on_device_disconnected(device.clone());
                     });
