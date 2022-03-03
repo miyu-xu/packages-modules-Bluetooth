@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "960ffd1a_6cd4499f",
+        "filename": "system/gd/rust/common/src/asserts.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-03T20:07:06Z",
+      "side": 1,
+      "message": "I\u0027m surprised there isn\u0027t already an `assert_eq` somewhere.\n\nPlus the log remove ` within `",
+      "revId": "f5bb3cdaea76b6102e26392c32a6fc0d5ea649d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cadebf6a_c8407fd3",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-03T20:07:06Z",
+      "side": 1,
+      "message": "I would think `1002` should be a constant somewhere in the unlikely case it changes at some point",
+      "revId": "f5bb3cdaea76b6102e26392c32a6fc0d5ea649d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd47c181_cfe41c27",
+        "filename": "system/gd/rust/common/src/parameter_provider.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-03T20:07:06Z",
+      "side": 1,
+      "message": "Maybe split into two path groups, a $TOP and $BOTTOM so that this could be run on various filesystems.  I\u0027m not sure the proper rust syntax.\n\nkTop \u003d \"/data/misc\"\n\ne.g.\npub fn new(prefix \u003d kTop) -\u003e Self {\nconfiguration_file_path: kTop + \"/bluedroid/bt_config.conf\"",
+      "revId": "f5bb3cdaea76b6102e26392c32a6fc0d5ea649d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
