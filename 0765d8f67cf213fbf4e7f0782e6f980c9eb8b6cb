@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5986d1b_95dabf76",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-03-03T17:30:03Z",
+      "side": 1,
+      "message": "This looks to do the same as previous code was doing.\n\nGetActiveContexts() returns active_contexts_mask_.\nUpdateActiveContextsMap() returns:\n- non nullopt if context map is changed: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/devices.cc;drc\u003dmaster;l\u003d561 \u003d new active_contexts_mask_\n- if nothing is changed this if(old_group_updated_contexts || ) wont be satisfied\n\nI belive std::optional is non null if there would be also new active_contexts_mask_ \u003d 0. This value becomes null when old_group_updated_contexts \u003d\u003d std::nullopt. Correct me if I\u0027m wrong.\n\nhttps://en.cppreference.com/w/cpp/utility/optional",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "275a8cd6_835b54db",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-03-03T17:30:03Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb6dd0c3_1659a86b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-03-03T17:30:03Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
