@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a2b4330_9fd8cb97",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-03T08:36:40Z",
+      "side": 1,
+      "message": "This change will make the API implementation asynchronous and the Apps may not expect this. For example, they would expect the callback to be unregistered as soon as this API returns. \n\nInstead could we add synchronized blocks to protect mTbsGeneric so that stop() and unregisterBearer() can be called at the same time?",
+      "range": {
+        "startLine": 262,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 29
+      },
+      "revId": "972b0dcc3a09cc07dd65efdc362c715759855642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ff4e431_d69e1759",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-03T08:36:40Z",
+      "side": 1,
+      "message": "the root cause is \n\nmTbsGeneric.mTbsGatt is set to null when mTbsGeneric.cleanup() is called from TbsService.stop(). \n\nAt the same time, if we try to call unregisterBearer(), which will call mTbsGeneric.removeBearer(token), which will call notifyCclc(), which will call mTbsGeneric.mTbsGatt.XXXX, and will generate NPE. \n\nI think a good solution would be making methods in mTbsGeneric synchronized and remove all the bearers in mTbsGeneric when cleanup() is called",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 44
+      },
+      "revId": "972b0dcc3a09cc07dd65efdc362c715759855642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
