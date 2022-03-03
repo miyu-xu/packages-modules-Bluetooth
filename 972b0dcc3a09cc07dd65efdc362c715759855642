@@ -45,6 +45,30 @@
       },
       "revId": "972b0dcc3a09cc07dd65efdc362c715759855642",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60dcc58f_8f8c2eae",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-03T08:39:00Z",
+      "side": 1,
+      "message": "if we do not expect unregisterBearer() to be called after stop(), we can just make methods in TbsService synchronized",
+      "parentUuid": "2ff4e431_d69e1759",
+      "range": {
+        "startLine": 293,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 44
+      },
+      "revId": "972b0dcc3a09cc07dd65efdc362c715759855642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
