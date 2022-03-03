@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e6299e9_871cc18d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-03T19:23:06Z",
+      "side": 1,
+      "message": "Thanks for your comment.\n\nIf the code meets following conditions, then the code does different thing:\n- old_group_updated_contexts \u003d\u003d std::nullopt (i.e. context is not changed)\n- old_group-\u003eReloadAudioLocations() returns true (i.e. location is changed)\n\nIn this case, \n- old_group_updated_contexts-\u003eto_ulong() is zero, but\n- old_group-\u003eGetActiveContexts() is not zero.\n\nI think we should not pass zero as active contexts when the actual active context is not zero. However, previous code does it when only the location is changed.\n\nPlease correct me if I\u0027m wrong. Thanks!",
+      "parentUuid": "f5986d1b_95dabf76",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "275a8cd6_835b54db",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
