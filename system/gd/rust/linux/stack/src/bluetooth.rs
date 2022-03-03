@@ -732,6 +732,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
                     });
                 }
                 BtAclState::Disconnected => {
+                    self.set_connectable(true);
                     self.for_all_connection_callbacks(|callback| {
                         callback.on_device_disconnected(device.clone());
                     });
