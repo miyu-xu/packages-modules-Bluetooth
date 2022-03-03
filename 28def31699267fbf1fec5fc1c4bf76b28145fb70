@@ -16,6 +16,24 @@
       "message": "Could you review TbsService?\n\nWhen I investigated the bug, I found that TbsServerBinder#getService returns a non-null service instance even after TbsService#stop is called, which could be the main reason for this bug.\n",
       "revId": "28def31699267fbf1fec5fc1c4bf76b28145fb70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d47e7a3b_2e7924c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-03T08:07:29Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. Uploaded a new patch set. Please take a look.",
+      "parentUuid": "71605f2b_6e39895a",
+      "revId": "28def31699267fbf1fec5fc1c4bf76b28145fb70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
