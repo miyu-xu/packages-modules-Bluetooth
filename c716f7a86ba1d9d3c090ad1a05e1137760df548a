@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b17123bd_aedd5ec5",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-03T17:01:20Z",
+      "side": 1,
+      "message": "Please adjust the comment to say that it returns null on error\n\nThis should be added to BluetoothLeHapClient.java as well",
+      "range": {
+        "startLine": 687,
+        "startChar": 0,
+        "endLine": 687,
+        "endChar": 72
+      },
+      "revId": "c716f7a86ba1d9d3c090ad1a05e1137760df548a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbcd7a17_dcb47b08",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-03T17:01:20Z",
+      "side": 1,
+      "message": "Add @Nullable after public to indicate that this can be null\n\nThis should be added to BluetoothLeHapClient.java as well",
+      "range": {
+        "startLine": 689,
+        "startChar": 4,
+        "endLine": 689,
+        "endChar": 13
+      },
+      "revId": "c716f7a86ba1d9d3c090ad1a05e1137760df548a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
