@@ -150,6 +150,53 @@
       },
       "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bd43c43_6b203301",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T22:41:11Z",
+      "side": 1,
+      "message": "ah I see. I was confusing between `()` and `Err(())` since I misinterpreted the `map` function. It makes sense to return `Result` as it is.",
+      "parentUuid": "89608a7e_510da5a5",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 22
+      },
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ab8fd6d_4b0d400d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1144,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T22:41:11Z",
+      "side": 1,
+      "message": "there is a warning because Result must be handled. Maybe handle the error (just log it), or if intentionally not handled, use `let _ \u003d self.set_remote...` to suppress the warning.",
+      "range": {
+        "startLine": 1140,
+        "startChar": 0,
+        "endLine": 1144,
+        "endChar": 10
+      },
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
