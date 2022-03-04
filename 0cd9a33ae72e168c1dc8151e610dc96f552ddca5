@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2894c5ae_24995d37",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T18:27:48Z",
+      "side": 1,
+      "message": "This is a good place to put `set_connectable`. Add a comment why",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "031a65cf_e8c64850",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
@@ -14,6 +31,24 @@
       "writtenOn": "2022-03-04T01:00:37Z",
       "side": 1,
       "message": "You\u0027ll also want to do the `connectable` check here because this happens after the stack comes up.",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bd75b20_578a7b4e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T18:27:48Z",
+      "side": 1,
+      "message": "Ignore this since we decided to unconditionally turn on connectable.",
+      "parentUuid": "031a65cf_e8c64850",
       "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -67,6 +102,24 @@
       "side": 1,
       "message": "I believe after the conversation I had with hsz@ that in Android they do the equivalent of calling `set_connectable(true)` unconditionally when the stack comes up and keep that throughout runtime. Looking at their code it seems that there are a few instances where they choose specialized scan modes, but for the most part it seems to be left connectable indefinitely. Looking at that I think to match them we would just call `set_connectable(true)` either on instantiation or whenever enable is called.\n\nSetting connectable when started: https://source.corp.google.com/aosp-master/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterProperties.java;l\u003d1069?q\u003dSCAN_MODE_CONNECTABLE\u0026ss\u003dpiper%2FGoogle%2Faosp-master:packages%2Fmodules%2FBluetooth%2Fandroid%2Fapp%2Fsrc%2Fcom%2Fandroid%2Fbluetooth%2F",
       "parentUuid": "3813629d_27c7a3bf",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "564940ef_cafdb695",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T18:27:48Z",
+      "side": 1,
+      "message": "In light of that + what Sonny suggested, then we should probably do the same.",
+      "parentUuid": "fda01fb6_83cf6e2c",
       "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
