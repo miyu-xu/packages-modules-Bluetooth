@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a50c8ac0_0c0b4b94",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T19:40:17Z",
+      "side": 1,
+      "message": "Support for automatically generating this boilerplate is on the way: https://r.android.com/1999971.\n\nMaybe add a TODO on this line to remind us to use the macro instead of handcoding.",
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "720f5ddc_750b1ade",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T19:40:17Z",
+      "side": 1,
+      "message": "nit: slightly more concise:\n```\nmatch self.bonded_devices.get_mut(\u0026device.address) {\n    None \u003d\u003e self.found_devices.get_mut(\u0026device.address),\n    some \u003d\u003e some,\n}\n```",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 413,
+        "endChar": 9
+      },
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6a8bce9_820fff8a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T19:40:17Z",
+      "side": 1,
+      "message": "looks like this will always return `()`? Do we need `Result` at all if that\u0027s the case?",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 22
+      },
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
