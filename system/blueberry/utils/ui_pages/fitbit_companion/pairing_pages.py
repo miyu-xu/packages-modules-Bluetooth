@@ -111,6 +111,13 @@ class PairingIntroPage(ui_core.UIPage):
       'Swipe up',
       'Try it on',
       'Wear & care tips',
+      'Changing the band',
+      'Wearing the watch',
+      'Swipe right',
+      'Swipe left',
+      'Press side button',
+      'Double press button',
+      'Wear & care tips:',
   ])
   NODE_NEXT_BTN_RID = f'{constants.PKG_NAME_ID}/btn_next'
 
@@ -176,7 +183,7 @@ class PairPrivacyConfirmPage(ui_core.UIPage):
   """Fitbit Companion App's page to confirm the privacy befoe pairing."""
 
   PAGE_RID = f'{constants.PKG_NAME_ID}/gdpr_scroll_view'
-  _NODE_ACCEPT_BTN_TEXT = 'ACCEPT'
+  _NODE_ACCEPT_BTN_RE_TEXT = '(I )?ACCEPT'
   _SWIPE_RETRY = 5
 
   def accept(self) -> ui_core.UIPage:
@@ -190,14 +197,15 @@ class PairPrivacyConfirmPage(ui_core.UIPage):
     """
     self.swipe_down()
     for i in range(self._SWIPE_RETRY):
-      node = self.get_node_by_text(self._NODE_ACCEPT_BTN_TEXT)
+      node = self.get_node_by_text(self._NODE_ACCEPT_BTN_RE_TEXT, use_re=True)
       if node is None:
         raise errors.UIError(
-            f'Fail to find the node with text={self._NODE_ACCEPT_BTN_TEXT}')
+            f'Fail to find the node with text={self._NODE_ACCEPT_BTN_RE_TEXT}')
 
       atr_obj = node.attributes.get('enabled')
       if atr_obj is not None and atr_obj.value == 'true':
-        return self.click_node_by_text(self._NODE_ACCEPT_BTN_TEXT)
+        return self.click_node_by_text(
+            self._NODE_ACCEPT_BTN_RE_TEXT, use_re=True)
 
       self.log.debug('swipe down to browse the privacy info...%d', i + 1)
       self.swipe_down()
@@ -295,7 +303,7 @@ class ConfirmReplaceSmartWatchPage(ui_core.UIPage):
 class ConfirmChargePage(ui_core.UIPage):
   """Fitbit Companion App's page to confirm the charge condition."""
 
-  PAGE_RE_TEXT = 'Let your device charge during setup'
+  PAGE_RE_TEXT = '(Let your device charge during setup|Let it charge)'
 
   def next(self) -> ui_core.UIPage:
     """Forwards to pairing page.
