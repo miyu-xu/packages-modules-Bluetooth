@@ -87,6 +87,24 @@
       "message": "Please add more comments explaining what\u0027s going on here",
       "revId": "6a279ac7a2ad8e7c4b17028bf9e38721b0a65e3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46b36b8b_6bab1ba3",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T01:29:24Z",
+      "side": 1,
+      "message": "Done. Added more comments to make it more readable.",
+      "parentUuid": "91b502f5_a1f9575f",
+      "revId": "6a279ac7a2ad8e7c4b17028bf9e38721b0a65e3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
