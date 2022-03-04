@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "813c1241_afa68384",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-04T22:32:46Z",
+      "side": 1,
+      "message": "I guess metrics never bothered with any LE_EVENTs.",
+      "revId": "fe4a48d85dae9fedc5282a040b80f0f2253f16f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
