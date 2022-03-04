@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d5499a0_539de4df",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T23:06:23Z",
+      "side": 1,
+      "message": "It\u0027s just landed actually, so you can rebase and use the automatic boilerplate code. Refer to https://r.android.com/1999971 to the example",
+      "parentUuid": "a50c8ac0_0c0b4b94",
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "daac8215_218f4f43",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
