@@ -3073,6 +3073,53 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
+  void OnAudioSourceMetadataUpdate(const sink_metadata_t& sink_metadata) {
+    LOG(INFO) << __func__ << ": " << sink_metadata.track_count << " track(s)";
+    for (size_t i = 0; i < sink_metadata.track_count; i++) {
+      record_track_metadata metadata = sink_metadata.tracks[i];
+      if (metadata.source == AUDIO_SOURCE_VOICE_RECOGNITION) {
+        // recorder
+        auto new_context = LeAudioContextType::CONVERSATIONAL;
+
+        auto group = aseGroups_.FindById(active_group_id_);
+        if (!group) {
+          LOG(ERROR) << __func__ << ", Invalid group: "
+                     << static_cast<int>(active_group_id_);
+          return;
+        }
+
+        if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
+          LOG(WARNING) << ", cannot start streaming if no active group set";
+          return;
+        }
+
+        if (new_context == current_context_type_) {
+          LOG(INFO) << __func__
+                    << " Context did not change starting to receive audio";
+          UpdateConfigAndCheckIfReconfigurationIsNeeded(active_group_id_,
+                                                        new_context);
+          return;
+        }
+
+        current_context_type_ = new_context;
+        if (StopStreamIfNeeded(group, new_context)) {
+          return;
+        }
+
+        if (group->GetTargetState() ==
+            AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+          /* Configuration is the same for new context, just will do update
+           * metadata of stream
+           */
+          GroupStream(active_group_id_, static_cast<uint16_t>(new_context));
+        }
+      } else {
+        LOG(INFO) << __func__
+                  << "not handled source type: " << (int)metadata.source;
+      }
+    }
+  }
+
   static void OnGattReadRspStatic(uint16_t conn_id, tGATT_STATUS status,
                                   uint16_t hdl, uint16_t len, uint8_t* value,
                                   void* data) {
@@ -3536,6 +3583,12 @@ class LeAudioClientAudioSourceReceiverImpl
   }
   void OnAudioResume(void) override {
     if (instance) instance->OnAudioSourceResume();
+  }
+  void OnAudioSourceMetadataUpdate(
+      std::promise<void> do_metadata_update_promise,
+      const sink_metadata_t& sink_metadata) {
+    if (instance) instance->OnAudioSourceMetadataUpdate(sink_metadata);
+    do_metadata_update_promise.set_value();
   }
 };
 

@@ -139,8 +139,9 @@ void LeAudioTransport::SinkMetadataChanged(
     return;
   }
 
-  if (stream_cb_.on_sink_metadata_update_)
+  if (stream_cb_.on_sink_metadata_update_) {
     stream_cb_.on_sink_metadata_update_(sink_metadata);
+  }
 }
 
 void LeAudioTransport::ResetPresentationPosition() {

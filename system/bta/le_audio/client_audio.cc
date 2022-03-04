@@ -256,8 +256,31 @@ bool le_audio_sink_on_metadata_update_req(
 
 bool le_audio_source_on_metadata_update_req(
     const sink_metadata_t& sink_metadata) {
-  // TODO: update microphone configuration based on sink metadata
-  return true;
+  if (localAudioSourceReceiver == nullptr) {
+    LOG(ERROR) << __func__ << ", audio source receiver not started";
+    return false;
+  }
+
+  LOG(INFO) << __func__ << ": " << sink_metadata.track_count << " track(s)";
+
+  std::promise<void> do_update_metadata_promise;
+  std::future<void> do_update_metadata_future =
+      do_update_metadata_promise.get_future();
+  bt_status_t status = do_in_main_thread(
+      FROM_HERE,
+      base::BindOnce(
+          &LeAudioClientAudioSourceReceiver::OnAudioSourceMetadataUpdate,
+          base::Unretained(localAudioSourceReceiver),
+          std::move(do_update_metadata_promise), sink_metadata));
+
+  if (status == BT_STATUS_SUCCESS) {
+    do_update_metadata_future.wait();
+    return true;
+  }
+
+  LOG(ERROR) << __func__ << ", do_in_main_thread err=" << status;
+
+  return false;
 }
 
 }  // namespace
