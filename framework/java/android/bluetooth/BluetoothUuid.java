@@ -371,6 +371,11 @@ public final class BluetoothUuid {
      */
     @NonNull
     @SystemApi
+    public static final ParcelUuid TELEPHONY_AND_MEDIA_AUDIO =
+            ParcelUuid.fromString("00001855-0000-1000-8000-00805F9B34FB");
+    /** @hide */
+    @NonNull
+    @SystemApi
     public static final ParcelUuid BASE_UUID =
             ParcelUuid.fromString("00000000-0000-1000-8000-00805F9B34FB");
 

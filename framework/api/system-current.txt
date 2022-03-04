@@ -719,6 +719,7 @@ package android.bluetooth {
     field @NonNull public static final android.os.ParcelUuid PBAP_PCE;
     field @NonNull public static final android.os.ParcelUuid PBAP_PSE;
     field @NonNull public static final android.os.ParcelUuid SAP;
+    field @NonNull public static final android.os.ParcelUuid TELEPHONY_AND_MEDIA_AUDIO;
     field public static final int UUID_BYTES_128_BIT = 16; // 0x10
     field public static final int UUID_BYTES_16_BIT = 2; // 0x2
     field public static final int UUID_BYTES_32_BIT = 4; // 0x4
