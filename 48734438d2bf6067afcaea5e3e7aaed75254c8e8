@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8983a674_8b7d716e",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T21:02:36Z",
+      "side": 1,
+      "message": "nit: We should use the list of `enabled profiles` in UuidHelper and check all of them to see which are connected.",
+      "revId": "48734438d2bf6067afcaea5e3e7aaed75254c8e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44bf17bc_62358881",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T21:02:36Z",
+      "side": 1,
+      "message": "nit: Would probably prefer this instead:\n\n```\nConnected profiles:\n  A2DP\n  HFP\n  ...\n```",
+      "revId": "48734438d2bf6067afcaea5e3e7aaed75254c8e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "206a1686_4aa6e357",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
@@ -14,6 +48,30 @@
       "writtenOn": "2022-03-04T19:14:12Z",
       "side": 1,
       "message": "Can this be enum? At D-Bus level this still becomes u32 but being an enum makes the values self documented.",
+      "range": {
+        "startLine": 129,
+        "startChar": 52,
+        "endLine": 129,
+        "endChar": 55
+      },
+      "revId": "48734438d2bf6067afcaea5e3e7aaed75254c8e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05a0bb75_205472c8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T21:02:36Z",
+      "side": 1,
+      "message": "Agreed. This should probably be using `bt_stack::uuid::Profile` and not `bt_topshim::btif::SupportedProfiles`",
+      "parentUuid": "206a1686_4aa6e357",
       "range": {
         "startLine": 129,
         "startChar": 52,
