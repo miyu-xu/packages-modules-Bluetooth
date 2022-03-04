@@ -10,9 +10,9 @@ from typing import Mapping, Optional
 from mobly import signals
 from mobly.controllers import android_device
 
-from blueberry.utils import blueberry_ui_base_test
 from blueberry.utils import bt_constants
 from blueberry.utils import bt_test_utils
+# Internal import
 
 
 # The path is used to place the created vcf files.
@@ -40,7 +40,7 @@ CALL_LOG_TYPES = [
 _NOTIFICATION_DIALOG_MSG_PATTERN = 'Allow Contacts.* you notifications?'
 
 
-class BluetoothPbapBase(blueberry_ui_base_test.BlueberryUiBaseTest):
+class BluetoothPbapBase(pixel_bluetooth_base_test.PixelBluetoothBaseTest):
   """Base Test Class for Bluetooth PBAP Test."""
 
   def __init__(self, configs: Mapping[str, str]):
