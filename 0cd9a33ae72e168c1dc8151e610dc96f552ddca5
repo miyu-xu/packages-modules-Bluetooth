@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031a65cf_e8c64850",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T01:00:37Z",
+      "side": 1,
+      "message": "You\u0027ll also want to do the `connectable` check here because this happens after the stack comes up.",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "131a2ac4_b75f2013",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T01:00:37Z",
+      "side": 1,
+      "message": "It\u0027s not sufficient to only enable `connectable` on disconnect since you also want to be connectable when the stack starts.\n\nYou may want to add a new function with the following logic and run it here and on property update (i\u0027ve marked it with a comment):\n\n```\n\nlet has_unconnected \u003d false;\nfor device in self.bonded_devices {\n  if !device.connected {\n    has_unconnected \u003d true;\n  }\n}\n\nif has_unconnected {\n  self.set_connectable(true);\n} else {\n  self.set_connectable(false);\n}\n\n\n```\n\n@sonnysasaka Looks good?",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
