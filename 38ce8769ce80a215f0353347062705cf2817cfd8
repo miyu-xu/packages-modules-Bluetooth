@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d33159e2_0b48ff08",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-04T19:02:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21e90080_3a9eef58",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 66
+      },
+      "revId": "38ce8769ce80a215f0353347062705cf2817cfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eceb0d0a_7c0711a7",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-04T02:36:16Z",
       "side": 1,
       "message": "Please check HAL transport here as well\n  if (HalVersionManager::GetHalTransport() \u003d\u003d\n      BluetoothAudioHalTransport::HIDL) {\n    return;\n  }",
+      "range": {
+        "startLine": 338,
+        "startChar": 0,
+        "endLine": 338,
+        "endChar": 68
+      },
+      "revId": "38ce8769ce80a215f0353347062705cf2817cfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e8be6ce_a5ef137c",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-04T19:02:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eceb0d0a_7c0711a7",
       "range": {
         "startLine": 338,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad157441_b31e7584",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-04T19:02:36Z",
+      "side": 1,
+      "message": "good catch. thanks - fixed",
+      "parentUuid": "325ca3f2_ea9e533d",
+      "range": {
+        "startLine": 332,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 52
+      },
+      "revId": "38ce8769ce80a215f0353347062705cf2817cfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3210c8b9_2754478f",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-04T02:36:16Z",
       "side": 1,
       "message": "Could we start stream after we get the startStream from bluetooth audio HAL? not auto start after reconfiguration. It\u0027s not meet the final flow. We should wait for the offload encoder/decoder re-init and trigger it, also relates the audio path routing.",
+      "range": {
+        "startLine": 3059,
+        "startChar": 7,
+        "endLine": 3059,
+        "endChar": 43
+      },
+      "revId": "38ce8769ce80a215f0353347062705cf2817cfd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4fe6323_c115992c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3059,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-04T19:02:36Z",
+      "side": 1,
+      "message": "as discuss, it will be handled separately.",
+      "parentUuid": "3210c8b9_2754478f",
       "range": {
         "startLine": 3059,
         "startChar": 7,
