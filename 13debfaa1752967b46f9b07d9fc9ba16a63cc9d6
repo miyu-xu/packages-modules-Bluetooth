@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b34fb5c3_5d89b391",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T19:43:20Z",
+      "side": 1,
+      "message": "this is not needed?",
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a50c8ac0_0c0b4b94",
         "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
         "patchSetId": 1
@@ -14,6 +31,29 @@
       "writtenOn": "2022-03-04T19:40:17Z",
       "side": 1,
       "message": "Support for automatically generating this boilerplate is on the way: https://r.android.com/1999971.\n\nMaybe add a TODO on this line to remind us to use the macro instead of handcoding.",
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "daac8215_218f4f43",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T19:43:20Z",
+      "side": 1,
+      "message": "this is not needed?",
+      "range": {
+        "startLine": 5,
+        "startChar": 65,
+        "endLine": 5,
+        "endChar": 82
+      },
       "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
