@@ -16,6 +16,24 @@
       "message": "should we set the default value to false?",
       "revId": "3389de74f0cecdbf8744a15b0c1f9313cf99bee2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e28576ee_537608c3",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-04T03:10:27Z",
+      "side": 1,
+      "message": "No, because the feature is still under the development, we don\u0027t enable it by default.",
+      "parentUuid": "c886f3fb_f19a5768",
+      "revId": "3389de74f0cecdbf8744a15b0c1f9313cf99bee2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
