@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47a03686_a98fc1fc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-04T22:04:47Z",
+      "side": 1,
+      "message": "Need bug id and tag in commit message, otherwise LGTM!",
+      "revId": "595055a939c2d9ac98a17c2baee20233096d2907",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e3ad4817_36028b26",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 1
