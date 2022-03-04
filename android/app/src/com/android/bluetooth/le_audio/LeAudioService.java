@@ -118,6 +118,7 @@ public class LeAudioService extends ProfileService {
     LeAudioBroadcasterNativeInterface mLeAudioBroadcasterNativeInterface = null;
     @VisibleForTesting
     AudioManager mAudioManager;
+    TmapGatt mTmapGatt;
 
     @VisibleForTesting
     RemoteCallbackList<IBluetoothLeBroadcastCallback> mBroadcastCallbacks;
@@ -224,6 +225,8 @@ public class LeAudioService extends ProfileService {
         registerReceiver(mConnectionStateChangedReceiver, filter);
         mLeAudioCallbacks = new RemoteCallbackList<IBluetoothLeAudioCallback>();
 
+        int tmapRoleMask = TmapGatt.TMAP_ROLE_FLAG_CG | TmapGatt.TMAP_ROLE_FLAG_UMS;
+
         // Initialize Broadcast native interface
         if (mAdapterService.isLeAudioBroadcastSourceSupported()) {
             mBroadcastCallbacks = new RemoteCallbackList<IBluetoothLeBroadcastCallback>();
@@ -231,9 +234,17 @@ public class LeAudioService extends ProfileService {
                     LeAudioBroadcasterNativeInterface.getInstance(),
                     "LeAudioBroadcasterNativeInterface cannot be null when LeAudioService starts");
             mLeAudioBroadcasterNativeInterface.init();
+            tmapRoleMask |= TmapGatt.TMAP_ROLE_FLAG_BMS;
         } else {
             Log.w(TAG, "Le Audio Broadcasts not supported.");
         }
+
+        // the role mask is fixed in Android
+        if (mTmapGatt == null) {
+            mTmapGatt = new TmapGatt(this);
+        }
+        mTmapGatt.init(tmapRoleMask);
+
         // Mark service as started
         setLeAudioService(this);
 
