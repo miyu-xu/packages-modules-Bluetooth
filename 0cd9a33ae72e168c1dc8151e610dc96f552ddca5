@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d8b80bf_4dddc1b3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-04T19:33:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2894c5ae_24995d37",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "031a65cf_e8c64850",
@@ -138,6 +156,24 @@
       "side": 1,
       "message": "oh, I am surprised that Android set connectable unconditionally. I am okay with following Android behavior since this is very simple anyway, but we probably need to take note about this somewhere since this is a potential security change from BlueZ. I think that it will be okay, but we just need to document this change and acknowledge it. We probably need to start a documentation of the changes in security aspects. Let me take that action item.",
       "parentUuid": "564940ef_cafdb695",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "532be9da_a0ac018e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-04T19:33:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e55308ea_14d740fc",
       "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
