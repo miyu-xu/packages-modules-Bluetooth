@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45be7a6e_de711161",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-04T15:38:18Z",
+      "side": 1,
+      "message": "Jack/Lukasz, could you give +2? Thanks!",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5986d1b_95dabf76",
@@ -71,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d779877_7043d24d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-04T15:38:18Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "275a8cd6_835b54db",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb6dd0c3_1659a86b",
@@ -84,6 +119,24 @@
       "writtenOn": "2022-03-03T17:30:03Z",
       "side": 1,
       "message": "ditto",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a87de03c_af22fa3b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-04T15:38:18Z",
+      "side": 1,
+      "message": "This is changed for readability.",
+      "parentUuid": "bb6dd0c3_1659a86b",
       "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
