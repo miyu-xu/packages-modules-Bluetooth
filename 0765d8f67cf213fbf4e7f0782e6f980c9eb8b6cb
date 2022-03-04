@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e39bbc9_0e5df0a9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 443,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-03-04T14:28:36Z",
+      "side": 1,
+      "message": "Ahhh yes agree :) I did not pay attention on second (old_group-\u003eReloadAudioLocations()\" condition. That\u0027s true.",
+      "parentUuid": "7e6299e9_871cc18d",
+      "revId": "0765d8f67cf213fbf4e7f0782e6f980c9eb8b6cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "275a8cd6_835b54db",
