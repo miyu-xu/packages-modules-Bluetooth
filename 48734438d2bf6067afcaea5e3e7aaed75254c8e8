@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d108e5d7_4672529b",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T23:07:39Z",
+      "side": 1,
+      "message": "The macro to generate these boilerplate has just landed (https://r.android.com/1999971). You can rebase to ToT and use it instead of handcoding it.",
+      "revId": "48734438d2bf6067afcaea5e3e7aaed75254c8e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "206a1686_4aa6e357",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
