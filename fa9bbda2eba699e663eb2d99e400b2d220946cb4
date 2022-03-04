@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6638120c_634087eb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-04T22:01:18Z",
+      "side": 1,
+      "message": "Should these be added to the bottom of the class with private scope and _ after their names?",
+      "range": {
+        "startLine": 2112,
+        "startChar": 0,
+        "endLine": 2114,
+        "endChar": 33
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79a3be0a_b367b4f4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2136,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-04T22:01:18Z",
+      "side": 1,
+      "message": "nit: prefer if with full bracket vs. oneliners\n\nif (a) {\n  // code\n}\n\nIn this way, accidental formatting or indentation change won\u0027t risk modifying code logic",
+      "range": {
+        "startLine": 2135,
+        "startChar": 0,
+        "endLine": 2136,
+        "endChar": 37
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "224e5474_3c7c8657",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2147,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-04T22:01:18Z",
+      "side": 1,
+      "message": "in new code LOG_ERROR() is preferred as it adds correct line number and __func__ is added automatically",
+      "range": {
+        "startLine": 2147,
+        "startChar": 6,
+        "endLine": 2147,
+        "endChar": 17
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0664f1b3_f169f35a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2217,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-04T22:01:18Z",
+      "side": 1,
+      "message": "pls add a /* */ comment to indicate the variable name for true and false, same for other code below",
+      "range": {
+        "startLine": 2217,
+        "startChar": 32,
+        "endLine": 2217,
+        "endChar": 36
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e11fc14e_8dbb02e5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2221,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-04T22:01:18Z",
+      "side": 1,
+      "message": "same as above, prefer adding {} around statements",
+      "range": {
+        "startLine": 2216,
+        "startChar": 12,
+        "endLine": 2221,
+        "endChar": 17
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
