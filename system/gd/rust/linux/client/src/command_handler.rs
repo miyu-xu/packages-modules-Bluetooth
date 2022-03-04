@@ -5,7 +5,7 @@ use std::sync::{Arc, Mutex};
 use crate::callbacks::BtGattCallback;
 use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
-use bt_topshim::btif::BtTransport;
+use bt_topshim::btif::{BtTransport, SupportedProfiles};
 use btstack::bluetooth::{BluetoothDevice, IBluetooth};
 use btstack::bluetooth_gatt::IBluetoothGatt;
 use btstack::uuid::UuidHelper;
@@ -273,6 +273,10 @@ impl CommandHandler {
                     let cod = adapter_dbus.get_bluetooth_class();
                     let multi_adv_supported = adapter_dbus.is_multi_advertisement_supported();
                     let le_ext_adv_supported = adapter_dbus.is_le_extended_advertising_supported();
+                    let a2dp_connection_state =
+                        adapter_dbus.get_profile_connection_state(SupportedProfiles::A2dp as u32);
+                    let hfp_connection_state =
+                        adapter_dbus.get_profile_connection_state(SupportedProfiles::Hfp as u32);
                     print_info!("Address: {}", address);
                     print_info!("Name: {}", name);
                     print_info!("State: {}", if enabled { "enabled" } else { "disabled" });
@@ -281,6 +285,8 @@ impl CommandHandler {
                     print_info!("Class: {:#06x}", cod);
                     print_info!("IsMultiAdvertisementSupported: {}", multi_adv_supported);
                     print_info!("IsLeExtendedAdvertisingSupported: {}", le_ext_adv_supported);
+                    print_info!("A2DP Connection State: {}", a2dp_connection_state);
+                    print_info!("HFP Connection State: {}", hfp_connection_state);
                     print_info!(
                         "Uuids: {}",
                         DisplayList(

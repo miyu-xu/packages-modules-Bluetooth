@@ -3,7 +3,7 @@
 use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
     BtBondState, BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode,
-    BtSspVariant, BtState, BtStatus, BtTransport, RawAddress, Uuid, Uuid128Bit,
+    BtSspVariant, BtState, BtStatus, BtTransport, RawAddress, SupportedProfiles, Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     profiles::hid_host::{HHCallbacksDispatcher, HidHost},
@@ -14,7 +14,7 @@ use bt_topshim::{
 use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 
 use log::{debug, warn};
-use num_traits::cast::ToPrimitive;
+use num_traits::cast::{FromPrimitive, ToPrimitive};
 use std::collections::HashMap;
 use std::sync::Arc;
 use std::sync::Mutex;
@@ -124,6 +124,9 @@ pub trait IBluetooth {
 
     /// Gets the connection state of a single device.
     fn get_connection_state(&self, device: BluetoothDevice) -> u32;
+
+    /// Gets the connection state of a specific profile.
+    fn get_profile_connection_state(&self, profile: u32) -> u32;
 
     /// Returns the cached UUIDs of a remote device.
     fn get_remote_uuids(&self, device: BluetoothDevice) -> Vec<Uuid128Bit>;
@@ -1081,6 +1084,18 @@ impl IBluetooth for Bluetooth {
         }
 
         self.intf.lock().unwrap().get_connection_state(&addr.unwrap())
+    }
+
+    fn get_profile_connection_state(&self, profile: u32) -> u32 {
+        match SupportedProfiles::from_u32(profile) {
+            Some(SupportedProfiles::A2dp) => {
+                self.bluetooth_media.lock().unwrap().get_a2dp_connection_state()
+            }
+            Some(SupportedProfiles::Hfp) => {
+                self.bluetooth_media.lock().unwrap().get_hfp_connection_state()
+            }
+            _ => 0,
+        }
     }
 
     fn get_remote_uuids(&self, device: BluetoothDevice) -> Vec<Uuid128Bit> {

@@ -541,6 +541,7 @@ impl From<BluetoothProperty> for (Box<[u8]>, bindings::bt_property_t) {
     }
 }
 
+#[derive(FromPrimitive)]
 pub enum SupportedProfiles {
     HidHost,
     Hfp,

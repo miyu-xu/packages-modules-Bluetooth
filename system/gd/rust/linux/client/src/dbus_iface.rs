@@ -388,6 +388,10 @@ impl IBluetooth for BluetoothDBus {
         self.client_proxy.method("GetConnectionState", (BluetoothDevice::to_dbus(device).unwrap(),))
     }
 
+    fn get_profile_connection_state(&self, profile: u32) -> u32 {
+        self.client_proxy.method("GetProfileConnectionState", (profile,))
+    }
+
     fn get_remote_uuids(&self, device: BluetoothDevice) -> Vec<Uuid128Bit> {
         let result: Vec<Vec<u8>> = self
             .client_proxy
