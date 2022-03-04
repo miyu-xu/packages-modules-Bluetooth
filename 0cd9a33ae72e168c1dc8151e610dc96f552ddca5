@@ -33,6 +33,24 @@
       "message": "It\u0027s not sufficient to only enable `connectable` on disconnect since you also want to be connectable when the stack starts.\n\nYou may want to add a new function with the following logic and run it here and on property update (i\u0027ve marked it with a comment):\n\n```\n\nlet has_unconnected \u003d false;\nfor device in self.bonded_devices {\n  if !device.connected {\n    has_unconnected \u003d true;\n  }\n}\n\nif has_unconnected {\n  self.set_connectable(true);\n} else {\n  self.set_connectable(false);\n}\n\n\n```\n\n@sonnysasaka Looks good?",
       "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3813629d_27c7a3bf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T01:19:22Z",
+      "side": 1,
+      "message": "I think ideally the decision should be in Fluoride/GD (below topshim). Connectable-ness depends on many factors, e.g. whether there is an RFCOMM service. I wonder how Android does it. For now I am okay with doing it at this layer, but in the meantime I think we should study how Android does it (and why) and maybe we can make design decision better from that information.\n\nMaybe Jesse could dig and give us some pointers on how Android does this?",
+      "parentUuid": "131a2ac4_b75f2013",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
