@@ -133,8 +133,8 @@ class Context(abc.ABC):
 
     Args:
       page_class: The class of target page to go to.
-      expected_pages: The expected page(s) after launching activity
-        of target page.
+      expected_pages: The expected page(s) after launching activity of target
+        page.
 
     Returns:
       The corresponding UIPage of given page class.
@@ -326,7 +326,8 @@ class Context(abc.ABC):
     _search_node(self.root_node)
     return ParsedUI(ui_xml, clickable_nodes, enabled_nodes, all_nodes)
 
-  def safe_expect_page(self, page_class: Type[UIPage],
+  def safe_expect_page(self,
+                       page_class: Type[UIPage],
                        wait_sec: int = _EXPECT_PAGE_WAIT_TIME_IN_SECOND,
                        node_eval: NodeEvaluator = None) -> bool:
     """Waits for expected pages for certain time.
@@ -633,20 +634,27 @@ class UIPage:
 
     return None
 
-  def get_node_by_text(self, text: str, from_all: bool = False) -> OptUINode:
+  def get_node_by_text(self,
+                       text: str,
+                       from_all: bool = False,
+                       use_re: bool = False) -> OptUINode:
     """Gets the first node with desired text.
 
     Args:
       text: Text used for search.
       from_all: True to search from all nodes; False to search only the
         clickable or enabled nodes.
+      use_re: True will treat input text as regular expression to search node.
 
     Returns:
       Return the first node found with expected text iff it exists.
       Otherwise, None is returned.
     """
+    match_strategy = (
+        utils.RETextMatchStrategy(text)
+        if use_re else utils.PlainTextMatchStrategy(text))
     for node in self._get_node_search_space(from_all):
-      if node.text == text:
+      if match_strategy.match(node.text):
         return node
 
     return None
@@ -908,12 +916,16 @@ class UIPage:
 
     return self.click(node, do_get_page)
 
-  def click_node_by_text(self, text: str, do_get_page: bool = True) -> UIPage:
+  def click_node_by_text(self,
+                         text: str,
+                         do_get_page: bool = True,
+                         use_re: bool = False) -> UIPage:
     """Clicks on node by its text.
 
     Args:
       text: Text of node to search and click on.
       do_get_page: Gets the latest page after clicking iff True.
+      use_re: True will treat input text as regular expression to search node.
 
     Returns:
       The transformed page.
@@ -921,7 +933,7 @@ class UIPage:
     Raises:
       errors.UIError: Fail to get target node.
     """
-    node = self.get_node_by_text(text)
+    node = self.get_node_by_text(text, use_re=use_re)
     if node is None:
       raise errors.UIError(f'Fail to find the node with text={text}')
 
