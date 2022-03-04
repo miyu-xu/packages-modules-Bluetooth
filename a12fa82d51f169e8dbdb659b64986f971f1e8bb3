@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "398f6259_bcd86320",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1743,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-03-04T13:28:19Z",
+      "side": 1,
+      "message": "There\u0027s still no real implementation here. N.b. that this doesn\u0027t satisfy the requirement of \"APIs must have an implementation\".\n\nWhat we mean by that is that there must be an end-to-end implementation of the feature that actually has an effect, and is testable.",
+      "range": {
+        "startLine": 1706,
+        "startChar": 0,
+        "endLine": 1743,
+        "endChar": 0
+      },
+      "revId": "a12fa82d51f169e8dbdb659b64986f971f1e8bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cc9be2c_3d0058ed",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-03-04T13:28:19Z",
+      "side": 1,
+      "message": "These permissions don\u0027t seem to be enforced anywhere",
+      "range": {
+        "startLine": 960,
+        "startChar": 0,
+        "endLine": 964,
+        "endChar": 0
+      },
+      "revId": "a12fa82d51f169e8dbdb659b64986f971f1e8bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9d9e611_b1237da7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-03-04T13:28:19Z",
+      "side": 1,
+      "message": "Is there a compelling reason why we block here?\n\nI\u0027d recommend offering an async API surface instead (`void getCodecStatus(@NonNull BluetoothDevice device, @NonNull @CallbackExecutor Executor, @NonNull OutcomeReceiver\u003cBluetoothLeAudioCodecStatus, RuntimeException\u003e callback)`)",
+      "range": {
+        "startLine": 977,
+        "startChar": 0,
+        "endLine": 981,
+        "endChar": 0
+      },
+      "revId": "a12fa82d51f169e8dbdb659b64986f971f1e8bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b053e8_ed76e235",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-03-04T13:28:19Z",
+      "side": 1,
+      "message": "These permissions don\u0027t seem to be enforced anywhere",
+      "range": {
+        "startLine": 997,
+        "startChar": 0,
+        "endLine": 1001,
+        "endChar": 0
+      },
+      "revId": "a12fa82d51f169e8dbdb659b64986f971f1e8bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0043165_85119510",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-03-04T13:28:19Z",
+      "side": 1,
+      "message": "Silently dropping the value here isn\u0027t ok. See go/android-api-guidelines#return-error\n\nYou must have some way for the caller to know if the codec preference was successfully applied (or it must never fail).",
+      "range": {
+        "startLine": 1013,
+        "startChar": 0,
+        "endLine": 1015,
+        "endChar": 0
+      },
+      "revId": "a12fa82d51f169e8dbdb659b64986f971f1e8bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3f41a32_a8ce4bda",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-03-04T13:28:19Z",
+      "side": 1,
+      "message": "nit: local system\n\n(otherwise the javadoc LGTM, thanks for clarifying)",
+      "range": {
+        "startLine": 191,
+        "startChar": 62,
+        "endLine": 191,
+        "endChar": 76
+      },
+      "revId": "a12fa82d51f169e8dbdb659b64986f971f1e8bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4923e1_a1391333",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1061009
+      },
+      "writtenOn": "2022-03-04T13:28:19Z",
+      "side": 1,
+      "message": "nit: local system\n\n(otherwise the javadoc LGTM, thanks for clarifying)",
+      "range": {
+        "startLine": 201,
+        "startChar": 70,
+        "endLine": 201,
+        "endChar": 84
+      },
+      "revId": "a12fa82d51f169e8dbdb659b64986f971f1e8bb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
