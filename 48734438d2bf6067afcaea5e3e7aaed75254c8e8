@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "206a1686_4aa6e357",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T19:14:12Z",
+      "side": 1,
+      "message": "Can this be enum? At D-Bus level this still becomes u32 but being an enum makes the values self documented.",
+      "range": {
+        "startLine": 129,
+        "startChar": 52,
+        "endLine": 129,
+        "endChar": 55
+      },
+      "revId": "48734438d2bf6067afcaea5e3e7aaed75254c8e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
