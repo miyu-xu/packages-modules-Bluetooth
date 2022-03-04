@@ -16,6 +16,24 @@
       "message": "Thanks for the quick review!",
       "revId": "4ad837bf56fa6af067980286daa1fefceabe509b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4855b0a2_bea0187f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-04T14:40:40Z",
+      "side": 1,
+      "message": "Of course!  Thanks for the fix :)",
+      "parentUuid": "68197266_3405d3a1",
+      "revId": "4ad837bf56fa6af067980286daa1fefceabe509b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
