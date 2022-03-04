@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5719d42_7849d3d3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-04T21:29:08Z",
+      "side": 1,
+      "message": "Please print address as well so we can know which device this is for.",
+      "revId": "f1af55beec3cab0f9e98f7c52e47c5f6c88242b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
