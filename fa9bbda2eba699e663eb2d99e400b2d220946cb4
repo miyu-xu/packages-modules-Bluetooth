@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af13c486_0a185c16",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-04T22:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6638120c_634087eb",
+      "range": {
+        "startLine": 2112,
+        "startChar": 0,
+        "endLine": 2114,
+        "endChar": 33
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79a3be0a_b367b4f4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-04T22:01:18Z",
       "side": 1,
       "message": "nit: prefer if with full bracket vs. oneliners\n\nif (a) {\n  // code\n}\n\nIn this way, accidental formatting or indentation change won\u0027t risk modifying code logic",
+      "range": {
+        "startLine": 2135,
+        "startChar": 0,
+        "endLine": 2136,
+        "endChar": 37
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55d2093d_f8f9e4ff",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2136,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-04T22:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79a3be0a_b367b4f4",
       "range": {
         "startLine": 2135,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f190164_dd26e4aa",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2147,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-04T22:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "224e5474_3c7c8657",
+      "range": {
+        "startLine": 2147,
+        "startChar": 6,
+        "endLine": 2147,
+        "endChar": 17
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0664f1b3_f169f35a",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "92ee6844_b2beb0b3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2217,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-04T22:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0664f1b3_f169f35a",
+      "range": {
+        "startLine": 2217,
+        "startChar": 32,
+        "endLine": 2217,
+        "endChar": 36
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e11fc14e_8dbb02e5",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-03-04T22:01:18Z",
       "side": 1,
       "message": "same as above, prefer adding {} around statements",
+      "range": {
+        "startLine": 2216,
+        "startChar": 12,
+        "endLine": 2221,
+        "endChar": 17
+      },
+      "revId": "fa9bbda2eba699e663eb2d99e400b2d220946cb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6409a35_6310c58a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2221,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-04T22:17:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e11fc14e_8dbb02e5",
       "range": {
         "startLine": 2216,
         "startChar": 12,
