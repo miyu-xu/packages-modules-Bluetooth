@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5969a1a1_bffc482b",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T01:29:13Z",
+      "side": 1,
+      "message": "Done. Added more comments to make it more readable.",
+      "parentUuid": "9469fc63_5d334559",
+      "revId": "676daef583b61878950e8da59b101de1249a7d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9258e0fa_4f28e7e3",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-03T00:40:53Z",
       "side": 1,
       "message": "We shouldn\u0027t be checking in this debug code. \n\nIf it must be used, it should be writing to `PathBuf::from(env::var(\"OUT_DIR\").unwrap().join(format!(\"out-{}.rs\", ...))`",
+      "revId": "676daef583b61878950e8da59b101de1249a7d8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f207237_d101b259",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-04T01:29:13Z",
+      "side": 1,
+      "message": "Done. I moved it to OUT_DIR. I also add a new patch on top of this series to refactor the existing debugs to OUT_DIR and disable by default.",
+      "parentUuid": "9258e0fa_4f28e7e3",
       "revId": "676daef583b61878950e8da59b101de1249a7d8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
