@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7a5c60d_4f810fb9",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Do we need to call this in the disconnected state?",
+      "range": {
+        "startLine": 234,
+        "startChar": 31,
+        "endLine": 234,
+        "endChar": 41
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05e10774_25296f55",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Remove if not reachable.",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 57
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e29d1b9b_2c725bd2",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Can we ignore this since it is already connecting?",
+      "range": {
+        "startLine": 338,
+        "startChar": 20,
+        "endLine": 338,
+        "endChar": 32
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91858dd3_4c2f5540",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Will it cancel previous cancel command?",
+      "range": {
+        "startLine": 347,
+        "startChar": 39,
+        "endLine": 347,
+        "endChar": 49
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af3fde80_3d57dcbb",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Please locate this other place",
+      "range": {
+        "startLine": 377,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 0
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "047a014a_f5f9b3f0",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Please locate this other place",
+      "range": {
+        "startLine": 395,
+        "startChar": 0,
+        "endLine": 403,
+        "endChar": 5
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "332c91a9_920e7177",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Can we cancel disconnect and try connect? Then state will be moved to connecting?",
+      "range": {
+        "startLine": 431,
+        "startChar": 21,
+        "endLine": 431,
+        "endChar": 28
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c567ac60_eed50b7b",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Please ignore disconnect message while disconnecting",
+      "range": {
+        "startLine": 433,
+        "startChar": 20,
+        "endLine": 433,
+        "endChar": 42
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5773bf7a_2e162c91",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 438,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Do we need to call disconnect() one more time?",
+      "range": {
+        "startLine": 438,
+        "startChar": 39,
+        "endLine": 438,
+        "endChar": 49
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f30b8a8c_5b78e2ac",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Please re-consider this. I think we shouldn\u0027t move to connected state from disconnecting state.",
+      "range": {
+        "startLine": 458,
+        "startChar": 35,
+        "endLine": 458,
+        "endChar": 50
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fae90dd_cbb68fab",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 489,
+        "startChar": 12,
+        "endLine": 489,
+        "endChar": 34
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7cc3a67_85a594d3",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 537,
+        "startChar": 21,
+        "endLine": 537,
+        "endChar": 49
+      },
+      "revId": "25bbeda626b367282b7ec2010b80cdf5eeac117a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

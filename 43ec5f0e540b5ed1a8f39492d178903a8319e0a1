@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0040cc96_019f9f92",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-04T08:02:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7001ab61_632aa2c8",
+      "range": {
+        "startLine": 171,
+        "startChar": 19,
+        "endLine": 171,
+        "endChar": 31
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f161b462_ac6d835d",
