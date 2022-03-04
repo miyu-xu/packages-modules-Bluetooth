@@ -81,6 +81,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99960cf4_5e56cfee",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-04T20:58:28Z",
+      "side": 1,
+      "message": "Done, and nice. Abhishek and I tried for a while to get this nicer and gave up.",
+      "parentUuid": "720f5ddc_750b1ade",
+      "range": {
+        "startLine": 407,
+        "startChar": 0,
+        "endLine": 413,
+        "endChar": 9
+      },
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6a8bce9_820fff8a",
@@ -94,6 +118,30 @@
       "writtenOn": "2022-03-04T19:40:17Z",
       "side": 1,
       "message": "looks like this will always return `()`? Do we need `Result` at all if that\u0027s the case?",
+      "range": {
+        "startLine": 433,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 22
+      },
+      "revId": "13debfaa1752967b46f9b07d9fc9ba16a63cc9d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89608a7e_510da5a5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-04T20:58:28Z",
+      "side": 1,
+      "message": "According to the documentation:\n\n\"`map` transforms `Option\u003cT\u003e` to `Option\u003cU\u003e` by applying the provided function to the contained value of `Some` and leaving `None` values unchanged\"\n\nThe case I was trying to capture was if `device` was not found yielding `Err(())`. I think this does catch that, but I\u0027m realizing it will also return `Err(())` in the case that there had not been an existing value for the `property_type` key as `insert()` returns an option containing `None` or the previous value. This can be fixed, but to address your question: do we want to return a `Result` here or are we fine with this failing silently in the case the device does not exist?",
+      "parentUuid": "b6a8bce9_820fff8a",
       "range": {
         "startLine": 433,
         "startChar": 0,
