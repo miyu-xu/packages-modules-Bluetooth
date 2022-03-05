@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "209c0ee4_924c0953",
+        "filename": "system/gd/rust/common/src/asserts.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2022-03-05T01:46:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "960ffd1a_6cd4499f",
+      "revId": "f5bb3cdaea76b6102e26392c32a6fc0d5ea649d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cadebf6a_c8407fd3",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0bb7e4e_2b239d62",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2022-03-05T01:46:22Z",
+      "side": 1,
+      "message": "Ohh cuz we discussed in the meeting, if it is fixed, it is hard to pass the unit test. So in the unit test, we make it equal to the getuid(), and it will become 1002 at the end of the test.",
+      "parentUuid": "cadebf6a_c8407fd3",
+      "revId": "f5bb3cdaea76b6102e26392c32a6fc0d5ea649d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd47c181_cfe41c27",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-03-03T20:07:06Z",
       "side": 1,
       "message": "Maybe split into two path groups, a $TOP and $BOTTOM so that this could be run on various filesystems.  I\u0027m not sure the proper rust syntax.\n\nkTop \u003d \"/data/misc\"\n\ne.g.\npub fn new(prefix \u003d kTop) -\u003e Self {\nconfiguration_file_path: kTop + \"/bluedroid/bt_config.conf\"",
+      "revId": "f5bb3cdaea76b6102e26392c32a6fc0d5ea649d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c1d84d7_553c107e",
+        "filename": "system/gd/rust/common/src/parameter_provider.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2022-03-05T01:46:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd47c181_cfe41c27",
       "revId": "f5bb3cdaea76b6102e26392c32a6fc0d5ea649d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
