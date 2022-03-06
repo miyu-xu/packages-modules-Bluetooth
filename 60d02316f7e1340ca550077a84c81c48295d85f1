@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eee1c262_3155955e",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-06T08:51:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "698b6ad0_3b890ed2",
+      "revId": "60d02316f7e1340ca550077a84c81c48295d85f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1985d3f5_f15e9378",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-04T21:24:31Z",
       "side": 1,
       "message": "Parameters in this call are a bit opaque so it\u0027s probably good to do `/*param_name\u003d*/value,`. Do these only for parameters where it\u0027s not clear from looking what the value means.\n\ni.e.\n`PhoneStateChange(/*num_active\u003d*/1, /*num_held\u003d*/0, headset::bthf_call_state_t::BTHF_CALL_STATE_IDLE, ...)`\n\nPlease apply this to all calls in this file.",
+      "revId": "60d02316f7e1340ca550077a84c81c48295d85f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68f4274f_302d5eb8",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-06T08:51:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1985d3f5_f15e9378",
       "revId": "60d02316f7e1340ca550077a84c81c48295d85f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
