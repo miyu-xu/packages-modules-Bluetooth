@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9169e2e2_5e432bb1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2211,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-07T08:27:37Z",
+      "side": 1,
+      "message": "we could return here.",
+      "revId": "7a867eaea075e3f8f8cb090c6daf7dc7f37edba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68741785_f8e0936d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2260,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-07T08:27:37Z",
+      "side": 1,
+      "message": "can we call it \"cached_foo\" instead \"other_foo\" ?\nIn fact this is cached data.\n\ncached_channel_pcm_\ncached_channel_timestamp_\ncached_channel_is_left_",
+      "range": {
+        "startLine": 2260,
+        "startChar": 8,
+        "endLine": 2260,
+        "endChar": 28
+      },
+      "revId": "7a867eaea075e3f8f8cb090c6daf7dc7f37edba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
