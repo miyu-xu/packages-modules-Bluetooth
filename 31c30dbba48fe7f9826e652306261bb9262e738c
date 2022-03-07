@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d45509a8_d4ac61a0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-07T22:59:34Z",
+      "side": 1,
+      "message": "Hi Mandip. \n\nThe problem here is that retrans_nb and max_transport_latency are tied together, and should not be compared/selected separately.\nSo if the logic was to either keep both, or drop parameters, it would work ok with the test devices.",
+      "parentUuid": "bd3d4b2e_b8470d29",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
