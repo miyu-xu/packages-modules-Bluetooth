@@ -7,6 +7,7 @@ from mobly import test_runner_suite
 
 from blueberry.tests.a2dp import bluetooth_a2dp_test
 from blueberry.tests.avrcp import bluetooth_avrcp_test
+from blueberry.tests.bredr import bluetooth_toggle_test
 from blueberry.tests.connectivity import ble_pairing_test
 from blueberry.tests.connectivity import bluetooth_pairing_test
 from blueberry.tests.hfp import bluetooth_hfp_test
@@ -26,7 +27,8 @@ TEST_CLASSES = [
     bluetooth_map_test.BluetoothMapTest,
     bluetooth_pbap_test.BluetoothPbapTest,
     bluetooth_opp_test.BluetoothOppTest,
-    bluetooth_pan_test.BluetoothPanTest
+    bluetooth_pan_test.BluetoothPanTest,
+    bluetooth_toggle_test.BluetoothToggleTest,
 ]
 
 
