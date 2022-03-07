@@ -29,12 +29,19 @@ class Server(context: Context) {
 
   private var host: Host
   private var a2dp: A2dp
+  private var gap: Gap
   private var grpcServer: GrpcServer
 
   init {
     host = Host(context, this)
     a2dp = A2dp(context)
-    grpcServer = NettyServerBuilder.forPort(GRPC_PORT).addService(host).addService(a2dp).build()
+    gap = Gap(context)
+    grpcServer =
+      NettyServerBuilder.forPort(GRPC_PORT)
+        .addService(host)
+        .addService(a2dp)
+        .addService(gap)
+        .build()
 
     Log.d(TAG, "Starting Blueberry Server")
     grpcServer.start()
