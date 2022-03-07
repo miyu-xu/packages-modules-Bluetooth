@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abdc2f77_c584692b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-07T17:42:21Z",
+      "side": 1,
+      "message": "It looks like they were asking for the permission to be checked conditionally based on the target SDK. We can push back and say we don\u0027t want 3p apps to use this, but let\u0027s make sure we comment that on the bug.",
+      "revId": "b5ae5d307b878c33625b7751a33607f9b7d6a6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
