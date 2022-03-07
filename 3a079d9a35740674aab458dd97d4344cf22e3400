@@ -34,6 +34,24 @@
       "parentUuid": "b17cdf50_7ed40087",
       "revId": "3a079d9a35740674aab458dd97d4344cf22e3400",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d46837d_0d64a801",
+        "filename": "system/blueberry/tests/gd/security/cert_security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-07T10:38:15Z",
+      "side": 0,
+      "message": "The LINK_KEY_REQUEST is part of the Authentication procedure, not the Pairing one,\nThe responder/acceptor of a pairing never gets a LINK_KEY_REQUEST. You can see that in the message sequence chart for the Secure Simple Pairing (Core spec, Vol 2, Part F, 4.2.6) the Host B being the responder. This is also the case for legacy pairing (pin pairing), I\u0027m unable to find a sequence chart in the core spec but you can see it in the sequence chart of the LMP Test Suite for the LMP/AUT/BV-05-C test",
+      "parentUuid": "ac5116c8_f82ff120",
+      "revId": "3a079d9a35740674aab458dd97d4344cf22e3400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

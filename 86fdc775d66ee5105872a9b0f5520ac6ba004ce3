@@ -33,6 +33,24 @@
       "message": "I\u0027d also recommend running the tests on some devices. and update the Test line in the comment.",
       "revId": "86fdc775d66ee5105872a9b0f5520ac6ba004ce3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "791c50d6_4e3f0a0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-07T10:38:15Z",
+      "side": 1,
+      "message": "I would like to, but unfortunately I don\u0027t have the setup to run on device GD cert test, and these tests don\u0027t run with the current version of RootCanal.\nHowever I tested that with my LMP implementation for RootCanal (https://r.android.com/1982806)",
+      "parentUuid": "0389deeb_22563b76",
+      "revId": "86fdc775d66ee5105872a9b0f5520ac6ba004ce3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
