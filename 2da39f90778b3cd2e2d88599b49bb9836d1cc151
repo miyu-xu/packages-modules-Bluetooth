@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b61c375f_0a8b07e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2022-03-07T18:02:20Z",
+      "side": 1,
+      "message": "Friendly ping Jakub :) ",
+      "revId": "2da39f90778b3cd2e2d88599b49bb9836d1cc151",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
