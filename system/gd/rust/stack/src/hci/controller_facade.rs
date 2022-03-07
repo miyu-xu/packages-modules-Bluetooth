@@ -7,7 +7,7 @@ use bt_facade_proto::common::BluetoothAddress;
 use bt_facade_proto::controller_facade::{NameMsg, OpCodeMsg, SingleValueMsg, SupportedMsg};
 use bt_facade_proto::controller_facade_grpc::{create_controller_facade, ControllerFacade};
 use bt_facade_proto::empty::Empty;
-use bt_packets::hci::{ReadLocalNameBuilder, WriteLocalNameBuilder};
+use bt_packets::hci::{CommandPacket, ReadLocalNameBuilder, WriteLocalNameBuilder};
 use gddi::{module, provides, Stoppable};
 use grpcio::*;
 use std::sync::Arc;
@@ -78,20 +78,31 @@ impl ControllerFacade for ControllerFacadeService {
 
     fn is_supported_command(
         &mut self,
-        _: RpcContext<'_>,
-        _: OpCodeMsg,
-        _: UnarySink<SupportedMsg>,
+        ctx: RpcContext<'_>,
+        op_code_msg: OpCodeMsg,
+        sink: UnarySink<SupportedMsg>,
     ) {
-        todo!()
+        let bytes: Vec<u8> = op_code_msg.get_op_code().to_be_bytes().to_vec();
+        let packet = CommandPacket::parse(&bytes);
+        ctx.spawn(async move {
+            let mut supported_msg = SupportedMsg::new();
+            supported_msg.set_supported(packet.is_ok());
+            sink.success(supported_msg).await.unwrap();
+        });
     }
 
     fn get_le_number_of_supported_advertising_sets(
         &mut self,
-        _: RpcContext<'_>,
+        ctx: RpcContext<'_>,
         _: Empty,
-        _: UnarySink<SingleValueMsg>,
+        sink: UnarySink<SingleValueMsg>,
     ) {
-        todo!()
+        let clone = self.clone();
+        ctx.spawn(async move {
+            let mut msg = SingleValueMsg::new();
+            msg.set_value(clone.exports.le_supported_advertising_sets.into());
+            sink.success(msg).await.unwrap();
+        });
     }
 
     fn supports_simple_pairing(&mut self, _: RpcContext<'_>, _: Empty, _: UnarySink<SupportedMsg>) {
@@ -324,11 +335,16 @@ impl ControllerFacade for ControllerFacadeService {
     }
     fn supports_ble_extended_advertising(
         &mut self,
-        _: RpcContext<'_>,
+        ctx: RpcContext<'_>,
         _: Empty,
-        _: UnarySink<SupportedMsg>,
+        sink: UnarySink<SupportedMsg>,
     ) {
-        todo!()
+        let clone = self.clone();
+        ctx.spawn(async move {
+            let mut supported_msg = SupportedMsg::new();
+            supported_msg.set_supported(clone.exports.le_features.extended_advertising);
+            sink.success(supported_msg).await.unwrap();
+        });
     }
     fn supports_ble_periodic_advertising(
         &mut self,
