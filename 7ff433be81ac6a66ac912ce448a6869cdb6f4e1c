@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07925b35_16dd89a3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-07T11:08:22Z",
+      "side": 1,
+      "message": "Adding this to avoid merge conflict. Will be removed in a following CL.",
+      "range": {
+        "startLine": 259,
+        "startChar": 4,
+        "endLine": 265,
+        "endChar": 0
+      },
+      "revId": "7ff433be81ac6a66ac912ce448a6869cdb6f4e1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
