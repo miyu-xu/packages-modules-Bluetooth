@@ -433,3 +433,63 @@ class BTPermissionRequestPopup(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_text(self.NODE_OK_BTN_TEXT)
+
+
+class VoicePrivacyPage(ui_core.UIPage):
+  """Fitbit Companion App's page for voice privacy."""
+
+  PAGE_TEXT = 'Voice privacy'
+  _NODE_GOT_IT_BTN_TEXT = 'GOT IT'
+
+  def next(self) -> ui_core.UIPage:
+    """Accepts voice privacy.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_GOT_IT_BTN_TEXT)
+
+
+class AmazonAlexaPage(ui_core.UIPage):
+  """Fitbit Companion App's page for Amazon Alexa setup."""
+
+  PAGE_TEXT = 'Rhea includes Alexa'
+  _NODE_SKIP_BTN_TEXT = 'NOT NOW'
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips the setup.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
+
+
+class SetupOnWristCallPage(ui_core.UIPage):
+  """Fitbit Companion App's page for On-wrist call setup."""
+
+  PAGE_TEXT = 'Set up On-wrist calls'
+  _NODE_SKIP_BTN_TEXT = 'SKIP'
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
+
+
+class MonitorOxygenSetupPage(ui_core.UIPage):
+  """Fitbit Companion App's page for Oxygen monitoring setup."""
+
+  PAGE_RE_TEXT = 'Monitor your Oxygen Saturation.*'
+  _NODE_NEXT_BTN_TEXT = 'NEXT'
+
+  def next(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_NEXT_BTN_TEXT)
