@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_outer_classname = "GapProto";
+
+package blueberry;
+
+service GAP {
+  rpc MakeDiscoverable(MakeDiscoverableRequest) returns (MakeDiscoverableResponse);
+}
+
+// Request for the `MakeDiscoverable` method.
+message MakeDiscoverableRequest {}
+
+// Response for the `MakeDiscoverable` method.
+message MakeDiscoverableResponse {}

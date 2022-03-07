@@ -173,7 +173,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
           flow
             .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
             .filter {
-              it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
+              it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address ==
+                address
             }
             .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
@@ -319,8 +320,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
   // TODO: Remove reflection and import framework bluetooth library when it will be available
   // on AOSP.
   fun BluetoothA2dp.connect(device: BluetoothDevice) =
-        this.javaClass.getMethod("connect", BluetoothDevice::class.java).invoke(this, device)
+    this.javaClass.getMethod("connect", BluetoothDevice::class.java).invoke(this, device)
 
   fun BluetoothA2dp.disconnect(device: BluetoothDevice) =
-        this.javaClass.getMethod("disconnect", BluetoothDevice::class.java).invoke(this, device)
+    this.javaClass.getMethod("disconnect", BluetoothDevice::class.java).invoke(this, device)
 }
