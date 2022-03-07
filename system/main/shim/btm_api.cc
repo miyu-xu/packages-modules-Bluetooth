@@ -1334,3 +1334,8 @@ tBTM_STATUS bluetooth::shim::BTM_ClearEventFilter() {
   controller_get_interface()->clear_event_filter();
   return BTM_SUCCESS;
 }
+
+tBTM_STATUS bluetooth::shim::BTM_LeRand(LeRandCallback cb) {
+  controller_get_interface()->le_rand(cb);
+  return BTM_SUCCESS;
+}
