@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb3c1934_ee42a3d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-07T14:36:32Z",
+      "side": 1,
+      "message": "Hi Chen,\n\nHow this patch work with le audio and hearing aid? invoke_switch_codec_cb and the commit msg seems like a2dp related, but it was added in the common interface. Should it be handled for a2dp only? ",
+      "revId": "63cee1a4fdb10b844e280b4e96a1a6a51e8f36f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97b5c460_178e92c8",
@@ -87,6 +104,5 @@
       "revId": "63cee1a4fdb10b844e280b4e96a1a6a51e8f36f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
-  ],
-  "submitRequirementResults": []
+  ]
 }
