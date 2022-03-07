@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a7c321_76c8758c",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-07T06:22:31Z",
+      "side": 1,
+      "message": "We don\u0027t need this log anymore.",
+      "range": {
+        "startLine": 144,
+        "startChar": 4,
+        "endLine": 144,
+        "endChar": 106
+      },
+      "revId": "ec2c21bbf06d9537c88f38e7e44d83ebe0e3b747",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
