@@ -16,6 +16,24 @@
       "message": "When SCO socket is created and changes bthf_audio_state_t here, we should maintain a local state \"call\u003d1\" in this SLC. I.e call \u003d (AudioState \u003d\u003d connected) ? 1 : 0;\n\nAnd it\u0027s important to propagate this \"call\" state to device through CindResponse and ClccReponse correctly(look how CRAS is doing these and we could just copy for now), otherwise on some headsets it just won\u0027t turn on the sound.",
       "revId": "2ca07e9a0db7c5f27d32f1ff6f1dfa2906bdea17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a89d8356_c16f2e95",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-07T18:51:40Z",
+      "side": 1,
+      "message": "Got your point. I did see https://chromium-review.googlesource.com/c/chromiumos/third_party/adhd/+/2627648 when I was working on solving the no data issue. There are already part of the codes in \"Add Enhanced Call Status support\". Will have a follow up CL specifically for CLCC and CIEV.",
+      "parentUuid": "bd3a0ff8_7b98d25b",
+      "revId": "2ca07e9a0db7c5f27d32f1ff6f1dfa2906bdea17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
