@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 
 // Service to trigger Bluetooth Host procedures
 //
+// Requirements for the implementer:
 // At startup, the Host must be in BR/EDR connectable mode
 // (see GAP connectability modes)
 service Host {

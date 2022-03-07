@@ -27,7 +27,9 @@ import android.content.IntentFilter
 import android.media.*
 import android.util.Log
 import blueberry.A2DPGrpc.A2DPImplBase
-import blueberry.A2dpProto.*
+import blueberry.A2DPProto.*
+import com.google.protobuf.Empty
+import com.google.protobuf.BoolValue
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.CoroutineScope
@@ -39,6 +41,8 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
+
+val empty = Empty.getDefaultInstance()
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class A2dp(val context: Context) : A2DPImplBase() {
@@ -115,7 +119,7 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
         if (state == BluetoothProfile.STATE_DISCONNECTED) {
           Log.e(TAG, "openSource failed, A2DP has been disconnected")
-          throw Status.UNKNOWN.asException()
+          return@grpcUnary OpenSourceResponse.newBuilder().setDisconnected(empty).build()
         }
       }
       val source = Source.newBuilder().setCookie(request.connection.cookie).build()
@@ -149,7 +153,7 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
         if (state == BluetoothProfile.STATE_DISCONNECTED) {
           Log.e(TAG, "waitSource failed, A2DP has been disconnected")
-          throw Status.UNKNOWN.asException()
+          return@grpcUnary WaitSourceResponse.newBuilder().setDisconnected(empty).build()
         }
       }
       val source = Source.newBuilder().setCookie(request.connection.cookie).build()
@@ -165,22 +169,26 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
       if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
         Log.e(TAG, "Device is not connected, cannot start")
-        throw Status.UNKNOWN.asException()
+        return@grpcUnary StartResponse.newBuilder().setDisconnected(empty).build()
       }
 
-      if (!bluetoothA2dp.isA2dpPlaying(device)) {
-        val a2dpPlayingStateFlow =
-          flow
-            .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
-            .filter {
-              it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
-            }
-            .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
-
-        audioTrack.play()
-        a2dpPlayingStateFlow.filter { it == BluetoothA2dp.STATE_PLAYING }.first()
+      if (bluetoothA2dp.isA2dpPlaying(device)) {
+        Log.e(TAG, "Device is already started, cannot start")
+        return@grpcUnary StartResponse.newBuilder().setAlreadyStarted(empty).build()
       }
-      StartResponse.getDefaultInstance()
+
+      val a2dpPlayingStateFlow =
+        flow
+          .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
+          .filter {
+            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
+          }
+          .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
+
+      audioTrack.play()
+      a2dpPlayingStateFlow.filter { it == BluetoothA2dp.STATE_PLAYING }.first()
+
+      StartResponse.newBuilder().setStarted(empty).build()
     }
   }
 
@@ -192,12 +200,12 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
       if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
         Log.e(TAG, "Device is not connected, cannot suspend")
-        throw Status.UNKNOWN.asException()
+        return@grpcUnary SuspendResponse.newBuilder().setDisconnected(empty).build()
       }
 
       if (!bluetoothA2dp.isA2dpPlaying(device)) {
         Log.e(TAG, "Device is already suspended, cannot suspend")
-        throw Status.UNKNOWN.asException()
+        return@grpcUnary SuspendResponse.newBuilder().setAlreadySuspended(empty).build()
       }
 
       val a2dpPlayingStateFlow =
@@ -210,15 +218,15 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
       audioTrack.pause()
       a2dpPlayingStateFlow.filter { it == BluetoothA2dp.STATE_NOT_PLAYING }.first()
-      SuspendResponse.getDefaultInstance()
+      SuspendResponse.newBuilder().setSuspended(empty).build()
     }
   }
 
   override fun isSuspended(
     request: IsSuspendedRequest,
-    responseObserver: StreamObserver<IsSuspendedResponse>
+    responseObserver: StreamObserver<BoolValue>
   ) {
-    grpcUnary<IsSuspendedResponse>(scope, responseObserver) {
+    grpcUnary<BoolValue>(scope, responseObserver) {
       val address = request.source.cookie.toByteArray().decodeToString()
       val device = bluetoothAdapter.getRemoteDevice(address)
       Log.i(TAG, "isSuspended: address=$address")
@@ -228,8 +236,7 @@ class A2dp(val context: Context) : A2DPImplBase() {
         throw Status.UNKNOWN.asException()
       }
 
-      val isSuspended = bluetoothA2dp.isA2dpPlaying(device)
-      IsSuspendedResponse.newBuilder().setIsSuspended(isSuspended).build()
+      BoolValue.of(bluetoothA2dp.isA2dpPlaying(device))
     }
   }
 
