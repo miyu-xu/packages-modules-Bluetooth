@@ -712,7 +712,8 @@ void LeAudioBroadcaster::Initialize(
   IsoManager::GetInstance()->Start();
 
   if (!std::move(audio_hal_verifier).Run()) {
-    LOG_ASSERT(false) << __func__ << ", HAL 2.1 not supported, Init aborted.";
+    LOG_ASSERT(false) << __func__
+                      << ", HAL requirements not met. Init aborted.";
     return;
   }
 
