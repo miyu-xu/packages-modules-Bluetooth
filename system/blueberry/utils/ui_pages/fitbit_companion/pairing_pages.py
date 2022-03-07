@@ -374,7 +374,9 @@ class SkipInfoPage(ui_core.UIPage):
 class UpdateDevicePage(ui_core.UIPage):
   """Fitbit Companion App's page to update device."""
 
-  PAGE_RE_TEXT = '(INSTALL UPDATE NOW|A new software version is available)'
+  PAGE_RE_TEXT = (
+      '(INSTALL UPDATE NOW|A new software version is available|'
+      'Start your update)')
   NODE_UPDATE_LATER_BTN_TEXT = 'UPDATE LATER'
 
   def update_later(self) -> ui_core.UIPage:
