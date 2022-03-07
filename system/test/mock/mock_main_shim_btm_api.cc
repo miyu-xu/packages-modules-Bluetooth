@@ -429,3 +429,8 @@ tBTM_STATUS bluetooth::shim::BTM_ClearEventFilter() {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }
+
+tBTM_STATUS bluetooth::shim::BTM_LeRand(LeRandCallback cb) {
+  mock_function_count_map[__func__]++;
+  return BTM_SUCCESS;
+}
