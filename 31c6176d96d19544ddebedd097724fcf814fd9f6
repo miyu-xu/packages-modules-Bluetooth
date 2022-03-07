@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce2f1f7_8a3ada58",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-07T23:51:35Z",
+      "side": 1,
+      "message": "Can this be enum? At the D-Bus layer this will still be automatically converted to u32, but by having enum in the interface definition the API will be more self documenting.",
+      "range": {
+        "startLine": 129,
+        "startChar": 58,
+        "endLine": 129,
+        "endChar": 61
+      },
+      "revId": "31c6176d96d19544ddebedd097724fcf814fd9f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
