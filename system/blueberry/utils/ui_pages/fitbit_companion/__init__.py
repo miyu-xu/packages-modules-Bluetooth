@@ -194,6 +194,10 @@ def pair_pin_dec(
   return wrapper
 
 
+@retry.logged_retry_on_exception(
+    retry_value=(errors.ContextError),
+    retry_intervals=retry.FuzzedExponentialIntervals(
+        initial_delay_sec=1, num_retries=5, factor=1.1))
 def _trigger_pairing(ctx: context.Context, fitbit_prod_name: str) -> None:
   """Triggers the pairing process by Fitbit production name.
 
@@ -275,6 +279,7 @@ def _handle_post_pairing_flow(ctx: context.Context,
   pair_retry = 0
   while True:
     ctx.expect_pages([
+        account_pages.AccountPage,
         pairing_pages.PairRetryPage,
         pairing_pages.PairAndLinkPage,
         pairing_pages.PairingIntroPage,
@@ -283,6 +288,7 @@ def _handle_post_pairing_flow(ctx: context.Context,
         pairing_pages.CancelPair2Page,
         other_pages.AllowNotification,
         other_pages.LinkConfirmPage,
+        other_pages.FitbitManagePopup,
     ],
                      wait_sec=90)
     if ctx.is_page(pairing_pages.PairingConfirmPage):
@@ -307,6 +313,13 @@ def _handle_post_pairing_flow(ctx: context.Context,
     elif ctx.is_page(pairing_pages.PairingIntroPage):
       ctx.log.info('Passing through Fitbit introduction pages...')
       break
+    elif ctx.is_page(other_pages.FitbitManagePopup):
+      ctx.log.info('Allow Fitbit to manage device...')
+      ctx.page.allow()
+    elif ctx.is_page(account_pages.AccountPage):
+      ctx.log.info(
+          'Completed pairing process (shortcut)!')
+      return
 
     pair_retry += 1
     if pair_retry >= max_pairing_retries:

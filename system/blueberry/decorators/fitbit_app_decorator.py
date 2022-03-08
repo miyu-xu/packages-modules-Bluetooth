@@ -126,6 +126,8 @@ class FitbitAppDecorator(android_device.AndroidDevice):
       removed_count = fitbit_companion.remove_all_paired_devices(
           self.ui_context)
       log.info('Total %d device(s) being removed!', removed_count)
+      # Removed registered page action
+      self.ui_context.regr_page_calls.pop(other_pages.FitbitManagePopup, None)
 
       log.info('Pairing %s ...', fitbit_device)
       fitbit_companion.pair_device(self.ui_context, fitbit_device)
