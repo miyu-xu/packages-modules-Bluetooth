@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "acdee508_c78eeaaf",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-08T16:54:56Z",
+      "side": 1,
+      "message": "There was no reason for doing this other than that seemed to be an established pattern here. I prefer the suggested alternative.",
+      "parentUuid": "33e45f2d_fdd68ecb",
+      "range": {
+        "startLine": 519,
+        "startChar": 36,
+        "endLine": 519,
+        "endChar": 49
+      },
+      "revId": "8b1b1bab8a27ba479685e2bcbd3fa911d9247334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "656d1d64_298ff62d",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d544b7a9_330d9e02",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-08T16:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "656d1d64_298ff62d",
+      "range": {
+        "startLine": 534,
+        "startChar": 24,
+        "endLine": 534,
+        "endChar": 37
+      },
+      "revId": "8b1b1bab8a27ba479685e2bcbd3fa911d9247334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19953918_94e73a4d",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-03-08T00:01:36Z",
       "side": 1,
       "message": "nit: with `new_alias` being a \u0026String (not slice), my preference is to write this as `new_alias.clone()` to be more explicit about the data copy.",
+      "range": {
+        "startLine": 544,
+        "startChar": 58,
+        "endLine": 544,
+        "endChar": 79
+      },
+      "revId": "8b1b1bab8a27ba479685e2bcbd3fa911d9247334",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f2f2536_afeceeb8",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-08T16:54:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19953918_94e73a4d",
       "range": {
         "startLine": 544,
         "startChar": 58,
