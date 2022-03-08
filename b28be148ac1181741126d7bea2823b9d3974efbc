@@ -141,6 +141,30 @@
       },
       "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6440a038_f4c24d28",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-08T04:49:28Z",
+      "side": 1,
+      "message": "NPE happens because MediaControlProfile#init() and MediaControProfile#cleanup() are not thread-safe.\n\nWe need to make sure that we\u0027re calling two methods in the same thread or make them thread-safe.",
+      "parentUuid": "c687f4f9_e6b4296e",
+      "range": {
+        "startLine": 126,
+        "startChar": 12,
+        "endLine": 126,
+        "endChar": 28
+      },
+      "revId": "b28be148ac1181741126d7bea2823b9d3974efbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
