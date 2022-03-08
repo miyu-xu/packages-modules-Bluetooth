@@ -144,8 +144,12 @@ class LeAudioSinkTransport
   bool IsPendingStartStream(void);
   void ClearPendingStartStream(void);
 
-  static inline LeAudioSinkTransport* instance = nullptr;
-  static inline BluetoothAudioSinkClientInterface* interface = nullptr;
+  static inline LeAudioSinkTransport* instance_unicast_ = nullptr;
+  static inline LeAudioSinkTransport* instance_broadcast_ = nullptr;
+
+  static inline BluetoothAudioSinkClientInterface* interface_unicast_ = nullptr;
+  static inline BluetoothAudioSinkClientInterface* interface_broadcast_ =
+      nullptr;
 
  private:
   LeAudioTransport* transport_;
