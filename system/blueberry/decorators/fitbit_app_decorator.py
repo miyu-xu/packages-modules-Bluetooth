@@ -49,6 +49,7 @@ class FitbitAppDecorator(android_device.AndroidDevice):
     self.ui_context.regr_page_call(other_pages.GoogleSmartLockSavePage, 'no')
     self.ui_context.regr_page_call(other_pages.GooglePlayTermOfServicePage,
                                    'accept')
+    self.ui_context.regr_page_call(other_pages.NotificationPopup, 'not_allow')
     if not apk_utils.is_apk_installed(self._ad, _FITBIT_PACKAGE_NAME):
       # Fitbit App is not installed, install it now.
       self.ui_context.log.info('Installing Fitbit App...')
@@ -116,6 +117,9 @@ class FitbitAppDecorator(android_device.AndroidDevice):
     try:
       log.info('Entering account page...')
       self.ui_context.go_page(account_pages.AccountPage)
+
+      log.info('Registering default page action...')
+      self.ui_context.regr_page_call(other_pages.FitbitManagePopup, 'allow')
 
       log.info('Firmware version: %s', fitbit_device.firmware_version)
       log.info('Removing all paired device(s) before testing...')
