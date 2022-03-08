@@ -21,9 +21,8 @@
 
 #include "client_audio.h"
 
-class MockLeAudioClientAudioSource {
+class MockLeAudioClientAudioSource : public LeAudioClientAudioSource {
  public:
-  static void SetMockInstanceForTesting(MockLeAudioClientAudioSource* mock);
   MOCK_METHOD((bool), Start,
               (const LeAudioCodecConfiguration& codecConfiguration,
                LeAudioClientAudioSinkReceiver* audioReceiver));
@@ -39,9 +38,8 @@ class MockLeAudioClientAudioSource {
   MOCK_METHOD((void), SuspendedForReconfiguration, ());
 };
 
-class MockLeAudioClientAudioSink {
+class MockLeAudioClientAudioSink : public LeAudioClientAudioSink {
  public:
-  static void SetMockInstanceForTesting(MockLeAudioClientAudioSink* mock);
   MOCK_METHOD((bool), Start,
               (const LeAudioCodecConfiguration& codecConfiguration,
                LeAudioClientAudioSourceReceiver* audioReceiver));
@@ -56,4 +54,38 @@ class MockLeAudioClientAudioSink {
   MOCK_METHOD((void), UpdateAudioConfigToHal,
               (const ::le_audio::offload_config&));
   MOCK_METHOD((void), SuspendedForReconfiguration, ());
+};
+
+class MockLeAudioUnicastClientAudioSource
+    : public LeAudioUnicastClientAudioSource {
+ public:
+  MOCK_METHOD((bool), Start,
+              (const LeAudioCodecConfiguration& codecConfiguration,
+               LeAudioClientAudioSinkReceiver* audioReceiver));
+  MOCK_METHOD((void), Stop, ());
+  MOCK_METHOD((const void*), Acquire, ());
+  MOCK_METHOD((void), Release, (const void*));
+  MOCK_METHOD((void), ConfirmStreamingRequest, ());
+  MOCK_METHOD((void), CancelStreamingRequest, ());
+  MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay));
+  MOCK_METHOD((void), DebugDump, (int fd));
+  MOCK_METHOD((void), UpdateAudioConfigToHal,
+              (const ::le_audio::offload_config&));
+};
+
+class MockLeAudioBroadcastClientAudioSource
+    : public LeAudioBroadcastClientAudioSource {
+ public:
+  MOCK_METHOD((bool), Start,
+              (const LeAudioCodecConfiguration& codecConfiguration,
+               LeAudioClientAudioSinkReceiver* audioReceiver));
+  MOCK_METHOD((void), Stop, ());
+  MOCK_METHOD((const void*), Acquire, ());
+  MOCK_METHOD((void), Release, (const void*));
+  MOCK_METHOD((void), ConfirmStreamingRequest, ());
+  MOCK_METHOD((void), CancelStreamingRequest, ());
+  MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay));
+  MOCK_METHOD((void), DebugDump, (int fd));
+  MOCK_METHOD((void), UpdateAudioConfigToHal,
+              (const ::le_audio::offload_config&));
 };

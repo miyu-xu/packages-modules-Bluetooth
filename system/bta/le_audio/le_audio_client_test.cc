@@ -39,7 +39,7 @@
 #include "mock_csis_client.h"
 #include "mock_device_groups.h"
 #include "mock_iso_manager.h"
-#include "mock_le_audio_client_audio.h"
+//#include "mock_le_audio_client_audio.h"
 #include "mock_state_machine.h"
 
 using testing::_;
@@ -63,17 +63,18 @@ using namespace bluetooth::le_audio;
 
 extern struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
 
-namespace bluetooth {
-namespace audio {
-namespace le_audio {
+// namespace bluetooth {
+// namespace audio {
+// namespace le_audio {
 
-std::vector<::le_audio::set_configurations::AudioSetConfiguration>
-get_offload_capabilities() {
-  return std::vector<::le_audio::set_configurations::AudioSetConfiguration>(0);
-}
-}  // namespace le_audio
-}  // namespace audio
-}  // namespace bluetooth
+// std::vector<::le_audio::set_configurations::AudioSetConfiguration>
+// get_offload_capabilities() {
+//  return
+//  std::vector<::le_audio::set_configurations::AudioSetConfiguration>(0);
+//}
+//}  // namespace le_audio
+//}  // namespace audio
+//}  // namespace bluetooth
 
 std::map<std::string, int> mock_function_count_map;
 
@@ -128,6 +129,9 @@ static void cleanup_message_loop_thread() {
   message_loop_thread.ShutDown();
 }
 
+void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {}
+void invoke_switch_buffer_size_cb(bool is_low_latency_buffer_size) {}
+
 namespace le_audio {
 namespace {
 class MockLeAudioClientCallbacks
@@ -150,36 +154,108 @@ class MockLeAudioClientCallbacks
               (override));
 };
 
+class MockLeAudioClientAudioSink : public LeAudioClientAudioSink {
+ public:
+  MOCK_METHOD((bool), Start,
+              (const LeAudioCodecConfiguration& codecConfiguration,
+               LeAudioClientAudioSourceReceiver* audioReceiver));
+  MOCK_METHOD((void), Stop, ());
+  MOCK_METHOD((const void*), Acquire, ());
+  MOCK_METHOD((void), Release, (const void*));
+  MOCK_METHOD((size_t), SendData, (uint8_t * data, uint16_t size));
+  MOCK_METHOD((void), ConfirmStreamingRequest, ());
+  MOCK_METHOD((void), CancelStreamingRequest, ());
+  MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay));
+  MOCK_METHOD((void), DebugDump, (int fd));
+  MOCK_METHOD((void), UpdateAudioConfigToHal,
+              (const ::le_audio::offload_config&));
+};
+
+class MockLeAudioClientAudioSource : public LeAudioClientAudioSource {
+ public:
+  MOCK_METHOD((bool), Start,
+              (const LeAudioCodecConfiguration& codecConfiguration,
+               LeAudioClientAudioSinkReceiver* audioReceiver));
+  MOCK_METHOD((void), Stop, ());
+  MOCK_METHOD((const void*), Acquire, ());
+  MOCK_METHOD((void), Release, (const void*));
+  MOCK_METHOD((void), ConfirmStreamingRequest, ());
+  MOCK_METHOD((void), CancelStreamingRequest, ());
+  MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay));
+  MOCK_METHOD((void), DebugDump, (int fd));
+  MOCK_METHOD((void), UpdateAudioConfigToHal,
+              (const ::le_audio::offload_config&));
+};
+
+class MockLeAudioUnicastClientAudioSource
+    : public LeAudioUnicastClientAudioSource {
+ public:
+  MOCK_METHOD((bool), Start,
+              (const LeAudioCodecConfiguration& codecConfiguration,
+               LeAudioClientAudioSinkReceiver* audioReceiver));
+  MOCK_METHOD((void), Stop, ());
+  MOCK_METHOD((const void*), Acquire, ());
+  MOCK_METHOD((void), Release, (const void*));
+  MOCK_METHOD((void), ConfirmStreamingRequest, ());
+  MOCK_METHOD((void), CancelStreamingRequest, ());
+  MOCK_METHOD((void), UpdateRemoteDelay, (uint16_t delay));
+  MOCK_METHOD((void), DebugDump, (int fd));
+  MOCK_METHOD((void), UpdateAudioConfigToHal,
+              (const ::le_audio::offload_config&));
+};
+
 class UnicastTestNoInit : public Test {
  protected:
   void SetUpMockAudioHal() {
-    // Source
-    is_audio_hal_source_acquired = false;
+    // Unicast Source
+    is_audio_unicast_source_acquired = false;
+    is_audio_broadcast_hal_source_acquired = false;
 
-    ON_CALL(mock_audio_source_, Start(_, _))
+    ON_CALL(mock_unicast_audio_source_, Start(_, _))
         .WillByDefault(
             [this](const LeAudioCodecConfiguration& codec_configuration,
                    LeAudioClientAudioSinkReceiver* audioReceiver) {
-              audio_sink_receiver_ = audioReceiver;
+              audio_unicast_sink_receiver_ = audioReceiver;
               return true;
             });
-    ON_CALL(mock_audio_source_, Acquire).WillByDefault([this]() -> void* {
-      if (!is_audio_hal_source_acquired) {
-        is_audio_hal_source_acquired = true;
-        return &mock_audio_source_;
-      }
+    ON_CALL(mock_unicast_audio_source_, Acquire)
+        .WillByDefault([this]() -> void* {
+          if (!is_audio_unicast_source_acquired) {
+            is_audio_unicast_source_acquired = true;
+            return &mock_unicast_audio_source_;
+          }
 
-      return nullptr;
-    });
-    ON_CALL(mock_audio_source_, Release)
+          return nullptr;
+        });
+    ON_CALL(mock_unicast_audio_source_, Release)
         .WillByDefault([this](const void* inst) -> void {
-          if (is_audio_hal_source_acquired) {
-            is_audio_hal_source_acquired = false;
+          if (is_audio_unicast_source_acquired) {
+            is_audio_unicast_source_acquired = false;
           }
         });
+    //// Broadcast Source
+    // ON_CALL(mock_broadcast_audio_source_, Start(_, _))
+    //    .WillByDefault(
+    //        [this](const LeAudioCodecConfiguration& codec_configuration,
+    //               LeAudioClientAudioSinkReceiver* audioReceiver) {
+    //          audio_broadcast_sink_receiver_ = audioReceiver;
+    //          return true;
+    //        });
+    // ON_CALL(mock_broadcast_audio_source_, Acquire).WillByDefault([this]() ->
+    // void* {
+    //  if (!is_audio_unicast_source_acquired) {
+    //    is_audio_unicast_source_acquired = true;
+    //    return &mock_broadcast_audio_source_;
+    //  }
 
-    MockLeAudioClientAudioSource::SetMockInstanceForTesting(
-        &mock_audio_source_);
+    //  return nullptr;
+    //});
+    // ON_CALL(mock_broadcast_audio_source_, Release)
+    //    .WillByDefault([this](const void* inst) -> void {
+    //      if (is_audio_broadcast_hal_source_acquired) {
+    //        is_audio_broadcast_hal_source_acquired = false;
+    //      }
+    //    });
 
     // Sink
     is_audio_hal_sink_acquired = false;
@@ -207,8 +283,6 @@ class UnicastTestNoInit : public Test {
         });
     ON_CALL(mock_audio_sink_, SendData)
         .WillByDefault([](uint8_t* data, uint16_t size) { return size; });
-
-    MockLeAudioClientAudioSink::SetMockInstanceForTesting(&mock_audio_sink_);
 
     // HAL
     ON_CALL(mock_hal_2_1_verifier, Call()).WillByDefault([]() -> bool {
@@ -721,6 +795,8 @@ class UnicastTestNoInit : public Test {
     SetUpMockGroups();
     SetUpMockGatt();
 
+    LeAudioClient::InitializeAudioClients(&mock_unicast_audio_source_,
+                                          &mock_audio_sink_);
     le_audio::AudioSetConfigurationProvider::Initialize();
     ASSERT_FALSE(LeAudioClient::IsLeAudioClientRunning());
   }
@@ -977,37 +1053,37 @@ class UnicastTestNoInit : public Test {
     tracks_[0].content_type = content_type;
 
     if (reconfigure_existing_stream) {
-      EXPECT_CALL(mock_audio_source_, SuspendedForReconfiguration()).Times(1);
-      EXPECT_CALL(mock_audio_source_, ConfirmStreamingRequest()).Times(1);
+      EXPECT_CALL(mock_unicast_audio_source_, ConfirmStreamingRequest())
+          .Times(1);
     } else {
       EXPECT_CALL(mock_audio_source_, SuspendedForReconfiguration()).Times(0);
     }
 
     auto do_metadata_update_future = do_metadata_update_promise.get_future();
-    audio_sink_receiver_->OnAudioMetadataUpdate(
+    audio_unicast_sink_receiver_->OnAudioMetadataUpdate(
         std::move(do_metadata_update_promise), source_metadata);
     do_metadata_update_future.wait();
   }
 
   void StartStreaming(audio_usage_t usage, audio_content_type_t content_type,
                       int group_id, bool reconfigure_existing_stream = false) {
-    ASSERT_NE(audio_sink_receiver_, nullptr);
+    ASSERT_NE(audio_unicast_sink_receiver_, nullptr);
 
     UpdateMetadata(usage, content_type, reconfigure_existing_stream);
 
     /* Stream has been automatically restarted on UpdateMetadata */
     if (reconfigure_existing_stream) return;
 
-    EXPECT_CALL(mock_audio_source_, ConfirmStreamingRequest()).Times(1);
+    EXPECT_CALL(mock_unicast_audio_source_, ConfirmStreamingRequest()).Times(1);
     do_in_main_thread(FROM_HERE,
                       base::BindOnce(
                           [](LeAudioClientAudioSinkReceiver* sink_receiver) {
                             sink_receiver->OnAudioResume();
                           },
-                          audio_sink_receiver_));
+                          audio_unicast_sink_receiver_));
 
     SyncOnMainLoop();
-    Mock::VerifyAndClearExpectations(&mock_audio_source_);
+    Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 
     if (usage == AUDIO_USAGE_VOICE_COMMUNICATION) {
       ASSERT_NE(audio_source_receiver_, nullptr);
@@ -1021,7 +1097,7 @@ class UnicastTestNoInit : public Test {
   }
 
   void StopStreaming(int group_id, bool suspend_source = false) {
-    ASSERT_NE(audio_sink_receiver_, nullptr);
+    ASSERT_NE(audio_unicast_sink_receiver_, nullptr);
 
     /* TODO We should have a way to confirm Stop() otherwise, audio framework
      * might have different state that it is in the le_audio code - as tearing
@@ -1036,7 +1112,8 @@ class UnicastTestNoInit : public Test {
      * If there will be such test oriented scenario, such resume choose logic
      * should be applied.
      */
-    audio_sink_receiver_->OnAudioSuspend(std::move(do_suspend_sink_promise));
+    audio_unicast_sink_receiver_->OnAudioSuspend(
+        std::move(do_suspend_sink_promise));
     do_suspend_sink_future.wait();
 
     if (suspend_source) {
@@ -1507,7 +1584,7 @@ class UnicastTestNoInit : public Test {
 
   void TestAudioDataTransfer(int group_id, uint8_t cis_count_out,
                              uint8_t cis_count_in, int data_len) {
-    ASSERT_NE(audio_sink_receiver_, nullptr);
+    ASSERT_NE(audio_unicast_sink_receiver_, nullptr);
 
     // Expect two channels ISO Data to be sent
     std::vector<uint16_t> handles;
@@ -1517,7 +1594,7 @@ class UnicastTestNoInit : public Test {
             [&handles](uint16_t iso_handle, const uint8_t* data,
                        uint16_t data_len) { handles.push_back(iso_handle); });
     std::vector<uint8_t> data(data_len);
-    audio_sink_receiver_->OnAudioDataReady(data);
+    audio_unicast_sink_receiver_->OnAudioDataReady(data);
 
     // Inject microphone data from a single peer device
     EXPECT_CALL(mock_audio_sink_, SendData(_, _)).Times(cis_count_in);
@@ -1594,12 +1671,14 @@ class UnicastTestNoInit : public Test {
   }
 
   MockLeAudioClientCallbacks mock_client_callbacks_;
-  MockLeAudioClientAudioSource mock_audio_source_;
+  MockLeAudioUnicastClientAudioSource mock_unicast_audio_source_;
   MockLeAudioClientAudioSink mock_audio_sink_;
-  LeAudioClientAudioSinkReceiver* audio_sink_receiver_ = nullptr;
+  LeAudioClientAudioSinkReceiver* audio_unicast_sink_receiver_ = nullptr;
+  LeAudioClientAudioSinkReceiver* audio_broadcast_sink_receiver_ = nullptr;
   LeAudioClientAudioSourceReceiver* audio_source_receiver_ = nullptr;
 
-  bool is_audio_hal_source_acquired;
+  bool is_audio_unicast_source_acquired;
+  bool is_audio_broadcast_hal_source_acquired;
   bool is_audio_hal_sink_acquired;
 
   MockCsisClient mock_csis_client_module_;
@@ -1646,6 +1725,8 @@ class UnicastTest : public UnicastTestNoInit {
     EXPECT_CALL(mock_gatt_interface_, AppRegister(_, _, _))
         .WillOnce(DoAll(SaveArg<0>(&gatt_callback),
                         SaveArg<1>(&app_register_callback)));
+    LeAudioClient::InitializeAudioClients(&mock_unicast_audio_source_,
+                                          &mock_audio_sink_);
     LeAudioClient::Initialize(
         &mock_client_callbacks_,
         base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
@@ -2332,7 +2413,7 @@ TEST_F(UnicastTest, RemoveWhileStreaming) {
   uint8_t cis_count_in = 0;
 
   // Audio sessions are started only when device gets active
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
 
@@ -2342,7 +2423,7 @@ TEST_F(UnicastTest, RemoveWhileStreaming) {
 
   SyncOnMainLoop();
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   Mock::VerifyAndClearExpectations(&mock_state_machine_);
   SyncOnMainLoop();
 
@@ -2397,14 +2478,14 @@ TEST_F(UnicastTest, SpeakerStreaming) {
   uint8_t cis_count_in = 0;
 
   // Audio sessions are started only when device gets active
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   SyncOnMainLoop();
 
   // Verify Data transfer on one audio source cis
@@ -2414,23 +2495,23 @@ TEST_F(UnicastTest, SpeakerStreaming) {
   /*TODO Need a way to verify STOP */
   LeAudioClient::Get()->GroupSuspend(group_id);
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 
   // Resume
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 
   // Stop
   StopStreaming(group_id);
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
 
   // Release
-  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
-  EXPECT_CALL(mock_audio_source_, Release(_)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Stop()).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Release(_)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Release(_)).Times(1);
   LeAudioClient::Get()->GroupSetActive(bluetooth::groups::kGroupUnknown);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 }
 
 TEST_F(UnicastTest, SpeakerStreamingAutonomousRelease) {
@@ -2453,14 +2534,14 @@ TEST_F(UnicastTest, SpeakerStreamingAutonomousRelease) {
   ASSERT_NE(group_id, bluetooth::groups::kGroupUnknown);
 
   // Start streaming
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   SyncOnMainLoop();
 
   // Verify Data transfer on one audio source cis
@@ -2511,16 +2592,16 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
 
   // Start streaming
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 
   StartStreaming(AUDIO_USAGE_VOICE_COMMUNICATION, AUDIO_CONTENT_TYPE_SPEECH,
                  group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   Mock::VerifyAndClearExpectations(&mock_audio_sink_);
   SyncOnMainLoop();
 
@@ -2537,7 +2618,7 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   StartStreaming(AUDIO_USAGE_VOICE_COMMUNICATION, AUDIO_CONTENT_TYPE_SPEECH,
                  group_id);
   SyncOnMainLoop();
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   Mock::VerifyAndClearExpectations(&mock_audio_sink_);
 
   // Verify Data transfer still works
@@ -2548,12 +2629,12 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
 
   // Release
-  EXPECT_CALL(mock_audio_source_, Stop()).Times(1);
-  EXPECT_CALL(mock_audio_source_, Release(_)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Stop()).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Release(_)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Stop()).Times(1);
   EXPECT_CALL(mock_audio_sink_, Release(_)).Times(1);
   LeAudioClient::Get()->GroupSetActive(bluetooth::groups::kGroupUnknown);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   Mock::VerifyAndClearExpectations(&mock_audio_sink_);
 }
 
@@ -2584,10 +2665,10 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchSimple) {
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
 
   // Start streaming
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 
   // Start streaming with reconfiguration from default media stream setup
   EXPECT_CALL(
@@ -2599,31 +2680,31 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchSimple) {
                  group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   SyncOnMainLoop();
 
   // Do a content switch to ALERTS
-  EXPECT_CALL(mock_audio_source_, Release).Times(0);
-  EXPECT_CALL(mock_audio_source_, Stop).Times(0);
-  EXPECT_CALL(mock_audio_source_, Start).Times(0);
+  EXPECT_CALL(mock_unicast_audio_source_, Release).Times(0);
+  EXPECT_CALL(mock_unicast_audio_source_, Stop).Times(0);
+  EXPECT_CALL(mock_unicast_audio_source_, Start).Times(0);
   EXPECT_CALL(mock_state_machine_,
               StartStream(_, le_audio::types::LeAudioContextType::ALERTS))
       .Times(1);
   UpdateMetadata(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN);
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 
   // Do a content switch to EMERGENCY
-  EXPECT_CALL(mock_audio_source_, Release).Times(0);
-  EXPECT_CALL(mock_audio_source_, Stop).Times(0);
-  EXPECT_CALL(mock_audio_source_, Start).Times(0);
+  EXPECT_CALL(mock_unicast_audio_source_, Release).Times(0);
+  EXPECT_CALL(mock_unicast_audio_source_, Stop).Times(0);
+  EXPECT_CALL(mock_unicast_audio_source_, Start).Times(0);
 
   EXPECT_CALL(
       mock_state_machine_,
       StartStream(_, le_audio::types::LeAudioContextType::EMERGENCYALARM))
       .Times(1);
   UpdateMetadata(AUDIO_USAGE_EMERGENCY, AUDIO_CONTENT_TYPE_UNKNOWN);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
 }
 
 TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
@@ -2653,14 +2734,14 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
 
   // Start streaming MEDIA
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   SyncOnMainLoop();
 
   // Verify Data transfer on two peer sinks
@@ -2678,7 +2759,7 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
                  group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   Mock::VerifyAndClearExpectations(&mock_audio_sink_);
   SyncOnMainLoop();
 
@@ -2704,14 +2785,14 @@ TEST_F(UnicastTest, TwoEarbuds2ndLateConnect) {
                     group_id, 1 /* rank*/);
 
   // Start streaming
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   SyncOnMainLoop();
 
   // Expect one iso channel to be fed with data
@@ -2754,14 +2835,14 @@ TEST_F(UnicastTest, TwoEarbuds2ndDisconnect) {
                     group_id, 2 /* rank*/, true /*connect_through_csis*/);
 
   // Audio sessions are started only when device gets active
-  EXPECT_CALL(mock_audio_source_, Start(_, _)).Times(1);
+  EXPECT_CALL(mock_unicast_audio_source_, Start(_, _)).Times(1);
   EXPECT_CALL(mock_audio_sink_, Start(_, _)).Times(1);
   LeAudioClient::Get()->GroupSetActive(group_id);
 
   StartStreaming(AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, group_id);
 
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
-  Mock::VerifyAndClearExpectations(&mock_audio_source_);
+  Mock::VerifyAndClearExpectations(&mock_unicast_audio_source_);
   SyncOnMainLoop();
 
   // Expect two iso channels to be fed with data

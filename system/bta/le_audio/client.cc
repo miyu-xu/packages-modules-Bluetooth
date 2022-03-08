@@ -117,6 +117,8 @@ class LeAudioClientImpl;
 LeAudioClientImpl* instance;
 LeAudioClientAudioSinkReceiver* audioSinkReceiver;
 LeAudioClientAudioSourceReceiver* audioSourceReceiver;
+LeAudioUnicastClientAudioSource* leAudioClientAudioSource;
+LeAudioClientAudioSink* leAudioClientAudioSink;
 CigCallbacks* stateMachineHciCallbacks;
 LeAudioGroupStateMachine::Callbacks* stateMachineCallbacks;
 DeviceGroupsCallbacks* device_group_callbacks;
@@ -331,21 +333,21 @@ class LeAudioClientImpl : public LeAudioClient {
 
   void SuspendedForReconfiguration() {
     if (audio_sender_state_ > AudioState::IDLE) {
-      LeAudioClientAudioSource::SuspendedForReconfiguration();
+      leAudioClientAudioSource->SuspendedForReconfiguration();
     }
     if (audio_receiver_state_ > AudioState::IDLE) {
-      LeAudioClientAudioSink::SuspendedForReconfiguration();
+      leAudioClientAudioSink->SuspendedForReconfiguration();
     }
   }
 
   void CancelStreamingRequest() {
     if (audio_sender_state_ >= AudioState::READY_TO_START) {
-      LeAudioClientAudioSource::CancelStreamingRequest();
+      leAudioClientAudioSource->CancelStreamingRequest();
       audio_sender_state_ = AudioState::IDLE;
     }
 
     if (audio_receiver_state_ >= AudioState::READY_TO_START) {
-      LeAudioClientAudioSink::CancelStreamingRequest();
+      leAudioClientAudioSink->CancelStreamingRequest();
       audio_receiver_state_ = AudioState::IDLE;
     }
   }
@@ -691,7 +693,7 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     if (!audio_source_instance_) {
-      audio_source_instance_ = LeAudioClientAudioSource::Acquire();
+      audio_source_instance_ = leAudioClientAudioSource->Acquire();
       if (!audio_source_instance_) {
         LOG(ERROR) << __func__ << ", could not acquire audio source interface";
         return;
@@ -699,10 +701,10 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     if (!audio_sink_instance_) {
-      audio_sink_instance_ = LeAudioClientAudioSink::Acquire();
+      audio_sink_instance_ = leAudioClientAudioSink->Acquire();
       if (!audio_sink_instance_) {
         LOG(ERROR) << __func__ << ", could not acquire audio sink interface";
-        LeAudioClientAudioSource::Release(audio_source_instance_);
+        leAudioClientAudioSource->Release(audio_source_instance_);
         return;
       }
     }
@@ -722,13 +724,13 @@ class LeAudioClientImpl : public LeAudioClient {
       /* Expose audio sessions if there was no previous active group */
       audio_framework_source_config.data_interval_us =
           current_source_codec_config.data_interval_us;
-      LeAudioClientAudioSource::Start(audio_framework_source_config,
+      leAudioClientAudioSource->Start(audio_framework_source_config,
                                       audioSinkReceiver);
 
       audio_framework_sink_config.data_interval_us =
           current_source_codec_config.data_interval_us;
 
-      LeAudioClientAudioSink::Start(audio_framework_sink_config,
+      leAudioClientAudioSink->Start(audio_framework_sink_config,
                                     audioSourceReceiver);
     } else {
       /* In case there was an active group. Stop the stream */
@@ -2287,7 +2289,7 @@ class LeAudioClientImpl : public LeAudioClient {
       /* mono audio over bluetooth, audio framework expects mono */
       to_write = sizeof(int16_t) * mono->size();
       written =
-          LeAudioClientAudioSink::SendData((uint8_t*)mono->data(), to_write);
+          leAudioClientAudioSink->SendData((uint8_t*)mono->data(), to_write);
     } else if (bt_got_stereo && af_is_stereo) {
       /* stero audio over bluetooth, audio framework expects stereo */
       std::vector<uint16_t> mixed(left->size() * 2);
@@ -2298,7 +2300,7 @@ class LeAudioClientImpl : public LeAudioClient {
       }
       to_write = sizeof(int16_t) * mixed.size();
       written =
-          LeAudioClientAudioSink::SendData((uint8_t*)mixed.data(), to_write);
+          leAudioClientAudioSink->SendData((uint8_t*)mixed.data(), to_write);
     } else if (bt_got_stereo && !af_is_stereo) {
       /* stero audio over bluetooth, audio framework expects mono */
       std::vector<uint16_t> mixed(left->size() * 2);
@@ -2308,7 +2310,7 @@ class LeAudioClientImpl : public LeAudioClient {
       }
       to_write = sizeof(int16_t) * left->size();
       written =
-          LeAudioClientAudioSink::SendData((uint8_t*)left->data(), to_write);
+          leAudioClientAudioSink->SendData((uint8_t*)left->data(), to_write);
     } else if (!bt_got_stereo && af_is_stereo) {
       /* mono audio over bluetooth, audio framework expects stereo */
       const size_t mono_size = left ? left->size() : right->size();
@@ -2320,7 +2322,7 @@ class LeAudioClientImpl : public LeAudioClient {
       }
       to_write = sizeof(int16_t) * mixed.size();
       written =
-          LeAudioClientAudioSink::SendData((uint8_t*)mixed.data(), to_write);
+          leAudioClientAudioSink->SendData((uint8_t*)mixed.data(), to_write);
     }
 
     /* TODO: What to do if not all data sinked ? */
@@ -2370,11 +2372,13 @@ class LeAudioClientImpl : public LeAudioClient {
     } else if (CodecManager::GetInstance()->GetCodecLocation() ==
                le_audio::types::CodecLocation::ADSP) {
       CodecManager::GetInstance()->UpdateActiveSourceAudioConfig(
-          *stream_conf, remote_delay_ms);
+          *stream_conf, remote_delay_ms,
+          std::bind(&LeAudioUnicastClientAudioSource::UpdateAudioConfigToHal,
+                    leAudioClientAudioSource, std::placeholders::_1));
     }
 
-    LeAudioClientAudioSource::UpdateRemoteDelay(remote_delay_ms);
-    LeAudioClientAudioSource::ConfirmStreamingRequest();
+    leAudioClientAudioSource->UpdateRemoteDelay(remote_delay_ms);
+    leAudioClientAudioSource->ConfirmStreamingRequest();
     audio_sender_state_ = AudioState::STARTED;
 
     return true;
@@ -2426,12 +2430,14 @@ class LeAudioClientImpl : public LeAudioClient {
           lc3_setup_decoder(dt_us, sr_hz, af_hz, lc3_decoder_right_mem);
     } else if (CodecManager::GetInstance()->GetCodecLocation() ==
                le_audio::types::CodecLocation::ADSP) {
-      CodecManager::GetInstance()->UpdateActiveSinkAudioConfig(*stream_conf,
-                                                               remote_delay_ms);
+      CodecManager::GetInstance()->UpdateActiveSinkAudioConfig(
+          *stream_conf, remote_delay_ms,
+          std::bind(&LeAudioClientAudioSink::UpdateAudioConfigToHal,
+                    leAudioClientAudioSink, std::placeholders::_1));
     }
 
-    LeAudioClientAudioSink::UpdateRemoteDelay(remote_delay_ms);
-    LeAudioClientAudioSink::ConfirmStreamingRequest();
+    leAudioClientAudioSink->UpdateRemoteDelay(remote_delay_ms);
+    leAudioClientAudioSink->ConfirmStreamingRequest();
     audio_receiver_state_ = AudioState::STARTED;
   }
 
@@ -2673,7 +2679,7 @@ class LeAudioClientImpl : public LeAudioClient {
             current_context_type_, le_audio::types::kLeAudioDirectionSink)) {
       LOG(ERROR) << __func__ << ", invalid resume request for context type: "
                  << loghex(static_cast<int>(current_context_type_));
-      LeAudioClientAudioSource::CancelStreamingRequest();
+      leAudioClientAudioSource->CancelStreamingRequest();
       return;
     }
 
@@ -2687,7 +2693,7 @@ class LeAudioClientImpl : public LeAudioClient {
     switch (audio_sender_state_) {
       case AudioState::STARTED:
         /* Looks like previous Confirm did not get to the Audio Framework*/
-        LeAudioClientAudioSource::ConfirmStreamingRequest();
+        leAudioClientAudioSource->ConfirmStreamingRequest();
         break;
       case AudioState::IDLE:
         switch (audio_receiver_state_) {
@@ -2696,7 +2702,7 @@ class LeAudioClientImpl : public LeAudioClient {
             if (OnAudioResume(group)) {
               audio_sender_state_ = AudioState::READY_TO_START;
             } else {
-              LeAudioClientAudioSource::CancelStreamingRequest();
+              leAudioClientAudioSource->CancelStreamingRequest();
             }
             break;
           case AudioState::READY_TO_START:
@@ -2721,7 +2727,7 @@ class LeAudioClientImpl : public LeAudioClient {
             }
             FALLTHROUGH;
           default:
-            LeAudioClientAudioSource::CancelStreamingRequest();
+            leAudioClientAudioSource->CancelStreamingRequest();
             break;
         }
 
@@ -2741,16 +2747,16 @@ class LeAudioClientImpl : public LeAudioClient {
             audio_sender_state_ = AudioState::STARTED;
             if (alarm_is_scheduled(suspend_timeout_))
               alarm_cancel(suspend_timeout_);
-            LeAudioClientAudioSource::ConfirmStreamingRequest();
+            leAudioClientAudioSource->ConfirmStreamingRequest();
             break;
           case AudioState::RELEASING:
           default:
-            LeAudioClientAudioSource::CancelStreamingRequest();
+            leAudioClientAudioSource->CancelStreamingRequest();
         }
         break;
       case AudioState::RELEASING:
         /* Keep wainting */
-        LeAudioClientAudioSource::CancelStreamingRequest();
+        leAudioClientAudioSource->CancelStreamingRequest();
         break;
     }
   }
@@ -2809,7 +2815,7 @@ class LeAudioClientImpl : public LeAudioClient {
             current_context_type_, le_audio::types::kLeAudioDirectionSource)) {
       LOG(ERROR) << __func__ << ", invalid resume request for context type: "
                  << loghex(static_cast<int>(current_context_type_));
-      LeAudioClientAudioSink::CancelStreamingRequest();
+      leAudioClientAudioSink->CancelStreamingRequest();
       return;
     }
 
@@ -2822,7 +2828,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     switch (audio_receiver_state_) {
       case AudioState::STARTED:
-        LeAudioClientAudioSink::ConfirmStreamingRequest();
+        leAudioClientAudioSink->ConfirmStreamingRequest();
         break;
       case AudioState::IDLE:
         switch (audio_sender_state_) {
@@ -2830,7 +2836,7 @@ class LeAudioClientImpl : public LeAudioClient {
             if (OnAudioResume(group)) {
               audio_receiver_state_ = AudioState::READY_TO_START;
             } else {
-              LeAudioClientAudioSink::CancelStreamingRequest();
+              leAudioClientAudioSink->CancelStreamingRequest();
             }
             break;
           case AudioState::READY_TO_START:
@@ -2855,7 +2861,7 @@ class LeAudioClientImpl : public LeAudioClient {
             }
             FALLTHROUGH;
           default:
-            LeAudioClientAudioSink::CancelStreamingRequest();
+            leAudioClientAudioSink->CancelStreamingRequest();
             break;
         }
         break;
@@ -2874,16 +2880,16 @@ class LeAudioClientImpl : public LeAudioClient {
             audio_receiver_state_ = AudioState::STARTED;
             if (alarm_is_scheduled(suspend_timeout_))
               alarm_cancel(suspend_timeout_);
-            LeAudioClientAudioSink::ConfirmStreamingRequest();
+            leAudioClientAudioSink->ConfirmStreamingRequest();
             break;
           case AudioState::RELEASING:
           default:
-            LeAudioClientAudioSink::CancelStreamingRequest();
+            leAudioClientAudioSink->CancelStreamingRequest();
         }
 
         break;
       case AudioState::RELEASING:
-        LeAudioClientAudioSink::CancelStreamingRequest();
+        leAudioClientAudioSink->CancelStreamingRequest();
         break;
     }
   }
@@ -3361,14 +3367,14 @@ class LeAudioClientImpl : public LeAudioClient {
 
   void ClientAudioIntefraceRelease() {
     if (audio_source_instance_) {
-      LeAudioClientAudioSource::Stop();
-      LeAudioClientAudioSource::Release(audio_source_instance_);
+      leAudioClientAudioSource->Stop();
+      leAudioClientAudioSource->Release(audio_source_instance_);
       audio_source_instance_ = nullptr;
     }
 
     if (audio_sink_instance_) {
-      LeAudioClientAudioSink::Stop();
-      LeAudioClientAudioSink::Release(audio_sink_instance_);
+      leAudioClientAudioSink->Stop();
+      leAudioClientAudioSink->Release(audio_sink_instance_);
       audio_sink_instance_ = nullptr;
     }
   }
@@ -3591,6 +3597,11 @@ void LeAudioClient::Initialize(
 
   IsoManager::GetInstance()->Start();
 
+  if (leAudioClientAudioSource == nullptr)
+    leAudioClientAudioSource = new LeAudioUnicastClientAudioSource();
+  if (leAudioClientAudioSink == nullptr)
+    leAudioClientAudioSink = new LeAudioClientAudioSink();
+
   audioSinkReceiver = &audioSinkReceiverImpl;
   audioSourceReceiver = &audioSourceReceiverImpl;
   stateMachineHciCallbacks = &stateMachineHciCallbacksImpl;
@@ -3611,7 +3622,7 @@ void LeAudioClient::DebugDump(int fd) {
   else
     dprintf(fd, "  Not initialized \n");
 
-  LeAudioClientAudioSource::DebugDump(fd);
+  LeAudioUnicastClientAudioSource::DebugDump(fd);
   LeAudioClientAudioSink::DebugDump(fd);
   dprintf(fd, "\n");
 }
@@ -3626,8 +3637,22 @@ void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {
   instance = nullptr;
   ptr->Cleanup(cleanupCb);
   delete ptr;
+  delete leAudioClientAudioSource;
+  delete leAudioClientAudioSink;
 
   CodecManager::GetInstance()->Stop();
   LeAudioGroupStateMachine::Cleanup();
   IsoManager::GetInstance()->Stop();
+}
+
+void LeAudioClient::InitializeAudioClients(
+    LeAudioUnicastClientAudioSource* clientAudioSource,
+    LeAudioClientAudioSink* clientAudioSink) {
+  if (clientAudioSource || clientAudioSink) {
+    LOG(WARNING) << __func__ << ", audio clients already initialized";
+    return;
+  }
+
+  leAudioClientAudioSource = clientAudioSource;
+  leAudioClientAudioSink = clientAudioSink;
 }
