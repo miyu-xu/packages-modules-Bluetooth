@@ -99,6 +99,7 @@ using le_audio::LeAudioGroupStateMachine;
 using le_audio::types::ase;
 using le_audio::types::AseState;
 using le_audio::types::AudioStreamDataPathState;
+using le_audio::types::cis;
 using le_audio::types::CodecLocation;
 
 namespace {
@@ -167,6 +168,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         }
 
         /* All ASEs should aim to achieve target state */
+        group->CigClearCis();
+        group->CigGenerateCisIds(context_type);
         group->SetContextType(context_type);
         SetTargetState(group, AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
         PrepareAndSendCodecConfigure(group, group->GetFirstActiveDevice());
@@ -341,6 +344,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
     group->cig_created_ = true;
 
+    group->CigAssignCisConnHandles(conn_handles);
+
+    group->CigAssignAsesCisConnHandles();
+
     LOG(INFO) << __func__ << "Group id: " << +group->group_id_
               << " conn_handle size " << +conn_handles.size();
 
@@ -408,6 +415,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
+    group->CigClearCis();
+
     group->cig_created_ = false;
 
     LeAudioDevice* leAudioDevice = group->GetFirstDevice();
@@ -450,9 +459,58 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
-    ase = leAudioDevice->GetNextActiveAse(ase);
+    uint16_t cis_conn_hdl = ase->cis_conn_hdl;
+    auto* stream_conf = &group->stream_conf;
+    if (ase->direction == le_audio::types::kLeAudioDirectionSink) {
+      auto iter = std::find_if(
+          stream_conf->sink_streams.begin(), stream_conf->sink_streams.end(),
+          [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
+
+      if (iter == stream_conf->sink_streams.end()) {
+        stream_conf->sink_streams.emplace_back(std::make_pair(
+            ase->cis_conn_hdl, *ase->codec_config.audio_channel_allocation));
+
+        stream_conf->sink_num_of_devices++;
+        stream_conf->sink_num_of_channels += ase->codec_config.channel_count;
+
+        LOG(INFO) << __func__ << " added sink stream_conf"
+                  << " cis_conn_hdl: " << loghex(ase->cis_conn_hdl)
+                  << " audio_channel_allocation: "
+                  << loghex(*ase->codec_config.audio_channel_allocation)
+                  << " sink_num_of_devices: "
+                  << stream_conf->sink_num_of_devices
+                  << " sink_num_of_channels: "
+                  << stream_conf->sink_num_of_channels;
+      }
+    } else {
+      auto iter = std::find_if(
+          stream_conf->source_streams.begin(),
+          stream_conf->source_streams.end(),
+          [cis_conn_hdl](auto& pair) { return cis_conn_hdl == pair.first; });
+
+      if (iter == stream_conf->source_streams.end()) {
+        stream_conf->source_streams.emplace_back(std::make_pair(
+            ase->cis_conn_hdl, *ase->codec_config.audio_channel_allocation));
+
+        stream_conf->source_num_of_devices++;
+        stream_conf->source_num_of_channels += ase->codec_config.channel_count;
+
+        LOG(INFO) << __func__ << " added source stream_conf"
+                  << " cis_conn_hdl: " << loghex(ase->cis_conn_hdl)
+                  << " audio_channel_allocation: "
+                  << loghex(*ase->codec_config.audio_channel_allocation)
+                  << " source_num_of_devices: "
+                  << stream_conf->source_num_of_devices
+                  << " source_num_of_channels: "
+                  << stream_conf->source_num_of_channels;
+      }
+    }
+
+    ase = leAudioDevice->GetFirstActiveAseByDataPathState(
+        AudioStreamDataPathState::CIS_ESTABLISHED);
     if (!ase) {
-      leAudioDevice = group->GetNextActiveDevice(leAudioDevice);
+      leAudioDevice = group->GetNextActiveDeviceByDataPathState(
+          leAudioDevice, AudioStreamDataPathState::CIS_ESTABLISHED);
 
       if (!leAudioDevice) {
         state_machine_callbacks_->StatusReportCb(group->group_id_,
@@ -460,15 +518,15 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         return;
       }
 
-      ase = leAudioDevice->GetFirstActiveAse();
+      ase = leAudioDevice->GetFirstActiveAseByDataPathState(
+          AudioStreamDataPathState::CIS_ESTABLISHED);
     }
 
     LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active ASE";
-    if (ase->data_path_state == AudioStreamDataPathState::CIS_ESTABLISHED)
+
+    if (ase) {
       PrepareDataPath(ase);
-    else
-      LOG(ERROR) << __func__
-                 << " CIS got disconnected? handle: " << +ase->cis_conn_hdl;
+    }
   }
 
   void ProcessHciNotifRemoveIsoDataPath(LeAudioDeviceGroup* group,
@@ -501,8 +559,12 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       do_disconnect = true;
     }
 
-    if (do_disconnect)
+    if (do_disconnect) {
+      LOG(INFO) << __func__ << ", removing stream configuration";
+      RemoveStreamConfiguration(group, leAudioDevice, conn_hdl);
+      group->CigUnassignCis(leAudioDevice);
       IsoManager::GetInstance()->DisconnectCis(conn_hdl, HCI_ERR_PEER_USER);
+    }
   }
 
   void ProcessHciNotifIsoLinkQualityRead(
@@ -562,9 +624,14 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       stream_conf->sink_streams.erase(
           std::remove_if(stream_conf->sink_streams.begin(),
                          stream_conf->sink_streams.end(),
-                         [leAudioDevice](auto& pair) {
+                         [leAudioDevice, &stream_conf](auto& pair) {
                            auto ases =
                                leAudioDevice->GetAsesByCisConnHdl(pair.first);
+                           if (ases.sink) {
+                             stream_conf->sink_num_of_devices--;
+                             stream_conf->sink_num_of_channels -=
+                                 ases.sink->codec_config.channel_count;
+                           }
                            return ases.sink;
                          }),
           stream_conf->sink_streams.end());
@@ -572,13 +639,29 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       stream_conf->source_streams.erase(
           std::remove_if(stream_conf->source_streams.begin(),
                          stream_conf->source_streams.end(),
-                         [leAudioDevice](auto& pair) {
+                         [leAudioDevice, &stream_conf](auto& pair) {
                            auto ases =
                                leAudioDevice->GetAsesByCisConnHdl(pair.first);
+                           if (ases.source) {
+                             stream_conf->source_num_of_devices--;
+                             stream_conf->source_num_of_channels -=
+                                 ases.source->codec_config.channel_count;
+                           }
                            return ases.source;
                          }),
           stream_conf->source_streams.end());
+
+      LOG(INFO) << __func__
+                << " sink_num_of_devices: " << stream_conf->sink_num_of_devices
+                << " source_num_of_devices: "
+                << stream_conf->source_num_of_devices
+                << " sink_num_of_channels: "
+                << stream_conf->sink_num_of_channels
+                << " source_num_of_channels: "
+                << stream_conf->source_num_of_channels;
     }
+
+    group->CigUnassignCis(leAudioDevice);
 
     /* mark ASEs as not used. */
     leAudioDevice->DeactivateAllAses();
@@ -738,30 +821,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           AudioStreamDataPathState::CIS_ASSIGNED;
     }
 
-    /* Invalidate stream configuration if needed */
-    auto* stream_conf = &group->stream_conf;
-    if (!stream_conf->sink_streams.empty() ||
-        !stream_conf->source_streams.empty()) {
-      if (ases_pair.sink) {
-        stream_conf->sink_streams.erase(
-            std::remove_if(stream_conf->sink_streams.begin(),
-                           stream_conf->sink_streams.end(),
-                           [&event](auto& pair) {
-                             return event->cis_conn_hdl == pair.first;
-                           }),
-            stream_conf->sink_streams.end());
-      }
-
-      if (ases_pair.source) {
-        stream_conf->source_streams.erase(
-            std::remove_if(stream_conf->source_streams.begin(),
-                           stream_conf->source_streams.end(),
-                           [&event](auto& pair) {
-                             return event->cis_conn_hdl == pair.first;
-                           }),
-            stream_conf->source_streams.end());
-      }
-    }
+    LOG(INFO) << __func__ << ", removing stream configuration";
+    RemoveStreamConfiguration(group, leAudioDevice, event->cis_conn_hdl);
+    group->CigUnassignCis(leAudioDevice);
 
     auto target_state = group->GetTargetState();
     switch (target_state) {
@@ -874,22 +936,71 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         INT_TO_PTR(group->group_id_));
   }
 
+  void RemoveStreamConfiguration(LeAudioDeviceGroup* group,
+                                 LeAudioDevice* leAudioDevice,
+                                 uint16_t cis_conn_hdl) {
+    auto ases_pair = leAudioDevice->GetAsesByCisConnHdl(cis_conn_hdl);
+    /* Invalidate stream configuration if needed */
+    auto* stream_conf = &group->stream_conf;
+
+    LOG(INFO) << __func__ << " cis handle: " << +cis_conn_hdl;
+
+    if (!stream_conf->sink_streams.empty() ||
+        !stream_conf->source_streams.empty()) {
+      if (ases_pair.sink) {
+        stream_conf->sink_streams.erase(
+            std::remove_if(
+                stream_conf->sink_streams.begin(),
+                stream_conf->sink_streams.end(),
+                [cis_conn_hdl, &stream_conf, &ases_pair](auto& pair) {
+                  if (cis_conn_hdl == pair.first) {
+                    stream_conf->sink_num_of_devices--;
+                    stream_conf->sink_num_of_channels -=
+                        ases_pair.sink->codec_config.channel_count;
+                  }
+                  return cis_conn_hdl == pair.first;
+                }),
+            stream_conf->sink_streams.end());
+      }
+
+      if (ases_pair.source) {
+        stream_conf->source_streams.erase(
+            std::remove_if(
+                stream_conf->source_streams.begin(),
+                stream_conf->source_streams.end(),
+                [cis_conn_hdl, &stream_conf, &ases_pair](auto& pair) {
+                  if (cis_conn_hdl == pair.first) {
+                    stream_conf->source_num_of_devices--;
+                    stream_conf->source_num_of_channels -=
+                        ases_pair.source->codec_config.channel_count;
+                  }
+                  return cis_conn_hdl == pair.first;
+                }),
+            stream_conf->source_streams.end());
+      }
+
+      LOG(INFO) << __func__
+                << " sink_num_of_devices: " << stream_conf->sink_num_of_devices
+                << " source_num_of_devices: "
+                << stream_conf->source_num_of_devices
+                << " sink_num_of_channels: "
+                << stream_conf->sink_num_of_channels
+                << " source_num_of_channels: "
+                << stream_conf->source_num_of_channels;
+    }
+  }
+
   void CigCreate(LeAudioDeviceGroup* group) {
-    LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
-    struct ase* ase;
     uint32_t sdu_interval_mtos, sdu_interval_stom;
-    uint8_t packing, framing, sca;
+    uint16_t max_trans_lat_mtos, max_trans_lat_stom;
+    uint16_t max_sdu_size_mtos, max_sdu_size_stom;
+    uint8_t packing, framing, sca, phy_mtos, phy_stom;
+    uint8_t rtn_mtos, rtn_stom;
     std::vector<EXT_CIS_CFG> cis_cfgs;
 
     if (group->cig_created_) {
       LOG(ERROR) << __func__ << " group id " << group->group_id_
                  << " is already created  in the controller. ";
-      return;
-    }
-
-    if (!leAudioDevice) {
-      LOG(ERROR) << __func__ << ", no active devices in group";
-
       return;
     }
 
@@ -900,45 +1011,39 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     sca = group->GetSCA();
     packing = group->GetPacking();
     framing = group->GetFraming();
-    uint16_t max_trans_lat_mtos = group->GetMaxTransportLatencyMtos();
-    uint16_t max_trans_lat_stom = group->GetMaxTransportLatencyStom();
+    max_trans_lat_mtos = group->GetMaxTransportLatencyMtos();
+    max_trans_lat_stom = group->GetMaxTransportLatencyStom();
+    phy_mtos = group->GetPhyBitmask(le_audio::types::kLeAudioDirectionSink);
+    phy_stom = group->GetPhyBitmask(le_audio::types::kLeAudioDirectionSource);
+    max_sdu_size_mtos =
+        group->GetMaxSduSize(le_audio::types::kLeAudioDirectionSink);
+    max_sdu_size_stom =
+        group->GetMaxSduSize(le_audio::types::kLeAudioDirectionSource);
+    rtn_mtos = group->GetRtn(le_audio::types::kLeAudioDirectionSink);
+    rtn_stom = group->GetRtn(le_audio::types::kLeAudioDirectionSource);
 
-    do {
-      ase = leAudioDevice->GetFirstActiveAse();
-      LOG_ASSERT(ase) << __func__
-                      << " shouldn't be called without an active ASE";
-      do {
-        auto& cis = ase->cis_id;
-        ASSERT_LOG(ase->cis_id != le_audio::kInvalidCisId,
-                   " ase id %d has invalid cis id %d", ase->id, ase->cis_id);
-        auto iter =
-            find_if(cis_cfgs.begin(), cis_cfgs.end(),
-                    [&cis](auto const& cfg) { return cis == cfg.cis_id; });
-
-        /* CIS configuration already on list */
-        if (iter != cis_cfgs.end()) continue;
-
-        auto ases_pair = leAudioDevice->GetAsesByCisId(cis);
-        EXT_CIS_CFG cis_cfg = {0, 0, 0, 0, 0, 0, 0};
-
-        cis_cfg.cis_id = ase->cis_id;
-        cis_cfg.phy_mtos =
-            group->GetPhyBitmask(le_audio::types::kLeAudioDirectionSink);
-        cis_cfg.phy_stom =
-            group->GetPhyBitmask(le_audio::types::kLeAudioDirectionSource);
-
-        if (ases_pair.sink) {
-          cis_cfg.max_sdu_size_mtos = ases_pair.sink->max_sdu_size;
-          cis_cfg.rtn_mtos = ases_pair.sink->retrans_nb;
-        }
-        if (ases_pair.source) {
-          cis_cfg.max_sdu_size_stom = ases_pair.source->max_sdu_size;
-          cis_cfg.rtn_stom = ases_pair.source->retrans_nb;
-        }
-
+    for (struct cis& cis : group->cises_) {
+      EXT_CIS_CFG cis_cfg = {};
+      cis_cfg.cis_id = cis.id;
+      cis_cfg.phy_mtos = phy_mtos;
+      cis_cfg.phy_stom = phy_stom;
+      if (cis.type == le_audio::types::CisType::CIS_TYPE_BIDIRECTIONAL) {
+        cis_cfg.max_sdu_size_mtos = max_sdu_size_mtos;
+        cis_cfg.rtn_mtos = rtn_mtos;
+        cis_cfg.max_sdu_size_stom = max_sdu_size_stom;
+        cis_cfg.rtn_stom = rtn_stom;
         cis_cfgs.push_back(cis_cfg);
-      } while ((ase = leAudioDevice->GetNextActiveAse(ase)));
-    } while ((leAudioDevice = group->GetNextActiveDevice(leAudioDevice)));
+      } else if (cis.type ==
+                 le_audio::types::CisType::CIS_TYPE_UNIDIRECTIONAL_SINK) {
+        cis_cfg.max_sdu_size_mtos = max_sdu_size_mtos;
+        cis_cfg.rtn_mtos = rtn_mtos;
+        cis_cfgs.push_back(cis_cfg);
+      } else {
+        cis_cfg.max_sdu_size_stom = max_sdu_size_stom;
+        cis_cfg.rtn_stom = rtn_stom;
+        cis_cfgs.push_back(cis_cfg);
+      }
+    }
 
     bluetooth::hci::iso_manager::cig_create_params param = {
         .sdu_itv_mtos = sdu_interval_mtos,
@@ -1051,11 +1156,13 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
   }
 
   static inline void PrepareDataPath(LeAudioDeviceGroup* group) {
-    auto* leAudioDevice = group->GetFirstActiveDevice();
+    auto* leAudioDevice = group->GetFirstActiveDeviceByDataPathState(
+        AudioStreamDataPathState::CIS_ESTABLISHED);
     LOG_ASSERT(leAudioDevice)
         << __func__ << " Shouldn't be called without an active device.";
 
-    auto* ase = leAudioDevice->GetFirstActiveAse();
+    auto* ase = leAudioDevice->GetFirstActiveAseByDataPathState(
+        AudioStreamDataPathState::CIS_ESTABLISHED);
     LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active ASE";
     PrepareDataPath(ase);
   }
@@ -1141,26 +1248,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     ase = leAudioDevice->GetFirstActiveAse();
     LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active ASE";
     do {
-      uint8_t cis_id = ase->cis_id;
-      if (cis_id == le_audio::kInvalidCisId) {
-        /* Get completive (to be bi-directional CIS) CIS ID for ASE */
-        cis_id = leAudioDevice->GetMatchingBidirectionCisId(ase);
-        if (cis_id == le_audio::kInvalidCisId) {
-          /* Get next free CIS ID for group */
-          cis_id = group->GetFirstFreeCisId();
-          if (cis_id == le_audio::kInvalidCisId) {
-            LOG(ERROR) << __func__ << ", failed to get free CIS ID";
-            StopStream(group);
-            return;
-          }
-        }
-      }
-
-      LOG_INFO(" Configure ase_id %d, cis_id %d, ase state %s", ase->id, cis_id,
-               ToString(ase->state).c_str());
-
-      ase->cis_id = cis_id;
-
       conf.ase_id = ase->id;
       conf.target_latency = ase->target_latency;
       conf.target_phy = group->GetTargetPhy(ase->direction);
@@ -1570,6 +1657,12 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                                LeAudioDevice* leAudioDevice) {
     std::vector<struct le_audio::client_parser::ascs::ctp_qos_conf> confs;
 
+    if (!group->CigAssignCisIds(leAudioDevice)) {
+      LOG(ERROR) << __func__ << ", unable to assign cis ids";
+      StopStream(group);
+      return;
+    }
+
     for (struct ase* ase = leAudioDevice->GetFirstActiveAse(); ase != nullptr;
          ase = leAudioDevice->GetNextActiveAse(ase)) {
       /* TODO: Configure first ASE qos according to context type */
@@ -1716,7 +1809,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
           /* We are here because of the reconnection of the single device. */
-          CisCreateForDevice(leAudioDevice);
+          PrepareDataPath(group);
           return;
         }
 
@@ -1730,20 +1823,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         ase->state = AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING;
 
-        if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
-          /* We are here because of the reconnection of the single device. */
-          auto* stream_conf = &group->stream_conf;
-          if (ase->direction == le_audio::types::kLeAudioDirectionSource) {
-            stream_conf->source_streams.emplace_back(
-                std::make_pair(ase->cis_conn_hdl,
-                               *ase->codec_config.audio_channel_allocation));
-          } else {
-            stream_conf->sink_streams.emplace_back(
-                std::make_pair(ase->cis_conn_hdl,
-                               *ase->codec_config.audio_channel_allocation));
-          }
-        }
-
         if (!group->HaveAllActiveDevicesAsesTheSameState(
                 AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
           /* More ASEs notification form this device has to come for this group
@@ -1754,6 +1833,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
           /* We are here because of the reconnection of the single device. */
+          PrepareDataPath(group);
           return;
         }
 
@@ -1899,6 +1979,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                        AudioStreamDataPathState::CIS_ESTABLISHED ||
                    ase->data_path_state ==
                        AudioStreamDataPathState::CIS_PENDING) {
+          LOG(INFO) << __func__ << ", removing stream configuration";
+          RemoveStreamConfiguration(group, leAudioDevice, ase->cis_conn_hdl);
+          group->CigUnassignCis(leAudioDevice);
           IsoManager::GetInstance()->DisconnectCis(ase->cis_conn_hdl,
                                                    HCI_ERR_PEER_USER);
         } else {
