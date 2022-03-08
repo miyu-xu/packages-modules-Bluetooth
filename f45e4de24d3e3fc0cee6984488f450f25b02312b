@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b37daac_50cf8a97",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-08T03:03:00Z",
+      "side": 1,
+      "message": "\"put to HFP mode, start then stop call, capture btsnoop and verify\n+CIEV commands show up at when the call starts/stops with correct call status.\"\n\nit\u0027d be great to attach the btsnoop lines we care (e.g SCO estalishment follows by +CIEV cmd) in the commit message.",
+      "range": {
+        "startLine": 17,
+        "startChar": 13,
+        "endLine": 17,
+        "endChar": 41
+      },
+      "revId": "f45e4de24d3e3fc0cee6984488f450f25b02312b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b2ed6bb_d77e65cc",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-08T03:03:00Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be STATE_ACTIVE?",
+      "range": {
+        "startLine": 184,
+        "startChar": 59,
+        "endLine": 184,
+        "endChar": 80
+      },
+      "revId": "f45e4de24d3e3fc0cee6984488f450f25b02312b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67403a15_c006b8ba",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-08T03:03:00Z",
+      "side": 1,
+      "message": "what is the difference in purpose of STATE_DISCONNECTED and STATE_IDLE?",
+      "range": {
+        "startLine": 201,
+        "startChar": 59,
+        "endLine": 201,
+        "endChar": 79
+      },
+      "revId": "f45e4de24d3e3fc0cee6984488f450f25b02312b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
