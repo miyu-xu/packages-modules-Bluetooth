@@ -445,7 +445,8 @@ size_t LeAudioClientInterface::Source::Write(const uint8_t* p_buf,
 
 LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
     StreamCallbacks stream_cb,
-    bluetooth::common::MessageLoopThread* message_loop) {
+    bluetooth::common::MessageLoopThread*
+        message_loop /* TODO consider session type here */) {
   if (sink_ == nullptr) {
     sink_ = new Sink();
   } else {

@@ -104,32 +104,62 @@ struct LeAudioCodecConfiguration {
 /* Represents source of audio for le audio client */
 class LeAudioClientAudioSource {
  public:
-  static bool Start(const LeAudioCodecConfiguration& codecConfiguration,
-                    LeAudioClientAudioSinkReceiver* audioReceiver);
-  static void Stop();
-  static const void* Acquire();
-  static void Release(const void* instance);
-  static void ConfirmStreamingRequest();
-  static void CancelStreamingRequest();
-  static void UpdateRemoteDelay(uint16_t remote_delay_ms);
-  static void UpdateAudioConfigToHal(const ::le_audio::offload_config& config);
-  static void SuspendedForReconfiguration();
+  virtual ~LeAudioClientAudioSource() = default;
+
+  bool Start(const LeAudioCodecConfiguration& codecConfiguration,
+             LeAudioClientAudioSinkReceiver* audioReceiver);
+  void Stop();
+  void Release(const void* instance);
+  void ConfirmStreamingRequest();
+  void CancelStreamingRequest();
+  void UpdateRemoteDelay(uint16_t remote_delay_ms);
+  void UpdateAudioConfigToHal(const ::le_audio::offload_config& config);
+
   static void DebugDump(int fd);
+
+ protected:
+  const void* Acquire();
+
+ private:
+  bool SinkOnResumeReq(bool start_media_task);
+  bool SinkOnSuspendReq();
+  bool SinkOnMetadataUpdateReq(const source_metadata_t& source_metadata);
+
+  void StartAudioTicks();
+  void SendAudioData();
+
+  LeAudioClientAudioSinkReceiver* audioSinkReceiver_;
 };
 
 /* Represents audio sink for le audio client */
 class LeAudioClientAudioSink {
  public:
-  static bool Start(const LeAudioCodecConfiguration& codecConfiguration,
-                    LeAudioClientAudioSourceReceiver* audioReceiver);
-  static void Stop();
-  static const void* Acquire();
-  static void Release(const void* instance);
-  static size_t SendData(uint8_t* data, uint16_t size);
-  static void ConfirmStreamingRequest();
-  static void CancelStreamingRequest();
-  static void UpdateRemoteDelay(uint16_t remote_delay_ms);
-  static void UpdateAudioConfigToHal(const ::le_audio::offload_config& config);
-  static void SuspendedForReconfiguration();
+  bool Start(const LeAudioCodecConfiguration& codecConfiguration,
+             LeAudioClientAudioSourceReceiver* audioReceiver);
+  void Stop();
+  const void* Acquire();
+  void Release(const void* instance);
+  size_t SendData(uint8_t* data, uint16_t size);
+  void ConfirmStreamingRequest();
+  void CancelStreamingRequest();
+  void UpdateRemoteDelay(uint16_t remote_delay_ms);
+  void UpdateAudioConfigToHal(const ::le_audio::offload_config& config);
+
   static void DebugDump(int fd);
+
+ private:
+  bool SourceOnResumeReq(bool start_media_task);
+  bool SourceOnSuspendReq();
+
+  LeAudioClientAudioSourceReceiver* audioSourceReceiver_;
+};
+
+class LeAudioUnicastClientAudioSource : public LeAudioClientAudioSource {
+ public:
+  const void* Acquire();
+};
+
+class LeAudioBroadcastClientAudioSource : public LeAudioClientAudioSource {
+ public:
+  const void* Acquire();
 };
