@@ -34,6 +34,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothLeAudio;
+import android.bluetooth.IBluetoothLeAudioCallback;
 import android.bluetooth.IBluetoothLeBroadcastCallback;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
@@ -122,6 +123,9 @@ public class LeAudioService extends ProfileService {
 
     @VisibleForTesting
     RemoteCallbackList<IBluetoothLeBroadcastCallback> mBroadcastCallbacks;
+
+    @VisibleForTesting
+    RemoteCallbackList<IBluetoothLeAudioCallback> mUnicastCallbacks;
 
     private class LeAudioGroupDescriptor {
         LeAudioGroupDescriptor() {
@@ -215,6 +219,7 @@ public class LeAudioService extends ProfileService {
         filter.addAction(BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED);
         mConnectionStateChangedReceiver = new ConnectionStateChangedReceiver();
         registerReceiver(mConnectionStateChangedReceiver, filter);
+        mUnicastCallbacks = new RemoteCallbackList<IBluetoothLeAudioCallback>();
 
         // Initialize Broadcast native interface
         if (mAdapterService.isLeAudioBroadcastSourceSupported()) {
@@ -289,6 +294,10 @@ public class LeAudioService extends ProfileService {
 
         if (mBroadcastCallbacks != null) {
             mBroadcastCallbacks.kill();
+        }
+
+        if (mUnicastCallbacks != null) {
+            mUnicastCallbacks.kill();
         }
 
         mBroadcastStateMap.clear();
@@ -1525,6 +1534,21 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    private void notifyUnicastCodecConfigChanged(BluetoothDevice device,
+                                                 BluetoothLeAudioCodecStatus status) {
+        if (mUnicastCallbacks != null) {
+            int n = mUnicastCallbacks.beginBroadcast();
+            for (int i = 0; i < n; i++) {
+                try {
+                    mUnicastCallbacks.getBroadcastItem(i).onCodecConfigChanged(device, status);
+                } catch (RemoteException e) {
+                    continue;
+                }
+            }
+            mUnicastCallbacks.finishBroadcast();
+        }
+    }
+
     private void notifyBroadcastStarted(Integer instanceId, int reason) {
         if (!mBroadcastIdMap.containsKey(instanceId)) {
             Log.e(TAG, "Unknown Broadcast ID for broadcast instance: " + instanceId);
@@ -1972,6 +1996,42 @@ public class LeAudioService extends ProfileService {
                 if (service != null) {
                     service.setVolume(volume);
                 }
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void registerCallback(IBluetoothLeAudioCallback callback,
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            LeAudioService service = getService(source);
+            if ((service == null) || (service.mUnicastCallbacks == null)) {
+                receiver.propagateException(new IllegalStateException("Service is unavailable"));
+                return;
+            }
+
+            enforceBluetoothPrivilegedPermission(service);
+            try {
+                service.mUnicastCallbacks.register(callback);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void unregisterCallback(IBluetoothLeAudioCallback callback,
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            LeAudioService service = getService(source);
+            if ((service == null) || (service.mUnicastCallbacks == null)) {
+                receiver.propagateException(new IllegalStateException("Service is unavailable"));
+                return;
+            }
+
+            enforceBluetoothPrivilegedPermission(service);
+            try {
+                service.mUnicastCallbacks.unregister(callback);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
