@@ -22,6 +22,75 @@
       },
       "revId": "539eea8b9e3ce7e07f4b05cb8798dff17b9bca94",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71b9b49c_21736568",
+        "filename": "system/gd/rust/stack/src/hci/controller_facade.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-08T01:01:28Z",
+      "side": 1,
+      "message": "I don\u0027t think you should need this here.",
+      "range": {
+        "startLine": 10,
+        "startChar": 22,
+        "endLine": 10,
+        "endChar": 35
+      },
+      "revId": "539eea8b9e3ce7e07f4b05cb8798dff17b9bca94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8164044_a2a9f66e",
+        "filename": "system/gd/rust/stack/src/hci/controller_facade.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-08T01:01:28Z",
+      "side": 1,
+      "message": "This is a lot of work to check if it is supported. It looks like you\u0027re checking if the packet parses, which is different than if the controller supports it.  I expected the code to read the supported commands at the beginning, then save those bytes for parsing later.",
+      "range": {
+        "startLine": 85,
+        "startChar": 8,
+        "endLine": 86,
+        "endChar": 50
+      },
+      "revId": "539eea8b9e3ce7e07f4b05cb8798dff17b9bca94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a01e5ea_50812b80",
+        "filename": "system/gd/rust/stack/src/hci/controller_facade.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-08T01:01:28Z",
+      "side": 1,
+      "message": "Same thing here.  If it has already been read, return the cached value.",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 45
+      },
+      "revId": "539eea8b9e3ce7e07f4b05cb8798dff17b9bca94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
