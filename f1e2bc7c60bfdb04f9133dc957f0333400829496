@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e656f589_793a3d80",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1516608
+      },
+      "writtenOn": "2022-03-08T21:00:37Z",
+      "side": 1,
+      "message": "I\u0027m no longer the owner of GD fuzz test. Maybe change to android-bluetooth@google.com",
+      "revId": "f1e2bc7c60bfdb04f9133dc957f0333400829496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
