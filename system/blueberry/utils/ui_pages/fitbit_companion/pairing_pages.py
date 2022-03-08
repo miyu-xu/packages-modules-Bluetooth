@@ -493,3 +493,33 @@ class MonitorOxygenSetupPage(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_text(self._NODE_NEXT_BTN_TEXT)
+
+
+class AllsetPage(ui_core.UIPage):
+  """Fitbit Companion App's page to show all done after pairing."""
+
+  PAGE_TEXT = "You're all set!"
+  _NODE_DONE_BTN_TEXT = 'DONE'
+
+  def done(self) -> ui_core.UIPage:
+    """Completes the setup process.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_DONE_BTN_TEXT)
+
+
+class OnWristCallLoadingPage(ui_core.UIPage):
+  """Fitbit Companion App's page while loading on wrist call."""
+
+  PAGE_RE_TEXT = 'Loading On-wrist calls'
+  _NODE_SKIP_BTN_TEXT = 'SKIP'
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
