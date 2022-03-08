@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3960c0b9_1cd096ff",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-03-08T21:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "795ad7c7_1f8a37e4",
+      "revId": "29b527669784eebcb1b9b3dbd5d2e54d6df9ed32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fec9f35_72241fd8",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-03-08T18:21:30Z",
       "side": 1,
       "message": "There should be a TODO for Profile::Hid and Profile::Hogp. These should be available via the hidhost topshim. You may want to open a new bug and put this in the same epic for follow-up.\n\nThe hidhost callbacks actually provide the BthhConnectionState but we currently don\u0027t handle or cache it anywhere (see linux/stack/src/lib.rs for Message::HidHost).",
+      "revId": "29b527669784eebcb1b9b3dbd5d2e54d6df9ed32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfe7473c_83e53935",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1100,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-03-08T21:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fec9f35_72241fd8",
       "revId": "29b527669784eebcb1b9b3dbd5d2e54d6df9ed32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
