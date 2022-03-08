@@ -146,7 +146,8 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
          *  set: {@link #FEATURE_BIT_NUM_TYPE_MONAURAL}, {@link #FEATURE_BIT_NUM_TYPE_BANDED},
          *  {@link #FEATURE_BIT_NUM_SYNCHRONIZATED_PRESETS},
          *  {@link #FEATURE_BIT_NUM_INDEPENDENT_PRESETS}, {@link #FEATURE_BIT_NUM_DYNAMIC_PRESETS},
-         *  {@link #FEATURE_BIT_NUM_WRITABLE_PRESETS}.
+         *  {@link #FEATURE_BIT_NUM_WRITABLE_PRESETS}. The inidividual bits are defined by
+         *  Bluetooth SIG in Hearing Access Service specification.
          *
          * @hide
          */
