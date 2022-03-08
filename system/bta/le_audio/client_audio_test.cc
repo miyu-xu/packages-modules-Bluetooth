@@ -242,20 +242,20 @@ class LeAudioClientAudioTest : public ::testing::Test {
   }
 
   void AcquireAudioSink(void) {
-    audio_sink_instance_ = LeAudioClientAudioSink::Acquire();
+    audio_sink_instance_ = leAudioClientAudioSink.Acquire();
   }
 
   void ReleaseAudioSink(void) {
-    LeAudioClientAudioSink::Release(audio_sink_instance_);
+    leAudioClientAudioSink.Release(audio_sink_instance_);
     audio_sink_instance_ = nullptr;
   }
 
   void AcquireAudioSource(void) {
-    audio_source_instance_ = LeAudioClientAudioSource::Acquire();
+    audio_source_instance_ = leAudioUnicastClientAudioSource.Acquire();
   }
 
   void ReleaseAudioSource(void) {
-    LeAudioClientAudioSource::Release(audio_source_instance_);
+    leAudioUnicastClientAudioSource.Release(audio_source_instance_);
     audio_source_instance_ = nullptr;
   }
 
@@ -272,6 +272,9 @@ class LeAudioClientAudioTest : public ::testing::Test {
     bluetooth::audio::le_audio::sink_mock = nullptr;
     bluetooth::audio::le_audio::source_mock = nullptr;
   }
+
+  LeAudioUnicastClientAudioSource leAudioUnicastClientAudioSource;
+  LeAudioClientAudioSink leAudioClientAudioSink;
 
   MockLeAudioClientInterface mock_client_interface_;
   MockLeAudioClientInterfaceSink mock_client_interface_sink_;
@@ -326,8 +329,8 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkStartStop) {
   EXPECT_CALL(mock_client_interface_source_, StartSession()).Times(1);
 
   AcquireAudioSink();
-  ASSERT_TRUE(LeAudioClientAudioSink::Start(default_codec_conf,
-                                            &mock_hal_source_event_receiver_));
+  ASSERT_TRUE(leAudioClientAudioSink.Start(default_codec_conf,
+                                           &mock_hal_source_event_receiver_));
 
   ASSERT_EQ(params.channels_count,
             bluetooth::audio::le_audio::kChannelNumberMono);
@@ -338,7 +341,7 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkStartStop) {
 
   EXPECT_CALL(mock_client_interface_source_, StopSession()).Times(1);
 
-  LeAudioClientAudioSink::Stop();
+  leAudioClientAudioSink.Stop();
 }
 
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceStartStop) {
@@ -349,8 +352,8 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceStartStop) {
   EXPECT_CALL(mock_client_interface_sink_, StartSession()).Times(1);
 
   AcquireAudioSource();
-  ASSERT_TRUE(LeAudioClientAudioSource::Start(default_codec_conf,
-                                              &mock_hal_sink_event_receiver_));
+  ASSERT_TRUE(leAudioUnicastClientAudioSource.Start(
+      default_codec_conf, &mock_hal_sink_event_receiver_));
 
   ASSERT_EQ(params.channels_count,
             bluetooth::audio::le_audio::kChannelNumberMono);
@@ -361,13 +364,13 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceStartStop) {
 
   EXPECT_CALL(mock_client_interface_sink_, StopSession()).Times(1);
 
-  LeAudioClientAudioSource::Stop();
+  leAudioUnicastClientAudioSource.Stop();
 }
 
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkSendData) {
   AcquireAudioSink();
-  ASSERT_TRUE(LeAudioClientAudioSink::Start(default_codec_conf,
-                                            &mock_hal_source_event_receiver_));
+  ASSERT_TRUE(leAudioClientAudioSink.Start(default_codec_conf,
+                                           &mock_hal_source_event_receiver_));
 
   const uint8_t* exp_p = nullptr;
   uint32_t exp_len = 0;
@@ -381,18 +384,18 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkSendData) {
       .WillByDefault(DoAll(SaveArg<0>(&exp_p), SaveArg<1>(&exp_len),
                            ReturnPointee(&exp_len)));
 
-  ASSERT_EQ(LeAudioClientAudioSink::SendData(input_buf, sizeof(input_buf)),
+  ASSERT_EQ(leAudioClientAudioSink.SendData(input_buf, sizeof(input_buf)),
             sizeof(input_buf));
   ASSERT_EQ(exp_len, sizeof(input_buf));
   ASSERT_EQ(exp_p, input_buf);
 
-  LeAudioClientAudioSource::Stop();
+  leAudioUnicastClientAudioSource.Stop();
 }
 
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkSuspend) {
   AcquireAudioSink();
-  ASSERT_TRUE(LeAudioClientAudioSink::Start(default_codec_conf,
-                                            &mock_hal_source_event_receiver_));
+  ASSERT_TRUE(leAudioClientAudioSink.Start(default_codec_conf,
+                                           &mock_hal_source_event_receiver_));
 
   ASSERT_NE(hal_source_stream_cb.on_suspend_, nullptr);
 
@@ -405,8 +408,8 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkSuspend) {
 
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceSuspend) {
   AcquireAudioSource();
-  ASSERT_TRUE(LeAudioClientAudioSource::Start(default_codec_conf,
-                                              &mock_hal_sink_event_receiver_));
+  ASSERT_TRUE(leAudioUnicastClientAudioSource.Start(
+      default_codec_conf, &mock_hal_sink_event_receiver_));
 
   ASSERT_NE(hal_sink_stream_cb.on_suspend_, nullptr);
 
@@ -419,8 +422,8 @@ TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceSuspend) {
 
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSinkResume) {
   AcquireAudioSink();
-  ASSERT_TRUE(LeAudioClientAudioSink::Start(default_codec_conf,
-                                            &mock_hal_source_event_receiver_));
+  ASSERT_TRUE(leAudioClientAudioSink.Start(default_codec_conf,
+                                           &mock_hal_source_event_receiver_));
 
   ASSERT_NE(hal_source_stream_cb.on_resume_, nullptr);
 
@@ -441,8 +444,8 @@ TEST_F(LeAudioClientAudioTest,
       .data_interval_us = LeAudioCodecConfiguration::kInterval10000Us,
   };
   AcquireAudioSource();
-  ASSERT_TRUE(LeAudioClientAudioSource::Start(codec_conf,
-                                              &mock_hal_sink_event_receiver_));
+  ASSERT_TRUE(leAudioUnicastClientAudioSource.Start(
+      codec_conf, &mock_hal_sink_event_receiver_));
 
   std::chrono::time_point<std::chrono::system_clock> resumed_ts;
   std::chrono::time_point<std::chrono::system_clock> executed_ts;
@@ -485,7 +488,7 @@ TEST_F(LeAudioClientAudioTest,
   resumed_ts = std::chrono::system_clock::now();
   bool start_media_task = true;
   ASSERT_TRUE(hal_sink_stream_cb.on_resume_(start_media_task));
-  LeAudioClientAudioSource::ConfirmStreamingRequest();
+  leAudioUnicastClientAudioSource.ConfirmStreamingRequest();
 
   ASSERT_EQ(future.wait_for(std::chrono::seconds(1)),
             std::future_status::ready);
@@ -513,8 +516,8 @@ TEST_F(LeAudioClientAudioTest,
 
 TEST_F(LeAudioClientAudioTest, testLeAudioClientAudioSourceResume) {
   AcquireAudioSource();
-  ASSERT_TRUE(LeAudioClientAudioSource::Start(default_codec_conf,
-                                              &mock_hal_sink_event_receiver_));
+  ASSERT_TRUE(leAudioUnicastClientAudioSource.Start(
+      default_codec_conf, &mock_hal_sink_event_receiver_));
 
   ASSERT_NE(hal_sink_stream_cb.on_resume_, nullptr);
 
