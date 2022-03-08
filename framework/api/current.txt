@@ -423,6 +423,7 @@ package android.bluetooth {
     method public long getCodecSpecific4();
     method public int getCodecType();
     method public int getSampleRate();
+    method public boolean isMandatoryCodec();
     method public void writeToParcel(android.os.Parcel, int);
     field public static final int BITS_PER_SAMPLE_16 = 1; // 0x1
     field public static final int BITS_PER_SAMPLE_24 = 2; // 0x2
@@ -1227,6 +1228,8 @@ package android.bluetooth.le {
     field public static final int SCAN_FAILED_APPLICATION_REGISTRATION_FAILED = 2; // 0x2
     field public static final int SCAN_FAILED_FEATURE_UNSUPPORTED = 4; // 0x4
     field public static final int SCAN_FAILED_INTERNAL_ERROR = 3; // 0x3
+    field public static final int SCAN_FAILED_OUT_OF_HARDWARE_RESOURCES = 5; // 0x5
+    field public static final int SCAN_FAILED_SCANNING_TOO_FREQUENTLY = 6; // 0x6
   }
 
   public final class ScanFilter implements android.os.Parcelable {
