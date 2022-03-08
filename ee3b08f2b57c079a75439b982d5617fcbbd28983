@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e8a426f_8bda27a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-03-08T14:56:55Z",
+      "side": 1,
+      "message": "Follow-up to https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2007194",
+      "revId": "ee3b08f2b57c079a75439b982d5617fcbbd28983",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
