@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "795ad7c7_1f8a37e4",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-08T18:35:33Z",
+      "side": 1,
+      "message": "We have several of debug prints `{:?}` in btclient. I think that we should only use debug print for logs. I am okay with leaving it here for now since we already have some instances of them, but please file a bug to clean them up.",
+      "revId": "29b527669784eebcb1b9b3dbd5d2e54d6df9ed32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5fec9f35_72241fd8",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
