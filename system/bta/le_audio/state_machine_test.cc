@@ -2307,7 +2307,8 @@ TEST_F(StateMachineTest, testConfigureDataPathForHost) {
   PrepareEnableHandler(group, 1);
 
   EXPECT_CALL(*mock_codec_manager_, GetCodecLocation())
-      .WillOnce(Return(types::CodecLocation::HOST));
+      .Times(2)
+      .WillRepeatedly(Return(types::CodecLocation::HOST));
 
   EXPECT_CALL(
       *mock_iso_manager_,
@@ -2336,7 +2337,8 @@ TEST_F(StateMachineTest, testConfigureDataPathForAdsp) {
   PrepareEnableHandler(group, 1);
 
   EXPECT_CALL(*mock_codec_manager_, GetCodecLocation())
-      .WillOnce(Return(types::CodecLocation::ADSP));
+      .Times(2)
+      .WillRepeatedly(Return(types::CodecLocation::ADSP));
 
   EXPECT_CALL(
       *mock_iso_manager_,
@@ -2413,7 +2415,7 @@ TEST_F(StateMachineTest, testAttachDeviceToTheStream) {
 
   EXPECT_CALL(*mock_iso_manager_, CreateCig(_, _)).Times(1);
   EXPECT_CALL(*mock_iso_manager_, EstablishCis(_)).Times(2);
-  EXPECT_CALL(*mock_iso_manager_, SetupIsoDataPath(_, _)).Times(2);
+  EXPECT_CALL(*mock_iso_manager_, SetupIsoDataPath(_, _)).Times(3);
 
   InjectInitialIdleNotification(group);
 
