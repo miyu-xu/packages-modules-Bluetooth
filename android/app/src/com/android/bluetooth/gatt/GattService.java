@@ -111,28 +111,6 @@ public class GattService extends ProfileService {
     private static final int TRUNCATED_RESULT_SIZE = 11;
     private static final int TIME_STAMP_LENGTH = 2;
 
-    private enum MatchOrigin {
-        PSEUDO_ADDRESS,
-        ORIGINAL_ADDRESS
-    }
-
-    private static class MatchResult {
-        private final boolean mMatches;
-        private final MatchOrigin mOrigin;
-        private MatchResult(boolean matches, MatchOrigin origin) {
-            this.mMatches = matches;
-            this.mOrigin = origin;
-        }
-
-        public boolean getMatches() {
-            return mMatches;
-        }
-
-        public MatchOrigin getMatchOrigin() {
-            return mOrigin;
-        }
-    }
-
     /**
      * The default floor value for LE batch scan report delays greater than 0
      */
@@ -1208,7 +1186,6 @@ public class GattService extends ProfileService {
         for (ScanClient client : mScanManager.getRegularScanQueue()) {
             ScannerMap.App app = mScannerMap.getById(client.scannerId);
             if (app == null) {
-                Log.i(TAG, "App is null; skip.");
                 continue;
             }
 
@@ -1220,7 +1197,6 @@ public class GattService extends ProfileService {
             if (settings.getLegacy()) {
                 if ((eventType & ET_LEGACY_MASK) == 0) {
                     // If this is legacy scan, but nonlegacy result - skip.
-                    Log.i(TAG, "Legacy scan, non legacy result; skip.");
                     continue;
                 } else {
                     // Some apps are used to fixed-size advertise data.
@@ -1238,7 +1214,6 @@ public class GattService extends ProfileService {
 
             if (client.hasDisavowedLocation) {
                 if (mLocationDenylistPredicate.test(result)) {
-                    Log.i(TAG, "Skipping client for location deny list");
                     continue;
                 }
             }
@@ -1259,22 +1234,11 @@ public class GattService extends ProfileService {
                     result = sanitized;
                 }
             }
-            MatchResult matchResult = matchesFilters(client, result, originalAddress);
-            if (!hasPermission || !matchResult.getMatches()) {
-                Log.i(TAG, "Skipping client: permission="
-                        + hasPermission + " matches=" + matchResult.getMatches());
+            if (!hasPermission || !matchesFilters(client, result)) {
                 continue;
             }
 
-            if (matchResult.getMatchOrigin() == MatchOrigin.ORIGINAL_ADDRESS) {
-                result = new ScanResult(BluetoothAdapter.getDefaultAdapter()
-                        .getRemoteDevice(originalAddress), eventType, primaryPhy, secondaryPhy,
-                        advertisingSid, txPower, rssi, periodicAdvInt, scanRecord,
-                        SystemClock.elapsedRealtimeNanos());
-            }
-
             if ((settings.getCallbackType() & ScanSettings.CALLBACK_TYPE_ALL_MATCHES) == 0) {
-                Log.i(TAG, "Skipping client: CALLBACK_TYPE_ALL_MATCHES");
                 continue;
             }
 
@@ -1373,28 +1337,16 @@ public class GattService extends ProfileService {
     }
 
     // Check if a scan record matches a specific filters.
-    private MatchResult matchesFilters(ScanClient client, ScanResult scanResult) {
-        return matchesFilters(client, scanResult, null);
-    }
-
-    // Check if a scan record matches a specific filters or original address
-    private MatchResult matchesFilters(ScanClient client, ScanResult scanResult,
-            String originalAddress) {
+    private boolean matchesFilters(ScanClient client, ScanResult scanResult) {
         if (client.filters == null || client.filters.isEmpty()) {
-            // TODO: Do we really wanna return true here?
-            return new MatchResult(true, MatchOrigin.PSEUDO_ADDRESS);
+            return true;
         }
         for (ScanFilter filter : client.filters) {
-            // Need to check the filter matches, and the original address without changing the API
             if (filter.matches(scanResult)) {
-                return new MatchResult(true, MatchOrigin.PSEUDO_ADDRESS);
-            }
-            if (originalAddress != null
-                    && originalAddress.equalsIgnoreCase(filter.getDeviceAddress())) {
-                return new MatchResult(true, MatchOrigin.ORIGINAL_ADDRESS);
+                return true;
             }
         }
-        return new MatchResult(false, MatchOrigin.PSEUDO_ADDRESS);
+        return false;
     }
 
     void onClientRegistered(int status, int clientIf, long uuidLsb, long uuidMsb)
@@ -2006,7 +1958,7 @@ public class GattService extends ProfileService {
         // Reconstruct the scan results.
         ArrayList<ScanResult> results = new ArrayList<ScanResult>();
         for (ScanResult scanResult : permittedResults) {
-            if (matchesFilters(client, scanResult).getMatches()) {
+            if (matchesFilters(client, scanResult)) {
                 results.add(scanResult);
             }
         }
