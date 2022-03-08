@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd787695_b96d385c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-08T22:17:00Z",
+      "side": 1,
+      "message": "Shouldn\u0027t you also call `self.intf.lock().unwrap().set_remote_device_property(...)`?",
+      "revId": "bfbfc490fe44159a11d7ea226cc5e4239870e3f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
