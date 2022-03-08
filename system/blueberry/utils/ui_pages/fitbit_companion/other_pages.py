@@ -602,3 +602,51 @@ class WebPageNotReadyPage(ui_core.UIPage):
     self.ctx.back()
     self.ctx.get_page()
     return self.ctx.page
+
+
+class NotificationPopup(ui_core.UIPage):
+  """Popup for notification."""
+
+  PAGE_TEXT = 'Allow Fitbit to send you notifications?'
+  _NODE_ALLOW_BTN_TEXT = 'Allow'
+  _NODE_NOT_ALLOW_BTN_TEXT = 'Don’t allow'
+
+  def allow(self) -> ui_core.UIPage:
+    """Allows the notification.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_ALLOW_BTN_TEXT)
+
+  def not_allow(self) -> ui_core.UIPage:
+    """Does not allows the notification.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_NOT_ALLOW_BTN_TEXT)
+
+
+class FitbitManagePopup(ui_core.UIPage):
+  """Popup from Fitbit for device management."""
+
+  PAGE_RE_TEXT = 'Allow Fitbit to manage your'
+  _NODE_ALLOW_BTN_TEXT = 'Allow'
+  _NODE_NOT_ALLOW_BTN_TEXT = 'Don’t allow'
+
+  def allow(self) -> ui_core.UIPage:
+    """Allows the notification.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_ALLOW_BTN_TEXT)
+
+  def not_allow(self) -> ui_core.UIPage:
+    """Does not allows the notification.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_NOT_ALLOW_BTN_TEXT)
