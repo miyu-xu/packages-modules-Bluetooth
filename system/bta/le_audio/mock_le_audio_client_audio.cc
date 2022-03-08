@@ -20,140 +20,144 @@
 #include <base/logging.h>
 
 /* Source mock */
-static MockLeAudioClientAudioSource* source_instance = nullptr;
-void MockLeAudioClientAudioSource::SetMockInstanceForTesting(
-    MockLeAudioClientAudioSource* mock) {
-  source_instance = mock;
-}
-
-bool LeAudioClientAudioSource::Start(
-    const LeAudioCodecConfiguration& codecConfiguration,
-    LeAudioClientAudioSinkReceiver* audioReceiver) {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  return source_instance->Start(codecConfiguration, audioReceiver);
-}
-
-void LeAudioClientAudioSource::Stop() {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  source_instance->Stop();
-}
-
-// FIXME: This is wrong! we will return a different class object - not even in
-// inheritance hierarchy
-const void* LeAudioClientAudioSource::Acquire() {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  return source_instance->Acquire();
-}
-
-void LeAudioClientAudioSource::Release(const void* inst) {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  source_instance->Release(inst);
-}
-
-void LeAudioClientAudioSource::ConfirmStreamingRequest() {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSink interface not set!";
-  source_instance->ConfirmStreamingRequest();
-}
-
-void LeAudioClientAudioSource::CancelStreamingRequest() {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSink interface not set!";
-  source_instance->CancelStreamingRequest();
-}
-
-void LeAudioClientAudioSource::UpdateRemoteDelay(uint16_t delay) {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  source_instance->UpdateRemoteDelay(delay);
-}
-
-void LeAudioClientAudioSource::DebugDump(int fd) {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  source_instance->DebugDump(fd);
-}
-
-void LeAudioClientAudioSource::UpdateAudioConfigToHal(
-    const ::le_audio::offload_config& config) {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  source_instance->UpdateAudioConfigToHal(config);
-}
-
-void LeAudioClientAudioSource::SuspendedForReconfiguration() {
-  LOG_ASSERT(source_instance)
-      << "Mock LeAudioClientAudioSource interface not set!";
-  source_instance->SuspendedForReconfiguration();
-}
-
-/* Sink mock */
-static MockLeAudioClientAudioSink* sink_instance = nullptr;
-void MockLeAudioClientAudioSink::SetMockInstanceForTesting(
-    MockLeAudioClientAudioSink* mock) {
-  sink_instance = mock;
-}
-
-bool LeAudioClientAudioSink::Start(
-    const LeAudioCodecConfiguration& codecConfiguration,
-    LeAudioClientAudioSourceReceiver* audioReceiver) {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  return sink_instance->Start(codecConfiguration, audioReceiver);
-}
-
-void LeAudioClientAudioSink::Stop() {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->Stop();
-}
-
-// FIXME: This is wrong! we will return a different class object - not even in
-// inheritance hierarchy
-const void* LeAudioClientAudioSink::Acquire() {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  return sink_instance->Acquire();
-}
-
-void LeAudioClientAudioSink::Release(const void* inst) {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->Release(inst);
-}
-
-void LeAudioClientAudioSink::UpdateRemoteDelay(uint16_t delay) {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->UpdateRemoteDelay(delay);
-}
-
-void LeAudioClientAudioSink::DebugDump(int fd) {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->DebugDump(fd);
-}
-
-size_t LeAudioClientAudioSink::SendData(uint8_t* data, uint16_t size) {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  return sink_instance->SendData(data, size);
-}
-
-void LeAudioClientAudioSink::ConfirmStreamingRequest() {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->ConfirmStreamingRequest();
-}
-
-void LeAudioClientAudioSink::CancelStreamingRequest() {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->CancelStreamingRequest();
-}
-
-void LeAudioClientAudioSink::UpdateAudioConfigToHal(
-    const ::le_audio::offload_config& config) {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->UpdateAudioConfigToHal(config);
-}
-
-void LeAudioClientAudioSink::SuspendedForReconfiguration() {
-  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not set!";
-  sink_instance->SuspendedForReconfiguration();
-}
+// static MockLeAudioUnicastClientAudioSource* source_unicast_instance =
+// nullptr; static MockLeAudioBroadcastClientAudioSource*
+// source_broadast_instance = nullptr; void
+// MockLeAudioUnicastClientAudioSource::SetMockInstanceForTesting(
+//    MockLeAudioUnicastClientAudioSource* mock) {
+//  source_unicast_instance = mock;
+//}
+//
+// bool LeAudioClientAudioSource::Start(
+//    const LeAudioCodecConfiguration& codecConfiguration,
+//    LeAudioClientAudioSinkReceiver* audioReceiver) {
+//  LOG_ASSERT(source_unicast_instance || source_broadcast_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  return source_unicast_instance->Start(codecConfiguration, audioReceiver);
+//}
+//
+// void LeAudioClientAudioSource::Stop() {
+//  LOG_ASSERT(source_unicast_instance || source_broadcast_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  source_unicast_instance->Stop();
+//}
+//
+// const void* LeAudioUnicastClientAudioSource::Acquire() {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioUnicastClientAudioSource interface not set!";
+//  return source_unicast_instance->Acquire();
+//}
+//
+// const void* LeAudioBroadastClientAudioSource::Acquire() {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioBroadcastClientAudioSource interface not set!";
+//  return source_broadcast_instance->Acquire();
+//}
+//
+//// FIXME: This is wrong! we will return a different class object - not even in
+//// inheritance hierarchy
+// const void* LeAudioClientAudioSource::Acquire() {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  return source_unicast_instance->Acquire();
+//}
+//
+// void LeAudioClientAudioSource::Release(const void* inst) {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  source_unicast_instance->Release(inst);
+//}
+//
+// void LeAudioClientAudioSource::ConfirmStreamingRequest() {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioClientAudioSink interface not set!";
+//  source_unicast_instance->ConfirmStreamingRequest();
+//}
+//
+// void LeAudioClientAudioSource::CancelStreamingRequest() {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioClientAudioSink interface not set!";
+//  source_unicast_instance->CancelStreamingRequest();
+//}
+//
+// void LeAudioClientAudioSource::UpdateRemoteDelay(uint16_t delay) {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  source_unicast_instance->UpdateRemoteDelay(delay);
+//}
+//
+// void LeAudioClientAudioSource::DebugDump(int fd) {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  source_unicast_instance->DebugDump(fd);
+//}
+//
+// void LeAudioClientAudioSource::UpdateAudioConfigToHal(
+//    const ::le_audio::offload_config& config) {
+//  LOG_ASSERT(source_unicast_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  source_unicast_instance->UpdateAudioConfigToHal(config);
+//}
+//
+///* Sink mock */
+// static MockLeAudioClientAudioSink* sink_instance = nullptr;
+// void MockLeAudioClientAudioSink::SetMockInstanceForTesting(
+//    MockLeAudioClientAudioSink* mock) {
+//  sink_instance = mock;
+//}
+//
+// bool LeAudioClientAudioSink::Start(
+//    const LeAudioCodecConfiguration& codecConfiguration,
+//    LeAudioClientAudioSourceReceiver* audioReceiver) {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; return sink_instance->Start(codecConfiguration, audioReceiver);
+//}
+//
+// void LeAudioClientAudioSink::Stop() {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; sink_instance->Stop();
+//}
+//
+//// FIXME: This is wrong! we will return a different class object - not even in
+//// inheritance hierarchy
+// const void* LeAudioClientAudioSink::Acquire() {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; return sink_instance->Acquire();
+//}
+//
+// void LeAudioClientAudioSink::Release(const void* inst) {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; sink_instance->Release(inst);
+//}
+//
+// void LeAudioClientAudioSink::UpdateRemoteDelay(uint16_t delay) {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; sink_instance->UpdateRemoteDelay(delay);
+//}
+//
+// void LeAudioClientAudioSink::DebugDump(int fd) {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; sink_instance->DebugDump(fd);
+//}
+//
+// size_t LeAudioClientAudioSink::SendData(uint8_t* data, uint16_t size) {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; return sink_instance->SendData(data, size);
+//}
+//
+// void LeAudioClientAudioSink::ConfirmStreamingRequest() {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; sink_instance->ConfirmStreamingRequest();
+//}
+//
+// void LeAudioClientAudioSink::CancelStreamingRequest() {
+//  LOG_ASSERT(sink_instance) << "Mock LeAudioClientAudioSink interface not
+//  set!"; sink_instance->CancelStreamingRequest();
+//}
+//
+// void LeAudioClientAudioSink::UpdateAudioConfigToHal(
+//    const ::le_audio::offload_config& config) {
+//  LOG_ASSERT(sink_instance)
+//      << "Mock LeAudioClientAudioSource interface not set!";
+//  sink_instance->UpdateAudioConfigToHal(config);
+//}
