@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "151ffadf_d9fe3d50",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 522,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-08T22:03:01Z",
+      "side": 1,
+      "message": "nit: this is a bit misleading since the device may not be BT classic, empty string is better.",
+      "range": {
+        "startLine": 522,
+        "startChar": 44,
+        "endLine": 522,
+        "endChar": 58
+      },
+      "revId": "4b4de301c3cbb4822677f2794e25d0ecd38ef5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
