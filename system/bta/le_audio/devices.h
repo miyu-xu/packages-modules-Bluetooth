@@ -105,6 +105,8 @@ class LeAudioDevice {
   struct types::ase* GetFirstActiveAseByDirection(uint8_t direction);
   struct types::ase* GetNextActiveAseWithSameDirection(
       struct types::ase* base_ase);
+  struct types::ase* GetNextActiveAseWithDifferentDirection(
+      struct types::ase* base_ase);
   struct types::ase* GetFirstActiveAseByDataPathState(
       types::AudioStreamDataPathState state);
   struct types::ase* GetFirstInactiveAse(uint8_t direction,
@@ -194,6 +196,7 @@ class LeAudioDeviceGroup {
   types::AudioLocations snk_audio_locations_;
   types::AudioLocations src_audio_locations_;
 
+  std::vector<struct types::cis> cises_;
   explicit LeAudioDeviceGroup(const int group_id)
       : group_id_(group_id),
         cig_state_(types::CigState::NONE),
@@ -217,6 +220,7 @@ class LeAudioDeviceGroup {
       types::LeAudioContextType context_type = types::LeAudioContextType::RFU);
   void Activate(void);
   void Deactivate(void);
+  void CigClearCis(void);
   void Cleanup(void);
   LeAudioDevice* GetFirstDevice(void);
   LeAudioDevice* GetFirstDeviceWithActiveContext(
@@ -226,15 +230,29 @@ class LeAudioDeviceGroup {
       LeAudioDevice* leAudioDevice, types::LeAudioContextType context_type);
   LeAudioDevice* GetFirstActiveDevice(void);
   LeAudioDevice* GetNextActiveDevice(LeAudioDevice* leAudioDevice);
+  LeAudioDevice* GetFirstActiveDeviceByDataPathState(
+      types::AudioStreamDataPathState data_path_state);
+  LeAudioDevice* GetNextActiveDeviceByDataPathState(
+      LeAudioDevice* leAudioDevice,
+      types::AudioStreamDataPathState data_path_state);
   bool IsDeviceInTheGroup(LeAudioDevice* leAudioDevice);
   bool HaveAllActiveDevicesAsesTheSameState(types::AseState state);
   bool IsGroupStreamReady(void);
   bool HaveAllActiveDevicesCisDisc(void);
   uint8_t GetFirstFreeCisId(void);
+  uint8_t GetFirstFreeCisId(types::CisType cis_type);
+  void CigGenerateCisIds(types::LeAudioContextType context_type);
+  bool CigAssignCisIds(LeAudioDevice* leAudioDevice);
+  void CigAssignCisConnHandles(const std::vector<uint16_t> conn_handles);
+  void CigAssignCisConnHandlesToAses(LeAudioDevice* leAudioDevice);
+  void CigAssignCisConnHandlesToAses(void);
+  void CigUnassignCis(LeAudioDevice* leAudioDevice);
   bool Configure(types::LeAudioContextType context_type, int ccid = 1);
   bool SetContextType(types::LeAudioContextType context_type);
   types::LeAudioContextType GetContextType(void);
   uint32_t GetSduInterval(uint8_t direction);
+  uint16_t GetMaxSduSize(uint8_t direction);
+  uint8_t GetRtn(uint8_t direction);
   uint8_t GetSCA(void);
   uint8_t GetPacking(void);
   uint8_t GetFraming(void);
@@ -253,6 +271,9 @@ class LeAudioDeviceGroup {
   types::LeAudioContextType GetCurrentContextType(void);
   bool IsPendingConfiguration(void);
   void SetPendingConfiguration(void);
+  bool IsReConfigurationNeeded(
+      LeAudioDevice* leAudioDevice,
+      const set_configurations::AudioSetConfiguration* audio_set_conf);
   types::AudioContexts GetActiveContexts(void);
   std::optional<LeAudioCodecConfiguration> GetCodecConfigurationByDirection(
       types::LeAudioContextType group_context_type, uint8_t direction);

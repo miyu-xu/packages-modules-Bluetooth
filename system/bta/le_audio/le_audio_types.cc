@@ -69,6 +69,37 @@ static uint8_t min_req_devices_cnt(
   return curr_min_req_devices_cnt;
 }
 
+void get_cis_count(const AudioSetConfigurations* audio_set_confs,
+                   uint8_t* cis_count_bidir, uint8_t* cis_count_unidir_sink,
+                   uint8_t* cis_count_unidir_source) {
+  uint8_t max_req_dev_cnt = 0;
+
+  for (auto audio_set_conf : *audio_set_confs) {
+    std::pair<uint8_t /* sink */, uint8_t /* source */> snk_src_pair(0, 0);
+    uint8_t req_devices_cnt = 0;
+
+    for (auto ent : (*audio_set_conf).confs) {
+      if (ent.direction == kLeAudioDirectionSink)
+        snk_src_pair.first += ent.device_cnt;
+      if (ent.direction == kLeAudioDirectionSource)
+        snk_src_pair.second += ent.device_cnt;
+    }
+
+    req_devices_cnt = std::max(snk_src_pair.first, snk_src_pair.second);
+
+    if (req_devices_cnt > max_req_dev_cnt) {
+      max_req_dev_cnt = req_devices_cnt;
+      *cis_count_bidir = std::min(snk_src_pair.first, snk_src_pair.second);
+      *cis_count_unidir_sink = ((snk_src_pair.first - *cis_count_bidir) > 0)
+                                   ? (snk_src_pair.first - *cis_count_bidir)
+                                   : 0;
+      *cis_count_unidir_source = ((snk_src_pair.second - *cis_count_bidir) > 0)
+                                     ? (snk_src_pair.second - *cis_count_bidir)
+                                     : 0;
+    }
+  }
+}
+
 bool check_if_may_cover_scenario(const AudioSetConfigurations* audio_set_confs,
                                  uint8_t group_size) {
   if (!audio_set_confs) {
