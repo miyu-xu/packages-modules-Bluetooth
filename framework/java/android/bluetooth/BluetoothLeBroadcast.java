@@ -41,6 +41,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeoutException;
 
@@ -420,12 +421,8 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
     })
     public void registerCallback(@NonNull @CallbackExecutor Executor executor,
             @NonNull Callback callback) {
-        if (executor == null) {
-            throw new IllegalArgumentException("executor cannot be null");
-        }
-        if (callback == null) {
-            throw new IllegalArgumentException("callback cannot be null");
-        }
+        Objects.requireNonNull(executor, "executor cannot be null");
+        Objects.requireNonNull(callback, "callback cannot be null");
         if (!isEnabled()) {
             throw new IllegalStateException("service not enabled");
         }
@@ -476,9 +473,7 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     public void unregisterCallback(@NonNull Callback callback) {
-        if (callback == null) {
-            throw new IllegalArgumentException("callback cannot be null");
-        }
+        Objects.requireNonNull(callback, "callback cannot be null");
 
         if (DBG) log("unregisterCallback");
 

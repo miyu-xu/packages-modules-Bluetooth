@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.Executor;
 
 /**
@@ -527,12 +528,8 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
     })
     public void registerCallback(@NonNull @CallbackExecutor Executor executor,
             @NonNull Callback callback) {
-        if (executor == null) {
-            throw new IllegalArgumentException("executor cannot be null");
-        }
-        if (callback == null) {
-            throw new IllegalArgumentException("callback cannot be null");
-        }
+        Objects.requireNonNull(executor, "executor cannot be null");
+        Objects.requireNonNull(callback, "callback cannot be null");
         log("registerCallback");
         final IBluetoothLeBroadcastAssistant service = getService();
         if (service == null) {
@@ -565,9 +562,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     public void unregisterCallback(@NonNull Callback callback) {
-        if (callback == null) {
-            throw new IllegalArgumentException("callback cannot be null");
-        }
+        Objects.requireNonNull(callback, "callback cannot be null");
         log("unregisterCallback");
         final IBluetoothLeBroadcastAssistant service = getService();
         if (service == null) {
