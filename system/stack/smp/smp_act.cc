@@ -399,6 +399,11 @@ void smp_send_csrk_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   p_cb->total_tx_unacked =
       p_cb->total_tx_unacked > 0 ? p_cb->total_tx_unacked - 1 : 0;
 
+  if (p_cb->wait_for_authorization_complete) {
+    LOG_INFO("set wait_for_authorization_complete to false");
+    p_cb->wait_for_authorization_complete = false;
+  }
+
   if (smp_send_cmd(SMP_OPCODE_SIGN_INFO, p_cb)) {
     tBTM_LE_KEY_VALUE key = {
         .lcsrk_key =
