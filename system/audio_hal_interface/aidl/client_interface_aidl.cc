@@ -193,7 +193,9 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
        transport_->GetSessionType() ==
            SessionType::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH ||
        transport_->GetSessionType() ==
-           SessionType::LE_AUDIO_SOFTWARE_DECODING_DATAPATH);
+           SessionType::LE_AUDIO_SOFTWARE_DECODING_DATAPATH ||
+       transport_->GetSessionType() ==
+           SessionType::LE_AUDIO_BROADCAST_SOFTWARE_ENCODING_DATAPATH);
   bool is_a2dp_offload_session =
       (transport_->GetSessionType() ==
        SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
@@ -201,7 +203,9 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
       (transport_->GetSessionType() ==
            SessionType::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH ||
        transport_->GetSessionType() ==
-           SessionType::LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH);
+           SessionType::LE_AUDIO_HARDWARE_OFFLOAD_DECODING_DATAPATH ||
+       transport_->GetSessionType() ==
+           SessionType::LE_AUDIO_BROADCAST_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
   auto audio_config_tag = audio_config.getTag();
   bool is_software_audio_config =
       (is_software_session &&
