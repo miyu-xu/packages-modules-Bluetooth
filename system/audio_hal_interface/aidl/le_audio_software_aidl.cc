@@ -59,7 +59,7 @@ bool is_source_hal_enabled() {
 }
 
 bool is_sink_hal_enabled() {
-  return LeAudioSinkTransport::interface != nullptr;
+  return LeAudioSinkTransport::interface_unicast_ != nullptr;
 }
 
 LeAudioTransport::LeAudioTransport(void (*flush)(void),
@@ -186,7 +186,7 @@ void LeAudioTransport::ClearPendingStartStream(void) {
 void flush_sink() {
   if (!is_sink_hal_enabled()) return;
 
-  LeAudioSinkTransport::interface->FlushAudioData();
+  LeAudioSinkTransport::interface_unicast_->FlushAudioData();
 }
 
 LeAudioSinkTransport::LeAudioSinkTransport(SessionType session_type,
