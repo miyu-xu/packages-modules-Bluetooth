@@ -401,6 +401,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f505687d_cfa38133",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-08T00:33:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d6db9c26_1232cc6a",
+      "range": {
+        "startLine": 487,
+        "startChar": 17,
+        "endLine": 487,
+        "endChar": 35
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21b90e54_938fbbfd",
@@ -579,6 +603,30 @@
       "side": 1,
       "message": "It could happen if CONNECT_TIMEOUT and CONNECTION_STATE_CHANGED are sent simultaneously in the order.",
       "parentUuid": "36262cab_67296d44",
+      "range": {
+        "startLine": 281,
+        "startChar": 35,
+        "endLine": 281,
+        "endChar": 50
+      },
+      "revId": "43ec5f0e540b5ed1a8f39492d178903a8319e0a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aac31d12_d554a903",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-08T00:33:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0aaa78d9_5f6dafd4",
       "range": {
         "startLine": 281,
         "startChar": 35,

@@ -89,6 +89,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59a1373f_66a5c6fa",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-08T00:33:41Z",
+      "side": 1,
+      "message": "What happens if processConnecctionEvent comes after sendMessage(DISCONNECT)?",
+      "range": {
+        "startLine": 350,
+        "startChar": 20,
+        "endLine": 350,
+        "endChar": 31
+      },
+      "revId": "7ff433be81ac6a66ac912ce448a6869cdb6f4e1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "472b10fd_0d9caca1",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-08T00:33:41Z",
+      "side": 1,
+      "message": "Should we cancel disconnect and try to connect in this case?",
+      "range": {
+        "startLine": 414,
+        "startChar": 19,
+        "endLine": 414,
+        "endChar": 62
+      },
+      "revId": "7ff433be81ac6a66ac912ce448a6869cdb6f4e1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dfc23818_d6975a35",
         "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
         "patchSetId": 16
