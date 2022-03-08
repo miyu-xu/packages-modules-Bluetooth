@@ -116,9 +116,12 @@ class LeAudioClientInterface {
   // Get LE Audio sink client interface if it's not previously acquired and not
   // yet released.
   Sink* GetSink(StreamCallbacks stream_cb,
-                bluetooth::common::MessageLoopThread* message_loop);
-  // This should be called before trying to get sink interface
-  bool IsSinkAcquired();
+                bluetooth::common::MessageLoopThread* message_loop,
+                bool is_broadcasting_session_type);
+  // This should be called before trying to get unicast sink interface
+  bool IsUnicastSinkAcquired();
+  // This should be called before trying to get broadcast sink interface
+  bool IsBroadcastSinkAcquired();
   // Release sink interface if belongs to LE audio client interface
   bool ReleaseSink(Sink* sink);
 
@@ -136,7 +139,8 @@ class LeAudioClientInterface {
 
  private:
   static LeAudioClientInterface* interface;
-  Sink* sink_ = nullptr;
+  Sink* unicast_sink_ = nullptr;
+  Sink* broadcast_sink_ = nullptr;
   Source* source_ = nullptr;
 };
 
