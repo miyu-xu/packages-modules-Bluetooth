@@ -590,3 +590,15 @@ class DownloadAppPopup(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_text(self._NODE_DONE_BTN_TEXT)
+
+
+class WebPageNotReadyPage(ui_core.UIPage):
+  """Fitbit Companion App's page stands for that web page which is not ready."""
+
+  PAGE_TEXT = 'Webpage not available'
+
+  def back(self) -> ui_core.UIPage:
+    """Gets back to previous page."""
+    self.ctx.back()
+    self.ctx.get_page()
+    return self.ctx.page
