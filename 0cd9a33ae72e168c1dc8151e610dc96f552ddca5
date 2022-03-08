@@ -176,6 +176,24 @@
       "parentUuid": "e55308ea_14d740fc",
       "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "788f0a1b_2c670335",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-08T06:00:13Z",
+      "side": 1,
+      "message": "We don\u0027t yet have a dedicated home for documenting security changes, so for now I noted this in go/project-floss under \"Follow-up topics\".",
+      "parentUuid": "532be9da_a0ac018e",
+      "revId": "0cd9a33ae72e168c1dc8151e610dc96f552ddca5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
