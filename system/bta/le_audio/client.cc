@@ -1236,13 +1236,31 @@ class LeAudioClientImpl : public LeAudioClient {
       BTA_GATTC_RegisterForNotifications(
           gatt_if_, leAudioDevice->address_,
           leAudioDevice->audio_supp_cont_hdls_.val_hdl);
-    if (leAudioDevice->ctp_hdls_.val_hdl != 0)
-      BTA_GATTC_RegisterForNotifications(gatt_if_, leAudioDevice->address_,
-                                         leAudioDevice->ctp_hdls_.val_hdl);
+    if (leAudioDevice->ctp_hdls_.val_hdl != 0) {
+      LOG(INFO) << "Registering notification for ASE Control Point "
+                   "characteristic, handle: "
+                << loghex(leAudioDevice->ctp_hdls_.val_hdl)
+                << ", ccc handle: " << loghex(leAudioDevice->ctp_hdls_.ccc_hdl);
+      if (!subscribe_for_indications(leAudioDevice->conn_id_,
+                                     leAudioDevice->address_,
+                                     leAudioDevice->ctp_hdls_.val_hdl,
+                                     leAudioDevice->ctp_hdls_.ccc_hdl, true)) {
+        DisconnectDevice(leAudioDevice);
+        return;
+      }
+    }
 
-    for (struct ase& ase : leAudioDevice->ases_)
-      BTA_GATTC_RegisterForNotifications(gatt_if_, leAudioDevice->address_,
-                                         ase.hdls.val_hdl);
+    for (struct ase& ase : leAudioDevice->ases_) {
+      LOG(INFO) << "Registering notification for ASE characteristic, handle: "
+                << loghex(leAudioDevice->ctp_hdls_.val_hdl)
+                << ", ccc handle: " << loghex(leAudioDevice->ctp_hdls_.ccc_hdl);
+      if (!subscribe_for_indications(leAudioDevice->conn_id_,
+                                     leAudioDevice->address_, ase.hdls.val_hdl,
+                                     ase.hdls.ccc_hdl, true)) {
+        DisconnectDevice(leAudioDevice);
+        return;
+      }
+    }
   }
 
   void OnEncryptionComplete(const RawAddress& address, uint8_t status) {
@@ -1976,6 +1994,10 @@ class LeAudioClientImpl : public LeAudioClient {
     }
     std::vector<uint8_t> chan_encoded(num_channels * byte_count, 0);
 
+    LOG(INFO) << __func__ << " data size: " << (int)data.size()
+              << " byte count: " << byte_count
+              << " num_channels: " << num_channels;
+
     if (num_channels == 1) {
       /* Since we always get two channels from framework, lets make it mono here
        */
@@ -2006,8 +2028,6 @@ class LeAudioClientImpl : public LeAudioClient {
   struct le_audio::stream_configuration* GetStreamConfigurationByDirection(
       LeAudioDeviceGroup* group, uint8_t direction) {
     struct le_audio::stream_configuration* stream_conf = &group->stream_conf;
-    int num_of_devices = 0;
-    int num_of_channels = 0;
     uint32_t sample_freq_hz = 0;
     uint32_t frame_duration_us = 0;
     uint32_t audio_channel_allocation = 0;
@@ -2023,17 +2043,11 @@ class LeAudioClientImpl : public LeAudioClient {
          device = group->GetNextActiveDevice(device)) {
       auto* ase = device->GetFirstActiveAseByDirection(direction);
 
-      if (ase) {
-        LOG(INFO) << __func__ << "device: " << device->address_;
-        num_of_devices++;
-      }
-
       for (; ase != nullptr;
            ase = device->GetNextActiveAseWithSameDirection(ase)) {
         streams.emplace_back(std::make_pair(
             ase->cis_conn_hdl, *ase->codec_config.audio_channel_allocation));
         audio_channel_allocation |= *ase->codec_config.audio_channel_allocation;
-        num_of_channels += ase->codec_config.channel_count;
         if (sample_freq_hz == 0) {
           sample_freq_hz = ase->codec_config.GetSamplingFrequencyHz();
         } else {
@@ -2087,8 +2101,6 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (direction == le_audio::types::kLeAudioDirectionSource) {
       stream_conf->source_streams = std::move(streams);
-      stream_conf->source_num_of_devices = num_of_devices;
-      stream_conf->source_num_of_channels = num_of_channels;
       stream_conf->source_sample_frequency_hz = sample_freq_hz;
       stream_conf->source_frame_duration_us = frame_duration_us;
       stream_conf->source_audio_channel_allocation = audio_channel_allocation;
@@ -2097,8 +2109,6 @@ class LeAudioClientImpl : public LeAudioClient {
           codec_frames_blocks_per_sdu;
     } else if (direction == le_audio::types::kLeAudioDirectionSink) {
       stream_conf->sink_streams = std::move(streams);
-      stream_conf->sink_num_of_devices = num_of_devices;
-      stream_conf->sink_num_of_channels = num_of_channels;
       stream_conf->sink_sample_frequency_hz = sample_freq_hz;
       stream_conf->sink_frame_duration_us = frame_duration_us;
       stream_conf->sink_audio_channel_allocation = audio_channel_allocation;
@@ -2133,7 +2143,8 @@ class LeAudioClientImpl : public LeAudioClient {
     if ((stream_conf.sink_num_of_devices > 2) ||
         (stream_conf.sink_num_of_devices == 0) ||
         stream_conf.sink_streams.empty()) {
-      LOG(ERROR) << __func__ << " Stream configufation is not valid.";
+      LOG(ERROR) << __func__ << " Stream configufation is not valid."
+                 << " sink_num_of_devices: " << stream_conf.sink_num_of_devices;
       return;
     }
 
@@ -3252,9 +3263,10 @@ class LeAudioClientImpl : public LeAudioClient {
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
     switch (status) {
       case GroupStreamStatus::STREAMING:
-        LOG_ASSERT(group_id == active_group_id_)
-            << __func__ << " invalid group id " << group_id
-            << " active_group_id_ " << active_group_id_;
+        if (group_id == active_group_id_) {
+          LOG(INFO) << __func__ << " group id: " << group_id
+                    << " already in streaming state";
+        }
         if (audio_sender_state_ == AudioState::READY_TO_START)
           StartSendingAudio(group_id);
         if (audio_receiver_state_ == AudioState::READY_TO_START)
