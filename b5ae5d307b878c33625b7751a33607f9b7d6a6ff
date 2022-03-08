@@ -16,6 +16,24 @@
       "message": "It looks like they were asking for the permission to be checked conditionally based on the target SDK. We can push back and say we don\u0027t want 3p apps to use this, but let\u0027s make sure we comment that on the bug.",
       "revId": "b5ae5d307b878c33625b7751a33607f9b7d6a6ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa79a94c_85f1f8fc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-08T13:45:36Z",
+      "side": 1,
+      "message": "Ah yes, I originally wanted to comment on the bug for this. These methods were hidden before becoming SystemApi so 3p apps shouldn\u0027t have accessed those at all. (So there is no need for SDK checks here if I\u0027m not mistaken)",
+      "parentUuid": "abdc2f77_c584692b",
+      "revId": "b5ae5d307b878c33625b7751a33607f9b7d6a6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
