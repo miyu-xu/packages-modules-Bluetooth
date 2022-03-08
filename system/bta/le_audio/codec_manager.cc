@@ -85,7 +85,9 @@ struct codec_manager_impl {
   CodecLocation GetCodecLocation(void) const { return codec_location_; }
 
   void UpdateActiveSourceAudioConfig(
-      const le_audio::stream_configuration& stream_conf, uint16_t delay_ms) {
+      const le_audio::stream_configuration& stream_conf, uint16_t delay_ms,
+      std::function<void(const ::le_audio::offload_config& config)>
+          update_receiver) {
     if (stream_conf.sink_streams.empty()) return;
 
     sink_config.stream_map = std::move(stream_conf.sink_streams);
@@ -99,11 +101,13 @@ struct codec_manager_impl {
     // configuration
     sink_config.blocks_per_sdu = 1;
     sink_config.peer_delay_ms = delay_ms;
-    LeAudioClientAudioSource::UpdateAudioConfigToHal(sink_config);
+    update_receiver(sink_config);
   }
 
   void UpdateActiveSinkAudioConfig(
-      const le_audio::stream_configuration& stream_conf, uint16_t delay_ms) {
+      const le_audio::stream_configuration& stream_conf, uint16_t delay_ms,
+      std::function<void(const ::le_audio::offload_config& config)>
+          update_receiver) {
     if (stream_conf.source_streams.empty()) return;
 
     source_config.stream_map = std::move(stream_conf.source_streams);
@@ -117,7 +121,7 @@ struct codec_manager_impl {
     // configuration
     source_config.blocks_per_sdu = 1;
     source_config.peer_delay_ms = delay_ms;
-    LeAudioClientAudioSink::UpdateAudioConfigToHal(source_config);
+    update_receiver(source_config);
   }
 
   const AudioSetConfigurations* GetOffloadCodecConfig(
@@ -313,17 +317,21 @@ types::CodecLocation CodecManager::GetCodecLocation(void) const {
 }
 
 void CodecManager::UpdateActiveSourceAudioConfig(
-    const stream_configuration& stream_conf, uint16_t delay_ms) {
+    const stream_configuration& stream_conf, uint16_t delay_ms,
+    std::function<void(const ::le_audio::offload_config& config)>
+        update_receiver) {
   if (pimpl_->IsRunning())
-    pimpl_->codec_manager_impl_->UpdateActiveSourceAudioConfig(stream_conf,
-                                                               delay_ms);
+    pimpl_->codec_manager_impl_->UpdateActiveSourceAudioConfig(
+        stream_conf, delay_ms, update_receiver);
 }
 
 void CodecManager::UpdateActiveSinkAudioConfig(
-    const stream_configuration& stream_conf, uint16_t delay_ms) {
+    const stream_configuration& stream_conf, uint16_t delay_ms,
+    std::function<void(const ::le_audio::offload_config& config)>
+        update_receiver) {
   if (pimpl_->IsRunning())
-    pimpl_->codec_manager_impl_->UpdateActiveSinkAudioConfig(stream_conf,
-                                                             delay_ms);
+    pimpl_->codec_manager_impl_->UpdateActiveSinkAudioConfig(
+        stream_conf, delay_ms, update_receiver);
 }
 
 const AudioSetConfigurations* CodecManager::GetOffloadCodecConfig(

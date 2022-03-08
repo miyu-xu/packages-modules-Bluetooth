@@ -445,9 +445,26 @@ size_t LeAudioClientInterface::Source::Write(const uint8_t* p_buf,
 
 LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
     StreamCallbacks stream_cb,
-    bluetooth::common::MessageLoopThread* message_loop) {
-  if (sink_ == nullptr) {
-    sink_ = new Sink();
+    bluetooth::common::MessageLoopThread* message_loop,
+    bool is_broadcasting_session_type) {
+  if (is_broadcasting_session_type && HalVersionManager::GetHalTransport() ==
+                                          BluetoothAudioHalTransport::HIDL) {
+    LOG(WARNING) << __func__
+                 << ", No support for broadcasting Le Audio on HIDL";
+    return nullptr;
+  }
+
+  /* TODO: Add support for simultanous unicast and broadcast transports */
+  if (broadcast_sink_ && unicast_sink_) {
+    LOG(INFO) << __func__
+              << ", No support for simultanous unicast and "
+                 " broadacst session";
+    return nullptr;
+  }
+
+  Sink* sink = is_broadcasting_session_type ? broadcast_sink_ : unicast_sink_;
+  if (sink == nullptr) {
+    sink = new Sink();
   } else {
     LOG(WARNING) << __func__ << ", Sink is already acquired";
     return nullptr;
@@ -473,18 +490,23 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
       hidl::le_audio::LeAudioSinkTransport::interface = nullptr;
       delete hidl::le_audio::LeAudioSinkTransport::instance;
       hidl::le_audio::LeAudioSinkTransport::instance = nullptr;
-      delete sink_;
-      sink_ = nullptr;
+      delete sink;
+      sink = nullptr;
 
       return nullptr;
     }
   } else {
     aidl::SessionType session_type =
-        aidl::SessionType::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
+        is_broadcasting_session_type
+            ? aidl::SessionType::LE_AUDIO_BROADCAST_SOFTWARE_ENCODING_DATAPATH
+            : aidl::SessionType::LE_AUDIO_SOFTWARE_ENCODING_DATAPATH;
     if (CodecManager::GetInstance()->GetCodecLocation() !=
         CodecLocation::HOST) {
       session_type =
-          aidl::SessionType::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH;
+          is_broadcasting_session_type
+              ? aidl::SessionType::
+                    LE_AUDIO_BROADCAST_HARDWARE_OFFLOAD_ENCODING_DATAPATH
+              : aidl::SessionType::LE_AUDIO_HARDWARE_OFFLOAD_ENCODING_DATAPATH;
     }
 
     aidl::le_audio::LeAudioSinkTransport::instance =
@@ -500,20 +522,25 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
       aidl::le_audio::LeAudioSinkTransport::interface = nullptr;
       delete aidl::le_audio::LeAudioSinkTransport::instance;
       aidl::le_audio::LeAudioSinkTransport::instance = nullptr;
-      delete sink_;
-      sink_ = nullptr;
+      delete sink;
+      sink = nullptr;
 
       return nullptr;
     }
   }
 
-  return sink_;
+  return sink;
 }
 
-bool LeAudioClientInterface::IsSinkAcquired() { return sink_ != nullptr; }
+bool LeAudioClientInterface::IsUnicastSinkAcquired() {
+  return unicast_sink_ != nullptr;
+}
+bool LeAudioClientInterface::IsBroadcastSinkAcquired() {
+  return broadcast_sink_ != nullptr;
+}
 
 bool LeAudioClientInterface::ReleaseSink(LeAudioClientInterface::Sink* sink) {
-  if (sink != sink_) {
+  if (sink != unicast_sink_ || sink != broadcast_sink_) {
     LOG(WARNING) << __func__ << ", can't release not acquired sink";
     return false;
   }
@@ -524,8 +551,13 @@ bool LeAudioClientInterface::ReleaseSink(LeAudioClientInterface::Sink* sink) {
        aidl::le_audio::LeAudioSinkTransport::instance))
     sink->Cleanup();
 
-  delete (sink_);
-  sink_ = nullptr;
+  if (sink == unicast_sink_) {
+    delete (unicast_sink_);
+    unicast_sink_ = nullptr;
+  } else if (sink == broadcast_sink_) {
+    delete (broadcast_sink_);
+    broadcast_sink_ = nullptr;
+  }
 
   return true;
 }
