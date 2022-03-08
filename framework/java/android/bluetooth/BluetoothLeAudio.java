@@ -141,10 +141,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
     @SystemApi
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
-    @RequiresPermission(allOf = {
-            android.Manifest.permission.BLUETOOTH_CONNECT,
-            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-    })
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
     public static final String ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED =
             "android.bluetooth.action.LE_AUDIO_ACTIVE_DEVICE_CHANGED";
@@ -163,10 +160,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
      * @hide
      */
     @SystemApi
-    @RequiresPermission(allOf = {
-            android.Manifest.permission.BLUETOOTH_CONNECT,
-            android.Manifest.permission.BLUETOOTH_PRIVILEGED,
-    })
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
     public static final String ACTION_LE_AUDIO_GROUP_NODE_STATUS_CHANGED =
             "android.bluetooth.action.LE_AUDIO_GROUP_NODE_STATUS_CHANGED";
