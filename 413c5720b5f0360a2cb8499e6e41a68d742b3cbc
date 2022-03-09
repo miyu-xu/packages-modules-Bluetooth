@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a62b7398_020d8936",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-09T17:48:08Z",
+      "side": 1,
+      "message": "Instead of logging only, this needs to be rethrow to the caller, there shouldn\u0027t be any silent failures",
+      "range": {
+        "startLine": 729,
+        "startChar": 20,
+        "endLine": 729,
+        "endChar": 95
+      },
+      "revId": "413c5720b5f0360a2cb8499e6e41a68d742b3cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
