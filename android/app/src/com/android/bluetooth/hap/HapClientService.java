@@ -729,7 +729,7 @@ public class HapClientService extends ProfileService {
         return 0x00;
     }
 
-    private int stackEventPresetInfoReasonToProfileStatus(int statusCode) {
+    private int stackEventPresetInfoReasonToProfileReasonCode(int statusCode) {
         switch (statusCode) {
             case HapClientStackEvent.PRESET_INFO_REASON_ALL_PRESET_INFO:
                 return BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST;
@@ -742,7 +742,7 @@ public class HapClientService extends ProfileService {
             case HapClientStackEvent.PRESET_INFO_REASON_PRESET_INFO_REQUEST_RESPONSE:
                 return BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST;
             default:
-                return BluetoothStatusCodes.ERROR_UNKNOWN;
+                return BluetoothStatusCodes.REASON_LOCAL_STACK_REQUEST;
         }
     }
 
@@ -755,7 +755,7 @@ public class HapClientService extends ProfileService {
             for (int i = 0; i < n; i++) {
                 try {
                     mCallbacks.getBroadcastItem(i).onPresetInfoChanged(device, current_presets,
-                            stackEventPresetInfoReasonToProfileStatus(infoReason));
+                            stackEventPresetInfoReasonToProfileReasonCode(infoReason));
                 } catch (RemoteException e) {
                     continue;
                 }
@@ -806,7 +806,7 @@ public class HapClientService extends ProfileService {
         }
     }
 
-    private int stackEventStatusToProfileStatus(int statusCode) {
+    private int stackEventStatusToProfileErrorCode(int statusCode) {
         switch (statusCode) {
             case HapClientStackEvent.STATUS_SET_NAME_NOT_ALLOWED:
                 return BluetoothStatusCodes.ERROR_REMOTE_OPERATION_REJECTED;
@@ -833,7 +833,7 @@ public class HapClientService extends ProfileService {
             for (int i = 0; i < n; i++) {
                 try {
                     mCallbacks.getBroadcastItem(i).onPresetSelectionFailed(device,
-                            stackEventStatusToProfileStatus(statusCode));
+                            stackEventStatusToProfileErrorCode(statusCode));
                 } catch (RemoteException e) {
                     continue;
                 }
@@ -848,7 +848,7 @@ public class HapClientService extends ProfileService {
             for (int i = 0; i < n; i++) {
                 try {
                     mCallbacks.getBroadcastItem(i).onPresetSelectionForGroupFailed(groupId,
-                            stackEventStatusToProfileStatus(statusCode));
+                            stackEventStatusToProfileErrorCode(statusCode));
                 } catch (RemoteException e) {
                     continue;
                 }
@@ -863,7 +863,7 @@ public class HapClientService extends ProfileService {
             for (int i = 0; i < n; i++) {
                 try {
                     mCallbacks.getBroadcastItem(i).onSetPresetNameFailed(device,
-                            stackEventStatusToProfileStatus(statusCode));
+                            stackEventStatusToProfileErrorCode(statusCode));
                 } catch (RemoteException e) {
                     continue;
                 }
@@ -878,7 +878,7 @@ public class HapClientService extends ProfileService {
             for (int i = 0; i < n; i++) {
                 try {
                     mCallbacks.getBroadcastItem(i).onSetPresetNameForGroupFailed(groupId,
-                            stackEventStatusToProfileStatus(statusCode));
+                            stackEventStatusToProfileErrorCode(statusCode));
                 } catch (RemoteException e) {
                     continue;
                 }
