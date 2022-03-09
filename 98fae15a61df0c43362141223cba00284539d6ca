@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "077ad52c_198c7d7f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2313,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-09T06:49:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ac6ab4b_0029b10c",
+      "revId": "98fae15a61df0c43362141223cba00284539d6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18c43db8_b1ad9d78",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-08T14:56:26Z",
       "side": 1,
       "message": "...but here we unconditionally dereference \u0027left\u0027, which might be a null pointer dereference.\n\nI\u0027ve put up a follow-up fix to avoid this: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2015376",
+      "revId": "98fae15a61df0c43362141223cba00284539d6ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71a029e8_3adecf1f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2315,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-09T06:49:25Z",
+      "side": 1,
+      "message": "Follow up patch merged. Thanks!",
+      "parentUuid": "18c43db8_b1ad9d78",
       "revId": "98fae15a61df0c43362141223cba00284539d6ca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
