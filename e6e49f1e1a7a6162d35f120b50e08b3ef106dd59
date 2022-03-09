@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0e40f2_96baf1bd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2006,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-09T06:23:26Z",
+      "side": 1,
+      "message": "registerUnicastCallback",
+      "range": {
+        "startLine": 2006,
+        "startChar": 20,
+        "endLine": 2006,
+        "endChar": 36
+      },
+      "revId": "e6e49f1e1a7a6162d35f120b50e08b3ef106dd59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d8c7408_8d6114be",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-09T06:23:26Z",
+      "side": 1,
+      "message": "unregisterUnicastCallback",
+      "range": {
+        "startLine": 2024,
+        "startChar": 20,
+        "endLine": 2024,
+        "endChar": 38
+      },
+      "revId": "e6e49f1e1a7a6162d35f120b50e08b3ef106dd59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
