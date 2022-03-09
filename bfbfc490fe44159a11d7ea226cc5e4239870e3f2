@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t you also call `self.intf.lock().unwrap().set_remote_device_property(...)`?",
       "revId": "bfbfc490fe44159a11d7ea226cc5e4239870e3f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a39ba98a_cdca691a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 429,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-09T18:44:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd787695_b96d385c",
+      "revId": "bfbfc490fe44159a11d7ea226cc5e4239870e3f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
