@@ -16,12 +16,16 @@
 
 package android.bluetooth;
 
+import android.annotation.IntDef;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * A helper to show a system "Device Picker" activity to the user.
@@ -72,6 +76,17 @@ public interface BluetoothDevicePicker {
     @SuppressLint("ActionValue")
     public static final String ACTION_LAUNCH =
             "android.bluetooth.devicepicker.action.LAUNCH";
+
+    /** @hide */
+    @IntDef(prefix = { "FILTER_TYPE_" }, value = {
+            FILTER_TYPE_ALL,
+            FILTER_TYPE_AUDIO,
+            FILTER_TYPE_TRANSFER,
+            FILTER_TYPE_PANU,
+            FILTER_TYPE_NAP
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface FilterType {}
 
     /** Ask device picker to show all kinds of BT devices */
     public static final int FILTER_TYPE_ALL = 0;

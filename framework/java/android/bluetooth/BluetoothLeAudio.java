@@ -20,6 +20,7 @@ package android.bluetooth;
 import static android.bluetooth.BluetoothUtils.getSyncTimeout;
 
 import android.Manifest;
+import android.annotation.IntRange;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
@@ -128,7 +129,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
     /**
      * Intent used to broadcast group status information.
      *
-     * <p>This intent will have 4 extra:
+     * <p>This intent will have 3 extra:
      * <ul>
      * <li> {@link BluetoothDevice#EXTRA_DEVICE} - The remote device. It can
      * be null if no device is active. </li>
@@ -724,7 +725,7 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
             android.Manifest.permission.BLUETOOTH_CONNECT,
             android.Manifest.permission.BLUETOOTH_PRIVILEGED
     })
-    public void setVolume(int volume) {
+    public void setVolume(@IntRange(from = 0, to = 255) int volume) {
         if (VDBG) log("setVolume(vol: " + volume + " )");
         final IBluetoothLeAudio service = getService();
         if (service == null) {
