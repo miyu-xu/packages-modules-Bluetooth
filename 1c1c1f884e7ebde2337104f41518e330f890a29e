@@ -50,6 +50,29 @@
       "message": "gentle reminder ",
       "revId": "1c1c1f884e7ebde2337104f41518e330f890a29e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38bdc79d_acd7334b",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapSimVcardManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-09T08:44:47Z",
+      "side": 1,
+      "message": "Build break when presubmit\n\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbap/BluetoothPbapSimVcardManager.java:48: error: package javax.obex does not exist\nimport javax.obex.Operation;\n                 ^\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbap/BluetoothPbapSimVcardManager.java:49: error: package javax.obex does not exist\nimport javax.obex.ResponseCodes;\n                 ^\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbap/BluetoothPbapSimVcardManager.java:50: error: package javax.obex does not exist\nimport javax.obex.ServerOperation;",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "1c1c1f884e7ebde2337104f41518e330f890a29e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
