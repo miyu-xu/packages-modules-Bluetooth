@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74f8732e_34bb629d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-09T20:05:55Z",
+      "side": 1,
+      "message": "Should describe what the CL does, not what it fixes.\n\nMaybe something like:\nGD Rust: Instantiate the Controller for HCI Cert tests\n\nGD Rust: Use the Controller to initialize the chip for HCI Cert tests",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "54ae3826aadbba18fbfb1b3e95a5ef147ac4b04e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
