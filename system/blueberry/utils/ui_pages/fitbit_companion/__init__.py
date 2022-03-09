@@ -75,6 +75,7 @@ def get_context(ad: android_device.AndroidDevice,
       account_pages.AccountPage,
       account_pages.PairedDeviceDetailPage,
       account_pages.UnpairConfirmPage,
+      account_pages.GalleryPage,
       pairing_pages.BTPermissionRequestPopup,
       pairing_pages.PurchasePage,
       pairing_pages.PairRetryPage,
@@ -129,22 +130,31 @@ def go_google_play_page(ctx: context.Context) -> None:
     retry_intervals=retry.FuzzedExponentialIntervals(
         initial_delay_sec=1, num_retries=5, factor=1.1))
 def _click_unpair_button_on_device(ctx: context.Context,
-                                   device_node: ui_node.UINode) -> None:
+                                   device_node: ui_node.UINode,
+                                   timeout_sec=14):
   """Unpairs given device.
 
   Args:
     ctx: Context object of Fitbit Companion App.
     device_node: Node of Fitbit device to be unpaired.
+    timeout_sec: Timeout in second to wait for entering paired device
+      detail page.
   """
   ctx.page.click(device_node)
-  ctx.expect_pages([
-      pairing_pages.PairAndLinkPage, account_pages.PairedDeviceDetailPage,
-      other_pages.ConfirmLocationPermissionPopup
-  ])
-  if ctx.is_page(pairing_pages.PairAndLinkPage):
-    ctx.page.cancel()
-  elif ctx.is_page(other_pages.ConfirmLocationPermissionPopup):
-    ctx.page.cancel()
+  expiration_time = time.monotonic() + timeout_sec
+  while (not ctx.safe_expect_page(account_pages.PairedDeviceDetailPage) and
+         time.monotonic() < expiration_time):
+    if ctx.is_page(pairing_pages.PairAndLinkPage):
+      ctx.page.cancel()
+    elif ctx.is_page(other_pages.ConfirmLocationPermissionPopup):
+      ctx.page.cancel()
+    elif ctx.is_page(account_pages.GalleryPage):
+      ctx.page.back()
+    else:
+      # Turns back to previous page while sometimes account page
+      # will enter advertisement page sporadically and automatically.
+      ctx.go_page(account_pages.AccountPage)
+      ctx.page.click(device_node)
 
   ctx.expect_page(account_pages.PairedDeviceDetailPage)
   ctx.page.unpair()
@@ -167,6 +177,7 @@ def remove_all_paired_devices(ctx: context.Context) -> int:
     AssertionError: Fail in evaluation after pairing.
   """
   removed_count = 0
+  ctx.regr_page_call(other_pages.FitbitManagePopup, 'not_allow')
   ctx.go_page(account_pages.AccountPage)
   paired_device_nodes = ctx.page.get_paired_devices()
   while paired_device_nodes:
@@ -174,6 +185,7 @@ def remove_all_paired_devices(ctx: context.Context) -> int:
     removed_count += 1
     paired_device_nodes = ctx.page.get_paired_devices()
 
+  ctx.regr_page_calls.pop(other_pages.FitbitManagePopup, None)
   return removed_count
 
 

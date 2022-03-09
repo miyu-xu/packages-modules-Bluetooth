@@ -122,7 +122,7 @@ class LoginPage(ui_core.UIPage):
             account: str,
             password: str,
             allow_google_smartlock: bool = True,
-            wait_in_sec: int = 5) -> ui_core.UIPage:
+            wait_in_sec: int = 10) -> ui_core.UIPage:
     """Logins the Fitbit Companion App.
 
     Args:
@@ -631,9 +631,28 @@ class NotificationPopup(ui_core.UIPage):
 class FitbitManagePopup(ui_core.UIPage):
   """Popup from Fitbit for device management."""
 
-  PAGE_RE_TEXT = 'Allow Fitbit to manage your'
   _NODE_ALLOW_BTN_TEXT = 'Allow'
   _NODE_NOT_ALLOW_BTN_TEXT = 'Don’t allow'
+
+  @classmethod
+  def from_xml(cls, ctx: ui_core.Context, ui_xml: minidom.Document,
+               clickable_nodes: NodeList, enabled_nodes: NodeList,
+               all_nodes: NodeList) -> Optional[ui_core.UIPage]:
+    """Instantiates page object from XML object.
+
+    Args:
+      ctx: Page context object.
+      ui_xml: Parsed XML object.
+      clickable_nodes: Clickable node list from page.
+      enabled_nodes: Enabled node list from page.
+      all_nodes: All node from page.
+
+    Returns:
+      UI page object iff the given XML object can be parsed.
+    """
+    for node in all_nodes:
+      if node.text.startswith('Allow Fitbit to manage'):
+        return cls(ctx, ui_xml, clickable_nodes, enabled_nodes, all_nodes)
 
   def allow(self) -> ui_core.UIPage:
     """Allows the notification.
@@ -641,7 +660,12 @@ class FitbitManagePopup(ui_core.UIPage):
     Returns:
       The transformed page.
     """
-    return self.click_node_by_text(self._NODE_ALLOW_BTN_TEXT)
+    node_text = self._NODE_ALLOW_BTN_TEXT
+    node = self.get_node_by_text(node_text)
+    if node is not None:
+      return self.click_node_by_text(self._NODE_ALLOW_BTN_TEXT)
+    else:
+      return self.click_node_by_text(self._NODE_ALLOW_BTN_TEXT.upper())
 
   def not_allow(self) -> ui_core.UIPage:
     """Does not allows the notification.
@@ -649,4 +673,9 @@ class FitbitManagePopup(ui_core.UIPage):
     Returns:
       The transformed page.
     """
-    return self.click_node_by_text(self._NODE_NOT_ALLOW_BTN_TEXT)
+    node_text = self._NODE_NOT_ALLOW_BTN_TEXT
+    node = self.get_node_by_text(node_text)
+    if node is not None:
+      return self.click_node_by_text(self._NODE_NOT_ALLOW_BTN_TEXT)
+    else:
+      return self.click_node_by_text(self._NODE_NOT_ALLOW_BTN_TEXT.upper())
