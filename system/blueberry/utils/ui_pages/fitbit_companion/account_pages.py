@@ -80,3 +80,15 @@ class UnpairConfirmPage(ui_core.UIPage):
     self.click_node_by_text(self.PAGE_TEXT)
     self.ctx.expect_page(AccountPage)
     return self.ctx.page
+
+
+class GalleryPage(ui_core.UIPage):
+  """Fitbit Companion App's page to show gallery information."""
+
+  PAGE_TEXT = 'Gallery'
+
+  def back(self) -> ui_core.UIPage:
+    """Gets back to previous page."""
+    self.ctx.back()
+    self.ctx.get_page()
+    return self.ctx.page
