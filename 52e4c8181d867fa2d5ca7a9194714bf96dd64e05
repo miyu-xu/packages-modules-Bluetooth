@@ -16,6 +16,24 @@
       "message": "This one shouldn\u0027t be called when there\u0027s no IRK.  Can we rearrange the code a bit?\n\n    auto minimum_rotation_time \u003d std::chrono::milliseconds(request-\u003eminimum_rotation_time());\n    auto maximum_rotation_time \u003d std::chrono::milliseconds(request-\u003emaximum_rotation_time());\n    crypto_toolbox::Octet16 irk \u003d {};\n    auto request_irk_length \u003d request-\u003erotation_irk().end() - request-\u003erotation_irk().begin();\n    if (request_irk_length \u003d\u003d crypto_toolbox::OCTET16_LEN) {\n      std::vector\u003cuint8_t\u003e irk_data(request-\u003erotation_irk().begin(), request-\u003erotation_irk().end());\n      std::copy_n(irk_data.begin(), crypto_toolbox::OCTET16_LEN, irk.begin());\n      acl_manager_-\u003eSetPrivacyPolicyForInitiatorAddressForTest(\n          address_policy, address_with_type, irk, minimum_rotation_time, maximum_rotation_time);\n    } else {\n      ASSERT(request_irk_length \u003d\u003d 0);\n      acl_manager_-\u003eSetPrivacyPolicyForInitiatorAddress(\n          address_policy, address_with_type, minimum_rotation_time, maximum_rotation_time);\n    }",
       "revId": "52e4c8181d867fa2d5ca7a9194714bf96dd64e05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d862ff72_0397951e",
+        "filename": "system/gd/hci/facade/le_initiator_address_facade.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-03-09T18:02:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af00de8b_eafe6ad3",
+      "revId": "52e4c8181d867fa2d5ca7a9194714bf96dd64e05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
