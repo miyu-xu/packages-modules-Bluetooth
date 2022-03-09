@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "046eb11b_4ecc2439",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-03-09T11:16:14Z",
+      "side": 1,
+      "message": "Don\u0027t have more than +1 on AOSP but thank you for taking care of this !",
+      "revId": "6b6a3d9c252705120ea700e5a2c6dcfc5088d356",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
