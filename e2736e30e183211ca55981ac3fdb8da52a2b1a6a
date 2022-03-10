@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34816ce6_476d64f9",
+        "filename": "system/embdrv/lc3/tools/dlc3.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-10T16:59:28Z",
+      "side": 1,
+      "message": "could we rename this file to lc3_decoder_main.c",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 32
+      },
+      "revId": "e2736e30e183211ca55981ac3fdb8da52a2b1a6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bed132b2_0d605f3a",
         "filename": "system/embdrv/lc3/tools/elc3.c",
         "patchSetId": 3
@@ -59,6 +82,29 @@
         "startChar": 28,
         "endLine": 124,
         "endChar": 37
+      },
+      "revId": "e2736e30e183211ca55981ac3fdb8da52a2b1a6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17ef4685_b5fcda27",
+        "filename": "system/embdrv/lc3/tools/elc3.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-10T16:59:28Z",
+      "side": 1,
+      "message": "could we rename this file to lc3_encoder_main.c ?",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 8
       },
       "revId": "e2736e30e183211ca55981ac3fdb8da52a2b1a6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
