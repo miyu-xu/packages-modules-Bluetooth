@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9db822c_a14d9a09",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 927,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T21:02:46Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a319e214_323dfb1f",
+      "range": {
+        "startLine": 927,
+        "startChar": 0,
+        "endLine": 927,
+        "endChar": 41
+      },
+      "revId": "d3a3a5346af9941fdc40802f717930cc648b199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c43ec95_37545b08",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-10T18:59:28Z",
       "side": 0,
       "message": "we should keep this one as a bitfield",
+      "range": {
+        "startLine": 936,
+        "startChar": 0,
+        "endLine": 939,
+        "endChar": 66
+      },
+      "revId": "d3a3a5346af9941fdc40802f717930cc648b199c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3efb89c_f91632b3",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T21:02:46Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "4c43ec95_37545b08",
       "range": {
         "startLine": 936,
         "startChar": 0,
