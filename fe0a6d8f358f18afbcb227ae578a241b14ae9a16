@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c8945297_5a71aab6",
+        "filename": "system/embdrv/lc3/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-10T16:54:43Z",
+      "side": 1,
+      "message": "nah, I like it as it stands. It is not build by default. There is no other \"lc3\" to conflict names neither. We should be good.",
+      "parentUuid": "06abeae9_273a51bc",
+      "range": {
+        "startLine": 64,
+        "startChar": 11,
+        "endLine": 64,
+        "endChar": 22
+      },
+      "revId": "fe0a6d8f358f18afbcb227ae578a241b14ae9a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "322e7b02_92bbda1f",
         "filename": "system/embdrv/lc3/Android.bp",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-10T16:50:59Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "fe0a6d8f358f18afbcb227ae578a241b14ae9a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cebe320_53ea9e92",
+        "filename": "system/embdrv/lc3/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-10T16:54:43Z",
+      "side": 1,
+      "message": "same as above.",
+      "parentUuid": "322e7b02_92bbda1f",
       "range": {
         "startLine": 77,
         "startChar": 11,
