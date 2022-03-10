@@ -16,6 +16,24 @@
       "message": "nit: \"registered receiver\" --\u003e \"registered receivers\"",
       "revId": "56d99233dd371fd4d4eb685ed954a5464fd15d46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5a0b282_d8325539",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-03-10T19:44:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32aff142_127891c8",
+      "revId": "56d99233dd371fd4d4eb685ed954a5464fd15d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
