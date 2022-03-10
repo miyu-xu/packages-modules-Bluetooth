@@ -160,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "386f6d32_6e82ff10",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-10T21:28:47Z",
+      "side": 1,
+      "message": "yup, this should be one codec per BluetoothLeAudioCodecConfig and AND the bitmask to find out the capability match",
+      "parentUuid": "00b35888_3091431b",
+      "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac656f8e_678e2644",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
         "patchSetId": 4
@@ -171,6 +189,24 @@
       "writtenOn": "2022-03-10T15:57:25Z",
       "side": 1,
       "message": "The parameters in BluetoothLeAudioCodecConfig changes to use bitmask. We may need to change to use AND logic to check whether the output config is selectable?!",
+      "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc96de32_f3c54365",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-10T21:28:47Z",
+      "side": 1,
+      "message": "yup, this should be one codec per BluetoothLeAudioCodecConfig and AND the bitmask to find out the capability match",
+      "parentUuid": "ac656f8e_678e2644",
       "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
