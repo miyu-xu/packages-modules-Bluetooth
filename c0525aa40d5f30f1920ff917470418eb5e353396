@@ -16,6 +16,24 @@
       "message": "It wasnt an unsupportedappusage earlier - do we need this now? I know you are following the API council guideline in the bug but should we check why we want to expose this as unsupportedappusage now?",
       "revId": "c0525aa40d5f30f1920ff917470418eb5e353396",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6900c953_e1254db2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-10T18:25:43Z",
+      "side": 1,
+      "message": "I seems that ag/16736843 has removed the UnsupportedAppUsage, so I think it\u0027s safe to put it back. The method is hidden so it will not be exposed :)",
+      "parentUuid": "2c33d59b_51ea1207",
+      "revId": "c0525aa40d5f30f1920ff917470418eb5e353396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
