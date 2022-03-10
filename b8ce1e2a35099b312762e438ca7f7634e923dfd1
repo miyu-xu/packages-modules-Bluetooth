@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec1fe162_733e5c23",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-10T01:25:00Z",
+      "side": 1,
+      "message": "Are there any other variables that need to be guarded?",
+      "range": {
+        "startLine": 115,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 39
+      },
+      "revId": "b8ce1e2a35099b312762e438ca7f7634e923dfd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f27a84_18717b4b",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-10T01:25:00Z",
+      "side": 1,
+      "message": "Can we use mLock for this as well?",
+      "range": {
+        "startLine": 240,
+        "startChar": 22,
+        "endLine": 240,
+        "endChar": 33
+      },
+      "revId": "b8ce1e2a35099b312762e438ca7f7634e923dfd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
