@@ -25,6 +25,7 @@ MODEL_TO_PRODUCT_NAME_MAPPING = immutabledict.immutabledict({
     'Luxe': 'Luxe',
     'Morgan': 'Charge 5',
     'Charge_5': 'Charge 5',
+    'Rhea': 'Rhea',
 })
 
 _INVALID_PAIRING_CODE_MESSAGE = "Sorry, this code isn't valid."
@@ -393,6 +394,12 @@ def pair_device(ctx: context.Context,
   ctx.regr_page_call(pairing_pages.PremiumPage, 'done')
   ctx.regr_page_call(other_pages.PurchaseFail, 'ok')
   ctx.regr_page_call(pairing_pages.UpdateDevicePage, 'update_later')
+  ctx.regr_page_call(pairing_pages.VoicePrivacyPage, 'next')
+  ctx.regr_page_call(pairing_pages.AmazonAlexaPage, 'skip')
+  ctx.regr_page_call(pairing_pages.OnWristCallAllSetPage, 'next')
+  ctx.regr_page_call(pairing_pages.MonitorOxygenSetupPage, 'next')
+  ctx.regr_page_call(pairing_pages.AllsetPage, 'done')
+  ctx.regr_page_call(pairing_pages.SetupOnWristCallPage, 'skip')
 
   ctx.go_page(account_pages.AccountPage)
   fitbit_prod_name = MODEL_TO_PRODUCT_NAME_MAPPING[device.model]
