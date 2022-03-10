@@ -16,6 +16,23 @@
       "message": "Verified compilation with latest patch set.",
       "revId": "a374616fc8221fccf7ed8da9ed329d63d3d9b762",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d4c8da_60c60cb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1355743
+      },
+      "writtenOn": "2022-03-10T07:32:53Z",
+      "side": 1,
+      "message": "Chienyuan Huang, could you set presubmit ready bit. ",
+      "revId": "a374616fc8221fccf7ed8da9ed329d63d3d9b762",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
