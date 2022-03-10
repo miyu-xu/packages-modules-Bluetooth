@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51c85ca_da06a8f9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-10T14:14:18Z",
+      "side": 1,
+      "message": "this looks like copy paste issue.\n\nSince this need to be change, could you also please change a device-\u003egroupId already in this patch? Thanks",
+      "range": {
+        "startLine": 81,
+        "startChar": 44,
+        "endLine": 81,
+        "endChar": 66
+      },
+      "revId": "413c5720b5f0360a2cb8499e6e41a68d742b3cbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "a62b7398_020d8936",
