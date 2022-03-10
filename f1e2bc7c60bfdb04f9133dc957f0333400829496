@@ -16,6 +16,24 @@
       "message": "I\u0027m no longer the owner of GD fuzz test. Maybe change to android-bluetooth@google.com",
       "revId": "f1e2bc7c60bfdb04f9133dc957f0333400829496",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9069293d_b769b7f7",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1650040
+      },
+      "writtenOn": "2022-03-10T02:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e656f589_793a3d80",
+      "revId": "f1e2bc7c60bfdb04f9133dc957f0333400829496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
