@@ -24,6 +24,7 @@ import android.annotation.SystemApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothDevice.AddressType;
+import android.bluetooth.le.ScanRecord.AdvertisingDataType;
 import android.os.Parcel;
 import android.os.ParcelUuid;
 import android.os.Parcelable;
@@ -43,6 +44,7 @@ import java.util.UUID;
  * <li>Mac address of the remote device.
  * <li>Service data which is the data associated with a service.
  * <li>Manufacturer specific data which is the data associated with a particular manufacturer.
+ * <li>Advertising data type and corresponding data.
  *
  * @see ScanResult
  * @see BluetoothLeScanner
@@ -403,16 +405,24 @@ public final class ScanFilter implements Parcelable {
     }
 
     /**
-     * Returns the advertising data type. -1 if the type is not set.
-     */
+     * Returns the advertising data type of this filter.
+     * Returns {@link ScanRecord#DATA_TYPE_NONE} if the type is not set.
+    */
+    @AdvertisingDataType
     public int getAdvertisingDataType() {
         return mAdvertisingDataType;
     }
 
+    /**
+     * Returns the advertising data of this filter.
+    */
     public @Nullable byte[] getAdvertisingData() {
         return mAdvertisingData;
     }
 
+    /**
+     * Returns the advertising data mask of this filter.
+    */
     public @Nullable byte[] getAdvertisingDataMask() {
         return mAdvertisingDataMask;
     }
@@ -665,7 +675,7 @@ public final class ScanFilter implements Parcelable {
         private byte[] mManufacturerData;
         private byte[] mManufacturerDataMask;
 
-        private int mAdvertisingDataType = -1;
+        private int mAdvertisingDataType = ScanRecord.DATA_TYPE_NONE;
         private byte[] mAdvertisingData;
         private byte[] mAdvertisingDataMask;
 
@@ -984,8 +994,9 @@ public final class ScanFilter implements Parcelable {
          * advertisingData} is null while {@code advertisingDataMask} is not, or {@code
          * advertisingData} and {@code advertisingDataMask} have different length.
          */
-        public @NonNull Builder setAdvertisingDataWithType(int advertisingDataType,
-                @Nullable byte[] advertisingData, @Nullable byte[] advertisingDataMask) {
+        public @NonNull Builder setAdvertisingDataWithType(
+                @AdvertisingDataType int advertisingDataType, @Nullable byte[] advertisingData,
+                @Nullable byte[] advertisingDataMask) {
             if (advertisingDataType < -1) {
                 throw new IllegalArgumentException("invalid advertising data type");
             }
