@@ -455,6 +455,7 @@ class AmazonAlexaPage(ui_core.UIPage):
 
   PAGE_TEXT = 'Rhea includes Alexa'
   _NODE_SKIP_BTN_TEXT = 'NOT NOW'
+  _NODE_BACK_BTN_CONTENT_DESC = 'Navigate up'
 
   def skip(self) -> ui_core.UIPage:
     """Skips the setup.
@@ -463,6 +464,14 @@ class AmazonAlexaPage(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
+
+  def back(self) -> ui_core.UIPage:
+    """Goes back to previous page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_content_desc(self._NODE_BACK_BTN_CONTENT_DESC)
 
 
 class SetupOnWristCallPage(ui_core.UIPage):
