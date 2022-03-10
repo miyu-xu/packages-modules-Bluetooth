@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae47639c_55e8f491",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-10T20:02:25Z",
+      "side": 1,
+      "message": "I don\u0027t think we want to slip reason and status code since many times they are used interchangeably in the API.  For example, a API may fail to call because of REASON_SYSTEM_POLICY",
+      "revId": "2498064e0cd45db5a7ad26ba7198fc17dd7097dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
