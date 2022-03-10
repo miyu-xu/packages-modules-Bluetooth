@@ -53,9 +53,9 @@ oneway interface IBluetoothLeAudio {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void getConnectedGroupLeadDevice(int groupId, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void getCodecStatus(in BluetoothDevice device, in AttributionSource source, in SynchronousResultReceiver receiver);
+    void getCodecStatus(in int groupId, in AttributionSource source, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void setCodecConfigPreference(in BluetoothDevice device, in BluetoothLeAudioCodecConfig codecConfig, in AttributionSource source);
+    void setCodecConfigPreference(in int groupId, in BluetoothLeAudioCodecConfig inputCodecConfig, in BluetoothLeAudioCodecConfig outputCodecConfig, in AttributionSource source);
 
     /* Same value as bluetooth::groups::kGroupUnknown */
     const int LE_AUDIO_GROUP_ID_INVALID = -1;
