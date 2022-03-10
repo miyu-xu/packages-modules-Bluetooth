@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1399bb83_a9d7ac7e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T13:07:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bef4c4b3_0c0d17b2",
+      "revId": "921e4a85fe6effc8f15d6e42f5bc4e35884f7b4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ae0f3d3_f287869f",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ba034d7_0ea289cb",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T13:07:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ae0f3d3_f287869f",
+      "revId": "921e4a85fe6effc8f15d6e42f5bc4e35884f7b4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08ffbc69_fdb94ba0",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-03-10T11:43:25Z",
       "side": 1,
       "message": "Objects.hash(mInputCodecConfig, mOutputCodecConfig, mCodecsLocalCapabilities, mInputCodecsSelectableCapabilities, mOutputCodecsSelectableCapabilities);",
+      "revId": "921e4a85fe6effc8f15d6e42f5bc4e35884f7b4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d25d2a64_acf50622",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T13:07:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08ffbc69_fdb94ba0",
       "revId": "921e4a85fe6effc8f15d6e42f5bc4e35884f7b4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
