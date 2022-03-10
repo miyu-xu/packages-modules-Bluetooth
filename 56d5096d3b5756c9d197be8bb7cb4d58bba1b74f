@@ -1,6 +1,24 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4843f4f7_bb0eb51c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-10T01:00:17Z",
+      "side": 1,
+      "message": "This means `new_bt_keystore_interface` and friends are declared but not defined in a computational unit.\n\nSo when it comes to linking together the various computational units these names do not resolve to an endpoint.\n\nThe declarations are there (pointed out by the compiler/linker), but you need to implement `new_bt_keystore_interface` somewhere.\n\nMaybe elsewhere in that file you need to implement a `new_bt_keystore_interface` that provides the body of the function signature.\n\nIt gets a little trickier with namepsaces, but focus on getting one of them working/linking first.",
+      "tag": "mailMessageId\u003d\u003cCAO42nx0dcTfj+Ehe1x3fWc5ErVGjX2A0YYJaJ+NdX5wKtjmStA@mail.gmail.com\u003e",
+      "revId": "56d5096d3b5756c9d197be8bb7cb4d58bba1b74f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "594fa17e_101a10f6",
