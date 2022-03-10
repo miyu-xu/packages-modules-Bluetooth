@@ -532,3 +532,18 @@ class OnWristCallLoadingPage(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
+
+
+class OnWristCallAllSetPage(ui_core.UIPage):
+  """Fitbit Companion App's page for OnWrist all set."""
+
+  PAGE_RE_TEXT = 'On-wrist calls is all set'
+  _NODE_NEXT_BTN_TEXT = 'NEXT'
+
+  def next(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_NEXT_BTN_TEXT)
