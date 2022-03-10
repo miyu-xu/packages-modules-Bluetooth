@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32aff142_127891c8",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-10T19:42:48Z",
+      "side": 1,
+      "message": "nit: \"registered receiver\" --\u003e \"registered receivers\"",
+      "revId": "56d99233dd371fd4d4eb685ed954a5464fd15d46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
