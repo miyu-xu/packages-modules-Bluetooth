@@ -176,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc76b996_46737719",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T21:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "386f6d32_6e82ff10",
+      "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac656f8e_678e2644",
@@ -211,6 +229,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c03965f4_4b618e45",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T21:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc96de32_f3c54365",
+      "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb198e17_22e22250",
@@ -228,6 +264,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e358d4c8_447ef8f6",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T21:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb198e17_22e22250",
+      "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73788c5b_9cacccde",
@@ -241,6 +295,24 @@
       "writtenOn": "2022-03-10T15:57:25Z",
       "side": 1,
       "message": "-\u003e The current output codec config",
+      "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "645022df_77568552",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T21:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73788c5b_9cacccde",
       "revId": "726205b3b3652fc699374ae1c3badaeb035e2d93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
