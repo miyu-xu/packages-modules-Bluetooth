@@ -160,7 +160,7 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
   jclass jniBluetoothLeAudioCodecConfigClass =
       env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig");
   android_bluetooth_BluetoothLeAudioCodecConfig.constructor = env->GetMethodID(
-      jniBluetoothLeAudioCodecConfigClass, "<init>", "(IIIIIII)V");
+      jniBluetoothLeAudioCodecConfigClass, "<init>", "(IIIIIIIII)V");
   android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
       jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
 
@@ -357,6 +357,36 @@ static void groupSetActiveNative(JNIEnv* env, jobject object, jint group_id) {
   sLeAudioClientInterface->GroupSetActive(group_id);
 }
 
+static void setCodecConfigPreferenceNative(JNIEnv* env, jobject object,
+                                           jint group_id,
+                                           jobject inputCodecConfig,
+                                           jobject outputCodecConfig) {
+  if (!env->IsInstanceOf(inputCodecConfig,
+                         android_bluetooth_BluetoothLeAudioCodecConfig.clazz) ||
+      !env->IsInstanceOf(outputCodecConfig,
+                         android_bluetooth_BluetoothLeAudioCodecConfig.clazz)) {
+    ALOGE("%s: Invalid BluetoothLeAudioCodecConfig instance", __func__);
+    return;
+  }
+
+  jint inputCodecType = env->CallIntMethod(
+      inputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType);
+
+  btle_audio_codec_config_t input_codec_config = {
+      .codec_type = static_cast<btle_audio_codec_index_t>(inputCodecType)};
+
+  jint outputCodecType = env->CallIntMethod(
+      outputCodecConfig,
+      android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType);
+
+  btle_audio_codec_config_t output_codec_config = {
+      .codec_type = static_cast<btle_audio_codec_index_t>(outputCodecType)};
+
+  sLeAudioClientInterface->SetCodecConfigPreference(
+      group_id, input_codec_config, output_codec_config);
+}
+
 static JNINativeMethod sMethods[] = {
     {"classInitNative", "()V", (void*)classInitNative},
     {"initNative", "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
@@ -367,6 +397,10 @@ static JNINativeMethod sMethods[] = {
     {"groupAddNodeNative", "(I[B)Z", (void*)groupAddNodeNative},
     {"groupRemoveNodeNative", "(I[B)Z", (void*)groupRemoveNodeNative},
     {"groupSetActiveNative", "(I)V", (void*)groupSetActiveNative},
+    {"setCodecConfigPreferenceNative",
+     "(ILandroid/bluetooth/BluetoothLeAudioCodecConfig;Landroid/bluetooth/"
+     "BluetoothLeAudioCodecConfig;)V",
+     (void*)setCodecConfigPreferenceNative},
 };
 
 /* Le Audio Broadcaster */
