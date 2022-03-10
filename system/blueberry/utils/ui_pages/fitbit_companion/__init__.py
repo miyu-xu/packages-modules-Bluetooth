@@ -100,6 +100,7 @@ def get_context(ad: android_device.AndroidDevice,
       pairing_pages.MonitorOxygenSetupPage,
       pairing_pages.AllsetPage,
       pairing_pages.OnWristCallLoadingPage,
+      pairing_pages.OnWristCallAllSetPage,
       other_pages.ConfirmLocationPermissionPopup,  # b/213124134
   ))
 
