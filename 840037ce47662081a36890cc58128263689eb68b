@@ -16,6 +16,24 @@
       "message": "nit: \"when application\" --\u003e \"when an application\"",
       "revId": "840037ce47662081a36890cc58128263689eb68b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4977188b_288213e9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-10T19:41:57Z",
+      "side": 1,
+      "message": "ACK will address in a follow-up CL",
+      "parentUuid": "95e584bd_228c336e",
+      "revId": "840037ce47662081a36890cc58128263689eb68b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
