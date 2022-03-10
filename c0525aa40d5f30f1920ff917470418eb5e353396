@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c33d59b_51ea1207",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-03-10T18:08:12Z",
+      "side": 1,
+      "message": "It wasnt an unsupportedappusage earlier - do we need this now? I know you are following the API council guideline in the bug but should we check why we want to expose this as unsupportedappusage now?",
+      "revId": "c0525aa40d5f30f1920ff917470418eb5e353396",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
