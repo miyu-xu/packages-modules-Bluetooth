@@ -16,6 +16,24 @@
       "message": "selfreview: add missing Landroid/bluetooth/BluetoothLeAudioCodecConfig;",
       "revId": "15469642e1dd47510bb036e22236bdb9cf9d80fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adb6d4f9_273a69de",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-10T21:03:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d80f99e_bbd25b7a",
+      "revId": "15469642e1dd47510bb036e22236bdb9cf9d80fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
