@@ -619,7 +619,9 @@ class DualModeController : public Device {
 
   void AddConnectionAction(const TaskCallback& callback, uint16_t handle);
 
-  void SendCommandCompleteUnknownOpCodeEvent(uint16_t command_opcode) const;
+  void SendCommandCompleteUnknownOpCodeEvent(uint16_t command_opcode);
+
+  void SendEventWithCredit(std::shared_ptr<bluetooth::hci::EventBuilder>);
 
   // Unused state to maintain consistency for the Host
   uint16_t le_suggested_default_data_bytes_{0x20};
@@ -642,6 +644,8 @@ class DualModeController : public Device {
   bluetooth::hci::LoopbackMode loopback_mode_;
 
   SecurityManager security_manager_;
+
+  int num_command_credits_{1};
 
   DualModeController(const DualModeController& cmdPckt) = delete;
   DualModeController& operator=(const DualModeController& cmdPckt) = delete;
