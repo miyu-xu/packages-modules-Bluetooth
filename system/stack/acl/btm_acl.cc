@@ -157,14 +157,16 @@ void NotifyAclLinkUp(tACL_CONN& p_acl) {
     return;
   }
   p_acl.link_up_issued = true;
-  BTA_dm_acl_up(p_acl.remote_addr, p_acl.transport);
+  BTA_dm_acl_up(p_acl.remote_addr, p_acl.transport, RawAddress::kEmpty,
+                RawAddress::kEmpty);
 }
 
 void NotifyAclLinkDown(tACL_CONN& p_acl) {
   /* Only notify if link up has had a chance to be issued */
   if (p_acl.link_up_issued) {
     p_acl.link_up_issued = false;
-    BTA_dm_acl_down(p_acl.remote_addr, p_acl.transport);
+    BTA_dm_acl_down(p_acl.remote_addr, p_acl.transport,
+                    static_cast<tHCI_REASON>(p_acl.disconnect_reason));
   }
 }
 
