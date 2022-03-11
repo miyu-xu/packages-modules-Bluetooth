@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab8f6b19_e287c701",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-11T00:43:09Z",
+      "side": 1,
+      "message": "LGTM, but the UI is also supposed to set adapter state based on user preference. Does that not work that we need this platform-level?",
+      "revId": "eb2c506bb6fa4b613ac8c4f3cadc8070d2fbd28e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
