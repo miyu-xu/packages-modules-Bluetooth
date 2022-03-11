@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf89d360_8e757ade",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-11T07:52:10Z",
+      "side": 1,
+      "message": "We do have SINK and SRC audio location already in LeAudioService delivered with LeAudioStackEvent.EVENT_TYPE_AUDIO_CONF_CHANGED\n\nDo we need to create new Native API for that?",
+      "revId": "29f38f456357c1583f11a6f4f2d249727f57572d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
