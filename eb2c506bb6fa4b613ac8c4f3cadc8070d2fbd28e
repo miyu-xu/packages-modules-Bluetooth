@@ -16,6 +16,24 @@
       "message": "LGTM, but the UI is also supposed to set adapter state based on user preference. Does that not work that we need this platform-level?",
       "revId": "eb2c506bb6fa4b613ac8c4f3cadc8070d2fbd28e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "014e6465_96a986ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-11T00:44:07Z",
+      "side": 1,
+      "message": "The UI based setting does work but this mimics how bluez handles power preference.",
+      "parentUuid": "ab8f6b19_e287c701",
+      "revId": "eb2c506bb6fa4b613ac8c4f3cadc8070d2fbd28e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
