@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37304326_92ad7944",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-11T01:41:55Z",
+      "side": 1,
+      "message": "Do you need to handle is rawBytes.length \u003d\u003d 0?",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 80
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53e2e3ce_1b8cb8fe",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-11T01:41:55Z",
+      "side": 1,
+      "message": "For the audio location, would you like to re-use the definition in the BluetoothLeAudio? Just add a patch about it.\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2021895/2",
+      "range": {
+        "startLine": 168,
+        "startChar": 21,
+        "endLine": 168,
+        "endChar": 35
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c16f6cd9_ed4eba57",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-11T01:41:55Z",
+      "side": 1,
+      "message": "Is it valid as mRawMetadata.length \u003d\u003d 0? the entries would be empty.",
+      "range": {
+        "startLine": 222,
+        "startChar": 12,
+        "endLine": 222,
+        "endChar": 38
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26ed4b34_fedf9af1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioContentMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-11T01:41:55Z",
+      "side": 1,
+      "message": "The same here for rawBytes.length \u003d 0.",
+      "range": {
+        "startLine": 155,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 46
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
