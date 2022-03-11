@@ -16,6 +16,24 @@
       "message": "We do have SINK and SRC audio location already in LeAudioService delivered with LeAudioStackEvent.EVENT_TYPE_AUDIO_CONF_CHANGED\n\nDo we need to create new Native API for that?",
       "revId": "29f38f456357c1583f11a6f4f2d249727f57572d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec7323cb_6ad3fcfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-11T09:20:14Z",
+      "side": 1,
+      "message": "They are for a group, and OR the all location. \n\nThe API would be used for Setting to show the left bud and right bud with the battery information. So for the purpose, we need the audio location and corresponding address map, and we don\u0027t expected the dynamic switch for now. So just update it as we get it from PACS.",
+      "parentUuid": "bf89d360_8e757ade",
+      "revId": "29f38f456357c1583f11a6f4f2d249727f57572d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
