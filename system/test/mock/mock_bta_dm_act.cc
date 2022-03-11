@@ -111,13 +111,17 @@ bool BTA_DmSetVisibility(bt_scan_mode_t mode) {
   mock_function_count_map[__func__]++;
   return test::mock::bta_dm_act::BTA_DmSetVisibility(mode);
 }
-void BTA_dm_acl_down(const RawAddress bd_addr, tBT_TRANSPORT transport) {
+void BTA_dm_acl_down(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                     tHCI_REASON hci_reason) {
   mock_function_count_map[__func__]++;
-  test::mock::bta_dm_act::BTA_dm_acl_down(bd_addr, transport);
+  test::mock::bta_dm_act::BTA_dm_acl_down(bd_addr, transport, hci_reason);
 }
-void BTA_dm_acl_up(const RawAddress bd_addr, tBT_TRANSPORT transport) {
+void BTA_dm_acl_up(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                   const RawAddress remote_initiator_bd_addr,
+                   const RawAddress local_initiator_bd_addr) {
   mock_function_count_map[__func__]++;
-  test::mock::bta_dm_act::BTA_dm_acl_up(bd_addr, transport);
+  test::mock::bta_dm_act::BTA_dm_acl_up(
+      bd_addr, transport, remote_initiator_bd_addr, local_initiator_bd_addr);
 }
 void BTA_dm_notify_remote_features_complete(const RawAddress bd_addr) {
   mock_function_count_map[__func__]++;
