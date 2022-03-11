@@ -2411,7 +2411,9 @@ static tBTA_DM_PEER_DEVICE* allocate_device_for(const RawAddress& bd_addr,
   return nullptr;
 }
 
-void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
+void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport,
+                   UNUSED_ATTR const RawAddress remote_initiator_bd_addr,
+                   UNUSED_ATTR const RawAddress local_initiator_bd_addr) {
   auto device = allocate_device_for(bd_addr, transport);
   if (device == nullptr) {
     LOG_WARN("Unable to allocate device resources for new connection");
@@ -2445,12 +2447,16 @@ void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   bta_dm_adjust_roles(true);
 }
 
-void BTA_dm_acl_up(const RawAddress bd_addr, tBT_TRANSPORT transport) {
-  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_acl_up, bd_addr, transport));
+void BTA_dm_acl_up(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                   const RawAddress remote_initiator_bd_addr,
+                   const RawAddress local_initiator_bd_addr) {
+  do_in_main_thread(
+      FROM_HERE, base::Bind(bta_dm_acl_up, bd_addr, transport,
+                            remote_initiator_bd_addr, local_initiator_bd_addr));
 }
 
-static void bta_dm_acl_down(const RawAddress& bd_addr,
-                            tBT_TRANSPORT transport) {
+static void bta_dm_acl_down(const RawAddress& bd_addr, tBT_TRANSPORT transport,
+                            UNUSED_ATTR tHCI_REASON hci_reason) {
   bool issue_unpair_cb = false;
   bool remove_device = false;
 
@@ -2533,8 +2539,10 @@ static void bta_dm_acl_down(const RawAddress& bd_addr,
   bta_dm_adjust_roles(true);
 }
 
-void BTA_dm_acl_down(const RawAddress bd_addr, tBT_TRANSPORT transport) {
-  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_acl_down, bd_addr, transport));
+void BTA_dm_acl_down(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                     tHCI_REASON hci_reason) {
+  do_in_main_thread(
+      FROM_HERE, base::Bind(bta_dm_acl_down, bd_addr, transport, hci_reason));
 }
 
 /*******************************************************************************
