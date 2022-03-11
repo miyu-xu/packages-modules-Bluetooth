@@ -79,10 +79,13 @@ extern struct BTA_DmSetVisibility BTA_DmSetVisibility;
 // Params: const RawAddress bd_addr, tBT_TRANSPORT transport
 // Return: void
 struct BTA_dm_acl_down {
-  std::function<void(const RawAddress bd_addr, tBT_TRANSPORT transport)> body{
-      [](const RawAddress bd_addr, tBT_TRANSPORT transport) {}};
-  void operator()(const RawAddress bd_addr, tBT_TRANSPORT transport) {
-    body(bd_addr, transport);
+  std::function<void(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                     tHCI_REASON hci_reason)>
+      body{[](const RawAddress bd_addr, tBT_TRANSPORT transport,
+              tHCI_REASON hci_reason) {}};
+  void operator()(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                  tHCI_REASON hci_reason) {
+    body(bd_addr, transport, hci_reason);
   };
 };
 extern struct BTA_dm_acl_down BTA_dm_acl_down;
@@ -91,10 +94,16 @@ extern struct BTA_dm_acl_down BTA_dm_acl_down;
 // Params: const RawAddress bd_addr, tBT_TRANSPORT transport
 // Return: void
 struct BTA_dm_acl_up {
-  std::function<void(const RawAddress bd_addr, tBT_TRANSPORT transport)> body{
-      [](const RawAddress bd_addr, tBT_TRANSPORT transport) {}};
-  void operator()(const RawAddress bd_addr, tBT_TRANSPORT transport) {
-    body(bd_addr, transport);
+  std::function<void(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                     const RawAddress remote_initiator_bd_addr,
+                     const RawAddress local_initiator_bd_addr)>
+      body{[](const RawAddress bd_addr, tBT_TRANSPORT transport,
+              const RawAddress remote_initiator_bd_addr,
+              const RawAddress local_initiator_bd_addr) {}};
+  void operator()(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                  const RawAddress remote_initiator_bd_addr,
+                  const RawAddress local_initiator_bd_addr) {
+    body(bd_addr, transport, remote_initiator_bd_addr, local_initiator_bd_addr);
   };
 };
 extern struct BTA_dm_acl_up BTA_dm_acl_up;

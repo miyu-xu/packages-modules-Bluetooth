@@ -481,7 +481,8 @@ class SecurityListenerShim
     address_to_handle_[bda] = handle;
     btm_sec_connected(bda, handle, HCI_SUCCESS, 0);
     BTM_PM_OnConnected(handle, bda);
-    BTA_dm_acl_up(bda, BT_TRANSPORT_BR_EDR);
+    BTA_dm_acl_up(bda, BT_TRANSPORT_BR_EDR, RawAddress::kEmpty,
+                  RawAddress::kEmpty);
     address_to_interface_[bda] = std::move(interface);
   }
 
@@ -500,7 +501,7 @@ class SecurityListenerShim
     address_to_interface_.erase(bda);
     btm_sec_disconnected(handle, HCI_ERR_PEER_USER,
                          "main::shim::l2c_api::OnLinkDisconnected");
-    BTA_dm_acl_down(bda, BT_TRANSPORT_BR_EDR);
+    BTA_dm_acl_down(bda, BT_TRANSPORT_BR_EDR, HCI_ERR_PEER_USER);
     BTM_PM_OnDisconnected(handle);
   }
 
