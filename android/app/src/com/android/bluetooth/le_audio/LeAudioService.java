@@ -1160,8 +1160,7 @@ public class LeAudioService extends ProfileService {
                         mActiveAudioOutDevice = null;
                         mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                                 previousDevice,
-                                // TODO: implement createLeAudioBroadcastInfo()
-                                BluetoothProfileConnectionInfo.createLeAudioInfo(false, true));
+                                BluetoothProfileConnectionInfo.createLeAudioBroadcastInfo(true));
                     }
                 }
 
@@ -1199,8 +1198,7 @@ public class LeAudioService extends ProfileService {
                         mActiveAudioOutDevice = device;
                         mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                                 previousDevice,
-                                // TODO: implement createLeAudioBroadcastInfo()
-                                BluetoothProfileConnectionInfo.createLeAudioInfo(true, true));
+                                BluetoothProfileConnectionInfo.createLeAudioBroadcastInfo(false));
                     }
                 }
             }
