@@ -34,6 +34,24 @@
       "parentUuid": "bf89d360_8e757ade",
       "revId": "29f38f456357c1583f11a6f4f2d249727f57572d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9045931_f25d10ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-03-11T10:39:07Z",
+      "side": 1,
+      "message": "PACS spec says about audio locations: \"Device-wide bitmap of supported Audio Location values for all PAC records where the server supports reception of audio\ndata.\" So it means that device may be in different locations and stack doesn\u0027t know what would be the final location of such device. Stack will know it when group would be configured for scenario.",
+      "parentUuid": "ec7323cb_6ad3fcfd",
+      "revId": "29f38f456357c1583f11a6f4f2d249727f57572d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
