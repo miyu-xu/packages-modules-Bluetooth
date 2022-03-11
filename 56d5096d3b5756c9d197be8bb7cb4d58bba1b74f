@@ -42,6 +42,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e3fba30_1717b115",
+        "filename": "system/gd/rust/common/src/asserts.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2022-03-11T00:40:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "594fa17e_101a10f6",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "revId": "56d5096d3b5756c9d197be8bb7cb4d58bba1b74f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a002eec2_5564df25",
@@ -72,6 +96,30 @@
       "writtenOn": "2022-03-09T18:52:47Z",
       "side": 1,
       "message": "this can be simplified to assert!(!now);\n\nor you can define assert_true() and assert_false, but in rust assert_true is already assert()",
+      "range": {
+        "startLine": 325,
+        "startChar": 8,
+        "endLine": 325,
+        "endChar": 31
+      },
+      "revId": "56d5096d3b5756c9d197be8bb7cb4d58bba1b74f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0432ec4_7bd0e6fb",
+        "filename": "system/gd/rust/common/src/parameter_provider.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2022-03-11T00:40:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8879a93_55f792df",
       "range": {
         "startLine": 325,
         "startChar": 8,
