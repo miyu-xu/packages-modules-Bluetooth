@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a0bc9f4_8179b580",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-11T01:52:43Z",
+      "side": 1,
+      "message": "When awBytes.length \u003d\u003d 0, entries.size() will be zero, and  audioLocation is 0 and rawBytes is an empty array. Then we are basically creating an empty BluetoothLeAudioCodecConfigMetadata",
+      "parentUuid": "37304326_92ad7944",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 80
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53e2e3ce_1b8cb8fe",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-11T01:41:55Z",
       "side": 1,
       "message": "For the audio location, would you like to re-use the definition in the BluetoothLeAudio? Just add a patch about it.\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2021895/2",
+      "range": {
+        "startLine": 168,
+        "startChar": 21,
+        "endLine": 168,
+        "endChar": 35
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f05e96fa_fe80049b",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-11T01:52:43Z",
+      "side": 1,
+      "message": "Didn\u0027t realize that, we should add the @Intdef for this API, will add in the next CL",
+      "parentUuid": "53e2e3ce_1b8cb8fe",
       "range": {
         "startLine": 168,
         "startChar": 21,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10a9d485_85375599",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfigMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-11T01:52:43Z",
+      "side": 1,
+      "message": "yes, if mRawMetadata.length \u003d\u003d 0, then entries.removeIf() is no-op, and we are just adding a new audio location. \n\n```\nRemoves all of the elements of this collection that satisfy the given predicate. Errors or runtime exceptions thrown during iteration or by the predicate are relayed to the caller.\n```\n\nhttps://developer.android.com/reference/java/util/ArrayList#removeIf(java.util.function.Predicate%3C?%20super%20E%3E)",
+      "parentUuid": "c16f6cd9_ed4eba57",
+      "range": {
+        "startLine": 222,
+        "startChar": 12,
+        "endLine": 222,
+        "endChar": 38
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26ed4b34_fedf9af1",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-11T01:41:55Z",
       "side": 1,
       "message": "The same here for rawBytes.length \u003d 0.",
+      "range": {
+        "startLine": 155,
+        "startChar": 8,
+        "endLine": 157,
+        "endChar": 46
+      },
+      "revId": "0c6507d57d6141e35a7e4236e266b2dfdde0224c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ee28fca_62710f1f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioContentMetadata.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-11T01:52:43Z",
+      "side": 1,
+      "message": "when rawBytes.length \u003d\u003d 0, BluetoothUtils.parseLengthTypeValueBytes(rawBytes) will return an empty list. then the for-loop will be no-op and both programInfo and language will be null, and both of them can be nullable per API doc.",
+      "parentUuid": "26ed4b34_fedf9af1",
       "range": {
         "startLine": 155,
         "startChar": 8,
