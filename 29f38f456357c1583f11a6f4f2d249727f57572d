@@ -52,6 +52,24 @@
       "parentUuid": "ec7323cb_6ad3fcfd",
       "revId": "29f38f456357c1583f11a6f4f2d249727f57572d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29df98a3_98bdf4a7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-12T12:37:31Z",
+      "side": 1,
+      "message": "Thanks for the explanation. What\u0027s the LeAudioStackEvent.EVENT_TYPE_AUDIO_CONF_CHANGED purpose? Why it need to update to upper layer?",
+      "parentUuid": "e9045931_f25d10ce",
+      "revId": "29f38f456357c1583f11a6f4f2d249727f57572d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
