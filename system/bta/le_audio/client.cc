@@ -298,6 +298,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     /* Releasement didn't finished in time */
     if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
+      CancelStreamingRequest();
       audio_sender_state_ = AudioState::IDLE;
       audio_receiver_state_ = AudioState::IDLE;
       LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
