@@ -622,11 +622,13 @@ public final class BluetoothHearingAid implements BluetoothProfile {
      * @return SIDE_LEFT or SIDE_RIGHT
      * @hide
      */
+    @SystemApi
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    public int getDeviceSide(BluetoothDevice device) {
+    public int getDeviceSide(@NonNull BluetoothDevice device) {
         if (VDBG) log("getDeviceSide(" + device + ")");
+        verifyDeviceNotNull(device, "getDeviceSide");
         final IBluetoothHearingAid service = getService();
         final int defaultValue = SIDE_LEFT;
         if (service == null) {
@@ -651,11 +653,13 @@ public final class BluetoothHearingAid implements BluetoothProfile {
      * @return MODE_MONAURAL or MODE_BINAURAL
      * @hide
      */
+    @SystemApi
     @RequiresLegacyBluetoothPermission
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    public int getDeviceMode(BluetoothDevice device) {
+    public int getDeviceMode(@NonNull BluetoothDevice device) {
         if (VDBG) log("getDeviceMode(" + device + ")");
+        verifyDeviceNotNull(device, "getDeviceMode");
         final IBluetoothHearingAid service = getService();
         final int defaultValue = MODE_MONAURAL;
         if (service == null) {
