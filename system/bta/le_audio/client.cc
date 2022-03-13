@@ -298,8 +298,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     /* Releasement didn't finished in time */
     if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) {
-      audio_sender_state_ = AudioState::IDLE;
-      audio_receiver_state_ = AudioState::IDLE;
+      CancelStreamingRequest();
       LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
       LOG_ASSERT(leAudioDevice)
           << __func__ << " Shouldn't be called without an active device.";
@@ -340,15 +339,10 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void CancelStreamingRequest() {
-    if (audio_sender_state_ >= AudioState::READY_TO_START) {
-      LeAudioClientAudioSource::CancelStreamingRequest();
-      audio_sender_state_ = AudioState::IDLE;
-    }
-
-    if (audio_receiver_state_ >= AudioState::READY_TO_START) {
-      LeAudioClientAudioSink::CancelStreamingRequest();
-      audio_receiver_state_ = AudioState::IDLE;
-    }
+    LeAudioClientAudioSource::CancelStreamingRequest();
+    audio_sender_state_ = AudioState::IDLE;
+    LeAudioClientAudioSink::CancelStreamingRequest();
+    audio_receiver_state_ = AudioState::IDLE;
   }
 
   void ControlPointNotificationHandler(
