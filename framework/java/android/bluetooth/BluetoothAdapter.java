@@ -183,12 +183,22 @@ public final class BluetoothAdapter {
             STATE_TURNING_ON,
             STATE_ON,
             STATE_TURNING_OFF,
+    })
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface AdapterState {}
+
+    /** @hide */
+    @IntDef(prefix = { "STATE_" }, value = {
+            STATE_OFF,
+            STATE_TURNING_ON,
+            STATE_ON,
+            STATE_TURNING_OFF,
             STATE_BLE_TURNING_ON,
             STATE_BLE_ON,
             STATE_BLE_TURNING_OFF
     })
     @Retention(RetentionPolicy.SOURCE)
-    public @interface AdapterState {}
+    public @interface InternalAdapterState {}
 
     /**
      * Indicates the local Bluetooth adapter is off.
@@ -268,14 +278,14 @@ public final class BluetoothAdapter {
     public @interface RfcommListenerResult {}
 
     /**
-     * Human-readable string helper for AdapterState
+     * Human-readable string helper for AdapterState and InternalAdapterState
      *
      * @hide
      */
     @SystemApi
     @RequiresNoPermission
     @NonNull
-    public static String nameForState(@AdapterState int state) {
+    public static String nameForState(@InternalAdapterState int state) {
         switch (state) {
             case STATE_OFF:
                 return "OFF";
@@ -1151,7 +1161,7 @@ public final class BluetoothAdapter {
      * Fetch the current bluetooth state.  If the service is down, return
      * OFF.
      */
-    @AdapterState
+    @InternalAdapterState
     private int getStateInternal() {
         int state = BluetoothAdapter.STATE_OFF;
         try {
@@ -1220,7 +1230,7 @@ public final class BluetoothAdapter {
      */
     @RequiresLegacyBluetoothPermission
     @RequiresNoPermission
-    @AdapterState
+    @InternalAdapterState
     @UnsupportedAppUsage(publicAlternatives = "Use {@link #getState()} instead to determine "
             + "whether you can use BLE & BT classic.")
     public int getLeState() {
