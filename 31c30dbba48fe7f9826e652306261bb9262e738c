@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dcfff4b_444c91b8",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-14T10:41:34Z",
+      "side": 1,
+      "message": "As Łukasz said, we still the new remote preferred configuration here.",
+      "parentUuid": "f036f948_cb1fd051",
+      "range": {
+        "startLine": 11,
+        "startChar": 17,
+        "endLine": 11,
+        "endChar": 48
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d47ced23_36961ace",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
