@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4beb3b5_0555d170",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-14T16:02:44Z",
+      "side": 1,
+      "message": "Not easily because the LMP implementation also handles the Command Complete, I\u0027m not a big fan either of doing this from there, If you have any idea on how to refactor this I\u0027m taking it.",
+      "parentUuid": "ae392ff2_06095986",
+      "range": {
+        "startLine": 814,
+        "startChar": 0,
+        "endLine": 816,
+        "endChar": 5
+      },
+      "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "539c6d1b_cc3af33a",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
         "patchSetId": 15
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c220a2fd_14094db3",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-14T16:02:44Z",
+      "side": 1,
+      "message": "Mainly to avoid endianness questions and because it was defined with an array on the LMP layer, but I\u0027m not too opinionated on this, so if you think that an uint64_t is better I\u0027m happy to do the change",
+      "parentUuid": "539c6d1b_cc3af33a",
+      "range": {
+        "startLine": 85,
+        "startChar": 58,
+        "endLine": 85,
+        "endChar": 75
+      },
+      "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12aba910_136adac1",
         "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
         "patchSetId": 15
@@ -60,6 +108,30 @@
       "writtenOn": "2022-03-14T15:40:30Z",
       "side": 1,
       "message": "I\u0027m not a fan of friends.  Do these go away if we push the ifdefs into this file and remove",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de20379_be8898e7",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-14T16:02:44Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand what you are proposing here, the friend are currently required because those functions are global functions that I pass through the C FFI. I could remove by adding a public interface for the class that give me access to the same informations but I\u0027m not a big fan of that.",
+      "parentUuid": "12aba910_136adac1",
       "range": {
         "startLine": 58,
         "startChar": 0,
