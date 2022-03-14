@@ -16,6 +16,24 @@
       "message": "guessing this\u0027ll fail without the updatable override, but worth a shot.",
       "revId": "95b895cf47d2991db0ae36ce134f509a5d880a1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4dc8938_e15ff7ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1930744
+      },
+      "writtenOn": "2022-03-14T18:08:22Z",
+      "side": 1,
+      "message": "It is passing even without the override. I guess that is because the bluetooth team mentioned that this apex is not built on AOSP",
+      "parentUuid": "e8b1c22e_90b20700",
+      "revId": "95b895cf47d2991db0ae36ce134f509a5d880a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
