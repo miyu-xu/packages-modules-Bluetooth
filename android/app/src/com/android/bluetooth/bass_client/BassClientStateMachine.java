@@ -186,7 +186,7 @@ class BassClientStateMachine extends StateMachine {
             mPeriodicAdvManager = mBluetoothAdapter.getPeriodicAdvertisingManager();
         }
         mIsAllowedList = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH,
-                "persist.vendor.service.bt.wl", true);
+                "persist.vendor.service.bt.wl", false);
         mDefNoPAS = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH,
                 "persist.vendor.service.bt.defNoPAS", false);
         mForceSB = DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH,
