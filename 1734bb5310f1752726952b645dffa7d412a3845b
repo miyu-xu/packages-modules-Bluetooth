@@ -81,6 +81,24 @@
       "parentUuid": "0b03db3f_cf545190",
       "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "583b00b9_c5958e87",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-14T11:47:16Z",
+      "side": 1,
+      "message": "If state machine has started to create stream, but both \naudio_sender_state_ and audio_receiver_state_ are IDLE - then we have some other issue and above change is just a workaround.",
+      "parentUuid": "446a7613_5b09b1a1",
+      "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
