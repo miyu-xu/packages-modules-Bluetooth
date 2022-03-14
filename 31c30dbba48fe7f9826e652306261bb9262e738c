@@ -217,6 +217,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6668761a_b0c035d4",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-14T10:40:31Z",
+      "side": 1,
+      "message": "No, you are not doing that.\n\nYou have separate check in line 1158 for latency and in 1166 for retrans_nb.\n\nit should be more like:\n\nif (latency_check \u0026\u0026 retrans_nb_check) {\n ase-\u003eretrans_nb \u003d rsp.preferred_retrans_nb;\n ase-\u003emax_transport_latency \u003d rsp.max_transport_latency;\n}",
+      "parentUuid": "36659142_a25740d6",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
