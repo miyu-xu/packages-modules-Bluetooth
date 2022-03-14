@@ -107,6 +107,7 @@ public class TbsGeneric {
         }
     }
 
+    private boolean mIsInitialized = false;
     private TbsGatt mTbsGatt = null;
     private List<Bearer> mBearerList = new ArrayList<>();
     private int mLastIndexAssigned = TbsCall.INDEX_UNASSIGNED;
@@ -119,7 +120,12 @@ public class TbsGeneric {
 
     private final class Receiver extends BroadcastReceiver {
         @Override
-        public void onReceive(Context context, Intent intent) {
+        public synchronized void onReceive(Context context, Intent intent) {
+            if (!mIsInitialized) {
+                Log.w(TAG, "onReceive called while not initialized.");
+                return;
+            }
+
             final String action = intent.getAction();
             if (action.equals(AudioManager.RINGER_MODE_CHANGED_ACTION)) {
                 int ringerMode = intent.getIntExtra(AudioManager.EXTRA_RINGER_MODE, -1);
@@ -137,33 +143,35 @@ public class TbsGeneric {
         }
     };
 
-    public boolean init(TbsGatt tbsGatt) {
+    public synchronized boolean init(TbsGatt tbsGatt) {
         if (DBG) {
             Log.d(TAG, "init");
         }
-
         mTbsGatt = tbsGatt;
 
         int ccid = ContentControlIdKeeper.acquireCcid();
         if (!isCcidValid(ccid)) {
+            Log.e(TAG, " CCID is not valid");
+            cleanup();
             return false;
         }
 
         if (!mTbsGatt.init(ccid, UCI, mUriSchemes, true, true, DEFAULT_PROVIDER_NAME,
                 DEFAULT_BEARER_TECHNOLOGY, mTbsGattCallback)) {
             Log.e(TAG, " TbsGatt init failed");
+            cleanup();
             return false;
         }
 
-        AudioManager mAudioManager = mTbsGatt.getContext()
-                .getSystemService(AudioManager.class);
-        if (mAudioManager == null) {
+        AudioManager audioManager = mTbsGatt.getContext().getSystemService(AudioManager.class);
+        if (audioManager == null) {
             Log.w(TAG, " AudioManager is not available");
-            return true;
+            cleanup();
+            return false;
         }
 
         // read initial value of ringer mode
-        mStoredRingerMode = mAudioManager.getRingerMode();
+        mStoredRingerMode = audioManager.getRingerMode();
 
         if (isSilentModeEnabled()) {
             mTbsGatt.setSilentModeFlag();
@@ -174,10 +182,12 @@ public class TbsGeneric {
         mReceiver = new Receiver();
         mTbsGatt.getContext().registerReceiver(mReceiver,
                 new IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION));
+
+        mIsInitialized = true;
         return true;
     }
 
-    public void cleanup() {
+    public synchronized void cleanup() {
         if (DBG) {
             Log.d(TAG, "cleanup");
         }
@@ -189,72 +199,68 @@ public class TbsGeneric {
             mTbsGatt.cleanup();
             mTbsGatt = null;
         }
+
+        mIsInitialized = false;
     }
 
-    private boolean isSilentModeEnabled() {
+    private synchronized boolean isSilentModeEnabled() {
         return mStoredRingerMode != AudioManager.RINGER_MODE_NORMAL;
     }
 
-    private Bearer getBearerByToken(String token) {
-        synchronized (mBearerList) {
-            for (Bearer bearer : mBearerList) {
-                if (bearer.token.equals(token)) {
+    private synchronized Bearer getBearerByToken(String token) {
+        for (Bearer bearer : mBearerList) {
+            if (bearer.token.equals(token)) {
+                return bearer;
+            }
+        }
+        return null;
+    }
+
+    private synchronized Bearer getBearerByCcid(int ccid) {
+        for (Bearer bearer : mBearerList) {
+            if (bearer.ccid == ccid) {
+                return bearer;
+            }
+        }
+        return null;
+    }
+
+    private synchronized Bearer getBearerSupportingUri(String uri) {
+        for (Bearer bearer : mBearerList) {
+            for (String s : bearer.uriSchemes) {
+                if (uri.startsWith(s + ":")) {
                     return bearer;
                 }
             }
         }
-
         return null;
     }
 
-    private Bearer getBearerByCcid(int ccid) {
-        synchronized (mBearerList) {
-            for (Bearer bearer : mBearerList) {
-                if (bearer.ccid == ccid) {
-                    return bearer;
+    private synchronized Map.Entry<UUID, Bearer> getCallIdByIndex(int callIndex) {
+        for (Bearer bearer : mBearerList) {
+            for (Map.Entry<UUID, Integer> callIdToIndex : bearer.callIdIndexMap.entrySet()) {
+                if (callIndex == callIdToIndex.getValue()) {
+                    return Map.entry(callIdToIndex.getKey(), bearer);
                 }
             }
         }
-
         return null;
     }
 
-    private Bearer getBearerSupportingUri(String uri) {
-        synchronized (mBearerList) {
-            for (Bearer bearer : mBearerList) {
-                for (String s : bearer.uriSchemes) {
-                    if (uri.startsWith(s + ":")) {
-                        return bearer;
-                    }
-                }
-            }
-        }
-
-        return null;
-    }
-
-    private Map.Entry<UUID, Bearer> getCallIdByIndex(int callIndex) {
-        synchronized (mBearerList) {
-            for (Bearer bearer : mBearerList) {
-                for (Map.Entry<UUID, Integer> callIdToIndex : bearer.callIdIndexMap.entrySet()) {
-                    if (callIndex == callIdToIndex.getValue()) {
-                        return Map.entry(callIdToIndex.getKey(), bearer);
-                    }
-                }
-            }
-        }
-
-        return null;
-    }
-
-    public boolean addBearer(String token, IBluetoothLeCallControlCallback callback, String uci,
-            List<String> uriSchemes, int capabilities, String providerName, int technology) {
+    public synchronized boolean addBearer(String token, IBluetoothLeCallControlCallback callback,
+            String uci, List<String> uriSchemes, int capabilities, String providerName,
+            int technology) {
         if (DBG) {
             Log.d(TAG,
                     "addBearer: token=" + token + " uci=" + uci + " uriSchemes=" + uriSchemes
                             + " capabilities=" + capabilities + " providerName=" + providerName
                             + " technology=" + technology);
         }
+        if (!mIsInitialized) {
+            Log.w(TAG, "addBearer called while not initialized.");
+            return false;
+        }
+
         if (getBearerByToken(token) != null) {
             Log.w(TAG, "addBearer: token=" + token + " registered already");
             return false;
@@ -264,9 +270,7 @@ public class TbsGeneric {
         Bearer bearer = new Bearer(token, callback, uci, uriSchemes, capabilities, providerName,
                 technology, ContentControlIdKeeper.acquireCcid());
         if (isCcidValid(bearer.ccid)) {
-            synchronized (mBearerList) {
-                mBearerList.add(bearer);
-            }
+            mBearerList.add(bearer);
 
             updateUriSchemesSupported();
             if (mForegroundBearer == null) {
@@ -288,10 +292,16 @@ public class TbsGeneric {
         return isCcidValid(bearer.ccid);
     }
 
-    public void removeBearer(String token) {
+    public synchronized void removeBearer(String token) {
         if (DBG) {
             Log.d(TAG, "removeBearer: token=" + token);
         }
+
+        if (!mIsInitialized) {
+            Log.w(TAG, "removeBearer called while not initialized.");
+            return;
+        }
+
         Bearer bearer = getBearerByToken(token);
         if (bearer == null) {
             return;
@@ -317,7 +327,7 @@ public class TbsGeneric {
         }
     }
 
-    private void checkRequestComplete(Bearer bearer, UUID callId, TbsCall tbsCall) {
+    private synchronized void checkRequestComplete(Bearer bearer, UUID callId, TbsCall tbsCall) {
         // check if there's any pending request related to this call
         Map.Entry<Integer, Request> requestEntry = null;
         if (bearer.requestMap.size() > 0) {
@@ -401,7 +411,7 @@ public class TbsGeneric {
         bearer.requestMap.remove(requestId);
     }
 
-    private int getTbsResult(int result, int requestedOpcode) {
+    private synchronized int getTbsResult(int result, int requestedOpcode) {
         if (result == BluetoothLeCallControl.RESULT_ERROR_UNKNOWN_CALL_ID) {
             return TbsGatt.CALL_CONTROL_POINT_RESULT_INVALID_CALL_INDEX;
         }
@@ -414,11 +424,17 @@ public class TbsGeneric {
         return TbsGatt.CALL_CONTROL_POINT_RESULT_OPERATION_NOT_POSSIBLE;
     }
 
-    public void requestResult(int ccid, int requestId, int result) {
+    public synchronized void requestResult(int ccid, int requestId, int result) {
         if (DBG) {
             Log.d(TAG, "requestResult: ccid=" + ccid + " requestId=" + requestId + " result="
                     + result);
         }
+
+        if (!mIsInitialized) {
+            Log.w(TAG, "requestResult called while not initialized.");
+            return;
+        }
+
         Bearer bearer = getBearerByCcid(ccid);
         if (bearer == null) {
             Log.i(TAG, " Bearer for ccid " + ccid + " does not exist");
@@ -442,10 +458,16 @@ public class TbsGeneric {
                 request.callIndex, tbsResult);
     }
 
-    public void callAdded(int ccid, BluetoothLeCall call) {
+    public synchronized void callAdded(int ccid, BluetoothLeCall call) {
         if (DBG) {
             Log.d(TAG, "callAdded: ccid=" + ccid + " call=" + call);
         }
+
+        if (!mIsInitialized) {
+            Log.w(TAG, "callAdded called while not initialized.");
+            return;
+        }
+
         Bearer bearer = getBearerByCcid(ccid);
         if (bearer == null) {
             Log.e(TAG, "callAdded: unknown ccid=" + ccid);
@@ -485,10 +507,16 @@ public class TbsGeneric {
         }
     }
 
-    public void callRemoved(int ccid, UUID callId, int reason) {
+    public synchronized void callRemoved(int ccid, UUID callId, int reason) {
         if (DBG) {
             Log.d(TAG, "callRemoved: ccid=" + ccid + "reason=" + reason);
         }
+
+        if (!mIsInitialized) {
+            Log.w(TAG, "callRemoved called while not initialized.");
+            return;
+        }
+
         Bearer bearer = getBearerByCcid(ccid);
         if (bearer == null) {
             Log.e(TAG, "callRemoved: unknown ccid=" + ccid);
@@ -524,10 +552,16 @@ public class TbsGeneric {
         }
     }
 
-    public void callStateChanged(int ccid, UUID callId, int state) {
+    public synchronized void callStateChanged(int ccid, UUID callId, int state) {
         if (DBG) {
             Log.d(TAG, "callStateChanged: ccid=" + ccid + " callId=" + callId + " state=" + state);
         }
+
+        if (!mIsInitialized) {
+            Log.w(TAG, "callStateChanged called while not initialized.");
+            return;
+        }
+
         Bearer bearer = getBearerByCcid(ccid);
         if (bearer == null) {
             Log.e(TAG, "callStateChanged: unknown ccid=" + ccid);
@@ -557,10 +591,16 @@ public class TbsGeneric {
         }
     }
 
-    public void currentCallsList(int ccid, List<BluetoothLeCall> calls) {
+    public synchronized void currentCallsList(int ccid, List<BluetoothLeCall> calls) {
         if (DBG) {
             Log.d(TAG, "currentCallsList: ccid=" + ccid + " callsNum=" + calls.size());
         }
+
+        if (!mIsInitialized) {
+            Log.w(TAG, "currentCallsList called while not initialized.");
+            return;
+        }
+
         Bearer bearer = getBearerByCcid(ccid);
         if (bearer == null) {
             Log.e(TAG, "currentCallsList: unknown ccid=" + ccid);
@@ -607,11 +647,17 @@ public class TbsGeneric {
         }
     }
 
-    public void networkStateChanged(int ccid, String providerName, int technology) {
+    public synchronized void networkStateChanged(int ccid, String providerName, int technology) {
         if (DBG) {
             Log.d(TAG, "networkStateChanged: ccid=" + ccid + " providerName=" + providerName
                     + " technology=" + technology);
         }
+
+        if (!mIsInitialized) {
+            Log.w(TAG, "networkStateChanged called while not initialized.");
+            return;
+        }
+
         Bearer bearer = getBearerByCcid(ccid);
         if (bearer == null) {
             return;
@@ -638,7 +684,7 @@ public class TbsGeneric {
         }
     }
 
-    private int processOriginateCall(BluetoothDevice device, String uri) {
+    private synchronized int processOriginateCall(BluetoothDevice device, String uri) {
         if (uri.startsWith("tel")) {
             /*
              * FIXME: For now, process telephone call originate request here, as
@@ -680,18 +726,24 @@ public class TbsGeneric {
     private final TbsGatt.Callback mTbsGattCallback = new TbsGatt.Callback() {
 
         @Override
-        public void onServiceAdded(boolean success) {
+        public synchronized void onServiceAdded(boolean success) {
             if (DBG) {
                 Log.d(TAG, "onServiceAdded: success=" + success);
             }
         }
 
         @Override
-        public void onCallControlPointRequest(BluetoothDevice device, int opcode, byte[] args) {
+        public synchronized void onCallControlPointRequest(BluetoothDevice device, int opcode, byte[] args) {
             if (DBG) {
                 Log.d(TAG, "onCallControlPointRequest: device=" + device + " opcode=" + opcode
                         + "argsLen=" + args.length);
             }
+
+            if (!mIsInitialized) {
+                Log.w(TAG, "onCallControlPointRequest called while not initialized.");
+                return;
+            }
+
             int result;
 
             switch (opcode) {
@@ -829,7 +881,7 @@ public class TbsGeneric {
         return callIndex != TbsCall.INDEX_UNASSIGNED;
     }
 
-    private Integer getFreeCallIndex() {
+    private synchronized Integer getFreeCallIndex() {
         int callIndex = mLastIndexAssigned;
         for (int i = TbsCall.INDEX_MIN; i <= TbsCall.INDEX_MAX; i++) {
             callIndex = (callIndex + 1) % TbsCall.INDEX_MAX;
@@ -849,7 +901,8 @@ public class TbsGeneric {
         return null;
     }
 
-    private Map.Entry<Integer, TbsCall> getCallByStates(LinkedHashSet<Integer> states) {
+    private synchronized Map.Entry<Integer, TbsCall> getCallByStates(
+            LinkedHashSet<Integer> states) {
         for (Map.Entry<Integer, TbsCall> entry : mCurrentCallsList.entrySet()) {
             if (states.contains(entry.getValue().getState())) {
                 return entry;
@@ -859,7 +912,7 @@ public class TbsGeneric {
         return null;
     }
 
-    private Map.Entry<Integer, TbsCall> getForegroundCall() {
+    private synchronized Map.Entry<Integer, TbsCall> getForegroundCall() {
         LinkedHashSet<Integer> states = new LinkedHashSet<Integer>();
         Map.Entry<Integer, TbsCall> foregroundCall;
 
@@ -891,7 +944,7 @@ public class TbsGeneric {
         return null;
     }
 
-    private Bearer findNewForegroundBearer() {
+    private synchronized Bearer findNewForegroundBearer() {
         if (mBearerList.size() == 0) {
             return null;
         }
@@ -910,7 +963,7 @@ public class TbsGeneric {
         return mBearerList.get(mBearerList.size() - 1);
     }
 
-    private void setForegroundBearer(Bearer bearer) {
+    private synchronized void setForegroundBearer(Bearer bearer) {
         if (DBG) {
             Log.d(TAG, "setForegroundBearer: bearer=" + bearer);
         }
@@ -934,7 +987,7 @@ public class TbsGeneric {
         mForegroundBearer = bearer;
     }
 
-    private void notifyCclc() {
+    private synchronized void notifyCclc() {
         if (DBG) {
             Log.d(TAG, "notifyCclc");
         }
@@ -942,7 +995,7 @@ public class TbsGeneric {
         mTbsGatt.setBearerListCurrentCalls(mCurrentCallsList);
     }
 
-    private void updateUriSchemesSupported() {
+    private synchronized void updateUriSchemesSupported() {
         List<String> newUriSchemes = new ArrayList<>();
         for (Bearer bearer : mBearerList) {
             newUriSchemes.addAll(bearer.uriSchemes);
