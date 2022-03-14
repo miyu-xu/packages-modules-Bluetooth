@@ -99,6 +99,24 @@
       "parentUuid": "446a7613_5b09b1a1",
       "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "840f39ae_538884c4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-14T12:01:34Z",
+      "side": 1,
+      "message": "The start stream is not the state machine for le audio, the startStream is triggered from audio port.\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/audio_bluetooth_hw/device_port_proxy.cc;drc\u003d2b745985128a24504cab27e48e019d79ebdcb95d;l\u003d421\n\nThe audio port could trigger startStream during the process - the context switch, and for now the le audio state machine do the context switch, streamSuspended, streamStarted automatically (not sync with audio framework and audio HAL). That would be an actual issue. If the remote headset no response with the config codec, it would drop in this case.",
+      "parentUuid": "583b00b9_c5958e87",
+      "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
