@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "248c3b5e_a3ffa758",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "OUT",
+      "range": {
+        "startLine": 187,
+        "startChar": 45,
+        "endLine": 187,
+        "endChar": 47
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "587697df_2d2d5b01",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be `\u0026\u0026` ?",
+      "range": {
+        "startLine": 538,
+        "startChar": 28,
+        "endLine": 538,
+        "endChar": 30
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681715ce_68b13340",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "Why do we need the actual implementation instead of running this layer tests in isolation like we used to?",
+      "range": {
+        "startLine": 614,
+        "startChar": 8,
+        "endLine": 614,
+        "endChar": 34
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e23e819_c5c784b5",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 750,
+        "startChar": 18,
+        "endLine": 750,
+        "endChar": 34
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21dbe03b_27034931",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "Does this happen only for unit testing?",
+      "range": {
+        "startLine": 711,
+        "startChar": 0,
+        "endLine": 712,
+        "endChar": 71
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9a59fbe_a537719b",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "...or is this what\u0027s being used to inject dependencies for unit testing? We could use a comment here or above, or either places to actually know what\u0027s the unit-tests path and the normal run path.",
+      "range": {
+        "startLine": 754,
+        "startChar": 25,
+        "endLine": 754,
+        "endChar": 46
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbcf1b9e_24e68035",
+        "filename": "system/bta/le_audio/client_audio.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 375,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "Why do we need these two classes if implementation is the same? Wouldn\u0027t two instances of the same class be enough?",
+      "range": {
+        "startLine": 357,
+        "startChar": 1,
+        "endLine": 375,
+        "endChar": 1
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6202c458_91688456",
+        "filename": "system/bta/le_audio/client_audio.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-14T13:06:29Z",
+      "side": 1,
+      "message": "Why do we need these additional wrappers?",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 24
+      },
+      "revId": "2dfa182195f3872a061700d9cefc61a84d76778f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
