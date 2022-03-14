@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2e1238_1a48193b",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-14T21:11:49Z",
+      "side": 1,
+      "message": "We shouldn\u0027t list out return values as they will be implied by the @IntDef annotation. Instead, let\u0027s describe what the return value represents!",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ec6f72b_8c298249",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-14T21:11:49Z",
+      "side": 1,
+      "message": "nit: \"have its\" --\u003e \"has its\"",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75bcb59b_c33daaea",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-14T21:11:49Z",
+      "side": 1,
+      "message": "Same here!",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b126ca00_92519615",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-14T21:11:49Z",
+      "side": 1,
+      "message": "Same here, we can omit this because of the IntDef annotation :)",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "549ad92f_c52bcc15",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-14T21:11:49Z",
+      "side": 1,
+      "message": "Slightly unrelated, but what does it even mean to set the state to unknown? I don\u0027t think we should even support that value, but that is out of scope for this CL.",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
