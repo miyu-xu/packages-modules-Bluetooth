@@ -50,6 +50,24 @@
       "message": "Chienyuan Huang, I verified compilation after sync aosp master, could you please update wat failures we are seeing with latest patch set ?",
       "revId": "a374616fc8221fccf7ed8da9ed329d63d3d9b762",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16c58444_f4789340",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-14T07:38:38Z",
+      "side": 1,
+      "message": "It seem caused by obex path conflict between AOSP and internal master.\nI will check how to solve it.\nThanks!",
+      "parentUuid": "6c4bd510_4b4f1ce4",
+      "revId": "a374616fc8221fccf7ed8da9ed329d63d3d9b762",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
