@@ -95,20 +95,38 @@ class BluetoothPbapBase(pixel_bluetooth_base_test.PixelBluetoothBaseTest):
 
   def _import_vcf_to_pse(self, file_name: str,
                          expected_contact_count: int) -> None:
-    """Imports the vcf file to PSE."""
+    """Imports the vcf file to PSE.
+
+    Args:
+      file_name: imported file name
+      expected_contact_count: the exported count
+    Raises:
+      RuntimeError: exception raises when no dialog matches
+    """
     # Open ImportVcardActivity and click "OK" in the pop-up dialog, then
     # PickActivity will be launched and browses the existing vcf files.
     self.pri_phone.adb.shell(
         'am start com.google.android.contacts/'
         'com.google.android.apps.contacts.vcard.ImportVCardActivity')
-
+    # Wait for dialog popup
+    time.sleep(3)
     # Grants Notification permission for T build. Internal link
     if (int(self.pri_phone.build_info['build_version_sdk']) >= 32 and
         self.pri_phone.aud(
             text_regex=_NOTIFICATION_DIALOG_MSG_PATTERN).exists(timeout_sec=5)):
       self.pri_phone.log.info('Allow Contacts to send notifications.')
       self.pri_phone.aud(text='Allow').click()
-    self.pri_phone.aud(text='OK').click()
+    # Android T dialog - Save to Device
+    if self.pri_phone.aud(
+        resource_id='com.google.android.contacts:id/title_template').exists():
+      self.pri_phone.aud(resource_id='android:id/icon').click()
+    # The Dialog before Android S - Import constacts from vCard" dialogs
+    elif self.pri_phone.aud(
+        resource_id='com.google.android.contacts:id/textSpacerNoTitle').exists(
+        ):
+      self.pri_phone.aud(text='OK').click()
+    else:
+      raise RuntimeError('Neither one contact import dialog popup!')
 
     # Check if the vcf file appears in the PickActivity.
     if not self.pri_phone.aud(text=file_name).exists():
