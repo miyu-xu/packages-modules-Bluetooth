@@ -17,6 +17,8 @@
 
 package com.android.bluetooth.leaudio;
 
+import android.bluetooth.BluetoothBroadcastAudioScan;
+import android.bluetooth.BluetoothBroadcastAudioScanBaseConfig;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHapPresetInfo;
 
@@ -103,6 +105,7 @@ public class LeAudioDeviceStateWrapper {
         public static class ReceiverState {
                 int receiver_id;
                 int state;
+                List<BluetoothBroadcastAudioScanBaseConfig> subgroup_configs;
         }
 
         public static class BassData {
