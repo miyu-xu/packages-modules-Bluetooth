@@ -117,6 +117,24 @@
       "parentUuid": "583b00b9_c5958e87",
       "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "445cb205_726d0b37",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-14T13:24:50Z",
+      "side": 1,
+      "message": "Remove it for the partial fix.",
+      "parentUuid": "840f39ae_538884c4",
+      "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
