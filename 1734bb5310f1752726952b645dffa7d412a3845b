@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad446b14_b771bae4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-14T10:58:30Z",
+      "side": 1,
+      "message": "You\u0027re right. Thanks for the finding.",
+      "parentUuid": "a03f966c_768d533e",
+      "range": {
+        "startLine": 302,
+        "startChar": 2,
+        "endLine": 303,
+        "endChar": 47
+      },
+      "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b03db3f_cf545190",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-03-14T09:48:53Z",
       "side": 1,
       "message": "change here should not be needed.",
+      "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446a7613_5b09b1a1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-14T10:58:30Z",
+      "side": 1,
+      "message": "It is needed. The error also sometime be happened as the audio_sender_state_ and audio_receiver_state_ are AudioState::IDLE, there is pending request (the BluetoothSreamState is STARTING), and the remote headset state change timeout. No one to reset the bluetooth input state, and the error log printed continuously\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/audio_bluetooth_hw/stream_apis.cc;drc\u003dmaster;l\u003d902",
+      "parentUuid": "0b03db3f_cf545190",
       "revId": "1734bb5310f1752726952b645dffa7d412a3845b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
