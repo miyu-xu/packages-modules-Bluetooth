@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae392ff2_06095986",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-14T15:40:30Z",
+      "side": 1,
+      "message": "I\u0027d rather not tell the LinkLayer what to do from here.  Can we move these ifdefs into the LinkLayerController?",
+      "range": {
+        "startLine": 814,
+        "startChar": 0,
+        "endLine": 816,
+        "endChar": 5
+      },
+      "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "539c6d1b_cc3af33a",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-14T15:40:30Z",
+      "side": 1,
+      "message": "why not use uint64_t?",
+      "range": {
+        "startLine": 85,
+        "startChar": 58,
+        "endLine": 85,
+        "endChar": 75
+      },
+      "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12aba910_136adac1",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-14T15:40:30Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of friends.  Do these go away if we push the ifdefs into this file and remove",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
