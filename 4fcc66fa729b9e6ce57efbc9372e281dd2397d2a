@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb9a7d5_debb7d41",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-14T10:28:41Z",
+      "side": 1,
+      "message": "Is there somewhere in the spec where this is called \"Credit\" ?\nIf not, I would prefer that we come up with another name because Credit is already used in L2CAP.\nAs the function is short and to enforce typing maybe two methods `SendCommandComplete` and `SendCommandStatus` here would make sense.\nAnd I think to match with the spec `num_command_credits_` \u003d\u003e `num_HCI_command_packets`",
+      "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e7ae4ca_f3b452a1",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-14T10:28:41Z",
+      "side": 1,
+      "message": "Could we rewrite that to avoid the ternary here ?\nSomething like\n```\n// Some commands don\u0027t require credits.\nbool require_credits \u003d op \u003d\u003d OpCode::RESET || op \u003d\u003d OpCode::CONTROLLER_DEBUG_INFO;\nif (!(require_credits \u0026\u0026 num_command_credits_ \u003d\u003d 0)) {\n      ASSERT(num_command_credits_ \u003d\u003d 1);\n      num_command_credits_ -\u003d 1;\n}\n```",
+      "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
