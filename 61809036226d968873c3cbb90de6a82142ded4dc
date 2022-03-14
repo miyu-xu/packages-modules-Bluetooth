@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c67e166_f56701e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-14T14:24:44Z",
+      "side": 1,
+      "message": "Thanks !\n\nAre these the only ones called out from the tool ?",
+      "revId": "61809036226d968873c3cbb90de6a82142ded4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
