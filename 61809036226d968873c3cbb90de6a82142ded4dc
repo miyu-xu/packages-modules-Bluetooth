@@ -16,6 +16,24 @@
       "message": "Thanks !\n\nAre these the only ones called out from the tool ?",
       "revId": "61809036226d968873c3cbb90de6a82142ded4dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78410d49_f61f38bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2022-03-14T17:29:56Z",
+      "side": 1,
+      "message": "Yes AFAICT.\n\nThanks for the quick review!",
+      "parentUuid": "9c67e166_f56701e6",
+      "revId": "61809036226d968873c3cbb90de6a82142ded4dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
