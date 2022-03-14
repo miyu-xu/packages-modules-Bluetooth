@@ -28,6 +28,7 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     super().__init__(configs)
     self._upload_test_report = None
     self.capture_bugreport_on_fail = None
+    self.screenshot_on_fail = None
     self.android_devices = None
     self.derived_bt_devices = None
     self.ignore_device_setup_failures = None
@@ -97,6 +98,7 @@ class BlueberryBaseTest(base_test.BaseTestClass):
       self._init_spanner_utils()
     self.capture_bugreport_on_fail = int(self.user_params.get(
         'capture_bugreport_on_fail', 0))
+    self.screenshot_on_fail = int(self.user_params.get('screenshot_on_fail', 0))
     self.ignore_device_setup_failures = int(self.user_params.get(
         'ignore_device_setup_failures', 0))
     self.enable_bluetooth_verbose_logging = int(self.user_params.get(
@@ -188,6 +190,12 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     """This method is called when a test failure."""
     if self._upload_test_report:
       self._upload_test_report_to_spanner(record.result)
+
+    # Takes screenshot for android devices if a test method fails.
+    if self.screenshot_on_fail:
+      for device in self.android_devices:
+        device.take_screenshot(
+            destination=self.current_test_info.output_path)
 
     # Capture bugreports on fail if enabled.
     if self.capture_bugreport_on_fail:
