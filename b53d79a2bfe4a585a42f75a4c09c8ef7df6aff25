@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68b2fd98_915f7df4",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1164,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-14T22:46:00Z",
+      "side": 1,
+      "message": "nit: put this between the method visibility and return type for consistency",
+      "revId": "b53d79a2bfe4a585a42f75a4c09c8ef7df6aff25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a783ff3_be685ddd",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1233,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-14T22:46:00Z",
+      "side": 1,
+      "message": "Same here",
+      "revId": "b53d79a2bfe4a585a42f75a4c09c8ef7df6aff25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
