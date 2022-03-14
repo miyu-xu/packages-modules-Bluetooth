@@ -26,7 +26,11 @@
 #include <cinttypes>
 #include <cstring>
 
+#include "os/internal/reactable.h"
+#include "os/internal/reactor_api.h"
+#include "os/internal/reactor_event_api.h"
 #include "os/log.h"
+#include "os/utils.h"
 
 namespace {
 
@@ -41,65 +45,71 @@ namespace bluetooth {
 namespace os {
 using common::Closure;
 
-struct Reactor::Event::impl {
-  impl() {
-    fd_ = eventfd(0, EFD_SEMAPHORE | EFD_NONBLOCK);
+class EventfdReactor : public ReactorApi {
+ public:
+  EventfdReactor();
+  ~EventfdReactor();
+  void Run() override;
+  void Stop() override;
+  Reactor::Reactable* Register(int fd, Closure on_read_ready, Closure on_write_ready) override;
+  void Unregister(Reactor::Reactable* reactable) override;
+  bool WaitForUnregisteredReactable(std::chrono::milliseconds timeout) override;
+  bool WaitForIdle(std::chrono::milliseconds timeout) override;
+  void ModifyRegistration(Reactor::Reactable* reactable, Closure on_read_ready, Closure on_write_ready) override;
+
+  std::unique_ptr<Reactor::Event> NewEvent() const;
+
+  struct Event;
+
+  int epoll_fd_;
+  int control_fd_;
+};
+
+ReactorApi* NewEventfdReactor() {
+  return new EventfdReactor();
+}
+
+struct Eventfd : public ReactorEventApi {
+  Eventfd() : fd_(eventfd(0, EFD_SEMAPHORE | EFD_NONBLOCK)) {
     ASSERT_LOG(fd_ != -1, "Unable to create nonblocking event file descriptor semaphore");
   }
-  ~impl() {
+  ~Eventfd() {
+    if (fd_ != -1) Close();
+  }
+  bool Read() override {
+    uint64_t val = 0;
+    return eventfd_read(fd_, &val) == 0;
+  }
+  int Id() const override {
+    return fd_;
+  }
+  void Clear() override {
+    uint64_t val;
+    while (eventfd_read(fd_, &val) == 0) {
+    }
+  }
+  void Close() override {
     ASSERT_LOG(fd_ != -1, "Unable to close a never-opened event file descriptor");
-    close(fd_);
+    int close_status;
+    RUN_NO_INTR(close_status = close(fd_));
+    ASSERT(close_status != -1);
     fd_ = -1;
   }
+  void Notify() override {
+    uint64_t val = 1;
+    auto write_result = eventfd_write(fd_, val);
+    ASSERT(write_result != -1);
+  }
+
   int fd_ = -1;
 };
 
-Reactor::Event::Event() : pimpl_(new impl()) {}
-Reactor::Event::~Event() {
-  delete pimpl_;
+// TODO Make part of reactor API
+ReactorEventApi* NewReactorEventEventfd() {
+  return new Eventfd();
 }
 
-bool Reactor::Event::Read() {
-  uint64_t val = 0;
-  return eventfd_read(pimpl_->fd_, &val) == 0;
-}
-int Reactor::Event::Id() const {
-  return pimpl_->fd_;
-}
-void Reactor::Event::Clear() {
-  uint64_t val;
-  while (eventfd_read(pimpl_->fd_, &val) == 0) {
-  }
-}
-void Reactor::Event::Close() {
-  int close_status;
-  RUN_NO_INTR(close_status = close(pimpl_->fd_));
-  ASSERT(close_status != -1);
-}
-void Reactor::Event::Notify() {
-  uint64_t val = 1;
-  auto write_result = eventfd_write(pimpl_->fd_, val);
-  ASSERT(write_result != -1);
-}
-
-class Reactor::Reactable {
- public:
-  Reactable(int fd, Closure on_read_ready, Closure on_write_ready)
-      : fd_(fd),
-        on_read_ready_(std::move(on_read_ready)),
-        on_write_ready_(std::move(on_write_ready)),
-        is_executing_(false),
-        removed_(false) {}
-  const int fd_;
-  Closure on_read_ready_;
-  Closure on_write_ready_;
-  bool is_executing_;
-  bool removed_;
-  std::mutex mutex_;
-  std::unique_ptr<std::promise<void>> finished_promise_;
-};
-
-Reactor::Reactor() : epoll_fd_(0), control_fd_(0), is_running_(false) {
+EventfdReactor::EventfdReactor() : epoll_fd_(0), control_fd_(0) {
   RUN_NO_INTR(epoll_fd_ = epoll_create1(EPOLL_CLOEXEC));
   ASSERT_LOG(epoll_fd_ != -1, "could not create epoll fd: %s", strerror(errno));
 
@@ -112,7 +122,7 @@ Reactor::Reactor() : epoll_fd_(0), control_fd_(0), is_running_(false) {
   ASSERT(result != -1);
 }
 
-Reactor::~Reactor() {
+EventfdReactor::~EventfdReactor() {
   int result;
   RUN_NO_INTR(result = epoll_ctl(epoll_fd_, EPOLL_CTL_DEL, control_fd_, nullptr));
   ASSERT(result != -1);
@@ -124,7 +134,7 @@ Reactor::~Reactor() {
   ASSERT(result != -1);
 }
 
-void Reactor::Run() {
+void EventfdReactor::Run() {
   bool already_running = is_running_.exchange(true);
   ASSERT(!already_running);
 
@@ -198,7 +208,7 @@ void Reactor::Run() {
   }
 }
 
-void Reactor::Stop() {
+void EventfdReactor::Stop() {
   if (!is_running_) {
     LOG_WARN("not running, will stop once it's started");
   }
@@ -206,11 +216,11 @@ void Reactor::Stop() {
   ASSERT(control != -1);
 }
 
-std::unique_ptr<Reactor::Event> Reactor::NewEvent() const {
+std::unique_ptr<Reactor::Event> EventfdReactor::NewEvent() const {
   return std::make_unique<Reactor::Event>();
 }
 
-Reactor::Reactable* Reactor::Register(int fd, Closure on_read_ready, Closure on_write_ready) {
+Reactor::Reactable* EventfdReactor::Register(int fd, Closure on_read_ready, Closure on_write_ready) {
   uint32_t poll_event_type = 0;
   if (!on_read_ready.is_null()) {
     poll_event_type |= (EPOLLIN | EPOLLRDHUP);
@@ -218,7 +228,7 @@ Reactor::Reactable* Reactor::Register(int fd, Closure on_read_ready, Closure on_
   if (!on_write_ready.is_null()) {
     poll_event_type |= EPOLLOUT;
   }
-  auto* reactable = new Reactable(fd, on_read_ready, on_write_ready);
+  auto* reactable = new Reactor::Reactable(fd, on_read_ready, on_write_ready);
   epoll_event event = {
       .events = poll_event_type,
       .data = {.ptr = reactable},
@@ -229,7 +239,7 @@ Reactor::Reactable* Reactor::Register(int fd, Closure on_read_ready, Closure on_
   return reactable;
 }
 
-void Reactor::Unregister(Reactor::Reactable* reactable) {
+void EventfdReactor::Unregister(Reactor::Reactable* reactable) {
   ASSERT(reactable != nullptr);
   {
     std::lock_guard<std::mutex> lock(mutex_);
@@ -261,7 +271,7 @@ void Reactor::Unregister(Reactor::Reactable* reactable) {
   }
 }
 
-bool Reactor::WaitForUnregisteredReactable(std::chrono::milliseconds timeout) {
+bool EventfdReactor::WaitForUnregisteredReactable(std::chrono::milliseconds timeout) {
   std::lock_guard<std::mutex> lock(mutex_);
   if (executing_reactable_finished_ == nullptr) {
     return true;
@@ -273,7 +283,7 @@ bool Reactor::WaitForUnregisteredReactable(std::chrono::milliseconds timeout) {
   return stop_status == std::future_status::ready;
 }
 
-bool Reactor::WaitForIdle(std::chrono::milliseconds timeout) {
+bool EventfdReactor::WaitForIdle(std::chrono::milliseconds timeout) {
   auto promise = std::make_shared<std::promise<void>>();
   auto future = std::make_unique<std::future<void>>(promise->get_future());
   {
@@ -288,7 +298,7 @@ bool Reactor::WaitForIdle(std::chrono::milliseconds timeout) {
   return idle_status == std::future_status::ready;
 }
 
-void Reactor::ModifyRegistration(Reactor::Reactable* reactable, Closure on_read_ready, Closure on_write_ready) {
+void EventfdReactor::ModifyRegistration(Reactor::Reactable* reactable, Closure on_read_ready, Closure on_write_ready) {
   ASSERT(reactable != nullptr);
 
   uint32_t poll_event_type = 0;
