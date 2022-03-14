@@ -18,6 +18,7 @@
 package com.android.bluetooth.leaudio;
 
 import android.app.Application;
+import android.bluetooth.BluetoothBroadcastAudioScanBaseConfig;
 import android.bluetooth.BluetoothDevice;
 
 import androidx.annotation.NonNull;
@@ -114,5 +115,30 @@ public class LeAudioViewModel extends AndroidViewModel {
 
     public boolean isLeAudioBroadcastSourceSupported() {
         return bluetoothProxy.isLeAudioBroadcastSourceSupported();
+    }
+
+    public void connectBass(BluetoothDevice device, boolean connect) {
+        bluetoothRepository.connectBass(device, connect);
+    }
+
+    public boolean stopBroadcastObserving() {
+        return bluetoothRepository.stopBroadcastObserving();
+    }
+
+    public boolean getBroadcastReceiverState(BluetoothDevice device, int receiver_id) {
+        return bluetoothRepository.getBroadcastReceiverState(device, receiver_id);
+    }
+
+    public boolean modifyBroadcastSource(BluetoothDevice device, int receiver_id, boolean sync_pa,
+            List<BluetoothBroadcastAudioScanBaseConfig> configs) {
+        return bluetoothRepository.modifyBroadcastSource(device, receiver_id, sync_pa, configs);
+    }
+
+    public boolean removeBroadcastSource(BluetoothDevice device, int receiver_id) {
+        return bluetoothRepository.removeBroadcastSource(device, receiver_id);
+    }
+
+    public boolean setBroadcastCode(BluetoothDevice device, int receiver_id, byte[] bcast_code) {
+        return bluetoothRepository.setBroadcastCode(device, receiver_id, bcast_code);
     }
 }

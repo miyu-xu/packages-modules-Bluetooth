@@ -79,6 +79,19 @@
     </string-array>
     <string name="group_locked">LOCKED</string>
     <string name="group_unlocked">UNLOCKED</string>
+    <string-array name="broadcast_states">
+        <item>IDLE</item>
+        <item>SET_SOURCE_FAILED</item>
+        <item>SYNCING</item>
+        <item>SYNC_PA_FAILED</item>
+        <item>BROADCAST_CODE_REQUIRED</item>
+        <item>BROADCAST_CODE_INVALID</item>
+        <item>RECEIVING_BROADCAST</item>
+    </string-array>
+    <string-array name="local_broadcast_audio_profiles">
+        <item>SONIFICATION</item>
+        <item>MEDIA</item>
+    </string-array>
     <string-array name="tbs_call_states">
         <item>Incoming</item>
         <item>Dialing</item>

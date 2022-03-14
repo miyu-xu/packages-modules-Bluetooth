@@ -52,6 +52,7 @@ public class BluetoothProxy {
     private static BluetoothProxy INSTANCE;
     private final Application application;
     private final BluetoothAdapter bluetoothAdapter;
+    private BluetoothBroadcastAudioScan bluetoothBroadcastAudioScan = null;
     private BluetoothLeAudio bluetoothLeAudio = null;
     private BluetoothLeBroadcast mBluetoothLeBroadcast = null;
     private BluetoothCsipSetCoordinator bluetoothCsis = null;
@@ -300,6 +301,90 @@ public class BluetoothProxy {
                 }
             };
 
+    private final BroadcastReceiver bassIntentReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            final BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+
+            if (allLeAudioDevicesMutable.getValue() != null) {
+                if (device != null) {
+                    Optional<LeAudioDeviceStateWrapper> valid_device_opt = allLeAudioDevicesMutable
+                            .getValue().stream()
+                            .filter(state -> state.device.getAddress().equals(device.getAddress()))
+                            .findAny();
+
+                    if (valid_device_opt.isPresent()) {
+                        LeAudioDeviceStateWrapper valid_device = valid_device_opt.get();
+                        LeAudioDeviceStateWrapper.BassData svc_data = valid_device.bassData;
+
+                        // Handle Le Audio actions
+                        switch (action) {
+                            case BluetoothBroadcastAudioScan.ACTION_BASS_BROADCAST_DEVICE_AVAILABLE:
+                                svc_data.isValidBassDevice.postValue(true);
+                                break;
+                            case BluetoothBroadcastAudioScan.ACTION_BASS_BROADCAST_RECEIVER_STATE:
+                                LeAudioDeviceStateWrapper.ReceiverState rstate =
+                                        new LeAudioDeviceStateWrapper.ReceiverState();
+
+                                rstate.receiver_id = intent.getIntExtra(
+                                        BluetoothBroadcastAudioScan.EXTRA_BASS_RECEIVER_ID, -1);
+                                rstate.state = intent.getIntExtra(
+                                        BluetoothBroadcastAudioScan.EXTRA_BASS_BROADCAST_STATE,
+                                        BluetoothBroadcastAudioScan.RECEIVER_STATE_IDLE);
+                                Parcelable[] pa = intent.getParcelableArrayExtra(
+                                        BluetoothBroadcastAudioScan.EXTRA_BASS_SUBGROUP_CONFIGS);
+
+                                if (pa != null) {
+                                    BluetoothBroadcastAudioScanBaseConfig[] configs =
+                                            new BluetoothBroadcastAudioScanBaseConfig[pa.length];
+                                    for (int i = 0; i < pa.length; i++) {
+                                        if (!(pa[i] instanceof BluetoothBroadcastAudioScanBaseConfig)) {
+                                            configs = null;
+                                            break;
+                                        }
+                                        configs[i] = (BluetoothBroadcastAudioScanBaseConfig) pa[i];
+                                    }
+                                    if (configs != null)
+                                        rstate.subgroup_configs = Arrays.asList(configs);
+                                }
+
+                                HashMap<Integer, LeAudioDeviceStateWrapper.ReceiverState> states =
+                                        svc_data.receiverStatesMutable.getValue();
+                                if (states == null)
+                                    states = new HashMap<Integer, LeAudioDeviceStateWrapper.ReceiverState>();
+                                states.put(rstate.receiver_id, rstate);
+
+                                // Use SetValue instead of PostValue() since we want to make it
+                                // synchronous due to getValue() we do here as well
+                                // Otherwise we could miss the update and store only the last
+                                // reciever ID
+                                svc_data.receiverStatesMutable.setValue(states);
+                                break;
+                            case BluetoothBroadcastAudioScan.ACTION_BASS_BROADCAST_SCANNING_STATE:
+                                // This is handled elsewhere
+                                break;
+                            case BluetoothBroadcastAudioScan.ACTION_BASS_CONNECTION_STATE_CHANGED:
+                                final int toState = intent
+                                        .getIntExtra(BluetoothBroadcastAudioScan.EXTRA_STATE, -1);
+                                if (toState == BluetoothBroadcastAudioScan.STATE_CONNECTED
+                                        || toState == BluetoothBroadcastAudioScan.STATE_DISCONNECTED)
+                                    svc_data.isConnectedMutable.postValue(
+                                            toState == BluetoothBroadcastAudioScan.STATE_CONNECTED);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            switch (action) {
+                case BluetoothBroadcastAudioScan.ACTION_BASS_BROADCAST_ANNONCEMENT_AVAILABLE:
+                    // FIXME: Never happen since there is no valid device with this intent
+                    break;
+            }
+        }
+    };
+
     private BluetoothProxy(Application application) {
         this.application = application;
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -482,6 +567,10 @@ public class BluetoothProxy {
                         mBluetoothLeBroadcast = (BluetoothLeBroadcast) bluetoothProfile;
                         mBluetoothLeBroadcast.registerCallback(mExecutor, mBroadcasterCallback);
                         break;
+                    case BluetoothProfile.BASS_CLIENT:
+                        bluetoothBroadcastAudioScan =
+                                (BluetoothBroadcastAudioScan) bluetoothProfile;
+                        break;
                 }
                 queryLeAudioDevices();
             }
@@ -495,6 +584,7 @@ public class BluetoothProxy {
         initVolumeControlProxy();
         initHapProxy();
         initLeAudioBroadcastProxy();
+        initBasProxy();
     }
 
     public void cleanupProfiles() {
@@ -505,6 +595,7 @@ public class BluetoothProxy {
         cleanupVolumeControlProxy();
         cleanupHapProxy();
         cleanupLeAudioBroadcastProxy();
+        cleanupBasProxy();
 
         profileListener = null;
     }
@@ -574,6 +665,26 @@ public class BluetoothProxy {
             bluetoothHapClient.unregisterCallback(hapCallback);
             bluetoothAdapter.closeProfileProxy(BluetoothProfile.HAP_CLIENT, bluetoothHapClient);
             application.unregisterReceiver(hapClientIntentReceiver);
+        }
+    }
+
+    private void initBasProxy() {
+        bluetoothAdapter.getProfileProxy(this.application, profileListener,
+                BluetoothProfile.BASS_CLIENT);
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(BluetoothBroadcastAudioScan.ACTION_BASS_BROADCAST_DEVICE_AVAILABLE);
+        intentFilter.addAction(BluetoothBroadcastAudioScan.ACTION_BASS_BROADCAST_RECEIVER_STATE);
+        intentFilter.addAction(BluetoothBroadcastAudioScan.ACTION_BASS_BROADCAST_SCANNING_STATE);
+        intentFilter.addAction(BluetoothBroadcastAudioScan.ACTION_BASS_CONNECTION_STATE_CHANGED);
+        application.registerReceiver(bassIntentReceiver, intentFilter);
+    }
+
+    private void cleanupBasProxy() {
+        if (bluetoothBroadcastAudioScan != null) {
+            bluetoothAdapter.closeProfileProxy(BluetoothProfile.BASS_CLIENT,
+                    bluetoothBroadcastAudioScan);
+            application.unregisterReceiver(bassIntentReceiver);
         }
     }
 
@@ -674,6 +785,25 @@ public class BluetoothProxy {
                         }
                     }
                 }
+
+                if (Arrays.asList(dev.getUuids() != null ? dev.getUuids() : new ParcelUuid[0])
+                        .contains(ParcelUuid.fromString(
+                                application.getString(R.string.svc_uuid_broadcast_audio)))) {
+                    if (state_wrapper.bassData == null)
+                        state_wrapper.bassData = new LeAudioDeviceStateWrapper.BassData();
+                    valid_device = true;
+
+                    if (bluetoothBroadcastAudioScan != null) {
+                        boolean is_connected = bluetoothBroadcastAudioScan.getConnectionState(
+                                dev) == BluetoothBroadcastAudioScan.STATE_CONNECTED ? true : false;
+                        state_wrapper.bassData.isConnectedMutable.setValue(is_connected);
+                        // Request all the receivers state notifications
+                        if (is_connected) {
+                            bluetoothBroadcastAudioScan.getBroadcastReceiverInfo(dev);
+                        }
+                    }
+                }
+
 
                 if (valid_device) validDevices.add(state_wrapper);
             }
@@ -792,6 +922,69 @@ public class BluetoothProxy {
             bluetoothCsis.unlockGroup(mGroupLocks.get(group_id));
             mGroupLocks.remove(group_id);
         }
+    }
+
+    public void connectBass(BluetoothDevice device, boolean connect) {
+        if (bluetoothBroadcastAudioScan != null) {
+            if (connect) {
+                bluetoothBroadcastAudioScan.connect(device);
+            } else {
+                bluetoothBroadcastAudioScan.disconnect(device);
+            }
+        }
+    }
+
+    public boolean scanForBroadcasts(BluetoothDevice device, boolean scan) {
+        if (bluetoothBroadcastAudioScan != null) {
+            return bluetoothBroadcastAudioScan.setBroadcastScan(device, scan);
+        }
+        return false;
+    }
+
+    public boolean stopBroadcastObserving() {
+        if (bluetoothBroadcastAudioScan != null) {
+            return bluetoothBroadcastAudioScan.stopBroadcastObserving();
+        }
+        return false;
+    }
+
+    public boolean getBroadcastReceiverState(BluetoothDevice device, int receiver_id) {
+        if (bluetoothBroadcastAudioScan != null) {
+            return bluetoothBroadcastAudioScan.getBroadcastReceiverState(device, receiver_id);
+        }
+        return false;
+    }
+
+    public boolean addBroadcastSource(BluetoothDevice device, byte[] broadcast_id, boolean sync_pa,
+            List<BluetoothBroadcastAudioScanBaseConfig> configs) {
+        if (bluetoothBroadcastAudioScan != null) {
+            return bluetoothBroadcastAudioScan.addBroadcastSource(device, broadcast_id, sync_pa,
+                    configs);
+        }
+        return false;
+    }
+
+    public boolean modifyBroadcastSource(BluetoothDevice device, int receiver_id, boolean sync_pa,
+            List<BluetoothBroadcastAudioScanBaseConfig> configs) {
+        if (bluetoothBroadcastAudioScan != null) {
+            return bluetoothBroadcastAudioScan.modifyBroadcastSource(device, receiver_id, sync_pa,
+                    configs);
+        }
+        return false;
+    }
+
+    public boolean removeBroadcastSource(BluetoothDevice device, int receiver_id) {
+        if (bluetoothBroadcastAudioScan != null) {
+            return bluetoothBroadcastAudioScan.removeBroadcastSource(device, receiver_id);
+        }
+        return false;
+    }
+
+    public boolean setBroadcastCode(BluetoothDevice device, int receiver_id, byte[] bcast_code) {
+        if (bluetoothBroadcastAudioScan != null) {
+            return bluetoothBroadcastAudioScan.setBroadcastCode(device, receiver_id, bcast_code);
+        }
+        return false;
     }
 
     public void setVolume(BluetoothDevice device, int volume) {
@@ -1008,6 +1201,23 @@ public class BluetoothProxy {
     }
 
     public boolean startBroadcast(String programInfo, byte[] code) {
+        BluetoothBroadcastAudioScanBaseConfig config;
+
+        // FIXME: we assume here that bisSync is 0b01 or 0b11 depending on profile
+        switch (profile) {
+            case BroadcasterActivity.BROADCAST_PROFILE_MEDIA:
+                config = new BluetoothBroadcastAudioScanBaseConfig(0b11, metadata);
+                break;
+            default:
+                config = new BluetoothBroadcastAudioScanBaseConfig(0b01, metadata);
+                break;
+        }
+
+        AudioBroadcast ab = new AudioBroadcast(-1);
+        ab.setLocalConfig(config);
+        ab.setCode(code);
+        mSessionBroadcasts.put(-1, ab);
+
         if (mBluetoothLeBroadcast == null)
             return false;
 
