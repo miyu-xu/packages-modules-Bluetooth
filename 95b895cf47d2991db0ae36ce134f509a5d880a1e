@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8b1c22e_90b20700",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1060959
+      },
+      "writtenOn": "2022-03-14T17:58:31Z",
+      "side": 1,
+      "message": "guessing this\u0027ll fail without the updatable override, but worth a shot.",
+      "revId": "95b895cf47d2991db0ae36ce134f509a5d880a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
