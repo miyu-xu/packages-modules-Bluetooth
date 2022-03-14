@@ -137,6 +137,7 @@ cc_defaults {
         "gd_clang_file_coverage",
     ],
     host_supported: true,
+    include_dirs: ["packages/modules/Bluetooth/system/gd/rust/shim"],
     target: {
         linux: {
             srcs: [
@@ -184,6 +185,8 @@ cc_defaults {
         ":BluetoothMetricsSources",
         ":BluetoothNeighborSources",
         ":BluetoothOsSources",
+        ":BluetoothOsSources_eventfd_reactor",
+        ":BluetoothOsSources_rust_reactor",
         ":BluetoothPacketSources",
         ":BluetoothShimSources",
         ":BluetoothSecuritySources",

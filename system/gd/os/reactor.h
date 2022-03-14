@@ -91,13 +91,8 @@ class Reactor {
   std::unique_ptr<Reactor::Event> NewEvent() const;
 
  private:
-  mutable std::mutex mutex_;
-  int epoll_fd_;
-  int control_fd_;
-  std::atomic<bool> is_running_;
-  std::list<Reactable*> invalidation_list_;
-  std::shared_ptr<std::future<void>> executing_reactable_finished_;
-  std::shared_ptr<std::promise<void>> idle_promise_;
+  struct impl;
+  struct impl* pimpl_;
 };
 
 }  // namespace os
