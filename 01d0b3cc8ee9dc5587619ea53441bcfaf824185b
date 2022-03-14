@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "218d2b32_6516d162",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1056478
+      },
+      "writtenOn": "2022-03-14T15:39:26Z",
+      "side": 1,
+      "message": "You need to ensure there are API docs on each of these; the generated javadoc isn\u0027t going to reference all of these.\n\nIt would be nice to have an explanation about what these are in the docs, or at the very least something like, \"See Bluetooth Generic Access Profile Spec XYZ\" in the API docs.",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 66
+      },
+      "revId": "01d0b3cc8ee9dc5587619ea53441bcfaf824185b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
