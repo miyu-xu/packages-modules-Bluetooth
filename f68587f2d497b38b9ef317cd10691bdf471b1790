@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61c55b1f_246d300e",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-15T08:11:57Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "44ec9647_b185075a",
+      "range": {
+        "startLine": 729,
+        "startChar": 15,
+        "endLine": 729,
+        "endChar": 27
+      },
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a659ec89_b87081a5",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "alternatively, we can synchronize on TbsGeneric.this",
       "parentUuid": "a659ec89_b87081a5",
+      "range": {
+        "startLine": 736,
+        "startChar": 15,
+        "endLine": 736,
+        "endChar": 27
+      },
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "193ea668_b180f7fc",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-15T08:11:57Z",
+      "side": 1,
+      "message": "Changed to sync on TbsGeneric.this",
+      "parentUuid": "8ba13860_8cf03e2e",
       "range": {
         "startLine": 736,
         "startChar": 15,
