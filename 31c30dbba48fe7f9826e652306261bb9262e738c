@@ -50,6 +50,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b030ccf2_ad4a514b",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1943770
+      },
+      "writtenOn": "2022-03-15T19:09:35Z",
+      "side": 1,
+      "message": "Hi Lukasz and Jakub,\nIt seems the client is taking the preferred QoS parameters from server. Since the spec defines sets of QoS paramters for low latency audio data and High Reliability audio data, it is open for balanced latency setting and QoS might varies a lot from device to device. Would client take antyhing from server in the balanced mode? How do you plan to solve the QoS conflict for multiple devices within the same group?\n\nAlso, QoS setting is based on codec configuation, and the codec specific parameter is optional from client per spec, and it is impossible for server to select QoS without codec configuration. Is there any default coedc config server should be based on to select QoS?",
+      "range": {
+        "startLine": 1159,
+        "startChar": 66,
+        "endLine": 1159,
+        "endChar": 68
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d47ced23_36961ace",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8
