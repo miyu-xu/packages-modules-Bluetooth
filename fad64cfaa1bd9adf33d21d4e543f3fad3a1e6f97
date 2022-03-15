@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a67ba7e_d9eaf7b3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-15T17:47:53Z",
+      "side": 1,
+      "message": "See my comment on b/218799288 for more info",
+      "revId": "fad64cfaa1bd9adf33d21d4e543f3fad3a1e6f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
