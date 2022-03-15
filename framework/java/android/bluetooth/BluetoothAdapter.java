@@ -850,8 +850,11 @@ public final class BluetoothAdapter {
     BluetoothAdapter(IBluetoothManager managerService, AttributionSource attributionSource) {
         mManagerService = Objects.requireNonNull(managerService);
         mAttributionSource = Objects.requireNonNull(attributionSource);
-        synchronized (mServiceLock.writeLock()) {
+        mServiceLock.writeLock().lock();
+        try {
             mService = getBluetoothService(mManagerCallback);
+        } finally {
+            mServiceLock.writeLock.unlock();
         }
         mLeScanClients = new HashMap<LeScanCallback, ScanCallback>();
         mToken = new Binder(DESCRIPTOR);
@@ -3709,8 +3712,11 @@ public final class BluetoothAdapter {
     private final IBluetoothManagerCallback mManagerCallback =
             new IBluetoothManagerCallback.Stub() {
                 public void onBluetoothServiceUp(IBluetooth bluetoothService) {
-                    synchronized (mServiceLock.writeLock()) {
+                    mServiceLock.writeLock().lock();
+                    try {
                         mService = bluetoothService;
+                    } finally {
+                        mServiceLock.writeLock().unlock();
                     }
                     synchronized (mMetadataListeners) {
                         mMetadataListeners.forEach((device, pair) -> {
@@ -3744,7 +3750,8 @@ public final class BluetoothAdapter {
                 }
 
                 public void onBluetoothServiceDown() {
-                    synchronized (mServiceLock.writeLock()) {
+                    mServiceLock.writeLock().lock();
+                    try {
                         mService = null;
                         if (mLeScanClients != null) {
                             mLeScanClients.clear();
@@ -3755,6 +3762,8 @@ public final class BluetoothAdapter {
                         if (mBluetoothLeScanner != null) {
                             mBluetoothLeScanner.cleanup();
                         }
+                    } finally {
+                        mServiceLock.writeLock().unlock();
                     }
                 }
 
