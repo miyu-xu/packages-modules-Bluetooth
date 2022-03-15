@@ -16,6 +16,24 @@
       "message": "See my comment on b/218799288 for more info",
       "revId": "fad64cfaa1bd9adf33d21d4e543f3fad3a1e6f97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1613a90c_1dadffec",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-15T22:01:43Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a67ba7e_d9eaf7b3",
+      "revId": "fad64cfaa1bd9adf33d21d4e543f3fad3a1e6f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
