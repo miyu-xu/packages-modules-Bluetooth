@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44ec9647_b185075a",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-15T07:17:21Z",
+      "side": 1,
+      "message": "here synchronized means synchronizing on mTbsGattCallback\n\ndo we want to synchronize on mTbsGattCallback or TbsGeneric.this?",
+      "range": {
+        "startLine": 729,
+        "startChar": 15,
+        "endLine": 729,
+        "endChar": 27
+      },
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a659ec89_b87081a5",
         "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
         "patchSetId": 8
@@ -37,6 +60,30 @@
       "writtenOn": "2022-03-15T07:16:10Z",
       "side": 1,
       "message": "Oops, that\u0027s right. It will only be synced inside the callback. \nI\u0027ll change it.",
+      "parentUuid": "a659ec89_b87081a5",
+      "range": {
+        "startLine": 736,
+        "startChar": 15,
+        "endLine": 736,
+        "endChar": 27
+      },
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ba13860_8cf03e2e",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-15T07:17:21Z",
+      "side": 1,
+      "message": "alternatively, we can synchronize on TbsGeneric.this",
       "parentUuid": "a659ec89_b87081a5",
       "range": {
         "startLine": 736,
