@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ab4b120_737b9850",
+        "filename": "framework/java/android/bluetooth/BluetoothDevicePicker.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:39:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "88fc6dce_d5cfe886",
+      "revId": "af8cf9ed1baf96d89558f188b399dde7a27b1f64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eb997f07_d8d0ee29",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a485c0_3a624529",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:39:35Z",
+      "side": 1,
+      "message": "So, these constants are already present in an intdef and correctly used as return type, so better not create a duplicate that is unused, you\u0027re right",
+      "parentUuid": "eb997f07_d8d0ee29",
+      "range": {
+        "startLine": 285,
+        "startChar": 22,
+        "endLine": 285,
+        "endChar": 32
+      },
+      "revId": "af8cf9ed1baf96d89558f188b399dde7a27b1f64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af78a46a_8cb22b56",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-03-14T21:24:48Z",
       "side": 1,
       "message": "nit: should be \"extras\u0027",
+      "revId": "af8cf9ed1baf96d89558f188b399dde7a27b1f64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f4a7a56_1f242f15",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:39:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af78a46a_8cb22b56",
       "revId": "af8cf9ed1baf96d89558f188b399dde7a27b1f64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
