@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c73f97_8b040b07",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-15T02:01:05Z",
+      "side": 1,
+      "message": "The logic here is actually a litte complex. You may refer to the PhoneStateChange function at https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_hf.cc;drc\u003d4e71b85759bc96f31ad74f9153e3fcac4e134266;l\u003d1111 for more details.\n\nQuote some relevant logics:\n  /* active state can change when:\n  ** 1. an outgoing/incoming call was answered\n  ** 2. an held was resumed\n  ** 3. without callsetup notifications, call became active\n  ** (3) can happen if call is active and a headset connects to us\n  **\n  ** In the case of (3), we will have to notify the stack of an active\n  ** call, instead of sending an indicator update. This will also\n  ** force the SCO to be setup. Handle this special case here prior to\n  ** call setup handling\n  */\n  if (((num_active + num_held) \u003e 0) \u0026\u0026 (control_block.num_active \u003d\u003d 0) \u0026\u0026\n      (control_block.num_held \u003d\u003d 0) \u0026\u0026\n      (control_block.call_setup_state \u003d\u003d BTHF_CALL_STATE_IDLE)) {\n    tBTA_AG_RES_DATA ag_res \u003d {};\n    BTIF_TRACE_DEBUG(\n        \"%s: Active/Held call notification received without call setup \"\n        \"update\",\n        __func__);\n\n    ag_res.audio_handle \u003d BTA_AG_HANDLE_SCO_NO_CHANGE;\n    // Addition call setup with the Active call\n    // CIND response should have been updated.\n    // just open SCO connection.\n    if (call_setup_state !\u003d BTHF_CALL_STATE_IDLE) {\n      res \u003d BTA_AG_MULTI_CALL_RES;\n    } else {\n      res \u003d BTA_AG_OUT_CALL_CONN_RES;\n    }\n    BTA_AgResult(control_block.handle, res, ag_res);\n    active_call_updated \u003d true;\n  }\n\nI\u0027d like to utilize the path 3 and the BTA_AG_OUT_CALL_CONN_RES, Outgoing phone call connected, fits our need better than the BTA_AG_MULTI_CALL_RES, SLC at three way call.",
+      "parentUuid": "6b2ed6bb_d77e65cc",
+      "range": {
+        "startLine": 184,
+        "startChar": 59,
+        "endLine": 184,
+        "endChar": 80
+      },
+      "revId": "f45e4de24d3e3fc0cee6984488f450f25b02312b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67403a15_c006b8ba",
@@ -60,6 +84,30 @@
       "writtenOn": "2022-03-08T03:03:00Z",
       "side": 1,
       "message": "what is the difference in purpose of STATE_DISCONNECTED and STATE_IDLE?",
+      "range": {
+        "startLine": 201,
+        "startChar": 59,
+        "endLine": 201,
+        "endChar": 79
+      },
+      "revId": "f45e4de24d3e3fc0cee6984488f450f25b02312b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a4ac83e_65fd1a04",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-15T02:01:05Z",
+      "side": 1,
+      "message": "Good question. It was introduced to solve a bug about not hearing disconnect tone\nsounds. https://android-review.googlesource.com/c/platform/system/bt/+/532316.\n\nHowever, I also find it got ignored after https://android-review.googlesource.com/c/platform/system/bt/+/692265.\nI\u0027ll just remove the BTHF_CALL_STATE_DISCONNECTED call.",
+      "parentUuid": "67403a15_c006b8ba",
       "range": {
         "startLine": 201,
         "startChar": 59,
