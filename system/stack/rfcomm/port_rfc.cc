@@ -24,6 +24,7 @@
  ******************************************************************************/
 
 #include <base/logging.h>
+#include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 
 #include <cstdint>
 #include <string>
@@ -35,6 +36,7 @@
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
 #include "stack/include/sdpdefs.h"
+#include "stack/include/stack_metrics_logging.h"
 #include "stack/rfcomm/port_int.h"
 #include "stack/rfcomm/rfc_int.h"
 
@@ -492,6 +494,8 @@ void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu,
   if (p_port->p_mgmt_callback)
     p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
 
+  log_counter_metrics(
+      android::bluetooth::CodePathCounterKeyEnum::RFCOMM_CONNECTION_SUCCESS, 1);
   p_port->state = PORT_STATE_OPENED;
 
   /* RPN is required only if we want to tell DTE how the port should be opened
