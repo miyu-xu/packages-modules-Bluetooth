@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94df6e3a_ef749673",
+        "filename": "tools/rootcanal/model/setup/test_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-15T16:07:45Z",
+      "side": 1,
+      "message": "Can we remove this now?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "f8fc1ae728a9da19aa9af9301aa4806ffb1fb553",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
