@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a8ef832_7da6379f",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-15T16:37:01Z",
+      "side": 1,
+      "message": "If it\u0027s in the spec then it\u0027s fine :+1:, I agree that credit is a good name for it.\n\nWhat do you think of limiting this function to only `CommandComplete` and `CommandStatus` ?",
+      "parentUuid": "b9671f38_4fca7d53",
+      "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e7ae4ca_f3b452a1",
         "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
         "patchSetId": 4
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "This changes the logic, maybe for the better, but it\u0027s not equivalent.\n\nHow about:\n    if (op !\u003d OpCode::RESET \u0026\u0026 op !\u003d OpCode::CONTROLLER_DEBUG_INFO) {\n      ASSERT(num_command_credits_ \u003d\u003d 1);\n      num_command_credits_ \u003d 0;\n    }",
       "parentUuid": "9e7ae4ca_f3b452a1",
+      "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9911e739_038f3746",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-15T16:37:01Z",
+      "side": 1,
+      "message": "I like how it looks, but I think this is missing the case were `num_command_credits_ \u003d\u003d 1` and `op \u003d\u003d OpCode::RESET || op \u003d\u003d OpCode::CONTROLLER_DEBUG_INFO`, in your current code it set the credits to 0 and there it keeps it to 1. I think the behaviour of setting it to 0 is what we want here ?",
+      "parentUuid": "2c8230b4_262ef6de",
       "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
