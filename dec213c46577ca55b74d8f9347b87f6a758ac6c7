@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2110e65_afc97b49",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-15T22:10:46Z",
+      "side": 1,
+      "message": "Should this be split into input and output capabilities?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 87
+      },
+      "revId": "dec213c46577ca55b74d8f9347b87f6a758ac6c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
