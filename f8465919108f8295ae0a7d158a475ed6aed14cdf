@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bc2b674_fc89db8b",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c2e1238_1a48193b",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ec6f72b_8c298249",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c79d2d48_c5dd83d4",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ec6f72b_8c298249",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75bcb59b_c33daaea",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-03-14T21:11:49Z",
       "side": 1,
       "message": "Same here!",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f3fffbf_f87b06af",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75bcb59b_c33daaea",
       "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -82,6 +136,42 @@
       "writtenOn": "2022-03-14T21:11:49Z",
       "side": 1,
       "message": "Slightly unrelated, but what does it even mean to set the state to unknown? I don\u0027t think we should even support that value, but that is out of scope for this CL.",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2617f5e2_e01feeb1",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:36:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b126ca00_92519615",
+      "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5370781a_94ac0e44",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 976,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-15T15:36:35Z",
+      "side": 1,
+      "message": "Yes, that does not make any sense in this case, I will follow up with another CL",
+      "parentUuid": "549ad92f_c52bcc15",
       "revId": "f8465919108f8295ae0a7d158a475ed6aed14cdf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
