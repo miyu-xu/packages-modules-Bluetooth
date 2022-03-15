@@ -24,6 +24,7 @@
  ******************************************************************************/
 
 #include <base/logging.h>
+#include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 
 #include <cstdint>
 #include <string>
@@ -35,6 +36,7 @@
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
 #include "stack/include/sdpdefs.h"
+#include "stack/include/stack_metrics_logging.h"
 #include "stack/rfcomm/port_int.h"
 #include "stack/rfcomm/rfc_int.h"
 
@@ -165,8 +167,11 @@ void port_start_close(tPORT* p_port) {
   if ((p_mcb == NULL) || (p_port->rfc.state == RFC_STATE_CLOSED)) {
     /* Call management callback function before calling port_release_port() to
      * clear tPort */
-    if (p_port->p_mgmt_callback)
+    if (p_port->p_mgmt_callback) {
       p_port->p_mgmt_callback(PORT_CLOSED, p_port->handle);
+      log_counter_metrics(
+          android::bluetooth::CodePathCounterKeyEnum::RFCOMM_PORT_CLOSED, 1);
+    }
 
     port_release_port(p_port);
   } else {
@@ -217,8 +222,10 @@ void PORT_StartCnf(tRFC_MCB* p_mcb, uint16_t result) {
 
         if (p_port->p_mgmt_callback) {
           p_port->p_mgmt_callback(PORT_START_FAILED, p_port->handle);
+          log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::
+                                  RFCOMM_PORT_START_FAILED,
+                              1);
         }
-
         port_release_port(p_port);
       }
     }
@@ -449,8 +456,12 @@ void PORT_DlcEstablishInd(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu) {
   if (p_port->p_callback && (p_port->ev_mask & PORT_EV_CONNECTED))
     (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
 
-  if (p_port->p_mgmt_callback)
+  if (p_port->p_mgmt_callback) {
     p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
+    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::
+                            RFCOMM_CONNECTION_SUCCESS_IND,
+                        1);
+  }
 
   p_port->state = PORT_STATE_OPENED;
 }
@@ -489,9 +500,12 @@ void PORT_DlcEstablishCnf(tRFC_MCB* p_mcb, uint8_t dlci, uint16_t mtu,
   if (p_port->p_callback && (p_port->ev_mask & PORT_EV_CONNECTED))
     (p_port->p_callback)(PORT_EV_CONNECTED, p_port->handle);
 
-  if (p_port->p_mgmt_callback)
+  if (p_port->p_mgmt_callback) {
     p_port->p_mgmt_callback(PORT_SUCCESS, p_port->handle);
-
+    log_counter_metrics(android::bluetooth::CodePathCounterKeyEnum::
+                            RFCOMM_CONNECTION_SUCCESS_CNF,
+                        1);
+  }
   p_port->state = PORT_STATE_OPENED;
 
   /* RPN is required only if we want to tell DTE how the port should be opened
@@ -992,7 +1006,11 @@ void port_rfc_closed(tPORT* p_port, uint8_t res) {
   if ((p_port->p_callback != NULL) && events)
     p_port->p_callback(events, p_port->handle);
 
-  if (p_port->p_mgmt_callback) p_port->p_mgmt_callback(res, p_port->handle);
+  if (p_port->p_mgmt_callback) {
+    p_port->p_mgmt_callback(res, p_port->handle);
+    log_counter_metrics(
+        android::bluetooth::CodePathCounterKeyEnum::RFCOMM_PORT_CLOSED, 1);
+  }
 
   p_port->rfc.state = RFC_STATE_CLOSED;
 
