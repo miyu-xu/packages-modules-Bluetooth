@@ -181,24 +181,26 @@ class BluetoothPbapBase(pixel_bluetooth_base_test.PixelBluetoothBaseTest):
     """Generates call logs to be tested on PSE."""
     self.pri_phone.log.info('Putting %d call log(s) which type are "%s"...' %
                             (num_of_call_logs, call_log_type))
+    original_count = self.pri_phone.sl4a.callLogGetCount()
     for _ in range(num_of_call_logs):
-      self.pri_phone.sl4a.callLogsPut(dict(
-          type=call_log_type,
-          number='8809%d' % random.randrange(int(10e8)),
-          time=int(1000 * float(self.pri_phone.adb.shell('date +%s.%N')))))
-    current_count = self._wait_and_get_call_log_count(
-        self.pri_phone,
-        call_log_type,
-        num_of_call_logs,
-        WAITING_TIMEOUT_SEC)
-    if current_count != num_of_call_logs:
+      self.pri_phone.sl4a.callLogsPut(
+          dict(
+              type=call_log_type,
+              number='8809%d' % random.randrange(int(10e8)),
+              time=int(1000 * float(self.pri_phone.adb.shell('date +%s.%N')))))
+    total_count = original_count + num_of_call_logs
+    current_count = self._wait_and_get_call_log_count(self.pri_phone,
+                                                      call_log_type,
+                                                      total_count,
+                                                      WAITING_TIMEOUT_SEC)
+    if current_count != total_count:
       raise android_device.DeviceError(
           self.pri_phone,
           'Failed to generate %d call log(s) within %ds. '
           'Actual count: %d, Call log type: %s' %
           (num_of_call_logs, WAITING_TIMEOUT_SEC, current_count, call_log_type))
     self.pri_phone.log.info(
-        'Successfully added %d call log(s).' % current_count)
+        'Successfully added %d call log(s).' % num_of_call_logs)
 
   def _wait_and_get_contact_count(self,
                                   device: android_device.AndroidDevice,
