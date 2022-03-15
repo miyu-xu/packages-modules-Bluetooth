@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e9e3818_0edba1d4",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-15T23:30:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2110e65_afc97b49",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 87
+      },
+      "revId": "dec213c46577ca55b74d8f9347b87f6a758ac6c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b78df64_9449ebc1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-15T22:34:24Z",
       "side": 1,
       "message": "Please update javadoc to match new parameters",
+      "range": {
+        "startLine": 53,
+        "startChar": 7,
+        "endLine": 55,
+        "endChar": 78
+      },
+      "revId": "dec213c46577ca55b74d8f9347b87f6a758ac6c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d80d7186_99572769",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecStatus.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-15T23:30:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b78df64_9449ebc1",
       "range": {
         "startLine": 53,
         "startChar": 7,
