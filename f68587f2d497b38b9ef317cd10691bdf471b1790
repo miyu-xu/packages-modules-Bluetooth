@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a659ec89_b87081a5",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-03-15T06:44:53Z",
+      "side": 1,
+      "message": "To make this synchronized, we should move implementation into TbsGeneric and call the method inside the callback.",
+      "range": {
+        "startLine": 736,
+        "startChar": 15,
+        "endLine": 736,
+        "endChar": 27
+      },
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
