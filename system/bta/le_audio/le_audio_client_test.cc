@@ -2524,7 +2524,7 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   Mock::VerifyAndClearExpectations(&mock_audio_sink_);
   SyncOnMainLoop();
 
-  // Verify Data transfer on two peer sinks and one source
+  // Verify Data transfer on two peer sinks and two sources
   uint8_t cis_count_out = 2;
   uint8_t cis_count_in = 1;
   TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
