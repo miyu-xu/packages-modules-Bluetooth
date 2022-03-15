@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ae8a18c_4d97d463",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-15T08:43:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1d4b3840_ac8c6611",
+      "revId": "0a26b3e340946202620467e876878df3ff89afe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42b7c82c_49750072",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bc171f9_bc3e0bd6",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-15T08:43:38Z",
+      "side": 1,
+      "message": "Fixed in: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2026263",
+      "parentUuid": "42b7c82c_49750072",
+      "range": {
+        "startLine": 412,
+        "startChar": 12,
+        "endLine": 413,
+        "endChar": 89
+      },
+      "revId": "0a26b3e340946202620467e876878df3ff89afe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1354d4f_e78d9c0f",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-03-15T07:40:43Z",
       "side": 1,
       "message": "this one is also hidden, so please use the string directly",
+      "range": {
+        "startLine": 568,
+        "startChar": 50,
+        "endLine": 568,
+        "endChar": 77
+      },
+      "revId": "0a26b3e340946202620467e876878df3ff89afe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99cfa067_82b7197d",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-15T08:43:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1354d4f_e78d9c0f",
       "range": {
         "startLine": 568,
         "startChar": 50,
