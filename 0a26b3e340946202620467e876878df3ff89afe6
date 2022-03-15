@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d4b3840_ac8c6611",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-15T07:39:48Z",
+      "side": 1,
+      "message": "remaining two compilation failures: \n\npackages/modules/Bluetooth/android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java:412: error: method does not override or implement a method from a supertype\n            @Override\n            ^\npackages/modules/Bluetooth/android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java:568: error: cannot find symbol\n        intentFilter.addAction(BluetoothHapClient.ACTION_HAP_DEVICE_AVAILABLE);\n                                                 ^\n  symbol:   variable ACTION_HAP_DEVICE_AVAILABLE\n  location: class BluetoothHapClient\n  \n  ACTION_HAP_DEVICE_AVAILABLE is also hidden, so use the string directly",
+      "revId": "0a26b3e340946202620467e876878df3ff89afe6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
