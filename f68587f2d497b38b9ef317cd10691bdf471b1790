@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a93e903a_c26de615",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-15T07:45:42Z",
+      "side": 1,
+      "message": "+1, but I prefer to use handler instead of making all methods as synchronized.\nJack, what do you think?",
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44ec9647_b185075a",
         "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
         "patchSetId": 8
