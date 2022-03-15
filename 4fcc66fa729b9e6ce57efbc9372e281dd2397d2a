@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9671f38_4fca7d53",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-15T16:22:54Z",
+      "side": 1,
+      "message": "The Host shall assume that sending of an HCI_Vendor_Specific_Debug\ncommand will consume an HCI command credit.\n\nI\u0027m not sure how many times, but it\u0027s definitely in the spec.  I agree that this could be more consistent, but I think the idea of a credit captures the meaning very nicely.  Since L2CAP is a different layer, I don\u0027t think there should be too much confusion.",
+      "parentUuid": "ecb9a7d5_debb7d41",
+      "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e7ae4ca_f3b452a1",
         "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-14T10:28:41Z",
       "side": 1,
       "message": "Could we rewrite that to avoid the ternary here ?\nSomething like\n```\n// Some commands don\u0027t require credits.\nbool require_credits \u003d op \u003d\u003d OpCode::RESET || op \u003d\u003d OpCode::CONTROLLER_DEBUG_INFO;\nif (!(require_credits \u0026\u0026 num_command_credits_ \u003d\u003d 0)) {\n      ASSERT(num_command_credits_ \u003d\u003d 1);\n      num_command_credits_ -\u003d 1;\n}\n```",
+      "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c8230b4_262ef6de",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-15T16:22:54Z",
+      "side": 1,
+      "message": "This changes the logic, maybe for the better, but it\u0027s not equivalent.\n\nHow about:\n    if (op !\u003d OpCode::RESET \u0026\u0026 op !\u003d OpCode::CONTROLLER_DEBUG_INFO) {\n      ASSERT(num_command_credits_ \u003d\u003d 1);\n      num_command_credits_ \u003d 0;\n    }",
+      "parentUuid": "9e7ae4ca_f3b452a1",
       "revId": "4fcc66fa729b9e6ce57efbc9372e281dd2397d2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
