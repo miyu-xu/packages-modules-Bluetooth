@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e44d9fb_312c4e75",
+        "filename": "system/bta/gatt/bta_gatts_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-15T11:06:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de033fe1_fb9706e5",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 0
+      },
+      "revId": "9bfca60a959b67ab5d5b302a0253158ec30aca88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50811940_bcc9c6a2",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-14T21:18:32Z",
       "side": 1,
       "message": "maybe just use map_ptr-\u003esecond.front() to avoid the linter warning?",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 34
+      },
+      "revId": "9bfca60a959b67ab5d5b302a0253158ec30aca88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "965f5267_2909ac97",
+        "filename": "system/bta/gatt/bta_gatts_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-15T11:06:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50811940_bcc9c6a2",
       "range": {
         "startLine": 80,
         "startChar": 24,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c989624f_b8dc83ad",
+        "filename": "system/bta/gatt/bta_gatts_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-15T11:06:53Z",
+      "side": 1,
+      "message": "operator[] for map is creating new elements if the key does not exist. So this:\n\n gatts_op_queue[conn_id]\n \nwould create element for conn_id if it didn\u0027t exist",
+      "parentUuid": "c54917e5_d1b1c0ba",
+      "range": {
+        "startLine": 97,
+        "startChar": 51,
+        "endLine": 97,
+        "endChar": 58
+      },
+      "revId": "9bfca60a959b67ab5d5b302a0253158ec30aca88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f26bba7b_109bdb61",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe5f49e1_16293617",
+        "filename": "system/bta/gatt/bta_gatts_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-15T11:06:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f26bba7b_109bdb61",
+      "range": {
+        "startLine": 100,
+        "startChar": 26,
+        "endLine": 100,
+        "endChar": 35
+      },
+      "revId": "9bfca60a959b67ab5d5b302a0253158ec30aca88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2811f491_59779fd4",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-03-14T21:18:32Z",
       "side": 1,
       "message": "same here, just use map_ptr-\u003esecond.front() and map_ptr-\u003esecond.pop_front() to avoid saving the pointer",
+      "range": {
+        "startLine": 116,
+        "startChar": 23,
+        "endLine": 117,
+        "endChar": 12
+      },
+      "revId": "9bfca60a959b67ab5d5b302a0253158ec30aca88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7207c6cb_dcfb8e0b",
+        "filename": "system/bta/gatt/bta_gatts_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-15T11:06:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2811f491_59779fd4",
       "range": {
         "startLine": 116,
         "startChar": 23,
