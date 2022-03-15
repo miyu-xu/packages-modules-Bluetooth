@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeac01db_2bdd8fb5",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-15T02:13:48Z",
+      "side": 1,
+      "message": "I see, so it relies on num_active\u003d1/0 to turn the call on. Thanks.",
+      "parentUuid": "12c73f97_8b040b07",
+      "range": {
+        "startLine": 184,
+        "startChar": 59,
+        "endLine": 184,
+        "endChar": 80
+      },
+      "revId": "f45e4de24d3e3fc0cee6984488f450f25b02312b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67403a15_c006b8ba",
