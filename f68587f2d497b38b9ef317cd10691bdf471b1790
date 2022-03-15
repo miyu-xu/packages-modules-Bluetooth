@@ -22,6 +22,30 @@
       },
       "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "775dfe39_bbaf9b74",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-15T07:16:10Z",
+      "side": 1,
+      "message": "Oops, that\u0027s right. It will only be synced inside the callback. \nI\u0027ll change it.",
+      "parentUuid": "a659ec89_b87081a5",
+      "range": {
+        "startLine": 736,
+        "startChar": 15,
+        "endLine": 736,
+        "endChar": 27
+      },
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
