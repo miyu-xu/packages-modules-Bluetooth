@@ -22,6 +22,30 @@
       },
       "revId": "01d0b3cc8ee9dc5587619ea53441bcfaf824185b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5032433b_bed39612",
+        "filename": "framework/java/android/bluetooth/le/ScanRecord.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-15T13:15:36Z",
+      "side": 1,
+      "message": "Done, added to each API docs.",
+      "parentUuid": "218d2b32_6516d162",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 66
+      },
+      "revId": "01d0b3cc8ee9dc5587619ea53441bcfaf824185b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
