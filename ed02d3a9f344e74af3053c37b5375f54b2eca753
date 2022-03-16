@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97517311_1665f726",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-16T00:18:12Z",
+      "side": 1,
+      "message": "Removed, will address in the other change.",
+      "parentUuid": "6549d853_962ba590",
+      "revId": "ed02d3a9f344e74af3053c37b5375f54b2eca753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a44ef00_8aa0e847",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-09T18:54:16Z",
       "side": 1,
       "message": "My expectation from this call was that this would trigger a `remote_device_property_updated`. Looking through the code, it doesn\u0027t look like it does. Can you confirm that you don\u0027t get a property update from this call? (maybe put a info!/debug! into the `remote_device_property_updated` callback)\n\nA short comment saying that\u0027s why we cache the property first would also be a good idea here.",
+      "revId": "ed02d3a9f344e74af3053c37b5375f54b2eca753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c37b23_2f0f27d4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 444,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-03-16T00:18:12Z",
+      "side": 1,
+      "message": "Removed, will address in the other change.",
+      "parentUuid": "3a44ef00_8aa0e847",
       "revId": "ed02d3a9f344e74af3053c37b5375f54b2eca753",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
