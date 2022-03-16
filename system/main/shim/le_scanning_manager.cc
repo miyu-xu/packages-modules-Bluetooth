@@ -92,10 +92,10 @@ class DefaultScanningCallback : public ::ScanningCallbacks {
 extern ::ScanningCallbacks* bluetooth::shim::default_scanning_callback;
 
 extern void btm_ble_process_adv_pkt_cont_for_inquiry(
-    uint16_t event_type, uint8_t address_type, const RawAddress& raw_address,
-    uint8_t primary_phy, uint8_t secondary_phy, uint8_t advertising_sid,
-    int8_t tx_power, int8_t rssi, uint16_t periodic_adv_int,
-    std::vector<uint8_t> advertising_data);
+    uint16_t event_type, tBLE_ADDR_TYPE address_type,
+    const RawAddress& raw_address, uint8_t primary_phy, uint8_t secondary_phy,
+    uint8_t advertising_sid, int8_t tx_power, int8_t rssi,
+    uint16_t periodic_adv_int, std::vector<uint8_t> advertising_data);
 
 extern void btif_dm_update_ble_remote_properties(const RawAddress& bd_addr,
                                                  BD_NAME bd_name,
