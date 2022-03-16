@@ -921,7 +921,7 @@ void btm_ble_start_sync_request(uint8_t sid, RawAddress addr, uint16_t skip,
     btm_ble_enable_resolving_list(BTM_BLE_RL_SCAN);
 #endif
   }
-  address_type &= ~BLE_ADDR_TYPE_ID_BIT;
+  address_type = from_identity_ble_addr_type(address_type);
   uint8_t options = 0;
   uint8_t cte_type = 7;
   int index = btm_ble_get_psync_index(sid, addr);
