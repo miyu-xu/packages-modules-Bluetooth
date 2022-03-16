@@ -1,0 +1,18 @@
+
+rust_binary_host {
+    name: "pdl",
+    cargo_env_compat: true,
+    srcs: [
+        "src/main.rs",
+    ],
+    rustlibs: [
+        "libpest",
+        "libserde",
+        "libserde_json",
+        "libstructopt",
+        "libcodespan_reporting",
+    ],
+    proc_macros: [
+        "libpest_derive",
+    ],
+}
