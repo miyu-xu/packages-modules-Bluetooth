@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "630d81d1_0b752a7a",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-16T13:24:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc969e0a_c42bd517",
+      "range": {
+        "startLine": 841,
+        "startChar": 71,
+        "endLine": 841,
+        "endChar": 72
+      },
+      "revId": "e10cc64f9c52a48f79952052acfffb2c9f911b9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb4fc39d_5044d3d6",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "780f97b3_f1b33949",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-16T13:24:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb4fc39d_5044d3d6",
+      "range": {
+        "startLine": 852,
+        "startChar": 54,
+        "endLine": 852,
+        "endChar": 55
+      },
+      "revId": "e10cc64f9c52a48f79952052acfffb2c9f911b9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39b843f5_299c4592",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-03-16T07:51:21Z",
       "side": 1,
       "message": "typo, should be indexes or indices",
+      "range": {
+        "startLine": 101,
+        "startChar": 17,
+        "endLine": 101,
+        "endChar": 23
+      },
+      "revId": "e10cc64f9c52a48f79952052acfffb2c9f911b9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1370c0a0_3ea5a60b",
+        "filename": "system/bta/has/has_ctp.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-16T13:24:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39b843f5_299c4592",
       "range": {
         "startLine": 101,
         "startChar": 17,
