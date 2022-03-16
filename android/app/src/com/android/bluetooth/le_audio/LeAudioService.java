@@ -132,11 +132,14 @@ public class LeAudioService extends ProfileService {
             mIsConnected = false;
             mIsActive = false;
             mActiveContexts = ACTIVE_CONTEXTS_NONE;
+            lostDevicesWhileStreaming = new ArrayList<>();
         }
 
         public Boolean mIsConnected;
         public Boolean mIsActive;
         public Integer mActiveContexts;
+        /* This can be non empty only for the streaming time */
+        List<BluetoothDevice> lostDevicesWhileStreaming;
     }
 
     private final Map<Integer, LeAudioGroupDescriptor> mGroupDescriptors = new LinkedHashMap<>();
@@ -966,6 +969,21 @@ public class LeAudioService extends ProfileService {
 
     }
 
+    private void clearLostDevicesWhileStreaming(LeAudioGroupDescriptor descriptor) {
+        for (BluetoothDevice dev : descriptor.lostDevicesWhileStreaming) {
+            LeAudioStateMachine sm = mStateMachines.get(dev);
+            if (sm == null) {
+                continue;
+            }
+
+            LeAudioStackEvent stackEvent =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
+            stackEvent.device = dev;
+            stackEvent.valueInt1 = LeAudioStackEvent.CONNECTION_STATE_DISCONNECTED;
+            sm.sendMessage(LeAudioStateMachine.STACK_EVENT, stackEvent);
+        }
+    }
+
     // Suppressed since this is part of a local process
     @SuppressLint("AndroidFrameworkRequiresPermission")
     void messageFromNative(LeAudioStackEvent stackEvent) {
@@ -977,7 +995,34 @@ public class LeAudioService extends ProfileService {
         // Some events require device state machine
             synchronized (mStateMachines) {
                 LeAudioStateMachine sm = mStateMachines.get(device);
-                if (sm == null) {
+                if (sm != null) {
+                    /*
+                    * To improve scenario when lead Le Audio device is disconnected for the
+                    * streaming group, while there are still other devices streaming,
+                    * LeAudioService will not notify audio framework or other users about
+                    * Le Audio lead device disconnection. Instead we try to reconnect under the hood
+                    * and keep using lead device as a audio device indetifier in the audio framework
+                    * in order to not stop the stream.
+                    */
+                    int groupId = getGroupId(device);
+                    LeAudioGroupDescriptor descriptor = mGroupDescriptors.get(groupId);
+                    switch (stackEvent.valueInt1) {
+                        case LeAudioStackEvent.CONNECTION_STATE_DISCONNECTING:
+                        case LeAudioStackEvent.CONNECTION_STATE_DISCONNECTED:
+                            if ((device == mActiveAudioOutDevice ||
+                                     device == mActiveAudioInDevice) &&
+                                    (getConnectedPeerDevices(groupId).size() > 1)) {
+                                descriptor.lostDevicesWhileStreaming.add(device);
+                                return;
+                            }
+                            break;
+                        case LeAudioStackEvent.CONNECTION_STATE_CONNECTED:
+                        case LeAudioStackEvent.CONNECTION_STATE_CONNECTING:
+                            descriptor.lostDevicesWhileStreaming.remove(device);
+                            break;
+                        }
+                } else {
+                    /* state machine does not exist yet */
                     switch (stackEvent.valueInt1) {
                         case LeAudioStackEvent.CONNECTION_STATE_CONNECTED:
                         case LeAudioStackEvent.CONNECTION_STATE_CONNECTING:
@@ -1091,6 +1136,8 @@ public class LeAudioService extends ProfileService {
                             updateActiveDevices(group_id, descriptor.mActiveContexts,
                                     ACTIVE_CONTEXTS_NONE, descriptor.mIsActive);
                             send_intent = true;
+                            /* Clear lost devices */
+                            clearLostDevicesWhileStreaming(descriptor);
                         }
                     } else {
                         Log.e(TAG, "no descriptors for group: " + group_id);
