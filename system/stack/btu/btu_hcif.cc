@@ -511,8 +511,8 @@ static void btu_hcif_log_command_metrics(uint16_t opcode, const uint8_t* p_cmd,
       p_cmd += 2;  // Skip LE_Scan_Window;
       uint8_t initiator_filter_policy;
       STREAM_TO_UINT8(initiator_filter_policy, p_cmd);
-      uint8_t peer_address_type;
-      STREAM_TO_UINT8(peer_address_type, p_cmd);
+      tBLE_ADDR_TYPE peer_address_type;
+      STREAM_TO_BLE_ADDR_TYPE(peer_address_type, p_cmd);
       STREAM_TO_BDADDR(bd_addr, p_cmd);
       // Peer address should not be used if initiator filter policy is not 0x00
       const RawAddress* bd_addr_p = nullptr;
@@ -545,15 +545,15 @@ static void btu_hcif_log_command_metrics(uint16_t opcode, const uint8_t* p_cmd,
       uint8_t initiator_filter_policy;
       STREAM_TO_UINT8(initiator_filter_policy, p_cmd);
       p_cmd += 1;  // Skip Own_Address_Type
-      uint8_t peer_addr_type;
-      STREAM_TO_UINT8(peer_addr_type, p_cmd);
+      tBLE_ADDR_TYPE peer_address_type;
+      STREAM_TO_BLE_ADDR_TYPE(peer_address_type, p_cmd);
       STREAM_TO_BDADDR(bd_addr, p_cmd);
       // Peer address should not be used if initiator filter policy is not 0x00
       const RawAddress* bd_addr_p = nullptr;
       if (initiator_filter_policy == 0x00) {
         bd_addr_p = &bd_addr;
         // if identity address is not matched, this should be a static address
-        btm_identity_addr_to_random_pseudo(&bd_addr, &peer_addr_type, false);
+        btm_identity_addr_to_random_pseudo(&bd_addr, &peer_address_type, false);
       }
       if (initiator_filter_policy == 0x00 ||
           (cmd_status != HCI_SUCCESS && !is_cmd_status)) {
@@ -589,8 +589,8 @@ static void btu_hcif_log_command_metrics(uint16_t opcode, const uint8_t* p_cmd,
       break;
     case HCI_BLE_ADD_ACCEPTLIST:
     case HCI_BLE_REMOVE_ACCEPTLIST: {
-      uint8_t peer_addr_type;
-      STREAM_TO_UINT8(peer_addr_type, p_cmd);
+      tBLE_ADDR_TYPE peer_addr_type;
+      STREAM_TO_BLE_ADDR_TYPE(peer_addr_type, p_cmd);
       STREAM_TO_BDADDR(bd_addr, p_cmd);
       const RawAddress* bd_addr_p = nullptr;
       // When peer_addr_type is 0xFF, bd_addr should be ignored per BT spec

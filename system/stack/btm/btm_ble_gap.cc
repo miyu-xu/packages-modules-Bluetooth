@@ -2503,7 +2503,8 @@ void btm_ble_process_adv_addr(RawAddress& bda, tBLE_ADDR_TYPE* addr_type) {
 void btm_ble_process_ext_adv_pkt(uint8_t data_len, const uint8_t* data) {
   RawAddress bda, direct_address;
   const uint8_t* p = data;
-  uint8_t addr_type, num_reports, pkt_data_len, primary_phy, secondary_phy,
+  tBLE_ADDR_TYPE addr_type;
+  uint8_t num_reports, pkt_data_len, primary_phy, secondary_phy,
       advertising_sid;
   int8_t rssi, tx_power;
   uint16_t event_type, periodic_adv_int, direct_address_type;
@@ -2526,7 +2527,7 @@ void btm_ble_process_ext_adv_pkt(uint8_t data_len, const uint8_t* data) {
 
     /* Extract inquiry results */
     STREAM_TO_UINT16(event_type, p);
-    STREAM_TO_UINT8(addr_type, p);
+    STREAM_TO_BLE_ADDR_TYPE(addr_type, p);
     STREAM_TO_BDADDR(bda, p);
     STREAM_TO_UINT8(primary_phy, p);
     STREAM_TO_UINT8(secondary_phy, p);
@@ -2572,7 +2573,8 @@ void btm_ble_process_ext_adv_pkt(uint8_t data_len, const uint8_t* data) {
 void btm_ble_process_adv_pkt(uint8_t data_len, const uint8_t* data) {
   RawAddress bda;
   const uint8_t* p = data;
-  uint8_t legacy_evt_type, addr_type, num_reports, pkt_data_len;
+  tBLE_ADDR_TYPE addr_type;
+  uint8_t legacy_evt_type, num_reports, pkt_data_len;
   int8_t rssi;
 
   /* Only process the results if the inquiry is still active */
@@ -2591,7 +2593,7 @@ void btm_ble_process_adv_pkt(uint8_t data_len, const uint8_t* data) {
 
     /* Extract inquiry results */
     STREAM_TO_UINT8(legacy_evt_type, p);
-    STREAM_TO_UINT8(addr_type, p);
+    STREAM_TO_BLE_ADDR_TYPE(addr_type, p);
     STREAM_TO_BDADDR(bda, p);
     STREAM_TO_UINT8(pkt_data_len, p);
 
