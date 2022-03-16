@@ -1748,6 +1748,11 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
 
   BTM_TRACE_DEBUG("btm_proc_smp_cback event = %d", event);
 
+  if (event == SMP_SC_LOC_OOB_DATA_UP_EVT) {
+    btm_sec_cr_loc_oob_data_cback_event(bd_addr, p_data->loc_oob_data);
+    return BTM_SUCCESS;
+  }
+
   if (p_dev_rec != NULL) {
     switch (event) {
       case SMP_IO_CAP_REQ_EVT:
@@ -1860,13 +1865,7 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
         break;
     }
   } else {
-    // If we are being paired with via OOB we haven't created a dev rec for
-    // the device yet
-    if (event == SMP_SC_LOC_OOB_DATA_UP_EVT) {
-      btm_sec_cr_loc_oob_data_cback_event(bd_addr, p_data->loc_oob_data);
-    } else {
-      LOG_WARN("Unexpected event '%d' without p_dev_rec", event);
-    }
+    LOG_WARN("Unexpected event '%d' for unknown device.", event);
   }
 
   return BTM_SUCCESS;
