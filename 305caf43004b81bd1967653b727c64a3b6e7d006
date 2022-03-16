@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60ed96fb_56b3243f",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 909,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-16T09:37:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0896e624_31cac92e",
+      "range": {
+        "startLine": 909,
+        "startChar": 15,
+        "endLine": 909,
+        "endChar": 23
+      },
+      "revId": "305caf43004b81bd1967653b727c64a3b6e7d006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f3f5ae3_e6587d9a",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-03-15T23:59:34Z",
       "side": 1,
       "message": "Sorry forgot to note, but can we move this to between the method visibility and return type for consistency?",
+      "revId": "305caf43004b81bd1967653b727c64a3b6e7d006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85e23156_0f2aa835",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-16T09:37:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f3f5ae3_e6587d9a",
       "revId": "305caf43004b81bd1967653b727c64a3b6e7d006",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
