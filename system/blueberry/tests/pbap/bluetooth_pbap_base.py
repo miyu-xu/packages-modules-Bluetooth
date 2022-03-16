@@ -179,9 +179,11 @@ class BluetoothPbapBase(pixel_bluetooth_base_test.PixelBluetoothBaseTest):
   def _generate_call_logs_on_pse(self, call_log_type: str,
                                  num_of_call_logs: int) -> None:
     """Generates call logs to be tested on PSE."""
+    original_count = len(self.pri_phone.sl4a.callLogsGet(call_log_type))
+    self.pri_phone.log.info('Call log in type %s: original count in phone %s' %
+                            (call_log_type, original_count))
     self.pri_phone.log.info('Putting %d call log(s) which type are "%s"...' %
                             (num_of_call_logs, call_log_type))
-    original_count = self.pri_phone.sl4a.callLogGetCount()
     for _ in range(num_of_call_logs):
       self.pri_phone.sl4a.callLogsPut(
           dict(
