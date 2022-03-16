@@ -16,6 +16,24 @@
       "message": "This directive is only supposed to be used in 3p external code.",
       "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd4256d1_13e89e2b",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-16T21:05:34Z",
+      "side": 1,
+      "message": "Does it make a difference if this is a tool, so it never runs on the phone (It just generates code) ?",
+      "parentUuid": "478cce52_9d977967",
+      "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
