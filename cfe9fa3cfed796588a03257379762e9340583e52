@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "478cce52_9d977967",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-16T19:40:54Z",
+      "side": 1,
+      "message": "This directive is only supposed to be used in 3p external code.",
+      "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
