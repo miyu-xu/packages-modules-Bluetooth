@@ -437,6 +437,9 @@ struct AudioSetConfigurationProviderJson {
             {"Media", types::LeAudioContextType::MEDIA},
             {"Conversational", types::LeAudioContextType::CONVERSATIONAL},
             {"Ringtone", types::LeAudioContextType::RINGTONE},
+            {"Recording", types::LeAudioContextType::LIVE},
+            {"Game", types::LeAudioContextType::GAME},
+            {"VoiceBackGame", types::LeAudioContextType::GAME},
             {"Default", types::LeAudioContextType::UNSPECIFIED},
         };
     return scenarios.count(scenario) ? scenarios.at(scenario)
