@@ -273,7 +273,8 @@ bool btm_random_pseudo_to_identity_addr(RawAddress* random_pseudo,
       *p_identity_addr_type = p_dev_rec->ble.identity_address_with_type.type;
       *random_pseudo = p_dev_rec->ble.identity_address_with_type.bda;
       if (controller_get_interface()->supports_ble_privacy())
-        *p_identity_addr_type |= BLE_ADDR_TYPE_ID_BIT;
+        *p_identity_addr_type =
+            to_identity_ble_addr_type(*p_identity_addr_type);
       return true;
     }
   }
