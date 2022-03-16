@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4025f142_9256be0a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-16T05:13:30Z",
+      "side": 1,
+      "message": "atest BluetoothInstrumentationTests failed because\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_le_audio.cpp;l\u003d162?q\u003dBluetoothLeAudioCodecConfig%20lang:c%2B%2B\n\nJNI needs to be updated",
+      "range": {
+        "startLine": 226,
+        "startChar": 12,
+        "endLine": 226,
+        "endChar": 39
+      },
+      "revId": "51929a5870c8d20c07bac6e1ae44f7c608d011ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
