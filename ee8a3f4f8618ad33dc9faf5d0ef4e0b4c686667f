@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "121c87ba_7010d01e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevicePicker.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-16T00:02:59Z",
+      "side": 1,
+      "message": "I would recommend removing the IntDef if this is how the API council was asking us to use it. The IntDef is not part of the API surface, so developers will not be able to see it in the public API docs.\n\nWe should explicitly list out the possible constant values in the JavaDoc here instead!",
+      "revId": "ee8a3f4f8618ad33dc9faf5d0ef4e0b4c686667f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
