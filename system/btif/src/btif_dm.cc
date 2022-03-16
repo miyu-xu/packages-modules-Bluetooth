@@ -2512,8 +2512,12 @@ void btif_dm_proc_loc_oob(tBT_TRANSPORT transport, bool is_valid,
     waiting_on_oob_advertiser_start = false;
     return;
   }
-  // Now that we have the data, lets start advertising and get the address.
-  start_oob_advertiser(transport, is_valid, c, r);
+  if (transport == BT_TRANSPORT_LE) {
+    // Now that we have the data, lets start advertising and get the address.
+    start_oob_advertiser(transport, is_valid, c, r);
+  } else {
+    invoke_oob_data_request_cb(transport, is_valid, c, r, RawAddress{}, 0x00);
+  }
 }
 
 /*******************************************************************************
