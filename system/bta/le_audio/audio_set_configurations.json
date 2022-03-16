@@ -371,6 +371,31 @@
             "name": "SingleDev_OneChanMonoSnk_48_4_2",
             "codec_config_name": "SingleDev_OneChanMonoSnk_48_4",
             "qos_config_name": "QoS_Config_48_4_2"
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_VS_32_high_quality_1_1",
+            "codec_config_name": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_VS_32_high_quality_1",
+            "qos_config_name": "QoS_Config_VS_32_high_quality_1"
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_48_high_quality_1_1",
+            "codec_config_name": "SingleDev_TwoChanStereoSnk_VS_48_high_quality_1",
+            "qos_config_name": "QoS_Config_VS_48_high_quality_1"
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_48_Game_1",
+            "codec_config_name": "SingleDev_TwoChanStereoSnk_VS_48_Game",
+            "qos_config_name": "QoS_Config_Server_VS_48_Game"
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_48_SREC_1",
+            "codec_config_name": "SingleDev_TwoChanStereoSnk_VS_48_SREC",
+            "qos_config_name": "QoS_Config_Server_VS_48_SREC"
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_Vbc_1",
+            "codec_config_name": "SingleDev_TwoChanStereoSnk_VS_Vbc",
+            "qos_config_name": "QoS_Config_Server_VS_48_Game", "QoS_Config_Server_VS_Src_Vbc"
         }
     ],
     "codec_configurations": [
@@ -2453,6 +2478,465 @@
                     ]
                 }
             ]
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_48_high_quality_1",
+            "subconfigurations": [
+                {
+                    "device_cnt": 1,
+                    "ase_cnt": 1,
+                    "direction": "SINK",
+                    "configuration_strategy": "STEREO_ONE_CIS_PER_DEVICE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    8
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    3,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    100,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_48_Game",
+            "subconfigurations": [
+                {
+                    "device_cnt": 1,
+                    "ase_cnt": 1,
+                    "direction": "SINK",
+                    "configuration_strategy": "STEREO_ONE_CIS_PER_DEVICE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    8
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    3,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    75,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_48_SREC",
+            "subconfigurations": [
+                {
+                    "device_cnt": 1,
+                    "ase_cnt": 1,
+                    "direction": "SOURCE",
+                    "configuration_strategy": "STEREO_ONE_CIS_PER_DEVICE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    8
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    3,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    100,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_32_Call",
+            "subconfigurations": [
+                {
+                    "device_cnt": 1,
+                    "ase_cnt": 1,
+                    "direction": "SINK",
+                    "configuration_strategy": "STEREO_ONE_CIS_PER_DEVICE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    6
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    3,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    60,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "device_cnt": 1,
+                    "ase_cnt": 1,
+                    "direction": "SOURCE",
+                    "configuration_strategy": "STEREO_ONE_CIS_PER_DEVICE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    6
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    3,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    60,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "SingleDev_TwoChanStereoSnk_VS_Vbc",
+            "subconfigurations": [
+                {
+                    "device_cnt": 1,
+                    "ase_cnt": 1,
+                    "direction": "SINK",
+                    "configuration_strategy": "STEREO_ONE_CIS_PER_DEVICE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    8
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    3,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    75,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "device_cnt": 1,
+                    "ase_cnt": 1,
+                    "direction": "SOURCE",
+                    "configuration_strategy": "STEREO_ONE_CIS_PER_DEVICE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    3
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    3,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    30,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "qos_configurations": [
@@ -2485,6 +2969,31 @@
             "name": "QoS_Config_48_4_2",
             "retransmission_number": 13,
             "max_transport_latency": 100
+        },
+        {
+            "name": "QoS_Config_VS_32_high_quality_1",
+            "retransmission_number": 13,
+            "max_transport_latency": 100
+        },
+        {
+            "name": "QoS_Config_VS_48_high_quality_1",
+            "retransmission_number": 13,
+            "max_transport_latency": 100
+        },
+        {
+            "name": "QoS_Config_Server_VS_48_Game",
+            "retransmission_number": 5,
+            "max_transport_latency": 12
+        },
+        {
+            "name": "QoS_Config_Server_VS_48_SREC",
+            "retransmission_number": 11,
+            "max_transport_latency": 40
+        },
+        {
+            "name": "QoS_Config_Server_VS_Src_Vbc",
+            "retransmission_number": 3,
+            "max_transport_latency": 12
         },
         {
             "name": "QoS_Config_Server_Preferred",
