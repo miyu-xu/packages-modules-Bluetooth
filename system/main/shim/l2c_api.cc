@@ -1200,7 +1200,8 @@ bool L2CA_IsLeLink(uint16_t acl_handle) {
 }
 
 void L2CA_ReadConnectionAddr(const RawAddress& pseudo_addr,
-                             RawAddress& conn_addr, uint8_t* p_addr_type) {
+                             RawAddress& conn_addr,
+                             tBLE_ADDR_TYPE* p_addr_type) {
   auto* helper = &le_fixed_channel_helper_.find(kSmpCid)->second;
   auto channel = helper->channels_.find(ToGdAddress(pseudo_addr));
   if (channel == helper->channels_.end() || channel->second == nullptr) {
@@ -1209,7 +1210,7 @@ void L2CA_ReadConnectionAddr(const RawAddress& pseudo_addr,
   }
   auto local = channel->second->GetLinkOptions()->GetLocalAddress();
   conn_addr = ToRawAddress(local.GetAddress());
-  *p_addr_type = static_cast<uint8_t>(local.GetAddressType());
+  *p_addr_type = static_cast<tBLE_ADDR_TYPE>(local.GetAddressType());
 }
 
 bool L2CA_ReadRemoteConnectionAddr(const RawAddress& pseudo_addr,

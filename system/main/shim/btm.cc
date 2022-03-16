@@ -60,10 +60,11 @@ extern void btm_process_inq_complete(tHCI_STATUS status, uint8_t result_type);
 extern void btm_ble_process_adv_addr(RawAddress& raw_address,
                                      tBLE_ADDR_TYPE* address_type);
 extern void btm_ble_process_adv_pkt_cont(
-    uint16_t event_type, uint8_t address_type, const RawAddress& raw_address,
-    uint8_t primary_phy, uint8_t secondary_phy, uint8_t advertising_sid,
-    int8_t tx_power, int8_t rssi, uint16_t periodic_adv_int, uint8_t data_len,
-    const uint8_t* data, const RawAddress& original_bda);
+    uint16_t event_type, tBLE_ADDR_TYPE address_type,
+    const RawAddress& raw_address, uint8_t primary_phy, uint8_t secondary_phy,
+    uint8_t advertising_sid, int8_t tx_power, int8_t rssi,
+    uint16_t periodic_adv_int, uint8_t data_len, const uint8_t* data,
+    const RawAddress& original_bda);
 
 extern void btm_api_process_inquiry_result(const RawAddress& raw_address,
                                            uint8_t page_scan_rep_mode,
