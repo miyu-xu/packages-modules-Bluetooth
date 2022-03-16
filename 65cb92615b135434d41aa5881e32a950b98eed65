@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc61593f_720f810a",
+        "filename": "android/leaudio/.settings/org.eclipse.buildship.core.prefs",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-03-16T12:54:38Z",
+      "side": 1,
+      "message": "Is it possible to remove this file ?\nIt get automatically edited by some IDE and then appear as modified file in git status.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "65cb92615b135434d41aa5881e32a950b98eed65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
