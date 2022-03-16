@@ -30,7 +30,8 @@
                 "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_2",
                 "SingleDev_OneChanStereoSnk_OneChanMonoSrc_16_1",
                 "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2",
-                "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1"
+                "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1",
+                "SingleDev_TwoChanStereoSnk_32_Call"
             ]
         },
         {
@@ -47,7 +48,26 @@
                 "SingleDev_TwoChanStereoSnk_16_1",
                 "SingleDev_OneChanMonoSnk_48_4",
                 "SingleDev_OneChanMonoSnk_16_2",
-                "SingleDev_OneChanMonoSnk_16_1"
+                "SingleDev_OneChanMonoSnk_16_1",
+                "SingleDev_TwoChanStereoSnk_48_Music"
+            ]
+        },
+        {
+            "name": "Game",
+            "configurations": [
+                "SingleDev_TwoChanStereoSnk_48_Game"
+            ]
+        },
+        {
+            "name": "SREC",
+            "configurations": [
+                "SingleDev_TwoChanStereoSnk_48_SREC"
+            ]
+        },
+        {
+            "name": "Vbc",
+            "configurations": [
+                "SingleDev_TwoChanStereoSnk_Vbc"
             ]
         },
         {
