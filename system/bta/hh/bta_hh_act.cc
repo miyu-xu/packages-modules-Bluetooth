@@ -1017,17 +1017,12 @@ static uint8_t convert_api_sndcmd_param(const tBTA_HH_CMD_DATA& api_sndcmd) {
 }
 
 void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
-  tBTA_HH_CBDATA cbdata = {BTA_HH_OK, 0};
   uint16_t event =
       (p_data->api_sndcmd.t_type - HID_TRANS_GET_REPORT) + BTA_HH_GET_RPT_EVT;
 
   if (p_cb->is_le_device)
     bta_hh_le_write_dev_act(p_cb, p_data);
-  else
-  {
-
-    cbdata.handle = p_cb->hid_handle;
-
+  else {
     /* match up BTE/BTA report/boot mode def */
     const uint8_t api_sndcmd_param =
         convert_api_sndcmd_param(p_data->api_sndcmd);
@@ -1037,13 +1032,17 @@ void bta_hh_write_dev_act(tBTA_HH_DEV_CB* p_cb, const tBTA_HH_DATA* p_data) {
                          p_data->api_sndcmd.rpt_id,
                          p_data->api_sndcmd.p_data) != HID_SUCCESS) {
       APPL_TRACE_ERROR("HID_HostWriteDev Error ");
-      cbdata.status = BTA_HH_ERR;
 
       if (p_data->api_sndcmd.t_type != HID_TRANS_CONTROL &&
-          p_data->api_sndcmd.t_type != HID_TRANS_DATA)
-        (*bta_hh_cb.p_cback)(event, (tBTA_HH*)&cbdata);
-      else if (api_sndcmd_param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG)
+          p_data->api_sndcmd.t_type != HID_TRANS_DATA) {
+        BT_HDR cb_hdr = {BTA_HH_GET_RPT_EVT, 0, 0, 0};
+        tBTA_HH_HSDATA cb_hsdata = {
+            BTA_HH_ERR, p_cb->hid_handle, {.p_rpt_data = &cb_hdr}};
+        (*bta_hh_cb.p_cback)(event, (tBTA_HH*)&cb_hsdata);
+      } else if (api_sndcmd_param == BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG) {
+        tBTA_HH_CBDATA cbdata = {BTA_HH_ERR, p_cb->hid_handle};
         (*bta_hh_cb.p_cback)(BTA_HH_VC_UNPLUG_EVT, (tBTA_HH*)&cbdata);
+      }
     } else {
       switch (p_data->api_sndcmd.t_type) {
         case HID_TRANS_SET_PROTOCOL:
