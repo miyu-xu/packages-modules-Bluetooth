@@ -895,8 +895,7 @@ public final class BluetoothA2dp implements BluetoothProfile {
      * Returns whether this device supports optional codecs.
      *
      * @param device The device to check
-     * @return one of OPTIONAL_CODECS_SUPPORT_UNKNOWN, OPTIONAL_CODECS_NOT_SUPPORTED, or
-     * OPTIONAL_CODECS_SUPPORTED.
+     * @return the support status of optional codecs
      * @hide
      */
     @SystemApi
@@ -928,8 +927,7 @@ public final class BluetoothA2dp implements BluetoothProfile {
      * Returns whether this device should have optional codecs enabled.
      *
      * @param device The device in question.
-     * @return one of OPTIONAL_CODECS_PREF_UNKNOWN, OPTIONAL_CODECS_PREF_ENABLED, or
-     * OPTIONAL_CODECS_PREF_DISABLED.
+     * @return the enable status of optional codecs
      * @hide
      */
     @SystemApi
@@ -961,9 +959,7 @@ public final class BluetoothA2dp implements BluetoothProfile {
      * Sets a persistent preference for whether a given device should have optional codecs enabled.
      *
      * @param device The device to set this preference for.
-     * @param value Whether the optional codecs should be enabled for this device.  This should be
-     * one of OPTIONAL_CODECS_PREF_UNKNOWN, OPTIONAL_CODECS_PREF_ENABLED, or
-     * OPTIONAL_CODECS_PREF_DISABLED.
+     * @param value Whether the optional codecs should be enabled for this device.
      * @hide
      */
     @SystemApi
