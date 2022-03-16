@@ -140,6 +140,30 @@
       },
       "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ff23eb8_c195e074",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-16T16:04:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1de20379_be8898e7",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "e166326228ef9d09f29f4d54b4ea939c70abcd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
