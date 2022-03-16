@@ -48,7 +48,8 @@
                 "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2_Server_Preferred",
                 "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2_1",
                 "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_Server_Preferred",
-                "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_1"
+                "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_1",
+                "SingleDev_TwoChanStereoSnk_VS_32_Call"
             ]
         },
         {
@@ -77,7 +78,26 @@
                 "SingleDev_OneChanMonoSnk_16_2_Server_Preferred",
                 "SingleDev_OneChanMonoSnk_16_2_2",
                 "SingleDev_OneChanMonoSnk_16_1_Server_Preferred",
-                "SingleDev_OneChanMonoSnk_16_1_2"
+                "SingleDev_OneChanMonoSnk_16_1_2",
+                "SingleDev_TwoChanStereoSnk_VS_48_high_quality_1"
+            ]
+        },
+        {
+            "name": "Game",
+            "configurations": [
+                "SingleDev_TwoChanStereoSnk_VS_48_Game"
+            ]
+        },
+        {
+            "name": "SREC",
+            "configurations": [
+                "SingleDev_TwoChanStereoSnk_VS_48_SREC"
+            ]
+        },
+        {
+            "name": "Vbc",
+            "configurations": [
+                "SingleDev_TwoChanStereoSnk_VS_Vbc"
             ]
         },
         {
