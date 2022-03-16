@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27cdd184_4321dc8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-16T02:28:59Z",
+      "side": 1,
+      "message": "Ok with synchronized for now. Since all methods are designed to be synchronized and returns value immediately. Therefore, it may not be possible to change all methods to use handler without changing our APIs.",
+      "parentUuid": "a93e903a_c26de615",
+      "revId": "f68587f2d497b38b9ef317cd10691bdf471b1790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44ec9647_b185075a",
