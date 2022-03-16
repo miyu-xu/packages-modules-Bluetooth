@@ -530,9 +530,16 @@ static void BTM_LE_PF_addr_filter(tBTM_BLE_SCAN_COND_OP action,
      * IDENTITY (2). For this, Any (0x02) must be specified.  This should also
      * cover if the RPA is derived from RANDOM STATIC.
      */
+
     /* ALWAYS FORCE 2 for this vendor command! */
-    addr.type = 0x02;  // Really, you will break scanning if you change this.
-    UINT8_TO_STREAM(p, addr.type);
+    // This isn't really BLE_ADDR_PUBLIC_ID
+    // It's the vendor-specific 0x02 ANY_ADDRESS_TYPE
+#define ANY_ADDRESS_TYPE 0x02
+    uint8_t any_address_type =
+        ANY_ADDRESS_TYPE;  // Really, you will break scanning if you
+                           // change this.
+    UINT8_TO_STREAM(p, any_address_type);
+#undef ANY_ADDRESS_TYPE
   }
 
   /* send address filter */

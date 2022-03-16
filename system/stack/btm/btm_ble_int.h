@@ -111,8 +111,8 @@ extern uint64_t btm_get_next_private_addrress_interval_ms();
 
 /*  privacy function */
 /* BLE address mapping with CS feature */
-extern bool btm_random_pseudo_to_identity_addr(RawAddress* random_pseudo,
-                                               uint8_t* p_identity_addr_type);
+extern bool btm_random_pseudo_to_identity_addr(
+    RawAddress* random_pseudo, tBLE_ADDR_TYPE* p_identity_addr_type);
 extern void btm_ble_refresh_peer_resolvable_private_addr(
     const RawAddress& pseudo_bda, const RawAddress& rra,
     tBTM_SEC_BLE::tADDRESS_TYPE type);
