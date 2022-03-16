@@ -63,7 +63,7 @@ extern void btm_inq_remote_name_timer_timeout(void* data);
 extern bool btm_ble_init_pseudo_addr(tBTM_SEC_DEV_REC* p_dev_rec,
                                      const RawAddress& new_pseudo_addr);
 extern bool btm_identity_addr_to_random_pseudo(RawAddress* bd_addr,
-                                               uint8_t* p_addr_type,
+                                               tBLE_ADDR_TYPE* p_addr_type,
                                                bool refresh);
 extern void btm_ble_batchscan_init(void);
 extern void btm_ble_adv_filter_init(void);
@@ -243,7 +243,7 @@ static void btm_ble_start_sync_timeout(void* data);
  *  Local functions
  ******************************************************************************/
 static void btm_ble_update_adv_flag(uint8_t flag);
-void btm_ble_process_adv_pkt_cont(uint16_t evt_type, uint8_t addr_type,
+void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
                                   const RawAddress& bda, uint8_t primary_phy,
                                   uint8_t secondary_phy,
                                   uint8_t advertising_sid, int8_t tx_power,
@@ -909,7 +909,7 @@ static void sync_queue_cleanup(remove_sync_node_t* p_param) {
 
 void btm_ble_start_sync_request(uint8_t sid, RawAddress addr, uint16_t skip,
                                 uint16_t timeout) {
-  uint8_t address_type = BLE_ADDR_RANDOM;
+  tBLE_ADDR_TYPE address_type = BLE_ADDR_RANDOM;
   tINQ_DB_ENT* p_i = btm_inq_db_find(addr);
   if (p_i) {
     address_type = p_i->inq_info.results.ble_addr_type;  // Random
@@ -1932,7 +1932,8 @@ static void btm_send_hci_scan_enable(uint8_t enable,
 }
 
 void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int,
-                                  uint16_t scan_win, uint8_t addr_type_own,
+                                  uint16_t scan_win,
+                                  tBLE_ADDR_TYPE addr_type_own,
                                   uint8_t scan_filter_policy) {
   if (controller_get_interface()->supports_ble_extended_advertising()) {
     scanning_phy_cfg phy_cfg;
@@ -2469,7 +2470,7 @@ void btm_clear_all_pending_le_entry(void) {
   }
 }
 
-void btm_ble_process_adv_addr(RawAddress& bda, uint8_t* addr_type) {
+void btm_ble_process_adv_addr(RawAddress& bda, tBLE_ADDR_TYPE* addr_type) {
   /* map address to security record */
   bool match = btm_identity_addr_to_random_pseudo(&bda, addr_type, false);
 
@@ -2649,7 +2650,7 @@ void btm_ble_process_adv_pkt(uint8_t data_len, const uint8_t* data) {
  * This function is called after random address resolution is done, and proceed
  * to process adv packet.
  */
-void btm_ble_process_adv_pkt_cont(uint16_t evt_type, uint8_t addr_type,
+void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
                                   const RawAddress& bda, uint8_t primary_phy,
                                   uint8_t secondary_phy,
                                   uint8_t advertising_sid, int8_t tx_power,
@@ -2797,7 +2798,7 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, uint8_t addr_type,
  * from gd scanning module to handle inquiry result callback.
  */
 void btm_ble_process_adv_pkt_cont_for_inquiry(
-    uint16_t evt_type, uint8_t addr_type, const RawAddress& bda,
+    uint16_t evt_type, tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
     uint8_t primary_phy, uint8_t secondary_phy, uint8_t advertising_sid,
     int8_t tx_power, int8_t rssi, uint16_t periodic_adv_int,
     std::vector<uint8_t> advertising_data) {
