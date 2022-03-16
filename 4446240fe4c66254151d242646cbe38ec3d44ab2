@@ -16,6 +16,24 @@
       "message": "Add @GuardedBy(\"mLock\") for the method.",
       "revId": "4446240fe4c66254151d242646cbe38ec3d44ab2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb7d707_731eaa8b",
+        "filename": "android/app/src/com/android/bluetooth/mcp/McpService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-16T05:54:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef5f608a_770914d6",
+      "revId": "4446240fe4c66254151d242646cbe38ec3d44ab2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
