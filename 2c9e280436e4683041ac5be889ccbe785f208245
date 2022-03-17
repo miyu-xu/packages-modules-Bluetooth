@@ -16,6 +16,24 @@
       "message": "Seems like the API doc need updates before this can be merge:\n\n```\n   public static final class ScanFilter.Builder {\n     ctor public ScanFilter.Builder();\n     method public android.bluetooth.le.ScanFilter build();\n-    method @NonNull public android.bluetooth.le.ScanFilter.Builder setAdvertisingDataTypeWithData(int, @NonNull byte[], @NonNull byte[]);\n     method @NonNull public android.bluetooth.le.ScanFilter.Builder setAdvertisingDataType(int);\n+    method @NonNull public android.bluetooth.le.ScanFilter.Builder setAdvertisingDataTypeWithData(int, @NonNull byte[], @NonNull byte[]);\n     method public android.bluetooth.le.ScanFilter.Builder setDeviceAddress(String);\n     method public android.bluetooth.le.ScanFilter.Builder setDeviceName(String);\n     method public android.bluetooth.le.ScanFilter.Builder setManufacturerData(int, byte[]);\n-e \n\n```",
       "revId": "2c9e280436e4683041ac5be889ccbe785f208245",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b4d18ee_9dd4ad18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-17T06:23:50Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "aad63b22_3c70aff8",
+      "revId": "2c9e280436e4683041ac5be889ccbe785f208245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
