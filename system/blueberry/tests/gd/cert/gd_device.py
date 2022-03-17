@@ -527,7 +527,7 @@ class GdAndroidDevice(GdDeviceBase):
 
         # Ensure Bluetooth is disabled
         self.ensure_no_output(self.adb.shell("settings put global ble_scan_always_enabled 0"))
-        self.ensure_no_output(self.adb.shell("svc bluetooth disable"))
+        self.adb.shell("svc bluetooth disable")
         logging.info("Bluetooth disabled on device %s %s" % (self.label, self.serial_number))
 
         # Start logcat logging
