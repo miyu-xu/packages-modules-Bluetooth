@@ -16,6 +16,24 @@
       "message": "This can be removed",
       "revId": "0b78fab604f8c878b67f91f585c2a01a90d1b896",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5c7ca31_9eb67528",
+        "filename": "tools/rootcanal/model/setup/test_model.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-17T10:31:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09a97fa9_93ac11f6",
+      "revId": "0b78fab604f8c878b67f91f585c2a01a90d1b896",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
