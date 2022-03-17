@@ -394,6 +394,11 @@ class LeAudioClientImpl : public LeAudioClient {
     } else {
       if (leAudioDevice->group_id_ != bluetooth::groups::kGroupUnknown) {
         old_group = aseGroups_.FindById(leAudioDevice->group_id_);
+        if (!old_group) {
+          LOG_ERROR("Can not find the group with group id: %d",
+                    leAudioDevice->group_id_);
+          return;
+        }
         old_group_id = old_group->group_id_;
       }
     }
@@ -757,7 +762,9 @@ class LeAudioClientImpl : public LeAudioClient {
      */
     if (leAudioDevice->group_id_ != bluetooth::groups::kGroupUnknown) {
       auto group = aseGroups_.FindById(leAudioDevice->group_id_);
-      group_remove_node(group, address, true);
+      if (group) {
+        group_remove_node(group, address, true);
+      }
     }
 
     leAudioDevices_.Remove(address);
@@ -1286,7 +1293,9 @@ class LeAudioClientImpl : public LeAudioClient {
     if (leAudioDevice->removing_device_) {
       if (leAudioDevice->group_id_ != bluetooth::groups::kGroupUnknown) {
         auto group = aseGroups_.FindById(leAudioDevice->group_id_);
-        group_remove_node(group, address, true);
+        if (group) {
+          group_remove_node(group, address, true);
+        }
       }
       leAudioDevices_.Remove(address);
       return;
@@ -1758,6 +1767,10 @@ class LeAudioClientImpl : public LeAudioClient {
 
     /* Restore configuration */
     LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
+    if (!group) {
+      LOG_ERROR("not group found, the active group id: %d", active_group_id_);
+      return;
+    }
     auto* stream_conf = &group->stream_conf;
 
     if (audio_sender_state_ == AudioState::IDLE &&
@@ -1827,8 +1840,12 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (leAudioDevice->group_id_ != bluetooth::groups::kGroupUnknown) {
       LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
-      UpdateContextAndLocations(group, leAudioDevice);
-      AttachToStreamingGroupIfNeeded(leAudioDevice);
+      if (group) {
+        UpdateContextAndLocations(group, leAudioDevice);
+        AttachToStreamingGroupIfNeeded(leAudioDevice);
+      } else {
+        LOG_ERROR("no group found: %d", leAudioDevice->group_id_);
+      }
     }
 
     if (leAudioDevice->first_connection_) {
@@ -2331,6 +2348,10 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG(INFO) << __func__;
 
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (!group) {
+      LOG_ERROR("Shouldn't be called without an active group");
+      return false;
+    }
     LeAudioDevice* device = group->GetFirstActiveDevice();
     LOG_ASSERT(device) << __func__
                        << " Shouldn't be called without an active device.";
@@ -2390,6 +2411,10 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG(INFO) << __func__;
 
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+    if (!group) {
+      LOG_ERROR("Shouldn't be called as no active group");
+      return;
+    }
 
     auto* stream_conf = GetStreamSourceConfiguration(group);
     if (!stream_conf) {
@@ -3073,12 +3098,20 @@ class LeAudioClientImpl : public LeAudioClient {
       case bluetooth::hci::iso_manager::kIsoEventCigOnCreateCmpl: {
         auto* evt = static_cast<cig_create_cmpl_evt*>(data);
         LeAudioDeviceGroup* group = aseGroups_.FindById(evt->cig_id);
+        if (!group) {
+          LOG_ERROR("Invalid group with cig_id: %d", evt->cig_id);
+          return;
+        }
         groupStateMachine_->ProcessHciNotifOnCigCreate(
             group, evt->status, evt->cig_id, evt->conn_handles);
       } break;
       case bluetooth::hci::iso_manager::kIsoEventCigOnRemoveCmpl: {
         auto* evt = static_cast<cig_remove_cmpl_evt*>(data);
         LeAudioDeviceGroup* group = aseGroups_.FindById(evt->cig_id);
+        if (!group) {
+          LOG_ERROR("Invalid group with cig_id: %d", evt->cig_id);
+          return;
+        }
         groupStateMachine_->ProcessHciNotifOnCigRemove(evt->status, group);
         remove_group_if_possible(group);
       } break;
@@ -3117,6 +3150,12 @@ class LeAudioClientImpl : public LeAudioClient {
         LeAudioDeviceGroup* group =
             aseGroups_.FindById(leAudioDevice->group_id_);
 
+        if (!group) {
+          LOG_ERROR("%s, no group contains this device with CIS, group id: %d",
+                    __func__, leAudioDevice->group_id_);
+          break;
+        }
+
         if (event->max_pdu_mtos > 0)
           group->SetTransportLatency(le_audio::types::kLeAudioDirectionSink,
                                      event->trans_lat_mtos);
@@ -3142,6 +3181,12 @@ class LeAudioClientImpl : public LeAudioClient {
         LeAudioDeviceGroup* group =
             aseGroups_.FindById(leAudioDevice->group_id_);
 
+        if (!group) {
+          LOG_ERROR("No group with this group_id: %d",
+                    leAudioDevice->group_id_);
+          break;
+        }
+
         groupStateMachine_->ProcessHciNotifCisDisconnected(group, leAudioDevice,
                                                            event);
       } break;
@@ -3156,6 +3201,11 @@ class LeAudioClientImpl : public LeAudioClient {
     LeAudioDevice* leAudioDevice =
         leAudioDevices_.FindByCisConnHdl(conn_handle);
     LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
+
+    if (!group) {
+      LOG_ERROR("group is unavaliable, group id: %d", leAudioDevice->group_id_);
+      return;
+    }
 
     instance->groupStateMachine_->ProcessHciNotifSetupIsoDataPath(
         group, leAudioDevice, status, conn_handle);
