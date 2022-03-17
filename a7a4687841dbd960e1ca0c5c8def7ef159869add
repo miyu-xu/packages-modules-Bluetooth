@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50ac5ba5_9eeae468",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1754,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-17T19:13:58Z",
+      "side": 1,
+      "message": "Can we move 1746 and 1747 below this, so it\u0027s obvious that we\u0027re not using p_dev_rec?",
+      "range": {
+        "startLine": 1751,
+        "startChar": 0,
+        "endLine": 1754,
+        "endChar": 3
+      },
+      "revId": "a7a4687841dbd960e1ca0c5c8def7ef159869add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
