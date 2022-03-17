@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e263ad0_716860ef",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-17T16:10:59Z",
+      "side": 1,
+      "message": "Try \n\n#include \"gd/common/strings.h\"\n\nusing bluetooth::common::ToString;\n\nToString((*pending_broadcast)-\u003eGetState()).c_str() --\u003e this gives you a string representation",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "e93324a837bde4e1c942f5a2179f7b17c16ffb46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
