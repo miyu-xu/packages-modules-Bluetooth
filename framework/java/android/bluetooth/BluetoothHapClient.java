@@ -473,15 +473,19 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
             @NonNull Callback callback) {
         Objects.requireNonNull(executor, "executor cannot be null");
         Objects.requireNonNull(callback, "callback cannot be null");
-        if (!isEnabled()) {
-            throw new IllegalStateException("service not enabled");
-        }
 
         if (DBG) log("registerCallback");
 
         synchronized (mCallbackExecutorMap) {
             // If the callback map is empty, we register the service-to-app callback
             if (mCallbackExecutorMap.isEmpty()) {
+                if (!isEnabled()) {
+                    /* If Bluetooth is off, just store callback and it will be registered
+                     * when Bluetooth is on
+                     */
+                    mCallbackExecutorMap.put(callback, executor);
+                    return;
+                }
                 try {
                     final IBluetoothHapClient service = getService();
                     if (service != null) {
@@ -492,6 +496,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
                     }
                 } catch (IllegalStateException | TimeoutException e) {
                     Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                    throw new IllegalStateException("Unexpected error", e);
                 } catch (RemoteException e) {
                     throw e.rethrowFromSystemServer();
                 }
