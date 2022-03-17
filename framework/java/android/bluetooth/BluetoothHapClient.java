@@ -482,6 +482,13 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
         synchronized (mCallbackExecutorMap) {
             // If the callback map is empty, we register the service-to-app callback
             if (mCallbackExecutorMap.isEmpty()) {
+                if (!isEnabled()) {
+                    /* If Bluetooth is off, just store callback and it will be registered
+                     * when Bluetooth is on
+                     */
+                    mCallbackExecutorMap.put(callback, executor);
+                    return;
+                }
                 try {
                     final IBluetoothHapClient service = getService();
                     if (service != null) {
