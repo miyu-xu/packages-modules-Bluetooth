@@ -16,6 +16,24 @@
       "message": "The `example_devices_` vector can be removed",
       "revId": "ccf3bda9a28e6fa7a6afaa4373d54401330cb062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1c4f05a_b690468b",
+        "filename": "tools/rootcanal/model/setup/test_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-17T10:31:04Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ef5dbdeb_6899fca7",
+      "revId": "ccf3bda9a28e6fa7a6afaa4373d54401330cb062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
