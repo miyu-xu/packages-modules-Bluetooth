@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cf35436_d56142e2",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1752,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-17T19:20:41Z",
+      "side": 1,
+      "message": "Can we pass 00:00:00:00:00:00 back here instead of whatever address comes back?",
+      "range": {
+        "startLine": 1752,
+        "startChar": 40,
+        "endLine": 1752,
+        "endChar": 47
+      },
+      "revId": "a7a4687841dbd960e1ca0c5c8def7ef159869add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50ac5ba5_9eeae468",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 1
