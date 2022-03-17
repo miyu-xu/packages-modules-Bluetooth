@@ -22,6 +22,30 @@
       },
       "revId": "bf700b6609ec5e3132ac4ba40b5f7b4f0e04f245",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11f594ad_842d48a2",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-17T16:21:43Z",
+      "side": 1,
+      "message": "I would also love to not touch this part but unfortunately it must change.\n\nThe author used tBLE_ADDR_TYPE which is being reclaimed to be properly used throughout the codebase, which is the point of this CL.\n\nThe compiler will fail at this point in the future when the type checks are enabled as 0x02 !\u003d BLE_ADDR_PUBLIC_ID.\n\nMy initial change was also a kludge, but satisfied the compiler.\n\nI will take any change you suggest as long as it allows tBLE_ADDR_TYPE to be freed of this misuse.",
+      "parentUuid": "d08582c1_ef744c91",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 542,
+        "endChar": 23
+      },
+      "revId": "bf700b6609ec5e3132ac4ba40b5f7b4f0e04f245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
