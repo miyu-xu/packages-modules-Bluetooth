@@ -57,6 +57,30 @@
       },
       "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e442ca2_22400e02",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-03-17T14:33:42Z",
+      "side": 1,
+      "message": "My bad, I fetched the changes in https://r.android.com/2028209 and can confirm that `m pdl` builds now.",
+      "parentUuid": "cbb51e9a_ac23fc13",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
