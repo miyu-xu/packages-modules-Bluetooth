@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea3d20f3_aebd9edf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-17T16:18:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "da29d97e_c4c54b0d",
+      "range": {
+        "startLine": 7,
+        "startChar": 15,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "c58b9133881d27e51a0b516bec48df1834ec1126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e941a1d0_a89081a7",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-17T16:17:12Z",
       "side": 1,
       "message": "please remove duplicated change id",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 52
+      },
+      "revId": "c58b9133881d27e51a0b516bec48df1834ec1126",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "886f7cc7_7c0b8d7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-17T16:18:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e941a1d0_a89081a7",
       "range": {
         "startLine": 18,
         "startChar": 0,
