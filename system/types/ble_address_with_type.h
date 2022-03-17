@@ -20,12 +20,15 @@
 #include <string>
 #include "types/raw_address.h"
 
-#define BLE_ADDR_PUBLIC 0x00
-#define BLE_ADDR_RANDOM 0x01
-#define BLE_ADDR_PUBLIC_ID 0x02
-#define BLE_ADDR_RANDOM_ID 0x03
-#define BLE_ADDR_ANONYMOUS 0xFF
-typedef uint8_t tBLE_ADDR_TYPE;
+typedef enum : uint8_t {
+  BLE_ADDR_PUBLIC = 0x00,
+  BLE_ADDR_RANDOM = 0x01,
+  BLE_ADDR_PUBLIC_ID = 0x02,
+  BLE_ADDR_RANDOM_ID = 0x03,
+  BLE_ADDR_ANONYMOUS =
+      0xFF,  // LE Extended Advertising Report event - no address
+} tBLE_ADDR_TYPE;
+
 #ifdef __cplusplus
 inline std::string AddressTypeText(tBLE_ADDR_TYPE type) {
   switch (type) {
