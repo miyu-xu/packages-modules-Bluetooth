@@ -1205,6 +1205,8 @@ public class HapClientService extends ProfileService {
         }
 
         private HapClientService getService(AttributionSource source) {
+            Objects.requireNonNull(source, "source cannot be null");
+
             if (!Utils.checkCallerIsSystemOrActiveUser(TAG)
                     || !Utils.checkServiceAvailable(mService, TAG)
                     || !Utils.checkConnectPermissionForDataDelivery(mService, source, TAG)) {
@@ -1226,6 +1228,9 @@ public class HapClientService extends ProfileService {
         @Override
         public void getConnectedDevices(AttributionSource source,
                 SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 List<BluetoothDevice> defaultValue = new ArrayList<>();
                 HapClientService service = getService(source);
@@ -1241,6 +1246,9 @@ public class HapClientService extends ProfileService {
         @Override
         public void getDevicesMatchingConnectionStates(int[] states,
                 AttributionSource source, SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 List<BluetoothDevice> defaultValue = new ArrayList<>();
                 HapClientService service = getService(source);
@@ -1256,6 +1264,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getConnectionState(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 int defaultValue = BluetoothProfile.STATE_DISCONNECTED;
                 HapClientService service = getService(source);
@@ -1271,6 +1283,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void setConnectionPolicy(BluetoothDevice device, int connectionPolicy,
                 AttributionSource source, SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 boolean defaultValue = false;
                 HapClientService service = getService(source);
@@ -1286,6 +1302,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getConnectionPolicy(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 int defaultValue = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
                 HapClientService service = getService(source);
@@ -1301,6 +1321,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getActivePresetIndex(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 int defaultValue = BluetoothHapClient.PRESET_INDEX_UNAVAILABLE;
                 HapClientService service = getService(source);
@@ -1316,6 +1340,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getActivePresetInfo(BluetoothDevice device,
                 AttributionSource source, SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 BluetoothHapPresetInfo defaultValue = null;
                 HapClientService service = getService(source);
@@ -1331,6 +1359,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getHapGroup(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 int defaultValue = BluetoothCsipSetCoordinator.GROUP_ID_INVALID;
                 HapClientService service = getService(source);
@@ -1346,6 +1378,8 @@ public class HapClientService extends ProfileService {
         @Override
         public void selectPreset(BluetoothDevice device, int presetIndex,
                 AttributionSource source) {
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.selectPreset(device, presetIndex);
@@ -1354,6 +1388,8 @@ public class HapClientService extends ProfileService {
 
         @Override
         public void selectPresetForGroup(int groupId, int presetIndex, AttributionSource source) {
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.selectPresetForGroup(groupId, presetIndex);
@@ -1362,6 +1398,8 @@ public class HapClientService extends ProfileService {
 
         @Override
         public void switchToNextPreset(BluetoothDevice device, AttributionSource source) {
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.switchToNextPreset(device);
@@ -1370,6 +1408,8 @@ public class HapClientService extends ProfileService {
 
         @Override
         public void switchToNextPresetForGroup(int groupId, AttributionSource source) {
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.switchToNextPresetForGroup(groupId);
@@ -1378,6 +1418,8 @@ public class HapClientService extends ProfileService {
 
         @Override
         public void switchToPreviousPreset(BluetoothDevice device, AttributionSource source) {
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.switchToPreviousPreset(device);
@@ -1386,6 +1428,8 @@ public class HapClientService extends ProfileService {
 
         @Override
         public void switchToPreviousPresetForGroup(int groupId, AttributionSource source) {
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.switchToPreviousPresetForGroup(groupId);
@@ -1395,6 +1439,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getPresetInfo(BluetoothDevice device, int presetIndex,
                 AttributionSource source, SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 BluetoothHapPresetInfo defaultValue = null;
                 HapClientService service = getService(source);
@@ -1410,6 +1458,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getAllPresetInfo(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 List<BluetoothHapPresetInfo> defaultValue = new ArrayList<>();
                 HapClientService service = getService(source);
@@ -1425,6 +1477,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void getFeatures(BluetoothDevice device, AttributionSource source,
                 SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             try {
                 int defaultValue = 0x00;
                 HapClientService service = getService(source);
@@ -1440,6 +1496,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void setPresetName(BluetoothDevice device, int presetIndex, String name,
                 AttributionSource source) {
+            Objects.requireNonNull(device, "device cannot be null");
+            Objects.requireNonNull(name, "name cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.setPresetName(device, presetIndex, name);
@@ -1449,6 +1509,9 @@ public class HapClientService extends ProfileService {
         @Override
         public void setPresetNameForGroup(int groupId, int presetIndex, String name,
                 AttributionSource source) {
+            Objects.requireNonNull(name, "name cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+
             HapClientService service = getService(source);
             if (service != null) {
                 service.setPresetNameForGroup(groupId, presetIndex, name);
@@ -1458,6 +1521,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void registerCallback(IBluetoothHapClientCallback callback,
                 AttributionSource source, SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(callback, "callback cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             HapClientService service = getService(source);
             if (service == null) {
                 throw new IllegalStateException("Service is unavailable");
@@ -1475,6 +1542,10 @@ public class HapClientService extends ProfileService {
         @Override
         public void unregisterCallback(IBluetoothHapClientCallback callback,
                 AttributionSource source, SynchronousResultReceiver receiver) {
+            Objects.requireNonNull(callback, "callback cannot be null");
+            Objects.requireNonNull(source, "source cannot be null");
+            Objects.requireNonNull(receiver, "receiver cannot be null");
+
             HapClientService service = getService(source);
             if (service == null) {
                 throw new IllegalStateException("Service is unavailable");
