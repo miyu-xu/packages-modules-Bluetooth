@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7d1b706_a6ecb6f4",
+        "filename": "system/blueberry/tests/gd_sl4a/security/oob_pairing_sl4a_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-03-17T19:07:33Z",
+      "side": 1,
+      "message": "year",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "d3b5a2b063aa67cae503797f1a2d7ec1a052eace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
