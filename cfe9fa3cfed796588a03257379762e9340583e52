@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b156a084_bff5a0cc",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-17T16:10:41Z",
+      "side": 1,
+      "message": "If the `cargo_env_compat` is set to the proc macro \"libpest_derive\" does it propagate to the crate that uses it ?",
+      "parentUuid": "fd4256d1_13e89e2b",
+      "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbb51e9a_ac23fc13",
         "filename": "tools/pdl/src/parser.rs",
         "patchSetId": 2
