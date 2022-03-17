@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3abaa43_e62cb625",
+        "filename": "system/blueberry/tests/gd/cert/gd_device.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-17T10:08:53Z",
+      "side": 0,
+      "message": "Assert will fail\n\"mobly.signals.TestFailure: Details\u003dcommand returned something when it shouldn\u0027t: b\u0027Disabling Bluetooth\\n\u0027, Extras\u003dNone\"\n\nIt seems caused by \nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1997211",
+      "range": {
+        "startLine": 530,
+        "startChar": 13,
+        "endLine": 530,
+        "endChar": 29
+      },
+      "revId": "f09826e42a9a8c42c203d347d025ffddbf0d595b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
