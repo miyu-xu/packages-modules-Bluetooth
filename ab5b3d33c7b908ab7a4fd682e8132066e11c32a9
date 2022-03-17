@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1a36eb9_7554844c",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1208,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-17T23:07:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23c42bef_dc2a9206",
+      "range": {
+        "startLine": 1208,
+        "startChar": 0,
+        "endLine": 1208,
+        "endChar": 68
+      },
+      "revId": "ab5b3d33c7b908ab7a4fd682e8132066e11c32a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f63b2e89_0f6f1db4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-17T16:50:17Z",
       "side": 1,
       "message": "put this in the try-catch block below so that the exception is propagated to the caller instead of crashing the Bluetooth stack",
+      "range": {
+        "startLine": 1231,
+        "startChar": 12,
+        "endLine": 1232,
+        "endChar": 72
+      },
+      "revId": "ab5b3d33c7b908ab7a4fd682e8132066e11c32a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3116fc1f_3a3c90b1",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1232,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-17T23:07:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f63b2e89_0f6f1db4",
       "range": {
         "startLine": 1231,
         "startChar": 12,
