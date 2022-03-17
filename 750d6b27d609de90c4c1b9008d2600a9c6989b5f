@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0393a28_b46efd69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-03-17T22:14:42Z",
+      "side": 1,
+      "message": "I would like to ensure the response is equal to what we expect \"Bluetooth Disabled\" or something like that which is now printed.  That way we can catch errors.",
+      "revId": "750d6b27d609de90c4c1b9008d2600a9c6989b5f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
