@@ -46,6 +46,30 @@
       },
       "revId": "bf700b6609ec5e3132ac4ba40b5f7b4f0e04f245",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6369727_d712e54a",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-17T18:52:51Z",
+      "side": 1,
+      "message": "Good point 😞\n\nHow about this for 533-535:\n\n    /* ALWAYS FORCE 2 for this vendor command! */\n    uint8_t addr_type \u003d 0x02;  // Really, you will break scanning if you change this.\n    UINT8_TO_STREAM(p, addr_type);\n\nWe could make that change in a CL below this CL, so this CL doesn\u0027t have to touch it.",
+      "parentUuid": "11f594ad_842d48a2",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 542,
+        "endChar": 23
+      },
+      "revId": "bf700b6609ec5e3132ac4ba40b5f7b4f0e04f245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
