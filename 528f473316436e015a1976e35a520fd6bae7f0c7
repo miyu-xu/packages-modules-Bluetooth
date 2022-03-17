@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed61360d_f4970dca",
+        "filename": "android/blueberry/server/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-17T15:34:45Z",
+      "side": 1,
+      "message": "nit: We could maybe pass `BlueberryServer` in `data` with `\":BlueberryServer\"` as well",
+      "revId": "528f473316436e015a1976e35a520fd6bae7f0c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
