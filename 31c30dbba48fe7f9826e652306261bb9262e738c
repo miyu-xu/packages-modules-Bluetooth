@@ -312,6 +312,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a6ed3e3_d6b583f3",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-03-17T17:53:20Z",
+      "side": 1,
+      "message": "Made change as per suggestion.",
+      "parentUuid": "6668761a_b0c035d4",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "39186449_21f2e6c8",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 8

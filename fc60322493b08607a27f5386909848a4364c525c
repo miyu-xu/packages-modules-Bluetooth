@@ -33,6 +33,24 @@
       "message": "Please for all the configurations add \"_Server_Preferred\" version as the first one. And we I\u0027m good with the change.",
       "revId": "fc60322493b08607a27f5386909848a4364c525c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c46f24ce_5ad4ff9e",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-03-17T17:53:20Z",
+      "side": 1,
+      "message": "If I understand suggestion correctly, it is to add \"_Server_Preferred\" for all \"Default\" configurations and updated accordingly. Let me know if this understanding is not correct.",
+      "parentUuid": "a5634f9d_0521c497",
+      "revId": "fc60322493b08607a27f5386909848a4364c525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
