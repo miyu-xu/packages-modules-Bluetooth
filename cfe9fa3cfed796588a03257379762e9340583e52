@@ -34,6 +34,29 @@
       "parentUuid": "478cce52_9d977967",
       "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb51e9a_ac23fc13",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-03-17T14:00:16Z",
+      "side": 1,
+      "message": "After pulling down the branch and running `m pdf`, I see a bunch of errors. They seem seem to be due to this derive not working. I get\n\n```\nerror: proc-macro derive panicked\n --\u003e packages/modules/Bluetooth/tools/pdl/src/parser.rs:8:10\n  |\n8 | #[derive(Parser)]\n  |          ^^^^^^\n  |\n  \u003d help: message: error opening \"pdl.pest\": No such file or directory (os error 2)\n\nerror[E0433]: failed to resolve: use of undeclared type `Rule`\n  --\u003e packages/modules/Bluetooth/tools/pdl/src/parser.rs:25:54\n   |\n25 |         self.into_inner().filter((|n| n.as_rule() !\u003d Rule::COMMENT) as fn(\u0026Self) -\u003e bool).peekable()\n   |                                                      ^^^^ use of undeclared type `Rule`\n\nerror[E0433]: failed to resolve: use of undeclared type `Rule`\n  --\u003e packages/modules/Bluetooth/tools/pdl/src/parser.rs:75:18\n   |\n75 |     expect(iter, Rule::identifier).map(|n| n.as_string())\n   |                  ^^^^ use of undeclared type `Rule`\n```\n\nAre these errors related to your changes in https://r.android.com/2028209?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 17
+      },
+      "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
