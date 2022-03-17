@@ -3117,6 +3117,12 @@ class LeAudioClientImpl : public LeAudioClient {
         LeAudioDeviceGroup* group =
             aseGroups_.FindById(leAudioDevice->group_id_);
 
+        if (!group) {
+          LOG_ERROR("%s, no group contains this device with CIS, group id: %d",
+                    __func__, leAudioDevice->group_id_);
+          break;
+        }
+
         if (event->max_pdu_mtos > 0)
           group->SetTransportLatency(le_audio::types::kLeAudioDirectionSink,
                                      event->trans_lat_mtos);
