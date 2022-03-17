@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a269ad3_c2a17c4b",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-17T18:09:38Z",
+      "side": 1,
+      "message": "No, that doesn\u0027t make a difference. The core problem is that it will mess with the build system\u0027s ability to track dependencies and ability to use RBE.\n\nCan we consider using `#[grammar_inline]` instead to avoid this?",
+      "parentUuid": "b156a084_bff5a0cc",
+      "revId": "cfe9fa3cfed796588a03257379762e9340583e52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbb51e9a_ac23fc13",
         "filename": "tools/pdl/src/parser.rs",
         "patchSetId": 2
