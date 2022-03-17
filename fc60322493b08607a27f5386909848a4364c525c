@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "282f7ce4_8a55f9de",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-17T12:21:02Z",
+      "side": 1,
+      "message": "Thanks, manor change request only.",
+      "revId": "fc60322493b08607a27f5386909848a4364c525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5634f9d_0521c497",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-17T12:21:02Z",
+      "side": 1,
+      "message": "Please for all the configurations add \"_Server_Preferred\" version as the first one. And we I\u0027m good with the change.",
+      "revId": "fc60322493b08607a27f5386909848a4364c525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
