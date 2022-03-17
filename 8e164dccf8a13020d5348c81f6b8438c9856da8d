@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a36710d_eb0ac68f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-03-17T08:29:59Z",
+      "side": 1,
+      "message": "Is this edge case possible?\n\n1. JNI thread posts a BONDING event to the BSM message queue.\n2. BSM starts handing the BONDING event in stable state\n3. JNI thread posts a BONDED event to the message queue while the state machine is handling BONDING.\n4. BONDING event is deferred to the message queue, after the BONDED event.  \u003c-- incorrect order",
+      "range": {
+        "startLine": 151,
+        "startChar": 24,
+        "endLine": 151,
+        "endChar": 36
+      },
+      "revId": "8e164dccf8a13020d5348c81f6b8438c9856da8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
