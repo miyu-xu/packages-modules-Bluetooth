@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d08582c1_ef744c91",
+        "filename": "system/stack/btm/btm_ble_adv_filter.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 542,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-17T15:02:41Z",
+      "side": 1,
+      "message": "Somehow, 25 lines to explain this makes it harder to parse.  The one line of code that is interesting is getting farther and farther away from the comment.\n\nI\u0027d rather this CL didn\u0027t touch this line of code since it\u0027s not an address type.",
+      "range": {
+        "startLine": 516,
+        "startChar": 0,
+        "endLine": 542,
+        "endChar": 23
+      },
+      "revId": "bf700b6609ec5e3132ac4ba40b5f7b4f0e04f245",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
