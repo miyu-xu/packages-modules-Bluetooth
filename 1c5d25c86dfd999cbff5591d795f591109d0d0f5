@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78a32ae6_a8b2cc29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T00:04:28Z",
+      "side": 1,
+      "message": "I got really limited experience in writing async codes in Rust and would love your feedbacks for this implementation. ",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
