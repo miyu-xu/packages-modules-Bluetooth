@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f2c019c_22a16a57",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:43:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "83d562a0_37861ab3",
+      "range": {
+        "startLine": 765,
+        "startChar": 10,
+        "endLine": 765,
+        "endChar": 15
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "793ef1ab_44dc8700",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-18T07:22:07Z",
       "side": 1,
       "message": "same as below",
+      "range": {
+        "startLine": 3153,
+        "startChar": 13,
+        "endLine": 3153,
+        "endChar": 18
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59c88da2_3fcb787d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3153,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:43:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "793ef1ab_44dc8700",
       "range": {
         "startLine": 3153,
         "startChar": 13,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba2e6259_5cc6b199",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3184,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:43:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e9c395b4_f9464628",
+      "range": {
+        "startLine": 3184,
+        "startChar": 13,
+        "endLine": 3184,
+        "endChar": 18
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b58fa91_7abda901",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-03-18T07:22:07Z",
       "side": 1,
       "message": "prefer to use \n\ngroup \u003d\u003d nullptr\n\ninstead of negating the pointers",
+      "range": {
+        "startLine": 3205,
+        "startChar": 0,
+        "endLine": 3205,
+        "endChar": 17
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbe849d1_6d0b6aa7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3205,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:43:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7b58fa91_7abda901",
       "range": {
         "startLine": 3205,
         "startChar": 0,
