@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2d52d1_a1b254ea",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastChannel.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:13:55Z",
+      "side": 1,
+      "message": "Per b/218683032#comment9\n\nAll builder constructor arguments have to be required (i.e. @NonNull), but not all @NonNull parameters need to be in the builder constructor. \n\nI decided not putting it in the builder constructor because there could be more @NonNull parameters added in future releases and having them in builder constructor will create degenerate builder constructors.",
+      "parentUuid": "ae662dd3_1738418b",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 13
+      },
+      "revId": "6841e48f6cef1050697b78414710b9007aec5a5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "11fa179b_4ecfe0db",
@@ -61,6 +85,30 @@
       "writtenOn": "2022-03-18T05:30:10Z",
       "side": 1,
       "message": "@NonNull",
+      "range": {
+        "startLine": 348,
+        "startChar": 49,
+        "endLine": 348,
+        "endChar": 57
+      },
+      "revId": "6841e48f6cef1050697b78414710b9007aec5a5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c576b87_f742fdb3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11fa179b_4ecfe0db",
       "range": {
         "startLine": 348,
         "startChar": 49,
@@ -88,6 +136,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6c97d3a_27de0b76",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21cd792a_44b02274",
+      "revId": "6841e48f6cef1050697b78414710b9007aec5a5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe6fac3a_64f79e9f",
@@ -101,6 +167,30 @@
       "writtenOn": "2022-03-18T05:30:10Z",
       "side": 1,
       "message": "@IntRange(from \u003d 0x00)?",
+      "range": {
+        "startLine": 201,
+        "startChar": 32,
+        "endLine": 201,
+        "endChar": 44
+      },
+      "revId": "6841e48f6cef1050697b78414710b9007aec5a5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfdf10e_63f49ba9",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastReceiveState.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:13:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe6fac3a_64f79e9f",
       "range": {
         "startLine": 201,
         "startChar": 32,
