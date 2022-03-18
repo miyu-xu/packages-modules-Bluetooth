@@ -1,4 +1,3 @@
-# Lint as: python3
 """Tests for blueberry.tests.bluetooth.bluetooth_latency."""
 
 from __future__ import absolute_import
