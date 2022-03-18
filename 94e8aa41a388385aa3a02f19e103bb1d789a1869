@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3bad24c9_7c1d74b8",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-18T15:05:32Z",
+      "side": 1,
+      "message": "receiver.propagateException  ?",
+      "revId": "94e8aa41a388385aa3a02f19e103bb1d789a1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a897b67_a025fa7e",
         "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
         "patchSetId": 2
