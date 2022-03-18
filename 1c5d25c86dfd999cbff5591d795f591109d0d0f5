@@ -476,6 +476,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f976684_607f18fb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T22:02:08Z",
+      "side": 1,
+      "message": "We discussed this offline. The way to solve this race is through storing the joinhandle and aborting it (i.e. cancelling the future) on a successful device callback or disconnect.",
+      "parentUuid": "35f06f89_4bb68fda",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "aa5839a2_9af6cb62",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
