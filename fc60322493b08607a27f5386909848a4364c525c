@@ -51,6 +51,24 @@
       "parentUuid": "a5634f9d_0521c497",
       "revId": "fc60322493b08607a27f5386909848a4364c525c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bb2ae54_24802479",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-18T08:02:11Z",
+      "side": 1,
+      "message": "We actually need it per context type.\nDefault is a fallback for unknown context type.",
+      "parentUuid": "c46f24ce_5ad4ff9e",
+      "revId": "fc60322493b08607a27f5386909848a4364c525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
