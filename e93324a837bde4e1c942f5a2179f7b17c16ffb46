@@ -22,6 +22,30 @@
       },
       "revId": "e93324a837bde4e1c942f5a2179f7b17c16ffb46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a60e776e_c5eb3850",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-18T10:41:30Z",
+      "side": 1,
+      "message": "It won\u0027t work. ToString from \"gd/common/strings/h\" seem to work only with integer types. This however works with any class for which we already have something like this defined:\n  std::ostream\u0026 operator\u003c\u003c(\n    std::ostream\u0026 os,\n    const le_audio::broadcaster::BroadcastStateMachine::State\u0026 state);\n\n...and we do have a bunch of them already since the previously used logging system used the `\u003c\u003c` operator. I\u0027d prefer to reuse these with this wrapper instead of rewriting all these existing functions.",
+      "parentUuid": "2e263ad0_716860ef",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "e93324a837bde4e1c942f5a2179f7b17c16ffb46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
