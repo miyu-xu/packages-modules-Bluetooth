@@ -16,6 +16,24 @@
       "message": "Why are we throwing in the case of a TimeoutException? Can we just not catch the IllegalStateException?",
       "revId": "9f114f7418af39770c24bf63dec459dc39f91139",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2871df12_af6e6429",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-18T18:14:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87018413_a1edabd3",
+      "revId": "9f114f7418af39770c24bf63dec459dc39f91139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
