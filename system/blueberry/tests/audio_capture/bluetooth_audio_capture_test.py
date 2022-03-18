@@ -1,4 +1,3 @@
-# Lint as: python3
 """Tests for testing audio capture in android bt target controller.
 
   location of the controller:

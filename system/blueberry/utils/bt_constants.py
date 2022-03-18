@@ -1,4 +1,3 @@
-# Lint as: python3
 """Constants used for bluetooth test."""
 
 import enum

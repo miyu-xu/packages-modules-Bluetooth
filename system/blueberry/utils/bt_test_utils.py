@@ -1,4 +1,3 @@
-# Lint as: python3
 """Utils for blue tooth tests.
 
 Partly ported from acts/framework/acts/test_utils/bt/bt_test_utils.py
