@@ -70,6 +70,30 @@
       },
       "revId": "8e164dccf8a13020d5348c81f6b8438c9856da8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "add9e73d_a3a227a0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-18T05:53:28Z",
+      "side": 1,
+      "message": "Please ignore my comment above. Looks same since the messages will be handled in a thread.",
+      "parentUuid": "1d3fb425_17da8dc0",
+      "range": {
+        "startLine": 151,
+        "startChar": 24,
+        "endLine": 151,
+        "endChar": 36
+      },
+      "revId": "8e164dccf8a13020d5348c81f6b8438c9856da8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
