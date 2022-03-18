@@ -1,5 +1,4 @@
-/*
- * Copyright 2009-2016 The Android Open Source Project
+/* Copyright 2009-2016 The Android Open Source Project
  * Copyright 2015 Samsung LSI
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -3473,7 +3472,10 @@ public final class BluetoothAdapter {
         if (context == null || listener == null) {
             return false;
         }
-
+        // Do not create proxies when BT is OFF
+        if (getState() != STATE_ON) {
+            return false;
+        }
         if (profile == BluetoothProfile.HEADSET) {
             BluetoothHeadset headset = new BluetoothHeadset(context, listener, this);
             return true;
