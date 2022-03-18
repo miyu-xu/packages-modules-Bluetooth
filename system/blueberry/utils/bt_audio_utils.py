@@ -1,4 +1,3 @@
-# Lint as: python3
 """Utils for bluetooth audio testing."""
 
 import logging as log
