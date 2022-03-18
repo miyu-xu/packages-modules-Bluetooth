@@ -21,6 +21,8 @@ import android.annotation.SystemApi;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 /**
  * This class contains the Broadcast Isochronous Channel level information as defined in the BASE
  * structure of the Basic Audio Profile.
@@ -168,11 +170,17 @@ public final class BluetoothLeBroadcastChannel implements Parcelable {
         /**
          * Set the Broadcast Isochronous Channel index of this Broadcast Channel.
          *
-         * @return Broadcast Isochronous Channel index
+         * @param channelIndex Broadcast Isochronous Channel index
+         * @throws IllegalArgumentException if the input argument is not valid
+         * @return this builder
          * @hide
          */
         @SystemApi
         public @NonNull Builder setChannelIndex(int channelIndex) {
+            if (channelIndex == UNKNOWN_VALUE_PLACEHOLDER) {
+                throw new IllegalArgumentException("channelIndex cannot be "
+                        + UNKNOWN_VALUE_PLACEHOLDER);
+            }
             mChannelIndex = channelIndex;
             return this;
         }
@@ -181,12 +189,14 @@ public final class BluetoothLeBroadcastChannel implements Parcelable {
          * Set the codec specific configuration for this Broadcast Channel.
          *
          * @param codecMetadata codec specific configuration for this Broadcast Channel
+         * @throws NullPointerException if codecMetadata is null
          * @return this builder
          * @hide
          */
         @SystemApi
         public @NonNull Builder setCodecMetadata(
                 @NonNull BluetoothLeAudioCodecConfigMetadata codecMetadata) {
+            Objects.requireNonNull(codecMetadata, "codecMetadata cannot be null");
             mCodecMetadata = codecMetadata;
             return this;
         }
