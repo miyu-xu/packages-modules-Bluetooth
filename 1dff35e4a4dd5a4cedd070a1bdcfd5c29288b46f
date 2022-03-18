@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36b01515_df581ceb",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-18T14:30:24Z",
+      "side": 1,
+      "message": "Can the user pass in kIdLocal the reserved id ?\n\nEnsure that the advertiser_id passed in isn\u0027t the reserved kIdLocal one for the stack.",
+      "revId": "1dff35e4a4dd5a4cedd070a1bdcfd5c29288b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "141ea6a0_a9900662",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1371,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-18T14:30:24Z",
+      "side": 1,
+      "message": "Same here w/kIdLocal",
+      "revId": "1dff35e4a4dd5a4cedd070a1bdcfd5c29288b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
