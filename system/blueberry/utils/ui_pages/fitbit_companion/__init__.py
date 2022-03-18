@@ -47,6 +47,8 @@ def get_context(ad: android_device.AndroidDevice,
   """
   ctx = context.Context(ad, safe_get=safe_get, do_go_home=do_go_home)
   ctx.known_pages.extend((
+      other_pages.NotificationPopup,
+      other_pages.FitbitManagePopup,
       other_pages.PixelBudConnectPopup,
       other_pages.DownloadAppPopup,
       other_pages.LoginInputPage,
@@ -70,8 +72,6 @@ def get_context(ad: android_device.AndroidDevice,
       other_pages.LinkConfirmPage,
       other_pages.NetworkOpFailPage,
       other_pages.PlayfulPage,
-      other_pages.NotificationPopup,
-      other_pages.FitbitManagePopup,
       other_pages.WebPageNotReadyPage,
       account_pages.AccountPage,
       account_pages.PairedDeviceDetailPage,
@@ -133,7 +133,7 @@ def go_google_play_page(ctx: context.Context) -> None:
         initial_delay_sec=1, num_retries=5, factor=1.1))
 def _click_unpair_button_on_device(ctx: context.Context,
                                    device_node: ui_node.UINode,
-                                   timeout_sec=14):
+                                   timeout_sec=20):
   """Unpairs given device.
 
   Args:
@@ -152,13 +152,20 @@ def _click_unpair_button_on_device(ctx: context.Context,
       ctx.page.cancel()
     elif ctx.is_page(account_pages.GalleryPage):
       ctx.page.back()
+    elif ctx.is_page(other_pages.FitbitManagePopup):
+      ctx.page.not_allow()
     else:
       # Turns back to previous page while sometimes account page
       # will enter advertisement page sporadically and automatically.
       ctx.go_page(account_pages.AccountPage)
       ctx.page.click(device_node)
 
-  ctx.expect_page(account_pages.PairedDeviceDetailPage)
+  ctx.expect_pages([
+      account_pages.PairedDeviceDetailPage,
+      other_pages.FitbitManagePopup])
+  if ctx.is_page(other_pages.FitbitManagePopup):
+    ctx.page.not_allow()
+
   ctx.page.unpair()
   ctx.expect_page(account_pages.UnpairConfirmPage)
   ctx.page.confirm()
