@@ -69,6 +69,30 @@
       },
       "revId": "4c7ce2aa3d17a21389e50fddaaf1b44c56d80d2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cdff636_bc2adc95",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3151,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-18T04:32:49Z",
+      "side": 1,
+      "message": "Sure. Thanks for the remind.",
+      "parentUuid": "1220ff4d_b41b4ab1",
+      "range": {
+        "startLine": 3151,
+        "startChar": 59,
+        "endLine": 3151,
+        "endChar": 64
+      },
+      "revId": "4c7ce2aa3d17a21389e50fddaaf1b44c56d80d2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
