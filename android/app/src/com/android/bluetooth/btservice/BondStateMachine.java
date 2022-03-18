@@ -133,7 +133,6 @@ final class BondStateMachine extends StateMachine {
             BluetoothDevice dev = (BluetoothDevice) msg.obj;
 
             switch (msg.what) {
-
                 case CREATE_BOND:
                     OobData p192Data = (msg.getData() != null)
                             ? msg.getData().getParcelable(OOBDATAP192) : null;
@@ -171,7 +170,6 @@ final class BondStateMachine extends StateMachine {
             return true;
         }
     }
-
 
     private class PendingCommandState extends State {
         private final ArrayList<BluetoothDevice> mDevices = new ArrayList<BluetoothDevice>();
@@ -271,7 +269,11 @@ final class BondStateMachine extends StateMachine {
                         sendDisplayPinIntent(devProp.getAddress(), 0,
                                 BluetoothDevice.PAIRING_VARIANT_PIN);
                     }
-
+                    break;
+                case UUID_UPDATE:
+                    if (mPendingBondedDevices.contains(dev)) {
+                        sendIntent(dev, BluetoothDevice.BOND_BONDED, 0);
+                    }
                     break;
                 default:
                     Log.e(TAG, "Received unhandled event:" + msg.what);
@@ -280,7 +282,6 @@ final class BondStateMachine extends StateMachine {
             if (result) {
                 mDevices.add(dev);
             }
-
             return true;
         }
     }
@@ -309,7 +310,6 @@ final class BondStateMachine extends StateMachine {
                 }
                 return true;
             }
-
         }
         return false;
     }
@@ -474,25 +474,20 @@ final class BondStateMachine extends StateMachine {
         int variant;
         boolean displayPasskey = false;
         switch (pairingVariant) {
-
             case AbstractionLayer.BT_SSP_VARIANT_PASSKEY_CONFIRMATION:
                 variant = BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION;
                 displayPasskey = true;
                 break;
-
             case AbstractionLayer.BT_SSP_VARIANT_CONSENT:
                 variant = BluetoothDevice.PAIRING_VARIANT_CONSENT;
                 break;
-
             case AbstractionLayer.BT_SSP_VARIANT_PASSKEY_ENTRY:
                 variant = BluetoothDevice.PAIRING_VARIANT_PASSKEY;
                 break;
-
             case AbstractionLayer.BT_SSP_VARIANT_PASSKEY_NOTIFICATION:
                 variant = BluetoothDevice.PAIRING_VARIANT_DISPLAY_PASSKEY;
                 displayPasskey = true;
                 break;
-
             default:
                 errorLog("SSP Pairing variant not present");
                 return;
