@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90ef148f_c5ce1d2f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2887127b_3517edaa",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1eb38257_ae218c66",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-03-18T18:11:11Z",
       "side": 1,
       "message": "nit: lets try to be consistent about log message format. I like the following:\n`[{address}]: {message}`\n\nExample here:\n`info!(\"[{}]: a2dp connected.\", addr.to_string());`",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1bf2243_cec8209f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1eb38257_ae218c66",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ed13c96_bfaa8953",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa881729_6ff774d7",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5553f792_82a19b8f",
@@ -82,6 +136,24 @@
       "writtenOn": "2022-03-18T18:11:11Z",
       "side": 1,
       "message": "nit: log message consistency",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc09e4ae_58d7d238",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5553f792_82a19b8f",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -103,6 +175,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50b75678_72a4ec21",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "498e2dbe_db941889",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed982b7b_b6eae7a3",
@@ -116,6 +206,24 @@
       "writtenOn": "2022-03-18T18:11:11Z",
       "side": 1,
       "message": "recommend renaming `check_and_send` to `dedup_added_cb`.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c48bc07_86c51f0c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed982b7b_b6eae7a3",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +245,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0572e5bb_3b0b8805",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27e431d7_9c9d9b70",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96acfe2d_df8a4d9c",
@@ -150,6 +276,24 @@
       "writtenOn": "2022-03-18T18:11:11Z",
       "side": 1,
       "message": "Make this a match instead. Avoid adding returns outside the top of the function (guard statements) and the end of the function.\n\n```\nmatch (cur_a2dp_cap, cur_hfp_cap) {\n  (Some(cap), Some(hfp_cap)) \u003d\u003e ...,\n  (_, _) \u003d\u003e {\n    ...\n  }\n}\n```",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09e75fca_f3d5de9a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96acfe2d_df8a4d9c",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -201,6 +345,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2232fae4_bae9e56a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9896eeb9_10c14e54",
+      "range": {
+        "startLine": 281,
+        "startChar": 12,
+        "endLine": 281,
+        "endChar": 52
+      },
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "021eb5e8_1062c023",
@@ -214,6 +382,24 @@
       "writtenOn": "2022-03-18T18:11:11Z",
       "side": 1,
       "message": "Use `topstack::get_runtime().spawn` so that it runs in the same executor as the rest of the Floss code.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aa40516_019f6b31",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "021eb5e8_1062c023",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -235,6 +421,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28261440_7634af35",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5ee9d2a_55379cb6",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b96d4c2_db701e25",
@@ -248,6 +452,24 @@
       "writtenOn": "2022-03-18T18:11:11Z",
       "side": 1,
       "message": "Should probably check the return of this remove before sending callbacks.\n\nhttps://doc.rust-lang.org/std/collections/struct.HashSet.html#method.remove",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35f06f89_4bb68fda",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "After looking through this again, I think here is a potential tricky race that I didn\u0027t handle properly:\nIf the notify_media_capability_remove happens right after notify_media_capability_added and the actual device added message hasn\u0027t been sent out. We\u0027ll lost the removal call and still add the device.\nA proper message queue can solve the problem but requires more work. An alternative way will be replacing the device_added with a hashmap with status enum like \"PendingAdded\", \"Added\" that be also feasible.",
+      "parentUuid": "0b96d4c2_db701e25",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -275,6 +497,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb8ce978_2fdb93dc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa5839a2_9af6cb62",
+      "range": {
+        "startLine": 304,
+        "startChar": 12,
+        "endLine": 304,
+        "endChar": 54
+      },
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb0946aa_50068e18",
@@ -288,6 +534,24 @@
       "writtenOn": "2022-03-18T18:11:11Z",
       "side": 1,
       "message": "Nit: prefer previous version.\n\nAll calls into IBluetoothMedia is already serialized so there\u0027s no need to protect callback_last_id with the callbacks mutex.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bd8f0c5_060cdef1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-18T21:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb0946aa_50068e18",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
