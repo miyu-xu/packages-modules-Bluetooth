@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "785fe000_7b7d6205",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3090,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-18T03:51:31Z",
+      "side": 1,
+      "message": "If CIS event could not link to a group, shouldn\u0027t we check whether it is group or not in the beginning of this method and return early if it is group?",
+      "range": {
+        "startLine": 3090,
+        "startChar": 7,
+        "endLine": 3090,
+        "endChar": 21
+      },
+      "revId": "4c7ce2aa3d17a21389e50fddaaf1b44c56d80d2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
