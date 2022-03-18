@@ -34,6 +34,24 @@
       "parentUuid": "9a897b67_a025fa7e",
       "revId": "94e8aa41a388385aa3a02f19e103bb1d789a1869",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95bd6ed7_6a0464f5",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1388,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T05:05:50Z",
+      "side": 1,
+      "message": "Reference: https://developer.android.com/guide/components/aidl.html\n\nThe oneway keyword modifies the behavior of remote calls. When used, a remote call does not block; it simply sends the transaction data and immediately returns. The implementation of the interface eventually receives this as a regular call from the Binder thread pool as a normal remote call. If oneway is used with a local call, there is no impact and the call is still synchronous.",
+      "parentUuid": "c27f0bae_ee1d1d65",
+      "revId": "94e8aa41a388385aa3a02f19e103bb1d789a1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
