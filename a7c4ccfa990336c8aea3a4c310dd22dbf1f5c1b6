@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "008aa23c_4a9e717a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-18T11:56:07Z",
+      "side": 1,
+      "message": "I would like to find a root cause instead of covering issue here. If we cover it, we might have bigger problems later on.\n\nWe need to understand why group is not existing. One of my suspicious is that leAudioDevice found by the cis_conn_handle is not the one we are looking for, but for some reason is still on the leAudioDevices_ list.",
+      "revId": "a7c4ccfa990336c8aea3a4c310dd22dbf1f5c1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f62f4aaf_fabb5e14",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3048,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-18T11:56:07Z",
+      "side": 1,
+      "message": "I think that both versions are good and we don;t need to change it. If we do need it, then I suggest separate patch for that.",
+      "revId": "a7c4ccfa990336c8aea3a4c310dd22dbf1f5c1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "875b79e8_0986470d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3101,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-18T11:56:07Z",
+      "side": 1,
+      "message": "This should not happen here. I agree we could be coherence check here, but in case of error we need to do more cleaning here.\n This comment is for all the other places where we return in case of group \u003d null",
+      "revId": "a7c4ccfa990336c8aea3a4c310dd22dbf1f5c1b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
