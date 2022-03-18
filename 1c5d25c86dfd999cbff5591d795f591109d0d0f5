@@ -20,6 +20,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2887127b_3517edaa",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "You can refactor this block to avoid returns inside the match. It\u0027s generally considered bad practice to have return statements in nested blocks because they disturb call flow.\n\n```\nmatch state {\n  BtAvConnectionState::Connected \u003d\u003e {\n    info!(...);\n    self.notify_bluetooth_device_connected(addr);\n    self.a2dp_states.insert(addr, state);\n  },\n  BtAvConnectionState::Disconnected \u003d\u003e {\n    match self.a2dp_states.remove(\u0026addr) {\n      Some(_) \u003d\u003e self.notify_bluetooth_device_disconnected(addr),\n      None \u003d\u003e warn!(...)\n    }\n  },\n  _ \u003d\u003e self.a2dp_states.insert(addr, state)\n}\n```",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb38257_ae218c66",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "nit: lets try to be consistent about log message format. I like the following:\n`[{address}]: {message}`\n\nExample here:\n`info!(\"[{}]: a2dp connected.\", addr.to_string());`",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa881729_6ff774d7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "nit: consistent log message + message should be: `Unknown address a2dp disconnected.`",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5553f792_82a19b8f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "nit: log message consistency",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "498e2dbe_db941889",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -31,6 +99,57 @@
       "writtenOn": "2022-03-18T02:35:58Z",
       "side": 1,
       "message": "would it be better to name \u0027notify_media_capability_added\u0027 ?",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed982b7b_b6eae7a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "recommend renaming `check_and_send` to `dedup_added_cb`.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e431d7_9c9d9b70",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "```\nif !device_added.lock().unwrap().insert(\u0026addr) {\n  return False; \n}\n```\n\nhttps://doc.rust-lang.org/std/collections/struct.HashSet.html#method.insert\n\nWhile `added` is in scope, you have the lock acquired until you drop `added`. To avoid a future deadlock (since you also acquire the `callbacks` lock), it\u0027s better to drop the scope right away.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96acfe2d_df8a4d9c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 280,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "Make this a match instead. Avoid adding returns outside the top of the function (guard statements) and the end of the function.\n\n```\nmatch (cur_a2dp_cap, cur_hfp_cap) {\n  (Some(cap), Some(hfp_cap)) \u003d\u003e ...,\n  (_, _) \u003d\u003e {\n    ...\n  }\n}\n```",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -60,6 +179,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9896eeb9_10c14e54",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "devices_added is Arc\u003cMutex\u003cHashSet\u003e\u003e so the clone is occurring on Arc\u003cT\u003e. The clone simply increases the refcount on Arc and the shared data is protected by the mutex.\n\nThis is WAI.",
+      "parentUuid": "1b349318_d520689e",
+      "range": {
+        "startLine": 281,
+        "startChar": 12,
+        "endLine": 281,
+        "endChar": 52
+      },
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "021eb5e8_1062c023",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "Use `topstack::get_runtime().spawn` so that it runs in the same executor as the rest of the Floss code.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b5ee9d2a_55379cb6",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -71,6 +231,23 @@
       "writtenOn": "2022-03-18T02:35:58Z",
       "side": 1,
       "message": "Name \u0027notify_media_capability_removed\u0027?\n\nAlso comment here that we\u0027re enforcing the policy that if any capability is removed, this Bluetooth audio device should be removed from audio server.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b96d4c2_db701e25",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "Should probably check the return of this remove before sending callbacks.\n\nhttps://doc.rust-lang.org/std/collections/struct.HashSet.html#method.remove",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -94,6 +271,23 @@
         "endLine": 304,
         "endChar": 54
       },
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0946aa_50068e18",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-18T18:11:11Z",
+      "side": 1,
+      "message": "Nit: prefer previous version.\n\nAll calls into IBluetoothMedia is already serialized so there\u0027s no need to protect callback_last_id with the callbacks mutex.",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
