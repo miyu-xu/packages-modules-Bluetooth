@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92840d6_68a74148",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2514,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-18T17:28:59Z",
+      "side": 1,
+      "message": "Do we need to split this up?\n\nIt looks like 2512 has to do with LE",
+      "range": {
+        "startLine": 2510,
+        "startChar": 0,
+        "endLine": 2514,
+        "endChar": 3
+      },
+      "revId": "5cd529954d6682c8d7dff8cdf19981c1a051242c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
