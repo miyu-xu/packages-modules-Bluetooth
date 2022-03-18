@@ -22,6 +22,53 @@
       },
       "revId": "4c7ce2aa3d17a21389e50fddaaf1b44c56d80d2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f36df2a_da1bab90",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3090,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-18T04:04:23Z",
+      "side": 1,
+      "message": "please ignore this.",
+      "parentUuid": "785fe000_7b7d6205",
+      "range": {
+        "startLine": 3090,
+        "startChar": 7,
+        "endLine": 3090,
+        "endChar": 21
+      },
+      "revId": "4c7ce2aa3d17a21389e50fddaaf1b44c56d80d2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1220ff4d_b41b4ab1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3151,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-03-18T04:04:23Z",
+      "side": 1,
+      "message": "It seems \"group\" shouldn\u0027t be null here.\nPlease null check for group here as well.\n\nAnd ditto for other places in this file.",
+      "range": {
+        "startLine": 3151,
+        "startChar": 59,
+        "endLine": 3151,
+        "endChar": 64
+      },
+      "revId": "4c7ce2aa3d17a21389e50fddaaf1b44c56d80d2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
