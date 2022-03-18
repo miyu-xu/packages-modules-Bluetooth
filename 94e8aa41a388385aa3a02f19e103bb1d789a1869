@@ -16,6 +16,24 @@
       "message": "Why does the pattern change starting with this method? Shouldn\u0027t we also throw a NullPointerException if any of the params for this method and below are null?",
       "revId": "94e8aa41a388385aa3a02f19e103bb1d789a1869",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c27f0bae_ee1d1d65",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1388,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T05:04:31Z",
+      "side": 1,
+      "message": "The AIDL is marked as oneway. In oneway methods, exception will not be propagated back to the caller. Hence we should gracefully handle the failure instead to avoid crashing the Bluetooth stack.",
+      "parentUuid": "9a897b67_a025fa7e",
+      "revId": "94e8aa41a388385aa3a02f19e103bb1d789a1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
