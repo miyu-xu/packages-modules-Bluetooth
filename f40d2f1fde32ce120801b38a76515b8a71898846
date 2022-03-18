@@ -22,6 +22,30 @@
       },
       "revId": "f40d2f1fde32ce120801b38a76515b8a71898846",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28ee5298_e85db3c0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-18T17:32:41Z",
+      "side": 1,
+      "message": "we aim to have complete Streaming set within less than 1 sec. This time is per operation. I think this is already big number.",
+      "parentUuid": "8353938c_e899118c",
+      "range": {
+        "startLine": 791,
+        "startChar": 56,
+        "endLine": 791,
+        "endChar": 60
+      },
+      "revId": "f40d2f1fde32ce120801b38a76515b8a71898846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
