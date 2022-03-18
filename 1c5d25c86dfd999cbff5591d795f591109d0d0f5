@@ -16,6 +16,86 @@
       "message": "I got really limited experience in writing async codes in Rust and would love your feedbacks for this implementation. ",
       "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "498e2dbe_db941889",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-18T02:35:58Z",
+      "side": 1,
+      "message": "would it be better to name \u0027notify_media_capability_added\u0027 ?",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b349318_d520689e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-18T02:35:58Z",
+      "side": 1,
+      "message": "Looks weird to me seeing this passes a \"clone\" of hash set every time.\n\nCould that cause problem that one success `check_and_send` modifies the \"device_added\" map but the later `check_and_send` doesn\u0027t get the expected result because they own independent copy of original \"device_added\"?",
+      "range": {
+        "startLine": 281,
+        "startChar": 12,
+        "endLine": 281,
+        "endChar": 52
+      },
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5ee9d2a_55379cb6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-18T02:35:58Z",
+      "side": 1,
+      "message": "Name \u0027notify_media_capability_removed\u0027?\n\nAlso comment here that we\u0027re enforcing the policy that if any capability is removed, this Bluetooth audio device should be removed from audio server.",
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5839a2_9af6cb62",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-18T02:35:58Z",
+      "side": 1,
+      "message": "Maybe check self.device_added first so this \u0027removed\u0027 event doesn\u0027t send to CRAS multiple times.",
+      "range": {
+        "startLine": 304,
+        "startChar": 12,
+        "endLine": 304,
+        "endChar": 54
+      },
+      "revId": "1c5d25c86dfd999cbff5591d795f591109d0d0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
