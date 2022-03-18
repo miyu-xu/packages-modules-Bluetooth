@@ -2433,8 +2433,7 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void SuspendAudio(void) {
-    audio_receiver_state_ = AudioState::IDLE;
-    audio_sender_state_ = AudioState::IDLE;
+    CancelStreamingRequest();
 
     if (lc3_encoder_left_mem) {
       free(lc3_encoder_left_mem);
@@ -3217,8 +3216,9 @@ class LeAudioClientImpl : public LeAudioClient {
       if (audio_receiver_state_ == AudioState::RELEASING)
         audio_receiver_state_ = AudioState::READY_TO_START;
     } else {
-      audio_receiver_state_ = AudioState::IDLE;
-      audio_sender_state_ = AudioState::IDLE;
+      LOG(ERROR) << __func__
+                 << " Could not start stream for group id: " << group_id;
+      CancelStreamingRequest();
     }
 
     group->stream_conf.reconfiguration_ongoing = false;
