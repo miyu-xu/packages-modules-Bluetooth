@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83d562a0_37861ab3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:22:07Z",
+      "side": 1,
+      "message": "group !\u003d nullptr",
+      "range": {
+        "startLine": 765,
+        "startChar": 10,
+        "endLine": 765,
+        "endChar": 15
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "793ef1ab_44dc8700",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3153,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:22:07Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 3153,
+        "startChar": 13,
+        "endLine": 3153,
+        "endChar": 18
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9c395b4_f9464628",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3184,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:22:07Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 3184,
+        "startChar": 13,
+        "endLine": 3184,
+        "endChar": 18
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b58fa91_7abda901",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3205,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T07:22:07Z",
+      "side": 1,
+      "message": "prefer to use \n\ngroup \u003d\u003d nullptr\n\ninstead of negating the pointers",
+      "range": {
+        "startLine": 3205,
+        "startChar": 0,
+        "endLine": 3205,
+        "endChar": 17
+      },
+      "revId": "dfc4b78b80672511e4ec907b1bef2be9040edc6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
