@@ -1011,6 +1011,12 @@ public class LeAudioService extends ProfileService {
                     LeAudioGroupDescriptor descriptor = mGroupDescriptors.get(group_id);
                     if (descriptor == null) {
                         mGroupDescriptors.put(group_id, new LeAudioGroupDescriptor());
+                        LeAudioStateMachine sm = mStateMachines.get(device);
+                        if (sm != null
+                                && sm.getConnectionState() == BluetoothProfile.STATE_CONNECTED) {
+                            descriptor.mIsConnected = true;
+                            setActiveDevice(device);
+                        }
                     }
                     break;
                 case LeAudioStackEvent.GROUP_NODE_REMOVED:
