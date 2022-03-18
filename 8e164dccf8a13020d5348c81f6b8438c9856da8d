@@ -94,6 +94,30 @@
       },
       "revId": "8e164dccf8a13020d5348c81f6b8438c9856da8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c050fd7d_f69775de",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-03-18T08:18:05Z",
+      "side": 1,
+      "message": "+1 to the code Cheney posted.",
+      "parentUuid": "add9e73d_a3a227a0",
+      "range": {
+        "startLine": 151,
+        "startChar": 24,
+        "endLine": 151,
+        "endChar": 36
+      },
+      "revId": "8e164dccf8a13020d5348c81f6b8438c9856da8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
