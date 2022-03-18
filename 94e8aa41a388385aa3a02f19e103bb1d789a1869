@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6ece100_aaec5168",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-18T20:46:44Z",
+      "side": 1,
+      "message": "this will be caught in the RuntimeException below and send to the receiver.",
+      "parentUuid": "3bad24c9_7c1d74b8",
+      "revId": "94e8aa41a388385aa3a02f19e103bb1d789a1869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a897b67_a025fa7e",
