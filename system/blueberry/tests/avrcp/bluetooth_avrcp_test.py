@@ -1,4 +1,3 @@
-# Lint as: python3
 """Tests for AVRCP basic functionality."""
 
 from __future__ import absolute_import
