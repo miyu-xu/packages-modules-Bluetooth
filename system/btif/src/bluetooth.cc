@@ -804,7 +804,7 @@ void invoke_ssp_request_cb(RawAddress bd_addr, bt_bdname_t bd_name,
 void invoke_oob_data_request_cb(tBT_TRANSPORT t, bool valid, Octet16 c,
                                 Octet16 r, RawAddress raw_address,
                                 uint8_t address_type) {
-  LOG_INFO("%s", __func__);
+  LOG_INFO("CYDBG %s", __func__);
   bt_oob_data_t oob_data = {};
   const char* local_name;
   BTM_ReadLocalDeviceName(&local_name);
@@ -843,6 +843,8 @@ void invoke_oob_data_request_cb(tBT_TRANSPORT t, bool valid, Octet16 c,
                      t, oob_data));
   if (status != BT_STATUS_SUCCESS) {
     LOG_ERROR("%s: Failed to call callback!", __func__);
+  } else {
+    LOG_INFO("CYDBG %s Success!!!", __func__);
   }
 }
 

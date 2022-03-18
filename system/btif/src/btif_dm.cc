@@ -2427,6 +2427,8 @@ void btif_dm_generate_local_oob_data(tBT_TRANSPORT transport) {
 static void get_address_callback(tBT_TRANSPORT transport, bool is_valid,
                                  const Octet16& c, const Octet16& r,
                                  uint8_t address_type, RawAddress address) {
+  LOG_INFO("CYDBG CallBack from Step Tree, address_type is %d address is %s",
+           address_type, address.ToString().c_str());
   invoke_oob_data_request_cb(transport, is_valid, c, r, address, address_type);
   waiting_on_oob_advertiser_start = false;
 }
@@ -2435,6 +2437,9 @@ static void get_address_callback(tBT_TRANSPORT transport, bool is_valid,
 static void start_advertising_callback(uint8_t id, tBT_TRANSPORT transport,
                                        bool is_valid, const Octet16& c,
                                        const Octet16& r, tBTM_STATUS status) {
+  LOG_INFO("CYDBG CallBack from Step Two, advertising id is %d status is %d",
+           id, status);
+  LOG_INFO("CYDBG Step Three: Get advertising address");
   if (status != 0) {
     LOG_INFO("OOB get advertiser ID failed with status %hhd", status);
     invoke_oob_data_request_cb(transport, false, c, r, RawAddress{}, 0x00);
@@ -2450,7 +2455,7 @@ static void start_advertising_callback(uint8_t id, tBT_TRANSPORT transport,
 }
 
 static void timeout_cb(uint8_t id, tBTM_STATUS status) {
-  LOG_INFO("OOB advertiser with id %hhd timed out with status %hhd", id,
+  LOG_INFO("CYDBG OOB advertiser with id %hhd timed out with status %hhd", id,
            status);
   auto advertiser = get_ble_advertiser_instance();
   advertiser->Unregister(id);
@@ -2463,6 +2468,9 @@ static void timeout_cb(uint8_t id, tBTM_STATUS status) {
 static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
                                const Octet16& c, const Octet16& r, uint8_t id,
                                tBTM_STATUS status) {
+  LOG_INFO("CYDBG CallBack from Step One, advertising id is %d status is %d",
+           id, status);
+  LOG_INFO("CYDBG Step Two: Start advertising");
   if (status != 0) {
     LOG_INFO("OOB get advertiser ID failed with status %hhd", status);
     invoke_oob_data_request_cb(transport, false, c, r, RawAddress{}, 0x00);
@@ -2499,6 +2507,7 @@ static void id_status_callback(tBT_TRANSPORT transport, bool is_valid,
 // Step One: Start the advertiser
 static void start_oob_advertiser(tBT_TRANSPORT transport, bool is_valid,
                                  const Octet16& c, const Octet16& r) {
+  LOG_INFO("CYDBG Step One: Registered Advertiser");
   auto advertiser = get_ble_advertiser_instance();
   advertiser->RegisterAdvertiser(
       base::Bind(&id_status_callback, transport, is_valid, c, r));
