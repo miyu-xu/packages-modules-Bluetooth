@@ -450,16 +450,16 @@ class Context(abc.ABC):
                                      enabled_nodes, all_nodes)
 
       if page_obj:
+        if self.enable_registered_page_call:
+          regr_method_name = self.get_regr_page_call(page_obj)
+          if regr_method_name:
+            return getattr(page_obj, regr_method_name)()
+
         if self.page is not None and isinstance(page_obj, self.page.__class__):
           self.log.debug('Refreshing page %s...', self.page)
           self.page.refresh(page_obj)
         else:
           self.page = page_obj
-
-        if self.enable_registered_page_call:
-          regr_method_name = self.get_regr_page_call(self.page)
-          if regr_method_name:
-            return getattr(self.page, regr_method_name)()
 
         return self.page
 
