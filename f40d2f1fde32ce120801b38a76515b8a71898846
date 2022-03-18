@@ -46,6 +46,30 @@
       },
       "revId": "f40d2f1fde32ce120801b38a76515b8a71898846",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b9a7182_872cf5b5",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 791,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-18T18:31:38Z",
+      "side": 1,
+      "message": "Are there any specification restrictions about the time?",
+      "parentUuid": "28ee5298_e85db3c0",
+      "range": {
+        "startLine": 791,
+        "startChar": 56,
+        "endLine": 791,
+        "endChar": 60
+      },
+      "revId": "f40d2f1fde32ce120801b38a76515b8a71898846",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
