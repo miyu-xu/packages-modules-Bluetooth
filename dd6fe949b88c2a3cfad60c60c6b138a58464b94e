@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72b3fa1d_c9c2767c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-19T02:45:20Z",
+      "side": 1,
+      "message": "Should we remove it?",
+      "range": {
+        "startLine": 339,
+        "startChar": 4,
+        "endLine": 339,
+        "endChar": 60
+      },
+      "revId": "dd6fe949b88c2a3cfad60c60c6b138a58464b94e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac9d6dec_6d34496b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-19T02:45:20Z",
+      "side": 1,
+      "message": "The same as above",
+      "range": {
+        "startLine": 344,
+        "startChar": 4,
+        "endLine": 344,
+        "endChar": 62
+      },
+      "revId": "dd6fe949b88c2a3cfad60c60c6b138a58464b94e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
