@@ -89,6 +89,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "28d2fbe9_0ab7a858",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-19T03:34:57Z",
+      "side": 1,
+      "message": "oops typo. I meant does it \"exit\" immediately.",
+      "parentUuid": "3444b74f_84a7f1a6",
+      "range": {
+        "startLine": 253,
+        "startChar": 54,
+        "endLine": 253,
+        "endChar": 69
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "973d96fa_a4ea356d",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
