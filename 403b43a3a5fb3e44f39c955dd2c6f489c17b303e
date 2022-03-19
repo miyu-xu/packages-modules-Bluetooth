@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a98e793_5f365258",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-19T07:44:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6faaec94_eb35674c",
+      "range": {
+        "startLine": 141,
+        "startChar": 24,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cc5a2dc_b3c03f03",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-03-19T03:33:41Z",
       "side": 1,
       "message": "This is the \"everything else\" case but I think you want to insert() for all states right? probably need to move outside of match.",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "553f6063_88a145e7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-19T07:44:12Z",
+      "side": 1,
+      "message": "We do, except Disconnected. I also have this insert in the connected one. I had implemented it as you said but it requires an early return in the Disconnected case, which Abhishek suggested to refactor. (https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1936200/comments/2887127b_3517edaa)",
+      "parentUuid": "8cc5a2dc_b3c03f03",
       "range": {
         "startLine": 145,
         "startChar": 20,
@@ -111,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83253f51_bca6f12f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-19T07:44:12Z",
+      "side": 1,
+      "message": "You made me realize, After refining it, I still miss the case that:\n- A pending device_added_task runs to 261. (The lock is dropped)\n- The notify_media_capability_removed is triggered. It gets the lock, remove the None and trigger the on_bluetooth_audio_device_removed.\n- The pending task continues to send on_bluetooth_audio_device_added.\n\nI\u0027ve re-polished this again for your review.\nSorry for the back and forth.\n\nI\u0027d love to have a message queue implementation for the delay call in the future. Using Mutex to solve race condition is still issue-prone IMO.",
+      "parentUuid": "28d2fbe9_0ab7a858",
+      "range": {
+        "startLine": 253,
+        "startChar": 54,
+        "endLine": 253,
+        "endChar": 69
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "973d96fa_a4ea356d",
@@ -134,6 +206,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86434d19_e698eb45",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-19T07:44:12Z",
+      "side": 1,
+      "message": "True!",
+      "parentUuid": "973d96fa_a4ea356d",
+      "range": {
+        "startLine": 280,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 9
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a780150f_8816aa0f",
@@ -147,6 +243,30 @@
       "writtenOn": "2022-03-19T03:33:41Z",
       "side": 1,
       "message": "Add comments for each case.\n\n// abort what is pending\nSome(handler)\n// this addr has been added before so tell audio server to remove it\nNone",
+      "range": {
+        "startLine": 323,
+        "startChar": 16,
+        "endLine": 326,
+        "endChar": 19
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52df2b7a_497dc11c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-19T07:44:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a780150f_8816aa0f",
       "range": {
         "startLine": 323,
         "startChar": 16,
