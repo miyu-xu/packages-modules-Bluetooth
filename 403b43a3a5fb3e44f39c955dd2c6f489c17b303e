@@ -16,6 +16,121 @@
       "message": "Ready for the 2nd review. PTAL",
       "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6faaec94_eb35674c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-19T03:33:41Z",
+      "side": 1,
+      "message": "nit: use `None` so the match cases are explicit.",
+      "range": {
+        "startLine": 141,
+        "startChar": 24,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cc5a2dc_b3c03f03",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-19T03:33:41Z",
+      "side": 1,
+      "message": "This is the \"everything else\" case but I think you want to insert() for all states right? probably need to move outside of match.",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3444b74f_84a7f1a6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-19T03:33:41Z",
+      "side": 1,
+      "message": "Does it exist immediately or adding a return is safer here?\n\nor just move line 261-269 info the Some(_) case below.",
+      "range": {
+        "startLine": 253,
+        "startChar": 54,
+        "endLine": 253,
+        "endChar": 69
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973d96fa_a4ea356d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-19T03:33:41Z",
+      "side": 1,
+      "message": "below match covers this, can be removed now.",
+      "range": {
+        "startLine": 280,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 9
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a780150f_8816aa0f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-19T03:33:41Z",
+      "side": 1,
+      "message": "Add comments for each case.\n\n// abort what is pending\nSome(handler)\n// this addr has been added before so tell audio server to remove it\nNone",
+      "range": {
+        "startLine": 323,
+        "startChar": 16,
+        "endLine": 326,
+        "endChar": 19
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
