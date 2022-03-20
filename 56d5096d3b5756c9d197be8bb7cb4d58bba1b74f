@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a60a244b_ad81f462",
+        "filename": "system/gd/rust/common/src/bridge.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2022-03-20T22:48:28Z",
+      "side": 1,
+      "message": "Done. Thank you Bidhya @bidsharma for helping fix the linker issue!",
+      "parentUuid": "a002eec2_5564df25",
+      "revId": "56d5096d3b5756c9d197be8bb7cb4d58bba1b74f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8879a93_55f792df",
