@@ -75,9 +75,25 @@ void TestModel::StopTimer() {
   timer_tick_task_ = kInvalidTaskId;
 }
 
-size_t TestModel::Add(std::shared_ptr<Device> new_dev) {
-  devices_.push_back(std::move(new_dev));
-  return devices_.size() - 1;
+size_t TestModel::Add(std::shared_ptr<Device> dev) {
+  LOG_INFO("Adding a new link layer connection");
+
+  devices_.push_back(dev);
+  size_t index = devices_.size() - 1;
+
+  dev->RegisterPhyChannel(
+      [this, dev](model::packets::LinkLayerPacketView packet,
+                  Phy::Type phy_type) {
+        for (auto device : devices_) {
+          if (device != dev && device != nullptr) {
+            device->IncomingPacket(packet, phy_type);
+          }
+        }
+      });
+
+  dev->RegisterCloseCallback([this, index] { Del(index); });
+
+  return index;
 }
 
 void TestModel::Del(size_t dev_index) {
@@ -85,81 +101,7 @@ void TestModel::Del(size_t dev_index) {
     LOG_WARN("Unknown device %zu", dev_index);
     return;
   }
-  schedule_task_(model_user_id_, std::chrono::milliseconds(0),
-                 [this, dev_index]() {
-                   devices_[dev_index]->UnregisterPhyLayers();
-                   devices_[dev_index] = nullptr;
-                 });
-}
-
-size_t TestModel::AddPhy(Phy::Type phy_type) {
-  size_t factory_id = phys_.size();
-  phys_.emplace_back(phy_type, factory_id);
-  return factory_id;
-}
-
-void TestModel::DelPhy(size_t phy_index) {
-  if (phy_index >= phys_.size()) {
-    LOG_WARN("Unknown phy at index %zu", phy_index);
-    return;
-  }
-  schedule_task_(
-      model_user_id_, std::chrono::milliseconds(0),
-      [this, phy_index]() { phys_[phy_index].UnregisterAllPhyLayers(); });
-}
-
-void TestModel::AddDeviceToPhy(size_t dev_index, size_t phy_index) {
-  if (dev_index >= devices_.size() || devices_[dev_index] == nullptr) {
-    LOG_WARN("Unknown device %zu", dev_index);
-    return;
-  }
-  if (phy_index >= phys_.size()) {
-    LOG_WARN("Can't find phy %zu", phy_index);
-    return;
-  }
-  auto dev = devices_[dev_index];
-  dev->RegisterPhyLayer(phys_[phy_index].GetPhyLayer(
-      [dev](model::packets::LinkLayerPacketView packet) {
-        dev->IncomingPacket(std::move(packet));
-      },
-      dev_index));
-}
-
-void TestModel::DelDeviceFromPhy(size_t dev_index, size_t phy_index) {
-  if (dev_index >= devices_.size() || devices_[dev_index] == nullptr) {
-    LOG_WARN("Unknown device %zu", dev_index);
-    return;
-  }
-  if (phy_index >= phys_.size()) {
-    LOG_WARN("Can't find phy %zu", phy_index);
-    return;
-  }
-  schedule_task_(model_user_id_, std::chrono::milliseconds(0),
-                 [this, dev_index, phy_index]() {
-                   devices_[dev_index]->UnregisterPhyLayer(
-                       phys_[phy_index].GetType(),
-                       phys_[phy_index].GetFactoryId());
-                 });
-}
-
-void TestModel::AddLinkLayerConnection(std::shared_ptr<Device> dev,
-                                       Phy::Type phy_type) {
-  LOG_INFO("Adding a new link layer connection of type: %s",
-           phy_type == Phy::Type::BR_EDR ? "BR_EDR" : "LOW_ENERGY");
-  int index = Add(dev);
-  AsyncUserId user_id = get_user_id_();
-
-  for (size_t i = 0; i < phys_.size(); i++) {
-    if (phy_type == phys_[i].GetType()) {
-      AddDeviceToPhy(index, i);
-    }
-  }
-
-  dev->RegisterCloseCallback([this, index, user_id] {
-    schedule_task_(
-        user_id, std::chrono::milliseconds(0),
-        [this, index, user_id]() { OnConnectionClosed(index, user_id); });
-  });
+  devices_[dev_index] = nullptr;
 }
 
 void TestModel::AddRemote(const std::string& server, int port,
@@ -168,11 +110,12 @@ void TestModel::AddRemote(const std::string& server, int port,
   if (dev == nullptr) {
     return;
   }
-  AddLinkLayerConnection(dev, phy_type);
+  Add(dev);
 }
 
 void TestModel::AddHciConnection(std::shared_ptr<HciDevice> dev) {
   size_t index = Add(std::static_pointer_cast<Device>(dev));
+
   std::string addr = "da:4c:10:de:17:";  // Da HCI dev
   std::stringstream stream;
   stream << std::setfill('0') << std::setw(2) << std::hex << (index % 256);
@@ -180,31 +123,13 @@ void TestModel::AddHciConnection(std::shared_ptr<HciDevice> dev) {
 
   dev->Initialize({"IgnoredTypeName", addr});
   LOG_INFO("initialized %s", addr.c_str());
-  for (size_t i = 0; i < phys_.size(); i++) {
-    AddDeviceToPhy(index, i);
-  }
+
   AsyncUserId user_id = get_user_id_();
   dev->RegisterTaskScheduler([user_id, this](std::chrono::milliseconds delay,
                                              TaskCallback task_callback) {
     return schedule_task_(user_id, delay, std::move(task_callback));
   });
   dev->RegisterTaskCancel(cancel_task_);
-  dev->RegisterCloseCallback([this, index, user_id] {
-    schedule_task_(
-        user_id, std::chrono::milliseconds(0),
-        [this, index, user_id]() { OnConnectionClosed(index, user_id); });
-  });
-}
-
-void TestModel::OnConnectionClosed(size_t index, AsyncUserId user_id) {
-  if (index >= devices_.size() || devices_[index] == nullptr) {
-    LOG_WARN("Unknown device %zu", index);
-    return;
-  }
-
-  cancel_tasks_from_user_(user_id);
-  devices_[index]->UnregisterPhyLayers();
-  devices_[index] = nullptr;
 }
 
 void TestModel::SetDeviceAddress(size_t index, Address address) {
@@ -215,8 +140,8 @@ void TestModel::SetDeviceAddress(size_t index, Address address) {
   devices_[index]->SetAddress(std::move(address));
 }
 
-const std::string& TestModel::List() {
-  list_string_ = "";
+const std::string TestModel::List() {
+  std::string list_string_ = "";
   list_string_ += " Devices: \r\n";
   for (size_t i = 0; i < devices_.size(); i++) {
     list_string_ += "  " + std::to_string(i) + ":";
@@ -225,11 +150,6 @@ const std::string& TestModel::List() {
     } else {
       list_string_ += devices_[i]->ToString() + " \r\n";
     }
-  }
-  list_string_ += " Phys: \r\n";
-  for (size_t i = 0; i < phys_.size(); i++) {
-    list_string_ += "  " + std::to_string(i) + ":";
-    list_string_ += phys_[i].ToString() + " \r\n";
   }
   return list_string_;
 }
@@ -246,11 +166,6 @@ void TestModel::Reset() {
   StopTimer();
   schedule_task_(model_user_id_, std::chrono::milliseconds(0), [this]() {
     LOG_INFO("Running Reset task");
-    for (size_t i = 0; i < devices_.size(); i++) {
-      if (devices_[i] != nullptr) {
-        devices_[i]->UnregisterPhyLayers();
-      }
-    }
     devices_.clear();
   });
 }

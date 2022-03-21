@@ -26,28 +26,9 @@ std::string Device::ToString() const {
   return dev;
 }
 
-void Device::RegisterPhyLayer(std::shared_ptr<PhyLayer> phy) {
-  phy_layers_.push_back(phy);
-}
-
-void Device::UnregisterPhyLayers() {
-  for (auto phy : phy_layers_) {
-    if (phy != nullptr) {
-      phy->Unregister();
-    }
-  }
-  phy_layers_.clear();
-}
-
-void Device::UnregisterPhyLayer(Phy::Type phy_type, uint32_t factory_id) {
-  for (auto& phy : phy_layers_) {
-    if (phy != nullptr && phy->IsFactoryId(factory_id) &&
-        phy->GetType() == phy_type) {
-      phy->Unregister();
-      phy.reset();
-      return;
-    }
-  }
+void Device::RegisterPhyChannel(
+    std::function<void(model::packets::LinkLayerPacketView, Phy::Type)> send) {
+  send_callback_ = send;
 }
 
 bool Device::IsAdvertisementAvailable() const {
@@ -59,20 +40,23 @@ bool Device::IsAdvertisementAvailable() const {
 void Device::SendLinkLayerPacket(
     std::shared_ptr<model::packets::LinkLayerPacketBuilder> to_send,
     Phy::Type phy_type) {
-  for (auto phy : phy_layers_) {
-    if (phy != nullptr && phy->GetType() == phy_type) {
-      phy->Send(to_send);
-    }
-  }
+  // Convert from a Builder to a View
+  auto bytes = std::make_shared<std::vector<uint8_t>>();
+  bluetooth::packet::BitInserter i(*bytes);
+  bytes->reserve(to_send->size());
+  to_send->Serialize(i);
+  auto packet_view =
+      bluetooth::packet::PacketView<bluetooth::packet::kLittleEndian>(bytes);
+  auto link_layer_packet_view =
+      model::packets::LinkLayerPacketView::Create(packet_view);
+  ASSERT(link_layer_packet_view.IsValid());
+
+  SendLinkLayerPacket(link_layer_packet_view, phy_type);
 }
 
 void Device::SendLinkLayerPacket(model::packets::LinkLayerPacketView to_send,
                                  Phy::Type phy_type) {
-  for (auto phy : phy_layers_) {
-    if (phy != nullptr && phy->GetType() == phy_type) {
-      phy->Send(to_send);
-    }
-  }
+  send_callback_(to_send, phy_type);
 }
 
 void Device::Close() {

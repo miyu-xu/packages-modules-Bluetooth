@@ -43,18 +43,16 @@ void RemoteLoopbackDevice::Initialize(const std::vector<std::string>& args) {
 }
 
 void RemoteLoopbackDevice::IncomingPacket(
-    model::packets::LinkLayerPacketView packet) {
+    model::packets::LinkLayerPacketView packet, Phy::Type phy_type) {
   // TODO: Check sender?
   // TODO: Handle other packet types
-  Phy::Type phy_type = Phy::Type::BR_EDR;
-
   model::packets::PacketType type = packet.GetType();
   switch (type) {
     case model::packets::PacketType::PAGE:
       SendLinkLayerPacket(
           PageResponseBuilder::Create(packet.GetSourceAddress(),
                                       packet.GetSourceAddress(), true),
-          Phy::Type::BR_EDR);
+          phy_type);
       break;
     default: {
       LOG_WARN("Resend = %d", static_cast<int>(packet.size()));

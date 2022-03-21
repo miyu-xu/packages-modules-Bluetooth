@@ -66,7 +66,8 @@ void Loopback::Initialize(const vector<std::string>& args) {
 
 void Loopback::TimerTick() {}
 
-void Loopback::IncomingPacket(model::packets::LinkLayerPacketView packet) {
+void Loopback::IncomingPacket(model::packets::LinkLayerPacketView packet,
+                              Phy::Type) {
   LOG_INFO("Got a packet of type %d", static_cast<int>(packet.GetType()));
   if (packet.GetDestinationAddress() == properties_.GetLeAddress() &&
       packet.GetType() == model::packets::PacketType::LE_SCAN) {

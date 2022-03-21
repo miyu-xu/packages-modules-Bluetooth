@@ -89,7 +89,6 @@ cc_library_static {
         "model/hci/hci_protocol.cc",
         "model/hci/hci_socket_transport.cc",
         "model/setup/async_manager.cc",
-        "model/setup/phy_layer_factory.cc",
         "model/setup/test_channel_transport.cc",
         "model/setup/test_command_handler.cc",
         "model/setup/test_model.cc",

@@ -25,7 +25,6 @@
 #include <vector>
 
 #include "model/devices/device.h"
-#include "phy_layer_factory.h"
 #include "test_channel_transport.h"
 #include "test_model.h"
 
@@ -59,18 +58,6 @@ class TestCommandHandler {
 
   // Remove devices by index
   void Del(const std::vector<std::string>& args);
-
-  // Add phy
-  void AddPhy(const std::vector<std::string>& args);
-
-  // Remove phy by name
-  void DelPhy(const std::vector<std::string>& args);
-
-  // Add device to phy
-  void AddDeviceToPhy(const std::vector<std::string>& args);
-
-  // Remove device from phy
-  void DelDeviceFromPhy(const std::vector<std::string>& args);
 
   // List the devices that the test knows about
   void List(const std::vector<std::string>& args);

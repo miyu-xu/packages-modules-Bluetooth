@@ -181,12 +181,8 @@ Return<void> BluetoothHci::initialize_impl(
       [this](AsyncTaskId task) { async_manager_.CancelAsyncTask(task); });
 
   // Add the controller as a device in the model.
-  size_t controller_index = test_model_.Add(controller_);
-  size_t low_energy_phy_index =
-      test_model_.AddPhy(rootcanal::Phy::Type::LOW_ENERGY);
-  size_t classic_phy_index = test_model_.AddPhy(rootcanal::Phy::Type::BR_EDR);
-  test_model_.AddDeviceToPhy(controller_index, low_energy_phy_index);
-  test_model_.AddDeviceToPhy(controller_index, classic_phy_index);
+  test_model_.Add(controller_);
+
   test_model_.SetTimerPeriod(std::chrono::milliseconds(10));
   test_model_.StartTimer();
 
@@ -213,23 +209,18 @@ Return<void> BluetoothHci::initialize_impl(
     });
     SetUpLinkLayerServer([this](std::shared_ptr<AsyncDataChannel> socket,
                                 AsyncDataChannelServer* srv) {
-      auto phy_type = Phy::Type::BR_EDR;
-      test_model_.AddLinkLayerConnection(
-          LinkLayerSocketDevice::Create(socket, phy_type), phy_type);
+      test_model_.Add(LinkLayerSocketDevice::Create(socket, Phy::Type::BR_EDR));
       srv->StartListening();
     });
   } else {
     // This should be configurable in the future.
     LOG_INFO("Adding Beacons so the scan list is not empty.");
     test_channel_.Add({"beacon", "be:ac:10:00:00:01", "1000"});
-    test_model_.AddDeviceToPhy(controller_index + 1, low_energy_phy_index);
     test_channel_.Add({"beacon", "be:ac:10:00:00:02", "1000"});
-    test_model_.AddDeviceToPhy(controller_index + 2, low_energy_phy_index);
     test_channel_.Add(
         {"scripted_beacon", "5b:ea:c1:00:00:03",
          "/data/vendor/bluetooth/bluetooth_sim_ble_playback_file",
          "/data/vendor/bluetooth/bluetooth_sim_ble_playback_events"});
-    test_model_.AddDeviceToPhy(controller_index + 3, low_energy_phy_index);
     test_channel_.List({});
   }
 

@@ -80,9 +80,10 @@ void Keyboard::TimerTick() {
   }
 }
 
-void Keyboard::IncomingPacket(model::packets::LinkLayerPacketView packet) {
+void Keyboard::IncomingPacket(model::packets::LinkLayerPacketView packet,
+                              Phy::Type phy_type) {
   if (!connected_) {
-    Beacon::IncomingPacket(packet);
+    Beacon::IncomingPacket(packet, phy_type);
   }
 }
 

@@ -95,7 +95,8 @@ void CarKit::Initialize(const vector<std::string>& args) {
 
 void CarKit::TimerTick() { link_layer_controller_.TimerTick(); }
 
-void CarKit::IncomingPacket(model::packets::LinkLayerPacketView packet) {
+void CarKit::IncomingPacket(model::packets::LinkLayerPacketView packet,
+                            Phy::Type) {
   LOG_WARN("Incoming Packet");
   link_layer_controller_.IncomingPacket(packet);
 }

@@ -89,9 +89,8 @@ void TestEnvironment::SetUpLinkBleLayerServer() {
   remote_link_layer_transport_.SetUp(
       link_ble_socket_server_, [this](std::shared_ptr<AsyncDataChannel> socket,
                                       AsyncDataChannelServer* srv) {
-        auto phy_type = Phy::Type::LOW_ENERGY;
-        test_model_.AddLinkLayerConnection(
-            LinkLayerSocketDevice::Create(socket, phy_type), phy_type);
+        test_model_.Add(
+            LinkLayerSocketDevice::Create(socket, Phy::Type::LOW_ENERGY));
         srv->StartListening();
       });
 
@@ -104,9 +103,8 @@ void TestEnvironment::SetUpLinkLayerServer() {
   remote_link_layer_transport_.SetUp(
       link_socket_server_, [this](std::shared_ptr<AsyncDataChannel> socket,
                                   AsyncDataChannelServer* srv) {
-        auto phy_type = Phy::Type::BR_EDR;
-        test_model_.AddLinkLayerConnection(
-            LinkLayerSocketDevice::Create(socket, phy_type), phy_type);
+        test_model_.Add(
+            LinkLayerSocketDevice::Create(socket, Phy::Type::BR_EDR));
         srv->StartListening();
       });
 
@@ -149,8 +147,6 @@ void TestEnvironment::SetUpTestChannel() {
   test_channel_.RegisterSendResponse([](const std::string& response) {
     LOG_INFO("No test channel: %s", response.c_str());
   });
-  test_channel_.AddPhy({"BR_EDR"});
-  test_channel_.AddPhy({"LOW_ENERGY"});
   test_channel_.SetTimerPeriod({"5"});
   test_channel_.StartTimer({});
 

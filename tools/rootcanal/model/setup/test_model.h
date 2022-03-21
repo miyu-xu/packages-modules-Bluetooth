@@ -28,7 +28,6 @@
 #include "model/devices/hci_device.h"          // for HciDevice
 #include "model/setup/async_manager.h"         // for AsyncUserId, AsyncTaskId
 #include "phy.h"                               // for Phy, Phy::Type
-#include "phy_layer_factory.h"                 // for PhyLayerFactory
 
 namespace rootcanal {
 class Device;
@@ -62,24 +61,8 @@ class TestModel {
   // Remove devices by index
   void Del(size_t device_index);
 
-  // Add phy, return its index
-  size_t AddPhy(Phy::Type phy_type);
-
-  // Remove phy by index
-  void DelPhy(size_t phy_index);
-
-  // Add device to phy
-  void AddDeviceToPhy(size_t device_index, size_t phy_index);
-
-  // Remove device from phy
-  void DelDeviceFromPhy(size_t device_index, size_t phy_index);
-
-  // Handle incoming remote connections
-  void AddLinkLayerConnection(std::shared_ptr<Device> dev, Phy::Type phy_type);
+  // Handle Hci devices
   void AddHciConnection(std::shared_ptr<HciDevice> dev);
-
-  // Handle closed remote connections (both hci & link layer)
-  void OnConnectionClosed(size_t index, AsyncUserId user_id);
 
   // Connect to a remote device
   void AddRemote(const std::string& server, int port, Phy::Type phy_type);
@@ -94,15 +77,13 @@ class TestModel {
   void SetTimerPeriod(std::chrono::milliseconds new_period);
 
   // List the devices that the test knows about
-  const std::string& List();
+  const std::string List();
 
   // Clear all devices and phys.
   void Reset();
 
  private:
-  std::vector<PhyLayerFactory> phys_;
   std::vector<std::shared_ptr<Device>> devices_;
-  std::string list_string_;
 
   // Callbacks to schedule tasks.
   std::function<AsyncUserId()> get_user_id_;
