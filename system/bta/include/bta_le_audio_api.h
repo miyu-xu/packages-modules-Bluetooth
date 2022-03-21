@@ -26,6 +26,7 @@
 
 class LeAudioHalVerifier {
  public:
+  static bool SupportsLeAudioHidl();
   static bool SupportsLeAudio();
   static bool SupportsLeAudioHardwareOffload();
   static bool SupportsLeAudioBroadcast();
