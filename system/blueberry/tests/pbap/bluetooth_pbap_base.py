@@ -94,6 +94,15 @@ class BluetoothPbapBase(pixel_bluetooth_base_test.PixelBluetoothBaseTest):
         bt_constants.BluetoothProfile.PBAP.value,
         bt_constants.BluetoothAccessLevel.ACCESS_ALLOWED.value)
 
+    # Grants Notification permission for T build. Internal link
+    self.pri_phone.adb.shell('am start com.google.android.contacts')
+    if self.pri_phone.aud(text_regex=_NOTIFICATION_DIALOG_MSG_PATTERN).exists(
+        timeout_sec=5):
+      self.pri_phone.log.info('Allow Contacts to send notifications.')
+      self.pri_phone.aud(text='Allow').click()
+    # Set home key
+    self.pri_phone.adb.shell('am force-stop com.google.android.contacts')
+
   def setup_test(self):
     super().setup_test()
     # Make sure PBAP is not connected before running tests.
@@ -121,12 +130,7 @@ class BluetoothPbapBase(pixel_bluetooth_base_test.PixelBluetoothBaseTest):
         'com.google.android.apps.contacts.vcard.ImportVCardActivity')
     # Wait for dialog popup
     time.sleep(3)
-    # Grants Notification permission for T build. Internal link
-    if (int(self.pri_phone.build_info['build_version_sdk']) >= 32 and
-        self.pri_phone.aud(
-            text_regex=_NOTIFICATION_DIALOG_MSG_PATTERN).exists(timeout_sec=5)):
-      self.pri_phone.log.info('Allow Contacts to send notifications.')
-      self.pri_phone.aud(text='Allow').click()
+
     # Android T dialog - Save to Device
     if self.pri_phone.aud(
         resource_id='com.google.android.contacts:id/title_template').exists():
