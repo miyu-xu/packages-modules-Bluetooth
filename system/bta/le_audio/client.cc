@@ -3208,26 +3208,6 @@ class LeAudioClientImpl : public LeAudioClient {
     return stream_conf->reconfiguration_ongoing;
   }
 
-  bool RestartStreamingAfterReconfiguration(int group_id) {
-    auto group = aseGroups_.FindById(group_id);
-    LOG_ASSERT(group) << __func__ << " group does not exist: " << group_id;
-
-    if (groupStateMachine_->StartStream(
-            group, static_cast<LeAudioContextType>(current_context_type_))) {
-      if (audio_sender_state_ == AudioState::RELEASING)
-        audio_sender_state_ = AudioState::READY_TO_START;
-
-      if (audio_receiver_state_ == AudioState::RELEASING)
-        audio_receiver_state_ = AudioState::READY_TO_START;
-    } else {
-      audio_receiver_state_ = AudioState::IDLE;
-      audio_sender_state_ = AudioState::IDLE;
-    }
-
-    group->stream_conf.reconfiguration_ongoing = false;
-    return true;
-  }
-
   void HandlePendingAvailableContexts(int group_id) {
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
     if (!group) return;
@@ -3276,7 +3256,10 @@ class LeAudioClientImpl : public LeAudioClient {
         stream_setup_start_timestamp_ = 0;
         if (IsSuspendedForReconfiguration(group_id)) {
           SuspendedForReconfiguration();
-          RestartStreamingAfterReconfiguration(group_id);
+          auto group = aseGroups_.FindById(group_id);
+          LOG_ASSERT(group)
+              << __func__ << " group does not exist: " << group_id;
+          group->stream_conf.reconfiguration_ongoing = false;
         } else {
           CancelStreamingRequest();
         }
