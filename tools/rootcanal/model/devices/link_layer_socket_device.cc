@@ -99,16 +99,18 @@ void LinkLayerSocketDevice::Close() {
 }
 
 void LinkLayerSocketDevice::IncomingPacket(
-    model::packets::LinkLayerPacketView packet) {
-  auto size_packet = bluetooth::packet::RawBuilder();
-  size_packet.AddOctets4(packet.size());
-  std::vector<uint8_t> size_bytes;
-  bluetooth::packet::BitInserter bit_inserter(size_bytes);
-  size_packet.Serialize(bit_inserter);
+    model::packets::LinkLayerPacketView packet, Phy::Type phy_type) {
+  if (phy_type == phy_type_) {
+    auto size_packet = bluetooth::packet::RawBuilder();
+    size_packet.AddOctets4(packet.size());
+    std::vector<uint8_t> size_bytes;
+    bluetooth::packet::BitInserter bit_inserter(size_bytes);
+    size_packet.Serialize(bit_inserter);
 
-  if (socket_->Send(size_bytes.data(), size_bytes.size()) == kSizeBytes) {
-    std::vector<uint8_t> payload_bytes{packet.begin(), packet.end()};
-    socket_->Send(payload_bytes.data(), payload_bytes.size());
+    if (socket_->Send(size_bytes.data(), size_bytes.size()) == kSizeBytes) {
+      std::vector<uint8_t> payload_bytes{packet.begin(), packet.end()};
+      socket_->Send(payload_bytes.data(), payload_bytes.size());
+    }
   }
 }
 

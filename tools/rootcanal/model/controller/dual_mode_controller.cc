@@ -54,7 +54,7 @@ std::string DualModeController::GetTypeString() const {
 }
 
 void DualModeController::IncomingPacket(
-    model::packets::LinkLayerPacketView incoming) {
+    model::packets::LinkLayerPacketView incoming, Phy::Type) {
   link_layer_controller_.IncomingPacket(incoming);
 }
 

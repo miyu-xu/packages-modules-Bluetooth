@@ -42,8 +42,8 @@ class Sniffer : public Device {
   // Return a string representation of the type of device.
   virtual std::string GetTypeString() const override { return "sniffer"; }
 
-  virtual void IncomingPacket(
-      model::packets::LinkLayerPacketView packet) override;
+  virtual void IncomingPacket(model::packets::LinkLayerPacketView packet,
+                              Phy::Type) override;
 
   virtual void TimerTick() override;
 

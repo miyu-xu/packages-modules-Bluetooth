@@ -76,7 +76,8 @@ void Beacon::TimerTick() {
   }
 }
 
-void Beacon::IncomingPacket(model::packets::LinkLayerPacketView packet) {
+void Beacon::IncomingPacket(model::packets::LinkLayerPacketView packet,
+                            Phy::Type) {
   if (packet.GetDestinationAddress() == properties_.GetLeAddress() &&
       packet.GetType() == model::packets::PacketType::LE_SCAN) {
     auto scan_response = model::packets::LeScanResponseBuilder::Create(
