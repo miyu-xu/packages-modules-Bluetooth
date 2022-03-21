@@ -1112,6 +1112,14 @@ types::LeAudioContextType LeAudioDeviceGroup::GetCurrentContextType(void) {
   return active_context_type_;
 }
 
+bool LeAudioDeviceGroup::IsReconfigurationOngoing(void) {
+  return stream_conf.reconfiguration_ongoing;
+}
+
+void LeAudioDeviceGroup::SetReconfigurationFlag(bool flag) {
+  stream_conf.reconfiguration_ongoing = flag;
+}
+
 const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedConfiguration(
     LeAudioContextType context_type) {

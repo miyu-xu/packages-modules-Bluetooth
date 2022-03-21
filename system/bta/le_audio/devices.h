@@ -245,6 +245,8 @@ class LeAudioDeviceGroup {
   bool ReloadAudioLocations(void);
   const set_configurations::AudioSetConfiguration* GetActiveConfiguration(void);
   types::LeAudioContextType GetCurrentContextType(void);
+  bool IsReconfigurationOngoing(void);
+  void SetReconfigurationFlag(bool flag);
   types::AudioContexts GetActiveContexts(void);
   std::optional<LeAudioCodecConfiguration> GetCodecConfigurationByDirection(
       types::LeAudioContextType group_context_type, uint8_t direction);
