@@ -40,8 +40,8 @@ class RemoteLoopbackDevice : public Device {
 
   virtual void Initialize(const std::vector<std::string>& args) override;
 
-  virtual void IncomingPacket(
-      model::packets::LinkLayerPacketView packet) override;
+  virtual void IncomingPacket(model::packets::LinkLayerPacketView packet,
+                              Phy::Type) override;
 
  private:
   static bool registered_;

@@ -210,9 +210,7 @@ Return<void> BluetoothHci::initialize_impl(
     });
     SetUpLinkLayerServer([this](std::shared_ptr<AsyncDataChannel> socket,
                                 AsyncDataChannelServer* srv) {
-      auto phy_type = Phy::Type::BR_EDR;
-      test_model_.AddLinkLayerConnection(
-          LinkLayerSocketDevice::Create(socket, phy_type), phy_type);
+      test_model_.Add(LinkLayerSocketDevice::Create(socket, Phy::Type::BR_EDR));
       srv->StartListening();
     });
   } else {
