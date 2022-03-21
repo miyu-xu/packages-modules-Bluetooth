@@ -43,7 +43,7 @@ enum class GroupStreamStatus {
   RELEASING,
   SUSPENDING,
   SUSPENDED,
-  RECONFIGURED,
+  CONFIGURED,
   DESTROYED,
 };
 
