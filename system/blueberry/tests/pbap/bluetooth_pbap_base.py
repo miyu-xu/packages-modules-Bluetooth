@@ -1,5 +1,6 @@
 """Base Tests for blueberry.pbap.bluetooth_pbap."""
 
+import datetime
 import os
 import random
 import re
@@ -74,6 +75,16 @@ class BluetoothPbapBase(pixel_bluetooth_base_test.PixelBluetoothBaseTest):
     mac_address = self.derived_bt_device.get_bluetooth_mac_address()
     self.derived_bt_device.activate_pairing_mode()
     self.pri_phone.pair_and_connect_bluetooth(mac_address)
+    # Checks if the bond state is "BONDED" from PCE, for debugging b/223755336.
+    bt_test_utils.wait_until(
+        timeout_sec=datetime.timedelta(seconds=30).seconds,
+        condition_func=self.derived_bt_device.is_bt_paired,
+        func_args=(self.pse_mac_address,),
+        expected_value=True,
+        exception=android_device.DeviceError(
+            self.derived_bt_device,
+            f'Failed to bond with PSE device "{self.pse_mac_address}".')
+    )
     # Sleep until the connection stabilizes.
     time.sleep(5)
 
