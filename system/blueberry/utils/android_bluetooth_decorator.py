@@ -757,7 +757,11 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
       True if they are paired
     """
     bonded_info = self._ad.sl4a.bluetoothGetBondedDevices()
-    return mac_address in [info['address'] for info in bonded_info]
+    for info in bonded_info:
+      # Checks if bond state of the device is BluetoothDevice.BOND_BONDED (12).
+      if mac_address.upper() == info['address'] and info['state'] == 12:
+        return True
+    return False
 
   def is_a2dp_sink_connected(self, mac_address: str) -> bool:
     """Checks if the Android device connects to a A2DP sink device.
