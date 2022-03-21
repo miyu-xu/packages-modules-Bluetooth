@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b6afd2e_997a8eb9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-03-21T02:53:36Z",
+      "side": 1,
+      "message": "Can we have unit tests for this change?\nDo we broadcast a second BONDED state changed intent after getting back to the stable state?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 72
+      },
+      "revId": "5bdfb46f1883bc59b5b69d1c12bc5f409678cfa7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
