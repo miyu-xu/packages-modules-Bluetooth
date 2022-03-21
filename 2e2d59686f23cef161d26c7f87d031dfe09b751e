@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f53368d_33b8f922",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-21T22:17:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f9c6c38_6d82913d",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 255,
+        "endChar": 68
+      },
+      "revId": "2e2d59686f23cef161d26c7f87d031dfe09b751e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08372b49_8ae8343a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-21T03:33:32Z",
       "side": 1,
       "message": "Can this be moved and combined with line 255? or is it intentional to put abort outside of the guard? if so please add the reason into comment",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 277,
+        "endChar": 13
+      },
+      "revId": "2e2d59686f23cef161d26c7f87d031dfe09b751e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53632d27_c4025065",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-21T22:17:22Z",
+      "side": 1,
+      "message": "I put this here as this can be done out of the criical section.\nHowever, yes! I think we should be able to refine it even better.\nI\u0027ve refined the logic with a closure and the \"match\" structure. Please take a look again.",
+      "parentUuid": "08372b49_8ae8343a",
       "range": {
         "startLine": 276,
         "startChar": 12,
