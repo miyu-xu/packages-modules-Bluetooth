@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a4050b6_e9b93ad0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1944680
+      },
+      "writtenOn": "2022-03-21T17:40:44Z",
+      "side": 1,
+      "message": "How do how do I fix the bug problem on Bluetooth with fragma",
+      "revId": "7bb780c2255d832d47112ea72d59997222b8641c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
