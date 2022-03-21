@@ -1467,7 +1467,10 @@ bt_status_t btif_storage_add_hid_device_info(
   btif_config_set_int(bdstr, "HidCountryCode", ctry_code);
   btif_config_set_int(bdstr, "HidSSRMaxLatency", ssr_max_latency);
   btif_config_set_int(bdstr, "HidSSRMinTimeout", ssr_min_tout);
-  if (dl_len > 0) btif_config_set_bin(bdstr, "HidDescriptor", dsc_list, dl_len);
+  if (dl_len > 0) {
+    btif_config_set_int(bdstr, "HidDesLength", dl_len);
+    btif_config_set_bin(bdstr, "HidDescriptor", dsc_list, dl_len);
+  }
   btif_config_save();
   return BT_STATUS_SUCCESS;
 }

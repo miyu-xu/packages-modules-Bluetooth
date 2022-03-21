@@ -495,11 +495,16 @@ static bool config_parse(FILE* fp, config_t* config) {
   CHECK(config != nullptr);
 
   int line_num = 0;
-  char line[1024];
+  int line_length = 1024;
+  char* line = NULL;
   char section[1024];
   strcpy(section, CONFIG_DEFAULT_SECTION);
+  if ((line = (char*)malloc(line_length)) == NULL) {
+    VLOG(1) << __func__ << "malloc error ";
+    return false;
+  }
 
-  while (fgets(line, sizeof(line), fp)) {
+  while (fgets(line, line_length, fp)) {
     char* line_ptr = trim(line);
     ++line_num;
 
@@ -511,6 +516,7 @@ static bool config_parse(FILE* fp, config_t* config) {
       if (line_ptr[len - 1] != ']') {
         VLOG(1) << __func__ << ": unterminated section name on line "
                 << line_num;
+        free(line);
         return false;
       }
       strncpy(section, line_ptr + 1, len - 2);  // NOLINT (len < 1024)
@@ -520,12 +526,28 @@ static bool config_parse(FILE* fp, config_t* config) {
       if (!split) {
         VLOG(1) << __func__ << ": no key/value separator found on line "
                 << line_num;
+        free(line);
         return false;
       }
 
       *split = '\0';
+      if (strstr(line_ptr, "HidDesLength")) {
+        int hidDesLen = atoi(split + 1);
+        if (2 * hidDesLen > line_length) {
+          line_length += 2 * hidDesLen;
+          char* new_line = (char*)realloc(line, line_length);
+          if (new_line == NULL) {
+            VLOG(1) << __func__ << "realloc error ";
+            free(line);
+            return false;
+          }
+          line = new_line;
+          continue;
+        }
+      }
       config_set_string(config, section, trim(line_ptr), trim(split + 1));
     }
   }
+  free(line);
   return true;
 }
