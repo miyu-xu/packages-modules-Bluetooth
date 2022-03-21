@@ -183,6 +183,7 @@ class LeAudioClientImpl : public LeAudioClient {
         suspend_timeout_(alarm_new("LeAudioSuspendTimeout")) {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
     groupStateMachine_ = LeAudioGroupStateMachine::Get();
+    hidl_enabled_ = LeAudioHalVerifier::SupportsLeAudioHidl();
 
     BTA_GATTC_AppRegister(
         le_audio_gattc_callback,
@@ -1780,7 +1781,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (num_of_devices < group->NumOfConnected()) {
       /* Second device got just paired. We need to reconfigure CIG */
-      stream_conf->reconfiguration_ongoing = true;
+      group->SetReconfigurationFlag(true);
       groupStateMachine_->StopStream(group);
       return;
     }
@@ -2995,8 +2996,8 @@ class LeAudioClientImpl : public LeAudioClient {
     if (alarm_is_scheduled(suspend_timeout_)) alarm_cancel(suspend_timeout_);
 
     /* Need to reconfigure stream */
-    group->stream_conf.reconfiguration_ongoing = true;
-    GroupStop(group->group_id_);
+    group->SetReconfigurationFlag(true);
+    groupStateMachine_->StopStream(group);
     return true;
   }
 
@@ -3223,28 +3224,30 @@ class LeAudioClientImpl : public LeAudioClient {
     return stream_conf->reconfiguration_ongoing;
   }
 
-  bool RestartStreamingAfterReconfiguration(int group_id) {
-    auto group = aseGroups_.FindById(group_id);
-    LOG_ASSERT(group) << __func__ << " group does not exist: " << group_id;
-
-    if (groupStateMachine_->StartStream(
-            group, static_cast<LeAudioContextType>(current_context_type_))) {
-      if (audio_sender_state_ == AudioState::RELEASING)
+  void CompleteReconfiguration(LeAudioDeviceGroup* group) {
+    if (audio_sender_state_ == AudioState::RELEASING) {
+      if (hidl_enabled_) {
         audio_sender_state_ = AudioState::READY_TO_START;
-
-      if (audio_receiver_state_ == AudioState::RELEASING)
-        audio_receiver_state_ = AudioState::READY_TO_START;
-    } else {
-      audio_receiver_state_ = AudioState::IDLE;
-      audio_sender_state_ = AudioState::IDLE;
+      } else {
+        audio_sender_state_ = AudioState::IDLE;
+      }
     }
 
-    group->stream_conf.reconfiguration_ongoing = false;
-    return true;
+    if (audio_receiver_state_ == AudioState::RELEASING) {
+      if (hidl_enabled_) {
+        audio_receiver_state_ = AudioState::READY_TO_START;
+      } else {
+        audio_receiver_state_ = AudioState::IDLE;
+      }
+    }
+
+    if (hidl_enabled_) {
+      LOG_DEBUG(" HIDL enabled, start stream after reconfiguration ");
+      groupStateMachine_->StartStream(group, current_context_type_);
+    }
   }
 
-  void HandlePendingAvailableContexts(int group_id) {
-    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
+  void HandlePendingAvailableContexts(LeAudioDeviceGroup* group) {
     if (!group) return;
 
     /* Update group configuration with pending available context */
@@ -3266,9 +3269,10 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void StatusReportCb(int group_id, GroupStreamStatus status) {
-    DLOG(INFO) << __func__ << "status: " << static_cast<int>(status)
-               << " audio_sender_state_: " << audio_sender_state_
-               << " audio_receiver_state_: " << audio_receiver_state_;
+    LOG(INFO) << __func__ << "status: " << static_cast<int>(status)
+              << " audio_sender_state_: " << audio_sender_state_
+              << " audio_receiver_state_: " << audio_receiver_state_;
+    LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
     switch (status) {
       case GroupStreamStatus::STREAMING:
         LOG_ASSERT(group_id == active_group_id_)
@@ -3283,20 +3287,47 @@ class LeAudioClientImpl : public LeAudioClient {
             bluetooth::common::time_get_os_boottime_us();
         break;
       case GroupStreamStatus::SUSPENDED:
+        stream_setup_end_timestamp_ = 0;
+        stream_setup_start_timestamp_ = 0;
         /** Stop Audio but don't release all the Audio resources */
         SuspendAudio();
+        break;
+      case GroupStreamStatus::RECONFIGURED:
+        CompleteReconfiguration(group);
+        break;
+      case GroupStreamStatus::CONFIGURED:
+        /* This state is notified only when
+         * groups stays into CONFIGURED state after
+         * STREAMING. Peer device uses cache.
+         * */
+        stream_setup_end_timestamp_ = 0;
+        stream_setup_start_timestamp_ = 0;
+
+        /* Check if stream was stopped for reconfiguration */
+        if (group->IsReconfigurationOngoing()) {
+          SuspendedForReconfiguration();
+          if (!groupStateMachine_->ConfigureStream(group,
+                                                   current_context_type_)) {
+            // DO SOMETHING
+          }
+          return;
+        }
+        CancelStreamingRequest();
+        HandlePendingAvailableContexts(group);
         break;
       case GroupStreamStatus::IDLE: {
         stream_setup_end_timestamp_ = 0;
         stream_setup_start_timestamp_ = 0;
-        if (IsSuspendedForReconfiguration(group_id)) {
+        if (group && group->IsReconfigurationOngoing()) {
           SuspendedForReconfiguration();
-          RestartStreamingAfterReconfiguration(group_id);
-        } else {
-          CancelStreamingRequest();
+          if (!groupStateMachine_->ConfigureStream(group,
+                                                   current_context_type_)) {
+            // DO SOMETHING
+          }
+          return;
         }
-
-        HandlePendingAvailableContexts(group_id);
+        CancelStreamingRequest();
+        HandlePendingAvailableContexts(group);
         break;
       }
       case GroupStreamStatus::RELEASING:
@@ -3323,6 +3354,7 @@ class LeAudioClientImpl : public LeAudioClient {
   LeAudioContextType current_context_type_;
   uint64_t stream_setup_start_timestamp_;
   uint64_t stream_setup_end_timestamp_;
+  bool hidl_enabled_;
 
   /* Microphone (s) */
   AudioState audio_receiver_state_;

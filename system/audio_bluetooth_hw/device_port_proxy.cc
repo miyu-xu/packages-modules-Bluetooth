@@ -226,6 +226,13 @@ void BluetoothAudioPortAidl::ControlResultHandler(
             << ", previous_state=" << previous_state
             << ", status=" << toString(status);
 
+  if (status == BluetoothAudioStatus::RECONFIGURATION) {
+    state_ = BluetoothStreamState::STANDBY;
+    port_lock.unlock();
+    internal_cv_.notify_all();
+    return;
+  }
+
   switch (previous_state) {
     case BluetoothStreamState::STARTING:
       if (status == BluetoothAudioStatus::SUCCESS) {
