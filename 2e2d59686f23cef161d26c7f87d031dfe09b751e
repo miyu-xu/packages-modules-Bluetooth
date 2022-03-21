@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f9c6c38_6d82913d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-21T03:33:32Z",
+      "side": 1,
+      "message": "```\nif let Some(handler) \u003d task {\n  if handler.is_none() {\n    // None handler means device has just been added\n    return false\n  }\n} else if is_delayed {\n  // None task means device has been removed before this delayed callback\n  return false\n}\n```\nsuggest expand with comments here for better readability since the conditions are really complicated.",
+      "range": {
+        "startLine": 255,
+        "startChar": 12,
+        "endLine": 255,
+        "endChar": 68
+      },
+      "revId": "2e2d59686f23cef161d26c7f87d031dfe09b751e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08372b49_8ae8343a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-21T03:33:32Z",
+      "side": 1,
+      "message": "Can this be moved and combined with line 255? or is it intentional to put abort outside of the guard? if so please add the reason into comment",
+      "range": {
+        "startLine": 276,
+        "startChar": 12,
+        "endLine": 277,
+        "endChar": 13
+      },
+      "revId": "2e2d59686f23cef161d26c7f87d031dfe09b751e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

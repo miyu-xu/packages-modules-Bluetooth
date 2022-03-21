@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b32e69b_e0255ab5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-21T03:33:32Z",
+      "side": 1,
+      "message": "ah right, we want this except disconnected state. Thanks for the explanation.",
+      "parentUuid": "553f6063_88a145e7",
+      "range": {
+        "startLine": 145,
+        "startChar": 20,
+        "endLine": 147,
+        "endChar": 21
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3444b74f_84a7f1a6",
@@ -173,6 +197,30 @@
       "side": 1,
       "message": "You made me realize, After refining it, I still miss the case that:\n- A pending device_added_task runs to 261. (The lock is dropped)\n- The notify_media_capability_removed is triggered. It gets the lock, remove the None and trigger the on_bluetooth_audio_device_removed.\n- The pending task continues to send on_bluetooth_audio_device_added.\n\nI\u0027ve re-polished this again for your review.\nSorry for the back and forth.\n\nI\u0027d love to have a message queue implementation for the delay call in the future. Using Mutex to solve race condition is still issue-prone IMO.",
       "parentUuid": "28d2fbe9_0ab7a858",
+      "range": {
+        "startLine": 253,
+        "startChar": 54,
+        "endLine": 253,
+        "endChar": 69
+      },
+      "revId": "403b43a3a5fb3e44f39c955dd2c6f489c17b303e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07c16139_4d042ea9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-21T03:33:32Z",
+      "side": 1,
+      "message": "thanks, now I understand this better.\n\nyeah I think we can handle it as long as there\u0027re only two capabilities HFP \u0026 A2DP. If we want to add in AVRCP then we really need more help.",
+      "parentUuid": "83253f51_bca6f12f",
       "range": {
         "startLine": 253,
         "startChar": 54,
