@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9e0f4ba7_f890f4f9",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-21T22:21:54Z",
+      "side": 1,
+      "message": "Agreed it isn\u0027t valid...however, it\u0027s used equivalently in the codebase as the proper 4.\n```\nenum AddressType : 8 {\n  PUBLIC_DEVICE_ADDRESS \u003d 0x00,\n  RANDOM_DEVICE_ADDRESS \u003d 0x01,\n  PUBLIC_IDENTITY_ADDRESS \u003d 0x02,\n  RANDOM_IDENTITY_ADDRESS \u003d 0x03,\n}\n```\n\nI think this retrieved from the LE EXTENDED ADVERTISING REPORT which is the only type I can find that uses the `anonymous` term\n\n```\nValue Parameter Description\n0x00 Public Device Address\n0x01 Random Device Address\n0x02 Public Identity Address (corresponds to Resolved Private Address)\n0x03 Random (static) Identity Address (corresponds to Resolved Private\nAddress)\n0xFF No address provided (anonymous advertisement)\nAll other values Reserved for future use\n```\n\nWould you like me to remove the `BLE_ADDR_ANONYMOUS` case statement ? \n(It will be caught by default anyway)",
+      "parentUuid": "2e3f72af_5399eeda",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 28
+      },
+      "revId": "61e04227264a7023c68c5eb5c2717887c521b495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25167fb5_342b568a",
         "filename": "system/types/ble_address_with_type.h",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-21T21:56:01Z",
       "side": 1,
       "message": "I\u0027m confused when this would be used.\n\nID types mean that they have already been resolved.  They were seen as random resolvable addresses, but then resolved to the ID.  Instead of the controller giving you the random address they thought matched, they give you the resolved address with a hint that they got it from a random one.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 70
+      },
+      "revId": "61e04227264a7023c68c5eb5c2717887c521b495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48de9747_e12c2267",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-21T22:21:54Z",
+      "side": 1,
+      "message": "I agree it\u0027s confusing, and I can\u0027t answer your contextual questions.\n\nThe idea here is to provide the same functionality embedded in the legacy code but in a much more sane manner.\n\nIt\u0027s still used in system/stack/btm/btm_ble_addr.cc and system/stack/btm/btm_ble_gap.cc , but it\u0027s unclear if it actually does anything.\n\nThe idea is to reclaim the ability to arbitrarily manipulate and check this in non-relevant portions of the stack.\n\nMy hope/guess is that these are band-aids to simplify the legacy stack, and once the legacy is straightened out, these will disappear when no longer used. \n\nI wish functions had reference count, and auto-deleted them selves when nobody calls.",
+      "parentUuid": "25167fb5_342b568a",
       "range": {
         "startLine": 67,
         "startChar": 0,
