@@ -87,6 +87,24 @@
       "parentUuid": "3bb2ae54_24802479",
       "revId": "fc60322493b08607a27f5386909848a4364c525c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0955ac21_09409ea0",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-21T16:09:37Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cdd69a52_fc2ffc1e",
+      "revId": "fc60322493b08607a27f5386909848a4364c525c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
