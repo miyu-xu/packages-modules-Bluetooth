@@ -835,6 +835,11 @@ bt_status_t btif_storage_add_remote_device(const RawAddress* remote_bd_addr,
 bt_status_t btif_storage_add_bonded_device(RawAddress* remote_bd_addr,
                                            LinkKey link_key, uint8_t key_type,
                                            uint8_t pin_length) {
+  if (remote_bd_addr->IsEmpty()) {
+    LOG_WARN("remote_bd_addr is empty");
+    return BT_STATUS_FAIL;
+  }
+
   std::string bdstr = remote_bd_addr->ToString();
   int ret = btif_config_set_int(bdstr, "LinkKeyType", (int)key_type);
   ret &= btif_config_set_int(bdstr, "PinLength", (int)pin_length);
@@ -1137,6 +1142,11 @@ bt_status_t btif_storage_add_ble_bonding_key(RawAddress* remote_bd_addr,
                                              const uint8_t* key,
                                              uint8_t key_type,
                                              uint8_t key_length) {
+  if (remote_bd_addr->IsEmpty()) {
+    LOG_WARN("remote_bd_addr is empty");
+    return BT_STATUS_FAIL;
+  }
+
   const char* name;
   switch (key_type) {
     case BTM_LE_KEY_PENC:
