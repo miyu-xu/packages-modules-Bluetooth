@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e3f72af_5399eeda",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-21T21:56:01Z",
+      "side": 1,
+      "message": "This isn\u0027t an unknown type.  It just means that the address that has this type isn\u0027t valid.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 28
+      },
+      "revId": "61e04227264a7023c68c5eb5c2717887c521b495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25167fb5_342b568a",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-21T21:56:01Z",
+      "side": 1,
+      "message": "I\u0027m confused when this would be used.\n\nID types mean that they have already been resolved.  They were seen as random resolvable addresses, but then resolved to the ID.  Instead of the controller giving you the random address they thought matched, they give you the resolved address with a hint that they got it from a random one.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 70
+      },
+      "revId": "61e04227264a7023c68c5eb5c2717887c521b495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
