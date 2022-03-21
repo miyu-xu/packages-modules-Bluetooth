@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fdc496c_8496bb0e",
+        "filename": "system/stack/rfcomm/port_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1012,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-21T20:27:11Z",
+      "side": 1,
+      "message": "Should we have different enums to distinguish between this close reason and the above close reason? \n\nAlso, RFCOMM connection may timeout or fail, could we have metrics for the failure cases as well?",
+      "range": {
+        "startLine": 1012,
+        "startChar": 52,
+        "endLine": 1012,
+        "endChar": 70
+      },
+      "revId": "24812f8f7c114e6f5f64031fbb8c08742e493363",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
