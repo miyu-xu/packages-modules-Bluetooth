@@ -40,10 +40,6 @@ TestCommandHandler::TestCommandHandler(TestModel& test_model)
   SET_HANDLER("add", Add);
   SET_HANDLER("add_remote", AddRemote);
   SET_HANDLER("del", Del);
-  SET_HANDLER("add_phy", AddPhy);
-  SET_HANDLER("del_phy", DelPhy);
-  SET_HANDLER("add_device_to_phy", AddDeviceToPhy);
-  SET_HANDLER("del_device_from_phy", DelDeviceFromPhy);
   SET_HANDLER("list", List);
   SET_HANDLER("set_device_address", SetDeviceAddress);
   SET_HANDLER("set_timer_period", SetTimerPeriod);
@@ -54,34 +50,19 @@ TestCommandHandler::TestCommandHandler(TestModel& test_model)
 }
 
 void TestCommandHandler::AddDefaults() {
-  // Add a phy for LE and one for BR/EDR
-  AddPhy({"LOW_ENERGY"});
-  AddPhy({"BR_EDR"});
-
-  // Add the controller to the Phys
-  AddDeviceToPhy({"1", "1"});
-  AddDeviceToPhy({"1", "2"});
-
   // Add default test devices and add the devices to the phys
   // Add({"beacon", "be:ac:10:00:00:01", "1000"});
-  // AddDeviceToPhy({"2", "1"});
 
   // Add({"keyboard", "cc:1c:eb:0a:12:d1", "500"});
-  // AddDeviceToPhy({"3", "1"});
 
   // Add({"classic", "c1:a5:51:c0:00:01", "22"});
-  // AddDeviceToPhy({"4", "2"});
 
   // Add({"car_kit", "ca:12:1c:17:00:01", "238"});
-  // AddDeviceToPhy({"5", "2"});
 
   // Add({"sniffer", "ca:12:1c:17:00:01"});
-  // AddDeviceToPhy({"6", "2"});
 
   // Add({"sniffer", "3c:5a:b4:04:05:06"});
-  // AddDeviceToPhy({"7", "2"});
   // Add({"remote_loopback_device", "10:0d:00:ba:c1:06"});
-  // AddDeviceToPhy({"8", "2"});
   List({});
 
   SetTimerPeriod({"10"});
@@ -185,61 +166,6 @@ void TestCommandHandler::Del(const vector<std::string>& args) {
   response_string_ = "TestCommandHandler 'del' called with device at index " +
                      std::to_string(dev_index);
   send_response_(response_string_);
-}
-
-void TestCommandHandler::AddPhy(const vector<std::string>& args) {
-  if (args[0] == "LOW_ENERGY") {
-    model_.AddPhy(Phy::Type::LOW_ENERGY);
-  } else if (args[0] == "BR_EDR") {
-    model_.AddPhy(Phy::Type::BR_EDR);
-  } else {
-    response_string_ =
-        "TestCommandHandler 'add_phy' with unrecognized type " + args[0];
-    send_response_(response_string_);
-  }
-}
-
-void TestCommandHandler::DelPhy(const vector<std::string>& args) {
-  size_t phy_index = std::stoi(args[0]);
-
-  model_.DelPhy(phy_index);
-  response_string_ = "TestCommandHandler 'del_phy' called with phy at index " +
-                     std::to_string(phy_index);
-  send_response_(response_string_);
-}
-
-void TestCommandHandler::AddDeviceToPhy(const vector<std::string>& args) {
-  if (args.size() != 2) {
-    response_string_ =
-        "TestCommandHandler 'add_device_to_phy' takes two arguments";
-    send_response_(response_string_);
-    return;
-  }
-  size_t dev_index = std::stoi(args[0]);
-  size_t phy_index = std::stoi(args[1]);
-  model_.AddDeviceToPhy(dev_index, phy_index);
-  response_string_ =
-      "TestCommandHandler 'add_device_to_phy' called with device " +
-      std::to_string(dev_index) + " and phy " + std::to_string(phy_index);
-  send_response_(response_string_);
-  return;
-}
-
-void TestCommandHandler::DelDeviceFromPhy(const vector<std::string>& args) {
-  if (args.size() != 2) {
-    response_string_ =
-        "TestCommandHandler 'del_device_from_phy' takes two arguments";
-    send_response_(response_string_);
-    return;
-  }
-  size_t dev_index = std::stoi(args[0]);
-  size_t phy_index = std::stoi(args[1]);
-  model_.DelDeviceFromPhy(dev_index, phy_index);
-  response_string_ =
-      "TestCommandHandler 'del_device_from_phy' called with device " +
-      std::to_string(dev_index) + " and phy " + std::to_string(phy_index);
-  send_response_(response_string_);
-  return;
 }
 
 void TestCommandHandler::List(const vector<std::string>& args) {

@@ -24,8 +24,8 @@
 
 #include "hci/address.h"
 #include "model/devices/device_properties.h"
-#include "model/setup/phy_layer.h"
 #include "packets/link_layer_packets.h"
+#include "phy.h"
 
 namespace rootcanal {
 
@@ -69,13 +69,10 @@ class Device {
   // Let the device know that time has passed.
   virtual void TimerTick() {}
 
-  void RegisterPhyLayer(std::shared_ptr<PhyLayer> phy);
+  void RegisterPhyChannel(
+      std::function<void(model::packets::LinkLayerPacketView, Phy::Type)> send);
 
-  void UnregisterPhyLayers();
-
-  void UnregisterPhyLayer(Phy::Type phy_type, uint32_t factory_id);
-
-  virtual void IncomingPacket(model::packets::LinkLayerPacketView){};
+  virtual void IncomingPacket(model::packets::LinkLayerPacketView, Phy::Type){};
 
   virtual void SendLinkLayerPacket(
       std::shared_ptr<model::packets::LinkLayerPacketBuilder> packet,
@@ -88,7 +85,9 @@ class Device {
   void RegisterCloseCallback(std::function<void()>);
 
  protected:
-  std::vector<std::shared_ptr<PhyLayer>> phy_layers_;
+  // Callback to be invoked when a link layer packet is sent
+  std::function<void(model::packets::LinkLayerPacketView, Phy::Type)>
+      send_callback_;
 
   std::chrono::steady_clock::time_point last_advertisement_;
 
