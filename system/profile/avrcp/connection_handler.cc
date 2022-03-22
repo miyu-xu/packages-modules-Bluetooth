@@ -102,6 +102,7 @@ bool ConnectionHandler::CleanUp() {
 
   // TODO (apanicke): Cleanup the SDP Entries here
   std::lock_guard<std::recursive_mutex> lock(device_map_lock);
+  instance_->avrc_->ClearSDPqueue();
   for (auto entry = instance_->device_map_.begin(); entry != instance_->device_map_.end();) {
     auto curr = entry;
     entry++;

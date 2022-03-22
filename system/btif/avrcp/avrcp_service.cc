@@ -109,6 +109,14 @@ public:
 
   uint16_t RemoveRecord(uint32_t sdp_handle) { return AVRC_RemoveRecord(sdp_handle); }
 
+  void RemoveSDPqueue(const RawAddress& bdaddr) {
+    AVRC_RemoveSDPqueue(bdaddr);
+  }
+
+  void ClearSDPqueue() {
+    AVRC_ClearSDPqueue();
+  }
+
   uint16_t FindService(uint16_t service_uuid, const RawAddress& bd_addr, tAVRC_SDP_DB_PARAMS* p_db,
                        tAVRC_FIND_CBACK p_cback) override {
     return AVRC_FindService(service_uuid, bd_addr, p_db, p_cback);

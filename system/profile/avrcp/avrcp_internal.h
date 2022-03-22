@@ -41,6 +41,10 @@ public:
 
   virtual uint16_t RemoveRecord(uint32_t sdp_handle) = 0;
 
+  virtual void RemoveSDPqueue(const RawAddress& bdaddr) = 0;
+
+  virtual void ClearSDPqueue() = 0;
+
   virtual uint16_t FindService(uint16_t service_uuid, const RawAddress& bd_addr,
                                tAVRC_SDP_DB_PARAMS* p_db, tAVRC_FIND_CBACK p_cback) = 0;
 

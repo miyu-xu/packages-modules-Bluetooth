@@ -181,6 +181,7 @@ static void bta_av_close_all_rc(tBTA_AV_CB* p_cb) {
       bta_av_del_rc(&bta_av_cb.rcb[i]);
     }
   }
+  AVRC_ClearSDPqueue();
 }
 
 /*******************************************************************************
