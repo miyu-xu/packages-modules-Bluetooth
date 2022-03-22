@@ -65,13 +65,25 @@ static uint16_t a2dp_attr_list_sdp[] = {
  *****************************************************************************/
 static void avrc_sdp_cback(UNUSED_ATTR const RawAddress& bd_addr,
                            tSDP_STATUS status) {
-  LOG_VERBOSE("%s status: %d", __func__, status);
+  LOG_VERBOSE("%s status: %d %p", __func__, status, avrc_cb.p_db);
 
   /* reset service_uuid, so can start another find service */
   avrc_cb.service_uuid = 0;
 
   /* return info from sdp record in app callback function */
   avrc_cb.find_cback.Run(status);
+
+  std::unique_lock<std::mutex> lock(avrc_cb.mutex);
+  if (!avrc_cb.sdp_req_qu.empty()) {
+    tAVRC_SDP_REQ req = std::move(avrc_cb.sdp_req_qu.front());
+    avrc_cb.sdp_req_qu.erase(avrc_cb.sdp_req_qu.begin());
+    lock.unlock();
+    req.db.p_attrs = &req.attrs[0];
+    AVRC_TRACE_WARNING("%s do next sdp: %p", __func__, req.db.p_db);
+    AVRC_FindService(req.uuid,req.addr,&req.db,req.cb);
+  }else {
+    AVRC_TRACE_WARNING("%s queue empty", __func__ );
+  }
 
   return;
 }
@@ -128,9 +140,24 @@ uint16_t AVRC_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
 
   /* check if it is busy */
   if (avrc_cb.service_uuid == UUID_SERVCLASS_AV_REM_CTRL_TARGET ||
-      avrc_cb.service_uuid == UUID_SERVCLASS_AV_REMOTE_CONTROL)
-    return AVRC_NO_RESOURCES;
-
+      avrc_cb.service_uuid == UUID_SERVCLASS_AV_REMOTE_CONTROL) {
+    // *M: add to the queue {@ */
+    std::unique_lock<std::mutex> lock(avrc_cb.mutex);
+    tAVRC_SDP_REQ sdp_req;
+    sdp_req.cb = std::move(find_cback);
+    sdp_req.db.p_db= p_db->p_db;
+    sdp_req.db.db_len = p_db->db_len;
+    sdp_req.db.num_attr = p_db->num_attr >= MAX_AVRC_SDP_ATTR_LEN ?
+                        MAX_AVRC_SDP_ATTR_LEN : p_db->num_attr;
+    for (int i = 0; i < sdp_req.db.num_attr; i++) {
+      sdp_req.attrs[i] = p_db->p_attrs[i];
+    }
+    sdp_req.uuid = service_uuid;
+    sdp_req.addr = bd_addr;
+    avrc_cb.sdp_req_qu.push_back(std::move(sdp_req));
+    AVRC_TRACE_WARNING("%s busy put in queue,sdp cback: %p", __func__, p_db->p_db);
+    return AVRC_SUCCESS;
+  }
 
   if (p_db->p_attrs == NULL || p_db->num_attr == 0) {
     p_db->p_attrs = a2dp_attr_list_sdp;
