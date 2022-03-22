@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70b33df2_84b2c154",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1347,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-22T12:46:00Z",
+      "side": 1,
+      "message": "kIdLocal isn\u0027t an advertiser_id.\nWhen Advertiser is register from Java layer,\nAdvertiseManager will assign a number to mapping the onAdvertisingSetStarted event (See AdvertiseManager.java line 202 and line 138);\n\nkIdLocal is a id to indicate this advertiser is not register from Java layer.",
+      "parentUuid": "36b01515_df581ceb",
+      "revId": "1dff35e4a4dd5a4cedd070a1bdcfd5c29288b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "141ea6a0_a9900662",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-18T14:30:24Z",
       "side": 1,
       "message": "Same here w/kIdLocal",
+      "revId": "1dff35e4a4dd5a4cedd070a1bdcfd5c29288b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bda78af5_0a7fe418",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1371,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-22T12:46:00Z",
+      "side": 1,
+      "message": "pimpl_-\u003eallocate_advertiser() only return valid id or kInvalidId when too many advertiser registered. I think this check statement is enough.\nThanks!",
+      "parentUuid": "141ea6a0_a9900662",
       "revId": "1dff35e4a4dd5a4cedd070a1bdcfd5c29288b46f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
