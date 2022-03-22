@@ -47,6 +47,7 @@ def get_context(ad: android_device.AndroidDevice,
   """
   ctx = context.Context(ad, safe_get=safe_get, do_go_home=do_go_home)
   ctx.known_pages.extend((
+      other_pages.ChunghwaTelecomBillingPage,
       other_pages.NotificationPopup,
       other_pages.FitbitManagePopup,
       other_pages.PixelBudConnectPopup,
@@ -409,6 +410,7 @@ def pair_device(ctx: context.Context,
   ctx.regr_page_call(pairing_pages.AllsetPage, 'done')
   ctx.regr_page_call(pairing_pages.SetupOnWristCallPage, 'skip')
   ctx.regr_page_call(other_pages.GooglePlaySetupPage, 'skip')
+  ctx.regr_page_call(other_pages.ChunghwaTelecomBillingPage, 'back')
 
   ctx.go_page(account_pages.AccountPage)
   fitbit_prod_name = MODEL_TO_PRODUCT_NAME_MAPPING[device.model]

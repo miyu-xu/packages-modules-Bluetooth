@@ -1,4 +1,5 @@
 """Other pages associated with Fitbit Companion App testing."""
+import re
 import shlex
 
 from typing import List, Optional
@@ -737,3 +738,42 @@ class FitbitManagePopup(ui_core.UIPage):
       return self.click_node_by_text(self._NODE_NOT_ALLOW_BTN_TEXT)
     else:
       return self.click_node_by_text(self._NODE_NOT_ALLOW_BTN_TEXT.upper())
+
+
+class ChunghwaTelecomBillingPage(ui_core.UIPage):
+  """Chunghwa Telecom Billing enable page.
+
+  The image of this page can refer to below link:
+  https://screenshot.googleplex.com/Bav3TbnaduFSZVU
+  """
+
+  _TITLE_RE_TEXT = 'Enable .*Chunghwa Telecom billing'
+  _NODE_BTN_BACK_TEXT = 'Back'
+
+  @classmethod
+  def from_xml(cls, ctx: ui_core.Context, ui_xml: minidom.Document,
+               clickable_nodes: NodeList, enabled_nodes: NodeList,
+               all_nodes: NodeList) -> Optional[ui_core.UIPage]:
+    """Instantiates page object from XML object.
+
+    Args:
+      ctx: Page context object.
+      ui_xml: Parsed XML object.
+      clickable_nodes: Clickable node list from page.
+      enabled_nodes: Enabled node list from page.
+      all_nodes: All node from page.
+
+    Returns:
+      UI page object iff the given XML object can be parsed.
+    """
+    for node in enabled_nodes:
+      if re.search(cls._TITLE_RE_TEXT, node.text):
+        return cls(ctx, ui_xml, clickable_nodes, enabled_nodes, all_nodes)
+
+  def back(self) -> ui_core.UIPage:
+    """Backs to previous page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_content_desc(self._NODE_BTN_BACK_TEXT)
