@@ -35,6 +35,7 @@
 #include "hci/security_interface.h"
 #include "module.h"
 #include "os/utils.h"
+#include "src/bridge.rs.h"
 
 namespace bluetooth {
 namespace hci {
@@ -45,7 +46,7 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
   HciLayer();
   HciLayer(const HciLayer&) = delete;
   HciLayer& operator=(const HciLayer&) = delete;
-
+  // friend void RustEventCallback(::rust::Slice<const uint8_t> data);
   virtual ~HciLayer();
 
   void EnqueueCommand(
@@ -123,6 +124,8 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
   struct hal_callbacks;
   impl* impl_;
   hal_callbacks* hal_callbacks_;
+  ::rust::Box<shim::rust::Stack>* rust_stack_ = nullptr;
+  ::rust::Box<shim::rust::Hci>* rust_hci_ = nullptr;
 
   template <typename T>
   class CommandInterfaceImpl : public CommandInterface<T> {

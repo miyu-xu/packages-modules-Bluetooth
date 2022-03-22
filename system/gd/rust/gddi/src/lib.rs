@@ -1,6 +1,6 @@
 //! Core dependency injection objects
 
-use std::any::{Any, TypeId};
+use std::any::{Any, TypeId, type_name};
 use std::collections::HashMap;
 use std::future::Future;
 use std::pin::Pin;
@@ -59,6 +59,8 @@ impl RegistryBuilder {
 
     /// Registers a provider function with this registry
     pub fn register_provider<T: 'static>(mut self, f: ProviderFnBox) -> Self {
+        println!("Registering providers");
+        println!("Type name: {} and Type id: {:#?}", type_name::<T>(), TypeId::of::<T>());
         self.providers.insert(TypeId::of::<T>(), Provider { f: Arc::new(f) });
 
         self
@@ -84,7 +86,7 @@ impl Registry {
                 return value.downcast_ref::<T>().expect("was not correct type").clone();
             }
         }
-
+        println!("Fetching typeid {} form registry", type_name::<T>());
         let casted = {
             let provider = { self.providers.lock().await[&typeid].clone() };
             let result = (provider.f)(self.clone()).await;

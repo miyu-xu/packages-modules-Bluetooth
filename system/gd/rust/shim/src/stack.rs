@@ -1,5 +1,6 @@
 //! Stack management
 
+use crate::hal::Hal;
 use crate::controller::Controller;
 use crate::hci::Hci;
 use bluetooth_rs::hci::ControllerExports;
@@ -41,8 +42,13 @@ pub fn stack_create() -> Box<Stack> {
     RUNTIME.block_on(async move {
         let stack = bluetooth_rs::Stack::new(local_rt).await;
         stack.use_default_snoop().await;
-
+        stack.use_default_rootcanal_port().await;
+        // assert!(!init_flags::gd_rust_is_enabled());
+        let tid = nix::unistd::gettid().as_raw();
+        println!("thread id {}", tid);
+        println!("Stack created");
         Box::new(Stack(stack))
+
     })
 }
 
@@ -62,6 +68,14 @@ pub fn get_hci(stack: &mut Stack) -> Box<Hci> {
     Box::new(Hci::new(
         stack.get_runtime(),
         stack.get_blocking::<bluetooth_rs::hci::facade::HciFacadeService>(),
+    ))
+}
+
+pub fn get_hal(stack: &mut Stack) -> Box<Hal> {
+    assert!(init_flags::gd_rust_is_enabled());
+    Box::new(Hal::new(
+        stack.get_runtime(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::Hal>(),
     ))
 }
 

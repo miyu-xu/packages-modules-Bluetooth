@@ -44,6 +44,9 @@ impl Stack {
         }
     }
 
+    /// Helper to set default rootcanal port
+    pub async fn use_default_rootcanal_port(&self) { self.set_rootcanal_port(Some(6402)).await; }
+
     /// Configures snoop with defaults
     pub async fn use_default_snoop(&self) {
         self.configure_snoop(None).await;

@@ -25,11 +25,15 @@
 #include "os/queue.h"
 #include "packet/packet_builder.h"
 #include "storage/storage_module.h"
+#include "src/bridge.rs.h"
+#include "hal/hci_hal.h"
+
 
 namespace bluetooth {
 namespace hci {
 using bluetooth::common::BindOn;
 using bluetooth::common::BindOnce;
+using bluetooth::common::Bind;
 using bluetooth::common::ContextualCallback;
 using bluetooth::common::ContextualOnceCallback;
 using bluetooth::hci::CommandBuilder;
@@ -57,6 +61,34 @@ static void abort_after_time_out(OpCode op_code) {
   bluetooth::os::LogMetricHciTimeoutEvent(static_cast<uint32_t>(op_code));
   ASSERT_LOG(false, "Done waiting for debug information after HCI timeout (%s)", OpCodeText(op_code).c_str());
 }
+
+void RustEventCallback(bluetooth::hal::HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_DEBUG("Event callback called");
+  std::vector<uint8_t> bytes(*data.data(), data.size());
+  auto event = static_cast<hal::HciPacket>(bytes);
+  callback->hciEventReceived(event);
+}
+
+void RustACLCallback(bluetooth::hal::HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_DEBUG("ACL callback called");
+  std::vector<uint8_t> bytes(*data.data(), data.size());
+  callback->aclDataReceived(bytes);
+}
+
+void RustSCOCallback(bluetooth::hal::HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_DEBUG("SCO callback called");
+  std::vector<uint8_t> bytes(*data.data(), data.size());
+  callback->scoDataReceived(bytes);
+}
+
+void RustISOCallback(bluetooth::hal::HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_DEBUG("ISO callback called");
+  std::vector<uint8_t> bytes(*data.data(), data.size());
+  callback->isoDataReceived(bytes);
+}
+
+//using ::bluetooth::shim::rust::u8SliceCallback;
+//using ::bluetooth::shim::rust::u8SliceOnceCallback;
 
 class CommandQueueEntry {
  public:
@@ -118,7 +150,13 @@ struct HciLayer::impl {
     std::vector<uint8_t> bytes;
     BitInserter bi(bytes);
     packet->Serialize(bi);
-    hal_->sendAclData(bytes);
+    if (bluetooth::common::init_flags::gd_rust_is_enabled()) {
+      rust::Slice<const uint8_t> slice{bytes.data(), bytes.size()};
+      shim::rust::hci_send_acl(**rhci_, slice);
+    } else {
+      hal_->sendAclData(bytes);
+    }
+    // hal_->sendAclData(bytes);
   }
 
   void on_outbound_sco_ready() {
@@ -126,7 +164,14 @@ struct HciLayer::impl {
     std::vector<uint8_t> bytes;
     BitInserter bi(bytes);
     packet->Serialize(bi);
-    hal_->sendScoData(bytes);
+
+    if (bluetooth::common::init_flags::gd_rust_is_enabled()) {
+      rust::Slice<const uint8_t> slice{bytes.data(), bytes.size()};
+      shim::rust::hci_send_sco(**rhci_, slice);
+    } else {
+      hal_->sendScoData(bytes);
+    }
+     //hal_->sendScoData(bytes);
   }
 
   void on_outbound_iso_ready() {
@@ -134,7 +179,13 @@ struct HciLayer::impl {
     std::vector<uint8_t> bytes;
     BitInserter bi(bytes);
     packet->Serialize(bi);
-    hal_->sendIsoData(bytes);
+    if (bluetooth::common::init_flags::gd_rust_is_enabled()) {
+      rust::Slice<const uint8_t> slice{bytes.data(), bytes.size()};
+      shim::rust::hci_send_iso(**rhci_, slice);
+    } else {
+      hal_->sendIsoData(bytes);
+    }
+   //  hal_->sendIsoData(bytes);
   }
 
   template <typename TResponse>
@@ -248,7 +299,16 @@ struct HciLayer::impl {
     std::shared_ptr<std::vector<uint8_t>> bytes = std::make_shared<std::vector<uint8_t>>();
     BitInserter bi(*bytes);
     command_queue_.front().command->Serialize(bi);
-    hal_->sendHciCommand(*bytes);
+
+    if (bluetooth::common::init_flags::gd_rust_is_enabled()) {
+      auto b = *bytes;
+      rust::Slice<const uint8_t> slice{b.data(), b.size()};
+      shim::rust::hci_send_command(**rhci_, slice, std::make_unique<shim::rust::u8SliceOnceCallback>(
+            BindOnce(RustEventCallback, module_.hal_callbacks_)));
+    } else {
+      hal_->sendHciCommand(*bytes);
+    }
+    //hal_->sendHciCommand(*bytes);
 
     auto cmd_view = CommandView::Create(PacketView<kLittleEndian>(bytes));
     ASSERT(cmd_view.IsValid());
@@ -386,8 +446,13 @@ struct HciLayer::impl {
     subevent_handlers_[subevent_code].Invoke(meta_event_view);
   }
 
+  void set_rust_hci(::rust::Box<shim::rust::Hci>* rust_hci) {
+    rhci_ = rust_hci;
+  }
+
   hal::HciHal* hal_;
   HciLayer& module_;
+  ::rust::Box<shim::rust::Hci>* rhci_;
 
   // Command Handling
   std::list<CommandQueueEntry> command_queue_;
@@ -631,6 +696,22 @@ void HciLayer::Start() {
   impl_ = new impl(hal, *this);
   hal_callbacks_ = new hal_callbacks(*this);
 
+  // change this flag to hal rust
+  if (bluetooth::common::init_flags::gd_rust_is_enabled()) {
+    LOG_DEBUG("Setting rust hal in hci_layer");
+    rust_stack_ = new ::rust::Box<shim::rust::Stack>(shim::rust::stack_create());
+    shim::rust::stack_start(**rust_stack_);
+
+    rust_hci_ = new ::rust::Box<shim::rust::Hci>(shim::rust::get_hci(**rust_stack_));
+    LOG_DEBUG("Done setting rust hal");
+
+    impl_->set_rust_hci(rust_hci_);
+    if(rust_hci_ == nullptr) {
+      LOG_DEBUG("Rust hal is nullptr");
+    }
+    LOG_DEBUG("Setting rust hal in hci_layer done");
+  }
+
   Handler* handler = GetHandler();
   impl_->acl_queue_.GetDownEnd()->RegisterDequeue(handler, BindOn(impl_, &impl::on_outbound_acl_ready));
   impl_->sco_queue_.GetDownEnd()->RegisterDequeue(handler, BindOn(impl_, &impl::on_outbound_sco_ready));
@@ -648,6 +729,14 @@ void HciLayer::Start() {
 
   EnqueueCommand(ResetBuilder::Create(), handler->BindOnce(&fail_if_reset_complete_not_success));
   hal->registerIncomingPacketCallback(hal_callbacks_);
+  shim::rust::hci_set_evt_callback(**rust_hci_, std::make_unique<shim::rust::u8SliceCallback>(
+            Bind(RustEventCallback, hal_callbacks_)));
+  shim::rust::hci_set_acl_callback(**rust_hci_, std::make_unique<shim::rust::u8SliceCallback>(
+            Bind(RustACLCallback, hal_callbacks_)));
+  shim::rust::hci_set_iso_callback(**rust_hci_, std::make_unique<shim::rust::u8SliceCallback>(
+            Bind(RustISOCallback, hal_callbacks_)));
+  shim::rust::hci_set_sco_callback(**rust_hci_, std::make_unique<shim::rust::u8SliceCallback>(
+            Bind(RustSCOCallback, hal_callbacks_)));
 }
 
 void HciLayer::Stop() {
@@ -655,6 +744,11 @@ void HciLayer::Stop() {
   hal->unregisterIncomingPacketCallback();
   delete hal_callbacks_;
 
+  if (bluetooth::common::init_flags::gd_rust_is_enabled()) {
+    if (rust_stack_ != nullptr) {
+      shim::rust::stack_stop(**rust_stack_);
+    }
+  }
   impl_->acl_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->sco_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->iso_queue_.GetDownEnd()->UnregisterDequeue();

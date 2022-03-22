@@ -125,6 +125,7 @@ int main(int argc, const char** argv) {
     }
     if (arg.find(arg_rootcanal_port) == 0) {
       auto port_number = arg.substr(arg_rootcanal_port.size());
+      LOG_DEBUG("Rootcanal port number in gd cpp: %i", std::stoi(port_number));
       HciHalHostRootcanalConfig::Get()->SetPort(std::stoi(port_number));
     }
     if (arg.find(arg_btsnoop_path) == 0) {

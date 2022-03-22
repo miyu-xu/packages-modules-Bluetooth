@@ -37,13 +37,16 @@ pub fn hci_send_command(
     data: &[u8],
     callback: cxx::UniquePtr<ffi::u8SliceOnceCallback>,
 ) {
-    log::error!("sending command: {:02x?}", data);
+    // log::error!("sending command: {:02x?}", data);
     match CommandPacket::parse(data) {
         Ok(packet) => {
             let mut commands = hci.internal.commands.clone();
             hci.rt.spawn(async move {
+                println!("In hci send command: {:#?}", packet);
                 let resp = commands.send(packet).await.unwrap();
+                println!("Event response received");
                 callback.Run(&resp.to_bytes());
+                println!("Callback function called");
             });
         }
         Err(e) => panic!("could not parse command: {:?} {:02x?}", e, data),
