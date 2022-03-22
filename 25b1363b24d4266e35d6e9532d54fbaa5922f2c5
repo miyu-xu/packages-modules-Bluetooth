@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23192b01_8f2e6f48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-22T02:04:07Z",
+      "side": 1,
+      "message": "Looks good % one more suggestion",
+      "revId": "25b1363b24d4266e35d6e9532d54fbaa5922f2c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbf71a65_fe29a566",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-22T02:04:07Z",
+      "side": 1,
+      "message": "This case should be where the a2dp+hfp caps finally arrive late but the device has been added with partial capability(a2dp or hfp).\n\nWe should add a warn log here, so combined with line 326 it gives us sufficient information to debug the profile status syncing.\ne.g give us the number of \"how late do both profiles usually connects\" and we can adjust timeout base on that.",
+      "range": {
+        "startLine": 268,
+        "startChar": 16,
+        "endLine": 269,
+        "endChar": 60
+      },
+      "revId": "25b1363b24d4266e35d6e9532d54fbaa5922f2c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
