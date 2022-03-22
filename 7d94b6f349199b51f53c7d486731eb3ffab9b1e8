@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a974cc9d_684ab066",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-22T21:26:09Z",
+      "side": 1,
+      "message": "No...it is from cluster data of dogfooders where there are no bugreports.\n\nHowever, inspection shows that 2 consecutive remote connect requests before a connect complete will trigger this based upon the race condition of ABAB or ABBA.\n\nI put the table in the BR.\n\nIt\u0027s probably hard to catch this in the wild as is a rare race condition.",
+      "parentUuid": "b5e6f771_4a77a7a0",
+      "revId": "7d94b6f349199b51f53c7d486731eb3ffab9b1e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e454bf38_3b44fb67",
         "filename": "system/gd/hci/acl_manager_test.cc",
         "patchSetId": 15
@@ -31,6 +49,30 @@
       "writtenOn": "2022-03-22T21:13:09Z",
       "side": 1,
       "message": "Did you mean to disable all these tests?",
+      "range": {
+        "startLine": 561,
+        "startChar": 34,
+        "endLine": 561,
+        "endChar": 43
+      },
+      "revId": "7d94b6f349199b51f53c7d486731eb3ffab9b1e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13815dfa_2a8c0c92",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-22T21:26:09Z",
+      "side": 1,
+      "message": "Yes...I stole this from the other test infrastructure that had the basics to get my theory tested and working properly.\n\nI left them disabled for now b/c I\u0027m unsure how much work it is to get them all up and running again.  I left enabled my new tests, and a few basic ones.",
+      "parentUuid": "e454bf38_3b44fb67",
       "range": {
         "startLine": 561,
         "startChar": 34,
