@@ -1643,6 +1643,31 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     codec_type = self._ad.sl4a.bluetoothA2dpGetCurrentCodecConfig()['codecType']
     return bt_constants.BluetoothA2dpCodec(codec_type)
 
+  def is_connected_a2dp_device_active(self, mac_address: str) -> bool:
+    """Checks if the connected A2DP device is active.
+
+    Args:
+      mac_address: Bluetooth mac address of this connected device.
+
+    Returns:
+      True iff this connected device is active.
+    """
+    return (f'mActiveDevice: {mac_address.upper()}' in
+            self.dump_bluetooth_manager(('|', 'grep', '-A10', '"A2dpService"')))
+
+  def is_connected_hfp_device_active(self, mac_address: str) -> bool:
+    """Checks if the connected HFP device is active.
+
+    Args:
+      mac_address: Bluetooth mac address of this connected device.
+
+    Returns:
+      True iff this connected device is active.
+    """
+    return (
+        f'mActiveDevice: {mac_address.upper()}' in
+        self.dump_bluetooth_manager(('|', 'grep', '-A10', '"HeadsetService"')))
+
   def is_variable_bit_rate_enabled(self) -> bool:
     """Checks if Variable Bit Rate (VBR) support is enabled for A2DP AAC codec.
 
