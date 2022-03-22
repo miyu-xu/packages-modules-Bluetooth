@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a56c4ca_6a096d8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-03-22T02:45:39Z",
+      "side": 1,
+      "message": "For Bug 223547524, can we check it from gatt stack.\nDidn\u0027t see abnormal from bass side.\n\nThanks,\nXiaoyang",
+      "revId": "673c75717695c388eab5a975b2834e710549ed54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
