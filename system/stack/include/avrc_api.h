@@ -366,6 +366,10 @@ uint16_t AVRC_RemoveRecord(uint32_t sdp_handle);
 uint16_t AVRC_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
                           tAVRC_SDP_DB_PARAMS* p_db, const tAVRC_FIND_CBACK& cback);
 
+extern void AVRC_RemoveSDPqueue(const RawAddress& bdaddr);
+
+extern void AVRC_ClearSDPqueue();
+
 /******************************************************************************
  *
  * Function         AVRC_Open

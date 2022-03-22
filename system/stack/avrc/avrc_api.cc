@@ -132,6 +132,9 @@ static void avrc_ctrl_cback(uint8_t handle, uint8_t event, uint16_t result,
     avrc_flush_cmd_q(handle);
     alarm_free(avrc_cb.ccb_int[handle].tle);
     avrc_cb.ccb_int[handle].tle = NULL;
+    if (peer_addr) {
+      AVRC_RemoveSDPqueue(*peer_addr);
+    }
   }
 }
 

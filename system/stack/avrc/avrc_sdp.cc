@@ -85,6 +85,20 @@ static void avrc_sdp_cback(const RawAddress& bd_addr, tSDP_STATUS status) {
     log::warn("Received SDP callback with NULL callback peer:{} status:{}", bd_addr,
               sdp_status_text(status));
   }
+
+  std::unique_lock<std::mutex> lock(avrc_cb.mutex);
+  if (!avrc_cb.sdp_req_qu.empty()) {
+    tAVRC_SDP_REQ req = std::move(avrc_cb.sdp_req_qu.front());
+    avrc_cb.sdp_req_qu.erase(avrc_cb.sdp_req_qu.begin());
+    lock.unlock();
+    req.db.p_attrs = &req.attrs[0];
+    log::warn("Processing next SDP request: p_db=%p, uuid=0x%x", req.db.p_db, req.uuid);
+    AVRC_FindService(req.uuid,req.addr,&req.db,req.cb);
+  } else {
+    log::warn("queue empty" );
+  }
+
+  return;
 }
 
 /******************************************************************************
@@ -140,7 +154,22 @@ uint16_t AVRC_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
   /* check if it is busy */
   if (avrc_cb.service_uuid == UUID_SERVCLASS_AV_REM_CTRL_TARGET ||
       avrc_cb.service_uuid == UUID_SERVCLASS_AV_REMOTE_CONTROL) {
-    return AVRC_NO_RESOURCES;
+    // *M: add to the queue {@ */
+    std::unique_lock<std::mutex> lock(avrc_cb.mutex);
+    tAVRC_SDP_REQ sdp_req;
+    sdp_req.cb = std::move(find_cback);
+    sdp_req.db.p_db= p_db->p_db;
+    sdp_req.db.db_len = p_db->db_len;
+    sdp_req.db.num_attr = p_db->num_attr >= MAX_AVRC_SDP_ATTR_LEN ?
+                        MAX_AVRC_SDP_ATTR_LEN : p_db->num_attr;
+    for (int i = 0; i < sdp_req.db.num_attr; i++) {
+      sdp_req.attrs[i] = p_db->p_attrs[i];
+    }
+    sdp_req.uuid = service_uuid;
+    sdp_req.addr = bd_addr;
+    avrc_cb.sdp_req_qu.push_back(std::move(sdp_req));
+    log::warn("busy put in queue,sdp cback: {%x}", p_db->p_db);
+    return AVRC_SUCCESS;
   }
 
   if (p_db->p_attrs == NULL || p_db->num_attr == 0) {
@@ -169,6 +198,27 @@ uint16_t AVRC_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
   }
 
   return result ? AVRC_SUCCESS : AVRC_FAIL;
+}
+
+void AVRC_RemoveSDPqueue(const RawAddress& bdaddr) {
+  log::verbose("for {}", bdaddr);
+  if (!avrc_cb.sdp_req_qu.empty()) {
+    for (std::vector<tAVRC_SDP_REQ>::iterator iter = avrc_cb.sdp_req_qu.begin(); iter != avrc_cb.sdp_req_qu.end();) {
+      if (iter->addr == bdaddr) {
+        iter = avrc_cb.sdp_req_qu.erase(iter);
+        log::info("delete sdp queue for {}", bdaddr);
+      } else {
+        iter++;
+      }
+    }
+  }
+}
+
+void AVRC_ClearSDPqueue() {
+  if (!avrc_cb.sdp_req_qu.empty()) {
+    log::verbose("clear avrcp sdp queue");
+    avrc_cb.sdp_req_qu.clear();
+  }
 }
 
 /******************************************************************************
