@@ -201,12 +201,12 @@ uint16_t AVRC_FindService(uint16_t service_uuid, const RawAddress& bd_addr,
 }
 
 void AVRC_RemoveSDPqueue(const RawAddress& bdaddr) {
-  log::verbose("for {}", bdaddr);
+  log::verbose("for {}", bdaddr.ToString().c_str());
   if (!avrc_cb.sdp_req_qu.empty()) {
     for (std::vector<tAVRC_SDP_REQ>::iterator iter = avrc_cb.sdp_req_qu.begin(); iter != avrc_cb.sdp_req_qu.end();) {
       if (iter->addr == bdaddr) {
         iter = avrc_cb.sdp_req_qu.erase(iter);
-        log::info("delete sdp queue for {}", bdaddr);
+        log::info("delete sdp queue for {}", bdaddr.ToString().c_str());
       } else {
         iter++;
 	  }
