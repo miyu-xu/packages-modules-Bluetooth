@@ -151,6 +151,9 @@ typedef struct {
   tAVRC_FIND_CBACK find_cback; /* sdp discovery callback */
   tSDP_DISCOVERY_DB* p_db;   /* pointer to discovery database */
   uint16_t service_uuid;     /* service UUID to search */
+  //save callback when confilt
+  std::vector<tAVRC_SDP_REQ> sdp_req_qu;
+  mutable std::mutex mutex;
 } tAVRC_CB;
 
 /******************************************************************************
