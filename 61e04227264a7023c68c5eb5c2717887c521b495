@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "089e72ed_5560cfd7",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-22T18:24:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e0f4ba7_f890f4f9",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 28
+      },
+      "revId": "61e04227264a7023c68c5eb5c2717887c521b495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25167fb5_342b568a",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I agree it\u0027s confusing, and I can\u0027t answer your contextual questions.\n\nThe idea here is to provide the same functionality embedded in the legacy code but in a much more sane manner.\n\nIt\u0027s still used in system/stack/btm/btm_ble_addr.cc and system/stack/btm/btm_ble_gap.cc , but it\u0027s unclear if it actually does anything.\n\nThe idea is to reclaim the ability to arbitrarily manipulate and check this in non-relevant portions of the stack.\n\nMy hope/guess is that these are band-aids to simplify the legacy stack, and once the legacy is straightened out, these will disappear when no longer used. \n\nI wish functions had reference count, and auto-deleted them selves when nobody calls.",
       "parentUuid": "25167fb5_342b568a",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 70
+      },
+      "revId": "61e04227264a7023c68c5eb5c2717887c521b495",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cf89923_c6d09566",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-22T18:24:57Z",
+      "side": 1,
+      "message": "I will leave these out for this CL as the valid/known are more important for now.",
+      "parentUuid": "48de9747_e12c2267",
       "range": {
         "startLine": 67,
         "startChar": 0,
