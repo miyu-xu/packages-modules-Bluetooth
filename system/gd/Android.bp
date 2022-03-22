@@ -48,8 +48,8 @@ cc_defaults {
     conlyflags: [
         "-std=c99",
     ],
-    header_libs: ["jni_headers"],
-
+    header_libs: ["jni_headers", "libbt_callbacks_cxx_headers"],
+    include_dirs: [ "packages/modules/Bluetooth/system/gd/rust/shim" ],
 }
 
 // Enables code coverage for a set of source files. Must be combined with
@@ -206,6 +206,8 @@ cc_defaults {
         "libbt-platform-protos-lite",
     ],
     export_static_lib_headers: [ "libbluetooth_rust_interop" ],
+    include_dirs: [ "packages/modules/Bluetooth/system/gd/rust/shim" ],
+    header_libs: ["libbt_callbacks_cxx_headers"],
 }
 
 cc_library {

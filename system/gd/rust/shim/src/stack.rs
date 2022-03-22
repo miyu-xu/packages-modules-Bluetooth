@@ -1,5 +1,6 @@
 //! Stack management
 
+use crate::hal::Hal;
 use crate::controller::Controller;
 use crate::hci::Hci;
 use bluetooth_rs::hci::ControllerExports;
@@ -62,6 +63,18 @@ pub fn get_hci(stack: &mut Stack) -> Box<Hci> {
     Box::new(Hci::new(
         stack.get_runtime(),
         stack.get_blocking::<bluetooth_rs::hci::facade::HciFacadeService>(),
+    ))
+}
+
+pub fn get_hal(stack: &mut Stack) -> Box<Hal> {
+    assert!(init_flags::gd_rust_is_enabled());
+
+    Box::new(Hal::new(
+        stack.get_blocking::<bluetooth_rs::hal::snoop::ControlHal>(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::AclHal>(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::ScoHal>(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::IsoHal>(),
+        stack.get_runtime(),
     ))
 }
 
