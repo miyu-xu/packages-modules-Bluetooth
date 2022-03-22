@@ -16,6 +16,24 @@
       "message": "\u003c\u003d static_cast\u003cuint8_t\u003e(BLE_ADDR_RANDOM_ID);\n?\n\nSide note, why use C-style casts?",
       "revId": "ebf177d07998b3f029d5e3a89dce662185c62377",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41b92ffb_e0d06ed6",
+        "filename": "system/types/ble_address_with_type.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-22T23:34:03Z",
+      "side": 1,
+      "message": "ok ... good question ...\n\nA `C` compiled tool uses this header file, and thus the // __cplusplus comments.\n\nCould have squeezed the Cpp into the #def brackets, but I thought if it can be used in C, why not ? (versus std::string which cannot)",
+      "parentUuid": "9bdc6295_14957e14",
+      "revId": "ebf177d07998b3f029d5e3a89dce662185c62377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
