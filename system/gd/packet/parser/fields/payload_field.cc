@@ -117,7 +117,7 @@ std::string PayloadField::GetRustDataType() const {
   return "Vec::<u8>";
 }
 
-void PayloadField::GenRustGetter(std::ostream& s, Size start_offset, Size) const {
+void PayloadField::GenRustGetter(std::ostream& s, Size start_offset, Size, std::string) const {
   s << "let " << GetName() << ": " << GetRustDataType() << " = ";
   if (size_field_ == nullptr) {
     s << "bytes[" << start_offset.bytes() << "..].into();";
