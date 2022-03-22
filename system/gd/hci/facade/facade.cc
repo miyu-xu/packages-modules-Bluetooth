@@ -24,6 +24,10 @@
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
+#include "src/bridge.rs.h"
+#include "common/init_flags.h"
+
+
 
 using ::grpc::ServerAsyncResponseWriter;
 using ::grpc::ServerAsyncWriter;
@@ -233,6 +237,7 @@ void HciFacadeModule::ListDependencies(ModuleList* list) const {
 
 void HciFacadeModule::Start() {
   ::bluetooth::grpc::GrpcFacadeModule::Start();
+  LOG_DEBUG("Hci facade module start");
   service_ = new HciFacadeService(GetDependency<HciLayer>(), GetDependency<Controller>(), GetHandler());
 }
 

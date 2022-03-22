@@ -16,13 +16,18 @@ use tokio::select;
 use tokio::sync::mpsc::{channel, Receiver, Sender, UnboundedReceiver};
 use tokio::sync::Mutex;
 
+/// Hal internals
 #[part_out]
 #[derive(Clone, Stoppable)]
-struct Hal {
-    control: ControlHal,
-    acl: AclHal,
-    sco: ScoHal,
-    iso: IsoHal,
+pub struct Hal {
+    /// Control hal
+    pub control: ControlHal,
+    /// Acl hal
+    pub acl: AclHal,
+    /// Sco hal
+    pub sco: ScoHal,
+    /// Iso hal
+    pub iso: IsoHal,
 }
 
 /// Command & event tx/rx
@@ -330,6 +335,7 @@ impl SnoopLogger {
         self.close_file().await;
 
         rename(&self.config.path, self.config.path.clone() + ".last").await.ok();
+        println!("Snoop log config path: {}", self.config.path);
         let mut file = File::create(&self.config.path).await.expect("could not open snoop log");
         file.write_all(b"btsnoop\x00\x00\x00\x00\x01\x00\x00\x03\xea")
             .await

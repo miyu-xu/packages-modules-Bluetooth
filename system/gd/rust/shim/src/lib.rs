@@ -8,3 +8,4 @@ mod hci;
 mod init_flags;
 mod message_loop_thread;
 mod stack;
+mod hal;

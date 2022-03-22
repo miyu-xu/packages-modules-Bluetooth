@@ -55,6 +55,7 @@ struct Hci {
 
 #[provides]
 async fn provide_hci(control: ControlHal, rt: Arc<Runtime>) -> Hci {
+    println!("Guys hci being instantiated");
     let (cmd_tx, cmd_rx) = channel::<QueuedCommand>(10);
     let evt_handlers = Arc::new(Mutex::new(HashMap::new()));
     let le_evt_handlers = Arc::new(Mutex::new(HashMap::new()));

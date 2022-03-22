@@ -40,6 +40,7 @@ module! {
 
 #[provides]
 async fn provide_rootcanal_hal(config: RootcanalConfig, rt: Arc<Runtime>) -> RawHal {
+    println!("Initializing snoop hal");
     let (raw_hal, inner_hal) = InnerHal::new();
     let (reader, writer) = TcpStream::connect(&config.to_socket_addr().unwrap())
         .await
@@ -60,7 +61,7 @@ async fn provide_rootcanal_hal(config: RootcanalConfig, rt: Arc<Runtime>) -> Raw
         inner_hal.sco_rx,
         writer,
     ));
-
+    println!("Init snoop hal done");
     raw_hal
 }
 
@@ -107,6 +108,7 @@ where
             reader.read_exact(&mut payload).await?;
             buffer.unsplit(payload);
             let frozen = buffer.freeze();
+            println!("Received event packet: {:02x}", frozen);
             match EventPacket::parse(&frozen) {
                 Ok(p) => evt_tx.send(p).unwrap(),
                 Err(e) => log::error!("dropping invalid event packet: {}: {:02x}", e, frozen),
@@ -120,6 +122,7 @@ where
             reader.read_exact(&mut payload).await?;
             buffer.unsplit(payload);
             let frozen = buffer.freeze();
+            println!("Received ACL event packet: {:02x}", frozen);
             match AclPacket::parse(&frozen) {
                 Ok(p) => acl_tx.send(p).unwrap(),
                 Err(e) => log::error!("dropping invalid ACL packet: {}: {:02x}", e, frozen),
@@ -133,6 +136,7 @@ where
             reader.read_exact(&mut payload).await?;
             buffer.unsplit(payload);
             let frozen = buffer.freeze();
+            println!("Received ISO event packet: {:02x}", frozen);
             match IsoPacket::parse(&frozen) {
                 Ok(p) => iso_tx.send(p).unwrap(),
                 Err(e) => log::error!("dropping invalid ISO packet: {}: {:02x}", e, frozen),
@@ -146,6 +150,7 @@ where
             reader.read_exact(&mut payload).await?;
             buffer.unsplit(payload);
             let frozen = buffer.freeze();
+            println!("Received SCO event packet: {:02x}", frozen);
             match ScoPacket::parse(&frozen) {
                 Ok(p) => sco_tx.send(p).unwrap(),
                 Err(e) => log::error!("dropping invalid SCO packet: {}: {:02x}", e, frozen),
@@ -167,10 +172,22 @@ where
 {
     loop {
         select! {
-            Some(cmd) = cmd_rx.recv() => write_with_type(&mut writer, HciPacketType::Command, cmd.to_bytes()).await?,
-            Some(acl) = acl_rx.recv() => write_with_type(&mut writer, HciPacketType::Acl, acl.to_bytes()).await?,
-            Some(iso) = iso_rx.recv() => write_with_type(&mut writer, HciPacketType::Iso, iso.to_bytes()).await?,
-            Some(sco) = sco_rx.recv() => write_with_type(&mut writer, HciPacketType::Sco, sco.to_bytes()).await?,
+            Some(cmd) = cmd_rx.recv() => {
+                println!("Sending command");
+                write_with_type(&mut writer, HciPacketType::Command, cmd.to_bytes()).await?
+            },
+            Some(acl) = acl_rx.recv() => {
+                println!("Sending acl data");
+                write_with_type(&mut writer, HciPacketType::Acl, acl.to_bytes()).await?
+            },
+            Some(iso) = iso_rx.recv() => {
+                println!("Sending iso data");
+                write_with_type(&mut writer, HciPacketType::Iso, iso.to_bytes()).await?
+            },
+            Some(sco) = sco_rx.recv() => {
+                println!("Sending sco data");
+                write_with_type(&mut writer, HciPacketType::Sco, sco.to_bytes()).await?
+            },
             else => break,
         }
     }

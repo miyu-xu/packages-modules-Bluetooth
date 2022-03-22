@@ -33,16 +33,21 @@ struct Controller::impl {
   impl(Controller& module) : module_(module) {}
 
   void Start(hci::HciLayer* hci) {
+    LOG_DEBUG("Controller start");
     hci_ = hci;
     Handler* handler = module_.GetHandler();
+    LOG_DEBUG("Try to register event handler");
     hci_->RegisterEventHandler(
         EventCode::NUMBER_OF_COMPLETED_PACKETS, handler->BindOn(this, &Controller::impl::NumberOfCompletedPackets));
-
+    LOG_DEBUG("REgistration done");
     le_set_event_mask(kDefaultLeEventMask);
     set_event_mask(kDefaultEventMask);
     write_le_host_support(Enable::ENABLED, Enable::DISABLED);
+    LOG_DEBUG("Controller hci enqueue command about to call");
     hci_->EnqueueCommand(ReadLocalNameBuilder::Create(),
                          handler->BindOnceOn(this, &Controller::impl::read_local_name_complete_handler));
+        LOG_DEBUG("Controller hci enqueue command called");
+
     hci_->EnqueueCommand(ReadLocalVersionInformationBuilder::Create(),
                          handler->BindOnceOn(this, &Controller::impl::read_local_version_information_complete_handler));
     hci_->EnqueueCommand(ReadLocalSupportedCommandsBuilder::Create(),
