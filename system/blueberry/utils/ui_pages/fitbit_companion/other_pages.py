@@ -147,6 +147,45 @@ class LoginPage(ui_core.UIPage):
     return self.ctx.page.input(account, password)
 
 
+class GooglePlaySetupPage(ui_core.UIPage):
+  """Fitbit Companion App's GooglePlay setup page.
+
+  The image of this page can refer to below link:
+  https://screenshot.googleplex.com/UrmUkK8SZFvCxhm.png
+  """
+
+  _SETUP_PAYMENT_TEXT = 'Add a payment option to complete your account'
+  _NODE_SKIP_BUTTON_TEXT = 'Install'
+
+  @classmethod
+  def from_xml(cls, ctx: ui_core.Context, ui_xml: minidom.Document,
+               clickable_nodes: NodeList, enabled_nodes: NodeList,
+               all_nodes: NodeList) -> Optional[ui_core.UIPage]:
+    """Instantiates page object from XML object.
+
+    Args:
+      ctx: Page context object.
+      ui_xml: Parsed XML object.
+      clickable_nodes: Clickable node list from page.
+      enabled_nodes: Enabled node list from page.
+      all_nodes: All node from page.
+
+    Returns:
+      UI page object iff the given XML object can be parsed.
+    """
+    for node in enabled_nodes:
+      if cls._SETUP_PAYMENT_TEXT in node.text:
+        return cls(ctx, ui_xml, clickable_nodes, enabled_nodes, all_nodes)
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips the setup.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SKIP_BUTTON_TEXT)
+
+
 class GooglePlayPage(ui_core.UIPage):
   """Fitbit Companion App's GooglePlay page."""
 
