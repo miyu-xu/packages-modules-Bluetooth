@@ -334,6 +334,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "217a0b1d_276d62f1",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1166,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-22T06:43:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a6ed3e3_d6b583f3",
+      "range": {
+        "startLine": 1166,
+        "startChar": 48,
+        "endLine": 1166,
+        "endChar": 49
+      },
+      "revId": "31c30dbba48fe7f9826e652306261bb9262e738c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "39186449_21f2e6c8",
