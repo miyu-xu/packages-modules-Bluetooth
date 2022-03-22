@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0f02f87_42b14a32",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/schemas/com.android.bluetooth.btservice.storage.MetadataDatabase/111.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-03-22T16:30:54Z",
+      "side": 1,
+      "message": "nit: remove extra line.",
+      "revId": "18c9569860a642057a2900fb0af04ca22032562c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
