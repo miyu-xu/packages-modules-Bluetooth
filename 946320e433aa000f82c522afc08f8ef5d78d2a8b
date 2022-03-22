@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2423a15d_6e1ab206",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-22T17:59:33Z",
+      "side": 1,
+      "message": "Can we move this ",
+      "revId": "946320e433aa000f82c522afc08f8ef5d78d2a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d01593c9_07c13fdb",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-22T17:59:33Z",
+      "side": 1,
+      "message": "Can we move these checks out of storage?  It would be more helpful to have these checks where the API is called, so we can fix the problem.",
+      "range": {
+        "startLine": 838,
+        "startChar": 0,
+        "endLine": 838,
+        "endChar": 34
+      },
+      "revId": "946320e433aa000f82c522afc08f8ef5d78d2a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
