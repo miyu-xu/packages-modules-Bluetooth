@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5e6f771_4a77a7a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-22T21:13:09Z",
+      "side": 1,
+      "message": "The set of connections seems pretty straight-forward, but I\u0027m still confused why it happens.  Do we have HCI logs?",
+      "revId": "7d94b6f349199b51f53c7d486731eb3ffab9b1e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e454bf38_3b44fb67",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-22T21:13:09Z",
+      "side": 1,
+      "message": "Did you mean to disable all these tests?",
+      "range": {
+        "startLine": 561,
+        "startChar": 34,
+        "endLine": 561,
+        "endChar": 43
+      },
+      "revId": "7d94b6f349199b51f53c7d486731eb3ffab9b1e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
