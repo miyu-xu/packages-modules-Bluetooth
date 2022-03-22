@@ -744,19 +744,27 @@ public class AdapterService extends Service {
     }
      */
 
-    void updateLeAudioProfileServiceState(boolean isCisCentralSupported) {
-        if (isCisCentralSupported) {
-            return;
+    void updateLeAudioProfileServiceState() {
+        HashSet<Class> nonSupportedProfiles = new HashSet<>();
+
+        if (!mAdapterProperties.isLeConnectedIsochronousStreamCentralSupported()) {
+            nonSupportedProfiles.addAll(Config.geLeAudioUnicastProfiles());
         }
 
-        // Remove the Le audio unicast profiles from the supported list
-        // since the controller doesn't support
-        Config.removeLeAudioUnicastProfilesFromSupportedList();
-        HashSet<Class> leAudioUnicastProfiles = Config.geLeAudioUnicastProfiles();
+        if (!isLeAudioBroadcastAssistantSupported()) {
+            nonSupportedProfiles.add(BassClientService.class);
+        }
 
-        for (Class profileService : leAudioUnicastProfiles) {
-            if (isStartedProfile(profileService.getSimpleName())){
-                setProfileServiceState(profileService, BluetoothAdapter.STATE_OFF);
+        if (!nonSupportedProfiles.isEmpty()) {
+            // Remove non-supported profiles from the supported list
+            // since the controller doesn't support
+            Config.removeProfileFromSupportedList(nonSupportedProfiles);
+
+            // Disable the non-supported profiles service
+            for (Class profileService : nonSupportedProfiles) {
+                if (isStartedProfile(profileService.getSimpleName())) {
+                    setProfileServiceState(profileService, BluetoothAdapter.STATE_OFF);
+                }
             }
         }
     }
