@@ -56,6 +56,7 @@ def get_context(ad: android_device.AndroidDevice,
       other_pages.LoginPage,
       other_pages.FitbitLocationPermissionPopup,
       other_pages.FitbitSmartLockPage,
+      other_pages.GooglePlaySetupPage,
       other_pages.GooglePasswordSavePage,
       other_pages.GooglePlayPage,
       other_pages.GooglePlayNotAvailablePage,
@@ -407,6 +408,7 @@ def pair_device(ctx: context.Context,
   ctx.regr_page_call(pairing_pages.MonitorOxygenSetupPage, 'next')
   ctx.regr_page_call(pairing_pages.AllsetPage, 'done')
   ctx.regr_page_call(pairing_pages.SetupOnWristCallPage, 'skip')
+  ctx.regr_page_call(other_pages.GooglePlaySetupPage, 'skip')
 
   ctx.go_page(account_pages.AccountPage)
   fitbit_prod_name = MODEL_TO_PRODUCT_NAME_MAPPING[device.model]
