@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58441809_d656093d",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "#include \"rust/shim/XXXX.h\"",
+      "range": {
+        "startLine": 208,
+        "startChar": 55,
+        "endLine": 208,
+        "endChar": 67
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87c9d312_5d215f7a",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "this check is not needed",
+      "range": {
+        "startLine": 696,
+        "startChar": 4,
+        "endLine": 696,
+        "endChar": 33
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "740f199a_6895db5e",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "this should be passed in as a factory argument",
+      "range": {
+        "startLine": 696,
+        "startChar": 8,
+        "endLine": 696,
+        "endChar": 19
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2d78788_a61f08b7",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "this should be in facade_main.cc or grpc_root_server",
+      "range": {
+        "startLine": 699,
+        "startChar": 4,
+        "endLine": 699,
+        "endChar": 43
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "806f3f80_177bf731",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "rust_hal_ \u003d std::move(shim::rust::get_hal(rust_stack_));",
+      "range": {
+        "startLine": 700,
+        "startChar": 7,
+        "endLine": 700,
+        "endChar": 88
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3de8466_dbccc8a3",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "#include \"rush/shim/src/bridge.rs.h\"",
+      "range": {
+        "startLine": 38,
+        "startChar": 10,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c34ee7_b72e67a5",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "no need to assign to nullptr\n\nmaybe we use just rust::Box since it is a smart pointer already",
+      "range": {
+        "startLine": 127,
+        "startChar": 45,
+        "endLine": 127,
+        "endChar": 55
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8093a040_cc622f06",
+        "filename": "system/gd/hci/hci_layer.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-22T22:01:52Z",
+      "side": 1,
+      "message": "same as here",
+      "range": {
+        "startLine": 128,
+        "startChar": 31,
+        "endLine": 128,
+        "endChar": 52
+      },
+      "revId": "c2e88c2b3fffd9e9e3e8bf89df04e83992f217ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
