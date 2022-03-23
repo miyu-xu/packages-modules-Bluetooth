@@ -39,6 +39,30 @@
       },
       "revId": "946320e433aa000f82c522afc08f8ef5d78d2a8b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba4bd07_eac6dabc",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-23T12:23:28Z",
+      "side": 1,
+      "message": "Sure.\nbtif_storage_add_bonded_device only used by btif_dm_auth_cmpl_evt\nbtif_storage_add_ble_bonding_key only used by btif_dm_save_ble_bonding_keys",
+      "parentUuid": "d01593c9_07c13fdb",
+      "range": {
+        "startLine": 838,
+        "startChar": 0,
+        "endLine": 838,
+        "endChar": 34
+      },
+      "revId": "946320e433aa000f82c522afc08f8ef5d78d2a8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
