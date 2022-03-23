@@ -16,6 +16,829 @@
       "message": "gentle ping",
       "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9669e8e_b00c59c0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "The biggest concern I have with this code is that it seems to have implemented its own async runtime based around naive polling, and I don\u0027t see any justification for doing that.\n\nThe way I would recommend doing this would be to have a single-threaded tokio runtime manage your async pieces. This would simplify a lot of your code and avoid needing to validate subtle stuff with `Pin`/`Rc` - e.g. right now I think if you shut off the LinkManager while it still has a link active, you\u0027ll end up with it being alive forever.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e04544_9977eb67",
+        "filename": "tools/rootcanal/lmp/include/lmp.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Ideally this file should be managed by `cbindgen` to avoid accidental desyncs.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc9d1e60_43971905",
+        "filename": "tools/rootcanal/lmp/src/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "I think the need for this sort of marker constructor indicates that `procedure::run` is not actually the function you want. More details in the procedure module.",
+      "range": {
+        "startLine": 15,
+        "startChar": 17,
+        "endLine": 15,
+        "endChar": 49
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b81d11_44445e52",
+        "filename": "tools/rootcanal/lmp/src/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Just use the appropriate type on the peer argument rather than casting.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e9f7508_c6a260b0",
+        "filename": "tools/rootcanal/lmp/src/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "As above",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d12676c0_e1a1a3b3",
+        "filename": "tools/rootcanal/lmp/src/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "I think the existence of this at all indicates an architectural problem. Why are we using an externally driven tick rather than a Tokio runtime?",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8129a476_47d4f020",
+        "filename": "tools/rootcanal/lmp/src/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Wouldn\u0027t it make more sense to return an error code rather than take down the process?",
+      "range": {
+        "startLine": 89,
+        "startChar": 69,
+        "endLine": 89,
+        "endChar": 78
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29f9ed2a_88012475",
+        "filename": "tools/rootcanal/lmp/src/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Just use the right type in the argument",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e90025cc_dbfd124d",
+        "filename": "tools/rootcanal/lmp/src/ffi.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Report error",
+      "range": {
+        "startLine": 114,
+        "startChar": 81,
+        "endLine": 114,
+        "endChar": 90
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b87d00_a0e706a9",
+        "filename": "tools/rootcanal/lmp/src/future.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "This macro is copypasted from the tokio crate.\n\nAt a minimum we need attribution here, and I\u0027m still wondering why you\u0027re re-inventing half an async runtime.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "692d6234_9c2e064f",
+        "filename": "tools/rootcanal/lmp/src/future.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "This at a minimum needs an explanation of why you\u0027re creating a custom waker.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39653222_7a194f5f",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "I don\u0027t see this in your header, so it\u0027s not being exported to C, so why turn off the style here?",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f2ec77f_2ab5e487",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "This dispatch strategy seems excessively dynamic. If I look at the types this is called on, packets of the type always go to the same functions. Why not just split the packets into groups and send them to the appropriate tasks rather than doing this manual polling trick?",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baab3bb7_29deabcf",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Same here",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4daf564_fe1d9999",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Unless you have a really good reason why this needs to be statically flattened, a lot of this code would be simpler (e.g. remove lot of marker functions) if you just used `Box\u003cdyn Future\u003cOutput \u003d ()\u003e + \u0027static\u003e` rather than using polymorphism to talk about an anonymous type.",
+      "range": {
+        "startLine": 81,
+        "startChar": 23,
+        "endLine": 81,
+        "endChar": 27
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4032785_ea3967bf",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Consider an error code instead? This will take down the process.",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 19
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26cc13fd_e1616b13",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "This is the second time you wrote this stanza, consider factoring out.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 39
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e3e1d27_d98d0d7e",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Consider an error code instead? This will take down the process.",
+      "range": {
+        "startLine": 110,
+        "startChar": 16,
+        "endLine": 110,
+        "endChar": 38
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01cbaa3a_b5c892da",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "This panic!s. Consider `warn!(\"Unhandled hci packet\")` instead.",
+      "range": {
+        "startLine": 113,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 42
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "264a2356_2f204e0c",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "If we made each of the \"procedures\" a task, and sent messages to them rather than having them access a common mailbox, we could avoid this (because the \"procedure\" equivalent would not need a reference back to the containing linkmanager to work)",
+      "range": {
+        "startLine": 119,
+        "startChar": 26,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27cc3e3b_e6fee689",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Having both valid and invalid versions of an object is usually an antipattern. Maybe we should be using an Option\u003cLink\u003e and rejecting empty HCI addresses on set?",
+      "range": {
+        "startLine": 120,
+        "startChar": 53,
+        "endLine": 120,
+        "endChar": 80
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0fa030_8fe58744",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Prefer to return an error.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46be6634_fb495571",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Prefer to return an error.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af4a4bbf_c098bc49",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Haven\u0027t validated correctness of this yet, but I don\u0027t think this should exist. This should be driven by your async runtime, which for the rest of bluetooth is tokio.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32e39963_f90185a9",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "These are all technically `unsafe extern \"C\"`, as there are conditions on what pointers can be passed into them.",
+      "range": {
+        "startLine": 167,
+        "startChar": 1,
+        "endLine": 171,
+        "endChar": 96
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e2137ff_24a8a06d",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Again, only one implementor, why is this a trait?",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e4fa6c_7a6cfe97",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "While not always, having backlinks like this is usually a sign that something is wrong. You *can* do it due to Pin + Rc, but this also means that as long as a procedure is installed, the LinkManager can\u0027t actually be destroyed - there\u0027s a cycle since the LinkManager contains procedures which contain LinkContexts which reference the LinkManager.\n\nThis means that if the LinkManager gets \"deleted\" by C++ while a link is still active, it\u0027s now permanently active.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e3907bd_485af171",
+        "filename": "tools/rootcanal/lmp/src/packets.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Not relevant to this CL, but this is the type of function we probably shouldn\u0027t need to write with v2.0 of the parser.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a997797_f04bc8c6",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Named constant?",
+      "range": {
+        "startLine": 13,
+        "startChar": 48,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00bb911c_b78f68af",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Other named constant?",
+      "range": {
+        "startLine": 13,
+        "startChar": 51,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a4291b1_a45c5842",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Named constant?",
+      "range": {
+        "startLine": 16,
+        "startChar": 66,
+        "endLine": 16,
+        "endChar": 67
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2202434_dfded61a",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Named constant?",
+      "range": {
+        "startLine": 19,
+        "startChar": 36,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5aad707_f5fbd5c9",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Other named constant?",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 14
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88d086b4_bab9952c",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "OK, this is a bit too far, we\u0027re nesting Eithers to anonymously create sum types. Just declare the enums with appropriate names.",
+      "range": {
+        "startLine": 119,
+        "startChar": 34,
+        "endLine": 122,
+        "endChar": 6
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4e907ba_41df8ecf",
+        "filename": "tools/rootcanal/lmp/src/procedure/mod.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "There is only one implementor of this trait. Why is it a trait rather than just a single concrete type?",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf414ec9_a5fe4e17",
+        "filename": "tools/rootcanal/lmp/src/procedure/mod.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "If you\u0027re finding yourself manually implementing Future, and you\u0027re not writing a new async feature, that should be a red flag - in this case, specifically that you should probably just have each of your \"procedures\" have a message queue rather than all competing to yank packets out of a central cell.",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9cf4765_e00ec565",
+        "filename": "tools/rootcanal/lmp/src/procedure/mod.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "So, if I\u0027m reading this right you:\n1. Convert each expression into a repeated wait on that future, as a future.\n2. You create a future which will poll all of the sub-futures in a loop, assuming they can\u0027t terminate since they\u0027re in a loop.\n3. You wait on that future.\n\nIf that\u0027s correct, I think this obfuscates relative to just doing\n```\njoin! (\n  async { loop { authentication::initiate(\u0026ctx).await } },\n  async { loop { authentication::respond(\u0026ctx).await } },\n  ...\n);\n```",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7d9571e_7c75b143",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Constant. Here and everywhere else you use 48.",
+      "range": {
+        "startLine": 61,
+        "startChar": 76,
+        "endLine": 61,
+        "endChar": 78
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30ed0bfd_1e8094a4",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Constant",
+      "range": {
+        "startLine": 111,
+        "startChar": 31,
+        "endLine": 111,
+        "endChar": 33
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "717b70f8_b13917af",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "B|",
+      "range": {
+        "startLine": 221,
+        "startChar": 35,
+        "endLine": 227,
+        "endChar": 14
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ca88586_77647fb6",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-03-23T23:38:55Z",
+      "side": 1,
+      "message": "Constant",
+      "range": {
+        "startLine": 385,
+        "startChar": 28,
+        "endLine": 385,
+        "endChar": 30
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
