@@ -16,6 +16,24 @@
       "message": "nit: remove extra line.",
       "revId": "18c9569860a642057a2900fb0af04ca22032562c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bb6c888_d0980d36",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/schemas/com.android.bluetooth.btservice.storage.MetadataDatabase/111.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-03-23T01:28:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0f02f87_42b14a32",
+      "revId": "18c9569860a642057a2900fb0af04ca22032562c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
