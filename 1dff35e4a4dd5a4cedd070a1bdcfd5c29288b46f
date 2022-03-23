@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45b0a2f9_15130585",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-23T00:43:57Z",
+      "side": 1,
+      "message": "There is a lot of logic for this special case.  It might make sense to pull it into a higher layer in a future CL.",
+      "revId": "1dff35e4a4dd5a4cedd070a1bdcfd5c29288b46f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36b01515_df581ceb",
