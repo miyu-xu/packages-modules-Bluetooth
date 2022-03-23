@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7009f155_913c164c",
+        "filename": "system/gd/packet/parser/fields/vector_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-23T09:26:57Z",
+      "side": 1,
+      "message": "Should we add an else clause with an assert ?",
+      "revId": "4591e792a2145d66d65835b75f169ba4a5909400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "deb24e4c_4f10537a",
+        "filename": "system/gd/packet/parser/gen_rust.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-23T09:26:57Z",
+      "side": 1,
+      "message": "Could we not transform thoses `String` into `\u0026\u0027static str` ?",
+      "revId": "4591e792a2145d66d65835b75f169ba4a5909400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
