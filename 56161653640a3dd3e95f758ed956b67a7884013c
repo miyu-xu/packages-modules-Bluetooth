@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bbea468_81a3f7f0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-23T16:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b3c8924_80639089",
+      "range": {
+        "startLine": 818,
+        "startChar": 21,
+        "endLine": 818,
+        "endChar": 58
+      },
+      "revId": "56161653640a3dd3e95f758ed956b67a7884013c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b23337a_ced1f657",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ee0816e_bb68c06c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-23T16:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b23337a_ced1f657",
+      "range": {
+        "startLine": 824,
+        "startChar": 74,
+        "endLine": 824,
+        "endChar": 93
+      },
+      "revId": "56161653640a3dd3e95f758ed956b67a7884013c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dd121d5_12f69fb7",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-03-23T08:47:21Z",
       "side": 1,
       "message": "see concerns above. Suggest replacing this with:\n\n- requestControllerActivityEnergyInfo( @NonNull @CallbackExecutor Executor executor, @NonNull OutcomeReceiver\u003cBluetoothActivityEnergyInfo, Throwable\u003e listener)\n- (or a BT specific Throwable subclass if there\u0027s an appropriate one)\n- guarantee that either of the outcome receiver\u0027s methods is invoked; otherwise using this API will be extremely annoying for callers.",
+      "range": {
+        "startLine": 2701,
+        "startChar": 0,
+        "endLine": 2710,
+        "endChar": 0
+      },
+      "revId": "56161653640a3dd3e95f758ed956b67a7884013c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b711094_741fa09f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2710,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-23T16:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dd121d5_12f69fb7",
       "range": {
         "startLine": 2701,
         "startChar": 0,
