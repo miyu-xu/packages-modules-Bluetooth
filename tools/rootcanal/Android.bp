@@ -179,7 +179,7 @@ cc_binary_host {
     ],
     shared_libs: [
         "liblog",
-        "libbacktrace",
+        "libunwindstack",
     ],
     static_libs: [
         "libjsoncpp",
