@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d22c7ce_523d0283",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-23T10:43:47Z",
+      "side": 1,
+      "message": "Will consider solution 1 with a reasonable chosen size for the line length.",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72130b60_6c7e7d95",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-23T10:43:47Z",
+      "side": 1,
+      "message": "According to https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/storage/config_cache.cc;drc\u003d8c76de22f9ac85e2330eb3abee1c5870ccf66963;l\u003d61 the config cache is stored as an unordered set, so saving it to a file and reading it later will NOT guarantee that the \"HidDesLength\" will be before the \"HidDescriptor\" for the memory realloc to happen, so this is open for race conditions.",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "665586ba_5d81b186",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-23T10:43:47Z",
+      "side": 1,
+      "message": "This can introduce exceptions from parsing, from large allocated memory size that could cause later crashes to negative/invalid values or parsing exceptions.",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88b540a7_33df6d1b",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-23T10:43:47Z",
+      "side": 1,
+      "message": "It\u0027s not clear why the line length is incremented with twice the size of the descriptor.",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b394e02_78381d75",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-23T10:43:47Z",
+      "side": 1,
+      "message": "Allocating with malloc and reallocating memory is not a robust practice in this case.",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
