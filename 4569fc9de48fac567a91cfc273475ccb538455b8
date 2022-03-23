@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f98082_82921dc8",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-23T22:14:57Z",
+      "side": 1,
+      "message": "should we ever give up? What would be the reason that the /sys/class/bluetooth is not available? In a system where /sys/class/bluetooth just does not exist, maybe we should give up eventually rather than forever doing exponential backoff?",
+      "range": {
+        "startLine": 330,
+        "startChar": 0,
+        "endLine": 334,
+        "endChar": 17
+      },
+      "revId": "4569fc9de48fac567a91cfc273475ccb538455b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
