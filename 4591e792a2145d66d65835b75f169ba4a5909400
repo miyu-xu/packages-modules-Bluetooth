@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7d42a15_1978332d",
+        "filename": "system/gd/packet/parser/fields/vector_field.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-03-23T09:34:23Z",
+      "side": 1,
+      "message": "If the array is not sized, or if the array element does not have a fixed size, elements are read one by one. There is not need for a bounds check in this case.",
+      "parentUuid": "7009f155_913c164c",
+      "revId": "4591e792a2145d66d65835b75f169ba4a5909400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "deb24e4c_4f10537a",
         "filename": "system/gd/packet/parser/gen_rust.cc",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-23T09:26:57Z",
       "side": 1,
       "message": "Could we not transform thoses `String` into `\u0026\u0027static str` ?",
+      "revId": "4591e792a2145d66d65835b75f169ba4a5909400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f4b3dd2_fe00bff4",
+        "filename": "system/gd/packet/parser/gen_rust.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-03-23T09:34:23Z",
+      "side": 1,
+      "message": "Had the same thought, but not going to do the change in this CL.",
+      "parentUuid": "deb24e4c_4f10537a",
       "revId": "4591e792a2145d66d65835b75f169ba4a5909400",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
