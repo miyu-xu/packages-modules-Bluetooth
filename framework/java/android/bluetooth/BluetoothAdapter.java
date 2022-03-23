@@ -819,8 +819,65 @@ public final class BluetoothAdapter {
     };
 
     /**
+     * Exception that may be supplied to the callback provided in
+     * {@link #requestControllerActivityEnergyInfo}.
+     * @hide
+     */
+    @SystemApi
+    public static class BluetoothActivityEnergyInfoException extends Exception {
+        /** Indicates that an unknown error occurred */
+        public static final int ERROR_UNKNOWN = 0;
+
+        /**
+         * Indicates that the Bluetooth service is unavailable (Bluetooth is off).
+         */
+        public static final int ERROR_SERVICE_UNAVAILABLE = 1;
+
+        /**
+         * Indicates that the device does not support activity and energy reporting.
+         */
+        public static final int ERROR_FEATURE_NOT_SUPPORTED = 2;
+
+        /** @hide */
+        @Retention(RetentionPolicy.SOURCE)
+        @IntDef(prefix = {"ERROR_"},
+                value = {
+                        ERROR_UNKNOWN,
+                        ERROR_SERVICE_UNAVAILABLE,
+                        ERROR_FEATURE_NOT_SUPPORTED,
+                })
+        public @interface BluetoothActivityEnergyInfoError {}
+
+        private final int mErrorCode;
+
+        /**
+         * An exception with BluetoothActivityEnergyInfo specific error codes.
+         *
+         * @param errorCode a BluetoothActivityEnergyInfoError code
+         */
+        public BluetoothActivityEnergyInfoException(
+                @BluetoothActivityEnergyInfoError int errorCode) {
+            mErrorCode = errorCode;
+        }
+
+        public @BluetoothActivityEnergyInfoError int getErrorCode() {
+            return mErrorCode;
+        }
+
+        @Override
+        public String toString() {
+            switch (mErrorCode) {
+                case ERROR_UNKNOWN: return "ERROR_UNKNOWN";
+                case ERROR_SERVICE_UNAVAILABLE: return "ERROR_PHONE_NOT_AVAILABLE";
+                case ERROR_FEATURE_NOT_SUPPORTED: return "ERROR_INVALID_INFO_RECEIVED";
+                default: return "UNDEFINED";
+            }
+        }
+    }
+
+    /**
      * Interface for Bluetooth activity energy info listener. Should be implemented by applications
-     * and set when calling {@link BluetoothAdapter#requestControllerActivityEnergyInfo}.
+     * and set when calling {@link #requestControllerActivityEnergyInfo}.
      *
      * @hide
      */
@@ -831,9 +888,21 @@ public final class BluetoothAdapter {
          * Note: this listener is triggered at most once for each call to
          * {@link #requestControllerActivityEnergyInfo}.
          *
-         * @param info the latest {@link BluetoothActivityEnergyInfo}, or null if unavailable.
+         * @param info the latest {@link BluetoothActivityEnergyInfo}
          */
-        void onBluetoothActivityEnergyInfo(@Nullable BluetoothActivityEnergyInfo info);
+        void onBluetoothActivityEnergyInfoAvailable(
+                @NonNull BluetoothActivityEnergyInfo info);
+
+        /**
+         * Called when the latest {@link BluetoothActivityEnergyInfo} can't be retrieved.
+         * The mode of failure is indicated by the {@link BluetoothActivityEnergyInfoException}
+         * passed as an argument to this method.
+         *
+         * @param error instance of {@link BluetoothActivityEnergyInfoException} containing
+         *              details about the error that occurred
+         */
+        default void onBluetoothActivityEnergyInfoError(
+                @NonNull BluetoothActivityEnergyInfoException error) {}
     }
 
     private static class OnBluetoothActivityEnergyInfoProxy
@@ -863,7 +932,13 @@ public final class BluetoothAdapter {
                 mListener = null;
             }
             Binder.clearCallingIdentity();
-            executor.execute(() -> listener.onBluetoothActivityEnergyInfo(info));
+            if (info == null) {
+                executor.execute(() -> listener.onBluetoothActivityEnergyInfoError(
+                        new BluetoothActivityEnergyInfoException(
+                        BluetoothActivityEnergyInfoException.ERROR_FEATURE_NOT_SUPPORTED)));
+            } else {
+                executor.execute(() -> listener.onBluetoothActivityEnergyInfoAvailable(info));
+            }
         }
     }
 
@@ -2734,12 +2809,13 @@ public final class BluetoothAdapter {
      * has the activity and energy info. This can be used to ascertain what
      * the controller has been up to, since the last sample.
      *
-     * A null value for the activity info object may be sent if the bluetooth service is
-     * unreachable or the device does not support reporting such information.
+     * The callback will be called only once, when the record is available.
      *
      * @param executor the executor that the listener will be invoked on
      * @param listener the listener that will receive the {@link BluetoothActivityEnergyInfo}
-     *                 object when it becomes available
+     *                 object when it becomes available, or the corresponding
+     *                 {@link #BluetoothActivityEnergyInfoException} if an error has
+     *                 occurred
      * @hide
      */
     @SystemApi
@@ -2762,6 +2838,10 @@ public final class BluetoothAdapter {
             }
         } catch (RemoteException e) {
             Log.e(TAG, "getControllerActivityEnergyInfoCallback: " + e);
+            Binder.clearCallingIdentity();
+            executor.execute(() -> listener.onBluetoothActivityEnergyInfoError(
+                    new BluetoothActivityEnergyInfoException(
+                    BluetoothActivityEnergyInfoException.ERROR_SERVICE_UNAVAILABLE)));
         } finally {
             mServiceLock.readLock().unlock();
         }
