@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec850078_e1546228",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-23T00:21:58Z",
+      "side": 1,
+      "message": "Agreed for not using ASSERT in this patch per offline conversation",
+      "parentUuid": "5c96af98_3696659d",
+      "revId": "e515eabf75fef8efdf59f004c7c08447edc69d5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9fd88ea3_5b0a9d3c",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 8
