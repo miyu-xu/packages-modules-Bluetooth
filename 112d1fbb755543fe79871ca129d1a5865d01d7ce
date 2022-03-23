@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9dfa43d_a4411f67",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-23T07:37:30Z",
+      "side": 1,
+      "message": "Could we remove the input parameter and check it inside the function via IsLeConnectedIsochronousStreamCentralSupported()?",
+      "range": {
+        "startLine": 747,
+        "startChar": 50,
+        "endLine": 747,
+        "endChar": 71
+      },
+      "revId": "112d1fbb755543fe79871ca129d1a5865d01d7ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
