@@ -117,6 +117,10 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
     self.pair_and_connect_phone_to_headset()
     # Unregisters sl4a service to avoid raising AdbError before reboot().
     self.watch.services.unregister(_SL4A_ALIAS)
+    self.watch.log.info('Force enable Location.')
+    output = int(self.watch.adb.shell(triangle_constants.ENABLE_LOCATION))
+    if output != 3:
+      raise signals.TestError('Location is disabled on Watch.')
     # Reboots Watch to force sync footprints.
     self.watch.reboot()
     self.watch.services.register(_SL4A_ALIAS, sl4a_service.Sl4aService)
