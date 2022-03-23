@@ -7,6 +7,7 @@ from mobly import test_runner
 from mobly import signals
 
 from mobly.controllers.android_device_lib.services import sl4a_service
+from blueberry.utils import bt_test_utils
 from blueberry.utils import triangle_base_test as base_test
 from blueberry.utils import triangle_constants
 
@@ -127,6 +128,13 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
     self.wait_for_watch_connection(connected=True)
     self._wait_for_footprints_sync()
     self._execute_subsequent_pairing_logic()
+    bt_test_utils.wait_until(
+        timeout_sec=datetime.timedelta(seconds=30).seconds,
+        condition_func=self.watch.is_bt_paired,
+        func_args=[self.headset.mac_address],
+        expected_value=True,
+        exception=signals.TestFailure(
+            'Watch failed to bond with Headset by Subsequent Pairing.'))
     self.assert_headset_a2dp_connection(connected=True, device=self.watch)
     self.assert_headset_hsp_connection(connected=True, device=self.watch)
 
