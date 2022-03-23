@@ -14,6 +14,7 @@ WEARABLE_APP_PACKAGE = 'com.google.android.wearable.app'
 # Package name of Dialer app on Wear.
 DIALER_WEAR_PACKAGE = 'dialer_wear#com.google.android.dialer'
 
+ENABLE_LOCATION = 'cmd location set-location-enabled true'
 SET_SCREEN_OFF_TIMEOUT_HALF_HOUR = (
     'settings put system screen_off_timeout 1800000')
 START_BLUETOOTH_SETTINGS = 'am start -S -a android.settings.BLUETOOTH_SETTINGS'
