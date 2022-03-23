@@ -90,6 +90,14 @@ package android.bluetooth {
     field public static final int STATE_BLE_ON = 15; // 0xf
   }
 
+  public static class BluetoothAdapter.BluetoothActivityEnergyInfoException extends java.lang.Exception {
+    ctor public BluetoothAdapter.BluetoothActivityEnergyInfoException(int);
+    method public int getErrorCode();
+    field public static final int ERROR_FEATURE_NOT_SUPPORTED = 2; // 0x2
+    field public static final int ERROR_SERVICE_UNAVAILABLE = 1; // 0x1
+    field public static final int ERROR_UNKNOWN = 0; // 0x0
+  }
+
   public abstract static class BluetoothAdapter.BluetoothConnectionCallback {
     ctor public BluetoothAdapter.BluetoothConnectionCallback();
     method @NonNull public static String disconnectReasonText(int);
@@ -98,7 +106,8 @@ package android.bluetooth {
   }
 
   public static interface BluetoothAdapter.OnBluetoothActivityEnergyInfoListener {
-    method public void onBluetoothActivityEnergyInfo(@Nullable android.bluetooth.BluetoothActivityEnergyInfo);
+    method public void onBluetoothActivityEnergyInfoAvailable(@NonNull android.bluetooth.BluetoothActivityEnergyInfo);
+    method public default void onBluetoothActivityEnergyInfoError(@NonNull android.bluetooth.BluetoothAdapter.BluetoothActivityEnergyInfoException);
   }
 
   public static interface BluetoothAdapter.OnMetadataChangedListener {
