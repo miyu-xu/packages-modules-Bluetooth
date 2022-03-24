@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1c4242c_68f274bc",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-24T17:32:34Z",
+      "side": 1,
+      "message": "connectability_armed_ \u003d false;",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eb2058b_e68f0004",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-24T17:32:34Z",
+      "side": 1,
+      "message": "`connectability_armed_ \u003d false;` \nor actually first thing in this function could be this",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a03205_c2f3ef61",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-24T17:32:34Z",
+      "side": 1,
+      "message": "it status is different than SUCCESS `connectability_armed_ \u003d false;`",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2bcc2a1_7b6951dc",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-24T17:32:34Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5abc14a3_9c5b7117",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-24T17:32:34Z",
+      "side": 1,
+      "message": "this should be not needed as this will be cleared when actually controller completes connection requrest.",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "822bdaa8_ffd97116",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-24T17:32:34Z",
+      "side": 1,
+      "message": "` || connectability_armed_ \u003d false; `",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26076c66_481552ab",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-24T17:32:34Z",
+      "side": 1,
+      "message": "I think this AckPause should be called from the place where we are sure Connection is Canceled.\nOtherwise, while Connect Cancel is waiting for execution we will notify other parts that their are OK to go, which is not true. e.g. Still Adding to Accept List could be done when connectability_armed_ is true\n\n\nMaybe you could pass parameter disarm_connectability(bool onPauseAction)\nAnd then create sepparate callback `on_create_connection_cancel_complete_pause()` which would call `le_address_manager_-\u003eAckPause(this)`",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
