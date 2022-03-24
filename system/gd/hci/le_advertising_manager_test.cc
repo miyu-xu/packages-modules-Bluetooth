@@ -1083,6 +1083,7 @@ TEST_F(LeExtendedAdvertisingAPITest, disable_enable_advertiser_test) {
 }
 
 TEST_F(LeExtendedAdvertisingAPITest, set_periodic_parameter) {
+  ASSERT(false);
   PeriodicAdvertisingParameters advertising_config{};
   advertising_config.max_interval = 0x1000;
   advertising_config.min_interval = 0x0006;
