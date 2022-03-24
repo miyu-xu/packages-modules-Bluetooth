@@ -20,6 +20,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0c8921d_8e068ccd",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-24T17:39:19Z",
+      "side": 1,
+      "message": "nit: please compare with nullptr instead of casting it to bool\n\n```\nif (leAudioDevice \u003d\u003d nullptr) {\n  return;\n}\n```",
+      "range": {
+        "startLine": 497,
+        "startChar": 0,
+        "endLine": 497,
+        "endChar": 31
+      },
+      "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd4aceed_40b690a4",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-24T17:39:19Z",
+      "side": 1,
+      "message": "Prefer direct while-loop vs. do-while\n\n```\nwhile (leAudioDevice !\u003d nullptr) {\n  for (auto\u0026 ase : leAudioDevice-\u003eases_) {\n    ase.cis_id \u003d le_audio::kInvalidCisId;\n  }\n  leAudioDevice \u003d group-\u003eGetNextDevice(leAudioDevice);\n}\n```\n\nWith this, you also do not have to do the nullptr check in line 497",
+      "range": {
+        "startLine": 499,
+        "startChar": 4,
+        "endLine": 503,
+        "endChar": 68
+      },
+      "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23796d9f_59ab03df",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 2
