@@ -16,6 +16,29 @@
       "message": "The patch cause the issue. As the reconfiguration, createCIG command become invalid. The CIS data only have one, but the CIS count set to 2.",
       "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23796d9f_59ab03df",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-24T15:56:52Z",
+      "side": 1,
+      "message": "Please check if ase-\u003ecis_id is valid here.",
+      "range": {
+        "startLine": 873,
+        "startChar": 8,
+        "endLine": 873,
+        "endChar": 32
+      },
+      "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
