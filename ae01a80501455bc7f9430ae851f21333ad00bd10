@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70ecde0b_57af7a93",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-24T13:43:58Z",
+      "side": 1,
+      "message": "The patch cause the issue. As the reconfiguration, createCIG command become invalid. The CIS data only have one, but the CIS count set to 2.",
+      "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
