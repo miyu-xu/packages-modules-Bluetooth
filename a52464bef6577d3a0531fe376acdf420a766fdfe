@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e9f7210_9d0a2255",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-24T00:52:57Z",
+      "side": 1,
+      "message": "Could you please help to align the check mechanism and behavior on isLeAudioBroadcastAssistantSupported and isLeConnectedIsochronousStreamCentralSupported as well?",
+      "range": {
+        "startLine": 754,
+        "startChar": 13,
+        "endLine": 754,
+        "endChar": 49
+      },
+      "revId": "a52464bef6577d3a0531fe376acdf420a766fdfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
