@@ -415,6 +415,7 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     for device in paired_devices:
       self._ad.sl4a.bluetoothUnbond(device['Address'])
     self._ad.sl4a.bluetoothFactoryReset()
+    self.wait_for_bluetooth_toggle_state(False)
     self._wait_for_bluetooth_manager_state()
     self.wait_for_bluetooth_toggle_state(True)
 
