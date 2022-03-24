@@ -940,6 +940,10 @@ package android.bluetooth {
     method public int getChannelCount();
     method @NonNull public String getCodecName();
     method public int getCodecPriority();
+    method public long getCodecSpecific1();
+    method public long getCodecSpecific2();
+    method public long getCodecSpecific3();
+    method public long getCodecSpecific4();
     method public int getCodecType();
     method public int getFrameDuration();
     method public int getMaxOctetsPerFrame();
@@ -967,7 +971,9 @@ package android.bluetooth {
     field public static final int SAMPLE_RATE_44100 = 64; // 0x40
     field public static final int SAMPLE_RATE_48000 = 128; // 0x80
     field public static final int SAMPLE_RATE_8000 = 1; // 0x1
+    field public static final int SAMPLE_RATE_96000 = 512; // 0x200
     field public static final int SAMPLE_RATE_NONE = 0; // 0x0
+    field public static final int SOURCE_CODEC_TYPE_APTX_ADAPTIVE_LE = 1; // 0x1
     field public static final int SOURCE_CODEC_TYPE_INVALID = 1000000; // 0xf4240
     field public static final int SOURCE_CODEC_TYPE_LC3 = 0; // 0x0
   }
@@ -979,6 +985,10 @@ package android.bluetooth {
     method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setBitsPerSample(int);
     method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setChannelCount(int);
     method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setCodecPriority(int);
+    method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setCodecSpecific1(long);
+    method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setCodecSpecific2(long);
+    method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setCodecSpecific3(long);
+    method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setCodecSpecific4(long);
     method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setCodecType(int);
     method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setFrameDuration(int);
     method @NonNull public android.bluetooth.BluetoothLeAudioCodecConfig.Builder setMaxOctetsPerFrame(int);
