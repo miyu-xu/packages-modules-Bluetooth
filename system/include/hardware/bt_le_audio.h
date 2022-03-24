@@ -58,6 +58,7 @@ enum class GroupNodeStatus {
 
 typedef enum {
   LE_AUDIO_CODEC_INDEX_SOURCE_LC3 = 0,
+  LE_AUDIO_CODEC_INDEX_SOURCE_APTX_ADAPTIVE_LE,
   LE_AUDIO_CODEC_INDEX_SOURCE_MAX
 } btle_audio_codec_index_t;
 
