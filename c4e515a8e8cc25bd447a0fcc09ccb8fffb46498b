@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "670c5a71_ed67905b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-24T08:13:00Z",
+      "side": 1,
+      "message": "Yes, I already sent https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2038803 to review, will follow up with backports after merge.\nEven making this solution more robust will bring unwanted complexity (at least at this point). Probably a refactor of how the config cache is stored and retrieved could bring more flexibility to the line size (in a future Android release), but for now, keeping the same parsing and just increasing the limit to a reasonable value used also in other devices will have effective results.\n\nWe can put this CL in standby and abandon it after aosp/2038803 gets merged and achieves the desired fix.",
+      "parentUuid": "e97bde2f_fd037b11",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72130b60_6c7e7d95",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "I am sorry that I don\u0027t consider unordered set, in this case, this solution is bad solution",
       "parentUuid": "72130b60_6c7e7d95",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a7f1c20_fa3cd549",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-24T08:13:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c1d5278a_beddc86b",
       "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -119,6 +155,24 @@
       "side": 1,
       "message": "because Descriptor is uint_8 type, \nwhen storage Descriptor, such as 0x25, it will become character \u00272\u0027\u00275\u0027 in cache, so the line length will incremented with twice.",
       "parentUuid": "88b540a7_33df6d1b",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "467256fb_df47cf9a",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-03-24T08:13:00Z",
+      "side": 1,
+      "message": "Yes, but why add it to the existing line_length and not just replace it with something like (sizeof(\"HidDesLength \u003d \") + 2 * hidDesLen), is it for safety? In any case, not important at this point.",
+      "parentUuid": "9a1f239f_d950b294",
       "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
