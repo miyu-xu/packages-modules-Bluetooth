@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dbf8a92_3e6ae1f2",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-24T20:28:47Z",
+      "side": 1,
+      "message": "Just curious why you opted to create an Exception instead of having an int error code param in the callback?",
+      "revId": "099415ce9001c0d91a2aa83c8a08e79146b05eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
