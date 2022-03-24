@@ -44,26 +44,18 @@
  *             message size
  ******************************************************************************/
 #define HCIC_BLE_RAND_DI_SIZE 8
-#define HCIC_BLE_IRK_SIZE 16
 
 #define HCIC_PARAM_SIZE_SET_USED_FEAT_CMD 8
-#define HCIC_PARAM_SIZE_WRITE_RANDOM_ADDR_CMD 6
 #define HCIC_PARAM_SIZE_BLE_WRITE_ADV_PARAMS 15
 #define HCIC_PARAM_SIZE_BLE_WRITE_SCAN_RSP 31
 #define HCIC_PARAM_SIZE_WRITE_ADV_ENABLE 1
 #define HCIC_PARAM_SIZE_BLE_WRITE_SCAN_PARAM 7
 #define HCIC_PARAM_SIZE_BLE_WRITE_SCAN_ENABLE 2
-#define HCIC_PARAM_SIZE_BLE_CREATE_LL_CONN 25
-#define HCIC_PARAM_SIZE_BLE_CREATE_CONN_CANCEL 0
-#define HCIC_PARAM_SIZE_CLEAR_ACCEPTLIST 0
-#define HCIC_PARAM_SIZE_ADD_ACCEPTLIST 7
-#define HCIC_PARAM_SIZE_REMOVE_ACCEPTLIST 7
 #define HCIC_PARAM_SIZE_BLE_UPD_LL_CONN_PARAMS 14
 #define HCIC_PARAM_SIZE_SET_HOST_CHNL_CLASS 5
 #define HCIC_PARAM_SIZE_READ_CHNL_MAP 2
 #define HCIC_PARAM_SIZE_BLE_READ_REMOTE_FEAT 2
 #define HCIC_PARAM_SIZE_BLE_ENCRYPT 32
-#define HCIC_PARAM_SIZE_WRITE_LE_HOST_SUPPORTED 2
 
 #define HCIC_BLE_RAND_DI_SIZE 8
 #define HCIC_BLE_ENCRYPT_KEY_SIZE 16
@@ -74,24 +66,15 @@
 #define HCIC_BLE_CHNL_MAP_SIZE 5
 #define HCIC_PARAM_SIZE_BLE_WRITE_ADV_DATA 31
 
-#define HCIC_PARAM_SIZE_BLE_ADD_DEV_RESOLVING_LIST (7 + HCIC_BLE_IRK_SIZE * 2)
-#define HCIC_PARAM_SIZE_BLE_RM_DEV_RESOLVING_LIST 7
 #define HCIC_PARAM_SIZE_BLE_SET_PRIVACY_MODE 8
-#define HCIC_PARAM_SIZE_BLE_CLEAR_RESOLVING_LIST 0
-#define HCIC_PARAM_SIZE_BLE_READ_RESOLVING_LIST_SIZE 0
 #define HCIC_PARAM_SIZE_BLE_READ_RESOLVABLE_ADDR_PEER 7
 #define HCIC_PARAM_SIZE_BLE_READ_RESOLVABLE_ADDR_LOCAL 7
-#define HCIC_PARAM_SIZE_BLE_SET_ADDR_RESOLUTION_ENABLE 1
 #define HCIC_PARAM_SIZE_BLE_SET_RAND_PRIV_ADDR_TIMOUT 2
 
-#define HCIC_PARAM_SIZE_BLE_READ_PHY 2
-#define HCIC_PARAM_SIZE_BLE_SET_DEFAULT_PHY 3
-#define HCIC_PARAM_SIZE_BLE_SET_PHY 7
 #define HCIC_PARAM_SIZE_BLE_ENH_RX_TEST 3
 #define HCIC_PARAM_SIZE_BLE_ENH_TX_TEST 4
 
 #define HCIC_PARAM_SIZE_BLE_SET_DATA_LENGTH 6
-#define HCIC_PARAM_SIZE_BLE_WRITE_EXTENDED_SCAN_PARAM 11
 
 #define HCIC_PARAM_SIZE_BLE_RC_PARAM_REQ_REPLY 14
 #define HCIC_PARAM_SIZE_BLE_RC_PARAM_REQ_NEG_REPLY 3
@@ -121,22 +104,6 @@ void btsnd_hcic_ble_set_local_used_feat(uint8_t feat_set[8]) {
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
-
-void btsnd_hcic_ble_set_random_addr(const RawAddress& random_bda) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_WRITE_RANDOM_ADDR_CMD;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_BLE_WRITE_RANDOM_ADDR);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_WRITE_RANDOM_ADDR_CMD);
-
-  BDADDR_TO_STREAM(pp, random_bda);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_ble_write_adv_params(uint16_t adv_int_min, uint16_t adv_int_max,
                                      uint8_t adv_type,
                                      tBLE_ADDR_TYPE addr_type_own,
@@ -274,88 +241,6 @@ void btsnd_hcic_ble_set_scan_enable(uint8_t scan_enable, uint8_t duplicate) {
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-/* link layer connection management commands */
-void btsnd_hcic_ble_create_ll_conn(uint16_t scan_int, uint16_t scan_win,
-                                   uint8_t init_filter_policy,
-                                   tBLE_ADDR_TYPE addr_type_peer,
-                                   const RawAddress& bda_peer,
-                                   tBLE_ADDR_TYPE addr_type_own,
-                                   uint16_t conn_int_min, uint16_t conn_int_max,
-                                   uint16_t conn_latency, uint16_t conn_timeout,
-                                   uint16_t min_ce_len, uint16_t max_ce_len) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_BLE_CREATE_LL_CONN;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_BLE_CREATE_LL_CONN);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_BLE_CREATE_LL_CONN);
-
-  UINT16_TO_STREAM(pp, scan_int);
-  UINT16_TO_STREAM(pp, scan_win);
-  UINT8_TO_STREAM(pp, init_filter_policy);
-
-  UINT8_TO_STREAM(pp, addr_type_peer);
-  BDADDR_TO_STREAM(pp, bda_peer);
-  UINT8_TO_STREAM(pp, addr_type_own);
-
-  UINT16_TO_STREAM(pp, conn_int_min);
-  UINT16_TO_STREAM(pp, conn_int_max);
-  UINT16_TO_STREAM(pp, conn_latency);
-  UINT16_TO_STREAM(pp, conn_timeout);
-
-  UINT16_TO_STREAM(pp, min_ce_len);
-  UINT16_TO_STREAM(pp, max_ce_len);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_ble_create_conn_cancel(void) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_BLE_CREATE_CONN_CANCEL;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_BLE_CREATE_CONN_CANCEL);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_BLE_CREATE_CONN_CANCEL);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_ble_clear_acceptlist(
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_CLEAR_ACCEPTLIST, nullptr, 0,
-                            std::move(cb));
-}
-
-void btsnd_hcic_ble_add_acceptlist(
-    uint8_t addr_type, const RawAddress& bda,
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
-  uint8_t param[HCIC_PARAM_SIZE_ADD_ACCEPTLIST];
-  uint8_t* pp = param;
-
-  UINT8_TO_STREAM(pp, addr_type);
-  BDADDR_TO_STREAM(pp, bda);
-
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_ADD_ACCEPTLIST, param,
-                            HCIC_PARAM_SIZE_ADD_ACCEPTLIST, std::move(cb));
-}
-
-void btsnd_hcic_ble_remove_from_acceptlist(
-    tBLE_ADDR_TYPE addr_type, const RawAddress& bda,
-    base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
-  uint8_t param[HCIC_PARAM_SIZE_REMOVE_ACCEPTLIST];
-  uint8_t* pp = param;
-
-  UINT8_TO_STREAM(pp, addr_type);
-  BDADDR_TO_STREAM(pp, bda);
-
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_REMOVE_ACCEPTLIST, param,
-                            HCIC_PARAM_SIZE_REMOVE_ACCEPTLIST, std::move(cb));
-}
-
 void btsnd_hcic_ble_upd_ll_conn_params(uint16_t handle, uint16_t conn_int_min,
                                        uint16_t conn_int_max,
                                        uint16_t conn_latency,
@@ -413,7 +298,6 @@ void btsnd_hcic_ble_read_chnl_map(uint16_t handle) {
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
-
 void btsnd_hcic_ble_read_remote_feat(uint16_t handle) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
@@ -428,7 +312,6 @@ void btsnd_hcic_ble_read_remote_feat(uint16_t handle) {
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
-
 void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {
   btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_RAND, nullptr, 0,
                             base::Bind(
@@ -537,20 +420,6 @@ void btsnd_hcic_ble_test_end(void) {
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
-
-void btsnd_hcic_ble_read_host_supported(void) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_READ_CMD;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_READ_LE_HOST_SUPPORT);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_READ_CMD);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_ble_rc_param_req_reply(uint16_t handle, uint16_t conn_int_min,
                                        uint16_t conn_int_max,
                                        uint16_t conn_latency,
@@ -624,21 +493,6 @@ void btsnd_hcic_ble_read_resolvable_addr_local(uint8_t addr_type_peer,
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
-
-void btsnd_hcic_ble_set_addr_resolution_enable(uint8_t addr_resolution_enable) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_BLE_SET_ADDR_RESOLUTION_ENABLE;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_BLE_SET_ADDR_RESOLUTION_ENABLE);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_BLE_SET_ADDR_RESOLUTION_ENABLE);
-  UINT8_TO_STREAM(pp, addr_resolution_enable);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_ble_set_rand_priv_addr_timeout(uint16_t rpa_timout) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
@@ -758,50 +612,6 @@ void btsnd_hcic_ble_set_extended_scan_enable(uint8_t enable,
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
-
-void btsnd_hcic_ble_ext_create_conn(uint8_t init_filter_policy,
-                                    tBLE_ADDR_TYPE addr_type_own,
-                                    tBLE_ADDR_TYPE addr_type_peer,
-                                    const RawAddress& bda_peer,
-                                    uint8_t initiating_phys,
-                                    EXT_CONN_PHY_CFG* phy_cfg) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  int phy_cnt =
-      std::bitset<std::numeric_limits<uint8_t>::digits>(initiating_phys)
-          .count();
-
-  /* param_len = initial_params + size_per_channel * num_of_channels */
-  uint8_t param_len = 10 + (16 * phy_cnt);
-
-  p->len = HCIC_PREAMBLE_SIZE + param_len;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_LE_EXTENDED_CREATE_CONNECTION);
-  UINT8_TO_STREAM(pp, param_len);
-
-  UINT8_TO_STREAM(pp, init_filter_policy);
-  UINT8_TO_STREAM(pp, addr_type_own);
-  UINT8_TO_STREAM(pp, addr_type_peer);
-  BDADDR_TO_STREAM(pp, bda_peer);
-
-  UINT8_TO_STREAM(pp, initiating_phys);
-
-  for (int i = 0; i < phy_cnt; i++) {
-    UINT16_TO_STREAM(pp, phy_cfg[i].scan_int);
-    UINT16_TO_STREAM(pp, phy_cfg[i].scan_win);
-    UINT16_TO_STREAM(pp, phy_cfg[i].conn_int_min);
-    UINT16_TO_STREAM(pp, phy_cfg[i].conn_int_max);
-    UINT16_TO_STREAM(pp, phy_cfg[i].conn_latency);
-    UINT16_TO_STREAM(pp, phy_cfg[i].sup_timeout);
-    UINT16_TO_STREAM(pp, phy_cfg[i].min_ce_len);
-    UINT16_TO_STREAM(pp, phy_cfg[i].max_ce_len);
-  }
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_read_iso_tx_sync(
     uint16_t iso_handle, base::OnceCallback<void(uint8_t*, uint16_t)> cb) {
   const int params_len = 2;

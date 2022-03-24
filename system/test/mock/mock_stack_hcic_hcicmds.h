@@ -132,26 +132,6 @@ struct btsnd_hcic_change_name {
 };
 extern struct btsnd_hcic_change_name btsnd_hcic_change_name;
 
-// Name: btsnd_hcic_create_conn
-// Params: const RawAddress& dest, uint16_t packet_types, uint8_t
-// page_scan_rep_mode, uint8_t page_scan_mode, uint16_t clock_offset, uint8_t
-// allow_switch Return: void
-struct btsnd_hcic_create_conn {
-  std::function<void(const RawAddress& dest, uint16_t packet_types,
-                     uint8_t page_scan_rep_mode, uint8_t page_scan_mode,
-                     uint16_t clock_offset, uint8_t allow_switch)>
-      body{[](const RawAddress& dest, uint16_t packet_types,
-              uint8_t page_scan_rep_mode, uint8_t page_scan_mode,
-              uint16_t clock_offset, uint8_t allow_switch) {}};
-  void operator()(const RawAddress& dest, uint16_t packet_types,
-                  uint8_t page_scan_rep_mode, uint8_t page_scan_mode,
-                  uint16_t clock_offset, uint8_t allow_switch) {
-    body(dest, packet_types, page_scan_rep_mode, page_scan_mode, clock_offset,
-         allow_switch);
-  };
-};
-extern struct btsnd_hcic_create_conn btsnd_hcic_create_conn;
-
 // Name: btsnd_hcic_create_conn_cancel
 // Params: const RawAddress& dest
 // Return: void
@@ -447,15 +427,6 @@ struct btsnd_hcic_read_inq_tx_power {
   void operator()(void) { body(); };
 };
 extern struct btsnd_hcic_read_inq_tx_power btsnd_hcic_read_inq_tx_power;
-
-// Name: btsnd_hcic_read_lmp_handle
-// Params: uint16_t handle
-// Return: void
-struct btsnd_hcic_read_lmp_handle {
-  std::function<void(uint16_t handle)> body{[](uint16_t handle) {}};
-  void operator()(uint16_t handle) { body(handle); };
-};
-extern struct btsnd_hcic_read_lmp_handle btsnd_hcic_read_lmp_handle;
 
 // Name: btsnd_hcic_read_local_oob_data
 // Params: void
