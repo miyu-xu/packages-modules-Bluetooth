@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e97bde2f_fd037b11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2022-03-24T06:03:35Z",
+      "side": 1,
+      "message": "So, will you consider solution 1(set line[4096])? \nbecasue this solution is bad or whether need me to to propose a new solution",
+      "parentUuid": "3d22c7ce_523d0283",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72130b60_6c7e7d95",
         "filename": "system/osi/src/config.cc",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-23T10:43:47Z",
       "side": 1,
       "message": "According to https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/storage/config_cache.cc;drc\u003d8c76de22f9ac85e2330eb3abee1c5870ccf66963;l\u003d61 the config cache is stored as an unordered set, so saving it to a file and reading it later will NOT guarantee that the \"HidDesLength\" will be before the \"HidDescriptor\" for the memory realloc to happen, so this is open for race conditions.",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1d5278a_beddc86b",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2022-03-24T06:03:35Z",
+      "side": 1,
+      "message": "I am sorry that I don\u0027t consider unordered set, in this case, this solution is bad solution",
+      "parentUuid": "72130b60_6c7e7d95",
       "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -65,6 +101,24 @@
       "writtenOn": "2022-03-23T10:43:47Z",
       "side": 1,
       "message": "It\u0027s not clear why the line length is incremented with twice the size of the descriptor.",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a1f239f_d950b294",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2022-03-24T06:03:35Z",
+      "side": 1,
+      "message": "because Descriptor is uint_8 type, \nwhen storage Descriptor, such as 0x25, it will become character \u00272\u0027\u00275\u0027 in cache, so the line length will incremented with twice.",
+      "parentUuid": "88b540a7_33df6d1b",
       "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
