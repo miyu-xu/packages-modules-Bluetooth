@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89d17520_096b1266",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-24T20:24:14Z",
+      "side": 1,
+      "message": "I made this same mistake, but this is checking the build version, not the target SDK of the calling app. I\u0027ll put out a CL this week to add a utility method to check the target SDK of the calling app.",
+      "revId": "d72f26f7042026d7303dd05382cf358a4b64a7bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
