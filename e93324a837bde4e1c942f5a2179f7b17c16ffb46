@@ -46,6 +46,30 @@
       },
       "revId": "e93324a837bde4e1c942f5a2179f7b17c16ffb46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "553ae258_05db8ffa",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-24T21:13:29Z",
+      "side": 1,
+      "message": "Could you add it to gd/common/strings.h and gd/common/strings.cc and gd/common/strings_tests.cc?",
+      "parentUuid": "a60e776e_c5eb3850",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "e93324a837bde4e1c942f5a2179f7b17c16ffb46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
