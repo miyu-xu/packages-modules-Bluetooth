@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e410e3f7_b9844c49",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-24T16:07:41Z",
+      "side": 1,
+      "message": "In legacy, this type is always set to 2 (ANY), so that the filter will match resolved addresses.  I think it should be set to 2 here, as well.\n\nSee CL 2030653",
+      "revId": "f5409520cae309597a05af23e9634ce6e8e8b331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
