@@ -145,6 +145,7 @@ LeAddressManager::AddressPolicy LeAddressManager::Register(LeAddressManagerCallb
 }
 
 void LeAddressManager::register_client(LeAddressManagerCallback* callback) {
+  LOG_INFO("CYDBG register_client");
   registered_clients_.insert(std::pair<LeAddressManagerCallback*, ClientState>(callback, ClientState::RESUMED));
   if (address_policy_ == AddressPolicy::POLICY_NOT_SET) {
     LOG_INFO("address policy isn't set yet, pause clients and return");
@@ -164,6 +165,7 @@ void LeAddressManager::Unregister(LeAddressManagerCallback* callback) {
 }
 
 void LeAddressManager::unregister_client(LeAddressManagerCallback* callback) {
+  LOG_INFO("CYDBG unregister_client");
   if (registered_clients_.find(callback) != registered_clients_.end()) {
     if (registered_clients_.find(callback)->second == ClientState::WAITING_FOR_PAUSE) {
       ack_pause(callback);
@@ -226,6 +228,7 @@ void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
   }
 
   if (address_policy_ != AddressPolicy::POLICY_NOT_SET) {
+    LOG_INFO("CYDBG handle_next_command");
     handle_next_command();
   }
 }
@@ -358,6 +361,7 @@ uint8_t LeAddressManager::GetResolvingListSize() {
 }
 
 void LeAddressManager::handle_next_command() {
+  LOG_INFO("CYDBG handle_next_command");
   for (auto client : registered_clients_) {
     if (client.second != ClientState::PAUSED) {
       // make sure all client paused, if not, this function will be trigger again by ack_pause
@@ -411,7 +415,12 @@ void LeAddressManager::AddDeviceToResolvingList(
   Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
   cached_commands_.push(std::move(enable));
 
-  pause_registered_clients();
+  if (registered_clients_.empty()) {
+    LOG_INFO("CYDBG handle_next_command");
+    handle_next_command();
+  } else {
+    pause_registered_clients();
+  }
 }
 
 void LeAddressManager::RemoveDeviceFromConnectList(
@@ -438,7 +447,12 @@ void LeAddressManager::RemoveDeviceFromResolvingList(
   Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
   cached_commands_.push(std::move(enable));
 
-  pause_registered_clients();
+  if (registered_clients_.empty()) {
+    LOG_INFO("CYDBG handle_next_command");
+    handle_next_command();
+  } else {
+    pause_registered_clients();
+  }
 }
 
 void LeAddressManager::ClearConnectList() {
@@ -497,6 +511,11 @@ void LeAddressManager::OnCommandComplete(bluetooth::hci::CommandCompleteView vie
 void LeAddressManager::check_cached_commands() {
   for (auto client : registered_clients_) {
     if (client.second != ClientState::PAUSED) {
+      LOG_INFO("CYDBG");
+      if (client.second == ClientState::WAITING_FOR_PAUSE) {
+        LOG_INFO("CYDBG client.second == ClientState::WAITING_FOR_PAUSE");
+      }
+      pause_registered_clients();
       return;
     }
   }
@@ -504,6 +523,7 @@ void LeAddressManager::check_cached_commands() {
   if (cached_commands_.empty()) {
     resume_registered_clients();
   } else {
+    LOG_INFO("CYDBG handle_next_command");
     handle_next_command();
   }
 }
