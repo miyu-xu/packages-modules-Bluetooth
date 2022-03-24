@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1654e77f_25e3d536",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1038,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T15:36:25Z",
+      "side": 1,
+      "message": "Agreed with below comment; can you provide this format ?\n\nThere is a 3rd condition that wasn\u0027t caught and a log should be provided in the unlikely event the first 2 conditions aren\u0027t met.\n\n\n+          p_data-\u003eapi_sndcmd.t_type !\u003d HID_TRANS_DATA) {\n+          tBTA_HH cbdata \u003d {\n+              .hs_data \u003d {\n+                  .status \u003d BTA_HH_ERR,\n+                  .handle \u003d p_cb-\u003ehid_handle,\n+                  .rsp_data \u003d {\n+                      .proto_mode \u003d BTA_HH_GET_RPT_EVT,\n+                  },\n+              },\n+          };\n+          (*bta_hh_cb.p_cback)(event, \u0026cbdata);\n+      } else if (api_sndcmd_param \u003d\u003d BTA_HH_CTRL_VIRTUAL_CABLE_UNPLUG) {\n+          tBTA_HH cbdata \u003d {\n+              .dev_status \u003d {\n+                  .status \u003d BTA_HH_ERR,\n+                  .handle \u003d p_cb-\u003ehid_handle,\n+              }\n+          };\n+          (*bta_hh_cb.p_cback)(BTA_HH_VC_UNPLUG_EVT, \u0026cbdata);\n+      } else {\n+        LOG_ERROR(\"HID_HostWriteDev Error in unknown state\");\n+      }",
+      "revId": "07740bb4956064ac3a14dacd18c4cb7a017db372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9d669ae_ebce333e",
         "filename": "system/bta/hh/bta_hh_act.cc",
         "patchSetId": 2
