@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2467c25_9479ff50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "Thanks for review !\n\nOne decision to make is if we want to have a standard disarmed/arming/armed/disarming set of states or a simple boolean flag.\n\nThe former will provide more granularity with error conditions and is the current networking convention that handles non-ideal state transitions.\n",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1c4242c_68f274bc",
@@ -18,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feecd061_9317cbdd",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "Yes...with some previous code reshuffling the on_common_le_connection_complete is no longer shared here and should be even more immediate.",
+      "parentUuid": "a1c4242c_68f274bc",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2eb2058b_e68f0004",
@@ -31,6 +66,24 @@
       "writtenOn": "2022-03-24T17:32:34Z",
       "side": 1,
       "message": "`connectability_armed_ \u003d false;` \nor actually first thing in this function could be this",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13c82d26_c887fd2b",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "Agreed...see first comment...Original code had this in common, but subsequent changes moved this around.",
+      "parentUuid": "2eb2058b_e68f0004",
       "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +107,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e0c26db5_82109c64",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "So this is an impl decision.  The idea is to have a boolean true/false armed/disarmed.  This is set to armed when the command is sent.\n\nWe could have one disarmed/arming/armed/disarming, but wouldn\u0027t be a boolean, and then the arming/disarming would be the time between create_connection and cancel_connect command/command_status.\n\nI chose the former b/c it\u0027s less complex, and I don\u0027t think we need the granularity of the latter.\n\nLet me know what you think",
+      "parentUuid": "68a03205_c2f3ef61",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2bcc2a1_7b6951dc",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 10
@@ -65,6 +136,24 @@
       "writtenOn": "2022-03-24T17:32:34Z",
       "side": 1,
       "message": "ditto",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4889835_dc125d10",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 537,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a2bcc2a1_7b6951dc",
       "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +177,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e59750bc_97fc1f37",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "This goes the the previous comment; the connectability_armed_ flag shadows the actual state of the hardware, and hence is only an approximation.\n\nSo we either set it armed when the command is sent (and clear if command status fails), or set on command status is received if success.\n\nI worry about the latter if one connect_request is pending, and then we send another one b/c we don\u0027t set connectability_armed_ until command status is received.\n\nThen we\u0027d need to go to a more granular set of flags (disarmed/arming/armed/disarming)",
+      "parentUuid": "5abc14a3_9c5b7117",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "822bdaa8_ffd97116",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 10
@@ -99,6 +206,24 @@
       "writtenOn": "2022-03-24T17:32:34Z",
       "side": 1,
       "message": "` || connectability_armed_ \u003d false; `",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "899e489e_6f8912f2",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 802,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "yes..I think this is correct",
+      "parentUuid": "822bdaa8_ffd97116",
       "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -116,6 +241,24 @@
       "writtenOn": "2022-03-24T17:32:34Z",
       "side": 1,
       "message": "I think this AckPause should be called from the place where we are sure Connection is Canceled.\nOtherwise, while Connect Cancel is waiting for execution we will notify other parts that their are OK to go, which is not true. e.g. Still Adding to Accept List could be done when connectability_armed_ is true\n\n\nMaybe you could pass parameter disarm_connectability(bool onPauseAction)\nAnd then create sepparate callback `on_create_connection_cancel_complete_pause()` which would call `le_address_manager_-\u003eAckPause(this)`",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fe93ae1_23fb091a",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-24T18:15:39Z",
+      "side": 1,
+      "message": "This gets tricky b/c it\u0027s outside the architecture, but is an issue.\n\nLet\u0027s tackle the rest of the stuff and circle back on this.",
+      "parentUuid": "26076c66_481552ab",
       "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
