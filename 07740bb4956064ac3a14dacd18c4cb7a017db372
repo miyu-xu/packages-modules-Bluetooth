@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a03ffe_944639e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-24T13:10:46Z",
+      "side": 1,
+      "message": "Looks good.  I have one suggestion for avoiding casts.  What do you think?",
+      "revId": "07740bb4956064ac3a14dacd18c4cb7a017db372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9d669ae_ebce333e",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-24T13:10:46Z",
+      "side": 1,
+      "message": "Can we get rid of the casting if we do something like this:\n\n        tBTA_HH cbdata \u003d {.dev_status{BTA_HH_ERR, p_cb-\u003ehid_handle}};\n        (*bta_hh_cb.p_cback)(BTA_HH_VC_UNPLUG_EVT, \u0026cbdata);\n        \nAnd the same thing for the cast on 1041?",
+      "range": {
+        "startLine": 1044,
+        "startChar": 51,
+        "endLine": 1044,
+        "endChar": 68
+      },
+      "revId": "07740bb4956064ac3a14dacd18c4cb7a017db372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
