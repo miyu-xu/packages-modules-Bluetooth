@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22c35cfc_5f0d2a87",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-24T21:53:24Z",
+      "side": 1,
+      "message": "We should register suspend callback before marking adapter ready.",
+      "revId": "8e30047f14313ce9b92328c00231839e427bc53c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
