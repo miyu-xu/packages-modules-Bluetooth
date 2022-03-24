@@ -94,10 +94,13 @@ BluetoothAudioClientInterface::GetAudioCapabilities(SessionType session_type) {
 }
 
 void BluetoothAudioClientInterface::FetchAudioProvider() {
+  bool reflash = false;
   if (provider_ != nullptr) {
     LOG(WARNING) << __func__ << ": reflash";
+    reflash = true;
   }
-  if (!is_aidl_available()) {
+  // When reflashing, AIDL must be available so it doesn't need to check
+  if (!reflash && !is_aidl_available()) {
     return;
   }
   auto provider_factory = IBluetoothAudioProviderFactory::fromBinder(
