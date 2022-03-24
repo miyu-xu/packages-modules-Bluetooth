@@ -1426,9 +1426,8 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     """
     def is_bluetooth_enabled() -> bool:
       """Returns True if Bluetooth enabled else False."""
-      cmd = 'dumpsys bluetooth_manager|grep -E "enabled: true|enabled: false"'
-      bt_status = self._ad.adb.shell(cmd).decode().strip()
-      return 'true' in bt_status
+      return 'enabled: true' in self.dump_bluetooth_manager(
+          ('|', 'grep', '-A1', '"Bluetooth Status"'))
 
     bt_test_utils.wait_until(
         timeout_sec=timeout_sec,
