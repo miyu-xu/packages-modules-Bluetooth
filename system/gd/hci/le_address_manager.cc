@@ -411,7 +411,11 @@ void LeAddressManager::AddDeviceToResolvingList(
   Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
   cached_commands_.push(std::move(enable));
 
-  pause_registered_clients();
+  if (registered_clients_.empty()) {
+    handle_next_command();
+  } else {
+    pause_registered_clients();
+  }
 }
 
 void LeAddressManager::RemoveDeviceFromConnectList(
@@ -438,7 +442,11 @@ void LeAddressManager::RemoveDeviceFromResolvingList(
   Command enable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(enable_builder)};
   cached_commands_.push(std::move(enable));
 
-  pause_registered_clients();
+  if (registered_clients_.empty()) {
+    handle_next_command();
+  } else {
+    pause_registered_clients();
+  }
 }
 
 void LeAddressManager::ClearConnectList() {
@@ -497,6 +505,7 @@ void LeAddressManager::OnCommandComplete(bluetooth::hci::CommandCompleteView vie
 void LeAddressManager::check_cached_commands() {
   for (auto client : registered_clients_) {
     if (client.second != ClientState::PAUSED) {
+      pause_registered_clients();
       return;
     }
   }
