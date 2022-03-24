@@ -81,6 +81,30 @@
       },
       "revId": "27e9d22390c615d43f66256e8add9c2d9a17e710",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18414000_e712808f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3229,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-24T10:22:18Z",
+      "side": 1,
+      "message": "We don\u0027t have this signal on HIDL and SW path as well.",
+      "parentUuid": "d3dfbcb8_efcf306f",
+      "range": {
+        "startLine": 3229,
+        "startChar": 10,
+        "endLine": 3229,
+        "endChar": 23
+      },
+      "revId": "27e9d22390c615d43f66256e8add9c2d9a17e710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
