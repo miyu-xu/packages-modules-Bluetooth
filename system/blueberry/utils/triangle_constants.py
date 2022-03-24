@@ -15,6 +15,7 @@ WEARABLE_APP_PACKAGE = 'com.google.android.wearable.app'
 DIALER_WEAR_PACKAGE = 'dialer_wear#com.google.android.dialer'
 
 ENABLE_LOCATION = 'cmd location set-location-enabled true'
+GET_LOCATION_MODE = 'settings get secure location_mode'
 SET_SCREEN_OFF_TIMEOUT_HALF_HOUR = (
     'settings put system screen_off_timeout 1800000')
 START_BLUETOOTH_SETTINGS = 'am start -S -a android.settings.BLUETOOTH_SETTINGS'
