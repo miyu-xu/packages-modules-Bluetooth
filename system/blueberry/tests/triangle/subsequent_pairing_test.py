@@ -119,7 +119,8 @@ class SubsequentPairingTest(base_test.TriangleBaseTest):
     # Unregisters sl4a service to avoid raising AdbError before reboot().
     self.watch.services.unregister(_SL4A_ALIAS)
     self.watch.log.info('Force enable Location.')
-    output = int(self.watch.adb.shell(triangle_constants.ENABLE_LOCATION))
+    self.watch.adb.shell(triangle_constants.ENABLE_LOCATION)
+    output = int(self.watch.adb.shell(triangle_constants.GET_LOCATION_MODE))
     if output != 3:
       raise signals.TestError('Location is disabled on Watch.')
     # Reboots Watch to force sync footprints.
