@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6473cc9c_755e1419",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-25T14:39:19Z",
+      "side": 1,
+      "message": "Why not pin this stable release ?\nIs chromeos always using the latest rust stable ?",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a206bd77_c6b49cbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-25T14:39:19Z",
+      "side": 1,
+      "message": "Even if the image tag is fixed, the package that are installed with apt are subject to updates, if we want to avoid that we can pin each package version.",
+      "range": {
+        "startLine": 11,
+        "startChar": 50,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58027d2d_385d51eb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-25T14:39:19Z",
+      "side": 1,
+      "message": "Is this the right bug ?\nFrom the title of the bug `floss/build/build-in-docker.py should take care of unloading Docker container` I don\u0027t see how this change is related",
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
