@@ -39,6 +39,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
@@ -233,7 +234,14 @@ class ActiveDeviceManager {
                         }
                         mA2dpConnectedDevices.remove(device);
                         if (Objects.equals(mA2dpActiveDevice, device)) {
-                            setA2dpActiveDevice(null);
+                            // A2dp device disconnected, searching for a fallback device
+                            // before routing audio to the phone.
+                            DatabaseManager dbManager = mAdapterService.getDatabase();
+                            BluetoothDevice fallbackDevice = dbManager != null ? dbManager
+                                    .getMostRecentlyConnectedDevicesInList(mA2dpConnectedDevices)
+                                    : null;
+
+                            setA2dpActiveDevice(fallbackDevice);
                         }
                     }
                 }
@@ -292,6 +300,19 @@ class ActiveDeviceManager {
                                     + "device " + device + " disconnected");
                         }
                         mHfpConnectedDevices.remove(device);
+                        if (mHfpActiveDevice == null) {
+                            // HFP active device is set to null before receiving the connection
+                            // state change, only search for a fallback device if mHfpActiveDevice
+                            // is null.
+                            DatabaseManager dbManager = mAdapterService.getDatabase();
+                            BluetoothDevice fallbackDevice = dbManager != null ? dbManager
+                                    .getMostRecentlyConnectedDevicesInList(mHfpConnectedDevices)
+                                    : null;
+                            if (fallbackDevice != null) {
+                                setHfpActiveDevice(fallbackDevice);
+                                break;
+                            }
+                        }
                         if (Objects.equals(mHfpActiveDevice, device)) {
                             setHfpActiveDevice(null);
                         }
