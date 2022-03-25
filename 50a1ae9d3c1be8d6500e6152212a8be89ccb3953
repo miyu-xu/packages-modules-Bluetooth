@@ -169,6 +169,30 @@
       },
       "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5eecdde_d29d8ea2",
+        "filename": "floss/build/rustup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-25T21:14:50Z",
+      "side": 1,
+      "message": "The dockerfile describes how this file is downloaded (curl --proto \u0027\u003dhttps\u0027...).\n\nI got a security ping that we should do `curl | sh` in Dockerfile so I split it up into a download locally and check-in + run in Dockerfile step.\n\nWrt/ licensing, this is APACHE license which we already distribute for Bluetooth:\nhttps://github.com/rust-lang/rustup/blob/master/LICENSE-APACHE\n\nI may actually need to include this license file here w/ the download so I\u0027m going to put this in a separate of folder with the license.",
+      "parentUuid": "418d34bb_2da593d8",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
