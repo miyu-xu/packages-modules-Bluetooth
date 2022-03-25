@@ -255,17 +255,10 @@ public class Config {
         return (disabledProfilesBitMask & profileMask) != 0;
     }
 
-    private static boolean isHearingAidSettingsEnabled(Context context) {
-        final String flagOverridePrefix = "sys.fflag.override.";
-        final String hearingAidSettings = "settings_bluetooth_hearing_aid";
-
-        return isFeatureEnabled(context, hearingAidSettings, /*defaultValue=*/false);
-    }
-
     private static boolean isFeatureEnabled(Context context, String feature, boolean defaultValue) {
-        final String flagOverridePrefix = "sys.fflag.override.";
+        final String flagOverridePrefix = "persist.sys.fflag.override.";
         // Override precedence:
-        // Settings.Global -> sys.fflag.override.* -> static list
+        // Settings.Global -> persist.sys.fflag.override.* -> static list
 
         // Step 1: check if feature flag is set in Settings.Global.
         String value;
