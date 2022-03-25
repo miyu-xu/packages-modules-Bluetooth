@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22549f7f_c46d7b8d",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T05:45:27Z",
+      "side": 1,
+      "message": "Yes...that is correct.  We should also update the other 15% of these cases.\n\n$ echo $PWD \u0026\u0026 egrep -r \u0027const auto\u0027 * | wc -l \u0026\u0026 egrep -r \u0027auto const\u0027 * | wc -l\n/usr/local/google/home/cmanton/Aosp/packages/modules/Bluetooth/system\n560\n93",
+      "parentUuid": "da2fbd23_764ebb22",
+      "range": {
+        "startLine": 729,
+        "startChar": 9,
+        "endLine": 729,
+        "endChar": 19
+      },
+      "revId": "7a41ce8d836433b675d180c6a15caf56ce9bf578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a0045dd_cd25cdfe",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-25T05:26:51Z",
       "side": 1,
       "message": "is it broken?",
+      "range": {
+        "startLine": 561,
+        "startChar": 34,
+        "endLine": 561,
+        "endChar": 42
+      },
+      "revId": "7a41ce8d836433b675d180c6a15caf56ce9bf578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c6dda3c_a7d5b75f",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T05:45:27Z",
+      "side": 1,
+      "message": "Maybe...maybe not...\n\nI \"borrowed\" this code from the now deprecated other unit tests not called unittests.\n\nIt had all the requirements to set up the proper environment for testing logic within this single module.  \n\nI disabled them all as the entire test didn\u0027t run, and I was focused on just getting tests to verify this specific change for now.\n\nI suspect the failures, if any are left, are due to testing infra issue not production code and should be addressed in the future to get back online.",
+      "parentUuid": "7a0045dd_cd25cdfe",
       "range": {
         "startLine": 561,
         "startChar": 34,
