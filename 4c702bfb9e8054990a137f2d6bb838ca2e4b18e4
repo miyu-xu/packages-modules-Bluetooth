@@ -22,6 +22,30 @@
       },
       "revId": "4c702bfb9e8054990a137f2d6bb838ca2e4b18e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29864332_a8cae6a0",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T15:55:54Z",
+      "side": 1,
+      "message": "Yes...leaving `BLE_ADDR_TYPE_ID_BIT` open for the the wolves to attack is a bad idea.\n\nHowever, there is already an API merged that checks this\n```\nsystem/types/ble_address_with_type.h::\ninline bool is_identity_type(const tBLE_ADDR_TYPE\u0026 type) {\n  return type \u0026 BLE_ADDR_TYPE_ID_BIT;\n}\n```\n\nBut is still a CL or 2 away from being connected and reclaimed so implementation info (the BLE_ADDR_TYPE_ID_BIT bit) doesn\u0027t leak out.",
+      "parentUuid": "68c72f3d_8996fd94",
+      "range": {
+        "startLine": 1111,
+        "startChar": 0,
+        "endLine": 1112,
+        "endChar": 45
+      },
+      "revId": "4c702bfb9e8054990a137f2d6bb838ca2e4b18e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
