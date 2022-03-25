@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eebe3efe_f06d641b",
+        "filename": "floss/build/build-in-docker.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-25T21:06:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14129b5f_bf98e213",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 0
+      },
+      "revId": "1d8afec974b0920d8c67434491126b69aa9b1d48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b89ea204_65db7e3e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-25T20:34:15Z",
       "side": 1,
       "message": "Make it clear that it\u0027s an output directory for build artifacts.",
+      "range": {
+        "startLine": 153,
+        "startChar": 61,
+        "endLine": 153,
+        "endChar": 104
+      },
+      "revId": "1d8afec974b0920d8c67434491126b69aa9b1d48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f43f3c6e_771dcfab",
+        "filename": "floss/build/build-in-docker.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-25T21:06:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b89ea204_65db7e3e",
       "range": {
         "startLine": 153,
         "startChar": 61,
