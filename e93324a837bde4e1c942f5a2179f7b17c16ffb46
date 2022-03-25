@@ -70,6 +70,30 @@
       },
       "revId": "e93324a837bde4e1c942f5a2179f7b17c16ffb46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae7be81f_d245b5de",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-25T08:42:23Z",
+      "side": 1,
+      "message": "Done in: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2045243/",
+      "parentUuid": "553ae258_05db8ffa",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 1
+      },
+      "revId": "e93324a837bde4e1c942f5a2179f7b17c16ffb46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
