@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f8488e6_e3a99ada",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T16:37:26Z",
+      "side": 1,
+      "message": "Added `return` from arm/disarm if state mismatch\n",
+      "revId": "5b33311d9369ca14732f19e0f4e1e62e76f7bb86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
