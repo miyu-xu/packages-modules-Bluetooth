@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b0e874c_b00ace77",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-25T22:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0c8921d_8e068ccd",
+      "range": {
+        "startLine": 497,
+        "startChar": 0,
+        "endLine": 497,
+        "endChar": 31
+      },
+      "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd4aceed_40b690a4",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5abf9479_53b86547",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-25T22:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd4aceed_40b690a4",
+      "range": {
+        "startLine": 499,
+        "startChar": 4,
+        "endLine": 503,
+        "endChar": 68
+      },
+      "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "23796d9f_59ab03df",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-03-24T15:56:52Z",
       "side": 1,
       "message": "Please check if ase-\u003ecis_id is valid here.",
+      "range": {
+        "startLine": 873,
+        "startChar": 8,
+        "endLine": 873,
+        "endChar": 32
+      },
+      "revId": "ae01a80501455bc7f9430ae851f21333ad00bd10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da840520_21e14931",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-25T22:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23796d9f_59ab03df",
       "range": {
         "startLine": 873,
         "startChar": 8,
