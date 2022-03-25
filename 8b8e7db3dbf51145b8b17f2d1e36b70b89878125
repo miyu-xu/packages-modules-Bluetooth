@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c7e30d34_699ec7b6",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T15:13:03Z",
+      "side": 1,
+      "message": "I would actually like it to be ASSERT, but would like some actual run-time on various scenarios.  I left out a `return` to be as fault tolerant as possible, as maybe this is a recoverable scenario.\n\nI didn\u0027t want to shift so much responsibility onto this state until it\u0027s seen some action.\n\nHowever, I can put a `return` here if that makes more sense.",
+      "parentUuid": "45f301d1_a9511cdc",
+      "revId": "8b8e7db3dbf51145b8b17f2d1e36b70b89878125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f124c5b5_f6feefc0",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 12
@@ -48,6 +66,24 @@
       "writtenOn": "2022-03-25T12:41:01Z",
       "side": 1,
       "message": "ditto",
+      "revId": "8b8e7db3dbf51145b8b17f2d1e36b70b89878125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca51b48_10dd5a5e",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T15:13:03Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f124c5b5_f6feefc0",
       "revId": "8b8e7db3dbf51145b8b17f2d1e36b70b89878125",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
