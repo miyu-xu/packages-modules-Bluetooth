@@ -233,7 +233,17 @@ class ActiveDeviceManager {
                         }
                         mA2dpConnectedDevices.remove(device);
                         if (Objects.equals(mA2dpActiveDevice, device)) {
-                            setA2dpActiveDevice(null);
+                            // A2dp device disconnected, searching for a fallback device
+                            // before routing audio to the phone.
+                            BluetoothDevice fallbackDevice =
+                                    mAdapterService.getDatabase()
+                                    .getMostRecentlyConnectedDevicesInList(
+                                            mA2dpConnectedDevices);
+                            if (fallbackDevice == null) {
+                                setA2dpActiveDevice(null);
+                            } else {
+                                setA2dpActiveDevice(fallbackDevice);
+                            }
                         }
                     }
                 }
@@ -292,6 +302,19 @@ class ActiveDeviceManager {
                                     + "device " + device + " disconnected");
                         }
                         mHfpConnectedDevices.remove(device);
+                        if (mHfpActiveDevice == null) {
+                            // HFP active device is set to null before receiving the connection
+                            // state change, only search for a fallback device if mHfpActiveDevice
+                            // is null.
+                            BluetoothDevice fallbackDevice =
+                                    mAdapterService.getDatabase()
+                                    .getMostRecentlyConnectedDevicesInList(
+                                            mHfpConnectedDevices);
+                            if (fallbackDevice != null) {
+                                setHfpActiveDevice(fallbackDevice);
+                                break;
+                            }
+                        }
                         if (Objects.equals(mHfpActiveDevice, device)) {
                             setHfpActiveDevice(null);
                         }
