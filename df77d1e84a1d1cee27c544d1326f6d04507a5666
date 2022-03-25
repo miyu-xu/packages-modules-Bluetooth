@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bd297e8_fb486221",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 513,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-25T14:55:44Z",
+      "side": 1,
+      "message": "le_address_manager.cc:231 ack_pause: CYDBG handle_next_command\nle_address_manager.cc:364 handle_next_command: CYDBG handle_next_command\nle_address_manager.cc:488 OnCommandComplete: Received command complete with op_code LE_SET_RANDOM_ADDRESS\nle_address_manager.cc:503 OnCommandComplete: update random address : 7f:d9:ca:ca:17:58\nle_address_manager.cc:526 check_cached_commands: CYDBG handle_next_command\nle_address_manager.cc:364 handle_next_command: CYDBG handle_next_command\nle_address_manager.cc:488 OnCommandComplete: Received command complete with op_code LE_SET_ADDRESS_RESOLUTION_ENABLE\nle_address_manager.cc:526 check_cached_commands: CYDBG handle_next_command\nle_address_manager.cc:364 handle_next_command: CYDBG handle_next_command\nle_address_manager.cc:488 OnCommandComplete: Received command complete with op_code LE_CLEAR_RESOLVING_LIST\nle_address_manager.cc:526 check_cached_commands: CYDBG handle_next_command\nle_address_manager.cc:364 handle_next_command: CYDBG handle_next_command\n\nle_address_manager.cc:488 OnCommandComplete: Received command complete with op_code LE_SET_ADDRESS_RESOLUTION_ENABLE\n// cached_commands_.empty() is true now resume_registered_clients\n\n\n// Received OnCommandComplete of command that not send by le_address_manager.cc\nle_address_manager.cc:488 OnCommandComplete: Received command complete with op_code LE_CLEAR_CONNECT_LIST\n\n//\n// trigger pause_registered_clients -\u003e ack_pause -\u003e handle_next_command\nle_address_manager.cc:514 check_cached_commands: CYDBG\nle_address_manager.cc:231 ack_pause: CYDBG handle_next_command\nle_address_manager.cc:364 handle_next_command: CYDBG handle_next_command\n03-25 13:50:36.057  root  7967  7978 F bluetooth: assertion \u0027!cached_commands_.empty()\u0027 failed",
+      "range": {
+        "startLine": 513,
+        "startChar": 49,
+        "endLine": 513,
+        "endChar": 73
+      },
+      "revId": "df77d1e84a1d1cee27c544d1326f6d04507a5666",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
