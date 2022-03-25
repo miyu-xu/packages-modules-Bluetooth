@@ -217,6 +217,30 @@
       },
       "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e68b33f0_403aa38e",
+        "filename": "floss/build/rustup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-03-25T21:50:28Z",
+      "side": 1,
+      "message": "Oh, this comment is literally in the downloaded script!",
+      "parentUuid": "b286bf43_5dd5e390",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
