@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e46032_babcd134",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T12:41:01Z",
+      "side": 1,
+      "message": "changing it from flag to states makes more sense :)",
+      "revId": "8b8e7db3dbf51145b8b17f2d1e36b70b89878125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f301d1_a9511cdc",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T12:41:01Z",
+      "side": 1,
+      "message": "why not to return here?",
+      "revId": "8b8e7db3dbf51145b8b17f2d1e36b70b89878125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f124c5b5_f6feefc0",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T12:41:01Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "8b8e7db3dbf51145b8b17f2d1e36b70b89878125",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
