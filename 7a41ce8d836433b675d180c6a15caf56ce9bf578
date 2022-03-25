@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da2fbd23_764ebb22",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1220282
+      },
+      "writtenOn": "2022-03-25T05:26:51Z",
+      "side": 1,
+      "message": "usually const auto\u0026 ?",
+      "range": {
+        "startLine": 729,
+        "startChar": 9,
+        "endLine": 729,
+        "endChar": 19
+      },
+      "revId": "7a41ce8d836433b675d180c6a15caf56ce9bf578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a0045dd_cd25cdfe",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1220282
+      },
+      "writtenOn": "2022-03-25T05:26:51Z",
+      "side": 1,
+      "message": "is it broken?",
+      "range": {
+        "startLine": 561,
+        "startChar": 34,
+        "endLine": 561,
+        "endChar": 42
+      },
+      "revId": "7a41ce8d836433b675d180c6a15caf56ce9bf578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
