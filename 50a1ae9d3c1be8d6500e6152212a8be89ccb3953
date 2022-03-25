@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf1b0cdb_e30d552b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-25T21:06:50Z",
+      "side": 1,
+      "message": "Rustup doesn\u0027t provide a way to pin a specific release. You get to pick between stable and nightly.\n\nChromeOS has its own process for updating the toolchain and regularly updates to the latest stable release (and so does Android).",
+      "parentUuid": "6473cc9c_755e1419",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a206bd77_c6b49cbd",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-25T14:39:19Z",
       "side": 1,
       "message": "Even if the image tag is fixed, the package that are installed with apt are subject to updates, if we want to avoid that we can pin each package version.",
+      "range": {
+        "startLine": 11,
+        "startChar": 50,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a33b2718_9f0b40a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-25T21:06:50Z",
+      "side": 1,
+      "message": "We probably won\u0027t rebuild the Docker image frequently for CI. Instead, a developer will build an image, test it, tag it and upload it to the registry. Any extra pinning here seems unnecessary.",
+      "parentUuid": "a206bd77_c6b49cbd",
       "range": {
         "startLine": 11,
         "startChar": 50,
@@ -77,6 +125,24 @@
       "writtenOn": "2022-03-25T21:01:04Z",
       "side": 1,
       "message": "+1",
+      "parentUuid": "58027d2d_385d51eb",
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1129224_bcd93c45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-25T21:06:50Z",
+      "side": 1,
+      "message": "Will switch this to b/220203992",
       "parentUuid": "58027d2d_385d51eb",
       "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
