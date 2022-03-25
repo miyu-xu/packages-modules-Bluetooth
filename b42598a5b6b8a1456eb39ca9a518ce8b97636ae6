@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3c32635_ce976335",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-25T08:57:31Z",
+      "side": 1,
+      "message": "General logging asserts don\u0027t do what you expect in tests - use gtest\u0027s ASSERT_TRUE() instead \n\n\n\nSame lint error below",
+      "range": {
+        "startLine": 371,
+        "startChar": 3,
+        "endLine": 371,
+        "endChar": 118
+      },
+      "revId": "b42598a5b6b8a1456eb39ca9a518ce8b97636ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
