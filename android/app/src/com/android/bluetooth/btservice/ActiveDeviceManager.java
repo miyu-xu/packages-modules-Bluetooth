@@ -233,9 +233,6 @@ class ActiveDeviceManager {
                                     + "device " + device + " disconnected");
                         }
                         mA2dpConnectedDevices.remove(device);
-                        if (Objects.equals(mA2dpActiveDevice, device)) {
-                            setA2dpActiveDevice(null);
-                        }
                     }
                 }
                 break;
@@ -294,9 +291,6 @@ class ActiveDeviceManager {
                                     + "device " + device + " disconnected");
                         }
                         mHfpConnectedDevices.remove(device);
-                        if (Objects.equals(mHfpActiveDevice, device)) {
-                            setHfpActiveDevice(null);
-                        }
                     }
                 }
                 break;
