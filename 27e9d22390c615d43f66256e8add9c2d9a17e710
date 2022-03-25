@@ -105,6 +105,30 @@
       },
       "revId": "27e9d22390c615d43f66256e8add9c2d9a17e710",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "936e7b9d_24b9d151",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3229,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-25T22:40:01Z",
+      "side": 1,
+      "message": "But on SW patch in AIDL, we can change state of HAL which will trigger AudioResume on next write.. in HIDL there is nothing like that.",
+      "parentUuid": "18414000_e712808f",
+      "range": {
+        "startLine": 3229,
+        "startChar": 10,
+        "endLine": 3229,
+        "endChar": 23
+      },
+      "revId": "27e9d22390c615d43f66256e8add9c2d9a17e710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
