@@ -39,6 +39,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
@@ -79,10 +80,12 @@ import java.util.Objects;
  * 6.2) The last connected A2DP or HFP device is selected as active.
  *      However, if there is an active HearingAid device, then the
  *      A2DP or HFP active device is not set (must remain null).
- * 7) If the currently active device (per profile) is disconnected, the
+ * 7) If the currently active HFP or A2DP device is disconnected, the
+ *    Active Device Manager will set the last connected device as active. If
+ *    there is no connected device, no active device will be set.
+ *    If the currently active HearingAid device is disconnected, the
  *    Active Device Manager just marks that the profile has no active device,
- *    but does not attempt to select a new one. Currently, the expectation is
- *    that the user will explicitly select the new active device.
+ *    but does not attempt to select a new one.
  * 8) If there is already an active device, and the corresponding
  *    ACTION_ACTIVE_DEVICE_CHANGED broadcast is received, the device
  *    contained in the broadcast is marked as active. However, if
@@ -233,7 +236,14 @@ class ActiveDeviceManager {
                         }
                         mA2dpConnectedDevices.remove(device);
                         if (Objects.equals(mA2dpActiveDevice, device)) {
-                            setA2dpActiveDevice(null);
+                            // A2dp device disconnected, searching for a fallback device
+                            // before routing audio to the phone.
+                            DatabaseManager dbManager = mAdapterService.getDatabase();
+                            BluetoothDevice fallbackDevice = dbManager != null ? dbManager
+                                    .getMostRecentlyConnectedDevicesInList(mA2dpConnectedDevices)
+                                    : null;
+
+                            setA2dpActiveDevice(fallbackDevice);
                         }
                     }
                 }
@@ -292,6 +302,19 @@ class ActiveDeviceManager {
                                     + "device " + device + " disconnected");
                         }
                         mHfpConnectedDevices.remove(device);
+                        if (mHfpActiveDevice == null) {
+                            // HFP active device is set to null before receiving the connection
+                            // state change, only search for a fallback device if mHfpActiveDevice
+                            // is null.
+                            DatabaseManager dbManager = mAdapterService.getDatabase();
+                            BluetoothDevice fallbackDevice = dbManager != null ? dbManager
+                                    .getMostRecentlyConnectedDevicesInList(mHfpConnectedDevices)
+                                    : null;
+                            if (fallbackDevice != null) {
+                                setHfpActiveDevice(fallbackDevice);
+                                break;
+                            }
+                        }
                         if (Objects.equals(mHfpActiveDevice, device)) {
                             setHfpActiveDevice(null);
                         }
