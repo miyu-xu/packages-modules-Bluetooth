@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68c72f3d_8996fd94",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1112,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-25T15:49:41Z",
+      "side": 1,
+      "message": "Bit checking seems like something we\u0027d do on a raw type.  Could we change this to if (ble_addr_type \u003d\u003d BLE_PUBLIC_ID || ble_addr_type \u003d\u003d BLE_RANDOM_ID)\n\n?",
+      "range": {
+        "startLine": 1111,
+        "startChar": 0,
+        "endLine": 1112,
+        "endChar": 45
+      },
+      "revId": "4c702bfb9e8054990a137f2d6bb838ca2e4b18e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
