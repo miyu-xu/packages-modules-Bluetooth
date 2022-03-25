@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92e35c56_faf8cb8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-25T12:48:55Z",
+      "side": 1,
+      "message": "Presubmit test fail\nassertion \u0027!cached_commands_.empty()\u0027 failed\n",
+      "revId": "99faef2ea34a30aa00ebd86c1819035717574ba5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
