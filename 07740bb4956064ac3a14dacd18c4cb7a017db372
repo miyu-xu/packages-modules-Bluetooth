@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cb8d888_8f02b770",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1038,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-03-25T08:19:58Z",
+      "side": 1,
+      "message": "In rsp_data, `tBTA_HH_PROTO_MODE proto_mode` is for GET_PROTO_EVT and `BT_HDR* p_rpt_data` is for GET_RPT_EVT.\nAnd, add 3rd condition for other event.\nDone",
+      "parentUuid": "1654e77f_25e3d536",
+      "revId": "07740bb4956064ac3a14dacd18c4cb7a017db372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9d669ae_ebce333e",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-03-24T13:10:46Z",
       "side": 1,
       "message": "Can we get rid of the casting if we do something like this:\n\n        tBTA_HH cbdata \u003d {.dev_status{BTA_HH_ERR, p_cb-\u003ehid_handle}};\n        (*bta_hh_cb.p_cback)(BTA_HH_VC_UNPLUG_EVT, \u0026cbdata);\n        \nAnd the same thing for the cast on 1041?",
+      "range": {
+        "startLine": 1044,
+        "startChar": 51,
+        "endLine": 1044,
+        "endChar": 68
+      },
+      "revId": "07740bb4956064ac3a14dacd18c4cb7a017db372",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "881c02e4_7c9d7e3b",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-03-25T08:19:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d669ae_ebce333e",
       "range": {
         "startLine": 1044,
         "startChar": 51,
