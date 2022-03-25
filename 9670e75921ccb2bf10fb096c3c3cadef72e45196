@@ -16,6 +16,24 @@
       "message": "Error in HID_HostWriteDev() is already logged at line 1030.\nThis is basically an unexpected command/operation encountered during error handling in bta_hh_write_dev_act().",
       "revId": "9670e75921ccb2bf10fb096c3c3cadef72e45196",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc6a83e0_4c3c16b8",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T15:23:05Z",
+      "side": 1,
+      "message": "got it.\n\nI would re-word the error in line 1030 using the newer convention LOG_ERROR(\"\") with a better error message then.\n\nThere is still an issue where an error state occurs and the callback is not called to inform the client of the error which is puzzling to the average code reader.  \n\nMaybe this block could be \nLOG_ERROR(\"Skipped executing callback to inform client in host hid error handling\")\n\nor something",
+      "parentUuid": "8ddd8c77_3a6fe2cb",
+      "revId": "9670e75921ccb2bf10fb096c3c3cadef72e45196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
