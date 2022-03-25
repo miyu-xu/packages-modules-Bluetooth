@@ -211,6 +211,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e499e675_fdf3541d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 552,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T00:07:28Z",
+      "side": 1,
+      "message": "I moved the address manager ack to when the packet is received.",
+      "parentUuid": "e59750bc_97fc1f37",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "822bdaa8_ffd97116",
@@ -277,6 +295,24 @@
       "side": 1,
       "message": "This gets tricky b/c it\u0027s outside the architecture, but is an issue.\n\nLet\u0027s tackle the rest of the stuff and circle back on this.",
       "parentUuid": "26076c66_481552ab",
+      "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37062a59_038ac1d5",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-25T00:07:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4fe93ae1_23fb091a",
       "revId": "b1beefc4f7a4c6fff90189fca8c8517ce1b4ce25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
