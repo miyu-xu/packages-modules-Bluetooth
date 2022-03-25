@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5126e4a5_c05e7fb5",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1745,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-03-25T06:07:50Z",
+      "side": 1,
+      "message": "I think this should be within line #1728 ~ #1743 that is for failure.",
+      "range": {
+        "startLine": 1745,
+        "startChar": 0,
+        "endLine": 1745,
+        "endChar": 78
+      },
+      "revId": "ec9fcbd4c4a5e1335c6196ebcbedb6ce9a6fef2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
