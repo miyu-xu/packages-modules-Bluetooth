@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9154d162_a6612998",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-25T16:16:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3dbf8a92_3e6ae1f2",
+      "revId": "099415ce9001c0d91a2aa83c8a08e79146b05eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c9447ab_bff84070",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-24T23:15:40Z",
       "side": 1,
       "message": "This should be renamed to a callback. Listeners usually only have a single callback method whose name aligns with that of the listener as per the API guidelines. Given we are adding a second callback, it should now be renamed accordingly.",
+      "revId": "099415ce9001c0d91a2aa83c8a08e79146b05eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e843ba31_c1290a4c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 885,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-25T16:16:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c9447ab_bff84070",
       "revId": "099415ce9001c0d91a2aa83c8a08e79146b05eaf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
