@@ -46,6 +46,30 @@
       },
       "revId": "ec9fcbd4c4a5e1335c6196ebcbedb6ce9a6fef2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "968ba9bc_9ead408a",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1745,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-03-25T06:30:21Z",
+      "side": 1,
+      "message": "Resolved offline. Cheney is right. Changing it now.",
+      "parentUuid": "75d40425_a7632107",
+      "range": {
+        "startLine": 1745,
+        "startChar": 0,
+        "endLine": 1745,
+        "endChar": 78
+      },
+      "revId": "ec9fcbd4c4a5e1335c6196ebcbedb6ce9a6fef2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
