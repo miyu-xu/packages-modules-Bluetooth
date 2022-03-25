@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ddd8c77_3a6fe2cb",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2022-03-25T08:31:07Z",
+      "side": 1,
+      "message": "Error in HID_HostWriteDev() is already logged at line 1030.\nThis is basically an unexpected command/operation encountered during error handling in bta_hh_write_dev_act().",
+      "revId": "9670e75921ccb2bf10fb096c3c3cadef72e45196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
