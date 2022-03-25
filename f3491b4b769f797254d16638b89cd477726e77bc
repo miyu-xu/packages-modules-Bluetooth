@@ -16,6 +16,24 @@
       "message": "Whoops you might have accidentally left this link in. It won\u0027t be able to resolve that link, so we should update this!",
       "revId": "f3491b4b769f797254d16638b89cd477726e77bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b1d7f17_202c787c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2769,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-03-25T17:57:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d74d7bc8_f026a9b7",
+      "revId": "f3491b4b769f797254d16638b89cd477726e77bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
