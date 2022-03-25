@@ -62,6 +62,47 @@
       "message": "Is this the right bug ?\nFrom the title of the bug `floss/build/build-in-docker.py should take care of unloading Docker container` I don\u0027t see how this change is related",
       "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb1ab705_f86186b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-03-25T21:01:04Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "58027d2d_385d51eb",
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "418d34bb_2da593d8",
+        "filename": "floss/build/rustup.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-03-25T21:01:04Z",
+      "side": 1,
+      "message": "I\u0027d suggest cleaning the comment a little bit, as it\u0027s publicly-facing.\nDo we need a license for this file?\nWhat\u0027s the source of this file?",
+      "range": {
+        "startLine": 4,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 0
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
