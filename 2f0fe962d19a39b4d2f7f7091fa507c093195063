@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6648e621_9d991a04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:10:36Z",
+      "side": 1,
+      "message": "Thank you for your patch. Couple of comments",
+      "revId": "2f0fe962d19a39b4d2f7f7091fa507c093195063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e66233cc_020ee63d",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2118,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:10:36Z",
+      "side": 1,
+      "message": "instead of putting \"music\" in this name I would suggest something which would say about quality and maybe some prefix saying that this is vendor specific configuration and not coming from the bap spec. maybe here it would be vs_48_high_quality_1\n\nAlso please have a look changes here https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1998182 as this is going to be merged soon.",
+      "revId": "2f0fe962d19a39b4d2f7f7091fa507c093195063",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
