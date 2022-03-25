@@ -16,6 +16,24 @@
       "message": "do we still need it having this:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2045243/1  ?",
       "revId": "1ed382c759195b3239ff07f66409850a455fd1bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69bd8d96_0ae24faa",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-25T13:32:34Z",
+      "side": 1,
+      "message": "My bad. Fixed.",
+      "parentUuid": "1c15f334_90b1f22c",
+      "revId": "1ed382c759195b3239ff07f66409850a455fd1bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
