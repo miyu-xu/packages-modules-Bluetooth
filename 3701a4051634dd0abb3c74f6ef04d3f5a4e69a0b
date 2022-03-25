@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb16697_af3c6450",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-25T03:16:38Z",
+      "side": 1,
+      "message": "Conflict with internal patch solved. Get presubmit-verified +2 now.\nStill require qualcomm-review",
+      "revId": "3701a4051634dd0abb3c74f6ef04d3f5a4e69a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
