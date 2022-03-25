@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8066149a_26bed229",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:52:25Z",
+      "side": 1,
+      "message": "Thank you for you patch.\n\nHave couple of comments.\n\nIn addition to this please extend CTS test cases: cts/tests/tests/bluetooth/src/android/bluetooth/cts/BluetoothLeAudioCodecTest.java\n\n",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d06cf0a6_b413010a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:52:25Z",
+      "side": 1,
+      "message": "As per comment in lines 84-89, please use bits from Supported_Sampling_Frequencies\n\n96000 seems to be 9th bit",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03ba937f_30dc57c3",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:52:25Z",
+      "side": 1,
+      "message": "this is not per Bluetooth SIG.\n\nI suggest start vendor specific bits starting from bit 16.\n\nALso please extend comment in the linse 184-187",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41983f9d_de4cb5b7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:52:25Z",
+      "side": 1,
+      "message": "description needs to be updated",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "028fcf22_4dc08544",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:52:25Z",
+      "side": 1,
+      "message": "I think this also needs to be updated:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_le_audio.cpp;l\u003d67?q\u003dcom_android_bluetooth_le\u0026ss\u003dandroid%2Fplatform%2Fsuperproject",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "810f4c02_b5390df7",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-03-25T11:52:25Z",
+      "side": 1,
+      "message": "Could you elaborate more on this codecSpecificX ?\nWhy there is 4 of them?\n\nDId you consider having some Array here?",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
