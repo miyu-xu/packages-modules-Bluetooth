@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c5cabb5_abc162cf",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 855,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-03-25T17:29:02Z",
+      "side": 1,
+      "message": "nit: \"indacating\" --\u003e \"indicating\" and \"reason of the\" --\u003e \"reason for the\". I don\u0027t want to block your change on this, so I will approve it. Please make sure to fix this in a follow-up CL. Thanks!",
+      "revId": "4b5a95c02c00225e736208eb5aa455464a4dd674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
