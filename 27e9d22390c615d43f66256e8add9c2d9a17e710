@@ -129,6 +129,30 @@
       },
       "revId": "27e9d22390c615d43f66256e8add9c2d9a17e710",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce787ac_d1e2e5c9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3229,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-27T10:39:03Z",
+      "side": 1,
+      "message": "Which interface did you mean? I don\u0027t remember we added any special handle for SW path in AIDL except for the stereo recording.\n\nIf you always start stream after the reconfiguration automatically, how do you plan to handle the case that the phone call ended, and no stream need to be resumed?",
+      "parentUuid": "936e7b9d_24b9d151",
+      "range": {
+        "startLine": 3229,
+        "startChar": 10,
+        "endLine": 3229,
+        "endChar": 23
+      },
+      "revId": "27e9d22390c615d43f66256e8add9c2d9a17e710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
