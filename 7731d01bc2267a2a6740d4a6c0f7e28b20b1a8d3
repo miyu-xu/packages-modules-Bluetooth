@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a00a74d9_06d5453f",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2022-03-28T04:19:04Z",
+      "side": 1,
+      "message": "It should be \"handling\".\nAlso it may be better if we can log the unexpected command type as well.",
+      "revId": "7731d01bc2267a2a6740d4a6c0f7e28b20b1a8d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
