@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "215f7847_0c140edb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-28T10:30:33Z",
+      "side": 1,
+      "message": "Please diff with patch set #2 which uses the legacy code.",
+      "revId": "e4b5edc084b5c97bf34645bbd7b0ff3b5ebd355f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
