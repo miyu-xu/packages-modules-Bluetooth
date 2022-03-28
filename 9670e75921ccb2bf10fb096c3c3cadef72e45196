@@ -34,6 +34,24 @@
       "parentUuid": "8ddd8c77_3a6fe2cb",
       "revId": "9670e75921ccb2bf10fb096c3c3cadef72e45196",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "332e6908_5753a04b",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1063,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-03-28T04:12:16Z",
+      "side": 1,
+      "message": "I made error log at line 1030 to show error reason for revealing more information to debug.\nAt error handling, changed error log to more proper message when the function does not execute callback.",
+      "parentUuid": "cc6a83e0_4c3c16b8",
+      "revId": "9670e75921ccb2bf10fb096c3c3cadef72e45196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
