@@ -228,7 +228,34 @@ const std::map<uint32_t, uint8_t> data_interval_ms_to_frame_duration = {
      codec_spec_conf::kLeAudioCodecLC3FrameDur10000us},
 };
 
-std::vector<uint8_t> BroadcastCodecWrapper::GetCodecSpecData() const {
+types::LeAudioLtvMap BroadcastCodecWrapper::GetBisCodecSpecData(
+    uint8_t bis_idx = kBisIndexInvalid) const {
+  if (bis_idx == kBisIndexInvalid) return {};
+
+  /* For a single channel this will be set at the subgroup lvl. */
+  if (source_codec_config.num_channels == 1) return {};
+
+  uint32_t audio_location = codec_spec_conf::kLeAudioLocationMonoUnspecified;
+  switch (bis_idx) {
+    case 1:
+      audio_location = codec_spec_conf::kLeAudioLocationFrontLeft;
+      break;
+    case 2:
+      audio_location = codec_spec_conf::kLeAudioLocationFrontRight;
+      break;
+    default:
+      break;
+  }
+
+  std::map<uint8_t, std::vector<uint8_t>> codec_spec_ltvs = {{
+      codec_spec_conf::kLeAudioCodecLC3TypeAudioChannelAllocation,
+      UINT32_TO_VEC_UINT8(audio_location),
+  }};
+
+  return types::LeAudioLtvMap(codec_spec_ltvs);
+}
+
+types::LeAudioLtvMap BroadcastCodecWrapper::GetSubgroupCodecSpecData() const {
   LOG_ASSERT(
       sample_rate_to_sampling_freq_map.count(source_codec_config.sample_rate))
       << "Invalid sample_rate";
@@ -252,23 +279,14 @@ std::vector<uint8_t> BroadcastCodecWrapper::GetCodecSpecData() const {
         UINT16_TO_VEC_UINT8(bc);
   }
 
-  uint32_t audio_location;
-  switch (source_codec_config.num_channels) {
-    case 1:
-      audio_location = codec_spec_conf::kLeAudioLocationMonoUnspecified;
-      break;
-    default:
-      audio_location = codec_spec_conf::kLeAudioLocationFrontLeft |
-                       codec_spec_conf::kLeAudioLocationFrontRight;
-      break;
+  if (source_codec_config.num_channels == 1) {
+    codec_spec_ltvs
+        [codec_spec_conf::kLeAudioCodecLC3TypeAudioChannelAllocation] =
+            UINT32_TO_VEC_UINT8(
+                codec_spec_conf::kLeAudioLocationMonoUnspecified);
   }
-  codec_spec_ltvs[codec_spec_conf::kLeAudioCodecLC3TypeAudioChannelAllocation] =
-      UINT32_TO_VEC_UINT8(audio_location);
 
-  types::LeAudioLtvMap ltv_map(codec_spec_ltvs);
-  std::vector<uint8_t> data(ltv_map.RawPacketSize());
-  ltv_map.RawPacket(data.data());
-  return data;
+  return types::LeAudioLtvMap(codec_spec_ltvs);
 }
 
 std::ostream& operator<<(
