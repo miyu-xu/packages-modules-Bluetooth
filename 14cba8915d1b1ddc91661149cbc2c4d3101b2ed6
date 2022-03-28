@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63c3a073_133164f1",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-28T13:37:57Z",
+      "side": 1,
+      "message": "connectability_state_ becomes armed after received on_extended_create_connection",
+      "range": {
+        "startLine": 566,
+        "startChar": 53,
+        "endLine": 566,
+        "endChar": 79
+      },
+      "revId": "14cba8915d1b1ddc91661149cbc2c4d3101b2ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b85de2bd_ea3aa556",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 853,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-28T13:37:57Z",
+      "side": 1,
+      "message": "We may received OnPause between Sent LE Extended Create Connection and on_extended_create_connection\n\nWe must transition to arming state for any enqued create connection command.",
+      "range": {
+        "startLine": 853,
+        "startChar": 8,
+        "endLine": 853,
+        "endChar": 62
+      },
+      "revId": "14cba8915d1b1ddc91661149cbc2c4d3101b2ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
