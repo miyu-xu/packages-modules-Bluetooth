@@ -22,6 +22,30 @@
       },
       "revId": "5a5acaa67d0538da107b3c764695bf395ef98f1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5853ca32_7bb68100",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 4382,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-28T06:30:31Z",
+      "side": 1,
+      "message": "Thanks. :)",
+      "parentUuid": "1171111e_a08384fa",
+      "range": {
+        "startLine": 4382,
+        "startChar": 2,
+        "endLine": 4382,
+        "endChar": 21
+      },
+      "revId": "5a5acaa67d0538da107b3c764695bf395ef98f1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
