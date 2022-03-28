@@ -16,6 +16,24 @@
       "message": "selfreview: make sure to reuse configured ases",
       "revId": "685cd0d62c179f4e125748b6739eb85af7d41399",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db5aa392_212c7169",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-28T17:53:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc7421c3_f7a65cfc",
+      "revId": "685cd0d62c179f4e125748b6739eb85af7d41399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
