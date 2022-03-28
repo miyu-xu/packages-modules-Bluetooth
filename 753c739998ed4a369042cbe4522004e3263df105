@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "241a8347_e8cc3eb1",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-03-28T10:11:38Z",
+      "side": 1,
+      "message": "nint: I don\u0027t recommend to change these two flags in the intent receiver thread. But we probably don\u0027t care about it here since the system is shutting down. An additional comment here would be nice.",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 485,
+        "endChar": 44
+      },
+      "revId": "753c739998ed4a369042cbe4522004e3263df105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16ac65b5_aa8fea9b",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-03-28T10:11:38Z",
+      "side": 1,
+      "message": "We might also need to consider the edge cases of if Bluetooth is turning on or off.",
+      "range": {
+        "startLine": 488,
+        "startChar": 54,
+        "endLine": 488,
+        "endChar": 89
+      },
+      "revId": "753c739998ed4a369042cbe4522004e3263df105",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
