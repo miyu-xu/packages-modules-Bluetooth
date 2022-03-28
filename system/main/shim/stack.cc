@@ -16,13 +16,16 @@
 
 #define LOG_TAG "bt_gd_shim"
 
-#include "device/include/controller.h"
+#include "main/shim/stack.h"
 
+#include <base/strings/stringprintf.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
+
 #include <string>
 
+#include "device/include/controller.h"
 #include "gd/att/att_module.h"
 #include "gd/btaa/activity_attribution.h"
 #include "gd/common/init_flags.h"
@@ -48,7 +51,6 @@
 #include "gd/security/security_module.h"
 #include "gd/shim/dumpsys.h"
 #include "gd/storage/storage_module.h"
-
 #include "main/shim/acl_legacy_interface.h"
 #include "main/shim/activity_attribution.h"
 #include "main/shim/hci_layer.h"
@@ -57,7 +59,7 @@
 #include "main/shim/le_advertising_manager.h"
 #include "main/shim/le_scanning_manager.h"
 #include "main/shim/shim.h"
-#include "main/shim/stack.h"
+#include "stack/include/btm_log_history.h"
 
 namespace bluetooth {
 namespace shim {
@@ -68,6 +70,7 @@ using ::bluetooth::common::StringFormat;
 namespace {
 // PID file format
 constexpr char pid_file_format[] = "/var/run/bluetooth/bluetooth%d.pid";
+constexpr char kBtmLogTag[] = "STACK";
 
 void CreatePidFile() {
   std::string pid_file =
@@ -198,6 +201,16 @@ void Stack::StartEverything() {
   if (common::init_flags::btaa_hci_is_enabled()) {
     bluetooth::shim::init_activity_attribution();
   }
+
+  auto handler = bluetooth::shim::GetGdShimHandler();
+  bluetooth::shim::GetHciLayer()->RegisterCommandStatusFailureCallback(
+      handler->Bind([](hci::ErrorCode error_code, hci::OpCode op_code) {
+        BTM_LogHistory(
+            kBtmLogTag, RawAddress::kEmpty, "HCI Command Error",
+            base::StringPrintf("error_code:%s op_code:%s",
+                               hci::ErrorCodeText(error_code).c_str(),
+                               hci::OpCodeText(op_code).c_str()));
+      }));
 
   // Create pid since we're up and running
   CreatePidFile();
