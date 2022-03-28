@@ -34,6 +34,24 @@
       "parentUuid": "a00a74d9_06d5453f",
       "revId": "7731d01bc2267a2a6740d4a6c0f7e28b20b1a8d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d56ed62_6330c682",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-03-28T06:37:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69b00a74_ea5e72f6",
+      "revId": "7731d01bc2267a2a6740d4a6c0f7e28b20b1a8d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
