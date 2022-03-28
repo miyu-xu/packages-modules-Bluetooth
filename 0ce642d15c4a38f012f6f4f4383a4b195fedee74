@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e098a40d_3939e7eb",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-03-28T16:13:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03ba937f_30dc57c3",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41983f9d_de4cb5b7",
@@ -65,6 +83,24 @@
       "writtenOn": "2022-03-25T11:52:25Z",
       "side": 1,
       "message": "description needs to be updated",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "643e3624_76cbbb33",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-03-28T16:13:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41983f9d_de4cb5b7",
       "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -99,6 +135,24 @@
       "writtenOn": "2022-03-25T11:52:25Z",
       "side": 1,
       "message": "Could you elaborate more on this codecSpecificX ?\nWhy there is 4 of them?\n\nDId you consider having some Array here?",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a93d87_6140275f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-03-28T16:13:46Z",
+      "side": 1,
+      "message": "Trying to align like A2DP:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothCodecConfig.java\n\nFor codec specific fields for extra vendor/codec related stuffs to extended features OR further versions of codec.",
+      "parentUuid": "810f4c02_b5390df7",
       "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
