@@ -15,6 +15,7 @@
  */
 
 #include "hci/le_address_manager.h"
+
 #include "common/init_flags.h"
 #include "os/log.h"
 #include "os/rand.h"
