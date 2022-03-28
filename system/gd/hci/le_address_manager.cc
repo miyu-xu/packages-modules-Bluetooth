@@ -15,13 +15,16 @@
  */
 
 #include "hci/le_address_manager.h"
+
 #include "common/init_flags.h"
 #include "os/log.h"
 #include "os/rand.h"
+#include "os/system_properties.h"
 
 namespace bluetooth {
 namespace hci {
 
+const std::string kIsDebuggableProperty = "ro.debuggable";
 static constexpr uint8_t BLE_ADDR_MASK = 0xc0u;
 
 LeAddressManager::LeAddressManager(
@@ -389,6 +392,19 @@ void LeAddressManager::AddDeviceToResolvingList(
     Address peer_identity_address,
     const std::array<uint8_t, 16>& peer_irk,
     const std::array<uint8_t, 16>& local_irk) {
+  auto is_local_irk_non_zero = std::any_of(local_irk.begin(), local_irk.end(), [](uint8_t u) { return u != 0; });
+
+  auto is_debuggable = os::GetSystemProperty(kIsDebuggableProperty);
+  if (is_debuggable.has_value() && is_debuggable.value() == "1") {
+    ASSERT_LOG(is_local_irk_non_zero, "Local IRK with all zeroes");
+  }
+
+  if (!is_local_irk_non_zero) {
+    ClearConnectList();
+    ClearResolvingList();
+    return;
+  }
+
   // Disable Address resolution
   auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
   Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
