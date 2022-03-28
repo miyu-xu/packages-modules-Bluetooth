@@ -17,6 +17,7 @@
 #pragma once
 
 #include <chrono>
+#include <future>
 #include <map>
 
 #include "address.h"
@@ -99,6 +100,10 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
   std::string ToString() const override {
     return "Hci Layer";
   }
+
+  virtual void RegisterCommandStatusFailureCallback(
+      common::ContextualCallback<void(hci::ErrorCode, hci::OpCode)> callback);
+  virtual void UnregisterCommandStatusFailureCallback(std::promise<void> promise);
 
   static constexpr std::chrono::milliseconds kHciTimeoutMs = std::chrono::milliseconds(2000);
   static constexpr std::chrono::milliseconds kHciTimeoutRestartMs = std::chrono::milliseconds(5000);

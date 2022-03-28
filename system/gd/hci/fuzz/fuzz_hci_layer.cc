@@ -66,6 +66,13 @@ hci::LeIsoInterface* FuzzHciLayer::GetLeIsoInterface(ContextualCallback<void(hci
   return &le_iso_interface_;
 }
 
+void FuzzHciLayer::RegisterCommandStatusFailureCallback(
+    common::ContextualCallback<void(hci::ErrorCode, hci::OpCode)> callback) {}
+
+void FuzzHciLayer::UnregisterCommandStatusFailureCallback(std::promise<void> promise) {
+  promise.set_value();
+};
+
 void FuzzHciLayer::Start() {
   acl_dev_null_ = new os::fuzz::DevNullQueue<AclBuilder>(acl_queue_.GetDownEnd(), GetHandler());
   acl_dev_null_->Start();

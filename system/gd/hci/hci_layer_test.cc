@@ -33,6 +33,8 @@ using bluetooth::packet::BitInserter;
 using bluetooth::packet::RawBuilder;
 using std::vector;
 
+using namespace std::chrono_literals;
+
 namespace {
 vector<uint8_t> information_request = {
     0xfe,
@@ -290,7 +292,7 @@ class DependsOnHci : public Module {
     hci_->GetIsoQueueEnd()->UnregisterDequeue();
   }
 
-  void ListDependencies(ModuleList* list) {
+  void ListDependencies(ModuleList* list) const {
     list->add<HciLayer>();
   }
 
@@ -390,14 +392,14 @@ class HciTest : public ::testing::Test {
     ASSERT_EQ(reset_sent_status, std::future_status::ready);
 
     // Verify that reset was received
-    ASSERT_EQ(1, hal->GetNumSentCommands());
+    ASSERT_EQ(1U, hal->GetNumSentCommands());
 
     auto sent_command = hal->GetSentCommand();
     auto reset_view = ResetView::Create(CommandView::Create(sent_command));
     ASSERT_TRUE(reset_view.IsValid());
 
     // Verify that only one was sent
-    ASSERT_EQ(0, hal->GetNumSentCommands());
+    ASSERT_EQ(0U, hal->GetNumSentCommands());
 
     // Send the response event
     uint8_t num_packets = 1;
@@ -457,7 +459,7 @@ TEST_F(HciTest, leMetaEvent) {
   ASSERT_TRUE(LeConnectionCompleteView::Create(LeMetaEventView::Create(EventView::Create(event))).IsValid());
 }
 
-TEST_F(HciTest, hciTimeOut) {
+TEST_F(HciTest, DISABLED_hciTimeOut) {
   auto event_future = upper->GetReceivedEventFuture();
   auto reset_command_future = hal->GetSentCommandFuture();
   upper->SendHciCommandExpectingComplete(ResetBuilder::Create());
@@ -631,7 +633,7 @@ TEST_F(HciTest, leSecurityInterfaceTest) {
 
   // Check the command
   auto sent_command = hal->GetSentCommand();
-  ASSERT_LT(0, sent_command.size());
+  ASSERT_LT(0U, sent_command.size());
   LeRandView view = LeRandView::Create(LeSecurityCommandView::Create(CommandView::Create(sent_command)));
   ASSERT_TRUE(view.IsValid());
 
@@ -904,5 +906,57 @@ TEST_F(HciTest, receiveMultipleIsoPackets) {
   ASSERT_EQ(handle, itr.extract<uint16_t>());
   ASSERT_EQ(received_packets, itr.extract<uint16_t>());
 }
+
+namespace {
+std::promise<void> global_promise;
+}
+
+TEST_F(HciTest, CommandStatusFailureCallback) {
+  os::Thread* thread = new os::Thread("hci_test_thread", os::Thread::Priority::REAL_TIME);
+  os::Handler* handler = new os::Handler(thread);
+
+  global_promise = std::promise<void>();
+  std::future global_future = global_promise.get_future();
+  hci->RegisterCommandStatusFailureCallback(handler->Bind([](hci::ErrorCode error_code, hci::OpCode op_code) {
+    ASSERT_TRUE(hci::ErrorCode::CONTROLLER_BUSY == error_code);
+    ASSERT_TRUE(hci::OpCode::INQUIRY == op_code);
+    global_promise.set_value();
+  }));
+
+  ASSERT_TRUE(fake_registry_.SynchronizeModuleHandler(&HciLayer::Factory, 20ms));
+
+  ASSERT_DEATH(
+      hci->RegisterCommandStatusFailureCallback(handler->Bind([](hci::ErrorCode error_code, hci::OpCode op_code) {})),
+      ".*Can only set one callback for hci command status failures.*");
+
+  // Send a command that returns a command status (versus a command complete)
+  hci::Lap lap;
+  upper->SendHciCommandExpectingStatus(InquiryBuilder::Create(lap, 10, 10));
+
+  // Send command status event with proper command opcode and any bad success code
+  uint8_t num_packets = 1;
+  const ErrorCode error_code = ErrorCode::CONTROLLER_BUSY;
+  hal->callbacks->hciEventReceived(GetPacketBytes(InquiryStatusBuilder::Create(error_code, num_packets)));
+
+  ASSERT_TRUE(global_future.wait_for(2s) == std::future_status::ready);
+
+  {
+    std::promise<void> promise;
+    std::future future = promise.get_future();
+    hci->UnregisterCommandStatusFailureCallback(std::move(promise));
+    ASSERT_TRUE(future.wait_for(2s) == std::future_status::ready);
+  }
+  {
+    std::promise<void> promise;
+    std::future future = promise.get_future();
+    hci->UnregisterCommandStatusFailureCallback(std::move(promise));
+    ASSERT_TRUE(future.wait_for(2s) == std::future_status::ready);
+  }
+
+  handler->Clear();
+  delete handler;
+  delete thread;
+}
+
 }  // namespace hci
 }  // namespace bluetooth
