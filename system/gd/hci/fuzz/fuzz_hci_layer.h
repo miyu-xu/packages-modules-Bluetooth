@@ -129,6 +129,10 @@ class FuzzHciLayer : public HciLayer {
 
   hci::LeIsoInterface* GetLeIsoInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler) override;
 
+  void RegisterCommandStatusFailureCallback(
+      common::ContextualCallback<void(hci::ErrorCode, hci::OpCode)> callback) override;
+  void UnregisterCommandStatusFailureCallback(std::promise<void> promise) override;
+
   void injectArbitrary(FuzzedDataProvider& fdp);
 
   std::string ToString() const override {
