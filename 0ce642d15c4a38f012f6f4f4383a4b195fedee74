@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc9b732c_50e8e44c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-03-28T16:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d06cf0a6_b413010a",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03ba937f_30dc57c3",
@@ -118,6 +136,24 @@
       "writtenOn": "2022-03-25T11:52:25Z",
       "side": 1,
       "message": "I think this also needs to be updated:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/jni/com_android_bluetooth_le_audio.cpp;l\u003d67?q\u003dcom_android_bluetooth_le\u0026ss\u003dandroid%2Fplatform%2Fsuperproject",
+      "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "544e58da_d0442eaf",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-03-28T16:14:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "028fcf22_4dc08544",
       "revId": "0ce642d15c4a38f012f6f4f4383a4b195fedee74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
