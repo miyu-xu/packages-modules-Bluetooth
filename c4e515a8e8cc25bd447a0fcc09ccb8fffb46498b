@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3965f27f_48a5dc9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943896
+      },
+      "writtenOn": "2022-03-28T08:32:42Z",
+      "side": 1,
+      "message": "I also very agree with this point(Even making this solution more robust will bring unwanted complexity)",
+      "parentUuid": "670c5a71_ed67905b",
+      "revId": "c4e515a8e8cc25bd447a0fcc09ccb8fffb46498b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72130b60_6c7e7d95",
