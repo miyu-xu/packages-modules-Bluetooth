@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fd57cdb_390d5385",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-03-28T20:20:10Z",
+      "side": 1,
+      "message": "nit: using the actual command might be a bit more informative to a reviewer `./build.py`",
+      "revId": "8486819691e61754d46f69513f8e2d56a2a51617",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
