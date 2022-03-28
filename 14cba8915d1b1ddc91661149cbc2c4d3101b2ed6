@@ -41,6 +41,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecfd6375_f9ec062a",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-28T18:13:48Z",
+      "side": 1,
+      "message": "why this ARMING is helping?\n\nLooking at btsnoop of there is no issue with LE_EXTENDED_CREATE_CONNECTION COMMAND. It always succeed.",
+      "revId": "14cba8915d1b1ddc91661149cbc2c4d3101b2ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b85de2bd_ea3aa556",
