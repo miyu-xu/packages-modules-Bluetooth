@@ -16,6 +16,24 @@
       "message": "It should be \"handling\".\nAlso it may be better if we can log the unexpected command type as well.",
       "revId": "7731d01bc2267a2a6740d4a6c0f7e28b20b1a8d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b00a74_ea5e72f6",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-03-28T06:34:50Z",
+      "side": 1,
+      "message": "Thank for the correction. And, I will log command type and param.",
+      "parentUuid": "a00a74d9_06d5453f",
+      "revId": "7731d01bc2267a2a6740d4a6c0f7e28b20b1a8d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
