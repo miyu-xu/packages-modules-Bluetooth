@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e7c9515_d4927a5b",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-28T13:21:15Z",
+      "side": 0,
+      "message": "We will insert address_with_type to connecting_le_ before enqueue any create connection command.",
+      "range": {
+        "startLine": 607,
+        "startChar": 4,
+        "endLine": 607,
+        "endChar": 18
+      },
+      "revId": "6c9c2d7da92b5c38ba7d50eabbec4ee54ba4de50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a35d2402_bda78257",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-28T13:21:15Z",
+      "side": 0,
+      "message": "if any create connection command is enqueued / will be enqueued. LeCreateConnectionCancel will be enqueue.",
+      "range": {
+        "startLine": 790,
+        "startChar": 8,
+        "endLine": 790,
+        "endChar": 22
+      },
+      "revId": "6c9c2d7da92b5c38ba7d50eabbec4ee54ba4de50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

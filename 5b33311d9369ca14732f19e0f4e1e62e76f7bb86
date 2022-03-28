@@ -16,6 +16,52 @@
       "message": "Added `return` from arm/disarm if state mismatch\n",
       "revId": "5b33311d9369ca14732f19e0f4e1e62e76f7bb86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e0b9c56_29660720",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-28T13:21:15Z",
+      "side": 1,
+      "message": "connectability_state_ become armed after received on_extended_create_connection",
+      "range": {
+        "startLine": 565,
+        "startChar": 4,
+        "endLine": 566,
+        "endChar": 79
+      },
+      "revId": "5b33311d9369ca14732f19e0f4e1e62e76f7bb86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "298c5407_2a018224",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-28T13:21:15Z",
+      "side": 1,
+      "message": "We may received OnPause between Sent LE Extended Create Connection and on_extended_create_connection\n\n1. HCI_CMD\tSent LE Extended Create Connection\n2. packages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl.h:854 OnPause: CYDBG OnPause\n3. HCI_EVT\tRcvd Command Status (LE Extended Create Connection)",
+      "range": {
+        "startLine": 852,
+        "startChar": 8,
+        "endLine": 852,
+        "endChar": 62
+      },
+      "revId": "5b33311d9369ca14732f19e0f4e1e62e76f7bb86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
