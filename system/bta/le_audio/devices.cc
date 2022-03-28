@@ -908,8 +908,8 @@ bool LeAudioDevice::ConfigureAses(
     types::LeAudioContextType context_type,
     uint8_t* number_of_already_active_group_ase,
     types::AudioLocations& group_snk_audio_locations,
-    types::AudioLocations& group_src_audio_locations, bool reconnect) {
-  struct ase* ase = GetFirstInactiveAse(ent.direction, reconnect);
+    types::AudioLocations& group_src_audio_locations, bool reuse_cis_id) {
+  struct ase* ase = GetFirstInactiveAse(ent.direction, reuse_cis_id);
   if (!ase) return false;
 
   uint8_t active_ases = *number_of_already_active_group_ase;
@@ -972,7 +972,7 @@ bool LeAudioDevice::ConfigureAses(
                << ", cis_id=" << +ase->cis_id
                << ", target_latency=" << +ent.target_latency;
 
-    ase = GetFirstInactiveAse(ent.direction, reconnect);
+    ase = GetFirstInactiveAse(ent.direction, reuse_cis_id);
   }
 
   *number_of_already_active_group_ase = active_ases;
@@ -988,6 +988,9 @@ bool LeAudioDeviceGroup::ConfigureAses(
   if (!set_configurations::check_if_may_cover_scenario(
           audio_set_conf, NumOfConnected(context_type)))
     return false;
+
+  bool reuse_cis_id =
+      GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
 
   /* TODO For now: set ase if matching with first pac.
    * 1) We assume as well that devices will match requirements in order
@@ -1024,7 +1027,7 @@ bool LeAudioDeviceGroup::ConfigureAses(
 
       if (!device->ConfigureAses(ent, context_type, &active_ase_num,
                                  group_snk_audio_locations,
-                                 group_src_audio_locations))
+                                 group_src_audio_locations, reuse_cis_id))
         continue;
 
       required_device_cnt--;
@@ -1212,12 +1215,14 @@ void LeAudioDeviceGroup::Dump(int fd) {
   if (GetFirstActiveDevice() != nullptr) {
     uint32_t sink_delay;
     stream << "      presentation_delay for sink (speaker): ";
-    if (GetPresentationDelay(&sink_delay, le_audio::types::kLeAudioDirectionSink)) {
+    if (GetPresentationDelay(&sink_delay,
+                             le_audio::types::kLeAudioDirectionSink)) {
       stream << sink_delay << " us";
     }
     stream << "\n      presentation_delay for source (microphone): ";
     uint32_t source_delay;
-    if (GetPresentationDelay(&source_delay, le_audio::types::kLeAudioDirectionSource)) {
+    if (GetPresentationDelay(&source_delay,
+                             le_audio::types::kLeAudioDirectionSource)) {
       stream << source_delay << " us";
     }
     stream << "\n";
@@ -1332,13 +1337,13 @@ struct ase* LeAudioDevice::GetFirstActiveAseByDataPathState(
 }
 
 struct ase* LeAudioDevice::GetFirstInactiveAse(uint8_t direction,
-                                               bool reconnect) {
+                                               bool reuse_cis_id) {
   auto iter = std::find_if(ases_.begin(), ases_.end(),
-                           [direction, reconnect](const auto& ase) {
+                           [direction, reuse_cis_id](const auto& ase) {
                              if (ase.active || (ase.direction != direction))
                                return false;
 
-                             if (!reconnect) return true;
+                             if (!reuse_cis_id) return true;
 
                              return (ase.cis_id != kInvalidCisId);
                            });
