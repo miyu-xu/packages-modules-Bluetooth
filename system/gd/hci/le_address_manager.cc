@@ -15,6 +15,7 @@
  */
 
 #include "hci/le_address_manager.h"
+
 #include "common/init_flags.h"
 #include "os/log.h"
 #include "os/rand.h"
@@ -389,6 +390,11 @@ void LeAddressManager::AddDeviceToResolvingList(
     Address peer_identity_address,
     const std::array<uint8_t, 16>& peer_irk,
     const std::array<uint8_t, 16>& local_irk) {
+  auto is_peer_irk__zero = std::all_of(peer_irk.begin(), peer_irk.end(), [](uint8_t u) { return u == 0; });
+  if (is_peer_irk__zero) {
+    LOG_WARN("Peer IRK with all zeroes");
+  }
+
   // Disable Address resolution
   auto disable_builder = hci::LeSetAddressResolutionEnableBuilder::Create(hci::Enable::DISABLED);
   Command disable = {CommandType::SET_ADDRESS_RESOLUTION_ENABLE, std::move(disable_builder)};
