@@ -33,6 +33,24 @@
       "message": "I think this enum needs to be different at the Bt adapter level.\n\nIt should probably list these states:\n\n* NoWakesAllowed\n* AllowWakeFromHid",
       "revId": "727d256c5947b8e03f58ef2f785c42054cdeafb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4fdfca4_97d99995",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-28T18:52:40Z",
+      "side": 1,
+      "message": "Thought about that, too. Done.",
+      "parentUuid": "26233ac3_3db5dd29",
+      "revId": "727d256c5947b8e03f58ef2f785c42054cdeafb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
