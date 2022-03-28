@@ -667,8 +667,8 @@ void btm_ble_resolving_list_load_dev(tBTM_SEC_DEV_REC& dev_rec) {
     return btm_ble_ble_unsupported_resolving_list_load_dev(&dev_rec);
   }
 
-  if (!is_local_identity_key_valid(dev_rec) &&
-      !is_peer_identity_key_valid(dev_rec)) {
+  // No need to check for local identity key validity. It remains unchanged.
+  if (!is_peer_identity_key_valid(dev_rec)) {
     LOG_INFO("Peer is not an RPA enabled device:%s",
              PRIVATE_ADDRESS(dev_rec.ble.identity_address_with_type));
     return;
