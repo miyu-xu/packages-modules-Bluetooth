@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec33c331_d6a45a1c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-28T07:54:07Z",
+      "side": 1,
+      "message": "\u003e Rustup doesn\u0027t provide a way to pin a specific release. You get to pick between stable and nightly.\nYou can also input a specific version instead of a channel (https://rust-lang.github.io/rustup/concepts/toolchains.html#toolchain-specification). So if you set `--default-toolchain 1.59.0` for example it will download 1.59.0 version",
+      "parentUuid": "bf1b0cdb_e30d552b",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a206bd77_c6b49cbd",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "We probably won\u0027t rebuild the Docker image frequently for CI. Instead, a developer will build an image, test it, tag it and upload it to the registry. Any extra pinning here seems unnecessary.",
       "parentUuid": "a206bd77_c6b49cbd",
+      "range": {
+        "startLine": 11,
+        "startChar": 50,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6d876f3_e49f0573",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-03-28T07:54:07Z",
+      "side": 1,
+      "message": "I think it\u0027s more important to pin the packages than the base image, as for me what would most likely cause a breakage would be a package update as bookworm is a still a debian testing release https://www.debian.org/releases/bookworm/.\n\nIf we think that it\u0027s unnecessary then pining the base image doesn\u0027t make a lot of sense to me.",
+      "parentUuid": "a33b2718_9f0b40a2",
       "range": {
         "startLine": 11,
         "startChar": 50,
