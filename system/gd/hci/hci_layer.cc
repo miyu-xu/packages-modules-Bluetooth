@@ -16,6 +16,8 @@
 
 #include "hci/hci_layer.h"
 
+#include <future>
+
 #include "common/bind.h"
 #include "common/init_flags.h"
 #include "common/stop_watch.h"
@@ -154,6 +156,9 @@ struct HciLayer::impl {
           ErrorCodeText(status).c_str(),
           op_code,
           OpCodeText(op_code).c_str());
+      if (!command_status_failure_callback_.IsEmpty()) {
+        command_status_failure_callback_.Invoke(status, op_code);
+      }
     }
     handle_command_response<CommandStatusView>(event, "status");
   }
@@ -303,6 +308,18 @@ struct HciLayer::impl {
     subevent_handlers_.erase(subevent_handlers_.find(event));
   }
 
+  void register_command_status_failure_callback(ContextualCallback<void(hci::ErrorCode, hci::OpCode)> callback) {
+    ASSERT_LOG(command_status_failure_callback_.IsEmpty(), "Can only set one callback for hci command status failures");
+    LOG_ERROR("CMM Setting callback for command status failures");
+    command_status_failure_callback_ = std::move(callback);
+    ASSERT_LOG(!command_status_failure_callback_.IsEmpty(), "Was unable to set a simple internal variable");
+  }
+
+  void unregister_command_status_failure_callback(std::promise<void> promise) {
+    command_status_failure_callback_ = ContextualCallback<void(hci::ErrorCode, hci::OpCode)>();
+    promise.set_value();
+  }
+
   static void abort_after_root_inflammation(uint8_t vse_error) {
     ASSERT_LOG(false, "Root inflammation with reason 0x%02hhx", vse_error);
   }
@@ -391,6 +408,10 @@ struct HciLayer::impl {
 
   // Command Handling
   std::list<CommandQueueEntry> command_queue_;
+
+  // Command failure callback
+  common::ContextualCallback<void(hci::ErrorCode, hci::OpCode)> command_status_failure_callback_ =
+      ContextualCallback<void(hci::ErrorCode, hci::OpCode)>();
 
   std::map<EventCode, ContextualCallback<void(EventView)>> event_handlers_;
   std::map<SubeventCode, ContextualCallback<void(LeMetaEventView)>> subevent_handlers_;
@@ -488,6 +509,16 @@ void HciLayer::RegisterLeEventHandler(SubeventCode event, ContextualCallback<voi
 
 void HciLayer::UnregisterLeEventHandler(SubeventCode event) {
   CallOn(impl_, &impl::unregister_le_event, event);
+}
+
+void HciLayer::RegisterCommandStatusFailureCallback(ContextualCallback<void(hci::ErrorCode, hci::OpCode)> callback) {
+  ASSERT_LOG(
+      impl_->command_status_failure_callback_.IsEmpty(), "Can only set one callback for hci command status failures");
+  CallOn(impl_, &impl::register_command_status_failure_callback, std::move(callback));
+}
+
+void HciLayer::UnregisterCommandStatusFailureCallback(std::promise<void> promise) {
+  CallOn(impl_, &impl::unregister_command_status_failure_callback, std::move(promise));
 }
 
 void HciLayer::on_disconnection_complete(EventView event_view) {
