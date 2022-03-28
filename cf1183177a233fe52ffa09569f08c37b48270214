@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1218ec_409cf1da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-03-28T10:18:55Z",
+      "side": 1,
+      "message": "Note: I also tested this patch by manually killing the audio HAL process.",
+      "revId": "cf1183177a233fe52ffa09569f08c37b48270214",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
