@@ -1643,7 +1643,6 @@ void LeAudioDevice::Dump(int fd) {
          << "\n\t  known_service_handles_: " << known_service_handles_
          << "\n\t  notify_connected_after_read_: " << notify_connected_after_read_
          << "\n\t  removing_device_: " << removing_device_
-         << "\n\t  first_connection_: " << first_connection_
          << "\n\t  encrypted_: " << encrypted_
          << "\n\t  connecting_actively_: " << connecting_actively_
          << "\n";
@@ -1795,7 +1794,7 @@ std::vector<int> LeAudioDeviceGroups::GetGroupsIds(void) {
 }
 
 /* LeAudioDevices Class methods implementation */
-void LeAudioDevices::Add(const RawAddress& address, bool first_connection,
+void LeAudioDevices::Add(const RawAddress& address, bool connecting_actively,
                          int group_id) {
   auto device = FindByAddress(address);
   if (device != nullptr) {
@@ -1805,7 +1804,7 @@ void LeAudioDevices::Add(const RawAddress& address, bool first_connection,
   }
 
   leAudioDevices_.emplace_back(
-      std::make_shared<LeAudioDevice>(address, first_connection, group_id));
+      std::make_shared<LeAudioDevice>(address, connecting_actively, group_id));
 }
 
 void LeAudioDevices::Remove(const RawAddress& address) {
