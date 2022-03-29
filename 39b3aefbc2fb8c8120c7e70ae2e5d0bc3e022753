@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4701098c_007466f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-03-29T14:24:03Z",
+      "side": 1,
+      "message": "\"With this patch after reconfiguration(e.g. when metadata changed),\ngroup stays in the CONFIGURED state and does not go to STREAMING as\nbefore.\"\nWhen metadata changes it was supposed to do update metadata or reconfiguration (STREAMING -\u003e RELEASE -\u003e STREAMING). Is it about this second scenario ?\n\n\"Instread Audio Hal gets suspended.\"\nInstead.\n\n\"Group will go to streaming when Audio Hal tries to resume stream.\n\nAlso, with this patch, if ASEs are alread configured, state machine will\ndo QoS Config right away without trying to do Codec Config.\"\nalready",
+      "revId": "39b3aefbc2fb8c8120c7e70ae2e5d0bc3e022753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
