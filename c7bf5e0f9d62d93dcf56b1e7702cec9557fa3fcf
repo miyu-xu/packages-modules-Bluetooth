@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d9efeb1_8efbe414",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-03-29T09:19:50Z",
+      "side": 1,
+      "message": "Shouldn\u0027t be here returned {} ?",
+      "revId": "c7bf5e0f9d62d93dcf56b1e7702cec9557fa3fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34f9caef_ce06befd",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-03-29T09:19:50Z",
+      "side": 1,
+      "message": "I think this should be location: Left. btw. some time ago MonoUnspecified location was removed in favor of \"Not Allowed\"",
+      "revId": "c7bf5e0f9d62d93dcf56b1e7702cec9557fa3fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93e63b45_81df853f",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-03-29T09:19:50Z",
+      "side": 1,
+      "message": "This is something I\u0027m not convinced to.\n\nI think in case of non Transparent coding format we should carry about some parameters here.",
+      "revId": "c7bf5e0f9d62d93dcf56b1e7702cec9557fa3fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
