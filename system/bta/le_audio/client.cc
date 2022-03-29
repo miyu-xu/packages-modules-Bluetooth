@@ -820,7 +820,8 @@ class LeAudioClientImpl : public LeAudioClient {
   void AddFromStorage(const RawAddress& address, bool autoconnect) {
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(address);
 
-    LOG(INFO) << __func__ << ", restoring: " << address;
+    LOG_INFO("restoring: %s, autoconnect: %d", PRIVATE_ADDRESS(address),
+             +autoconnect);
 
     if (!leAudioDevice) {
       leAudioDevices_.Add(address, false);
@@ -1858,9 +1859,20 @@ class LeAudioClientImpl : public LeAudioClient {
       AttachToStreamingGroupIfNeeded(leAudioDevice);
     }
 
-    if (leAudioDevice->first_connection_) {
-      btif_storage_set_leaudio_autoconnect(leAudioDevice->address_, true);
-      leAudioDevice->first_connection_ = false;
+    btif_storage_set_leaudio_autoconnect(leAudioDevice->address_, true);
+
+    LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
+    if (group == NULL) {
+      return;
+    }
+
+    auto* dev = group->GetFirstDevice();
+    while (dev) {
+      if (dev->conn_id_ == GATT_INVALID_CONN_ID) {
+        btif_storage_set_leaudio_autoconnect(dev->address_, true);
+        BTA_GATTC_Open(gatt_if_, dev->address_, false, false);
+      }
+      dev = group->GetNextDevice(dev);
     }
   }
 

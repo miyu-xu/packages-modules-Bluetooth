@@ -55,7 +55,6 @@ class LeAudioDevice {
 
   /* we are making active attempt to connect to this device, 'direct connect'.
    * This is true only during initial phase of first connection. */
-  bool first_connection_;
   bool connecting_actively_;
   uint16_t conn_id_;
   bool encrypted_;
@@ -79,14 +78,13 @@ class LeAudioDevice {
   alarm_t* link_quality_timer;
   uint16_t link_quality_timer_data;
 
-  LeAudioDevice(const RawAddress& address_, bool first_connection,
+  LeAudioDevice(const RawAddress& address_, bool connecting_actively,
                 int group_id = bluetooth::groups::kGroupUnknown)
       : address_(address_),
         known_service_handles_(false),
         notify_connected_after_read_(false),
         removing_device_(false),
-        first_connection_(first_connection),
-        connecting_actively_(first_connection),
+        connecting_actively_(connecting_actively),
         conn_id_(GATT_INVALID_CONN_ID),
         encrypted_(false),
         group_id_(group_id),
@@ -157,7 +155,7 @@ class LeAudioDevice {
  */
 class LeAudioDevices {
  public:
-  void Add(const RawAddress& address, bool first_connection,
+  void Add(const RawAddress& address, bool connecting_actively,
            int group_id = bluetooth::groups::kGroupUnknown);
   void Remove(const RawAddress& address);
   LeAudioDevice* FindByAddress(const RawAddress& address);
