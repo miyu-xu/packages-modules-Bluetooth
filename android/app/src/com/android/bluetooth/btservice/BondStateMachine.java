@@ -69,9 +69,12 @@ final class BondStateMachine extends StateMachine {
     static final int SSP_REQUEST = 5;
     static final int PIN_REQUEST = 6;
     static final int UUID_UPDATE = 10;
+    static final int BONDED_INTENT_DELAY = 11;
     static final int BOND_STATE_NONE = 0;
     static final int BOND_STATE_BONDING = 1;
     static final int BOND_STATE_BONDED = 2;
+
+    static int sPendingUuidUpdateTimeoutMillis = 3000; // 3s
 
     private AdapterService mAdapterService;
     private AdapterProperties mAdapterProperties;
@@ -158,6 +161,7 @@ final class BondStateMachine extends StateMachine {
                                 + state2str(newState));
                     }
                     break;
+                case BONDED_INTENT_DELAY:
                 case UUID_UPDATE:
                     if (mPendingBondedDevices.contains(dev)) {
                         sendIntent(dev, BluetoothDevice.BOND_BONDED, 0);
@@ -380,8 +384,8 @@ final class BondStateMachine extends StateMachine {
         if (devProp != null) {
             oldState = devProp.getBondState();
         }
+
         if (mPendingBondedDevices.contains(device)) {
-            mPendingBondedDevices.remove(device);
             if (oldState == BluetoothDevice.BOND_BONDED) {
                 if (newState == BluetoothDevice.BOND_BONDING) {
                     mAdapterProperties.onBondStateChanged(device, newState);
@@ -392,6 +396,7 @@ final class BondStateMachine extends StateMachine {
                 throw new IllegalArgumentException("Invalid old state " + oldState);
             }
         }
+
         if (oldState == newState) {
             return;
         }
@@ -406,18 +411,21 @@ final class BondStateMachine extends StateMachine {
                 mAdapterService.getMetricId(device));
         mAdapterProperties.onBondStateChanged(device, newState);
 
-        if (devProp != null && ((devProp.getDeviceType() == BluetoothDevice.DEVICE_TYPE_CLASSIC
-                || devProp.getDeviceType() == BluetoothDevice.DEVICE_TYPE_DUAL)
-                && newState == BluetoothDevice.BOND_BONDED && devProp.getUuids() == null)) {
+        if (newstate == BluetoothDevice.BOND_BONDED) {
             infoLog(device + " is bonded, wait for SDP complete to broadcast bonded intent");
-            if (!mPendingBondedDevices.contains(device)) {
-                mPendingBondedDevices.add(device);
-            }
-            if (oldState == BluetoothDevice.BOND_NONE) {
-                // Broadcast NONE->BONDING for NONE->BONDED case.
-                newState = BluetoothDevice.BOND_BONDING;
+            if (mPendingBondedDevices.contains(device)) {
+                mPendingBondedDevice.remove(device);
             } else {
-                return;
+                mPendingBondedDevice.add(device);
+                Message msg = obtainMessage(BONDED_INTENT_DELAY);
+                msg.obj = device;
+                sendMessageDelayed(msg, sPendingUuidUpdateTimeoutMillis);
+                if (oldState == BluetoothDevice.BOND_NONE) {
+                    // Broadcast NONE->BONDING for NONE->BONDED case.
+                    newState = BluetoothDevice.BOND_BONDING;
+                } else {
+                    return;
+                }
             }
         }
 
