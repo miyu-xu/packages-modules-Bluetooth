@@ -60,6 +60,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9fcad68a_0cb076a5",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 672,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-29T02:28:42Z",
+      "side": 1,
+      "message": "We received command disallow for LE Add Device To Filter Accept List command \n\nLE Add Device To Filter Accept List command should not be use when:\n\"the initiator filter policy uses the Filter Accept List and an\nHCI_LE_Create_Connection or HCI_LE_Extended_Create_Connection\ncommand is pending.\"\n\nWe should cancel the connection before we send LE Add Device To Filter Accept List command",
+      "parentUuid": "ecfd6375_f9ec062a",
+      "revId": "14cba8915d1b1ddc91661149cbc2c4d3101b2ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b85de2bd_ea3aa556",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 1
