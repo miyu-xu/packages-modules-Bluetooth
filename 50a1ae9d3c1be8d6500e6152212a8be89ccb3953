@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "012f11ec_2512d1d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-29T18:26:29Z",
+      "side": 1,
+      "message": "Ah, I skimmed through that page and didn\u0027t see a version example. Thanks for digging in.",
+      "parentUuid": "ec33c331_d6a45a1c",
+      "range": {
+        "startLine": 11,
+        "startChar": 4,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a206bd77_c6b49cbd",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "I think it\u0027s more important to pin the packages than the base image, as for me what would most likely cause a breakage would be a package update as bookworm is a still a debian testing release https://www.debian.org/releases/bookworm/.\n\nIf we think that it\u0027s unnecessary then pining the base image doesn\u0027t make a lot of sense to me.",
       "parentUuid": "a33b2718_9f0b40a2",
+      "range": {
+        "startLine": 11,
+        "startChar": 50,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "50a1ae9d3c1be8d6500e6152212a8be89ccb3953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72aca3e5_466f2b0b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-03-29T18:26:29Z",
+      "side": 1,
+      "message": "I think we have different expectations of how the docker image should behave and be used.\n\nIMO, building the docker image is done infrequently by a developer who is familiar with the BT codebase. They will first build docker, then build the source inside the newly built container and they deploy the container to the registry with a new version tag.\n\nEnd-users and automation would both use the image that\u0027s in the registry and not build it from scratch each time.\n\nWith that process in mind, pinning everything has little value.",
+      "parentUuid": "f6d876f3_e49f0573",
       "range": {
         "startLine": 11,
         "startChar": 50,
