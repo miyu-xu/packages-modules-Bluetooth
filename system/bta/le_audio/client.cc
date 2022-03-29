@@ -1846,6 +1846,17 @@ class LeAudioClientImpl : public LeAudioClient {
     if (leAudioDevice->first_connection_) {
       btif_storage_set_leaudio_autoconnect(leAudioDevice->address_, true);
       leAudioDevice->first_connection_ = false;
+
+      LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
+      if (group == NULL) {
+        return;
+      }
+
+      auto* dev = group->GetFirstDevice();
+      while (dev) {
+        btif_storage_set_leaudio_autoconnect(dev->address_, true);
+        dev = group->GetNextDevice(dev);
+      }
     }
   }
 
