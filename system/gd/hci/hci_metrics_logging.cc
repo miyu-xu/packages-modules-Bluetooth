@@ -32,10 +32,9 @@ void log_hci_event(
     case EventCode::COMMAND_COMPLETE: {
       CommandCompleteView complete_view = CommandCompleteView::Create(event_view);
       ASSERT(complete_view.IsValid());
-      if (complete_view.GetCommandOpCode() == OpCode::NONE) {
+      if (complete_view.GetCommandOpCode() == OpCode::NONE || !command_view || !command_view->IsValid()) {
         return;
       }
-      ASSERT(command_view->IsValid());
       log_link_layer_connection_command_complete(event_view, command_view);
       log_classic_pairing_command_complete(event_view, command_view);
       break;
@@ -43,10 +42,9 @@ void log_hci_event(
     case EventCode::COMMAND_STATUS: {
       CommandStatusView response_view = CommandStatusView::Create(event_view);
       ASSERT(response_view.IsValid());
-      if (response_view.GetCommandOpCode() == OpCode::NONE) {
+      if (response_view.GetCommandOpCode() == OpCode::NONE || !command_view || !command_view->IsValid()) {
         return;
       }
-      ASSERT(command_view->IsValid());
       log_link_layer_connection_command_status(command_view, response_view.GetStatus());
       log_classic_pairing_command_status(command_view, response_view.GetStatus());
       break;

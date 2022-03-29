@@ -172,13 +172,14 @@ struct HciLayer::impl {
       send_next_command();
       return;
     }
+
+    if (command_queue_.empty() || waiting_command_ != op_code) {
+      LOG_WARN(
+          "Unexpected %s event with OpCode 0x%02hx (%s)", logging_id.c_str(), op_code, OpCodeText(op_code).c_str());
+      return;
+    }
+
     bool is_status = logging_id == "status";
-
-    ASSERT_LOG(!command_queue_.empty(), "Unexpected %s event with OpCode 0x%02hx (%s)", logging_id.c_str(), op_code,
-               OpCodeText(op_code).c_str());
-    ASSERT_LOG(waiting_command_ == op_code, "Waiting for 0x%02hx (%s), got 0x%02hx (%s)", waiting_command_,
-               OpCodeText(waiting_command_).c_str(), op_code, OpCodeText(op_code).c_str());
-
     bool is_vendor_specific = static_cast<int>(op_code) & (0x3f << 10);
     CommandStatusView status_view = CommandStatusView::Create(event);
     if (is_vendor_specific && (is_status && !command_queue_.front().waiting_for_status_) &&
@@ -334,20 +335,22 @@ struct HciLayer::impl {
       if (event_code == EventCode::COMMAND_COMPLETE) {
           auto view = CommandCompleteView::Create(event);
           ASSERT(view.IsValid());
-          auto op_code = view.GetCommandOpCode();
-          ASSERT_LOG(op_code == OpCode::NONE,
-            "Received %s event with OpCode 0x%02hx (%s) without a waiting command"
-            "(is the HAL sending commands, but not handling the events?)",
-            EventCodeText(event_code).c_str(), op_code, OpCodeText(op_code).c_str());
+          LOG_WARN(
+              "Received %s event with OpCode 0x%02hx (%s) without a waiting command"
+              "(is the HAL sending commands, but not handling the events?)",
+              EventCodeText(event_code).c_str(),
+              view.GetCommandOpCode(),
+              OpCodeText(view.GetCommandOpCode()).c_str());
       }
       if (event_code == EventCode::COMMAND_STATUS) {
           auto view = CommandStatusView::Create(event);
           ASSERT(view.IsValid());
-          auto op_code = view.GetCommandOpCode();
-          ASSERT_LOG(op_code == OpCode::NONE,
-            "Received %s event with OpCode 0x%02hx (%s) without a waiting command"
-            "(is the HAL sending commands, but not handling the events?)",
-            EventCodeText(event_code).c_str(), op_code, OpCodeText(op_code).c_str());
+          LOG_WARN(
+              "Received %s event with OpCode 0x%02hx (%s) without a waiting command"
+              "(is the HAL sending commands, but not handling the events?)",
+              EventCodeText(event_code).c_str(),
+              view.GetCommandOpCode(),
+              OpCodeText(view.GetCommandOpCode()).c_str());
       }
       std::unique_ptr<CommandView> no_waiting_command{nullptr};
       log_hci_event(no_waiting_command, event, module_.GetDependency<storage::StorageModule>());
