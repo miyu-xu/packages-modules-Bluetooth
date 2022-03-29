@@ -27,9 +27,12 @@ import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
+import android.app.compat.CompatChanges;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
+import android.compat.annotation.ChangeId;
+import android.compat.annotation.EnabledSince;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.content.Context;
@@ -270,6 +273,15 @@ public final class BluetoothA2dp implements BluetoothProfile {
      */
     @SystemApi
     public static final int DYNAMIC_BUFFER_SUPPORT_A2DP_SOFTWARE_ENCODING = 2;
+
+    /**
+     * Starting with {@link android.os.Build.VERSION_CODES#TIRAMISU},
+     * {@link #setOptionalCodecsEnabled} will throw {@link IllegalArgumentException}
+     * if the value argument is invalid.
+     */
+    @ChangeId
+    @EnabledSince(targetSdkVersion = android.os.Build.VERSION_CODES.TIRAMISU)
+    static final long ILLEGAL_ARGUMENT_OPTIONAL_CODEC = 222434921L;
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
@@ -1016,7 +1028,7 @@ public final class BluetoothA2dp implements BluetoothProfile {
                 && value != BluetoothA2dp.OPTIONAL_CODECS_PREF_DISABLED
                 && value != BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED) {
             Log.e(TAG, "Invalid value passed to setOptionalCodecsEnabled: " + value);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (CompatChanges.isChangeEnabled(ILLEGAL_ARGUMENT_OPTIONAL_CODEC)) {
                 throw new IllegalArgumentException("Invalid codec preference");
             }
             return;
