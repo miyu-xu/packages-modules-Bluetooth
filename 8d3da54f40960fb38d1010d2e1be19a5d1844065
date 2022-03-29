@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e2def79_af95eb28",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-03-29T18:43:04Z",
+      "side": 1,
+      "message": "is this clearing all addresses? (not just the invalid address + IRK?)",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 404,
+        "endChar": 25
+      },
+      "revId": "8d3da54f40960fb38d1010d2e1be19a5d1844065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
