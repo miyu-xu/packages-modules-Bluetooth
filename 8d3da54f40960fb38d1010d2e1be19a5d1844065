@@ -70,6 +70,30 @@
       },
       "revId": "8d3da54f40960fb38d1010d2e1be19a5d1844065",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488baa12_c39e6f80",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-03-29T23:32:34Z",
+      "side": 1,
+      "message": "One more clarification: Do we need to clear it just on the controller or from storage also? Currently, this code is clearing it from controller side only. Also, there seem no easy way to surface the clearing action to UI.",
+      "parentUuid": "3459573e_713a1a8a",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 404,
+        "endChar": 25
+      },
+      "revId": "8d3da54f40960fb38d1010d2e1be19a5d1844065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
