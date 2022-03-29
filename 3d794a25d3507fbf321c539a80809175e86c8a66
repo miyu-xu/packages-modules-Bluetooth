@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "836a51fe_ee6ef68e",
+        "filename": "system/btif/src/btif_gatt_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-29T13:40:56Z",
+      "side": 0,
+      "message": "This will never be true due to line 329",
+      "range": {
+        "startLine": 342,
+        "startChar": 12,
+        "endLine": 342,
+        "endChar": 42
+      },
+      "revId": "3d794a25d3507fbf321c539a80809175e86c8a66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
