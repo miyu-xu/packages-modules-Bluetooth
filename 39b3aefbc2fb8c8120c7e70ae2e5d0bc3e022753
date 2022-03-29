@@ -16,6 +16,98 @@
       "message": "\"With this patch after reconfiguration(e.g. when metadata changed),\ngroup stays in the CONFIGURED state and does not go to STREAMING as\nbefore.\"\nWhen metadata changes it was supposed to do update metadata or reconfiguration (STREAMING -\u003e RELEASE -\u003e STREAMING). Is it about this second scenario ?\n\n\"Instread Audio Hal gets suspended.\"\nInstead.\n\n\"Group will go to streaming when Audio Hal tries to resume stream.\n\nAlso, with this patch, if ASEs are alread configured, state machine will\ndo QoS Config right away without trying to do Codec Config.\"\nalready",
       "revId": "39b3aefbc2fb8c8120c7e70ae2e5d0bc3e022753",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce74cdce_8c14b252",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 3287,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-29T15:52:10Z",
+      "side": 1,
+      "message": "Should we send the SuspendedForReconfiguration after line#3291? Otherwise, how to handle the start request during ConfigureStream process for reconfiguration?",
+      "range": {
+        "startLine": 3287,
+        "startChar": 10,
+        "endLine": 3287,
+        "endChar": 37
+      },
+      "revId": "39b3aefbc2fb8c8120c7e70ae2e5d0bc3e022753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "738c7f73_da8e5e34",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 3301,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-29T15:52:10Z",
+      "side": 1,
+      "message": "The same as the above comment.",
+      "range": {
+        "startLine": 3301,
+        "startChar": 10,
+        "endLine": 3301,
+        "endChar": 37
+      },
+      "revId": "39b3aefbc2fb8c8120c7e70ae2e5d0bc3e022753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4c81b89_132b56b6",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1136,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-29T15:52:10Z",
+      "side": 1,
+      "message": "Should we clean the pending_configuration as the state timeout?",
+      "range": {
+        "startLine": 1136,
+        "startChar": 14,
+        "endLine": 1136,
+        "endChar": 35
+      },
+      "revId": "39b3aefbc2fb8c8120c7e70ae2e5d0bc3e022753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92235c7_b76faa2b",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-29T15:52:10Z",
+      "side": 1,
+      "message": "What\u0027s the difference between these two status?",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "39b3aefbc2fb8c8120c7e70ae2e5d0bc3e022753",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
