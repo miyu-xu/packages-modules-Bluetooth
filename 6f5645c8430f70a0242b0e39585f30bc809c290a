@@ -39,6 +39,30 @@
       },
       "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e22c93c4_a16cd160",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-03-29T22:54:47Z",
+      "side": 1,
+      "message": "Not sure if the optional steps to flix /usr/lib/pkgconfig/ are required?",
+      "parentUuid": "75768680_d0edfb93",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 0
+      },
+      "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
