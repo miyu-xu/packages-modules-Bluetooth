@@ -323,6 +323,13 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     device.enable_airplane_mode(3)
     device.disable_airplane_mode(3)
 
+  def teardown_test(self):
+    """This method is called when a test completed."""
+    super().teardown_test()
+    # Creates excerpts of logcat for android devices.
+    for device in self.android_devices:
+      device.services.logcat.create_output_excerpts(self.current_test_info)
+
   def teardown_class(self):
     super(BlueberryBaseTest, self).teardown_class()
     for device in self.android_devices:
