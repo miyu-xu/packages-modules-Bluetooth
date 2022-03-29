@@ -33,6 +33,7 @@ import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.ParcelUuid;
@@ -1012,16 +1013,17 @@ public final class BluetoothA2dp implements BluetoothProfile {
             @OptionalCodecsPreferenceStatus int value) {
         if (DBG) log("setOptionalCodecsEnabled(" + device + ")");
         verifyDeviceNotNull(device, "setOptionalCodecsEnabled");
+        final IBluetoothA2dp service = getService();
         if (value != BluetoothA2dp.OPTIONAL_CODECS_PREF_UNKNOWN
                 && value != BluetoothA2dp.OPTIONAL_CODECS_PREF_DISABLED
                 && value != BluetoothA2dp.OPTIONAL_CODECS_PREF_ENABLED) {
             Log.e(TAG, "Invalid value passed to setOptionalCodecsEnabled: " + value);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (service != null && checkCallerTargetSdk(mAttributionSource.getPackageName(),
+                    Build.VERSION_CODES.TIRAMISU)) {
                 throw new IllegalArgumentException("Invalid codec preference");
             }
             return;
         }
-        final IBluetoothA2dp service = getService();
         if (service == null) {
             Log.w(TAG, "Proxy not attached to service");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
@@ -1193,5 +1195,16 @@ public final class BluetoothA2dp implements BluetoothProfile {
 
     private static void log(String msg) {
         Log.d(TAG, msg);
+    }
+
+    private boolean checkCallerTargetSdk(Context context, String pkgName,
+            int expectedMinimumTargetSdk) {
+        try {
+            return context.getPackageManager().getApplicationInfo(pkgName, 0).targetSdkVersion
+                    >= expectedMinimumTargetSdk;
+        } catch (PackageManager.NameNotFoundException e) {
+            // In case of exception, assume true
+        }
+        return true;
     }
 }
