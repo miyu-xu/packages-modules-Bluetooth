@@ -54,14 +54,14 @@ function check_environment {
       echo
       exit 1
     fi
-    if ! [ -x "$(command -v python3.9)" ] ; then
+    if ! [ -x "$(command -v python3.10)" ] ; then
       echo -e "${RED}You must have python 3.9 installed${NOCOLOR}"
       exit 1
     fi
-    python3.9 -m virtualenv --version
+    python3.10 -m virtualenv --version
     if [[ $? -ne 0 ]] ; then
-        echo -e "${RED}virtualenv not installed for python3.9${NOCOLOR}"
-        echo -e "${RED}Please run 'python3.9 -m pip install virtualenv' to install it${NOCOLOR}"
+        echo -e "${RED}virtualenv not installed for python3.10${NOCOLOR}"
+        echo -e "${RED}Please run 'python3.10 -m pip install virtualenv' to install it${NOCOLOR}"
         exit 1
     fi
 }
@@ -301,7 +301,7 @@ function setup_venv {
             echo -e "${NOCOLOR}"
         fi
     fi
-    python3.9 -m virtualenv --python `which python3.9` "${CERT_TEST_VENV}"
+    python3.10 -m virtualenv --python `which python3.10` "${CERT_TEST_VENV}"
     if [[ $? -ne 0 ]] ; then
         echo -e "${RED}Error setting up virtualenv${NOCOLOR}"
         exit 1
