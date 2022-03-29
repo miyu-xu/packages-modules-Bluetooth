@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7950e0c7_caf61910",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-03-29T02:33:53Z",
+      "side": 1,
+      "message": "This is fix of cl/2035943. I just follow the test of it.\nThe side effect blocking some test, let\u0027s merged this first.\nThanks.",
+      "parentUuid": "b68aa0d9_144ad3f1",
+      "revId": "14cba8915d1b1ddc91661149cbc2c4d3101b2ed6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "63c3a073_133164f1",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 1
