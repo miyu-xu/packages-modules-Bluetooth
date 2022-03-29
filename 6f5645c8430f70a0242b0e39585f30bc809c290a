@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a355ce24_8c4bf2eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-29T16:13:17Z",
+      "side": 1,
+      "message": "I believe",
+      "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75768680_d0edfb93",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-29T16:13:17Z",
+      "side": 1,
+      "message": "I would like to remove this step because we should minimize the amount of manually built packages. The last time I check `apt-get install libgmock-dev libgtest-dev` provides the things we need already. So we may want to do that instead if that\u0027s the case.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 0
+      },
+      "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
