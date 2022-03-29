@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6034301_698b16f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-03-29T18:13:18Z",
+      "side": 1,
+      "message": "\u003e Patch Set 2:\n\u003e \n\u003e The presubmit-run(ID:L97100000953755178) has been canceled.\n\n",
+      "revId": "d591fdd04e23d4f900a1e888fd6eb2c60aefefba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
