@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cdeb52b_c6757e1f",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-29T12:14:48Z",
+      "side": 1,
+      "message": "Ok. No locations for all the BISes above index 2.",
+      "parentUuid": "3d9efeb1_8efbe414",
+      "revId": "c7bf5e0f9d62d93dcf56b1e7702cec9557fa3fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34f9caef_ce06befd",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "827679ec_f4653b00",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-29T12:14:48Z",
+      "side": 1,
+      "message": "As discussed offline, let\u0027s put the `kLeAudioLocationFrontCenter` here.",
+      "parentUuid": "34f9caef_ce06befd",
+      "revId": "c7bf5e0f9d62d93dcf56b1e7702cec9557fa3fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "93e63b45_81df853f",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-03-29T09:19:50Z",
       "side": 1,
       "message": "This is something I\u0027m not convinced to.\n\nI think in case of non Transparent coding format we should carry about some parameters here.",
+      "revId": "c7bf5e0f9d62d93dcf56b1e7702cec9557fa3fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54ffc853_6998ace4",
+        "filename": "system/bta/le_audio/broadcaster/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-29T12:14:48Z",
+      "side": 1,
+      "message": "Yeap. The offloader integration probably requires much more changes and should be done in a separate patch. Added TODO here.",
+      "parentUuid": "93e63b45_81df853f",
       "revId": "c7bf5e0f9d62d93dcf56b1e7702cec9557fa3fcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
