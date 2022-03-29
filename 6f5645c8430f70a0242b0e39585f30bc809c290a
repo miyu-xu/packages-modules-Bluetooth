@@ -63,6 +63,30 @@
       },
       "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca92c207_cb1c1c8f",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-29T23:29:03Z",
+      "side": 1,
+      "message": "That step is part of manually building googletest, so it should also be not required. I am not sure how you can test this since you already did it, but my last test with a clean gLinux installation did not require this step.",
+      "parentUuid": "e22c93c4_a16cd160",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 0
+      },
+      "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
