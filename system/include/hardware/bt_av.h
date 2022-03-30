@@ -55,6 +55,7 @@ typedef enum {
   BTAV_A2DP_CODEC_INDEX_SOURCE_APTX,
   BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD,
   BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC,
+  BTAV_A2DP_CODEC_INDEX_SOURCE_LC3,
 
   BTAV_A2DP_CODEC_INDEX_SOURCE_MAX,
 
@@ -152,6 +153,15 @@ typedef struct {
       case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_HD:
         codec_name_str = "aptX HD";
         break;
+<<<<<<< HEAD
+=======
+      case BTAV_A2DP_CODEC_INDEX_SOURCE_LC3:
+        codec_name_str = "LC3";
+        break;
+      case BTAV_A2DP_CODEC_INDEX_SOURCE_APTX_ADAPTIVE:
+        codec_name_str = "aptX Adaptive";
+        break;
+>>>>>>> b69c1ed... Add Lc3 codec over A2DP
       case BTAV_A2DP_CODEC_INDEX_SOURCE_LDAC:
         codec_name_str = "LDAC";
         break;
