@@ -194,8 +194,11 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     # Takes screenshot for android devices if a test method fails.
     if self.screenshot_on_fail:
       for device in self.android_devices:
-        device.take_screenshot(
-            destination=self.current_test_info.output_path)
+        try:
+          device.take_screenshot(
+              destination=self.current_test_info.output_path)
+        except adb.AdbTimeoutError as e:
+          device.log.error(str(e))
 
     # Capture bugreports on fail if enabled.
     if self.capture_bugreport_on_fail:
