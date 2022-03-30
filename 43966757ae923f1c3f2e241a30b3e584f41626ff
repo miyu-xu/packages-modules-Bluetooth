@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60880d8e_334a9357",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-30T20:46:04Z",
+      "side": 1,
+      "message": "if you are touching it, please use LOG_INFO() :)",
+      "revId": "43966757ae923f1c3f2e241a30b3e584f41626ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afe1971f_b4812bc1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1871,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-30T20:46:04Z",
+      "side": 1,
+      "message": "maybe dev-\u003econnecting_actively_ should be checked here as well ?",
+      "revId": "43966757ae923f1c3f2e241a30b3e584f41626ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
