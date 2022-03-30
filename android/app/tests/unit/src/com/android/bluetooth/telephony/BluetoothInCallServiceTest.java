@@ -107,6 +107,7 @@ public class BluetoothInCallServiceTest {
             registerReceiver(mBluetoothAdapterReceiver, intentFilter);
             mTelephonyManager = getSystemService(TelephonyManager.class);
             mTelecomManager = getSystemService(TelecomManager.class);
+            mBoundCount++;
             return binder;
         }
         @Override
