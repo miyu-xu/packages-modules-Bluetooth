@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5f042b0_ca0c75d4",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-30T08:21:54Z",
+      "side": 1,
+      "message": "probably this list of configuration should be extended.",
+      "revId": "42d291ea8872bf0e2db92e2e33c8d34f0d06ddd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7860f4c_8b117394",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2458,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-30T08:21:54Z",
+      "side": 1,
+      "message": "thanks. Same we should do for others below.\n\nAlso please not that now file structure changed a bit. You need to also extend configurations above and the configurations are use in audio_set_scenarios.json.",
+      "range": {
+        "startLine": 2458,
+        "startChar": 21,
+        "endLine": 2458,
+        "endChar": 68
+      },
+      "revId": "42d291ea8872bf0e2db92e2e33c8d34f0d06ddd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324a61a4_360072be",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2659,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-30T08:21:54Z",
+      "side": 1,
+      "message": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_VS_32_high_quality_1 ?",
+      "range": {
+        "startLine": 2659,
+        "startChar": 21,
+        "endLine": 2659,
+        "endChar": 58
+      },
+      "revId": "42d291ea8872bf0e2db92e2e33c8d34f0d06ddd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
