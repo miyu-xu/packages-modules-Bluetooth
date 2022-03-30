@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ae63c38_db741f44",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-03-30T22:24:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fe101fc_cf2c912a",
+      "range": {
+        "startLine": 402,
+        "startChar": 7,
+        "endLine": 402,
+        "endChar": 27
+      },
+      "revId": "adbc7ab7d348593e176595873b3381d38fb174c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8bd2d59_f04814bc",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-30T21:43:50Z",
       "side": 1,
       "message": "This shouldn\u0027t be needed, since you stopped it from being added.",
+      "range": {
+        "startLine": 405,
+        "startChar": 4,
+        "endLine": 405,
+        "endChar": 33
+      },
+      "revId": "adbc7ab7d348593e176595873b3381d38fb174c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7696ab19_a25d5f66",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-03-30T22:24:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8bd2d59_f04814bc",
       "range": {
         "startLine": 405,
         "startChar": 4,
