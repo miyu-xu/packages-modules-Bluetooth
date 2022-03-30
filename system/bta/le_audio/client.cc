@@ -781,6 +781,21 @@ class LeAudioClientImpl : public LeAudioClient {
       leAudioDevices_.Add(address, true);
     } else {
       leAudioDevice->connecting_actively_ = true;
+
+      // Attempt to connect to all devices belonging to this group
+      LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
+      if (group) {
+        auto* dev = group->GetFirstDevice();
+        while (dev) {
+          if (!dev->connecting_actively_ &&
+              dev->conn_id_ == GATT_INVALID_CONN_ID) {
+            dev->connecting_actively_ = true;
+            BTA_GATTC_Open(gatt_if_, dev->address_, true, false);
+          }
+          dev = group->GetNextDevice(dev);
+        }
+        return;
+      }
     }
 
     BTA_GATTC_Open(gatt_if_, address, true, false);
