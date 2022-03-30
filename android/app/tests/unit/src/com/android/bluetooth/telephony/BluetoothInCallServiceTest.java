@@ -140,6 +140,7 @@ public class BluetoothInCallServiceTest {
         mBluetoothInCallService.setBluetoothHeadset(mMockBluetoothHeadset);
         mBluetoothInCallService.setBluetoothLeCallControl(mMockBluetoothLeCallControl);
         mBluetoothInCallService.mCallInfo = mMockCallInfo;
+        mBluetoothInCallService.onCreate();
     }
 
     @After
