@@ -219,6 +219,7 @@ cc_test {
     srcs: [
         ":OsiCompatSources",
         ":TestCommonMainHandler",
+        ":TestCommonInitFlags",
         ":TestMockBtif",
         ":TestMockDevice",
         ":TestMockMainShim",
@@ -253,6 +254,7 @@ cc_test {
         "test/bta_dm_test.cc",
         "test/bta_gatt_test.cc",
         "test/bta_pan_test.cc",
+        "test/bta_sdp_test.cc",
     ],
     shared_libs: [
         "libbase",

@@ -24,6 +24,7 @@
 #include "bta/include/bta_hf_client_api.h"
 #include "btif/include/stack_manager.h"
 #include "common/message_loop_thread.h"
+#include "test/common/main_handler.h"
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_stack_acl.h"
 
@@ -56,6 +57,8 @@ class BtaDmTest : public testing::Test {
     test::mock::osi_alarm::alarm_free.body = [](alarm_t* alarm) {
       delete alarm;
     };
+    main_thread_start_up();
+    sync_main_handler();
 
     bta_dm_init_cb();
 
@@ -67,6 +70,10 @@ class BtaDmTest : public testing::Test {
   }
   void TearDown() override {
     bta_dm_deinit_cb();
+
+    sync_main_handler();
+    main_thread_shut_down();
+
     test::mock::osi_alarm::alarm_new = {};
     test::mock::osi_alarm::alarm_free = {};
   }
