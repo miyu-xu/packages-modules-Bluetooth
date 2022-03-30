@@ -1211,7 +1211,10 @@ impl IBluetooth for Bluetooth {
                                 self.hh.as_ref().unwrap().connect(&mut addr.unwrap());
                             }
 
-                            Profile::A2dpSink | Profile::A2dpSource => {
+                            Profile::Hfp
+                            | Profile::HfpAg
+                            | Profile::A2dpSink
+                            | Profile::A2dpSource => {
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
@@ -1253,7 +1256,10 @@ impl IBluetooth for Bluetooth {
                                 self.hh.as_ref().unwrap().disconnect(&mut addr.unwrap());
                             }
 
-                            Profile::A2dpSink | Profile::A2dpSource => {
+                            Profile::Hfp
+                            | Profile::HfpAg
+                            | Profile::A2dpSink
+                            | Profile::A2dpSource => {
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
                                 topstack::get_runtime().spawn(async move {
