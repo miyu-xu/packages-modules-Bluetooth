@@ -16,6 +16,24 @@
       "message": "I see there is another AVRCP 1.3 (Service Name / Class ID: A/V Remote Control) adding in SDP dump, but won\u0027t it be similar to aosp/1827796?\n\nWill update the BTSnoop in buganizer.",
       "revId": "1de3533ba563a8f5778fb36111ac8cb2a5dd868c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67b788e1_41173f61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1320788
+      },
+      "writtenOn": "2022-03-30T01:51:55Z",
+      "side": 1,
+      "message": "In buganizer you can see I add the missing sdp record for 0x110e when avrcp_service init.",
+      "parentUuid": "dff6e360_ac7832a0",
+      "revId": "1de3533ba563a8f5778fb36111ac8cb2a5dd868c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
