@@ -87,6 +87,30 @@
       },
       "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cd87938_4d1ca58f",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-03-30T00:46:53Z",
+      "side": 1,
+      "message": "Got it, I\u0027m also for skipping this step if it\u0027s not required. Let me verify this on another laptop.",
+      "parentUuid": "ca92c207_cb1c1c8f",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 0
+      },
+      "revId": "6f5645c8430f70a0242b0e39585f30bc809c290a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
