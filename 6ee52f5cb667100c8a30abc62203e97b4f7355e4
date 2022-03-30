@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e23cbd3a_0caab8d0",
+        "filename": "system/blueberry/tests/gd_sl4a/hci/le_advanced_scanning_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-30T15:48:13Z",
+      "side": 1,
+      "message": "Do you want this to run every time?\n\nYou could save the result of wait_for_scan_result_event and assert after the \"Test over\" block",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 61
+      },
+      "revId": "6ee52f5cb667100c8a30abc62203e97b4f7355e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
