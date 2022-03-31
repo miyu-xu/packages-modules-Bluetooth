@@ -16,6 +16,24 @@
       "message": "I think we need same here",
       "revId": "43f69c971c8880d923afd2b24507e6bd4ddb0e21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80234f8a_9c26f6e0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-03-31T11:18:18Z",
+      "side": 1,
+      "message": "Missed that one. Thanks. Fixed here: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2051121",
+      "parentUuid": "b1737976_f06c94bc",
+      "revId": "43f69c971c8880d923afd2b24507e6bd4ddb0e21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
