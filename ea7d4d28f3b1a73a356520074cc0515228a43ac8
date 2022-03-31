@@ -16,6 +16,24 @@
       "message": "It was assumption that Java does it. Java does not do it?\nIf we do `direct_connection`, native code will send CONNECTION_STATE to Java  - either DISCONNECTED or CONNECTED and if for some reason Java does not do it, then state_machine does not exist in state machine. maybe this is not a big deal but in case of DISCONNECTED in is unnecessary\n\nActually we had it in service but it was moved to Settings aosp/2015215 , maybe bug is somewhere else?",
       "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99c66299_bcc67b58",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-31T08:11:21Z",
+      "side": 1,
+      "message": "What I observe is upper layers call CONNECT to 1st device. once profile connects successfully it calls CONNECT to another device.\n\nThis does work well if lead device is advertising, but fail to connect to just non-lead device.",
+      "parentUuid": "f4f59d66_4f5ee6cc",
+      "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
