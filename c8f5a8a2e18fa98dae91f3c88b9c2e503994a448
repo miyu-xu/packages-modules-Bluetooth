@@ -56,6 +56,30 @@
       },
       "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7413577a_d6970d0d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-31T04:47:04Z",
+      "side": 1,
+      "message": "Seems to be empty string.\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth.rs;drc\u003d06296aa32423b3ffe26df53243f4e902b0f3414d;l\u003d1100\n\nOops. The second argument, name, has no effect now.\n\nWill correct both.",
+      "parentUuid": "2be224bb_48b2782e",
+      "range": {
+        "startLine": 319,
+        "startChar": 68,
+        "endLine": 319,
+        "endChar": 74
+      },
+      "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
