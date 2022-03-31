@@ -38,6 +38,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34ac8cf5_472e5e41",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-31T14:20:34Z",
+      "side": 1,
+      "message": "Can we have storing/managing files as separate patch ?\nI think it\u0027s separate problem that can easily be enclosed, maybe even tested.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d278469_5857ce73",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-31T14:20:34Z",
+      "side": 1,
+      "message": "base::HexEncode(hash, 16).c_str()\n\nalso change all %02x into one %s",
+      "range": {
+        "startLine": 107,
+        "startChar": 34,
+        "endLine": 109,
+        "endChar": 49
+      },
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "556fb7a8_0392d09e",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-31T14:20:34Z",
+      "side": 1,
+      "message": "else\n\n\nThis should be if/else statement, no need to check same condition twice.",
+      "range": {
+        "startLine": 263,
+        "startChar": 3,
+        "endLine": 266,
+        "endChar": 45
+      },
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df3c1d14_1d062b7c",
         "filename": "system/bta/gatt/bta_gattc_cache.cc",
         "patchSetId": 3
