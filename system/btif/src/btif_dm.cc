@@ -644,7 +644,6 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
  ******************************************************************************/
 static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                                    tBT_TRANSPORT transport) {
-  bool is_hid = check_cod(&bd_addr, COD_HID_POINTING);
   bond_state_changed(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING);
 
   int device_type = 0;
@@ -676,7 +675,7 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                        static_cast<tBT_DEVICE_TYPE>(device_type));
   }
 
-  if (is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
+  if (check_cod_hid(&bd_addr) && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
     const bt_status_t status = btif_hh_connect(&bd_addr);
     if (status != BT_STATUS_SUCCESS)
       bond_state_changed(status, bd_addr, BT_BOND_STATE_NONE);
