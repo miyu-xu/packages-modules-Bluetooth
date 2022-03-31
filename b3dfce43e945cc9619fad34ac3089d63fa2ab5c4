@@ -16,6 +16,24 @@
       "message": "There\u0027s already a callback for every status.  I don\u0027t think we need another one.  It\u0027s possible that you could get the same amount of logging adding some logging for unexpected status in the couple of places that are sending commands with status.\n\npackages/modules/Bluetooth/system/gd/hci/acl_manager/classic_acl_connection.cc line 288",
       "revId": "b3dfce43e945cc9619fad34ac3089d63fa2ab5c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2748bb58_b145a2c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-31T23:54:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ae394714_0fe47faf",
+      "revId": "b3dfce43e945cc9619fad34ac3089d63fa2ab5c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
