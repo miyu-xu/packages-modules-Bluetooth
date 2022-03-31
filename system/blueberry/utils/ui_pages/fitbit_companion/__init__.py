@@ -244,7 +244,8 @@ def _trigger_pairing(ctx: context.Context, fitbit_prod_name: str) -> None:
   ctx.page.add_device()
   ctx.expect_page(
       pairing_pages.ChooseTrackerPage,
-      node_eval=_eval_existence_of_fitbit_product_name)
+      node_eval=_eval_existence_of_fitbit_product_name,
+      wait_sec=30)
   ctx.page.select_device(fitbit_prod_name)
   ctx.page.confirm()
 
@@ -316,6 +317,7 @@ def _handle_post_pairing_flow(ctx: context.Context,
         pairing_pages.PairingConfirmPage,
         pairing_pages.CancelPairPage,
         pairing_pages.CancelPair2Page,
+        pairing_pages.UpdateDevicePage,
         other_pages.AllowNotification,
         other_pages.LinkConfirmPage,
         other_pages.FitbitManagePopup,
@@ -346,6 +348,9 @@ def _handle_post_pairing_flow(ctx: context.Context,
     elif ctx.is_page(other_pages.FitbitManagePopup):
       ctx.log.info('Allow Fitbit to manage device...')
       ctx.page.allow()
+    elif ctx.is_page(pairing_pages.UpdateDevicePage):
+      ctx.log.info('Skip update page...')
+      ctx.page.update_later()
     elif ctx.is_page(account_pages.AccountPage):
       ctx.log.info(
           'Completed pairing process (shortcut)!')
