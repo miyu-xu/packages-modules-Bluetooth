@@ -111,6 +111,13 @@ class PairingIntroPage(ui_core.UIPage):
       'Swipe up',
       'Try it on',
       'Wear & care tips',
+      'Changing the band',
+      'Wearing the watch',
+      'Swipe right',
+      'Swipe left',
+      'Press side button',
+      'Double press button',
+      'Wear & care tips:',
   ])
   NODE_NEXT_BTN_RID = f'{constants.PKG_NAME_ID}/btn_next'
 
@@ -176,7 +183,7 @@ class PairPrivacyConfirmPage(ui_core.UIPage):
   """Fitbit Companion App's page to confirm the privacy befoe pairing."""
 
   PAGE_RID = f'{constants.PKG_NAME_ID}/gdpr_scroll_view'
-  _NODE_ACCEPT_BTN_TEXT = 'ACCEPT'
+  _NODE_ACCEPT_BTN_RE_TEXT = '(I )?ACCEPT'
   _SWIPE_RETRY = 5
 
   def accept(self) -> ui_core.UIPage:
@@ -190,14 +197,15 @@ class PairPrivacyConfirmPage(ui_core.UIPage):
     """
     self.swipe_down()
     for i in range(self._SWIPE_RETRY):
-      node = self.get_node_by_text(self._NODE_ACCEPT_BTN_TEXT)
+      node = self.get_node_by_text(self._NODE_ACCEPT_BTN_RE_TEXT, use_re=True)
       if node is None:
         raise errors.UIError(
-            f'Fail to find the node with text={self._NODE_ACCEPT_BTN_TEXT}')
+            f'Fail to find the node with text={self._NODE_ACCEPT_BTN_RE_TEXT}')
 
       atr_obj = node.attributes.get('enabled')
       if atr_obj is not None and atr_obj.value == 'true':
-        return self.click_node_by_text(self._NODE_ACCEPT_BTN_TEXT)
+        return self.click_node_by_text(
+            self._NODE_ACCEPT_BTN_RE_TEXT, use_re=True)
 
       self.log.debug('swipe down to browse the privacy info...%d', i + 1)
       self.swipe_down()
@@ -295,7 +303,7 @@ class ConfirmReplaceSmartWatchPage(ui_core.UIPage):
 class ConfirmChargePage(ui_core.UIPage):
   """Fitbit Companion App's page to confirm the charge condition."""
 
-  PAGE_RE_TEXT = 'Let your device charge during setup'
+  PAGE_RE_TEXT = '(Let your device charge during setup|Let it charge)'
 
   def next(self) -> ui_core.UIPage:
     """Forwards to pairing page.
@@ -366,7 +374,9 @@ class SkipInfoPage(ui_core.UIPage):
 class UpdateDevicePage(ui_core.UIPage):
   """Fitbit Companion App's page to update device."""
 
-  PAGE_TEXT = 'INSTALL UPDATE NOW'
+  PAGE_RE_TEXT = (
+      '(INSTALL UPDATE NOW|A new software version is available|'
+      'Start your update)')
   NODE_UPDATE_LATER_BTN_TEXT = 'UPDATE LATER'
 
   def update_later(self) -> ui_core.UIPage:
@@ -391,3 +401,149 @@ class PurchasePage(ui_core.UIPage):
       The transformed page.
     """
     return self.click_node_by_text(self.NODE_SKIP_BTN_TEXT)
+
+
+class SearchDevicePage(ui_core.UIPage):
+  """Fitbit Companion App's page to search device."""
+
+  PAGE_TEXT = ("Turn on your phone's Bluetooth, and keep your Fitbit device "
+               'nearby to establish a connection.')
+  _NODE_SEARCH_BTN_TEXT = 'SEARCHING'
+
+  def search(self) -> ui_core.UIPage:
+    """Starts searching device.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SEARCH_BTN_TEXT)
+
+
+class BTPermissionRequestPopup(ui_core.UIPage):
+  """Fitbit Companion App's page to request BT permission."""
+
+  PAGE_TEXT = ('Requesting permission to turn on Bluetooth. Do you want to do '
+               'this?')
+  NODE_OK_BTN_TEXT = 'OK'
+
+  def ok(self) -> ui_core.UIPage:
+    """Accepts the request.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self.NODE_OK_BTN_TEXT)
+
+
+class VoicePrivacyPage(ui_core.UIPage):
+  """Fitbit Companion App's page for voice privacy."""
+
+  PAGE_TEXT = 'Voice privacy'
+  _NODE_GOT_IT_BTN_TEXT = 'GOT IT'
+
+  def next(self) -> ui_core.UIPage:
+    """Accepts voice privacy.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_GOT_IT_BTN_TEXT)
+
+
+class AmazonAlexaPage(ui_core.UIPage):
+  """Fitbit Companion App's page for Amazon Alexa setup."""
+
+  PAGE_TEXT = 'Rhea includes Alexa'
+  _NODE_SKIP_BTN_TEXT = 'NOT NOW'
+  _NODE_BACK_BTN_CONTENT_DESC = 'Navigate up'
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips the setup.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
+
+  def back(self) -> ui_core.UIPage:
+    """Goes back to previous page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_content_desc(self._NODE_BACK_BTN_CONTENT_DESC)
+
+
+class SetupOnWristCallPage(ui_core.UIPage):
+  """Fitbit Companion App's page for On-wrist call setup."""
+
+  PAGE_TEXT = 'Set up On-wrist calls'
+  _NODE_SKIP_BTN_TEXT = 'SKIP'
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
+
+
+class MonitorOxygenSetupPage(ui_core.UIPage):
+  """Fitbit Companion App's page for Oxygen monitoring setup."""
+
+  PAGE_RE_TEXT = 'Monitor your Oxygen Saturation.*'
+  _NODE_NEXT_BTN_TEXT = 'NEXT'
+
+  def next(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_NEXT_BTN_TEXT)
+
+
+class AllsetPage(ui_core.UIPage):
+  """Fitbit Companion App's page to show all done after pairing."""
+
+  PAGE_TEXT = "You're all set!"
+  _NODE_DONE_BTN_TEXT = 'DONE'
+
+  def done(self) -> ui_core.UIPage:
+    """Completes the setup process.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_DONE_BTN_TEXT)
+
+
+class OnWristCallLoadingPage(ui_core.UIPage):
+  """Fitbit Companion App's page while loading on wrist call."""
+
+  PAGE_RE_TEXT = 'Loading On-wrist calls'
+  _NODE_SKIP_BTN_TEXT = 'SKIP'
+
+  def skip(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_SKIP_BTN_TEXT)
+
+
+class OnWristCallAllSetPage(ui_core.UIPage):
+  """Fitbit Companion App's page for OnWrist all set."""
+
+  PAGE_RE_TEXT = 'On-wrist calls is all set'
+  _NODE_NEXT_BTN_TEXT = 'NEXT'
+
+  def next(self) -> ui_core.UIPage:
+    """Skips the current page.
+
+    Returns:
+      The transformed page.
+    """
+    return self.click_node_by_text(self._NODE_NEXT_BTN_TEXT)

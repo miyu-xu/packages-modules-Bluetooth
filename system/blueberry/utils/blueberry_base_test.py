@@ -1,5 +1,6 @@
 """Base test class for Blueberry."""
 
+import datetime
 import importlib
 import re
 from typing import Union
@@ -7,6 +8,7 @@ from typing import Union
 from mobly import base_test
 from mobly import records
 from mobly import signals
+from mobly import utils
 from mobly.controllers import android_device
 from mobly.controllers.android_device_lib import adb
 
@@ -26,6 +28,7 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     super().__init__(configs)
     self._upload_test_report = None
     self.capture_bugreport_on_fail = None
+    self.screenshot_on_fail = None
     self.android_devices = None
     self.derived_bt_devices = None
     self.ignore_device_setup_failures = None
@@ -48,8 +51,8 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     Don't use "test_case_selector" when using "test_iterations", and please use
     "test_method_selector" to replace it.
     """
-    test_iterations = int(self.user_params.get('test_iterations', 0))
-    if test_iterations < 2:
+    self.test_iterations = int(self.user_params.get('test_iterations', 0))
+    if self.test_iterations < 2:
       return
 
     test_method_selector = self.user_params.get('test_method_selector', 'all')
@@ -69,8 +72,9 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     for test_name in selected_test_names:
       test_method = getattr(self.__class__, test_name)
       # List of (<new test name>, <test method>).
-      test_arg_sets = [('%s_%s_of_%s' % (test_name, i + 1, test_iterations),
-                        test_method) for i in range(test_iterations)]
+      test_arg_sets = [('%s_%s_of_%s' %
+                        (test_name, i + 1, self.test_iterations),
+                        test_method) for i in range(self.test_iterations)]
       # pylint: disable=cell-var-from-loop
       self.generate_tests(
           test_logic=lambda _, test: test(self),
@@ -94,6 +98,7 @@ class BlueberryBaseTest(base_test.BaseTestClass):
       self._init_spanner_utils()
     self.capture_bugreport_on_fail = int(self.user_params.get(
         'capture_bugreport_on_fail', 0))
+    self.screenshot_on_fail = int(self.user_params.get('screenshot_on_fail', 0))
     self.ignore_device_setup_failures = int(self.user_params.get(
         'ignore_device_setup_failures', 0))
     self.enable_bluetooth_verbose_logging = int(self.user_params.get(
@@ -104,6 +109,8 @@ class BlueberryBaseTest(base_test.BaseTestClass):
         'increase_logger_buffers', 0))
     self.enable_all_bluetooth_logging = int(self.user_params.get(
         'enable_all_bluetooth_logging', 0))
+    self.enable_airplane_mode_after_test = int(self.user_params.get(
+        'enable_airplane_mode_after_test', 0))
 
     # base test should include the test between primary device with Bluetooth
     # peripheral device.
@@ -135,6 +142,12 @@ class BlueberryBaseTest(base_test.BaseTestClass):
 
     for device in self.android_devices:
       need_restart_bluetooth = False
+      if self.enable_airplane_mode_after_test:
+        # Turn off airplane mode
+        device.disable_airplane_mode(3)
+        # Turn on BT and check status
+        device.toggle_bluetooth(enabled=True)
+        device.wait_for_bluetooth_toggle_state(enabled=True)
       if (self.enable_bluetooth_verbose_logging or
           self.enable_all_bluetooth_logging):
         if self.set_bt_trc_level_verbose(device):
@@ -178,6 +191,15 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     if self._upload_test_report:
       self._upload_test_report_to_spanner(record.result)
 
+    # Takes screenshot for android devices if a test method fails.
+    if self.screenshot_on_fail:
+      for device in self.android_devices:
+        try:
+          device.take_screenshot(
+              destination=self.current_test_info.output_path)
+        except adb.AdbTimeoutError as e:
+          device.log.error(str(e))
+
     # Capture bugreports on fail if enabled.
     if self.capture_bugreport_on_fail:
       devices = self.android_devices
@@ -185,11 +207,13 @@ class BlueberryBaseTest(base_test.BaseTestClass):
       for d in self.derived_bt_devices:
         if hasattr(d, 'take_bug_report'):
           devices = devices + [d]
-      android_device.take_bug_reports(
-          devices,
-          record.test_name,
-          record.begin_time,
-          destination=self.current_test_info.output_path)
+      take_br = lambda ad, *args: ad.take_bug_report(*args)
+      args = []
+      for ad in devices:
+        args.append((ad, record.test_name, record.begin_time,
+                     datetime.timedelta(minutes=8).seconds,
+                     self.current_test_info.output_path))
+      utils.concurrent_exec(take_br, args)
 
   def _init_spanner_utils(self) -> None:
     """Imports spanner_utils and creates SpannerUtils object."""
@@ -301,3 +325,20 @@ class BlueberryBaseTest(base_test.BaseTestClass):
     """Restarts bluetooth by airplane mode."""
     device.enable_airplane_mode(3)
     device.disable_airplane_mode(3)
+
+  def teardown_test(self):
+    """This method is called when a test completed."""
+    super().teardown_test()
+    # Creates excerpts of logcat for android devices.
+    for device in self.android_devices:
+      device.services.logcat.create_output_excerpts(self.current_test_info)
+
+  def teardown_class(self):
+    super(BlueberryBaseTest, self).teardown_class()
+    for device in self.android_devices:
+      if self.enable_airplane_mode_after_test:
+        # Turn off BT and check status
+        device.toggle_bluetooth(enabled=False)
+        device.wait_for_bluetooth_toggle_state(enabled=False)
+        # Turn on airplane mode
+        device.enable_airplane_mode(3)

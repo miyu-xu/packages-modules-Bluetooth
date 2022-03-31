@@ -32,7 +32,7 @@ _EXPECT_PAGE_WAIT_TIME_IN_SECOND = 20
 NodeEvaluator = Optional[Callable[[ui_node.UINode], bool]]
 
 # Number of retries in retrieving UI xml file.
-_RETRIES_NUM_OF_ADB_COMMAND = 5
+_RETRIES_NUM_OF_ADB_COMMAND = 6
 
 
 # Dataclass for return of UI parsing result.
@@ -126,11 +126,15 @@ class Context(abc.ABC):
     """
     pass
 
-  def go_page(self, page_class: Type[UIPage]) -> UIPage:
+  def go_page(self,
+              page_class: Type[UIPage],
+              expected_pages: Optional[List[Type[UIPage]]] = None) -> UIPage:
     """Goes to target page.
 
     Args:
       page_class: The class of target page to go to.
+      expected_pages: The expected page(s) after launching activity of target
+        page.
 
     Returns:
       The corresponding UIPage of given page class.
@@ -143,7 +147,7 @@ class Context(abc.ABC):
 
     self.ad.adb.shell(f'am start -n {page_class.ACTIVITY}')
     self.get_page()
-    self.expect_page(page_class)
+    self.expect_pages(expected_pages or [page_class])
 
     return self.page
 
@@ -322,6 +326,29 @@ class Context(abc.ABC):
     _search_node(self.root_node)
     return ParsedUI(ui_xml, clickable_nodes, enabled_nodes, all_nodes)
 
+  def safe_expect_page(self,
+                       page_class: Type[UIPage],
+                       wait_sec: int = _EXPECT_PAGE_WAIT_TIME_IN_SECOND,
+                       node_eval: NodeEvaluator = None) -> bool:
+    """Waits for expected pages for certain time.
+
+    Args:
+      page_class: The expected page class.
+      wait_sec: The waiting time.
+      node_eval: Function to search the node. Here it is used to confirm that
+        the target page contain the desired node.
+
+    Returns:
+      True iff the expected page(s) are reached.
+    """
+    try:
+      self.expect_page(page_class, wait_sec, node_eval)
+      return True
+    except errors.ContextError:
+      self.log.warning('Failed to reach page(s) as %s (current page is %s)',
+                       page_class, self.page)
+    return False
+
   def expect_pages(self,
                    page_class_list: Sequence[Type[UIPage]],
                    wait_sec: int = _EXPECT_PAGE_WAIT_TIME_IN_SECOND,
@@ -423,16 +450,16 @@ class Context(abc.ABC):
                                      enabled_nodes, all_nodes)
 
       if page_obj:
+        if self.enable_registered_page_call:
+          regr_method_name = self.get_regr_page_call(page_obj)
+          if regr_method_name:
+            return getattr(page_obj, regr_method_name)()
+
         if self.page is not None and isinstance(page_obj, self.page.__class__):
           self.log.debug('Refreshing page %s...', self.page)
           self.page.refresh(page_obj)
         else:
           self.page = page_obj
-
-        if self.enable_registered_page_call:
-          regr_method_name = self.get_regr_page_call(self.page)
-          if regr_method_name:
-            return getattr(self.page, regr_method_name)()
 
         return self.page
 
@@ -485,6 +512,9 @@ class UIPage:
   # Defined in subclass
   PAGE_TITLE = None
 
+  # Defined in subclass
+  CONTENT_DESC = None
+
   def __init__(self, ctx: Context, ui_xml: Optional[minidom.Document],
                clickable_nodes: List[ui_node.UINode],
                enabled_nodes: List[ui_node.UINode],
@@ -528,6 +558,10 @@ class UIPage:
     elif cls.PAGE_RE_TEXT is not None:
       for node in enabled_nodes + clickable_nodes:
         if re.search(cls.PAGE_RE_TEXT, node.text):
+          return cls(ctx, ui_xml, clickable_nodes, enabled_nodes, all_nodes)
+    elif cls.CONTENT_DESC is not None:
+      for node in enabled_nodes + clickable_nodes:
+        if node.content_desc == cls.CONTENT_DESC:
           return cls(ctx, ui_xml, clickable_nodes, enabled_nodes, all_nodes)
     elif cls.PAGE_TITLE is not None:
       for node in enabled_nodes + clickable_nodes:
@@ -600,20 +634,27 @@ class UIPage:
 
     return None
 
-  def get_node_by_text(self, text: str, from_all: bool = False) -> OptUINode:
+  def get_node_by_text(self,
+                       text: str,
+                       from_all: bool = False,
+                       use_re: bool = False) -> OptUINode:
     """Gets the first node with desired text.
 
     Args:
       text: Text used for search.
       from_all: True to search from all nodes; False to search only the
         clickable or enabled nodes.
+      use_re: True will treat input text as regular expression to search node.
 
     Returns:
       Return the first node found with expected text iff it exists.
       Otherwise, None is returned.
     """
+    match_strategy = (
+        utils.RETextMatchStrategy(text)
+        if use_re else utils.PlainTextMatchStrategy(text))
     for node in self._get_node_search_space(from_all):
-      if node.text == text:
+      if match_strategy.match(node.text):
         return node
 
     return None
@@ -875,12 +916,16 @@ class UIPage:
 
     return self.click(node, do_get_page)
 
-  def click_node_by_text(self, text: str, do_get_page: bool = True) -> UIPage:
+  def click_node_by_text(self,
+                         text: str,
+                         do_get_page: bool = True,
+                         use_re: bool = False) -> UIPage:
     """Clicks on node by its text.
 
     Args:
       text: Text of node to search and click on.
       do_get_page: Gets the latest page after clicking iff True.
+      use_re: True will treat input text as regular expression to search node.
 
     Returns:
       The transformed page.
@@ -888,7 +933,7 @@ class UIPage:
     Raises:
       errors.UIError: Fail to get target node.
     """
-    node = self.get_node_by_text(text)
+    node = self.get_node_by_text(text, use_re=use_re)
     if node is None:
       raise errors.UIError(f'Fail to find the node with text={text}')
 

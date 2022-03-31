@@ -63,6 +63,9 @@ TEST_URL = 'http://www.google.com'
 # Timeout to wait for device boot success in second.
 WAIT_FOR_DEVICE_TIMEOUT_SEC = 180
 
+# Tethering type for Bluetooth (ConnectivityManager.TETHERING_BLUETOOTH).
+_BLUETOOTH_TETHERING_TYPE = 2
+
 
 class DeviceBootError(signals.ControllerError):
   """Exception raised for Android device boot failures."""
@@ -215,10 +218,13 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
   def is_sim_state_loaded(self) -> bool:
     """Checks if SIM state is loaded.
 
+    This method checks the first SIM only.
+
     Returns:
       True if SIM state is loaded else False.
     """
-    state = self._ad.adb.shell('getprop gsm.sim.state').decode().strip()
+    state = self._ad.adb.shell(
+        'getprop gsm.sim.state').decode().strip().split(',')[0]
     return state == 'LOADED'
 
   def is_package_installed(self, package_name: str) -> bool:
@@ -362,6 +368,12 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
       return pairing_time
 
     except queue.Empty:
+      # TODO(user): Remove this check when this bug is fixed.
+      if self.is_bt_paired(mac_address):
+        self._ad.log.info(
+            'Actually device "%s" was bonded within %d seconds.',
+            mac_address, timeout)
+        return timeout
       raise signals.ControllerError(
           'Failed to bond with device %s after %d seconds' %
           (mac_address, timeout))
@@ -387,12 +399,12 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     while time.time() < end_time:
       if self._is_device_connected(mac_address):
         connection_time = (time.time() - start_time)
-        logging.info('Connected device %s in %d seconds', mac_address,
+        logging.info('Connected device "%s" in %.4f seconds', mac_address,
                      connection_time)
         return connection_time
 
     raise signals.ControllerError(
-        'Failed to connect device within %d seconds.' % timeout)
+        f'Failed to connect device "{mac_address}" within {timeout} seconds.')
 
   def factory_reset_bluetooth(self) -> None:
     """Factory resets Bluetooth on an AndroidDevice."""
@@ -403,6 +415,7 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     for device in paired_devices:
       self._ad.sl4a.bluetoothUnbond(device['Address'])
     self._ad.sl4a.bluetoothFactoryReset()
+    self.wait_for_bluetooth_toggle_state(False)
     self._wait_for_bluetooth_manager_state()
     self.wait_for_bluetooth_toggle_state(True)
 
@@ -724,6 +737,17 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
                    attempts)
     return False
 
+  def dump_bluetooth_manager(self, args: Sequence[str] = ()) -> str:
+    """Dumps Bluetooth Manager log for the device.
+
+    Args:
+      args: Other arguments to be used in the dump command.
+
+    Returns:
+      Output of the dump command.
+    """
+    return self._ad.adb.shell(('dumpsys', 'bluetooth_manager', *args)).decode()
+
   def is_bt_paired(self, mac_address: str) -> bool:
     """Check if the bluetooth device with mac_address is paired to ad.
 
@@ -734,7 +758,11 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
       True if they are paired
     """
     bonded_info = self._ad.sl4a.bluetoothGetBondedDevices()
-    return mac_address in [info['address'] for info in bonded_info]
+    for info in bonded_info:
+      # Checks if bond state of the device is BluetoothDevice.BOND_BONDED (12).
+      if mac_address.upper() == info['address'] and info['state'] == 12:
+        return True
+    return False
 
   def is_a2dp_sink_connected(self, mac_address: str) -> bool:
     """Checks if the Android device connects to a A2DP sink device.
@@ -745,8 +773,10 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     Returns:
       True if connected else False.
     """
-    connected_devices = self._ad.sl4a.bluetoothA2dpGetConnectedDevices()
-    return mac_address in [d['address'] for d in connected_devices]
+    output = self.dump_bluetooth_manager(
+        ('|', 'grep', '-A20', '"Profile: A2dpService"'))
+    return (f'A2dpStateMachine for {mac_address.upper()}' in output and
+            'mConnectionState: CONNECTED' in output)
 
   def hfp_connect(self, ag_ad: android_device.AndroidDevice) -> bool:
     """Hfp connecting hf android device to ag android device.
@@ -838,7 +868,10 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
 
     self._ad.log.info('%s Bluetooth tethering.' %
                       ('Enable' if status_enabled else 'Disable'))
-    self._ad.sl4a.bluetoothPanSetBluetoothTethering(status_enabled)
+    if status_enabled:
+      self._ad.sl4a.connectivityStartTethering(_BLUETOOTH_TETHERING_TYPE, True)
+    else:
+      self._ad.sl4a.connectivityStopTethering(_BLUETOOTH_TETHERING_TYPE)
 
     bt_test_utils.wait_until(
         timeout_sec=COMMON_TIMEOUT_SECONDS,
@@ -1392,9 +1425,14 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
       timeout_sec: Number of seconds to wait for Bluetooth to be in the expected
           state.
     """
+    def is_bluetooth_enabled() -> bool:
+      """Returns True if Bluetooth enabled else False."""
+      return 'enabled: true' in self.dump_bluetooth_manager(
+          ('|', 'grep', '-A1', '"Bluetooth Status"'))
+
     bt_test_utils.wait_until(
         timeout_sec=timeout_sec,
-        condition_func=self._ad.mbs.btIsEnabled,
+        condition_func=is_bluetooth_enabled,
         func_args=[],
         expected_value=enabled,
         exception=signals.TestError(
@@ -1605,6 +1643,31 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     codec_type = self._ad.sl4a.bluetoothA2dpGetCurrentCodecConfig()['codecType']
     return bt_constants.BluetoothA2dpCodec(codec_type)
 
+  def is_connected_a2dp_device_active(self, mac_address: str) -> bool:
+    """Checks if the connected A2DP device is active.
+
+    Args:
+      mac_address: Bluetooth mac address of this connected device.
+
+    Returns:
+      True iff this connected device is active.
+    """
+    return (f'mActiveDevice: {mac_address.upper()}' in
+            self.dump_bluetooth_manager(('|', 'grep', '-A10', '"A2dpService"')))
+
+  def is_connected_hfp_device_active(self, mac_address: str) -> bool:
+    """Checks if the connected HFP device is active.
+
+    Args:
+      mac_address: Bluetooth mac address of this connected device.
+
+    Returns:
+      True iff this connected device is active.
+    """
+    return (
+        f'mActiveDevice: {mac_address.upper()}' in
+        self.dump_bluetooth_manager(('|', 'grep', '-A10', '"HeadsetService"')))
+
   def is_variable_bit_rate_enabled(self) -> bool:
     """Checks if Variable Bit Rate (VBR) support is enabled for A2DP AAC codec.
 
@@ -1673,12 +1736,13 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     Returns:
         None
     """
-    self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '1'])
-    self._ad.adb.shell([
-        'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE', '--ez',
-        'state', 'true'
-    ])
-    time.sleep(wait_secs)
+    if not self._is_airplane_mode_enabled():
+      self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '1'])
+      self._ad.adb.shell([
+          'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE',
+          '--ez', 'state', 'true'
+      ])
+      time.sleep(wait_secs)
 
   def disable_airplane_mode(self, wait_secs=1) -> None:
     """Disables airplane mode on device.
@@ -1689,12 +1753,13 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     Returns:
         None
     """
-    self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '0'])
-    self._ad.adb.shell([
-        'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE', '--ez',
-        'state', 'false'
-    ])
-    time.sleep(wait_secs)
+    if self._is_airplane_mode_enabled():
+      self._ad.adb.shell(['settings', 'put', 'global', 'airplane_mode_on', '0'])
+      self._ad.adb.shell([
+          'am', 'broadcast', '-a', 'android.intent.action.AIRPLANE_MODE',
+          '--ez', 'state', 'false'
+      ])
+      time.sleep(wait_secs)
 
   def disable_verity_check(self) -> None:
     """Disables Android dm verity check.
@@ -1708,3 +1773,15 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     self._ad.root_adb()
     self._ad.wait_for_boot_completion()
     self._ad.adb.remount()
+
+  def toggle_bluetooth(self, enabled: bool = True) -> None:
+    """Toggles Bluetooth on the device."""
+    status = 'enable' if enabled else 'disable'
+    cmd = f'svc bluetooth {status}'
+    self._ad.adb.shell(cmd)
+
+  def _is_airplane_mode_enabled(self) -> bool:
+    """Returns True if airplane mode enabled else False."""
+    cmd = 'dumpsys wifi|grep -E "AirplaneModeOn true|AirplaneModeOn false"'
+    airplane_mode_status = self._ad.adb.shell(cmd).decode().strip()
+    return 'true' in airplane_mode_status

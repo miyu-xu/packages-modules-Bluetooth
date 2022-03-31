@@ -9,9 +9,16 @@ WAITING_TIME_SEC = 60
 
 NEARBY_PACKAGE = 'com.google.android.gms.nearby'
 WEARABLE_PACKAGE = 'com.google.android.gms.wearable'
+WEARABLE_APP_PACKAGE = 'com.google.android.wearable.app'
 
+# Package name of Dialer app on Wear.
+DIALER_WEAR_PACKAGE = 'dialer_wear#com.google.android.dialer'
+
+ENABLE_LOCATION = 'cmd location set-location-enabled true'
+GET_LOCATION_MODE = 'settings get secure location_mode'
 SET_SCREEN_OFF_TIMEOUT_HALF_HOUR = (
     'settings put system screen_off_timeout 1800000')
+START_BLUETOOTH_SETTINGS = 'am start -S -a android.settings.BLUETOOTH_SETTINGS'
 
 # Phenotype flags
 CONNECTION_SWITCHING_FLAGS = (
@@ -36,6 +43,16 @@ CONNECTION_SWITCHING_FLAGS = (
         'value': 'true'
     },
     {
+        'name': 'fast_pair_enable_triangle_audio_switch_for_calling',
+        'type': FLAG_TYPE.BOOLEAN,
+        'value': 'true'
+    },
+    {
+        'name': 'FastPairFeature__log_switch_performance',
+        'type': FLAG_TYPE.BOOLEAN,
+        'value': 'true'
+    },
+    {
         'name': 'fast_pair_manual_connect_affect_duration_millis',
         'type': FLAG_TYPE.LONG,
         'value': '60000'
@@ -46,12 +63,14 @@ PHONE_PHENOTYPE_FLAGS = {
     NEARBY_PACKAGE:
         (
             {
-                'name': 'fast_pair_half_sheet_wear_os',
+                'name': 'default_debug_mode_enabled',
                 'type': FLAG_TYPE.BOOLEAN,
                 'value': 'true'
             },
             {
-                'name': 'default_debug_mode_enabled',
+                'name': (
+                    'fast_pair_prevent_wearable_from_unwanted_hfp_active_device'
+                    ),
                 'type': FLAG_TYPE.BOOLEAN,
                 'value': 'true'
             }
@@ -90,9 +109,33 @@ WATCH_PHENOTYPE_FLAGS = {
             'value': 'true'
         },
         {
+            'name': 'fast_pair_enable_footprints_scheduler_sync_at_boot_up',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        },
+        {
             'name': 'fast_pair_footprints_access_strategy',
             'type': FLAG_TYPE.STRING,
             'value': 'geller'
         }
-        ) + CONNECTION_SWITCHING_FLAGS
+        ) + CONNECTION_SWITCHING_FLAGS,
+    WEARABLE_APP_PACKAGE: (
+        {
+            'name': '45354660',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        },
+        {
+            'name': '45362364',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        }
+        ),
+    DIALER_WEAR_PACKAGE: (
+        {
+            'name': '45358795',
+            'type': FLAG_TYPE.BOOLEAN,
+            'value': 'true'
+        },
+        )
 }

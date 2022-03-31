@@ -2,12 +2,16 @@
 
 import contextlib
 import time
+from typing import Dict, Iterator
 
 from mobly import test_runner
 from mobly import signals
+from mobly.controllers import android_device
 from mobly.controllers.android_device_lib import jsonrpc_client_base
+
 from blueberry.utils import blueberry_base_test
 from blueberry.utils import bt_test_utils
+
 
 # Timeout to wait for NAP service connection to be specific state in second.
 CONNECTION_TIMEOUT_SECS = 20
@@ -34,7 +38,7 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
   to as PANU(Personal Area Networking User).
   """
 
-  def __init__(self, configs):
+  def __init__(self, configs: Dict[str, str]):
     super().__init__(configs)
     self.pan_connect_attempts = None
 
@@ -48,11 +52,6 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
       device.init_setup()
       device.sl4a_setup()
       device.mac_address = device.get_bluetooth_mac_address()
-
-      # Check if the device has inserted a SIM card.
-      if device.sl4a.telephonyGetSimState() != SIM_STATE_READY:
-        raise signals.TestError('SIM card is not ready on Device "%s".' %
-                                device.serial)
 
     self.primary_device = self.android_devices[0]
     self.secondary_device = self.android_devices[1]
@@ -70,9 +69,9 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
 
   def wait_for_nap_service_connection(
       self,
-      device,
-      connected_mac_addr,
-      state_connected=True):
+      device: android_device.AndroidDevice,
+      connected_mac_addr: str,
+      state_connected: bool = True) -> None:
     """Waits for NAP service connection to be expected state.
 
     Args:
@@ -84,7 +83,7 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
     Raises:
       TestFailure: Raised if NAP service connection is not expected state.
     """
-    def is_device_connected():
+    def is_device_connected() -> bool:
       """Returns True if connected else False."""
       connected_devices = (device.sl4a.
                            bluetoothPanGetConnectedDevices())
@@ -103,8 +102,8 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
 
   def initiate_nap_service_connection(
       self,
-      initiator_device,
-      connected_mac_addr):
+      initiator_device: android_device.AndroidDevice,
+      connected_mac_addr: str) -> None:
     """Initiates NAP service connection.
 
     Args:
@@ -133,8 +132,8 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
 
   def terminate_nap_service_connection(
       self,
-      initiator_device,
-      connected_mac_addr):
+      initiator_device: android_device.AndroidDevice,
+      connected_mac_addr: str) -> None:
     """Terminates NAP service connection.
 
     Args:
@@ -149,7 +148,9 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
         state_connected=False)
 
   @contextlib.contextmanager
-  def establish_nap_service_connection(self, nap_device, panu_device):
+  def establish_nap_service_connection(
+      self, nap_device: android_device.AndroidDevice,
+      panu_device: android_device.AndroidDevice) -> Iterator[None]:
     """Establishes NAP service connection between both Android devices.
 
     The context is used to form a basic network connection between devices
@@ -176,6 +177,11 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
       signals.TestError: raised if a step fails.
       signals.TestFailure: raised if PANU device fails to access internet.
     """
+    # Check if the device has inserted a SIM card.
+    if nap_device.sl4a.telephonyGetSimState() != SIM_STATE_READY:
+      raise signals.TestError('SIM card is not ready on Device "%s".' %
+                              nap_device.serial)
+
     nap_device.debug_tag = 'NAP'
     panu_device.debug_tag = 'PANU'
     try:
@@ -230,7 +236,9 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
       nap_device.set_bluetooth_tethering(status_enabled=False)
       panu_device.sl4a.setMobileDataEnabled(True)
 
-  def verify_internet(self, allow_access, device, exception):
+  def verify_internet(self, allow_access: bool,
+                      device: android_device.AndroidDevice,
+                      exception: Exception) -> None:
     """Verifies that internet is in expected state.
 
     Continuously make ping request to a URL for internet verification.
@@ -244,7 +252,7 @@ class BluetoothPanTest(blueberry_base_test.BlueberryBaseTest):
     device.log.info('Verify that internet %s be used.' %
                     ('can' if allow_access else 'can not'))
 
-    def http_ping():
+    def http_ping() -> bool:
       """Returns True if http ping success else False."""
       try:
         return bool(device.sl4a.httpPing(TEST_URL))
