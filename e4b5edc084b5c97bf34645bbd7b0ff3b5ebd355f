@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ccd8861_897bbccd",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BroadcastScanViewModel.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-31T11:49:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9a3cf3b_a8d7474d",
+      "range": {
+        "startLine": 112,
+        "startChar": 18,
+        "endLine": 113,
+        "endChar": 57
+      },
+      "revId": "e4b5edc084b5c97bf34645bbd7b0ff3b5ebd355f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a38b14bf_598ee3ae",
@@ -149,6 +173,30 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "a38b14bf_598ee3ae",
+      "range": {
+        "startLine": 168,
+        "startChar": 1,
+        "endLine": 179,
+        "endChar": 7
+      },
+      "revId": "e4b5edc084b5c97bf34645bbd7b0ff3b5ebd355f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c4193a8_cc0788f2",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BroadcastScanViewModel.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-31T11:49:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3149053_0a041f40",
       "range": {
         "startLine": 168,
         "startChar": 1,
