@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54004401_91ac7532",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-03-31T16:13:15Z",
+      "side": 1,
+      "message": "Great find! The fix makes sense to me. I am wondering why in Android there is no same problem? Maybe we can get someone from Android to review and make sense of why the problem occurs in Floss but not Android.",
+      "revId": "536e18ec6d86c8a21daac201a8c11f0a9f628f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
