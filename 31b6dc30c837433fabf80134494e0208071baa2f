@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab678b4_e429541c",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-03-31T08:37:18Z",
+      "side": 1,
+      "message": "you may want to call\n\n```\n  if (p_clcb-\u003etransport \u003d\u003d BT_TRANSPORT_LE) {\n    L2CA_EnableUpdateBleConnParams(p_clcb-\u003ep_srcb-\u003eserver_bda, true);\n  }\n```\n\nhere, as it is called in `bta_gattc_disc_cmpl`",
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
