@@ -70,6 +70,24 @@
       "parentUuid": "3ca75628_1afa9134",
       "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc07e928_052e409c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-31T20:12:23Z",
+      "side": 1,
+      "message": "Jakub, so it does not wait for the first device to connect but just call Connect one by one. Maybe indeed the problem is somewhere else?",
+      "parentUuid": "4c8fc206_d68a517a",
+      "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
