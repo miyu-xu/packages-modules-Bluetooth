@@ -16,6 +16,29 @@
       "message": "Great find! The fix makes sense to me. I am wondering why in Android there is no same problem? Maybe we can get someone from Android to review and make sense of why the problem occurs in Floss but not Android.",
       "revId": "536e18ec6d86c8a21daac201a8c11f0a9f628f12",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a87f6eb4_be227008",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-03-31T17:08:25Z",
+      "side": 1,
+      "message": "I would suggest moving the code down here or just removing is_hid:\n\nbool is_hid \u003d check_cod_hid(\u0026bd_addr);\nif (is_hid \u0026\u0026 (device_type \u0026 BT_DEVICE_TYPE_BLE) \u003d\u003d 0) {\n\nOR\n\nif (check_cod_hid(\u0026bd_addr) \u0026\u0026 (device_type \u0026 BT_DEVICE_TYPE_BLE) \u003d\u003d 0) {\n\nI like the second one better.",
+      "range": {
+        "startLine": 679,
+        "startChar": 6,
+        "endLine": 679,
+        "endChar": 12
+      },
+      "revId": "536e18ec6d86c8a21daac201a8c11f0a9f628f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
