@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db33bcf0_afd7432c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-31T05:56:51Z",
+      "side": 1,
+      "message": "Looks good to me. Pass to Abhishek to +2",
+      "revId": "8dca065c9ad609f21d9633e81b86139358be8d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efcebe70_0125969a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-31T05:56:51Z",
+      "side": 1,
+      "message": "probably rephrase this to\n// get_remote_name needs a BluetoothDevice just for its addr so construct one with fake name.",
+      "revId": "8dca065c9ad609f21d9633e81b86139358be8d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f984721_064cea02",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-31T05:56:51Z",
+      "side": 1,
+      "message": "Thanks. This handling aligns with what we are having in CRAS.\nAnd I\u0027m especially happy to see this logic moves to BT stack now :D",
+      "revId": "8dca065c9ad609f21d9633e81b86139358be8d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
