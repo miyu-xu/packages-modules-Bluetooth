@@ -80,6 +80,30 @@
       },
       "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "826db99a_c085c7da",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-31T05:32:40Z",
+      "side": 1,
+      "message": "With the empty string handling the codes become a litte unreadable.\nMake it a adapter_get_remote_name helper instead.\nNot sure why the get_remote_name is designed to return empty string instead of None when the device couldn\u0027t be found. It makes me wondering if we should handle the empty string case on CRAS.",
+      "parentUuid": "7413577a_d6970d0d",
+      "range": {
+        "startLine": 319,
+        "startChar": 68,
+        "endLine": 319,
+        "endChar": 74
+      },
+      "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
