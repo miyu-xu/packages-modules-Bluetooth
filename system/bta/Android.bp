@@ -170,6 +170,7 @@ cc_test {
     defaults: ["fluoride_bta_defaults"],
     test_suites: ["device-tests"],
     srcs: [
+        ":TestMockStackAcl",
         ":TestMockStackBtm",
         ":TestCommonMockFunctions",
         "test/bta_hf_client_test.cc",
