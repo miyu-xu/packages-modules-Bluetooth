@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3019d381_a680ff57",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-31T08:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "60880d8e_334a9357",
+      "revId": "43966757ae923f1c3f2e241a30b3e584f41626ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afe1971f_b4812bc1",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-03-30T20:46:04Z",
       "side": 1,
       "message": "maybe dev-\u003econnecting_actively_ should be checked here as well ?",
+      "revId": "43966757ae923f1c3f2e241a30b3e584f41626ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e0cb47a_a8807c8c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1871,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-31T08:24:32Z",
+      "side": 1,
+      "message": "I had that in first version, but it didn\u0027t work well. Parent patch adds active connect attempt for each device in group.",
+      "parentUuid": "afe1971f_b4812bc1",
       "revId": "43966757ae923f1c3f2e241a30b3e584f41626ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
