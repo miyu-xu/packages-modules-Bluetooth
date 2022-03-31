@@ -25,6 +25,7 @@ use tokio::sync::mpsc::Sender;
 use tokio::task::JoinHandle;
 use tokio::time::{sleep, Duration};
 
+use crate::bluetooth::{Bluetooth, BluetoothDevice, IBluetooth};
 use crate::Message;
 
 const DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC: u64 = 5;
@@ -69,6 +70,7 @@ pub trait IBluetoothMediaCallback {
         bits_per_sample: i32,
         channel_mode: i32,
         hfp_cap: i32,
+        name: String,
     );
 
     ///
@@ -93,6 +95,7 @@ pub struct BluetoothMedia {
     callbacks: Arc<Mutex<Vec<(u32, Box<dyn IBluetoothMediaCallback + Send>)>>>,
     callback_last_id: u32,
     tx: Sender<Message>,
+    adapter: Option<Arc<Mutex<Box<Bluetooth>>>>,
     a2dp: Option<A2dp>,
     avrcp: Option<Avrcp>,
     a2dp_states: HashMap<RawAddress, BtavConnectionState>,
@@ -111,6 +114,7 @@ impl BluetoothMedia {
             callbacks: Arc::new(Mutex::new(vec![])),
             callback_last_id: 0,
             tx,
+            adapter: None,
             a2dp: None,
             avrcp: None,
             a2dp_states: HashMap::new(),
@@ -120,6 +124,10 @@ impl BluetoothMedia {
             hfp_caps: HashMap::new(),
             device_added_tasks: Arc::new(Mutex::new(HashMap::new())),
         }
+    }
+
+    pub fn set_adapter(&mut self, adapter: Arc<Mutex<Box<Bluetooth>>>) {
+        self.adapter = Some(adapter);
     }
 
     pub fn dispatch_a2dp_callbacks(&mut self, cb: A2dpCallbacks) {
@@ -248,6 +256,7 @@ impl BluetoothMedia {
             callbacks: Arc<Mutex<Vec<(u32, Box<dyn IBluetoothMediaCallback + Send>)>>>,
             cap: A2dpCodecConfig,
             hfp_cap: HfpCodecCapability,
+            name: String,
             is_delayed: bool,
         ) -> bool {
             // Closure used to lock and trigger the device added callbacks.
@@ -259,6 +268,7 @@ impl BluetoothMedia {
                         cap.bits_per_sample,
                         cap.channel_mode,
                         hfp_cap.bits(),
+                        name.clone(),
                     );
                 }
             };
@@ -300,6 +310,22 @@ impl BluetoothMedia {
                 .find(|cap| A2dpCodecIndex::SrcSbc == A2dpCodecIndex::from(cap.codec_type))
         });
         let cur_hfp_cap = self.hfp_caps.get(&addr);
+        let name = match self
+            .adapter
+            .as_ref()
+            .unwrap()
+            .lock()
+            .unwrap()
+            .get_remote_name(BluetoothDevice::new(
+                addr.to_string(),
+                // The second name argument has no effect for get_remote_name.
+                "Classic Device".to_string(),
+            ))
+            .as_str()
+        {
+            "" => addr.to_string(),
+            name => name.to_string(),
+        };
         match (cur_a2dp_cap, cur_hfp_cap) {
             (None, None) => warn!(
                 "[{}]: Try to add a device without a2dp and hfp capability.",
@@ -312,6 +338,7 @@ impl BluetoothMedia {
                     self.callbacks.clone(),
                     *cap,
                     *hfp_cap,
+                    name,
                     false,
                 );
             }
@@ -324,7 +351,7 @@ impl BluetoothMedia {
                     let hfp_cap = cur_hfp_cap.unwrap_or(&HfpCodecCapability::UNSUPPORTED).clone();
                     let task = topstack::get_runtime().spawn(async move {
                         sleep(Duration::from_secs(DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC)).await;
-                        if dedup_added_cb(device_added_tasks, addr, callbacks, cap, hfp_cap, true) {
+                        if dedup_added_cb(device_added_tasks, addr, callbacks, cap, hfp_cap, name, true) {
                             warn!(
                                 "[{}]: Add a device with only hfp or a2dp capability after timeout.",
                                 addr.to_string()
