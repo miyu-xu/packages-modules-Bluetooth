@@ -52,6 +52,24 @@
       "parentUuid": "99c66299_bcc67b58",
       "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c8fc206_d68a517a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-31T08:39:08Z",
+      "side": 1,
+      "message": "Setting call connect/disconnect continuously, aosp/2010675. Is it something you observed that is wrong in Setting that java layer need to fix? or is it the similar issue with b/206049683",
+      "parentUuid": "3ca75628_1afa9134",
+      "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
