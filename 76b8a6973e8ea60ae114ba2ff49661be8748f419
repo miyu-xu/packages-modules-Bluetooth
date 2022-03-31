@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a08754cb_3aa2b476",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-03-31T18:14:17Z",
+      "side": 1,
+      "message": "This impl is fine, but isn\u0027t this a violation of privacy by surfacing the link keys ?\nSeems like a nice feature for dev/bring up but not for production",
+      "revId": "76b8a6973e8ea60ae114ba2ff49661be8748f419",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
