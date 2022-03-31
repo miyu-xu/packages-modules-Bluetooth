@@ -22,6 +22,30 @@
       },
       "revId": "6ee52f5cb667100c8a30abc62203e97b4f7355e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7416969e_b35eda05",
+        "filename": "system/blueberry/tests/gd_sl4a/hci/le_advanced_scanning_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-03-31T15:54:27Z",
+      "side": 1,
+      "message": "Yes.  Thanks!",
+      "parentUuid": "e23cbd3a_0caab8d0",
+      "range": {
+        "startLine": 213,
+        "startChar": 0,
+        "endLine": 215,
+        "endChar": 61
+      },
+      "revId": "6ee52f5cb667100c8a30abc62203e97b4f7355e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
