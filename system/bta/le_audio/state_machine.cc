@@ -1127,6 +1127,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         }
       }
 
+      LOG_INFO(" Configure ase_id %d, cis_id %d, ase state %s", ase->id,
+                 cis_id, ToString(ase->state).c_str());
+
       ase->cis_id = cis_id;
 
       conf.ase_id = ase->id;
