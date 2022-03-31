@@ -69,6 +69,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c62df0_de89dde2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-31T22:15:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c741d10_26f6d3bd",
+      "revId": "8dca065c9ad609f21d9633e81b86139358be8d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8aa7eedb_fcea403a",
@@ -86,6 +104,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bc20f7a_ccab0771",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-31T22:15:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8aa7eedb_fcea403a",
+      "revId": "8dca065c9ad609f21d9633e81b86139358be8d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f984721_064cea02",
@@ -99,6 +135,24 @@
       "writtenOn": "2022-03-31T05:56:51Z",
       "side": 1,
       "message": "Thanks. This handling aligns with what we are having in CRAS.\nAnd I\u0027m especially happy to see this logic moves to BT stack now :D",
+      "revId": "8dca065c9ad609f21d9633e81b86139358be8d65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b68732_452c0b81",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-31T22:15:04Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5f984721_064cea02",
       "revId": "8dca065c9ad609f21d9633e81b86139358be8d65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
