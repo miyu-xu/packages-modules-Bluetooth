@@ -11,13 +11,15 @@ import time
 from typing import Any, Callable, Dict, Generator, Iterable, List, Sequence, NamedTuple, Optional, Tuple, Type
 from xml.dom import minidom
 
-from mobly.controllers import android_device
 from mobly.controllers.android_device_lib import adb
 
 # Internal import
 from blueberry.utils.ui_pages import errors
 from blueberry.utils.ui_pages import ui_node
 from blueberry.utils.ui_pages import utils
+
+# Internal import
+
 
 # Return type of otpional UINode.
 OptUINode = Optional[ui_node.UINode]
@@ -61,7 +63,7 @@ class Context(abc.ABC):
   """
 
   def __init__(self,
-               ad: android_device.AndroidDevice,
+               ad: typing_utils.AdbDevice,
                known_pages: List[Type[UIPage]],
                do_go_home: bool = True,
                safe_get: bool = False) -> None:
