@@ -69,6 +69,24 @@
       "parentUuid": "afe1971f_b4812bc1",
       "revId": "43966757ae923f1c3f2e241a30b3e584f41626ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49ac0470_64e891ef",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1871,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-03-31T20:12:28Z",
+      "side": 1,
+      "message": "could you share what was the problem with previous version?\nI\u0027m bit skeptic on us calling BTA_GATTC_OPEN in different places for the same device which might be connecting at the same moment.",
+      "parentUuid": "5e0cb47a_a8807c8c",
+      "revId": "43966757ae923f1c3f2e241a30b3e584f41626ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
