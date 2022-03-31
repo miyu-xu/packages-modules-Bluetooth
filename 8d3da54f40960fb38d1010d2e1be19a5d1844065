@@ -94,6 +94,30 @@
       },
       "revId": "8d3da54f40960fb38d1010d2e1be19a5d1844065",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b79aac3_699e5642",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-03-31T18:08:57Z",
+      "side": 1,
+      "message": "yes we need to clear from storage - otherwise we\u0027ll enter an assert crash loop",
+      "parentUuid": "488baa12_c39e6f80",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 404,
+        "endChar": 25
+      },
+      "revId": "8d3da54f40960fb38d1010d2e1be19a5d1844065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
