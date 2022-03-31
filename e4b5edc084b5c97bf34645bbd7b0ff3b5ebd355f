@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5543812_d6d1637b",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-31T11:02:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c8605c7_d412dbc1",
+      "range": {
+        "startLine": 52,
+        "startChar": 32,
+        "endLine": 52,
+        "endChar": 35
+      },
+      "revId": "e4b5edc084b5c97bf34645bbd7b0ff3b5ebd355f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94347090_8db0db1b",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-03-29T09:44:34Z",
       "side": 1,
       "message": "I think this is the place where the broadcast scan assistant was actually configuring the peer device to use our local broadcast information. In the old implementation this was an event handler in which the broadcastId was received (back then the braodcaster used instanceId as identifier and broadcastId was requested only for the purpose of broadcast scan assistant actions). The old implementation only needed the broadcastId, since all the other metadata was passed between the native code modules. Now this whole metadata structure needs to be received from the Broadcaster and then passed to the Broadcast Scan Assitant.\n\nThis event was a 2nd step in configuring peer device to sync to our broadcast. 1st step is somewhere down below.",
+      "range": {
+        "startLine": 112,
+        "startChar": 18,
+        "endLine": 113,
+        "endChar": 57
+      },
+      "revId": "e4b5edc084b5c97bf34645bbd7b0ff3b5ebd355f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9a3cf3b_a8d7474d",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BroadcastScanViewModel.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-31T11:02:36Z",
+      "side": 1,
+      "message": "Thanks for explanation. So I guess we should get the metadata from BluetoothLeBroadcast object and put it in the BluetoothLeBroadcastAssistant.\n\nI\u0027ll upload a new patch set.",
+      "parentUuid": "94347090_8db0db1b",
       "range": {
         "startLine": 112,
         "startChar": 18,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3149053_0a041f40",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BroadcastScanViewModel.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-31T11:02:36Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "a38b14bf_598ee3ae",
+      "range": {
+        "startLine": 168,
+        "startChar": 1,
+        "endLine": 179,
+        "endChar": 7
+      },
+      "revId": "e4b5edc084b5c97bf34645bbd7b0ff3b5ebd355f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0e230dd7_4ad08e2f",
         "filename": "android/leaudio/app/src/main/res/values/strings.xml",
         "patchSetId": 4
@@ -100,6 +172,30 @@
       "writtenOn": "2022-03-29T09:44:34Z",
       "side": 1,
       "message": "These are parts of the legacy broadcaster API and can be removed.",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 26
+      },
+      "revId": "e4b5edc084b5c97bf34645bbd7b0ff3b5ebd355f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59c3312e_4cabfb93",
+        "filename": "android/leaudio/app/src/main/res/values/strings.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-03-31T11:02:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e230dd7_4ad08e2f",
       "range": {
         "startLine": 90,
         "startChar": 4,
