@@ -16,6 +16,46 @@
       "message": "Please help take a look. Not sure if this is a better design but compared with calling the adapter interface as https://chromium-review.googlesource.com/c/chromiumos/third_party/adhd/+/3559173, this implentation can save thed GetRemoteName bus call. ",
       "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42c8bb2d_f9fb3e73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-31T04:36:41Z",
+      "side": 1,
+      "message": "Looks good to me % a question regarding adapter method.",
+      "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2be224bb_48b2782e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-03-31T04:36:41Z",
+      "side": 1,
+      "message": "what\u0027s the purpose of this argument?\nAlso what would get_remote_name return if an error occurs, like device suddenly disconnects?",
+      "range": {
+        "startLine": 319,
+        "startChar": 68,
+        "endLine": 319,
+        "endChar": 74
+      },
+      "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
