@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ec655d_3f7fdf90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-31T23:12:40Z",
+      "side": 1,
+      "message": "Should we set the autoConnect false with Bass_client?",
+      "revId": "ccb27ce505bddf923f973ff82028e3bda1e09717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
