@@ -88,6 +88,24 @@
       "parentUuid": "4c8fc206_d68a517a",
       "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb0cc893_64ec0e24",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 793,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-03-31T20:35:50Z",
+      "side": 1,
+      "message": "Yes, the problem is somewhere else, I\u0027m still debugging. Alice pointed me to proper place in code.",
+      "parentUuid": "cc07e928_052e409c",
+      "revId": "ea7d4d28f3b1a73a356520074cc0515228a43ac8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
