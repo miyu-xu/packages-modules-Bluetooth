@@ -22,6 +22,30 @@
       },
       "revId": "786e4fb23feaa47eecfcc0faeaed5b0bb476bd29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99e99a89_0a781cde",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1131,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-03-31T10:46:34Z",
+      "side": 1,
+      "message": "+1 with Jakub, and thanks for the fix to avoid confusion. :)",
+      "parentUuid": "1507a993_aefe4d5d",
+      "range": {
+        "startLine": 1130,
+        "startChar": 2,
+        "endLine": 1131,
+        "endChar": 55
+      },
+      "revId": "786e4fb23feaa47eecfcc0faeaed5b0bb476bd29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
