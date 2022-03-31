@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf967511_c175c7a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-03-31T04:24:48Z",
+      "side": 1,
+      "message": "Please help take a look. Not sure if this is a better design but compared with calling the adapter interface as https://chromium-review.googlesource.com/c/chromiumos/third_party/adhd/+/3559173, this implentation can save thed GetRemoteName bus call. ",
+      "revId": "c8f5a8a2e18fa98dae91f3c88b9c2e503994a448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
