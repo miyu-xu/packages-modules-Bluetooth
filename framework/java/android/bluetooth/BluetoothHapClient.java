@@ -644,6 +644,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     public boolean setConnectionPolicy(@NonNull BluetoothDevice device,
             @ConnectionPolicy int connectionPolicy) {
         if (DBG) log("setConnectionPolicy(" + device + ", " + connectionPolicy + ")");
+        Objects.requireNonNull(device, "BluetoothDevice cannot be null");
         final IBluetoothHapClient service = getService();
         final boolean defaultValue = false;
         if (service == null) {
@@ -684,6 +685,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     })
     public @ConnectionPolicy int getConnectionPolicy(@Nullable BluetoothDevice device) {
         if (VDBG) log("getConnectionPolicy(" + device + ")");
+        Objects.requireNonNull(device, "BluetoothDevice cannot be null");
         final IBluetoothHapClient service = getService();
         final int defaultValue = BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
         if (service == null) {
