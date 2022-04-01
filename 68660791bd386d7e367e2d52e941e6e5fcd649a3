@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d5d7941_544a573d",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-01T23:34:25Z",
+      "side": 1,
+      "message": "I was instructed that we cannot do this way. Instead for CTS purpose it is good enought to run empty callback methods.\n\nsee this one: https://android-review.googlesource.com/q/topic:cts-leaudio\n\nAlso, have a look on the solution for the PRIVILIDEG issue.",
+      "revId": "68660791bd386d7e367e2d52e941e6e5fcd649a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
