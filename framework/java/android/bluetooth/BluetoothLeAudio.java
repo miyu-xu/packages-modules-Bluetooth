@@ -38,6 +38,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.lang.annotation.Retention;
@@ -132,8 +133,14 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
         void onGroupStatusChanged(int groupId, @GroupStatus int groupStatus);
     }
 
+    /**
+     * Profile callback use for multiplexing callbacks from the user.
+     *
+     * @hide
+     */
     @SuppressLint("AndroidFrameworkBluetoothPermission")
-    private final IBluetoothLeAudioCallback mCallback = new IBluetoothLeAudioCallback.Stub() {
+    @VisibleForTesting
+    public final IBluetoothLeAudioCallback mCallback = new IBluetoothLeAudioCallback.Stub() {
         @Override
         public void onCodecConfigChanged(int groupId,
                                          @NonNull BluetoothLeAudioCodecStatus status) {
