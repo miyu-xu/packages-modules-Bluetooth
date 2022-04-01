@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26a5b868_cb284df3",
+        "filename": "system/blueberry/tests/gd_sl4a/hci/le_advanced_scanning_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 651,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-01T13:43:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f13f5ad4_0e97d4bc",
+      "range": {
+        "startLine": 651,
+        "startChar": 12,
+        "endLine": 651,
+        "endChar": 36
+      },
+      "revId": "0e3126908b09ad8c25c84e62ff13353d7d08f1cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4af2d5b_36d894b8",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-01T07:59:07Z",
       "side": 1,
       "message": "Merged conflict due to patch 2049909, sorry about that.",
+      "range": {
+        "startLine": 663,
+        "startChar": 8,
+        "endLine": 665,
+        "endChar": 72
+      },
+      "revId": "0e3126908b09ad8c25c84e62ff13353d7d08f1cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9ccb0a3_220a4f89",
+        "filename": "system/blueberry/tests/gd_sl4a/hci/le_advanced_scanning_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 665,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-01T13:43:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4af2d5b_36d894b8",
       "range": {
         "startLine": 663,
         "startChar": 8,
