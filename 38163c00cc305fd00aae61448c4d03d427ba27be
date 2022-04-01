@@ -22,6 +22,30 @@
       },
       "revId": "38163c00cc305fd00aae61448c4d03d427ba27be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc895566_b3cfe5f9",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2414,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-04-01T19:01:58Z",
+      "side": 1,
+      "message": "Ah our problem is that after the user is swtiched, we disable BT (see the call to `restartForReason` on line 2419), so that brings down the BT process. Therefore, I wait until the BT process comes up to send the foreground user id.",
+      "parentUuid": "e458661e_d83b2416",
+      "range": {
+        "startLine": 2414,
+        "startChar": 24,
+        "endLine": 2414,
+        "endChar": 53
+      },
+      "revId": "38163c00cc305fd00aae61448c4d03d427ba27be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
