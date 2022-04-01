@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e458661e_d83b2416",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2414,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-01T18:59:38Z",
+      "side": 1,
+      "message": "Does the Bluetooth service survive across user switch?\n\nIf so, should we also check if mBluetooth is null and call setForegroundUserId() with the new userId even when Bluetooth is already started?",
+      "range": {
+        "startLine": 2414,
+        "startChar": 24,
+        "endLine": 2414,
+        "endChar": 53
+      },
+      "revId": "38163c00cc305fd00aae61448c4d03d427ba27be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
