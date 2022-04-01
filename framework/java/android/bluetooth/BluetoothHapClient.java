@@ -35,6 +35,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.lang.annotation.Retention;
@@ -231,8 +232,14 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
                 @GroupPresetNameChangeFailureReason int reason);
     }
 
+    /**
+     * Profile callback used for multiplexing callbacks from the user.
+     *
+     * @hide
+     */
     @SuppressLint("AndroidFrameworkBluetoothPermission")
-    private final IBluetoothHapClientCallback mCallback = new IBluetoothHapClientCallback.Stub() {
+    @VisibleForTesting
+    public final IBluetoothHapClientCallback mCallback = new IBluetoothHapClientCallback.Stub() {
         @Override
         public void onPresetSelected(@NonNull BluetoothDevice device, int presetIndex,
                 int reasonCode) {
