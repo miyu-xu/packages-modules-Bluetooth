@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65bba0db_33079d41",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-04-01T07:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5f042b0_ca0c75d4",
+      "revId": "42d291ea8872bf0e2db92e2e33c8d34f0d06ddd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7860f4c_8b117394",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c545c9_12841214",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2458,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-04-01T07:35:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7860f4c_8b117394",
+      "range": {
+        "startLine": 2458,
+        "startChar": 21,
+        "endLine": 2458,
+        "endChar": 68
+      },
+      "revId": "42d291ea8872bf0e2db92e2e33c8d34f0d06ddd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "324a61a4_360072be",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-03-30T08:21:54Z",
       "side": 1,
       "message": "SingleDev_TwoChanStereoSnk_OneChanMonoSrc_VS_32_high_quality_1 ?",
+      "range": {
+        "startLine": 2659,
+        "startChar": 21,
+        "endLine": 2659,
+        "endChar": 58
+      },
+      "revId": "42d291ea8872bf0e2db92e2e33c8d34f0d06ddd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90b540bd_dc6ee14f",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 2659,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-04-01T07:35:54Z",
+      "side": 1,
+      "message": "Made it like \"SingleDev_TwoChanStereoSnk_TwoChanStereoSrc_VS_32_high_quality_1_1\"\nAny particular reason why all voice use cases has MonoSrc in rx direction?",
+      "parentUuid": "324a61a4_360072be",
       "range": {
         "startLine": 2659,
         "startChar": 21,
