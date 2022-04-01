@@ -480,9 +480,11 @@ import java.util.UUID;
     void recordAdvertiseStop(int id) {
         synchronized (this) {
             AppAdvertiseStats stats = mAppAdvertiseStats.get(id);
-            stats.recordAdvertiseStop();
-            mAppAdvertiseStats.remove(id);
-            mLastAdvertises.add(stats);
+            if (stats != null) {
+                stats.recordAdvertiseStop();
+                mAppAdvertiseStats.remove(id);
+                mLastAdvertises.add(stats);
+            }
         }
     }
 
