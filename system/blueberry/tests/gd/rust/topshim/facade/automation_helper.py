@@ -58,12 +58,17 @@ class AdapterAutomationHelper():
             # Match event by some condition.
             if e.event_type == facade_pb2.EventType.ADAPTER_STATE and e.data == "ON" and self.pending_future is not None:
                 self.pending_future.set_result(True)
+            if e.event_type == facade_pb2.EventType.LE_RAND:
+                self.pending_future.set_result(True)
 
     async def verify_adapter_started(self):
         await asyncio.wait_for(self.pending_future, AdapterAutomationHelper.DEFAULT_TIMEOUT)
 
     async def clear_event_filter(self):
         await self.adapter_stub.ClearEventFilter(empty_proto.Empty())
+
+    async def le_rand(self):
+        await self.adapter_stub.LeRand(empty_proto.Empty())
 
 
 class A2dpAutomationHelper():

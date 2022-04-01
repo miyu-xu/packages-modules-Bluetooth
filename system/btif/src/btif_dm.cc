@@ -3229,3 +3229,8 @@ void btif_dm_clear_event_filter() {
   LOG_VERBOSE("%s: called", __func__);
   bta_dm_clear_event_filter();
 }
+
+void btif_dm_le_rand(LeRandCallback callback) {
+  LOG_VERBOSE("%s: called", __func__);
+  bta_dm_le_rand(callback);
+}
