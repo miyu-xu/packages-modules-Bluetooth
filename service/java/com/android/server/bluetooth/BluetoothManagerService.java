@@ -207,6 +207,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
     private final ReentrantReadWriteLock mBluetoothLock = new ReentrantReadWriteLock();
     private boolean mBinding;
     private boolean mUnbinding;
+    private int mForegroundUserId;
 
     private BluetoothModeChangeHelper mBluetoothModeChangeHelper;
 
@@ -535,6 +536,8 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
 
         mIsHearingAidProfileSupported =
                 BluetoothProperties.isProfileAshaCentralEnabled().orElse(false);
+
+        mForegroundUserId = UserHandle.SYSTEM.getIdentifier();
 
         // TODO: We need a more generic way to initialize the persist keys of FeatureFlagUtils
         String value = SystemProperties.get(FeatureFlagUtils.PERSIST_PREFIX + FeatureFlagUtils.HEARING_AID_SETTINGS);
@@ -865,6 +868,13 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
         final SynchronousResultReceiver recv = new SynchronousResultReceiver();
         mBluetooth.unregisterCallback(callback, attributionSource, recv);
         recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+    }
+
+    @GuardedBy("mBluetoothLock")
+    private void synchronousSetForegroundUserId(int userId,
+            AttributionSource attributionSource) throws RemoteException, TimeoutException {
+        if (mBluetooth == null) return;
+        mBluetooth.setForegroundUserId(userId, attributionSource);
     }
 
     public int getState() {
@@ -2255,6 +2265,19 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                                 BluetoothAdapter.STATE_BLE_TURNING_ON,
                                 BluetoothAdapter.STATE_BLE_ON,
                                 BluetoothAdapter.STATE_BLE_TURNING_OFF));
+                    } else {
+                        // Sends the foreground user id to the Bluetooth service
+                        try {
+                            mBluetoothLock.readLock().lock();
+                            if (mBluetooth != null) {
+                                synchronousSetForegroundUserId(mForegroundUserId,
+                                        mContext.getAttributionSource());
+                            }
+                        } catch (RemoteException | TimeoutException e) {
+                            Log.e(TAG, "Unable to set foreground user id", e);
+                        } finally {
+                            mBluetoothLock.readLock().unlock();
+                        }
                     }
                     break;
                 }
@@ -2392,11 +2415,16 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                     }
                     mHandler.removeMessages(MESSAGE_USER_SWITCHED);
 
+                    Message userMsg = mHandler.obtainMessage(MESSAGE_USER_SWITCHED);
+                    int toUserId = userMsg.arg1;
+                    if (mForegroundUserId != toUserId) {
+                        mForegroundUserId = toUserId;
+                    }
+
                     /* disable and enable BT when detect a user switch */
                     if (mBluetooth != null && isEnabled()) {
                         restartForReason(BluetoothProtoEnums.ENABLE_DISABLE_REASON_USER_SWITCH);
                     } else if (mBinding || mBluetooth != null) {
-                        Message userMsg = mHandler.obtainMessage(MESSAGE_USER_SWITCHED);
                         userMsg.arg2 = 1 + msg.arg2;
                         // if user is switched when service is binding retry after a delay
                         mHandler.sendMessageDelayed(userMsg, USER_SWITCHED_TIME_MS);
