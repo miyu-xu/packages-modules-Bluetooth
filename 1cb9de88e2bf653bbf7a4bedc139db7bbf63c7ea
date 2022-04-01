@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ba1d8e6_f2231b14",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-01T23:26:32Z",
+      "side": 1,
+      "message": "else is not needed here",
+      "revId": "1cb9de88e2bf653bbf7a4bedc139db7bbf63c7ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1a46476_3f312c81",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-01T23:26:32Z",
+      "side": 1,
+      "message": "else not needed here",
+      "revId": "1cb9de88e2bf653bbf7a4bedc139db7bbf63c7ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a13eae16_b42074be",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-01T23:26:32Z",
+      "side": 1,
+      "message": "nit add { }",
+      "revId": "1cb9de88e2bf653bbf7a4bedc139db7bbf63c7ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e1f51f3_867d80dc",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-01T23:26:32Z",
+      "side": 1,
+      "message": "I think this is not needed.",
+      "revId": "1cb9de88e2bf653bbf7a4bedc139db7bbf63c7ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db324ecc_f0cd4212",
+        "filename": "system/audio_hal_interface/le_audio_software.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-01T23:26:32Z",
+      "side": 1,
+      "message": "typo IsBroadcaster",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 21
+      },
+      "revId": "1cb9de88e2bf653bbf7a4bedc139db7bbf63c7ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91554044_6a23460f",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-01T23:26:32Z",
+      "side": 1,
+      "message": "please remove",
+      "revId": "1cb9de88e2bf653bbf7a4bedc139db7bbf63c7ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
