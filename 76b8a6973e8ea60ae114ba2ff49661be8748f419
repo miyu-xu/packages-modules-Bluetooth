@@ -16,6 +16,29 @@
       "message": "This impl is fine, but isn\u0027t this a violation of privacy by surfacing the link keys ?\nSeems like a nice feature for dev/bring up but not for production",
       "revId": "76b8a6973e8ea60ae114ba2ff49661be8748f419",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c13dd7_4beb9c72",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2340,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-01T22:01:38Z",
+      "side": 1,
+      "message": "nit: \u003d\u003d should work fine.\n\nle_printed is a bit odd.  I think it might be easier to read if we just left that out.\n\nNot having \"None\" wouldn\u0027t bee to problematic.  If we\u0027re worried, we could have an \"End Link Key Types.\" message.",
+      "range": {
+        "startLine": 2340,
+        "startChar": 19,
+        "endLine": 2340,
+        "endChar": 21
+      },
+      "revId": "76b8a6973e8ea60ae114ba2ff49661be8748f419",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
