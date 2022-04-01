@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2099a02_fa2a299d",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-01T19:18:00Z",
+      "side": 1,
+      "message": "You can\u0027t use @hide APIs in CTS tests any more, once mainline modules is enabled on AOSP, this will fail. \n\nAnd CTS code accessing @hide API will fail presubmit build in downstream branch.",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 22
+      },
+      "revId": "9b7128ca99ee498775279fdd1a319efe2031a106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
