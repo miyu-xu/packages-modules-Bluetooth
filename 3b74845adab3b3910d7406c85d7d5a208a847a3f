@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26349042_4b44547a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/TmapGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-01T12:16:38Z",
+      "side": 1,
+      "message": "spare comment",
+      "revId": "3b74845adab3b3910d7406c85d7d5a208a847a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
