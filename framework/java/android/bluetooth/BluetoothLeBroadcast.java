@@ -33,6 +33,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.lang.annotation.Retention;
@@ -75,8 +76,14 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
 
     private final Map<Callback, Executor> mCallbackExecutorMap = new HashMap<>();
 
+    /**
+     * Profile callback used for multiplexing callbacks from the user.
+     *
+     * @hide
+     */
     @SuppressLint("AndroidFrameworkBluetoothPermission")
-    private final IBluetoothLeBroadcastCallback mCallback =
+    @VisibleForTesting
+    public final IBluetoothLeBroadcastCallback mCallback =
             new IBluetoothLeBroadcastCallback.Stub() {
         @Override
         public void onBroadcastStarted(int reason, int broadcastId) {
