@@ -37,6 +37,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
@@ -91,8 +92,14 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                                    @IntRange(from = -255, to = 255) int volumeOffset);
     }
 
+    /**
+     * Profile callback use for multiplexing callbacks from the user
+     *
+     * @hide
+     */
     @SuppressLint("AndroidFrameworkBluetoothPermission")
-    private final IBluetoothVolumeControlCallback mCallback =
+    @VisibleForTesting
+    public final IBluetoothVolumeControlCallback mCallback =
             new IBluetoothVolumeControlCallback.Stub() {
         @Override
         public void onVolumeOffsetChanged(@NonNull BluetoothDevice device, int volumeOffset) {
