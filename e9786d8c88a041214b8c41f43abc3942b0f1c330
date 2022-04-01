@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fd53bfd_ca1553c0",
+        "filename": "system/blueberry/tests/gd/rust/topshim/facade/suspend_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-01T18:57:02Z",
+      "side": 1,
+      "message": "This is because we always get back the ON event when the stack starts.  I will add a comment, need to figure out a better way to do this in the automation_helper",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 40
+      },
+      "revId": "e9786d8c88a041214b8c41f43abc3942b0f1c330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
