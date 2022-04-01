@@ -84,6 +84,12 @@ impl AdapterService for AdapterServiceImpl {
                         sink.send((rsp, WriteFlags::default())).await.unwrap();
                     }
                     BaseCallbacks::SspRequest(_, _, _, _, _) => {}
+                    BaseCallbacks::LeRandCallback(random) => {
+                        let mut rsp = FetchEventsResponse::new();
+                        rsp.event_type = EventType::LE_RAND;
+                        rsp.data = random.to_string();
+                        sink.send((rsp, WriteFlags::default())).await.unwrap();
+                    }
                     _ => (),
                 }
             }
