@@ -9,11 +9,13 @@ service AdapterService {
   rpc ToggleStack(ToggleStackRequest) returns (ToggleStackResponse) {}
   rpc SetDiscoveryMode(SetDiscoveryModeRequest) returns (SetDiscoveryModeResponse) {}
   rpc ClearEventFilter(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc LeRand(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }
 
 enum EventType {
   ADAPTER_STATE = 0;
   SSP_REQUEST = 1;
+  LE_RAND = 2;
 }
 message FetchEventsRequest {}
 

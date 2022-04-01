@@ -707,6 +707,7 @@ pub enum BaseCallbacks {
     // generate_local_oob_data_cb
     // switch_buffer_size_cb
     // switch_codec_cb
+    LeRandCallback(u64),
 }
 
 pub struct BaseCallbacksDispatcher {
@@ -714,6 +715,8 @@ pub struct BaseCallbacksDispatcher {
 }
 
 type BaseCb = Arc<Mutex<BaseCallbacksDispatcher>>;
+
+cb_variant!(BaseCb, le_rand_cb -> BaseCallbacks::LeRandCallback, u64);
 
 cb_variant!(BaseCb, adapter_state_cb -> BaseCallbacks::AdapterState, u32 -> BtState);
 cb_variant!(BaseCb, adapter_properties_cb -> BaseCallbacks::AdapterProperties,
@@ -875,6 +878,7 @@ impl BluetoothInterface {
             generate_local_oob_data_cb: None,
             switch_buffer_size_cb: None,
             switch_codec_cb: None,
+            le_rand_cb: Some(le_rand_cb),
         });
 
         let rawcb: *mut bindings::bt_callbacks_t = &mut *callbacks;
@@ -1009,6 +1013,10 @@ impl BluetoothInterface {
 
     pub fn clear_event_filter(&self) -> i32 {
         ccall!(self, clear_event_filter)
+    }
+
+    pub fn le_rand(&self) -> i32 {
+        ccall!(self, le_rand)
     }
 
     pub(crate) fn get_profile_interface(

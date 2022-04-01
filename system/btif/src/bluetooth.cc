@@ -421,6 +421,24 @@ static int clear_event_filter() {
   return BT_STATUS_SUCCESS;
 }
 
+static void le_rand_btif_cb(uint64_t random_number) {
+  LOG_VERBOSE("%s", __func__);
+  do_in_jni_thread(
+      FROM_HERE,
+      base::BindOnce(
+          [](uint64_t random) { HAL_CBACK(bt_hal_cbacks, le_rand_cb, random); },
+          random_number));
+}
+
+static int le_rand() {
+  LOG_VERBOSE("%s", __func__);
+  if (!interface_ready()) return BT_STATUS_NOT_READY;
+
+  do_in_main_thread(
+      FROM_HERE, base::BindOnce(btif_dm_le_rand, base::Bind(&le_rand_btif_cb)));
+  return BT_STATUS_SUCCESS;
+}
+
 static void dump(int fd, const char** arguments) {
   btif_debug_conn_dump(fd);
   btif_debug_bond_event_dump(fd);
@@ -674,7 +692,8 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     set_dynamic_audio_buffer_size,
     generate_local_oob_data,
     allow_low_latency_audio,
-    clear_event_filter};
+    clear_event_filter,
+    le_rand};
 
 // callback reporting helpers
 
