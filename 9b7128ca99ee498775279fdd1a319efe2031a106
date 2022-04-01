@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "38dc1c30_29468994",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-04-01T19:18:29Z",
+      "side": 1,
+      "message": "We can\u0027t use @hide APIs in CTS. The VisibleForTesting annotation isn\u0027t really that useful for us.",
+      "revId": "9b7128ca99ee498775279fdd1a319efe2031a106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2099a02_fa2a299d",
         "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
         "patchSetId": 1
