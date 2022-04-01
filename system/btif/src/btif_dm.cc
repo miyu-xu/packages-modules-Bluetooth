@@ -3244,3 +3244,8 @@ void btif_dm_disconnect_all_acls() {
   LOG_VERBOSE("%s: called", __func__);
   bta_dm_disconnect_all_acls();
 }
+
+void btif_dm_le_rand(LeRandCallback callback) {
+  LOG_VERBOSE("%s: called", __func__);
+  bta_dm_le_rand(callback);
+}
