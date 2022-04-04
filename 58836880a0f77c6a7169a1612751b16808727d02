@@ -16,6 +16,29 @@
       "message": "That was stupid of me, thanks for catching that :)",
       "revId": "58836880a0f77c6a7169a1612751b16808727d02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09e8b0a4_448c6931",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-04T17:03:01Z",
+      "side": 1,
+      "message": "We generally use defaults to mean something that will be broadly reusable.  I\u0027ve never seen defaults with source files included.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "58836880a0f77c6a7169a1612751b16808727d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
