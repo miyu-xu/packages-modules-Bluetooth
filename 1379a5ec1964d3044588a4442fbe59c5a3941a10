@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67c40ac2_ea738ace",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-04T11:39:14Z",
+      "side": 1,
+      "message": "Hi Mandip, could you check latest CL ?",
+      "parentUuid": "3b3cb699_136cf11f",
+      "range": {
+        "startLine": 914,
+        "startChar": 21,
+        "endLine": 914,
+        "endChar": 67
+      },
+      "revId": "1379a5ec1964d3044588a4442fbe59c5a3941a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddee4e81_2ea37e74",
         "filename": "system/bta/le_audio/audio_set_configurations.json",
         "patchSetId": 2
