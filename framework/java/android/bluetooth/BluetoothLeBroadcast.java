@@ -554,6 +554,8 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
     })
     public void startBroadcast(@NonNull BluetoothLeAudioContentMetadata contentMetadata,
             @Nullable byte[] broadcastCode) {
+        Objects.requireNonNull(contentMetadata, "contentMetadata cannot be null");
+
         if (DBG) log("startBroadcasting");
         final IBluetoothLeAudio service = getService();
         if (service == null) {
@@ -589,6 +591,8 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
     })
     public void updateBroadcast(int broadcastId,
             @NonNull BluetoothLeAudioContentMetadata contentMetadata) {
+        Objects.requireNonNull(contentMetadata, "contentMetadata cannot be null");
+
         if (DBG) log("updateBroadcast");
         final IBluetoothLeAudio service = getService();
         if (service == null) {
