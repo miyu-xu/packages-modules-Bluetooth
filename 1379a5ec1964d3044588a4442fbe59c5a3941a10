@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bafc23ff_ad1dc8d7",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-04-04T13:52:48Z",
+      "side": 1,
+      "message": "Hi Grzegorz,\nThank you for addressing first part of the comment.\n\nCan you also look to add codec configuration for \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_1\" and its corresponding \"configuration\" and also use these \"configuration\" in audio_set_scenario.json the same way it is done for \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_2_XX\"?",
+      "parentUuid": "67c40ac2_ea738ace",
+      "range": {
+        "startLine": 914,
+        "startChar": 21,
+        "endLine": 914,
+        "endChar": 67
+      },
+      "revId": "1379a5ec1964d3044588a4442fbe59c5a3941a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddee4e81_2ea37e74",
         "filename": "system/bta/le_audio/audio_set_configurations.json",
         "patchSetId": 2
