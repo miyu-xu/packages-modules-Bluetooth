@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1834ca7_6c747438",
+        "filename": "system/embdrv/lc3/fuzzer/liblc3_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2022-04-04T19:37:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "026eac84_daa4ec8d",
+      "range": {
+        "startLine": 34,
+        "startChar": 68,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "b1b8e325d3056b91b86a1df9bae2656a4887401f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71bcdd17_3f231646",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-04-04T19:23:42Z",
       "side": 1,
       "message": "Take care of alignment, LC3_PCM_FORMAT_S16 needs 16 bits (int16_t), and LC3_PCM_FORMAT_S24 needs 32 bits (uint32_t).\nI suggest using vector of uint32_t.\nNote that `num_frames` is always even, so you can do `num_frames / 2` for 16 bits use case.",
+      "revId": "b1b8e325d3056b91b86a1df9bae2656a4887401f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10ec265e_01cee659",
+        "filename": "system/embdrv/lc3/fuzzer/liblc3_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2022-04-04T19:37:18Z",
+      "side": 1,
+      "message": "std::vector\u003cuint32_t\u003e input_frames(num_frames / (pcm_format \u003d\u003d LC3_PCM_FORMAT_S16 ? 2 : 1));",
+      "parentUuid": "71bcdd17_3f231646",
       "revId": "b1b8e325d3056b91b86a1df9bae2656a4887401f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
