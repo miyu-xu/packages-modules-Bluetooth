@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fce6e0c_7e56e532",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1949,
+      "author": {
+        "id": 1946545
+      },
+      "writtenOn": "2022-04-04T14:54:15Z",
+      "side": 1,
+      "message": "Or we must set to 0x05. For both coded and 1M phy",
+      "revId": "06285d69349c43e101621203084d3ab7d75c4e24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
