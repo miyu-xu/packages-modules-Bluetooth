@@ -152,9 +152,9 @@ struct Controller::impl {
           handler->BindOnceOn(this, &Controller::impl::le_set_host_feature_handler));
     }
 
-    hci_->EnqueueCommand(LeGetVendorCapabilitiesBuilder::Create(),
+  /*  hci_->EnqueueCommand(LeGetVendorCapabilitiesBuilder::Create(),
                          handler->BindOnceOn(this, &Controller::impl::le_get_vendor_capabilities_handler));
-
+*/
     // We only need to synchronize the last read. Make BD_ADDR to be the last one.
     std::promise<void> promise;
     auto future = promise.get_future();
