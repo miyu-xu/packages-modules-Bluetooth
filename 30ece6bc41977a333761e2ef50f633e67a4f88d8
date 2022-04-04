@@ -16,6 +16,24 @@
       "message": "but there is @Nullable annotation used for the device? Please changed that or remove the check (not sure which should be used :))",
       "revId": "30ece6bc41977a333761e2ef50f633e67a4f88d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d7878cb_e33418a8",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-04T12:32:01Z",
+      "side": 1,
+      "message": "Right, the annotation. Thanks. I\u0027ll make it @NonNull like most of the other profiles do.",
+      "parentUuid": "ac14e3b3_94719dd2",
+      "revId": "30ece6bc41977a333761e2ef50f633e67a4f88d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
