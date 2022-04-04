@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-#include "hal/hci_hal_host.h"
-
 #include <netdb.h>
 #include <netinet/in.h>
 #include <poll.h>
@@ -28,12 +26,16 @@
 #include <mutex>
 #include <queue>
 
+#include "common/bind.h"
+#include "common/init_flags.h"
 #include "hal/hci_hal.h"
+#include "hal/hci_hal_host.h"
 #include "hal/snoop_logger.h"
 #include "metrics/counter_metrics.h"
 #include "os/log.h"
 #include "os/reactor.h"
 #include "os/thread.h"
+#include "src/bridge.rs.h"
 
 namespace {
 constexpr int INVALID_FD = -1;
@@ -369,7 +371,108 @@ class HciHalHost : public HciHal {
   }
 };
 
-const ModuleFactory HciHal::Factory = ModuleFactory([]() { return new HciHalHost(); });
+// const ModuleFactory HciHal::Factory = ModuleFactory([]() { return new HciHalHost(); });
+}  // namespace hal
+}  // namespace bluetooth
 
+
+namespace bluetooth {
+namespace hal {
+using bluetooth::common::Bind;
+using bluetooth::hal::HciHal;
+using bluetooth::hal::HciHalCallbacks;
+using bluetooth::hal::HciPacket;
+
+void EventCallback(HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_INFO("Event callback called");
+  std::vector<uint8_t> bytes{data.begin(), data.end()};
+  auto event = static_cast<HciPacket>(bytes);
+  callback->hciEventReceived(event);
+}
+
+void AclCallback(HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_INFO("ACL callback called");
+  std::vector<uint8_t> bytes{data.begin(), data.end()};
+  auto d = static_cast<HciPacket>(bytes);
+  callback->aclDataReceived(d);
+}
+
+void IsoCallback(HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_INFO("Iso callback called");
+  std::vector<uint8_t> bytes{data.begin(), data.end()};
+  auto d = static_cast<HciPacket>(bytes);
+  callback->isoDataReceived(d);
+}
+
+void ScoCallback(HciHalCallbacks* callback, ::rust::Slice<const uint8_t> data) {
+  LOG_INFO("Sco callback called");
+  std::vector<uint8_t> bytes{data.begin(), data.end()};
+  auto d = static_cast<HciPacket>(bytes);
+  callback->scoDataReceived(d);
+}
+
+class RHciHalHost : public HciHal {
+ public:
+  void registerIncomingPacketCallback(HciHalCallbacks* callback) override {
+    shim::rust::hal_set_evt_callback(
+        **rhal_, std::make_unique<shim::rust::u8SliceCallback>(Bind(EventCallback, callback)));
+    shim::rust::hal_set_acl_callback(
+        **rhal_, std::make_unique<shim::rust::u8SliceCallback>(Bind(AclCallback, callback)));
+    shim::rust::hal_set_iso_callback(
+        **rhal_, std::make_unique<shim::rust::u8SliceCallback>(Bind(IsoCallback, callback)));
+    shim::rust::hal_set_sco_callback(
+        **rhal_, std::make_unique<shim::rust::u8SliceCallback>(Bind(ScoCallback, callback)));
+  }
+
+  void unregisterIncomingPacketCallback() override {}
+
+  void sendHciCommand(HciPacket command) override {
+    ::rust::Slice<const uint8_t> slice{command.data(), command.size()};
+    shim::rust::hal_send_command(**rhal_, slice);
+  }
+
+  void sendAclData(HciPacket data) override {
+    ::rust::Slice<const uint8_t> slice{data.data(), data.size()};
+    shim::rust::hal_send_acl(**rhal_, slice);
+  }
+
+  void sendIsoData(HciPacket data) override {
+    ::rust::Slice<const uint8_t> slice{data.data(), data.size()};
+    shim::rust::hal_send_iso(**rhal_, slice);
+  }
+
+  void sendScoData(HciPacket data) override {
+    ::rust::Slice<const uint8_t> slice{data.data(), data.size()};
+    shim::rust::hal_send_sco(**rhal_, slice);
+  }
+
+ protected:
+  void ListDependencies(ModuleList* list) const {
+    list->add<metrics::CounterMetrics>();
+  }
+
+  void Start() override {
+    LOG_INFO("Started this rust hal thingy");
+    auto* config = bluetooth::hal::HciHalHostRootcanalConfig::Get();
+    uint16_t port = (uint16_t)config->GetPort();
+    rstack_ = new ::rust::Box<shim::rust::Stack>(shim::rust::stack_create_on_host(port));
+    rhal_ = new ::rust::Box<shim::rust::Hal>(shim::rust::get_hal(**rstack_));
+  }
+
+  void Stop() override {
+    delete rhal_;
+    delete rstack_;
+  }
+
+  std::string ToString() const override {
+    return std::string("RHciHalHost");
+  }
+
+ private:
+  ::rust::Box<shim::rust::Stack>* rstack_ = nullptr;
+  ::rust::Box<shim::rust::Hal>* rhal_ = nullptr;
+};
+
+const ModuleFactory HciHal::Factory = ModuleFactory([]() { return new RHciHalHost(); });
 }  // namespace hal
 }  // namespace bluetooth

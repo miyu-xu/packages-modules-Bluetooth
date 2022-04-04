@@ -4,6 +4,7 @@ extern crate lazy_static;
 
 mod bridge;
 mod controller;
+mod hal;
 mod hci;
 mod init_flags;
 mod message_loop_thread;

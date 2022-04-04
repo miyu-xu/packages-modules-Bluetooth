@@ -11,8 +11,8 @@ use tokio::runtime::Runtime;
 unsafe impl Send for ffi::u8SliceCallback {}
 unsafe impl Send for ffi::u8SliceOnceCallback {}
 
-struct CallbackWrapper {
-    cb: cxx::UniquePtr<ffi::u8SliceCallback>,
+pub struct CallbackWrapper {
+    pub cb: cxx::UniquePtr<ffi::u8SliceCallback>,
 }
 
 impl U8SliceRunnable for CallbackWrapper {
