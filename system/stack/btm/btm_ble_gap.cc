@@ -1939,13 +1939,18 @@ void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int,
                                   tBLE_ADDR_TYPE addr_type_own,
                                   uint8_t scan_filter_policy) {
   if (controller_get_interface()->supports_ble_extended_advertising()) {
+    uint8_t scanning_phys = 1;
     scanning_phy_cfg phy_cfg;
     phy_cfg.scan_type = scan_type;
     phy_cfg.scan_int = scan_int;
     phy_cfg.scan_win = scan_win;
 
+    if (controller_get_interface()->supports_ble_coded_phy()) {
+        scanning_phys = 0x05;
+    }
+
     btsnd_hcic_ble_set_extended_scan_params(addr_type_own, scan_filter_policy,
-                                            1, &phy_cfg);
+                                            scanning_phys, &phy_cfg);
   } else {
     btsnd_hcic_ble_set_scan_params(scan_type, scan_int, scan_win, addr_type_own,
                                    scan_filter_policy);
