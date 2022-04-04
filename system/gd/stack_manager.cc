@@ -53,7 +53,6 @@ void StackManager::StartUp(ModuleList* modules, Thread* stack_thread) {
       init_status == std::future_status::ready,
       "Can't start stack, last instance: %s",
       registry_.last_instance_.c_str());
-
   LOG_INFO("init complete");
 }
 

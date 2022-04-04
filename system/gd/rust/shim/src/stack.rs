@@ -1,6 +1,7 @@
 //! Stack management
 
 use crate::controller::Controller;
+use crate::hal::Hal;
 use crate::hci::Hci;
 use bluetooth_rs::hci::ControllerExports;
 use bt_common::init_flags;
@@ -46,6 +47,19 @@ pub fn stack_create() -> Box<Stack> {
     })
 }
 
+pub fn stack_create_on_host(port: u16) -> Box<Stack> {
+    assert!(init_flags::gd_rust_is_enabled());
+
+    let local_rt = RUNTIME.clone();
+    RUNTIME.block_on(async move {
+        let stack = bluetooth_rs::Stack::new(local_rt).await;
+        stack.set_rootcanal_port(Some(port)).await;
+        stack.use_default_snoop().await;
+
+        Box::new(Stack(stack))
+    })
+}
+
 pub fn stack_start(_stack: &mut Stack) {
     assert!(init_flags::gd_rust_is_enabled());
 }
@@ -64,6 +78,19 @@ pub fn get_hci(stack: &mut Stack) -> Box<Hci> {
         stack.get_blocking::<bluetooth_rs::hci::facade::HciFacadeService>(),
     ))
 }
+
+pub fn get_hal(stack: &mut Stack) -> Box<Hal> {
+    assert!(init_flags::gd_rust_is_enabled());
+
+    Box::new(Hal::new(
+        stack.get_runtime(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::ControlHal>(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::AclHal>(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::IsoHal>(),
+        stack.get_blocking::<bluetooth_rs::hal::snoop::ScoHal>(),
+    ))
+}
+
 
 pub fn get_controller(stack: &mut Stack) -> Box<Controller> {
     assert!(init_flags::gd_rust_is_enabled());
