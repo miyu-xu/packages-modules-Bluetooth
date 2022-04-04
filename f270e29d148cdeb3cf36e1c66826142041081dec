@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c46254b_e72ddc8e",
+        "filename": "system/device/include/controller.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-04T14:43:46Z",
+      "side": 1,
+      "message": "Can\u0027t include the le_rand_callback.h as it uses common/callback.h whereas we need base/callback.h in this context",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "f270e29d148cdeb3cf36e1c66826142041081dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
