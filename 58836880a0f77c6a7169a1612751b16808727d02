@@ -39,6 +39,30 @@
       },
       "revId": "58836880a0f77c6a7169a1612751b16808727d02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6d1ecc_8291ef67",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-04T17:06:54Z",
+      "side": 1,
+      "message": "Looking at the other rust tests, it looks like there is a lot of copy/paste without using defaults.\n\nMaybe we could use a different name instead of pdl_defaults?  Maybe I\u0027m just being too picky.",
+      "parentUuid": "09e8b0a4_448c6931",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "58836880a0f77c6a7169a1612751b16808727d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
