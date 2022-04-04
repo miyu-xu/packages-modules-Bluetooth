@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026eac84_daa4ec8d",
+        "filename": "system/embdrv/lc3/fuzzer/liblc3_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2022-04-04T19:23:42Z",
+      "side": 1,
+      "message": "The LC3_PCM_FORMAT_S16 format read/write 32 bits per frame (it\u0027s not packed). For each 32 bits, the high 8 bits are \"not significant\" (sign extension), but read and written.\nSo the `bytes_per_frame` will be 4 bytes, for 24 bits mode.",
+      "range": {
+        "startLine": 34,
+        "startChar": 68,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "b1b8e325d3056b91b86a1df9bae2656a4887401f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71bcdd17_3f231646",
+        "filename": "system/embdrv/lc3/fuzzer/liblc3_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2022-04-04T19:23:42Z",
+      "side": 1,
+      "message": "Take care of alignment, LC3_PCM_FORMAT_S16 needs 16 bits (int16_t), and LC3_PCM_FORMAT_S24 needs 32 bits (uint32_t).\nI suggest using vector of uint32_t.\nNote that `num_frames` is always even, so you can do `num_frames / 2` for 16 bits use case.",
+      "revId": "b1b8e325d3056b91b86a1df9bae2656a4887401f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
