@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "941bcaea_17e979f1",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-04T11:38:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6658a105_e4bc9fee",
+      "range": {
+        "startLine": 914,
+        "startChar": 21,
+        "endLine": 914,
+        "endChar": 67
+      },
+      "revId": "1379a5ec1964d3044588a4442fbe59c5a3941a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddee4e81_2ea37e74",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "372f8262_425f485c",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1041,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-04T11:38:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddee4e81_2ea37e74",
+      "range": {
+        "startLine": 1041,
+        "startChar": 21,
+        "endLine": 1041,
+        "endChar": 65
+      },
+      "revId": "1379a5ec1964d3044588a4442fbe59c5a3941a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96390234_daf7d3e1",
@@ -83,6 +131,30 @@
       "writtenOn": "2022-03-29T09:37:01Z",
       "side": 1,
       "message": "What\u0027s the difference between this one, SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_2, and SingleDev_TwoChanStereoSnk_OneChanMonoSrc_16_1?",
+      "range": {
+        "startLine": 1551,
+        "startChar": 21,
+        "endLine": 1551,
+        "endChar": 69
+      },
+      "revId": "1379a5ec1964d3044588a4442fbe59c5a3941a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57f2f1eb_743796e2",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-04T11:38:29Z",
+      "side": 1,
+      "message": "Those two differs in frame duration, xx_2 stands for (10 ms frame duration) xx_1 stands for (7.5 ms duration). This naming comes from BAP specification.",
+      "parentUuid": "96390234_daf7d3e1",
       "range": {
         "startLine": 1551,
         "startChar": 21,
