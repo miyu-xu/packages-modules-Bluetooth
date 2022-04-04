@@ -81,6 +81,24 @@
       "parentUuid": "71bcdd17_3f231646",
       "revId": "b1b8e325d3056b91b86a1df9bae2656a4887401f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e64fadf_1b2f0dfe",
+        "filename": "system/embdrv/lc3/fuzzer/liblc3_fuzzer.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-04T20:16:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10ec265e_01cee659",
+      "revId": "b1b8e325d3056b91b86a1df9bae2656a4887401f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
