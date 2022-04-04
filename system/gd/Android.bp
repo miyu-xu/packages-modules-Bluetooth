@@ -206,6 +206,8 @@ cc_defaults {
         "libbt-platform-protos-lite",
     ],
     export_static_lib_headers: [ "libbluetooth_rust_interop" ],
+    header_libs: ["libbt_callbacks_cxx_headers"],
+    include_dirs: [ "packages/modules/Bluetooth/system/gd/rust/shim" ],
 }
 
 cc_library {
@@ -301,7 +303,9 @@ cc_binary {
     sanitize: {
         address: true,
         cfi: true,
-    }
+    },
+    header_libs: ["libbt_callbacks_cxx_headers"],
+    include_dirs: [ "packages/modules/Bluetooth/system/gd/rust/shim" ],
 }
 
 cc_test {

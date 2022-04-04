@@ -58,11 +58,12 @@ impl<T: 'static + Into<Vec<u8>> + Into<Bytes> + Send> RxAdapter<T> {
     ) {
         assert!(!self.running);
         self.running = true;
-
         let clone_rx = self.rx.clone();
         rt.spawn(async move {
             while let Some(payload) = clone_rx.lock().await.recv().await {
+                println!("In stream runnable calling callback");
                 let bytes: Bytes = payload.into();
+                println!("Stream runnable bytes: {:#?}", bytes);
                 runnable.run(&bytes);
             }
         });
