@@ -1,6 +1,7 @@
 //! Merged bridge
 
 pub use crate::controller::*;
+pub use crate::hal::*;
 pub use crate::hci::*;
 pub use crate::stack::*;
 
@@ -8,16 +9,29 @@ pub use crate::stack::*;
 pub mod ffi {
     extern "Rust" {
         type Stack;
+        type Hal;
         type Hci;
         type Controller;
 
         // Stack
         fn stack_create() -> Box<Stack>;
+        fn stack_create_on_host(port: u16) -> Box<Stack>;
         fn stack_start(stack: &mut Stack);
         fn stack_stop(stack: &mut Stack);
 
+        fn get_hal(stack: &mut Stack) -> Box<Hal>;
         fn get_hci(stack: &mut Stack) -> Box<Hci>;
         fn get_controller(stack: &mut Stack) -> Box<Controller>;
+
+        // HAL
+        fn hal_send_command(hal: &mut Hal, data: &[u8]);
+        fn hal_send_acl(hal: &mut Hal, data: &[u8]);
+        fn hal_send_iso(hal: &mut Hal, data: &[u8]);
+        fn hal_send_sco(hal: &mut Hal, data: &[u8]);
+        fn hal_set_evt_callback(hal: &mut Hal, cb: UniquePtr<u8SliceCallback>);
+        fn hal_set_acl_callback(hal: &mut Hal, cb: UniquePtr<u8SliceCallback>);
+        fn hal_set_iso_callback(hal: &mut Hal, cb: UniquePtr<u8SliceCallback>);
+        fn hal_set_sco_callback(hal: &mut Hal, cb: UniquePtr<u8SliceCallback>);
 
         // HCI
         fn hci_set_acl_callback(hci: &mut Hci, callback: UniquePtr<u8SliceCallback>);
