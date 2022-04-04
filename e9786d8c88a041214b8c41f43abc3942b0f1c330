@@ -22,6 +22,23 @@
       },
       "revId": "e9786d8c88a041214b8c41f43abc3942b0f1c330",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "041c3320_81dfa496",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 719,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-04T22:32:42Z",
+      "side": 1,
+      "message": "nit: Ordering -- this should go below acl_state_cb",
+      "revId": "e9786d8c88a041214b8c41f43abc3942b0f1c330",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
