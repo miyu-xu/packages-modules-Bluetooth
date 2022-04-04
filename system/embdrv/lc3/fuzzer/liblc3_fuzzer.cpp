@@ -31,9 +31,9 @@ void TestEncoder(FuzzedDataProvider& fdp) {
     return;
   }
 
-  std::vector<uint16_t> input_frames(num_frames);
-  fdp.ConsumeData(input_frames.data(),
-                  input_frames.size() * 2 /* each frame is 2 bytes */);
+  uint8_t bytes_per_frame = (pcm_format == LC3_PCM_FORMAT_S16 ? 2 : 3);
+  std::vector<uint8_t> input_frames(num_frames * bytes_per_frame);
+  fdp.ConsumeData(input_frames.data(), input_frames.size());
 
   void* lc3_encoder_mem = nullptr;
   lc3_encoder_mem = malloc(enc_size);
