@@ -63,6 +63,30 @@
       },
       "revId": "58836880a0f77c6a7169a1612751b16808727d02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2056d862_002a44fe",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-05T09:36:29Z",
+      "side": 1,
+      "message": "I see, perhaps I was too eager to remove the duplication :-) I guess the name `pdl_defaults` occupies a spot in the global namespace, just like `pdl` does — does this have any other consequence?\n\nI added you to cl/439302936 now where I\u0027m trying to update the documentation to make this approach \"official\". So if it\u0027s sub-optimal, we should discuss there.",
+      "parentUuid": "2c6d1ecc_8291ef67",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 13
+      },
+      "revId": "58836880a0f77c6a7169a1612751b16808727d02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
