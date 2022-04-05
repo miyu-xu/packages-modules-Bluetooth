@@ -12,6 +12,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+#define LOG_TAG "posix_async_socket_server"
+
 #include "net/posix/posix_async_socket_server.h"
 
 #include <errno.h>       // for errno

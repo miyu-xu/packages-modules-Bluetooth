@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "loopback"
+
 #include "loopback.h"
 
 #include "log.h"

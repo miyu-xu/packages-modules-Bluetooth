@@ -16,6 +16,10 @@
 
 #pragma once
 
+#ifndef LOG_TAG
+#error LOG_TAG not defined
+#endif
+
 #include <android-base/format.h>
 #include <android-base/logging.h>
 

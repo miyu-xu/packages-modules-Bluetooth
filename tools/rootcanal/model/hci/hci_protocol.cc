@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#define LOG_TAG "hci_protocol"
+
 #include "hci_protocol.h"
 
 #include <errno.h>

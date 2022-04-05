@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "car_kit"
+
 #include "car_kit.h"
 
 #include "log.h"

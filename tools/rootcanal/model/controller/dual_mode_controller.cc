@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "dual_mode_controller"
+
 #include "dual_mode_controller.h"
 
 #include <memory>

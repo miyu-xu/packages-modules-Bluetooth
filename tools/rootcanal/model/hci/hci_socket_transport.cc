@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "hci_socket_transport"
+
 #include "hci_socket_transport.h"
 
 #include "log.h"  // for LOG_INFO, LOG_ALWAYS_FATAL

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "isochronous_connection_handler"
+
 #include "model/controller/isochronous_connection_handler.h"
 
 #include "hci/address.h"

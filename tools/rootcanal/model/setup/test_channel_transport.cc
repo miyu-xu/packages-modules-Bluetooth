@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "test_channel_transport"
+
 #include "test_channel_transport.h"
 
 #include <errno.h>   // for errno, EBADF

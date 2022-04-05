@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "async_manager"
+
 #include "async_manager.h"
 
 #include <algorithm>

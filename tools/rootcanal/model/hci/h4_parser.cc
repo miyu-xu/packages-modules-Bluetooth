@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#define LOG_TAG "h4_parser"
+
 #include "model/hci/h4_parser.h"  // for H4Parser, PacketType, H4Pars...
 
 #include <stddef.h>  // for size_t

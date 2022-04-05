@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "link_layer_controller"
+
 #include "link_layer_controller.h"
 
 #include <hci/hci_packets.h>

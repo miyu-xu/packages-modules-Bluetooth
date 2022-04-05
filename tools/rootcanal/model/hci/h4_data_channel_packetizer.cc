@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#define LOG_TAG "h4_data_channel_packetizer"
+
 #include "h4_data_channel_packetizer.h"
 
 #include <string.h>  // for strerror, size_t

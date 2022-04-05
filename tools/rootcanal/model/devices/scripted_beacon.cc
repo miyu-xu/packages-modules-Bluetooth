@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "scripted_beacon"
+
 #include "scripted_beacon.h"
 
 #include <unistd.h>
