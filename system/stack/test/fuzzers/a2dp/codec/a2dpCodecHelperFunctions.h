@@ -137,8 +137,8 @@ std::shared_ptr<BT_HDR> getArbitraryBtHdr(FuzzedDataProvider* fdp) {
 
   bt_hdr->event = fdp->ConsumeIntegral<uint16_t>();
   bt_hdr->len = bytes.size();
-  bt_hdr->offset =
-      fdp->ConsumeIntegralInRange<uint16_t>(0, hdr_size - sizeof(BT_HDR));
+  bt_hdr->offset = fdp->ConsumeIntegralInRange<uint16_t>(
+      1 /*offset should be greater than zero*/, hdr_size - sizeof(BT_HDR));
   bt_hdr->layer_specific = fdp->ConsumeIntegral<uint16_t>();
   std::copy(bytes.begin(), bytes.end(), bt_hdr->data);
 
