@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a40920f_457f9fa1",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-05T21:22:43Z",
+      "side": 1,
+      "message": "this could be removed",
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
