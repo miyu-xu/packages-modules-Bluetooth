@@ -22,6 +22,30 @@
       },
       "revId": "5e62b428988e92a242f8c98f2319d954ca2d8af5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "158bdc0a_81337e80",
+        "filename": "framework/java/android/bluetooth/BluetoothHapClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-05T14:11:32Z",
+      "side": 1,
+      "message": "Indeed. Done.",
+      "parentUuid": "b4f36311_9d0eac83",
+      "range": {
+        "startLine": 686,
+        "startChar": 53,
+        "endLine": 686,
+        "endChar": 61
+      },
+      "revId": "5e62b428988e92a242f8c98f2319d954ca2d8af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
