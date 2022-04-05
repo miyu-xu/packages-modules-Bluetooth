@@ -16,8 +16,8 @@
 
 #include "remote_loopback_device.h"
 
+#include "log.h"
 #include "model/setup/device_boutique.h"
-#include "os/log.h"
 
 using std::vector;
 

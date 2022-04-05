@@ -24,6 +24,9 @@ cc_defaults {
         "-Wextra",
         "-Werror",
         "-fvisibility=hidden",
+        // FIXME: bluetooth_packetgen generate a function in hci_packets.h
+        // that trigger this warning
+        "-Wno-infinite-recursion",
     ],
     local_include_dirs: [
         "include",
@@ -32,10 +35,12 @@ cc_defaults {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
     ],
+    header_libs: [
+        "libbase_headers",
+    ],
     generated_headers: [
         "RootCanalGeneratedPackets_h",
         "BluetoothGeneratedPackets_h",
-        "libbt_init_flags_bridge_header",
     ],
 }
 
@@ -61,7 +66,7 @@ cc_object {
     ],
     static_libs: [
         "libscriptedbeaconpayload-protos-lite",
-    ]
+    ],
 }
 
 cc_library_static {
@@ -105,9 +110,6 @@ cc_library_static {
         "include",
         ".",
     ],
-    shared_libs: [
-        "liblog",
-    ],
     static_libs: [
         "libjsoncpp",
     ],
@@ -148,7 +150,7 @@ cc_test_host {
         "packages/modules/Bluetooth/system/gd",
     ],
     shared_libs: [
-        "liblog",
+        "libbase",
     ],
     static_libs: [
         "libbt-rootcanal",
@@ -179,7 +181,7 @@ cc_binary_host {
         "libbluetooth_headers",
     ],
     shared_libs: [
-        "liblog",
+        "libbase",
         "libbacktrace",
     ],
     static_libs: [
