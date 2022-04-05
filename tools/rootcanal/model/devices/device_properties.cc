@@ -19,7 +19,7 @@
 #include <memory>
 
 #include "json/json.h"
-#include "os/log.h"
+#include "log.h"
 #include "osi/include/osi.h"
 
 static void ParseUint8t(Json::Value value, uint8_t* field) {

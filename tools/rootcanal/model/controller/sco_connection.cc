@@ -17,9 +17,10 @@
 #include "sco_connection.h"
 
 #include <hci/hci_packets.h>
-#include <os/log.h>
 
 #include <vector>
+
+#include "log.h"
 
 using namespace rootcanal;
 using namespace bluetooth::hci;

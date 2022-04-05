@@ -23,7 +23,6 @@
 
 #include "hci/address.h"
 #include "hci/hci_packets.h"
-#include "os/log.h"
 
 namespace rootcanal {
 

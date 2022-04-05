@@ -23,7 +23,7 @@
 
 #include <cerrno>
 
-#include "os/log.h"
+#include "log.h"
 #include "osi/include/osi.h"
 
 namespace rootcanal {
