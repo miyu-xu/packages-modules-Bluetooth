@@ -790,6 +790,11 @@ typedef struct {
    * Call to clear out the connect list
    */
   int (*clear_connect_list)();
+
+  /**
+   * Call to disconnect all ACL connections
+   */
+  int (*disconnect_all_acls)();
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"
