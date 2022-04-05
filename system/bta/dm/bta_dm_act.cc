@@ -1198,10 +1198,18 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       }
 
       p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
-      p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-      p_msg->disc_result.result.disc_res.result = BTA_SUCCESS;
-      p_msg->disc_result.result.disc_res.num_uuids = uuid_list.size();
-      p_msg->disc_result.result.disc_res.p_uuid_list = NULL;
+      p_msg->disc_result = {
+          .hdr =
+              {
+                  .event = BTA_DM_DISCOVERY_RESULT_EVT,
+              },
+          .result =
+              {
+                  .disc_res.result = BTA_SUCCESS,
+                  .disc_res.num_uuids = uuid_list.size(),
+                  .disc_res.p_uuid_list = NULL,
+              },
+      };
       if (uuid_list.size() > 0) {
         // TODO(jpawlowski): make p_uuid_list into vector, and just copy
         // vectors, but first get rid of bta_sys_sendmsg below.
@@ -1263,11 +1271,21 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
     }
 
     p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
-    p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-    p_msg->disc_result.result.disc_res.result = BTA_FAILURE;
-    p_msg->disc_result.result.disc_res.services =
-        bta_dm_search_cb.services_found;
-    p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+    p_msg->disc_result = {
+        .hdr =
+            {
+                .event = BTA_DM_DISCOVERY_RESULT_EVT,
+            },
+        .result =
+            {
+                .disc_res =
+                    {
+                        .result = BTA_FAILURE,
+                        .services = bta_dm_search_cb.services_found,
+                        .bd_addr = bta_dm_search_cb.peer_bdaddr,
+                    },
+            },
+    };
     strlcpy((char*)p_msg->disc_result.result.disc_res.bd_name,
             bta_dm_get_remname(), BD_NAME_LEN + 1);
 
