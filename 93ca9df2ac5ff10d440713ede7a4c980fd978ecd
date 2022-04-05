@@ -16,6 +16,24 @@
       "message": "Hi folks, please let me know if the refactoring in Android.bp makes sense. It seems that we need to mention the dependencies in both `rust_binary_host` and in `rust_test_host`, so I put them in a common `rust_defaults` module.",
       "revId": "93ca9df2ac5ff10d440713ede7a4c980fd978ecd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0f00f9a_5d232e50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-05T09:09:56Z",
+      "side": 1,
+      "message": "I talked with people on chat, and the approach seems good. I\u0027ll submit a change to https://source.android.com/setup/build/rust/building-rust-modules/test-modules to make our docs mention this as the right way to do things.",
+      "parentUuid": "0ae3ae13_242d437c",
+      "revId": "93ca9df2ac5ff10d440713ede7a4c980fd978ecd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
