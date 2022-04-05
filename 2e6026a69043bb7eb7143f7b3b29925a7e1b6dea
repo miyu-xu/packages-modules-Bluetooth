@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d13c884_bfab033f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-05T18:32:44Z",
+      "side": 1,
+      "message": "Please remove the trailing whitespace.",
+      "range": {
+        "startLine": 336,
+        "startChar": 94,
+        "endLine": 336,
+        "endChar": 96
+      },
+      "revId": "2e6026a69043bb7eb7143f7b3b29925a7e1b6dea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
