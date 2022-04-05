@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "945454a6_5b8a20fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-05T10:27:28Z",
+      "side": 1,
+      "message": "FYI, https://source.corp.google.com/android/frameworks/base/core/java/android/util/FeatureFlagUtils.java;rcl\u003dHEAD;l\u003d165?q\u003dsys.fflag.override\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "revId": "f880d50fa1026e1236e484ea9ee64e5aedafeee2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
