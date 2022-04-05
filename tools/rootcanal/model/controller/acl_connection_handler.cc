@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "acl_connection_handler"
+
 #include "acl_connection_handler.h"
 
 #include <hci/hci_packets.h>

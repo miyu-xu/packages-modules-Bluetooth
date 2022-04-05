@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "device_properties"
+
 #include "device_properties.h"
 
 #include <fstream>

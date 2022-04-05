@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#define LOG_TAG "h4_packetizer"
+
 #include "h4_packetizer.h"
 
 #include <dlfcn.h>

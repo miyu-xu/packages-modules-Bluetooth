@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "device_boutique"
+
 #include "device_boutique.h"
 
 #include "log.h"

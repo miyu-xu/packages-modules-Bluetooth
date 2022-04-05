@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "remote_loopback_device"
+
 #include "remote_loopback_device.h"
 
 #include "log.h"

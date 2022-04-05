@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#define LOG_TAG "test_environment"
+
 #include "test_environment.h"
 
 #include <type_traits>  // for remove_extent_t

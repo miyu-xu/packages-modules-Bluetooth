@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "test_model"
+
 #include "test_model.h"
 
 #include <stdlib.h>  // for size_t

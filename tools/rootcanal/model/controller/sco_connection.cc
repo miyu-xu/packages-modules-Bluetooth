@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "sco_connection"
+
 #include "sco_connection.h"
 
 #include <hci/hci_packets.h>

@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#define LOG_TAG "rootcanal"
+
 // clang-format off
 // This needs to be included before Backtrace.h to avoid a redefinition
 // of DISALLOW_COPY_AND_ASSIGN

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "security_manager"
+
 #include "security_manager.h"
 
 #include "log.h"

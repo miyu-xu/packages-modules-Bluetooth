@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "test_command_handler"
+
 #include "test_command_handler.h"
 
 #include <stdlib.h>

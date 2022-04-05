@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "hci_device"
+
 #include "hci_device.h"
 
 #include "log.h"

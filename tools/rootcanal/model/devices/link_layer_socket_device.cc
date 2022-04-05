@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+#define LOG_TAG "link_layer_socket_device"
+
 #include "link_layer_socket_device.h"
 
 #include <type_traits>  // for remove_extent_t

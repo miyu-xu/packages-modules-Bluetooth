@@ -12,6 +12,9 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+#define LOG_TAG "posix_async_socket_connector"
+
 #include "net/posix/posix_async_socket_connector.h"
 
 #include <arpa/inet.h>   // for inet_addr, inet_ntoa
