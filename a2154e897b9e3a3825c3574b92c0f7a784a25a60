@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e73e5cdf_6352e576",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-05T07:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19de23e7_4d0fb1e6",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 60
+      },
+      "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee6bab1e_602979d3",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-04T13:52:48Z",
       "side": 1,
       "message": "Good to add \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_2_2\" after this, once defined in audio_set_configuration.json.",
+      "range": {
+        "startLine": 32,
+        "startChar": 17,
+        "endLine": 32,
+        "endChar": 80
+      },
+      "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e446f7bd_e1b37539",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-05T07:59:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee6bab1e_602979d3",
       "range": {
         "startLine": 32,
         "startChar": 17,
