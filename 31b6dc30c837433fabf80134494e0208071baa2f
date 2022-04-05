@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b18517c_d03e9fa2",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-05T06:39:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9f7613ee_52ce5819",
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34ac8cf5_472e5e41",
@@ -49,6 +67,30 @@
       "writtenOn": "2022-03-31T14:20:34Z",
       "side": 1,
       "message": "Can we have storing/managing files as separate patch ?\nI think it\u0027s separate problem that can easily be enclosed, maybe even tested.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 54
+      },
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "431c9b1d_e0c38d4e",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-05T06:39:10Z",
+      "side": 1,
+      "message": "I\u0027ve created another patch to refactor this, but to increase the process, currently I\u0027d prefer not to change too much in this patch.\n\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2053225",
+      "parentUuid": "34ac8cf5_472e5e41",
       "range": {
         "startLine": 58,
         "startChar": 0,
@@ -82,6 +124,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d02d80f_419902b6",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-05T06:39:10Z",
+      "side": 1,
+      "message": "Done\n\nThe difference between the two implementations is the case of result strings are different. For example, old way will generate 4f5d6c while the new one will generate 4F5D6C. It\u0027s ok to do this, no side effect for this change.",
+      "parentUuid": "7d278469_5857ce73",
+      "range": {
+        "startLine": 107,
+        "startChar": 34,
+        "endLine": 109,
+        "endChar": 49
+      },
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "556fb7a8_0392d09e",
@@ -105,6 +171,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b8a888f_5d3e6ec6",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-05T06:39:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "556fb7a8_0392d09e",
+      "range": {
+        "startLine": 263,
+        "startChar": 3,
+        "endLine": 266,
+        "endChar": 45
+      },
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df3c1d14_1d062b7c",
@@ -118,6 +208,30 @@
       "writtenOn": "2022-03-31T08:41:17Z",
       "side": 1,
       "message": "you may want to call\n\n```\n  if (p_clcb-\u003etransport \u003d\u003d BT_TRANSPORT_LE) {\n    L2CA_EnableUpdateBleConnParams(p_clcb-\u003ep_srcb-\u003eserver_bda, true);\n  }\n```\n\nhere, as it is called in  `bta_gattc_disc_cmpl`",
+      "range": {
+        "startLine": 745,
+        "startChar": 6,
+        "endLine": 745,
+        "endChar": 64
+      },
+      "revId": "31b6dc30c837433fabf80134494e0208071baa2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81325234_caa231c9",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-05T06:39:10Z",
+      "side": 1,
+      "message": "Ack. L2CA_EnableUpdateBleConnParams might not be the root cause.",
+      "parentUuid": "df3c1d14_1d062b7c",
       "range": {
         "startLine": 745,
         "startChar": 6,

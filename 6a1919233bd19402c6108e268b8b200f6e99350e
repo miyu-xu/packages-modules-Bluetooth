@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d82fa40_8e4d9815",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-05T06:39:10Z",
+      "side": 1,
+      "message": "In patch#5, I add a flag to distinguish if the service discovery is triggered by connect or service changed event.\n\nWe only directly read the existing cache for this first time connect if reading database hash failed. For service changed event, if reading database hash failed, we should start service discovery immediately instead of reading the existing cache.",
+      "revId": "6a1919233bd19402c6108e268b8b200f6e99350e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
