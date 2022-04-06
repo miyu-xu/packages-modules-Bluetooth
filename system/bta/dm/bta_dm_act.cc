@@ -232,12 +232,13 @@ const uint16_t bta_service_id_to_uuid_lkup_tbl[BTA_MAX_SERVICE_ID] = {
     UUID_SERVCLASS_VIDEO_SINK,            /* BTA_VDP_SERVICE_ID */
     UUID_SERVCLASS_PBAP_PSE,              /* BTA_PBAP_SERVICE_ID */
     UUID_SERVCLASS_HEADSET_AUDIO_GATEWAY, /* BTA_HSP_SERVICE_ID */
-    UUID_SERVCLASS_AG_HANDSFREE,          /* BTA_HFP_SERVICE_ID */
-    UUID_SERVCLASS_MESSAGE_ACCESS,        /* BTA_MAP_SERVICE_ID */
-    UUID_SERVCLASS_MESSAGE_NOTIFICATION,  /* BTA_MN_SERVICE_ID */
-    UUID_SERVCLASS_HDP_PROFILE,           /* BTA_HDP_SERVICE_ID */
-    UUID_SERVCLASS_PBAP_PCE,              /* BTA_PCE_SERVICE_ID */
-    UUID_PROTOCOL_ATT                     /* BTA_GATT_SERVICE_ID */
+
+    UUID_SERVCLASS_AG_HANDSFREE,         /* BTA_HFP_SERVICE_ID */
+    UUID_SERVCLASS_MESSAGE_ACCESS,       /* BTA_MAP_SERVICE_ID */
+    UUID_SERVCLASS_MESSAGE_NOTIFICATION, /* BTA_MN_SERVICE_ID */
+    UUID_SERVCLASS_HDP_PROFILE,          /* BTA_HDP_SERVICE_ID */
+    UUID_SERVCLASS_PBAP_PCE,             /* BTA_PCE_SERVICE_ID */
+    UUID_PROTOCOL_ATT                    /* BTA_GATT_SERVICE_ID */
 };
 
 /* bta security callback */
@@ -4025,6 +4026,18 @@ void bta_dm_clear_event_mask(void) {
 void bta_dm_clear_connect_list(void) {
   VLOG(1) << "bta_dm_clear_connect_list in bta_dm_act";
   bluetooth::shim::BTM_ClearConnectList();
+}
+
+/*******************************************************************************
+ *
+ * Function         bta_dm_disconnect_all_acls
+ *
+ * Description      Disconnects all ACL connections.
+ *
+ ******************************************************************************/
+void bta_dm_disconnect_all_acls(void) {
+  VLOG(1) << "bta_dm_disconnect_all_acls in bta_dm_act";
+  bluetooth::shim::BTM_DisconnectAllAcls();
 }
 
 /*******************************************************************************
