@@ -1,5 +1,7 @@
 """Constants used for bluetooth test."""
 
+import dataclasses
+import datetime
 import enum
 
 
@@ -238,3 +240,49 @@ GMT_TO_OLSON = {
     '-1000': 'Pacific/Honolulu'
 }
 
+
+@dataclasses.dataclass(frozen=True)
+class PixelLoggerParams:
+  """Pixellogger parameters for control pixellogger apps."""
+  name: str
+  start: str
+  stop: str
+  status: str
+  log_path: str
+  timeout: datetime.timedelta
+
+
+_QC_MASK = 'BT_Audio.cfg'
+_LS_MASK = 'Lassen default + audio + TCP'
+_PIXELLOGGER_COMMON_CMD = (
+    'am broadcast -n com.android.pixellogger/.receiver.AlwaysOnLoggingReceiver '
+    '-a com.android.pixellogger.service.logging.LoggingService.'
+    'ACTION_CONFIGURE_ALWAYS_ON_LOGGING -e intent_key_enable')
+_PIXELLOGGER_TIMEOUT = datetime.timedelta(seconds=300)
+LS_AUDIO_DUMP_LOGGER_STATUS_CMD = 'vendor.audiodump.enable'
+
+QC_PARAMS = PixelLoggerParams(
+    name='Qualcomm',
+    start=(
+        f'{_PIXELLOGGER_COMMON_CMD} "{TRUE}" ',
+        f'-e intent_key_config "{_QC_MASK}" '
+        '--ei intent_key_max_log_size_mb 100 '
+        '--ei intent_key_max_number_of_files 100'),
+    stop=f'{_PIXELLOGGER_COMMON_CMD} "{FALSE}"',
+    status='vendor.sys.modem.diag.mdlog_on',
+    log_path='/data/vendor/radio/diag_logs/logs',
+    timeout=_PIXELLOGGER_TIMEOUT,
+)
+
+LS_PARAMS = PixelLoggerParams(
+    name='Lassen',
+    start=(
+        f'{_PIXELLOGGER_COMMON_CMD} "{TRUE}" ',
+        f'-e intent_key_config "{_LS_MASK}" '
+        '--ei intent_key_max_log_size_mb 100 '
+        '--ei intent_key_max_number_of_files 100'),
+    stop=f'{_PIXELLOGGER_COMMON_CMD} "{FALSE}"',
+    status='vendor.sys.modem.logging.status',
+    log_path='/data/vendor/radio/logs/always-on',
+    timeout=_PIXELLOGGER_TIMEOUT,
+)

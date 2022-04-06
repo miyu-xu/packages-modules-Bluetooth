@@ -7,12 +7,13 @@ functionality.
 import datetime
 import logging
 import os
+import pathlib
 import queue
 import random
 import re
 import string
 import time
-from typing import Dict, Any, Text, Optional, Tuple, Sequence, Union, List
+from typing import Any, Dict, List, Optional, Sequence, Text, Tuple, Union, Callable
 
 from mobly import logger as mobly_logger
 from mobly import signals
@@ -97,6 +98,8 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
         r'[ ]+\d+.*')
     self._regex_bt_crash = re.compile(
         r'Bluetooth crashed (?P<num_bt_crashes>\d+) times')
+    self._pixellogger_params = None
+    self._select_pixellogger_params_by_chipset()
 
   def __getattr__(self, name: Any) -> Any:
     return getattr(self._ad, name)
@@ -1785,3 +1788,151 @@ class AndroidBluetoothDecorator(android_device.AndroidDevice):
     cmd = 'dumpsys wifi|grep -E "AirplaneModeOn true|AirplaneModeOn false"'
     airplane_mode_status = self._ad.adb.shell(cmd).decode().strip()
     return 'true' in airplane_mode_status
+
+  def start_pixellogger(self) -> None:
+    """Starts Pixellogger."""
+    if self._is_pixellogger_running():
+      self._stop_pixellogger()
+      self._clear_qxdm_log()
+    self._ad.log.info('Starting Pixellogger...')
+    self._ad.adb.shell(self._pixellogger_params.start)
+    self._wait_logger_action_ready(self._is_pixellogger_running, 'Pixellogger',
+                                   'start')
+    if self._pixellogger_params.name == 'Lassen':
+      self._start_audiodump_logger()
+
+  def stop_pixellogger(self) -> None:
+    """Stops Pixellogger."""
+    if self._is_pixellogger_running():
+      self._stop_pixellogger()
+      self._save_qxdm_log()
+    else:
+      self._ad.log.info('Pixellogger has stopped')
+
+  def _stop_pixellogger(self) -> None:
+    self._ad.log.info('Stopping Pixellogger...')
+    self._ad.adb.shell(self._pixellogger_params.stop)
+    self._wait_logger_action_ready(self._is_pixellogger_running,
+                                   'Pixellogger', 'stop')
+    if self._pixellogger_params.name == 'Lassen':
+      self._stop_audiodump_logger()
+
+  def _select_pixellogger_params_by_chipset(self) -> None:
+    """Selects PixelLoggerParams depend on chipset."""
+    chipset = self._ad.adb.getprop('gsm.version.ril-impl')
+    if 'Qualcomm' in chipset:
+      self._pixellogger_params = bt_constants.QC_PARAMS
+    elif 'Samsung' in chipset:
+      self._pixellogger_params = bt_constants.LS_PARAMS
+    else:
+      raise NotImplementedError(f'Unknown chipset: {chipset}')
+
+  def _is_pixellogger_running(self) -> bool:
+    """Queries the status of Pixellogger.
+
+    Returns:
+      True if the Pixellogger is runninng.
+    """
+    return 'true' in self._ad.adb.getprop(self._pixellogger_params.status)
+
+  def _is_audiodump_logger_running(self) -> bool:
+    """Queries the status of AudioDump Logger.
+
+    Returns:
+      True if the AudioDump Logger is runninng.
+    Raises:
+      RuntimeError: If AudioDump Logger stuck at unexpected status.
+    """
+    timeout = datetime.datetime.now() + self._pixellogger_params.timeout
+    while datetime.datetime.now() < timeout:
+      prop = self._ad.adb.getprop(bt_constants.LS_AUDIO_DUMP_LOGGER_STATUS_CMD)
+      if prop == 'running':
+        return True
+      elif prop == 'off':
+        return False
+      time.sleep(1)
+    raise RuntimeError(
+        f'AudioDump Logger stuck at {prop} status '
+        f'over {self._pixellogger_params.timeout.total_seconds()} seconds.')
+
+  def _start_audiodump_logger(self) -> None:
+    """Starts AudioDump Logger."""
+    if self._is_audiodump_logger_running():
+      self._stop_audiodump_logger()
+      self._clear_qxdm_log()
+    self._ad.log.info('Starting AudioDump Logger...')
+    # Set logging config file to BT/USB/Headset
+    self._ad.adb.shell(
+        'setprop vendor.audiodump.log.config peripheral_device')
+    self._ad.adb.shell('setprop vendor.audiodump.output.dir ' +
+                       self._pixellogger_params.log_path)
+    self._ad.adb.shell('setprop vendor.audiodump.log.ondemand true')
+    self._wait_logger_action_ready(self._is_audiodump_logger_running,
+                                   'AudioDump Logger', 'start')
+
+  def _stop_audiodump_logger(self) -> None:
+    """Stops AudioDump Logger."""
+    if self._is_audiodump_logger_running():
+      self._ad.log.info('Stopping AudioDump Logger...')
+      self._ad.adb.shell('setprop vendor.audiodump.log.ondemand false')
+      self._wait_logger_action_ready(self._is_audiodump_logger_running,
+                                     'AudioDump Logger', 'stop')
+    else:
+      self._ad.log.info('AudioDump Logger has stopped')
+
+  def _save_qxdm_log(self, destination: Optional[str] = None) -> None:
+    """Saves Pixellogger to destination.
+
+    Args:
+      destination: string, path to the directory where the QXDM log should be
+        saved.
+
+    Raises:
+      AdbTimeoutError: If the Pixellogger failed to pull out.
+    """
+    if destination is None:
+      folder_name = ('qxdm_log_' +
+                     datetime.datetime.now().strftime('%Y%m%d%H%M%S'))
+      destination = os.path.join(self._ad.log_path, folder_name)
+    self._ad.log.info('Dumping QXDM log from Pixellogger...')
+    target_path = utils.abs_path(destination)
+    utils.create_dir(target_path)
+    self._ad.adb.pull(
+        [self._pixellogger_params.log_path, str(target_path)],
+        timeout=self._pixellogger_params.timeout.total_seconds())
+    self._ad.log.info('QXDM log has dumped. (%s)', destination)
+    # Clear QXDM log
+    self._clear_qxdm_log()
+
+  def _clear_qxdm_log(self) -> None:
+    """Clears Pixellogger from embedded log path."""
+    self._ad.log.info('Clearing saved QXDM log...')
+    target_path = pathlib.PurePosixPath(self._pixellogger_params.log_path, '*')
+    self._ad.adb.shell(f'rm -rf {str(target_path)}')
+    self._ad.log.info('QXDM log has Cleared.')
+
+  def _wait_logger_action_ready(self, check_func: Callable[[], bool],
+                                logger_name: str, action: str) -> None:
+    """Waits Logger action ready.
+
+    Args:
+      check_func: Function to query the status of Logger.
+      logger_name: Logger name.
+      action: Start or stop action.
+    Raises:
+      RuntimeError: If Logger failed to action.
+    """
+    timeout = datetime.datetime.now() + self._pixellogger_params.timeout
+    while datetime.datetime.now() < timeout:
+      time.sleep(1)
+      if action == 'start':
+        if check_func():
+          self._ad.log.info(f'{logger_name} has started')
+          return
+      else:
+        if not check_func():
+          self._ad.log.info(f'{logger_name} has stopped')
+          return
+    raise RuntimeError(
+        f'Timed out while waiting for {logger_name} to {action} '
+        f'over {self._pixellogger_params.timeout.total_seconds()} seconds.')
