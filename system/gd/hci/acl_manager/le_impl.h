@@ -529,6 +529,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
 
+    if (connect_list.find(address_with_type) != connect_list.end()) {
+      LOG_WARN(
+          "Device already exists in acceptlist and cannot be added:%s",
+          address_with_type.ToString().substr(13U).c_str());
+      return;
+    }
+
     connect_list.insert(address_with_type);
     register_with_address_manager();
     le_address_manager_->AddDeviceToConnectList(
@@ -536,6 +543,10 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void remove_device_from_connect_list(AddressWithType address_with_type) {
+    if (connect_list.find(address_with_type) == connect_list.end()) {
+      LOG_WARN("Device not in acceptlist and cannot be removed:%s", address_with_type.ToString().substr(13U).c_str());
+      return;
+    }
     connect_list.erase(address_with_type);
     direct_connections_.erase(address_with_type);
     register_with_address_manager();
