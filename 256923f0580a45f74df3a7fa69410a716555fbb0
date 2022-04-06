@@ -33,6 +33,23 @@
       "message": "This has been pending on area-owner review. Can you someone take a look at it?\nThanks",
       "revId": "256923f0580a45f74df3a7fa69410a716555fbb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a6a4670_fd543d97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-06T04:52:57Z",
+      "side": 1,
+      "message": "I expected that I would be an owner here.",
+      "revId": "256923f0580a45f74df3a7fa69410a716555fbb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
