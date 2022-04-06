@@ -371,6 +371,8 @@ tBTM_STATUS clear_event_filter() { return BTM_SUCCESS; }
 
 tBTM_STATUS clear_event_mask() { return BTM_SUCCESS; }
 
+tBTM_STATUS clear_connect_list() { return BTM_SUCCESS; }
+
 const controller_t interface = {
     get_is_ready,
 
@@ -457,7 +459,8 @@ const controller_t interface = {
     get_local_supported_codecs,
     get_le_all_initiating_phys,
     clear_event_filter,
-    clear_event_mask};
+    clear_event_mask,
+    clear_connect_list};
 
 }  // namespace device_controller
 }  // namespace mock
