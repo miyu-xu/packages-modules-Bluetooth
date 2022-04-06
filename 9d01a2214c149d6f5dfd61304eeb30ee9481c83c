@@ -16,6 +16,23 @@
       "message": "No major comments but you should probably clarify WHY the le_rand api is necessary and document the le_rand api as a way to synchronize tasks with the stack.",
       "revId": "9d01a2214c149d6f5dfd61304eeb30ee9481c83c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de3016c3_c1a013e9",
+        "filename": "system/blueberry/tests/gd/rust/topshim/facade/automation_helper.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-06T14:21:30Z",
+      "side": 1,
+      "message": "remove",
+      "revId": "9d01a2214c149d6f5dfd61304eeb30ee9481c83c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
