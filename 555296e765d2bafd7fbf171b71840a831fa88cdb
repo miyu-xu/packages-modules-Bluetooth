@@ -16,6 +16,24 @@
       "message": "I\u0027m not sold on this idea.  It may merit more discussion, but I like having multiple phys.",
       "revId": "555296e765d2bafd7fbf171b71840a831fa88cdb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "964a094a_001898d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-06T16:57:59Z",
+      "side": 1,
+      "message": "For sure, to clarify a bit more than what is in the commit message, I don\u0027t want to \"remove\" the multiple phys, I just want to simplify them. I see a Phy as a namespace for RootCanal that isolates group of devices.\n\nWith this model I find awkward the concept of being able to move devices between Phys and that a device can be on zero or multiple Phy of the same type.\nMy motivation here is mostly to remove this capability but keep the possibility to isolate devices.\n\nThis is the model that is currently exposed, you \"add\" a device then you \"move/connect\" it, with a special treatment for HCI devices that get added to all phys (For convenience this is great and what we expect, but it still weird compared to other devices)\n\nThe TestModel of this CL is what I see as the Phy (I want to rename it in a latter CL to keep the change simpler here), you can only \"add\" and \"remove\" devices and that\u0027s all and the are connected to the current TestModel(/Phy).\n\nI didn\u0027t reintroduced a way to create multiple Phy in the root-canal host binary mainly because on posix creating a new process is cheap and I yet don\u0027t properly know how we should expose that Phy on posix, I wanted to wait for when I would have taught of a more specific use case to have a more tailored experience, something more seamless than using the test channel or a command file to create and manage it",
+      "parentUuid": "a4fa9cfa_1cd1a479",
+      "revId": "555296e765d2bafd7fbf171b71840a831fa88cdb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
