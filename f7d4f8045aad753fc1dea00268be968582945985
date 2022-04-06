@@ -16,6 +16,24 @@
       "message": "See build errors:\n\n error: no matching function for call to \u0027bta_gattc_read_db_hash\u0027\n          p_clcb-\u003ep_srcb-\u003esrvc_hdl_db_hash \u0026\u0026 bta_gattc_read_db_hash(p_clcb)) {",
       "revId": "f7d4f8045aad753fc1dea00268be968582945985",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d92ed74_505c8c8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-06T18:15:58Z",
+      "side": 1,
+      "message": "Disregard, fixed in new patch version",
+      "parentUuid": "c4a33fd8_c7000af2",
+      "revId": "f7d4f8045aad753fc1dea00268be968582945985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
