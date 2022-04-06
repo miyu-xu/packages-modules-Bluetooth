@@ -326,6 +326,12 @@ static uint8_t controller_clear_event_mask() {
   return BTM_SUCCESS;
 }
 
+static uint8_t controller_clear_filter_accept_list() {
+  LOG_VERBOSE("Called!");
+  // bluetooth::shim::GetController()->ClearFilterAcceptList(0);
+  return BTM_SUCCESS;
+}
+
 static const controller_t interface = {
     .get_is_ready = get_is_ready,
 
@@ -425,7 +431,8 @@ static const controller_t interface = {
     .get_local_supported_codecs = get_local_supported_codecs,
     .get_le_all_initiating_phys = get_le_all_initiating_phys,
     .clear_event_filter = controller_clear_event_filter,
-    .clear_event_mask = controller_clear_event_mask};
+    .clear_event_mask = controller_clear_event_mask,
+    .clear_filter_accept_list = controller_clear_filter_accept_list};
 
 const controller_t* bluetooth::shim::controller_get_interface() {
   static bool loaded = false;
