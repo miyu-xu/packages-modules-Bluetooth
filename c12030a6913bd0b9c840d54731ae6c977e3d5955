@@ -3,6 +3,121 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8cbffd36_9ba4f0c1",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-06T07:44:25Z",
+      "side": 1,
+      "message": "leAudioConfig only be used for the unicast offload. For the broadcast offload, the audio configuration should be LeAudioBroadcastConfiguration leAudioBroadcastConfig",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 40
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aea01d71_26a010f6",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-06T07:44:25Z",
+      "side": 1,
+      "message": "It only supports for unicast now.",
+      "range": {
+        "startLine": 258,
+        "startChar": 26,
+        "endLine": 258,
+        "endChar": 60
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e00ac33_ecca12ad",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-06T07:44:25Z",
+      "side": 1,
+      "message": "Why does it need the hidl library, not aidl library?",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 584,
+        "endChar": 22
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e33372c0_635a9aee",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-06T07:44:25Z",
+      "side": 1,
+      "message": "The same question as above. Why does it need the hidl library, not aidl library?",
+      "range": {
+        "startLine": 762,
+        "startChar": 0,
+        "endLine": 764,
+        "endChar": 22
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7aabd79_5dbd321f",
+        "filename": "system/bta/include/bta_le_audio_api.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-06T07:44:25Z",
+      "side": 1,
+      "message": "nit: Could it be LeAudioUnicastClientAudioSink? It might be more clear.",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a40920f_457f9fa1",
         "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
         "patchSetId": 15
