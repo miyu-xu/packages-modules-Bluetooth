@@ -4017,6 +4017,18 @@ void bta_dm_clear_event_mask(void) {
 
 /*******************************************************************************
  *
+ * Function         bta_dm_clear_connect_list
+ *
+ * Description      Clears out the connect list in the controller.
+ *
+ ******************************************************************************/
+void bta_dm_clear_connect_list(void) {
+  VLOG(1) << "bta_dm_clear_connect_list in bta_dm_act";
+  bluetooth::shim::BTM_ClearConnectList();
+}
+
+/*******************************************************************************
+ *
  * Function         bta_dm_gattc_callback
  *
  * Description      This is GATT client callback function used in DM.
