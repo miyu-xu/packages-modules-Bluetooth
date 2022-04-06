@@ -16,6 +16,24 @@
       "message": "This is kind of funny, since we used to have this style of logging and changed it all to GD style.  Maybe I should be more opinionated, to avoid churn.",
       "revId": "127b350808a39573b176d56b7df09fd0daa14e6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af061eab_676fee89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-06T16:13:39Z",
+      "side": 1,
+      "message": "Mmh interesting, is there somewhere something that explained the background of this decision ?\nTo be more clear my goal is not to stay on the Google C++ style logging/\"\u003c\u003c\" formatting style, but instead add a helper to use std::format (https://en.cppreference.com/w/cpp/utility/format/format) style of specifiers with fmtlib\nThe usage of libbase here is more because it seems more mature than the GD logging for the host side, and if possible I also prefer to not depend on GD internals for RootCanal",
+      "parentUuid": "8cf86459_7e01ac06",
+      "revId": "127b350808a39573b176d56b7df09fd0daa14e6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
