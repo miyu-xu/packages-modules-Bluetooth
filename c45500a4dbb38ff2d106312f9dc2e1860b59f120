@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2569647f_d1c799ef",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T10:34:11Z",
+      "side": 1,
+      "message": "SREC is Stereo Recording? If so, configuration name shall be SingleDev_TwoChanStereoSrc_foo",
+      "parentUuid": "4be1fe44_1fc4fa2c",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "07fd51de_5da956b1",
         "filename": "system/bta/le_audio/audio_set_scenarios.json",
         "patchSetId": 6
