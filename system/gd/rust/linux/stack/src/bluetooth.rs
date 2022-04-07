@@ -234,6 +234,12 @@ pub trait IBluetoothCallback: RPCProxy {
     /// When any of the adapter local address is changed.
     fn on_address_changed(&self, addr: String);
 
+    /// When the adapter name is changed.
+    fn on_name_changed(&self, name: String);
+
+    /// When the adapter's discoverable mode is changed.
+    fn on_discoverable_changed(&self, discoverable: bool);
+
     /// When a device is found via discovery.
     fn on_device_found(&self, remote_device: BluetoothDevice);
 
@@ -885,7 +891,15 @@ impl IBluetooth for Bluetooth {
     }
 
     fn set_name(&self, name: String) -> bool {
-        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::BdName(name)) == 0
+        if self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::BdName(name.clone()))
+            == 0
+        {
+            self.for_all_callbacks(|callback| {
+                callback.on_name_changed(name.clone());
+            });
+            return true;
+        }
+        false
     }
 
     fn get_bluetooth_class(&self) -> u32 {
@@ -930,7 +944,7 @@ impl IBluetooth for Bluetooth {
             .lock()
             .unwrap()
             .set_adapter_property(BluetoothProperty::AdapterDiscoverableTimeout(duration));
-        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
+        if self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
             if mode {
                 BtScanMode::ConnectableDiscoverable
             } else {
@@ -941,6 +955,13 @@ impl IBluetooth for Bluetooth {
                 }
             },
         )) == 0
+        {
+            self.for_all_callbacks(|callback| {
+                callback.on_discoverable_changed(mode);
+            });
+            return true;
+        }
+        false
     }
 
     fn is_multi_advertisement_supported(&self) -> bool {

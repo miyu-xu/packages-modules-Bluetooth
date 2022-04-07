@@ -309,10 +309,6 @@ impl CommandHandler {
                             .as_ref()
                             .unwrap()
                             .set_discoverable(true, 60);
-                        print_info!(
-                            "Set discoverable for 60s: {}",
-                            if discoverable { "succeeded" } else { "failed" }
-                        );
                     }
                     "off" => {
                         let discoverable = self
@@ -323,10 +319,6 @@ impl CommandHandler {
                             .as_ref()
                             .unwrap()
                             .set_discoverable(false, 60);
-                        print_info!(
-                            "Turn discoverable off: {}",
-                            if discoverable { "succeeded" } else { "failed" }
-                        );
                     }
                     _ => println!("Invalid argument for adapter discoverable '{}'", args[1]),
                 },
