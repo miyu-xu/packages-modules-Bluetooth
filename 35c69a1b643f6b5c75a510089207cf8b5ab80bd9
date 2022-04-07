@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd46fbb0_7952fd3c",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T18:47:43Z",
+      "side": 1,
+      "message": "ah, thanks for that!",
+      "parentUuid": "d96e89fc_7668dc77",
+      "revId": "35c69a1b643f6b5c75a510089207cf8b5ab80bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b56c547_b5ab44ca",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-04-07T12:03:57Z",
       "side": 1,
       "message": "Should this be one line ?",
+      "range": {
+        "startLine": 523,
+        "startChar": 9,
+        "endLine": 524,
+        "endChar": 22
+      },
+      "revId": "35c69a1b643f6b5c75a510089207cf8b5ab80bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4df3499e_93a8a65c",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T18:47:43Z",
+      "side": 1,
+      "message": "clang did it. Let me check.",
+      "parentUuid": "7b56c547_b5ab44ca",
       "range": {
         "startLine": 523,
         "startChar": 9,
