@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "502990bf_68e42986",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1051,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-04-07T06:21:54Z",
+      "side": 1,
+      "message": "Let\u0027s change these to\n\nLog.e(TAG, \"Exception happened\", e);",
+      "range": {
+        "startLine": 1051,
+        "startChar": 16,
+        "endLine": 1051,
+        "endChar": 66
+      },
+      "revId": "fa20bcc108bbfe917a62db2c37520d7b96ec16b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
