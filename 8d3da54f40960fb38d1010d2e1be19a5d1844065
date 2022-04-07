@@ -118,6 +118,30 @@
       },
       "revId": "8d3da54f40960fb38d1010d2e1be19a5d1844065",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97dd642c_932e4ca8",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-04-07T17:39:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5b79aac3_699e5642",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 404,
+        "endChar": 25
+      },
+      "revId": "8d3da54f40960fb38d1010d2e1be19a5d1844065",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
