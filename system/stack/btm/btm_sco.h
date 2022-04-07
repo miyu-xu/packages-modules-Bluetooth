@@ -21,6 +21,7 @@
 
 #include "device/include/esco_parameters.h"
 #include "stack/include/btm_api_types.h"
+#include "btm_sco_hfp_hal.h"
 
 constexpr uint16_t kMaxScoLinks = static_cast<uint16_t>(BTM_MAX_SCO_LINKS);
 

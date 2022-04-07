@@ -373,7 +373,7 @@ static void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
   }
 
 #if (DISABLE_WBS == FALSE)
-  if ((p_scb->sco_codec == BTM_SCO_CODEC_MSBC) && !p_scb->codec_fallback)
+  if ((p_scb->sco_codec == BTM_SCO_CODEC_MSBC) && !p_scb->codec_fallback && hfp_hal_interface::get_wbs_supported())
     esco_codec = BTM_SCO_CODEC_MSBC;
 #endif
 
@@ -562,6 +562,7 @@ void bta_ag_codec_negotiate(tBTA_AG_SCB* p_scb) {
   // In Skullcandy JIB case, which indicate WBS and codec negotiation support,
   // but no Transparent Synchronous Data support, using mSBC codec can result
   // SCO setup fail by Firmware reject.
+  // TODO: insert here?
   if (!HCI_LMP_TRANSPNT_SUPPORTED(p_rem_feat) || !sdp_wbs_support ||
       !(p_scb->peer_features & BTA_AG_PEER_FEAT_CODEC)) {
     LOG_INFO("Assume CVSD by default due to mask mismatch");
