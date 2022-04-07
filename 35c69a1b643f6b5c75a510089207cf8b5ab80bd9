@@ -16,6 +16,29 @@
       "message": "what about\n\"for (LeAudioContextType context : types::kLeAudioContextAllTypesArray) {\" ?",
       "revId": "35c69a1b643f6b5c75a510089207cf8b5ab80bd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b56c547_b5ab44ca",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-07T12:03:57Z",
+      "side": 1,
+      "message": "Should this be one line ?",
+      "range": {
+        "startLine": 523,
+        "startChar": 9,
+        "endLine": 524,
+        "endChar": 22
+      },
+      "revId": "35c69a1b643f6b5c75a510089207cf8b5ab80bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
