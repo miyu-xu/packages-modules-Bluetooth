@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe2e9f9a_5ad2463c",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-07T19:33:43Z",
+      "side": 1,
+      "message": "Remove vertical spacing and formatting",
+      "revId": "bdd16caeb434063f46d64ff1d8eba5be206ee718",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
