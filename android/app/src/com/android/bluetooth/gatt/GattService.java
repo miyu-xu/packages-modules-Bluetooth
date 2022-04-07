@@ -1772,6 +1772,16 @@ public class GattService extends ProfileService {
                     + ", originalAddress=" + originalAddress);
         }
 
+        String identityAddress = mAdapterService.getIdentityAddress(address);
+        if (!address.equals(identityAddress)) {
+            if (VDBG) {
+                Log.d(TAG, "found identityAddress of " + address + ", replace originalAddress as "
+                        + identityAddress);
+            }
+            originalAddress = identityAddress;
+        }
+
+
         byte[] legacyAdvData = Arrays.copyOfRange(advData, 0, 62);
 
         for (ScanClient client : mScanManager.getRegularScanQueue()) {
