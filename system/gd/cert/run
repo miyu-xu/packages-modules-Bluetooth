@@ -99,6 +99,7 @@ DUT_SERIAL="DUT Not Set"
 DUT_ADB="DUT Not Set"
 DUT_NAME="DUT Not Set"
 
+# Test
 # Used for position arguments needed for later
 POSITIONAL=()
 function parse_options {
