@@ -16,6 +16,24 @@
       "message": "Is Codec config and QoS config which can have different configs in both directions. As VBC has 48k in tx direction and 16k in reverse direction.",
       "revId": "57191c5fff3ad9a694048435d6bab06d04bd26a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ef11859_5714b7ee",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T10:30:28Z",
+      "side": 1,
+      "message": "Not sure if this is supported.\nIn AOSP we prefer \"QoS_Config_Server_Preferred\" - which means, Android follows audio server recommend values.\n\nBut you have good point, that it should be configurable for Sink and Source. Feel free to add it.",
+      "parentUuid": "a832cdae_f6496ba3",
+      "revId": "57191c5fff3ad9a694048435d6bab06d04bd26a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

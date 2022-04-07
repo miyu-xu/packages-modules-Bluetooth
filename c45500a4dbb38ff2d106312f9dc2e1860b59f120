@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36542d61_0f77506c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T10:30:28Z",
+      "side": 1,
+      "message": "Did you test it?\n\nI got this:\n\n  3047  3047 F DEBUG   : *** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***\n04-07 12:19:45.335  3047  3047 F DEBUG   : Build fingerprint: \u0027google/oriole/oriole:Tiramisu/TM/eng.rlukas.20220406.094530:eng/dev-keys\u0027\n04-07 12:19:45.335  3047  3047 F DEBUG   : Revision: \u0027MP1.0\u0027\n04-07 12:19:45.335  3047  3047 F DEBUG   : ABI: \u0027arm64\u0027\n04-07 12:19:45.335  3047  3047 F DEBUG   : Timestamp: 2022-04-07 12:19:44.958806444+0200\n04-07 12:19:45.335  3047  3047 F DEBUG   : Process uptime: 0s\n04-07 12:19:45.335  3047  3047 F DEBUG   : Cmdline: com.android.bluetooth.services\n04-07 12:19:45.335  3047  3047 F DEBUG   : pid: 2168, tid: 2168, name: etooth.services  \u003e\u003e\u003e com.android.bluetooth.services \u003c\u003c\u003c\n04-07 12:19:45.335  3047  3047 F DEBUG   : uid: 1002\n04-07 12:19:45.335  3047  3047 F DEBUG   : tagged_addr_ctrl: 0000000000000001 (PR_TAGGED_ADDR_ENABLE)\n04-07 12:19:45.335  3047  3047 F DEBUG   : signal 6 (SIGABRT), code -1 (SI_QUEUE), fault addr --------\n04-07 12:19:45.335  3047  3047 F DEBUG   : Abort message: \u0027assertion \u0027LoadContent(kLeAudioSetConfigs, kLeAudioSetScenarios)\u0027 failed - : Unable to load le audio set configuration files.\u0027\n04-07 12:19:45.335  3047  3047 F DEBUG   :     x0  0000000000000000  x1  0000000000000878  x2  0000000000000006  x3  0000007ffa736850\n04-07 12:19:45.335  3047  3047 F DEBUG   :     x4  626f1f3231221f39  x5  626f1f3231221f39  x6  626f1f3231221f39  x7  7f7f7f7f7f7f7f7f\n04-07 12:19:45.336  3047  3047 F DEBUG   :     x8  00000000000000f0  x9  00000070ae9347e0  x10 0000000000000001  x11 00000070ae975bb0\n04-07 12:19:45.336  3047  3047 F DEBUG   :     x12 0000000000009206  x13 000000007fffffff  x14 0000000000001d82  x15 0000000028ef5de2\n04-07 12:19:45.336  3047  3047 F DEBUG   :     x16 00000070ae9e2d48  x17 00000070ae9be670  x18 00000070da168020  x19 0000000000000878\n04-07 12:19:45.336  3047  3047 F DEBUG   :     x20 0000000000000878  x21 00000000ffffffff  x22 0000000000000000  x23 0000000000000000\n04-07 12:19:45.336  3047  3047 F DEBUG   :     x24 b400006e2e8a93a0  x25 b400006e2e8a93d0  x26 b400006e2e8a93e0  x27 0000000000000010\n04-07 12:19:45.336  3047  3047 F DEBUG   :     x28 0000000000000008  x29 0000007ffa7368d0\n04-07 12:19:45.336  3047  3047 F DEBUG   :     lr  00000070ae965e38  sp  0000007ffa736830  pc  00000070ae965e64  pst 0000000000001000\n04-07 12:19:45.336  3047  3047 F DEBUG   : backtrace:\n04-07 12:19:45.336  3047  3047 F DEBUG   :       #00 pc 0000000000052e64  /apex/com.android.runtime/lib64/bionic/libc.so (abort+164) (BuildId: e8acee384762c1177b7fa348c6c3d5fb)\n04-07 12:19:45.336  3047  3047 F DEBUG   :       #01 pc 00000000006e2840  /apex/com.android.art/lib64/libart.so (art::Runtime::Abort(char const*)+704) (BuildId: 6588d0b817c280563ed749aa698709b3)\n04-07 12:19:45.336  3047  3047 F DEBUG   :       #02 pc 0000000000017350  /apex/com.android.art/lib64/libbase.so (android::base::SetAborter(std::__1::function\u003cvoid (char const*)\u003e\u0026\u0026)::$_3::__invoke(char const*)+80) (BuildId: 2057fab36690597082762b2b230f1140)\n04-07 12:19:45.336  3047  3047 F DEBUG   :       #03 pc 00000000000062d4  /system/lib64/liblog.so (__android_log_assert+292) (BuildId: fdf8bdf0ff222937eb137a6f78937054)\n04-07 12:19:45.336  3047  3047 F DEBUG   :       #04 pc 00000000004277f4  /apex/com.android.bluetooth/lib64/libbluetooth_jni.so (le_audio::AudioSetConfigurationProviderJson::AudioSetConfigurationProviderJson()+612) (BuildId: 8818d9d433e98380861349fb9823947a)\n04-07 12:19:45.336  3047  3047 F DEBUG   :       #05 pc 0000000000426a1c  /apex/com.android.bluetooth/lib64/libbluetooth_jni.so (le_audio::AudioSetConfigurationProvider::impl::Initialize()+44) (BuildId: 8818d9d433e98380861349fb9823947a)\n04-07 12:19:45.336  3047  3047 F DEBUG   :       #06 pc 00000000004ac154  /apex/com.android.bluetooth/lib64/libbluetooth_jni.so ((anonymous namespace)::LeAudioClientInterfaceImpl::Initialize(bluetooth::le_audio::LeAudioClientCallbacks*, std::__1::vector\u003cbluetooth::le_audio::btle_audio_codec_config_t, std::__1::allocator\u003cbluetooth::le_audio::btle_audio_codec_config_t\u003e \u003e const\u0026)+212) (BuildId: 8818d9d433e98380861349fb9823947a)",
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59b6a79d_4f944630",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T10:30:28Z",
+      "side": 1,
+      "message": "I think we need some enhancements here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/le_audio_set_configuration_provider_json.cc;l\u003d433;bpv\u003d1;bpt\u003d1",
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be1fe44_1fc4fa2c",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T10:30:28Z",
+      "side": 1,
+      "message": "Sorry I forgot what SREC means. Can we have better name here?",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07fd51de_5da956b1",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-07T10:30:28Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
