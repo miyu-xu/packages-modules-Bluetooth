@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a54bfa92_480d6c78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-07T22:26:07Z",
+      "side": 1,
+      "message": "Hi Duy,\n\nIs this a new failure?  We\u0027d rather revert a breaking change than disable CFI.",
+      "revId": "21dac88ed547b5f0983d1d1f454a55e0d711bba9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
