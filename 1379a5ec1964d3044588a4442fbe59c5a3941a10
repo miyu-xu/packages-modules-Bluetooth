@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ff0ef189_8754c1c7",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-04-07T14:28:43Z",
+      "side": 1,
+      "message": "I think we should add same set of codec configuration for \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_1\" (7.5 msec frame duration) and also define corresponding configuration the same way as added for \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_2\" (10 msec frame duration). Do you agree?",
+      "parentUuid": "0cecc22c_514b681d",
+      "range": {
+        "startLine": 914,
+        "startChar": 21,
+        "endLine": 914,
+        "endChar": 67
+      },
+      "revId": "1379a5ec1964d3044588a4442fbe59c5a3941a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddee4e81_2ea37e74",
         "filename": "system/bta/le_audio/audio_set_configurations.json",
         "patchSetId": 2

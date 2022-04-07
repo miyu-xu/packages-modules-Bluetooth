@@ -93,6 +93,30 @@
       },
       "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00f5b2c5_61adefe4",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-04-07T14:28:43Z",
+      "side": 1,
+      "message": "Apologies for the typo, it should be \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_2_1\" and not \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_2_2\".\n\nCan you please remove \"DualDev_OneChanStereoSnk_OneChanStereoSrc_16_2_2\" and \"SingleDev_TwoChanStereoSnk_OneChanStereoSrc_16_2_2\" from the list here?",
+      "parentUuid": "e446f7bd_e1b37539",
+      "range": {
+        "startLine": 32,
+        "startChar": 17,
+        "endLine": 32,
+        "endChar": 80
+      },
+      "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
