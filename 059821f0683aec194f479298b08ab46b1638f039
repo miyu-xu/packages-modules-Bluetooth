@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac8116d_e09e7239",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-04-07T23:22:54Z",
+      "side": 1,
+      "message": "I\u0027ll take another look at the reworked code soon, but adding Alice for a second pair of eyes on the custom polling.",
+      "revId": "059821f0683aec194f479298b08ab46b1638f039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
