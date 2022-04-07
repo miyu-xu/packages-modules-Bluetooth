@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c08f2ca1_e0fa2bd2",
+        "filename": "system/bta/gatt/bta_gattc_store.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-07T09:12:25Z",
+      "side": 1,
+      "message": "Now we have 2 ways of naming files:\neither by device address, or by hash value.\n\nIn order to better test robustness of storage by hash value, I think we should switch to using just that.\n\nFor devices that don\u0027t use GATT robust caching, we should generate hash and store by hash anyway.",
+      "revId": "b2a6f7e0ebe5a787ea8f469504c65a32ab0514a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
