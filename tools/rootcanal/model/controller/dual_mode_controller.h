@@ -619,7 +619,7 @@ class DualModeController : public Device {
 
   void AddConnectionAction(const TaskCallback& callback, uint16_t handle);
 
-  void SendCommandCompleteUnknownOpCodeEvent(uint16_t command_opcode) const;
+  void SendCommandStatusUnknownOpCodeEvent(bluetooth::hci::OpCode op) const;
 
   // Unused state to maintain consistency for the Host
   uint16_t le_suggested_default_data_bytes_{0x20};
