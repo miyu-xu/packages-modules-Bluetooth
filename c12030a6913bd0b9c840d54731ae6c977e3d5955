@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de90dfad_a2f156d6",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-07T11:20:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cbffd36_9ba4f0c1",
+      "range": {
+        "startLine": 171,
+        "startChar": 8,
+        "endLine": 171,
+        "endChar": 40
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aea01d71_26a010f6",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-06T07:44:25Z",
       "side": 1,
       "message": "It only supports for unicast now.",
+      "range": {
+        "startLine": 258,
+        "startChar": 26,
+        "endLine": 258,
+        "endChar": 60
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93147b6b_c924b007",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-07T11:20:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aea01d71_26a010f6",
       "range": {
         "startLine": 258,
         "startChar": 26,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cd25b8b_0590bbf0",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-07T11:20:02Z",
+      "side": 1,
+      "message": "looks like this was my local leftovers from test adoption - thanks for pointing this out!",
+      "parentUuid": "6e00ac33_ecca12ad",
+      "range": {
+        "startLine": 582,
+        "startChar": 0,
+        "endLine": 584,
+        "endChar": 22
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e33372c0_635a9aee",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8caf913b_8742f9c8",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 15
+      },
+      "lineNbr": 764,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-07T11:20:02Z",
+      "side": 1,
+      "message": "looks like this was my local leftovers from test adoption - thanks for pointing this out!",
+      "parentUuid": "e33372c0_635a9aee",
+      "range": {
+        "startLine": 762,
+        "startChar": 0,
+        "endLine": 764,
+        "endChar": 22
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7aabd79_5dbd321f",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-04-06T07:44:25Z",
       "side": 1,
       "message": "nit: Could it be LeAudioUnicastClientAudioSink? It might be more clear.",
+      "range": {
+        "startLine": 28,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b2e865e_7efc2152",
+        "filename": "system/bta/include/bta_le_audio_api.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-07T11:20:02Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f7aabd79_5dbd321f",
       "range": {
         "startLine": 28,
         "startChar": 6,
@@ -147,6 +267,24 @@
       "side": 1,
       "message": "please remove",
       "parentUuid": "8a40920f_457f9fa1",
+      "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13e868ff_008439b1",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-07T11:20:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8139a267_372a61cc",
       "revId": "c12030a6913bd0b9c840d54731ae6c977e3d5955",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

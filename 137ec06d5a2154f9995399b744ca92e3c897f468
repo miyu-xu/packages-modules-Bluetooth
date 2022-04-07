@@ -33,6 +33,24 @@
       "message": "Please address Alice and Jakub\u0027s comment so that the CL can pass presubmit",
       "revId": "137ec06d5a2154f9995399b744ca92e3c897f468",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a060e16a_2a7e1615",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-07T11:20:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a3d1ca0_ed0c06c8",
+      "revId": "137ec06d5a2154f9995399b744ca92e3c897f468",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
