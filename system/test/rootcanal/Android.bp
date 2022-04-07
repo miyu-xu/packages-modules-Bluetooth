@@ -71,6 +71,9 @@ cc_binary {
     ],
     init_rc: ["android.hardware.bluetooth@1.1-service.sim.rc"],
     required: ["bt_controller_properties"],
+    sanitize: {
+        cfi: false,
+    },
 }
 
 cc_library_shared {
