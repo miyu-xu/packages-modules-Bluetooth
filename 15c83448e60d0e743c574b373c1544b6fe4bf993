@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df77c75_967fd231",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-04-07T06:18:20Z",
+      "side": 1,
+      "message": "Leaving TODOs in case of the app does not work as intended.",
+      "revId": "15c83448e60d0e743c574b373c1544b6fe4bf993",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
