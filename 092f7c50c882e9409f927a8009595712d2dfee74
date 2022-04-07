@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00369812_801c8a46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-07T20:19:21Z",
+      "side": 1,
+      "message": "Failures in related run where due to LeIso and gd cert tests that aren\u0027t affected by this change.",
+      "revId": "092f7c50c882e9409f927a8009595712d2dfee74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
