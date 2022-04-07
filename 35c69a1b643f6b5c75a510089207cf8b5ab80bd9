@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d96e89fc_7668dc77",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-07T10:59:13Z",
+      "side": 1,
+      "message": "what about\n\"for (LeAudioContextType context : types::kLeAudioContextAllTypesArray) {\" ?",
+      "revId": "35c69a1b643f6b5c75a510089207cf8b5ab80bd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
