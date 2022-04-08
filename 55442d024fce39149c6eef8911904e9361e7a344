@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56563d8a_493a41e4",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T18:11:47Z",
+      "side": 1,
+      "message": "Does this increase binary size? I would assume the linker is pretty smart about keeping stuff out but I\u0027d like a quick check.\n\nWe may want to put the rpcproxy in its own lib otherwise.",
+      "revId": "55442d024fce39149c6eef8911904e9361e7a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
