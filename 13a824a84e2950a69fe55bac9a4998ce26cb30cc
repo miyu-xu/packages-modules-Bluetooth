@@ -46,6 +46,30 @@
       },
       "revId": "13a824a84e2950a69fe55bac9a4998ce26cb30cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f84a8cef_88b88d44",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-04-08T07:02:29Z",
+      "side": 1,
+      "message": "Sure. Done.",
+      "parentUuid": "88a4660b_572e4695",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 13
+      },
+      "revId": "13a824a84e2950a69fe55bac9a4998ce26cb30cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
