@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6add2449_d600e1dd",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T18:16:38Z",
+      "side": 1,
+      "message": "I know we had agreed on using `*` before but I\u0027ve read recommendations to not do this anymore in Cargo.toml. Lets use actual desired versions here.\n\nReplacing these in all cargo.toml file isn\u0027t as arduous as I thought (since you can just `find -name Cargo.toml | grep -i \u003cpackage name\u003e` to find all places to replace.",
+      "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21581ea1_46baa4f4",
+        "filename": "system/gd/rust/linux/mgmt/proto/suspend.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T18:16:38Z",
+      "side": 1,
+      "message": "Please resolve this license issue. I believe APACHE2 is acceptable here.",
+      "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42047490_82869b05",
+        "filename": "system/gd/rust/linux/mgmt/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T18:16:38Z",
+      "side": 1,
+      "message": "Confirmed from aosp/2058063 that this creates a `suspend` module from the proto and isn\u0027t polluting the root namespace.",
+      "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
