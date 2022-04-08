@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d89d90a_1cd39acc",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T20:32:42Z",
+      "side": 1,
+      "message": "nit: Use version",
+      "revId": "cc0e5b322b6538df412469e1bdd2c6fbbc44a742",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
