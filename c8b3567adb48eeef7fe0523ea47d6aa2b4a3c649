@@ -16,6 +16,23 @@
       "message": "Friendly ping for owner+1",
       "revId": "c8b3567adb48eeef7fe0523ea47d6aa2b4a3c649",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "577d745e_7f37eab8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-08T06:58:03Z",
+      "side": 1,
+      "message": "Please solve internal merge conflicts before submitting",
+      "revId": "c8b3567adb48eeef7fe0523ea47d6aa2b4a3c649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
