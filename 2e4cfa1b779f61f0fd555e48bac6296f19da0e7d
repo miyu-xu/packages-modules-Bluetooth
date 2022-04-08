@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6be283aa_07bcfa5b",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T18:10:09Z",
+      "side": 1,
+      "message": "should this be -ENOTREADY?",
+      "revId": "2e4cfa1b779f61f0fd555e48bac6296f19da0e7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "658e6e17_43bcc933",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T18:10:09Z",
+      "side": 1,
+      "message": "Should these return -ENOTREADY",
+      "revId": "2e4cfa1b779f61f0fd555e48bac6296f19da0e7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
