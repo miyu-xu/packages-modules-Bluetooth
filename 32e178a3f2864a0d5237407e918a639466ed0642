@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa791869_a795b772",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-08T14:30:32Z",
+      "side": 1,
+      "message": "To speed up things, and make review easier, I extracted \"move\" part of to separate patch.",
+      "revId": "32e178a3f2864a0d5237407e918a639466ed0642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
