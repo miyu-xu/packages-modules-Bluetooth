@@ -225,7 +225,7 @@ TEST_F(LeImplTest, remove_device_from_connect_list) {
 
   le_impl_->remove_device_from_connect_list({{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS});
   le_impl_->remove_device_from_connect_list({{0x31, 0x32, 0x33, 0x34, 0x35, 0x36}, AddressType::PUBLIC_DEVICE_ADDRESS});
-  ASSERT_EQ(0, le_impl_->connect_list.size());
+  ASSERT_EQ(0UL, le_impl_->connect_list.size());
 }
 
 }  // namespace acl_manager
