@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8150f23_5ffce1c6",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-08T14:31:29Z",
+      "side": 1,
+      "message": "Maybe I\u0027ll just ASSERT that this is true to indicate the preconditions for this to be called.",
+      "parentUuid": "b7514c03_4bcc341f",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 255,
+        "endChar": 23
+      },
+      "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dff7fe82_24d0ec25",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2022-04-08T11:03:33Z",
       "side": 1,
       "message": "since Android always uses white list when connecting, there is no need to check address here. Especially that I saw controller is sending invalid data there sometimes.",
+      "range": {
+        "startLine": 288,
+        "startChar": 51,
+        "endLine": 288,
+        "endChar": 97
+      },
+      "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0cb2bf3_d96641e4",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-08T14:31:29Z",
+      "side": 1,
+      "message": "Yes...you touch upon a bigger issue with how much of the code is structured.  The idea I think was to have both whitelist and non-whitelist connections, but non-whitelist connections were never implemented and have no plans.\n\n`Especially that I saw controller is sending invalid data there sometimes`\n\nThis makes our job difficult.  Maybe we can remove this check as a toplevel condition and simply provide an advisory message should this field be filled incorrectly",
+      "parentUuid": "dff7fe82_24d0ec25",
       "range": {
         "startLine": 288,
         "startChar": 51,
@@ -94,6 +142,30 @@
       "writtenOn": "2022-04-08T11:03:33Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 356,
+        "startChar": 51,
+        "endLine": 356,
+        "endChar": 97
+      },
+      "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d17b7c2_5bb3aa6c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-08T14:31:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2c7a86ab_e489f04c",
       "range": {
         "startLine": 356,
         "startChar": 51,
