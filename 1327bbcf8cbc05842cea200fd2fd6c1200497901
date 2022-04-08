@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de90f00_417150f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-04-08T10:31:05Z",
+      "side": 1,
+      "message": "The test failure seems not related to this issue (b/228414863).",
+      "revId": "1327bbcf8cbc05842cea200fd2fd6c1200497901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
