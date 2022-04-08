@@ -22,6 +22,30 @@
       },
       "revId": "13a824a84e2950a69fe55bac9a4998ce26cb30cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88a4660b_572e4695",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1220282
+      },
+      "writtenOn": "2022-04-08T05:05:10Z",
+      "side": 1,
+      "message": "Agreed.\n\nI\u0027m not sure if we have some other init stuff later, but we can add later if we do need.",
+      "parentUuid": "610d206d_d63c5b9d",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 13
+      },
+      "revId": "13a824a84e2950a69fe55bac9a4998ce26cb30cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
