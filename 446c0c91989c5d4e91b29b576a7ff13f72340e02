@@ -22,6 +22,30 @@
       },
       "revId": "446c0c91989c5d4e91b29b576a7ff13f72340e02",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c430663_ddb2131c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-04-08T15:00:21Z",
+      "side": 1,
+      "message": "Done. This cache makes all following initialization failed after any failure. AIDL availability is always checked before init, so considering the frequency of init, the overhead of checkService() is acceptable.",
+      "parentUuid": "3ad41ba6_90f31913",
+      "range": {
+        "startLine": 9,
+        "startChar": 51,
+        "endLine": 9,
+        "endChar": 54
+      },
+      "revId": "446c0c91989c5d4e91b29b576a7ff13f72340e02",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
