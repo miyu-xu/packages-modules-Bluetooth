@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a67c4a97_c16d249d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-04-08T15:45:39Z",
+      "side": 1,
+      "message": "By passing the broken test as it is unrelated to the change. https://b.corp.google.com/issues/228408586",
+      "revId": "6725a655b188ff617eca6e63590bdfecd521a1df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
