@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822bfe21_5ca03f06",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-04-08T07:51:56Z",
+      "side": 0,
+      "message": "If the device is bonded over BLE, we use pseudo address as BluetoothDevice.mAddress\nthe scanResult should return the device with same BluetoothDevice.mAddress",
+      "range": {
+        "startLine": 1844,
+        "startChar": 12,
+        "endLine": 1849,
+        "endChar": 13
+      },
+      "revId": "788208c101e6e0d43ffd98edd1b441cba1192a01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
