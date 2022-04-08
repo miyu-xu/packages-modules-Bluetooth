@@ -815,6 +815,7 @@ void btm_sco_connected(tHCI_STATUS hci_status, const RawAddress& bda,
 
       (*p->p_conn_cb)(xx);
 
+      bluetooth::audio::sco::init();
       bluetooth::audio::sco::open();
 
       return;
