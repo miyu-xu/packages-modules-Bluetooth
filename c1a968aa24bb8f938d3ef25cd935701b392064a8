@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3461789_5810883b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-08T08:08:29Z",
+      "side": 0,
+      "message": "thanks for cleaning it, but all the cleaning obvious things could be in separate patch.",
+      "revId": "c1a968aa24bb8f938d3ef25cd935701b392064a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2446ded9_5c6a79a9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-08T08:08:29Z",
+      "side": 0,
+      "message": "this cleaning also could be in separate patch",
+      "revId": "c1a968aa24bb8f938d3ef25cd935701b392064a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

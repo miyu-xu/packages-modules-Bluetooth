@@ -16,6 +16,40 @@
       "message": "Friendly ping for review.",
       "revId": "518a0f66ef875691b9c27deaa6c6a81b932eeeea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69ded8a2_af83a26d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-08T08:08:29Z",
+      "side": 1,
+      "message": "thanks it looks good but there is lot of other stuff fixed as well which seems to be not related. Still thank you for fixing that - if you could split it into more patches it would be great. Thanks!",
+      "revId": "518a0f66ef875691b9c27deaa6c6a81b932eeeea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d52eaa8_768046d7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-08T08:08:29Z",
+      "side": 1,
+      "message": "this could be separate patch",
+      "revId": "518a0f66ef875691b9c27deaa6c6a81b932eeeea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
