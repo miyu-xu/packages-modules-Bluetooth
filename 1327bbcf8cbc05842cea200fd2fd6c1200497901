@@ -16,6 +16,23 @@
       "message": "The test failure seems not related to this issue (b/228414863).",
       "revId": "1327bbcf8cbc05842cea200fd2fd6c1200497901",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13954de5_916a759d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-04-08T10:32:21Z",
+      "side": 1,
+      "message": "It seems this CL needs Qualcomm-Review. Xiaoyang, can anyone in Qualcomm give this?",
+      "revId": "1327bbcf8cbc05842cea200fd2fd6c1200497901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
