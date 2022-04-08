@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0157e7ed_67200f25",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-08T12:50:06Z",
+      "side": 1,
+      "message": "we should use hash for file name when robust caching is disabled too. There should be one logic for storage, no matter the flag state.",
+      "range": {
+        "startLine": 259,
+        "startChar": 5,
+        "endLine": 260,
+        "endChar": 71
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3852cd2_bc0b85f9",
         "filename": "system/bta/gatt/bta_gattc_cache.cc",
         "patchSetId": 6
