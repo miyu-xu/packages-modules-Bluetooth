@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87e61630_05cefcc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-08T04:54:53Z",
+      "side": 1,
+      "message": "I think you were talking about this on my last CL.\n\nThe stack should wait for when the cancel connection *event* arrives, not the acknowledgement of the cancel complete command.\n\n",
+      "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
