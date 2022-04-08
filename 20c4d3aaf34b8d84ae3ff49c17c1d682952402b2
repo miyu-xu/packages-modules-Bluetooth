@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc5ec744_921c7969",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T20:31:24Z",
+      "side": 1,
+      "message": "assuming this is a simple move/refactor",
+      "revId": "20c4d3aaf34b8d84ae3ff49c17c1d682952402b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85197ea6_46db0d24",
+        "filename": "system/gd/rust/linux/dbus_projection/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T20:31:24Z",
+      "side": 1,
+      "message": "nit: please use non-* version (see my comment on the other review for why)",
+      "revId": "20c4d3aaf34b8d84ae3ff49c17c1d682952402b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
