@@ -1,0 +1,361 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e67f5c99_cd705aaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Functionally seems ok but a few general comments:\n\n* Please add a lot more comments describing what\u0027s going on\n* Avoid naked `unwrap()` (exception is mutex) and try to use either `match` or `if let Some(..) \u003d `\n* I see you hold the context lock several times; please confirm and comment that\u0027s intentional",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a08b4677_3ea9005f",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Please document all pub functions with ///",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeeff4ce_b66348c1",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Please comment.\n\ni.e.\n// Register callbacks for when powerd becomes available.",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94dea70d_db8c166b",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "comment\n\n// Register callbacks for when an adapter becomes available",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8abca8_6ec143c4",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "This will abort! since you don\u0027t return in `if arg.is_none()`. Prefer not to do naked unwraps in code.\n\nrewrite as:\n\n```\nmatch arg {\n  None \u003d\u003e log::warn!(\"Received empty SuspendImminent signal\"),\n  Some(bytes) \u003d\u003e {\n  ...\n  }\n}\n```",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c007a2e_117a8fc6",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Same comment about naked unwrap",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d502a13e_d4d3bbac",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "nit to avoid naked unwraps:\n\n```\nif let Some(msg) \u003d m {\n  match msg {\n    ...\n  }\n} else {\n  log::debug!(\"Exiting suspend manager mainloop\")\n  break;\n}\n```",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a12578e_eac99e27",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "this should probably be a debug message since it\u0027s normal operation",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae85fe37_8af91d9a",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "nit: Seeing as none of them return anything, you don\u0027t need the `{...}`.\n\ni.e. `SuspendManagerMessage::PowerdStarted \u003d\u003e self.on_powerd_started(),`",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "923347d2_c9418b6c",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "use const",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "247b68c7_9d2e553b",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "use const for \"Bluetooth Manager\"",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef629bdc_5f3ddf42",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "```\nmatch write_result {\n  Err(e) \u003d\u003e {\n    log::error!(\"Error writing RegisterSuspendDelayRequest: {}\", e); \n  },\n  _ \u003d\u003e (),\n}\n```",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6382eed_f887fad0",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Why use a separate executor from tokio here? Please add comment with the reasoning.\n\nElse prefer using tokio::block_on()",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa5f690b_a5ab65ca",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Avoid naked unwrap. Re-write with match",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "798acda1_1bf9ae37",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Use match for decode result instead of using `.err()`",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c71bc11f_9afa5895",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "Good case for using `match context.powered_session`",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a224690_233b3c15",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "This acquires the context lock and doesn\u0027t let go until the end of this scope. Is that intentional? (If yes, please add a comment. Put lock acquisition at top of scope, before the log)",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d53615f_506eb07c",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "avoid naked unwraps -- prefer:\n```\nif let(\u0026session) \u003d context.powerd_session {\n}\n```",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa6e01e6_fe23c5f3",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "avoid naked unwraps",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f72bca5_c4a1cfd8",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "This locks for this entire context. If intentional, put at top of function and add comment.",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3ea8e7b_e09afb25",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-08T21:20:32Z",
+      "side": 1,
+      "message": "This locks for this entire context. If intentional, put at top of function and add comment.",
+      "revId": "343bcdfcf36d0457d779d92049bcb09925e71b50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
