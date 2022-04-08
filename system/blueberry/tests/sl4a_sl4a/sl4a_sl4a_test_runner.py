@@ -14,10 +14,12 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+from blueberry.tests.sl4a_sl4a.gatt.connect_with_irk_test import ConnectWithIrkTest
+
 from mobly import suite_runner
 import argparse
 
-ALL_TESTS = []
+ALL_TESTS = [ConnectWithIrkTest]
 
 
 def main():
