@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9ee6227_020e778f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-09T03:43:09Z",
+      "side": 1,
+      "message": "CP to AOSP branch. Origin CL is ag/17664954.",
+      "revId": "6ca2c67c2912eeb9e96ea179edadad2aac9264e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
