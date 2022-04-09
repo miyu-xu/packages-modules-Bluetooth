@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c8867b7_6699e413",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-09T05:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8150f23_5ffce1c6",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 255,
+        "endChar": 23
+      },
+      "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dff7fe82_24d0ec25",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c7be203_d74d89c1",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-09T05:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0cb2bf3_d96641e4",
+      "range": {
+        "startLine": 288,
+        "startChar": 51,
+        "endLine": 288,
+        "endChar": 97
+      },
+      "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "924add9e_5449ca24",
@@ -125,6 +173,24 @@
       "writtenOn": "2022-04-08T11:03:33Z",
       "side": 1,
       "message": "`else` seems to be not needed here.",
+      "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24cb13e0_397bf131",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-09T05:17:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "924add9e_5449ca24",
       "revId": "a32380c9bb88717c86d4ac1023e074e46faa0157",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
