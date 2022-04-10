@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "715c555c_a13fa32e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-10T13:58:30Z",
+      "side": 1,
+      "message": "I have verified the patch, it doesn\u0027t impact the offload case. Thanks",
+      "revId": "8611f1bf183212071231f75d0d1130914c10a78e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
