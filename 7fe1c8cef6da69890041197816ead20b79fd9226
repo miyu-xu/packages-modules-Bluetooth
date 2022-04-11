@@ -16,6 +16,23 @@
       "message": "presubmit keeps failing on tool/setup failure missing BluetoothInstrumentTests.apk",
       "revId": "7fe1c8cef6da69890041197816ead20b79fd9226",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd992027_d9c6c144",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2022-04-11T20:08:27Z",
+      "side": 1,
+      "message": "broken test/env BluetoothInstrumentationTest.apk",
+      "revId": "7fe1c8cef6da69890041197816ead20b79fd9226",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
