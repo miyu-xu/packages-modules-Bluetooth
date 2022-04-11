@@ -16,6 +16,29 @@
       "message": "Looks good, with one small detail. I know *why* you make this change because you told me about it 😄 However, your CL description focuses on *what* you change, not why you change it:\n\n\u003e Packets and groups are now declared in the same namespace\n\u003e as structs and other typedef declarations.\n\nI would suggest expanding on this with something along the lines of\n\n\u003e This means that it is now an error to declare a packet and a group with the same name. We do this to simplify things: each name, `Foo` can now only refer to one thing in a given PDL file.\n\n",
       "revId": "9255fc4373376f7a5ecd57352ddfd95a3efb0678",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6228cfe3_d578725c",
+        "filename": "tools/pdl/src/lint.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-11T13:11:32Z",
+      "side": 1,
+      "message": "Please add a unit test for the new behavior. We can now add inline tests via the `pdl_inline_tests` test.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 89
+      },
+      "revId": "9255fc4373376f7a5ecd57352ddfd95a3efb0678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
