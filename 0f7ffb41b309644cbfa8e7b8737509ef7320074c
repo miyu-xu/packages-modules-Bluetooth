@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "091aee9d_bd50db84",
+        "filename": "system/blueberry/tests/gd_sl4a/hci/le_advanced_scanning_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-11T15:49:51Z",
+      "side": 1,
+      "message": "This depends on the refactor CL",
+      "revId": "0f7ffb41b309644cbfa8e7b8737509ef7320074c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
