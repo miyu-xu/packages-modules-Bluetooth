@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "56a9d1ee_9c723078",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-11T12:20:13Z",
+      "side": 1,
+      "message": "For now it\u0027s just an implementation detail, I hope to change it to use a proper rust async runtime and run the RootCanal devices in it. Unfortunately it\u0027s not possible for now and it requires more work, but the current LinkManager implementation should not stay, the valuable work here is the procedures.\n\nIt is a problem if I call the LinkManager operations outside of the RootCanal context as RootCanal is not thread safe and the simplest way to stay in RootCanal context is to progress inside the TimerTick like all the other RootCanal devices.",
+      "parentUuid": "08189247_76037de0",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27e04544_9977eb67",
         "filename": "tools/rootcanal/lmp/include/lmp.h",
         "patchSetId": 17
