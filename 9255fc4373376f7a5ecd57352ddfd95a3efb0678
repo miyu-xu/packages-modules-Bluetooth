@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12dcf9bd_5ef8e296",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-11T13:08:28Z",
+      "side": 1,
+      "message": "Looks good, with one small detail. I know *why* you make this change because you told me about it 😄 However, your CL description focuses on *what* you change, not why you change it:\n\n\u003e Packets and groups are now declared in the same namespace\n\u003e as structs and other typedef declarations.\n\nI would suggest expanding on this with something along the lines of\n\n\u003e This means that it is now an error to declare a packet and a group with the same name. We do this to simplify things: each name, `Foo` can now only refer to one thing in a given PDL file.\n\n",
+      "revId": "9255fc4373376f7a5ecd57352ddfd95a3efb0678",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
