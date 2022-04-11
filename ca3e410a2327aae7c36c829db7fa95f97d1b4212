@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5645fd5d_d798ced9",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-11T07:38:06Z",
+      "side": 1,
+      "message": "How this method is related to reflashing ?\nFetchAudioProvider would be called when you try to start stream. What is exact relation with flashing ?",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "ca3e410a2327aae7c36c829db7fa95f97d1b4212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
