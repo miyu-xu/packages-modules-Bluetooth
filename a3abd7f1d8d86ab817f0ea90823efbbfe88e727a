@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03178750_12e4efb0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-11T19:53:54Z",
+      "side": 1,
+      "message": "broken test/env BluetoothInstrumentationTest.apk",
+      "revId": "a3abd7f1d8d86ab817f0ea90823efbbfe88e727a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
