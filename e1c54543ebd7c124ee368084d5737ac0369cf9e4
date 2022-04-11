@@ -16,6 +16,23 @@
       "message": "By",
       "revId": "e1c54543ebd7c124ee368084d5737ac0369cf9e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "980e61c3_ce4fd939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-04-11T08:43:27Z",
+      "side": 1,
+      "message": "Bypass presubmit due to broken tests.",
+      "revId": "e1c54543ebd7c124ee368084d5737ac0369cf9e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
