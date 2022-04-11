@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1d62dc8_2230301a",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-04-11T20:06:08Z",
+      "side": 1,
+      "message": "Please update the docs to say it throws a NullPointerException if contentMetadata is null instead of an IllegalArgumentException.",
+      "revId": "985cd35a807acd33be6e0713721d50df09395806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8da8c8dd_ab2000f0",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcast.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-04-11T20:06:08Z",
+      "side": 1,
+      "message": "Need to add @throws to JavaDoc",
+      "revId": "985cd35a807acd33be6e0713721d50df09395806",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
