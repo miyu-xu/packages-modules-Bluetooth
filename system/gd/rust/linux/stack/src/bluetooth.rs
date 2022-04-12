@@ -427,7 +427,7 @@ impl Bluetooth {
         property_type: BtPropertyType,
         property: BluetoothProperty,
     ) -> Result<(), ()> {
-        let mut remote_device = match self.get_remote_device_if_found_mut(&device) {
+        let remote_device = match self.get_remote_device_if_found_mut(&device) {
             Some(d) => d,
             None => {
                 return Err(());
