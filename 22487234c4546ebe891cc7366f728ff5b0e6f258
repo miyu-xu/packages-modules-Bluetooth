@@ -70,6 +70,30 @@
       },
       "revId": "22487234c4546ebe891cc7366f728ff5b0e6f258",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81b4cc4b_2498f353",
+        "filename": "system/blueberry/tests/gd/cert/adb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1849983
+      },
+      "writtenOn": "2022-04-12T21:17:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1bfa325_16869070",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 24
+      },
+      "revId": "22487234c4546ebe891cc7366f728ff5b0e6f258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
