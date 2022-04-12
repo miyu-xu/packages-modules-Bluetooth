@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a6495b_5caa7560",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-04-12T18:15:05Z",
+      "side": 1,
+      "message": "thanks for the CL! we used to have it this way, but the ChromeOS team imports this repo so it was changed this way to be self contained: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1998210",
+      "revId": "ae8cf1e8e76a7381322e981bb4988b4ca142fadd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
