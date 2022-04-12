@@ -188,6 +188,39 @@ macro_rules! impl_dbus_arg_enum {
     };
 }
 
+/// Implements `DBusArg` for an bitflags.
+///
+/// A Rust bitflags is converted to D-Bus INT32 type.
+#[macro_export]
+macro_rules! impl_dbus_arg_bitflags {
+    ($bitflags_type:ty) => {
+        impl DBusArg for $bitflags_type {
+            type DBusType = i32;
+            fn from_dbus(
+                data: i32,
+                _conn: Option<Arc<SyncConnection>>,
+                _remote: Option<dbus::strings::BusName<'static>>,
+                _disconnect_watcher: Option<
+                    Arc<std::sync::Mutex<dbus_projection::DisconnectWatcher>>,
+                >,
+            ) -> Result<$bitflags_type, Box<dyn std::error::Error>> {
+                match <$bitflags_type>::from_bits(data) {
+                    Some(x) => Ok(x),
+                    None => Err(Box::new(DBusArgError::new(String::from(format!(
+                        "error converting {} to {}",
+                        data,
+                        stringify!($bitflags_type)
+                    ))))),
+                }
+            }
+
+            fn to_dbus(data: $bitflags_type) -> Result<i32, Box<dyn std::error::Error>> {
+                return Ok(data.bits());
+            }
+        }
+    };
+}
+
 /// Marks a function to be implemented by dbus_projection macros.
 #[macro_export]
 macro_rules! dbus_generated {

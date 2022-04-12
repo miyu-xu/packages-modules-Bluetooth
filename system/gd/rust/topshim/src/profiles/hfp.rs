@@ -37,6 +37,7 @@ impl From<u32> for BthfAudioState {
 }
 
 bitflags! {
+    #[derive(Default)]
     pub struct HfpCodecCapability: i32 {
         const UNSUPPORTED = 0b00;
         const CVSD = 0b01;
