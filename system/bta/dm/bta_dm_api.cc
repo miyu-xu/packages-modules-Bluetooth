@@ -120,7 +120,6 @@ void BTA_DmSearchCancel(void) {
       bta_dm_search_cancel_notify();
       break;
     case BTA_DM_DISCOVER_ACTIVE:
-      bta_dm_search_set_state(BTA_DM_SEARCH_CANCELLING);
       bta_dm_search_cancel_notify();
       break;
   }
