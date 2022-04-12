@@ -46,6 +46,30 @@
       },
       "revId": "22487234c4546ebe891cc7366f728ff5b0e6f258",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1bfa325_16869070",
+        "filename": "system/blueberry/tests/gd/cert/adb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-04-12T20:22:51Z",
+      "side": 1,
+      "message": "I was wondering the same thing as Jack asked. I\u0027d suggest updating the CL description to clarify/indicate where how the retry is happening.",
+      "parentUuid": "004e9657_2d0e2d92",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 24
+      },
+      "revId": "22487234c4546ebe891cc7366f728ff5b0e6f258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
