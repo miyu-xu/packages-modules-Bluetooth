@@ -16,6 +16,24 @@
       "message": "Should be `long long`",
       "revId": "5dbfd1f3103d6a03239a9b2e146365b4918ddd01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d773a606_8b273c17",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-12T10:59:41Z",
+      "side": 1,
+      "message": "Changed to jlong which is always 64 bit wide.",
+      "parentUuid": "57a9bc38_708cc88a",
+      "revId": "5dbfd1f3103d6a03239a9b2e146365b4918ddd01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
