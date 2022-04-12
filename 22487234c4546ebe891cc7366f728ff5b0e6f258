@@ -22,6 +22,30 @@
       },
       "revId": "22487234c4546ebe891cc7366f728ff5b0e6f258",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "004e9657_2d0e2d92",
+        "filename": "system/blueberry/tests/gd/cert/adb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1849983
+      },
+      "writtenOn": "2022-04-12T18:38:53Z",
+      "side": 1,
+      "message": "We have retry mechanism existing in gd_device.py `def tcp_forward_or_die(self, host_port, device_port, num_retry\u003d1):`. So when we catch AdbError here, it will trigger retry in gd_device setup.",
+      "parentUuid": "fd8baf02_dbfbf063",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 24
+      },
+      "revId": "22487234c4546ebe891cc7366f728ff5b0e6f258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
