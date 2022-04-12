@@ -16,6 +16,24 @@
       "message": "Rather than immediately triggering the callback after requesting the change, the callbacks should originate from the callbacks that we receive from the lower layer stack (below topshim/btif). We receive such callbacks here: http://osscs/android/_/android/platform/packages/modules/Bluetooth/+/e91f5f48b01e12ee31d0339d00c07cbdc5b840f1:system/gd/rust/linux/stack/src/bluetooth.rs;l\u003d456;bpv\u003d1;bpt\u003d0;drc\u003d092f7c50c882e9409f927a8009595712d2dfee74\n\nThat way there is a guarantee that the callback is triggered to clients when the change actually happens and after it happens.\n\nAlso applies to discoverable changed below.",
       "revId": "4c086d9cb51de9affb4cb94bd4d2cfb313a1d90b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "009d1f0e_9aa70566",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 896,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-04-12T17:48:18Z",
+      "side": 1,
+      "message": "Ah, got it. Fixed",
+      "parentUuid": "ad5b0dcc_740576b6",
+      "revId": "4c086d9cb51de9affb4cb94bd4d2cfb313a1d90b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
