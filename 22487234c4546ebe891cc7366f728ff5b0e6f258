@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd8baf02_dbfbf063",
+        "filename": "system/blueberry/tests/gd/cert/adb.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-12T18:31:51Z",
+      "side": 1,
+      "message": "If we are doing retry, should we retry it here instead of just return?",
+      "range": {
+        "startLine": 133,
+        "startChar": 12,
+        "endLine": 133,
+        "endChar": 24
+      },
+      "revId": "22487234c4546ebe891cc7366f728ff5b0e6f258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
