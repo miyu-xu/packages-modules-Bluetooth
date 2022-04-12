@@ -33,6 +33,23 @@
       "message": "It seems this CL needs Qualcomm-Review. Xiaoyang, can anyone in Qualcomm give this?",
       "revId": "1327bbcf8cbc05842cea200fd2fd6c1200497901",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84c17485_92f34188",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-04-12T01:25:02Z",
+      "side": 1,
+      "message": "Hi Phani,\nCan you please give QC+1\n\nThanks.",
+      "revId": "1327bbcf8cbc05842cea200fd2fd6c1200497901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
