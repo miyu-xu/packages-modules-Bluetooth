@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46f8b708_9a269bf1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-04-12T22:14:54Z",
+      "side": 1,
+      "message": "Hi Sonny,\n\nPlease help reivew the impl_dbus_arg_bitflags macro. Please kindly suggest if there is a better implementation.\n\nHi Hsin-Yu,\nDo we want to pass the codec specific fields? Or do you think we should skip those fields passing to dBus. Do you know what those fields are for?",
+      "revId": "e669daacfcf02e4affe30b25c64b62f85fbac9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
