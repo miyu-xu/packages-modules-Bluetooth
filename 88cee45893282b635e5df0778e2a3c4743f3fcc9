@@ -67,6 +67,42 @@
       "message": "The point of my fix is, HeadsetService should send CLCC list to HeadsetStateMachine as a bunch.\nThus problem timing is shorten, but problem is still remianed.\nBecause HeadsetService sends each CLCC when send to HeadsetStateMachine, although it store CLCC as a list.\n\n1. (HF1 to AG) AT+CLCC\nsendMessageDelayed(CLCC_RSP_TIMEOUT, device, CLCC_RSP_TIMEOUT_MS); for HF1\n\n2. (AG to HF1) +CLCC: 1,1,0,0,0,\"18613140648\",129\nhasMessages(CLCC_RSP_TIMEOUT) return true for HF1\nhasMessages(CLCC_RSP_TIMEOUT) return false for HF2\nSo only HF1 can receive about call index 1.\n\n3. (HF2 to AG) AT+CLCC\nsendMessageDelayed(CLCC_RSP_TIMEOUT, device, CLCC_RSP_TIMEOUT_MS); for HF2\n\n4. (AG to HF1) OK\n5. (AG to HF2) OK\nhasMessages(CLCC_RSP_TIMEOUT) return true for HF1\nhasMessages(CLCC_RSP_TIMEOUT) return true for HF2\nSo only HF2 can not receive about call index 1.\n\nFull CLCC list should be sent to HeadsetStateMachine at once.\nPlease check upper point again.\n\nThank you.",
       "revId": "88cee45893282b635e5df0778e2a3c4743f3fcc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5fb2732_c830cb8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-12T01:40:49Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b6dcbc7b_43291c21",
+      "revId": "88cee45893282b635e5df0778e2a3c4743f3fcc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18014842_20dea235",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-12T01:40:49Z",
+      "side": 1,
+      "message": "Yes, so the new overloading method doForEachConnectedStateMachine takes the list of StateMachineTasks for all CLCC responses when the index is 0 (CLCC_END_MARK_INDEX).",
+      "parentUuid": "1b50f00f_49232c8c",
+      "revId": "88cee45893282b635e5df0778e2a3c4743f3fcc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
