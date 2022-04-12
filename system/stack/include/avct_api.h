@@ -121,6 +121,29 @@ typedef struct {
   uint8_t control;                /* Control role (Control/Target) */
 } tAVCT_CC;
 
+/******************************************************************************
+ *
+ * Function         AVCT_SetTraceLevel
+ *
+ * Description      Sets the trace level for AVCT. If 0xff is passed, the
+ *                  current trace level is returned.
+ *
+ *                  Input Parameters:
+ *                      new_level:  The level to set the AVCT tracing to:
+ *                      0xff-returns the current setting.
+ *                      0-turns off tracing.
+ *                      >= 1-Errors.
+ *                      >= 2-Warnings.
+ *                      >= 3-APIs.
+ *                      >= 4-Events.
+ *                      >= 5-Debug.
+ *
+ * Returns          The new trace level or current trace level if
+ *                  the input parameter is 0xff.
+ *
+ *****************************************************************************/
+extern uint8_t AVCT_SetTraceLevel(uint8_t new_level);
+
 /*****************************************************************************
  *  External Function Declarations
  ****************************************************************************/
