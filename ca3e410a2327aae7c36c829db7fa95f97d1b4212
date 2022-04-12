@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67c4d483_ed9396dc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-12T11:36:07Z",
+      "side": 1,
+      "message": "refetching ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "ca3e410a2327aae7c36c829db7fa95f97d1b4212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5645fd5d_d798ced9",
         "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
         "patchSetId": 3
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "https://source.corp.google.com/android/packages/modules/Bluetooth/system/audio_hal_interface/aidl/client_interface_aidl.cc;rcl\u003d018f5fe57b5cd42f30cce9cede8b2c5ed4785133;l\u003d183\n\nWhen a binder instance dies, we automatically refetch a new binder instance via this method.",
       "parentUuid": "5645fd5d_d798ced9",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "ca3e410a2327aae7c36c829db7fa95f97d1b4212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f9d8e06_280e1918",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-12T11:36:07Z",
+      "side": 1,
+      "message": "Should this be refetching rather than reflashing then ?",
+      "parentUuid": "b2f42381_9ceef61e",
       "range": {
         "startLine": 101,
         "startChar": 12,
