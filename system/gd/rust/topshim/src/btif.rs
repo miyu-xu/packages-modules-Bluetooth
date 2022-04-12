@@ -1024,6 +1024,10 @@ impl BluetoothInterface {
         ccall!(self, clear_connect_list)
     }
 
+    pub fn disconnect_all_acls(&self) -> i32 {
+        ccall!(self, disconnect_all_acls)
+    }
+
     pub fn le_rand(&self) -> i32 {
         ccall!(self, le_rand)
     }
