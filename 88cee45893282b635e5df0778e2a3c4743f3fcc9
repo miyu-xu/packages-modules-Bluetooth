@@ -103,6 +103,23 @@
       "parentUuid": "1b50f00f_49232c8c",
       "revId": "88cee45893282b635e5df0778e2a3c4743f3fcc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "077e59f8_ece85b01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1902435
+      },
+      "writtenOn": "2022-04-12T03:50:45Z",
+      "side": 1,
+      "message": "I mean it is required that CLCC list should be received in processSendClccResponses method as a bunch.\nYou made doForEachConnectedStateMachine method for handling the list of StateMachineTasks,\nbut it is same that CLCC infomation is received as a each in processSendClccResponses.\nSo problem is not fixed.\n\nPlease check below case.\n\n[Problem case]\n(HF1 (BT1) and HF2 (BT2) are connected)\n\n1. HF1 send \"AT+CLCC\" cmd to AG (Phone)\nIt call sendMessageDelayed(CLCC_RSP_TIMEOUT, device, CLCC_RSP_TIMEOUT_MS) for HF1.\n\n2. clccResponse is called with 1,1,0,0,0,\"18613140648\",129\nIt added mPendingClccResponses list.\n\n3. clccResponse is called with 0,0,0,0,0,\"\",129\nIt added mPendingClccResponses list.\nAnd doForEachConnectedStateMachine(List\u003cStateMachineTask\u003e tasks) is called.\nAnd doForEachConnectedStateMachine(StateMachineTask task) is called.\n\n4. sendMessage to HF1 statemachine with 1,1,0,0,0,\"18613140648\",129\nhasMessages(CLCC_RSP_TIMEOUT) return true for HF1.\nSo HF1 can receive about call index 1.\n\n5. sendMessage to HF2 statemachine with 1,1,0,0,0,\"18613140648\",129\nhasMessages(CLCC_RSP_TIMEOUT) return false for HF2.\nBecause HF2 did not send \"AT+CLCC\" to AG yet.\nSo HF2 can not receive about call index 1.\n\n6. If then HF2 send \"AT+CLCC\" cmd to AG\nIt call sendMessageDelayed(CLCC_RSP_TIMEOUT, device, CLCC_RSP_TIMEOUT_MS) for HF2\n\n7. sendMessage to HF1 statemachine with 0,0,0,0,0,\"\",129\nhasMessages(CLCC_RSP_TIMEOUT) return true for HF1.\nSo HF1 can receive about OK (CLCC end).\n\n8. sendMessage to HF2 statemachine with 0,0,0,0,0,\"\",129\nhasMessages(CLCC_RSP_TIMEOUT) return true for HF1\nSo HF2 receive OK (CLCC end) with out call 1 information.",
+      "revId": "88cee45893282b635e5df0778e2a3c4743f3fcc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
