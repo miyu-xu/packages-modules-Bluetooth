@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "420272d8_c8a31055",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-04-12T10:25:00Z",
+      "side": 1,
+      "message": "add a comment to say that CCCD is being written upon every re-connection to avoid potential remote side persistence issue",
+      "revId": "a4437d78491963163a28cbe6907098e2122062b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "572ca313_1fe8b97e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-04-12T10:25:00Z",
+      "side": 1,
+      "message": "can you check if this and CigAssignCisConnHandles are duplicating the conn_handle or if one of them can be removed",
+      "revId": "a4437d78491963163a28cbe6907098e2122062b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5775c67_d20b0ddb",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-04-12T10:25:00Z",
+      "side": 1,
+      "message": "reply to this comment with the details on why RemoveStreamConfiguration cant be called here instead",
+      "revId": "a4437d78491963163a28cbe6907098e2122062b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
