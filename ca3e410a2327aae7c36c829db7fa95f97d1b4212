@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "985f6983_29de6e6b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-04-12T11:46:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67c4d483_ed9396dc",
+      "range": {
+        "startLine": 7,
+        "startChar": 30,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "ca3e410a2327aae7c36c829db7fa95f97d1b4212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5645fd5d_d798ced9",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Should this be refetching rather than reflashing then ?",
       "parentUuid": "b2f42381_9ceef61e",
+      "range": {
+        "startLine": 101,
+        "startChar": 12,
+        "endLine": 101,
+        "endChar": 22
+      },
+      "revId": "ca3e410a2327aae7c36c829db7fa95f97d1b4212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c4c54a3_23255654",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-04-12T11:46:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f9d8e06_280e1918",
       "range": {
         "startLine": 101,
         "startChar": 12,
