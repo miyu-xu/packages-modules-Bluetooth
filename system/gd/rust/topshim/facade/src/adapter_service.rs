@@ -134,6 +134,13 @@ impl AdapterService for AdapterServiceImpl {
         })
     }
 
+    fn clear_connect_list(&mut self, ctx: RpcContext<'_>, _req: Empty, sink: UnarySink<Empty>) {
+        self.btif_intf.lock().unwrap().clear_connect_list();
+        ctx.spawn(async move {
+            sink.success(Empty::default()).await.unwrap();
+        })
+    }
+
     fn le_rand(&mut self, ctx: RpcContext<'_>, _req: Empty, sink: UnarySink<Empty>) {
         self.btif_intf.lock().unwrap().le_rand();
         ctx.spawn(async move {
