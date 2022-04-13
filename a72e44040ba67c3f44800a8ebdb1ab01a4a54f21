@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "807434c9_21a7ac0f",
+        "filename": "system/blueberry/tests/gd_sl4a/security/oob_pairing_sl4a_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2022-04-13T17:15:12Z",
+      "side": 1,
+      "message": "nit: The way this is written now SL4A will only ever send BOND_BONDED event as true (i.e. if it is BOND_BONDING or BOND_NONE, event won\u0027t be sent). \n\nThus, is this log needed?",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 70
+      },
+      "revId": "a72e44040ba67c3f44800a8ebdb1ab01a4a54f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37385255_435bfd9c",
+        "filename": "system/blueberry/tests/gd_sl4a/security/oob_pairing_sl4a_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2022-04-13T17:15:12Z",
+      "side": 1,
+      "message": "Do you need to create a bond first in this test as part of test setup? Or is this sufficient as is?",
+      "range": {
+        "startLine": 276,
+        "startChar": 8,
+        "endLine": 276,
+        "endChar": 24
+      },
+      "revId": "a72e44040ba67c3f44800a8ebdb1ab01a4a54f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
