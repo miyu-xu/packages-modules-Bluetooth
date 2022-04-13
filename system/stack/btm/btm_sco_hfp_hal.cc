@@ -16,12 +16,76 @@
 
 #include "btm_sco_hfp_hal.h"
 
-namespace hfp_hal_interface {
+#include <vector>
 
-bool get_wbs_supported() {
-  // implement me using ioctl
-  return false;
+namespace hfp_hal_interface {
+namespace {
+bool offload_supported = false;
+bool offload_enabled = false;
+
+struct Codec {
+codec codec_type;
+uint8_t date_path;
+std::vector<uint8_t> data;
+};
+
+std::vector<Codec> cached_codecs;
+
 }
+
+void init() {
+    // update offload_supported
+    // update offload_enabled
+
+    // update supported codecs
+}
+
+// Check if wideband speech is supported on local device
+bool get_wbs_supported() {
+    for (Codec c: cached_codecs) {
+        if (c.codec_type == MSBC || c.codec_type == MSBC_TRANSPARENT) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// Checks the supported codecs
+bt_codecs get_codec_capabilities(uint64_t codecs) {
+    return {};
+}
+
+// Check if hardware offload is supported
+bool get_offload_supported() {
+    return offload_supported;
+}
+
+// Check if hardware offload is enabled
+bool get_offload_enabled() {
+    return offload_supported && offload_enabled;
+}
+
+// Set offload enable/disable
+bool enable_offload(bool enable) {
+    if (!offload_supported) {
+        return false;
+    }
+    offload_enabled = enable;
+    return true;
+
+}
+
+// Notify the codec datapath to lower layer for offload mode
+bool set_codec_datapath(int codec) {
+    // notify the lower layer
+    return true;
+}
+
+// Get the maximum supported packet size from the lower layer
+int get_packet_size();
+
+// Notify the lower layer about SCO connection change
+void notify_sco_connection_change(RawAddress device, bool is_connected, int codec);
 
 int get_packet_size() {
   // implement me using ioctl

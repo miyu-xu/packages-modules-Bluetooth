@@ -139,6 +139,7 @@ typedef struct {
   void Init() {
     def_esco_parms = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3);
     bluetooth::audio::sco::init();
+    hfp_hal_interface::init();
   }
 
   void Free() { bluetooth::audio::sco::cleanup(); }

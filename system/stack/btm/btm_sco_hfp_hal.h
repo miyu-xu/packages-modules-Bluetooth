@@ -28,10 +28,10 @@ namespace hfp_hal_interface {
 // Checks whether the lower layer (kernel) supports WBS
 bool get_wbs_supported();
 
-enum codec: uint8_t {
-	CVSD = 1,
-	MSBC_TRANSPARENT = 2,
-	MSBC = 3,
+enum codec: uint64_t {
+	CVSD = 1 << 0,
+	MSBC_TRANSPARENT = 1 << 1,
+	MSBC = 1 << 2,
 };
 
 struct bt_codec {
@@ -47,17 +47,20 @@ struct bt_codecs {
   bt_codec* codecs;
 };
 
+// Initialize the SCO HFP HAL module
+void init();
+
 // Check if wideband speech is supported on local device
 bool get_wbs_supported();
 
-// Checks the supported codecs
-bt_codecs get_codec_capabilities(codec* codecs);
+// Checks the details of the codecs (specified as a bitmask of enum codec)
+bt_codecs get_codec_capabilities(uint64_t codecs);
 
 // Check if hardware offload is supported
 bool get_offload_supported();
 
 // Check if hardware offload is enabled
-bool get_offload_supported();
+bool get_offload_enabled();
 
 // Set offload enable/disable
 bool enable_offload(bool enable);
