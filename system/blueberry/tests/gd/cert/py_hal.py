@@ -249,9 +249,10 @@ class PyHal(Closable):
         phy_scan_params.min_ce_length = 0
         phy_scan_params.max_ce_length = 0
         self.send_hci_command(
-            hci_packets.LeExtendedCreateConnectionBuilder(
-                hci_packets.InitiatorFilterPolicy.USE_CONNECT_LIST, hci_packets.OwnAddressType.RANDOM_DEVICE_ADDRESS,
-                hci_packets.AddressType.RANDOM_DEVICE_ADDRESS, remote_addr, 1, [phy_scan_params]))
+            hci_packets.LeExtendedCreateConnectionBuilder(hci_packets.InitiatorFilterPolicy.USE_FILTER_ACCEPT_LIST,
+                                                          hci_packets.OwnAddressType.RANDOM_DEVICE_ADDRESS,
+                                                          hci_packets.AddressType.RANDOM_DEVICE_ADDRESS, remote_addr, 1,
+                                                          [phy_scan_params]))
 
     def complete_le_connection(self):
         connection_complete = HciCaptures.LeConnectionCompleteCapture()
