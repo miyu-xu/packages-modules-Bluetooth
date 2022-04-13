@@ -16,6 +16,24 @@
       "message": "\u003e And put methods directly on the ast nodes\n\nI wonder _why_ you do this? Maybe you just don\u0027t feel the traits are providing any benefit?",
       "revId": "8897993c678aec186cb73db49535fd387d8bc279",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0736611_e304a0b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-13T10:26:32Z",
+      "side": 1,
+      "message": "I added more detailed explanation in my commit message",
+      "parentUuid": "03f1c1bb_0555ff24",
+      "revId": "8897993c678aec186cb73db49535fd387d8bc279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
