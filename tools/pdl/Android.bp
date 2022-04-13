@@ -11,6 +11,7 @@ package {
 rust_defaults {
     name: "pdl_defaults",
     srcs: ["src/main.rs"],
+    edition: "2018",
     rustlibs: [
         "libpest",
         "libserde",
