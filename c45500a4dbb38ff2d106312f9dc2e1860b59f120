@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c842e96c_cb3abb8b",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-04-13T07:49:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59b6a79d_4f944630",
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4be1fe44_1fc4fa2c",
@@ -82,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c1137f3_fdf41a32",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-04-13T07:49:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2569647f_d1c799ef",
+      "range": {
+        "startLine": 92,
+        "startChar": 21,
+        "endLine": 92,
+        "endChar": 25
+      },
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07fd51de_5da956b1",
@@ -95,6 +137,24 @@
       "writtenOn": "2022-04-07T10:30:28Z",
       "side": 1,
       "message": "ditto",
+      "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a7c8146_aa32742e",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-04-13T07:49:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07fd51de_5da956b1",
       "revId": "c45500a4dbb38ff2d106312f9dc2e1860b59f120",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

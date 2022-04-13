@@ -34,6 +34,24 @@
       "parentUuid": "a832cdae_f6496ba3",
       "revId": "57191c5fff3ad9a694048435d6bab06d04bd26a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf17ebe0_323a0c57",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 5
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-04-13T07:49:42Z",
+      "side": 1,
+      "message": "In latest patchset #6 it\u0027s like\n            \"name\": \"SingleDev_TwoChanStereoSnk_VS_Vbc_1\",\n            \"codec_config_name\": \"SingleDev_TwoChanStereoSrc_VS_48_Vbc\",\n            \"qos_config_name\": \"QoS_Config_VS_48_Game\", \"QoS_Config_VS_16_Game\"\n            \nI think SingleDev_TwoChanStereoSrc_VS_48_Vbc has config for both the directions.\n                    \"direction\": \"SINK\",\n                    \"configuration_strategy\": \"STEREO_ONE_CIS_PER_DEVICE\",\n                    \"codec_id\": {\n                        \"coding_format\": 6,\n                        \"vendor_company_id\": 0,\n                        \"vendor_codec_id\": 0\n                    },\n                    \"codec_configuration\": [\n                        {\n                            \"name\": \"sampling_frequency\",\n                            \"type\": 1,\n                            \"compound_value\": {\n                                \"value\": [\n                                    8\n                                ]\n                            }\n                        },\n           \n                        \n                    \"direction\": \"SOURCE\",\n                    \"configuration_strategy\": \"STEREO_ONE_CIS_PER_DEVICE\",\n                    \"codec_id\": {\n                        \"coding_format\": 6,\n                        \"vendor_company_id\": 0,\n                        \"vendor_codec_id\": 0\n                    },\n                    \"codec_configuration\": [\n                        {\n                            \"name\": \"sampling_frequency\",\n                            \"type\": 1,\n                            \"compound_value\": {\n                                \"value\": [\n                                    3\n                                ]\n                            }\n                        },\nSee freq value for both direction is different hence QoS may also differ for both \nReason for below,\n\n\"qos_config_name\": \"QoS_Config_VS_48_Game\", \"QoS_Config_VS_16_Game\"                 \n                    \n\nMy question was not regarding \"configurable for Sink and Source\" of course that is a distant valid possibility.\nMy query was for a bi-directional use case (whether source OR sink) the Tx Qos and Rx Qos might be different as forward path it may have 48k encoding and reverse path it may have 16k decoding (just as above example)\nCould you comment on that ?",
+      "parentUuid": "6ef11859_5714b7ee",
+      "revId": "57191c5fff3ad9a694048435d6bab06d04bd26a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
