@@ -1,14 +1,17 @@
 //! Various utility functions used in tests.
 
-use crate::ast;
-use crate::parser::parse_inline;
+// This file is included directly into integration tests in the
+// `test/` directory. These tests are compiled without access to the
+// rest of the `pdl` crate. To make this work, avoid `use crate::`
+// statements below.
+
 use std::io::Write;
 use std::process::{Command, Stdio};
 use tempfile::NamedTempFile;
 
 /// Search for a binary in `$PATH` or as a sibling to the current
 /// executable (typically the test binary).
-fn find_binary(name: &str) -> Option<std::path::PathBuf> {
+pub fn find_binary(name: &str) -> Option<std::path::PathBuf> {
     let mut current_exe = std::env::current_exe().unwrap();
     current_exe.pop();
     let paths = std::env::var_os("PATH").unwrap();
@@ -20,16 +23,6 @@ fn find_binary(name: &str) -> Option<std::path::PathBuf> {
     }
 
     None
-}
-
-/// Parse a string fragment as a PDL file.
-///
-/// # Panics
-///
-/// Panics on parse errors.
-pub fn parse_str(text: &str) -> ast::Grammar {
-    let mut db = ast::SourceDatabase::new();
-    parse_inline(&mut db, String::from("stdin"), String::from(text)).expect("parse error")
 }
 
 /// Run `input` through `rustfmt`.
