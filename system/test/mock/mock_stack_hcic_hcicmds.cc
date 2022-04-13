@@ -179,10 +179,11 @@ void btsnd_hcic_enable_test_mode(void) {
   test::mock::stack_hcic_hcicmds::btsnd_hcic_enable_test_mode();
 }
 void btsnd_hcic_enhanced_accept_synchronous_connection(
-    const RawAddress& bd_addr, enh_esco_params_t* p_params) {
+    const RawAddress& bd_addr, enh_esco_params_t* p_params, uint8_t data_path) {
   mock_function_count_map[__func__]++;
   test::mock::stack_hcic_hcicmds::
-      btsnd_hcic_enhanced_accept_synchronous_connection(bd_addr, p_params);
+      btsnd_hcic_enhanced_accept_synchronous_connection(bd_addr, p_params,
+                                                        data_path);
 }
 void btsnd_hcic_enhanced_flush(uint16_t handle, uint8_t packet_type) {
   mock_function_count_map[__func__]++;
@@ -190,10 +191,11 @@ void btsnd_hcic_enhanced_flush(uint16_t handle, uint8_t packet_type) {
                                                             packet_type);
 }
 void btsnd_hcic_enhanced_set_up_synchronous_connection(
-    uint16_t conn_handle, enh_esco_params_t* p_params) {
+    uint16_t conn_handle, enh_esco_params_t* p_params, uint8_t data_path) {
   mock_function_count_map[__func__]++;
   test::mock::stack_hcic_hcicmds::
-      btsnd_hcic_enhanced_set_up_synchronous_connection(conn_handle, p_params);
+      btsnd_hcic_enhanced_set_up_synchronous_connection(conn_handle, p_params,
+                                                        data_path);
 }
 void btsnd_hcic_exit_park_mode(uint16_t handle) {
   mock_function_count_map[__func__]++;

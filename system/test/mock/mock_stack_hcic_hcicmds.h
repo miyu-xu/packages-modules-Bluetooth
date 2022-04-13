@@ -187,10 +187,13 @@ extern struct btsnd_hcic_enable_test_mode btsnd_hcic_enable_test_mode;
 // Params: const RawAddress& bd_addr, enh_esco_params_t* p_params
 // Return: void
 struct btsnd_hcic_enhanced_accept_synchronous_connection {
-  std::function<void(const RawAddress& bd_addr, enh_esco_params_t* p_params)>
-      body{[](const RawAddress& bd_addr, enh_esco_params_t* p_params) {}};
-  void operator()(const RawAddress& bd_addr, enh_esco_params_t* p_params) {
-    body(bd_addr, p_params);
+  std::function<void(const RawAddress& bd_addr, enh_esco_params_t* p_params,
+                     uint8_t data_path)>
+      body{[](const RawAddress& bd_addr, enh_esco_params_t* p_params,
+              uint8_t data_path) {}};
+  void operator()(const RawAddress& bd_addr, enh_esco_params_t* p_params,
+                  uint8_t data_path) {
+    body(bd_addr, p_params, data_path);
   };
 };
 extern struct btsnd_hcic_enhanced_accept_synchronous_connection
@@ -209,13 +212,16 @@ struct btsnd_hcic_enhanced_flush {
 extern struct btsnd_hcic_enhanced_flush btsnd_hcic_enhanced_flush;
 
 // Name: btsnd_hcic_enhanced_set_up_synchronous_connection
-// Params: uint16_t conn_handle, enh_esco_params_t* p_params
+// Params: uint16_t conn_handle, enh_esco_params_t* p_params, uint8_t data_path
 // Return: void
 struct btsnd_hcic_enhanced_set_up_synchronous_connection {
-  std::function<void(uint16_t conn_handle, enh_esco_params_t* p_params)> body{
-      [](uint16_t conn_handle, enh_esco_params_t* p_params) {}};
-  void operator()(uint16_t conn_handle, enh_esco_params_t* p_params) {
-    body(conn_handle, p_params);
+  std::function<void(uint16_t conn_handle, enh_esco_params_t* p_params,
+                     uint8_t data_path)>
+      body{[](uint16_t conn_handle, enh_esco_params_t* p_params,
+              uint8_t data_path) {}};
+  void operator()(uint16_t conn_handle, enh_esco_params_t* p_params,
+                  uint8_t data_path) {
+    body(conn_handle, p_params, data_path);
   };
 };
 extern struct btsnd_hcic_enhanced_set_up_synchronous_connection

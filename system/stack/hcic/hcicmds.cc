@@ -1447,7 +1447,7 @@ void btsnd_hcic_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
 }
 
 void btsnd_hcic_enhanced_set_up_synchronous_connection(
-    uint16_t conn_handle, enh_esco_params_t* p_params) {
+    uint16_t conn_handle, enh_esco_params_t* p_params, uint8_t data_path) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
 
@@ -1484,8 +1484,8 @@ void btsnd_hcic_enhanced_set_up_synchronous_connection(
   UINT8_TO_STREAM(pp, p_params->output_pcm_data_format);
   UINT8_TO_STREAM(pp, p_params->input_pcm_payload_msb_position);
   UINT8_TO_STREAM(pp, p_params->output_pcm_payload_msb_position);
-  UINT8_TO_STREAM(pp, p_params->input_data_path);
-  UINT8_TO_STREAM(pp, p_params->output_data_path);
+  UINT8_TO_STREAM(pp, data_path);  // input data path
+  UINT8_TO_STREAM(pp, data_path);  // output data path
   UINT8_TO_STREAM(pp, p_params->input_transport_unit_size);
   UINT8_TO_STREAM(pp, p_params->output_transport_unit_size);
   UINT16_TO_STREAM(pp, p_params->max_latency_ms);
@@ -1496,7 +1496,7 @@ void btsnd_hcic_enhanced_set_up_synchronous_connection(
 }
 
 void btsnd_hcic_enhanced_accept_synchronous_connection(
-    const RawAddress& bd_addr, enh_esco_params_t* p_params) {
+    const RawAddress& bd_addr, enh_esco_params_t* p_params, uint8_t data_path) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
 
@@ -1533,8 +1533,8 @@ void btsnd_hcic_enhanced_accept_synchronous_connection(
   UINT8_TO_STREAM(pp, p_params->output_pcm_data_format);
   UINT8_TO_STREAM(pp, p_params->input_pcm_payload_msb_position);
   UINT8_TO_STREAM(pp, p_params->output_pcm_payload_msb_position);
-  UINT8_TO_STREAM(pp, p_params->input_data_path);
-  UINT8_TO_STREAM(pp, p_params->output_data_path);
+  UINT8_TO_STREAM(pp, data_path);  // input data path
+  UINT8_TO_STREAM(pp, data_path);  // output data path
   UINT8_TO_STREAM(pp, p_params->input_transport_unit_size);
   UINT8_TO_STREAM(pp, p_params->output_transport_unit_size);
   UINT16_TO_STREAM(pp, p_params->max_latency_ms);

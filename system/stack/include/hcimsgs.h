@@ -332,11 +332,11 @@ extern void btsnd_hcic_write_inquiry_mode(
 
 /* Enhanced setup SCO connection (CSA2) */
 extern void btsnd_hcic_enhanced_set_up_synchronous_connection(
-    uint16_t conn_handle, enh_esco_params_t* p_parms);
+    uint16_t conn_handle, enh_esco_params_t* p_parms, uint8_t data_path);
 
 /* Enhanced accept SCO connection request (CSA2) */
 extern void btsnd_hcic_enhanced_accept_synchronous_connection(
-    const RawAddress& bd_addr, enh_esco_params_t* p_parms);
+    const RawAddress& bd_addr, enh_esco_params_t* p_parms, uint8_t data_path);
 
 #define HCI_DATA_HANDLE_MASK 0x0FFF
 
