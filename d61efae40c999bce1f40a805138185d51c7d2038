@@ -46,6 +46,30 @@
       },
       "revId": "d61efae40c999bce1f40a805138185d51c7d2038",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2018e443_920aa7e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-13T21:53:28Z",
+      "side": 1,
+      "message": "We don\u0027t need to know that. So here it how it should work\n\n1) In case BTA_GATTC_CLOSE_EVT came without LeAudio calling disconnect it means ACL has been disconnected. We don\u0027t need to Disconnect CISes as those are already not valid. We need to clean group and ASEs states - and I believe we do  it.\n\n2) In case Java called Disconnect, since we don\u0027t know if ACL will be dropped after calling GattClose, LeAudio code shall Disconnect CISes related to the ACL before calling GattClose. Basically stack need to remember that disconnection has been triggered by the user, then stream should be dropped and when this is done, GATT Close can be called.\n\nIn this way, whenever BTA_GATTC_CLOSE_EVT arrives, we are already good and don\u0027t need to figure out if ACL is still there or not.",
+      "parentUuid": "bab24d08_c6260fdf",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "d61efae40c999bce1f40a805138185d51c7d2038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
