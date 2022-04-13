@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f5811b9_1152c3b7",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-13T09:51:19Z",
+      "side": 1,
+      "message": "What is the default edition in Soong? Is it 2015 like in \"normal Rust\" or is it something else?\n\nThe changes between 2018 and 2021 are tiny, so if possible, I would suggest going all the way to 2021.",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "780d270db91f8693042c17b54f0053a49e8cc26e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7acbf010_59884e75",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-13T09:51:19Z",
+      "side": 1,
+      "message": "Why do you move this out? It might be a good change, but it doesn\u0027t seem to be related to setting the edition to 2018.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 26
+      },
+      "revId": "780d270db91f8693042c17b54f0053a49e8cc26e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3738ed_f7a019dd",
+        "filename": "tools/pdl/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-13T09:51:19Z",
+      "side": 1,
+      "message": "Ah, this is so much nicer 😊",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 3
+      },
+      "revId": "780d270db91f8693042c17b54f0053a49e8cc26e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
