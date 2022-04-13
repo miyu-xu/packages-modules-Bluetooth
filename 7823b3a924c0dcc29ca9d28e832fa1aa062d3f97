@@ -1137,6 +1137,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cd48fe6_1bd53eca",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1892347
+      },
+      "writtenOn": "2022-04-13T15:00:29Z",
+      "side": 1,
+      "message": "Regarding `Pin`, you don\u0027t need it around the `Rc` here.",
+      "parentUuid": "0c140d98_d000b901",
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "6e3907bd_485af171",
