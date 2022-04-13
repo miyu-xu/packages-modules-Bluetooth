@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e612760b_555ea0b6",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-13T10:21:05Z",
+      "side": 1,
+      "message": "Great that you checked. If the default is 2021, then I would not override it here — I would simplify the CL to the nice cleanup you did in `main.rs` and that\u0027s it.",
+      "parentUuid": "67258255_6c13f4a4",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "780d270db91f8693042c17b54f0053a49e8cc26e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7acbf010_59884e75",
         "filename": "tools/pdl/Android.bp",
         "patchSetId": 1
