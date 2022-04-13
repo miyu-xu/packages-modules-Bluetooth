@@ -506,25 +506,39 @@ fn parse_grammar(root: Node<'_>, context: &Context) -> Result<ast::Grammar, Stri
     Ok(grammar)
 }
 
-/// Parse a new source file.
-/// The source file is fully read and added to the compilation database.
-/// Returns the constructed AST, or a descriptive error message in case
-/// of syntax error.
-pub fn parse_file(
+/// Parse a string with PDL.
+///
+/// The source is added to the compilation database under the provided
+/// name. Returns the constructed AST, or a descriptive error message
+/// in case of syntax error.
+pub fn parse_inline(
     sources: &mut ast::SourceDatabase,
-    name: String,
+    name: &str,
+    source: &str,
 ) -> Result<ast::Grammar, Diagnostic<ast::FileId>> {
-    let source = std::fs::read_to_string(&name).map_err(|e| {
-        Diagnostic::error().with_message(format!("failed to read input file '{}': {}", &name, e))
-    })?;
-    let root = PDLParser::parse(Rule::grammar, &source)
+    let root = PDLParser::parse(Rule::grammar, source)
         .map_err(|e| {
             Diagnostic::error()
                 .with_message(format!("failed to parse input file '{}': {}", &name, e))
         })?
         .next()
         .unwrap();
-    let line_starts: Vec<_> = files::line_starts(&source).collect();
-    let file = sources.add(name, source.clone());
+    let line_starts: Vec<_> = files::line_starts(source).collect();
+    let file = sources.add(name.to_owned(), source.to_owned());
     parse_grammar(root, &(file, &line_starts)).map_err(|e| Diagnostic::error().with_message(e))
+}
+
+/// Parse a new source file.
+///
+/// The source file is fully read and added to the compilation
+/// database. Returns the constructed AST, or a descriptive error
+/// message in case of syntax error.
+pub fn parse_file(
+    sources: &mut ast::SourceDatabase,
+    path: &str,
+) -> Result<ast::Grammar, Diagnostic<ast::FileId>> {
+    let source = std::fs::read_to_string(path).map_err(|e| {
+        Diagnostic::error().with_message(format!("failed to read input file '{}': {}", &path, e))
+    })?;
+    parse_inline(sources, path, &source)
 }
