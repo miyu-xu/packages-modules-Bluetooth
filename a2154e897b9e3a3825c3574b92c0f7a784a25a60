@@ -117,6 +117,30 @@
       },
       "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55b44f07_c98cbd47",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-13T15:24:02Z",
+      "side": 1,
+      "message": "Why not both of them ?",
+      "parentUuid": "00f5b2c5_61adefe4",
+      "range": {
+        "startLine": 32,
+        "startChar": 17,
+        "endLine": 32,
+        "endChar": 80
+      },
+      "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d6982a2_bc7734f6",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 914,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-13T15:24:02Z",
+      "side": 1,
+      "message": "Actually most important part for this CL was \"Server_Preferred\" requirement since it will covers always QoS, but yes it can be extended. Done, please check now.",
+      "parentUuid": "ff0ef189_8754c1c7",
+      "range": {
+        "startLine": 914,
+        "startChar": 21,
+        "endLine": 914,
+        "endChar": 67
+      },
+      "revId": "1379a5ec1964d3044588a4442fbe59c5a3941a10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ddee4e81_2ea37e74",
         "filename": "system/bta/le_audio/audio_set_configurations.json",
         "patchSetId": 2
