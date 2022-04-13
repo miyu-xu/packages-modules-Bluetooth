@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04c2570_46775386",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-04-13T13:52:39Z",
+      "side": 1,
+      "message": "By adding this \u0027return\u0027ing here with no other code, we\u0027re no longer closing the file, so we leak the resources.  I\u0027ve put up a follow-up fix: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2063412",
+      "revId": "7663c0291dc33f9d8f504301895c8baf6ced3d2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
