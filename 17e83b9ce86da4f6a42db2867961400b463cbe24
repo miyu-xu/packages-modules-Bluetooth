@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "672ac1fe_855c05e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-13T14:30:29Z",
+      "side": 1,
+      "message": "GATT disconnection is not triggered from LE Audio context, it originates from Java service Disconnection of device. It\u0027s known in client.cc only by getting GATT close event.",
+      "parentUuid": "d1be57f9_5903e762",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "142d55fd_1e9ece34",
