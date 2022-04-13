@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1be57f9_5903e762",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-13T12:59:17Z",
+      "side": 1,
+      "message": "I think there is misunderstanding on the issue in the bug.\n\nWhat we need is properly handle here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d856?q\u003dclient.cc\n\nWe need to check if group is streaming and if so, instead of disconnecting from GATT (which might not end with ACL disconnection) we should stop stream.\nWhen stream is stopped we should be good to go with GATT disconnection.\n\n",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "142d55fd_1e9ece34",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-13T12:59:17Z",
+      "side": 1,
+      "message": "this looks wrong.\nit means we could send DisconnectCis even we believe CIS is not created?",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d2c678a_d0c79169",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-13T12:59:17Z",
+      "side": 1,
+      "message": "this is wrong, we shall not disconnect CIS when ACL is disconnected.",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
