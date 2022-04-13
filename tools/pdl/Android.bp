@@ -52,3 +52,23 @@ rust_test_host {
         "rustfmt.toml",
     ],
 }
+
+rust_test_host {
+    name: "pdl_tests",
+    srcs: ["test/pdl_tests.rs"],
+    test_suites: ["general-tests"],
+    enabled: false, // rustfmt is only available on x86.
+    arch: {
+        x86_64: {
+            enabled: true,
+        },
+    },
+    rustlibs: [
+        "libtempfile",
+    ],
+    data: [
+        ":bluetooth_packetgen",
+        ":pdl",
+        ":rustfmt",
+    ],
+}

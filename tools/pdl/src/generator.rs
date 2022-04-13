@@ -343,6 +343,10 @@ fn generate_packet_decl(
     code.push_str(&quote_block! {
         impl #data_name {
             fn conforms(bytes: &[u8]) -> bool {
+                // TODO(mgeisler): return Boolean expression directly.
+                if bytes.len() < #total_field_size {
+                    return false;
+                }
                 true
             }
 
@@ -500,7 +504,19 @@ pub fn generate_rust(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> R
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::test_utils::{assert_eq_with_diff, parse_str, rustfmt};
+    use crate::ast;
+    use crate::parser::parse_inline;
+    use crate::test_utils::{assert_eq_with_diff, rustfmt};
+
+    /// Parse a string fragment as a PDL file.
+    ///
+    /// # Panics
+    ///
+    /// Panics on parse errors.
+    pub fn parse_str(text: &str) -> ast::Grammar {
+        let mut db = ast::SourceDatabase::new();
+        parse_inline(&mut db, String::from("stdin"), String::from(text)).expect("parse error")
+    }
 
     #[test]
     fn test_generate_preamble() {
