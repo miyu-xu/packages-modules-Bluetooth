@@ -10,7 +10,7 @@ package {
 
 rust_defaults {
     name: "pdl_defaults",
-    srcs: ["src/main.rs"],
+    edition: "2018",
     rustlibs: [
         "libpest",
         "libserde",
@@ -25,11 +25,13 @@ rust_defaults {
 
 rust_binary_host {
     name: "pdl",
+    srcs: ["src/main.rs"],
     defaults: ["pdl_defaults"],
 }
 
 rust_test_host {
     name: "pdl_inline_tests",
+    srcs: ["src/main.rs"],
     defaults: ["pdl_defaults"],
     test_suites: ["general-tests"],
 }
