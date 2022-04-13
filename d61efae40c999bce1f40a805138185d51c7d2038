@@ -22,6 +22,30 @@
       },
       "revId": "d61efae40c999bce1f40a805138185d51c7d2038",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bab24d08_c6260fdf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-13T21:33:58Z",
+      "side": 1,
+      "message": "I agree and understand but the main problem is how it\u0027ll be known that BTA_GATTC_CLOSE_EVT is caused by ACL disconnection or just by Java service disconnection of profile ? I think we discussed it already.",
+      "parentUuid": "87a3afd1_d3f08062",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "d61efae40c999bce1f40a805138185d51c7d2038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

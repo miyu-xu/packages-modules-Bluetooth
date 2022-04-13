@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5658dbe9_f48b081d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-13T21:33:58Z",
+      "side": 1,
+      "message": "Did I wrote something else ? Indeed - this is when Disconnect call is triggered from Java.",
+      "parentUuid": "bf3c0c33_5b77d213",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "142d55fd_1e9ece34",
