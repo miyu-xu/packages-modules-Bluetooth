@@ -52,6 +52,7 @@ class LeAudioDevice {
   bool known_service_handles_;
   bool notify_connected_after_read_;
   bool removing_device_;
+  bool cleanup_cises_;
 
   /* we are making active attempt to connect to this device, 'direct connect'.
    * This is true only during initial phase of first connection. */
