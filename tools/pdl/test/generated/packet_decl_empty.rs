@@ -11,6 +11,9 @@ pub struct FooBuilder {}
 
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
+        if bytes.len() < 0 {
+            return false;
+        }
         true
     }
     fn parse(bytes: &[u8]) -> Result<Self> {

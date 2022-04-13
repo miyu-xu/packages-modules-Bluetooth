@@ -343,6 +343,10 @@ fn generate_packet_decl(
     code.push_str(&quote_block! {
         impl #data_name {
             fn conforms(bytes: &[u8]) -> bool {
+                // TODO(mgeisler): return Boolean expression directly.
+                if bytes.len() < #total_field_size {
+                    return false;
+                }
                 true
             }
 
