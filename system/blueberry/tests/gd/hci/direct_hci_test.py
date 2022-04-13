@@ -245,7 +245,7 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):
         self.dut_hci.send_command(LeAddDeviceToConnectListBuilder(ConnectListAddressType.RANDOM, '0C:05:04:03:02:01'))
         phy_scan_params = self._create_phy_scan_params()
         self.dut_hci.send_command(
-            LeExtendedCreateConnectionBuilder(InitiatorFilterPolicy.USE_CONNECT_LIST,
+            LeExtendedCreateConnectionBuilder(InitiatorFilterPolicy.USE_FILTER_ACCEPT_LIST,
                                               OwnAddressType.RANDOM_DEVICE_ADDRESS, AddressType.RANDOM_DEVICE_ADDRESS,
                                               'BA:D5:A4:A3:A2:A1', 1, [phy_scan_params]))
 
