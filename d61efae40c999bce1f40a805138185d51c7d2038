@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87a3afd1_d3f08062",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-13T21:08:08Z",
+      "side": 1,
+      "message": "when ACL is disconencted, CISes shall be disconnected. There is nothing to clean here. If it is different, then it is controller issue.",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "d61efae40c999bce1f40a805138185d51c7d2038",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
