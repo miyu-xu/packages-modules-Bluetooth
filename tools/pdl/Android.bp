@@ -41,3 +41,23 @@ rust_test_host {
         "rustfmt.toml",
     ],
 }
+
+rust_test_host {
+    name: "pdl_tests",
+    srcs: ["test/pdl_tests.rs"],
+    test_suites: ["general-tests"],
+    rustlibs: [
+        "libanyhow",
+        "libquote",
+        "libsyn",
+        "libtempfile",
+    ],
+    required: [
+        "bluetooth_packetgen",
+        "pdl",
+    ],
+    data: [
+        "rustfmt",
+        "rustfmt.toml",
+    ],
+}
