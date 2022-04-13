@@ -33,6 +33,23 @@
       "message": "it would be good to have unit tests for that as well.",
       "revId": "fdc8bd1f3f28e9f58440c3dffc105a409c2cbbfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58898f34_13b152a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-13T14:33:02Z",
+      "side": 1,
+      "message": "Running through the arm/disarm sequencing is on the list of tests to provide.\n\nThanks\n",
+      "revId": "fdc8bd1f3f28e9f58440c3dffc105a409c2cbbfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
