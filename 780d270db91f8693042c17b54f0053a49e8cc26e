@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce298d8f_2de2bb78",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-13T10:15:28Z",
+      "side": 1,
+      "message": "I followed the guidelines described in http://go/android-rust-style .\nHowever I don\u0027t know if these are still valid.",
+      "parentUuid": "6f5811b9_1152c3b7",
+      "range": {
+        "startLine": 13,
+        "startChar": 4,
+        "endLine": 13,
+        "endChar": 19
+      },
+      "revId": "780d270db91f8693042c17b54f0053a49e8cc26e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7acbf010_59884e75",
         "filename": "tools/pdl/Android.bp",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-13T09:51:19Z",
       "side": 1,
       "message": "Why do you move this out? It might be a good change, but it doesn\u0027t seem to be related to setting the edition to 2018.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 26
+      },
+      "revId": "780d270db91f8693042c17b54f0053a49e8cc26e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "803e7563_362044da",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-13T10:15:28Z",
+      "side": 1,
+      "message": "Yep indeed, I will remove them",
+      "parentUuid": "7acbf010_59884e75",
       "range": {
         "startLine": 28,
         "startChar": 4,
