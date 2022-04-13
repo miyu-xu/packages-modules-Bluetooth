@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88cefdd9_b5b57412",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-13T13:10:23Z",
+      "side": 1,
+      "message": "if exceed the cache size limitation, remove the LRU item\nif an cache item is expired (7 days), remove the item\n\nCurrently the trigger point is only bta_gattc_hash_write",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 381,
+        "endChar": 3
+      },
+      "revId": "21ac14ecd9549cc4032162db363f71fd7c2ae81b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
