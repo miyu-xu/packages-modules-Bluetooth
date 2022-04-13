@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d29561df_3a06873a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-13T07:25:28Z",
+      "side": 1,
+      "message": "FYI, Jack, there is an unresolved comment from aosp/627768:\n\"I\u0027m confused how you can have an upper bound and a lower bound on a max.  This seems more complex than it needs to be. It seems like if you want a range, it should be in the settings, not here.\"",
+      "range": {
+        "startLine": 72,
+        "startChar": 21,
+        "endLine": 72,
+        "endChar": 60
+      },
+      "revId": "3e2e9f6069f4f118df2a0b7b9b2aadca2a81e70a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
