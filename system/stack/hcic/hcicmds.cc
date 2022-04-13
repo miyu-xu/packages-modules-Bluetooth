@@ -1484,8 +1484,8 @@ void btsnd_hcic_enhanced_set_up_synchronous_connection(
   UINT8_TO_STREAM(pp, p_params->output_pcm_data_format);
   UINT8_TO_STREAM(pp, p_params->input_pcm_payload_msb_position);
   UINT8_TO_STREAM(pp, p_params->output_pcm_payload_msb_position);
-  UINT8_TO_STREAM(pp, p_params->input_data_path);
-  UINT8_TO_STREAM(pp, p_params->output_data_path);
+  // UINT8_TO_STREAM(pp, p_params->input_data_path);
+  // UINT8_TO_STREAM(pp, p_params->output_data_path);
   UINT8_TO_STREAM(pp, p_params->input_transport_unit_size);
   UINT8_TO_STREAM(pp, p_params->output_transport_unit_size);
   UINT16_TO_STREAM(pp, p_params->max_latency_ms);
@@ -1533,8 +1533,8 @@ void btsnd_hcic_enhanced_accept_synchronous_connection(
   UINT8_TO_STREAM(pp, p_params->output_pcm_data_format);
   UINT8_TO_STREAM(pp, p_params->input_pcm_payload_msb_position);
   UINT8_TO_STREAM(pp, p_params->output_pcm_payload_msb_position);
-  UINT8_TO_STREAM(pp, p_params->input_data_path);
-  UINT8_TO_STREAM(pp, p_params->output_data_path);
+  // UINT8_TO_STREAM(pp, p_params->input_data_path);
+  // UINT8_TO_STREAM(pp, p_params->output_data_path);
   UINT8_TO_STREAM(pp, p_params->input_transport_unit_size);
   UINT8_TO_STREAM(pp, p_params->output_transport_unit_size);
   UINT16_TO_STREAM(pp, p_params->max_latency_ms);

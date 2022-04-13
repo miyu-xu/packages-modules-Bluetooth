@@ -61,7 +61,6 @@ typedef uint8_t esco_pcm_data_format_t;
 // SCO Data Path
 #define ESCO_DATA_PATH_PCM 1                /* 0x01-0xFE (PCM Chan) */
 #define ESCO_DATA_PATH_HCI 0                /* HCI-0, 0x01-0xFE (PCM Chan) */
-typedef uint8_t esco_data_path_t;
 
 // eSCO constants
 #define TXRX_64KBITS_RATE 0x00001f40  /* 64 kbits/sec data rate */
@@ -124,8 +123,6 @@ typedef struct {
                                               position */
   uint8_t output_pcm_payload_msb_position; /* Output PCM sample payload MSB
                                               position */
-  esco_data_path_t input_data_path;   /* 0x00 - HCI, or 0x01-0xFE for VS) */
-  esco_data_path_t output_data_path;  /* 0x00 - HCI, or 0x01-0xFE for VS) */
   uint8_t input_transport_unit_size;  /* Input transport unit size */
   uint8_t output_transport_unit_size; /* Output transport unit size */
   uint16_t max_latency_ms;          /* Maximum latency (0x4-0xFFFE in msecs) */
