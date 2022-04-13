@@ -16,6 +16,41 @@
       "message": "Hi Sonny,\n\nPlease help reivew the impl_dbus_arg_bitflags macro. Please kindly suggest if there is a better implementation.\n\nHi Hsin-Yu,\nDo we want to pass the codec specific fields? Or do you think we should skip those fields passing to dBus. Do you know what those fields are for?",
       "revId": "e669daacfcf02e4affe30b25c64b62f85fbac9ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2625b6fb_e2321257",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-04-13T01:47:33Z",
+      "side": 1,
+      "message": "They\u0027re used in optional codecs like aptx and LDAC, which are not used on Chrome OS at this moment.\n\nThe future plan that involves this codec capabilities is:\nAfter Floss passes all these codec capabilities to CRAS, we could create settings for user to select if aptx and LDAC codec should be used. And then enable it when CRAS sends `SetAudioConfig` back to Floss.",
+      "parentUuid": "46f8b708_9a269bf1",
+      "revId": "e669daacfcf02e4affe30b25c64b62f85fbac9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74d70ce_5247e9f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-04-13T01:47:33Z",
+      "side": 1,
+      "message": "LGTM for the media part.",
+      "revId": "e669daacfcf02e4affe30b25c64b62f85fbac9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
