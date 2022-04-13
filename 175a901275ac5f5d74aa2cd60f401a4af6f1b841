@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "209db1e8_9f464409",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-04-13T08:41:58Z",
+      "side": 1,
+      "message": "looks good to me. One comment.",
+      "revId": "175a901275ac5f5d74aa2cd60f401a4af6f1b841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "020ffe41_22fe6935",
+        "filename": "system/gd/hci/acl_manager/le_impl_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-04-13T08:41:58Z",
+      "side": 1,
+      "message": "can we have test - adding to white list when connected and disconnected?",
+      "revId": "175a901275ac5f5d74aa2cd60f401a4af6f1b841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
