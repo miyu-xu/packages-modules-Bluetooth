@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "733471a8_9d71f606",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-13T09:59:26Z",
+      "side": 1,
+      "message": "Should we add 32kHz on the json file for conversational as well? It\u0027s the mandatory for the CG role.",
+      "revId": "2795ddba55cd759cc528151a91e8ff3bfc571315",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
