@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf3c0c33_5b77d213",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-13T21:06:46Z",
+      "side": 1,
+      "message": "Grzegorz, we are solving the issue when Disconnect is called from Java. Not that disconnect has been triggered by any other mean.",
+      "parentUuid": "672ac1fe_855c05e4",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "142d55fd_1e9ece34",
