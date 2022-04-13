@@ -483,7 +483,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
-    bool do_disconnect = false;
+    bool do_disconnect = leAudioDevice->cleanup_cises_;
 
     auto ases_pair = leAudioDevice->GetAsesByCisConnHdl(conn_hdl);
     if (ases_pair.sink && (ases_pair.sink->data_path_state ==
@@ -501,8 +501,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       do_disconnect = true;
     }
 
-    if (do_disconnect)
+    if (do_disconnect) {
       IsoManager::GetInstance()->DisconnectCis(conn_hdl, HCI_ERR_PEER_USER);
+    }
   }
 
   void ProcessHciNotifIsoLinkQualityRead(
@@ -580,6 +581,26 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           stream_conf->source_streams.end());
     }
 
+    /* Cleanup leftover CISes e.g. from streaming device */
+    struct ase* ase = leAudioDevice->GetFirstActiveAseByDataPathState(
+        AudioStreamDataPathState::DATA_PATH_ESTABLISHED);
+    if (ase) {
+      leAudioDevice->cleanup_cises_ = true;
+      RemoveDataPathByCisHandle(leAudioDevice, ase->cis_conn_hdl);
+    } else {
+      struct ase* ase = leAudioDevice->GetFirstActiveAseByDataPathState(
+          AudioStreamDataPathState::CIS_ESTABLISHED);
+      if (!ase) {
+        ase = leAudioDevice->GetFirstActiveAseByDataPathState(
+          AudioStreamDataPathState::CIS_PENDING);
+      }
+
+      if (ase) {
+        IsoManager::GetInstance()->DisconnectCis(ase->cis_conn_hdl,
+                                                 HCI_ERR_PEER_USER);
+      }
+    }
+
     /* mark ASEs as not used. */
     leAudioDevice->DeactivateAllAses();
 
@@ -610,7 +631,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     state_machine_callbacks_->StatusReportCb(group->group_id_,
                                              GroupStreamStatus::IDLE);
 
-    if (!group->cig_created_) return;
+    /* CIG may be released from disconnect CIS context */
+    if (!group->cig_created_ || leAudioDevice->cleanup_cises_) return;
 
     IsoManager::GetInstance()->RemoveCig(group->group_id_);
   }
@@ -805,6 +827,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
          * expected */
         if (group->HaveAllActiveDevicesCisDisc()) {
           IsoManager::GetInstance()->RemoveCig(group->group_id_);
+          leAudioDevice->cleanup_cises_ = false;
           return;
         }
 
