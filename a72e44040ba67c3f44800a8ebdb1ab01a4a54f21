@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec3a158_df783688",
+        "filename": "system/blueberry/tests/gd_sl4a/security/oob_pairing_sl4a_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-13T17:28:57Z",
+      "side": 1,
+      "message": "The BOND_NONE event is now sent.",
+      "parentUuid": "807434c9_21a7ac0f",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 70
+      },
+      "revId": "a72e44040ba67c3f44800a8ebdb1ab01a4a54f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37385255_435bfd9c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-13T17:15:12Z",
       "side": 1,
       "message": "Do you need to create a bond first in this test as part of test setup? Or is this sufficient as is?",
+      "range": {
+        "startLine": 276,
+        "startChar": 8,
+        "endLine": 276,
+        "endChar": 24
+      },
+      "revId": "a72e44040ba67c3f44800a8ebdb1ab01a4a54f21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b857637f_81b46e5e",
+        "filename": "system/blueberry/tests/gd_sl4a/security/oob_pairing_sl4a_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-13T17:28:57Z",
+      "side": 1,
+      "message": "Please check line 277 :-D",
+      "parentUuid": "37385255_435bfd9c",
       "range": {
         "startLine": 276,
         "startChar": 8,
