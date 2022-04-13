@@ -2403,7 +2403,7 @@ TEST_F(StateMachineTest, testAttachDeviceToTheStream) {
               sink_group_audio_locations, source_group_audio_locations, true)) {
         LOG(INFO) << __func__ << " Could not set sink configuration of "
                   << stream_conf->conf->name;
-        return;
+        ASSERT_FALSE(0);
       }
     } else {
       /* Source*/
@@ -2412,7 +2412,7 @@ TEST_F(StateMachineTest, testAttachDeviceToTheStream) {
               sink_group_audio_locations, source_group_audio_locations, true)) {
         LOG(INFO) << __func__ << " Could not set source configuration of "
                   << stream_conf->conf->name;
-        return;
+        ASSERT_FALSE(0);
       }
     }
   }
