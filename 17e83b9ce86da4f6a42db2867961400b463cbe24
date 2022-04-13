@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2af76b3_180c7db4",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-13T14:28:09Z",
+      "side": 1,
+      "message": "context function handler notification for data path remove. This flag is only set to true then \"ACL\" is breaking \u003d CIS only may exist if it wasn\u0027t cleaned up before handling ACL disconnection.",
+      "parentUuid": "142d55fd_1e9ece34",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d2c678a_d0c79169",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2022-04-13T12:59:17Z",
       "side": 1,
       "message": "this is wrong, we shall not disconnect CIS when ACL is disconnected.",
+      "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379f051c_92224dfb",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-13T14:28:09Z",
+      "side": 1,
+      "message": "As discussed \"ProcessHciNotifAclDisconnected\" is not only used when ACL is being really disconnected - happens on GATT Close also while group/device is streaming. There may be always some opened CISes. Releasing of Data Path and then CIS will trigger cleanup of device - tested.\n\nThe issue in this CL is that CIG remove would be called twice:\n- from this method\n- from CIS releasement context\n\nwill update this CL",
+      "parentUuid": "3d2c678a_d0c79169",
       "revId": "17e83b9ce86da4f6a42db2867961400b463cbe24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
