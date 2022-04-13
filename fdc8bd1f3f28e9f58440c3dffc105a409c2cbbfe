@@ -16,6 +16,23 @@
       "message": "looks good to me.",
       "revId": "fdc8bd1f3f28e9f58440c3dffc105a409c2cbbfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "754c1ef5_cf66e2b3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-04-13T08:45:43Z",
+      "side": 1,
+      "message": "it would be good to have unit tests for that as well.",
+      "revId": "fdc8bd1f3f28e9f58440c3dffc105a409c2cbbfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
