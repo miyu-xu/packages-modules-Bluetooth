@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "861695c7_671f03b5",
+        "filename": "system/device/include/esco_parameters.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-14T20:52:46Z",
+      "side": 0,
+      "message": "Why do we need to remove this typedef? We also need it as a type even after removing the parameters right?",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 33
+      },
+      "revId": "6d8725c9969085ec6748ccb5fde8f0ac40bb753b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b269f2_67be8dc5",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-14T20:52:46Z",
+      "side": 0,
+      "message": "Current design already support overriding the data path as a compile time parameter. Why do we want to move it out of the struct and add more parameters to btsnd_hcic_enhanced_accept_synchronous_connection?",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 145,
+        "endChar": 76
+      },
+      "revId": "6d8725c9969085ec6748ccb5fde8f0ac40bb753b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
