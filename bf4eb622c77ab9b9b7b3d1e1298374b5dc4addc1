@@ -16,6 +16,23 @@
       "message": "Hi Zach, this change is trying to fix the service discovery we are encountering on Floss. When cancel_discovery is called, do you expect \"inquiry\" and \"service discovery\" will be terminated? If so, we might have to find another solution for the problem. Would you please take a look at it? Thank you.",
       "revId": "bf4eb622c77ab9b9b7b3d1e1298374b5dc4addc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc58c6eb_ccc16586",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-04-14T00:32:24Z",
+      "side": 1,
+      "message": "Hello Jake, we need you help to clarify if cancel_discovery() covers both inquiry and service discovery is expected. Thank you.",
+      "revId": "bf4eb622c77ab9b9b7b3d1e1298374b5dc4addc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
