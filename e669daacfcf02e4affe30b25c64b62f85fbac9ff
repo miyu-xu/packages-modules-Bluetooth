@@ -51,6 +51,23 @@
       "message": "LGTM for the media part.",
       "revId": "e669daacfcf02e4affe30b25c64b62f85fbac9ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78e37367_83b279c4",
+        "filename": "system/gd/rust/linux/dbus_projection/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-14T18:14:33Z",
+      "side": 1,
+      "message": "To reduce the amount of macro, let\u0027s create an even more generic macro that is also reusable for many things. So instead of for bitflags specifically, we can create macro for anything that implements TryFrom and TryInto:\n\n```\n/// Implements `DBusArg` for a type which implements TryFrom and TryInto.\n#[macro_export]\nmacro_rules! impl_dbus_arg_from_into {\n    ($rust_type:ty, $dbus_type:ty) \u003d\u003e {\n        impl DBusArg for $rust_type {\n            type DBusType \u003d $dbus_type;\n            fn from_dbus(\n                data: $dbus_type,\n                _conn: Option\u003cArc\u003cSyncConnection\u003e\u003e,\n                _remote: Option\u003cdbus::strings::BusName\u003c\u0027static\u003e\u003e,\n                _disconnect_watcher: Option\u003c\n                    Arc\u003cstd::sync::Mutex\u003cdbus_projection::DisconnectWatcher\u003e\u003e,\n                \u003e,\n            ) -\u003e Result\u003c$rust_type, Box\u003cdyn std::error::Error\u003e\u003e {\n                match \u003c$rust_type\u003e::try_from(data) {\n                    Err(e) \u003d\u003e Err(Box::new(DBusArgError::new(String::from(format!(\n                        \"error converting {} to {}\",\n                        data,\n                        stringify!($rust_type),\n                    ))))),\n                    Ok(result) \u003d\u003e Ok(result),\n                }\n            }\n\n            fn to_dbus(data: $rust_type) -\u003e Result\u003c$dbus_type, Box\u003cdyn std::error::Error\u003e\u003e {\n                match data.try_into() {\n                    Err(e) \u003d\u003e Err(Box::new(DBusArgError::new(String::from(format!(\n                        \"error converting {:?} to {}\",\n                        data,\n                        stringify!($dbus_type)\n                    ))))),\n                    Ok(result) \u003d\u003e Ok(result),\n                }\n            }\n        }\n    };\n}\n```\n\nAnd in iface_bluetooth_media.rs, you can use the macro like:\n```\nimpl_dbus_arg_from_into!(HfpCodecCapability, i32);\n```\n\nAnd in profiles/hfp.rs, you can implement TryFrom and TryInto for HfpCodecCapability:\n```\nimpl TryInto\u003ci32\u003e for HfpCodecCapability {\n    type Error \u003d ();\n    fn try_into(self) -\u003e Result\u003ci32, Self::Error\u003e {\n        Ok(self.bits())\n    }\n}\n\nimpl TryFrom\u003ci32\u003e for HfpCodecCapability {\n    type Error \u003d ();\n    fn try_from(val: i32) -\u003e Result\u003cSelf, Self::Error\u003e {\n        Self::from_bits(val).ok_or(())\n    }\n}\n```",
+      "revId": "e669daacfcf02e4affe30b25c64b62f85fbac9ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
