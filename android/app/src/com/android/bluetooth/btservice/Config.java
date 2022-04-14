@@ -153,6 +153,9 @@ public class Config {
             new ProfileConfig(BassClientService.class,
                     R.bool.profile_supported_bass_client,
                     (1 << BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)),
+            new ProfileConfig(LeAudioService.class,
+                    R.bool.profile_supported_le_audio_broadcast,
+                    (1 << BluetoothProfile.LE_AUDIO_BROADCAST)),
             new ProfileConfig(BatteryService.class, R.bool.profile_supported_battery,
                     (1 << BluetoothProfile.BATTERY)),
     };
