@@ -263,9 +263,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     auto connecting_addr_with_type = connecting_le_.find(address_with_type);
     if (connecting_addr_with_type == connecting_le_.end()) {
       LOG_WARN("No prior connection request for %s", address_with_type.ToString().c_str());
-    } else {
-      connecting_le_.erase(connecting_addr_with_type);
     }
+    connecting_le_.clear();
+
     if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
       create_connection_timeout_alarms_.erase(address_with_type);
@@ -595,7 +595,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           connectability_state_machine_text(connectability_state_).c_str());
       return;
     }
-    connectability_state_ = ConnectabilityState::ARMING;
     AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
     create_le_connection(empty, false, false);
   }
@@ -658,6 +657,17 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
 
+    if (connectability_state_ == ConnectabilityState::ARMED || connectability_state_ == ConnectabilityState::ARMING) {
+      // Ignored, if we add new devcie to the filter accept list, create connection command will be sent by OnResume.
+      LOG_INFO(
+          "Attempting to create connection in state %s",
+          connectability_state_machine_text(connectability_state_).c_str());
+      return;
+    }
+
+    connectability_state_ = ConnectabilityState::ARMING;
+    connecting_le_ = connect_list;
+
     uint16_t le_scan_interval = kScanIntervalSlow;
     uint16_t le_scan_window = kScanWindowSlow;
     uint16_t le_scan_window_2m = kScanWindowSlow;
@@ -677,9 +687,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     uint16_t conn_latency = 0x0000;
     uint16_t supervision_timeout = 0x001f4;
     ASSERT(check_connection_parameters(conn_interval_min, conn_interval_max, conn_latency, supervision_timeout));
-
-    connecting_le_.insert(address_with_type);
-    connectability_state_ = ConnectabilityState::ARMING;
 
     if (initiator_filter_policy == InitiatorFilterPolicy::USE_CONNECT_LIST) {
       address_with_type = AddressWithType();
