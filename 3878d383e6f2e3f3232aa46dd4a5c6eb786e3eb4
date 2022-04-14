@@ -46,6 +46,30 @@
       },
       "revId": "3878d383e6f2e3f3232aa46dd4a5c6eb786e3eb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed4d8608_6d11ba01",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-04-14T08:12:07Z",
+      "side": 1,
+      "message": "I used PDL text in my pending CL, but that\u0027s fine too",
+      "parentUuid": "7d9f7eba_d8dbd9cb",
+      "range": {
+        "startLine": 509,
+        "startChar": 12,
+        "endLine": 509,
+        "endChar": 28
+      },
+      "revId": "3878d383e6f2e3f3232aa46dd4a5c6eb786e3eb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
