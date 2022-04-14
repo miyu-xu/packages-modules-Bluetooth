@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79349756_b1cd5232",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-04-14T09:40:03Z",
+      "side": 1,
+      "message": "The service LeAudioService is duplicates with L146, this will cause the service be started twice, the design is different from other service.\nAlso, the service is always in the supported list, doesn\u0027t be removed when broadcast is not supported.",
+      "revId": "3eb9a48b4931dff994a0e2b402a959bf7a45bd9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
