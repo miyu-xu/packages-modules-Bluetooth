@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e9f07d9_40bec27f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-14T01:01:46Z",
+      "side": 1,
+      "message": "In the Le audio book, there is a Cig state machine (no CIG, configurable CIG, active CIG, and inactive CIG). Do we need to add some states and have more alignment with that book?",
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
