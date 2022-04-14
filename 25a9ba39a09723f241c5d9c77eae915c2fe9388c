@@ -35,6 +35,41 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4b0210_ad03ee3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Thank you for your suggestion. However, those states are not helpful in our case as it is related to state of the CISes in the CIG. \nWe are looking here only on the moment of creating and removing CIG.",
+      "parentUuid": "6e9f07d9_40bec27f",
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cb05e37_3a2983b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "58630e9c_cf977996",
@@ -81,6 +116,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee8d022e_ce12c314",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1787,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "103f1ec8_19bf826d",
+      "range": {
+        "startLine": 1787,
+        "startChar": 14,
+        "endLine": 1787,
+        "endChar": 15
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37f31494_eda5b00d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1787,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "58630e9c_cf977996",
+      "range": {
+        "startLine": 1787,
+        "startChar": 34,
+        "endLine": 1787,
+        "endChar": 35
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1f6c9c2_089b22c2",
@@ -117,6 +200,54 @@
       "writtenOn": "2022-04-14T09:02:48Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 3125,
+        "startChar": 27,
+        "endLine": 3125,
+        "endChar": 28
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3b6840_170412d5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3125,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1f6c9c2_089b22c2",
+      "range": {
+        "startLine": 3125,
+        "startChar": 43,
+        "endLine": 3125,
+        "endChar": 45
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd8e42f5_beb5cef9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3125,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d376895a_0d081971",
       "range": {
         "startLine": 3125,
         "startChar": 27,
@@ -173,6 +304,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfa3111_50b48b3a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3132,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9131983_36e1b539",
+      "range": {
+        "startLine": 3132,
+        "startChar": 27,
+        "endLine": 3132,
+        "endChar": 28
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de52c696_1847a404",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3132,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9acb0f0e_04f50b7e",
+      "range": {
+        "startLine": 3132,
+        "startChar": 43,
+        "endLine": 3132,
+        "endChar": 45
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68ec3bce_630e999a",
@@ -186,6 +365,30 @@
       "writtenOn": "2022-04-14T09:02:48Z",
       "side": 1,
       "message": "I\u0027m not a fan of using \u0027...Helper\u0027 in function names. I would rather name it `RemoveCigForGroup(...)` 😏",
+      "range": {
+        "startLine": 550,
+        "startChar": 7,
+        "endLine": 550,
+        "endChar": 22
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7414d0c5_cce5ce92",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-14T10:57:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68ec3bce_630e999a",
       "range": {
         "startLine": 550,
         "startChar": 7,
