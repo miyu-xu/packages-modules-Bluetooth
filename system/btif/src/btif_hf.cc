@@ -1077,7 +1077,7 @@ bt_status_t HeadsetInterface::ClccResponse(
   } else {
     BTIF_TRACE_EVENT(
         "clcc_response: [%d] dir %d state %d mode %d number = %s type = %d",
-        index, dir, state, mode, number, type);
+        index, dir, state, mode, PRIVATE_CELL(number), type);
     int res_strlen = snprintf(ag_res.str, sizeof(ag_res.str), "%d,%d,%d,%d,%d",
                               index, dir, state, mode, mpty);
     if (number) {
