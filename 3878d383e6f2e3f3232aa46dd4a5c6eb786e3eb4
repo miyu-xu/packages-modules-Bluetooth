@@ -70,6 +70,30 @@
       },
       "revId": "3878d383e6f2e3f3232aa46dd4a5c6eb786e3eb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3258f73_f1502ce0",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-14T08:25:35Z",
+      "side": 1,
+      "message": "Cool, \"PDL text\" was one of the options I played with locally 😄 Happy to go with that too.",
+      "parentUuid": "ed4d8608_6d11ba01",
+      "range": {
+        "startLine": 509,
+        "startChar": 12,
+        "endLine": 509,
+        "endChar": 28
+      },
+      "revId": "3878d383e6f2e3f3232aa46dd4a5c6eb786e3eb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
