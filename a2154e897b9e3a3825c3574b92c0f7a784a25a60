@@ -141,6 +141,30 @@
       },
       "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47d99135_16c29b88",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-04-14T03:28:45Z",
+      "side": 1,
+      "message": "\"Conversational\" audio would be better played with \"Low Latency\" QoS settings compared to \"High Reliability\", so better to use *_1, the same way other configurations are following.",
+      "parentUuid": "55b44f07_c98cbd47",
+      "range": {
+        "startLine": 32,
+        "startChar": 17,
+        "endLine": 32,
+        "endChar": 80
+      },
+      "revId": "a2154e897b9e3a3825c3574b92c0f7a784a25a60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3c78e6c_aa713162",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1904217
+      },
+      "writtenOn": "2022-04-14T03:28:45Z",
+      "side": 1,
+      "message": "Frame duration value should be 0 --\u003e 7500 us.\nSame for \"SOURCE\" direction as well.",
+      "range": {
+        "startLine": 1254,
+        "startChar": 36,
+        "endLine": 1254,
+        "endChar": 37
+      },
+      "revId": "632386b33256a0013cab533edb3f024252cce45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42b97987_3063b645",
         "filename": "system/bta/le_audio/audio_set_configurations.json",
         "patchSetId": 6
