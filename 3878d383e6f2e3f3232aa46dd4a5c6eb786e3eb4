@@ -22,6 +22,30 @@
       },
       "revId": "3878d383e6f2e3f3232aa46dd4a5c6eb786e3eb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d9f7eba_d8dbd9cb",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-14T08:02:18Z",
+      "side": 1,
+      "message": "Thanks, good catch, this shouldn\u0027t talk about file like the other function below.\n\nI think the word \"grammar\" is slightly off here: the PDL source code does not really describe a grammar, in my opinion. I would instead talk about a \"PDL file\" or a \"string with PDL\" and so on. That\u0027s what I used for now and I hope that sounds good.",
+      "parentUuid": "b355b457_f41de05f",
+      "range": {
+        "startLine": 509,
+        "startChar": 12,
+        "endLine": 509,
+        "endChar": 28
+      },
+      "revId": "3878d383e6f2e3f3232aa46dd4a5c6eb786e3eb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
