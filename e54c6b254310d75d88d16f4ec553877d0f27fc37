@@ -16,6 +16,24 @@
       "message": "update with uint64_t parameter and promise, so you can set the value?",
       "revId": "e54c6b254310d75d88d16f4ec553877d0f27fc37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44915b6b_09c38c2e",
+        "filename": "system/gd/hci/controller_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-14T20:43:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83ae6faf_2349ede8",
+      "revId": "e54c6b254310d75d88d16f4ec553877d0f27fc37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
