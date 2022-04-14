@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53ab5387_fdff5657",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-14T16:11:55Z",
+      "side": 1,
+      "message": "It looks like connecting_le_ is shadowing `connect_list`, but functioning more like a boolean indicating that there is one or more devices looking to connect.\n(Plus `connect_list` should be using the membership suffix `connect_list_`.)\n(Plus naming it should be `accept_filter_list_`)\n\nThen this iteration could be\n```\n    auto connecting_addr_with_type \u003d accept_filter_list_.find(address_with_type);\n    if (connecting_addr_with_type \u003d\u003d accept_filter_list_.end()) {\n      LOG_WARN(\"No prior connection request for %s\", address_with_type.ToString().c_str());\n    }\n```\n\nNot necessary for this CL but wanted to bring that up",
+      "revId": "0d7dd96414797165a95ca3e4d4d8dc3fa845df7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0d65a95_f2570507",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-14T16:11:55Z",
+      "side": 1,
+      "message": "I think we should split this method into two as it will make it more self documenting and understood.\n\nMove all the code below into arm_connectability() and then at this point simply\n\n```\n  arm_connectability\n}\n```\n\nThe signature for \n`create_le_connection(AddressWithType address_with_type, bool add_to_connect_list, bool is_direct) `\n\ncan be a bit odd when passing in `kEmpty, false false` just to skip the first portion of this method.\n\nI put it together here\naosp/2065069\n\nHowever the diff`ing algorithm is suboptimal, but it\u0027s just moving code around and not as big of a change as it may appear",
+      "revId": "0d7dd96414797165a95ca3e4d4d8dc3fa845df7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
