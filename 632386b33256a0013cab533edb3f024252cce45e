@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42b97987_3063b645",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1965,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-14T00:56:43Z",
+      "side": 1,
+      "message": "I\u0027m trying to understand the configuration naming. The one called \"SingleDev_TwoChanStereoSnk_OneChanStereoSrc_16_1\", should the AudioSource audio_ channel_allocation be 1?",
+      "range": {
+        "startLine": 1965,
+        "startChar": 36,
+        "endLine": 1965,
+        "endChar": 37
+      },
+      "revId": "632386b33256a0013cab533edb3f024252cce45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
