@@ -16,6 +16,9 @@
 
 package com.android.bluetooth.bass_client;
 
+import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
+
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
@@ -1100,6 +1103,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return false;
                 }
+                mService.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
                 return service.setConnectionPolicy(device, connectionPolicy);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1115,6 +1119,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
                 }
+                mService.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
                 return service.getConnectionPolicy(device);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1130,6 +1135,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 service.registerCallback(cb);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1144,6 +1150,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 service.unregisterCallback(cb);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1158,6 +1165,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 service.startSearchingForSources(filters);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1172,6 +1180,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 service.stopSearchingForSources();
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1186,6 +1195,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return false;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 return service.isSearchInProgress();
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1203,6 +1213,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 service.addSource(sink, sourceMetadata, isGroupOp);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1218,6 +1229,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 service.modifySource(sink, sourceId, updatedMetadata);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1232,6 +1244,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 service.removeSource(sink, sourceId);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1246,6 +1259,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return Collections.emptyList();
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 return service.getAllSources(sink);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1261,6 +1275,7 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return 0;
                 }
+                enforceBluetoothPrivilegedPermission(service);
                 return service.getMaximumSourceCapacity(sink);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
