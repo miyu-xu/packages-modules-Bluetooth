@@ -16,6 +16,184 @@
       "message": "In the Le audio book, there is a Cig state machine (no CIG, configurable CIG, active CIG, and inactive CIG). Do we need to add some states and have more alignment with that book?",
       "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8f7e2ee_5283979a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "Non-interim states `IDLE` and `CREATED` confuse me a bit, since they are both idle-like states as there is no pending actions on them. Maybe renaming `IDLE` to `NONE` would be beneficial, since there is actually no CIG in the current `IDLE` state.",
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58630e9c_cf977996",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1787,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "double spaces",
+      "range": {
+        "startLine": 1787,
+        "startChar": 34,
+        "endLine": 1787,
+        "endChar": 35
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "103f1ec8_19bf826d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1787,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "I think we don\u0027t need these spaces anymore wit these new logging macros.",
+      "range": {
+        "startLine": 1787,
+        "startChar": 14,
+        "endLine": 1787,
+        "endChar": 15
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1f6c9c2_089b22c2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3125,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "Let\u0027s make it clear in the logs that this is CIG ID.\nSomething like:\n  \"...cig_id\u003d%d\"",
+      "range": {
+        "startLine": 3125,
+        "startChar": 43,
+        "endLine": 3125,
+        "endChar": 45
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d376895a_0d081971",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3125,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 3125,
+        "startChar": 27,
+        "endLine": 3125,
+        "endChar": 28
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9acb0f0e_04f50b7e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3132,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "Let\u0027s make it clear in the logs that this printed integer is CIG ID.",
+      "range": {
+        "startLine": 3132,
+        "startChar": 43,
+        "endLine": 3132,
+        "endChar": 45
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9131983_36e1b539",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3132,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 3132,
+        "startChar": 27,
+        "endLine": 3132,
+        "endChar": 28
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68ec3bce_630e999a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 550,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-14T09:02:48Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of using \u0027...Helper\u0027 in function names. I would rather name it `RemoveCigForGroup(...)` 😏",
+      "range": {
+        "startLine": 550,
+        "startChar": 7,
+        "endLine": 550,
+        "endChar": 22
+      },
+      "revId": "25a9ba39a09723f241c5d9c77eae915c2fe9388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
