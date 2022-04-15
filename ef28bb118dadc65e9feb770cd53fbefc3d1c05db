@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90280a6a_dbe77087",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2969,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-15T13:58:07Z",
+      "side": 0,
+      "message": "I\u0027m not sure if content type speech wasn\u0027t in pair with AUDIO_USAGE_UNKNOWN. I remember this was put here by specific reason - maybe fixed already. Did you check it with conversational scenario, both incoming and outgoing ?\n\nIf not it would be safe to maybe set here \"predicted\" context and after checking usage:\n1) In case of AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE correct predicted context to  INSTRUCTIONAL\n2) In case of UNKNOWN, check if predicted context was set if yes then return it.",
+      "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
