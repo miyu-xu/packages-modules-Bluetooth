@@ -16,6 +16,24 @@
       "message": "This would trigger Default configuration rather than MEDIA is this intended ?\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/audio_set_scenarios.json",
       "revId": "da02fdaa0bc9722c8a94f1cb8fd87c5814ac3f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "874a177b_0eb917ef",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2991,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-15T14:10:25Z",
+      "side": 1,
+      "message": "Based on the context type definition, the navigation should be set \"instructional.\" If we wouldn\u0027t like to use default, I\u0027m thinking we should add the config for \"instructional\" rather than use the media context type.\n\n`Instructional audio, for example, in navigation,\nannouncements, or user guidance`",
+      "parentUuid": "4932c6f3_6db39304",
+      "revId": "da02fdaa0bc9722c8a94f1cb8fd87c5814ac3f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
