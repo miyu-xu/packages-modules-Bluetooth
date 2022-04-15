@@ -22,6 +22,30 @@
       },
       "revId": "67874a77395f197dc775f9cd7de446b47fc3927f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b66013e_99844f9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-04-15T22:13:43Z",
+      "side": 1,
+      "message": "Resolved offline",
+      "parentUuid": "90c131e9_29946150",
+      "range": {
+        "startLine": 12,
+        "startChar": 7,
+        "endLine": 12,
+        "endChar": 9
+      },
+      "revId": "67874a77395f197dc775f9cd7de446b47fc3927f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
