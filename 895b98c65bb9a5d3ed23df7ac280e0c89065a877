@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ae288d3_d10529dc",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-15T03:53:40Z",
+      "side": 1,
+      "message": "Should this be in the enclosed block beneath ?",
+      "revId": "895b98c65bb9a5d3ed23df7ac280e0c89065a877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "488a1567_2a7d39c9",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-15T03:53:40Z",
+      "side": 1,
+      "message": "Log.i(TAG, \"Set active player to media key event session\u003d\" + packageName);",
+      "revId": "895b98c65bb9a5d3ed23df7ac280e0c89065a877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d4cd083_8e2caadf",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-15T03:53:40Z",
+      "side": 1,
+      "message": "Maybe throw in:\n   Log.i(TAG, \"Set active player to first default\");",
+      "revId": "895b98c65bb9a5d3ed23df7ac280e0c89065a877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
