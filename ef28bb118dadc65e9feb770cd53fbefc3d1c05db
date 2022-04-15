@@ -52,6 +52,24 @@
       "parentUuid": "fd516c96_25df61a3",
       "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e865c15f_983ca823",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2969,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-04-15T14:55:07Z",
+      "side": 0,
+      "message": "I think we should just use the usage even for media.\n+Jean-Michel to confirm the usage to context LE mapping",
+      "parentUuid": "18b00a86_2ab362a0",
+      "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
