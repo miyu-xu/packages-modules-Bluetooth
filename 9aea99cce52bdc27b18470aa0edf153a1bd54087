@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65a6dd7e_de997720",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-15T03:44:23Z",
+      "side": 1,
+      "message": "How often is \"error\" presented ? I would think this would present more often should both fields be present ( !\u003d nullptr) but empty (\"\")\n",
+      "revId": "9aea99cce52bdc27b18470aa0edf153a1bd54087",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
