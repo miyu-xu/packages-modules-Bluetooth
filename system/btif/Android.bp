@@ -172,6 +172,9 @@ cc_defaults {
     ],
     target: {
         android: {
+            whole_static_libs: [
+                "PlatformProperties",
+            ],
             shared_libs: [
                 "android.hardware.bluetooth.audio-V1-ndk",
                 "libaaudio",
