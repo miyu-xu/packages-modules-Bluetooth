@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24954718_481e2b73",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-15T12:31:29Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a3c78e6c_aa713162",
+      "range": {
+        "startLine": 1254,
+        "startChar": 36,
+        "endLine": 1254,
+        "endChar": 37
+      },
+      "revId": "632386b33256a0013cab533edb3f024252cce45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42b97987_3063b645",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-14T00:56:43Z",
       "side": 1,
       "message": "I\u0027m trying to understand the configuration naming. The one called \"SingleDev_TwoChanStereoSnk_OneChanStereoSrc_16_1\", should the AudioSource audio_ channel_allocation be 1?",
+      "range": {
+        "startLine": 1965,
+        "startChar": 36,
+        "endLine": 1965,
+        "endChar": 37
+      },
+      "revId": "632386b33256a0013cab533edb3f024252cce45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc57d333_cb62e0b1",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 1965,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-04-15T12:31:29Z",
+      "side": 1,
+      "message": "Hi Alice! Thank you for checking this - I\u0027ve mixed naming here... it should be \"SingleDev_TwoChanStereoSnk_TwoChanStereoSrc_16_1\" and channel allocation is fine (3: left + right for stereo microphones).",
+      "parentUuid": "42b97987_3063b645",
       "range": {
         "startLine": 1965,
         "startChar": 36,
