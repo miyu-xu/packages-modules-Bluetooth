@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f08077e2_42375e07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-15T07:21:01Z",
+      "side": 1,
+      "message": "Bypass-Presubmit because of b/229332700.",
+      "revId": "4ac00a2c9d6a2d058c5471121e7266bb2063740a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
