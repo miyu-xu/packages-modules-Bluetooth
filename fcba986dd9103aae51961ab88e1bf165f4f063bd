@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94f27cc4_5b9047be",
+        "filename": "system/stack/avct/avct_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-04-15T04:28:00Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we update the `avct_cb.trace_level` here as well ?\nI don\u0027t know the call order of the methods, but if the `AVCT_Register` is called before the `AVCT_SetTraceLevel`, you will not update the log level",
+      "range": {
+        "startLine": 449,
+        "startChar": 1,
+        "endLine": 452,
+        "endChar": 1
+      },
+      "revId": "fcba986dd9103aae51961ab88e1bf165f4f063bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
