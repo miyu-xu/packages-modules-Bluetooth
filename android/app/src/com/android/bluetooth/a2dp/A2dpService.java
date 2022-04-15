@@ -51,6 +51,7 @@ import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.hfp.HeadsetService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -406,6 +407,14 @@ public class A2dpService extends ProfileService {
                 && connectionPolicy != BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
             // Otherwise, reject the connection if connectionPolicy is not valid.
             Log.w(TAG, "okToConnect: return false, connectionPolicy=" + connectionPolicy);
+            if (!isOutgoingRequest) {
+                HeadsetService headsetService = HeadsetService.getHeadsetService();
+                if (headsetService != null && headsetService.okToAcceptConnection(device, true)) {
+                    Log.d(TAG, "okToConnect: Fallback connection to allowed HFP profile");
+                    headsetService.connect(device);
+                    return true;
+                }
+            }
             return false;
         }
         return true;
