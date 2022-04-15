@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62dfc96_1872ad71",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4704,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-15T07:14:01Z",
+      "side": 1,
+      "message": "Not sure which on is correct between security_required and rfcomm_security_requirement.",
+      "range": {
+        "startLine": 4704,
+        "startChar": 7,
+        "endLine": 4704,
+        "endChar": 34
+      },
+      "revId": "430ff54cf4a7d5ffb2caf8652f78c6f39eddd186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
