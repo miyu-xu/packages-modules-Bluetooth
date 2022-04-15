@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bc3109a_9a0a4acc",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-04-15T04:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ae288d3_d10529dc",
+      "revId": "895b98c65bb9a5d3ed23df7ac280e0c89065a877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "488a1567_2a7d39c9",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c7e7070_7346ba64",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-04-15T04:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "488a1567_2a7d39c9",
+      "revId": "895b98c65bb9a5d3ed23df7ac280e0c89065a877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d4cd083_8e2caadf",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-04-15T03:53:40Z",
       "side": 1,
       "message": "Maybe throw in:\n   Log.i(TAG, \"Set active player to first default\");",
+      "revId": "895b98c65bb9a5d3ed23df7ac280e0c89065a877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4a9363f_4a939a86",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-04-15T04:02:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d4cd083_8e2caadf",
       "revId": "895b98c65bb9a5d3ed23df7ac280e0c89065a877",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
