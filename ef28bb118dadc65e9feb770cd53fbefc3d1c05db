@@ -34,6 +34,24 @@
       "parentUuid": "90280a6a_dbe77087",
       "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18b00a86_2ab362a0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2969,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-15T14:32:42Z",
+      "side": 0,
+      "message": "Perfect solution would be having:\n1) content_type \u003d LeAudioContextType::CONVERSATIONAL\n2) usage : AUDIO_USAGE_VOICE_COMMUNICATION\n\nCurrent implementation would return context for CONVERSATIONAL if content_type is just AUDIO_CONTENT_TYPE_SPEECH, usage \u003d whatever.\nIn modified CL it would return CONVERSATIONAL if usage would be AUDIO_USAGE_VOICE_COMMUNICATION, content_type \u003d whatever.\n\nThis is meaning change in case of current working scenarios. I\u0027m aware that audio server behave as described in first paragraph but we should also be aware about possible regression in conversation stream establishment if it\u0027s not known what gives audio server in case of incoming/outgoing call.",
+      "parentUuid": "fd516c96_25df61a3",
+      "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
