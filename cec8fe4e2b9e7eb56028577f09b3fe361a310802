@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea6f81fe_c4f05d5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-04-15T16:17:05Z",
+      "side": 1,
+      "message": "Hey !\n\nLet me know if you think this need to go through a proper interop test with the test team",
+      "revId": "cec8fe4e2b9e7eb56028577f09b3fe361a310802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
