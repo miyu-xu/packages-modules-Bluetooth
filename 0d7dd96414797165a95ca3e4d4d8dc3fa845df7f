@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1ccd38f8_9388d949",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-04-15T11:29:03Z",
+      "side": 1,
+      "message": "connecting_le_ is shadowing of connect_list, but they are slightly different.\nWe provide APIs to add device to connect_list without send create connection.\nA device in the connect_list doesn\u0027t mean it is looking to connect.\nWill change the naming after 2064632 merged.\nThanks!",
+      "parentUuid": "53ab5387_fdff5657",
+      "revId": "0d7dd96414797165a95ca3e4d4d8dc3fa845df7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "a0d65a95_f2570507",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-04-14T16:11:55Z",
       "side": 1,
       "message": "I think we should split this method into two as it will make it more self documenting and understood.\n\nMove all the code below into arm_connectability() and then at this point simply\n\n```\n  arm_connectability\n}\n```\n\nThe signature for \n`create_le_connection(AddressWithType address_with_type, bool add_to_connect_list, bool is_direct) `\n\ncan be a bit odd when passing in `kEmpty, false false` just to skip the first portion of this method.\n\nI put it together here\naosp/2065069\n\nHowever the diff`ing algorithm is suboptimal, but it\u0027s just moving code around and not as big of a change as it may appear",
+      "revId": "0d7dd96414797165a95ca3e4d4d8dc3fa845df7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6621ac10_cc2d64dd",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-04-15T11:29:03Z",
+      "side": 1,
+      "message": "Thanks for the suggestion! This make the code more clear.\nI update this patch based on the dup one.\nWe can merge this or the dup one, either is fine to me.\nThanks!",
+      "parentUuid": "a0d65a95_f2570507",
       "revId": "0d7dd96414797165a95ca3e4d4d8dc3fa845df7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
