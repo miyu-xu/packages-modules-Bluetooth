@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4932c6f3_6db39304",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2991,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-04-15T14:02:32Z",
+      "side": 1,
+      "message": "This would trigger Default configuration rather than MEDIA is this intended ?\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/audio_set_scenarios.json",
+      "revId": "da02fdaa0bc9722c8a94f1cb8fd87c5814ac3f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
