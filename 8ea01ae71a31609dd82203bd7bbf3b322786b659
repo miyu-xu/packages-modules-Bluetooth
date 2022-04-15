@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4996898f_b8bedb7f",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "This is moved to bta_gattc_db_storage.cc",
+      "parentUuid": "77d7bab2_8a49fc46",
+      "range": {
+        "startLine": 107,
+        "startChar": 11,
+        "endLine": 107,
+        "endChar": 18
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0157e7ed_67200f25",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f28f86c_db39f08c",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "Done. Move the implementation to bta_gattc_db_storage.",
+      "parentUuid": "0157e7ed_67200f25",
+      "range": {
+        "startLine": 259,
+        "startChar": 5,
+        "endLine": 260,
+        "endChar": 71
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3852cd2_bc0b85f9",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-04-08T11:55:29Z",
       "side": 1,
       "message": "Hash lenght is fixed and should always be same. Just log error if length is bad and disconnect.",
+      "range": {
+        "startLine": 712,
+        "startChar": 4,
+        "endLine": 712,
+        "endChar": 36
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87330387_917ada49",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "If the length is bad, I\u0027d prefer to fallback to do service discovery. I think this will be better.",
+      "parentUuid": "d3852cd2_bc0b85f9",
       "range": {
         "startLine": 712,
         "startChar": 4,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3a07f25_24891be5",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "Done\n\nCheck Contents: Please use language idioms to initialize or assign \nNot sure what this message means.",
+      "parentUuid": "1242b528_63f357ef",
+      "range": {
+        "startLine": 715,
+        "startChar": 7,
+        "endLine": 715,
+        "endChar": 57
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77a1f5e8_4cf33267",
         "filename": "system/bta/gatt/bta_gattc_cache.cc",
         "patchSetId": 6
@@ -106,6 +202,30 @@
       "writtenOn": "2022-04-08T11:55:29Z",
       "side": 1,
       "message": "This looks like leftover debug logs",
+      "range": {
+        "startLine": 720,
+        "startChar": 0,
+        "endLine": 723,
+        "endChar": 75
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebe24854_aa2dea55",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77a1f5e8_4cf33267",
       "range": {
         "startLine": 720,
         "startChar": 0,
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1901e589_969ff22e",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "The code is moved to bta_gattc_db_storage.cc\n\nActually bta_gattc_cache_write_impl will always override the existing file. It doesn\u0027t matter if the file exists or not. And more, if the hash can be found, the logic should not go here.",
+      "parentUuid": "76224f6d_e7053e7a",
+      "range": {
+        "startLine": 1212,
+        "startChar": 0,
+        "endLine": 1213,
+        "endChar": 49
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "182a8fe9_3c245409",
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bd77f63_c7cd5655",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1296,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "Done. This implementation is moved to bta_gattc_db_storage.cc\n\nBut the tag will be different with LOG(INFO).\nLOG(INFO) \u003d\u003e bt_stack\nLOG_DEBUG() \u003d\u003e depends on the macro LOG_TAG\n\nneed to add tag in bta_gattc_db_storage.cc",
+      "parentUuid": "182a8fe9_3c245409",
+      "range": {
+        "startLine": 1290,
+        "startChar": 0,
+        "endLine": 1296,
+        "endChar": 6
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97bed67c_eced012e",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-04-08T11:55:29Z",
       "side": 1,
       "message": "Just remove the file here, if it\u0027s not used for more than X days. Maybe if more than 7 days ?",
+      "range": {
+        "startLine": 1298,
+        "startChar": 0,
+        "endLine": 1303,
+        "endChar": 5
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5adf6187_d5a5182d",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1303,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-15T07:24:03Z",
+      "side": 1,
+      "message": "The implementation is moved to bta_gattc_db_storage.cc\n\nOk, if the device is not bonded, we can remote it after 7 days, but the trigger point will be when a new device is to be written in to hash file.\n\nWe do not proactively do regular check under current implementation.",
+      "parentUuid": "97bed67c_eced012e",
       "range": {
         "startLine": 1298,
         "startChar": 0,
