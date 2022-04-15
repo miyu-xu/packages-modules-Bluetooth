@@ -2965,8 +2965,6 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     switch (content_type) {
-      case AUDIO_CONTENT_TYPE_SPEECH:
-        return LeAudioContextType::CONVERSATIONAL;
       case AUDIO_CONTENT_TYPE_MUSIC:
       case AUDIO_CONTENT_TYPE_MOVIE:
       case AUDIO_CONTENT_TYPE_SONIFICATION:
@@ -2989,6 +2987,8 @@ class LeAudioClientImpl : public LeAudioClient {
         return LeAudioContextType::ALERTS;
       case AUDIO_USAGE_EMERGENCY:
         return LeAudioContextType::EMERGENCYALARM;
+      case AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE:
+        return LeAudioContextType::INSTRUCTIONAL;
       default:
         break;
     }
@@ -3047,9 +3047,8 @@ class LeAudioClientImpl : public LeAudioClient {
         continue;
       }
 
-      DLOG(INFO) << __func__ << ": usage=" << tracks->usage
-                 << ", content_type=" << tracks->content_type
-                 << ", gain=" << tracks->gain;
+      LOG_INFO("%s: usage=%d, content_type=%d, gain=%f", __func__,
+               tracks->usage, tracks->content_type, tracks->gain);
 
       auto new_context = AudioContentToLeAudioContext(
           current_context_type_, tracks->content_type, tracks->usage);
