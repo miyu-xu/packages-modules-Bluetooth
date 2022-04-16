@@ -428,7 +428,7 @@ impl IBluetooth for BluetoothDBus {
     }
 
     #[dbus_method("ConnectAllEnabledProfiles")]
-    fn connect_all_enabled_profiles(&self, device: BluetoothDevice) -> bool {
+    fn connect_all_enabled_profiles(&mut self, device: BluetoothDevice) -> bool {
         dbus_generated!()
     }
 
