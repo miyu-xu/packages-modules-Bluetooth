@@ -480,12 +480,19 @@ void BTM_CancelInquiry(void) {
     return;
   }
 
-  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Classic inquiry stopped");
-
   tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
   BTM_TRACE_API("BTM_CancelInquiry called");
 
   CHECK(BTM_IsDeviceUp());
+
+  BTM_LogHistory(
+      kBtmLogTag, RawAddress::kEmpty, "Classic inquiry stopped",
+      base::StringPrintf("duration_s:%.3f results:%lu",
+                         (timestamper_in_milliseconds.GetTimestamp() -
+                          btm_cb.neighbor.classic_inquiry.start_time_ms) /
+                             (double)kMillisPerSecond,
+                         btm_cb.neighbor.classic_inquiry.results));
+  btm_cb.neighbor.classic_inquiry.start_time_ms = 0;
 
   /* Only cancel if not in periodic mode, otherwise the caller should call
    * BTM_CancelPeriodicMode */
@@ -562,7 +569,11 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
     return BTM_WRONG_MODE;
   }
 
-  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Classic inquiry started");
+  BTM_LogHistory(kBtmLogTag, RawAddress::kEmpty, "Classic inquiry started",
+                 base::StringPrintf(
+                     "%s", (btm_cb.neighbor.classic_inquiry.start_time_ms == 0)
+                               ? ""
+                               : "ERROR Already started"));
 
   /* Save the inquiry parameters to be used upon the completion of
    * setting/clearing the inquiry filter */
@@ -576,6 +587,8 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   p_inq->p_inq_results_cb = p_results_cb;
   p_inq->inq_cmpl_info.num_resp = 0; /* Clear the results counter */
   p_inq->inq_active = p_inq->inqparms.mode;
+  btm_cb.neighbor.classic_inquiry.start_time_ms =
+      timestamper_in_milliseconds.GetTimestamp();
 
   BTM_TRACE_DEBUG("BTM_StartInquiry: p_inq->inq_active = 0x%02x",
                   p_inq->inq_active);
@@ -809,6 +822,8 @@ void btm_inq_db_reset(void) {
   tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
   uint8_t num_responses;
   uint8_t temp_inq_active;
+
+  LOG_DEBUG("Resetting inquiry database");
 
   /* If an inquiry or periodic inquiry is active, reset the mode to inactive */
   if (p_inq->inq_active != BTM_INQUIRY_INACTIVE) {
