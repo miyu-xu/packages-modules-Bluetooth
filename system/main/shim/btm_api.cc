@@ -120,6 +120,7 @@ void btm_api_process_inquiry_result(const RawAddress& raw_address,
     p_i->inq_info.results.device_type |= BT_DEVICE_TYPE_BREDR;
   }
 
+  btm_cb.neighbor.classic_inquiry.results++;
   if (btm_cb.btm_inq_vars.p_inq_results_cb == nullptr) {
     return;
   }
@@ -177,6 +178,7 @@ void btm_api_process_inquiry_result_with_rssi(RawAddress raw_address,
     }
   }
 
+  btm_cb.neighbor.classic_inquiry.results++;
   if (btm_cb.btm_inq_vars.p_inq_results_cb == nullptr) {
     return;
   }
@@ -231,6 +233,7 @@ void btm_api_process_extended_inquiry_result(RawAddress raw_address,
     }
   }
 
+  btm_cb.neighbor.classic_inquiry.results++;
   if (btm_cb.btm_inq_vars.p_inq_results_cb == nullptr) {
     return;
   }
