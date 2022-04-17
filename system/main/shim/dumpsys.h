@@ -44,6 +44,8 @@ constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
 
 #define PRIVATE_NAME(name) (name)
 
+constexpr unsigned kMillisPerSecond = 1000;
+
 inline double ticks_to_seconds(uint16_t ticks) {
   return (static_cast<double>(ticks) * 0.625 * 0.001);
 }
