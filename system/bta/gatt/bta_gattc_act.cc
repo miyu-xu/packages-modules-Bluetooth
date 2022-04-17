@@ -45,6 +45,7 @@
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "stack/include/l2c_api.h"
 #include "types/bluetooth/uuid.h"
+#include "types/bt_transport.h"
 #include "types/raw_address.h"
 
 using base::StringPrintf;
