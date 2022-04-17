@@ -41,6 +41,8 @@
 constexpr size_t kMaxLogSize = 255;
 constexpr size_t kBtmLogHistoryBufferSize = 100;
 
+extern bluetooth::common::TimestamperInMilliseconds timestamper_in_milliseconds;
+
 class TimestampedStringCircularBuffer
     : public bluetooth::common::TimestampedCircularBuffer<std::string> {
  public:
