@@ -41,6 +41,8 @@
 constexpr size_t kMaxLogSize = 255;
 constexpr size_t kBtmLogHistoryBufferSize = 100;
 
+extern bluetooth::common::TimestamperInMilliseconds timestamper_in_milliseconds;
+
 class TimestampedStringCircularBuffer
     : public bluetooth::common::TimestampedCircularBuffer<std::string> {
  public:
@@ -310,6 +312,13 @@ typedef struct tBTM_CB {
 
   std::shared_ptr<TimestampedStringCircularBuffer> history_{nullptr};
 
+  struct {
+    struct {
+      long long start_time_ms;
+      unsigned long results;
+    } classic_inquiry, le_scan;
+  } neighbor;
+
   void Init(uint8_t initial_security_mode) {
     memset(&cfg, 0, sizeof(cfg));
     memset(&devcb, 0, sizeof(devcb));
@@ -327,6 +336,7 @@ typedef struct tBTM_CB {
     memset(&connecting_dc, 0, sizeof(connecting_dc));
 
     acl_cb_ = {};
+    neighbor = {};
 
     page_queue = fixed_queue_new(SIZE_MAX);
     sec_pending_q = fixed_queue_new(SIZE_MAX);
@@ -345,7 +355,6 @@ typedef struct tBTM_CB {
 
     /* Initialize BTM component structures */
     btm_inq_vars.Init(); /* Inquiry Database and Structures */
-    acl_cb_ = {};
     sco_cb.Init();       /* SCO Database and Structures (If included) */
     devcb.Init();
 
