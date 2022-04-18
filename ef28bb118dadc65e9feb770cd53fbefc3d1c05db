@@ -70,6 +70,24 @@
       "parentUuid": "18b00a86_2ab362a0",
       "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec3a5171_adea20d1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2969,
+      "author": {
+        "id": 1002682
+      },
+      "writtenOn": "2022-04-18T22:55:50Z",
+      "side": 0,
+      "message": "Correct, rely on the usage field USAGE_MEDIA to map to LeAudioContextType::MEDIA",
+      "parentUuid": "e865c15f_983ca823",
+      "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
