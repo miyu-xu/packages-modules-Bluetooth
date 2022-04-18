@@ -226,8 +226,13 @@ public class BluetoothTetheringNetworkFactory extends NetworkFactory {
                 return;
             }
             mInterfaceName = iface;
-            // Advertise ourselves to ConnectivityService.
-            register();
+            final long identity = Binder.clearCallingIdentity();
+            try {
+                // Advertise ourselves to ConnectivityService.
+                register();
+            } finally {
+                Binder.restoreCallingIdentity(identity);
+            }
             setScoreFilter(NETWORK_SCORE);
         }
     }
