@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4226bab2_66fc92e9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-04-18T08:27:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "420272d8_c8a31055",
+      "revId": "a4437d78491963163a28cbe6907098e2122062b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "572ca313_1fe8b97e",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7146bd4e_7454883a",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-04-18T08:27:42Z",
+      "side": 1,
+      "message": "rewrote the function, cis conn_handle, obtained from cis id now",
+      "parentUuid": "572ca313_1fe8b97e",
+      "revId": "a4437d78491963163a28cbe6907098e2122062b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5775c67_d20b0ddb",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-04-12T10:25:00Z",
       "side": 1,
       "message": "reply to this comment with the details on why RemoveStreamConfiguration cant be called here instead",
+      "revId": "a4437d78491963163a28cbe6907098e2122062b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af21e73d_b4b7fd6d",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-04-18T08:27:42Z",
+      "side": 1,
+      "message": "RemoveStreamConfiguration is now modified and called",
+      "parentUuid": "c5775c67_d20b0ddb",
       "revId": "a4437d78491963163a28cbe6907098e2122062b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
