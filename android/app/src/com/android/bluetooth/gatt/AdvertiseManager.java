@@ -226,7 +226,8 @@ class AdvertiseManager {
             mAdvertisers.put(binder, new AdvertiserInfo(cbId, deathRecipient, callback));
 
             if (DBG) {
-                Log.d(TAG, "startAdvertisingSet() - reg_id=" + cbId + ", callback: " + binder);
+                Log.d(TAG, "startAdvertisingSet() - reg_id=" + cbId + ", callback: " + binder
+                        + ", OwnAddressType: " + parameters.getOwnAddressType());
             }
 
             mAdvertiserMap.add(cbId, callback, mService);
