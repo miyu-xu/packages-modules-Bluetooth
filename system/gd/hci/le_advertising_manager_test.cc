@@ -464,7 +464,17 @@ class LeAndroidHciAdvertisingAPITest : public LeAndroidHciAdvertisingManagerTest
 
     ExtendedAdvertisingConfig advertising_config{};
     advertising_config.advertising_type = AdvertisingType::ADV_IND;
-    advertising_config.own_address_type = OwnAddressType::PUBLIC_DEVICE_ADDRESS;
+    /**
+     * Earlier, own_address_type was given PUBLIC_DEVICE_ADDRESS as default. It
+     * was assumed that the Address Policy will enforce the address become random
+     * later. But we are adding an API that can set the own address type and this
+     * will enforce the address type be PUBLIC, if set through the API.
+     * Since the test cases were written assuming the advertising type will
+     * eventually be in RANDOM type, own_address_type default value should be
+     * RANDOM, keeping both in mind.
+     *
+     */
+    advertising_config.own_address_type = OwnAddressType::RANDOM_DEVICE_ADDRESS;
     std::vector<GapData> gap_data{};
     GapData data_item{};
     data_item.data_type_ = GapDataType::FLAGS;

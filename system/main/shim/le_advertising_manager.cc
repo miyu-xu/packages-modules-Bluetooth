@@ -397,7 +397,8 @@ class BleAdvertiserInterfaceImpl : public BleAdvertiserInterface,
         static_cast<bluetooth::hci::Enable>(
             params.scan_request_notification_enable);
     config.own_address_type = OwnAddressType::RANDOM_DEVICE_ADDRESS;
-    if (params.own_address_type == 0) {
+    // TODO(218724985): resolve for all of {unset, public, random}
+    if (params.own_address_type == BLE_ADDR_PUBLIC) {
       config.own_address_type = OwnAddressType::PUBLIC_DEVICE_ADDRESS;
     }
   }

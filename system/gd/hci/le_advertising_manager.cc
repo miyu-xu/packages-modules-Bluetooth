@@ -351,19 +351,29 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       } break;
       case (AdvertisingApiType::ANDROID_HCI): {
         auto address_policy = le_address_manager_->GetAddressPolicy();
-        if (address_policy == LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS ||
-            address_policy == LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS) {
-          advertising_sets_[id].current_address = le_address_manager_->GetAnotherAddress();
+        // TODO(218724985): resolve for all of {unset, public, random}
+        if (config.own_address_type == OwnAddressType::PUBLIC_DEVICE_ADDRESS) {
+          advertising_sets_[id].current_address =
+              AddressWithType(controller_->GetMacAddress(), AddressType::PUBLIC_DEVICE_ADDRESS);
+          set_parameters(id, config);
+          if (config.advertising_type == AdvertisingType::ADV_IND ||
+              config.advertising_type == AdvertisingType::ADV_NONCONN_IND) {
+            set_data(id, true, config.scan_response);
+          }
+          set_data(id, false, config.advertisement);
         } else {
-          advertising_sets_[id].current_address = le_address_manager_->GetCurrentAddress();
-        }
-        set_parameters(id, config);
-        if (config.advertising_type == AdvertisingType::ADV_IND ||
-            config.advertising_type == AdvertisingType::ADV_NONCONN_IND) {
-          set_data(id, true, config.scan_response);
-        }
-        set_data(id, false, config.advertisement);
-        if (address_policy != LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS) {
+          if (address_policy == LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS ||
+              address_policy == LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS) {
+            advertising_sets_[id].current_address = le_address_manager_->GetAnotherAddress();
+          } else {
+            advertising_sets_[id].current_address = le_address_manager_->GetCurrentAddress();
+          }
+          set_parameters(id, config);
+          if (config.advertising_type == AdvertisingType::ADV_IND ||
+              config.advertising_type == AdvertisingType::ADV_NONCONN_IND) {
+            set_data(id, true, config.scan_response);
+          }
+          set_data(id, false, config.advertisement);
           le_advertising_interface_->EnqueueCommand(
               hci::LeMultiAdvtSetRandomAddrBuilder::Create(advertising_sets_[id].current_address.GetAddress(), id),
               module_handler_->BindOnce(impl::check_status<LeMultiAdvtCompleteView>));
