@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d44634f_01a9dd6b",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:57:12Z",
+      "side": 1,
+      "message": "nit: prefer using LOG_ERROR() and other LOG_XXX style macros in new code\n\nLOG_ERROR() will add __func__ automatically.\n\nThe same principle applies to other parts of the code as well.",
+      "range": {
+        "startLine": 230,
+        "startChar": 6,
+        "endLine": 231,
+        "endChar": 42
+      },
+      "revId": "fa886248ad8bd07fdc99c3ab1985c283cd1c152e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46025b1b_6b3b3a3d",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:57:12Z",
+      "side": 1,
+      "message": "Please use strncmp instead\n\nstrncmp(\".\", dp-\u003ed_name, 1)\n\nand\n\nstrncmp(\"..\", dp-\u003ed_name, 2)\n\nit makes little difference when one element is a const char*, but helps prevent buffer over-read if both are pointers read from somewhere else.",
+      "range": {
+        "startLine": 329,
+        "startChar": 8,
+        "endLine": 329,
+        "endChar": 14
+      },
+      "revId": "fa886248ad8bd07fdc99c3ab1985c283cd1c152e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cb36237_868221a0",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:57:12Z",
+      "side": 1,
+      "message": "why not just initialize this to be an std::string() and avoid having to do string() initialization in later parts of the code? \n\nwith std::string, you can compare it directly using \u003d\u003d instead of strncmp",
+      "range": {
+        "startLine": 340,
+        "startChar": 4,
+        "endLine": 340,
+        "endChar": 24
+      },
+      "revId": "fa886248ad8bd07fdc99c3ab1985c283cd1c152e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa7d0da3_51151a51",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:57:12Z",
+      "side": 1,
+      "message": "please use strncmp instead\n\nstrncmp(tmp, GATT_HASH_FILE_PREFIX, pattern_len)",
+      "range": {
+        "startLine": 342,
+        "startChar": 8,
+        "endLine": 342,
+        "endChar": 14
+      },
+      "revId": "fa886248ad8bd07fdc99c3ab1985c283cd1c152e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85d250b1_8473435d",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:57:12Z",
+      "side": 1,
+      "message": "move this to 1 line before line 353, closer to its first use",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 350,
+        "endChar": 20
+      },
+      "revId": "fa886248ad8bd07fdc99c3ab1985c283cd1c152e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f472d1_ac5192d6",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:57:12Z",
+      "side": 1,
+      "message": "see comments above",
+      "range": {
+        "startLine": 363,
+        "startChar": 25,
+        "endLine": 363,
+        "endChar": 36
+      },
+      "revId": "fa886248ad8bd07fdc99c3ab1985c283cd1c152e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
