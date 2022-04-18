@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3baf9426_e2e627ec",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:33:12Z",
+      "side": 1,
+      "message": "There is an implicit assumption that BTA_GATTC_DB_HASH_SIZE \u003c\u003d remote_hash.max_size(). We should add a static_assert to make sure this is always the case.\n\nOR, just do not define BTA_GATTC_DB_HASH_SIZE and always compare len with remote_hash.max_size()\n\ne.g.\n\nif (len \u003d\u003d remote_hash.max_size()) {\n  // Do something\n}",
+      "range": {
+        "startLine": 675,
+        "startChar": 15,
+        "endLine": 675,
+        "endChar": 37
+      },
+      "revId": "dc9f1e9aea3bfa8a2c521d3a7311a74ed185786f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "948440ad_65dd71c7",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:33:12Z",
+      "side": 1,
+      "message": "alternatively, you can use\n\nstd::copy(data, data + len, remote_hash.begin());\n\nAlthough, in this use case, this makes almost no difference compared to memcpy()",
+      "range": {
+        "startLine": 676,
+        "startChar": 6,
+        "endLine": 676,
+        "endChar": 63
+      },
+      "revId": "dc9f1e9aea3bfa8a2c521d3a7311a74ed185786f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c124255f_4cc92946",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:33:12Z",
+      "side": 1,
+      "message": "prefer using runtime check like\n\n```\nif (bluetooth::common::InitFlags::IsDebugLoggingEnabledForAll()) {\n  bta_gattc_display_cache_server(p_clcb-\u003ep_srcb-\u003egatt_database);\n}\n```\n\nIn this case, if someone put\n\nadb shell device_config put bluetooth INIT_logging_debug_enabled_for_all true\n\nover adb, debugging can be enabled at runtime\n\nThe same principle applies to all use cases of BTA_GATT_DEBUG\n\nThis makes sure code nested under BTA_GATT_DEBUG is always compiled and ready to run.",
+      "range": {
+        "startLine": 721,
+        "startChar": 0,
+        "endLine": 721,
+        "endChar": 28
+      },
+      "revId": "dc9f1e9aea3bfa8a2c521d3a7311a74ed185786f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

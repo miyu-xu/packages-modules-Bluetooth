@@ -189,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0a1674f_90d3646d",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-18T16:33:12Z",
+      "side": 1,
+      "message": "This means the linter prefers \n\nstd::array\u003cunit8_t, 16\u003e x \u003d {0}\n\nover\n\nmemset(x.data(), 16, 0);\n\nas memset and memcpy can be inherently unsafe as it does not boundary check on the target array. \n\nI made a comment using std::copy() in the latest patch set.",
+      "parentUuid": "d3a07f25_24891be5",
+      "range": {
+        "startLine": 715,
+        "startChar": 7,
+        "endLine": 715,
+        "endChar": 57
+      },
+      "revId": "8ea01ae71a31609dd82203bd7bbf3b322786b659",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77a1f5e8_4cf33267",
