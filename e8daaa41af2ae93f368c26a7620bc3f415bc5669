@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "677c63ed_5dc969f2",
+        "filename": "system/gd/rust/common/build.rs",
+        "patchSetId": 29
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-04-18T23:20:47Z",
+      "side": 1,
+      "message": "We don\u0027t use this I think. Please remove it if it is not necessary.",
+      "revId": "e8daaa41af2ae93f368c26a7620bc3f415bc5669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
