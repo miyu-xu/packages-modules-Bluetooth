@@ -464,80 +464,128 @@ void l2c_link_timeout(tL2C_LCB* p_lcb) {
   tL2C_CCB* p_ccb;
   tBTM_STATUS rc;
 
-  LOG_DEBUG("L2CAP - l2c_link_timeout() link state:%s is_bonding:%s",
-            link_state_text(p_lcb->link_state).c_str(),
-            logbool(p_lcb->IsBonding()).c_str());
+  switch (p_lcb->link_state) {
+    case LST_CONNECTING_WAIT_SWITCH:
+    case LST_CONNECTING:
+    case LST_CONNECT_HOLDING:
+    case LST_DISCONNECTING:
+      /* If link was connecting or disconnecting, clear all channels and drop
+       * the LCB */
+      p_lcb->p_pending_ccb = NULL;
 
-  /* If link was connecting or disconnecting, clear all channels and drop the
-   * LCB */
-  if ((p_lcb->link_state == LST_CONNECTING_WAIT_SWITCH) ||
-      (p_lcb->link_state == LST_CONNECTING) ||
-      (p_lcb->link_state == LST_CONNECT_HOLDING) ||
-      (p_lcb->link_state == LST_DISCONNECTING)) {
-    p_lcb->p_pending_ccb = NULL;
+      /* For all channels, send a disconnect indication event through */
+      /* their FSMs. The CCBs should remove themselves from the LCB   */
+      for (p_ccb = p_lcb->ccb_queue.p_first_ccb; p_ccb;) {
+        tL2C_CCB* pn = p_ccb->p_next_ccb;
 
-    /* For all channels, send a disconnect indication event through */
-    /* their FSMs. The CCBs should remove themselves from the LCB   */
-    for (p_ccb = p_lcb->ccb_queue.p_first_ccb; p_ccb;) {
-      tL2C_CCB* pn = p_ccb->p_next_ccb;
+        l2c_csm_execute(p_ccb, L2CEVT_LP_DISCONNECT_IND, NULL);
 
-      l2c_csm_execute(p_ccb, L2CEVT_LP_DISCONNECT_IND, NULL);
+        p_ccb = pn;
+      }
 
-      p_ccb = pn;
-    }
+      /* Release the LCB */
+      l2cu_release_lcb(p_lcb);
+      LOG_DEBUG(
+          "Link timer popped link_state:%s handle:0x%04x peer:%s is_bonding:%s",
+          link_state_text(p_lcb->link_state).c_str(), p_lcb->Handle(),
+          PRIVATE_ADDRESS(p_lcb->remote_bd_addr),
+          logbool(p_lcb->IsBonding()).c_str());
+      break;
 
-    /* Release the LCB */
-    l2cu_release_lcb(p_lcb);
-  }
+    case LST_CONNECTED:
+      /* If link is connected, check for inactivity timeout */
+      /* If no channels in use, drop the link. */
+      if (!p_lcb->ccb_queue.p_first_ccb) {
+        uint64_t timeout_ms;
+        bool start_timeout = true;
 
-  /* If link is connected, check for inactivity timeout */
-  if (p_lcb->link_state == LST_CONNECTED) {
-    /* If no channels in use, drop the link. */
-    if (!p_lcb->ccb_queue.p_first_ccb) {
-      uint64_t timeout_ms;
-      bool start_timeout = true;
+        rc = btm_sec_disconnect(
+            p_lcb->Handle(), HCI_ERR_PEER_USER,
+            "stack::l2cap::l2c_link::l2c_link_timeout All channels closed");
 
-      LOG_WARN("TODO: Remove this callback into bcm_sec_disconnect");
-      rc = btm_sec_disconnect(
-          p_lcb->Handle(), HCI_ERR_PEER_USER,
-          "stack::l2cap::l2c_link::l2c_link_timeout All channels closed");
+        // There are only 3 states actually returned from the security manager
+        switch (rc) {
+          case BTM_SUCCESS:
+          case BTM_BUSY:
+          case BTM_CMD_STARTED:
+            break;
+          default:
+            LOG_ERROR(
+                "Received UNEXPECTED state from "
+                "security_manager::btm_sec_disconnect:%s",
+                btm_status_text(rc).c_str());
+            break;
+        }
 
-      if (rc == BTM_CMD_STORED) {
-        /* Security Manager will take care of disconnecting, state will be
-         * updated at that time */
-        start_timeout = false;
-      } else if (rc == BTM_CMD_STARTED) {
-        p_lcb->link_state = LST_DISCONNECTING;
-        timeout_ms = L2CAP_LINK_DISCONNECT_TIMEOUT_MS;
-      } else if (rc == BTM_SUCCESS) {
-        l2cu_process_fixed_disc_cback(p_lcb);
-        /* BTM SEC will make sure that link is release (probably after pairing
-         * is done) */
-        p_lcb->link_state = LST_DISCONNECTING;
-        start_timeout = false;
-      } else if (rc == BTM_BUSY) {
-        /* BTM is still executing security process. Let lcb stay as connected */
-        start_timeout = false;
-      } else if (p_lcb->IsBonding()) {
-        acl_disconnect_from_handle(p_lcb->Handle(), HCI_ERR_PEER_USER,
-                                   "stack::l2cap::l2c_link::l2c_link_timeout "
-                                   "Timer expired while bonding");
-        l2cu_process_fixed_disc_cback(p_lcb);
-        p_lcb->link_state = LST_DISCONNECTING;
-        timeout_ms = L2CAP_LINK_DISCONNECT_TIMEOUT_MS;
+        if (rc == BTM_CMD_STORED) {
+          LOG_DEBUG(
+              "Link timer popped Security Manager will take care of "
+              "disconnecting link_state:%s handle:0x%04x peer:%s is_bonding:%s",
+              link_state_text(p_lcb->link_state).c_str(), p_lcb->Handle(),
+              PRIVATE_ADDRESS(p_lcb->remote_bd_addr),
+              logbool(p_lcb->IsBonding()).c_str());
+          start_timeout = false;
+        } else if (rc == BTM_CMD_STARTED) {
+          p_lcb->link_state = LST_DISCONNECTING;
+          timeout_ms = L2CAP_LINK_DISCONNECT_TIMEOUT_MS;
+        } else if (rc == BTM_SUCCESS) {
+          l2cu_process_fixed_disc_cback(p_lcb);
+          LOG_DEBUG(
+              "Link timer popped Security Manager will release (probably after "
+              "pairing was done) link_state:%s handle:0x%04x peer:%s "
+              "is_bonding:%s",
+              link_state_text(p_lcb->link_state).c_str(), p_lcb->Handle(),
+              PRIVATE_ADDRESS(p_lcb->remote_bd_addr),
+              logbool(p_lcb->IsBonding()).c_str());
+          p_lcb->link_state = LST_DISCONNECTING;
+          start_timeout = false;
+        } else if (rc == BTM_BUSY) {
+          LOG_DEBUG(
+              "Link timer popped Security Manager still executing security "
+              "process; Let lcb stay as connected link_state:%s handle:0x%04x "
+              "peer:%s is_bonding:%s",
+              link_state_text(p_lcb->link_state).c_str(), p_lcb->Handle(),
+              PRIVATE_ADDRESS(p_lcb->remote_bd_addr),
+              logbool(p_lcb->IsBonding()).c_str());
+          start_timeout = false;
+        } else if (p_lcb->IsBonding()) {
+          acl_disconnect_from_handle(p_lcb->Handle(), HCI_ERR_PEER_USER,
+                                     "stack::l2cap::l2c_link::l2c_link_timeout "
+                                     "Timer expired while bonding");
+          l2cu_process_fixed_disc_cback(p_lcb);
+          p_lcb->link_state = LST_DISCONNECTING;
+          timeout_ms = L2CAP_LINK_DISCONNECT_TIMEOUT_MS;
+        } else {
+          /* probably no buffer to send disconnect */
+          timeout_ms = BT_1SEC_TIMEOUT_MS;
+        }
+
+        if (start_timeout) {
+          alarm_set_on_mloop(p_lcb->l2c_lcb_timer, timeout_ms,
+                             l2c_lcb_timer_timeout, p_lcb);
+          LOG_DEBUG("Started l2cap control block IDLE timeout_ms:%lu",
+                    (unsigned long)timeout_ms);
+        }
       } else {
-        /* probably no buffer to send disconnect */
-        timeout_ms = BT_1SEC_TIMEOUT_MS;
+        LOG_DEBUG(
+            "Link timer popped with active channels link_state:%s "
+            "handle:0x%04x peer:%s is_bonding:%s",
+            link_state_text(p_lcb->link_state).c_str(), p_lcb->Handle(),
+            PRIVATE_ADDRESS(p_lcb->remote_bd_addr),
+            logbool(p_lcb->IsBonding()).c_str());
+        /* Check in case we were flow controlled */
+        l2c_link_check_send_pkts(p_lcb, 0, NULL);
       }
+      break;
 
-      if (start_timeout) {
-        alarm_set_on_mloop(p_lcb->l2c_lcb_timer, timeout_ms,
-                           l2c_lcb_timer_timeout, p_lcb);
-      }
-    } else {
-      /* Check in case we were flow controlled */
-      l2c_link_check_send_pkts(p_lcb, 0, NULL);
-    }
+    default:
+      LOG_WARN(
+          "Received link timeout in unexpected state:%s handle:0x%04x peer:%s "
+          "is_bonding:%s",
+          link_state_text(p_lcb->link_state).c_str(), p_lcb->Handle(),
+          PRIVATE_ADDRESS(p_lcb->remote_bd_addr),
+          logbool(p_lcb->IsBonding()).c_str());
+      break;
   }
 }
 
