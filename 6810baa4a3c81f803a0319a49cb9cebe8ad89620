@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35a84e5e_07c02900",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1849983
+      },
+      "writtenOn": "2022-04-18T18:00:41Z",
+      "side": 1,
+      "message": "Bypass Presubmit because of error on apct/bluetooth/instrumentation_test on aosp_coral_hwasan-userdebug on git_tm-dev-plus-aosp",
+      "revId": "6810baa4a3c81f803a0319a49cb9cebe8ad89620",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
