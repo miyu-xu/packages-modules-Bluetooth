@@ -1520,7 +1520,15 @@ void shim::legacy::Acl::OnLeConnectSuccess(
     LOG_DEBUG("Connection address is rpa:%s identity_addr:%s",
               PRIVATE_ADDRESS(address_with_type),
               PRIVATE_ADDRESS(peer_address_with_type));
-    pimpl_->shadow_acceptlist_.Remove(peer_address_with_type);
+    // The address added to accept list is the one that app layer is trying to
+    // connect. Send callbacks to the same address as was added to accept list.
+    if (pimpl_->shadow_acceptlist_.Remove(peer_address_with_type)) {
+      LOG_DEBUG("Sending callback for identity address");
+      legacy_address_with_type =
+          ToLegacyAddressWithType(peer_address_with_type);
+    } else if (pimpl_->shadow_acceptlist_.Remove(address_with_type)) {
+      LOG_DEBUG("Sending callback for RPA");
+    }
   } else {
     LOG_DEBUG("Connection address is not rpa addr:%s",
               PRIVATE_ADDRESS(address_with_type));
