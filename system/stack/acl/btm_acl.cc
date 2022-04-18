@@ -2235,11 +2235,11 @@ void btm_acl_reset_paging(void) {
  * Description      send a paging command or queue it in btm_cb
  *
  ******************************************************************************/
-void btm_acl_paging(BT_HDR* p, const RawAddress& bda) {
+void btm_acl_paging(BT_HDR* p, const RawAddress& bda, bool is_connection) {
   // This function is called by the device initiating the connection.
   // If no role change is requested from the remote device, we want
   // to classify the connection initiator as the central device.
-  if (delayed_role_change_ == nullptr) {
+  if (is_connection && delayed_role_change_ == nullptr) {
     RoleChangeView role_change;
     role_change.bd_addr = bda;
     role_change.new_role = HCI_ROLE_CENTRAL;

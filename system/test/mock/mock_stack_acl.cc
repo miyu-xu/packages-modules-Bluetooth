@@ -541,9 +541,9 @@ void btm_acl_notif_conn_collision(const RawAddress& bda) {
   mock_function_count_map[__func__]++;
   test::mock::stack_acl::btm_acl_notif_conn_collision(bda);
 }
-void btm_acl_paging(BT_HDR* p, const RawAddress& bda) {
+void btm_acl_paging(BT_HDR* p, const RawAddress& bda, bool is_connection) {
   mock_function_count_map[__func__]++;
-  test::mock::stack_acl::btm_acl_paging(p, bda);
+  test::mock::stack_acl::btm_acl_paging(p, bda, is_connection);
 }
 void btm_acl_process_sca_cmpl_pkt(uint8_t len, uint8_t* data) {
   mock_function_count_map[__func__]++;

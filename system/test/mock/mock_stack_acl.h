@@ -899,12 +899,14 @@ struct btm_acl_notif_conn_collision {
 };
 extern struct btm_acl_notif_conn_collision btm_acl_notif_conn_collision;
 // Name: btm_acl_paging
-// Params: BT_HDR* p, const RawAddress& bda
+// Params: BT_HDR* p, const RawAddress& bda, bool is_connection
 // Returns: void
 struct btm_acl_paging {
-  std::function<void(BT_HDR* p, const RawAddress& bda)> body{
-      [](BT_HDR* p, const RawAddress& bda) { ; }};
-  void operator()(BT_HDR* p, const RawAddress& bda) { body(p, bda); };
+  std::function<void(BT_HDR* p, const RawAddress& bda, bool is_connection)>
+      body{[](BT_HDR* p, const RawAddress& bda, bool is_connection) { ; }};
+  void operator()(BT_HDR* p, const RawAddress& bda, bool is_connection) {
+    body(p, bda, is_connection);
+  };
 };
 extern struct btm_acl_paging btm_acl_paging;
 // Name: btm_acl_process_sca_cmpl_pkt

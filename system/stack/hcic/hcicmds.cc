@@ -561,7 +561,7 @@ void btsnd_hcic_create_conn(const RawAddress& dest, uint16_t packet_types,
   UINT8_TO_STREAM(pp, page_scan_mode);
   UINT16_TO_STREAM(pp, clock_offset);
   UINT8_TO_STREAM(pp, allow_switch);
-  btm_acl_paging(p, dest);
+  btm_acl_paging(p, dest, true);
 }
 
 static void btsnd_hcic_disconnect(uint16_t handle, uint8_t reason) {
@@ -774,7 +774,7 @@ void btsnd_hcic_rmt_name_req(const RawAddress& bd_addr,
   UINT8_TO_STREAM(pp, page_scan_mode);
   UINT16_TO_STREAM(pp, clock_offset);
 
-  btm_acl_paging(p, bd_addr);
+  btm_acl_paging(p, bd_addr, false);
 }
 
 void btsnd_hcic_rmt_name_req_cancel(const RawAddress& bd_addr) {
