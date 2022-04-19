@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97dd10cd_ff0a1b96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T00:35:37Z",
+      "side": 1,
+      "message": "remote device",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96eb1606_49c990d7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T00:35:37Z",
+      "side": 1,
+      "message": "Do you mind rebasing on top of https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2066598? I\u0027ve refactored away most of the raw unwraps",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c77363c_dabe36d4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1211,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T00:35:37Z",
+      "side": 1,
+      "message": "nit: rename got_valid_ones to has_enabled_uuids",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36895077_4e0b9bed",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T00:35:37Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be in connect_all_enabled_profiles?",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
