@@ -30,6 +30,7 @@
 #include "btif_common.h"
 #include "btif_dm.h"
 #include "device.h"
+#include "main/shim/dumpsys.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btu.h"
 #include "types/bluetooth/uuid.h"
@@ -395,19 +396,19 @@ ServiceInterface* AvrcpService::GetServiceInterface() {
 }
 
 void AvrcpService::ConnectDevice(const RawAddress& bdaddr) {
-  LOG(INFO) << __PRETTY_FUNCTION__ << ": address=" << bdaddr.ToString();
+  LOG(INFO) << __PRETTY_FUNCTION__ << ": address=" << PRIVATE_ADDRESS(bdaddr);
 
   connection_handler_->ConnectDevice(bdaddr);
 }
 
 void AvrcpService::DisconnectDevice(const RawAddress& bdaddr) {
-  LOG(INFO) << __PRETTY_FUNCTION__ << ": address=" << bdaddr.ToString();
+  LOG(INFO) << __PRETTY_FUNCTION__ << ": address=" << PRIVATE_ADDRESS(bdaddr);
   connection_handler_->DisconnectDevice(bdaddr);
 }
 
 void AvrcpService::SetBipClientStatus(const RawAddress& bdaddr,
                                       bool connected) {
-  LOG(INFO) << __PRETTY_FUNCTION__ << ": address=" << bdaddr.ToString()
+  LOG(INFO) << __PRETTY_FUNCTION__ << ": address=" << PRIVATE_ADDRESS(bdaddr)
             << ", connected=" << connected;
   connection_handler_->SetBipClientStatus(bdaddr, connected);
 }

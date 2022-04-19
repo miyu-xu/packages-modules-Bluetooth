@@ -21,6 +21,7 @@
 #include <array>
 #include <cstring>
 #include <string>
+#include <string_view>
 
 /** Bluetooth Address */
 class RawAddress final {

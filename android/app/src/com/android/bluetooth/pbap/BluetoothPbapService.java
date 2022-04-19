@@ -43,7 +43,6 @@ import android.bluetooth.BluetoothSocket;
 import android.bluetooth.IBluetoothPbap;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -226,7 +225,8 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
             synchronized (mPbapStateMachineMap) {
                 PbapStateMachine sm = mPbapStateMachineMap.get(device);
                 if (sm == null) {
-                    Log.w(TAG, "device not connected! device=" + device);
+                    Log.w(TAG, "device not connected! device="
+                            + BluetoothDevice.toAnonymizedAddress(device));
                     return;
                 }
                 mSessionStatusHandler.removeMessages(USER_TIMEOUT, sm);
@@ -506,7 +506,8 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         enforceCallingOrSelfPermission(
                 BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
         if (DEBUG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
+            Log.d(TAG, "Saved connectionPolicy " + BluetoothDevice.toAnonymizedAddress(device)
+                    + " = " + connectionPolicy);
         }
 
         if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.PBAP,
@@ -724,7 +725,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         @Override
         public int getConnectionState(BluetoothDevice device, AttributionSource source) {
             if (DEBUG) {
-                Log.d(TAG, "getConnectionState: " + device);
+                Log.d(TAG, "getConnectionState: " + BluetoothDevice.toAnonymizedAddress(device));
             }
             BluetoothPbapService service = getService(source);
             if (service == null) {
@@ -737,7 +738,8 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy,
                 AttributionSource source) {
             if (DEBUG) {
-                Log.d(TAG, "setConnectionPolicy for device: " + device + ", policy:"
+                Log.d(TAG, "setConnectionPolicy for device: "
+                        + BluetoothDevice.toAnonymizedAddress(device) + ", policy:"
                         + connectionPolicy);
             }
             BluetoothPbapService service = getService(source);
@@ -763,8 +765,8 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     @Override
     public boolean onConnect(BluetoothDevice remoteDevice, BluetoothSocket socket) {
         if (remoteDevice == null || socket == null) {
-            Log.e(TAG, "onConnect(): Unexpected null. remoteDevice=" + remoteDevice
-                    + " socket=" + socket);
+            Log.e(TAG, "onConnect(): Unexpected null. remoteDevice="
+                    + BluetoothDevice.toAnonymizedAddress(remoteDevice) + " socket=" + socket);
             return false;
         }
 
@@ -813,7 +815,8 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
                     null/* scheduler */, Activity.RESULT_OK/* initialCode */, null/* initialData */,
                     null/* initialExtras */);
             if (VERBOSE) {
-                Log.v(TAG, "waiting for authorization for connection from: " + device);
+                Log.v(TAG, "waiting for authorization for connection from: "
+                        + BluetoothDevice.toAnonymizedAddress(device));
             }
             /* In case car kit time out and try to use HFP for phonebook
              * access, while UI still there waiting for user to confirm */

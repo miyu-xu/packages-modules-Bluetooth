@@ -499,7 +499,7 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
     allocate_metric_id_from_metric_id_allocator(bd_addr);
     if (!save_metric_id_from_metric_id_allocator(bd_addr)) {
       LOG(FATAL) << __func__ << ": Fail to save metric id for device "
-                 << bd_addr;
+                 << PRIVATE_ADDRESS(bd_addr);
     }
   }
   invoke_bond_state_changed_cb(status, bd_addr, state, pairing_cb.fail_reason);
@@ -1209,7 +1209,7 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
       RawAddress& bdaddr = p_search_data->inq_res.bd_addr;
 
       BTIF_TRACE_DEBUG("%s() %s device_type = 0x%x\n", __func__,
-                       bdaddr.ToString().c_str(),
+                       PRIVATE_ADDRESS(bdaddr),
                        p_search_data->inq_res.device_type);
       bdname.name[0] = 0;
 
@@ -1409,7 +1409,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         if (p_data->disc_res.result != BTA_SUCCESS ||
             p_data->disc_res.num_uuids == 0) {
           LOG_INFO("SDP failed, send empty UUID to unblock bonding %s",
-                   bd_addr.ToString().c_str());
+                   PRIVATE_ADDRESS(bd_addr));
           bt_property_t prop_uuids;
           Uuid uuid = {};
 
@@ -1806,7 +1806,8 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
     case BTA_DM_REPORT_BONDING_EVT:
       LOG_WARN("Received encryption failed: Report bonding firstly.");
       bd_addr = p_data->delete_key_RC_to_unpair.bd_addr;
-      invoke_bond_state_changed_cb(BT_STATUS_SUCCESS, bd_addr, BT_BOND_STATE_BONDING,
+      invoke_bond_state_changed_cb(BT_STATUS_SUCCESS, bd_addr,
+                                   BT_BOND_STATE_BONDING,
                                    pairing_cb.fail_reason);
       btif_dm_remove_bond(bd_addr);
       break;
@@ -1915,7 +1916,7 @@ bool btif_dm_pairing_is_busy() {
  ******************************************************************************/
 void btif_dm_create_bond(const RawAddress bd_addr, int transport) {
   BTIF_TRACE_EVENT("%s: bd_addr=%s, transport=%d", __func__,
-                   bd_addr.ToString().c_str(), transport);
+                   PRIVATE_ADDRESS(bd_addr), transport);
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND,
                             pairing_cb.state);
 
@@ -2031,7 +2032,7 @@ void btif_dm_create_bond_out_of_band(const RawAddress bd_addr,
  *
  ******************************************************************************/
 void btif_dm_cancel_bond(const RawAddress bd_addr) {
-  BTIF_TRACE_EVENT("%s: bd_addr=%s", __func__, bd_addr.ToString().c_str());
+  BTIF_TRACE_EVENT("%s: bd_addr=%s", __func__, PRIVATE_ADDRESS(bd_addr));
 
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CANCEL_BOND,
                             pairing_cb.state);
@@ -2088,7 +2089,7 @@ void btif_dm_hh_open_failed(RawAddress* bdaddr) {
  ******************************************************************************/
 
 void btif_dm_remove_bond(const RawAddress bd_addr) {
-  BTIF_TRACE_EVENT("%s: bd_addr=%s", __func__, bd_addr.ToString().c_str());
+  BTIF_TRACE_EVENT("%s: bd_addr=%s", __func__, PRIVATE_ADDRESS(bd_addr));
 
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_REMOVE_BOND,
                             pairing_cb.state);
@@ -2231,7 +2232,7 @@ bt_status_t btif_dm_get_adapter_property(bt_property_t* prop) {
  ******************************************************************************/
 void btif_dm_get_remote_services(RawAddress remote_addr, const int transport) {
   BTIF_TRACE_EVENT("%s: transport=%d, remote_addr=%s", __func__, transport,
-                   remote_addr.ToString().c_str());
+                   PRIVATE_ADDRESS(remote_addr));
 
   BTA_DmDiscover(remote_addr, btif_dm_search_services_evt, transport,
                  remote_addr != pairing_cb.bd_addr &&
@@ -3192,7 +3193,7 @@ void btif_debug_bond_event_dump(int fd) {
     }
 
     dprintf(fd, "  %s  %s  %s  %s\n", eventtime,
-            event->bd_addr.ToString().c_str(), func_name, bond_state);
+            PRIVATE_ADDRESS(event->bd_addr), func_name, bond_state);
   }
 }
 

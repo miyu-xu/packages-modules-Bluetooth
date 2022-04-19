@@ -271,16 +271,18 @@ public class A2dpService extends ProfileService {
 
     public boolean connect(BluetoothDevice device) {
         if (DBG) {
-            Log.d(TAG, "connect(): " + device);
+            Log.d(TAG, "connect(): " + BluetoothDevice.toAnonymizedAddress(device));
         }
 
         if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            Log.e(TAG, "Cannot connect to " + device + " : CONNECTION_POLICY_FORBIDDEN");
+            Log.e(TAG, "Cannot connect to " + BluetoothDevice.toAnonymizedAddress(device)
+                    + " : CONNECTION_POLICY_FORBIDDEN");
             return false;
         }
         if (!Utils.arrayContains(mAdapterService.getRemoteUuids(device),
                                          BluetoothUuid.A2DP_SINK)) {
-            Log.e(TAG, "Cannot connect to " + device + " : Remote does not have A2DP Sink UUID");
+            Log.e(TAG, "Cannot connect to " + BluetoothDevice.toAnonymizedAddress(device)
+                    + " : Remote does not have A2DP Sink UUID");
             return false;
         }
 
@@ -294,19 +296,23 @@ public class A2dpService extends ProfileService {
                                     BluetoothProfile.STATE_DISCONNECTING});
                     for (BluetoothDevice sink : sinks) {
                         if (sink.equals(device)) {
-                            Log.w(TAG, "Connecting to device " + device + " : disconnect skipped");
+                            Log.w(TAG, "Connecting to device "
+                                    + BluetoothDevice.toAnonymizedAddress(device)
+                                    + " : disconnect skipped");
                             continue;
                         }
                         disconnect(sink);
                     }
                 } else {
-                    Log.e(TAG, "Cannot connect to " + device + " : too many connected devices");
+                    Log.e(TAG, "Cannot connect to " + BluetoothDevice.toAnonymizedAddress(device)
+                            + " : too many connected devices");
                     return false;
                 }
             }
             A2dpStateMachine smConnect = getOrCreateStateMachine(device);
             if (smConnect == null) {
-                Log.e(TAG, "Cannot connect to " + device + " : no state machine");
+                Log.e(TAG, "Cannot connect to " + BluetoothDevice.toAnonymizedAddress(device)
+                        + " : no state machine");
                 return false;
             }
             smConnect.sendMessage(A2dpStateMachine.CONNECT);
@@ -322,13 +328,14 @@ public class A2dpService extends ProfileService {
      */
     public boolean disconnect(BluetoothDevice device) {
         if (DBG) {
-            Log.d(TAG, "disconnect(): " + device);
+            Log.d(TAG, "disconnect(): " + BluetoothDevice.toAnonymizedAddress(device));
         }
 
         synchronized (mStateMachines) {
             A2dpStateMachine sm = mStateMachines.get(device);
             if (sm == null) {
-                Log.e(TAG, "Ignored disconnect request for " + device + " : no state machine");
+                Log.e(TAG, "Ignored disconnect request for "
+                        + BluetoothDevice.toAnonymizedAddress(device) + " : no state machine");
                 return false;
             }
             sm.sendMessage(A2dpStateMachine.DISCONNECT);
@@ -387,15 +394,18 @@ public class A2dpService extends ProfileService {
      */
     @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
     public boolean okToConnect(BluetoothDevice device, boolean isOutgoingRequest) {
-        Log.i(TAG, "okToConnect: device " + device + " isOutgoingRequest: " + isOutgoingRequest);
+        Log.i(TAG, "okToConnect: device " + BluetoothDevice.toAnonymizedAddress(device)
+                + " isOutgoingRequest: " + isOutgoingRequest);
         // Check if this is an incoming connection in Quiet mode.
         if (mAdapterService.isQuietModeEnabled() && !isOutgoingRequest) {
-            Log.e(TAG, "okToConnect: cannot connect to " + device + " : quiet mode enabled");
+            Log.e(TAG, "okToConnect: cannot connect to "
+                    + BluetoothDevice.toAnonymizedAddress(device) + " : quiet mode enabled");
             return false;
         }
         // Check if too many devices
         if (!connectionAllowedCheckMaxDevices(device)) {
-            Log.e(TAG, "okToConnect: cannot connect to " + device
+            Log.e(TAG, "okToConnect: cannot connect to "
+                    + BluetoothDevice.toAnonymizedAddress(device)
                     + " : too many connected devices");
             return false;
         }
@@ -514,7 +524,8 @@ public class A2dpService extends ProfileService {
     @VisibleForTesting
     public boolean setSilenceMode(BluetoothDevice device, boolean silence) {
         if (DBG) {
-            Log.d(TAG, "setSilenceMode(" + device + "): " + silence);
+            Log.d(TAG, "setSilenceMode(" + BluetoothDevice.toAnonymizedAddress(device) + "): "
+                    + silence);
         }
         if (silence && Objects.equals(mActiveDevice, device)) {
             removeActiveDevice(true);
@@ -523,7 +534,8 @@ public class A2dpService extends ProfileService {
             setActiveDevice(device);
         }
         if (!mA2dpNativeInterface.setSilenceDevice(device, silence)) {
-            Log.e(TAG, "Cannot set " + device + " silence mode " + silence + " in native layer");
+            Log.e(TAG, "Cannot set " + BluetoothDevice.toAnonymizedAddress(device)
+                    + " silence mode " + silence + " in native layer");
             return false;
         }
         return true;
@@ -547,23 +559,26 @@ public class A2dpService extends ProfileService {
             BluetoothDevice previousActiveDevice = null;
             synchronized (mStateMachines) {
                 if (Objects.equals(device, mActiveDevice)) {
-                    Log.i(TAG, "setActiveDevice(" + device + "): current is " + mActiveDevice
+                    Log.i(TAG, "setActiveDevice(" + BluetoothDevice.toAnonymizedAddress(device)
+                            + "): current is " + BluetoothDevice.toAnonymizedAddress(mActiveDevice)
                             + " no changed");
                     // returns true since the device is activated even double attempted
                     return true;
                 }
                 if (DBG) {
-                    Log.d(TAG, "setActiveDevice(" + device + "): current is " + mActiveDevice);
+                    Log.d(TAG, "setActiveDevice(" + BluetoothDevice.toAnonymizedAddress(device)
+                            + "): current is "
+                            + BluetoothDevice.toAnonymizedAddress(mActiveDevice));
                 }
                 sm = mStateMachines.get(device);
                 if (sm == null) {
-                    Log.e(TAG, "setActiveDevice(" + device + "): Cannot set as active: "
-                              + "no state machine");
+                    Log.e(TAG, "setActiveDevice(" + BluetoothDevice.toAnonymizedAddress(device)
+                            + "): Cannot set as active: no state machine");
                     return false;
                 }
                 if (sm.getConnectionState() != BluetoothProfile.STATE_CONNECTED) {
-                    Log.e(TAG, "setActiveDevice(" + device + "): Cannot set as active: "
-                              + "device is not connected");
+                    Log.e(TAG, "setActiveDevice(" + BluetoothDevice.toAnonymizedAddress(device)
+                            + "): Cannot set as active: device is not connected");
                     return false;
                 }
                 previousActiveDevice = mActiveDevice;
@@ -571,7 +586,8 @@ public class A2dpService extends ProfileService {
 
             // Switch from one A2DP to another A2DP device
             if (DBG) {
-                Log.d(TAG, "Switch A2DP devices to " + device + " from " + previousActiveDevice);
+                Log.d(TAG, "Switch A2DP devices to " + BluetoothDevice.toAnonymizedAddress(device)
+                        + " from " + BluetoothDevice.toAnonymizedAddress(previousActiveDevice));
             }
             // This needs to happen before we inform the audio manager that the device
             // disconnected. Please see comment in updateAndBroadcastActiveDevice() for why.
@@ -580,8 +596,8 @@ public class A2dpService extends ProfileService {
             BluetoothDevice newActiveDevice = null;
             synchronized (mStateMachines) {
                 if (!mA2dpNativeInterface.setActiveDevice(device)) {
-                    Log.e(TAG, "setActiveDevice(" + device + "): Cannot set as active in native "
-                            + "layer");
+                    Log.e(TAG, "setActiveDevice(" + BluetoothDevice.toAnonymizedAddress(device)
+                            + "): Cannot set as active in native layer");
                     // Remove active device and stop playing audio.
                     removeActiveDevice(true);
                     return false;
@@ -648,7 +664,8 @@ public class A2dpService extends ProfileService {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");
         if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
+            Log.d(TAG, "Saved connectionPolicy " + BluetoothDevice.toAnonymizedAddress(device)
+                    + " = " + connectionPolicy);
         }
 
         if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.A2DP,
@@ -697,7 +714,7 @@ public class A2dpService extends ProfileService {
 
     boolean isA2dpPlaying(BluetoothDevice device) {
         if (DBG) {
-            Log.d(TAG, "isA2dpPlaying(" + device + ")");
+            Log.d(TAG, "isA2dpPlaying(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         }
         synchronized (mStateMachines) {
             A2dpStateMachine sm = mStateMachines.get(device);
@@ -718,7 +735,7 @@ public class A2dpService extends ProfileService {
      */
     public BluetoothCodecStatus getCodecStatus(BluetoothDevice device) {
         if (DBG) {
-            Log.d(TAG, "getCodecStatus(" + device + ")");
+            Log.d(TAG, "getCodecStatus(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         }
         synchronized (mStateMachines) {
             if (device == null) {
@@ -746,8 +763,8 @@ public class A2dpService extends ProfileService {
     public void setCodecConfigPreference(BluetoothDevice device,
                                          BluetoothCodecConfig codecConfig) {
         if (DBG) {
-            Log.d(TAG, "setCodecConfigPreference(" + device + "): "
-                    + Objects.toString(codecConfig));
+            Log.d(TAG, "setCodecConfigPreference(" + BluetoothDevice.toAnonymizedAddress(device)
+                    + "): " + Objects.toString(codecConfig));
         }
         if (device == null) {
             device = mActiveDevice;
@@ -777,7 +794,7 @@ public class A2dpService extends ProfileService {
      */
     public void enableOptionalCodecs(BluetoothDevice device) {
         if (DBG) {
-            Log.d(TAG, "enableOptionalCodecs(" + device + ")");
+            Log.d(TAG, "enableOptionalCodecs(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         }
         if (device == null) {
             device = mActiveDevice;
@@ -807,7 +824,8 @@ public class A2dpService extends ProfileService {
      */
     public void disableOptionalCodecs(BluetoothDevice device) {
         if (DBG) {
-            Log.d(TAG, "disableOptionalCodecs(" + device + ")");
+            Log.d(TAG, "disableOptionalCodecs(" + BluetoothDevice.toAnonymizedAddress(device)
+                    + ")");
         }
         if (device == null) {
             device = mActiveDevice;
@@ -935,7 +953,8 @@ public class A2dpService extends ProfileService {
                         case A2dpStackEvent.CONNECTION_STATE_CONNECTING:
                             // Create a new state machine only when connecting to a device
                             if (!connectionAllowedCheckMaxDevices(device)) {
-                                Log.e(TAG, "Cannot connect to " + device
+                                Log.e(TAG, "Cannot connect to "
+                                        + BluetoothDevice.toAnonymizedAddress(device)
                                         + " : too many connected devices");
                                 return;
                             }
@@ -1017,7 +1036,8 @@ public class A2dpService extends ProfileService {
                 return null;
             }
             if (DBG) {
-                Log.d(TAG, "Creating a new state machine for " + device);
+                Log.d(TAG, "Creating a new state machine for "
+                        + BluetoothDevice.toAnonymizedAddress(device));
             }
             sm = A2dpStateMachine.make(device, this, mA2dpNativeInterface,
                                        mStateMachinesThread.getLooper());
@@ -1031,7 +1051,8 @@ public class A2dpService extends ProfileService {
     // changes the volume of the output devices.
     private void updateAndBroadcastActiveDevice(BluetoothDevice device) {
         if (DBG) {
-            Log.d(TAG, "updateAndBroadcastActiveDevice(" + device + ")");
+            Log.d(TAG, "updateAndBroadcastActiveDevice("
+                    + BluetoothDevice.toAnonymizedAddress(device) + ")");
         }
 
         // Make sure volume has been store before device been remove from active.
@@ -1054,7 +1075,8 @@ public class A2dpService extends ProfileService {
 
     private void broadcastCodecConfig(BluetoothDevice device, BluetoothCodecStatus codecStatus) {
         if (DBG) {
-            Log.d(TAG, "broadcastCodecConfig(" + device + "): " + codecStatus);
+            Log.d(TAG, "broadcastCodecConfig(" + BluetoothDevice.toAnonymizedAddress(device)
+                    + "): " + codecStatus);
         }
         Intent intent = new Intent(BluetoothA2dp.ACTION_CODEC_CONFIG_CHANGED);
         intent.putExtra(BluetoothCodecStatus.EXTRA_CODEC_STATUS, codecStatus);
@@ -1090,7 +1112,8 @@ public class A2dpService extends ProfileService {
     @VisibleForTesting
     void bondStateChanged(BluetoothDevice device, int bondState) {
         if (DBG) {
-            Log.d(TAG, "Bond state changed for device: " + device + " state: " + bondState);
+            Log.d(TAG, "Bond state changed for device: "
+                    + BluetoothDevice.toAnonymizedAddress(device) + " state: " + bondState);
         }
         // Remove state machine if the bonding for a device is removed
         if (bondState != BluetoothDevice.BOND_NONE) {
@@ -1115,11 +1138,13 @@ public class A2dpService extends ProfileService {
         synchronized (mStateMachines) {
             A2dpStateMachine sm = mStateMachines.get(device);
             if (sm == null) {
-                Log.w(TAG, "removeStateMachine: device " + device
+                Log.w(TAG, "removeStateMachine: device "
+                        + BluetoothDevice.toAnonymizedAddress(device)
                         + " does not have a state machine");
                 return;
             }
-            Log.i(TAG, "removeStateMachine: removing state machine for device: " + device);
+            Log.i(TAG, "removeStateMachine: removing state machine for device: "
+                    + BluetoothDevice.toAnonymizedAddress(device));
             sm.doQuit();
             sm.cleanup();
             mStateMachines.remove(device);
