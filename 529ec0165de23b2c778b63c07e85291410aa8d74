@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0da820b_c253659b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-04-19T18:45:32Z",
+      "side": 1,
+      "message": "I might be missing where you set this to something",
+      "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25e60f7e_9408a247",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-04-19T18:45:32Z",
+      "side": 1,
+      "message": "When do we remove connected devices from the found_devices list? Is it possible that we continuously spawn this if we never bond with the device?",
+      "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
