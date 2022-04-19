@@ -46,6 +46,30 @@
       },
       "revId": "430ff54cf4a7d5ffb2caf8652f78c6f39eddd186",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "510fdebc_3b5694a7",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4704,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-19T23:53:07Z",
+      "side": 1,
+      "message": "Ack. It seems there are some naming problems in this file between security_required and security_requirement.\n\nLet me merge this CL first and handle the naming issue in a follow-up CL.\n\nThanks,",
+      "parentUuid": "b2c6043f_2ea7cff4",
+      "range": {
+        "startLine": 4704,
+        "startChar": 7,
+        "endLine": 4704,
+        "endChar": 34
+      },
+      "revId": "430ff54cf4a7d5ffb2caf8652f78c6f39eddd186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
