@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25dab9c_aa956334",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-19T19:38:03Z",
+      "side": 1,
+      "message": "To reduce code duplication, this should be simply call to bta_gattc_cache_link(server_bda, hash)",
+      "range": {
+        "startLine": 229,
+        "startChar": 4,
+        "endLine": 232,
+        "endChar": 5
+      },
+      "revId": "0bd02cd54ca6e06b0aef658909747011b75f2842",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
