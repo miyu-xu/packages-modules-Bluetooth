@@ -321,7 +321,7 @@ final class BondStateMachine extends StateMachine {
     private boolean createBond(BluetoothDevice dev, int transport, OobData remoteP192Data,
             OobData remoteP256Data, boolean transition) {
         if (dev.getBondState() == BluetoothDevice.BOND_NONE) {
-            infoLog("Bond address is:" + dev);
+            infoLog("Bond address is:" + dev.getAnonymizedAddress());
             byte[] addr = Utils.getBytesFromAddress(dev.getAddress());
             boolean result;
             // If we have some data
@@ -422,7 +422,8 @@ final class BondStateMachine extends StateMachine {
 
         if (!isTriggerFromDelayMessage && newState == BluetoothDevice.BOND_BONDED
                 && devProp != null && devProp.getUuids() == null) {
-            infoLog(device + " is bonded, wait for SDP complete to broadcast bonded intent");
+            infoLog(BluetoothDevice.toAnonymizedAddress(device)
+                    + " is bonded, wait for SDP complete to broadcast bonded intent");
             if (!mPendingBondedDevices.contains(device)) {
                 mPendingBondedDevices.add(device);
                 Message msg = obtainMessage(BONDED_INTENT_DELAY);
@@ -446,22 +447,24 @@ final class BondStateMachine extends StateMachine {
         }
         mAdapterService.sendBroadcastAsUser(intent, UserHandle.ALL, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
-        infoLog("Bond State Change Intent:" + device + " " + state2str(oldState) + " => "
-                + state2str(newState));
+        infoLog("Bond State Change Intent:" + BluetoothDevice.toAnonymizedAddress(device)
+                + " " + state2str(oldState) + " => " + state2str(newState));
     }
 
     void bondStateChangeCallback(int status, byte[] address, int newState, int hciReason) {
         BluetoothDevice device = mRemoteDevices.getDevice(address);
 
         if (device == null) {
-            infoLog("No record of the device:" + device);
+            infoLog("No record of the device: "
+                    + BluetoothDevice.toAnonymizedAddress(address));
             // This device will be added as part of the BONDING_STATE_CHANGE intent processing
             // in sendIntent above
             device = mAdapter.getRemoteDevice(Utils.getAddressStringFromByte(address));
         }
 
-        infoLog("bondStateChangeCallback: Status: " + status + " Address: " + device + " newState: "
-                + newState + " hciReason: " + hciReason);
+        infoLog("bondStateChangeCallback: Status: " + status + " Address: "
+                + BluetoothDevice.toAnonymizedAddress(address)
+                + " newState: " + newState + " hciReason: " + hciReason);
 
         Message msg = obtainMessage(BONDING_STATE_CHANGE);
         msg.obj = device;
@@ -484,9 +487,10 @@ final class BondStateMachine extends StateMachine {
         if (bdDevice == null) {
             mRemoteDevices.addDeviceProperties(address);
         }
-        infoLog("sspRequestCallback: " + address + " name: " + name + " cod: " + cod
-                + " pairingVariant " + pairingVariant + " passkey: "
-                + (Build.isDebuggable() ? passkey : "******"));
+        infoLog("sspRequestCallback: "
+                + BluetoothDevice.toAnonymizedAddress(address)
+                + " name: " + name + " cod: " + cod + " pairingVariant " + pairingVariant
+                + " passkey: " + (Build.isDebuggable() ? passkey : "******"));
         int variant;
         boolean displayPasskey = false;
         switch (pairingVariant) {
@@ -515,7 +519,8 @@ final class BondStateMachine extends StateMachine {
         }
         BluetoothDevice device = mRemoteDevices.getDevice(address);
         if (device == null) {
-            warnLog("Device is not known for:" + Utils.getAddressStringFromByte(address));
+            warnLog("Device is not known for:"
+                    + BluetoothDevice.toAnonymizedAddress(address));
             mRemoteDevices.addDeviceProperties(address);
             device = Objects.requireNonNull(mRemoteDevices.getDevice(address));
         }
@@ -548,7 +553,7 @@ final class BondStateMachine extends StateMachine {
                 BluetoothDevice.BOND_BONDING,
                 BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_PIN_REQUESTED, 0);
 
-        infoLog("pinRequestCallback: " + bdDevice.getAddress()
+        infoLog("pinRequestCallback: " + bdDevice.getAnonymizedAddress()
                 + " name:" + Utils.getName(bdDevice) + " cod:" + new BluetoothClass(cod));
 
         Message msg = obtainMessage(PIN_REQUEST);

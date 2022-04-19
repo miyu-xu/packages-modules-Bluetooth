@@ -186,8 +186,8 @@ final class RemoteDevices {
                 mDevices.forEach((address, deviceProperties) -> {
                     BluetoothDevice bluetoothDevice = deviceProperties.getDevice();
 
-                    debugLog("reset(): address=" + address + ", connected="
-                            + bluetoothDevice.isConnected());
+                    debugLog("reset(): address=" + BluetoothDevice.toAnonymizedAddress(address)
+                            + ", connected=" + bluetoothDevice.isConnected());
 
                     if (bluetoothDevice.isConnected()) {
                         Intent intent = new Intent(BluetoothDevice.ACTION_ACL_DISCONNECTED);
@@ -260,7 +260,8 @@ final class RemoteDevices {
                             return prop;
                         }
                     }
-                    debugLog("Removing device " + deleteKey + " from property map");
+                    debugLog("Removing device " + BluetoothDevice.toAnonymizedAddress(deleteKey)
+                            + " from property map");
                     mDevices.remove(deleteKey);
                 }
             }
@@ -521,14 +522,15 @@ final class RemoteDevices {
         synchronized (mObject) {
             int currentBatteryLevel = deviceProperties.getBatteryLevel();
             if (batteryLevel == currentBatteryLevel) {
-                debugLog("Same battery level for device " + device + " received " + String.valueOf(
-                        batteryLevel) + "%");
+                debugLog("Same battery level for device " + device.getAnonymizedAddress()
+                        + " received " + String.valueOf(batteryLevel) + "%");
                 return;
             }
             deviceProperties.setBatteryLevel(batteryLevel);
         }
         sendBatteryLevelChangedBroadcast(device, batteryLevel);
-        Log.d(TAG, "Updated device " + device + " battery level to " + batteryLevel + "%");
+        Log.d(TAG, "Updated device " + device.getAnonymizedAddress()
+                + " battery level to " + batteryLevel + "%");
     }
 
     /**
@@ -547,13 +549,14 @@ final class RemoteDevices {
         }
         synchronized (mObject) {
             if (deviceProperties.getBatteryLevel() == BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {
-                debugLog("Battery level was never set or is already reset, device=" + device);
+                debugLog("Battery level was never set or is already reset, device="
+                        + device.getAnonymizedAddress());
                 return;
             }
             deviceProperties.setBatteryLevel(BluetoothDevice.BATTERY_LEVEL_UNKNOWN);
         }
         sendBatteryLevelChangedBroadcast(device, BluetoothDevice.BATTERY_LEVEL_UNKNOWN);
-        Log.d(TAG, "Reset battery level, device=" + device);
+        Log.d(TAG, "Reset battery level, device=" + device.getAnonymizedAddress());
     }
 
     private void sendBatteryLevelChangedBroadcast(BluetoothDevice device, int batteryLevel) {
@@ -611,7 +614,7 @@ final class RemoteDevices {
                         case AbstractionLayer.BT_PROPERTY_BDNAME:
                             final String newName = new String(val);
                             if (newName.equals(device.mName)) {
-                                debugLog("Skip name update for " + bdDevice);
+                                debugLog("Skip name update for " + bdDevice.getAnonymizedAddress());
                                 break;
                             }
                             device.mName = newName;
@@ -629,12 +632,14 @@ final class RemoteDevices {
                             break;
                         case AbstractionLayer.BT_PROPERTY_BDADDR:
                             device.mAddress = val;
-                            debugLog("Remote Address is:" + Utils.getAddressStringFromByte(val));
+                            debugLog("Remote Address is:"
+                                    + BluetoothDevice.toAnonymizedAddress(val));
                             break;
                         case AbstractionLayer.BT_PROPERTY_CLASS_OF_DEVICE:
                             final int newClass = Utils.byteArrayToInt(val);
                             if (newClass == device.mBluetoothClass) {
-                                debugLog("Skip class update for " + bdDevice);
+                                debugLog("Skip class update for "
+                                        + bdDevice.getAnonymizedAddress());
                                 break;
                             }
                             device.mBluetoothClass = Utils.byteArrayToInt(val);
@@ -651,7 +656,8 @@ final class RemoteDevices {
                             int numUuids = val.length / AbstractionLayer.BT_UUID_SIZE;
                             final ParcelUuid[] newUuids = Utils.byteArrayToUuid(val);
                             if (areUuidsEqual(newUuids, device.mUuids)) {
-                                debugLog( "Skip uuids update for " + bdDevice.getAddress());
+                                debugLog("Skip uuids update for "
+                                        + bdDevice.getAnonymizedAddress());
                                 break;
                             }
                             device.mUuids = newUuids;
@@ -688,10 +694,12 @@ final class RemoteDevices {
         // The device properties are already registered - we can send the intent
         // now
         BluetoothDevice device = getDevice(address);
-        debugLog("deviceFoundCallback: Remote Address is:" + device);
+        debugLog("deviceFoundCallback: Remote Address is:"
+                + BluetoothDevice.toAnonymizedAddress(address));
         DeviceProperties deviceProp = getDeviceProperties(device);
         if (deviceProp == null) {
-            errorLog("Device Properties is null for Device:" + device);
+            errorLog("Device Properties is null for Device:"
+                    + BluetoothDevice.toAnonymizedAddress(address));
             return;
         }
 
@@ -732,12 +740,12 @@ final class RemoteDevices {
         BluetoothDevice device = getDevice(mainAddress);
         if (device == null) {
             errorLog("addressConsolidateCallback: device is NULL, address="
-                    + Utils.getAddressStringFromByte(mainAddress) + ", secondaryAddress="
-                            + Utils.getAddressStringFromByte(secondaryAddress));
+                    + BluetoothDevice.toAnonymizedAddress(mainAddress) + ", secondaryAddress="
+                    + BluetoothDevice.toAnonymizedAddress(secondaryAddress));
             return;
         }
-        Log.d(TAG, "addressConsolidateCallback device: " + device + ", secondaryAddress:"
-                + Utils.getAddressStringFromByte(secondaryAddress));
+        Log.d(TAG, "addressConsolidateCallback device: " + device.getAnonymizedAddress()
+                + ", secondaryAddress:" + BluetoothDevice.toAnonymizedAddress(secondaryAddress));
 
         DeviceProperties deviceProperties = getDeviceProperties(device);
         deviceProperties.mIsConsolidated = true;
@@ -752,7 +760,7 @@ final class RemoteDevices {
 
         if (device == null) {
             errorLog("aclStateChangeCallback: device is NULL, address="
-                    + Utils.getAddressStringFromByte(address) + ", newState=" + newState);
+                    + BluetoothDevice.toAnonymizedAddress(address) + ", newState=" + newState);
             return;
         }
         int state = sAdapterService.getState();
@@ -772,7 +780,7 @@ final class RemoteDevices {
             }
             debugLog(
                     "aclStateChangeCallback: Adapter State: " + BluetoothAdapter.nameForState(state)
-                            + " Connected: " + device);
+                            + " Connected: " + BluetoothDevice.toAnonymizedAddress(device));
         } else {
             if (device.getBondState() == BluetoothDevice.BOND_BONDING) {
                 // Send PAIRING_CANCEL intent to dismiss any dialog requesting bonding.
@@ -955,8 +963,8 @@ final class RemoteDevices {
         }
         if (batteryPercent != BluetoothDevice.BATTERY_LEVEL_UNKNOWN) {
             updateBatteryLevel(device, batteryPercent);
-            infoLog("Updated device " + device + " battery level to " + String.valueOf(
-                    batteryPercent) + "%");
+            infoLog("Updated device " + device.getAnonymizedAddress() + " battery level to "
+                    + String.valueOf(batteryPercent) + "%");
         }
     }
 

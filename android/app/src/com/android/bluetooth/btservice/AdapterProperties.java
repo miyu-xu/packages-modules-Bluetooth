@@ -636,15 +636,15 @@ class AdapterProperties {
             if (state == BluetoothDevice.BOND_BONDED) {
                 // add if not already in list
                 if (!mBondedDevices.contains(device)) {
-                    debugLog("Adding bonded device:" + device);
+                    debugLog("Adding bonded device:" + device.getAnonymizedAddress());
                     mBondedDevices.add(device);
                 }
             } else if (state == BluetoothDevice.BOND_NONE) {
                 // remove device from list
                 if (mBondedDevices.remove(device)) {
-                    debugLog("Removing bonded device:" + device);
+                    debugLog("Removing bonded device:" + device.getAnonymizedAddress());
                 } else {
-                    debugLog("Failed to remove device: " + device);
+                    debugLog("Failed to remove device: " + device.getAnonymizedAddress());
                 }
             }
             //invalidateGetBondStateCache();
@@ -688,7 +688,8 @@ class AdapterProperties {
         int prevState = connIntent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, -1);
         int state = connIntent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1);
         Log.d(TAG,
-                "PROFILE_CONNECTION_STATE_CHANGE: profile=" + profile + ", device=" + device + ", "
+                "PROFILE_CONNECTION_STATE_CHANGE: profile=" + profile + ", device="
+                        + BluetoothDevice.toAnonymizedAddress(device) + ", "
                         + prevState + " -> " + state);
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, state,
                 0 /* deprecated */, profile, mService.obfuscateAddress(device),
@@ -697,7 +698,8 @@ class AdapterProperties {
         if (!isNormalStateTransition(prevState, state)) {
             Log.w(TAG,
                     "PROFILE_CONNECTION_STATE_CHANGE: unexpected transition for profile=" + profile
-                            + ", device=" + device + ", " + prevState + " -> " + state);
+                            + ", device=" + BluetoothDevice.toAnonymizedAddress(device)
+                            + ", " + prevState + " -> " + state);
         }
         sendConnectionStateChange(device, profile, state, prevState);
     }
@@ -726,11 +728,13 @@ class AdapterProperties {
                 intent.putExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, newAdapterState);
                 intent.putExtra(BluetoothAdapter.EXTRA_PREVIOUS_CONNECTION_STATE, prevAdapterState);
                 intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
-                Log.d(TAG, "ADAPTER_CONNECTION_STATE_CHANGE: " + device + ": " + prevAdapterState
+                Log.d(TAG, "ADAPTER_CONNECTION_STATE_CHANGE: "
+                        + BluetoothDevice.toAnonymizedAddress(device) + ": " + prevAdapterState
                         + " -> " + newAdapterState);
                 if (!isNormalStateTransition(prevState, state)) {
                     Log.w(TAG, "ADAPTER_CONNECTION_STATE_CHANGE: unexpected transition for profile="
-                            + profile + ", device=" + device + ", " + prevState + " -> " + state);
+                            + profile + ", device=" + BluetoothDevice.toAnonymizedAddress(device)
+                            + ", " + prevState + " -> " + state);
                 }
                 mService.sendBroadcastAsUser(intent, UserHandle.ALL, BLUETOOTH_CONNECT,
                         Utils.getTempAllowlistBroadcastOptions());
@@ -1102,7 +1106,7 @@ class AdapterProperties {
     protected void dump(FileDescriptor fd, PrintWriter writer, String[] args) {
         writer.println(TAG);
         writer.println("  " + "Name: " + getName());
-        writer.println("  " + "Address: " + Utils.getAddressStringFromByte(mAddress));
+        writer.println("  " + "Address: " + BluetoothDevice.toAnonymizedAddress(mAddress));
         writer.println("  " + "BluetoothClass: " + getBluetoothClass());
         writer.println("  " + "ScanMode: " + dumpScanMode(getScanMode()));
         writer.println("  " + "ConnectionState: " + dumpConnectionState(getConnectionState()));
@@ -1118,11 +1122,12 @@ class AdapterProperties {
             String address = device.getAddress();
             String identityAddress = mService.getIdentityAddress(address);
             if (identityAddress.equals(address)) {
-                writer.println("    " + address
+                writer.println("    " + BluetoothDevice.toAnonymizedAddress(address)
                             + " [" + dumpDeviceType(device.getType()) + "] "
                             + Utils.getName(device));
             } else {
-                sb.append("    " + address + " => " + identityAddress
+                sb.append("    " + BluetoothDevice.toAnonymizedAddress(address)
+                            + " => " + identityAddress
                             + " [" + dumpDeviceType(device.getType()) + "] "
                             + Utils.getName(device) + "\n");
             }
