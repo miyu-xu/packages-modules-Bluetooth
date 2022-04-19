@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d74ea9d_e3cee418",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-19T17:35:21Z",
+      "side": 1,
+      "message": "Goes in BTM Shim API",
+      "range": {
+        "startLine": 670,
+        "startChar": 19,
+        "endLine": 670,
+        "endChar": 37
+      },
+      "revId": "aa2084dad6543c3adf4a114aadd7c9d718ee61c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
