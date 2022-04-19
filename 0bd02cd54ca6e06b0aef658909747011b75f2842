@@ -22,6 +22,29 @@
       },
       "revId": "0bd02cd54ca6e06b0aef658909747011b75f2842",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e09bebd_c50e68f7",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-19T19:50:12Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/bta/gatt/bta_gattc_db_storage.cc:355:15: error: format specifies type \u0027int\u0027 but the argument has type \u0027__nlink_t\u0027 (aka \u0027unsigned long\u0027) [-Werror,-Wformat]\n              buf.st_nlink, buf.st_mtime);\n              ^~~~~~~~~~~~\npackages/modules/Bluetooth/system/gd/os/log.h:178:25: note: expanded from macro \u0027LOG_DEBUG\u0027\n      LOGWRAPPER(fmt, ##args);                                                \\\n                 ~~~    ^~~~\npackages/modules/Bluetooth/system/gd/os/log.h:160:11: note: expanded from macro \u0027LOGWRAPPER\u0027\n        ##args);",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 0
+      },
+      "revId": "0bd02cd54ca6e06b0aef658909747011b75f2842",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
