@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e8fa8b0_83b8c559",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2953,
+      "author": {
+        "id": 1002682
+      },
+      "writtenOn": "2022-04-19T21:53:54Z",
+      "side": 1,
+      "message": "does the LE context type ever inform the type of audio processing done? If not, content type shouldn\u0027t be looked at, it\u0027s actually misleading to have it as the parameter before usage. Usage is the playback use case, and is mostly used correctly by applications. The content type is optional and mostly only found to be correct for podcast / audiobook apps. Does \"CONVERSATIONAL\" apply to those use cases?",
+      "range": {
+        "startLine": 2947,
+        "startChar": 6,
+        "endLine": 2953,
+        "endChar": 7
+      },
+      "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
