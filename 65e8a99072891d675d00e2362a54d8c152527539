@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f54c276_c99a2430",
+        "filename": "android/blueberry/server/src/com/android/blueberry/A2dp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-04-19T09:12:20Z",
+      "side": 1,
+      "message": "Does the stack trace will appear in the android logs ? If so I rather clearly send a gRPC error with the response observer",
+      "range": {
+        "startLine": 269,
+        "startChar": 6,
+        "endLine": 269,
+        "endChar": 85
+      },
+      "revId": "65e8a99072891d675d00e2362a54d8c152527539",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
