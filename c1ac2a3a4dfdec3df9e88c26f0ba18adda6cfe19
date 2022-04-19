@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0febe82_4adf224a",
+        "filename": "system/bta/dm/bta_dm_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 694,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-19T14:12:25Z",
+      "side": 1,
+      "message": "Parameters",
+      "range": {
+        "startLine": 694,
+        "startChar": 3,
+        "endLine": 694,
+        "endChar": 10
+      },
+      "revId": "c1ac2a3a4dfdec3df9e88c26f0ba18adda6cfe19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
