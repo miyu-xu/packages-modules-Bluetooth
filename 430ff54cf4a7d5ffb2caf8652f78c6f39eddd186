@@ -22,6 +22,30 @@
       },
       "revId": "430ff54cf4a7d5ffb2caf8652f78c6f39eddd186",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c6043f_2ea7cff4",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4704,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-19T14:44:07Z",
+      "side": 1,
+      "message": "I think required would usually means a boolean (yes it is required, or no it is not).\n\nA requirement usually tells you what is required.",
+      "parentUuid": "a62dfc96_1872ad71",
+      "range": {
+        "startLine": 4704,
+        "startChar": 7,
+        "endLine": 4704,
+        "endChar": 34
+      },
+      "revId": "430ff54cf4a7d5ffb2caf8652f78c6f39eddd186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
