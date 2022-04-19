@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45ae7607_50b163e8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-04-19T03:32:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97dd10cd_ff0a1b96",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "96eb1606_49c990d7",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-04-19T00:35:37Z",
       "side": 1,
       "message": "Do you mind rebasing on top of https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2066598? I\u0027ve refactored away most of the raw unwraps",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49ac09a7_32c8d58a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-04-19T03:32:09Z",
+      "side": 1,
+      "message": "Will do.",
+      "parentUuid": "96eb1606_49c990d7",
       "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1f7e740_04e5d01a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1211,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-04-19T03:32:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c77363c_dabe36d4",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36895077_4e0b9bed",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-04-19T00:35:37Z",
       "side": 1,
       "message": "Shouldn\u0027t this be in connect_all_enabled_profiles?",
+      "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb3dbb32_00a59169",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1277,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-04-19T03:32:09Z",
+      "side": 1,
+      "message": "My bad. I mixed up this while sync changes from cros to aosp.",
+      "parentUuid": "36895077_4e0b9bed",
       "revId": "ca606e7c8cd68a62a6e67e600848c70b6566a4b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
