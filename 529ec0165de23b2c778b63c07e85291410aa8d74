@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3aa31e62_16538991",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T20:45:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbbb50d1_0b06165e",
+      "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "25e60f7e_9408a247",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Yes. In the case where there is a connected device, this would just continuously run every 30s. Let me refactor this so the freshness check is also triggered from acl_state and not count connected devices when I re-trigger freshness checks.",
       "parentUuid": "25e60f7e_9408a247",
+      "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e22e3921_2d74b7e0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T20:45:56Z",
+      "side": 1,
+      "message": "Hmm, looking at the code further -- this freshness check would only be active as long as the device was in the `bonding` state or is `connected` but not paired. I think it\u0027s ok to keep this running in those cases. I don\u0027t think there\u0027s many use-cases of long running connection without pairing.",
+      "parentUuid": "345489c9_f2088344",
       "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
