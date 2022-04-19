@@ -32,6 +32,10 @@ namespace shim {
 
 static const std::string kReadOnlyDebuggableProperty = "ro.debuggable";
 
+bool IsDebuggable() {
+  return (os::GetSystemProperty(kReadOnlyDebuggableProperty) == "1");
+}
+
 namespace {
 constexpr char kModuleName[] = "shim::Dumpsys";
 constexpr char kDumpsysTitle[] = "----- Gd Dumpsys ------";
@@ -50,8 +54,6 @@ struct Dumpsys::impl {
   void FilterAsDeveloper(std::string* dumpsys_data);
   std::string PrintAsJson(std::string* dumpsys_data) const;
 
-  bool IsDebuggable() const;
-
  private:
   void DumpWithArgsAsync(int fd, const char** args);
 
@@ -67,10 +69,6 @@ Dumpsys::impl::impl(const Dumpsys& dumpsys_module, const dumpsys::ReflectionSche
 
 int Dumpsys::impl::GetNumberOfBundledSchemas() const {
   return reflection_schema_.GetNumberOfBundledSchemas();
-}
-
-bool Dumpsys::impl::IsDebuggable() const {
-  return (os::GetSystemProperty(kReadOnlyDebuggableProperty) == "1");
 }
 
 void Dumpsys::impl::FilterAsDeveloper(std::string* dumpsys_data) {

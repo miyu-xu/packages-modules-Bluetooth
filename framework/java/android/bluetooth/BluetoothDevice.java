@@ -1459,8 +1459,66 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @NonNull
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public String getAnonymizedAddress() {
-        return "XX:XX:XX" + getAddress().substring(8);
+        return toAnonymizedAddress(getAddress());
     }
+
+    /**
+     * Returns the anonymized hardware address of the {@code device}. The first three octets will be
+     * suppressed for anonymization.
+     * <p> For example, "XX:XX:XX:AA:BB:CC".
+     *
+     * @param byteAddress byte array that contain an address to anonimized
+     * @return Anonymized bluetooth hardware address as string
+     * @hide
+     */
+    @NonNull
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    public static String toAnonymizedAddress(@Nullable byte[] byteAddress) {
+        if (byteAddress == null || byteAddress.length != 6) {
+            return "00:00:00:00:00:00";
+        } else {
+            return toAnonymizedAddress(String.format("%02X:%02X:%02X:%02X:%02X:%02X",
+                        byteAddress[0], byteAddress[1], byteAddress[2], byteAddress[3],
+                        byteAddress[4], byteAddress[5]));
+        }
+    }
+
+    /**
+     * Returns the anonymized hardware address of the {@code device}. The first three octets will be
+     * suppressed for anonymization.
+     * <p> For example, "XX:XX:XX:AA:BB:CC".
+     *
+     * @param device to anonymized the address
+     * @return Anonymized bluetooth hardware address as string
+     * @hide
+     */
+    @NonNull
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    public static String toAnonymizedAddress(@Nullable BluetoothDevice device) {
+        if (device == null) {
+            return "00:00:00:00:00:00";
+        }
+        return toAnonymizedAddress(device.getAddress());
+    }
+
+    /**
+     * Returns the anonymized hardware address of the @Address. The first three octets will be
+     * suppressed for anonymization.
+     * <p> For example, "XX:XX:XX:AA:BB:CC".
+     *
+     * @param address string to be anonymized
+     * @return Anonymized bluetooth hardware address as string
+     * @hide
+     */
+    @NonNull
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    public static String toAnonymizedAddress(@Nullable String address) {
+        if (address == null || address.length() != 17) {
+            return "00:00:00:00:00:00";
+        }
+        return (Build.isDebuggable() ? address : "XX:XX:XX" + address.substring(8));
+    }
+
 
     /**
      * Returns the identity address of this BluetoothDevice.

@@ -807,14 +807,14 @@ bool L2CA_ReconfigCreditBasedConnsReq(const RawAddress& bd_addr,
                                       std::vector<uint16_t>& lcids,
                                       tL2CAP_LE_CFG_INFO* p_cfg) {
   LOG_INFO("UNIMPLEMENTED %s addr: %s cfg:%p", __func__,
-           bd_addr.ToString().c_str(), p_cfg);
+           PRIVATE_ADDRESS(bd_addr), p_cfg);
   return false;
 }
 
 std::vector<uint16_t> L2CA_ConnectCreditBasedReq(uint16_t psm,
                                                  const RawAddress& p_bd_addr,
                                                  tL2CAP_LE_CFG_INFO* p_cfg) {
-  LOG_INFO("UNIMPLEMENTED %s addr:%s", __func__, p_bd_addr.ToString().c_str());
+  LOG_INFO("UNIMPLEMENTED %s addr:%s", __func__, PRIVATE_ADDRESS(p_bd_addr));
   std::vector<uint16_t> result;
   return result;
 }
@@ -822,7 +822,7 @@ std::vector<uint16_t> L2CA_ConnectCreditBasedReq(uint16_t psm,
 bool L2CA_ConnectCreditBasedRsp(const RawAddress& bd_addr, uint8_t id,
                                 std::vector<uint16_t>& accepted_lcids,
                                 uint16_t result, tL2CAP_LE_CFG_INFO* p_cfg) {
-  LOG_INFO("UNIMPLEMENTED %s addr:%s", __func__, bd_addr.ToString().c_str());
+  LOG_INFO("UNIMPLEMENTED %s addr:%s", __func__, PRIVATE_ADDRESS(bd_addr));
   return false;
 }
 

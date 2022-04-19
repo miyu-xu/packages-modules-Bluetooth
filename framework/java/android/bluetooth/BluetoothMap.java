@@ -204,7 +204,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean isConnected(BluetoothDevice device) {
-        if (VDBG) log("isConnected(" + device + ")");
+        if (VDBG) log("isConnected(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         final IBluetoothMap service = getService();
         final boolean defaultValue = false;
         if (service == null) {
@@ -246,7 +246,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean disconnect(BluetoothDevice device) {
-        if (DBG) log("disconnect(" + device + ")");
+        if (DBG) log("disconnect(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         final IBluetoothMap service = getService();
         final boolean defaultValue = false;
         if (service == null) {
@@ -363,7 +363,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public int getConnectionState(BluetoothDevice device) {
-        if (DBG) log("getConnectionState(" + device + ")");
+        if (DBG) log("getConnectionState(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         final IBluetoothMap service = getService();
         final int defaultValue = BluetoothProfile.STATE_DISCONNECTED;
         if (service == null) {
@@ -399,7 +399,10 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     public boolean setPriority(BluetoothDevice device, int priority) {
-        if (DBG) log("setPriority(" + device + ", " + priority + ")");
+        if (DBG) {
+            log("setPriority(" + BluetoothDevice.toAnonymizedAddress(device) + ", "
+                    + priority + ")");
+        }
         return setConnectionPolicy(device, BluetoothAdapter.priorityToConnectionPolicy(priority));
     }
 
@@ -423,7 +426,10 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
     })
     public boolean setConnectionPolicy(@NonNull BluetoothDevice device,
             @ConnectionPolicy int connectionPolicy) {
-        if (DBG) log("setConnectionPolicy(" + device + ", " + connectionPolicy + ")");
+        if (DBG) {
+            log("setConnectionPolicy(" + BluetoothDevice.toAnonymizedAddress(device) + ", "
+                    + connectionPolicy + ")");
+        }
         final IBluetoothMap service = getService();
         final boolean defaultValue = false;
         if (service == null) {
@@ -459,7 +465,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     public int getPriority(BluetoothDevice device) {
-        if (VDBG) log("getPriority(" + device + ")");
+        if (VDBG) log("getPriority(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         return BluetoothAdapter.connectionPolicyToPriority(getConnectionPolicy(device));
     }
 
@@ -481,7 +487,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     public @ConnectionPolicy int getConnectionPolicy(@NonNull BluetoothDevice device) {
-        if (VDBG) log("getConnectionPolicy(" + device + ")");
+        if (VDBG) log("getConnectionPolicy(" + BluetoothDevice.toAnonymizedAddress(device) + ")");
         final IBluetoothMap service = getService();
         final int defaultValue = BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
         if (service == null) {

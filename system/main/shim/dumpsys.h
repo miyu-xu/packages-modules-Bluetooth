@@ -19,6 +19,7 @@
 #include <functional>
 #include <list>
 #include <string>
+#include <string_view>
 
 #define LOG_DUMPSYS(fd, fmt, args...)                 \
   do {                                                \
@@ -30,11 +31,14 @@
     dprintf(fd, " ----- %s -----\n", title); \
   } while (false)
 
-constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
-#define PRIVATE_ADDRESS(addr)                                            \
-  (addr.ToString()                                                       \
-       .replace(0, strlen(kPrivateAddressPrefix), kPrivateAddressPrefix) \
-       .c_str())
+constexpr std::string_view kPrivateAddressPrefix = "xx:xx:xx";
+#define PRIVATE_ADDRESS(addr)                            \
+  (bluetooth::shim::IsDebuggable()                       \
+       ? addr.ToString().c_str()                         \
+       : addr.ToString()                                 \
+             .replace(0, kPrivateAddressPrefix.length(), \
+                      kPrivateAddressPrefix)             \
+             .c_str())
 
 #define PRIVATE_CELL(number)                                      \
   (number                                                         \
@@ -62,6 +66,11 @@ using DumpsysFunction = std::function<void(int fd)>;
  * for both the legacy shim and the Gabeldorsche stack.
  */
 void Dump(int fd, const char** args);
+
+/**
+ * Return true if the build is a debuggable build
+ */
+bool IsDebuggable();
 
 /**
  * Dumpsys access for legacy shim modules.
