@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbbb50d1_0b06165e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T18:48:41Z",
+      "side": 1,
+      "message": "Ah it should be assigned in freshness check when i tokio::spawn -- good catch",
+      "parentUuid": "b0da820b_c253659b",
+      "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "25e60f7e_9408a247",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-04-19T18:45:32Z",
       "side": 1,
       "message": "When do we remove connected devices from the found_devices list? Is it possible that we continuously spawn this if we never bond with the device?",
+      "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "345489c9_f2088344",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-19T18:48:41Z",
+      "side": 1,
+      "message": "Yes. In the case where there is a connected device, this would just continuously run every 30s. Let me refactor this so the freshness check is also triggered from acl_state and not count connected devices when I re-trigger freshness checks.",
+      "parentUuid": "25e60f7e_9408a247",
       "revId": "529ec0165de23b2c778b63c07e85291410aa8d74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
