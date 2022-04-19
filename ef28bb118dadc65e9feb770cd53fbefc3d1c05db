@@ -88,6 +88,24 @@
       "parentUuid": "e865c15f_983ca823",
       "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae86d8eb_301f66e7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2969,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-19T01:52:01Z",
+      "side": 0,
+      "message": "Thanks Jean-Michel for the confirmation. Could you please confirm the usage mapping for the conversational as well?",
+      "parentUuid": "ec3a5171_adea20d1",
+      "revId": "ef28bb118dadc65e9feb770cd53fbefc3d1c05db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
