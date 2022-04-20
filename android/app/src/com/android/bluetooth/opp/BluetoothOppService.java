@@ -37,7 +37,6 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothDevicePicker;
 import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -299,10 +298,6 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
 
         setComponentAvailable(OPP_PROVIDER, false);
         setComponentAvailable(OPP_FILE_PROVIDER, false);
-        setComponentAvailable(LAUNCHER_ACTIVITY, false);
-        setComponentAvailable(BT_ENABLE_ACTIVITY, false);
-        setComponentAvailable(BT_ERROR_ACTIVITY, false);
-        setComponentAvailable(BT_ENABLING_ACTIVITY, false);
         setComponentAvailable(INCOMING_FILE_CONFIRM_ACTIVITY, false);
         setComponentAvailable(TRANSFER_ACTIVITY, false);
         setComponentAvailable(TRANSFER_HISTORY_ACTIVITY, false);
