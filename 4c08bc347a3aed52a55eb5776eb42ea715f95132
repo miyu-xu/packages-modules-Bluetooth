@@ -46,6 +46,30 @@
       },
       "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cdb6d26_b50bf80e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2953,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-04-20T07:09:31Z",
+      "side": 1,
+      "message": "In a VoIP call at least on track metadata will have usage AUDIO_USAGE_VOICE_COMMUNICATION. You can also expect AUDIO_USAGE_VOICE_COMMUNICATION_SIGNALLING to be active for some time during the call.\n\nfor PSTN calls, this meta data is injected by the audio HAL and I assume they use  AUDIO_USAGE_VOICE_COMMUNICATION",
+      "parentUuid": "bd5a0bf0_579521e5",
+      "range": {
+        "startLine": 2947,
+        "startChar": 6,
+        "endLine": 2953,
+        "endChar": 7
+      },
+      "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
