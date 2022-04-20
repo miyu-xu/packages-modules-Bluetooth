@@ -16,6 +16,24 @@
       "message": "Good catching this!\n\nso in the case when CRAS missed this absolume-vol-supported event, did CRAS fallback to software volume? or there\u0027s a CRAS bug on that as well?",
       "revId": "f3c79250fc6b3ff875bef9143325a688921d3022",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d30b77a_d307f095",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-04-20T16:47:00Z",
+      "side": 1,
+      "message": "Yes. I have a CL but haven\u0027t uploaded it yet because of the dependency of the digest dictionary one. I don\u0027t want to override it and cause changes.\n\nThat\u0027s a good point that I\u0027ll double check. We should start with default SW volume or at least fall back to it for A2DP. For now there are two variables controlling this, making things inconsistent.",
+      "parentUuid": "f83416b3_56a6b9ef",
+      "revId": "f3c79250fc6b3ff875bef9143325a688921d3022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
