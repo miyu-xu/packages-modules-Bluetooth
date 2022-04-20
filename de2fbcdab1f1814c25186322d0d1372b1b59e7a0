@@ -22,6 +22,30 @@
       },
       "revId": "de2fbcdab1f1814c25186322d0d1372b1b59e7a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebaf0e7e_897fe57d",
+        "filename": "system/bta/gatt/bta_gattc_cache.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 724,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-20T04:29:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17847f5e_c8434bd9",
+      "range": {
+        "startLine": 724,
+        "startChar": 7,
+        "endLine": 724,
+        "endChar": 70
+      },
+      "revId": "de2fbcdab1f1814c25186322d0d1372b1b59e7a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
