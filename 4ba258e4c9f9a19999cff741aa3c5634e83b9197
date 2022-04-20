@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbff245_68352185",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-04-20T15:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "819f93ed_69d89629",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 65
+      },
+      "revId": "4ba258e4c9f9a19999cff741aa3c5634e83b9197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b365b01a_e4be4d8c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-03-30T11:41:36Z",
       "side": 1,
       "message": "We will need new unit test for the change. This does not pass the current test.",
+      "range": {
+        "startLine": 307,
+        "startChar": 37,
+        "endLine": 307,
+        "endChar": 74
+      },
+      "revId": "4ba258e4c9f9a19999cff741aa3c5634e83b9197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8241658_130e3806",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-04-20T15:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b365b01a_e4be4d8c",
       "range": {
         "startLine": 307,
         "startChar": 37,
