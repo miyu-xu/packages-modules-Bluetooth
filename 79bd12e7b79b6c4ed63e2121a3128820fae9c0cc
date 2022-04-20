@@ -93,6 +93,30 @@
       },
       "revId": "79bd12e7b79b6c4ed63e2121a3128820fae9c0cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9673cd2d_fe920c3b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3207,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-20T14:57:15Z",
+      "side": 1,
+      "message": "Yup, please remove this part. We don\u0027t have the function now.",
+      "parentUuid": "3b916341_fa324553",
+      "range": {
+        "startLine": 3207,
+        "startChar": 7,
+        "endLine": 3207,
+        "endChar": 43
+      },
+      "revId": "79bd12e7b79b6c4ed63e2121a3128820fae9c0cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
