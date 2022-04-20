@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4055afde_54fdc321",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-04-20T05:17:28Z",
+      "side": 1,
+      "message": "This logic is different from before -- this can be further reduced to `self.wait_to_connect \u003d !has_enabled_uuids;`\n\nDid you intend to set `self.wait_to_connect` false here?",
+      "revId": "34262d44f9866c3138f5825c578b6c6d50434e9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
