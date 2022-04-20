@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f83416b3_56a6b9ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-04-20T02:57:20Z",
+      "side": 1,
+      "message": "Good catching this!\n\nso in the case when CRAS missed this absolume-vol-supported event, did CRAS fallback to software volume? or there\u0027s a CRAS bug on that as well?",
+      "revId": "f3c79250fc6b3ff875bef9143325a688921d3022",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
