@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61e36992_b8193024",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-20T06:03:44Z",
+      "side": 1,
+      "message": "Done\n\nCurrently the API is not defined well, some operations will do more than once, such as file name generating.",
+      "parentUuid": "a25dab9c_aa956334",
+      "range": {
+        "startLine": 229,
+        "startChar": 4,
+        "endLine": 232,
+        "endChar": 5
+      },
+      "revId": "0bd02cd54ca6e06b0aef658909747011b75f2842",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e09bebd_c50e68f7",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-19T19:50:12Z",
       "side": 1,
       "message": "packages/modules/Bluetooth/system/bta/gatt/bta_gattc_db_storage.cc:355:15: error: format specifies type \u0027int\u0027 but the argument has type \u0027__nlink_t\u0027 (aka \u0027unsigned long\u0027) [-Werror,-Wformat]\n              buf.st_nlink, buf.st_mtime);\n              ^~~~~~~~~~~~\npackages/modules/Bluetooth/system/gd/os/log.h:178:25: note: expanded from macro \u0027LOG_DEBUG\u0027\n      LOGWRAPPER(fmt, ##args);                                                \\\n                 ~~~    ^~~~\npackages/modules/Bluetooth/system/gd/os/log.h:160:11: note: expanded from macro \u0027LOGWRAPPER\u0027\n        ##args);",
+      "range": {
+        "startLine": 354,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 0
+      },
+      "revId": "0bd02cd54ca6e06b0aef658909747011b75f2842",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c537d8a1_ae335b5a",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1650409
+      },
+      "writtenOn": "2022-04-20T06:03:44Z",
+      "side": 1,
+      "message": "It seems that for different platform, the type are different. I force to do type cast to unsigned long.",
+      "parentUuid": "3e09bebd_c50e68f7",
       "range": {
         "startLine": 354,
         "startChar": 0,
