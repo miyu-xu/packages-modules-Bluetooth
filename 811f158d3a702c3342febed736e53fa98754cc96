@@ -197,6 +197,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a6bd689_dfccf8f3",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T16:57:16Z",
+      "side": 1,
+      "message": "I don\u0027t think we need a comment\nAck",
+      "parentUuid": "48ef1e7a_bd11a948",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f473e6b_80745a4f",
@@ -337,6 +355,30 @@
       "side": 1,
       "message": "But would I be able to use a `Optional\u003c_\u003e` inside my code fragment? The reason I generate a full or empty `quote!` is that I want to use `parent` later in another `quote!` call.",
       "parentUuid": "08ae0fbc_6f5cf9fc",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 14
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba614d40_7c5693b5",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T16:57:16Z",
+      "side": 1,
+      "message": "Yes this should work just fine, ToTokens is implemented for Option https://docs.rs/quote/latest/src/quote/to_tokens.rs.html#109-115 in the way that we want",
+      "parentUuid": "6ca5b7cd_0e0e3797",
       "range": {
         "startLine": 334,
         "startChar": 0,
