@@ -24,6 +24,8 @@
 #ifndef BTA_GATTS_INT_H
 #define BTA_GATTS_INT_H
 
+#include <base/strings/stringprintf.h>
+
 #include <cstdint>
 
 #include "bt_target.h"  // Must be first to define build configuration
@@ -133,6 +135,10 @@ typedef struct {
   bluetooth::Uuid app_uuid;
   tBTA_GATTS_CBACK* p_cback;
   tGATT_IF gatt_if;
+  std::string ToString() const {
+    return base::StringPrintf("gatt_if:%hhu uuid:%s", gatt_if,
+                              app_uuid.ToString().c_str());
+  }
 } tBTA_GATTS_RCB;
 
 /* service registration control block */
@@ -142,6 +148,10 @@ typedef struct {
   uint8_t rcb_idx;
   uint8_t idx; /* self index of serviec CB */
   bool in_use;
+  std::string ToString() const {
+    return base::StringPrintf("start_handle:%hu uuid:%s", service_id,
+                              service_uuid.ToString().c_str());
+  }
 } tBTA_GATTS_SRVC_CB;
 
 /* GATT server control block */
