@@ -23,6 +23,7 @@
 #include <string>
 
 #include "bta/gatt/bta_gattc_int.h"
+#include "bta/gatt/bta_gatts_int.h"
 #include "common/message_loop_thread.h"
 #include "osi/include/allocator.h"
 #include "stack/gatt/gatt_int.h"
@@ -298,4 +299,26 @@ TEST_F(BtaGattTest, bta_gattc_op_cmpl_read_interrupted) {
 
   bta_gattc_op_cmpl(&client_channel_control_block, &data);
   ASSERT_EQ(GATT_ERROR, param::bta_gatt_read_complete_callback.status);
+}
+
+TEST_F(BtaGattTest, tBTA_GATTC___ToString) {
+  tBTA_GATTC_RCB rcb;
+  rcb.ToString();
+
+  tBTA_GATTC_SERV serv;
+  serv.ToString();
+
+  tBTA_GATTC_NOTIF_REG reg;
+  reg.ToString();
+
+  tBTA_GATTC_CLCB clcb;
+  clcb.ToString();
+}
+
+TEST_F(BtaGattTest, tBTA_GATTS___ToString) {
+  tBTA_GATTS_RCB rcb;
+  rcb.ToString();
+
+  tBTA_GATTS_SRVC_CB srvc;
+  srvc.ToString();
 }

@@ -24,6 +24,8 @@
 #ifndef BTA_GATTC_INT_H
 #define BTA_GATTC_INT_H
 
+#include <base/strings/stringprintf.h>
+
 #include <cstdint>
 #include <deque>
 
@@ -32,6 +34,7 @@
 #include "bta/gatt/database_builder.h"
 #include "bta/include/bta_gatt_api.h"
 #include "bta/sys/bta_sys.h"
+#include "main/shim/dumpsys.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/gatt_api.h"
 #include "types/bluetooth/uuid.h"
@@ -223,6 +226,11 @@ typedef struct {
   uint16_t attr_index;  /* cahce NV saving/loading attribute index */
 
   uint16_t mtu;
+  std::string ToString() const {
+    return base::StringPrintf("device:%s state:%hhu num_clcb:%hhu mtu:%hu",
+                              PRIVATE_ADDRESS(server_bda), state, num_clcb,
+                              mtu);
+  }
 } tBTA_GATTC_SERV;
 
 #ifndef BTA_GATTC_NOTIF_REG_MAX
@@ -234,6 +242,11 @@ typedef struct {
   bool app_disconnected;
   RawAddress remote_bda;
   uint16_t handle;
+  std::string ToString() const {
+    return base::StringPrintf("peer:%s handle:%hu app_disconnected:%c",
+                              PRIVATE_ADDRESS(remote_bda), handle,
+                              (app_disconnected) ? 'T' : 'F');
+  }
 } tBTA_GATTC_NOTIF_REG;
 
 typedef struct {
@@ -244,6 +257,11 @@ typedef struct {
   bool dereg_pending;
   bluetooth::Uuid app_uuid;
   tBTA_GATTC_NOTIF_REG notif_reg[BTA_GATTC_NOTIF_REG_MAX];
+  std::string ToString() const {
+    return base::StringPrintf(
+        "client_if:%hhu num_clcb:%hhu dereg_pending:%c uuid:%s", client_if,
+        num_clcb, (dereg_pending) ? 'T' : 'F', app_uuid.ToString().c_str());
+  }
 } tBTA_GATTC_RCB;
 
 /* client channel is a mapping between a BTA client(cl_id) and a remote BD
@@ -274,6 +292,11 @@ typedef struct {
   bool in_use;
   tBTA_GATTC_STATE state;
   tGATT_STATUS status;
+  std::string ToString() const {
+    return base::StringPrintf(
+        "device:%s transport:%s client_id:%hu", PRIVATE_ADDRESS(bda),
+        bt_transport_text(transport).c_str(), bta_conn_id);
+  }
 } tBTA_GATTC_CLCB;
 
 /* back ground connection tracking information */
