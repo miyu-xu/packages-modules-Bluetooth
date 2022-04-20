@@ -94,6 +94,30 @@
       },
       "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c59f9125_8de1f2a3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2953,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-04-20T07:33:17Z",
+      "side": 1,
+      "message": "On the SW path for PSTN, the audio framework adds one \"virtual track\" with usage AUDIO_USAGE_VOICE_COMMUNICATION which makes sure at least one of the metadata received by the HAL has usage AUDIO_USAGE_VOICE_COMMUNICATION. But the framework does not filter out other metadata",
+      "parentUuid": "dc859ab5_483ed08b",
+      "range": {
+        "startLine": 2947,
+        "startChar": 6,
+        "endLine": 2953,
+        "endChar": 7
+      },
+      "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
