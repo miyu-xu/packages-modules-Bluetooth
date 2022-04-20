@@ -401,7 +401,7 @@
              android:process="@string/process"
              android:theme="@android:style/Theme.Material.Light.Dialog"
              android:label="@string/bt_share_picker_label"
-             android:enabled="false"
+             android:enabled="true"
              android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND"/>
@@ -443,19 +443,19 @@
              android:process="@string/process"
              android:excludeFromRecents="true"
              android:theme="@style/dialog"
-             android:enabled="false">
+             android:enabled="true">
         </activity>
         <activity android:name="com.android.bluetooth.opp.BluetoothOppBtErrorActivity"
              android:process="@string/process"
              android:excludeFromRecents="true"
              android:theme="@style/dialog"
-             android:enabled="false">>
+             android:enabled="true">>
         </activity>
         <activity android:name="com.android.bluetooth.opp.BluetoothOppBtEnablingActivity"
              android:process="@string/process"
              android:excludeFromRecents="true"
              android:theme="@style/dialog"
-             android:enabled="false">
+             android:enabled="true">
         </activity>
         <activity android:name="com.android.bluetooth.opp.BluetoothOppIncomingFileConfirmActivity"
              android:process="@string/process"
