@@ -30,7 +30,7 @@ fn main() {
     }
 
     let mut sources = ast::SourceDatabase::new();
-    match parser::parse_file(&mut sources, opt.input_file) {
+    match parser::parse_file(&mut sources, &opt.input_file) {
         Ok(grammar) => {
             let _ = grammar.lint().print(&sources, termcolor::ColorChoice::Always);
             println!("{}", serde_json::to_string_pretty(&grammar).unwrap())

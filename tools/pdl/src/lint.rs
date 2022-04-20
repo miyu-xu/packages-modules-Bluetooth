@@ -1271,23 +1271,19 @@ mod test {
     use crate::lint::Lintable;
     use crate::parser::parse_inline;
 
-    macro_rules! grammar {
-        ($db:expr, $text:literal) => {
-            parse_inline($db, "stdin".to_owned(), $text.to_owned()).expect("parsing failure")
-        };
-    }
-
     #[test]
     fn test_packet_redeclared() {
         let mut db = SourceDatabase::new();
-        let grammar = grammar!(
+        let grammar = parse_inline(
             &mut db,
+            "stdin",
             r#"
         little_endian_packets
         struct Name { }
         packet Name { }
-        "#
-        );
+        "#,
+        )
+        .expect("parsing failure");
         let result = grammar.lint();
         assert!(!result.diagnostics.is_empty());
     }
