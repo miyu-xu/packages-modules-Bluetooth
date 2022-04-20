@@ -142,7 +142,7 @@ const char* BtAclText(const bt_acl_state_t code) {
 }
 
 std::string BtAddrString(const RawAddress* addr) {
-  char buffer[20];
+  char buffer[18];
   snprintf(buffer, sizeof(buffer), "%02X:%02X:%02X:%02X:%02X:%02X",
            addr->address[0], addr->address[1], addr->address[2],
            addr->address[3], addr->address[4], addr->address[5]);
