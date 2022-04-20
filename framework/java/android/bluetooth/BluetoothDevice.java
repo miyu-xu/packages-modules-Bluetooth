@@ -1401,7 +1401,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     @Override
     public String toString() {
-        return mAddress;
+        return Build.isDebuggable() ? mAddress : "XX:XX:XX:" + mAddress.substring(9);
     }
 
     @Override

@@ -19,11 +19,13 @@
 #include "raw_address.h"
 
 #include <base/strings/string_split.h>
-#include <base/strings/stringprintf.h>
 #include <stdint.h>
+
 #include <algorithm>
 #include <array>
 #include <vector>
+
+#include "os/system_properties.h"
 
 static_assert(sizeof(RawAddress) == 6, "RawAddress must be 6 bytes long!");
 
@@ -39,9 +41,15 @@ RawAddress::RawAddress(const std::array<uint8_t, kLength> mac) {
 }
 
 std::string RawAddress::ToString() const {
-  return base::StringPrintf("%02x:%02x:%02x:%02x:%02x:%02x", address[0],
-                            address[1], address[2], address[3], address[4],
-                            address[5]);
+  char buff[18] = "XX:XX:XX:";
+
+  if (bluetooth::os::GetSystemProperty("ro.debuggable") == "1") {
+    snprintf(buff, sizeof(buff), "%02X:%02X:%02X:", address[0], address[1],
+             address[2]);
+  }
+  snprintf(buff + 9, sizeof(buff) - 9, "%02X:%02X:%02X", address[3], address[4],
+           address[5]);
+  return std::string(buff);
 }
 
 std::array<uint8_t, RawAddress::kLength> RawAddress::ToArray() const {

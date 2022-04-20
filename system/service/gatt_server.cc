@@ -253,11 +253,11 @@ void GattServer::ConnectionCallback(
   std::string device_address = BtAddrString(&bda);
 
   VLOG(1) << __func__ << " conn_id: " << conn_id << " connected: " << connected
-          << " BD_ADDR: " << device_address;
+          << " BD_ADDR: " << bda;
 
   if (!connected) {
     // Erase the entry if we were connected to it.
-    VLOG(1) << "No longer connected: " << device_address;
+    VLOG(1) << "No longer connected: " << bda;
     conn_id_map_.erase(conn_id);
     auto iter = conn_addr_map_.find(device_address);
     if (iter == conn_addr_map_.end()) return;
@@ -284,7 +284,7 @@ void GattServer::ConnectionCallback(
   }
 
   LOG(INFO) << "Added connection entry for conn_id: " << conn_id
-            << " device address: " << device_address;
+            << " device address: " << bda;
   std::shared_ptr<Connection> connection(new Connection(conn_id, bda));
   conn_id_map_[conn_id] = connection;
   conn_addr_map_[device_address].push_back(connection);
@@ -348,9 +348,8 @@ void GattServer::RequestReadCharacteristicCallback(
   std::string device_address = BtAddrString(&bda);
 
   VLOG(1) << __func__ << " - conn_id: " << conn_id << " trans_id: " << trans_id
-          << " BD_ADDR: " << device_address
-          << " attribute_handle: " << attribute_handle << " offset: " << offset
-          << " is_long: " << is_long;
+          << " BD_ADDR: " << bda << " attribute_handle: " << attribute_handle
+          << " offset: " << offset << " is_long: " << is_long;
 
   conn->request_id_to_handle[trans_id] = attribute_handle;
 
@@ -381,9 +380,8 @@ void GattServer::RequestReadDescriptorCallback(
   std::string device_address = BtAddrString(&bda);
 
   VLOG(1) << __func__ << " - conn_id: " << conn_id << " trans_id: " << trans_id
-          << " BD_ADDR: " << device_address
-          << " attribute_handle: " << attribute_handle << " offset: " << offset
-          << " is_long: " << is_long;
+          << " BD_ADDR: " << bda << " attribute_handle: " << attribute_handle
+          << " offset: " << offset << " is_long: " << is_long;
 
   conn->request_id_to_handle[trans_id] = attribute_handle;
 
@@ -416,7 +414,7 @@ void GattServer::RequestWriteCharacteristicCallback(
   std::string device_address = BtAddrString(&bda);
 
   VLOG(1) << __func__ << " - conn_id: " << conn_id << " trans_id: " << trans_id
-          << " BD_ADDR: " << device_address << " attr_handle: " << attr_handle
+          << " BD_ADDR: " << bda << " attr_handle: " << attr_handle
           << " offset: " << offset << " length: " << value.size()
           << " need_rsp: " << need_rsp << " is_prep: " << is_prep;
 
@@ -455,7 +453,7 @@ void GattServer::RequestWriteDescriptorCallback(
   std::string device_address = BtAddrString(&bda);
 
   VLOG(1) << __func__ << " - conn_id: " << conn_id << " trans_id: " << trans_id
-          << " BD_ADDR: " << device_address << " attr_handle: " << attr_handle
+          << " BD_ADDR: " << bda << " attr_handle: " << attr_handle
           << " offset: " << offset << " length: " << value.size()
           << " need_rsp: " << need_rsp << " is_prep: " << is_prep;
 
@@ -493,7 +491,7 @@ void GattServer::RequestExecWriteCallback(
   std::string device_address = BtAddrString(&bda);
 
   VLOG(1) << __func__ << " - conn_id: " << conn_id << " trans_id: " << trans_id
-          << " BD_ADDR: " << device_address << " exec_write: " << exec_write;
+          << " BD_ADDR: " << bda << " exec_write: " << exec_write;
 
   // Just store a dummy invalid handle as this request doesn't apply to a
   // specific handle.
@@ -551,7 +549,7 @@ std::shared_ptr<GattServer::Connection> GattServer::GetConnection(
 
   auto conn = iter->second;
   if (conn->bdaddr != bda) {
-    LOG(WARNING) << "BD_ADDR: " << BtAddrString(&bda) << " doesn't match "
+    LOG(WARNING) << "BD_ADDR: " << bda << " doesn't match "
                  << "connection ID: " << conn_id;
     return nullptr;
   }

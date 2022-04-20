@@ -91,7 +91,7 @@ static jobject mCallbacksObj = NULL;
 static std::shared_timed_mutex mCallbacks_mutex;
 
 static jstring bdaddr2newjstr(JNIEnv* env, const RawAddress* bda) {
-  char c_address[32];
+  char c_address[18];
   snprintf(c_address, sizeof(c_address), "%02X:%02X:%02X:%02X:%02X:%02X",
            bda->address[0], bda->address[1], bda->address[2], bda->address[3],
            bda->address[4], bda->address[5]);

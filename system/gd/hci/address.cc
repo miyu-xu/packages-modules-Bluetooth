@@ -25,6 +25,7 @@
 #include <sstream>
 
 #include "common/strings.h"
+#include "os/system_properties.h"
 
 namespace bluetooth {
 namespace hci {
@@ -44,8 +45,13 @@ Address::Address(std::initializer_list<uint8_t> l) {
 
 std::string Address::ToString() const {
   std::stringstream ss;
-  for (auto it = address.rbegin(); it != address.rend(); it++) {
-    ss << std::nouppercase << std::hex << std::setw(2) << std::setfill('0') << +*it;
+  auto it = address.rbegin();
+  if (bluetooth::os::GetSystemProperty("ro.debuggable") != "1") {
+    std::advance(it, 3);
+    ss << "XX:XX:XX:";
+  }
+  for (; it != address.rend(); it++) {
+    ss << std::uppercase << std::hex << std::setw(2) << std::setfill('0') << +*it;
     if (std::next(it) != address.rend()) {
       ss << ':';
     }

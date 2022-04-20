@@ -104,8 +104,7 @@ void ScanResultCallback(uint16_t ble_evt_type, uint8_t addr_type,
   VERIFY_INTERFACE_OR_RETURN();
   CHECK(bda);
 
-  VLOG(2) << __func__ << " - BD_ADDR: " << BtAddrString(bda)
-          << " RSSI: " << rssi;
+  VLOG(2) << __func__ << " - BD_ADDR: " << bda << " RSSI: " << rssi;
   FOR_EACH_SCANNER_OBSERVER(
       ScanResultCallback(g_interface, *bda, rssi, adv_data));
 }
@@ -116,7 +115,7 @@ void ConnectCallback(int conn_id, int status, int client_if,
   VERIFY_INTERFACE_OR_RETURN();
 
   VLOG(2) << __func__ << " - status: " << status << " client_if: " << client_if
-          << " - BD_ADDR: " << BtAddrString(&bda) << " - conn_id: " << conn_id;
+          << " - BD_ADDR: " << bda << " - conn_id: " << conn_id;
 
   FOR_EACH_CLIENT_OBSERVER(
       ConnectCallback(g_interface, conn_id, status, client_if, bda));
@@ -128,8 +127,7 @@ void DisconnectCallback(int conn_id, int status, int client_if,
   VERIFY_INTERFACE_OR_RETURN();
 
   VLOG(2) << __func__ << " - conn_id: " << conn_id << " - status: " << status
-          << " client_if: " << client_if
-          << " - BD_ADDR: " << BtAddrString(&bda);
+          << " client_if: " << client_if << " - BD_ADDR: " << bda;
   FOR_EACH_CLIENT_OBSERVER(
       DisconnectCallback(g_interface, conn_id, status, client_if, bda));
 }
@@ -159,9 +157,8 @@ void NotifyCallback(int conn_id, const btgatt_notify_params_t& p_data) {
   VERIFY_INTERFACE_OR_RETURN();
 
   VLOG(2) << __func__ << " - conn_id: " << conn_id
-          << " - address: " << BtAddrString(&p_data.bda)
-          << " - handle: " << p_data.handle << " - len: " << p_data.len
-          << " - is_notify: " << p_data.is_notify;
+          << " - address: " << p_data.bda << " - handle: " << p_data.handle
+          << " - len: " << p_data.len << " - is_notify: " << p_data.is_notify;
 
   FOR_EACH_CLIENT_OBSERVER(NotifyCallback(g_interface, conn_id, p_data));
 }

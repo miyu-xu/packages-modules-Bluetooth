@@ -93,8 +93,7 @@ void RemoteDevicePropertiesCallback(bt_status_t status,
   shared_lock<shared_mutex_impl> lock(g_instance_lock);
   VERIFY_INTERFACE_OR_RETURN();
   VLOG(1) << " Remote device properties changed - status: "
-          << BtStatusText(status)
-          << " - BD_ADDR: " << BtAddrString(remote_bd_addr)
+          << BtStatusText(status) << " - BD_ADDR: " << remote_bd_addr
           << ", num_properties: " << num_properties;
   FOR_EACH_BLUETOOTH_OBSERVER(RemoteDevicePropertiesCallback(
       status, remote_bd_addr, num_properties, properties));
@@ -141,7 +140,7 @@ void BondStateChangedCallback(bt_status_t status, RawAddress* remote_bd_addr,
                               bt_bond_state_t state, int fail_reason) {
   shared_lock<shared_mutex_impl> lock(g_instance_lock);
   VERIFY_INTERFACE_OR_RETURN();
-  VLOG(2) << __func__ << " - remote_bd_addr: " << BtAddrString(remote_bd_addr)
+  VLOG(2) << __func__ << " - remote_bd_addr: " << remote_bd_addr
           << " - status: " << status << " - state: " << state;
   FOR_EACH_BLUETOOTH_OBSERVER(
       BondStateChangedCallback(status, remote_bd_addr, state, fail_reason));
@@ -159,8 +158,8 @@ void AclStateChangedCallback(bt_status_t status, RawAddress* remote_bd_addr,
   VERIFY_INTERFACE_OR_RETURN();
   CHECK(remote_bd_addr);
   VLOG(1) << "Remote device ACL state changed - status: "
-          << BtStatusText(status)
-          << " - BD_ADDR: " << BtAddrString(remote_bd_addr) << " - state: "
+          << BtStatusText(status) << " - BD_ADDR: " << remote_bd_addr
+          << " - state: "
           << ((state == BT_ACL_STATE_CONNECTED) ? "CONNECTED" : "DISCONNECTED")
           << " - HCI_REASON: " << std::to_string(hci_reason);
   FOR_EACH_BLUETOOTH_OBSERVER(AclStateChangedCallback(

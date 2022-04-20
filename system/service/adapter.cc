@@ -551,7 +551,8 @@ class AdapterImpl : public Adapter, public hal::BluetoothInterface::Observer {
         case BT_PROPERTY_BDADDR: {
           std::string address =
               BtAddrString(reinterpret_cast<RawAddress*>(property->val));
-          LOG(INFO) << "Adapter address changed: " << address;
+          LOG(INFO) << "Adapter address changed: "
+                    << reinterpret_cast<RawAddress*>(property->val);
           address_.Set(address);
           break;
         }
@@ -695,7 +696,7 @@ class AdapterImpl : public Adapter, public hal::BluetoothInterface::Observer {
                                bt_hci_error_code_t hci_reason) override {
     std::string device_address = BtAddrString(&remote_bdaddr);
     bool connected = (state == BT_ACL_STATE_CONNECTED);
-    LOG(INFO) << "ACL state changed: " << device_address
+    LOG(INFO) << "ACL state changed: " << remote_bdaddr
               << " - connected: " << (connected ? "true" : "false");
 
     // If this is reported with an error status, I suppose the best thing we can
