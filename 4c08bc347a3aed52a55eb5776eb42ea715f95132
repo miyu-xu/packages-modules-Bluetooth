@@ -22,6 +22,30 @@
       },
       "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd5a0bf0_579521e5",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2953,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-20T01:18:23Z",
+      "side": 1,
+      "message": "Not sure if we are in the phone call and VOIP call, would all the update_source_metadata have tracks contains one for the conversational (AUDIO_USAGE_VOICE_COMMUNICATION) usage? Otherwise bluetooth would reconfigure to the other context and turn off the mics. That\u0027s not expected behavior.",
+      "parentUuid": "7e8fa8b0_83b8c559",
+      "range": {
+        "startLine": 2947,
+        "startChar": 6,
+        "endLine": 2953,
+        "endChar": 7
+      },
+      "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
