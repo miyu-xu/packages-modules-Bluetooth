@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c763ee66_201e29d5",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "You\u0027re very correct, thanks!",
+      "parentUuid": "6f31ad92_c9e3b5cc",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28af1717_5dee8853",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-04-20T14:38:36Z",
       "side": 1,
       "message": "nit: Create a `Code` type alias for the String here to better describe what we are returning",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f7b255c_5a2e98ca",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "I would prefer not, I dislike extra indirection of this kind. I find that it forces the reader to look up the definition and when the definition is trivial (`String`), then I haven\u0027t really gained anything from the indirection.\n\nWe already have this in the AST: it has\n\n```rust\npub type SourceDatabase \u003d files::SimpleFiles\u003cString, String\u003e;\n```\n\nbut when I jump from `sources.get(grammar.file)` to the definition of the `get` method, then I see\n\n```rust\n    pub fn get(\u0026self, file_id: usize) -\u003e Result\u003c\u0026SimpleFile\u003cName, Source\u003e, Error\u003e {\n```\n\nThis is a bit confusing: I went from a type without type parameters and end up in a place with type parameters. I start wondering what the `Name` and `Source` types are... turns out that they\u0027re `String` and `String` 😄",
+      "parentUuid": "28af1717_5dee8853",
       "revId": "811f158d3a702c3342febed736e53fa98754cc96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -145,6 +181,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48ef1e7a_bd11a948",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "Actually... this `.collect` call converts `Vec\u003cResult\u003cA, B\u003e\u003e` into `Result\u003cVec\u003cA\u003e, B\u003e` by stopping the collection at the first error. We then return this error with `?` and end up with `Vec\u003cA\u003e`. I could perhaps include a comment about this if you like?",
+      "parentUuid": "298d76f3_c3fcbde6",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f473e6b_80745a4f",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 6
@@ -173,6 +227,24 @@
       "writtenOn": "2022-04-20T14:38:36Z",
       "side": 1,
       "message": "Do you need to collect here ? quote should be able to handle iterators",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3162b408_150edc9f",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "As above.",
+      "parentUuid": "3673f3c8_44bd4eb5",
       "revId": "811f158d3a702c3342febed736e53fa98754cc96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -253,6 +325,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ca5b7cd_0e0e3797",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "But would I be able to use a `Optional\u003c_\u003e` inside my code fragment? The reason I generate a full or empty `quote!` is that I want to use `parent` later in another `quote!` call.",
+      "parentUuid": "08ae0fbc_6f5cf9fc",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 14
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85b1d307_2a294339",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 6
@@ -264,6 +360,24 @@
       "writtenOn": "2022-04-20T14:38:36Z",
       "side": 1,
       "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9de5caef_3b67556f",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "As above, we return on the first error.",
+      "parentUuid": "85b1d307_2a294339",
       "revId": "811f158d3a702c3342febed736e53fa98754cc96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -285,6 +399,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bb13e3a_492b2ded",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "As above, we return on the first error.",
+      "parentUuid": "65faffa9_3db09e35",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64ebea92_03563b36",
@@ -302,6 +434,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a711b97d_22523805",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "As above, we return on the first error.",
+      "parentUuid": "64ebea92_03563b36",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02c52000_558e993a",
@@ -315,6 +465,24 @@
       "writtenOn": "2022-04-20T14:38:36Z",
       "side": 1,
       "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d05f374f_98a0484d",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T16:49:02Z",
+      "side": 1,
+      "message": "As above, we return on the first error.",
+      "parentUuid": "02c52000_558e993a",
       "revId": "811f158d3a702c3342febed736e53fa98754cc96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
