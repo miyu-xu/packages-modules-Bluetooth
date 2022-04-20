@@ -3,6 +3,324 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f72e6ee9_bd92a6fd",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "I don\u0027t think this Error will be consumed by anyone, maybe we should use anyhow instead ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f31ad92_c9e3b5cc",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be here 😊",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28af1717_5dee8853",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "nit: Create a `Code` type alias for the String here to better describe what we are returning",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "223706e0_db2d0bc5",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "As this is repeated a few time, I think we should do a function that give you a rust type compatible with a width like the GetRustTypeForSize of the old generator https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/packet/parser/util.h;l\u003d162;drc\u003de6eae18e2c168e2be7c16240ee0ce3ad38c27b1f",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bceb593_cace662a",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "As only the endianness of the grammar is passed here, maybe directly passe the EndiannessValue",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f4539bc_8c38b967",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Maybe use an option here instead of an empty quote macro",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50139b6f_e3f0534b",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "nit: I would prefer that we move thoses declarations near where they are used",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 60
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "298d76f3_c3fcbde6",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ? quote should be have to handle iterators",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f473e6b_80745a4f",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "```\ngenerate_field(field, parse_quote!(pub))\n```",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3673f3c8_44bd4eb5",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ? quote should be able to handle iterators",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0f44aa1_35c1e4b0",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfe3b4a9_6ea63467",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "512ede96_b7073c50",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "As most of the `child_` variables are used in this block, can we not regroup everything inside a `if let Some(child_decl_name) \u003d child_decls.get(id.as_str())` and not check if it\u0027s empty afterwards and return an Option of the `child_field` from this block ?\n\nSomething like\n```\nlet child_field \u003d if let Some(child_decl_name) \u003d child_decls.get(id.as_str()) {\n    let child_decl_name \u003d ...;\n\n    let child_decl_data_name \u003d ...;\n\n    let child_decl_packet_name \u003d ...;\n\n    code.push_str(\u0026quote_block! {\n        ...\n    });\n    \n    Some(quote! {\n        child: #data_child_name,\n    })\n} else {\n    None\n};\n```",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ae0fbc_6f5cf9fc",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "I think we should be able to transform the parent into an option and write this like\n```\nlet parent \u003d parent_id\n    .map(|id|\n        packets.get(id.as_str())\n            .ok_or(Error::Unsupported(format!(\"Could not find {parent_id}\")))\n    )\n    .transpose()?\n    .map(|ast::Decl::Packet { id, .. }| {\n        ...\n    });\n```",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 14
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85b1d307_2a294339",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65faffa9_3db09e35",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ebea92_03563b36",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02c52000_558e993a",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-20T14:38:36Z",
+      "side": 1,
+      "message": "Do you need to collect here ?",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "12766ba7_c84059c9",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 6
