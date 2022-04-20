@@ -70,6 +70,30 @@
       },
       "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc859ab5_483ed08b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2953,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-20T07:23:10Z",
+      "side": 1,
+      "message": "Eric, Thanks for the information.\n\nYup, for PSTN call offload case, we will send AUDIO_USAGE_VOICE_COMMUNICATION, and skip all the other source metadata update to bluetooth audio HAL during the call period.\n\nIs it the same behavior for the SW path?",
+      "parentUuid": "7cdb6d26_b50bf80e",
+      "range": {
+        "startLine": 2947,
+        "startChar": 6,
+        "endLine": 2953,
+        "endChar": 7
+      },
+      "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
