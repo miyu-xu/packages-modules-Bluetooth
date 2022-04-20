@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc1ee213_cca19e03",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-04-20T05:13:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7544103c_600fd63b",
+      "revId": "9914a9ba5d66a3db7ab0aa7b6e8471a0829770fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49d9f231_1cfe65bf",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-04-19T23:22:17Z",
       "side": 1,
       "message": "nit: This can be reduced to just `if !has_enabled_uuids`. You should also add a comment here explaining why this exist.\n\ni.e. \n// If SDP isn\u0027t complete yet, we need to wait for it to complete and retry connection again.",
+      "revId": "9914a9ba5d66a3db7ab0aa7b6e8471a0829770fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0444b353_54e79acb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1384,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-04-20T05:13:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49d9f231_1cfe65bf",
       "revId": "9914a9ba5d66a3db7ab0aa7b6e8471a0829770fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
