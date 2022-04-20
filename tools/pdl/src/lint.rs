@@ -1273,7 +1273,7 @@ mod test {
 
     macro_rules! grammar {
         ($db:expr, $text:literal) => {
-            parse_inline($db, "stdin".to_owned(), $text.to_owned()).expect("parsing failure")
+            parse_inline($db, "stdin", $text).expect("parsing failure")
         };
     }
 

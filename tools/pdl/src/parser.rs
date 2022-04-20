@@ -511,8 +511,8 @@ fn parse_grammar(root: Node<'_>, context: &Context) -> Result<ast::Grammar, Stri
 /// provided name.
 pub fn parse_inline(
     sources: &mut ast::SourceDatabase,
-    name: String,
-    source: String,
+    name: &str,
+    source: &str,
 ) -> Result<ast::Grammar, Diagnostic<ast::FileId>> {
     let root = PDLParser::parse(Rule::grammar, &source)
         .map_err(|e| {
@@ -532,10 +532,10 @@ pub fn parse_inline(
 /// of syntax error.
 pub fn parse_file(
     sources: &mut ast::SourceDatabase,
-    name: String,
+    name: &str,
 ) -> Result<ast::Grammar, Diagnostic<ast::FileId>> {
-    let source = std::fs::read_to_string(&name).map_err(|e| {
-        Diagnostic::error().with_message(format!("failed to read input file '{}': {}", &name, e))
+    let source = std::fs::read_to_string(name).map_err(|e| {
+        Diagnostic::error().with_message(format!("failed to read input file '{}': {}", name, e))
     })?;
     parse_inline(sources, name, source)
 }
