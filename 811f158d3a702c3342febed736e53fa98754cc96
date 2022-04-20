@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12766ba7_c84059c9",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-20T12:43:37Z",
+      "side": 1,
+      "message": "After talking with David and Henri, we decided that we might as well simplify this to panic on the spot if we detect an error. That is, since we\u0027re in test code, we could just panic on the first error.",
+      "range": {
+        "startLine": 562,
+        "startChar": 49,
+        "endLine": 562,
+        "endChar": 71
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
