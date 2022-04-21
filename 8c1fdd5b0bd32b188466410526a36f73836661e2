@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b3226c_3b8be0c5",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-04-21T15:10:01Z",
+      "side": 1,
+      "message": "nit: I would leave a comment here about why some components are explicitly enabled, and why others are not. That way people will know it was intentional!",
+      "range": {
+        "startLine": 350,
+        "startChar": 7,
+        "endLine": 350,
+        "endChar": 104
+      },
+      "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c48cba_2b8577d0",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-04-21T15:10:01Z",
+      "side": 1,
+      "message": "Have you tested this on a device or configuration where OPP is disabled? If so, was the UX acceptable?\n\n(...Out of curiosity, how do the applications that use OPP know that it\u0027s available?)\n\nMy big concern would be that these components are made available once enabled and a user can click on \"BT Share\" when the profile is disabled.\n\nIf it is a bad UX, we\u0027ll probably have to come up with a quick pattern for something like \"persistent owned dependencies\" where the initial config can start them and leave them started or something. There may be better ways too :)",
+      "range": {
+        "startLine": 404,
+        "startChar": 13,
+        "endLine": 404,
+        "endChar": 35
+      },
+      "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
