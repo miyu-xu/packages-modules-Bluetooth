@@ -16,6 +16,24 @@
       "message": "Should we use the `todo!()` macro instead of this variant ?\nThis might remove the `Result` from some of the functions and maybe make the code a little bit easier.",
       "revId": "7b87b87386463518e1ec369dfa67bcf88c02fc5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de339fbf_1cafffb8",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-21T09:53:45Z",
+      "side": 1,
+      "message": "That\u0027s a really good idea, thanks! I had forgotten about that macro 😄\n\nI\u0027m all for nice error handling _if_ someone will benefit from it. But since this is a command line tool where we\u0027re the only consumers of the errors and since we simply intend to abort the execution if we encounter an error, then I think it\u0027s perfectly fine to just error out in these cases.",
+      "parentUuid": "e4a81fb8_b1a3cc78",
+      "revId": "7b87b87386463518e1ec369dfa67bcf88c02fc5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
