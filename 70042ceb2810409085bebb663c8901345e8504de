@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c57a3179_19beccde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1887575
+      },
+      "writtenOn": "2022-04-21T15:59:45Z",
+      "side": 1,
+      "message": "So while it LGTM, I would prefer it if you\u0027d split out the code cleanup changes out into a separate CL. They\u0027re still welcome (and I realize likely all automated), but in this case there are far more of those changes than the semantic one you\u0027re making, so it reads as noise here.",
+      "revId": "70042ceb2810409085bebb663c8901345e8504de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
