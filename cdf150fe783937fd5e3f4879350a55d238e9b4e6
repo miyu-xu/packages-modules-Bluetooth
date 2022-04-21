@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a014e2a6_36066b0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-21T15:21:56Z",
+      "side": 1,
+      "message": "There is a build failure with the unit test",
+      "revId": "cdf150fe783937fd5e3f4879350a55d238e9b4e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2da39628_f7151e37",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 8
