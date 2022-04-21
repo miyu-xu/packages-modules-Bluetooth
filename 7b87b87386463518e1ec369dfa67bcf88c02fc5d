@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4a81fb8_b1a3cc78",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-21T07:57:09Z",
+      "side": 1,
+      "message": "Should we use the `todo!()` macro instead of this variant ?\nThis might remove the `Result` from some of the functions and maybe make the code a little bit easier.",
+      "revId": "7b87b87386463518e1ec369dfa67bcf88c02fc5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
