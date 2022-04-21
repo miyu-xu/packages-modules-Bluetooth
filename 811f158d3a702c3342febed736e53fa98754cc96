@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e256dcd9_9237170d",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-21T07:49:33Z",
+      "side": 1,
+      "message": "Yeah, good question 😊 I was not sure about how we should do error handling here. In reality, I think we simply want a string to print out in `main` before we return with a non-zero exit code (we always return with `0` today, but we really shouldn\u0027t in case of errors).",
+      "parentUuid": "f72e6ee9_bd92a6fd",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6f31ad92_c9e3b5cc",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 6
@@ -391,6 +409,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8fc30611_330a1f79",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-21T07:49:33Z",
+      "side": 1,
+      "message": "Ah, that is great then! I\u0027ll update the code to use this more then.",
+      "parentUuid": "ba614d40_7c5693b5",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 14
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "85b1d307_2a294339",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 6
@@ -565,6 +607,30 @@
       "writtenOn": "2022-04-20T14:44:09Z",
       "side": 1,
       "message": "As we are doing snapshot testing, I think we should directly test the `generate_rust`, I don\u0027t see a lot of value in testing each ones independently 🤔",
+      "range": {
+        "startLine": 586,
+        "startChar": 0,
+        "endLine": 615,
+        "endChar": 5
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75b59104_4106642c",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-21T07:49:33Z",
+      "side": 1,
+      "message": "I felt it was nice to have the outputs of each function separate — that way, we can more easily tell what part of the code is broken (imagine we have 20 such tests and 3 of them fail while 17 still passes).",
+      "parentUuid": "a0f49069_e9addb0c",
       "range": {
         "startLine": 586,
         "startChar": 0,
