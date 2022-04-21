@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dbf54fa_29365dd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-21T15:21:41Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/bta/le_audio/le_audio_client_test.cc:1604:15: error: use of undeclared identifier \u0027audio_unicast_sink_receiver_\u0027; did you mean \u0027audio_sink_receiver_\u0027?\n    ASSERT_NE(audio_unicast_sink_receiver_, nullptr);\n              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~\n              audio_sink_receiver_\nexternal/googletest/googletest/include/gtest/gtest.h:2077:48: note: expanded from macro \u0027ASSERT_NE\u0027\n# define ASSERT_NE(val1, val2) GTEST_ASSERT_NE(val1, val2)\n                                               ^\nexternal/googletest/googletest/include/gtest/gtest.h:2059:57: note: expanded from macro \u0027GTEST_ASSERT_NE\u0027\n  ASSERT_PRED_FORMAT2(::testing::internal::CmpHelperNE, val1, val2)\n                                                        ^\nexternal/googletest/googletest/include/gtest/gtest_pred_impl.h:168:36: note: expanded from macro \u0027ASSERT_PRED_FORMAT2\u0027\n  GTEST_PRED_FORMAT2_(pred_format, v1, v2, GTEST_FATAL_FAILURE_)\n                                   ^\nexternal/googletest/googletest/include/gtest/gtest_pred_impl.h:149:39: note: expanded from macro \u0027GTEST_PRED_FORMAT2_\u0027\n  GTEST_ASSERT_(pred_format(#v1, #v2, v1, v2), \\\n                                      ^\nexternal/googletest/googletest/include/gtest/gtest_pred_impl.h:77:52: note: expanded from macro \u0027GTEST_ASSERT_\u0027\n  if (const ::testing::AssertionResult gtest_ar \u003d (expression)) \\\n                                                   ^\npackages/modules/Bluetooth/system/bta/le_audio/le_audio_client_test.cc:1694:35: note: \u0027audio_sink_receiver_\u0027 declared here\n  LeAudioClientAudioSinkReceiver* audio_sink_receiver_ \u003d nullptr;\n                                  ^\npackages/modules/Bluetooth/system/bta/le_audio/le_audio_client_test.cc:1617:17: error: indirection requires pointer operand (\u0027MockLeAudioClientAudioSink\u0027 invalid)\n    EXPECT_CALL(*mock_audio_sink_, SendData(_, _)).Times(cis_count_in);\n                ^~~~~~~~~~~~~~~~~\nexternal/googletest/googlemock/include/gmock/gmock-spec-builders.h:2034:23: note: expanded from macro \u0027EXPECT_CALL\u0027\n  GMOCK_ON_CALL_IMPL_(obj, InternalExpectedAt, call)\n                      ^~~\nexternal/googletest/googlemock/include/gmock/gmock-spec-builders.h:2026:5: note: expanded from macro \u0027GMOCK_ON_CALL_IMPL_\u0027\n  ((mock_expr).gmock_##call)(::testing::internal::GetWithoutMatchers(), \\\n    ^~~~~~~~~\npackages/modules/Bluetooth/system/bta/le_audio/le_audio_client_test.cc:1618:9: error: expected expression\n        .Times(cis_count_in \u003e 0 ? 1 : 0);\n        ^",
+      "revId": "cdf150fe783937fd5e3f4879350a55d238e9b4e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2da39628_f7151e37",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-21T15:21:41Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/bta/le_audio/le_audio_client_test.cc:1604:15: error: use of undeclared identifier \u0027audio_unicast_sink_receiver_\u0027; did you mean \u0027audio_sink_receiver_\u0027?\n    ASSERT_NE(audio_unicast_sink_receiver_, nullptr);",
+      "range": {
+        "startLine": 1604,
+        "startChar": 0,
+        "endLine": 1604,
+        "endChar": 53
+      },
+      "revId": "cdf150fe783937fd5e3f4879350a55d238e9b4e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
