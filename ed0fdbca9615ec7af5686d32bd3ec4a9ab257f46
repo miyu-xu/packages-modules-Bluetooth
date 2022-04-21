@@ -16,6 +16,24 @@
       "message": "issue happened during merge conflict resolution after rebase, needs to be handled properly, will upload new patchset",
       "revId": "ed0fdbca9615ec7af5686d32bd3ec4a9ab257f46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f610139b_fa60db1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-04-21T05:08:31Z",
+      "side": 1,
+      "message": "Resolved the merge issue and uploaded new patchset",
+      "parentUuid": "777b4f18_cc7d5f7c",
+      "revId": "ed0fdbca9615ec7af5686d32bd3ec4a9ab257f46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
