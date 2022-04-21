@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "332146ba_83aefbbb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-21T23:41:48Z",
+      "side": 1,
+      "message": "Original CL landed on March 18 and recent regression must be caused by some other failures",
+      "revId": "98f2503517f02150423f6aecb047e16eda319902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
