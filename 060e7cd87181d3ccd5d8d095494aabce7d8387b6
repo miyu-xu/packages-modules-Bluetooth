@@ -16,6 +16,24 @@
       "message": "packages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl.h:783:9: error: no member named \u0027InitFlags\u0027 in namespace \u0027bluetooth::common\u0027\n        LOG_DEBUG(\n        ^~~~~~~~~~\npackages/modules/Bluetooth/system/gd/os/log.h:177:28: note: expanded from macro \u0027LOG_DEBUG\u0027\n    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \\\n        ~~~~~~~~~~~~~~~~~~~^\nIn file included from packages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl_test.cc:17:\npackages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl.h:792:11: error: no member named \u0027InitFlags\u0027 in namespace \u0027bluetooth::common\u0027\n          LOG_DEBUG(\"Deferred until filter accept list has completed\");\n          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\npackages/modules/Bluetooth/system/gd/os/log.h:177:28: note: expanded from macro \u0027LOG_DEBUG\u0027\n    if (bluetooth::common::InitFlags::IsDebugLoggingEnabledForTag(LOG_TAG)) { \\\n        ~~~~~~~~~~~~~~~~~~~^",
       "revId": "060e7cd87181d3ccd5d8d095494aabce7d8387b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5b813af_25981700",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-21T10:37:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e66032df_fd945549",
+      "revId": "060e7cd87181d3ccd5d8d095494aabce7d8387b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
