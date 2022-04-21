@@ -74,8 +74,6 @@ target(lib_type, "bluetooth") {
     "//bt/system/hci/includ",
     "//bt/system/vnd/include",
     "//bt/system/brcm/include",
-    "//bt/system/embdrv/sbc/encoder/include",
-    "//bt/system/embdrv/sbc/decoder/include",
     "//bt/system/utils/include",
     "//bt/system/test/suite",
   ]

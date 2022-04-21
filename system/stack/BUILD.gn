@@ -62,13 +62,31 @@ source_set("nonstandard_codecs") {
   }
 }
 
+
+# In order to use mSBC SCO over HCI, we need to use a different SBC codec
+# library. This swaps out the codec usage in A2DP to use the same library for
+# SBC in A2DP.
+if (defined(use.hci_sco_msbc) && use.hci_sco_msbc) {
+    source_set("sbc_codec") {
+        sources = [
+            "a2dp/a2dp_alt_sbc_decoder.cc",
+            "a2dp/a2dp_alt_sbc_encoder.cc",
+        ]
+    }
+} else {
+    source_set("sbc_codec") {
+        sources = [
+            "a2dp/a2dp_sbc_decoder.cc",
+            "a2dp/a2dp_sbc_encoder.cc",
+        ]
+    }
+}
+
 source_set("stack") {
   sources = [
     "a2dp/a2dp_api.cc",
     "a2dp/a2dp_codec_config.cc",
     "a2dp/a2dp_sbc.cc",
-    "a2dp/a2dp_sbc_decoder.cc",
-    "a2dp/a2dp_sbc_encoder.cc",
     "a2dp/a2dp_sbc_up_sample.cc",
     "acl/acl.cc",
     "acl/ble_acl.cc",
@@ -274,7 +292,6 @@ if (defined(use.android) && use.android) {
       "//bt/system/bta/eatt",
       "//bt/system/bta/include",
       "//bt/system/bta/sys",
-      "//bt/system/embdrv/sbc/encoder/include",
       "//bt/system/internal_include",
       "//bt/system/stack/a2dp",
       "//bt/system/stack/btm",
@@ -343,7 +360,6 @@ if (defined(use.android) && use.android) {
       "//bt/system/utils/include",
       "//bt/system/bta/include",
       "//bt/system/bta/sys",
-      "//bt/system/embdrv/sbc/encoder/include",
       "//bt/system/internal_include",
       "//bt/system/stack/a2dp",
       "//bt/system/stack/l2cap",

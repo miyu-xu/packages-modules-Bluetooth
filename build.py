@@ -55,6 +55,7 @@ COMMON_MK_USES = [
 USE_DEFAULTS = {
     'android': False,
     'bt_nonstandard_codecs': False,
+    'hci_sco_msbc': False,
     'test': False,
 }
 
@@ -782,7 +783,7 @@ if __name__ == '__main__':
     parser.add_argument('--no-clang', help='Use clang compiler.', default=False, action='store_true')
     parser.add_argument(
         '--no-strip', help='Skip stripping binaries during install.', default=False, action='store_true')
-    parser.add_argument('--use', help='Set a specific use flag.')
+    parser.add_argument('--use', help='Set a specific use flag.', action='append')
     parser.add_argument('--notest', help='Don\'t compile test code.', default=False, action='store_true')
     parser.add_argument('--test-name', help='Run test with this string in the name.', default=None)
     parser.add_argument('--target', help='Run specific build target')

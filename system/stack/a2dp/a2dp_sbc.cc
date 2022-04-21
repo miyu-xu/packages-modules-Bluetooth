@@ -91,6 +91,9 @@ const tA2DP_SBC_CIE a2dp_sbc_default_config = {
     BTAV_A2DP_CODEC_BITS_PER_SAMPLE_16 /* bits_per_sample */
 };
 
+#ifdef USE_ALT_SBC_LIB
+#error "Using alt sbc lib"
+#else
 static const tA2DP_ENCODER_INTERFACE a2dp_encoder_interface_sbc = {
     a2dp_sbc_encoder_init,
     a2dp_sbc_encoder_cleanup,
@@ -110,6 +113,7 @@ static const tA2DP_DECODER_INTERFACE a2dp_decoder_interface_sbc = {
     nullptr,  // decoder_suspend
     nullptr,  // decoder_configure
 };
+#endif
 
 static tA2DP_STATUS A2DP_CodecInfoMatchesCapabilitySbc(
     const tA2DP_SBC_CIE* p_cap, const uint8_t* p_codec_info,

@@ -14,7 +14,15 @@
 #  limitations under the License.
 #
 
-source_set("sbc_decoder") {
+
+# In order to use mSBC sco over HCI, we need to use a different SBC codec
+# library.
+if (defined(use.hci_sco_msbc) && use.hci_sco_msbc) {
+  static_library("sbc") {
+    deps = ["esbc"]
+  }
+} else {
+  source_set("sbc_decoder") {
   sources = [
     "decoder/srce/alloc.c",
     "decoder/srce/bitalloc.c",
@@ -57,10 +65,10 @@ source_set("sbc_encoder") {
 
   configs += [ "//bt/system:target_defaults" ]
 }
-
-static_library("sbc") {
-  deps = [
-    ":sbc_decoder",
-    ":sbc_encoder",
-  ]
+  static_library("sbc") {
+    deps = [
+      ":sbc_decoder",
+      ":sbc_encoder",
+    ]
+  }
 }
