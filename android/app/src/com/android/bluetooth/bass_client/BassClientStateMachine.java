@@ -201,6 +201,16 @@ class BassClientStateMachine extends StateMachine {
         return BassclientSm;
     }
 
+    static void destroy(BassClientStateMachine stateMachine) {
+        Log.i(TAG, "destroy");
+        if (stateMachine == null) {
+            Log.w(TAG, "destroy(), stateMachine is null");
+            return;
+        }
+        stateMachine.doQuit();
+        stateMachine.cleanup();
+    }
+
     public void doQuit() {
         log("doQuit for device " + mDevice);
         quitNow();
