@@ -24,6 +24,7 @@ cc_test {
         ":TestMockDevice",
         "adapter/adapter_unittest.cc",
         "adapter/bluetooth_test.cc",
+        "btu/btu_hcif_unittest.cc",
         "gatt/gatt_test.cc",
         "gatt/gatt_unittest.cc",
     ],
