@@ -51,6 +51,24 @@
       "message": "can we use types from le_audio_types.h ?\n\nAlso can we extract it to helper function?",
       "revId": "09922a65cf55d2688806caa9e744ad20c461c986",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1f13c5_f7c9db52",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2087,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-21T14:08:33Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6361e5cf_d5b9a87a",
+      "revId": "09922a65cf55d2688806caa9e744ad20c461c986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
