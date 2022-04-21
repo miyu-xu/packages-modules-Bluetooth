@@ -118,6 +118,30 @@
       },
       "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec893926_e2e1f639",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2953,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-21T06:32:48Z",
+      "side": 1,
+      "message": "I see. Remove the content check, and based on AUDIO_USAGE_VOICE_COMMUNICATION, AUDIO_USAGE_VOICE_COMMUNICATION_SIGNALLING and AUDIO_USAGE_CALL_ASSISTANT to switch to conversational. Thanks for the confirmation and information.",
+      "parentUuid": "c59f9125_8de1f2a3",
+      "range": {
+        "startLine": 2947,
+        "startChar": 6,
+        "endLine": 2953,
+        "endChar": 7
+      },
+      "revId": "4c08bc347a3aed52a55eb5776eb42ea715f95132",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
