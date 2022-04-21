@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "069f26fe_236e814c",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-04-21T13:12:58Z",
+      "side": 1,
+      "message": "nit: Nicer would be to implement the Default trait for EndiannessValue and SourceLocation.",
+      "range": {
+        "startLine": 229,
+        "startChar": 8,
+        "endLine": 229,
+        "endChar": 79
+      },
+      "revId": "12db86d6f7852ba194b3fe8c8a9974ff3f933dad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
