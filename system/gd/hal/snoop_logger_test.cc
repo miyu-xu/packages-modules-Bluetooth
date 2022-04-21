@@ -67,6 +67,7 @@ class TestSnoopLoggerModule : public SnoopLogger {
             max_packets_per_file,
             SnoopLogger::GetMaxPacketsPerBuffer(),
             btsnoop_mode,
+            SnoopLogger::IsQualcommDebugLogEnabled(),
             20ms,
             5ms) {}
 
