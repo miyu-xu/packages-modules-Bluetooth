@@ -22,6 +22,30 @@
       },
       "revId": "12db86d6f7852ba194b3fe8c8a9974ff3f933dad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "575f5032_d7b2ad13",
+        "filename": "tools/pdl/src/ast.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-21T13:23:22Z",
+      "side": 1,
+      "message": "Nice idea! I\u0027ve derived `Default` for `SourceRange` and `SourceLocation` now since that seems useful in other places.",
+      "parentUuid": "069f26fe_236e814c",
+      "range": {
+        "startLine": 229,
+        "startChar": 8,
+        "endLine": 229,
+        "endChar": 79
+      },
+      "revId": "12db86d6f7852ba194b3fe8c8a9974ff3f933dad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
