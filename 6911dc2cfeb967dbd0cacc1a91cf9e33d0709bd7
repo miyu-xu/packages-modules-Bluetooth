@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb437edb_6eee9804",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-04-21T12:03:52Z",
+      "side": 1,
+      "message": "Is there a reason why not just do it like this\n  filters.add(new ScanFilter.Builder()\n          .setServiceUuid(BassConstants.BAAS_UUID).build());\n\n?",
+      "range": {
+        "startLine": 671,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 71
+      },
+      "revId": "6911dc2cfeb967dbd0cacc1a91cf9e33d0709bd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
