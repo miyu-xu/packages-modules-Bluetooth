@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7feedcd_a6e8b076",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-04-21T12:58:45Z",
+      "side": 0,
+      "message": "If user want to send file when BT off, BT option still need to show and allow user to enable BT.\nThese four classes should not be disabled when BT disable.",
+      "range": {
+        "startLine": 302,
+        "startChar": 8,
+        "endLine": 305,
+        "endChar": 59
+      },
+      "revId": "852804a56fc8bcac08f9acde144d3033d738d03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
