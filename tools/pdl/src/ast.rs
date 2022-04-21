@@ -36,7 +36,7 @@ pub struct Comment {
     pub text: String,
 }
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "snake_case")]
 pub enum EndiannessValue {
     LittleEndian,
@@ -164,7 +164,7 @@ pub struct Grammar {
     pub version: String,
     pub file: FileId,
     pub comments: Vec<Comment>,
-    pub endianness: Option<Endianness>,
+    pub endianness: Endianness,
     pub declarations: Vec<Decl>,
 }
 
@@ -224,10 +224,16 @@ impl ops::Add<SourceRange> for SourceRange {
 
 impl Grammar {
     pub fn new(file: FileId) -> Grammar {
+        // The endianness is mandatory, so this placeholder value will
+        // be updated while parsing.
+        let placeholder_loc = SourceLocation { offset: 0, line: 0, column: 0 };
         Grammar {
             version: "1,0".to_owned(),
             comments: vec![],
-            endianness: None,
+            endianness: Endianness {
+                loc: SourceRange { file: 0, start: placeholder_loc, end: placeholder_loc },
+                value: EndiannessValue::LittleEndian,
+            },
             declarations: vec![],
             file,
         }
