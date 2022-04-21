@@ -35,6 +35,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a260df25_39f134ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-21T20:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dbf54fa_29365dd0",
+      "revId": "cdf150fe783937fd5e3f4879350a55d238e9b4e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f786748f_c4d7010d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-21T20:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a014e2a6_36066b0f",
+      "revId": "cdf150fe783937fd5e3f4879350a55d238e9b4e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2da39628_f7151e37",
@@ -48,6 +84,30 @@
       "writtenOn": "2022-04-21T15:21:41Z",
       "side": 1,
       "message": "packages/modules/Bluetooth/system/bta/le_audio/le_audio_client_test.cc:1604:15: error: use of undeclared identifier \u0027audio_unicast_sink_receiver_\u0027; did you mean \u0027audio_sink_receiver_\u0027?\n    ASSERT_NE(audio_unicast_sink_receiver_, nullptr);",
+      "range": {
+        "startLine": 1604,
+        "startChar": 0,
+        "endLine": 1604,
+        "endChar": 53
+      },
+      "revId": "cdf150fe783937fd5e3f4879350a55d238e9b4e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa2dbe4e_4819684a",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-21T20:37:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2da39628_f7151e37",
       "range": {
         "startLine": 1604,
         "startChar": 0,
