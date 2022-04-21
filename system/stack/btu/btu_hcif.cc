@@ -1325,9 +1325,13 @@ static void btu_hcif_command_complete_evt(BT_HDR* response, void* context) {
  * Returns          void
  *
  ******************************************************************************/
-static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
-                                        const uint8_t* p_cmd,
-                                        void* p_vsc_status_cback) {
+#ifndef STACK_BTU_TEST
+static
+#endif
+    void
+    btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
+                                const uint8_t* p_cmd,
+                                void* p_vsc_status_cback) {
   CHECK_NE(p_cmd, nullptr) << "Null command for opcode 0x" << loghex(opcode);
   p_cmd++;  // Skip parameter total length
 
@@ -1393,7 +1397,9 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
     case HCI_ENH_SETUP_ESCO_CONNECTION:
       if (status != HCI_SUCCESS) {
         STREAM_TO_UINT16(handle, p_cmd);
-        // Determine if initial connection failed or is a change of setup
+        RawAddress addr(RawAddress::kEmpty);
+        btm_sco_connected(static_cast<tHCI_STATUS>(status), addr, handle,
+                          nullptr);
       }
       break;
 
