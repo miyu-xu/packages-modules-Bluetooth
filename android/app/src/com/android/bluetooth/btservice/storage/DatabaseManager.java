@@ -23,6 +23,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
+import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -295,7 +296,6 @@ public class DatabaseManager {
      * {@link BluetoothProfile#MAP_CLIENT}, {@link BluetoothProfile#SAP},
      * {@link BluetoothProfile#HEARING_AID}, {@link BluetoothProfile#LE_AUDIO},
      * {@link BluetoothProfile#VOLUME_CONTROL}, {@link BluetoothProfile#CSIP_SET_COORDINATOR},
-     * {@link BluetoothProfile#LE_AUDIO_BROADCAST_ASSISTANT},
      * @param newConnectionPolicy the connectionPolicy to set; one of
      * {@link BluetoothProfile.CONNECTION_POLICY_UNKNOWN},
      * {@link BluetoothProfile.CONNECTION_POLICY_FORBIDDEN},
@@ -353,7 +353,6 @@ public class DatabaseManager {
      * {@link BluetoothProfile#MAP_CLIENT}, {@link BluetoothProfile#SAP},
      * {@link BluetoothProfile#HEARING_AID}, {@link BluetoothProfile#LE_AUDIO},
      * {@link BluetoothProfile#VOLUME_CONTROL}, {@link BluetoothProfile#CSIP_SET_COORDINATOR},
-     * {@link BluetoothProfile#LE_AUDIO_BROADCAST_ASSISTANT},
      * @return the profile connection policy of the device; one of
      * {@link BluetoothProfile.CONNECTION_POLICY_UNKNOWN},
      * {@link BluetoothProfile.CONNECTION_POLICY_FORBIDDEN},
