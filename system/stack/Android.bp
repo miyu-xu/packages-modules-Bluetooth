@@ -985,6 +985,9 @@ cc_test {
         "liblog",
         "libosi",
     ],
+    cflags: [
+        "-DSTACK_BTU_TEST=true",
+    ],
     shared_libs: [
         "libbinder_ndk",
         "libcrypto",

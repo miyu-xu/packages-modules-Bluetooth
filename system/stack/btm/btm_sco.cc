@@ -718,7 +718,8 @@ void btm_sco_conn_req(const RawAddress& bda, const DEV_CLASS& dev_class,
  * Function         btm_sco_connected
  *
  * Description      This function is called by BTIF when an (e)SCO connection
- *                  is connected.
+ *                  is connected or the connection setup is failed.
+ *                  When setup failed, bda will hold RawAddress::kEmpty.
  *
  * Returns          void
  *
@@ -733,7 +734,8 @@ void btm_sco_connected(tHCI_STATUS hci_status, const RawAddress& bda,
   for (xx = 0; xx < BTM_MAX_SCO_LINKS; xx++, p++) {
     if (((p->state == SCO_ST_CONNECTING) || (p->state == SCO_ST_LISTENING) ||
          (p->state == SCO_ST_W4_CONN_RSP)) &&
-        (p->rem_bd_known) && (p->esco.data.bd_addr == bda)) {
+        (p->rem_bd_known) &&
+        (p->esco.data.bd_addr == bda || bda == RawAddress::kEmpty)) {
       if (hci_status != HCI_SUCCESS) {
         /* Report the error if originator, otherwise remain in Listen mode */
         if (p->is_orig) {
