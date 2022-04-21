@@ -22,6 +22,54 @@
       },
       "revId": "e7305c39322ec42cab43de1a068ceeec11bc3a77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "662ce747_9e99e972",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-21T19:29:25Z",
+      "side": 1,
+      "message": "I simply moved this test from",
+      "parentUuid": "b98f258d_896b54f4",
+      "range": {
+        "startLine": 583,
+        "startChar": 23,
+        "endLine": 583,
+        "endChar": 32
+      },
+      "revId": "e7305c39322ec42cab43de1a068ceeec11bc3a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "207d74ea_f93ccee7",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-21T19:29:25Z",
+      "side": 1,
+      "message": "They are disabled b/c I simply moved this test from `BluetoothHciTestSources` to `BluetoothHciUnitTestSources` since much of the basic framework was re-used, and `BluetoothHciTestSources` was disabled due to reliability issues.\n\nThen, I had to get the base setup/teardown working just for the last few tests at the end.\n\nI disabled those tests as they didn\u0027t work and are not relevant for this CL.\n\nI didn\u0027t fix those tests due to time constraints and scope.\n\nSince it\u0027s confusing, what I\u0027ll do is revert the acl_manager_test.cc back to the original Hci source group, create a new test with just the portions related to this CL, and resubmit.",
+      "parentUuid": "b98f258d_896b54f4",
+      "range": {
+        "startLine": 583,
+        "startChar": 23,
+        "endLine": 583,
+        "endChar": 32
+      },
+      "revId": "e7305c39322ec42cab43de1a068ceeec11bc3a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
