@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "614f8ac1_b7c8c770",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-21T10:45:58Z",
+      "side": 1,
+      "message": "LOG_WARN\n\nSo that we know when this error happens",
+      "range": {
+        "startLine": 1337,
+        "startChar": 4,
+        "endLine": 1337,
+        "endChar": 13
+      },
+      "revId": "00b4c6d3ec214e819a73e9b9a0850f91fe09fb9e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
