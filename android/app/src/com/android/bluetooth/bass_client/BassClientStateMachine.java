@@ -79,8 +79,10 @@ import android.os.ParcelUuid;
 import android.provider.DeviceConfig;
 import android.util.Log;
 
+import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
+import com.android.bluetooth.hfp.HeadsetStateMachine;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
@@ -199,6 +201,16 @@ class BassClientStateMachine extends StateMachine {
         BassClientStateMachine BassclientSm = new BassClientStateMachine(device, svc, looper);
         BassclientSm.start();
         return BassclientSm;
+    }
+
+    static void destroy(BassClientStateMachine stateMachine) {
+        Log.i(TAG, "destroy");
+        if (stateMachine == null) {
+            Log.w(TAG, "destroy(), stateMachine is null");
+            return;
+        }
+        stateMachine.doQuit();
+        stateMachine.cleanup();
     }
 
     public void doQuit() {
