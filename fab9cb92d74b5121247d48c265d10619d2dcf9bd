@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b0c5132_1ac77ec8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-04-22T05:49:23Z",
+      "side": 1,
+      "message": "could you elaborate more in the commit message what is expected from this patch?\nCommit title does not say to much.",
+      "revId": "fab9cb92d74b5121247d48c265d10619d2dcf9bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
