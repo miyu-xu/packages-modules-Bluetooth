@@ -18,8 +18,12 @@ package com.android.bluetooth.bass_client;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothLeAudioCodecConfigMetadata;
+import android.bluetooth.BluetoothLeAudioContentMetadata;
+import android.bluetooth.BluetoothLeBroadcastChannel;
 import android.bluetooth.BluetoothLeBroadcastMetadata;
 import android.bluetooth.BluetoothLeBroadcastReceiveState;
+import android.bluetooth.BluetoothLeBroadcastSubgroup;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothUuid;
@@ -608,6 +612,39 @@ public class BassClientService extends ProfileService {
         return;
     }
 
+    private BluetoothLeBroadcastMetadata getBroadcastMetadata(BluetoothDevice device) {
+        final long AUDIO_LOCATION_FRONT_LEFT = 0x01;
+        final String PROGRAM_INFO = "program info";
+        final String LANGUAGE = "eng";
+        final int CODEC_ID = 6;
+        BluetoothLeAudioContentMetadata metaData =
+        new BluetoothLeAudioContentMetadata.Builder()
+                .setProgramInfo(PROGRAM_INFO)
+                .setLanguage(LANGUAGE)
+                .build();
+        BluetoothLeAudioCodecConfigMetadata audioCodecConfig =
+        new BluetoothLeAudioCodecConfigMetadata.Builder()
+                .setAudioLocation(AUDIO_LOCATION_FRONT_LEFT)
+                .build();
+        BluetoothLeBroadcastChannel channel =
+        new BluetoothLeBroadcastChannel.Builder()
+                .setChannelIndex(0)
+                .setSelected(false)
+                .setCodecMetadata(audioCodecConfig)
+                .build();
+        BluetoothLeBroadcastSubgroup subGroup =
+        new BluetoothLeBroadcastSubgroup.Builder()
+                .setCodecId(CODEC_ID)
+                .setCodecSpecificConfig(audioCodecConfig)
+                .setContentMetadata(metaData)
+                .addChannel(channel)
+                .build();
+        return new BluetoothLeBroadcastMetadata.Builder()
+                .setSourceDevice(device, device.getAddressType())
+                .addSubgroup(subGroup)
+                .build();
+    }
+
     /**
      * Search for LE Audio Broadcast Sources on behalf of all devices connected via Broadcast Audio
      * Scan Service, filtered by filters
@@ -658,6 +695,8 @@ public class BassClientService extends ProfileService {
                             .obtainMessage(BassConstants.AA_SCAN_SUCCESS);
                     msg.obj = result;
                     mBassUtils.getAutoAssistScanHandler().sendMessage(msg);
+                    mCallbacks.notifySourceFound(getBroadcastMetadata(
+                            result.getDevice()));
                 }
 
                 public void onScanFailed(int errorCode) {
