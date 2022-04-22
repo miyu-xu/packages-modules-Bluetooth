@@ -1359,6 +1359,11 @@ tBTM_STATUS bluetooth::shim::BTM_LeRand(LeRandCallback cb) {
   return BTM_SUCCESS;
 }
 
+tBTM_STATUS bluetooth::shim::BTM_RestoreFilterAcceptList() {
+  // PLUMB: controller_get_interface()->restore_filter_accept_list();
+  return BTM_SUCCESS;
+}
+
 tBTM_STATUS bluetooth::shim::BTM_SetDefaultEventMask() {
   // Autoplumbed
   controller_get_interface()->set_default_event_mask();
