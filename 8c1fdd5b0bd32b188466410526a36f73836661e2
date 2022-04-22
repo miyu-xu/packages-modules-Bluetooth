@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "051c6771_8d4fdbfe",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-04-22T14:31:51Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3b3226c_3b8be0c5",
+      "range": {
+        "startLine": 350,
+        "startChar": 7,
+        "endLine": 350,
+        "endChar": 104
+      },
+      "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50c48cba_2b8577d0",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-21T15:10:01Z",
       "side": 1,
       "message": "Have you tested this on a device or configuration where OPP is disabled? If so, was the UX acceptable?\n\n(...Out of curiosity, how do the applications that use OPP know that it\u0027s available?)\n\nMy big concern would be that these components are made available once enabled and a user can click on \"BT Share\" when the profile is disabled.\n\nIf it is a bad UX, we\u0027ll probably have to come up with a quick pattern for something like \"persistent owned dependencies\" where the initial config can start them and leave them started or something. There may be better ways too :)",
+      "range": {
+        "startLine": 404,
+        "startChar": 13,
+        "endLine": 404,
+        "endChar": 35
+      },
+      "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6001eefd_654defc0",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-04-22T14:31:51Z",
+      "side": 1,
+      "message": "I didn\u0027t tested on device that not support OPP.\nYour concern is right, we shouldn\u0027t enable these components on device that not support OPP.\nI modified this patch as do not disable BluetoothOppLauncherActivity when BT disable.\nAfter user flash ROM, the Bluetooth is default enabled, so this works fine on devices that support OPP. The only corner case is that when user disable BT and reboot device, the optional will not show until user turn on BT, but I think it is acceptable.\nThanks!",
+      "parentUuid": "50c48cba_2b8577d0",
       "range": {
         "startLine": 404,
         "startChar": 13,
