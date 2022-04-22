@@ -93,6 +93,30 @@
       },
       "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8202121_a33712e3",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-04-22T23:11:36Z",
+      "side": 1,
+      "message": "Ahhh, well I think we should definitely test on a device that doesn\u0027t support OPP and make sure you still don\u0027t the Bluetooth Sharing setting, etc. You can also just turn off profile support on a device that does support it to see what happens.\n\nI think simply removing code from the stop() call may work, but it\u0027s a bit hacky. We should probably get Roopa/Rahul\u0027s opinion to see if a more formal mechanism might be desirable. I\u0027ll speak with Rahul on it early next week.",
+      "parentUuid": "6001eefd_654defc0",
+      "range": {
+        "startLine": 404,
+        "startChar": 13,
+        "endLine": 404,
+        "endChar": 35
+      },
+      "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
