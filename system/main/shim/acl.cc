@@ -1646,7 +1646,7 @@ void shim::legacy::Acl::FinalShutdown() {
   LOG_INFO("Unregistered and cleared any orphaned ACL connections");
 }
 
-void shim::legacy::Acl::ClearAcceptList() {
+void shim::legacy::Acl::ClearFilterAcceptList() {
   handler_->CallOn(pimpl_.get(), &Acl::impl::clear_acceptlist);
 }
 
