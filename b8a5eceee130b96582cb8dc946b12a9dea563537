@@ -16,6 +16,24 @@
       "message": "now qos_config_name is an array. add [] around QoS_Config_Server_Preferred  and others",
       "revId": "b8a5eceee130b96582cb8dc946b12a9dea563537",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec6d4521_3a62b8bf",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 9
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-22T22:37:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "874b4f15_d7228f5d",
+      "revId": "b8a5eceee130b96582cb8dc946b12a9dea563537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
