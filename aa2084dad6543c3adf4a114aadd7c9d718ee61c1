@@ -22,6 +22,30 @@
       },
       "revId": "aa2084dad6543c3adf4a114aadd7c9d718ee61c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a07bc43_c585aa5a",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-22T16:03:45Z",
+      "side": 1,
+      "message": "just going to leave it as the overhead of rebasing will take more time than leaving it and in the end its the same effect.",
+      "parentUuid": "5d74ea9d_e3cee418",
+      "range": {
+        "startLine": 670,
+        "startChar": 19,
+        "endLine": 670,
+        "endChar": 37
+      },
+      "revId": "aa2084dad6543c3adf4a114aadd7c9d718ee61c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
