@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "363332a1_d42aea18",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-04-22T20:36:19Z",
+      "side": 1,
+      "message": "Thanks for the info. Done.",
+      "parentUuid": "837ea0dd_1d4da06b",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 96
+      },
+      "revId": "19e251e7b8d370f38e1830407543977518a0984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1aecf64_b031c847",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-22T19:26:24Z",
       "side": 1,
       "message": "After mainline modules, all services will be included at compilation time. Hence this check is no longer needed.",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 134,
+        "endChar": 9
+      },
+      "revId": "19e251e7b8d370f38e1830407543977518a0984b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bcadd9c_ef8a80dc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-04-22T20:36:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1aecf64_b031c847",
       "range": {
         "startLine": 132,
         "startChar": 0,
