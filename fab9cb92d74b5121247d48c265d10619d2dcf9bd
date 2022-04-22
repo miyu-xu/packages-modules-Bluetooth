@@ -16,6 +16,24 @@
       "message": "could you elaborate more in the commit message what is expected from this patch?\nCommit title does not say to much.",
       "revId": "fab9cb92d74b5121247d48c265d10619d2dcf9bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc8fbb59_4d1faa31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-22T22:07:38Z",
+      "side": 1,
+      "message": "It\u0027s just a re-logging and style change, but I can see it\u0027s confusing",
+      "parentUuid": "9b0c5132_1ac77ec8",
+      "revId": "fab9cb92d74b5121247d48c265d10619d2dcf9bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
