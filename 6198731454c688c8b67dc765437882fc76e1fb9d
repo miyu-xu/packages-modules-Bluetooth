@@ -22,6 +22,54 @@
       },
       "revId": "6198731454c688c8b67dc765437882fc76e1fb9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "589ec038_1b0316bf",
+        "filename": "android/pandora/server/src/com/android/blueberry/A2dp.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-04-22T11:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38f17108_37b4d9df",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "6198731454c688c8b67dc765437882fc76e1fb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5c0e539_582db881",
+        "filename": "android/pandora/server/src/com/android/blueberry/A2dp.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-04-22T11:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38f17108_37b4d9df",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 27
+      },
+      "revId": "6198731454c688c8b67dc765437882fc76e1fb9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
