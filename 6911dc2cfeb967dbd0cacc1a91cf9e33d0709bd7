@@ -22,6 +22,30 @@
       },
       "revId": "6911dc2cfeb967dbd0cacc1a91cf9e33d0709bd7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd737cbd_28158e25",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 676,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-04-22T14:36:27Z",
+      "side": 1,
+      "message": "Based on Table 3.14 in BAP V1.0 SPEC  and Generic Access Profile spec, the type field is DATA_TYPE_SERVICE_DATA_16_BIT.\n\nType: «Service Data - 16-bit UUID»  1  Defined in Bluetooth Assigned Numbers [2]\n\n0x16  «Service Data - 16-bit UUID» Core Specification Supplement, Part A, section 1.11\n\npublic static final int DATA_TYPE_SERVICE_DATA_16_BIT \u003d 0x16;\n\nThe filter condition should be serviceDataUuid instead of serviceUuids.\n\npackages/modules/Bluetooth/framework/java/android/bluetooth/le/ScanFilter.java\n567         // Service data match\n568         if (mServiceDataUuid !\u003d null) {\n569             if (!matchesPartialData(mServiceData, mServiceDataMask,\n570                     scanRecord.getServiceData(mServiceDataUuid))) {\n571                 return false;\n572             }\n573         }\n\npackages/modules/Bluetooth/framework/java/android/bluetooth/le/ScanRecord.java\n422                     case DATA_TYPE_SERVICE_DATA_16_BIT:\n423                     case DATA_TYPE_SERVICE_DATA_32_BIT:\n424                     case DATA_TYPE_SERVICE_DATA_128_BIT:\n425                         int serviceUuidLength \u003d BluetoothUuid.UUID_BYTES_16_BIT;\n426                         if (fieldType \u003d\u003d DATA_TYPE_SERVICE_DATA_32_BIT) {\n427                             serviceUuidLength \u003d BluetoothUuid.UUID_BYTES_32_BIT;\n428                         } else if (fieldType \u003d\u003d DATA_TYPE_SERVICE_DATA_128_BIT) {\n429                             serviceUuidLength \u003d BluetoothUuid.UUID_BYTES_128_BIT;\n430                         }\n431 \n432                         byte[] serviceDataUuidBytes \u003d extractBytes(scanRecord, currentPos,\n433                                 serviceUuidLength);\n434                         ParcelUuid serviceDataUuid \u003d BluetoothUuid.parseUuidFrom(\n435                                 serviceDataUuidBytes);\n436                         byte[] serviceDataArray \u003d extractBytes(scanRecord,\n437                                 currentPos + serviceUuidLength, dataLength - serviceUuidLength);\n438                         serviceData.put(serviceDataUuid, serviceDataArray);\n439                         break;",
+      "parentUuid": "eb437edb_6eee9804",
+      "range": {
+        "startLine": 671,
+        "startChar": 0,
+        "endLine": 676,
+        "endChar": 71
+      },
+      "revId": "6911dc2cfeb967dbd0cacc1a91cf9e33d0709bd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
