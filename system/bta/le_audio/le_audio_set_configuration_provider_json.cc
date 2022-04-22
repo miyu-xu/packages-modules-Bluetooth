@@ -466,7 +466,7 @@ struct AudioSetConfigurationProvider::impl {
 
     for (LeAudioContextType context : types::kLeAudioContextAllTypesArray) {
       auto confs = Get()->GetConfigurations(context);
-      stream << "  === Configurations for context type: " << (int)context
+      stream << "\n  === Configurations for context type: " << (int)context
              << ", num: " << (confs == nullptr ? 0 : confs->size()) << " \n";
       if (confs->size() > 0) {
         for (const auto& conf : *confs) {
