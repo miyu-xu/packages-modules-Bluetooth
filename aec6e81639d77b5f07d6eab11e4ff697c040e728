@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e17c84a7_99e8992d",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 1275,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-04-23T03:59:18Z",
+      "side": 1,
+      "message": "The octets_per_codec_frame for 16_1 config should be 30.",
+      "revId": "aec6e81639d77b5f07d6eab11e4ff697c040e728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58bc3402_0876df38",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 1336,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-04-23T03:59:18Z",
+      "side": 1,
+      "message": "The octets_per_codec_frame for 16_1 config should be 30.",
+      "revId": "aec6e81639d77b5f07d6eab11e4ff697c040e728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e4fb1b4_73437ac3",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 1915,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-04-23T03:59:18Z",
+      "side": 1,
+      "message": "The octets_per_codec_frame for 16_1 config should be 30.",
+      "revId": "aec6e81639d77b5f07d6eab11e4ff697c040e728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b16a6a0_a37e76b6",
+        "filename": "system/bta/le_audio/audio_set_configurations.json",
+        "patchSetId": 11
+      },
+      "lineNbr": 1977,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-04-23T03:59:18Z",
+      "side": 1,
+      "message": "The octets_per_codec_frame for 16_1 config should be 30.",
+      "revId": "aec6e81639d77b5f07d6eab11e4ff697c040e728",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
