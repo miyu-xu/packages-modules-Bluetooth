@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc276f38_1d36c55d",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1335,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-23T05:43:00Z",
+      "side": 1,
+      "message": "FYI, clang_format made this change.",
+      "range": {
+        "startLine": 1332,
+        "startChar": 0,
+        "endLine": 1335,
+        "endChar": 59
+      },
+      "revId": "9161dcbc1a3aae880ec5f965e821d862a6584c86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
