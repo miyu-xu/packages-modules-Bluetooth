@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b0cee2_ed135b3b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-23T10:34:34Z",
+      "side": 1,
+      "message": "Per API documentation, notifySourceFound() should only be called when Periodic Sync is done on a target device. At this position, we only have scan results with MAC address for a remote device and we should not invoke this callback just yet. \n\nCould we check to make sure Periodic Sync is initialized successfully when a ScanResult for Broadcast Source is found? And when the Periodic Sync is successful, we invoke notifySourceFound() callback at that time?\n\nThanks",
+      "range": {
+        "startLine": 698,
+        "startChar": 0,
+        "endLine": 699,
+        "endChar": 49
+      },
+      "revId": "7884ade170dd7945c7f4c85c5c18524c821ee1b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
