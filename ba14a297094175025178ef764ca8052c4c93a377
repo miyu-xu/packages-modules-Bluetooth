@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "266a6240_e8aadaca",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-04-25T11:40:06Z",
+      "side": 1,
+      "message": "Was `mIsEncrypted` excluded on purpose?",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 59
+      },
+      "revId": "ba14a297094175025178ef764ca8052c4c93a377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
