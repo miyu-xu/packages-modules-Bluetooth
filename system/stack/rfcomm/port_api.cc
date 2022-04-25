@@ -498,6 +498,7 @@ bool PORT_IsOpening(RawAddress* bd_addr) {
     if ((multiplexer_cb.state > RFC_MX_STATE_IDLE) &&
         (multiplexer_cb.state < RFC_MX_STATE_CONNECTED)) {
       *bd_addr = multiplexer_cb.bd_addr;
+      LOG_DEBUG("true");
       return true;
     }
 
@@ -513,15 +514,18 @@ bool PORT_IsOpening(RawAddress* bd_addr) {
         }
       }
 
+      LOG_DEBUG("RFC_MX_STATE_CONNECTED, found_port=%d, tRFC_PORT_STATE=%d",
+                found_port, p_port->rfc.state);
       if ((!found_port) ||
           (found_port && (p_port->rfc.state < RFC_STATE_OPENED))) {
         /* Port is not established yet. */
         *bd_addr = multiplexer_cb.bd_addr;
+        LOG_DEBUG("true");
         return true;
       }
     }
   }
-
+  LOG_DEBUG("false");
   return false;
 }
 
