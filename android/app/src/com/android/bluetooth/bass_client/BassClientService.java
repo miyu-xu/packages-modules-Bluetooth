@@ -405,8 +405,8 @@ public class BassClientService extends ProfileService {
             Log.e(TAG, "connect: device is null");
             return false;
         }
-        if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_UNKNOWN) {
-            Log.e(TAG, "connect: unknown connection policy");
+        if (getConnectionPolicy(device) == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+            Log.e(TAG, "connect: connection policy set to forbidden");
             return false;
         }
         synchronized (mStateMachines) {
