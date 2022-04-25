@@ -22,6 +22,30 @@
       },
       "revId": "ba14a297094175025178ef764ca8052c4c93a377",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab91a96f_2152b865",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-25T17:06:59Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "266a6240_e8aadaca",
+      "range": {
+        "startLine": 87,
+        "startChar": 16,
+        "endLine": 93,
+        "endChar": 59
+      },
+      "revId": "ba14a297094175025178ef764ca8052c4c93a377",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
