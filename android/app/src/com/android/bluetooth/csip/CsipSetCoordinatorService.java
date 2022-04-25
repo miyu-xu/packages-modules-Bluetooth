@@ -581,6 +581,19 @@ public class CsipSetCoordinatorService extends ProfileService {
     }
 
     /**
+     * Get grouped devices
+     * @param groupId group ID
+     * @return related list of devices.
+     */
+    public @NonNull List<BluetoothDevice> getGroupDevices(int groupId) {
+        return mDeviceGroupIdMap.entrySet()
+                .stream()
+                .filter(e -> e.getValue().contains(groupId))
+                .map(e -> e.getKey())
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Get group desired size
      * @param groupId group ID
      * @return the number of group members
