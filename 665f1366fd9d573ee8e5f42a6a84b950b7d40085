@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "debb7f23_f6e657b8",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-25T20:27:41Z",
+      "side": 1,
+      "message": "I see some problems here. If the isGroupOp flag is set and the operation cannot be triggered for the first device, we should not try doing it on other devices just like it is now, however these callbacks should be called for all the devices within the group.\n\nI\u0027m also wondering if the sticky flag should be unset when the initial call that sets it has actually failed, or maybe the yet to be implemented recovery mechanism should try to either adding again the source to device that refused to do so previously or remove source from the first device which got this broadcast source added successfully at the first try.",
+      "range": {
+        "startLine": 799,
+        "startChar": 0,
+        "endLine": 801,
+        "endChar": 23
+      },
+      "revId": "665f1366fd9d573ee8e5f42a6a84b950b7d40085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9961ab6_2db2a0fa",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-25T20:27:41Z",
+      "side": 1,
+      "message": "same here...",
+      "range": {
+        "startLine": 837,
+        "startChar": 16,
+        "endLine": 838,
+        "endChar": 67
+      },
+      "revId": "665f1366fd9d573ee8e5f42a6a84b950b7d40085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8817baa6_92c12a07",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-25T20:27:41Z",
+      "side": 1,
+      "message": "...and here.",
+      "range": {
+        "startLine": 868,
+        "startChar": 16,
+        "endLine": 869,
+        "endChar": 67
+      },
+      "revId": "665f1366fd9d573ee8e5f42a6a84b950b7d40085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
