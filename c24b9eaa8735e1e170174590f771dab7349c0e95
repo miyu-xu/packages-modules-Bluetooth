@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c9c9bf_2c2f030e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-04-25T20:45:33Z",
+      "side": 1,
+      "message": "nit: add @throws to docs for this and above methods too",
+      "revId": "c24b9eaa8735e1e170174590f771dab7349c0e95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c04109f7_6c82197f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-04-25T20:45:33Z",
+      "side": 1,
+      "message": "nit: \"are null\" --\u003e \"is null\"",
+      "revId": "c24b9eaa8735e1e170174590f771dab7349c0e95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
