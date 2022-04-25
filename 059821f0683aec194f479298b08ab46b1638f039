@@ -51,6 +51,24 @@
       "message": "`+ \u0027static` is the default, so you don\u0027t need to specify it.",
       "revId": "059821f0683aec194f479298b08ab46b1638f039",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7ff925_a0ca1389",
+        "filename": "tools/rootcanal/lmp/src/manager.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-25T14:08:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c98876bc_036ac643",
+      "revId": "059821f0683aec194f479298b08ab46b1638f039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
