@@ -225,6 +225,7 @@ public final class BluetoothLeBroadcastReceiveState implements Parcelable {
                     + subgroupMetadata.size() + " must be equal to numSubgroups " + numSubgroups);
         }
         if (paSyncState != PA_SYNC_STATE_IDLE && paSyncState != PA_SYNC_STATE_SYNCINFO_REQUEST
+                && paSyncState != PA_SYNC_STATE_SYNCHRONIZED
                 && paSyncState != PA_SYNC_STATE_FAILED_TO_SYNCHRONIZE
                 && paSyncState != PA_SYNC_STATE_NO_PAST && paSyncState != PA_SYNC_STATE_INVALID) {
             throw new IllegalArgumentException("unrecognized paSyncState " + paSyncState);
