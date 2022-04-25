@@ -731,6 +731,7 @@ public class BassClientStateMachine extends StateMachine {
                     log("sourceInfo removal" + removedDevice);
                     cancelActiveSync(removedDevice);
                     mService.updateSourceInternal(oldRecvState.getSourceId(), null);
+                    mService.setGroupOpTrigger(mDevice, false);
                     mService.getCallbacks().notifySourceRemoved(mDevice,
                             oldRecvState.getSourceId(),
                             BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
