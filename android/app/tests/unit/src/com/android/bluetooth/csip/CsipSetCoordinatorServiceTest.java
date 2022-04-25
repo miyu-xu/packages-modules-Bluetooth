@@ -78,6 +78,9 @@ public class CsipSetCoordinatorServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        Assume.assumeTrue("Ignore test when CsipSetCoordinatorService is not enabled",
+                CsipSetCoordinatorService.isEnabled());
+
         mTargetContext = InstrumentationRegistry.getTargetContext();
         if (Looper.myLooper() == null) {
             Looper.prepare();
@@ -132,11 +135,15 @@ public class CsipSetCoordinatorServiceTest {
 
     @After
     public void tearDown() throws Exception {
+<<<<<<< HEAD
+        if (!CsipSetCoordinatorService.isEnabled()) {
+=======
         if (mService == null) {
             return;
         }
 
         if (Looper.myLooper() == null) {
+>>>>>>> 3bce9efd8d (tests: Fix handling exceptions during the setup phase)
             return;
         }
 
