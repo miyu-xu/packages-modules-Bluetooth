@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "428da576_ebf6fcf9",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-04-25T03:32:18Z",
+      "side": 1,
+      "message": "Why do you need brackets here?",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 3
+      },
+      "revId": "3e7a46846462789092c3a60575cd9394ff841554",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
