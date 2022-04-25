@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f193c621_6898d23e",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 449,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-25T21:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93c9c9bf_2c2f030e",
+      "revId": "c24b9eaa8735e1e170174590f771dab7349c0e95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c04109f7_6c82197f",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-04-25T20:45:33Z",
       "side": 1,
       "message": "nit: \"are null\" --\u003e \"is null\"",
+      "revId": "c24b9eaa8735e1e170174590f771dab7349c0e95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1acce878_b2652809",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-25T21:30:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c04109f7_6c82197f",
       "revId": "c24b9eaa8735e1e170174590f771dab7349c0e95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
