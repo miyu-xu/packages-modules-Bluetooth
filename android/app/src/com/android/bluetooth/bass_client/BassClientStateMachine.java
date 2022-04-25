@@ -741,8 +741,8 @@ public class BassClientStateMachine extends StateMachine {
             if (oldRecvState.getSourceDevice() == null
                     || oldRecvState.getSourceDevice().getAddress().equals(emptyBluetoothDevice)) {
                 log("New Source Addition");
-                mService.getCallbacks().notifySourceAdded(mDevice,
-                        recvState.getSourceId(), BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
+                mService.getCallbacks().notifySourceAdded(mDevice, recvState,
+                        BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
                 if (mPendingMetadata != null) {
                     setCurrentBroadcastMetadata(recvState.getSourceId(), mPendingMetadata);
                 }
