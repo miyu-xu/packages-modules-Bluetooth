@@ -538,6 +538,7 @@ filegroup {
 genrule {
     name: "BluetoothGeneratedPackets_h",
     tools: [
+        "pdl",
         "bluetooth_packetgen",
     ],
     cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in)",
@@ -556,6 +557,7 @@ genrule {
 genrule {
     name: "BluetoothGeneratedPackets_rust",
     tools: [
+        "pdl",
         "bluetooth_packetgen",
     ],
     cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in) --rust",
@@ -608,6 +610,7 @@ rust_test_host {
 genrule {
     name: "TestGeneratedPackets_rust",
     tools: [
+        "pdl",
         "bluetooth_packetgen",
     ],
     cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in) --rust",
@@ -690,6 +693,7 @@ genrule {
 genrule {
     name: "BluetoothGeneratedPackets_python3_cc",
     tools: [
+        "pdl",
         "bluetooth_packetgen",
     ],
     cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) --num_shards=10 $(in)",

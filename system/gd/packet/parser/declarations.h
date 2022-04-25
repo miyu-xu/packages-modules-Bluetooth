@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <json/json.h>
+
 #include <deque>
 #include <map>
 #include <optional>
@@ -80,6 +82,8 @@ class Declarations {
 
     return group_defs_.at(name);
   }
+
+  bool FromJson(Json::Value json);
 
   std::map<std::string, FieldList*> group_defs_;
 

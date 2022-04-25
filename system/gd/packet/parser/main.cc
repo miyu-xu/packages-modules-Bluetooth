@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
+#include <json/json.h>
 #include <unistd.h>
+
 #include <cerrno>
 #include <cstdio>
 #include <filesystem>
@@ -27,15 +29,6 @@
 #include <vector>
 
 #include "declarations.h"
-#include "struct_parser_generator.h"
-
-#include "language_y.h"
-
-
-int yylex_init(void**);
-int yylex_destroy(void*);
-void yyset_debug(int, void*);
-void yyset_in(FILE*, void*);
 
 bool generate_cpp_headers_one_file(
     const Declarations& decls,
@@ -59,44 +52,46 @@ bool generate_rust_source_one_file(
     const std::filesystem::path& out_dir,
     const std::string& root_namespace);
 
-bool parse_declarations_one_file(const std::filesystem::path& input_file, Declarations* declarations) {
-  void* scanner;
-  yylex_init(&scanner);
+std::string get_pdl_path(const char* argv0) {
+  auto dir = std::filesystem::path(argv0).parent_path();
 
-  FILE* in_file = fopen(input_file.string().c_str(), "r");
-  if (in_file == nullptr) {
-    std::cerr << "can't open " << input_file << ": " << strerror(errno) << std::endl;
+  if (std::filesystem::exists(dir / "pdl"))
+    return (dir / "pdl").string();
+  else
+    return "pdl";
+}
+
+bool parse_declarations_one_file(
+    const char* argv0, const std::filesystem::path& input_file, Declarations* declarations) {
+  std::string command = get_pdl_path(argv0) + " " + input_file.string();
+  auto pipe = popen(command.c_str(), "r");
+
+  if (!pipe) {
+    std::cerr << "can't execute: " << command << std::endl;
     return false;
   }
 
-  yyset_in(in_file, scanner);
+  std::string json;
+  char buffer[128];
 
-  int ret = yy::parser(scanner, declarations).parse();
-  if (ret != 0) {
-    std::cerr << "yylex parsing failed: returned " << ret << std::endl;
+  while (!feof(pipe)) {
+    if (fgets(buffer, sizeof(buffer), pipe) != nullptr) json += buffer;
+  }
+
+  auto rc = pclose(pipe);
+
+  if (rc != EXIT_SUCCESS) return false;
+
+  Json::Value root;
+  Json::CharReaderBuilder builder;
+
+  std::string errs;
+  if (!builder.newCharReader()->parse(&*json.begin(), &*json.end(), &root, &errs)) {
+    std::cerr << "can't open " << input_file << ": " << errs << std::endl;
     return false;
   }
 
-  yylex_destroy(scanner);
-
-  fclose(in_file);
-
-  // Set endianess before returning
-  for (auto& s : declarations->type_defs_queue_) {
-    if (s.second->GetDefinitionType() == TypeDef::Type::STRUCT) {
-      auto* struct_def = static_cast<StructDef*>(s.second);
-      struct_def->SetEndianness(declarations->is_little_endian);
-    }
-  }
-
-  for (auto& packet_def : declarations->packet_defs_queue_) {
-    packet_def.second->SetEndianness(declarations->is_little_endian);
-    if (packet_def.second->parent_ != nullptr) {
-      packet_def.second->parent_->children_.push_back(packet_def.second);
-    }
-  }
-
-  return true;
+  return declarations->FromJson(root);
 }
 
 // TODO(b/141583809): stop leaks
@@ -180,7 +175,7 @@ int main(int argc, const char** argv) {
   while (!input_files.empty()) {
     Declarations declarations;
     std::cout << "parsing: " << input_files.front() << std::endl;
-    if (!parse_declarations_one_file(input_files.front(), &declarations)) {
+    if (!parse_declarations_one_file(argv[0], input_files.front(), &declarations)) {
       std::cerr << "Cannot parse " << input_files.front() << " correctly" << std::endl;
       return 2;
     }

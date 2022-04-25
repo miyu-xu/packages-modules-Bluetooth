@@ -33,6 +33,7 @@ cc_binary_host {
         "fields/variable_length_struct_field.cc",
         "checksum_def.cc",
         "custom_field_def.cc",
+        "declarations.cc",
         "enum_def.cc",
         "enum_gen.cc",
         "packet_def.cc",
@@ -41,16 +42,11 @@ cc_binary_host {
         "struct_def.cc",
         "struct_parser_generator.cc",
         "main.cc",
-        "language_y.yy",
-        "language_l.ll",
         "gen_cpp.cc",
         "gen_rust.cc",
     ],
     static_libs: [
         "libc++fs",
+        "libjsoncpp",
     ],
-    yacc: {
-        gen_location_hh: true,
-        gen_position_hh: true,
-    },
 }
