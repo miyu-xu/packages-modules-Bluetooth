@@ -22,6 +22,30 @@
       },
       "revId": "3e7a46846462789092c3a60575cd9394ff841554",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eef067e_bd4562f5",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-04-25T09:18:19Z",
+      "side": 1,
+      "message": "I wasn\u0027t sure if this was necessary as per C++ style guide. I put brackets to explicitly limit scope of soc_manufacturer_prop variable as it was already done in GetMaxPacketsPerFile() and GetBtSnoopMode(). I think for readability and because there is extra incentive to limit auto variable to smallest scope, it is fine.",
+      "parentUuid": "428da576_ebf6fcf9",
+      "range": {
+        "startLine": 470,
+        "startChar": 0,
+        "endLine": 470,
+        "endChar": 3
+      },
+      "revId": "3e7a46846462789092c3a60575cd9394ff841554",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
