@@ -539,6 +539,7 @@ filegroup {
 genrule {
     name: "BluetoothGeneratedPackets_h",
     tools: [
+        "pdl",
         "bluetooth_packetgen",
     ],
     cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in)",
