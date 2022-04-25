@@ -17,6 +17,7 @@
 package com.android.bluetooth.bass_client;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.mockito.Mockito.*;
 
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
@@ -31,10 +32,16 @@ import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothLeAudioCodecConfigMetadata;
+import android.bluetooth.BluetoothLeAudioContentMetadata;
+import android.bluetooth.BluetoothLeBroadcastChannel;
+import android.bluetooth.BluetoothLeBroadcastMetadata;
+import android.bluetooth.BluetoothLeBroadcastSubgroup;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.le.ScanFilter;
 import android.content.Context;
+import android.os.Message;
 import android.os.ParcelUuid;
 
 import androidx.test.InstrumentationRegistry;
@@ -44,13 +51,16 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.csip.CsipSetCoordinatorService;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
@@ -58,7 +68,9 @@ import org.mockito.Spy;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Tests for {@link BassClientService}
@@ -66,16 +78,43 @@ import java.util.Set;
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class BassClientServiceTest {
+    private final String mFlagDexmarker = System.getProperty("dexmaker.share_classloader", "false");
+
     private static final int MAX_HEADSET_CONNECTIONS = 5;
     private static final ParcelUuid[] FAKE_SERVICE_UUIDS = {BluetoothUuid.BASS};
     private static final int ASYNC_CALL_TIMEOUT_MILLIS = 250;
 
+    private static final String TEST_MAC_ADDRESS = "00:11:22:33:44:55";
+    private static final int TEST_BROADCAST_ID = 42;
+    private static final int TEST_ADVERTISER_SID = 1234;
+    private static final int TEST_PA_SYNC_INTERVAL = 100;
+    private static final int TEST_PRESENTATION_DELAY_MS = 345;
+
+    private static final int TEST_CODEC_ID = 42;
+    private static final int TEST_CHANNEL_INDEX = 56;
+
+    // For BluetoothLeAudioCodecConfigMetadata
+    private static final long TEST_AUDIO_LOCATION_FRONT_LEFT = 0x01;
+    private static final long TEST_AUDIO_LOCATION_FRONT_RIGHT = 0x02;
+
+    // For BluetoothLeAudioContentMetadata
+    private static final String TEST_PROGRAM_INFO = "Test";
+    // German language code in ISO 639-3
+    private static final String TEST_LANGUAGE = "deu";
+    private static final int TEST_SOURCE_ID = 2;
+    private static final int TEST_NUM_SOURCES = 2;
+
+
+    private static final int TEST_MAX_NUM_DEVICES = 3;
+
     private final HashMap<BluetoothDevice, BassClientStateMachine> mStateMachines = new HashMap<>();
+    private final List<BassClientStateMachine> mStateMachinePool = new ArrayList<>();
 
     private Context mTargetContext;
     private BassClientService mBassClientService;
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothDevice mCurrentDevice;
+    private BluetoothDevice mCurrentDevice1;
 
     @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
 
@@ -83,9 +122,59 @@ public class BassClientServiceTest {
     @Mock private AdapterService mAdapterService;
     @Mock private DatabaseManager mDatabaseManager;
     @Mock private BluetoothLeScannerWrapper mBluetoothLeScannerWrapper;
+    @Mock private ServiceFactory mServiceFactory;
+    @Mock private CsipSetCoordinatorService mCsipService;
+
+    BluetoothLeBroadcastSubgroup createBroadcastSubgroup() {
+        BluetoothLeAudioCodecConfigMetadata codecMetadata =
+                new BluetoothLeAudioCodecConfigMetadata.Builder()
+                        .setAudioLocation(TEST_AUDIO_LOCATION_FRONT_LEFT).build();
+        BluetoothLeAudioContentMetadata contentMetadata =
+                new BluetoothLeAudioContentMetadata.Builder()
+                        .setProgramInfo(TEST_PROGRAM_INFO).setLanguage(TEST_LANGUAGE).build();
+        BluetoothLeBroadcastSubgroup.Builder builder = new BluetoothLeBroadcastSubgroup.Builder()
+                .setCodecId(TEST_CODEC_ID)
+                .setCodecSpecificConfig(codecMetadata)
+                .setContentMetadata(contentMetadata);
+
+        BluetoothLeAudioCodecConfigMetadata channelCodecMetadata =
+                new BluetoothLeAudioCodecConfigMetadata.Builder()
+                        .setAudioLocation(TEST_AUDIO_LOCATION_FRONT_RIGHT).build();
+
+        // builder expect at least one channel
+        BluetoothLeBroadcastChannel channel =
+                new BluetoothLeBroadcastChannel.Builder()
+                        .setSelected(true)
+                        .setChannelIndex(TEST_CHANNEL_INDEX)
+                        .setCodecMetadata(channelCodecMetadata)
+                        .build();
+        builder.addChannel(channel);
+        return builder.build();
+    }
+
+    BluetoothLeBroadcastMetadata createBroadcastMetadata() {
+        BluetoothDevice testDevice = mBluetoothAdapter.getRemoteLeDevice(TEST_MAC_ADDRESS,
+                        BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        BluetoothLeBroadcastMetadata.Builder builder = new BluetoothLeBroadcastMetadata.Builder()
+                        .setEncrypted(false)
+                        .setSourceDevice(testDevice, BluetoothDevice.ADDRESS_TYPE_RANDOM)
+                        .setSourceAdvertisingSid(TEST_ADVERTISER_SID)
+                        .setBroadcastId(TEST_BROADCAST_ID)
+                        .setBroadcastCode(null)
+                        .setPaSyncInterval(TEST_PA_SYNC_INTERVAL)
+                        .setPresentationDelayMicros(TEST_PRESENTATION_DELAY_MS);
+        // builder expect at least one subgroup
+        builder.addSubgroup(createBroadcastSubgroup());
+        return builder.build();
+    }
 
     @Before
     public void setUp() throws Exception {
+        if (!mFlagDexmarker.equals("true")) {
+            System.setProperty("dexmaker.share_classloader", "true");
+        }
+
         mTargetContext = InstrumentationRegistry.getTargetContext();
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
@@ -112,7 +201,10 @@ public class BassClientServiceTest {
         doAnswer(invocation -> {
             assertThat(mCurrentDevice).isNotNull();
             final BassClientStateMachine stateMachine = mock(BassClientStateMachine.class);
-            mStateMachines.put(mCurrentDevice, stateMachine);
+            doReturn(new ArrayList<>()).when(stateMachine).getAllSources();
+            doReturn(TEST_NUM_SOURCES).when(stateMachine).getMaximumSourceCapacity();
+            doReturn((BluetoothDevice)invocation.getArgument(0)).when(stateMachine).getDevice();
+            mStateMachines.put((BluetoothDevice)invocation.getArgument(0), stateMachine);
             return stateMachine;
         }).when(mObjectsFactory).makeStateMachine(any(), any(), any());
         doReturn(mBluetoothLeScannerWrapper).when(mObjectsFactory)
@@ -121,6 +213,9 @@ public class BassClientServiceTest {
         TestUtils.startService(mServiceRule, BassClientService.class);
         mBassClientService = BassClientService.getBassClientService();
         assertThat(mBassClientService).isNotNull();
+
+        mBassClientService.mServiceFactory = mServiceFactory;
+        doReturn(mCsipService).when(mServiceFactory).getCsipSetCoordinatorService();
     }
 
     @After
@@ -130,8 +225,13 @@ public class BassClientServiceTest {
         assertThat(mBassClientService).isNull();
         mStateMachines.clear();
         mCurrentDevice = null;
+        mCurrentDevice1 = null;
         BassObjectsFactory.setInstanceForTesting(null);
         TestUtils.clearAdapterService(mAdapterService);
+
+        if (!mFlagDexmarker.equals("true")) {
+            System.setProperty("dexmaker.share_classloader", mFlagDexmarker);
+        }
     }
 
     /**
@@ -218,5 +318,347 @@ public class BassClientServiceTest {
         mBassClientService.startSearchingForSources(scanFilters);
 
         verify(mBluetoothLeScannerWrapper, never()).startScan(any(), any(), any());
+    }
+
+    /**
+     * Test whether service.addSource() does send proper messages to all the
+     * state machines within the Csip coordinated group
+     */
+    @Test
+    public void testAddSourceForGroup() {
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                        eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
+                        .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
+
+        // Mock the CSIP group
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mCurrentDevice);
+        groupDevices.add(mCurrentDevice1);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice, BluetoothUuid.CAP);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice1, BluetoothUuid.CAP);
+
+        // Prepare connected devices
+        assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
+        assertThat(mBassClientService.connect(mCurrentDevice1)).isTrue();
+
+        verify(mObjectsFactory, times(2)).makeStateMachine(any(), any(), any());
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            doReturn(BluetoothProfile.STATE_CONNECTED).when(sm).getConnectionState();
+        }
+
+        // Add broadcast source
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata();
+        mBassClientService.addSource(mCurrentDevice, meta, true);
+
+        // Verify all group members getting ADD_BCAST_SOURCE message
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+            verify(sm).sendMessage(messageCaptor.capture());
+
+            Message msg = messageCaptor.getAllValues().stream()
+                    .filter(m -> m.what == BassClientStateMachine.ADD_BCAST_SOURCE)
+                    .findFirst()
+                    .get();
+            assertThat(msg).isNotNull();
+            assertThat(msg.obj).isEqualTo(meta);
+        }
+    }
+
+   /**
+     * Test whether service.modifySource() does send proper messages to all the
+     * state machines within the Csip coordinated group
+     */
+    @Test
+    public void testModifySourceForGroup() {
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                        eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
+                        .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
+
+        // Mock the CSIP group
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mCurrentDevice);
+        groupDevices.add(mCurrentDevice1);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice, BluetoothUuid.CAP);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice1, BluetoothUuid.CAP);
+
+        // Prepare connected devices
+        assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
+        assertThat(mBassClientService.connect(mCurrentDevice1)).isTrue();
+
+        verify(mObjectsFactory, times(2)).makeStateMachine(any(), any(), any());
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            doReturn(BluetoothProfile.STATE_CONNECTED).when(sm).getConnectionState();
+        }
+
+        // Add broadcast source
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata();
+        mBassClientService.addSource(mCurrentDevice, meta, true);
+
+        // Update broadcast source using other member of the same group
+        BluetoothLeBroadcastMetadata metaUpdate =
+                new BluetoothLeBroadcastMetadata.Builder(meta)
+                        .setBroadcastId(TEST_BROADCAST_ID + 1).build();
+        mBassClientService.modifySource(mCurrentDevice1, TEST_SOURCE_ID, metaUpdate);
+
+        // Verify all group members getting UPDATE_BCAST_SOURCE message
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+            verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+
+            Message msg = messageCaptor.getAllValues().stream()
+                    .filter(m -> m.what == BassClientStateMachine.UPDATE_BCAST_SOURCE)
+                    .findFirst()
+                    .get();
+            assertThat(msg).isNotNull();
+            assertThat(msg.obj).isEqualTo(metaUpdate);
+        }
+    }
+
+    /**
+     * Test whether service.removeSource() does send proper messages to all the
+     * state machines within the Csip coordinated group
+     */
+    @Test
+    public void testRemoveSourceForGroup() {
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                        eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
+                        .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
+
+        // Mock the CSIP group
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mCurrentDevice);
+        groupDevices.add(mCurrentDevice1);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice, BluetoothUuid.CAP);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice1, BluetoothUuid.CAP);
+
+        // Prepare connected devices
+        assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
+        assertThat(mBassClientService.connect(mCurrentDevice1)).isTrue();
+
+        verify(mObjectsFactory, times(2)).makeStateMachine(any(), any(), any());
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            doReturn(BluetoothProfile.STATE_CONNECTED).when(sm).getConnectionState();
+        }
+
+        // Add broadcast source
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata();
+        mBassClientService.addSource(mCurrentDevice, meta, true);
+
+        // Remove broadcast source using other member of the same group
+        mBassClientService.removeSource(mCurrentDevice1, TEST_SOURCE_ID);
+
+        // Verify all group members getting REMOVE_BCAST_SOURCE message
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+            verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+
+            Message msg = messageCaptor.getAllValues().stream()
+                    .filter(m -> m.what == BassClientStateMachine.REMOVE_BCAST_SOURCE)
+                    .findFirst()
+                    .get();
+            assertThat(msg).isNotNull();
+            assertThat(msg.arg1).isEqualTo(TEST_SOURCE_ID);
+        }
+    }
+
+   /**
+     * Test that after multiple calls to service.addSource() with a group operation flag set,
+     * there are two call to service.removeSource() needed to clear the flag
+     */
+    @Test
+    public void testAddRemoveMultipleSourcesForGroup() {
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                        eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
+                        .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
+
+        // Mock the CSIP group
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mCurrentDevice);
+        groupDevices.add(mCurrentDevice1);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice, BluetoothUuid.CAP);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice1, BluetoothUuid.CAP);
+
+        // Prepare connected devices
+        assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
+        assertThat(mBassClientService.connect(mCurrentDevice1)).isTrue();
+
+        verify(mObjectsFactory, times(2)).makeStateMachine(any(), any(), any());
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            doReturn(BluetoothProfile.STATE_CONNECTED).when(sm).getConnectionState();
+        }
+
+        // Add broadcast source
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata();
+        mBassClientService.addSource(mCurrentDevice, meta, true);
+
+        // Add another broadcast source
+        BluetoothLeBroadcastMetadata meta1 =
+                new BluetoothLeBroadcastMetadata.Builder(meta)
+                        .setBroadcastId(TEST_BROADCAST_ID + 1).build();
+        mBassClientService.addSource(mCurrentDevice1, meta1, true);
+
+        // Remove the first broadcast source
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+
+        // Verify all group members getting REMOVE_BCAST_SOURCE message for the first source
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+                ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+                verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+
+                Message msg = messageCaptor.getAllValues().stream()
+                        .filter(m -> (m.what == BassClientStateMachine.REMOVE_BCAST_SOURCE)
+                                        && (m.arg1 == TEST_SOURCE_ID) )
+                        .findFirst()
+                        .get();
+                assertThat(msg).isNotNull();
+        }
+
+        // Modify the second one
+        BluetoothLeBroadcastMetadata metaUpdate =
+        new BluetoothLeBroadcastMetadata.Builder(meta)
+                .setBroadcastId(TEST_BROADCAST_ID + 2).build();
+        mBassClientService.modifySource(mCurrentDevice1, TEST_SOURCE_ID + 1, metaUpdate);
+
+        // Verify all group members getting UPDATE_BCAST_SOURCE message since the
+        // second call to addSource should still hold the group flag
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+                ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+                verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+
+                Message msg = messageCaptor.getAllValues().stream()
+                        .filter(m -> m.what == BassClientStateMachine.UPDATE_BCAST_SOURCE)
+                        .findFirst()
+                        .get();
+                assertThat(msg).isNotNull();
+                assertThat(msg.obj).isEqualTo(metaUpdate);
+        }
+
+        // Remove the second broadcast source
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID + 1);
+
+        // Verify all group members getting REMOVE_BCAST_SOURCE message for the second source
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+                ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+                verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+
+                Message msg = messageCaptor.getAllValues().stream()
+                        .filter(m -> (m.what == BassClientStateMachine.REMOVE_BCAST_SOURCE)
+                                        && (m.arg1 == (TEST_SOURCE_ID + 1)) )
+                        .findFirst()
+                        .get();
+                assertThat(msg).isNotNull();
+        }
+
+        // Modify the source again
+        BluetoothLeBroadcastMetadata metaUpdate2 =
+        new BluetoothLeBroadcastMetadata.Builder(meta)
+                .setBroadcastId(TEST_BROADCAST_ID + 2).build();
+        mBassClientService.modifySource(mCurrentDevice1, TEST_SOURCE_ID, metaUpdate2);
+
+        // Verify only mCurrentDevice1 is getting UPDATE_BCAST_SOURCE message since the
+        // second call to removeSource should have erased the group flag
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+                ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+                verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+                List<Message> msgs = messageCaptor.getAllValues().stream()
+                        .filter(m -> (m.what == BassClientStateMachine.UPDATE_BCAST_SOURCE)
+                                                && (m.arg1 == (TEST_SOURCE_ID)) )
+                        .collect(Collectors.toList());
+                if (sm.getDevice().equals(mCurrentDevice1)) {
+                        assertThat(msgs.size()).isEqualTo(1);
+                } else {
+                        assertThat(msgs.size()).isEqualTo(0);
+                }
+        }
+    }
+
+    /**
+     * Test whether the group operation flag is set on addSource() and removed on removeSource
+     */
+    @Test
+    public void testGroupStickyFlagSetUnset() {
+        when(mDatabaseManager.getProfileConnectionPolicy(any(BluetoothDevice.class),
+                        eq(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT)))
+                        .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        mCurrentDevice = TestUtils.getTestDevice(mBluetoothAdapter, 0);
+        mCurrentDevice1 = TestUtils.getTestDevice(mBluetoothAdapter, 1);
+
+        // Mock the CSIP group
+        List<BluetoothDevice> groupDevices = new ArrayList<>();
+        groupDevices.add(mCurrentDevice);
+        groupDevices.add(mCurrentDevice1);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice, BluetoothUuid.CAP);
+        doReturn(groupDevices).when(mCsipService)
+                .getGroupDevices(mCurrentDevice1, BluetoothUuid.CAP);
+
+        // Prepare connected devices
+        assertThat(mBassClientService.connect(mCurrentDevice)).isTrue();
+        assertThat(mBassClientService.connect(mCurrentDevice1)).isTrue();
+
+        verify(mObjectsFactory, times(2)).makeStateMachine(any(), any(), any());
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm: mStateMachines.values()) {
+            doReturn(BluetoothProfile.STATE_CONNECTED).when(sm).getConnectionState();
+        }
+
+        // Add broadcast source
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata();
+        mBassClientService.addSource(mCurrentDevice, meta, true);
+
+        // Remove broadcast source
+        mBassClientService.removeSource(mCurrentDevice, TEST_SOURCE_ID);
+
+        // Update broadcast source
+        BluetoothLeBroadcastMetadata metaUpdate =
+                new BluetoothLeBroadcastMetadata.Builder(meta)
+                        .setBroadcastId(TEST_BROADCAST_ID + 1).build();
+        mBassClientService.modifySource(mCurrentDevice, TEST_SOURCE_ID, metaUpdate);
+
+        ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+        Optional<Message> msg;
+
+        // Verrify that one device got the message...
+        verify(mStateMachines.get(mCurrentDevice), atLeast(1)).sendMessage(messageCaptor.capture());
+        msg = messageCaptor.getAllValues().stream()
+                    .filter(m -> m.what == BassClientStateMachine.UPDATE_BCAST_SOURCE)
+                    .findFirst();
+        assertThat(msg.isPresent()).isTrue();
+        assertThat(msg.get()).isNotNull();
+
+        //... but not the other one, since the sticky group flag should have been removed
+        messageCaptor = ArgumentCaptor.forClass(Message.class);
+        verify(mStateMachines.get(mCurrentDevice), atLeast(1)).sendMessage(messageCaptor.capture());
+        msg = messageCaptor.getAllValues().stream()
+                    .filter(m -> m.what == BassClientStateMachine.UPDATE_BCAST_SOURCE)
+                    .findFirst();
+        assertThat(msg.isPresent()).isTrue();
     }
 }
