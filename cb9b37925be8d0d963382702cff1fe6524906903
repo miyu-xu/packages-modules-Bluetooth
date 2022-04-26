@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f8ed71_4b0b077e",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T11:05:06Z",
+      "side": 1,
+      "message": "I found [`bool.then`](https://doc.rust-lang.org/std/primitive.bool.html#method.then) now which seems to be what I needed all along.",
+      "parentUuid": "d362e8d4_27ade3b5",
+      "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e45777b_84af08fa",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e2fecb_d0310c35",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T11:05:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e45777b_84af08fa",
+      "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d5864fd_9f5354b7",
@@ -66,6 +102,24 @@
       "writtenOn": "2022-04-26T08:42:32Z",
       "side": 1,
       "message": "nit: You can use [Option#map](https://doc.rust-lang.org/std/option/enum.Option.html#method.map) here",
+      "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a0e363e_0c4b90c9",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T11:05:06Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2d5864fd_9f5354b7",
       "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
