@@ -70,6 +70,30 @@
       },
       "revId": "e7305c39322ec42cab43de1a068ceeec11bc3a77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d476bbe1_343694a8",
+        "filename": "system/gd/hci/acl_manager_test.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-26T20:59:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "662ce747_9e99e972",
+      "range": {
+        "startLine": 583,
+        "startChar": 23,
+        "endLine": 583,
+        "endChar": 32
+      },
+      "revId": "e7305c39322ec42cab43de1a068ceeec11bc3a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
