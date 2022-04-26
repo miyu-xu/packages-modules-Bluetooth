@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f839c773_b05a724e",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Enum is gone, `anyhow::Result` is much nicer as you suggested.",
+      "parentUuid": "e256dcd9_9237170d",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f31ad92_c9e3b5cc",
@@ -123,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37049831_6b5b1209",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "223706e0_db2d0bc5",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bceb593_cace662a",
@@ -136,6 +172,24 @@
       "writtenOn": "2022-04-20T14:38:36Z",
       "side": 1,
       "message": "As only the endianness of the grammar is passed here, maybe directly passe the EndiannessValue",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31f207ab_bbb53f29",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Sure, we can do that.",
+      "parentUuid": "0bceb593_cace662a",
       "revId": "811f158d3a702c3342febed736e53fa98754cc96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -157,6 +211,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17039ed1_2dcbd875",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f4539bc_8c38b967",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50139b6f_e3f0534b",
@@ -170,6 +242,30 @@
       "writtenOn": "2022-04-20T14:38:36Z",
       "side": 1,
       "message": "nit: I would prefer that we move thoses declarations near where they are used",
+      "range": {
+        "startLine": 254,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 60
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f87191d_4957bd96",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50139b6f_e3f0534b",
       "range": {
         "startLine": 254,
         "startChar": 0,
@@ -250,6 +346,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "885ac00d_d74f464f",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f473e6b_80745a4f",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3673f3c8_44bd4eb5",
@@ -302,6 +416,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3af1012d_228b05dd",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0f44aa1_35c1e4b0",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfe3b4a9_6ea63467",
@@ -319,6 +451,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b5b3214b_73416abf",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Yes, the iterator is used multiple times.",
+      "parentUuid": "dfe3b4a9_6ea63467",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "512ede96_b7073c50",
@@ -332,6 +482,24 @@
       "writtenOn": "2022-04-20T14:38:36Z",
       "side": 1,
       "message": "As most of the `child_` variables are used in this block, can we not regroup everything inside a `if let Some(child_decl_name) \u003d child_decls.get(id.as_str())` and not check if it\u0027s empty afterwards and return an Option of the `child_field` from this block ?\n\nSomething like\n```\nlet child_field \u003d if let Some(child_decl_name) \u003d child_decls.get(id.as_str()) {\n    let child_decl_name \u003d ...;\n\n    let child_decl_data_name \u003d ...;\n\n    let child_decl_packet_name \u003d ...;\n\n    code.push_str(\u0026quote_block! {\n        ...\n    });\n    \n    Some(quote! {\n        child: #data_child_name,\n    })\n} else {\n    None\n};\n```",
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1af400c6_c350cff0",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "I grouped things a little like you suggest. However, some of the variables are used at different points in the long function, so things are still spread out.\n\nThe code right now is simple and linear. We could refactor it by introducing more structure: we could have a `struct ChildBlocks` which contain fields for each of the pieces of code. This kind of refactoring is probably overkill for now, at least in my opinion.",
+      "parentUuid": "512ede96_b7073c50",
       "revId": "811f158d3a702c3342febed736e53fa98754cc96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -421,6 +589,30 @@
       "side": 1,
       "message": "Ah, that is great then! I\u0027ll update the code to use this more then.",
       "parentUuid": "ba614d40_7c5693b5",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 346,
+        "endChar": 14
+      },
+      "revId": "811f158d3a702c3342febed736e53fa98754cc96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7dc1d0d_bb882ffe",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T08:04:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fc30611_330a1f79",
       "range": {
         "startLine": 334,
         "startChar": 0,
