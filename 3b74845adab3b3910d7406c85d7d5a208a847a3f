@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88167ecd_33df6518",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/TmapGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-26T11:11:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26349042_4b44547a",
+      "revId": "3b74845adab3b3910d7406c85d7d5a208a847a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13be8cd7_42eeb85d",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-04-13T01:00:27Z",
       "side": 1,
       "message": "Could we @hide this for now?",
+      "range": {
+        "startLine": 722,
+        "startChar": 0,
+        "endLine": 722,
+        "endChar": 87
+      },
+      "revId": "3b74845adab3b3910d7406c85d7d5a208a847a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5df476c1_52747c2e",
+        "filename": "framework/api/system-current.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-26T11:11:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13be8cd7_42eeb85d",
       "range": {
         "startLine": 722,
         "startChar": 0,
