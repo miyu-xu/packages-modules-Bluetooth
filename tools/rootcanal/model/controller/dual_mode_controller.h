@@ -112,6 +112,8 @@ class DualModeController : public Device {
   // Controller commands. For error codes, see the Bluetooth Core Specification,
   // Version 4.2, Volume 2, Part D (page 370).
 
+  void VendorCommand(uint16_t ocf, CommandView args);
+
   // Link Control Commands
   // Bluetooth Core Specification Version 4.2 Volume 2 Part E 7.1
 

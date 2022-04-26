@@ -414,9 +414,15 @@ void DualModeController::HandleCommand(
     active_hci_commands_[op](command_packet);
   } else {
     uint16_t opcode = static_cast<uint16_t>(op);
-    SendCommandCompleteUnknownOpCodeEvent(opcode);
-    LOG_INFO("Unknown command, opcode: 0x%04X, OGF: 0x%04X, OCF: 0x%04X",
-             opcode, (opcode & 0xFC00) >> 10, opcode & 0x03FF);
+    uint16_t ogf = (opcode & 0xFC00) >> 10;
+    uint16_t ocf = opcode & 0x03FF;
+    if (ogf == 0x3F) {
+      VendorCommand(ocf, command_packet);
+    } else {
+      SendCommandCompleteUnknownOpCodeEvent(opcode);
+      LOG_INFO("Unknown command, opcode: 0x%04X, OGF: 0x%04X, OCF: 0x%04X",
+               opcode, (opcode & 0xFC00) >> 10, opcode & 0x03FF);
+    }
   }
 }
 
@@ -471,6 +477,59 @@ void DualModeController::RegisterIsoChannel(
     callback(std::move(bytes));
   };
   link_layer_controller_.RegisterIsoChannel(send_iso_);
+}
+
+void DualModeController::VendorCommand(uint16_t ocf, CommandView command) {
+  std::vector<uint8_t> payload(command.GetPayload().begin(),
+                               command.GetPayload().end());
+
+  // The following commands are CSR vendor commands used
+  // to request the minimum and maximum encryption key length.
+  // Bluetooth SIG Profile Tuning Suite stack sends
+  // thoses command during it's initialisation.
+  // A timeout of 2 seconds is triggered if a response is
+  // not received (A command status with UNKNOWN_HCI_COMMAND
+  // is ignored).
+  // To speed up the PTS tests we answer to theses commands to not
+  // wait for the timeout
+
+  // Req: Enc Key Lmin
+  static std::vector<uint8_t> enc_key_lmin = {
+      0xc2, 0x00, 0x00, 0x09, 0x00, 0x01, 0x00, 0x03, 0x70, 0x00,
+      0x00, 0xda, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+  // Rep: Enc Key Lmin = 7
+  static std::vector<uint8_t> enc_key_lmin_rep = {
+      0xc2, 0x01, 0x00, 0x09, 0x00, 0x01, 0x00, 0x03, 0x70, 0x00,
+      0x00, 0xda, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07, 0x00};
+
+  // Req: Enc Key Lmax
+  static std::vector<uint8_t> enc_key_lmax = {
+      0xc2, 0x00, 0x00, 0x09, 0x00, 0x02, 0x00, 0x03, 0x70, 0x00,
+      0x00, 0xdb, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+  // Rep: Enc Key Lmax = 16
+  static std::vector<uint8_t> enc_key_lmax_rep = {
+      0xc2, 0x01, 0x00, 0x09, 0x00, 0x02, 0x00, 0x03, 0x70, 0x00,
+      0x00, 0xdb, 0x00, 0x01, 0x00, 0x00, 0x00, 0x10, 0x00};
+
+  if (ocf == 0x00 && payload == enc_key_lmin) {
+    auto builder =
+        std::make_unique<bluetooth::packet::RawBuilder>(enc_key_lmin_rep);
+
+    send_event_(gd_hci::EventBuilder::Create(gd_hci::EventCode::VENDOR_SPECIFIC,
+                                             std::move(builder)));
+  } else if (ocf == 0x00 && payload == enc_key_lmax) {
+    auto builder =
+        std::make_unique<bluetooth::packet::RawBuilder>(enc_key_lmax_rep);
+
+    send_event_(gd_hci::EventBuilder::Create(gd_hci::EventCode::VENDOR_SPECIFIC,
+                                             std::move(builder)));
+  } else {
+    SendCommandCompleteUnknownOpCodeEvent(
+        static_cast<uint16_t>(command.GetOpCode()));
+    LOG_INFO("Unknown vendor command OCF: 0x%04X", ocf);
+  }
 }
 
 void DualModeController::Reset(CommandView command) {
