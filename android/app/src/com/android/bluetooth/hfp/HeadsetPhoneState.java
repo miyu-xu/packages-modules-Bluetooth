@@ -164,7 +164,11 @@ public class HeadsetPhoneState {
         mPhoneStateListener = new HeadsetPhoneStateListener(command -> mHandler.post(command));
         mTelephonyManager.listen(mPhoneStateListener, events);
         if ((events & PhoneStateListener.LISTEN_SIGNAL_STRENGTHS) != 0) {
-            mTelephonyManager.setSignalStrengthUpdateRequest(mSignalStrengthUpdateRequest);
+            try {
+                mTelephonyManager.setSignalStrengthUpdateRequest(mSignalStrengthUpdateRequest);
+            } catch (IllegalStateException e) {
+                Log.w(TAG, "startListenForPhoneState(), Signal strength update had been registered. ");
+            }
         }
     }
 
