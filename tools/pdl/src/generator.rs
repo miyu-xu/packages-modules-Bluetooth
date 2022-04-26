@@ -1,9 +1,11 @@
 use crate::ast;
-use anyhow::{anyhow, bail, Context, Result};
+use codespan_reporting::diagnostic::Diagnostic;
 use quote::{format_ident, quote};
 use std::collections::HashMap;
 use std::path::Path;
 use syn::parse_quote;
+
+type Result<T> = std::result::Result<T, Diagnostic<ast::FileId>>;
 
 /// Generate a block of code.
 ///
@@ -18,10 +20,10 @@ macro_rules! quote_block {
 /// Generate the file preamble.
 fn generate_preamble(path: &Path) -> Result<String> {
     let mut code = String::new();
-    let filename = path
-        .file_name()
-        .and_then(|path| path.to_str())
-        .ok_or_else(|| anyhow!("could not find filename in {:?}", path))?;
+    let filename = path.file_name().and_then(|path| path.to_str()).ok_or_else(|| {
+        Diagnostic::error()
+            .with_message(format!("could not generate Rust preamble, no filename in {:?}", path))
+    })?;
     code.push_str(&format!("// @generated rust packets from {filename}\n\n"));
 
     code.push_str(&quote_block! {
@@ -71,21 +73,27 @@ fn generate_preamble(path: &Path) -> Result<String> {
 }
 
 /// Round up the bit width to a Rust integer size.
-fn round_bit_width(width: usize) -> Result<usize> {
+fn round_bit_width(loc: &ast::SourceRange, width: usize) -> Result<usize> {
     match width {
         8 => Ok(8),
         16 => Ok(16),
         24 | 32 => Ok(32),
         40 | 48 | 56 | 64 => Ok(64),
-        _ => bail!("unsupported field width: {width}"),
+        _ => Err(Diagnostic::error()
+            .with_message(format!("unsupported field width: {width}"))
+            .with_labels(vec![loc.primary()])),
     }
 }
 
 /// Generate a Rust unsigned integer type large enough to hold
 /// integers of the given bit width.
-fn type_for_width(width: usize) -> Result<syn::Type> {
-    let rounded_width = round_bit_width(width)?;
-    syn::parse_str(&format!("u{rounded_width}")).map_err(anyhow::Error::from)
+fn type_for_width(loc: &ast::SourceRange, width: usize) -> Result<proc_macro2::TokenStream> {
+    let rounded_width = round_bit_width(loc, width)?;
+    syn::parse_str(&format!("u{rounded_width}")).map_err(|err| {
+        Diagnostic::error()
+            .with_message(format!("could not construct type: {err}"))
+            .with_labels(vec![loc.primary()])
+    })
 }
 
 fn generate_field(
@@ -93,9 +101,9 @@ fn generate_field(
     visibility: syn::Visibility,
 ) -> Result<proc_macro2::TokenStream> {
     match field {
-        ast::Field::Scalar { id, width, .. } => {
+        ast::Field::Scalar { loc, id, width, .. } => {
             let field_name = format_ident!("{id}");
-            let field_type = type_for_width(*width)?;
+            let field_type = type_for_width(loc, *width)?;
             Ok(quote! {
                 #visibility #field_name: #field_type
             })
@@ -109,11 +117,11 @@ fn generate_field_getter(
     field: &ast::Field,
 ) -> Result<proc_macro2::TokenStream> {
     match field {
-        ast::Field::Scalar { id, width, .. } => {
+        ast::Field::Scalar { loc, id, width, .. } => {
             // TODO(mgeisler): refactor with generate_field above.
             let getter_name = format_ident!("get_{id}");
             let field_name = format_ident!("{id}");
-            let field_type = type_for_width(*width)?;
+            let field_type = type_for_width(loc, *width)?;
             Ok(quote! {
                 pub fn #getter_name(&self) -> #field_type {
                     self.#packet_name.as_ref().#field_name
@@ -131,10 +139,10 @@ fn generate_field_parser(
     offset: usize,
 ) -> Result<proc_macro2::TokenStream> {
     match field {
-        ast::Field::Scalar { id, width, .. } => {
+        ast::Field::Scalar { loc, id, width, .. } => {
             let field_name = format_ident!("{id}");
-            let type_width = round_bit_width(*width)?;
-            let field_type = type_for_width(*width)?;
+            let type_width = round_bit_width(loc, *width)?;
+            let field_type = type_for_width(loc, *width)?;
 
             let getter = match endianness_value {
                 ast::EndiannessValue::BigEndian => format_ident!("from_be_bytes"),
@@ -177,9 +185,9 @@ fn generate_field_writer(
     offset: usize,
 ) -> Result<proc_macro2::TokenStream> {
     match field {
-        ast::Field::Scalar { id, width, .. } => {
+        ast::Field::Scalar { loc, id, width, .. } => {
             let field_name = format_ident!("{id}");
-            let bit_width = round_bit_width(*width)?;
+            let bit_width = round_bit_width(loc, *width)?;
             let start = syn::Index::from(offset);
             let end = syn::Index::from(offset + bit_width / 8);
             let byte_width = syn::Index::from(bit_width / 8);
@@ -469,9 +477,21 @@ fn generate_decl(
 ///
 /// The code is not formatted, pipe it through `rustfmt` to get
 /// readable source code.
-pub fn generate_rust(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> Result<String> {
-    let source =
-        sources.get(grammar.file).with_context(|| format!("could not read {}", grammar.file))?;
+pub fn generate_rust(
+    sources: &ast::SourceDatabase,
+    grammar: &ast::Grammar,
+) -> std::result::Result<String, Vec<Diagnostic<ast::FileId>>> {
+    let source = match sources.get(grammar.file) {
+        Ok(source) => source,
+        Err(codespan_reporting::files::Error::FileMissing) => {
+            return Err(vec![
+                Diagnostic::error().with_message(format!("could not read {}", grammar.file))
+            ])
+        }
+        Err(err) => {
+            return Err(vec![Diagnostic::bug().with_message(format!("unknown error: {:?}", err))])
+        }
+    };
 
     let mut children = HashMap::new();
     let mut packets = HashMap::new();
@@ -485,17 +505,25 @@ pub fn generate_rust(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> R
     }
 
     let mut code = String::new();
+    let mut errs = Vec::new();
 
-    code.push_str(&generate_preamble(Path::new(source.name()))?);
-
-    for decl in &grammar.declarations {
-        let decl_code = generate_decl(grammar, &packets, &children, decl)
-            .with_context(|| format!("failed to generating code for {:?}", decl))?;
-        code.push_str(&decl_code);
-        code.push_str("\n\n");
+    match generate_preamble(Path::new(source.name())) {
+        Ok(preamble) => code.push_str(&preamble),
+        Err(err) => errs.push(err),
     }
 
-    Ok(code)
+    for decl in &grammar.declarations {
+        match generate_decl(grammar, &packets, &children, decl) {
+            Ok(decl_code) => code.push_str(&format!("{decl_code}\n\n")),
+            Err(err) => errs.push(err.with_labels(vec![decl.loc().secondary()])),
+        }
+    }
+
+    if errs.is_empty() {
+        Ok(code)
+    } else {
+        Err(errs)
+    }
 }
 
 #[cfg(test)]
