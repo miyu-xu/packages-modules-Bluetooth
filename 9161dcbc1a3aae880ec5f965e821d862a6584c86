@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c00de969_1fa56058",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-26T05:21:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "859dae9e_6a4bc1a3",
+      "range": {
+        "startLine": 739,
+        "startChar": 0,
+        "endLine": 739,
+        "endChar": 38
+      },
+      "revId": "9161dcbc1a3aae880ec5f965e821d862a6584c86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "47d1433f_b983c159",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-25T17:14:00Z",
       "side": 1,
       "message": "We\u0027re limiting the number of ifdefs in the code.\n\nWhat about something like:\n\nnamespace bluetooth {\nnamespace legacy {\nnamespace testing {\nbtu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,\n                                const uint8_t* p_cmd,\n                                void* p_vsc_status_cback) {\n  ::btu_hcif_hdl_command_status(opcode, status, p_cmd, p_vsc_status_cback);\n}\n}\n}",
+      "range": {
+        "startLine": 1328,
+        "startChar": 0,
+        "endLine": 1330,
+        "endChar": 6
+      },
+      "revId": "9161dcbc1a3aae880ec5f965e821d862a6584c86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa05fa9c_8a44207c",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1330,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-26T05:21:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47d1433f_b983c159",
       "range": {
         "startLine": 1328,
         "startChar": 0,
@@ -83,6 +131,24 @@
       "writtenOn": "2022-04-25T17:14:00Z",
       "side": 1,
       "message": "TEST_F(StackBtuTest, btm_sco_connected_called) {\n  uint8_t p_cmd[10];  // garbage data for testing\n  bluetooth::legacy::testing::btu_hcif_hdl_command_status(HCI_SETUP_ESCO_CONNECTION, HCI_ERR_UNSPECIFIED,\n                              p_cmd, nullptr);\n  ASSERT_EQ(1, mock_function_count_map[\"btm_sco_connected\"]);\n}",
+      "revId": "9161dcbc1a3aae880ec5f965e821d862a6584c86",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76bfb14d_7f2243a7",
+        "filename": "system/stack/test/stack_btu_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-04-26T05:21:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95491da9_b2342b53",
       "revId": "9161dcbc1a3aae880ec5f965e821d862a6584c86",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
