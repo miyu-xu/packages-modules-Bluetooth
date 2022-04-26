@@ -39,6 +39,30 @@
       },
       "revId": "3d2fad5019e44c08ec00bbe8f1c8cf44d29158fd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80bcfc43_a87e1472",
+        "filename": "system/blueberry/tests/sl4a_sl4a/lib/sl4a_sl4a_base_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2022-04-26T18:08:23Z",
+      "side": 1,
+      "message": "Sorry, missed this comment. Yes - extra tabbing was needed for tests to run. \n\nShould have split into separate CL - apologies.",
+      "parentUuid": "c3ceeb24_0d334fad",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 17
+      },
+      "revId": "3d2fad5019e44c08ec00bbe8f1c8cf44d29158fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
