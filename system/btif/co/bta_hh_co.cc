@@ -632,8 +632,9 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
  * Returns          void.
  *
  ******************************************************************************/
-void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status, uint8_t* p_rpt,
-                           uint16_t len) {
+static void bta_hh_co_get_rpt_rsp_impl(uint8_t dev_handle, uint8_t status,
+                                       uint8_t* p_rpt, uint16_t len,
+                                       size_t offset = GET_RPT_RSP_OFFSET) {
   struct uhid_event ev;
   btif_hh_device_t* p_dev;
 
@@ -667,10 +668,18 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status, uint8_t* p_rpt,
                            __func__);
         return;
       }
-      memcpy(ev.u.feature_answer.data, p_rpt + GET_RPT_RSP_OFFSET, len);
+      memcpy(ev.u.feature_answer.data, p_rpt + offset, len);
       uhid_write(p_dev->fd, &ev);
     }
   }
+}
+void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status, uint8_t* p_rpt,
+                           uint16_t len) {
+  bta_hh_co_get_rpt_rsp_impl(dev_handle, status, p_rpt, len);
+}
+void bta_hh_le_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
+                              uint8_t* p_rpt, uint16_t len) {
+  bta_hh_co_get_rpt_rsp_impl(dev_handle, status, p_rpt, len, 0);
 }
 
 /*******************************************************************************
