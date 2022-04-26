@@ -117,6 +117,30 @@
       },
       "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5be7d5a_ff69d6ee",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-04-26T14:04:29Z",
+      "side": 1,
+      "message": "Hi Sal, I don\u0027t have device that not support OPP on my hand. I test this patch with return false for isEnabled() function.\nThe start() will not be called, so the component will keep disabled when BT on.\n\nIf this patch is too hacky, could we add \u0027profile_supported_opp\u0027 back for theses four components?\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2062717/8/android/app/res/values/config.xml#b16\n\nThanks!",
+      "parentUuid": "e8202121_a33712e3",
+      "range": {
+        "startLine": 404,
+        "startChar": 13,
+        "endLine": 404,
+        "endChar": 35
+      },
+      "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
