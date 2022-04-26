@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb87b05e_5fdde9a5",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-26T08:05:58Z",
+      "side": 1,
+      "message": "Sorry, the comment is wrong.",
+      "range": {
+        "startLine": 600,
+        "startChar": 5,
+        "endLine": 600,
+        "endChar": 88
+      },
+      "revId": "69c1cb99adfc4d63156502322257cdff0ceee237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
