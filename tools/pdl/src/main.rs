@@ -53,6 +53,8 @@ fn main() {
         return;
     }
 
+    let writer = termcolor::StandardStream::stderr(termcolor::ColorChoice::Always);
+    let config = term::Config::default();
     let mut sources = ast::SourceDatabase::new();
     match parser::parse_file(&mut sources, opt.input_file) {
         Ok(grammar) => {
@@ -64,13 +66,15 @@ fn main() {
                 }
                 OutputFormat::Rust => match generator::generate_rust(&sources, &grammar) {
                     Ok(code) => println!("{}", &code),
-                    Err(err) => println!("failed to generate code: {}", err),
+                    Err(errors) => {
+                        for err in errors {
+                            _ = term::emit(&mut writer.lock(), &config, &sources, &err);
+                        }
+                    }
                 },
             }
         }
         Err(err) => {
-            let writer = termcolor::StandardStream::stderr(termcolor::ColorChoice::Always);
-            let config = term::Config::default();
             _ = term::emit(&mut writer.lock(), &config, &sources, &err);
         }
     }

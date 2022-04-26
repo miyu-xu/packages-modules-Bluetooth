@@ -1,5 +1,6 @@
 use crate::ast;
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{anyhow, bail, Result};
+use codespan_reporting::diagnostic::Diagnostic;
 use quote::{format_ident, quote};
 use std::collections::HashMap;
 use std::path::Path;
@@ -87,7 +88,7 @@ fn round_bit_width(width: usize) -> Result<usize> {
         16 => Ok(16),
         24 | 32 => Ok(32),
         40 | 48 | 56 | 64 => Ok(64),
-        _ => bail!("unsupported field width: {width}"),
+        _ => bail!("unsupported field width: {}", width),
     }
 }
 
@@ -471,9 +472,19 @@ fn generate_decl(
 ///
 /// The code is not formatted, pipe it through `rustfmt` to get
 /// readable source code.
-pub fn generate_rust(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> Result<String> {
-    let source =
-        sources.get(grammar.file).with_context(|| format!("could not read {}", grammar.file))?;
+pub fn generate_rust(
+    sources: &ast::SourceDatabase,
+    grammar: &ast::Grammar,
+) -> std::result::Result<String, Vec<Diagnostic<ast::FileId>>> {
+    let source = match sources.get(grammar.file) {
+        Ok(source) => source,
+        Err(codespan_reporting::files::Error::FileMissing) => {
+            return Err(vec![
+                Diagnostic::error().with_message(format!("could not read {}", grammar.file))
+            ])
+        }
+        Err(_) => return Err(vec![Diagnostic::error().with_message("unknown error")]),
+    };
 
     let mut child_decls = HashMap::new();
     let mut packets = HashMap::new();
@@ -488,16 +499,34 @@ pub fn generate_rust(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> R
     }
 
     let mut code = String::new();
+    let mut errors = Vec::new();
 
-    code.push_str(&generate_preamble(Path::new(source.name()))?);
-
-    for decl in &grammar.declarations {
-        let decl_code = generate_decl(grammar, &packets, &child_decls, decl)
-            .with_context(|| format!("failed to generating code for {:?}", decl))?;
-        code.push_str(&decl_code);
-        code.push_str("\n\n");
+    match generate_preamble(Path::new(source.name())) {
+        Ok(preamble_code) => code.push_str(&preamble_code),
+        Err(err) => errors.push(
+            Diagnostic::error().with_message(&format!("could not generate Rust preamble: {}", err)),
+        ),
     }
 
+    for decl in &grammar.declarations {
+        match generate_decl(grammar, &packets, &child_decls, decl) {
+            Ok(decl_code) => {
+                code.push_str(&decl_code);
+                code.push_str("\n\n");
+            }
+            Err(err) => {
+                errors.push(
+                    Diagnostic::error()
+                        .with_message(format!("bad decl: {:?}", err))
+                        .with_labels(vec![decl.loc().primary()]),
+                );
+            }
+        }
+    }
+
+    if !errors.is_empty() {
+        return Err(errors);
+    }
     Ok(code)
 }
 
