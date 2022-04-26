@@ -22,6 +22,30 @@
       },
       "revId": "69c1cb99adfc4d63156502322257cdff0ceee237",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e126e30_fab517ba",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-26T08:43:37Z",
+      "side": 1,
+      "message": "I changed it to return empty list instead of null to be consistent with the function above.",
+      "parentUuid": "cb87b05e_5fdde9a5",
+      "range": {
+        "startLine": 600,
+        "startChar": 5,
+        "endLine": 600,
+        "endChar": 88
+      },
+      "revId": "69c1cb99adfc4d63156502322257cdff0ceee237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
