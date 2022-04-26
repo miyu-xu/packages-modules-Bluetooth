@@ -1326,18 +1326,17 @@ struct LeScanningManager::impl : public bluetooth::hci::LeAddressManagerCallback
       case (OpCode::LE_SET_SCAN_ENABLE): {
         auto status_view = LeSetScanEnableCompleteView::Create(view);
         ASSERT(status_view.IsValid());
-        ASSERT_LOG(
-            status_view.GetStatus() == ErrorCode::SUCCESS,
-            "Receive set scan enable with error code %s",
-            ErrorCodeText(status_view.GetStatus()).c_str());
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          LOG_WARN("Receive set scan enable with error code %s", ErrorCodeText(status_view.GetStatus()).c_str());
+        }
       } break;
       case (OpCode::LE_SET_EXTENDED_SCAN_ENABLE): {
         auto status_view = LeSetExtendedScanEnableCompleteView::Create(view);
         ASSERT(status_view.IsValid());
-        ASSERT_LOG(
-            status_view.GetStatus() == ErrorCode::SUCCESS,
-            "Receive set extended scan enable with error code %s",
-            ErrorCodeText(status_view.GetStatus()).c_str());
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          LOG_WARN(
+              "Receive set extended scan enable with error code %s", ErrorCodeText(status_view.GetStatus()).c_str());
+        }
       } break;
       default:
         LOG_ALWAYS_FATAL("Unhandled event %s", OpCodeText(view.GetCommandOpCode()).c_str());
