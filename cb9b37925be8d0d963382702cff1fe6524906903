@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "027c5ef3_b241b3e6",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-26T08:42:32Z",
+      "side": 1,
+      "message": "nit: You can use [Option#map](https://doc.rust-lang.org/std/option/enum.Option.html#method.map) here",
+      "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e45777b_84af08fa",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-26T08:42:32Z",
+      "side": 1,
+      "message": "nit: You can use [Option#map](https://doc.rust-lang.org/std/option/enum.Option.html#method.map) here",
+      "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d5864fd_9f5354b7",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-04-26T08:42:32Z",
+      "side": 1,
+      "message": "nit: You can use [Option#map](https://doc.rust-lang.org/std/option/enum.Option.html#method.map) here",
+      "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
