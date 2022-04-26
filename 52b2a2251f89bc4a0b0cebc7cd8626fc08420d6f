@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "668948ef_c904b0de",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-26T18:30:53Z",
+      "side": 1,
+      "message": "Should the freshness check be done during discovery instead of after discovery ends? Was this intentional or a bug?",
+      "range": {
+        "startLine": 10,
+        "startChar": 52,
+        "endLine": 10,
+        "endChar": 72
+      },
+      "revId": "52b2a2251f89bc4a0b0cebc7cd8626fc08420d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
