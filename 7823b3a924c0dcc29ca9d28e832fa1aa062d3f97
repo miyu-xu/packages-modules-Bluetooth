@@ -1266,6 +1266,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "963ef0c9_24be01f9",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-04-26T17:23:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ff44ff61_af16c319",
+      "range": {
+        "startLine": 13,
+        "startChar": 48,
+        "endLine": 13,
+        "endChar": 49
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a4291b1_a45c5842",
@@ -1313,6 +1337,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57cce446_de94470f",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-04-26T17:23:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "7829e8e9_c9434ec2",
+      "range": {
+        "startLine": 16,
+        "startChar": 66,
+        "endLine": 16,
+        "endChar": 67
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2202434_dfded61a",
@@ -1350,6 +1398,30 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "c2202434_dfded61a",
+      "range": {
+        "startLine": 19,
+        "startChar": 36,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "7823b3a924c0dcc29ca9d28e832fa1aa062d3f97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "881edfa7_d0bfc06d",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 17
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1416371
+      },
+      "writtenOn": "2022-04-26T17:23:38Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c78b75e1_7bb189f2",
       "range": {
         "startLine": 19,
         "startChar": 36,
