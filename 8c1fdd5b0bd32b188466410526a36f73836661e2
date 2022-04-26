@@ -141,6 +141,30 @@
       },
       "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "242f57b6_81f6c4c5",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-04-26T18:09:29Z",
+      "side": 1,
+      "message": "The reason that that Build-Time RO was removed is because it no longer works/it not mainline compliant for mainline devices! We can\u0027t really go back to the previous method now that we\u0027re a mainline module.\n\nI spoke with Rahul yesterday and he thinks we should get a quick product decision from Ray on what to do here. If that goes in favor of keeping this mechanism, then we\u0027ll have to quickly figure out what to do.\n\nHold tight I suppose (:",
+      "parentUuid": "e5be7d5a_ff69d6ee",
+      "range": {
+        "startLine": 404,
+        "startChar": 13,
+        "endLine": 404,
+        "endChar": 35
+      },
+      "revId": "8c1fdd5b0bd32b188466410526a36f73836661e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
