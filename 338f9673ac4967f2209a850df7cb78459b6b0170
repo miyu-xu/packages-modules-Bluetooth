@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "890462fe_e6327694",
+        "filename": "tools/rootcanal/lmp/test/SP/BV-06-C.in",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-26T21:21:17Z",
+      "side": 1,
+      "message": "Is it always handle 0x42?",
+      "range": {
+        "startLine": 4,
+        "startChar": 27,
+        "endLine": 4,
+        "endChar": 31
+      },
+      "revId": "338f9673ac4967f2209a850df7cb78459b6b0170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
