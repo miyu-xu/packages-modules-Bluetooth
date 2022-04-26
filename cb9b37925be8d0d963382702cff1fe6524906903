@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d362e8d4_27ade3b5",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-26T09:10:41Z",
+      "side": 1,
+      "message": "Yes and no... :-) `child_decl_name` is a vector, which is empty if there are no children.\n\nBut, I suppose I can restructure things so that `child_field` can depend on `data_child_name`, which could be an `Option` type... let me think about that a bit. Thanks for the suggestion.",
+      "parentUuid": "027c5ef3_b241b3e6",
+      "revId": "cb9b37925be8d0d963382702cff1fe6524906903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e45777b_84af08fa",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 10
