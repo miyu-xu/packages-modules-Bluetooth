@@ -1,5 +1,8 @@
 //! PDL parser and linter.
 
+use std::cmp::max;
+
+use codespan_reporting::diagnostic::Severity;
 use codespan_reporting::term::{self, termcolor};
 use structopt::StructOpt;
 
@@ -47,15 +50,27 @@ struct Opt {
     input_file: String,
 }
 
-fn main() {
+fn map_severity(severity: Severity) -> u8 {
+    match severity {
+        Severity::Bug => 2,
+        Severity::Error => 1,
+        _ => 0,
+    }
+}
+
+fn main() -> std::process::ExitCode {
     let opt = Opt::from_args();
 
     if opt.version {
         println!("Packet Description Language parser version 1.0");
-        return;
+        return std::process::ExitCode::SUCCESS;
     }
 
+    let writer = termcolor::StandardStream::stderr(termcolor::ColorChoice::Always);
+    let config = term::Config::default();
     let mut sources = ast::SourceDatabase::new();
+    let mut exit_code = 0;
+
     match parser::parse_file(&mut sources, opt.input_file) {
         Ok(grammar) => {
             let _ = grammar.lint().print(&sources, termcolor::ColorChoice::Always);
@@ -64,16 +79,24 @@ fn main() {
                 OutputFormat::JSON => {
                     println!("{}", serde_json::to_string_pretty(&grammar).unwrap())
                 }
-                OutputFormat::Rust => match generator::generate_rust(&sources, &grammar) {
-                    Ok(code) => println!("{}", &code),
-                    Err(err) => println!("failed to generate code: {}", err),
-                },
+                OutputFormat::Rust => {
+                    for result in generator::generate_rust(&sources, &grammar) {
+                        match result {
+                            Ok(code) => println!("{}", &code),
+                            Err(diagnostic) => {
+                                _ = term::emit(&mut writer.lock(), &config, &sources, &diagnostic);
+                                exit_code = max(exit_code, map_severity(diagnostic.severity));
+                            }
+                        }
+                    }
+                }
             }
         }
         Err(err) => {
-            let writer = termcolor::StandardStream::stderr(termcolor::ColorChoice::Always);
-            let config = term::Config::default();
             _ = term::emit(&mut writer.lock(), &config, &sources, &err);
+            exit_code = max(exit_code, 3);
         }
     }
+
+    std::process::ExitCode::from(exit_code)
 }
