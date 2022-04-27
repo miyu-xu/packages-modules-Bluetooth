@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb02e7d4_39cbcaf6",
+        "filename": "system/gd/rust/topshim/facade/src/adapter_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-27T20:04:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9ede16e_4664f456",
+      "range": {
+        "startLine": 137,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 10
+      },
+      "revId": "9e088942fb9e68761edbc154d331199440290177",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d318856_f1a5db2d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-19T14:12:08Z",
       "side": 1,
       "message": "wrong CL",
+      "range": {
+        "startLine": 1023,
+        "startChar": 0,
+        "endLine": 1025,
+        "endChar": 5
+      },
+      "revId": "9e088942fb9e68761edbc154d331199440290177",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d6efb6b_44018a88",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1025,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-27T20:04:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d318856_f1a5db2d",
       "range": {
         "startLine": 1023,
         "startChar": 0,
