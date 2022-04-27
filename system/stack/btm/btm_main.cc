@@ -64,6 +64,11 @@ constexpr size_t kMaxLogHistoryMsgLength = 25;
 
 static void btm_log_history(const std::string& tag, const char* addr,
                             const std::string& msg, const std::string& extra) {
+  if (btm_cb.history_ == nullptr) {
+    LOG_ERROR("BTM_LogHistory has not been constructed or already destroyed !");
+    return;
+  }
+
   btm_cb.history_->Push(
       "%-6s %-25s: %s %s", tag.substr(0, kMaxLogHistoryTagLength).c_str(),
       msg.substr(0, kMaxLogHistoryMsgLength).c_str(), addr, extra.c_str());
