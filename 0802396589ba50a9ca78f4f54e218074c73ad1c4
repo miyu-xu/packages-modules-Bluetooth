@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73ceabdb_4c298546",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-27T18:51:14Z",
+      "side": 1,
+      "message": "could we add more information here to indicate which branch it is returning true?",
+      "range": {
+        "startLine": 501,
+        "startChar": 17,
+        "endLine": 501,
+        "endChar": 21
+      },
+      "revId": "0802396589ba50a9ca78f4f54e218074c73ad1c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
