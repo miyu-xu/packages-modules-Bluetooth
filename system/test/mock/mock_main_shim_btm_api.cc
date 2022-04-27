@@ -353,6 +353,14 @@ void bluetooth::shim::BTM_LE_PF_srvc_data_pattern(
     tBTM_BLE_PF_CFG_CBACK cb) {
   mock_function_count_map[__func__]++;
 }
+void bluetooth::shim::BTM_LE_PF_ad_type(tBTM_BLE_SCAN_COND_OP action,
+                                        tBTM_BLE_PF_FILT_INDEX filt_index,
+                                        uint8_t ad_type,
+                                        std::vector<uint8_t> data,
+                                        std::vector<uint8_t> data_mask,
+                                        tBTM_BLE_PF_CFG_CBACK cb) {
+  mock_function_count_map[__func__]++;
+}
 void bluetooth::shim::BTM_LE_PF_uuid_filter(tBTM_BLE_SCAN_COND_OP action,
                                             tBTM_BLE_PF_FILT_INDEX filt_index,
                                             tBTM_BLE_PF_COND_TYPE filter_type,
