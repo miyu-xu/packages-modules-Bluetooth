@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffb652f2_37051591",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-04-27T14:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "debb7f23_f6e657b8",
+      "range": {
+        "startLine": 799,
+        "startChar": 0,
+        "endLine": 801,
+        "endChar": 23
+      },
+      "revId": "665f1366fd9d573ee8e5f42a6a84b950b7d40085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9961ab6_2db2a0fa",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "79fff6ba_8f855203",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-04-27T14:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9961ab6_2db2a0fa",
+      "range": {
+        "startLine": 837,
+        "startChar": 16,
+        "endLine": 838,
+        "endChar": 67
+      },
+      "revId": "665f1366fd9d573ee8e5f42a6a84b950b7d40085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8817baa6_92c12a07",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-04-25T20:27:41Z",
       "side": 1,
       "message": "...and here.",
+      "range": {
+        "startLine": 868,
+        "startChar": 16,
+        "endLine": 869,
+        "endChar": 67
+      },
+      "revId": "665f1366fd9d573ee8e5f42a6a84b950b7d40085",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6962135_430ae064",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-04-27T14:51:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8817baa6_92c12a07",
       "range": {
         "startLine": 868,
         "startChar": 16,
