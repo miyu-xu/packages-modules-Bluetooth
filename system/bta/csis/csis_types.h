@@ -61,7 +61,7 @@ struct hdl_pair {
 };
 
 /* CSIS Types */
-static constexpr uint8_t kDefaultScanDurationS = 5;
+static constexpr uint8_t kDefaultScanDurationS = 240;
 static constexpr uint8_t kDefaultCsisSetSize = 2;
 static constexpr uint8_t kUnknownRank = 0xff;
 

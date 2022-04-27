@@ -393,9 +393,10 @@ typedef struct {
 #define BTM_BLE_PF_LOCAL_NAME 4
 #define BTM_BLE_PF_MANU_DATA 5
 #define BTM_BLE_PF_SRVC_DATA_PATTERN 6
+#define BTM_BLE_PF_AD_TYPE 7
 /* when passed in payload filter type all, only clear action is applicable */
-#define BTM_BLE_PF_TYPE_ALL 7
-#define BTM_BLE_PF_TYPE_MAX 8
+#define BTM_BLE_PF_TYPE_ALL 8
+#define BTM_BLE_PF_TYPE_MAX 9
 
 /* max number of filter spot for different filter type */
 #ifndef BTM_BLE_MAX_UUID_FILTER
@@ -470,7 +471,8 @@ typedef struct {
 #define BTM_BLE_META_PF_LOCAL_NAME 0x05
 #define BTM_BLE_META_PF_MANU_DATA 0x06
 #define BTM_BLE_META_PF_SRVC_DATA 0x07
-#define BTM_BLE_META_PF_ALL 0x08
+#define BTM_BLE_META_PF_AD_TYPE 0x08
+#define BTM_BLE_META_PF_ALL 0x09
 
 #define ADV_INFO_PRESENT 0x00
 #define NO_ADV_INFO_PRESENT 0x01

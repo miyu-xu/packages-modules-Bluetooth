@@ -126,6 +126,9 @@ static uint8_t btm_ble_ocf_to_condtype(uint8_t ocf) {
     case BTM_BLE_META_PF_SRVC_DATA:
       cond_type = BTM_BLE_PF_SRVC_DATA_PATTERN;
       break;
+    case BTM_BLE_META_PF_AD_TYPE:
+      cond_type = BTM_BLE_PF_AD_TYPE;
+      break;
     case BTM_BLE_META_PF_ALL:
       cond_type = BTM_BLE_PF_TYPE_ALL;
       break;
@@ -399,6 +402,48 @@ static void BTM_LE_PF_srvc_data_pattern(tBTM_BLE_SCAN_COND_OP action,
   memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
 }
 
+/**
+ * This function update(add,delete or clear) the adv data type filtering
+ * condition.
+ */
+static void BTM_LE_PF_ad_type(tBTM_BLE_SCAN_COND_OP action,
+                              tBTM_BLE_PF_FILT_INDEX filt_index,
+                              uint8_t ad_type, std::vector<uint8_t> data,
+                              std::vector<uint8_t> data_mask,
+                              tBTM_BLE_PF_CFG_CBACK cb) {
+  uint8_t len = BTM_BLE_ADV_FILT_META_HDR_LENGTH;
+  int len_max = len + BTM_BLE_PF_STR_LEN_MAX + BTM_BLE_PF_STR_LEN_MAX;
+
+  uint8_t param[len_max];
+  memset(param, 0, len_max);
+
+  uint8_t* p = param;
+  UINT8_TO_STREAM(p, BTM_BLE_META_PF_AD_TYPE);
+  UINT8_TO_STREAM(p, action);
+  UINT8_TO_STREAM(p, filt_index);
+
+  if (action != BTM_BLE_SCAN_COND_CLEAR) {
+    uint8_t size = std::min(data.size(), (size_t)(BTM_BLE_PF_STR_LEN_MAX - 2));
+
+    UINT8_TO_STREAM(p, ad_type);
+    UINT8_TO_STREAM(p, size);
+    len += 2;
+
+    if (size > 0) {
+      ARRAY_TO_STREAM(p, data.data(), size);
+      len += size;
+      ARRAY_TO_STREAM(p, data_mask.data(), size);
+      len += size;
+    }
+  }
+
+  btu_hcif_send_cmd_with_cb(
+      FROM_HERE, HCI_BLE_ADV_FILTER, param, len,
+      base::Bind(&btm_flt_update_cb, BTM_BLE_META_PF_AD_TYPE, cb));
+
+  memset(&btm_ble_adv_filt_cb.cur_filter_target, 0, sizeof(tBLE_BD_ADDR));
+}
+
 /*******************************************************************************
  *
  * Function         btm_ble_cs_update_pf_counter
@@ -425,7 +470,7 @@ static uint8_t btm_ble_cs_update_pf_counter(tBTM_BLE_SCAN_COND_OP action,
   /* for these three types of filter, always generic */
   if (BTM_BLE_PF_ADDR_FILTER == cond_type ||
       BTM_BLE_PF_MANU_DATA == cond_type || BTM_BLE_PF_LOCAL_NAME == cond_type ||
-      BTM_BLE_PF_SRVC_DATA_PATTERN == cond_type)
+      BTM_BLE_PF_SRVC_DATA_PATTERN == cond_type || BTM_BLE_PF_AD_TYPE)
     p_bd_addr = NULL;
 
   if ((p_addr_filter = btm_ble_find_addr_filter_counter(p_bd_addr)) == NULL &&
@@ -727,6 +772,12 @@ void BTM_LE_PF_set(tBTM_BLE_PF_FILT_INDEX filt_index,
         break;
       }
 
+      case BTM_BLE_PF_AD_TYPE: {
+        BTM_LE_PF_ad_type(action, filt_index, cmd.ad_type, cmd.data,
+                          cmd.data_mask, base::DoNothing());
+        break;
+      }
+
       default:
         LOG(ERROR) << __func__ << ": Unknown filter type: " << +cmd.type;
         break;
@@ -758,6 +809,10 @@ void BTM_LE_PF_clear(tBTM_BLE_PF_FILT_INDEX filt_index,
 
     /* update the counter for service data */
     BTM_LE_PF_srvc_data(BTM_BLE_SCAN_COND_CLEAR, filt_index);
+
+    /* update the counter for advertising data type */
+    BTM_LE_PF_ad_type(BTM_BLE_SCAN_COND_CLEAR, filt_index, 0, {}, {},
+                      fDoNothing);
 
     /* clear UUID filter */
     BTM_LE_PF_uuid_filter(BTM_BLE_SCAN_COND_CLEAR, filt_index,
