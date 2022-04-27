@@ -81,8 +81,7 @@
 #warning \
     "#define BLE_PRIVACY_SPT FALSE preprocessor compilation flag is no longer used"
 #warning \
-    "  To disable LE privacy for a device \
-set 'bluetooth.core.gap.le.privacy.enabled' sysprop to false"
+    "  To disable LE privacy set bluetooth.core.gap.le.privacy.enabled sysprop to false"
 #if BLE_PRIVACY_SPT == FALSE
 #error "*** Conditional Compilation Directive error"
 #endif
@@ -93,8 +92,7 @@ set 'bluetooth.core.gap.le.privacy.enabled' sysprop to false"
 #warning \
     "#define BLE_LOCAL_PRIVACY_ENABLED FALSE preprocessor compilation flag is no longer used"
 #warning \
-    "  To disable LE privacy for a device \
-set 'bluetooth.core.gap.le.privacy.enabled sysprop' to false"
+    "  To disable LE privacy set bluetooth.core.gap.le.privacy.enabled sysprop to false"
 #endif
 
 #if SDP_RAW_DATA_INCLUDED != TRUE
