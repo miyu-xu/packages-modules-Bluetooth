@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "814937ae_97d761e6",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 20
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-04-27T21:06:43Z",
+      "side": 1,
+      "message": "same as the test above? intentional or should this be BV-13-C?",
+      "range": {
+        "startLine": 705,
+        "startChar": 32,
+        "endLine": 705,
+        "endChar": 39
+      },
+      "revId": "338f9673ac4967f2209a850df7cb78459b6b0170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "890462fe_e6327694",
         "filename": "tools/rootcanal/lmp/test/SP/BV-06-C.in",
         "patchSetId": 20
