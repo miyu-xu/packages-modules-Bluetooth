@@ -22,6 +22,30 @@
       },
       "revId": "0a85e65f1b6b5a167714bdbe5cb1c5de7a79c4aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "250ee287_ffbe5d12",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3212,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-04-27T16:41:26Z",
+      "side": 1,
+      "message": "I intentionally kept that, even though it\u0027s UNUSED_ATTR, as I think the addr/transport tuple should be the *only* way to determine a link.\n\n(I still am on a mission to combine addr/addr_with_type as I think they both serve the same purpose and should be related somehow.  Then the find_connected_Device would be addr_of_some_kind, transport, and if the transport is classic, addr_of_some_kind is Address, and le, it\u0027s addr_with_type.)\n\nUnf. the transport wasn\u0027t considered in the architecture, and I wanted it preserved to future generations would consider this transport as an essential part of determining a link state.\n\nIt\u0027s the bta layer which itself is a `shim` layer, and eventually would be re-absorbed back into the stack layer, or promoted into it\u0027s own module, or simply removed as there is a lot of duplicated state here.",
+      "parentUuid": "f229f0e4_4bc08bd0",
+      "range": {
+        "startLine": 3212,
+        "startChar": 31,
+        "endLine": 3212,
+        "endChar": 66
+      },
+      "revId": "0a85e65f1b6b5a167714bdbe5cb1c5de7a79c4aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
