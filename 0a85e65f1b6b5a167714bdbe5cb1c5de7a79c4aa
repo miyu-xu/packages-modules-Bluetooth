@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f229f0e4_4bc08bd0",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3212,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-27T15:52:51Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 3212,
+        "startChar": 31,
+        "endLine": 3212,
+        "endChar": 66
+      },
+      "revId": "0a85e65f1b6b5a167714bdbe5cb1c5de7a79c4aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
