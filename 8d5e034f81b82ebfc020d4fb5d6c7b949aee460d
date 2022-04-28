@@ -16,6 +16,24 @@
       "message": "What does autoplumbed mean?",
       "revId": "8d5e034f81b82ebfc020d4fb5d6c7b949aee460d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f73ded5_174a8113",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-28T19:16:38Z",
+      "side": 1,
+      "message": "Ah sorry, forgot to remove that.  It is from a script I wrote to auto plumb APIs into the host stack :-D",
+      "parentUuid": "98cd502d_78af1b0b",
+      "revId": "8d5e034f81b82ebfc020d4fb5d6c7b949aee460d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
