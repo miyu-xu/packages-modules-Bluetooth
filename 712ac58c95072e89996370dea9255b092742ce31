@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7266e7c5_4282509f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-04-28T11:57:00Z",
+      "side": 1,
+      "message": "Unit tests for HAP needs to be adjusted to properly mock groups on the CSIP service mock rather than on LeAudio service.",
+      "revId": "712ac58c95072e89996370dea9255b092742ce31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
