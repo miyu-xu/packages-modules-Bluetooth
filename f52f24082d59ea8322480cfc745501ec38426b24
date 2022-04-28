@@ -16,6 +16,23 @@
       "message": "Current status of the patch:\nworks : seamless streaming during late join / drop, when starting stream with both left and right member devices connected\nbeing looked into : late join / drop when starting stream with only one (left / right) member device connected",
       "revId": "f52f24082d59ea8322480cfc745501ec38426b24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7628ac5_5f8a9fd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-04-28T05:46:43Z",
+      "side": 1,
+      "message": "Hi Lukasz, Jakub, All, \nPartha is continuing to debug a few issues as captured. However, can you let Partha/me know if the approach taken in this patch is agreeable?\n\nThanks\nRavi",
+      "revId": "f52f24082d59ea8322480cfc745501ec38426b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
