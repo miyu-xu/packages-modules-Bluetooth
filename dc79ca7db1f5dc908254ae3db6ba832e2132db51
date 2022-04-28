@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c91a9151_8c0b324f",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-28T18:45:45Z",
+      "side": 1,
+      "message": "ah, so this is where the missing comma is added. I think the fix for missing comma should be done in the earlier CL so that each CL builds properly.",
+      "range": {
+        "startLine": 748,
+        "startChar": 26,
+        "endLine": 748,
+        "endChar": 27
+      },
+      "revId": "dc79ca7db1f5dc908254ae3db6ba832e2132db51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
