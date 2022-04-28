@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac9102a2_a5d56591",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-04-28T13:05:22Z",
+      "side": 1,
+      "message": "I\u0027ve extracted the `ast::Decl::Packet` code to this new function. This should make things a tiny bit easier to understand as we add support for more enum variants (though I think we\u0027ll eventually split the generator up into multiple files).",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 24
+      },
+      "revId": "1bf86cc70c9612a791b76dc3137aa10800db52a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
