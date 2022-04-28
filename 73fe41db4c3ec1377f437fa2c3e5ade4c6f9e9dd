@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4fb13c4_73e13beb",
+        "filename": "system/bta/sys/bta_sys_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-28T21:28:35Z",
+      "side": 1,
+      "message": "Out of an abundance of caution (or paranoia) can we do it in the other order?",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 138,
+        "endChar": 32
+      },
+      "revId": "73fe41db4c3ec1377f437fa2c3e5ade4c6f9e9dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
