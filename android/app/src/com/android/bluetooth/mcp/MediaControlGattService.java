@@ -43,6 +43,9 @@ import android.os.Looper;
 import android.util.Log;
 import android.util.Pair;
 
+import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.nio.ByteBuffer;
@@ -52,6 +55,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -134,6 +138,8 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
     private MediaState mCurrentMediaState = MediaState.INACTIVE;
     private Map<BluetoothDevice, List<GattOpContext>> mPendingGattOperations = new HashMap<>();
     private McpService mMcpService;
+    private LeAudioService mLeAUdioService;
+    private AdapterService mAdapterService;
 
     private static class GattOpContext {
         public enum Operation {
@@ -295,7 +301,7 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
                 if (VDBG) {
                     Log.d(TAG, "MEDIA_CONTROL_POINT write request");
                 }
-                int status = handleMediaControlPointRequest(value);
+                int status = handleMediaControlPointRequest(device, value);
                 if (responseNeeded) {
                     mBluetoothGattServer.sendResponse(device, requestId, status, offset, value);
                 }
@@ -784,6 +790,8 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
         mCcid = ccid;
 
         mMcpService = mcpService;
+        mAdapterService =  Objects.requireNonNull(AdapterService.getAdapterService(),
+                "AdapterService shouldn't be null when creating MediaControlCattService");
     }
 
     protected boolean init(UUID scvUuid) {
@@ -836,7 +844,7 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
     }
 
     @VisibleForTesting
-    int handleMediaControlPointRequest(byte[] value) {
+    int handleMediaControlPointRequest(BluetoothDevice device, byte[] value) {
         if (DBG) {
             Log.d(TAG, "handleMediaControlPointRequest");
         }
@@ -880,6 +888,15 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
             Log.d(TAG, "handleMediaControlPointRequest: sending request up");
         }
 
+        if (req.getOpcode() == Request.Opcodes.PLAY) {
+            if (mAdapterService.getActiveDevices(BluetoothProfile.A2DP).size() > 0) {
+                A2dpService.getA2dpService().setActiveDevice(null);
+            }
+            if (mLeAUdioService == null) {
+                mLeAUdioService = LeAudioService.getLeAudioService();
+            }
+            mLeAUdioService.setActiveDevice(device);
+        }
         mCallbacks.onMediaControlRequest(req);
 
         return BluetoothGatt.GATT_SUCCESS;
@@ -897,6 +914,11 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
     @VisibleForTesting
     void setBluetoothGattServerForTesting(BluetoothGattServerProxy proxy) {
         mBluetoothGattServer = proxy;
+    }
+
+    @VisibleForTesting
+    void setLeAudioServiceForTesting(LeAudioService leAudioService) {
+        mLeAUdioService = leAudioService;
     }
 
     private boolean initGattService(UUID serviceUuid) {
