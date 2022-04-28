@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b37ceed7_e59a6535",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-28T21:23:43Z",
+      "side": 1,
+      "message": "Missing include?",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 68,
+        "endChar": 13
+      },
+      "revId": "2e5de01a16583bf2617ae5e0ab7cd527c6c76049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
