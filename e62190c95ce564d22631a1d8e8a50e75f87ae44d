@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73dba7c7_732b71b6",
+        "filename": "system/test/mock/mock_bluetooth_interface.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-28T18:44:06Z",
+      "side": 1,
+      "message": "missing comma?",
+      "range": {
+        "startLine": 211,
+        "startChar": 26,
+        "endLine": 211,
+        "endChar": 27
+      },
+      "revId": "e62190c95ce564d22631a1d8e8a50e75f87ae44d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
