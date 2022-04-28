@@ -22,6 +22,30 @@
       },
       "revId": "868069e2e3209e160fe8c1406c64a3cc173ba9a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a315c799_be83ae5a",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1353,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-28T18:37:15Z",
+      "side": 1,
+      "message": "Yeah this is the part that takes a long time.  It definitely isn\u0027t the correct way to do this.  We need to figure out a way to track active ACLs which I\u0027ve been trying to look at doing.  Once I get these in I\u0027ll focus on the optimization (I have a task planned out for it).",
+      "parentUuid": "30a5ef93_7aa97a2b",
+      "range": {
+        "startLine": 1351,
+        "startChar": 0,
+        "endLine": 1353,
+        "endChar": 3
+      },
+      "revId": "868069e2e3209e160fe8c1406c64a3cc173ba9a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
