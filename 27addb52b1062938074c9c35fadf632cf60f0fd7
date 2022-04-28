@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d86584a_eeb1134b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetPhoneState.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-04-28T20:31:56Z",
+      "side": 1,
+      "message": "any assignment, usage, or change to mPhoneStateListener needs to be protected by the same lock.",
+      "range": {
+        "startLine": 175,
+        "startChar": 8,
+        "endLine": 182,
+        "endChar": 35
+      },
+      "revId": "27addb52b1062938074c9c35fadf632cf60f0fd7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
