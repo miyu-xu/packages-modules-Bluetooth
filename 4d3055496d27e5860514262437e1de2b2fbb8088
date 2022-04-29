@@ -33,6 +33,24 @@
       "message": "Q) Should we care about HearingAidService as well?",
       "revId": "4d3055496d27e5860514262437e1de2b2fbb8088",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9c6f832_fc30c91e",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-04-29T16:30:12Z",
+      "side": 1,
+      "message": "+1, I think this is valid concern, can be fixed in follow-up CL",
+      "parentUuid": "19c61422_109db002",
+      "revId": "4d3055496d27e5860514262437e1de2b2fbb8088",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
