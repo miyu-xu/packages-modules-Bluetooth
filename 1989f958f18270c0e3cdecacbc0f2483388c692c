@@ -16,6 +16,23 @@
       "message": "If there are no further reviews. Is it possible to close on this on priority ?",
       "revId": "1989f958f18270c0e3cdecacbc0f2483388c692c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e2361c9_ba3d4eaa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1042629
+      },
+      "writtenOn": "2022-04-29T14:43:56Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "1989f958f18270c0e3cdecacbc0f2483388c692c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
