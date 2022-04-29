@@ -22,6 +22,30 @@
       },
       "revId": "d4a6fa09c0ba8b1a41057a2beb2574ae0bfc2aeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55fcc4fd_fd3a1ff7",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-04-29T09:54:27Z",
+      "side": 1,
+      "message": "Please check below change.\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2080900",
+      "parentUuid": "e0a10fc0_ddc31c94",
+      "range": {
+        "startLine": 415,
+        "startChar": 39,
+        "endLine": 419,
+        "endChar": 45
+      },
+      "revId": "d4a6fa09c0ba8b1a41057a2beb2574ae0bfc2aeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
