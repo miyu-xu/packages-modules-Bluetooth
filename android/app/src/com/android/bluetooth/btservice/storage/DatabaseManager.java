@@ -28,6 +28,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.os.Binder;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -128,7 +129,7 @@ public class DatabaseManager {
                         List<Metadata> list;
                         try {
                             list = mDatabase.load();
-                        } catch (IllegalStateException e) {
+                        } catch (SQLiteCantOpenDatabaseException e) {
                             Log.e(TAG, "Unable to open database: " + e);
                             mDatabase = MetadataDatabase
                                     .createDatabaseWithoutMigration(mAdapterService);
