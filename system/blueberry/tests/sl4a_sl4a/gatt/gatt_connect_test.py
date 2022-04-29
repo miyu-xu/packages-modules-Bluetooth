@@ -71,6 +71,7 @@ class GattConnectTest(Sl4aSl4aBaseTestClass):
         with io.open(bt_config_file_path) as f:
             for line in f.readlines():
                 stripped_line = line.strip()
+                logging.info(stripped_line)
                 if (stripped_line.startswith("Address")):
                     address_fields = stripped_line.split(' ')
                     # API currently requires public address to be capitalized
@@ -132,6 +133,60 @@ class GattConnectTest(Sl4aSl4aBaseTestClass):
         # Verify that GATT connect event occurs on SL4A DUT
         expected_event_name = gatt_connection_state_change.format(gatt_callback)
         assertThat(self._wait_for_event(expected_event_name, self.dut)).isTrue()
+
+        # Test over
+        self.cert.sl4a.bleStopBleAdvertising(advertise_callback)
+
+    def test_connect_public_address_service_change(self):
+        # TODO: Device needs to be bonded first to scan for public address when random advertised AIUI (may not need to scan at all if device in range)
+
+        # Set up SL4A cert side to advertise
+        logging.info("Starting advertising")
+        self.cert.sl4a.bleSetAdvertiseSettingsIsConnectable(True)
+        self.cert.sl4a.bleSetAdvertiseDataIncludeDeviceName(True)
+        self.cert.sl4a.bleSetAdvertiseSettingsAdvertiseMode(ble_advertise_settings_modes['low_latency'])
+        self.cert.sl4a.bleSetAdvertiseSettingsOwnAddressType(common.RANDOM_DEVICE_ADDRESS)
+        advertise_callback, advertise_data, advertise_settings = generate_ble_advertise_objects(self.cert.sl4a)
+        self.cert.sl4a.bleStartBleAdvertising(advertise_callback, advertise_data, advertise_settings)
+
+        # Wait for SL4A cert to start advertising
+        assertThat(self._wait_for_event(adv_succ.format(advertise_callback), self.cert)).isTrue()
+        logging.info("Advertising started")
+
+        # Pull IRK from SL4A cert side to pass in from SL4A DUT side when scanning
+        cert_public_address, irk = self._get_cert_public_address_and_irk_from_bt_config()
+
+        # Set up SL4A DUT side to scan
+        addr_type = ble_address_types["public"]
+        logging.info("Start scanning for PUBLIC_ADDRESS %s with address type %d" % (cert_public_address, addr_type))
+        self.dut.sl4a.bleSetScanSettingsScanMode(ble_scan_settings_modes['low_latency'])
+        self.dut.sl4a.bleSetScanSettingsLegacy(False)
+        filter_list, scan_settings, scan_callback = generate_ble_scan_objects(self.dut.sl4a)
+        expected_event_name = scan_result.format(scan_callback)
+
+        # Start scanning on SL4A DUT
+        self.dut.sl4a.bleSetScanFilterDeviceAddressAndType(cert_public_address, int(addr_type))
+        self.dut.sl4a.bleBuildScanFilter(filter_list)
+        self.dut.sl4a.bleStartBleScan(filter_list, scan_settings, scan_callback)
+        logging.info("Started scanning")
+
+        # Verify that scan result is received on SL4A DUT
+        mac_address = self._wait_for_scan_result_event(expected_event_name, self.dut)
+        assertThat(mac_address).isNotNone()
+        logging.info("Filter advertisement with address {}".format(mac_address))
+
+        # Stop scanning and try to connect GATT
+        self.dut.sl4a.bleStopBleScan(scan_callback)
+        gatt_callback = self.dut.sl4a.gattCreateGattCallback()
+        bluetooth_gatt = self.dut.sl4a.gattClientConnectGatt(gatt_callback, mac_address, False, gatt_transport['le'],
+                                                             False, None)
+        assertThat(bluetooth_gatt).isNotNone()
+
+        # Verify that GATT connect event occurs on SL4A DUT
+        expected_event_name = gatt_connection_state_change.format(gatt_callback)
+        assertThat(self._wait_for_event(expected_event_name, self.dut)).isTrue()
+
+        # TODO: Trigger service change on the cert, and verify Java callback is received on DUT
 
         # Test over
         self.cert.sl4a.bleStopBleAdvertising(advertise_callback)
