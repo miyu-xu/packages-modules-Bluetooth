@@ -1263,15 +1263,36 @@ void btm_sort_inq_result(void) {
  *
  ******************************************************************************/
 void btm_process_inq_complete(tHCI_STATUS status, uint8_t mode) {
-  tBTM_CMPL_CB* p_inq_cb = btm_cb.btm_inq_vars.p_inq_cmpl_cb;
+  if (mode == 0) {
+    LOG_WARN("Inquiry completed but no modes were specified");
+    return;
+  }
+
+  // The mode parameters may be a bitmask with only 2 valid bits indicating
+  // completion
+  if (mode & ~(BTM_INQUIRY_ACTIVE_MASK)) {
+    LOG_WARN("Calling with illegal mode:0x%02x", mode);
+  }
+
+  if (mode == BTM_GENERAL_INQUIRY && btm_cb.notify_when_complete_cb) {
+    LOG_DEBUG(
+        "Cleaning up previous inquiry cancel with proper completion callback "
+        "inq_active:0x%02x inqparms.mode:0x%02x",
+        btm_cb.btm_inq_vars.inq_active, btm_cb.btm_inq_vars.inqparms.mode);
+    btm_cb.notify_when_complete_cb();
+    btm_cb.notify_when_complete_cb = {};
+    return;
+  }
   tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
 
+  tBTM_CMPL_CB* p_inq_cb = btm_cb.btm_inq_vars.p_inq_cmpl_cb;
   p_inq->inqparms.mode &= ~(mode);
 
 #if (BTM_INQ_DEBUG == TRUE)
   BTM_TRACE_DEBUG("btm_process_inq_complete inq_active:0x%x state:%d",
                   btm_cb.btm_inq_vars.inq_active, btm_cb.btm_inq_vars.state);
 #endif
+
   btm_acl_update_inquiry_status(BTM_INQUIRY_COMPLETE);
   /* Ignore any stray or late complete messages if the inquiry is not active */
   if (p_inq->inq_active) {
