@@ -16,6 +16,24 @@
       "message": "Could you add to the CL description why the timeout is changed?",
       "revId": "e56bccf176cbae8c024db9fe0fa461808ff24cf2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5823336_ce6b612d",
+        "filename": "system/blueberry/tests/gd/rust/topshim/facade/automation_helper.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-04-29T14:36:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "462483db_0e770dc8",
+      "revId": "e56bccf176cbae8c024db9fe0fa461808ff24cf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
