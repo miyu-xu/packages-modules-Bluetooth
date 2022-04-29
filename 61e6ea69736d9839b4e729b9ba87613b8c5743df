@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08e135b0_898408c0",
+        "filename": "system/gd/rust/common/Cargo.toml",
+        "patchSetId": 31
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T17:40:37Z",
+      "side": 1,
+      "message": "why is `cxx-build` added in this CL? Is this Cargo.toml file used in Android build? I tested removing this dependency and Floss build is still successful. Before adding the dependency in https://crrev.com/c/3615338 I would like to learn how this dependency is used.",
+      "revId": "61e6ea69736d9839b4e729b9ba87613b8c5743df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
