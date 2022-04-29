@@ -34,6 +34,24 @@
       "parentUuid": "98cd502d_78af1b0b",
       "revId": "8d5e034f81b82ebfc020d4fb5d6c7b949aee460d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50755b97_909fdda3",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T16:48:07Z",
+      "side": 1,
+      "message": "If the comment is generated from a script, it may be useful to generate more descriptive comment like `// Autoplumbed by script xxx...`. Doesn\u0027t have to be in this CL, but this is feedback for follow up in the script if you are still maintaining it.",
+      "parentUuid": "3f73ded5_174a8113",
+      "revId": "8d5e034f81b82ebfc020d4fb5d6c7b949aee460d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
