@@ -52,6 +52,7 @@ btsnoop_last_log_path_on_device = \
 pairing_variant_passkey_confirmation = 2
 
 # Callback strings
+bond_bonded = "Bond{}"
 scan_result = "BleScan{}onScanResults"
 scan_failed = "BleScan{}onScanFailed"
 batch_scan_result = "BleScan{}onBatchScanResult"

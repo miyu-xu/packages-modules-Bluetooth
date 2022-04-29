@@ -21,7 +21,7 @@ import logging
 
 from blueberry.tests.gd.cert.context import get_current_context
 from blueberry.tests.gd.cert.truth import assertThat
-from blueberry.tests.gd_sl4a.lib.bt_constants import adv_succ, ble_advertise_settings_modes, ble_scan_settings_modes, ble_address_types, ble_scan_settings_phys, gatt_connection_state_change, gatt_transport, scan_result
+from blueberry.tests.gd_sl4a.lib.bt_constants import adv_succ, ble_advertise_settings_modes, ble_scan_settings_modes, ble_address_types, ble_scan_settings_phys, bond_bonded, gatt_connection_state_change, gatt_transport, scan_result
 from blueberry.tests.gd_sl4a.lib.ble_lib import generate_ble_scan_objects, generate_ble_advertise_objects
 from blueberry.tests.sl4a_sl4a.lib import sl4a_sl4a_base_test
 from blueberry.facade import common_pb2 as common
@@ -136,6 +136,52 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
 
         # Test over
         self.cert.sl4a.bleStopBleAdvertising(advertise_callback)
+
+    def test_connect_bonded_device_public_address(self):
+        # Bond cert and DUT
+        self.cert.sl4a.bluetoothStartPairingHelper()
+        self.dut.sl4a.bluetoothStartPairingHelper()
+        cert_public_address = self.cert.sl4a.bluetoothGetLocalAddress()
+        self.cert.sl4a.bluetoothMakeDiscoverable(3000)
+        self.dut.sl4a.bluetoothDiscoverAndBond(cert_public_address)
+        self._wait_for_event(bond_bonded.format(cert_public_address), self.dut)
+
+        # Set up SL4A cert side to advertise
+        logging.info("Starting advertising")
+        self.cert.sl4a.bleSetAdvertiseSettingsIsConnectable(True)
+        self.cert.sl4a.bleSetAdvertiseDataIncludeDeviceName(True)
+        self.cert.sl4a.bleSetAdvertiseSettingsAdvertiseMode(ble_advertise_settings_modes['low_latency'])
+        self.cert.sl4a.bleSetAdvertiseSettingsOwnAddressType(common.RANDOM_DEVICE_ADDRESS)
+        advertise_callback, advertise_data, advertise_settings = generate_ble_advertise_objects(self.cert.sl4a)
+        self.cert.sl4a.bleStartBleAdvertising(advertise_callback, advertise_data, advertise_settings)
+
+        # Wait for SL4A cert to start advertising
+        assertThat(self._wait_for_event(adv_succ.format(advertise_callback), self.cert)).isTrue()
+        logging.info("Advertising started")
+
+        # Connect GATT
+        gatt_callback = self.dut.sl4a.gattCreateGattCallback()
+        bluetooth_gatt = self.dut.sl4a.gattClientConnectGatt(gatt_callback, cert_public_address, False,
+                                                             gatt_transport['le'], False, None)
+        assertThat(bluetooth_gatt).isNotNone()
+
+        # Verify that GATT connect event occurs on SL4A DUT
+        expected_event_name = gatt_connection_state_change.format(gatt_callback)
+        assertThat(self._wait_for_event(expected_event_name, self.dut)).isTrue()
+
+        self.cert.sl4a.bleStopBleAdvertising(advertise_callback)
+
+        # For now simply waiting some time for a disconnect to try to repro b/230123996
+        try:
+            event_info = self.dut.ed.pop_event(expected_event_name, 31)
+            logging.info(event_info)
+        except queue.Empty as error:
+            logging.error("Failed to find event: %s", expected_event_name)
+
+        assertThat(event_info).isNone()
+
+        # Test over
+        self.dut.sl4a.bluetoothUnbond(cert_public_address)
 
 
 if __name__ == '__main__':
