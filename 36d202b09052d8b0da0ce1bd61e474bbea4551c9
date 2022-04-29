@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29f98f9d_50eb4e98",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T22:29:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6add2449_d600e1dd",
+      "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21581ea1_46baa4f4",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-04-08T18:16:38Z",
       "side": 1,
       "message": "Please resolve this license issue. I believe APACHE2 is acceptable here.",
+      "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5463a584_5b1b6d13",
+        "filename": "system/gd/rust/linux/mgmt/proto/suspend.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T22:29:59Z",
+      "side": 1,
+      "message": "If this is a copy from Chromium, would it be okay to just change the license? I don\u0027t think we can just do that, but I am not sure yet and I am still figuring out what licensing message we should use in cases like this.",
+      "parentUuid": "21581ea1_46baa4f4",
       "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
