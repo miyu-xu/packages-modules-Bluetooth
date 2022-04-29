@@ -135,3 +135,83 @@ class GattConnectTest(Sl4aSl4aBaseTestClass):
 
         # Test over
         self.cert.sl4a.bleStopBleAdvertising(advertise_callback)
+
+    def test_connect_public_address_service_change(self):
+        self.cert.sl4a.bluetoothStartPairingHelper()
+        self.dut.sl4a.bluetoothStartPairingHelper()
+        # TODO: Should be a better way to get cert address from sl4a - bluetoothGetLocalAddress
+        cert_public_address, irk = self._get_cert_public_address_and_irk_from_bt_config()
+        self.cert.sl4a.bluetoothMakeDiscoverable(3000)
+        self.dut.sl4a.bluetoothDiscoverAndBond(cert_public_address)
+
+        try:
+            bond_state = self.dut.ed.pop_event("Bond" + cert_public_address, self.default_timeout)
+        except queue.Empty as error:
+            logging.error("Failed to get bond event!")
+
+        assertThat(bond_state).isNotNone()
+
+        # Set up SL4A cert side to advertise
+        logging.info("Starting advertising")
+        self.cert.sl4a.bleSetAdvertiseSettingsIsConnectable(True)
+        self.cert.sl4a.bleSetAdvertiseDataIncludeDeviceName(True)
+        self.cert.sl4a.bleSetAdvertiseSettingsAdvertiseMode(ble_advertise_settings_modes['low_latency'])
+        self.cert.sl4a.bleSetAdvertiseSettingsOwnAddressType(common.RANDOM_DEVICE_ADDRESS)
+        advertise_callback, advertise_data, advertise_settings = generate_ble_advertise_objects(self.cert.sl4a)
+        self.cert.sl4a.bleStartBleAdvertising(advertise_callback, advertise_data, advertise_settings)
+
+        # Wait for SL4A cert to start advertising
+        assertThat(self._wait_for_event(adv_succ.format(advertise_callback), self.cert)).isTrue()
+        logging.info("Advertising started")
+
+        # Pull IRK from SL4A cert side to pass in from SL4A DUT side when scanning
+        cert_public_address, irk = self._get_cert_public_address_and_irk_from_bt_config()
+
+        # Set up SL4A DUT side to scan
+        addr_type = ble_address_types["public"]
+        logging.info("Start scanning for PUBLIC_ADDRESS %s with address type %d" % (cert_public_address, addr_type))
+        self.dut.sl4a.bleSetScanSettingsScanMode(ble_scan_settings_modes['low_latency'])
+        self.dut.sl4a.bleSetScanSettingsLegacy(False)
+        filter_list, scan_settings, scan_callback = generate_ble_scan_objects(self.dut.sl4a)
+        expected_event_name = scan_result.format(scan_callback)
+
+        # Start scanning on SL4A DUT
+        self.dut.sl4a.bleSetScanFilterDeviceAddressAndType(cert_public_address, int(addr_type))
+        self.dut.sl4a.bleBuildScanFilter(filter_list)
+        self.dut.sl4a.bleStartBleScan(filter_list, scan_settings, scan_callback)
+        logging.info("Started scanning")
+
+        # Verify that scan result is received on SL4A DUT
+        mac_address = self._wait_for_scan_result_event(expected_event_name, self.dut)
+        assertThat(mac_address).isNotNone()
+        logging.info("Filter advertisement with address {}".format(mac_address))
+
+        # Stop scanning and try to connect GATT
+        self.dut.sl4a.bleStopBleScan(scan_callback)
+        gatt_callback = self.dut.sl4a.gattCreateGattCallback()
+        bluetooth_gatt = self.dut.sl4a.gattClientConnectGatt(gatt_callback, mac_address, False, gatt_transport['le'],
+                                                             False, None)
+        assertThat(bluetooth_gatt).isNotNone()
+
+        # Verify that GATT connect event occurs on SL4A DUT
+        expected_event_name = gatt_connection_state_change.format(gatt_callback)
+        assertThat(self._wait_for_event(expected_event_name, self.dut)).isTrue()
+
+        self.cert.sl4a.bleStopBleAdvertising(advertise_callback)
+
+        gatt_server_callback = self.cert.sl4a.gattServerCreateGattServerCallback()
+        gatt_server_index = self.cert.sl4a.gattServerOpenGattServer(gatt_server_callback)
+        # TODO: second param below is BluetoothGattService#SERVICE_TYPE_PRIMARY
+        gatt_service_index = self.cert.sl4a.gattServerCreateService("12345678-1234-1234-1234-12345678901", 0)
+        self.cert.sl4a.gattServerAddService(gatt_server_index, gatt_service_index)
+        logging.info("Triggered service change")
+
+        # For now simply waiting some time for a disconnect to try to repro b/230123996
+        try:
+            event_info = self.dut.ed.pop_event(expected_event_name, 400)
+            logging.info(event_info)
+        except queue.Empty as error:
+            logging.error("Failed to find event: %s", expected_event_name)
+
+        # Test over
+        self.dut.sl4a.bluetoothUnbond(cert_public_address)
