@@ -16,6 +16,24 @@
       "message": "nit: Use version",
       "revId": "cc0e5b322b6538df412469e1bdd2c6fbbc44a742",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd17f5c0_22ee9976",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T23:51:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d89d90a_1cd39acc",
+      "revId": "cc0e5b322b6538df412469e1bdd2c6fbbc44a742",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
