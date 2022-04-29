@@ -16,6 +16,24 @@
       "message": "\"Increase CSIP Set Member Discovery Timeout from 5 s to 240 s\"  change can be a separate gerri.t",
       "revId": "019e5d64d5971613c7c70761d254042d8208710c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cea2bd7f_98e945af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-04-29T10:54:00Z",
+      "side": 1,
+      "message": "Agree, thanks",
+      "parentUuid": "3c96e19b_0603994b",
+      "revId": "019e5d64d5971613c7c70761d254042d8208710c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
