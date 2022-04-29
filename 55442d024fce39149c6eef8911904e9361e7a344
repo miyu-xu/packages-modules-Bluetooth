@@ -16,6 +16,24 @@
       "message": "Does this increase binary size? I would assume the linker is pretty smart about keeping stuff out but I\u0027d like a quick check.\n\nWe may want to put the rpcproxy in its own lib otherwise.",
       "revId": "55442d024fce39149c6eef8911904e9361e7a344",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "594f387e_c0a4a3ef",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T22:19:33Z",
+      "side": 1,
+      "message": "In my local Linux build:\nThe debug build is from 137M to 148M.\nThe release build is from 7.7M to 7.7M (8000624 to 8000784 bytes).\n\nI think the increase is small, and also depending on btstack is needed-ish for the subsequent CLs in this series (to get interface of Suspend API).",
+      "parentUuid": "56563d8a_493a41e4",
+      "revId": "55442d024fce39149c6eef8911904e9361e7a344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
