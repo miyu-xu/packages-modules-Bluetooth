@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae46a879_269d21d8",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/service_watcher.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T23:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ca05467_b19c40c0",
+      "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e357d3d_e86065ad",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "799defb0_a69b8fb2",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/service_watcher.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T23:39:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e357d3d_e86065ad",
+      "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da175845_7826df82",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-04-08T20:33:21Z",
       "side": 1,
       "message": "prefer re-write to avoid unwraps\n\n```\nmatch msg.get3::\u003cString, String, String\u003e() {\n  (None, _, _) | (_, None, _) | (_, _, None) \u003d\u003e true,\n  (Some(name), Some(old_owner), Some(new_owner)) \u003d\u003e {\n    ...\n  }\n}\n```",
+      "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28cefa36_36cab89b",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/service_watcher.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-04-29T23:39:40Z",
+      "side": 1,
+      "message": "With match statement it adds twice nesting to the main line logic, how about with `if let` (see updated CL)? It avoids unwrap and adds only 1 nest to main line.\n\nI wish `let...else` feature (https://rust-lang.github.io/rfcs/3137-let-else.html) could be used, it could look like this:\n\n```\nlet (Some(name), Some(old_owner), Some(new_owner)) \u003d msg.get3::\u003c...\u003e() else {\n  // Invalid NameOwnerChanged signal, ignore.\n  return true;\n};\n\n// main line goes here without unwrap and nesting.\n```",
+      "parentUuid": "da175845_7826df82",
       "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
