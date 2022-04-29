@@ -16,6 +16,23 @@
       "message": "I\u0027d rather not have this fail silently.  Do we know when it would be OK for enable to fail?  Crashing the Bluetooth stack makes sure that we actually fix the issue if it happens every time, or that we get back to a working state if it is intermittent.",
       "revId": "d7e4a0034ba44150411093d9aa426ef31b003312",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "237efa94_f221f61c",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-29T16:24:46Z",
+      "side": 1,
+      "message": "I liked the assert.  I think we should figure out how to fix the failures.",
+      "revId": "d7e4a0034ba44150411093d9aa426ef31b003312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
