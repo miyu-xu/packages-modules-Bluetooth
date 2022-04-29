@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cc58dd9_087f2b01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-04-29T16:23:57Z",
+      "side": 1,
+      "message": "I\u0027d rather not have this fail silently.  Do we know when it would be OK for enable to fail?  Crashing the Bluetooth stack makes sure that we actually fix the issue if it happens every time, or that we get back to a working state if it is intermittent.",
+      "revId": "d7e4a0034ba44150411093d9aa426ef31b003312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
