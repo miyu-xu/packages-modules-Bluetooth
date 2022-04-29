@@ -16,6 +16,23 @@
       "message": "looks good from a2dp point of view. all question has been answered over chat",
       "revId": "4d3055496d27e5860514262437e1de2b2fbb8088",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c61422_109db002",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 893,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-04-29T05:01:32Z",
+      "side": 1,
+      "message": "Q) Should we care about HearingAidService as well?",
+      "revId": "4d3055496d27e5860514262437e1de2b2fbb8088",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
