@@ -46,6 +46,30 @@
       },
       "revId": "e831a14b52b60316798833821427094a1ed32c09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3213910_4ac032df",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-04-30T00:24:17Z",
+      "side": 1,
+      "message": "I see. Thanks Grzegorz. We will make the other patch for it after the configuration pass the verification.",
+      "parentUuid": "fe7b87fd_0468011f",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 86
+      },
+      "revId": "e831a14b52b60316798833821427094a1ed32c09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
