@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54dd007d_dd177714",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-02T11:23:48Z",
+      "side": 1,
+      "message": "please add log when csipClient is null",
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46a776b2_757949a5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-02T11:23:48Z",
+      "side": 1,
+      "message": "please add log when returned device list is empty",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 45
+      },
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2377c3ac_ffd7820b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-02T11:23:48Z",
+      "side": 1,
+      "message": "please add some log here when this error happens",
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f3390e3_ae42d1cb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-02T11:23:48Z",
+      "side": 1,
+      "message": "A headset might disconnect from the Android device by itself, causing it to be removed automatically. Even without handling the grouped reconnection case, could we check when mCallbacks.notifySourceRemoved() is called and make sure we remove source from mGroupOpDevices when all members of the same group are disconnected?",
+      "range": {
+        "startLine": 923,
+        "startChar": 27,
+        "endLine": 923,
+        "endChar": 51
+      },
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
