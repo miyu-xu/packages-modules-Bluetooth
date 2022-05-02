@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "366b4436_a82d6d32",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-02T18:02:02Z",
+      "side": 1,
+      "message": "nit:\noverwrite",
+      "range": {
+        "startLine": 468,
+        "startChar": 23,
+        "endLine": 468,
+        "endChar": 34
+      },
+      "revId": "b8d9312da496400428dccbe583a3785a97fb3a0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
