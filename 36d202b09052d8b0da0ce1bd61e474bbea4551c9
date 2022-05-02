@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ce160d0_9c376d67",
+        "filename": "system/gd/rust/linux/mgmt/proto/suspend.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-05-02T15:48:59Z",
+      "side": 1,
+      "message": "Apache2 only for Android bluetooth.",
+      "parentUuid": "5463a584_5b1b6d13",
+      "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "42047490_82869b05",
