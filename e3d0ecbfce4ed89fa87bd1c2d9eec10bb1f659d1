@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27aee10c_25ad8abd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-02T23:46:32Z",
+      "side": 1,
+      "message": "is 228809876 the right bug number for this?",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "e3d0ecbfce4ed89fa87bd1c2d9eec10bb1f659d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
