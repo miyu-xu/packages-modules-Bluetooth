@@ -104,6 +104,24 @@
       "parentUuid": "da175845_7826df82",
       "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "887c65a9_a96ec280",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/service_watcher.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-05-02T15:50:10Z",
+      "side": 1,
+      "message": "Maybe we can get this in and optimize code readability later?",
+      "parentUuid": "28cefa36_36cab89b",
+      "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
