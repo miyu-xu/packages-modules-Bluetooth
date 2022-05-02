@@ -122,6 +122,24 @@
       "parentUuid": "28cefa36_36cab89b",
       "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50672e37_5bc8ab27",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/service_watcher.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-02T17:19:07Z",
+      "side": 1,
+      "message": "Yes, for now I use `if let` when possible to avoid naked unwrap and reduce nesting.",
+      "parentUuid": "887c65a9_a96ec280",
+      "revId": "8a1b721ed3498ab7c54dcc7066e9df91ecea04b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
