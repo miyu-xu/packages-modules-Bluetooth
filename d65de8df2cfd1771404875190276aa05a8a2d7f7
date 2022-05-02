@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "496e3c84_70a55903",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-02T18:04:55Z",
+      "side": 1,
+      "message": "Delete?",
+      "range": {
+        "startLine": 1115,
+        "startChar": 0,
+        "endLine": 1141,
+        "endChar": 3
+      },
+      "revId": "d65de8df2cfd1771404875190276aa05a8a2d7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
