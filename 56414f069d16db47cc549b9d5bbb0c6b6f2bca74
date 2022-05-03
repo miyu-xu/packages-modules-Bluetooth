@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92aa3875_853acd14",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3474,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-05-03T18:16:45Z",
+      "side": 1,
+      "message": "Do we want to log here so we know this happened?",
+      "revId": "56414f069d16db47cc549b9d5bbb0c6b6f2bca74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
