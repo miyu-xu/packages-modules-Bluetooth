@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c45f0b_bf670524",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-03T00:00:15Z",
+      "side": 1,
+      "message": "Nit: A little more specific description of what the CL does would be helpful, since there are still more fixes that could be made.\n\nMaybe something like:\nPanic on test failures and check conform lengths",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 41
+      },
+      "revId": "b0a5bd1c39b7002dfe4d4cc12ce8dcab932c3d32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
