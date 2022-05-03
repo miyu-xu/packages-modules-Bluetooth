@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afd7075d_bc34f2b5",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-03T23:02:57Z",
+      "side": 1,
+      "message": "Could we add log here when the set address type failed? \n\nOr if this should never happen, we should probably assert",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 78
+      },
+      "revId": "f116e783e1cbc3833f178a5cfe09333e64779969",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
