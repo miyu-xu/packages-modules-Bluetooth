@@ -91,6 +91,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "498c73ed_75ac0b17",
+        "filename": "system/gd/rust/linux/mgmt/proto/suspend.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-03T00:26:49Z",
+      "side": 1,
+      "message": "Since it\u0027s not very hard, I opted to make https://chromium.googlesource.com/chromiumos/platform2/system_api/+/HEAD/dbus/power_manager/suspend.proto a dependency instead of included in AOSP source. There will be a follow up to fix Chrome OS build to support this dependency.",
+      "parentUuid": "7ce160d0_9c376d67",
+      "revId": "36d202b09052d8b0da0ce1bd61e474bbea4551c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "42047490_82869b05",
         "filename": "system/gd/rust/linux/mgmt/src/lib.rs",
         "patchSetId": 2
