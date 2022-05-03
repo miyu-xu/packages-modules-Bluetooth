@@ -33,6 +33,7 @@ android_test {
     name: "pts-bot",
     required: ["PandoraServer"],
     test_config: "configs/PtsBotTest.xml",
+    test_suites: ["device-tests"],
     data: ["configs/pts_bot_tests_config.json"],
 }
 
