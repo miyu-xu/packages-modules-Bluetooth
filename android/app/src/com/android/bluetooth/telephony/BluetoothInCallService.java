@@ -834,9 +834,9 @@ public class BluetoothInCallService extends InCallService {
         BluetoothCall activeCall = mCallInfo.getActiveCall();
         BluetoothCall ringingCall = mCallInfo.getRingingOrSimulatedRingingCall();
         if (ringingCall == null) {
-            Log.i(TAG, "asdf ringingCall null");
+            Log.i(TAG, "ringingCall null");
         } else {
-            Log.i(TAG, "asdf ringingCall not null " + ringingCall.hashCode());
+            Log.i(TAG, "ringingCall not null " + ringingCall.hashCode());
         }
 
         BluetoothCall heldCall = mCallInfo.getHeldCall();
@@ -844,12 +844,12 @@ public class BluetoothInCallService extends InCallService {
         Log.i(TAG, "Active: " + activeCall
                 + " Ringing: " + ringingCall
                 + " Held: " + heldCall);
-        Log.i(TAG, "asdf chld " + chld);
+        Log.i(TAG, "chld " + chld);
 
         if (chld == CHLD_TYPE_RELEASEHELD) {
-            Log.i(TAG, "asdf CHLD_TYPE_RELEASEHELD");
+            Log.i(TAG, "CHLD_TYPE_RELEASEHELD");
             if (!mCallInfo.isNullCall(ringingCall)) {
-                Log.i(TAG, "asdf reject " + ringingCall.hashCode());
+                Log.i(TAG, "reject " + ringingCall.hashCode());
                 ringingCall.reject(false, null);
                 return true;
             } else if (!mCallInfo.isNullCall(heldCall)) {
