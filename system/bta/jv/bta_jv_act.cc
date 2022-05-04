@@ -592,7 +592,10 @@ void bta_jv_enable(tBTA_JV_DM_CBACK* p_cback) {
 }
 
 /** Disables the BT device manager free the resources used by java */
-void bta_jv_disable() { LOG(INFO) << __func__; }
+void bta_jv_disable() {
+  LOG(INFO) << __func__;
+  RFCOMM_Init();
+}
 
 /**
  * We keep a list of PSM's that have been freed from JAVA, for reuse.
