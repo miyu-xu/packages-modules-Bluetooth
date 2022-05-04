@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dafc62d_3afbffdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1546599
+      },
+      "writtenOn": "2022-05-04T17:40:13Z",
+      "side": 1,
+      "message": "Ayushi,\nfuzzer\u0027s Android.bp has changed in git_master.\nCan you please upload a CL on git_master for this?\nThanks.",
+      "revId": "949e9e4361bfc7f36b13b54d3fe772b7d96493cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
