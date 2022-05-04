@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "870e56df_ea57ec40",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2855,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-04T18:33:37Z",
+      "side": 1,
+      "message": "this function name is bit misleading. \nMaybe this function should be named\n\n```\nbool IsAudioSourceAvailableForCurrentContentType(void) {\n return (current_context_type_ \u003d\u003d LeAudioContextType::CONVERSATIONAL\n          || current_context_type_ \u003d\u003d LeAudioContextType::VOICEASSISTANTS);\n}\n```",
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e24494c9_152481d8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2915,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-04T18:33:37Z",
+      "side": 1,
+      "message": "```\nif (!IsAudioSourceAvailableForCurrentContentType() \n      \u0026\u0026 StopStreamIfNeeded(group, LeAudioContextType::VOICEASSISTANTS)) {\n       return; \n}\n```",
+      "range": {
+        "startLine": 2915,
+        "startChar": 18,
+        "endLine": 2915,
+        "endChar": 56
+      },
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d17d1534_d5ffa8d7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2918,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-04T18:33:37Z",
+      "side": 1,
+      "message": "CancelStreamingRequest() is not needed here. This will be called after stream get reconfigured.",
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a4e3272_6dfaa4b4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3142,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-04T18:33:37Z",
+      "side": 1,
+      "message": "```\nif (!IsAudioSourceAvailableForCurrentContentType() \n      \u0026\u0026 StopStreamIfNeeded(group, new_context)) {\n       return; \n}\n```",
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
