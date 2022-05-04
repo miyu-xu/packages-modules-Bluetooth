@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64e5d14_5f7aa0f4",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-04T20:17:51Z",
+      "side": 1,
+      "message": "nit: let\u0027s not have commented out code to keep TODOs readable. If this is a TODO, it\u0027s better to describe with words.",
+      "range": {
+        "startLine": 134,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 84
+      },
+      "revId": "2c7d447e525c4b01f7009523abc14ee94754b7f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
