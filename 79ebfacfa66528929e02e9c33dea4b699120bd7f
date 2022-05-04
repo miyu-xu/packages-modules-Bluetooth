@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2841170_ab0291b2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-04T08:59:16Z",
+      "side": 1,
+      "message": "This should be a byte array ?",
+      "range": {
+        "startLine": 515,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 0
+      },
+      "revId": "79ebfacfa66528929e02e9c33dea4b699120bd7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
