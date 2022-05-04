@@ -242,8 +242,12 @@ struct Controller::impl {
     ASSERT(complete_view.IsValid());
     ErrorCode status = complete_view.GetStatus();
     ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
-
     local_version_information_ = complete_view.GetLocalVersionInformation();
+    LOG_WARN("LocalVersion lmp %hhu", local_version_information_.lmp_version_);
+    LOG_WARN("LocalVersion lmp sub %d", local_version_information_.lmp_subversion_);
+    LOG_WARN("LocalVersion hci %hhu", local_version_information_.hci_version_);
+    LOG_WARN("LocalVersion hci sub %d", local_version_information_.hci_revision_);
+
   }
 
   void read_local_supported_commands_complete_handler(CommandCompleteView view) {
