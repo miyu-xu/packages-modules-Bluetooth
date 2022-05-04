@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "327fc352_5aca0e74",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 3839,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-04T02:22:45Z",
+      "side": 1,
+      "message": "This one should also work for Enable.  Disable is just there for convenience.  I\u0027m surprised that it fails.  We don\u0027t have to fix that in this CL, but we should be able to do:\ntest LeSetExtendedAdvertisingEnable {\n  \"\\x39\\x20\\x06\\x01\\x01\\x01\\x00\\x00\\x00\",\n  \"\\x39\\x20\\x06\\x00\\x01\\x01\\x00\\x00\\x00\",\n}",
+      "range": {
+        "startLine": 3839,
+        "startChar": 2,
+        "endLine": 3839,
+        "endChar": 41
+      },
+      "revId": "0bbd6c7cb8928b000c62b5ebb5c16d1f9037fd5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
