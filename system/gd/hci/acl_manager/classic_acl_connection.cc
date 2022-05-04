@@ -127,6 +127,7 @@ class AclConnectionTracker : public ConnectionManagementCallbacks {
     SAVE_OR_CALL(OnReadAfhChannelMapComplete, afh_mode, afh_channel_map)
   }
   void OnReadRssiComplete(uint8_t rssi) override {
+    LOG_INFO("aaaaaaaaa OnReadRssiComplete %hhu", rssi);
     bluetooth::os::LogMetricReadRssiResult(
         address_, connection_handle_, static_cast<uint8_t>(ErrorCode::SUCCESS), rssi);
     SAVE_OR_CALL(OnReadRssiComplete, rssi);
