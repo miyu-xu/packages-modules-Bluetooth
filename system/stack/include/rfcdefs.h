@@ -25,7 +25,7 @@
 #ifndef RFCDEFS_H
 #define RFCDEFS_H
 
-#define PORT_MAX_RFC_PORTS 31
+#define PORT_MAX_RFC_PORTS 64
 
 /*
  *  If nothing is negotiated MTU should be 127
