@@ -22,6 +22,10 @@
  *
  ******************************************************************************/
 
+#define LOG_TAG "bt_gatt"
+
+#include <base/logging.h>
+#include <log/log.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -36,8 +40,6 @@
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "types/bluetooth/uuid.h"
-
-#include <base/logging.h>
 
 using base::StringPrintf;
 using bluetooth::Uuid;
