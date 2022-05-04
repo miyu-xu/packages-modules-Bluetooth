@@ -139,6 +139,30 @@
       },
       "revId": "33b49b2015c8944483d4201dc894574deb961070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0426ff0b_80992a7e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-04T10:08:26Z",
+      "side": 1,
+      "message": "I\u0027m not sure if I got it right. Let me clarify on how this patch works. `mGroupOpDevices` is not holding any broadcast source devices but the sink devices (BASS servers). We bind the group trigger flag with the sink device, so that when the client app is triggering an action on that sink, we could trigger it on other group members that this device is part of. The group operation trigger flag sticks only to the device that was used in `addSource()` call, with `isGroupOp` set to true (we can call it a Lead Device). That means if the app calls `removeSource()` not on the lead device but the other group member, the operation will not be performed on the group, but the single device only.\n\n`mCallbacks.notifySourceRemoved()` seems to be called only from one place in the state machine, and probably we should remove the sticky flag from the device if the device decides to remove the broadcast source on its own. I did that in the latest patch revision.",
+      "parentUuid": "8f3390e3_ae42d1cb",
+      "range": {
+        "startLine": 923,
+        "startChar": 27,
+        "endLine": 923,
+        "endChar": 51
+      },
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
