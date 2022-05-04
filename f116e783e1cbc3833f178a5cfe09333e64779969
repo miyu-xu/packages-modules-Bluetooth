@@ -22,6 +22,30 @@
       },
       "revId": "f116e783e1cbc3833f178a5cfe09333e64779969",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e522b5c2_d796e4a9",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-05-04T01:27:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "afd7075d_bc34f2b5",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 78
+      },
+      "revId": "f116e783e1cbc3833f178a5cfe09333e64779969",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
