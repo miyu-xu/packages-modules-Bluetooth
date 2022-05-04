@@ -71,14 +71,14 @@ struct AudioSetConfigurationProviderJson {
     if (context_configurations_.count(context_type))
       return &context_configurations_.at(context_type);
 
-    LOG_WARN(": No predefined scenario for the context %d was found.",
-             (int)context_type);
+    LOG_DEBUG(": No predefined scenario for the context %d was found.",
+              (int)context_type);
 
     auto fallback_scenario = "Default";
     context_type = ScenarioToContextType(fallback_scenario);
 
     if (context_configurations_.count(context_type)) {
-      LOG_WARN(": Using %s scenario by default.", fallback_scenario);
+      LOG_DEBUG(": Using %s scenario by default.", fallback_scenario);
       return &context_configurations_.at(context_type);
     }
 
