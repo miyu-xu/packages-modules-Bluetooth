@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34b8d885_019f36d4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-04T09:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54dd007d_dd177714",
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46a776b2_757949a5",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c253a318_970ebd58",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-04T09:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46a776b2_757949a5",
+      "range": {
+        "startLine": 356,
+        "startChar": 0,
+        "endLine": 356,
+        "endChar": 45
+      },
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2377c3ac_ffd7820b",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-05-02T11:23:48Z",
       "side": 1,
       "message": "please add some log here when this error happens",
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7cdea04_e419de2b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-04T09:10:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2377c3ac_ffd7820b",
       "revId": "33b49b2015c8944483d4201dc894574deb961070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
