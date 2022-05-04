@@ -22,6 +22,30 @@
       },
       "revId": "0bbd6c7cb8928b000c62b5ebb5c16d1f9037fd5c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "687ad507_b5db9033",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 3839,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-04T18:01:12Z",
+      "side": 1,
+      "message": "Based on offline discussion, we should just constrain enable in the Enable packet.\n\npacket LeSetExtendedAdvertisingEnable : LeAdvertisingCommand (op_code \u003d LE_SET_EXTENDED_ADVERTISING_ENABLE) {\n  _fixed_ \u003d 0x01 : 8, // Enable::ENABLED\n  _count_(enabled_sets) : 8,\n  enabled_sets : EnabledSet[],\n}",
+      "parentUuid": "327fc352_5aca0e74",
+      "range": {
+        "startLine": 3839,
+        "startChar": 2,
+        "endLine": 3839,
+        "endChar": 41
+      },
+      "revId": "0bbd6c7cb8928b000c62b5ebb5c16d1f9037fd5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
