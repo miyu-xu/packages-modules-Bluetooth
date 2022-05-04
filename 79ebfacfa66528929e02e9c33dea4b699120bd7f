@@ -22,6 +22,30 @@
       },
       "revId": "79ebfacfa66528929e02e9c33dea4b699120bd7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2349391d_951a068c",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-05-04T16:27:00Z",
+      "side": 1,
+      "message": "Trying to align like A2DP:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothCodecConfig.java\n\nFor codec specific fields for extra vendor/codec related stuffs to extended features OR further versions of codec.",
+      "parentUuid": "b2841170_ab0291b2",
+      "range": {
+        "startLine": 515,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 0
+      },
+      "revId": "79ebfacfa66528929e02e9c33dea4b699120bd7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
