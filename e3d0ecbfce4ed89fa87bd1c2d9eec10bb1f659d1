@@ -22,6 +22,30 @@
       },
       "revId": "e3d0ecbfce4ed89fa87bd1c2d9eec10bb1f659d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edb78d57_b42a7ec0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-04T19:20:32Z",
+      "side": 1,
+      "message": "I found it while testing fix for that bug which also had a problem with autoconnect flag. If not a big problem I would deliver it within this bug number.",
+      "parentUuid": "27aee10c_25ad8abd",
+      "range": {
+        "startLine": 17,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 14
+      },
+      "revId": "e3d0ecbfce4ed89fa87bd1c2d9eec10bb1f659d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
