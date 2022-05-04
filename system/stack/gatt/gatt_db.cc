@@ -22,6 +22,10 @@
  *
  ******************************************************************************/
 
+#include <base/logging.h>
+#include <log/log.h>
+#define LOG_TAG "bt_gatt"
+
 #include <stdio.h>
 #include <string.h>
 
