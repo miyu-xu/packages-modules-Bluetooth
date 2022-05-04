@@ -26,12 +26,12 @@
 #include <cstdint>
 
 #include "bt_target.h"  // Must be first to define build configuration
-
 #include "bta/dm/bta_dm_int.h"
 #include "bta/include/bta_api.h"
 #include "bta/include/bta_hh_api.h"
 #include "bta/include/bta_jv_api.h"
 #include "bta/sys/bta_sys.h"
+#include "osi/include/properties.h"
 #include "types/raw_address.h"
 
 /* page timeout in 625uS */
@@ -320,15 +320,19 @@ tBTA_DM_PM_TYPE_QUALIFIER tBTA_DM_PM_SPEC* get_bta_dm_pm_spec() {
           {(BTA_DM_PM_SNIFF | BTA_DM_PM_PARK), /* allow park & sniff */
            (BTA_DM_PM_SSR2),                   /* the SSR entry */
            {
-               {BTA_DM_PM_SNIFF, 7000},  /* conn open sniff */
-               {BTA_DM_PM_NO_PREF, 0},   /* conn close */
-               {BTA_DM_PM_NO_ACTION, 0}, /* app open */
-               {BTA_DM_PM_NO_ACTION, 0}, /* app close */
-               {BTA_DM_PM_SNIFF3, 7000}, /* sco open, active */
-               {BTA_DM_PM_SNIFF, 7000},  /* sco close sniff */
-               {BTA_DM_PM_SNIFF, 7000},  /* idle */
-               {BTA_DM_PM_ACTIVE, 0},    /* busy */
-               {BTA_DM_PM_RETRY, 7000}   /* mode change retry */
+               {BTA_DM_PM_SNIFF, uint16_t(osi_property_get_int32(
+                                     "bluetooth.bta_hs_sniff_delay_ms.config",
+                                     7000))}, /* conn open sniff */
+               {BTA_DM_PM_NO_PREF, 0},        /* conn close */
+               {BTA_DM_PM_NO_ACTION, 0},      /* app open */
+               {BTA_DM_PM_NO_ACTION, 0},      /* app close */
+               {BTA_DM_PM_SNIFF3, 7000},      /* sco open, active */
+               {BTA_DM_PM_SNIFF, 7000},       /* sco close sniff */
+               {BTA_DM_PM_SNIFF, uint16_t(osi_property_get_int32(
+                                     "bluetooth.bta_hs_sniff_delay_ms.config",
+                                     7000))}, /* idle */
+               {BTA_DM_PM_ACTIVE, 0},         /* busy */
+               {BTA_DM_PM_RETRY, 7000}        /* mode change retry */
            }},
 
           /* AVK : 13 */
