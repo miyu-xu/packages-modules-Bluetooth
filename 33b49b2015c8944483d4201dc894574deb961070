@@ -163,6 +163,30 @@
       },
       "revId": "33b49b2015c8944483d4201dc894574deb961070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96aff3e1_fb2ffa67",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-04T11:43:26Z",
+      "side": 1,
+      "message": "two cents from my side:\n\n1) I think all the devices in the group should have sticky flag. If one gots disconnected, then operations on other device in the group should be still in the group context\n\n2) If device disconnects (ACL is disconnected) it does not imply that Source has been removed. Peer device still might be sync to the broadcast. \n\n3) If remote device autonomously removes the \"Source\" I think we should respect it, but do not remove the sticky flag as long as the User did not call Remove Source.\n\n4) Do we allow user to add more than 1 source? If so, then instead of flag we should have reference counter, or keep flag as long as all the group devices got disconnected.",
+      "parentUuid": "0426ff0b_80992a7e",
+      "range": {
+        "startLine": 923,
+        "startChar": 27,
+        "endLine": 923,
+        "endChar": 51
+      },
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
