@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "829fd018_3665d0b5",
+        "filename": "system/blueberry/tests/gd/cert/py_le_iso.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-04T21:37:39Z",
+      "side": 1,
+      "message": "This was the problem.  We were calling LeSetCigParameters with a LeSetCigParametersTestRequest.  LeSetCigParametersTestRequest and LeSetCigParametersRequest have different parameters, so the values were getting reordered.",
+      "range": {
+        "startLine": 130,
+        "startChar": 50,
+        "endLine": 130,
+        "endChar": 54
+      },
+      "revId": "692b3c0d0fb5f96085b51cd3a74c69dae3479931",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
