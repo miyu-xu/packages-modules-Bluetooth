@@ -114,7 +114,7 @@ impl ISuspendCallback for SuspendCallback {
         log::debug!("Suspend callback registered, callback_id = {}", callback_id);
     }
 
-    fn on_suspend_ready(&self, suspend_id: u32) {
+    fn on_suspend_ready(&self, suspend_id: i32) {
         // Received when adapter is ready to suspend. Tell powerd that suspend is ready.
         log::debug!("Suspend ready, adapter suspend_id = {}", suspend_id);
 
@@ -135,7 +135,7 @@ impl ISuspendCallback for SuspendCallback {
         }
     }
 
-    fn on_resumed(&self, suspend_id: u32) {
+    fn on_resumed(&self, suspend_id: i32) {
         // Received when adapter is ready to suspend. This is just for our information and powerd
         // doesn't need to know about this.
         log::debug!("Suspend resumed, adapter suspend_id = {}", suspend_id);
@@ -426,13 +426,14 @@ impl PowerdSuspendManager {
             // times in the `if let` block below. Prevent deadlock by locking only once.
             let context_locked = self.context.lock().unwrap();
             if let Some(adapter_suspend_dbus) = &context_locked.adapter_suspend_dbus {
-                let adapter_suspend_id =
-                    adapter_suspend_dbus.suspend(match suspend_imminent.get_reason() {
+                adapter_suspend_dbus.suspend(
+                    suspend_imminent.get_suspend_id(),
+                    match suspend_imminent.get_reason() {
                         SuspendImminent_Reason::IDLE => SuspendType::Connected,
                         SuspendImminent_Reason::LID_CLOSED => SuspendType::Disconnected,
                         SuspendImminent_Reason::OTHER => SuspendType::Other,
-                    });
-                log::debug!("Adapter suspend id = {}", adapter_suspend_id);
+                    },
+                );
             } else {
                 // If there is no adapter, that means Bluetooth is not active and we should always
                 // tell powerd that we are ready to suspend.
