@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36a84ccb_845b072f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2855,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-05T21:03:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "870e56df_ea57ec40",
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e24494c9_152481d8",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-04T18:33:37Z",
       "side": 1,
       "message": "```\nif (!IsAudioSourceAvailableForCurrentContentType() \n      \u0026\u0026 StopStreamIfNeeded(group, LeAudioContextType::VOICEASSISTANTS)) {\n       return; \n}\n```",
+      "range": {
+        "startLine": 2915,
+        "startChar": 18,
+        "endLine": 2915,
+        "endChar": 56
+      },
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e7ed612_22b3c561",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2915,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-05T21:03:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "e24494c9_152481d8",
       "range": {
         "startLine": 2915,
         "startChar": 18,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13676ad_caa65b88",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2918,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-05T21:03:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d17d1534_d5ffa8d7",
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a4e3272_6dfaa4b4",
@@ -71,6 +131,24 @@
       "writtenOn": "2022-05-04T18:33:37Z",
       "side": 1,
       "message": "```\nif (!IsAudioSourceAvailableForCurrentContentType() \n      \u0026\u0026 StopStreamIfNeeded(group, new_context)) {\n       return; \n}\n```",
+      "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd7c9bde_e03bcdb3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3142,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-05T21:03:11Z",
+      "side": 1,
+      "message": "I think this is not needed since it\u0027s already assumed in #3140 that new context would be Voice Assistant.",
+      "parentUuid": "3a4e3272_6dfaa4b4",
       "revId": "83e21355cbf4dd29b309eaec0b8af1346b26ece9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
