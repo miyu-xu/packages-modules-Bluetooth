@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0529a9e_3dd1be83",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-05T19:46:09Z",
+      "side": 1,
+      "message": "Unknown should probably be 0 in this case.",
+      "revId": "5f1889743f2686c79fd626032d2f3d7249b225ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
