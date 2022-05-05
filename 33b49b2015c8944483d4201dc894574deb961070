@@ -187,6 +187,30 @@
       },
       "revId": "33b49b2015c8944483d4201dc894574deb961070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb1e7e5f_5baf87fe",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-05T07:51:16Z",
+      "side": 1,
+      "message": "1) I agree. I\u0027ll also extend unit tests for this case.\n2) Yeap, but I guess we could clear the sticky flag if all devices from the group got disconnected.\n3) I wasn\u0027t sure about it TBH, but I\u0027ve changed that in the latest revision. I\u0027ll revert this change then.\n4) I might be wrong but I see no reason why more than 1 couldn\u0027t be added. I\u0027ll add a counter. Clearing the counter at whole group disconnection seems reasonable.",
+      "parentUuid": "96aff3e1_fb2ffa67",
+      "range": {
+        "startLine": 923,
+        "startChar": 27,
+        "endLine": 923,
+        "endChar": 51
+      },
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
