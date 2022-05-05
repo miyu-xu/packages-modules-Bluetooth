@@ -16,6 +16,24 @@
       "message": "Ayushi,\nfuzzer\u0027s Android.bp has changed in git_master.\nCan you please upload a CL on git_master for this?\nThanks.",
       "revId": "949e9e4361bfc7f36b13b54d3fe772b7d96493cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f15dc8d0_48264c1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1619864
+      },
+      "writtenOn": "2022-05-05T15:13:26Z",
+      "side": 1,
+      "message": "This CL has been rebased and uploaded on git_master: https://googleplex-android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/18184222",
+      "parentUuid": "3dafc62d_3afbffdc",
+      "revId": "949e9e4361bfc7f36b13b54d3fe772b7d96493cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
