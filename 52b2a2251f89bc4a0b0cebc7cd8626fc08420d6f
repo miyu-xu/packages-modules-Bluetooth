@@ -22,6 +22,30 @@
       },
       "revId": "52b2a2251f89bc4a0b0cebc7cd8626fc08420d6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33302378_f83f2050",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-05T19:43:32Z",
+      "side": 1,
+      "message": "This was intentional to simplify the logic. This runs every time discover ends so the first freshness check is at 42s after discovery starts.",
+      "parentUuid": "668948ef_c904b0de",
+      "range": {
+        "startLine": 10,
+        "startChar": 52,
+        "endLine": 10,
+        "endChar": 72
+      },
+      "revId": "52b2a2251f89bc4a0b0cebc7cd8626fc08420d6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
