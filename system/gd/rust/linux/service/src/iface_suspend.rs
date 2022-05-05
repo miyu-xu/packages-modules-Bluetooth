@@ -32,7 +32,7 @@ impl ISuspend for ISuspendDBus {
     }
 
     #[dbus_method("Suspend")]
-    fn suspend(&self, suspend_type: SuspendType) -> u32 {
+    fn suspend(&self, _suspend_id: i32, _suspend_type: SuspendType) {
         dbus_generated!()
     }
 
@@ -52,11 +52,11 @@ impl ISuspendCallback for SuspendCallbackDBus {
         dbus_generated!()
     }
     #[dbus_method("OnSuspendReady")]
-    fn on_suspend_ready(&self, suspend_id: u32) {
+    fn on_suspend_ready(&self, suspend_id: i32) {
         dbus_generated!()
     }
     #[dbus_method("OnResumed")]
-    fn on_resumed(&self, suspend_id: u32) {
+    fn on_resumed(&self, suspend_id: i32) {
         dbus_generated!()
     }
 }
