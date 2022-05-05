@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf2ef0c5_5a52291e",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapSimVcardManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-05-05T13:11:07Z",
+      "side": 0,
+      "message": "This will cause mCursor.isAfterLast() at line 134",
+      "range": {
+        "startLine": 269,
+        "startChar": 48,
+        "endLine": 269,
+        "endChar": 50
+      },
+      "revId": "0ea847df9844a95d0d249f6972e2d1f38a3ad86c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
