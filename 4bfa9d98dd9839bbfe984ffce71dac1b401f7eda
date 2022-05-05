@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7dfb769_26bfec5c",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T13:50:40Z",
+      "side": 1,
+      "message": "here you need \n\n```\n   switch (context_type) {\n     case LeAudioContextType::RINGTONE:\n+    if (id \u003d\u003d Lc3SettingId::LC3_16_1 || id \u003d\u003d Lc3SettingId::LC3_16_2)\n+        return true;\n+      break;\n+\n     case LeAudioContextType::CONVERSATIONAL:\n ```\n \n otherwise test_lc3_config_ringtone fails",
+      "revId": "4bfa9d98dd9839bbfe984ffce71dac1b401f7eda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
