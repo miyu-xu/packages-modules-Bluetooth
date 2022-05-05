@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b83ff974_059bf7c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T21:40:42Z",
+      "side": 1,
+      "message": "bluetooth_\n\nAdd also Bug:",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "566ef45c_c4f0a0b4",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T21:40:42Z",
+      "side": 1,
+      "message": "maybe we should add fallback versions  48/16, 48/24, ?",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f258703d_2f3bf4ca",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2858,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T21:40:42Z",
+      "side": 1,
+      "message": "return true. Audio source is available for Conversational and VoiceAssistant.",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2211efba_d6b458ee",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2861,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T21:40:42Z",
+      "side": 1,
+      "message": "return false",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e35ae2a_7823ac25",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2915,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T21:40:42Z",
+      "side": 1,
+      "message": "if ( !IsAudioSourceAvailableForCurrentContentType) \n\nWhich means, if current content type does not have AudioSource, we should reconfigure if needed.",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5be3dc4_3088bcce",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3134,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T21:40:42Z",
+      "side": 1,
+      "message": "remove \u0027!\u0027 , \n\nWhich means, if current content type has audio source - there is nothing to do.",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49bab2ae_1bbcedcc",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-05T21:40:42Z",
+      "side": 1,
+      "message": "maybe you could align to this: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2087749/1",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
