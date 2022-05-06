@@ -22,6 +22,30 @@
       },
       "revId": "f8106347ecd9ca5f6c8bb7b57256691cfd6ca7dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34b2261_0d63f1e4",
+        "filename": "tools/rootcanal/desktop/test_environment.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-05-06T12:52:01Z",
+      "side": 1,
+      "message": "\u003e We talked about saving the information in memory and filtering out ACL, SCO, and ISO data\nI think for thoses functionality I will modify the hci_sniffer.cc in a latter CL to add an option for filtering and to accept an `ostream` instead of an `ofstream` to be able to pass an in memory `stringstream` instead of a file",
+      "parentUuid": "f68be547_3829385b",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 78
+      },
+      "revId": "f8106347ecd9ca5f6c8bb7b57256691cfd6ca7dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
