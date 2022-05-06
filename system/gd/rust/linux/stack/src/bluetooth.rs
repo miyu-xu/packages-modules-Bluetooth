@@ -234,7 +234,9 @@ impl BluetoothDeviceContext {
                     self.info.address = bdaddr.to_string();
                 }
                 BluetoothProperty::BdName(bdname) => {
-                    self.info.name = bdname.clone();
+                    if (bdname != "") {
+                        self.info.name = bdname.clone();
+                    }
                 }
                 _ => {}
             }
