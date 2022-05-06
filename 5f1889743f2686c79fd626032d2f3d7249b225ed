@@ -16,6 +16,24 @@
       "message": "Unknown should probably be 0 in this case.",
       "revId": "5f1889743f2686c79fd626032d2f3d7249b225ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d470eec_f3ecda81",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-05-06T02:35:34Z",
+      "side": 1,
+      "message": "Any value not listed in [Bredr, Ble, Dual] is unknown. adapter.c!parse_properties() interpret this correctly.\n\nIn Rust, the current default value is Bredr. No matter if we\u0027d like to change Unknown to 0x0 or not, changing the default value to Unknown makes the conversion more complete. Otherwise, I\u0027d suggest we just remove Unknown to align the definition in libbluetooth.\n\nFor example, in btif.rs: \n\nBtDeviceType::from_u32(u32_from_bytes(slice)).unwrap_or(BtDeviceType::Unknown),",
+      "parentUuid": "a0529a9e_3dd1be83",
+      "revId": "5f1889743f2686c79fd626032d2f3d7249b225ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
