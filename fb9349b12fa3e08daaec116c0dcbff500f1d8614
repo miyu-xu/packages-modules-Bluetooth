@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcd172e2_e24b245a",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-06T21:00:51Z",
+      "side": 1,
+      "message": "Are we sure we want to format generated code?  I understand wanting it formatting while debugging, but otherwise it seems unnecessary.",
+      "range": {
+        "startLine": 515,
+        "startChar": 0,
+        "endLine": 520,
+        "endChar": 53
+      },
+      "revId": "fb9349b12fa3e08daaec116c0dcbff500f1d8614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
