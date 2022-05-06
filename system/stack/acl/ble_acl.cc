@@ -17,6 +17,7 @@
 #include <cstdint>
 
 #include "osi/include/log.h"
+#include "stack/acl/btm_acl.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
@@ -77,6 +78,8 @@ void acl_ble_connection_complete(const tBLE_BD_ADDR& address_with_type,
                                  uint16_t handle, tHCI_ROLE role, bool match,
                                  uint16_t conn_interval, uint16_t conn_latency,
                                  uint16_t conn_timeout) {
+  acl_ignore_other_public_and_random_direct_connect(address_with_type);
+
   if (!acl_ble_common_connection(address_with_type, handle, role, match,
                                  conn_interval, conn_latency, conn_timeout)) {
     LOG_WARN("Unable to create non enhanced ble acl connection");
@@ -94,6 +97,8 @@ void acl_ble_enhanced_connection_complete(
     bool match, uint16_t conn_interval, uint16_t conn_latency,
     uint16_t conn_timeout, const RawAddress& local_rpa,
     const RawAddress& peer_rpa, tBLE_ADDR_TYPE peer_addr_type) {
+  acl_ignore_other_public_and_random_direct_connect(address_with_type);
+
   if (!acl_ble_common_connection(address_with_type, handle, role, match,
                                  conn_interval, conn_latency, conn_timeout)) {
     LOG_WARN("Unable to create enhanced ble acl connection");

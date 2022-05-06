@@ -75,8 +75,6 @@
 void BTM_update_version_info(const RawAddress& bd_addr,
                              const remote_version_info& remote_version_info);
 
-void gatt_find_in_device_record(const RawAddress& bd_addr,
-                                tBLE_BD_ADDR* address_with_type);
 void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle,
                             const RawAddress& p_bda);
 
@@ -99,6 +97,8 @@ struct StackAclBtmAcl {
   void set_default_packet_types_supported(uint16_t packet_types_supported) {
     btm_cb.acl_cb_.btm_acl_pkt_types_supported = packet_types_supported;
   }
+
+  std::set<const RawAddress> connected_with_both_public_and_random_set;
 };
 
 struct RoleChangeView {
@@ -2760,15 +2760,114 @@ void acl_write_automatic_flush_timeout(const RawAddress& bd_addr,
   btsnd_hcic_write_auto_flush_tout(p_acl->hci_handle, flush_timeout_in_ticks);
 }
 
-bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr) {
+const tBLE_BD_ADDR convert_to_address_with_type(
+    const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec) {
+  if (p_dev_rec == nullptr || !p_dev_rec->is_device_type_has_ble()) {
+    return {
+        .type = BLE_ADDR_PUBLIC,
+        .bda = bd_addr,
+    };
+  }
+
+  if (p_dev_rec->ble.identity_address_with_type.bda.IsEmpty()) {
+    return {
+        .type = p_dev_rec->ble.AddressType(),
+        .bda = bd_addr,
+    };
+  } else {
+    return p_dev_rec->ble.identity_address_with_type;
+  }
+}
+
+static void gatt_find_in_device_record(const tBTM_SEC_DEV_REC* p_dev_rec,
+                                       const RawAddress& bd_addr,
+                                       tBLE_BD_ADDR* address_with_type) {
+  CHECK(p_dev_rec != nullptr);
+  CHECK(address_with_type != nullptr);
+
+  if (p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) {
+    if (p_dev_rec->ble.identity_address_with_type.bda.IsEmpty()) {
+      *address_with_type = {.type = p_dev_rec->ble.AddressType(),
+                            .bda = bd_addr};
+      return;
+    }
+    *address_with_type = p_dev_rec->ble.identity_address_with_type;
+    return;
+  }
+  *address_with_type = {.type = BLE_ADDR_PUBLIC, .bda = bd_addr};
+  return;
+}
+
+// Both public and random address types were used as it was not known
+// which address type to use for the initial connection.  After a
+// connection occurred on *one* of the address types remove the OTHER
+// address type from the filter accept list.
+void acl_ignore_other_public_and_random_direct_connect(
+    const tBLE_BD_ADDR& connected_address_with_type) {
+  auto it = internal_.connected_with_both_public_and_random_set.find(
+      connected_address_with_type.bda);
+  if (it != internal_.connected_with_both_public_and_random_set.end()) {
+    internal_.connected_with_both_public_and_random_set.erase(it);
+    switch (connected_address_with_type.type) {
+      case BLE_ADDR_PUBLIC:
+        bluetooth::shim::ACL_IgnoreLeConnectionFrom(
+            {BLE_ADDR_RANDOM, connected_address_with_type.bda});
+        break;
+
+      case BLE_ADDR_RANDOM:
+        bluetooth::shim::ACL_IgnoreLeConnectionFrom(
+            {BLE_ADDR_PUBLIC, connected_address_with_type.bda});
+        break;
+
+      default:
+        LOG_ERROR("Found unknown address type in public_random set:%s",
+                  PRIVATE_ADDRESS(connected_address_with_type));
+        break;
+    }
+  }
+}
+
+// Cancel direct connects using both public and random addresses by removing
+// both entries.
+//
+// Returns: true Device address was found and removed from the public and random
+// set
+//          false: Otherwise
+//
+static bool acl_ignore_both_public_and_random_direct_connect(
+    const RawAddress& bd_addr) {
+  auto it = internal_.connected_with_both_public_and_random_set.find(bd_addr);
+  if (it == internal_.connected_with_both_public_and_random_set.end()) {
+    return false;
+  }
+
+  internal_.connected_with_both_public_and_random_set.erase(it);
+  bluetooth::shim::ACL_IgnoreLeConnectionFrom({BLE_ADDR_RANDOM, bd_addr});
+  bluetooth::shim::ACL_IgnoreLeConnectionFrom({BLE_ADDR_PUBLIC, bd_addr});
+  return true;
+}
+
+bool acl_create_le_connection_with_id(UNUSED_ATTR uint8_t id,
+                                      const RawAddress& bd_addr) {
+  const tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  if (p_dev_rec == nullptr) {
+    // If we do not have the security record use both public and random to
+    // cover all our bases
+    bluetooth::shim::ACL_AcceptLeConnectionFrom(
+        {.bda = bd_addr, .type = BLE_ADDR_PUBLIC},
+        /* is_direct */ true);
+    bluetooth::shim::ACL_AcceptLeConnectionFrom(
+        {.bda = bd_addr, .type = BLE_ADDR_RANDOM},
+        /* is_direct */ true);
+    internal_.connected_with_both_public_and_random_set.insert(bd_addr);
+    LOG_DEBUG("Created both public and random le direct connection to:%s",
+              PRIVATE_ADDRESS(bd_addr));
+  } else {
     tBLE_BD_ADDR address_with_type{
         .bda = bd_addr,
         .type = BLE_ADDR_RANDOM,
     };
-    gatt_find_in_device_record(bd_addr, &address_with_type);
-    LOG_DEBUG("Creating le direct connection to:%s",
-              PRIVATE_ADDRESS(address_with_type));
-
+    gatt_find_in_device_record(p_dev_rec, bd_addr, &address_with_type);
     if (address_with_type.type == BLE_ADDR_ANONYMOUS) {
       LOG_WARN(
           "Creating le direct connection to:%s, address type 'anonymous' is "
@@ -2776,14 +2875,23 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr) {
           PRIVATE_ADDRESS(address_with_type));
       return false;
     }
-
     bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
                                                 /* is_direct */ true);
-    return true;
+    LOG_DEBUG("Created le direct connection with known security record:%s",
+              PRIVATE_ADDRESS(address_with_type));
+  }
+  return true;
 }
 
 bool acl_create_le_connection(const RawAddress& bd_addr) {
   return acl_create_le_connection_with_id(CONN_MGR_ID_L2CAP, bd_addr);
+}
+
+void acl_cancel_le_connection(const tBLE_BD_ADDR& address_with_type) {
+  if (!acl_ignore_both_public_and_random_direct_connect(
+          address_with_type.bda)) {
+    bluetooth::shim::ACL_IgnoreLeConnectionFrom(address_with_type);
+  }
 }
 
 void acl_rcv_acl_data(BT_HDR* p_msg) {
@@ -2962,3 +3070,13 @@ tACL_CONN* btm_acl_for_bda(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   }
   return p_acl;
 }
+
+namespace bluetooth {
+namespace testing {
+
+std::set<const RawAddress> copy_of_connected_with_both_public_and_random_set() {
+  return internal_.connected_with_both_public_and_random_set;
+}
+
+}  // namespace testing
+}  // namespace bluetooth

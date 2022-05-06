@@ -54,22 +54,6 @@ namespace test {
 namespace mock {
 namespace stack_btm_ble_bgconn {
 
-// Shared state between mocked functions and tests
-// Name: convert_to_address_with_type
-// Params:  const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec
-// Returns: const tBLE_BD_ADDR
-struct convert_to_address_with_type {
-  tBLE_BD_ADDR ble_bd_addr;
-  std::function<const tBLE_BD_ADDR(const RawAddress& bd_addr,
-                                   const tBTM_SEC_DEV_REC* p_dev_rec)>
-      body{[this](const RawAddress& bd_addr,
-                  const tBTM_SEC_DEV_REC* p_dev_rec) { return ble_bd_addr; }};
-  const tBLE_BD_ADDR operator()(const RawAddress& bd_addr,
-                                const tBTM_SEC_DEV_REC* p_dev_rec) {
-    return body(bd_addr, p_dev_rec);
-  };
-};
-extern struct convert_to_address_with_type convert_to_address_with_type;
 // Name: btm_update_scanner_filter_policy
 // Params: tBTM_BLE_SFP scan_policy
 // Returns: void

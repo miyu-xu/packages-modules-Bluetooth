@@ -31,15 +31,19 @@
 #include "device/include/controller.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/shim.h"
+#include "stack/acl/btm_acl.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_types.h"
+#include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
 extern tBTM_CB btm_cb;
 
 extern void btm_ble_create_conn_cancel();
+extern const tBLE_BD_ADDR convert_to_address_with_type(
+    const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
 
 namespace {
 
@@ -69,25 +73,6 @@ struct BgConnHash {
 
 static std::unordered_map<RawAddress, BackgroundConnection, BgConnHash>
     background_connections;
-
-const tBLE_BD_ADDR convert_to_address_with_type(
-    const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec) {
-  if (p_dev_rec == nullptr || !p_dev_rec->is_device_type_has_ble()) {
-    return {
-        .type = BLE_ADDR_PUBLIC,
-        .bda = bd_addr,
-    };
-  }
-
-  if (p_dev_rec->ble.identity_address_with_type.bda.IsEmpty()) {
-    return {
-        .type = p_dev_rec->ble.AddressType(),
-        .bda = bd_addr,
-    };
-  } else {
-    return p_dev_rec->ble.identity_address_with_type;
-  }
-}
 
 /*******************************************************************************
  *
@@ -219,10 +204,8 @@ void BTM_AcceptlistRemove(const RawAddress& address) {
     return;
   }
 
-    bluetooth::shim::ACL_IgnoreLeConnectionFrom(
-        convert_to_address_with_type(address, btm_find_dev(address)));
-    return;
-
+  acl_cancel_le_connection(
+      convert_to_address_with_type(address, btm_find_dev(address)));
 }
 
 /** Clear the acceptlist, end any pending acceptlist connections */

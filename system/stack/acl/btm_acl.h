@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 The Android Open Source Project
+ * Copyright 2022 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,23 +14,14 @@
  * limitations under the License.
  */
 
-/*
- * Generated mock file from original source file
- *   Functions generated:7
- */
+#pragma once
 
 #include <cstdint>
-#include <map>
-#include <string>
 
-extern std::map<std::string, int> mock_function_count_map;
-
-#include "main/shim/acl_api.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
-#ifndef UNUSED_ATTR
-#define UNUSED_ATTR
-#endif
-
-void bluetooth::shim::ACL_Shutdown() { mock_function_count_map[__func__]++; }
+bool acl_create_le_connection(const RawAddress& bd_addr);
+void acl_cancel_le_connection(const tBLE_BD_ADDR& address_with_type);
+void acl_ignore_other_public_and_random_direct_connect(
+    const tBLE_BD_ADDR& address_with_type);

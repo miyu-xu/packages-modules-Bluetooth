@@ -111,3 +111,55 @@ TEST(BleAddressWithTypeTest, BLE_ADDR_TYPE_TO_STREAM) {
   ASSERT_EQ(*exp, *buf);
   ASSERT_EQ(5, p - buf);
 }
+
+TEST(BleAddressWithTypeTest, equality) {
+  tBLE_BD_ADDR public_address{BLE_ADDR_PUBLIC,
+                              RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66})};
+  tBLE_BD_ADDR random_address{BLE_ADDR_RANDOM,
+                              RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66})};
+  tBLE_BD_ADDR public_identity_address{
+      BLE_ADDR_PUBLIC_ID, RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66})};
+  tBLE_BD_ADDR random_identity_address{
+      BLE_ADDR_RANDOM_ID, RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66})};
+
+  ASSERT_NE(public_address, random_address);
+  ASSERT_NE(public_identity_address, random_identity_address);
+  ASSERT_NE(public_address, public_identity_address);
+  ASSERT_NE(random_address, random_identity_address);
+
+  tBLE_BD_ADDR public_address_copy(public_address);
+  tBLE_BD_ADDR random_address_copy(random_address);
+  tBLE_BD_ADDR public_identity_address_copy(public_identity_address);
+  tBLE_BD_ADDR random_identity_address_copy(random_identity_address);
+
+  ASSERT_EQ(public_address, public_address_copy);
+  ASSERT_EQ(random_address, random_address_copy);
+  ASSERT_EQ(public_identity_address, public_identity_address_copy);
+  ASSERT_EQ(random_identity_address, random_identity_address_copy);
+}
+
+TEST(BleAddressWithTypeTest, check_hash_fits_address) {
+  static_assert(sizeof(uint64_t) >=
+                (RawAddress::kLength + sizeof(tBLE_ADDR_TYPE)));
+  tBLE_BD_ADDR val{BLE_ADDR_RANDOM_ID,
+                   RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66})};
+
+  uint64_t int_addr = 0;
+  memcpy(reinterpret_cast<uint8_t*>(&int_addr), val.bda.address,
+         RawAddress::kLength);
+  ASSERT_EQ(0x665544332211UL, int_addr);
+}
+
+TEST(BleAddressWithTypeTest, check_hash_fits_address_with_type) {
+  static_assert(sizeof(uint64_t) >=
+                (RawAddress::kLength + sizeof(tBLE_ADDR_TYPE)));
+  tBLE_BD_ADDR val{BLE_ADDR_RANDOM_ID,
+                   RawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66})};
+
+  uint64_t int_addr = 0;
+  memcpy(reinterpret_cast<uint8_t*>(&int_addr), val.bda.address,
+         RawAddress::kLength);
+  memcpy(reinterpret_cast<uint8_t*>(&int_addr) + RawAddress::kLength,
+         (const void*)&val.type, sizeof(tBLE_ADDR_TYPE));
+  ASSERT_EQ(0x03665544332211UL, int_addr);
+}

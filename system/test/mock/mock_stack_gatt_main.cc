@@ -73,10 +73,6 @@ void gatt_chk_srv_chg(tGATTS_SRV_CHG* p_srv_chg_clt) {
 void gatt_data_process(tGATT_TCB& tcb, uint16_t cid, BT_HDR* p_buf) {
   mock_function_count_map[__func__]++;
 }
-void gatt_find_in_device_record(const RawAddress& bd_addr,
-                                tBLE_BD_ADDR* address_with_type) {
-  mock_function_count_map[__func__]++;
-}
 void gatt_free(void) { mock_function_count_map[__func__]++; }
 void gatt_init_srv_chg(void) { mock_function_count_map[__func__]++; }
 void gatt_l2cif_config_cfm_cback(uint16_t lcid, uint16_t initiator,

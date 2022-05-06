@@ -961,7 +961,9 @@ struct shim::legacy::Acl::impl {
     LOG_DEBUG("Allow Le connection from remote:%s",
               PRIVATE_ADDRESS(address_with_type));
     BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type),
-                   "Allow connection from", "Le");
+                   "Allow connection from",
+                   base::StringPrintf("le type:%s",
+                                      (is_direct) ? "direct" : "background"));
   }
 
   void ignore_le_connection_from(
