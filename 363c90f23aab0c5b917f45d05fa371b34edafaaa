@@ -111,6 +111,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66c29f4a_b329f740",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3134,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-06T12:06:55Z",
+      "side": 1,
+      "message": "Maybe even better, if group is streaming you could look into group-\u003estream_conf and see if audio source is actually opened. ?",
+      "parentUuid": "d5be3dc4_3088bcce",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49bab2ae_1bbcedcc",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 4
