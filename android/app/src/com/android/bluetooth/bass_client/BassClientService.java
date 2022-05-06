@@ -17,6 +17,7 @@
 package com.android.bluetooth.bass_client;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.bluetooth.BluetoothAdapter;
@@ -83,7 +84,7 @@ public class BassClientService extends ProfileService {
     private Map<BluetoothDevice, Integer> mDeviceToSyncHandleMap;
     /*syncHandle, parsed BaseData data*/
     private Map<Integer, BaseData> mSyncHandleToBaseDataMap;
-    private Map<Integer, BluetoothLeBroadcastMetadata> mBroadcastSources;
+    private Map<BluetoothDevice, Map<Integer, BluetoothLeBroadcastMetadata>> mBroadcastSources;
     /*bcastSrcDevice, corresponding PeriodicAdvertisementResult*/
     private Map<BluetoothDevice, PeriodicAdvertisementResult> mPeriodicAdvertisementResultMap;
     private ScanCallback mSearchScanCallback;
@@ -181,21 +182,33 @@ public class BassClientService extends ProfileService {
         return base;
     }
 
-    void updateSourceInternal(int sourceId, BluetoothLeBroadcastMetadata metaData) {
+    void updateSourceInternal(BluetoothDevice sink, int sourceId,
+            BluetoothLeBroadcastMetadata metaData) {
         if (mBroadcastSources == null) {
             return;
         }
+
+        if (!mBroadcastSources.containsKey(sink)) {
+            mBroadcastSources.put(sink, new HashMap());
+        }
+
+        Map<Integer, BluetoothLeBroadcastMetadata> metadataMap = mBroadcastSources.get(sink);
         if (metaData != null) {
             // This will replace old metadata with new one
-            mBroadcastSources.put(sourceId, metaData);
+            metadataMap.put(sourceId, metaData);
         } else {
-            mBroadcastSources.remove(sourceId);
+            metadataMap.remove(sourceId);
         }
     }
 
-    BluetoothLeBroadcastMetadata getSourceInternal(int sourceId) {
-        if (mBroadcastSources != null) {
-            return mBroadcastSources.get(sourceId);
+    BluetoothLeBroadcastMetadata getSourceInternal(BluetoothDevice sink, int sourceId) {
+        if (!mBroadcastSources.containsKey(sink)) {
+            return null;
+        }
+
+        Map<Integer, BluetoothLeBroadcastMetadata> metadataMap = mBroadcastSources.get(sink);
+        if (metadataMap != null) {
+            metadataMap.getOrDefault(sourceId, null);
         }
         return null;
     }
@@ -251,6 +264,7 @@ public class BassClientService extends ProfileService {
                 PeriodicAdvertisementResult>();
         mSyncHandleToBaseDataMap = new HashMap<Integer, BaseData>();
         mActiveSourceMap = new HashMap<BluetoothDevice, BluetoothDevice>();
+        mBroadcastSources = new HashMap<>();
         mSearchScanCallback = null;
         return true;
     }

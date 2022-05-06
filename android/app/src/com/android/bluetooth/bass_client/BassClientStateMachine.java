@@ -725,7 +725,8 @@ public class BassClientStateMachine extends StateMachine {
                 mService.getCallbacks().notifySourceAdded(mDevice,
                         recvState.getSourceId(), BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
                 if (mPendingMetadata != null) {
-                    mService.updateSourceInternal(recvState.getSourceId(), mPendingMetadata);
+                    mService.updateSourceInternal(mDevice, recvState.getSourceId(),
+                            mPendingMetadata);
                 }
                 checkAndUpdateBroadcastCode(recvState);
                 processPASyncState(recvState);
@@ -735,13 +736,14 @@ public class BassClientStateMachine extends StateMachine {
                     BluetoothDevice removedDevice = oldRecvState.getSourceDevice();
                     log("sourceInfo removal" + removedDevice);
                     cancelActiveSync(removedDevice);
-                    mService.updateSourceInternal(oldRecvState.getSourceId(), null);
+                    mService.updateSourceInternal(mDevice, oldRecvState.getSourceId(), null);
                     mService.getCallbacks().notifySourceRemoved(mDevice,
                             oldRecvState.getSourceId(),
                             BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
                 } else {
                     log("update to an existing recvState");
-                    mService.updateSourceInternal(recvState.getSourceId(), mPendingMetadata);
+                    mService.updateSourceInternal(mDevice, recvState.getSourceId(),
+                            mPendingMetadata);
                     mService.getCallbacks().notifySourceModified(mDevice,
                             recvState.getSourceId(), BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
                     checkAndUpdateBroadcastCode(recvState);
@@ -1291,7 +1293,7 @@ public class BassClientStateMachine extends StateMachine {
         log("convertRecvStateToSetBroadcastCodeByteArray: Source device : "
                 + recvState.getSourceDevice());
         BluetoothLeBroadcastMetadata metaData = mService.getSourceInternal(
-                recvState.getSourceId());
+                mDevice, recvState.getSourceId());
         if (metaData == null) {
             Log.e(TAG, "Fail to find broadcast source, sourceId = "
                     + recvState.getSourceId());
