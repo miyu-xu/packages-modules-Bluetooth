@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f2920ed_47e2e985",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-06T12:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b83ff974_059bf7c8",
+      "range": {
+        "startLine": 12,
+        "startChar": 12,
+        "endLine": 12,
+        "endChar": 32
+      },
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "566ef45c_c4f0a0b4",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-05-05T21:40:42Z",
       "side": 1,
       "message": "maybe we should add fallback versions  48/16, 48/24, ?",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dba89789_52cf2a92",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 4
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-06T12:25:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "566ef45c_c4f0a0b4",
       "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b8fd84_dd39d779",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2858,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-06T12:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f258703d_2f3bf4ca",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2211efba_d6b458ee",
@@ -75,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e4d4472_f7357da0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2861,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-06T12:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2211efba_d6b458ee",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e35ae2a_7823ac25",
@@ -88,6 +166,24 @@
       "writtenOn": "2022-05-05T21:40:42Z",
       "side": 1,
       "message": "if ( !IsAudioSourceAvailableForCurrentContentType) \n\nWhich means, if current content type does not have AudioSource, we should reconfigure if needed.",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99e7ea22_caf15070",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2915,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-06T12:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e35ae2a_7823ac25",
       "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -127,6 +223,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f761132_0dd63c0f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3134,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-06T12:25:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5be3dc4_3088bcce",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49bab2ae_1bbcedcc",
@@ -140,6 +254,24 @@
       "writtenOn": "2022-05-05T21:40:42Z",
       "side": 1,
       "message": "maybe you could align to this: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2087749/1",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "735f3238_0d2e53cc",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-05-06T12:25:56Z",
+      "side": 1,
+      "message": "I think it would be best if following patch will be merged then rebase on it, otherwise it\u0027ll be compilation errors.",
+      "parentUuid": "49bab2ae_1bbcedcc",
       "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
