@@ -75,7 +75,7 @@ audio_format_t BitsPerSampleToAudioFormat(uint8_t bits_per_sample) {
     case 16:
       return AUDIO_FORMAT_PCM_16_BIT;
     case 24:
-      return AUDIO_FORMAT_PCM_24_BIT_PACKED;
+      return AUDIO_FORMAT_PCM_8_24_BIT;
     case 32:
       return AUDIO_FORMAT_PCM_32_BIT;
     default:
