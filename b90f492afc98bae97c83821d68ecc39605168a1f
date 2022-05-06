@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a103fcef_7abf1b02",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-05-06T14:25:39Z",
+      "side": 1,
+      "message": "No sure is this local_resolvable_private_address in the spec",
+      "range": {
+        "startLine": 65,
+        "startChar": 10,
+        "endLine": 65,
+        "endChar": 35
+      },
+      "revId": "b90f492afc98bae97c83821d68ecc39605168a1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
