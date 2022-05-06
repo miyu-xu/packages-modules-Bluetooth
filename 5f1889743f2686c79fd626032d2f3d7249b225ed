@@ -34,6 +34,24 @@
       "parentUuid": "a0529a9e_3dd1be83",
       "revId": "5f1889743f2686c79fd626032d2f3d7249b225ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7334bb4_a1477c7b",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-05-06T03:56:31Z",
+      "side": 1,
+      "message": "Creating another CL to follow up this:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2089584",
+      "parentUuid": "3d470eec_f3ecda81",
+      "revId": "5f1889743f2686c79fd626032d2f3d7249b225ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
