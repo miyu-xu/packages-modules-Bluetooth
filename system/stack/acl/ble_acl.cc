@@ -31,7 +31,8 @@ extern tBTM_CB btm_cb;
 void btm_ble_advertiser_notify_terminated_legacy(uint8_t status,
                                                  uint16_t connection_handle);
 void btm_ble_increment_link_topology_mask(uint8_t link_role);
-
+void check_connected_with_both_public_and_random(
+    const tBLE_BD_ADDR& address_with_type);
 bool maybe_resolve_address(RawAddress* bda, tBLE_ADDR_TYPE* bda_type);
 
 static bool acl_ble_common_connection(const tBLE_BD_ADDR& address_with_type,
@@ -77,6 +78,8 @@ void acl_ble_connection_complete(const tBLE_BD_ADDR& address_with_type,
                                  uint16_t handle, tHCI_ROLE role, bool match,
                                  uint16_t conn_interval, uint16_t conn_latency,
                                  uint16_t conn_timeout) {
+  check_connected_with_both_public_and_random(address_with_type);
+
   if (!acl_ble_common_connection(address_with_type, handle, role, match,
                                  conn_interval, conn_latency, conn_timeout)) {
     LOG_WARN("Unable to create non enhanced ble acl connection");
@@ -94,6 +97,8 @@ void acl_ble_enhanced_connection_complete(
     bool match, uint16_t conn_interval, uint16_t conn_latency,
     uint16_t conn_timeout, const RawAddress& local_rpa,
     const RawAddress& peer_rpa, tBLE_ADDR_TYPE peer_addr_type) {
+  check_connected_with_both_public_and_random(address_with_type);
+
   if (!acl_ble_common_connection(address_with_type, handle, role, match,
                                  conn_interval, conn_latency, conn_timeout)) {
     LOG_WARN("Unable to create enhanced ble acl connection");
