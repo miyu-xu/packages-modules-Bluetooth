@@ -27,6 +27,7 @@
 #include "gd/crypto_toolbox/crypto_toolbox.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/alarm.h"
+#include "osi/include/log.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_api_types.h"
@@ -92,7 +93,7 @@ typedef struct {
   uint32_t local_counter; /* local sign counter for sending signed write cmd*/
 } tBTM_SEC_BLE_KEYS;
 
-typedef struct {
+struct tBTM_SEC_BLE {
   RawAddress pseudo_addr; /* LE pseudo address of the device if different from
                           device address  */
  private:
@@ -101,7 +102,15 @@ typedef struct {
  public:
   tBLE_ADDR_TYPE AddressType() const { return ble_addr_type_; }
   void SetAddressType(tBLE_ADDR_TYPE ble_addr_type) {
-    if (is_ble_addr_type_known(ble_addr_type)) ble_addr_type_ = ble_addr_type;
+    if (is_ble_addr_type_known(ble_addr_type)) {
+      ble_addr_type_ = ble_addr_type;
+    } else {
+#ifndef LOG_TAG
+#define LOG_TAG "bluetooth"
+#endif
+      LOG_ERROR("Please don't store illegal addresses into security record:%s",
+                AddressTypeText(ble_addr_type).c_str());
+    }
   }
 
   tBLE_BD_ADDR identity_address_with_type;
@@ -121,7 +130,8 @@ typedef struct {
 
   tBTM_LE_KEY_TYPE key_type; /* bit mask of valid key types in record */
   tBTM_SEC_BLE_KEYS keys;    /* LE device security info in peripheral rode */
-} tBTM_SEC_BLE;
+};
+typedef struct tBTM_SEC_BLE tBTM_SEC_BLE;
 
 enum : uint16_t {
   BTM_SEC_AUTHENTICATED = 0x0002,
