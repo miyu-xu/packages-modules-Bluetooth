@@ -16,7 +16,12 @@
 
 package com.android.server;
 
+import static com.android.server.bluetooth.BluetoothAirplaneModeListener.APM_ENHANCEMENT;
+import static com.android.server.bluetooth.BluetoothAirplaneModeListener.BT_DEFAULT_APM_STATE;
+
+import android.content.Context;
 import android.provider.DeviceConfig;
+import android.provider.Settings;
 import android.util.Slog;
 
 import java.util.ArrayList;
@@ -35,10 +40,22 @@ class BluetoothDeviceConfigListener {
 
     private final BluetoothManagerService mService;
     private final boolean mLogDebug;
+    private final Context mContext;
+    private static final int DEFAULT_APM_ENHANCEMENT = 0;
+    private static final int DEFAULT_BT_APM_STATE = 0;
 
-    BluetoothDeviceConfigListener(BluetoothManagerService service, boolean logDebug) {
+    private boolean mPrevApmEnhancement;
+    private boolean mPrevBtApmState;
+
+    BluetoothDeviceConfigListener(BluetoothManagerService service, boolean logDebug,
+            Context context) {
         mService = service;
         mLogDebug = logDebug;
+        mContext = context;
+        mPrevApmEnhancement = Settings.Global.getInt(mContext.getContentResolver(),
+                APM_ENHANCEMENT, DEFAULT_APM_ENHANCEMENT) == 1;
+        mPrevBtApmState = Settings.Global.getInt(mContext.getContentResolver(),
+                BT_DEFAULT_APM_STATE, DEFAULT_BT_APM_STATE) == 1;
         DeviceConfig.addOnPropertiesChangedListener(
                 DeviceConfig.NAMESPACE_BLUETOOTH,
                 (Runnable r) -> r.run(),
@@ -59,6 +76,22 @@ class BluetoothDeviceConfigListener {
                         }
                         Slog.d(TAG, "onPropertiesChanged: " + String.join(",", flags));
                     }
+
+                    boolean apmEnhancement = properties.getBoolean(
+                            APM_ENHANCEMENT, mPrevApmEnhancement);
+                    if (apmEnhancement != mPrevApmEnhancement) {
+                        mPrevApmEnhancement = apmEnhancement;
+                        Settings.Global.putInt(mContext.getContentResolver(),
+                                APM_ENHANCEMENT, apmEnhancement ? 1 : 0);
+                    }
+
+                    boolean btApmState = properties.getBoolean(
+                            BT_DEFAULT_APM_STATE, mPrevBtApmState);
+                    if (btApmState != mPrevBtApmState) {
+                        mPrevBtApmState = btApmState;
+                        Settings.Global.putInt(mContext.getContentResolver(),
+                                BT_DEFAULT_APM_STATE, btApmState ? 1 : 0);
+                    }
                     boolean foundInit = false;
                     for (String name : properties.getKeyset()) {
                         if (name.startsWith("INIT_")) {
@@ -72,5 +105,4 @@ class BluetoothDeviceConfigListener {
                     mService.onInitFlagsChanged();
                 }
             };
-
 }
