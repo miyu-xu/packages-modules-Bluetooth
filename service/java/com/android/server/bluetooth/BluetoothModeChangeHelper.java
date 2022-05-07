@@ -16,7 +16,11 @@
 
 package com.android.server;
 
+import static com.android.server.bluetooth.BluetoothAirplaneModeListener.BLUETOOTH_APM_STATE;
+import static com.android.server.bluetooth.BluetoothAirplaneModeListener.BT_DEFAULT_APM_STATE;
+
 import android.annotation.RequiresPermission;
+import android.app.ActivityManager;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHearingAid;
@@ -25,6 +29,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProfile.ServiceListener;
 import android.content.Context;
 import android.content.res.Resources;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.widget.Toast;
 
@@ -127,6 +132,24 @@ public class BluetoothModeChangeHelper {
                 name, value);
     }
 
+    /**
+     * Helper method to get Settings Secure Int value
+     */
+    public int getSettingsSecureInt(String name, int def) {
+        Context userContext = mContext.createContextAsUser(
+                UserHandle.of(ActivityManager.getCurrentUser()), 0);
+        return Settings.Secure.getInt(userContext.getContentResolver(), name, def);
+    }
+
+    /**
+     * Helper method to set Settings Secure Int value
+     */
+    public void setSettingsSecureInt(String name, int value) {
+        Context userContext = mContext.createContextAsUser(
+                UserHandle.of(ActivityManager.getCurrentUser()), 0);
+        Settings.Secure.putInt(userContext.getContentResolver(), name, value);
+    }
+
     @VisibleForTesting
     public void showToastMessage() {
         Resources r = mContext.getResources();
@@ -157,5 +180,16 @@ public class BluetoothModeChangeHelper {
             return false;
         }
         return leAudio.getConnectedDevices().size() > 0;
+    }
+
+    /**
+     * Helper method to check whether BT should be enabled on APM
+     */
+    public boolean isBluetoothOnAPM() {
+        Context userContext = mContext.createContextAsUser(
+                UserHandle.of(ActivityManager.getCurrentUser()), 0);
+        int defaultBtApmState = getSettingsInt(BT_DEFAULT_APM_STATE);
+        return Settings.Secure.getInt(userContext.getContentResolver(),
+                BLUETOOTH_APM_STATE, defaultBtApmState) == 1;
     }
 }
