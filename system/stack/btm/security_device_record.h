@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include <base/logging.h>
 #include <base/strings/stringprintf.h>
 #include <string.h>
 
@@ -27,6 +28,7 @@
 #include "gd/crypto_toolbox/crypto_toolbox.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/alarm.h"
+#include "osi/include/log.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_api_types.h"
