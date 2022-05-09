@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0493ef6_5b3529b9",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-09T20:26:32Z",
+      "side": 1,
+      "message": "This change can break classic, if 24 bit output was ever used with any of classic codecs!",
+      "range": {
+        "startLine": 78,
+        "startChar": 13,
+        "endLine": 78,
+        "endChar": 38
+      },
+      "revId": "4c35be1937fecf3eb63567d2e8e698901186ad43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
