@@ -1212,6 +1212,16 @@ public class AdapterService extends Service {
         ParcelUuid[] remoteDeviceUuids = getRemoteUuids(device);
         ParcelUuid[] localDeviceUuids = mAdapterProperties.getUuids();
 
+        Log.i(TAG, "remoteDeviceUuids:");
+        for (ParcelUuid remoteUuid : remoteDeviceUuids) {
+            Log.i(TAG, " " + remoteUuid);
+        }
+
+        Log.i(TAG, "localDeviceUuids:");
+        for (ParcelUuid localUuid : localDeviceUuids) {
+            Log.i(TAG, " " + localUuid);
+        }
+
         if (mA2dpService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
                 BluetoothProfile.A2DP, device) && mA2dpService.getConnectionPolicy(device)
                 > BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
