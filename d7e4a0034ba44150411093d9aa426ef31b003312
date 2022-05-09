@@ -33,6 +33,24 @@
       "message": "I liked the assert.  I think we should figure out how to fix the failures.",
       "revId": "d7e4a0034ba44150411093d9aa426ef31b003312",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4971a268_52ebe2ea",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1329,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-05-09T03:38:24Z",
+      "side": 1,
+      "message": "Got it, thanks!",
+      "parentUuid": "237efa94_f221f61c",
+      "revId": "d7e4a0034ba44150411093d9aa426ef31b003312",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
