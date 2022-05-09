@@ -16,6 +16,24 @@
       "message": "I think it make sense to always return in Rank order 0-\u003en. Lets assure it.",
       "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "769148ff_06fa6f87",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-09T10:36:16Z",
+      "side": 1,
+      "message": "I think we have rank info in Java. Do we?",
+      "parentUuid": "08a3808a_5efc77ae",
+      "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
