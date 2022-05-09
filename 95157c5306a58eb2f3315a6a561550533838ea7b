@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a6b5202_ce684b60",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T20:38:20Z",
+      "side": 1,
+      "message": "this has to be a reference as otherwise the buffer will be copied",
+      "range": {
+        "startLine": 1897,
+        "startChar": 18,
+        "endLine": 1897,
+        "endChar": 38
+      },
+      "revId": "95157c5306a58eb2f3315a6a561550533838ea7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
