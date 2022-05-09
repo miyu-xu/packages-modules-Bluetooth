@@ -211,6 +211,23 @@ fn build_commands() -> HashMap<String, CommandOption> {
             function_pointer: _noop,
         },
     );
+    command_options.insert(
+        String::from("suspend"),
+        CommandOption {
+            rules: vec![String::from("suspend")],
+            description: String::from("Suspend"),
+            function_pointer: CommandHandler::cmd_suspend,
+        },
+    );
+    command_options.insert(
+        String::from("resume"),
+        CommandOption {
+            rules: vec![String::from("resume")],
+            description: String::from("Resume"),
+            function_pointer: CommandHandler::cmd_resume,
+        },
+    );
+
     command_options
 }
 
@@ -453,6 +470,24 @@ impl CommandHandler {
 
         let address = self.context.lock().unwrap().update_adapter_address();
         print_info!("Local address = {}", &address);
+    }
+
+    fn cmd_suspend(&mut self, _args: &Vec<String>) {
+        if !self.context.lock().unwrap().adapter_ready {
+            self.adapter_not_ready();
+            return;
+        }
+
+        self.context.lock().unwrap().suspend();
+    }
+
+    fn cmd_resume(&mut self, _args: &Vec<String>) {
+        if !self.context.lock().unwrap().adapter_ready {
+            self.adapter_not_ready();
+            return;
+        }
+
+        self.context.lock().unwrap().resume();
     }
 
     fn cmd_discovery(&mut self, args: &Vec<String>) {
