@@ -16,6 +16,23 @@
       "message": "Optional, the regression issue will be fix by 2087803. We can merge this if there is any other concern.",
       "revId": "e10386043f9053e317087b73b8ed8725a32fe759",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8e5495_4bca6d53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-05-09T08:56:28Z",
+      "side": 1,
+      "message": "Based on QA test, even we solve the bug of return size, the query of SIM URI is very unstable, sometimes it worked normally, sometimes it stuck more than 30s. Let\u0027s disable the SIM feature to make sure the stability of PBAP.",
+      "revId": "e10386043f9053e317087b73b8ed8725a32fe759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
