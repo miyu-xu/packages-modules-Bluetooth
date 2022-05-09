@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "362a00b4_078fa4d0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1889,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T19:28:49Z",
+      "side": 1,
+      "message": "this seems dangerous, could we pass in a\n\nstd::vector\u003cuint8_t\u003e* data;\n\nOR\n\nstd::vector\u003cuint8_t\u003e\u0026 data;\n\nand then do the casting internally in this method?",
+      "range": {
+        "startLine": 1889,
+        "startChar": 18,
+        "endLine": 1889,
+        "endChar": 23
+      },
+      "revId": "e7bf6275932f8093946fa0771777997f9eb29584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf18f678_a9dff30d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1913,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T19:28:49Z",
+      "side": 1,
+      "message": "What would happen to the audio stream in this case? \n\nWould encoding fail and no audio is playing?",
+      "range": {
+        "startLine": 1913,
+        "startChar": 6,
+        "endLine": 1913,
+        "endChar": 75
+      },
+      "revId": "e7bf6275932f8093946fa0771777997f9eb29584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b863620c_b5efdaeb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1934,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T19:28:49Z",
+      "side": 1,
+      "message": "same as below",
+      "range": {
+        "startLine": 1929,
+        "startChar": 0,
+        "endLine": 1934,
+        "endChar": 68
+      },
+      "revId": "e7bf6275932f8093946fa0771777997f9eb29584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7010bcbd_9381dcca",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2004,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T19:28:49Z",
+      "side": 1,
+      "message": "this logic got repeated multiple times in this CL, should this be extracted to a method?",
+      "range": {
+        "startLine": 2001,
+        "startChar": 38,
+        "endLine": 2004,
+        "endChar": 0
+      },
+      "revId": "e7bf6275932f8093946fa0771777997f9eb29584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b3637c_bdb9c92c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2006,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T19:28:49Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 2005,
+        "startChar": 0,
+        "endLine": 2006,
+        "endChar": 68
+      },
+      "revId": "e7bf6275932f8093946fa0771777997f9eb29584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae2992eb_d9864d04",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2021,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T19:28:49Z",
+      "side": 1,
+      "message": "just to confirm: this means we always encode this as a stereo stream?",
+      "range": {
+        "startLine": 2021,
+        "startChar": 76,
+        "endLine": 2021,
+        "endChar": 77
+      },
+      "revId": "e7bf6275932f8093946fa0771777997f9eb29584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a56a71_0dc8b556",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2232,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T19:28:49Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 2231,
+        "startChar": 1,
+        "endLine": 2232,
+        "endChar": 79
+      },
+      "revId": "e7bf6275932f8093946fa0771777997f9eb29584",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
