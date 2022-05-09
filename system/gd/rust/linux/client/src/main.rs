@@ -13,7 +13,7 @@ use crate::dbus_iface::{BluetoothDBus, BluetoothGattDBus, BluetoothManagerDBus, 
 use crate::editor::AsyncEditor;
 use bt_topshim::topstack;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth};
-use btstack::suspend::ISuspend;
+use btstack::suspend::{ISuspend, SuspendType};
 use manager_service::iface_bluetooth_manager::IBluetoothManager;
 
 mod callbacks;
@@ -155,6 +155,14 @@ impl ClientContext {
         self.adapter_address = Some(address.clone());
 
         address
+    }
+
+    fn suspend(&mut self) {
+        self.suspend_dbus.as_ref().unwrap().suspend(0, SuspendType::Disconnected);
+    }
+
+    fn resume(&mut self) {
+        self.suspend_dbus.as_ref().unwrap().resume();
     }
 
     fn connect_all_enabled_profiles(&mut self, device: BluetoothDevice) {
