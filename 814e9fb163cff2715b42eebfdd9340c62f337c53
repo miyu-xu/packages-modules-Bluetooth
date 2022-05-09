@@ -63,6 +63,30 @@
       },
       "revId": "814e9fb163cff2715b42eebfdd9340c62f337c53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "373d6499_a1abfca2",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-09T15:32:39Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c2413e82_4b73a14e",
+      "range": {
+        "startLine": 767,
+        "startChar": 0,
+        "endLine": 769,
+        "endChar": 6
+      },
+      "revId": "814e9fb163cff2715b42eebfdd9340c62f337c53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
