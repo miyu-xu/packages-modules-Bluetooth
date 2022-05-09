@@ -312,9 +312,7 @@ cc_test {
         "gd_clang_coverage_bin",
     ],
     host_supported: true,
-    test_options: {
-        unit_test: true,
-    },
+    isolated: false,
     target: {
         linux: {
             srcs: [

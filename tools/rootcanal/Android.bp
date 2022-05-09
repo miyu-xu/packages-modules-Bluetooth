@@ -124,6 +124,7 @@ cc_test_host {
         "clang_file_coverage",
         "clang_coverage_bin",
     ],
+    isolated: false,
     srcs: [
         "test/async_manager_unittest.cc",
         "test/h4_parser_unittest.cc",
