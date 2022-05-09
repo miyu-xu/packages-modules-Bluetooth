@@ -13,7 +13,7 @@
 #   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
-
+import logging
 from blueberry.tests.gd.cert import gd_base_test
 from blueberry.tests.gd.cert.closable import safeClose
 from blueberry.tests.gd.cert.event_stream import EventStream
@@ -158,6 +158,111 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
         if check_address:
             assertThat(dut_address_from_complete).isEqualTo(self.dut_address.decode())
 
+    def dut_connects_cert_resolvable(self, check_address):
+        self.register_for_le_event(hci_packets.SubeventCode.CONNECTION_COMPLETE)
+        self.register_for_le_event(hci_packets.SubeventCode.ENHANCED_CONNECTION_COMPLETE)
+
+        dut_address = self.dut.hci_controller.GetMacAddressSimple()
+        # logging.info("Dut public address: ", str(dut_address))
+
+        self.enqueue_hci_command(hci_packets.LeAddDeviceToResolvingListBuilder(
+            hci_packets.PeerAddressType.PUBLIC_DEVICE_OR_IDENTITY_ADDRESS,
+            dut_address,
+            b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f',
+            b'\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f'
+        ))
+
+        # Cert Advertises
+        advertising_handle = 0
+        self.enqueue_hci_command(
+            hci_packets.LeSetExtendedAdvertisingLegacyParametersBuilder(
+                advertising_handle,
+                hci_packets.LegacyAdvertisingProperties.ADV_IND,
+                400,
+                450,
+                7,
+                hci_packets.OwnAddressType.RESOLVABLE_OR_PUBLIC_ADDRESS,
+                hci_packets.PeerAddressType.PUBLIC_DEVICE_OR_IDENTITY_ADDRESS,
+                dut_address,
+                hci_packets.AdvertisingFilterPolicy.ALL_DEVICES,
+                0xF8,
+                1,  #SID
+                hci_packets.Enable.DISABLED  # Scan request notification
+            ))
+
+        self.enqueue_hci_command(
+            hci_packets.LeSetExtendedAdvertisingRandomAddressBuilder(advertising_handle, '0C:05:04:03:02:01'))
+
+        gap_name = hci_packets.GapData()
+        gap_name.data_type = hci_packets.GapDataType.COMPLETE_LOCAL_NAME
+        gap_name.data = list(bytes(b'Im_A_Cert'))
+
+        self.enqueue_hci_command(
+            hci_packets.LeSetExtendedAdvertisingDataBuilder(
+                advertising_handle, hci_packets.Operation.COMPLETE_ADVERTISEMENT,
+                hci_packets.FragmentPreference.CONTROLLER_SHOULD_NOT, [gap_name]))
+
+        gap_short_name = hci_packets.GapData()
+        gap_short_name.data_type = hci_packets.GapDataType.SHORTENED_LOCAL_NAME
+        gap_short_name.data = list(bytes(b'Im_A_C'))
+
+        self.enqueue_hci_command(
+            hci_packets.LeSetExtendedAdvertisingScanResponseBuilder(
+                advertising_handle, hci_packets.Operation.COMPLETE_ADVERTISEMENT,
+                hci_packets.FragmentPreference.CONTROLLER_SHOULD_NOT, [gap_short_name]))
+
+        enabled_set = hci_packets.EnabledSet()
+        enabled_set.advertising_handle = advertising_handle
+        enabled_set.duration = 0
+        enabled_set.max_extended_advertising_events = 0
+        self.enqueue_hci_command(
+            hci_packets.LeSetExtendedAdvertisingEnableBuilder(hci_packets.Enable.ENABLED, [enabled_set]))
+
+        irk_msg = le_acl_manager_facade.IrkMsg(
+            peer=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(self.cert.hci.read_own_address(), 'utf8')),
+                type=int(hci_packets.AddressType.PUBLIC_DEVICE_ADDRESS)
+            ),
+            peer_irk=b'\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1a\x1b\x1c\x1d\x1e\x1f',
+            local_irk=b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f',
+        )
+
+        self.dut_le_acl_manager.add_device_to_resolving_list(irk_msg=irk_msg)
+        self.dut_le_acl = self.dut_le_acl_manager.connect_to_remote(
+            remote_addr=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(self.cert.hci.read_own_address(), 'utf8')),
+                type=int(hci_packets.AddressType.PUBLIC_DEVICE_ADDRESS)))
+
+        # Cert gets ConnectionComplete with a handle and sends ACL data
+        handle = 0xfff
+        address = hci_packets.Address()
+
+        def get_handle(packet):
+            packet_bytes = packet.payload
+            nonlocal handle
+            nonlocal address
+            if b'\x3e\x13\x01\x00' in packet_bytes:
+                cc_view = hci_packets.LeConnectionCompleteView(
+                    hci_packets.LeMetaEventView(
+                        hci_packets.EventView(bt_packets.PacketViewLittleEndian(list(packet_bytes)))))
+                handle = cc_view.GetConnectionHandle()
+                address = cc_view.GetPeerAddress()
+                return True
+            if b'\x3e\x1f\x0A\x00' in packet_bytes:
+                cc_view = hci_packets.LeEnhancedConnectionCompleteView(
+                    hci_packets.LeMetaEventView(
+                        hci_packets.EventView(bt_packets.PacketViewLittleEndian(list(packet_bytes)))))
+                handle = cc_view.GetConnectionHandle()
+                address = cc_view.GetPeerAddress()
+                return True
+            return False
+
+        self.cert_hci_le_event_stream.assert_event_occurs(get_handle)
+        self.cert_handle = handle
+        dut_address_from_complete = address
+        if check_address:
+            assertThat(dut_address_from_complete).isEqualTo(self.dut_address.decode())
+
     def send_receive_and_check(self):
         self.enqueue_acl_data(self.cert_handle, hci_packets.PacketBoundaryFlag.FIRST_NON_AUTOMATICALLY_FLUSHABLE,
                               hci_packets.BroadcastFlag.POINT_TO_POINT,
@@ -180,6 +285,16 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
             maximum_rotation_time=15 * 60 * 1000)
         self.dut.hci_le_initiator_address.SetPrivacyPolicyForInitiatorAddress(privacy_policy)
         self.dut_connects(check_address=False)
+        self.send_receive_and_check()
+
+    def test_dut_connects_resolvable_address_public(self):
+        privacy_policy = le_initiator_address_facade.PrivacyPolicy(
+            address_policy=le_initiator_address_facade.AddressPolicy.USE_RESOLVABLE_ADDRESS,
+            rotation_irk=b'\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f',
+            minimum_rotation_time=7 * 60 * 1000,
+            maximum_rotation_time=15 * 60 * 1000)
+        self.dut.hci_le_initiator_address.SetPrivacyPolicyForInitiatorAddress(privacy_policy)
+        self.dut_connects_cert_resolvable(check_address=False)
         self.send_receive_and_check()
 
     def test_dut_connects_non_resolvable_address(self):
