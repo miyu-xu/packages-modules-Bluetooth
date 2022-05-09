@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "174f1e95_292ae517",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-09T18:18:34Z",
+      "side": 1,
+      "message": "else",
+      "range": {
+        "startLine": 491,
+        "startChar": 10,
+        "endLine": 491,
+        "endChar": 14
+      },
+      "revId": "f719c2cfbfac6c71d7796086aee4f12be54684bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
