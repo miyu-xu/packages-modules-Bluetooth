@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b96888fe_68dbde50",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T18:46:34Z",
+      "side": 1,
+      "message": "Logic change in this file should be verified by the unit test below",
+      "range": {
+        "startLine": 123,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 41
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1492f99c_f47b5cdf",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T18:46:34Z",
+      "side": 1,
+      "message": "Please fix the length to be less than 100 chars",
+      "range": {
+        "startLine": 156,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 120
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e73131e6_9ba70a03",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T18:46:34Z",
+      "side": 1,
+      "message": "nit: could this be saved as a constant?\n\nPlease also fix the line length comment",
+      "range": {
+        "startLine": 473,
+        "startChar": 98,
+        "endLine": 473,
+        "endChar": 109
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "479349b8_b20f583d",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-09T18:46:34Z",
+      "side": 1,
+      "message": "Could you add a test below to verify this feature? \n\ni.e. have payload feed into snoop logger with and without the Qualcomm log enabled to see if there is any crash or regression?",
+      "range": {
+        "startLine": 83,
+        "startChar": 6,
+        "endLine": 83,
+        "endChar": 27
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
