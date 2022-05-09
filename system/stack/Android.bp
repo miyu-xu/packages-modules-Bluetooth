@@ -1168,6 +1168,7 @@ cc_test {
         ":TestCommonStackConfig",
         ":TestMockBta",
         ":TestMockBtif",
+        ":TestMockDevice",
         ":TestMockHci",
         ":TestMockLegacyHciCommands",
         ":TestMockLegacyHciInterface",
@@ -1187,7 +1188,6 @@ cc_test {
     static_libs: [
         "libbt-common",
         "libbt-protos-lite",
-        "libbtdevice",
         "libgmock",
         "liblog",
         "libosi",

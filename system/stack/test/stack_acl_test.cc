@@ -25,6 +25,7 @@
 #include "stack/acl/btm_acl.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/security_device_record.h"
+#include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/hci_error_code.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_main_shim_acl_api.h"
@@ -514,4 +515,59 @@ TEST_F(StackAclTest, acl_cancel_le_connection_with_record) {
   test::mock::main_shim_acl_api::ACL_AcceptLeConnectionFrom = {};
   test::mock::main_shim_acl_api::ACL_IgnoreLeConnectionFrom = {};
   test::mock::stack_btm_dev::btm_find_dev = {};
+}
+
+TEST_F(StackAclTest, acl_process_extended_features) {
+  const uint16_t hci_handle = 0x123;
+  const tBT_TRANSPORT transport = BT_TRANSPORT_LE;
+  const tHCI_ROLE link_role = HCI_ROLE_CENTRAL;
+
+  btm_acl_created(kRawAddress, hci_handle, link_role, transport);
+  tACL_CONN* p_acl = btm_acl_for_bda(kRawAddress, transport);
+  ASSERT_NE(nullptr, p_acl);
+
+  // Handle typical case
+  {
+    const uint8_t max_page = 3;
+    memset((void*)p_acl->peer_lmp_feature_valid, 0,
+           HCI_EXT_FEATURES_PAGE_MAX + 1);
+    acl_process_extended_features(hci_handle, 1, max_page, 0xf123456789abcde);
+    acl_process_extended_features(hci_handle, 2, max_page, 0xef123456789abcd);
+    acl_process_extended_features(hci_handle, 3, max_page, 0xdef123456789abc);
+
+    /* page 0 is the standard feature set */
+    ASSERT_FALSE(p_acl->peer_lmp_feature_valid[0]);
+    ASSERT_TRUE(p_acl->peer_lmp_feature_valid[1]);
+    ASSERT_TRUE(p_acl->peer_lmp_feature_valid[2]);
+    ASSERT_TRUE(p_acl->peer_lmp_feature_valid[3]);
+  }
+
+  // Handle extreme case
+  {
+    const uint8_t max_page = 255;
+    memset((void*)p_acl->peer_lmp_feature_valid, 0,
+           HCI_EXT_FEATURES_PAGE_MAX + 1);
+    for (int i = 1; i < HCI_EXT_FEATURES_PAGE_MAX + 1; i++) {
+      acl_process_extended_features(hci_handle, static_cast<uint8_t>(i),
+                                    max_page, 0x123456789abcdef);
+    }
+    /* page 0 is the standard feature set */
+    ASSERT_FALSE(p_acl->peer_lmp_feature_valid[0]);
+    ASSERT_TRUE(p_acl->peer_lmp_feature_valid[1]);
+    ASSERT_TRUE(p_acl->peer_lmp_feature_valid[2]);
+    ASSERT_TRUE(p_acl->peer_lmp_feature_valid[3]);
+  }
+
+  // Handle case where device returns max page of zero
+  {
+    memset((void*)p_acl->peer_lmp_feature_valid, 0,
+           HCI_EXT_FEATURES_PAGE_MAX + 1);
+    acl_process_extended_features(hci_handle, 1, 0, 0xdef123456789abc);
+    ASSERT_FALSE(p_acl->peer_lmp_feature_valid[0]);
+    ASSERT_TRUE(p_acl->peer_lmp_feature_valid[1]);
+    ASSERT_FALSE(p_acl->peer_lmp_feature_valid[2]);
+    ASSERT_FALSE(p_acl->peer_lmp_feature_valid[3]);
+  }
+
+  btm_acl_removed(hci_handle);
 }
