@@ -34,6 +34,24 @@
       "parentUuid": "08a3808a_5efc77ae",
       "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82e2f99_0b2408cd",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-09T16:11:50Z",
+      "side": 1,
+      "message": "looks like not. Our implementation was in Native code and we could handle proper group operation down in the native. Now with Bass beeing in Java, we need to extend CISP with providing rank to the java layer. Probably OnDeviceAvailable callback should carry that. What do you think?",
+      "parentUuid": "769148ff_06fa6f87",
+      "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
