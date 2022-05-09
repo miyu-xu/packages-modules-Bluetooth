@@ -39,6 +39,30 @@
       },
       "revId": "814e9fb163cff2715b42eebfdd9340c62f337c53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2413e82_4b73a14e",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-05-09T15:31:29Z",
+      "side": 1,
+      "message": "Unfortunately no as we need to read this before disconnecting the handle",
+      "parentUuid": "dd3af131_fbffecc5",
+      "range": {
+        "startLine": 767,
+        "startChar": 0,
+        "endLine": 769,
+        "endChar": 6
+      },
+      "revId": "814e9fb163cff2715b42eebfdd9340c62f337c53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
