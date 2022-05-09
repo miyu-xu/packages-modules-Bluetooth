@@ -190,13 +190,15 @@ void TestCommandHandler::Del(const vector<std::string>& args) {
 void TestCommandHandler::AddPhy(const vector<std::string>& args) {
   if (args[0] == "LOW_ENERGY") {
     model_.AddPhy(Phy::Type::LOW_ENERGY);
+    response_string_ = "TestCommandHandler 'add_phy LOW_ENERGY' called";
   } else if (args[0] == "BR_EDR") {
     model_.AddPhy(Phy::Type::BR_EDR);
+    response_string_ = "TestCommandHandler 'add_phy BR_EDR' called";
   } else {
     response_string_ =
         "TestCommandHandler 'add_phy' with unrecognized type " + args[0];
-    send_response_(response_string_);
   }
+  send_response_(response_string_);
 }
 
 void TestCommandHandler::DelPhy(const vector<std::string>& args) {
