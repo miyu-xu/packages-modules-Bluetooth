@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36b1914b_6a48c2ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-09T15:30:22Z",
+      "side": 1,
+      "message": "I have a feeling that updateSourceInternal() with device context can be done within the state machine itself. The state machine would not have to as the service to get it back.",
+      "revId": "7758d28f2ef106620feff2830ea244b176868d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
