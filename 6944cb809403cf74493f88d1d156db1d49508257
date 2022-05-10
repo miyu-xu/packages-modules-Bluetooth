@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cc0708a_b422588c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-10T13:59:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "79528c6f_66d68ad6",
+      "range": {
+        "startLine": 171,
+        "startChar": 3,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "6944cb809403cf74493f88d1d156db1d49508257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "325f6943_689d6de8",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-10T05:07:39Z",
       "side": 1,
       "message": "getBroadcastMetadata or getCurrentBroadcastMetadata?",
+      "range": {
+        "startLine": 248,
+        "startChar": 33,
+        "endLine": 248,
+        "endChar": 50
+      },
+      "revId": "6944cb809403cf74493f88d1d156db1d49508257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "875cf6bc_006c0a0c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-10T13:59:07Z",
+      "side": 1,
+      "message": "I wanted to keep the original naming but indeed, it would be better to name it properly.",
+      "parentUuid": "325f6943_689d6de8",
       "range": {
         "startLine": 248,
         "startChar": 33,
@@ -83,6 +131,54 @@
       "writtenOn": "2022-05-10T05:07:39Z",
       "side": 1,
       "message": "setCurrentBroadcastMetadata?",
+      "range": {
+        "startLine": 252,
+        "startChar": 17,
+        "endLine": 252,
+        "endChar": 37
+      },
+      "revId": "6944cb809403cf74493f88d1d156db1d49508257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d427a265_7261ff84",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-10T13:59:07Z",
+      "side": 1,
+      "message": "True, we can remove it completely. I think there\u0027s no difference between metadata being null or not being there at all. In both cases getSourceInternal() is expected to return null.",
+      "parentUuid": "fb5fe8f1_cfce01be",
+      "range": {
+        "startLine": 252,
+        "startChar": 85,
+        "endLine": 252,
+        "endChar": 93
+      },
+      "revId": "6944cb809403cf74493f88d1d156db1d49508257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ed707a_104d424d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-10T13:59:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8f28246d_abd91149",
       "range": {
         "startLine": 252,
         "startChar": 17,
