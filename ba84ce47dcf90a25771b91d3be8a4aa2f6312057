@@ -16,6 +16,41 @@
       "message": "\npreviously, we remove the call of mRootcanal-\u003eclose() because it crashes randomly; now the hang just happens whenever close() is called; regardless of this cl\n",
       "revId": "ba84ce47dcf90a25771b91d3be8a4aa2f6312057",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46ed1803_3a048c26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1046320
+      },
+      "writtenOn": "2022-05-10T23:47:23Z",
+      "side": 1,
+      "message": "-1 as the root cause is still not clear yet.",
+      "parentUuid": "14d8f931_b0edc4cc",
+      "revId": "ba84ce47dcf90a25771b91d3be8a4aa2f6312057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffda1e2f_296b8cbd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1046320
+      },
+      "writtenOn": "2022-05-10T23:47:23Z",
+      "side": 1,
+      "message": "+2 to fix the unit test flakiness on mac emualtor",
+      "revId": "ba84ce47dcf90a25771b91d3be8a4aa2f6312057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
