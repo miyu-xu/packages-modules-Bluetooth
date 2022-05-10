@@ -33,6 +33,24 @@
       "message": "I don\u0027t think this will work for all targets, as this will essentially make it so AVRCP Target is always assumed to be on if not explicitly disabled. We really don\u0027t want \"defaulted on\" profiles anymore if we can avoid it. Devices currently have to explicitly enable the profiles they want. If this change is allowed as is too, AVRCP Controller targets wouldn\u0027t work, as that profile relies on the legacy path for SDP record management, etc.\n\nHow do you guys configure profiles for floss? Presumably you require the enabling of other profiles, no? If you can\u0027t set system properties anyway, then how are your other profiles working? They all got the same treatment in TM.\n",
       "revId": "87c23056e33ceda28d34631e87785849aa8e0e46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b22e5d2_30951181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-10T21:32:33Z",
+      "side": 1,
+      "message": "All the other changes in your series are in Java and this is the only one in libbluetooth, hence why we\u0027re affected.\n\nWe statically list the enabled profiles in Floss at https://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/uuid.rs;l\u003d82?q\u003duuid.rs\u0026ss\u003dandroid%2Fplatform%2Fsuperproject:packages%2Fmodules%2FBluetooth%2F and so far we only really use it for `ConnectAllEnabledProfiles` and `DisconnectAllEnabledProfiles`.\n\nAlso, the change I\u0027m reverting seems to affect only whether \"new avrcp\" is used vs \"old avrcp\". They don\u0027t seem to be changing whether the profile is default enabled or not.",
+      "parentUuid": "647b3c79_88fa5de7",
+      "revId": "87c23056e33ceda28d34631e87785849aa8e0e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
