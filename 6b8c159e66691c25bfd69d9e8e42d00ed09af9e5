@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17c62a56_89dee966",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-10T22:50:13Z",
+      "side": 1,
+      "message": "maybe worth to add a comment why 24 bits -\u003e 4 bytes?\nalso, some checks for 16/24 bits would be nice to have here. Function name looks as generic one, but in fact it expects only two values.",
+      "revId": "6b8c159e66691c25bfd69d9e8e42d00ed09af9e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdfbfeef_62f99707",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-10T22:50:13Z",
+      "side": 1,
+      "message": "maybe let\u0027s put the comment at least saying that 16 and 24 is the only values we support.",
+      "revId": "6b8c159e66691c25bfd69d9e8e42d00ed09af9e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6f8efd_58b18265",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1912,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-10T22:50:13Z",
+      "side": 1,
+      "message": "is 3 possible to get?",
+      "range": {
+        "startLine": 1912,
+        "startChar": 15,
+        "endLine": 1912,
+        "endChar": 31
+      },
+      "revId": "6b8c159e66691c25bfd69d9e8e42d00ed09af9e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
