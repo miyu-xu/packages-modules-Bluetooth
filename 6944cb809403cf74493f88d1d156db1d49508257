@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79528c6f_66d68ad6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-05-10T05:04:42Z",
+      "side": 1,
+      "message": "If this value never changes, how about make it final?",
+      "range": {
+        "startLine": 171,
+        "startChar": 3,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "6944cb809403cf74493f88d1d156db1d49508257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb5fe8f1_cfce01be",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-05-10T05:04:42Z",
+      "side": 1,
+      "message": "Is the null metadata valid? \n\nIf not, How about calling mCurrentMetadata.remove(sourceId) when metadata is null?",
+      "range": {
+        "startLine": 252,
+        "startChar": 85,
+        "endLine": 252,
+        "endChar": 93
+      },
+      "revId": "6944cb809403cf74493f88d1d156db1d49508257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
