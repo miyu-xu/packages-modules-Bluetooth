@@ -16,6 +16,23 @@
       "message": "Thanks for updating the doc!",
       "revId": "dd313ffbdd9af5ddb05b0e2d57878e72b961492f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b16c67b_6abc097d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1587936
+      },
+      "writtenOn": "2022-05-10T20:36:12Z",
+      "side": 1,
+      "message": "README file only, linting good, skipping presubmit.",
+      "revId": "dd313ffbdd9af5ddb05b0e2d57878e72b961492f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
