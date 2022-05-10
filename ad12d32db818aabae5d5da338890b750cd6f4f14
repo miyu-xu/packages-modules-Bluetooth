@@ -52,6 +52,24 @@
       "parentUuid": "769148ff_06fa6f87",
       "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4bbd10_f9932454",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-05-10T10:14:52Z",
+      "side": 1,
+      "message": "In one case OnDeviceAvailable() is called when loading devices from the storage and we don\u0027t have the rank available yet. The other one is when the group modules loads the group info from storage and calls the le audio module callback, and I don\u0027t think we have the rank at that time. Do we?\n\nOnly the 3rd call to onDeviceAvailable() is where we have the rank info.",
+      "parentUuid": "a82e2f99_0b2408cd",
+      "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
