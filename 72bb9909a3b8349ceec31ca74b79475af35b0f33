@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b092d5de_992c25ff",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-10T07:40:04Z",
+      "side": 1,
+      "message": "if you are modifying buf, this cannot be const",
+      "range": {
+        "startLine": 1897,
+        "startChar": 18,
+        "endLine": 1897,
+        "endChar": 24
+      },
+      "revId": "72bb9909a3b8349ceec31ca74b79475af35b0f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1a395f6_98711218",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1900,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-10T07:40:04Z",
+      "side": 1,
+      "message": "prefer static_cast\u003cuint16_t*\u003e instead of raw cast\n\nstatic_cast would catch the const error above",
+      "range": {
+        "startLine": 1900,
+        "startChar": 21,
+        "endLine": 1900,
+        "endChar": 41
+      },
+      "revId": "72bb9909a3b8349ceec31ca74b79475af35b0f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5baa8fe2_e258067e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1911,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-10T07:40:04Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 1911,
+        "startChar": 22,
+        "endLine": 1911,
+        "endChar": 29
+      },
+      "revId": "72bb9909a3b8349ceec31ca74b79475af35b0f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
