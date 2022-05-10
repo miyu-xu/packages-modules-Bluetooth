@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0eb4cd0_34d466d6",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-10T04:26:59Z",
+      "side": 1,
+      "message": "Should we use \u003c ?",
+      "revId": "592d85bd952424a51a667cf974f6b1abd6874925",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f65cd2_a4af8543",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3008,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-10T04:26:59Z",
+      "side": 1,
+      "message": "\u003c\u003d ?",
+      "range": {
+        "startLine": 3008,
+        "startChar": 46,
+        "endLine": 3008,
+        "endChar": 48
+      },
+      "revId": "592d85bd952424a51a667cf974f6b1abd6874925",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
