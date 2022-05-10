@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b97680d8_45b63fee",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-10T00:22:30Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java:1197: error: incompatible types: ParcelUuid cannot be converted to String\n            Log.i(TAG, remoteUuid);\n                       ^\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java:1202: error: incompatible types: ParcelUuid cannot be converted to String\n            Log.i(TAG, localUuid);\n                       ^\nNote: Some messages have been simplified; recompile with -Xdiags:verbose to get full output\n2 errors\n1 warning",
+      "range": {
+        "startLine": 1217,
+        "startChar": 8,
+        "endLine": 1217,
+        "endChar": 35
+      },
+      "revId": "507e68465f2e98d5fe5c0c3c675028976bfb0b6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
