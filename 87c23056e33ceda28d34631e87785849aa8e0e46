@@ -51,6 +51,24 @@
       "parentUuid": "647b3c79_88fa5de7",
       "revId": "87c23056e33ceda28d34631e87785849aa8e0e46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb29973a_cc4e9cbf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-05-10T21:45:43Z",
+      "side": 1,
+      "message": "As I understand it, at this point, there is only \"new avrcp\" as it relates to the AVRCP Target role. The \"old\" is not used for AVRCP Target. However, the \"old\" code path that \"is_new_avrcp()\" would keep us from going down *is* used for AVRCP Controller. That function and the code is a bit misleading at face value. It probably needs a refactor, but the hope has been GD would get there eventually.\n\nThe sysprops default values need to be keep in sync with the Java values and the CTS/GTS values as well so that they all agree. And as I\u0027ve said, we\u0027ve taken the stance that things should not be defaulted to true.",
+      "parentUuid": "5b22e5d2_30951181",
+      "revId": "87c23056e33ceda28d34631e87785849aa8e0e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
