@@ -170,6 +170,14 @@ public final class BluetoothCsipSetCoordinator implements BluetoothProfile, Auto
      */
     public static final String EXTRA_CSIS_GROUP_SIZE = "android.bluetooth.extra.CSIS_GROUP_SIZE";
 
+
+    /**
+     * Devices rank as int extra field in {@link #ACTION_CSIS_DEVICE_AVAILABLE} intent.
+     *
+     * @hide
+     */
+    public static final String EXTRA_CSIS_DEVICE_RANK = "android.bluetooth.extra.CSIS_DEVICE_RANK";
+
     /**
      * Group type uuid extra field in {@link #ACTION_CSIS_DEVICE_AVAILABLE} intent.
      *

@@ -87,6 +87,7 @@ public class CsipSetCoordinatorService extends ProfileService {
             new HashMap<>();
 
     private final Map<Integer, ParcelUuid> mGroupIdToUuidMap = new HashMap<>();
+    // TODO: replace Set<Integer> with Set<Map<Integer/* groupId */, Integer/* rank */>>
     private final Map<BluetoothDevice, Set<Integer>> mDeviceGroupIdMap = new ConcurrentHashMap<>();
     private final Map<Integer, Integer> mGroupIdToGroupSize = new HashMap<>();
     private final Map<ParcelUuid, Map<Executor, IBluetoothCsipSetCoordinatorCallback>> mCallbacks =
@@ -590,7 +591,7 @@ public class CsipSetCoordinatorService extends ProfileService {
                 IBluetoothCsipSetCoordinator.CSIS_GROUP_SIZE_UNKNOWN);
     }
 
-    private void handleDeviceAvailable(BluetoothDevice device, int groupId, UUID uuid) {
+    private void handleDeviceAvailable(BluetoothDevice device, int groupId, int rank, UUID uuid) {
         ParcelUuid parcel_uuid = new ParcelUuid(uuid);
         if (!getAllGroupIds(parcel_uuid).contains(groupId)) {
             mGroupIdToUuidMap.put(groupId, parcel_uuid);
@@ -599,6 +600,8 @@ public class CsipSetCoordinatorService extends ProfileService {
         if (!mDeviceGroupIdMap.containsKey(device)) {
             mDeviceGroupIdMap.put(device, new HashSet<Integer>());
         }
+
+        // TODO: Store the rank somewhere
 
         Set<Integer> all_device_groups = mDeviceGroupIdMap.get(device);
         all_device_groups.add(groupId);
@@ -698,9 +701,11 @@ public class CsipSetCoordinatorService extends ProfileService {
             intent.putExtra(
                     BluetoothCsipSetCoordinator.EXTRA_CSIS_GROUP_SIZE, stackEvent.valueInt2);
             intent.putExtra(
+                    BluetoothCsipSetCoordinator.EXTRA_CSIS_DEVICE_RANK, stackEvent.valueInt3);
+            intent.putExtra(
                     BluetoothCsipSetCoordinator.EXTRA_CSIS_GROUP_TYPE_UUID, stackEvent.valueUuid1);
 
-            handleDeviceAvailable(device, groupId, stackEvent.valueUuid1);
+            handleDeviceAvailable(device, groupId, stackEvent.valueInt3, stackEvent.valueUuid1);
         } else if (stackEvent.type
                 == CsipSetCoordinatorStackEvent.EVENT_TYPE_SET_MEMBER_AVAILABLE) {
             Objects.requireNonNull(device, "Device should never be null, event: " + stackEvent);
