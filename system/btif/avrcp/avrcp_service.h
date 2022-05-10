@@ -110,6 +110,6 @@ class AvrcpService : public MediaCallbacks {
 }  // namespace avrcp
 }  // namespace bluetooth
 
-inline bool is_new_avrcp_enabled() {
-  return osi_property_get_bool("bluetooth.profile.avrcp.target.enabled", false);
-}
+// New AVRCP path is always used. Once the old AVRCP path is entirely removed,
+// this function can also be removed.
+inline bool is_new_avrcp_enabled() { return true; }
