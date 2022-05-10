@@ -22,6 +22,30 @@
       },
       "revId": "fb9349b12fa3e08daaec116c0dcbff500f1d8614",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8be16b62_a8c5d68b",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-05-10T09:54:28Z",
+      "side": 1,
+      "message": "I agree and the function here is only called in the unit tests below. Currently, the compiler outputs unformatted code and the users will have to run it through `rustfmt` themselves (if wanted).",
+      "parentUuid": "fcd172e2_e24b245a",
+      "range": {
+        "startLine": 515,
+        "startChar": 0,
+        "endLine": 520,
+        "endChar": 53
+      },
+      "revId": "fb9349b12fa3e08daaec116c0dcbff500f1d8614",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
