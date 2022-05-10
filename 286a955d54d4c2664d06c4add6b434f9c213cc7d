@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd2fbdbd_97680d4a",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-10T21:57:31Z",
+      "side": 1,
+      "message": "maybe we don\u0027t need to add new magic if the old one was not yet released?",
+      "revId": "286a955d54d4c2664d06c4add6b434f9c213cc7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7f1bd14_f5e9705d",
+        "filename": "system/include/hardware/bt_csis.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-10T21:57:31Z",
+      "side": 1,
+      "message": "spec says 0x00 is invalid? If not I would go for int CSIS_RANK_INVALID \u003d -1",
+      "revId": "286a955d54d4c2664d06c4add6b434f9c213cc7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
