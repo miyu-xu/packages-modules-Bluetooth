@@ -5,7 +5,8 @@ use bt_topshim::btif::BluetoothInterface;
 use log::warn;
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
-use tokio::sync::mpsc::Sender;
+use tokio::sync::mpsc::{channel, Sender};
+use tokio::task;
 
 /// Defines the Suspend/Resume API.
 ///
@@ -145,10 +146,16 @@ impl ISuspend for Suspend {
         }
         self.intf.lock().unwrap().clear_filter_accept_list();
         self.intf.lock().unwrap().disconnect_all_acls();
-        self.intf.lock().unwrap().le_rand();
-        self.for_all_callbacks(|callback| {
-            callback.on_suspend_ready(suspend_id);
+        let (_tx, mut rx) = channel::<u64>(1);
+        task::spawn(async move {
+            let random = rx.recv().await;
+            println!("Randommmmm: {:?}", random);
+            // TODO(): Figure out calling back
+            //            self.for_all_callbacks(|callback| {
+            //                callback.on_suspend_ready(suspend_id);
+            //            });
         });
+        self.intf.lock().unwrap().le_rand(_tx.clone());
     }
 
     fn resume(&self) -> bool {
@@ -162,10 +169,17 @@ impl ISuspend for Suspend {
             }
             // TODO(224603198): start all advertising again
         }
-        self.intf.lock().unwrap().le_rand();
-        self.for_all_callbacks(|callback| {
-            callback.on_resumed(suspend_id);
+        let (_tx, mut rx) = channel::<u64>(1);
+        task::spawn(async move {
+            let random = rx.recv().await;
+            println!("Randommmmm: {:?}", random);
+            // TODO(): Figure out calling back
+            //            self.for_all_callbacks(|callback| {
+            //                callback.on_resumed(suspend_id);
+            //            });
         });
+        self.intf.lock().unwrap().le_rand(_tx.clone());
+
         return true;
     }
 }
