@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07996099_549c4c1c",
+        "filename": "system/blueberry/tests/sl4a_sl4a/gatt/gatt_connect_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-10T07:09:58Z",
+      "side": 1,
+      "message": "any particular reason for this change?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 61
+      },
+      "revId": "0cab5a656dfa6df86601210e1b27e30b3ae2f761",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
