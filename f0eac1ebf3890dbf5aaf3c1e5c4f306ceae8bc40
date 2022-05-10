@@ -16,6 +16,24 @@
       "message": "Do we have any test in place to check this doesn\u0027t cause issues and that this is truly a no-op? Running CQ might be insufficient.",
       "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5d49f3_92bf92e3",
+        "filename": "system/common/once_timer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1130573
+      },
+      "writtenOn": "2022-05-10T18:31:29Z",
+      "side": 0,
+      "message": "std::move is not necessarily a no-op (it could be depending on implementation e.g. copy is a valid implementation for move). But once an object is moved, it is no longer valid to use i.e. move(foo); use(foo) is invalid.\n\nBut current removal should be fine as there should be no uses of task_ post move.",
+      "parentUuid": "d7e8a3f3_b00aeaad",
+      "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
