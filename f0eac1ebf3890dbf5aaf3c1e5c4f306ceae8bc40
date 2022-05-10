@@ -33,6 +33,24 @@
       "message": "Please fix the lint errors",
       "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00db54f8_fdff3937",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2022-05-10T18:51:51Z",
+      "side": 1,
+      "message": "Hmm, repo upload will complain if they aren\u0027t longer than 100 chars. Do I ignore the preupload checks?\n\n\u003e   [FAILED] clang_format\n\u003e      The following files have formatting errors:\n\u003e          system/gd/hci/hci_layer.cc\n\u003e      You can try to fix this by running:\n\u003e      /usr/local/google/home/ajordanr/android/tools/repohooks/tools/clang-format.py -- fix --clang-format /usr/local/google/home/ajordanr/android/prebuilts/clang/host/linux-x86/clang-stable/bin/clang-format --git-clang-format /usr/local/google/home/ajordanr/android/prebuilts/clang/host/linux-x86/clang-stable/bin/git-clang-format --commit 7382ba6c98a2b8693727228c85b2ea18d0de89d5 --style file --extensions c,h,cc,cpp,hpp\n\u003e   [FAILED] repohooks for platform/packages/modules/Bluetooth failed in 0.951s\n\nRunning the above command creates lines longer than 100 chars.",
+      "parentUuid": "a72e6cb7_72535de9",
+      "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
