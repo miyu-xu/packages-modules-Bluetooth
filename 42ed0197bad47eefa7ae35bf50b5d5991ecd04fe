@@ -22,6 +22,30 @@
       },
       "revId": "42ed0197bad47eefa7ae35bf50b5d5991ecd04fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31225c00_08d77d37",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1760,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-10T07:30:59Z",
+      "side": 1,
+      "message": "I\u0027m not sure TBH. I\u0027ve seen this being a common pattern in other services. :)",
+      "parentUuid": "742c60c4_55ce16e2",
+      "range": {
+        "startLine": 1759,
+        "startChar": 24,
+        "endLine": 1760,
+        "endChar": 61
+      },
+      "revId": "42ed0197bad47eefa7ae35bf50b5d5991ecd04fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
