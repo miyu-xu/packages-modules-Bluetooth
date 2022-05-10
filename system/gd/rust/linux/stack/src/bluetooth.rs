@@ -909,6 +909,11 @@ impl BtifBluetoothCallbacks for Bluetooth {
             None => (),
         };
     }
+
+    fn le_rand_cb(&mut self, random: u64) {
+        println!("Random: {:?}", random);
+        self.intf.lock().unwrap().le_rand_cb(random)
+    }
 }
 
 // TODO: Add unit tests for this implementation

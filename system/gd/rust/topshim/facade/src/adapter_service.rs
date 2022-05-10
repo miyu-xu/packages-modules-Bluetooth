@@ -160,7 +160,8 @@ impl AdapterService for AdapterServiceImpl {
     }
 
     fn le_rand(&mut self, ctx: RpcContext<'_>, _req: Empty, sink: UnarySink<Empty>) {
-        self.btif_intf.lock().unwrap().le_rand();
+        let (_tx, _rx) = mpsc::channel(1);
+        self.btif_intf.lock().unwrap().le_rand(_tx);
         ctx.spawn(async move {
             sink.success(Empty::default()).await.unwrap();
         })
