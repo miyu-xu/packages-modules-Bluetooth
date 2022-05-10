@@ -22,6 +22,30 @@
       },
       "revId": "a61d4de71997c76377d4740cbea54ddd153feb90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8945554_97a42c6b",
+        "filename": "system/blueberry/tests/sl4a_sl4a/gatt/gatt_connect_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-10T16:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b68321a0_66d93480",
+      "range": {
+        "startLine": 916,
+        "startChar": 0,
+        "endLine": 917,
+        "endChar": 15
+      },
+      "revId": "a61d4de71997c76377d4740cbea54ddd153feb90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
