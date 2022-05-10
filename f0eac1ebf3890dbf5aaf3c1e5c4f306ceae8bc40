@@ -34,6 +34,24 @@
       "parentUuid": "d7e8a3f3_b00aeaad",
       "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "296ed0e1_a5295b15",
+        "filename": "system/common/once_timer.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1873222
+      },
+      "writtenOn": "2022-05-10T18:32:27Z",
+      "side": 0,
+      "message": "I\u0027m not certain if there\u0027s a test; I don\u0027t work in Android, just work on clang :). \n\nI do know however that `std::move(t)` is always identically equivalent to `constexpr std::remove_reference_t\u003cT\u003e\u0026\u0026 move( T\u0026\u0026 t ) noexcept` by the standard (unless the Android clang is violating the standard here for some reason): https://en.cppreference.com/w/cpp/utility/move.\n\nIt\u0027s possible that an override for `OnceCallback\u003cT\u003e` for `operator\u003d(T\u0026\u0026)` can change how move assignment from the casted xvalue works, but even so, OnceCallback uses the default here: https://cs.android.com/android/platform/superproject/+/master:external/libchrome/base/callback.h;l\u003d71-72\n\nBut again, we\u0027re not actually doing a move, we\u0027re just casting. So we\u0027re not even invoking that.\n\nPerhaps the intention here is that `task_` should become unmovable, but this will only be caught by some sanitisers(?) because it\u0027s not _actually_ being moved. Perhaps the intent is that it becomes `Reset()`, but that actually _would_ cause a change.\n\nYou\u0027d have to tell me what the intent for this code is, but I can affirm that right now this is doing nothing at runtime.",
+      "parentUuid": "d7e8a3f3_b00aeaad",
+      "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
