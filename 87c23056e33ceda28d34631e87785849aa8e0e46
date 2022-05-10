@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92e148d1_d21e7845",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-10T18:44:14Z",
+      "side": 1,
+      "message": "The default value was changed from true to false in https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2060363/5/system/btif/avrcp/avrcp_service.h",
+      "revId": "87c23056e33ceda28d34631e87785849aa8e0e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
