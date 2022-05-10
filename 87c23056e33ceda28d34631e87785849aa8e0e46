@@ -16,6 +16,23 @@
       "message": "The default value was changed from true to false in https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2060363/5/system/btif/avrcp/avrcp_service.h",
       "revId": "87c23056e33ceda28d34631e87785849aa8e0e46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "647b3c79_88fa5de7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-05-10T19:17:58Z",
+      "side": 1,
+      "message": "I don\u0027t think this will work for all targets, as this will essentially make it so AVRCP Target is always assumed to be on if not explicitly disabled. We really don\u0027t want \"defaulted on\" profiles anymore if we can avoid it. Devices currently have to explicitly enable the profiles they want. If this change is allowed as is too, AVRCP Controller targets wouldn\u0027t work, as that profile relies on the legacy path for SDP record management, etc.\n\nHow do you guys configure profiles for floss? Presumably you require the enabling of other profiles, no? If you can\u0027t set system properties anyway, then how are your other profiles working? They all got the same treatment in TM.\n",
+      "revId": "87c23056e33ceda28d34631e87785849aa8e0e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
