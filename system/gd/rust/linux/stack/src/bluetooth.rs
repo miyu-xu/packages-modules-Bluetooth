@@ -16,11 +16,13 @@ use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 use log::{debug, warn};
 use num_traits::cast::ToPrimitive;
 use std::collections::HashMap;
+use std::collections::VecDeque;
 use std::sync::Arc;
 use std::sync::Mutex;
 use std::time::Duration;
 use std::time::Instant;
 use tokio::sync::mpsc::Sender;
+use tokio::sync::oneshot::Sender as OneShotSender;
 use tokio::task::JoinHandle;
 use tokio::time;
 
@@ -35,6 +37,9 @@ const MIN_ADV_INSTANCES_FOR_MULTI_ADV: u8 = 5;
 /// if they haven't already bonded or connected. Once this duration expires, the
 /// clear event should be sent to clients.
 const FOUND_DEVICE_FRESHNESS: Duration = Duration::from_secs(30);
+
+/// This is the value returened from Bluetooth Interface calls.
+const BTM_SUCCESS: i32 = 0;
 
 /// Defines the adapter API.
 pub trait IBluetooth {
@@ -313,6 +318,8 @@ pub struct Bluetooth {
     uuid_helper: UuidHelper,
     /// Used to delay connection until we have SDP results.
     wait_to_connect: bool,
+    // Internal API members
+    internal_le_rand_queue: VecDeque<OneShotSender<u64>>,
 }
 
 impl Bluetooth {
@@ -342,10 +349,13 @@ impl Bluetooth {
             tx,
             uuid_helper: UuidHelper::new(),
             wait_to_connect: false,
+            // Internal API members
+            internal_le_rand_queue: VecDeque::<OneShotSender<u64>>::new(),
         }
     }
 
     pub fn init_profiles(&mut self) {
+        println!("zoot zoot");
         let hhtx = self.tx.clone();
         self.hh = Some(HidHost::new(&self.intf.lock().unwrap()));
         self.hh.as_mut().unwrap().initialize(HHCallbacksDispatcher {
@@ -516,6 +526,19 @@ impl Bluetooth {
                 time::sleep(FOUND_DEVICE_FRESHNESS).await;
                 let _ = txl.send(Message::DeviceFreshnessCheck).await;
             }));
+        }
+    }
+
+    /// Makes an LE_RAND call to the Bluetoothe interface.  This call is asynchronous, and uses an
+    /// asynchronous callback, but is synchonized on a |OneShotSender|
+    /// If generating a random isn't successful, a 0 will be sent to the callback.
+    pub fn le_rand(&mut self, promise: OneShotSender<u64>) {
+        self.internal_le_rand_queue.push_back(promise);
+        let ret = self.intf.lock().unwrap().le_rand();
+        if ret != BTM_SUCCESS {
+            debug!("Call to BTIF failed.");
+            // Send 0 to caller indicating failure to generate a RANDOM
+            let _ = self.internal_le_rand_queue.pop_back().expect("Sender is gone!").send(0);
         }
     }
 }
@@ -908,6 +931,11 @@ impl BtifBluetoothCallbacks for Bluetooth {
             }
             None => (),
         };
+    }
+
+    fn le_rand_cb(&mut self, random: u64) {
+        println!("Random: {:?}", random);
+        let _ = self.internal_le_rand_queue.pop_back().expect("Sender is gone!").send(random);
     }
 }
 
