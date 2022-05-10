@@ -11,6 +11,8 @@ use std::mem;
 use std::os::raw::c_char;
 use std::sync::{Arc, Mutex};
 use std::vec::Vec;
+use tokio::sync::mpsc::Sender;
+use tokio::task;
 use topshim_macros::cb_variant;
 
 #[derive(Clone, Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
@@ -835,6 +837,8 @@ pub struct BluetoothInterface {
 
     // Need to take ownership of callbacks so it doesn't get freed after init
     callbacks: Option<Box<bindings::bt_callbacks_t>>,
+
+    le_rand_callback: Option<Sender<u64>>,
 }
 
 impl BluetoothInterface {
@@ -1036,21 +1040,21 @@ impl BluetoothInterface {
         ccall!(self, allow_wake_by_hid)
     }
 
-    /*async*/
-    pub fn le_rand(&self) -> i32 {
-        // global_future = Future()
-        ccall!(self, le_rand)
-        // await glogal_future
-        // result = global_future.result()
-        // global_future = null
-        // return result
+    pub fn le_rand(&mut self, tx: Sender<u64>) -> i32 {
+        self.le_rand_callback = Some(tx.clone());
+        self.internal_le_rand()
     }
 
-    /*
-    pub fn le_rand_cb(&self, random: u64) {
-        global_future.set_result(random)
+    fn internal_le_rand(&self) -> i32 {
+        ccall!(self, le_rand)
     }
-    */
+
+    pub fn le_rand_cb(&self, random: u64) {
+        let cb = self.le_rand_callback.clone().unwrap().clone();
+        task::spawn(async move {
+            cb.send(random).await;
+        });
+    }
 
     pub fn restore_filter_accept_list(&self) -> i32 {
         ccall!(self, restore_filter_accept_list)
@@ -1091,6 +1095,7 @@ pub fn get_btinterface() -> Option<BluetoothInterface> {
                 internal: RawInterfaceWrapper { raw: ifptr },
                 is_init: false,
                 callbacks: None,
+                le_rand_callback: None,
             });
         }
     }
