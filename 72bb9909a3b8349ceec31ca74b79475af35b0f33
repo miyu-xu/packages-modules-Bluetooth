@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f28cc9d6_d402cb1d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1897,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-10T09:41:57Z",
+      "side": 1,
+      "message": "It is passed through whole stack as const, so I\u0027ll keep it as const here.",
+      "parentUuid": "b092d5de_992c25ff",
+      "range": {
+        "startLine": 1897,
+        "startChar": 18,
+        "endLine": 1897,
+        "endChar": 24
+      },
+      "revId": "72bb9909a3b8349ceec31ca74b79475af35b0f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1a395f6_98711218",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "302281bf_b27c5dab",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1900,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-10T09:41:57Z",
+      "side": 1,
+      "message": "I can\u0027t do static_cast. We represent bytes as uint8_t through whole stack, and I must cast to signed. static_cast, or any other c++ style cast doesn\u0027t allow that.\n\nTo be safe about \"const\", I created new out buffer to which I write.",
+      "parentUuid": "f1a395f6_98711218",
+      "range": {
+        "startLine": 1900,
+        "startChar": 21,
+        "endLine": 1900,
+        "endChar": 41
+      },
+      "revId": "72bb9909a3b8349ceec31ca74b79475af35b0f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5baa8fe2_e258067e",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-05-10T07:40:04Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 1911,
+        "startChar": 22,
+        "endLine": 1911,
+        "endChar": 29
+      },
+      "revId": "72bb9909a3b8349ceec31ca74b79475af35b0f33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "860bcd2c_d59cc900",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1911,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-10T09:41:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5baa8fe2_e258067e",
       "range": {
         "startLine": 1911,
         "startChar": 22,
