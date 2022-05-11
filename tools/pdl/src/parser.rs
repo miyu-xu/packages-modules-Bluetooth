@@ -234,7 +234,7 @@ fn parse_identifier_or_integer(
 }
 
 fn parse_string(iter: &mut NodeIterator<'_>) -> Result<String, String> {
-    expect(iter, Rule::string).map(|n| n.as_string())
+    expect(iter, Rule::string).map(|n| n.as_str().trim_matches('"').to_owned())
 }
 
 fn parse_size_modifier_opt(iter: &mut NodeIterator<'_>) -> Option<String> {
