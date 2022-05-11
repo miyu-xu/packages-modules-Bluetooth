@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc66b71_43213f98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-11T13:10:46Z",
+      "side": 1,
+      "message": "The build is failing.\n\nFAILED: \nbuild/make/core/main.mk:753: warning: Missing required dependencies:\nHOST module pdl_tests requires non-existent HOST module: rustfmt\nbuild/make/core/main.mk:758: warning: Set BUILD_BROKEN_MISSING_REQUIRED_MODULES :\u003d true to bypass this check if this is intentional\nbuild/make/core/main.mk:759: error: Build failed.\n15:55:05 ckati failed with: exit status 1",
+      "revId": "2aaf40d656debfbd8d1258a0bffc5b8280aa5362",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
