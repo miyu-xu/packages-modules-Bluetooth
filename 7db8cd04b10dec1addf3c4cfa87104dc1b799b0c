@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e16a78d1_6f43a40a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-11T10:14:47Z",
+      "side": 1,
+      "message": "This is 100+ because the clang formatter doesn\u0027t seem to let me split these lines up and will revert any edits I make to do so.",
+      "parentUuid": "1492f99c_f47b5cdf",
+      "range": {
+        "startLine": 156,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 120
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e73131e6_9ba70a03",
         "filename": "system/gd/hal/snoop_logger.cc",
         "patchSetId": 3
@@ -60,6 +84,30 @@
       "writtenOn": "2022-05-09T18:46:34Z",
       "side": 1,
       "message": "nit: could this be saved as a constant?\n\nPlease also fix the line length comment",
+      "range": {
+        "startLine": 473,
+        "startChar": 98,
+        "endLine": 473,
+        "endChar": 109
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11ac7d2e_2bed56b0",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-11T10:14:47Z",
+      "side": 1,
+      "message": "Should be fixed now.",
+      "parentUuid": "e73131e6_9ba70a03",
       "range": {
         "startLine": 473,
         "startChar": 98,

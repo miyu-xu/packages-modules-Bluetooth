@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd3bff6_367a91fd",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-11T10:14:47Z",
+      "side": 1,
+      "message": "This constant is checking against static const size_t kMaxBtsnoozAclSize in snoop_logger.cc:136. I don\u0027t think this is correct, but unsure what a better alternative is.",
+      "range": {
+        "startLine": 388,
+        "startChar": 86,
+        "endLine": 388,
+        "endChar": 88
+      },
+      "revId": "83120f2b4d9075050c3a0d901760aae2b8158749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
