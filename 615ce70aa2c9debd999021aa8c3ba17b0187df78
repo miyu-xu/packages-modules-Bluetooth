@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0dcf76d_9abf3fdc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-11T09:02:00Z",
+      "side": 1,
+      "message": "however it would be nice to be able to set 24bits. Now it seems to be not possible",
+      "revId": "615ce70aa2c9debd999021aa8c3ba17b0187df78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
