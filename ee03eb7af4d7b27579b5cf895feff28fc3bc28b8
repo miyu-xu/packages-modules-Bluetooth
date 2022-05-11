@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "461e17eb_5d6896ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-11T19:31:16Z",
+      "side": 1,
+      "message": "I would be against using \"timing\" to determine whether an API call is ok or not.\n\nThe root cause here seems to be that the UI is cancelling discovery before pairing because it already has a device it is pairing to. However, that device hasn\u0027t completed SDP yet.\n\nA couple of solutions here:\n- We queue the cancel request and trigger it once SDP completes for the active device (if an SDP is active on any device).\n- We only send `DeviceFound` if a device has UUIDs in its EIR OR it completes SDP\n\nI think the latter definitely solves the scenario where the UI needs to show a working device before a user pairs to it. The first option could also work but would require additional plumbing in code.",
+      "revId": "ee03eb7af4d7b27579b5cf895feff28fc3bc28b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
