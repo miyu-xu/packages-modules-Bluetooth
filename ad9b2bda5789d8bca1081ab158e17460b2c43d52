@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46e36f4a_0487c2d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-11T22:46:37Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "ad9b2bda5789d8bca1081ab158e17460b2c43d52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa483b4b_645e1a66",
+        "filename": "tools/rootcanal/test/async_manager_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-11T22:46:37Z",
+      "side": 1,
+      "message": "Using ASSERT_TRUE means the test stops right then.  I prefer it.  The only time to use EXPECT_* is in a function that returns a value.  Then it won\u0027t compile with ASSERT_*.",
+      "range": {
+        "startLine": 225,
+        "startChar": 5,
+        "endLine": 225,
+        "endChar": 16
+      },
+      "revId": "ad9b2bda5789d8bca1081ab158e17460b2c43d52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebd044eb_e5cff4e4",
+        "filename": "tools/rootcanal/test/async_manager_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-11T22:46:37Z",
+      "side": 1,
+      "message": "could we use a promise for this?",
+      "range": {
+        "startLine": 243,
+        "startChar": 24,
+        "endLine": 243,
+        "endChar": 33
+      },
+      "revId": "ad9b2bda5789d8bca1081ab158e17460b2c43d52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
