@@ -16,6 +16,24 @@
       "message": "however it would be nice to be able to set 24bits. Now it seems to be not possible",
       "revId": "615ce70aa2c9debd999021aa8c3ba17b0187df78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9808664_b475f05a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-11T15:14:32Z",
+      "side": 1,
+      "message": "That is for separate patch :)",
+      "parentUuid": "d0dcf76d_9abf3fdc",
+      "revId": "615ce70aa2c9debd999021aa8c3ba17b0187df78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
