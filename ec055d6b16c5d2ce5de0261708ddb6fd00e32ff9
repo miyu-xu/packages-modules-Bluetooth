@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bb4ef90_ae1ecf61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-05-11T20:41:54Z",
+      "side": 1,
+      "message": "unfortunately the RFCOMM spec uses 6 bits to represent the channel id, and the most significant bit is server vs client, so we only have room for 2^5 (31) clients :/\n\nthis is why people should migrate to l2cap instead of rfcomm",
+      "revId": "ec055d6b16c5d2ce5de0261708ddb6fd00e32ff9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
