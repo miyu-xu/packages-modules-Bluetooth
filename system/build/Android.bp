@@ -129,6 +129,8 @@ fluoride_defaults {
                 "libhidlbase",
                 "libstatslog_bt",
                 "libutils",
+                "libgrpc++",
+                "libgrpc_wrap",
             ],
             cflags: [
                 "-DOS_ANDROID",
