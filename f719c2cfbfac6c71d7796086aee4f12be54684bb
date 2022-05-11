@@ -22,6 +22,30 @@
       },
       "revId": "f719c2cfbfac6c71d7796086aee4f12be54684bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c226e5d_29f1d1f8",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1325198
+      },
+      "writtenOn": "2022-05-11T01:03:57Z",
+      "side": 1,
+      "message": "Thanks for finding the typo.  \nresolved in Patchset 2.",
+      "parentUuid": "174f1e95_292ae517",
+      "range": {
+        "startLine": 491,
+        "startChar": 10,
+        "endLine": 491,
+        "endChar": 14
+      },
+      "revId": "f719c2cfbfac6c71d7796086aee4f12be54684bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
