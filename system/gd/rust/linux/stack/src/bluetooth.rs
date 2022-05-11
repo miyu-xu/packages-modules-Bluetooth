@@ -29,6 +29,7 @@ use crate::uuid::{Profile, UuidHelper};
 use crate::{BluetoothCallbackType, Message, RPCProxy};
 
 const DEFAULT_DISCOVERY_TIMEOUT_MS: u64 = 12800;
+const MIN_CANCEL_INTERVAL_MS: u64 = 100;
 const MIN_ADV_INSTANCES_FOR_MULTI_ADV: u8 = 5;
 
 /// Devices that were last seen longer than this duration are considered stale
@@ -95,10 +96,10 @@ pub trait IBluetooth {
     fn is_le_extended_advertising_supported(&self) -> bool;
 
     /// Starts BREDR Inquiry.
-    fn start_discovery(&self) -> bool;
+    fn start_discovery(&mut self) -> bool;
 
     /// Cancels BREDR Inquiry.
-    fn cancel_discovery(&self) -> bool;
+    fn cancel_discovery(&mut self) -> bool;
 
     /// Checks if discovery is started.
     fn is_discovering(&self) -> bool;
@@ -107,7 +108,7 @@ pub trait IBluetooth {
     fn get_discovery_end_millis(&self) -> u64;
 
     /// Initiates pairing to a remote device. Triggers connection if not already started.
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool;
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool;
 
     /// Cancels any pending bond attempt on given device.
     fn cancel_bond_process(&self, device: BluetoothDevice) -> bool;
@@ -1076,11 +1077,18 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn start_discovery(&self) -> bool {
+    fn start_discovery(&mut self) -> bool {
         self.intf.lock().unwrap().start_discovery() == 0
     }
 
-    fn cancel_discovery(&self) -> bool {
+    fn cancel_discovery(&mut self) -> bool {
+        // Reject the cancel discovery request if the underlying stack is not in a discovering
+        // state. For example, previous start discovery was enqueued for ongoing discovery.
+        if !self.is_discovering {
+            debug!("Reject cancel_discovery as it's not in discovering state.");
+            return false;
+        }
+
         self.intf.lock().unwrap().cancel_discovery() == 0
     }
 
@@ -1101,7 +1109,7 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool {
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool {
         let addr = RawAddress::from_string(device.address.clone());
 
         if addr.is_none() {
