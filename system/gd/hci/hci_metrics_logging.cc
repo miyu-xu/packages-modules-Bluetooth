@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "hci/hci_metrics_logging.h"
+
 #include <frameworks/proto_logging/stats/enums/bluetooth/hci/enums.pb.h>
 
+#include "common/audit_log.h"
 #include "common/strings.h"
-#include "hci/hci_metrics_logging.h"
 #include "os/metrics.h"
 #include "storage/device.h"
 
@@ -517,6 +519,10 @@ void log_link_layer_connection_other_hci_event(EventView packet, storage::Storag
           connection_handle,
           status,
           storage_module);
+
+      if (status != ErrorCode::SUCCESS) {
+        common::LogConnectionAdminAuditEvent("Connecting", address, status);
+      }
       break;
     }
     case EventCode::CONNECTION_REQUEST: {
