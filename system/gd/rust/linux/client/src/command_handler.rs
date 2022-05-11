@@ -355,10 +355,10 @@ impl CommandHandler {
 
         enforce_arg_len(args, 1, "discovery <start|stop>", || match &args[0][0..] {
             "start" => {
-                self.context.lock().unwrap().adapter_dbus.as_ref().unwrap().start_discovery();
+                self.context.lock().unwrap().adapter_dbus.as_mut().unwrap().start_discovery();
             }
             "stop" => {
-                self.context.lock().unwrap().adapter_dbus.as_ref().unwrap().cancel_discovery();
+                self.context.lock().unwrap().adapter_dbus.as_mut().unwrap().cancel_discovery();
             }
             _ => {
                 println!("Invalid argument '{}'", args[0]);
@@ -395,7 +395,7 @@ impl CommandHandler {
                     .lock()
                     .unwrap()
                     .adapter_dbus
-                    .as_ref()
+                    .as_mut()
                     .unwrap()
                     .create_bond(device.clone(), BtTransport::Auto);
 

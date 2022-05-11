@@ -29,6 +29,7 @@ use crate::uuid::{Profile, UuidHelper};
 use crate::{BluetoothCallbackType, Message, RPCProxy};
 
 const DEFAULT_DISCOVERY_TIMEOUT_MS: u64 = 12800;
+const MIN_CANCEL_INTERVAL_MS: u64 = 100;
 const MIN_ADV_INSTANCES_FOR_MULTI_ADV: u8 = 5;
 
 /// Devices that were last seen longer than this duration are considered stale
@@ -95,10 +96,10 @@ pub trait IBluetooth {
     fn is_le_extended_advertising_supported(&self) -> bool;
 
     /// Starts BREDR Inquiry.
-    fn start_discovery(&self) -> bool;
+    fn start_discovery(&mut self) -> bool;
 
     /// Cancels BREDR Inquiry.
-    fn cancel_discovery(&self) -> bool;
+    fn cancel_discovery(&mut self) -> bool;
 
     /// Checks if discovery is started.
     fn is_discovering(&self) -> bool;
@@ -107,7 +108,7 @@ pub trait IBluetooth {
     fn get_discovery_end_millis(&self) -> u64;
 
     /// Initiates pairing to a remote device. Triggers connection if not already started.
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool;
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool;
 
     /// Cancels any pending bond attempt on given device.
     fn cancel_bond_process(&self, device: BluetoothDevice) -> bool;
@@ -302,6 +303,7 @@ pub struct Bluetooth {
     hh: Option<HidHost>,
     is_connectable: bool,
     is_discovering: bool,
+    discovery_indicated: bool,
     local_address: Option<RawAddress>,
     properties: HashMap<BtPropertyType, BluetoothProperty>,
     profiles_ready: bool,
@@ -332,6 +334,7 @@ impl Bluetooth {
             intf,
             is_connectable: false,
             is_discovering: false,
+            discovery_indicated: false,
             local_address: None,
             properties: HashMap::new(),
             profiles_ready: false,
@@ -712,7 +715,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
         let is_discovering = &state == &BtDiscoveryState::Started;
 
         // No-op if we're updating the state to the same value again.
-        if &is_discovering == &self.is_discovering {
+        if &is_discovering == &self.is_discovering && self.discovery_indicated {
             return;
         }
 
@@ -725,6 +728,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
         self.for_all_callbacks(|callback| {
             callback.on_discovering_changed(state == BtDiscoveryState::Started);
         });
+        self.discovery_indicated = true;
 
         // Stopped discovering and no freshness check is active. Immediately do
         // freshness check which will schedule a recurring future until all
@@ -1076,12 +1080,29 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn start_discovery(&self) -> bool {
-        self.intf.lock().unwrap().start_discovery() == 0
+    fn start_discovery(&mut self) -> bool {
+        if self.intf.lock().unwrap().start_discovery() != 0 {
+            return false;
+        }
+
+        self.discovery_indicated = false;
+        self.discovering_started = Instant::now();
+        true
     }
 
-    fn cancel_discovery(&self) -> bool {
-        self.intf.lock().unwrap().cancel_discovery() == 0
+    fn cancel_discovery(&mut self) -> bool {
+        let elapsed_ms = self.discovering_started.elapsed().as_millis() as u64;
+        if elapsed_ms <= MIN_CANCEL_INTERVAL_MS {
+            warn!("Reject spurious cancel discovery in {} ms! ", elapsed_ms);
+            return false;
+        }
+
+        if self.intf.lock().unwrap().cancel_discovery() != 0 {
+            return false;
+        }
+
+        self.discovery_indicated = false;
+        true
     }
 
     fn is_discovering(&self) -> bool {
@@ -1101,7 +1122,7 @@ impl IBluetooth for Bluetooth {
         }
     }
 
-    fn create_bond(&self, device: BluetoothDevice, transport: BtTransport) -> bool {
+    fn create_bond(&mut self, device: BluetoothDevice, transport: BtTransport) -> bool {
         let addr = RawAddress::from_string(device.address.clone());
 
         if addr.is_none() {
