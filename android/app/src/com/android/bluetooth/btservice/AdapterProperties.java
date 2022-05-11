@@ -20,6 +20,7 @@ import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 
 import android.annotation.RequiresPermission;
+import android.app.admin.SecurityLog;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothA2dpSink;
 import android.bluetooth.BluetoothAdapter;
@@ -703,6 +704,24 @@ class AdapterProperties {
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, state,
                 0 /* deprecated */, profile, mService.obfuscateAddress(device),
                 mService.getMetricId(device), 0);
+
+        if (state == BluetoothProfile.STATE_CONNECTED
+                && prevState == BluetoothProfile.STATE_CONNECTING) {
+            SecurityLog.writeEvent(SecurityLog.TAG_BLUETOOTH_CONNECTION,
+                    Utils.getLoggableAddress(device), /* success */ 1,
+                    "profile: " + BluetoothProfile.getProfileName(profile));
+        } else if (state == BluetoothProfile.STATE_DISCONNECTED
+                || state == BluetoothProfile.STATE_DISCONNECTING) {
+            if (prevState == BluetoothProfile.STATE_CONNECTED) {
+                SecurityLog.writeEvent(SecurityLog.TAG_BLUETOOTH_DISCONNECTION,
+                        Utils.getLoggableAddress(device),
+                        "profile: " + BluetoothProfile.getProfileName(profile));
+            } else if (prevState == BluetoothProfile.STATE_CONNECTING) {
+                SecurityLog.writeEvent(SecurityLog.TAG_BLUETOOTH_CONNECTION,
+                        Utils.getLoggableAddress(device), /* success */ 0,
+                        "profile: " + BluetoothProfile.getProfileName(profile));
+            }
+        }
 
         if (!isNormalStateTransition(prevState, state)) {
             Log.w(TAG,
