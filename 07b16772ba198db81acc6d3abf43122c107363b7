@@ -16,6 +16,24 @@
       "message": "Is it possible that the phy update event is not for updating to 2M? Then, there do BleSetPhy() to update PHY_LE_2M without check supports_ble_2m_phy().",
       "revId": "07b16772ba198db81acc6d3abf43122c107363b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72c42376_78a2ff86",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1322568
+      },
+      "writtenOn": "2022-05-11T08:09:32Z",
+      "side": 1,
+      "message": "If the remote side doesn\u0027t support the PHY 2M, we will not send this request to the remote, it will be return on the BTM_BleSetPhy.\nIf the remote side support PHY 2M, I think it should be accepted this reqeust. Otherwise, it should only show support PHY 1M when we read remote feature.",
+      "parentUuid": "ebfc82e7_382feec0",
+      "revId": "07b16772ba198db81acc6d3abf43122c107363b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
