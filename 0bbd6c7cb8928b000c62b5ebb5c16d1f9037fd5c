@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1e1a287_f7c7bf5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-11T17:14:07Z",
+      "side": 1,
+      "message": "I looked at the automerger an didn\u0027t found where module/Bluetooth merge in `aosp-emu-master-dev`\n\nDo you know something about it @mylesgw ?",
+      "revId": "0bbd6c7cb8928b000c62b5ebb5c16d1f9037fd5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "327fc352_5aca0e74",
         "filename": "system/gd/hci/hci_packets.pdl",
         "patchSetId": 3
