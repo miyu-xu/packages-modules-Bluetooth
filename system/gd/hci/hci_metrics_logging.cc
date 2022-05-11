@@ -13,15 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include "hci/hci_metrics_logging.h"
+
 #include <frameworks/proto_logging/stats/enums/bluetooth/hci/enums.pb.h>
+#include <private/android_logger.h>
 
 #include "common/strings.h"
-#include "hci/hci_metrics_logging.h"
 #include "os/metrics.h"
 #include "storage/device.h"
 
 namespace bluetooth {
 namespace hci {
+
+constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
+#define PRIVATE_ADDRESS(addr) \
+  ((addr).ToString().replace(0, strlen(kPrivateAddressPrefix), kPrivateAddressPrefix).c_str())
+
+// Tags for security logging, should be in sync with
+// frameworks/base/core/java/android/app/admin/SecurityLogTags.logtags
+constexpr int SEC_TAG_BLUETOOTH_CONNECTION = 210039;
 
 void log_hci_event(
     std::unique_ptr<CommandView>& command_view, EventView event_view, storage::StorageModule* storage_module) {
@@ -229,6 +239,16 @@ void log_link_layer_connection_command(std::unique_ptr<CommandView>& command_vie
       kUnknownBleEvt,
       status,
       static_cast<uint16_t>(reason));
+}
+
+static void LogConnectionFailureAdminAuditEvent(const Address& address, ErrorCode status) {
+  if (!__android_log_security()) {
+    return;
+  }
+
+  android_log_event_list(SEC_TAG_BLUETOOTH_CONNECTION)
+      << PRIVATE_ADDRESS(address) << /* success */ int32_t(0)
+      << common::StringFormat("Connecting: %s", ErrorCodeText(status).c_str()).c_str() << LOG_ID_SECURITY;
 }
 
 void log_link_layer_connection_command_status(std::unique_ptr<CommandView>& command_view, ErrorCode status) {
@@ -517,6 +537,10 @@ void log_link_layer_connection_other_hci_event(EventView packet, storage::Storag
           connection_handle,
           status,
           storage_module);
+
+      if (status != ErrorCode::SUCCESS) {
+        LogConnectionFailureAdminAuditEvent(address, status);
+      }
       break;
     }
     case EventCode::CONNECTION_REQUEST: {

@@ -20,10 +20,12 @@
 
 #include "os/metrics.h"
 
+#include <private/android_logger.h>
 #include <statslog_bt.h>
 
 #include "common/metric_id_manager.h"
 #include "common/strings.h"
+#include "hci/hci_packets.h"
 #include "os/log.h"
 
 namespace bluetooth {
@@ -32,11 +34,21 @@ namespace os {
 
 using bluetooth::common::MetricIdManager;
 using bluetooth::hci::Address;
+using bluetooth::hci::ErrorCode;
+using bluetooth::hci::EventCode;
+
+constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
+#define PRIVATE_ADDRESS(addr) \
+  ((addr).ToString().replace(0, strlen(kPrivateAddressPrefix), kPrivateAddressPrefix).c_str())
 
 /**
  * nullptr and size 0 represent missing value for obfuscated_id
  */
 static const BytesField byteField(nullptr, 0);
+
+// Tags for security logging, should be in sync with
+// frameworks/base/core/java/android/app/admin/SecurityLogTags.logtags
+constexpr int SEC_TAG_BLUETOOTH_CONNECTION = 210039;
 
 void LogMetricLinkLayerConnectionEvent(
     const Address* address,
@@ -250,6 +262,18 @@ void LogMetricSmpPairingEvent(
   }
 }
 
+static void LogClassicPairingAdminAuditEvent(const Address& address, EventCode hci_event, ErrorCode cmd_status) {
+  if (!__android_log_security()) {
+    return;
+  }
+
+  if (hci_event == EventCode::SIMPLE_PAIRING_COMPLETE) {
+    android_log_event_list(SEC_TAG_BLUETOOTH_CONNECTION)
+        << PRIVATE_ADDRESS(address) << /* success */ int32_t(cmd_status == ErrorCode::SUCCESS)
+        << common::StringFormat("Pairing: %s", ErrorCodeText(cmd_status).c_str()).c_str() << LOG_ID_SECURITY;
+  }
+}
+
 void LogMetricClassicPairingEvent(
     const Address& address,
     uint16_t handle,
@@ -285,6 +309,8 @@ void LogMetricClassicPairingEvent(
         std::to_string(event_value).c_str(),
         ret);
   }
+
+  LogClassicPairingAdminAuditEvent(address, static_cast<EventCode>(hci_event), static_cast<ErrorCode>(cmd_status));
 }
 
 void LogMetricSdpAttribute(
