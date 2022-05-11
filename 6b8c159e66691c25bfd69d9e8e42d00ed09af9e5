@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "31d6f1e4_3bbe3e65",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-11T07:00:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17c62a56_89dee966",
+      "revId": "6b8c159e66691c25bfd69d9e8e42d00ed09af9e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdfbfeef_62f99707",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bb977f6_8d81614e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-11T07:00:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdfbfeef_62f99707",
+      "revId": "6b8c159e66691c25bfd69d9e8e42d00ed09af9e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff6f8efd_58b18265",
@@ -48,6 +84,30 @@
       "writtenOn": "2022-05-10T22:50:13Z",
       "side": 1,
       "message": "is 3 possible to get?",
+      "range": {
+        "startLine": 1912,
+        "startChar": 15,
+        "endLine": 1912,
+        "endChar": 31
+      },
+      "revId": "6b8c159e66691c25bfd69d9e8e42d00ed09af9e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1df660b7_fa365b38",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1912,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-11T07:00:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff6f8efd_58b18265",
       "range": {
         "startLine": 1912,
         "startChar": 15,
