@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9625a79_091feb80",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-05-11T13:04:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dd0707e_b3ffcd49",
+      "range": {
+        "startLine": 236,
+        "startChar": 3,
+        "endLine": 236,
+        "endChar": 15
+      },
+      "revId": "4896afafda42b68fb667b5ab265745a879dbaf4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e8c9de6_a051cca2",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-11T09:38:16Z",
       "side": 1,
       "message": "I assume the grammar ensures that we cannot have `\"\"abc\"\"` at the beginning of a string? That is, such a string would be `\"\\\"abc\\\"\"` with escaped double quotes.",
+      "range": {
+        "startLine": 237,
+        "startChar": 50,
+        "endLine": 237,
+        "endChar": 67
+      },
+      "revId": "4896afafda42b68fb667b5ab265745a879dbaf4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afb7e17a_6b17fc87",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-05-11T13:04:10Z",
+      "side": 1,
+      "message": "This is unsupported but I also changed the way I implemented that to use strip_prefix and strip_suffix",
+      "parentUuid": "2e8c9de6_a051cca2",
       "range": {
         "startLine": 237,
         "startChar": 50,
