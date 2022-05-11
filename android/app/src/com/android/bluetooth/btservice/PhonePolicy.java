@@ -17,6 +17,7 @@
 package com.android.bluetooth.btservice;
 
 import android.annotation.RequiresPermission;
+import android.app.admin.SecurityLog;
 import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothCsipSetCoordinator;
@@ -443,6 +444,8 @@ class PhonePolicy {
 
     private void processDeviceConnected(BluetoothDevice device) {
         debugLog("processDeviceConnected, device=" + device);
+        SecurityLog.writeEvent(SecurityLog.TAG_BLUETOOTH_CONNECTION,
+                Utils.getLoggableAddress(device), /* success */ 1, "processDeviceConnected");
         mDatabaseManager.setConnection(device, false);
     }
 

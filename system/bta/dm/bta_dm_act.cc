@@ -26,6 +26,7 @@
 #define LOG_TAG "bt_bta_dm"
 
 #include <base/logging.h>
+#include <private/android_logger.h>
 
 #include <cstdint>
 
@@ -252,6 +253,10 @@ const tBTM_APPL_INFO bta_security = {
 
 #define MAX_DISC_RAW_DATA_BUF (4096)
 uint8_t g_disc_raw_data_buf[MAX_DISC_RAW_DATA_BUF];
+
+// Tags for security logging, should be in sync with
+// frameworks/base/core/java/android/app/admin/SecurityLogTags.logtags
+constexpr int SEC_TAG_BLUETOOTH_CONNECTION = 210039;
 
 // Stores the local Input/Output Capabilities of the Bluetooth device.
 static uint8_t btm_local_io_caps;
@@ -2147,6 +2152,11 @@ static void bta_dm_authentication_complete_cback(
             "Deleting device record as authentication failed entry:%s "
             "reason:%s",
             PRIVATE_ADDRESS(bd_addr), hci_reason_code_text(reason).c_str());
+        if (__android_log_security()) {
+          android_log_event_list(SEC_TAG_BLUETOOTH_CONNECTION)
+              << PRIVATE_ADDRESS(bd_addr) << int32_t(0)
+              << hci_reason_code_text(reason).c_str() << LOG_ID_SECURITY;
+        }
         break;
 
       default:
