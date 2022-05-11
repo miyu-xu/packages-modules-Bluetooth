@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed9a7f48_b118d2fe",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-11T15:29:28Z",
+      "side": 0,
+      "message": "Can you add a module comment here describing why this binary is barebones? I\u0027m expecting something like:\n\n```\n// The manager binary (btmanagerd) is a fairly barebone bin file that depends on\n// the manager service which implements most of the logic. The code is separated\n// in this way so that we can apply certain linker flags (which is applied to the\n// library but not the binary).\n```",
+      "revId": "fc638e821099a3c21bac37456db0d2a8228f70e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
