@@ -2651,8 +2651,10 @@ class LeAudioClientImpl : public LeAudioClient {
 
       lc3_decoder_left =
           lc3_setup_decoder(dt_us, sr_hz, af_hz, lc3_decoder_left_mem);
+      if (!lc3_decoder_left) LOG_ALWAYS_FATAL("can't set up left decoder");
       lc3_decoder_right =
           lc3_setup_decoder(dt_us, sr_hz, af_hz, lc3_decoder_right_mem);
+      if (!lc3_decoder_right) LOG_ALWAYS_FATAL("can't set up right decoder");
     } else if (CodecManager::GetInstance()->GetCodecLocation() ==
                le_audio::types::CodecLocation::ADSP) {
       CodecManager::GetInstance()->UpdateActiveSinkAudioConfig(
