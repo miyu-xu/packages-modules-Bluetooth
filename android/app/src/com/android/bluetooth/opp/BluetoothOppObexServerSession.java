@@ -32,6 +32,7 @@
 
 package com.android.bluetooth.opp;
 
+import android.app.admin.SecurityLog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -405,6 +406,8 @@ public class BluetoothOppObexServerSession extends ServerRequestHandler
              */
 
             Log.i(TAG, "Rejected incoming request");
+            SecurityLog.writeEvent(SecurityLog.TAG_BLUETOOTH_DISCONNECTION,
+                    destination, "Rejected incoming request");
             if (mFileInfo.mInsertUri != null) {
                 mContext.getContentResolver().delete(mFileInfo.mInsertUri, null, null);
             }
