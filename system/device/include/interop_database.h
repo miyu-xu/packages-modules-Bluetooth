@@ -138,6 +138,9 @@ static const interop_addr_entry_t interop_addr_database[] = {
     // Jeep Uconnect
     {{{0x00, 0x54, 0xaf, 0, 0, 0}}, 3, INTEROP_DISABLE_ROLE_SWITCH},
 
+    // My Volvo Car
+    {{{0x64, 0xd4, 0xbd, 0, 0, 0}}, 3, INTEROP_DISABLE_ROLE_SWITCH},
+
     // deepblue2 - cannot change smoothly the volume: b/37834035
     {{{0x0c, 0xa6, 0x94, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
 
