@@ -69,6 +69,24 @@
       "parentUuid": "00db54f8_fdff3937",
       "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3851f930_a4dba2c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2022-05-11T19:37:49Z",
+      "side": 1,
+      "message": "I see the same behavior as Jordan locally:\n\n```\n[ct] ~/a/a/p/m/B/s/g/hci [ 40ms ] ((gbiv/repo)) 1 ~\u003e clang-format -i hci_layer.cc \u0026\u0026 git diff | grep move\n[ct] ~/a/a/p/m/B/s/g/hci [ 60ms ] ((gbiv/repo)) 1 ~\u003e\n```\n\n`clang-tidy --dump-config` inside of `packages/modules/Bluetooth/system/gd/hci` for me notes that `ColumnLimit` is determined to be 120. `strace` says this is coming from gd\u0027s .clang-format, which explicitly asks for a column limit of 120. Changing this to 100 seems best unless we\u0027d rather modify the lint: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2094109",
+      "parentUuid": "d675f39a_c559702a",
+      "revId": "f0eac1ebf3890dbf5aaf3c1e5c4f306ceae8bc40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
