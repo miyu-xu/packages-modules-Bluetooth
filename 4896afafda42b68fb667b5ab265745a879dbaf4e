@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dd0707e_b3ffcd49",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-05-11T09:38:16Z",
+      "side": 1,
+      "message": "Please add a tiny unit test for this.",
+      "range": {
+        "startLine": 236,
+        "startChar": 3,
+        "endLine": 236,
+        "endChar": 15
+      },
+      "revId": "4896afafda42b68fb667b5ab265745a879dbaf4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e8c9de6_a051cca2",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-05-11T09:38:16Z",
+      "side": 1,
+      "message": "I assume the grammar ensures that we cannot have `\"\"abc\"\"` at the beginning of a string? That is, such a string would be `\"\\\"abc\\\"\"` with escaped double quotes.",
+      "range": {
+        "startLine": 237,
+        "startChar": 50,
+        "endLine": 237,
+        "endChar": 67
+      },
+      "revId": "4896afafda42b68fb667b5ab265745a879dbaf4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
