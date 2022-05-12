@@ -33,6 +33,23 @@
       "message": "Please merge it after confirming it works. Patty, could you please help to confirm it?",
       "revId": "160e3295b8847e9f88a903ed60299b3149267bde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea56072f_ab07e8c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-05-12T03:59:07Z",
+      "side": 1,
+      "message": "+2 after clarifying the verification result",
+      "revId": "160e3295b8847e9f88a903ed60299b3149267bde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
