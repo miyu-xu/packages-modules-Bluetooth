@@ -1457,6 +1457,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
            * release. Therefore, we assume this is a target state requested by
            * remote device.
            */
+          ReleaseCisIds(group);
           group->SetTargetState(group->GetState());
           state_machine_callbacks_->StatusReportCb(
               group->group_id_, GroupStreamStatus::CONFIGURED_AUTONOMOUS);
