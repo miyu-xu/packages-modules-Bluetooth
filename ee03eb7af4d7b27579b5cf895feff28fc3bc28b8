@@ -34,6 +34,24 @@
       "parentUuid": "461e17eb_5d6896ea",
       "revId": "ee03eb7af4d7b27579b5cf895feff28fc3bc28b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06a73987_810b56f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-05-12T11:56:25Z",
+      "side": 1,
+      "message": "As libbluetooth enqueues start discovery requests while doing service discovery, we can use the discovery state to filter the unwanted cancel discovery. It will take some time to justify the StartDiscovery and CancelDiscovery from UI, in the meantime, this patch can provide protection for service discovery.",
+      "parentUuid": "050e942f_eae966db",
+      "revId": "ee03eb7af4d7b27579b5cf895feff28fc3bc28b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
