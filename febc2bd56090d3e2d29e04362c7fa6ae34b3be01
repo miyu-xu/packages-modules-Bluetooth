@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6069c0ab_fe1bc806",
+        "filename": "system/gd/packet/parser/main.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-05-12T12:38:35Z",
+      "side": 1,
+      "message": "Please add a docstring explaining that we don\u0027t support filenames with spaces or any shell-metacharacters.\n\nDavid and I talked offline, and it doesn\u0027t seem like we have a convenient way to use `exec` with a vector of arguments. But it would be nice to document it so that others don\u0027t have to worry about the same problem.",
+      "range": {
+        "startLine": 66,
+        "startChar": 46,
+        "endLine": 66,
+        "endChar": 71
+      },
+      "revId": "febc2bd56090d3e2d29e04362c7fa6ae34b3be01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
