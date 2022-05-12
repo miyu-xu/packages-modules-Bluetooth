@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed6a1fc_80f5c5e2",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-12T20:40:37Z",
+      "side": 1,
+      "message": "This could use the cert_advertises function",
+      "range": {
+        "startLine": 226,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 26
+      },
+      "revId": "cd16457fe7376096e1fee80f152b0a4f87428bdd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
