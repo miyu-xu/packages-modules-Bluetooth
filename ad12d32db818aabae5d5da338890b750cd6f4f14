@@ -70,6 +70,24 @@
       "parentUuid": "a82e2f99_0b2408cd",
       "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63c2b811_604d511b",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-12T11:26:09Z",
+      "side": 1,
+      "message": "Do you think that having this in the rank order is a must?\n\nI guess that implementing this may require not only the JNI callback redesign, but probably also changing the storage, and possibly other structures to save the rank loaded from the storage if CsisInstance objects are not yet available at that time.",
+      "parentUuid": "bd4bbd10_f9932454",
+      "revId": "ad12d32db818aabae5d5da338890b750cd6f4f14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
