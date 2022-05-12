@@ -22,6 +22,30 @@
       },
       "revId": "90234d84476de5ccb53663d27aba371e1d75c91b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f83b69_49472c8d",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-05-12T09:12:59Z",
+      "side": 1,
+      "message": "In this case, no, as the `string` rule is not matching for the EOI (End of Input), pest will stop when it is not matching anymore, the failure here is happening on the assert, if I remove the should_panic\n\n```\nfailures:\n\n---- parser::test::test_parse_string_escape stdout ----\nthread \u0027parser::test::test_parse_string_escape\u0027 panicked at \u0027assertion failed: `(left \u003d\u003d right)`\n  left: `Ok(\"\\\\\")`,\n right: `Ok(\"\\\"test\\\"\")`\u0027, packages/modules/Bluetooth/tools/pdl/src/parser.rs:562:9\nnote: run with `RUST_BACKTRACE\u003d1` environment variable to display a backtrace\n\n\nfailures:\n    parser::test::test_parse_string_escape\n```\n\nAnd the `pairs` variable looks like \n\n```\n[Pair { rule: string, span: Span { str: \"\\\"\\\\\\\"\", start: 0, end: 3 }, inner: [] }]\n```",
+      "parentUuid": "6cbbaf24_57de38dc",
+      "range": {
+        "startLine": 558,
+        "startChar": 23,
+        "endLine": 558,
+        "endChar": 44
+      },
+      "revId": "90234d84476de5ccb53663d27aba371e1d75c91b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
