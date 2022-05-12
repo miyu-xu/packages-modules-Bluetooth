@@ -22,6 +22,30 @@
       },
       "revId": "69a7d81cc905235ae6537a1e88b114f41b486ed4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f387a6a_2dc1357b",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-12T15:04:06Z",
+      "side": 1,
+      "message": "yes, it should be snoop_lgger\n\nsnoop_looger was a typo",
+      "parentUuid": "f0357531_cc203e53",
+      "range": {
+        "startLine": 400,
+        "startChar": 2,
+        "endLine": 400,
+        "endChar": 58
+      },
+      "revId": "69a7d81cc905235ae6537a1e88b114f41b486ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
