@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c73364ce_67dc6667",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-12T20:10:52Z",
+      "side": 1,
+      "message": "nit: We\u0027ll probably have some more refactoring here.\n\nMaybe something like:\nLeAclManagerTest: Use PyHci abstractions",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "78f792dc6a30efcd92477e290fac85a134a9ec96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
