@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cbbaf24_57de38dc",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-05-12T08:55:06Z",
+      "side": 1,
+      "message": "I guess you get an `Err` back from `PDLParser::parse`? If so, I would change the test to be more clear by doing\n\n```\nlet pairs \u003d DLParser::parse(Rule::string, r#\"\"\\\"test\\\"\"\"#);\nassert!(pairs.is_err());\n```\n\nThe comment is great, though, so that the next reader can understand why we don\u0027t expect this to work.",
+      "range": {
+        "startLine": 558,
+        "startChar": 23,
+        "endLine": 558,
+        "endChar": 44
+      },
+      "revId": "90234d84476de5ccb53663d27aba371e1d75c91b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4effbc93_15225b43",
+        "filename": "tools/pdl/src/parser.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-05-12T08:55:06Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "a9625a79_091feb80",
+      "range": {
+        "startLine": 236,
+        "startChar": 3,
+        "endLine": 236,
+        "endChar": 15
+      },
+      "revId": "4896afafda42b68fb667b5ab265745a879dbaf4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2e8c9de6_a051cca2",
