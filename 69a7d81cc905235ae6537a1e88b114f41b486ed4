@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0357531_cc203e53",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-12T07:22:22Z",
+      "side": 1,
+      "message": "Also just wondering if this is a typo or the intentional naming.",
+      "range": {
+        "startLine": 400,
+        "startChar": 2,
+        "endLine": 400,
+        "endChar": 58
+      },
+      "revId": "69a7d81cc905235ae6537a1e88b114f41b486ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

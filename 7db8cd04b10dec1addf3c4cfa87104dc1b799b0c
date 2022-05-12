@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc89cf2_488fcc1a",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-12T07:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b96888fe_68dbde50",
+      "range": {
+        "startLine": 123,
+        "startChar": 7,
+        "endLine": 123,
+        "endChar": 41
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1492f99c_f47b5cdf",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "This is 100+ because the clang formatter doesn\u0027t seem to let me split these lines up and will revert any edits I make to do so.",
       "parentUuid": "1492f99c_f47b5cdf",
+      "range": {
+        "startLine": 156,
+        "startChar": 9,
+        "endLine": 156,
+        "endChar": 120
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50785e3b_3236dcbe",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-12T07:22:22Z",
+      "side": 1,
+      "message": "Nevermind, seems to be good now.",
+      "parentUuid": "e16a78d1_6f43a40a",
       "range": {
         "startLine": 156,
         "startChar": 9,
@@ -118,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e502151a_47d51842",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-12T07:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "11ac7d2e_2bed56b0",
+      "range": {
+        "startLine": 473,
+        "startChar": 98,
+        "endLine": 473,
+        "endChar": 109
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "479349b8_b20f583d",
@@ -131,6 +203,30 @@
       "writtenOn": "2022-05-09T18:46:34Z",
       "side": 1,
       "message": "Could you add a test below to verify this feature? \n\ni.e. have payload feed into snoop logger with and without the Qualcomm log enabled to see if there is any crash or regression?",
+      "range": {
+        "startLine": 83,
+        "startChar": 6,
+        "endLine": 83,
+        "endChar": 27
+      },
+      "revId": "7db8cd04b10dec1addf3c4cfa87104dc1b799b0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b465db25_df620ab7",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-12T07:22:22Z",
+      "side": 1,
+      "message": "Unit test including regression check added.",
+      "parentUuid": "479349b8_b20f583d",
       "range": {
         "startLine": 83,
         "startChar": 6,

@@ -22,6 +22,30 @@
       },
       "revId": "83120f2b4d9075050c3a0d901760aae2b8158749",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "605ceaaf_dad3304e",
+        "filename": "system/gd/hal/snoop_logger_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1941766
+      },
+      "writtenOn": "2022-05-12T07:22:22Z",
+      "side": 1,
+      "message": "Currently left it as is as that is how it was done previously as seen in snoop_logger_test.cc:292 and because it is very awkward to expose the variable to snoop_logger_test. Let me know if this warrants a change.",
+      "parentUuid": "cbd3bff6_367a91fd",
+      "range": {
+        "startLine": 388,
+        "startChar": 86,
+        "endLine": 388,
+        "endChar": 88
+      },
+      "revId": "83120f2b4d9075050c3a0d901760aae2b8158749",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
