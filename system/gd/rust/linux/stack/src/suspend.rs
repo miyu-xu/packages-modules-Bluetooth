@@ -9,7 +9,6 @@ use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::{channel, Sender};
 use tokio::sync::oneshot::channel as OneShotChannel;
 use tokio::sync::oneshot::Sender as OneShotSender;
-use tokio::task;
 
 /// Defines the Suspend/Resume API.
 ///
@@ -156,12 +155,12 @@ impl ISuspend for Suspend {
 
     fn resume(&self) -> bool {
         let suspend_id = 1;
-        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         self.intf.lock().unwrap().set_default_event_mask();
+        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         if self.is_connected_suspend {
             if self.was_a2dp_connected {
                 // TODO(230604670): self.intf.lock().unwrap().restore_filter_accept_list();
-                // TODO(230604670): reconnect to a2dp device if connected before
+                // TODO(230604670): reconnect to a2dp device
             }
             // TODO(224603198): start all advertising again
         }
