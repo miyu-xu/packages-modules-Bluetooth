@@ -274,6 +274,24 @@
       "parentUuid": "49bab2ae_1bbcedcc",
       "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0aa776ac_59f897fc",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-05-12T21:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "735f3238_0d2e53cc",
+      "revId": "363c90f23aab0c5b917f45d05fa371b34edafaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
