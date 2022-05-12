@@ -16,6 +16,24 @@
       "message": "I would be against using \"timing\" to determine whether an API call is ok or not.\n\nThe root cause here seems to be that the UI is cancelling discovery before pairing because it already has a device it is pairing to. However, that device hasn\u0027t completed SDP yet.\n\nA couple of solutions here:\n- We queue the cancel request and trigger it once SDP completes for the active device (if an SDP is active on any device).\n- We only send `DeviceFound` if a device has UUIDs in its EIR OR it completes SDP\n\nI think the latter definitely solves the scenario where the UI needs to show a working device before a user pairs to it. The first option could also work but would require additional plumbing in code.",
       "revId": "ee03eb7af4d7b27579b5cf895feff28fc3bc28b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "050e942f_eae966db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-05-12T00:42:25Z",
+      "side": 1,
+      "message": "The cancellation happened after bonding completed, not before paing. Besides, there is already a queue in libbluetooth (see http://go/floss-br-hid-connection) and the 1st solution seems complicate the problem.",
+      "parentUuid": "461e17eb_5d6896ea",
+      "revId": "ee03eb7af4d7b27579b5cf895feff28fc3bc28b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
