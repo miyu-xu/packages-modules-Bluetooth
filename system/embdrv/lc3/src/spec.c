@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- *  Copyright 2021 Google, Inc.
+ *  Copyright 2022 Google LLC
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -69,7 +69,7 @@ static int estimate_gain(
         x_max = fmaxf(x_max, x3);
 
         float s2 = x0*x0 + x1*x1 + x2*x2 + x3*x3;
-        e[i] = 28.f/20 * 10 * (s2 > 0 ? log10f(s2) : -10);
+        e[i] = 28.f/20 * 10 * (s2 > 0 ? fast_log10f(s2) : -10);
     }
 
     /* --- Determine gain index --- */
@@ -97,7 +97,7 @@ static int estimate_gain(
             }
         }
 
-        if (v > nbits * 1.4 * 28./20)
+        if (v > nbits * 1.4f * 28.f/20)
             g_int += i;
     }
 
@@ -758,7 +758,7 @@ void lc3_spec_analyze(enum lc3_dt dt, enum lc3_srate sr,
 
     float nbits_off = spec->nbits_off + spec->nbits_spare;
     nbits_off = fminf(fmaxf(nbits_off, -40), 40);
-    nbits_off = 0.8 * spec->nbits_off + 0.2 * nbits_off;
+    nbits_off = 0.8f * spec->nbits_off + 0.2f * nbits_off;
 
     int g_off = resolve_gain_offset(sr, nbytes);
 

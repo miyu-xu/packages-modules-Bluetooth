@@ -1,5 +1,5 @@
 #
-# Copyright 2021 - The Android Open Source Project
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -302,7 +302,7 @@ class LtpfSynthesis(Ltpf):
 
         max_pitch_12k8 = 228
         max_pitch = max_pitch_12k8 * T.SRATE_KHZ[self.sr] / 12.8
-        max_pitch = np.ceil(max_pitch).astype(np.int)
+        max_pitch = np.ceil(max_pitch).astype(int)
 
         self.x = np.zeros(ns)
         self.y = np.zeros(max_pitch + len(self.C_D[0]))
@@ -435,7 +435,7 @@ def initial_state():
 
 def initial_sstate():
     return { 'active': False, 'pitch': 0,
-             'c': np.zeros((12,2)), 'x': np.zeros(12) }
+             'c': np.zeros(2*12), 'x': np.zeros(12) }
 
 ### ------------------------------------------------------------------------ ###
 

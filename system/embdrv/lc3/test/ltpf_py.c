@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- *  Copyright 2021 Google, Inc.
+ *  Copyright 2022 Google LLC
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -102,7 +102,7 @@ static PyObject *synthesize_py(PyObject *m, PyObject *args)
     CTYPES_CHECK("x", x_obj = to_1d_ptr(x_obj, NPY_FLOAT, nd+ns, &x));
 
     lc3_ltpf_synthesize(dt, sr, nbytes,
-        &ltpf, pitch_present ? &data : NULL, x+nd);
+        &ltpf, pitch_present ? &data : NULL, x, x + nd);
 
     from_ltpf_synthesis(ltpf_obj, &ltpf);
     return Py_BuildValue("O", x_obj);
