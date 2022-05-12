@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d62a6a41_366fd99f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-12T17:26:19Z",
+      "side": 1,
+      "message": "Bypassing presubmit since the presubmit failure is on Windows and this change only affects Floss (Chrome OS and Linux). ",
+      "revId": "3264378f0e4934713ba981989643b8a267f7028e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
