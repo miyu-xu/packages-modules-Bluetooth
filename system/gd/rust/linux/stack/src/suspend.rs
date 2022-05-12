@@ -127,25 +127,24 @@ impl ISuspend for Suspend {
     }
 
     fn suspend(&self, suspend_id: i32, suspend_type: SuspendType) {
-        match suspend_type {
-            SuspendType::Connected => {
-                // TODO(231345733): API For allowing classic HID only
-                // TODO(230604670): check if A2DP is connected
-                // TODO(224603198): save all advertiser information
-            }
-            SuspendType::Disconnected => {
-                self.intf.lock().unwrap().clear_event_filter();
-                self.intf.lock().unwrap().clear_event_mask();
-            }
-            SuspendType::Other => {
-                // TODO(231438120): Decide what to do about Other suspend type
-                // For now perform disconnected suspend flow
-                self.intf.lock().unwrap().clear_event_filter();
-                self.intf.lock().unwrap().clear_event_mask();
-            }
-        }
+        // Always clear out first!
+        self.intf.lock().unwrap().clear_event_mask();
+        self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
         self.intf.lock().unwrap().disconnect_all_acls();
+
+        // Handle wakeful cases (Connected/Other)
+        match suspend_type {
+            SuspendType::Disconnected => {
+                // Noop
+            }
+            _ => {
+                self.intf.lock().unwrap().allow_wake_by_hid();
+                // TODO(230604670): check if A2DP is connected
+                // TODO(224603198): save all advertiser information and stop advertising
+            }
+        }
+
         let (_tx, mut rx) = channel::<u64>(1);
         task::spawn(async move {
             let random = rx.recv().await;
@@ -160,12 +159,12 @@ impl ISuspend for Suspend {
 
     fn resume(&self) -> bool {
         let suspend_id = 1;
-        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         self.intf.lock().unwrap().set_default_event_mask();
+        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         if self.is_connected_suspend {
             if self.was_a2dp_connected {
                 // TODO(230604670): self.intf.lock().unwrap().restore_filter_accept_list();
-                // TODO(230604670): reconnect to a2dp device if connected before
+                // TODO(230604670): reconnect to a2dp device
             }
             // TODO(224603198): start all advertising again
         }
