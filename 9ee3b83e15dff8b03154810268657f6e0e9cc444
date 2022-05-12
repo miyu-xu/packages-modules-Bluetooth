@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20dd26ce_8dd98728",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-12T20:19:24Z",
+      "side": 1,
+      "message": "While we\u0027re here, would it make sense to split this into two pieces?\n\nCert Advertises\nDUT Connects\n\nI think we\u0027ll want to be able to mix and match.",
+      "revId": "9ee3b83e15dff8b03154810268657f6e0e9cc444",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
