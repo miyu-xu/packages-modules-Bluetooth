@@ -179,11 +179,6 @@ void bta_scan_results_cb(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {
   if (p_data->inq_res.p_eir) {
     value.insert(value.begin(), p_data->inq_res.p_eir,
                  p_data->inq_res.p_eir + p_data->inq_res.eir_len);
-
-    if (AdvertiseDataParser::GetFieldByType(
-            value, HCI_EIR_COMPLETE_LOCAL_NAME_TYPE, &len)) {
-      p_data->inq_res.remt_name_not_required = true;
-    }
   }
 
   tBTA_DM_INQ_RES* r = &p_data->inq_res;
