@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73baffa9_5c627a45",
+        "filename": "system/blueberry/tests/gd/cert/py_hci.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-13T19:59:13Z",
+      "side": 1,
+      "message": "I think we should remove the bytes here.",
+      "range": {
+        "startLine": 118,
+        "startChar": 25,
+        "endLine": 118,
+        "endChar": 31
+      },
+      "revId": "1dc05cdadebf4b636206203a6c26aafe8d33ded8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6205150e_29761531",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-13T19:59:13Z",
+      "side": 1,
+      "message": "set_scan_response",
+      "range": {
+        "startLine": 218,
+        "startChar": 19,
+        "endLine": 218,
+        "endChar": 27
+      },
+      "revId": "1dc05cdadebf4b636206203a6c26aafe8d33ded8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
