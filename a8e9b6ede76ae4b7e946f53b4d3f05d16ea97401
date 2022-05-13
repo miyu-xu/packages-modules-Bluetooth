@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b8d43aa_b0e727c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-13T16:58:53Z",
+      "side": 1,
+      "message": "The test runs for me with these changes:\n\ndiff --git a/system/blueberry/tests/gd/cert/py_hci.py b/system/blueberry/tests/gd/cert/py_hci.py\nindex 18bc9c841d..c62b618f1d 100644\n--- a/system/blueberry/tests/gd/cert/py_hci.py\n+++ b/system/blueberry/tests/gd/cert/py_hci.py\n@@ -115,7 +115,7 @@ class PyHciAdvertisement(object):\n     def set_data(self, complete_name):\n         data \u003d GapData()\n         data.data_type \u003d GapDataType.COMPLETE_LOCAL_NAME\n-        data.data \u003d list(bytes(complete_name, \"utf-8\"))\n+        data.data \u003d list(complete_name)\n         self.py_hci.send_command(\n             LeSetExtendedAdvertisingDataBuilder(self.handle, Operation.COMPLETE_ADVERTISEMENT,\n                                                 FragmentPreference.CONTROLLER_SHOULD_NOT, [data]))\n@@ -123,7 +123,7 @@ class PyHciAdvertisement(object):\n     def set_scan_response(self, shortened_name):\n         data \u003d GapData()\n         data.data_type \u003d GapDataType.SHORTENED_LOCAL_NAME\n-        data.data \u003d list(bytes(shortened_name, \"utf-8\"))\n+        data.data \u003d list(shortened_name)\n         self.py_hci.send_command(\n             LeSetExtendedAdvertisingScanResponseBuilder(self.handle, Operation.COMPLETE_ADVERTISEMENT,\n                                                         FragmentPreference.CONTROLLER_SHOULD_NOT, [data]))\ndiff --git a/system/blueberry/tests/gd/hci/direct_hci_test.py b/system/blueberry/tests/gd/hci/direct_hci_test.py\nindex 23f1b9364b..c0dbdc4239 100644\n--- a/system/blueberry/tests/gd/hci/direct_hci_test.py\n+++ b/system/blueberry/tests/gd/hci/direct_hci_test.py\n@@ -205,7 +205,6 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):\n \n     def test_le_connection_dut_advertises(self):\n         self.dut_hci.register_for_le_events(SubeventCode.CONNECTION_COMPLETE, SubeventCode.ADVERTISING_SET_TERMINATED,\n-                                            SubeventCode.ENHANCED_CONNECTION_COMPLETE,\n                                             SubeventCode.READ_REMOTE_FEATURES_COMPLETE)\n         # Cert Connects\n         self.cert_hal.unmask_event(EventCode.LE_META_EVENT)\n@@ -239,7 +238,6 @@ class DirectHciTest(gd_base_test.GdBaseTestClass):\n             lambda packet: logging.debug(packet.payload) or b\u0027SomeMoreAclData\u0027 in packet.payload)\n \n     def test_le_filter_accept_list_connection_cert_advertises(self):\n-        self.dut_hci.register_for_le_events(SubeventCode.CONNECTION_COMPLETE, SubeventCode.ENHANCED_CONNECTION_COMPLETE)\n         # DUT Connects\n         self.dut_hci.send_command(LeSetRandomAddressBuilder(\u00270D:05:04:03:02:01\u0027))\n         self.dut_hci.send_command(\n",
+      "revId": "a8e9b6ede76ae4b7e946f53b4d3f05d16ea97401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c10561ea_f4a090dd",
