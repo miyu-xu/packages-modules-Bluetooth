@@ -42,9 +42,6 @@ rust_test_host {
             enabled: true,
         },
     },
-    required: [
-        "rustfmt",
-    ],
     data: [
         ":rustfmt",
         "rustfmt.toml",
@@ -60,11 +57,6 @@ rust_test_host {
         "libquote",
         "libsyn",
         "libtempfile",
-    ],
-    required: [
-        "bluetooth_packetgen",
-        "pdl",
-        "rustfmt",
     ],
     data: [
         ":bluetooth_packetgen",
