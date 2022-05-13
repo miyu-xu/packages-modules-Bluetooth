@@ -64,6 +64,10 @@ void LeAudioDeviceGroup::RemoveNode(
   /* Group information cleaning in the device. */
   leAudioDevice->group_id_ = bluetooth::groups::kGroupUnknown;
   for (auto ase : leAudioDevice->ases_) {
+    LOG(INFO) << __func__ << ", device: "
+              << leAudioDevice->address_.ToString()
+              << ", ase id: " << static_cast<int>(ase.id)
+              << ", set in inactive, from: " << static_cast<int>(ase.active);
     ase.active = false;
     ase.cis_conn_hdl = 0;
   }
@@ -144,6 +148,10 @@ void LeAudioDeviceGroup::Deactivate(void) {
        leAudioDevice = GetNextActiveDevice(leAudioDevice)) {
     for (auto* ase = leAudioDevice->GetFirstActiveAse(); ase;
          ase = leAudioDevice->GetNextActiveAse(ase)) {
+      LOG(INFO) << __func__ << ", device: "
+                << leAudioDevice->address_.ToString()
+                << ", ase id: " << static_cast<int>(ase->id)
+                << ", set in inactive, from: " << static_cast<int>(ase->active);
       ase->active = false;
     }
   }
@@ -991,6 +999,10 @@ bool LeAudioDevice::ConfigureAses(
   }
 
   for (; needed_ase && ase; needed_ase--) {
+    LOG(INFO) << __func__ << ", device: "
+              << address_.ToString()
+              << ", ase id: " << static_cast<int>(ase->id)
+              << ", set in active, from: " << static_cast<int>(ase->active);
     ase->active = true;
     active_ases++;
 
@@ -1758,6 +1770,10 @@ void LeAudioDevice::ActivateConfiguredAses(void) {
     if (!ase.active &&
         ase.state == AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED) {
       LOG_DEBUG(" Ase id %d, cis id %d activated.", ase.id, ase.cis_id);
+      LOG(INFO) << __func__ << ", device: "
+                << address_.ToString()
+                << ", ase id: " << static_cast<int>(ase.id)
+                << ", set in active, from: " << static_cast<int>(ase.active);
       ase.active = true;
     }
   }
@@ -1771,6 +1787,10 @@ void LeAudioDevice::DeactivateAllAses(void) {
     if (ase.active) {
       ase.state = AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
       ase.data_path_state = AudioStreamDataPathState::IDLE;
+      LOG(INFO) << __func__ << ", device: "
+                << address_.ToString()
+                << ", ase id: " << static_cast<int>(ase.id)
+                << ", set in inactive, from: " << static_cast<int>(ase.active);
       ase.active = false;
     }
   }
