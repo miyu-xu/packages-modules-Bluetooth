@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b399b13e_ef4c8e44",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-13T22:32:29Z",
+      "side": 1,
+      "message": "b\u0027Im_A_Cert\u0027\n\nsame thing in the next line",
+      "range": {
+        "startLine": 236,
+        "startChar": 28,
+        "endLine": 236,
+        "endChar": 39
+      },
+      "revId": "2fd322d84fd3e46d3dae513b4a68019c49914ecc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
