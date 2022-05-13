@@ -33,6 +33,24 @@
       "message": "Can we create a new bug tracking this workaround and put it under our Tech Debt?",
       "revId": "d908e7bdfc1c0b500bd2aec5e0b679d470a499c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a5c7a09_32b8b17e",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-13T20:28:08Z",
+      "side": 1,
+      "message": "The bug is already new. I changed the ancestor to Tech Debt.",
+      "parentUuid": "794f7d0c_8bed7cc4",
+      "revId": "d908e7bdfc1c0b500bd2aec5e0b679d470a499c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
