@@ -65,6 +65,6 @@ rust_test_host {
         ":bluetooth_packetgen",
         ":pdl",
         ":rustfmt",
-        "rustfmt.toml",
+        ":rustfmt.toml",
     ],
 }
