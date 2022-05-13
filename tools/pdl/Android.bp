@@ -44,7 +44,7 @@ rust_test_host {
     },
     data: [
         ":rustfmt",
-        "rustfmt.toml",
+        ":rustfmt.toml",
     ],
 }
 
@@ -62,6 +62,6 @@ rust_test_host {
         ":bluetooth_packetgen",
         ":pdl",
         ":rustfmt",
-        "rustfmt.toml",
+        ":rustfmt.toml",
     ],
 }
