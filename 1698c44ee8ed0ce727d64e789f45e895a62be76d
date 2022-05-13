@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34072ab2_7c3f591a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-05-13T11:14:34Z",
+      "side": 1,
+      "message": "As I know, A2DP is not allowed to use LC3 because of license, but does the plan change?",
+      "revId": "1698c44ee8ed0ce727d64e789f45e895a62be76d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
