@@ -1124,6 +1124,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING: {
         LeAudioDevice* leAudioDeviceNext;
         ase->state = AseState::BTA_LE_AUDIO_ASE_STATE_IDLE;
+        LOG(INFO) << __func__ << ", device: "
+                  << leAudioDevice->address_.ToString()
+                  << ", ase id: " << static_cast<int>(ase->id)
+                  << ", set in inactive, from: " << static_cast<int>(ase->active);
         ase->active = false;
 
         if (!leAudioDevice->HaveAllActiveAsesSameState(
@@ -1423,6 +1427,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       case AseState::BTA_LE_AUDIO_ASE_STATE_RELEASING:
         LeAudioDevice* leAudioDeviceNext;
         ase->state = AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED;
+        LOG(INFO) << __func__ << ", device: "
+                  << leAudioDevice->address_.ToString()
+                  << ", ase id: " << static_cast<int>(ase->id)
+                  << ", set in inactive, from: " << static_cast<int>(ase->active);
         ase->active = false;
 
         if (!leAudioDevice->HaveAllActiveAsesSameState(
