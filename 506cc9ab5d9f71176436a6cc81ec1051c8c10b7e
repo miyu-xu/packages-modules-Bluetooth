@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c543e47d_092c7564",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2022-05-13T19:59:20Z",
+      "side": 1,
+      "message": "LGTM, though yeah, probably the linters need to be updated to not complain about lines \u003e100cols in this case. I\u0027m not familiar with how those work in Gerrit, so I\u0027m afraid I can\u0027t help with that.",
+      "revId": "506cc9ab5d9f71176436a6cc81ec1051c8c10b7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
