@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c10561ea_f4a090dd",
+        "filename": "system/blueberry/tests/gd/cert/py_hci.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-13T16:46:25Z",
+      "side": 1,
+      "message": "This is breaking existing tests.  Let\u0027s remove bytes() here and pass in b\u0027This is my Name\u0027 arrays.",
+      "range": {
+        "startLine": 118,
+        "startChar": 25,
+        "endLine": 118,
+        "endChar": 54
+      },
+      "revId": "a8e9b6ede76ae4b7e946f53b4d3f05d16ea97401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
