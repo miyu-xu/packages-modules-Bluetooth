@@ -27,7 +27,7 @@ pub async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let logger = syslog::unix(formatter).expect("could not connect to syslog");
     let _ = log::set_boxed_logger(Box::new(BasicLogger::new(logger)))
-        .map(|()| log::set_max_level(config_util::get_log_level().unwrap_or(LevelFilter::Info)));
+        .map(|()| log::set_max_level(config_util::get_log_level().unwrap_or(LevelFilter::Debug)));
 
     // Initialize config util
     config_util::fix_config_file_format();

@@ -1,16 +1,17 @@
 use crate::bluetooth_manager::BluetoothManager;
 use crate::config_util;
 use bt_common::time::Alarm;
+use bt_socket::{BtSocket, HciChannels, MgmtCommand, MgmtCommandResponse, MgmtEvent, HCI_DEV_NONE};
 use log::{debug, error, info, warn};
 use nix::sys::signal::{self, Signal};
 use nix::unistd::Pid;
 use regex::Regex;
-use std::cmp;
+use std::convert::TryFrom;
 use std::process::{Child, Command, Stdio};
 use std::sync::Arc;
 use tokio::io::unix::AsyncFd;
 use tokio::sync::mpsc;
-use tokio::time::{sleep, Duration};
+use tokio::time::Duration;
 
 // Directory for Bluetooth pid file
 pub const PID_DIR: &str = "/var/run/bluetooth";
@@ -46,7 +47,8 @@ pub enum AdapterStateActions {
 pub enum Message {
     AdapterStateChange(AdapterStateActions),
     PidChange(inotify::EventMask, Option<String>),
-    HciDeviceChange(inotify::EventMask, Option<String>),
+    HciDeviceAdded(u16),
+    HciDeviceRemoved(u16),
     CallbackDisconnected(u32),
     CommandTimeout(),
 }
@@ -84,10 +86,6 @@ pub struct StateMachineProxy {
 
 const TX_SEND_TIMEOUT_DURATION: Duration = Duration::from_secs(3);
 const COMMAND_TIMEOUT_DURATION: Duration = Duration::from_secs(3);
-
-/// Maximum amount of time (in seconds) we should wait before polling for
-/// /sys/class/bluetooth to become available.
-const HCI_DEVICE_SLEEP_MAX_SECONDS: u64 = 64;
 
 impl StateMachineProxy {
     pub fn start_bluetooth(&self, hci_interface: i32) {
@@ -137,45 +135,6 @@ fn get_hci_index_from_pid_path(path: &str) -> Option<i32> {
     re.captures(path)?.get(1)?.as_str().parse().ok()
 }
 
-fn hci_devices_inotify_async_fd() -> Option<AsyncFd<inotify::Inotify>> {
-    let detector = inotify::Inotify::init().and_then(|mut detector| {
-        match detector.add_watch(
-            config_util::HCI_DEVICES_DIR,
-            inotify::WatchMask::CREATE | inotify::WatchMask::DELETE,
-        ) {
-            Ok(_) => Ok(detector),
-            Err(e) => Err(e),
-        }
-    });
-    match detector {
-        Ok(d) => match AsyncFd::new(d) {
-            Ok(afd) => Some(afd),
-            Err(_) => {
-                warn!("Could not init asyncfd for {}", config_util::HCI_DEVICES_DIR);
-                None
-            }
-        },
-        Err(_) => {
-            warn!("Could not init inotify: {}", config_util::HCI_DEVICES_DIR);
-            None
-        }
-    }
-}
-
-/// On startup, get and cache all hci devices by emitting the callback
-fn startup_hci_devices(manager: &Arc<std::sync::Mutex<Box<BluetoothManager>>>) {
-    let devices = config_util::list_hci_devices();
-    for device in devices {
-        manager.lock().unwrap().callback_hci_device_change(device, true);
-    }
-}
-
-/// Given an hci sysfs path, returns the index of the hci device at the path.
-fn get_hci_index_from_device(path: &str) -> Option<i32> {
-    let re = Regex::new(r"hci([0-9]+)").unwrap();
-    re.captures(path)?.get(1)?.as_str().parse().ok()
-}
-
 fn event_name_to_string(name: Option<&std::ffi::OsStr>) -> Option<String> {
     if let Some(val) = &name {
         if let Some(strval) = val.to_str() {
@@ -186,36 +145,16 @@ fn event_name_to_string(name: Option<&std::ffi::OsStr>) -> Option<String> {
     return None;
 }
 
-pub async fn mainloop(
-    mut context: StateMachineContext,
-    bluetooth_manager: Arc<std::sync::Mutex<Box<BluetoothManager>>>,
-) {
-    // Set up a command timeout listener to emit timeout messages
-    let command_timeout = Arc::new(Alarm::new());
-    let timeout_clone = command_timeout.clone();
-    let timeout_tx = context.tx.clone();
-
-    // First set up hci states
-    startup_hci_devices(&bluetooth_manager);
-
+// List existing pids and then configure inotify on pid dir.
+fn configure_pid(pid_tx: mpsc::Sender<Message>) {
+    // Configure PID listener.
     tokio::spawn(async move {
-        loop {
-            let _expired = timeout_clone.expired().await;
-            let _ = timeout_tx
-                .send_timeout(Message::CommandTimeout(), TX_SEND_TIMEOUT_DURATION)
-                .await
-                .unwrap();
-        }
-    });
+        debug!("Spawned pid notify task");
 
-    let init_tx = context.tx.clone();
-    let floss_enabled = bluetooth_manager.lock().unwrap().get_floss_enabled_internal();
-
-    tokio::spawn(async move {
         // Get a list of active pid files to determine initial adapter status
         let files = config_util::list_pid_files(PID_DIR);
         for file in files {
-            let _ = init_tx
+            let _ = pid_tx
                 .send_timeout(
                     Message::PidChange(inotify::EventMask::CREATE, Some(file)),
                     TX_SEND_TIMEOUT_DURATION,
@@ -224,32 +163,8 @@ pub async fn mainloop(
                 .unwrap();
         }
 
-        // Initialize adapter states based on saved config only if floss is enabled.
-        if floss_enabled {
-            let hci_devices = config_util::list_hci_devices();
-            for device in hci_devices.iter() {
-                let is_enabled = config_util::is_hci_n_enabled(*device);
-                if is_enabled {
-                    let _ = init_tx
-                        .send_timeout(
-                            Message::AdapterStateChange(AdapterStateActions::StartBluetooth(
-                                *device,
-                            )),
-                            TX_SEND_TIMEOUT_DURATION,
-                        )
-                        .await
-                        .unwrap();
-                }
-            }
-        }
-    });
-
-    // Set up a PID file listener to emit PID inotify messages
-    let mut pid_async_fd = pid_inotify_async_fd();
-    let pid_tx = context.tx.clone();
-
-    tokio::spawn(async move {
-        debug!("Spawned pid notify task");
+        // Set up a PID file listener to emit PID inotify messages
+        let mut pid_async_fd = pid_inotify_async_fd();
 
         loop {
             let r = pid_async_fd.readable_mut();
@@ -275,71 +190,175 @@ pub async fn mainloop(
             drop(fd_ready);
         }
     });
+}
 
-    // Set up an HCI device listener to emit HCI device inotify messages
-    let hci_tx = context.tx.clone();
+async fn start_hci_if_floss_enabled(hci: u16, floss_enabled: bool, tx: mpsc::Sender<Message>) {
+    // Initialize adapter states based on saved config only if floss is enabled.
+    if floss_enabled {
+        let is_enabled = config_util::is_hci_n_enabled(hci.into());
+        debug!("Start hci {}: floss={}, enabled={}", hci, floss_enabled, is_enabled);
+
+        if is_enabled {
+            let _ = tx
+                .send_timeout(
+                    Message::AdapterStateChange(AdapterStateActions::StartBluetooth(hci.into())),
+                    TX_SEND_TIMEOUT_DURATION,
+                )
+                .await
+                .unwrap();
+        }
+    }
+}
+
+// Configure the HCI socket listener and prepare the system to receive mgmt events for index added
+// and index removed.
+fn configure_hci(
+    hci_tx: mpsc::Sender<Message>,
+    bluetooth_manager: Arc<std::sync::Mutex<Box<BluetoothManager>>>,
+) {
+    let mut btsock = BtSocket::new();
+
+    // If the bluetooth socket isn't available, the kernel module is not loaded and we can't
+    // actually listen to it for index added/removed events.
+    match btsock.open() {
+        -1 => {
+            panic!(
+                "Bluetooth socket unavailable (errno {}). Try loading the kernel module first.",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        x => debug!("Socket open at fd: {}", x),
+    }
+
+    // Bind to control channel (which is used for mgmt commands). We provide
+    // HCI_DEV_NONE because we don't actually need a valid HCI dev for some MGMT commands.
+    match btsock.bind_channel(HciChannels::Control, HCI_DEV_NONE) {
+        -1 => {
+            panic!(
+                "Failed to bind control channel with errno={}",
+                std::io::Error::last_os_error().raw_os_error().unwrap_or(0)
+            );
+        }
+        _ => (),
+    };
 
     tokio::spawn(async move {
         debug!("Spawned hci notify task");
 
-        // Try to create an inotify on /sys/class/bluetooth and listen for any
-        // changes. If we fail to create the inotify, we go into a polling mode
-        // which will do exponential backoff waiting for Bluetooth to become
-        // available.
-        //
-        // TODO(b/226644782) - Eventually we need to replace this inotify
-        // listener with something that talks to MGMT via socket(AF_BLUETOOTH).
-        // We should poll on INDEX_ADDED/INDEX_REMOVED rather than inotify the
-        // /sys/class/bluetooth directory.
-        let mut sleep_duration = 1;
-        loop {
-            match hci_devices_inotify_async_fd() {
-                Some(mut hci_inotify) => {
-                    sleep_duration = 1;
+        // Make this into an AsyncFD and start using it for IO
+        let mut hci_afd = AsyncFd::new(btsock).expect("Failed to add async fd for BT socket.");
 
-                    // This inner loop runs successfully as long as the hci inotify is valid.
-                    loop {
-                        let r = hci_inotify.readable_mut();
-                        let mut fd_ready = r.await.unwrap();
-                        let mut buffer: [u8; 1024] = [0; 1024];
-                        debug!("Found new hci device entries. Reading them.");
-                        match fd_ready.try_io(|inner| inner.get_mut().read_events(&mut buffer)) {
-                            Ok(Ok(events)) => {
-                                for event in events {
-                                    let _ = hci_tx
-                                        .send_timeout(
-                                            Message::HciDeviceChange(
-                                                event.mask,
-                                                event_name_to_string(event.name),
-                                            ),
-                                            TX_SEND_TIMEOUT_DURATION,
+        // Start by first reading the index list
+        match hci_afd.writable_mut().await {
+            Ok(mut guard) => {
+                let _ = guard.try_io(|sock| {
+                    let command = MgmtCommand::ReadIndexList;
+                    sock.get_mut().write_mgmt_packet(command.into());
+                    Ok(())
+                });
+            }
+            Err(e) => debug!("Failed to write to hci socket: {:?}", e),
+        };
+
+        let floss_enabled = bluetooth_manager.lock().unwrap().get_floss_enabled_internal();
+
+        // Now listen only for devices that are newly added or removed.
+        loop {
+            if let Ok(mut guard) = hci_afd.readable_mut().await {
+                let result = guard.try_io(|sock| Ok(sock.get_mut().read_mgmt_packet()));
+                let packet = match result {
+                    Ok(v) => v.unwrap_or(None),
+                    Err(_) => None,
+                };
+
+                if let Some(p) = packet {
+                    debug!("Got a valid packet from btsocket: {:?}", p);
+
+                    if let Ok(ev) = MgmtEvent::try_from(p) {
+                        debug!("Got a valid mgmt event: {:?}", ev);
+
+                        match ev {
+                            MgmtEvent::CommandComplete { opcode: _, status: _, response } => {
+                                if let MgmtCommandResponse::ReadIndexList {
+                                    num_intf: _,
+                                    interfaces,
+                                } = response
+                                {
+                                    for hci in interfaces {
+                                        debug!("IndexList response: {}", hci);
+
+                                        let _ = hci_tx
+                                            .send_timeout(
+                                                Message::HciDeviceAdded(hci),
+                                                TX_SEND_TIMEOUT_DURATION,
+                                            )
+                                            .await
+                                            .unwrap();
+
+                                        // With a list of initial hci devices, make sure to
+                                        // enable them if they were previously enabled and we
+                                        // are using floss.
+                                        start_hci_if_floss_enabled(
+                                            hci,
+                                            floss_enabled,
+                                            hci_tx.clone(),
                                         )
-                                        .await
-                                        .unwrap();
+                                        .await;
+                                    }
                                 }
                             }
-                            // In the case where inotify fails, we want to reconfigure the inotify
-                            // again.
-                            Err(_) | Ok(Err(_)) => {
-                                warn!(
-                                    "Inotify watcher on {} failed.",
-                                    config_util::HCI_DEVICES_DIR
-                                );
-                                break;
+                            MgmtEvent::IndexAdded(hci) => {
+                                let _ = hci_tx
+                                    .send_timeout(
+                                        Message::HciDeviceAdded(hci),
+                                        TX_SEND_TIMEOUT_DURATION,
+                                    )
+                                    .await
+                                    .unwrap();
+                            }
+                            MgmtEvent::IndexRemoved(hci) => {
+                                let _ = hci_tx
+                                    .send_timeout(
+                                        Message::HciDeviceRemoved(hci),
+                                        TX_SEND_TIMEOUT_DURATION,
+                                    )
+                                    .await
+                                    .unwrap();
                             }
                         }
-                        fd_ready.clear_ready();
-                        drop(fd_ready);
                     }
-                }
-                None => {
-                    // Exponential backoff until we succeed.
-                    sleep_duration = cmp::min(sleep_duration * 2, HCI_DEVICE_SLEEP_MAX_SECONDS);
-                    sleep(Duration::from_secs(sleep_duration)).await;
+                } else {
+                    // Got nothing from the previous read so clear the ready bit.
+                    guard.clear_ready();
                 }
             }
         }
     });
+}
+
+pub async fn mainloop(
+    mut context: StateMachineContext,
+    bluetooth_manager: Arc<std::sync::Mutex<Box<BluetoothManager>>>,
+) {
+    // Set up a command timeout listener to emit timeout messages
+    let command_timeout = Arc::new(Alarm::new());
+    let timeout_clone = command_timeout.clone();
+    let timeout_tx = context.tx.clone();
+    tokio::spawn(async move {
+        loop {
+            let _expired = timeout_clone.expired().await;
+            let _ = timeout_tx
+                .send_timeout(Message::CommandTimeout(), TX_SEND_TIMEOUT_DURATION)
+                .await
+                .unwrap();
+        }
+    });
+
+    // Set up an HCI device listener to emit HCI device inotify messages.
+    // This is also responsible for configuring the initial list of HCI devices available on the
+    // system.
+    configure_hci(context.tx.clone(), bluetooth_manager.clone());
+    configure_pid(context.tx.clone());
 
     // Listen for all messages and act on them
     loop {
@@ -465,29 +484,12 @@ pub async fn mainloop(
                 _ => debug!("Ignored event {:?} - {:?}", mask, &filename),
             },
 
-            // Monitored hci directory has a change
-            Message::HciDeviceChange(mask, filename) => match (mask, &filename) {
-                (inotify::EventMask::CREATE, Some(fname)) => {
-                    match get_hci_index_from_device(&fname) {
-                        Some(hci) => {
-                            bluetooth_manager.lock().unwrap().callback_hci_device_change(hci, true);
-                        }
-                        _ => (),
-                    }
-                }
-                (inotify::EventMask::DELETE, Some(fname)) => {
-                    match get_hci_index_from_device(&fname) {
-                        Some(hci) => {
-                            bluetooth_manager
-                                .lock()
-                                .unwrap()
-                                .callback_hci_device_change(hci, false);
-                        }
-                        _ => (),
-                    }
-                }
-                _ => debug!("Ignored event {:?} - {:?}", mask, &filename),
-            },
+            Message::HciDeviceAdded(hci) => {
+                bluetooth_manager.lock().unwrap().callback_hci_device_change(hci.into(), true)
+            }
+            Message::HciDeviceRemoved(hci) => {
+                bluetooth_manager.lock().unwrap().callback_hci_device_change(hci.into(), false)
+            }
 
             // Callback client has disconnected
             Message::CallbackDisconnected(id) => {
@@ -961,15 +963,10 @@ mod tests {
     }
 
     #[test]
-    fn path_to_hci_interface() {
+    fn path_to_pid() {
         assert_eq!(get_hci_index_from_pid_path("/var/run/bluetooth/bluetooth0.pid"), Some(0));
         assert_eq!(get_hci_index_from_pid_path("/var/run/bluetooth/bluetooth1.pid"), Some(1));
         assert_eq!(get_hci_index_from_pid_path("/var/run/bluetooth/bluetooth10.pid"), Some(10));
         assert_eq!(get_hci_index_from_pid_path("/var/run/bluetooth/garbage"), None);
-
-        assert_eq!(get_hci_index_from_device("/sys/class/bluetooth/hci0"), Some(0));
-        assert_eq!(get_hci_index_from_device("/sys/class/bluetooth/hci1"), Some(1));
-        assert_eq!(get_hci_index_from_device("/sys/class/bluetooth/hci10"), Some(10));
-        assert_eq!(get_hci_index_from_device("/sys/class/bluetooth/eth0"), None);
     }
 }
