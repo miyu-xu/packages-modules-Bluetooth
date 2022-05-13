@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81eed8bd_593c8521",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-05-13T15:27:48Z",
+      "side": 1,
+      "message": "Sorry about that! I\u0027ll see how I can update the `cc_prebuilt_binary` to include the required libraries.",
+      "revId": "48ca2017854c8fb5489e6e9e73e0d0ade8c4eb4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
