@@ -22,6 +22,30 @@
       },
       "revId": "8441a1759177701e6205c29335870cf334fb7b05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfae3fa9_d818851b",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-13T07:48:18Z",
+      "side": 1,
+      "message": "done. Sorry this revert bracket was in a later patch that I should have staged together. moving it here.",
+      "parentUuid": "f71f88d7_ec5079d2",
+      "range": {
+        "startLine": 467,
+        "startChar": 112,
+        "endLine": 467,
+        "endChar": 113
+      },
+      "revId": "8441a1759177701e6205c29335870cf334fb7b05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
