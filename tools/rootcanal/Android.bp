@@ -93,10 +93,10 @@ cc_library_static {
         ".",
     ],
     shared_libs: [
+        "libjsoncpp",
         "liblog",
     ],
     static_libs: [
-        "libjsoncpp",
         "libscriptedbeaconpayload-protos-lite",
     ],
 }
@@ -167,6 +167,7 @@ cc_binary_host {
         "libbluetooth_headers",
     ],
     shared_libs: [
+        "libjsoncpp",
         "liblog",
         "libbacktrace",
     ],
@@ -174,7 +175,6 @@ cc_binary_host {
         "libbt-rootcanal",
     ],
     static_libs: [
-        "libjsoncpp",
         "libprotobuf-cpp-lite",
         "libscriptedbeaconpayload-protos-lite",
         "breakpad_client",
