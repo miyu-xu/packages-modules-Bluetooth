@@ -2,7 +2,9 @@
 
 use crate::ast;
 use crate::parser::parse_inline;
+use std::fs;
 use std::io::Write;
+use std::path::Path;
 use std::process::{Command, Stdio};
 use tempfile::NamedTempFile;
 
@@ -88,4 +90,32 @@ pub fn assert_eq_with_diff(left: &str, right: &str) {
         right,
         diff(left, right)
     );
+}
+
+/// Compare a string with a snapshot file.
+///
+/// Updates the snapshot file if the `UPDATE_SNAPSHOTS` environment
+/// variable is set.
+#[track_caller]
+pub fn assert_snapshot_eq<P: AsRef<Path>>(snapshot_path: P, actual_content: &str) {
+    let snapshot_content = fs::read(&snapshot_path).unwrap_or_else(|err| {
+        panic!("Could not read snapshot from {}: {}", snapshot_path.as_ref().display(), err)
+    });
+    let snapshot_content = String::from_utf8(snapshot_content).expect("Snapshot was not UTF-8");
+
+    if std::env::var("UPDATE_SNAPSHOTS").is_ok() {
+        if actual_content != snapshot_content {
+            println!(
+                "Updating snapshot {}: {} -> {} bytes",
+                snapshot_path.as_ref().display(),
+                snapshot_content.len(),
+                actual_content.len()
+            );
+            fs::write(&snapshot_path, actual_content).unwrap_or_else(|err| {
+                panic!("Could not write snapshot to {}: {}", snapshot_path.as_ref().display(), err)
+            });
+        }
+    } else {
+        assert_eq_with_diff(actual_content, &snapshot_content);
+    }
 }

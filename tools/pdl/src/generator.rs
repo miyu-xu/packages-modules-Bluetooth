@@ -500,13 +500,12 @@ pub fn generate_rust(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> R
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::test_utils::{assert_eq_with_diff, parse_str, rustfmt};
+    use crate::test_utils::{assert_eq_with_diff, assert_snapshot_eq, parse_str, rustfmt};
 
     #[test]
     fn test_generate_preamble() {
-        let actual_code = generate_preamble(Path::new("some/path/foo.pdl")).unwrap();
-        let expected_code = include_str!("../test/generated/preamble.rs");
-        assert_eq_with_diff(&rustfmt(&actual_code), expected_code);
+        let actual_code = generate_preamble(Path::new("some/path/foobar.pdl")).unwrap();
+        assert_snapshot_eq("test/generated/preamble.rs", &rustfmt(&actual_code));
     }
 
     #[test]

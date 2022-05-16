@@ -1,0 +1,19 @@
+[package]
+name = "pdl"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[dependencies]
+pest = "*"
+serde = { version = "*", features = ["default", "derive", "serde_derive", "std"] }
+serde_json = "*"
+structopt = "*"
+codespan-reporting = "*"
+quote = "*"
+syn = "*"
+proc-macro2 = "*"
+anyhow = "*"
+tempfile = "*"
+pest_derive = "*"

@@ -10,6 +10,7 @@ package {
 rust_defaults {
     name: "pdl_defaults",
     srcs: ["src/main.rs"],
+    // LINT.IfChange
     rustlibs: [
         "libpest",
         "libserde",
@@ -25,6 +26,7 @@ rust_defaults {
     proc_macros: [
         "libpest_derive",
     ],
+    // LINT.ThenChange(Cargo.toml)
 }
 
 rust_binary_host {
@@ -39,5 +41,6 @@ rust_test_host {
     data: [
         "rustfmt",
         "rustfmt.toml",
+        "test/generated/preamble.rs",
     ],
 }
