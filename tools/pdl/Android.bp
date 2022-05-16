@@ -46,6 +46,7 @@ rust_test_host {
     },
     data: [
         ":rustfmt",
+        "test/generated/preamble.rs",
     ],
 }
 

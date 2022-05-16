@@ -503,7 +503,7 @@ mod tests {
     use super::*;
     use crate::ast;
     use crate::parser::parse_inline;
-    use crate::test_utils::{assert_eq_with_diff, rustfmt};
+    use crate::test_utils::{assert_eq_with_diff, assert_snapshot_eq, rustfmt};
 
     /// Parse a string fragment as a PDL file.
     ///
@@ -518,8 +518,7 @@ mod tests {
     #[test]
     fn test_generate_preamble() {
         let actual_code = generate_preamble(Path::new("some/path/foo.pdl")).unwrap();
-        let expected_code = include_str!("../test/generated/preamble.rs");
-        assert_eq_with_diff(&rustfmt(expected_code), &rustfmt(&actual_code));
+        assert_snapshot_eq("test/generated/preamble.rs", &rustfmt(&actual_code));
     }
 
     #[test]
