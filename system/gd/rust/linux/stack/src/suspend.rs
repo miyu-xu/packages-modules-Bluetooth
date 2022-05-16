@@ -161,6 +161,7 @@ impl ISuspend for Suspend {
         let suspend_id = 1;
         self.intf.lock().unwrap().set_default_event_mask();
         self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
+        self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
         if self.is_connected_suspend {
             if self.was_a2dp_connected {
                 // TODO(230604670): self.intf.lock().unwrap().restore_filter_accept_list();

@@ -1049,6 +1049,10 @@ impl BluetoothInterface {
         ccall!(self, le_rand)
     }
 
+    pub fn set_event_filter_connection_setup_all_devices(&self) -> i32 {
+        ccall!(self, set_event_filter_connection_setup_all_devices)
+    }
+
     pub fn le_rand_cb(&self, random: u64) {
         let cb = self.le_rand_callback.clone().unwrap().clone();
         task::spawn(async move {
