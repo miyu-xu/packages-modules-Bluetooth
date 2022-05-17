@@ -315,7 +315,6 @@ class LeAclManagerFacadeService : public LeAclManagerFacade::Service, public LeC
 
     void OnReadRemoteVersionInformationComplete(
         hci::ErrorCode hci_status, uint8_t lmp_version, uint16_t manufacturer_name, uint16_t sub_version) override {}
-    void OnLeReadRemoteFeaturesComplete(hci::ErrorCode hci_status, uint64_t features) override {}
 
     LeConnectionManagementCallbacks* GetCallbacks() {
       return this;
