@@ -22,6 +22,30 @@
       },
       "revId": "c43f4f8921e25f3da708cfef6334d5f7d3251861",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9bccc3f3_81639fa3",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-17T14:19:59Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "41e02063_462be2a7",
+      "range": {
+        "startLine": 419,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 33
+      },
+      "revId": "c43f4f8921e25f3da708cfef6334d5f7d3251861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
