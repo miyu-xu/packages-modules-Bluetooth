@@ -579,6 +579,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     auto view = ReadRemoteSupportedFeaturesCompleteView::Create(packet);
     ASSERT_LOG(view.IsValid(), "Read remote supported features packet invalid");
     uint16_t handle = view.GetConnectionHandle();
+    LOG_WARN("aaaaaaaaa1 %s", std::to_string(view.GetLmpFeatures()).c_str());
     connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
       callbacks->OnReadRemoteSupportedFeaturesComplete(view.GetLmpFeatures());
     });
@@ -588,6 +589,8 @@ struct classic_impl : public security::ISecurityManagerListener {
     auto view = ReadRemoteExtendedFeaturesCompleteView::Create(packet);
     ASSERT_LOG(view.IsValid(), "Read remote extended features packet invalid");
     uint16_t handle = view.GetConnectionHandle();
+    LOG_WARN("aaaaaaaaa2 %d", view.GetPageNumber());
+    LOG_WARN("aaaaaaaaa3 %s", std::to_string(view.GetExtendedLmpFeatures()).c_str());
     connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
       callbacks->OnReadRemoteExtendedFeaturesComplete(
           view.GetPageNumber(), view.GetMaximumPageNumber(), view.GetExtendedLmpFeatures());
