@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81dedec9_592699c4",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-17T08:44:50Z",
+      "side": 1,
+      "message": "is this the new logic handling the duplicate set encryption?",
+      "range": {
+        "startLine": 1087,
+        "startChar": 0,
+        "endLine": 1087,
+        "endChar": 56
+      },
+      "revId": "cfcc6fba70766416f7034d8072922ed78101f75e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
