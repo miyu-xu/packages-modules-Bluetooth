@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a7ee0f9_e140772f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1109358
+      },
+      "writtenOn": "2022-05-17T23:59:03Z",
+      "side": 1,
+      "message": "git clone https://android.googlesource.com/All-Users",
+      "revId": "bbc4f1857c62b73d3f79c93d7dfc97817026877a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
