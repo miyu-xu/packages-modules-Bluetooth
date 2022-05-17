@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92439e05_cb874c9c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-17T14:12:01Z",
+      "side": 0,
+      "message": "This looks unrelated.  Probably OK in this case, but usually better to have in a different CL.",
+      "revId": "dab680a33140d01c10b58006cff3b5f70c3f113c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
