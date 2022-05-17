@@ -274,7 +274,6 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     if (connecting_addr_with_type == connecting_le_.end()) {
       LOG_WARN("No prior connection request for %s", address_with_type.ToString().c_str());
     }
-    connecting_le_.clear();
 
     if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
