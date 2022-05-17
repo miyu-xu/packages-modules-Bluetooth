@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41e02063_462be2a7",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-05-17T13:53:13Z",
+      "side": 1,
+      "message": "This is a great example of why we should always use braces, even for single line blocks.  Because this code didn\u0027t, and then added another statement but forgot the parentheses, and seemed to introduce a substantial regression here.\n\nAs is, this code returns HID_ERR_INVALID_PARAM for every input that gets this far, and will never get to hidh_conn_initiate() at the end of the function.\n\nI\u0027ve put up a fix at https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2099447",
+      "range": {
+        "startLine": 419,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 33
+      },
+      "revId": "c43f4f8921e25f3da708cfef6334d5f7d3251861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
