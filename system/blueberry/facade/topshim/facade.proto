@@ -20,6 +20,11 @@ service AdapterService {
   rpc SetEventFilterInquiryResultAllDevices(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }
 
+service GattService {
+  rpc StartAdvertisingSet(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc StopAdvertisingSet(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
 enum EventType {
   ADAPTER_STATE = 0;
   SSP_REQUEST = 1;
