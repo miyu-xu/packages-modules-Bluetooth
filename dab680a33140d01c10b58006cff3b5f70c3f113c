@@ -16,6 +16,24 @@
       "message": "This looks unrelated.  Probably OK in this case, but usually better to have in a different CL.",
       "revId": "dab680a33140d01c10b58006cff3b5f70c3f113c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c808f14f_af0318b7",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-05-17T14:20:04Z",
+      "side": 0,
+      "message": "Thanks, I will have different CL if I meet same case.",
+      "parentUuid": "92439e05_cb874c9c",
+      "revId": "dab680a33140d01c10b58006cff3b5f70c3f113c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
