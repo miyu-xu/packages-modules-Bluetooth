@@ -137,12 +137,71 @@ impl ContextMap {
 
 /// Defines the GATT API.
 pub trait IBluetoothGatt {
+    // Advertising
+    fn register_advertiser(&self);
+
+    fn unregister_advertiser(&self);
+
+    /// Get the address currently being advertised
+    fn get_own_address(&self);
+
+    fn set_parameters(&self);
+
+    fn set_data(&self);
+
+    fn enable(&self);
+
+    fn set_periodic_advertising_parameters(&self);
+
+    fn set_periodic_advertising_data(&self);
+
+    fn set_periodic_advertising_enable(&self);
+
+    fn start_advertising(&self);
+
+    fn start_advertising_set(&self);
+
+    // Scanning
     fn register_scanner(&self, callback: Box<dyn IScannerCallback + Send>);
 
     fn unregister_scanner(&self, scanner_id: i32);
 
     fn start_scan(&self, scanner_id: i32, settings: ScanSettings, filters: Vec<ScanFilter>);
+
     fn stop_scan(&self, scanner_id: i32);
+
+    fn scan_filter_setup(&self);
+
+    fn scan_filter_add(&self);
+
+    fn scan_filter_clear(&self);
+
+    fn scan_filter_enable(&self);
+
+    fn scan_filter_disable(&self);
+
+    fn set_scan_parameters(&self);
+
+    fn batch_scan_config_storage(&self);
+
+    fn batch_scan_enable(&self);
+
+    fn batch_scan_disable(&self);
+
+    fn batch_scan_read_reports(&self);
+
+    // GATT Client
+    fn start_sync(&self);
+
+    fn stop_sync(&self);
+
+    fn cancel_create_sync(&self);
+
+    fn transfer_sync(&self);
+
+    fn transfer_set_info(&self);
+
+    fn sync_tx_parameters(&self);
 
     /// Registers a GATT Client.
     fn register_client(
@@ -168,19 +227,6 @@ pub trait IBluetoothGatt {
 
     /// Disconnects a GATT connection.
     fn client_disconnect(&self, client_id: i32, addr: String);
-
-    /// Sets preferred PHY.
-    fn client_set_preferred_phy(
-        &self,
-        client_id: i32,
-        addr: String,
-        tx_phy: LePhy,
-        rx_phy: LePhy,
-        phy_options: i32,
-    );
-
-    /// Reads the PHY used by a peer.
-    fn client_read_phy(&mut self, client_id: i32, addr: String);
 
     /// Clears the attribute cache of a device.
     fn refresh_device(&self, client_id: i32, addr: String);
@@ -256,6 +302,52 @@ pub trait IBluetoothGatt {
         min_ce_len: u16,
         max_ce_len: u16,
     );
+
+    fn execute_write(&self);
+
+    fn deregister_for_notification(&self);
+
+    fn get_device_type(&self);
+
+    /// Sets preferred PHY.
+    fn client_set_preferred_phy(
+        &self,
+        client_id: i32,
+        addr: String,
+        tx_phy: LePhy,
+        rx_phy: LePhy,
+        phy_options: i32,
+    );
+
+    /// Reads the PHY used by a peer.
+    fn client_read_phy(&mut self, client_id: i32, addr: String);
+
+    fn test_command(&self);
+
+    fn get_gatt_db(&self);
+
+    // GATT Server
+    fn register_server(&self);
+
+    fn unregister_server(&self);
+
+    fn server_connect(&self);
+
+    fn server_disconnect(&self);
+
+    fn add_service(&self);
+
+    fn stop_service(&self);
+
+    fn delete_service(&self);
+
+    fn send_indication(&self);
+
+    fn send_response(&self);
+
+    fn server_set_preferred_phy(&self);
+
+    fn server_read_phy(&self);
 }
 
 #[derive(Debug, Default)]
@@ -556,6 +648,31 @@ pub enum GattWriteRequestStatus {
 }
 
 impl IBluetoothGatt for BluetoothGatt {
+    // Advertising
+    fn register_advertiser(&self);
+
+    fn unregister_advertiser(&self);
+
+    /// Get the address currently being advertised
+    fn get_own_address(&self);
+
+    fn set_parameters(&self);
+
+    fn set_data(&self);
+
+    fn enable(&self);
+
+    fn set_periodic_advertising_parameters(&self);
+
+    fn set_periodic_advertising_data(&self);
+
+    fn set_periodic_advertising_enable(&self);
+
+    fn start_advertising(&self);
+
+    fn start_advertising_set(&self);
+
+    // Scanning
     fn register_scanner(&self, _callback: Box<dyn IScannerCallback + Send>) {
         // TODO(b/200066804): implement
     }
@@ -571,6 +688,39 @@ impl IBluetoothGatt for BluetoothGatt {
     fn stop_scan(&self, _scanner_id: i32) {
         // TODO(b/200066804): implement
     }
+
+    fn scan_filter_setup(&self) {}
+
+    fn scan_filter_add(&self) {}
+
+    fn scan_filter_clear(&self) {}
+
+    fn scan_filter_enable(&self) {}
+
+    fn scan_filter_disable(&self) {}
+
+    fn set_scan_parameters(&self) {}
+
+    fn batch_scan_config_storage(&self) {}
+
+    fn batch_scan_enable(&self) {}
+
+    fn batch_scan_disable(&self) {}
+
+    fn batch_scan_read_reports(&self) {}
+
+    // GATT Client
+    fn start_sync(&self) {}
+
+    fn stop_sync(&self) {}
+
+    fn cancel_create_sync(&self) {}
+
+    fn transfer_sync(&self) {}
+
+    fn transfer_set_info(&self) {}
+
+    fn sync_tx_parameters(&self) {}
 
     fn register_client(
         &mut self,
@@ -623,36 +773,6 @@ impl IBluetoothGatt for BluetoothGatt {
             &RawAddress::from_string(address).unwrap(),
             conn_id.unwrap(),
         );
-    }
-
-    fn client_set_preferred_phy(
-        &self,
-        client_id: i32,
-        address: String,
-        tx_phy: LePhy,
-        rx_phy: LePhy,
-        phy_options: i32,
-    ) {
-        let conn_id = self.context_map.get_conn_id_from_address(client_id, &address);
-        if conn_id.is_none() {
-            return;
-        }
-
-        self.gatt.as_ref().unwrap().client.set_preferred_phy(
-            &RawAddress::from_string(address).unwrap(),
-            tx_phy.to_u8().unwrap(),
-            rx_phy.to_u8().unwrap(),
-            phy_options as u16,
-        );
-    }
-
-    fn client_read_phy(&mut self, client_id: i32, addr: String) {
-        let address = match RawAddress::from_string(addr.clone()) {
-            None => return,
-            Some(addr) => addr,
-        };
-
-        self.gatt.as_mut().unwrap().client.read_phy(client_id, &address);
     }
 
     fn refresh_device(&self, client_id: i32, addr: String) {
@@ -882,6 +1002,69 @@ impl IBluetoothGatt for BluetoothGatt {
             max_ce_len,
         );
     }
+
+    fn execute_write(&self) {}
+
+    fn deregister_for_notification(&self) {}
+
+    fn get_device_type(&self) {}
+
+    fn client_set_preferred_phy(
+        &self,
+        client_id: i32,
+        address: String,
+        tx_phy: LePhy,
+        rx_phy: LePhy,
+        phy_options: i32,
+    ) {
+        let conn_id = self.context_map.get_conn_id_from_address(client_id, &address);
+        if conn_id.is_none() {
+            return;
+        }
+
+        self.gatt.as_ref().unwrap().client.set_preferred_phy(
+            &RawAddress::from_string(address).unwrap(),
+            tx_phy.to_u8().unwrap(),
+            rx_phy.to_u8().unwrap(),
+            phy_options as u16,
+        );
+    }
+
+    fn client_read_phy(&mut self, client_id: i32, addr: String) {
+        let address = match RawAddress::from_string(addr.clone()) {
+            None => return,
+            Some(addr) => addr,
+        };
+
+        self.gatt.as_mut().unwrap().client.read_phy(client_id, &address);
+    }
+
+    fn test_command(&self) {}
+
+    fn get_gatt_db(&self) {}
+
+    // GATT Server
+    fn register_server(&self) {}
+
+    fn unregister_server(&self) {}
+
+    fn server_connect(&self) {}
+
+    fn server_disconnect(&self) {}
+
+    fn add_service(&self) {}
+
+    fn stop_service(&self) {}
+
+    fn delete_service(&self) {}
+
+    fn send_indication(&self) {}
+
+    fn send_response(&self) {}
+
+    fn server_set_preferred_phy(&self) {}
+
+    fn server_read_phy(&self) {}
 }
 
 #[btif_callbacks_dispatcher(BluetoothGatt, dispatch_gatt_client_callbacks, GattClientCallbacks)]
