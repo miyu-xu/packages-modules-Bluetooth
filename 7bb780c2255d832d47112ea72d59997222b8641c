@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e375f3_4cb351a9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-17T21:53:40Z",
+      "side": 1,
+      "message": "Please add the following line in the commit message:\n\nSponsor: @wescande",
+      "revId": "7bb780c2255d832d47112ea72d59997222b8641c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5a4050b6_e9b93ad0",
@@ -185,6 +202,46 @@
       "writtenOn": "2022-05-16T03:57:47Z",
       "side": 1,
       "message": "Can you help to review",
+      "revId": "7bb780c2255d832d47112ea72d59997222b8641c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26aa3e9c_490d6ccd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-17T21:53:40Z",
+      "side": 1,
+      "message": "Thank Mutyala for the patch and the test app.\nI managed to reproduced it and see the fix works as intended.\n\nI started the test suite to see if there is some unwanted side effect.",
+      "revId": "7bb780c2255d832d47112ea72d59997222b8641c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40c6c2ce_31f91b30",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3476,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-17T21:53:40Z",
+      "side": 1,
+      "message": "Please fix trailing whitespace",
+      "range": {
+        "startLine": 3476,
+        "startChar": 47,
+        "endLine": 3476,
+        "endChar": 48
+      },
       "revId": "7bb780c2255d832d47112ea72d59997222b8641c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
