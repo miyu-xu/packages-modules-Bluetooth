@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b2bccf5_7f7d0dac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-05-17T22:55:09Z",
+      "side": 1,
+      "message": "Hey Chen, just checking why we\u0027re dropping catching IllegalStateExceptions? Are those never thrown? If they are, can we check for both?",
+      "revId": "ba9af7971402cb6faa88e4f73e2da60cd4636cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
