@@ -87,22 +87,25 @@ fn generate_preamble(path: &Path) -> String {
     code
 }
 
-/// Round up the bit width to a Rust integer size.
-fn round_bit_width(width: usize) -> usize {
-    match width {
-        8 => 8,
-        16 => 16,
-        24 | 32 => 32,
-        40 | 48 | 56 | 64 => 64,
-        _ => todo!("unsupported field width: {width}"),
+/// Get the Rust integer type for the given bit width.
+///
+/// This will round up the size to the nearest Rust integer size. PDL
+/// supports integers up to 64 bit, so it is an error to call this
+/// with a width larger than 64.
+fn rust_integer_type(width: usize) -> usize {
+    for integer_width in [8, 16, 32, 64] {
+        if width <= integer_width {
+            return integer_width;
+        }
     }
+    panic!("unsupported field width: {width}")
 }
 
 /// Generate a Rust unsigned integer type large enough to hold
 /// integers of the given bit width.
 fn type_for_width(width: usize) -> syn::Type {
-    let rounded_width = round_bit_width(width);
-    syn::parse_str(&format!("u{rounded_width}")).unwrap()
+    let integer_width = rust_integer_type(width);
+    syn::parse_str(&format!("u{integer_width}")).unwrap()
 }
 
 fn generate_field(field: &ast::Field, visibility: syn::Visibility) -> proc_macro2::TokenStream {
@@ -136,25 +139,40 @@ fn generate_field_getter(packet_name: &syn::Ident, field: &ast::Field) -> proc_m
 }
 
 /// Mask and rebind the field value (if necessary).
-fn mask_field_value(field: &ast::Field) -> Option<proc_macro2::TokenStream> {
-    match field {
-        ast::Field::Scalar { id, width, .. } => {
-            let field_name = format_ident!("{id}");
-            let type_width = round_bit_width(*width);
-            if *width != type_width {
-                let mask =
-                    syn::parse_str::<syn::LitInt>(&format!("{:#x}", (1u64 << *width) - 1)).unwrap();
-                Some(quote! {
-                    let #field_name = #field_name & #mask;
-                })
-            } else {
-                None
-            }
-        }
-        _ => todo!("unsupported field: {:?}", field),
+fn mask_field_value(
+    field_name: &proc_macro2::Ident,
+    width: usize,
+) -> Option<proc_macro2::TokenStream> {
+    let type_width = rust_integer_type(width);
+    if width == type_width {
+        return None;
     }
+
+    let bit_mask = mask_bits(width);
+    Some(quote! {
+        let #field_name = #field_name & #bit_mask;
+    })
 }
 
+/// Find byte indices covering `offset..offset+width` bits.
+fn get_field_range(offset: usize, width: usize) -> std::ops::Range<usize> {
+    let start = offset / 8;
+    let mut end = (offset + width) / 8;
+    if (offset + width) % 8 != 0 {
+        end += 1;
+    }
+    start..end
+}
+
+/// The number of bits to left-shift to reach a byte boundary.
+fn get_field_shift(offset: usize) -> usize {
+    offset % 8
+}
+
+/// Generate code for parsing a field.
+///
+/// The `offset` gives the size in bits of the fields before this
+/// field.
 fn generate_field_parser(
     endianness_value: &ast::EndiannessValue,
     packet_name: &str,
@@ -164,7 +182,7 @@ fn generate_field_parser(
     match field {
         ast::Field::Scalar { id, width, .. } => {
             let field_name = format_ident!("{id}");
-            let type_width = round_bit_width(*width);
+            let type_width = rust_integer_type(*width);
             let field_type = type_for_width(*width);
 
             let getter = match endianness_value {
@@ -172,38 +190,66 @@ fn generate_field_parser(
                 ast::EndiannessValue::LittleEndian => format_ident!("from_le_bytes"),
             };
 
+            let range = get_field_range(offset, *width);
+            let indices = range.clone().map(syn::Index::from);
+            let last_idx = syn::Index::from(range.end);
+            let length_check = (last_idx.index > 0).then(|| {
+                quote! {
+                    // TODO(mgeisler): call a function instead to
+                    // avoid generating code for this.
+                    if bytes.len() < #last_idx {
+                        return Err(Error::InvalidLengthError {
+                            obj: #packet_name.to_string(),
+                            field: #id.to_string(),
+                            wanted: #last_idx,
+                            got: bytes.len(),
+                        });
+                    }
+                }
+            });
+
+            let byte_boundary_offset = syn::Index::from(get_field_shift(offset));
+            let shift = (byte_boundary_offset.index > 0).then(|| {
+                // TODO(mgeisler): does the use of << here assume
+                // little-endian encoding?
+                quote! {
+                  let #field_name = (#field_name << #byte_boundary_offset);
+                }
+            });
+            let mask = mask_field_value(&field_name, *width);
+
+            // When the field_type is larger than needed_bytes (e.g.
+            // needed_bytes of 3 gives a file_type of u32), then we
+            // need some zero bytes for padding.
+            let zero_padding_len = type_width / 8 - range.len();
             // We need the padding on the MSB side of the payload, so
             // for big-endian, we need to padding on the left, for
             // little-endian we need it on the right.
-            let padding = vec![syn::Index::from(0); (type_width - width) / 8];
-            let (padding_before, padding_after) = match endianness_value {
-                ast::EndiannessValue::BigEndian => (padding, vec![]),
-                ast::EndiannessValue::LittleEndian => (vec![], padding),
+            let (zero_padding_before, zero_padding_after) = match endianness_value {
+                ast::EndiannessValue::BigEndian => {
+                    (vec![syn::Index::from(0); zero_padding_len], vec![])
+                }
+                ast::EndiannessValue::LittleEndian => {
+                    (vec![], vec![syn::Index::from(0); zero_padding_len])
+                }
             };
 
-            let wanted_len = syn::Index::from(offset + width / 8);
-            let indices = (offset..offset + width / 8).map(syn::Index::from);
-            let mask = mask_field_value(field);
-
             quote! {
-                // TODO(mgeisler): call a function instead to avoid
-                // generating so much code for this.
-                if bytes.len() < #wanted_len {
-                    return Err(Error::InvalidLengthError {
-                        obj: #packet_name.to_string(),
-                        field: #id.to_string(),
-                        wanted: #wanted_len,
-                        got: bytes.len(),
-                    });
-                }
+                #length_check
                 let #field_name = #field_type::#getter([
-                    #(#padding_before,)* #(bytes[#indices]),* #(, #padding_after)*
+                    #(#zero_padding_before,)* #(bytes[#indices]),* #(, #zero_padding_after)*
                 ]);
+                #shift
                 #mask
             }
         }
         _ => todo!("unsupported field: {:?}", field),
     }
+}
+
+/// Generate a bit-mask which masks out `n` least significant bits.
+fn mask_bits(n: usize) -> syn::LitInt {
+    syn::parse_str::<syn::LitInt>(&format!("{:#x}", (1u64 << n) - 1)).unwrap()
 }
 
 fn generate_field_writer(
@@ -214,10 +260,24 @@ fn generate_field_writer(
     match field {
         ast::Field::Scalar { id, width, .. } => {
             let field_name = format_ident!("{id}");
-            let start = syn::Index::from(offset);
-            let end = syn::Index::from(offset + width / 8);
-            let byte_width = syn::Index::from(width / 8);
-            let mask = mask_field_value(field);
+            let range = get_field_range(offset, *width);
+            let start = syn::Index::from(range.start);
+            let end = syn::Index::from(range.end);
+            let byte_width = syn::Index::from(range.end - range.start);
+
+            let mask = mask_field_value(&field_name, *width);
+            let byte_boundary_offset = syn::Index::from(get_field_shift(offset));
+            let shift = (byte_boundary_offset.index > 0).then(|| {
+                let field_type = type_for_width(*width);
+                let bit_mask = mask_bits(byte_boundary_offset.index as usize);
+                // TODO(mgeisler): does the use of << here assume
+                // little-endian encoding?
+                quote! {
+                    let #field_name = (#field_name << #byte_boundary_offset)
+                                    | ((buffer[#start] as #field_type) & #bit_mask);
+                }
+            });
+
             let writer = match file.endianness.value {
                 ast::EndiannessValue::BigEndian => format_ident!("to_be_bytes"),
                 ast::EndiannessValue::LittleEndian => format_ident!("to_le_bytes"),
@@ -225,6 +285,7 @@ fn generate_field_writer(
             quote! {
                 let #field_name = self.#field_name;
                 #mask
+                #shift
                 buffer[#start..#end].copy_from_slice(&#field_name.#writer()[0..#byte_width]);
             }
         }
@@ -232,9 +293,10 @@ fn generate_field_writer(
     }
 }
 
+/// Field size in bits.
 fn get_field_size(field: &ast::Field) -> usize {
     match field {
-        ast::Field::Scalar { width, .. } => width / 8,
+        ast::Field::Scalar { width, .. } => *width,
         _ => todo!("unsupported field: {:?}", field),
     }
 }
@@ -369,10 +431,14 @@ fn generate_packet_decl(
         writer
     });
 
-    let total_field_size = syn::Index::from(fields.iter().map(get_field_size).sum::<usize>());
-    let get_size_adjustment = (total_field_size.index > 0).then(|| {
+    let packet_size_bits = fields.iter().map(get_field_size).sum::<usize>();
+    if packet_size_bits % 8 != 0 {
+        panic!("packet {id} does not end on a byte boundary, size: {packet_size_bits} bits",);
+    }
+    let packet_size_bytes = syn::Index::from(packet_size_bits / 8);
+    let get_size_adjustment = (packet_size_bytes.index > 0).then(|| {
         Some(quote! {
-            let ret = ret + #total_field_size;
+            let ret = ret + #packet_size_bytes;
         })
     });
 
@@ -384,7 +450,7 @@ fn generate_packet_decl(
                 fn conforms(bytes: &[u8]) -> bool {
                     // TODO(mgeisler): return Boolean expression directly.
                     // TODO(mgeisler): skip when total_field_size == 0.
-                    if bytes.len() < #total_field_size {
+                    if bytes.len() < #packet_size_bytes {
                         return false;
                     }
                     true
@@ -587,7 +653,7 @@ mod tests {
     }
 
     #[test]
-    fn test_generate_packet_decl_little_endian() {
+    fn test_generate_packet_decl_simple_little_endian() {
         let file = parse_str(
             r#"
               little_endian_packets
@@ -632,6 +698,117 @@ mod tests {
         );
     }
 
+    #[test]
+    fn test_generate_packet_decl_complex_little_endian() {
+        let grammar = parse_str(
+            r#"
+              little_endian_packets
+
+              packet Foo {
+                x: 2,
+                y: 9,
+                z: 21,
+              }
+            "#,
+        );
+        let packets = HashMap::new();
+        let children = HashMap::new();
+        let decl = &grammar.declarations[0];
+        let actual_code = generate_decl(&grammar, &packets, &children, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_decl_complex_little_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_generate_packet_decl_complex_big_endian() {
+        let grammar = parse_str(
+            r#"
+              big_endian_packets
+
+              packet Foo {
+                x: 2,
+                y: 9,
+                z: 21,
+              }
+            "#,
+        );
+        let packets = HashMap::new();
+        let children = HashMap::new();
+        let decl = &grammar.declarations[0];
+        let actual_code = generate_decl(&grammar, &packets, &children, decl);
+        assert_snapshot_eq(
+            "tests/generated/packet_decl_complex_big_endian.rs",
+            &rustfmt(&actual_code),
+        );
+    }
+
+    #[test]
+    fn test_rust_integer_type() {
+        assert_eq!(rust_integer_type(0), 8);
+        assert_eq!(rust_integer_type(8), 8);
+        assert_eq!(rust_integer_type(9), 16);
+        assert_eq!(rust_integer_type(64), 64);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_rust_integer_type_panics_on_large_width() {
+        rust_integer_type(65);
+    }
+
+    #[test]
+    fn test_get_field_range() {
+        // Zero widths will give you an empty slice iff the offset is
+        // byte aligned. In both cases, the slice covers the empty
+        // width. In practice, PDL doesn't allow zero-width fields.
+        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 0), (0..0));
+        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 0), (0..1));
+        assert_eq!(get_field_range(/*offset=*/ 8, /*width=*/ 0), (1..1));
+        assert_eq!(get_field_range(/*offset=*/ 9, /*width=*/ 0), (1..2));
+
+        // Non-zero widths work as expected.
+        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 1), (0..1));
+        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 5), (0..1));
+        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 8), (0..1));
+        assert_eq!(get_field_range(/*offset=*/ 0, /*width=*/ 20), (0..3));
+
+        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 1), (0..1));
+        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 3), (0..1));
+        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 4), (0..2));
+        assert_eq!(get_field_range(/*offset=*/ 5, /*width=*/ 20), (0..4));
+    }
+
+    #[test]
+    fn test_mask_field_value_without_mask() {
+        // No mask for widths which match the Rust type.
+        assert!(mask_field_value(&format_ident!("a"), 8).is_none());
+        assert!(mask_field_value(&format_ident!("a"), 16).is_none());
+        assert!(mask_field_value(&format_ident!("a"), 32).is_none());
+        assert!(mask_field_value(&format_ident!("a"), 64).is_none());
+    }
+
+    #[test]
+    fn test_mask_field_value_odd_sizes() {
+        assert_expr_eq(
+            mask_field_value(&format_ident!("a"), 1).unwrap(),
+            quote! { let a = a & 0x1; },
+        );
+        assert_expr_eq(
+            mask_field_value(&format_ident!("a"), 2).unwrap(),
+            quote! { let a = a & 0x3; },
+        );
+        assert_expr_eq(
+            mask_field_value(&format_ident!("a"), 10).unwrap(),
+            quote! { let a = a & 0x3ff; },
+        );
+        assert_expr_eq(
+            mask_field_value(&format_ident!("a"), 24).unwrap(),
+            quote! { let a = a & 0xffffff; },
+        );
+    }
+
     // Assert that an expression equals the given expression.
     //
     // Both expressions are wrapped in a `main` function (so we can
@@ -654,22 +831,12 @@ mod tests {
     }
 
     #[test]
-    fn test_mask_field_value() {
-        let loc = ast::SourceRange::default();
-        let field = ast::Field::Scalar { loc: loc.clone(), id: String::from("a"), width: 8 };
-        assert_eq!(mask_field_value(&field).map(|m| m.to_string()), None);
-
-        let field = ast::Field::Scalar { loc: loc.clone(), id: String::from("a"), width: 24 };
-        assert_expr_eq(mask_field_value(&field).unwrap(), quote! { let a = a & 0xffffff; });
-    }
-
-    #[test]
     fn test_generate_field_parser_no_padding() {
         let loc = ast::SourceRange::default();
         let field = ast::Field::Scalar { loc, id: String::from("a"), width: 8 };
 
         assert_expr_eq(
-            generate_field_parser(&ast::EndiannessValue::BigEndian, "Foo", &field, 10),
+            generate_field_parser(&ast::EndiannessValue::BigEndian, "Foo", &field, 80),
             quote! {
                 if bytes.len() < 11 {
                     return Err(Error::InvalidLengthError {
@@ -690,7 +857,7 @@ mod tests {
         let loc = ast::SourceRange::default();
         let field = ast::Field::Scalar { loc, id: String::from("a"), width: 24 };
         assert_expr_eq(
-            generate_field_parser(&ast::EndiannessValue::LittleEndian, "Foo", &field, 10),
+            generate_field_parser(&ast::EndiannessValue::LittleEndian, "Foo", &field, 80),
             quote! {
                 if bytes.len() < 13 {
                     return Err(Error::InvalidLengthError {
@@ -712,7 +879,7 @@ mod tests {
         let loc = ast::SourceRange::default();
         let field = ast::Field::Scalar { loc, id: String::from("a"), width: 24 };
         assert_expr_eq(
-            generate_field_parser(&ast::EndiannessValue::BigEndian, "Foo", &field, 10),
+            generate_field_parser(&ast::EndiannessValue::BigEndian, "Foo", &field, 80),
             quote! {
                 if bytes.len() < 13 {
                     return Err(Error::InvalidLengthError {
