@@ -265,6 +265,10 @@ public class LeAudioNativeInterface {
         setCodecConfigPreferenceNative(groupId, inputCodecConfig, outputCodecConfig);
     }
 
+    public void setCcidInformation(int ccid, int contextType) {
+        setCcidInformationNative(ccid, contextType);
+    }
+
     // Native methods that call into the JNI interface
     private static native void classInitNative();
     private native void initNative(BluetoothLeAudioCodecConfig[] codecConfigOffloading);
@@ -277,4 +281,5 @@ public class LeAudioNativeInterface {
     private native void setCodecConfigPreferenceNative(int groupId,
             BluetoothLeAudioCodecConfig inputCodecConfig,
             BluetoothLeAudioCodecConfig outputCodecConfig);
+    private native void setCcidInformationNative(int ccid, int contextType);
 }

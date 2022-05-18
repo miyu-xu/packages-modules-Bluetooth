@@ -307,6 +307,14 @@ class LeAudioClientImpl : public LeAudioClient {
     group_remove_node(group, address);
   }
 
+  int GetCcid(le_audio::types::LeAudioContextType context_type) {
+    for (auto pair : ccids_) {
+      if (pair.second == context_type) return pair.first;
+    }
+
+    return -1;
+  }
+
   /* This callback happens if kLeAudioDeviceSetStateTimeoutMs timeout happens
    * during transition from origin to target state
    */
@@ -612,7 +620,8 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     bool result = groupStateMachine_->StartStream(
-        group, static_cast<LeAudioContextType>(final_context_type));
+        group, static_cast<LeAudioContextType>(final_context_type),
+        GetCcid(static_cast<LeAudioContextType>(final_context_type)));
     if (result)
       stream_setup_start_timestamp_ =
           bluetooth::common::time_get_os_boottime_us();
@@ -699,6 +708,11 @@ class LeAudioClientImpl : public LeAudioClient {
       bluetooth::le_audio::btle_audio_codec_config_t output_codec_config)
       override {
     // TODO Implement
+  }
+
+  void SetCcidInformation(int ccid, int context_type) override {
+    ccids_.push_back(std::make_pair(
+        ccid, (le_audio::types::LeAudioContextType)context_type));
   }
 
   void StartAudioSession(LeAudioDeviceGroup* group,
@@ -3446,8 +3460,9 @@ class LeAudioClientImpl : public LeAudioClient {
         stream_setup_start_timestamp_ = 0;
         if (group && group->IsPendingConfiguration()) {
           SuspendedForReconfiguration();
-          if (groupStateMachine_->ConfigureStream(group,
-                                                  current_context_type_)) {
+          if (groupStateMachine_->ConfigureStream(
+                  group, current_context_type_,
+                  GetCcid(current_context_type_))) {
             /* If configuration succeed wait for new status. */
             return;
           }
@@ -3488,6 +3503,11 @@ class LeAudioClientImpl : public LeAudioClient {
   AudioState audio_receiver_state_;
   /* Speaker(s) */
   AudioState audio_sender_state_;
+
+  /* Ccid informations */
+  std::vector<std::pair<int /* ccid */,
+                        le_audio::types::LeAudioContextType /* context */>>
+      ccids_;
 
   /* Current stream configuration */
   LeAudioCodecConfiguration current_source_codec_config;
