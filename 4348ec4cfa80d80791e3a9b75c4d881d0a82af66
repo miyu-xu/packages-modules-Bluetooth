@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b941ea5_dbc6419e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 907,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-18T17:02:34Z",
+      "side": 1,
+      "message": "Problem with group operation is that this sourceId is valid only for the \u0027sink\u0027, but for other devices from the group it might not necessary be valid.\n\nWe should rather get the existing metadata for the `sink\u0027 and then for other devices find the real sourceId by matching this metadata to their existing",
+      "range": {
+        "startLine": 907,
+        "startChar": 27,
+        "endLine": 907,
+        "endChar": 36
+      },
+      "revId": "4348ec4cfa80d80791e3a9b75c4d881d0a82af66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

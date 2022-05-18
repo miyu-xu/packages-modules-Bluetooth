@@ -211,6 +211,30 @@
       },
       "revId": "33b49b2015c8944483d4201dc894574deb961070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e243b1fc_fdaefa8a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 923,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-18T17:02:34Z",
+      "side": 1,
+      "message": "Since the sticky flag is also connected to the sourceId, case 3) results in removing the sticky flag for this particular source for this device, otherwise we would be left with a sticky flag set for a non-existing sourceId, which would be useless IMO.",
+      "parentUuid": "bb1e7e5f_5baf87fe",
+      "range": {
+        "startLine": 923,
+        "startChar": 27,
+        "endLine": 923,
+        "endChar": 51
+      },
+      "revId": "33b49b2015c8944483d4201dc894574deb961070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
