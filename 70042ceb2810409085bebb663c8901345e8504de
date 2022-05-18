@@ -16,6 +16,23 @@
       "message": "So while it LGTM, I would prefer it if you\u0027d split out the code cleanup changes out into a separate CL. They\u0027re still welcome (and I realize likely all automated), but in this case there are far more of those changes than the semantic one you\u0027re making, so it reads as noise here.",
       "revId": "70042ceb2810409085bebb663c8901345e8504de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba51a431_235403aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-05-18T22:55:01Z",
+      "side": 1,
+      "message": "AND you are adding in the \u0027Oxford comma\u0027 to the lists...\n\none that I personally like presenting a convenient line re-ordering property \n\n(Without this property after re-ordering a list you then need to search for the line w/out the comma if it ordered somewhere into the body of the list)\n",
+      "revId": "70042ceb2810409085bebb663c8901345e8504de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
