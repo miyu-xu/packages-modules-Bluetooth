@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ecad478_75885f2f",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-18T17:22:26Z",
+      "side": 1,
+      "message": "Can we split the address assertions into a separate CL?\n\nI think it will be easier to read if we just have the new resolvable address test with the fix.",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 107
+      },
+      "revId": "c02f6759270359aa12712ddfd5361868b1c3ad8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e9c9717_756f7181",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-18T17:22:26Z",
+      "side": 1,
+      "message": "Let\u0027s fix this before it goes in.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 100
+      },
+      "revId": "c02f6759270359aa12712ddfd5361868b1c3ad8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
