@@ -19,7 +19,7 @@ pub struct FooBuilder {
 
 impl FooData {
     fn conforms(bytes: &[u8]) -> bool {
-        if bytes.len() < 6 {
+        if bytes.len() < 4 {
             return false;
         }
         true
@@ -34,42 +34,50 @@ impl FooData {
             });
         }
         let x = u8::from_be_bytes([bytes[0]]);
-        if bytes.len() < 3 {
+        let x = x & 0x3;
+        if bytes.len() < 2 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
                 field: "y".to_string(),
-                wanted: 3,
+                wanted: 2,
                 got: bytes.len(),
             });
         }
-        let y = u16::from_be_bytes([bytes[1], bytes[2]]);
-        if bytes.len() < 6 {
+        let y = u16::from_be_bytes([bytes[0], bytes[1]]);
+        let y = (y << 2);
+        let y = y & 0x1ff;
+        if bytes.len() < 4 {
             return Err(Error::InvalidLengthError {
                 obj: "Foo".to_string(),
                 field: "z".to_string(),
-                wanted: 6,
+                wanted: 4,
                 got: bytes.len(),
             });
         }
-        let z = u32::from_be_bytes([bytes[3], bytes[4], bytes[5], 0]);
-        let z = z & 0xffffff;
+        let z = u32::from_be_bytes([bytes[1], bytes[2], bytes[3], 0]);
+        let z = (z << 3);
+        let z = z & 0x1fffff;
         Ok(Self { x, y, z })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
         let x = self.x;
+        let x = x & 0x3;
         buffer[0..1].copy_from_slice(&x.to_be_bytes()[0..1]);
         let y = self.y;
-        buffer[1..3].copy_from_slice(&y.to_be_bytes()[0..2]);
+        let y = y & 0x1ff;
+        let y = (y << 2) | ((buffer[0] as u16) & 0x3);
+        buffer[0..2].copy_from_slice(&y.to_be_bytes()[0..2]);
         let z = self.z;
-        let z = z & 0xffffff;
-        buffer[3..6].copy_from_slice(&z.to_be_bytes()[0..3]);
+        let z = z & 0x1fffff;
+        let z = (z << 3) | ((buffer[1] as u32) & 0x7);
+        buffer[1..4].copy_from_slice(&z.to_be_bytes()[0..3]);
     }
     fn get_total_size(&self) -> usize {
         self.get_size()
     }
     fn get_size(&self) -> usize {
         let ret = 0;
-        let ret = ret + 6;
+        let ret = ret + 4;
         ret
     }
 }
