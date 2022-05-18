@@ -295,6 +295,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       } break;
       case (AdvertisingApiType::ANDROID_HCI): {
         auto address_policy = le_address_manager_->GetAddressPolicy();
+        LOG_INFO("CYDBG address_policy is %d", (uint16_t)address_policy);
         if (address_policy == LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS ||
             address_policy == LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS) {
           advertising_sets_[id].current_address = le_address_manager_->GetAnotherAddress();
@@ -307,9 +308,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           set_data(id, true, config.scan_response);
         }
         set_data(id, false, config.advertisement);
-        le_advertising_interface_->EnqueueCommand(
-            hci::LeMultiAdvtSetRandomAddrBuilder::Create(advertising_sets_[id].current_address.GetAddress(), id),
-            module_handler_->BindOnce(impl::check_status<LeMultiAdvtCompleteView>));
+        LOG_INFO("CYDBG do not send LeMultiAdvtSetRandomAddr");
+//        le_advertising_interface_->EnqueueCommand(
+//            hci::LeMultiAdvtSetRandomAddrBuilder::Create(advertising_sets_[id].current_address.GetAddress(), id),
+//            module_handler_->BindOnce(impl::check_status<LeMultiAdvtCompleteView>));
         if (!paused) {
           enable_advertiser(id, true, 0, 0);
         } else {
