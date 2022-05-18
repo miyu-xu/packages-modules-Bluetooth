@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "063510b0_8612130e",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-05-18T22:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ecad478_75885f2f",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 107
+      },
+      "revId": "c02f6759270359aa12712ddfd5361868b1c3ad8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e9c9717_756f7181",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-18T17:22:26Z",
       "side": 1,
       "message": "Let\u0027s fix this before it goes in.",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 100
+      },
+      "revId": "c02f6759270359aa12712ddfd5361868b1c3ad8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd1587dc_524c02f3",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-05-18T22:06:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e9c9717_756f7181",
       "range": {
         "startLine": 221,
         "startChar": 0,
