@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "091a3f57_ff459375",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1400304
+      },
+      "writtenOn": "2022-05-18T03:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8e375f3_4cb351a9",
+      "revId": "7bb780c2255d832d47112ea72d59997222b8641c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5a4050b6_e9b93ad0",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -236,6 +254,30 @@
       "writtenOn": "2022-05-17T21:53:40Z",
       "side": 1,
       "message": "Please fix trailing whitespace",
+      "range": {
+        "startLine": 3476,
+        "startChar": 47,
+        "endLine": 3476,
+        "endChar": 48
+      },
+      "revId": "7bb780c2255d832d47112ea72d59997222b8641c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebbaa2fc_0916fb68",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3476,
+      "author": {
+        "id": 1400304
+      },
+      "writtenOn": "2022-05-18T03:22:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40c6c2ce_31f91b30",
       "range": {
         "startLine": 3476,
         "startChar": 47,
