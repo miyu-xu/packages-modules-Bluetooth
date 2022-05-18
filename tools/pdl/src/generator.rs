@@ -145,6 +145,24 @@ fn generate_field_getter(
     }
 }
 
+fn field_mask(field: &ast::Field) -> Result<Option<proc_macro2::TokenStream>> {
+    match field {
+        ast::Field::Scalar { id, width, .. } => {
+            let field_name = format_ident!("{id}");
+            let type_width = round_bit_width(*width)?;
+            if *width != type_width {
+                let mask = syn::parse_str::<syn::LitInt>(&format!("{:#x}", (1u64 << *width) - 1))?;
+                Ok(Some(quote! {
+                    let #field_name = #field_name & #mask;
+                }))
+            } else {
+                Ok(None)
+            }
+        }
+        _ => todo!("unsupported field: {:?}", field),
+    }
+}
+
 fn generate_field_parser(
     endianness_value: &ast::EndiannessValue,
     packet_name: &str,
@@ -165,13 +183,7 @@ fn generate_field_parser(
             let wanted_len = syn::Index::from(offset + width / 8);
             let indices = (offset..offset + width / 8).map(syn::Index::from);
             let padding = vec![syn::Index::from(0); (type_width - width) / 8];
-            let mask = if *width != type_width {
-                Some(quote! {
-                    let #field_name = #field_name & 0xfff;
-                })
-            } else {
-                None
-            };
+            let mask = field_mask(field)?;
 
             Ok(quote! {
                 // TODO(mgeisler): call a function instead to avoid
@@ -200,16 +212,17 @@ fn generate_field_writer(
     match field {
         ast::Field::Scalar { id, width, .. } => {
             let field_name = format_ident!("{id}");
-            let bit_width = round_bit_width(*width)?;
             let start = syn::Index::from(offset);
-            let end = syn::Index::from(offset + bit_width / 8);
-            let byte_width = syn::Index::from(bit_width / 8);
+            let end = syn::Index::from(offset + width / 8);
+            let byte_width = syn::Index::from(width / 8);
+            let mask = field_mask(field)?;
             let writer = match grammar.endianness.value {
                 ast::EndiannessValue::BigEndian => format_ident!("to_be_bytes"),
                 ast::EndiannessValue::LittleEndian => format_ident!("to_le_bytes"),
             };
             Ok(quote! {
                 let #field_name = self.#field_name;
+                #mask
                 buffer[#start..#end].copy_from_slice(&#field_name.#writer()[0..#byte_width]);
             })
         }
@@ -600,6 +613,7 @@ mod tests {
               packet Foo {
                 x: 8,
                 y: 16,
+                z: 24,
               }
             "#,
         );
@@ -620,6 +634,7 @@ mod tests {
               packet Foo {
                 x: 8,
                 y: 16,
+                z: 24,
               }
             "#,
         );
