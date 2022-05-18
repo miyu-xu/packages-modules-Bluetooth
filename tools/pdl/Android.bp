@@ -51,6 +51,8 @@ rust_test_host {
         "test/generated/packet_decl_empty.rs",
         "test/generated/packet_decl_simple_little_endian.rs",
         "test/generated/packet_decl_simple_big_endian.rs",
+        "test/generated/packet_decl_complex_little_endian.rs",
+        "test/generated/packet_decl_complex_big_endian.rs",
     ],
 }
 
