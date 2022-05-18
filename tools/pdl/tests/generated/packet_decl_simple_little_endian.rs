@@ -52,7 +52,6 @@ impl FooData {
             });
         }
         let z = u32::from_le_bytes([bytes[3], bytes[4], bytes[5], 0]);
-        let z = z & 0xffffff;
         Ok(Self { x, y, z })
     }
     fn write_to(&self, buffer: &mut BytesMut) {
