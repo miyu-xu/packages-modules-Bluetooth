@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca32b5d7_00b15a48",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-19T00:41:29Z",
+      "side": 1,
+      "message": "Uses `clap` to make it easier to add more command line flags. Is this okay? If so I will do the one in btmanagerd too since we need to debug more state machine states there.",
+      "revId": "8b8de0d2fcc45137caa897afb8a1b04977a5430b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
