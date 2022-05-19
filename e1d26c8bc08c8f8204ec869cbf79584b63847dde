@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "035015ec_a53eb6a4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T21:29:19Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ac3fe667_f4e2528d",
+      "revId": "e1d26c8bc08c8f8204ec869cbf79584b63847dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "90e23c77_eae3c626",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "If we are sending callback then we want to call it for every device anyway.\n\nIf you are thinking of making it an exception, then you are right, we should do this at the very beginning. But maybe we should first introduce the SynchronousResultReceiver to properly propagate these exceptions (and probably AttributionSource as well).",
       "parentUuid": "90e23c77_eae3c626",
+      "range": {
+        "startLine": 932,
+        "startChar": 16,
+        "endLine": 932,
+        "endChar": 32
+      },
+      "revId": "e1d26c8bc08c8f8204ec869cbf79584b63847dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df6b683c_fba3f0db",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T21:29:19Z",
+      "side": 1,
+      "message": "lets do it in next step then",
+      "parentUuid": "3635ab54_1c23bb9a",
       "range": {
         "startLine": 932,
         "startChar": 16,
