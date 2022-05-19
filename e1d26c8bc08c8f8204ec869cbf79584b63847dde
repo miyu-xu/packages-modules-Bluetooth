@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac3fe667_f4e2528d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-19T14:35:03Z",
+      "side": 1,
+      "message": "Right, so maybe in addSource() we should just check the returned list size() and just skip setting the sticky flag if there is one device only.",
+      "parentUuid": "945d3a70_b4d2c9e9",
+      "revId": "e1d26c8bc08c8f8204ec869cbf79584b63847dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90e23c77_eae3c626",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
         "patchSetId": 12
@@ -31,6 +49,30 @@
       "writtenOn": "2022-05-19T13:30:21Z",
       "side": 1,
       "message": "don\u0027t we want to make this check at the very begining?",
+      "range": {
+        "startLine": 932,
+        "startChar": 16,
+        "endLine": 932,
+        "endChar": 32
+      },
+      "revId": "e1d26c8bc08c8f8204ec869cbf79584b63847dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3635ab54_1c23bb9a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-19T14:35:03Z",
+      "side": 1,
+      "message": "If we are sending callback then we want to call it for every device anyway.\n\nIf you are thinking of making it an exception, then you are right, we should do this at the very beginning. But maybe we should first introduce the SynchronousResultReceiver to properly propagate these exceptions (and probably AttributionSource as well).",
+      "parentUuid": "90e23c77_eae3c626",
       "range": {
         "startLine": 932,
         "startChar": 16,
