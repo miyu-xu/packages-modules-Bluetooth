@@ -94,9 +94,9 @@ class AddressWithType final {
   FilterAcceptListAddressType ToFilterAcceptListAddressType() const {
     switch (address_type_) {
       case AddressType::PUBLIC_DEVICE_ADDRESS:
-      case AddressType::PUBLIC_IDENTITY_ADDRESS:
         return FilterAcceptListAddressType::PUBLIC;
       case AddressType::RANDOM_DEVICE_ADDRESS:
+      case AddressType::PUBLIC_IDENTITY_ADDRESS:
       case AddressType::RANDOM_IDENTITY_ADDRESS:
         return FilterAcceptListAddressType::RANDOM;
     }
