@@ -33,6 +33,47 @@
       "message": "Hi William,\n\nI could see that presubmit got failed. Is this CL affecting any testcases to fail in presubmit ?",
       "revId": "0d9a3ed976b5e9bd02287af71ee005063ef645d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "821091e0_bc03d5b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-19T17:10:11Z",
+      "side": 1,
+      "message": "Hi!\nNo the failure was unrelated to this CL.",
+      "parentUuid": "baccfc4f_459a9327",
+      "revId": "0d9a3ed976b5e9bd02287af71ee005063ef645d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b82033b4_f807dc75",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-19T17:10:11Z",
+      "side": 1,
+      "message": "Please fix the deleted start of comment.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 3
+      },
+      "revId": "0d9a3ed976b5e9bd02287af71ee005063ef645d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
