@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "945d3a70_b4d2c9e9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T13:30:21Z",
+      "side": 1,
+      "message": "In case there is not group information, do we want to keep group flag? It looks like it does not change much anyway...",
+      "revId": "e1d26c8bc08c8f8204ec869cbf79584b63847dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90e23c77_eae3c626",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 932,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T13:30:21Z",
+      "side": 1,
+      "message": "don\u0027t we want to make this check at the very begining?",
+      "range": {
+        "startLine": 932,
+        "startChar": 16,
+        "endLine": 932,
+        "endChar": 32
+      },
+      "revId": "e1d26c8bc08c8f8204ec869cbf79584b63847dde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
