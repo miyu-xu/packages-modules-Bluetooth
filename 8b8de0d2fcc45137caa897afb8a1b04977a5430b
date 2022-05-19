@@ -33,6 +33,24 @@
       "message": "This will fail because adapter expects to parse \"--hci\" itself so `InitFlags::GetAdapterIndex()` has the right value.",
       "revId": "8b8de0d2fcc45137caa897afb8a1b04977a5430b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dcf0794_01e019a6",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-19T21:51:58Z",
+      "side": 1,
+      "message": "Now `--hci` is forwarded down to `init_flags`. PTAL.",
+      "parentUuid": "8142626c_03ec3be1",
+      "revId": "8b8de0d2fcc45137caa897afb8a1b04977a5430b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
