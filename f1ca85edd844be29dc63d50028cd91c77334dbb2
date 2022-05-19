@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c467cad_f2eb9e25",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T22:35:20Z",
+      "side": 1,
+      "message": "Actually LeAudioContextType  is enum.\nFor the moment we will support only one ccid per context type and it will be gbts and gmcs.\n\nI will change this vector to map.",
+      "parentUuid": "a9d4d2e8_aec7d608",
+      "range": {
+        "startLine": 714,
+        "startChar": 0,
+        "endLine": 715,
+        "endChar": 66
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a24ba473_c5b52027",
         "filename": "system/bta/le_audio/devices.h",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-19T08:21:23Z",
       "side": 1,
       "message": "Since this is the default parameter value, I guess we expect this value to actually be used in some cases. Is this value defined by a spec?",
+      "range": {
+        "startLine": 137,
+        "startChar": 45,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced49dcd_9b240a07",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T22:35:20Z",
+      "side": 1,
+      "message": "this is just an implementation specific value saying there is no ccid available. \nIt is handled here: AppendMetadataLtvEntryForCcidList.",
+      "parentUuid": "a24ba473_c5b52027",
       "range": {
         "startLine": 137,
         "startChar": 45,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac3ac4b5_9d6e2c59",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T22:35:20Z",
+      "side": 1,
+      "message": "I think the other side expect to have single ccid only. It might be confusing to have more.",
+      "parentUuid": "0f500052_f72f9551",
+      "range": {
+        "startLine": 394,
+        "startChar": 5,
+        "endLine": 395,
+        "endChar": 48
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e8ef2436_4028b9ca",
         "filename": "system/include/hardware/bt_le_audio.h",
         "patchSetId": 2
@@ -83,6 +155,30 @@
       "writtenOn": "2022-05-19T08:21:23Z",
       "side": 1,
       "message": "Maybe we should write here that this is a bit field rather than a single context/content.",
+      "range": {
+        "startLine": 150,
+        "startChar": 18,
+        "endLine": 150,
+        "endChar": 30
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d644f5df_d4781764",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-19T22:35:20Z",
+      "side": 1,
+      "message": "it is actually single value.",
+      "parentUuid": "e8ef2436_4028b9ca",
       "range": {
         "startLine": 150,
         "startChar": 18,
