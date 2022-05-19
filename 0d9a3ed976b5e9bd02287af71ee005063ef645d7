@@ -16,6 +16,23 @@
       "message": "Thank William for the review",
       "revId": "0d9a3ed976b5e9bd02287af71ee005063ef645d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baccfc4f_459a9327",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1400304
+      },
+      "writtenOn": "2022-05-19T13:10:01Z",
+      "side": 1,
+      "message": "Hi William,\n\nI could see that presubmit got failed. Is this CL affecting any testcases to fail in presubmit ?",
+      "revId": "0d9a3ed976b5e9bd02287af71ee005063ef645d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
