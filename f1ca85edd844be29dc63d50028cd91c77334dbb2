@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9d4d2e8_aec7d608",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-19T08:21:23Z",
+      "side": 1,
+      "message": "If we use vector like this, and we only add new pairs here, we would still hold the old context values for the same ccid, even if the application has changed its content. It might be fine for TBS and MCS, but getCCID() will always get the first ever reported CCID for a given content type. If an application A starts with content X, then changes content to Y and application B start using content X, we would still get CCID for application A when asking for content X CCID, which is bad.\n\nSince LeAudioContextType is a bit field, I think we should replace existing entry for a given CCID to update the value.",
+      "range": {
+        "startLine": 714,
+        "startChar": 0,
+        "endLine": 715,
+        "endChar": 66
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a24ba473_c5b52027",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-19T08:21:23Z",
+      "side": 1,
+      "message": "Since this is the default parameter value, I guess we expect this value to actually be used in some cases. Is this value defined by a spec?",
+      "range": {
+        "startLine": 137,
+        "startChar": 45,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f500052_f72f9551",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-19T08:21:23Z",
+      "side": 1,
+      "message": "Would it be possible for getCcid(context_type) return a list of CCIDs instead of a first matching entry, so that we could populate this list with more than one CCID?",
+      "range": {
+        "startLine": 394,
+        "startChar": 5,
+        "endLine": 395,
+        "endChar": 48
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8ef2436_4028b9ca",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-19T08:21:23Z",
+      "side": 1,
+      "message": "Maybe we should write here that this is a bit field rather than a single context/content.",
+      "range": {
+        "startLine": 150,
+        "startChar": 18,
+        "endLine": 150,
+        "endChar": 30
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
