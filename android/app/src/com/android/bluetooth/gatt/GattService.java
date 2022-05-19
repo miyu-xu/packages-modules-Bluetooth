@@ -2005,7 +2005,8 @@ public class GattService extends ProfileService {
             Log.d(TAG, "onConnected() - clientIf=" + clientIf + ", connId=" + connId + ", address="
                     + address);
         }
-
+        Log.d(TAG, "GattTesting onConnected" + clientIf + ", connId=" + connId + ", address="
+                + address + ", status=" + status);
         if (status == 0) {
             mClientMap.addConnection(clientIf, connId, address);
 
@@ -2030,6 +2031,8 @@ public class GattService extends ProfileService {
                     "onDisconnected() - clientIf=" + clientIf + ", connId=" + connId + ", address="
                             + address);
         }
+        Log.d(TAG, "GattTesting onDisconnected" + clientIf + ", connId=" + connId + ", address="
+                + address + ", status=" + status);
 
         mClientMap.removeConnection(clientIf, connId);
         ClientMap.App app = mClientMap.getById(clientIf);
@@ -3386,6 +3389,8 @@ public class GattService extends ProfileService {
             Log.d(TAG, "clientConnect() - address=" + address + ", isDirect=" + isDirect
                     + ", opportunistic=" + opportunistic + ", phy=" + phy);
         }
+        Log.d(TAG, "GattTesting:    clientConnect() - address=" + address + ", isDirect=" + isDirect
+                + ", opportunistic=" + opportunistic + ", phy=" + phy);
         gattClientConnectNative(clientIf, address, isDirect, transport, opportunistic, phy);
     }
 
@@ -3395,11 +3400,11 @@ public class GattService extends ProfileService {
                 this, attributionSource, "GattService clientDisconnect")) {
             return;
         }
-
         Integer connId = mClientMap.connIdByAddress(clientIf, address);
         if (DBG) {
             Log.d(TAG, "clientDisconnect() - address=" + address + ", connId=" + connId);
         }
+        Log.d(TAG, "GattTesting:    clientDisconnect() - address=" + address + ", connId=" + connId);
 
         gattClientDisconnectNative(clientIf, address, connId != null ? connId : 0);
     }
@@ -3958,6 +3963,8 @@ public class GattService extends ProfileService {
                             + connected);
         }
 
+        Log.d(TAG, "GattTesting onClientConnected      connId=" + connId + ", address=" + address + ", connected="
+                + connected);
         ServerMap.App app = mServerMap.getById(serverIf);
         if (app == null) {
             return;
