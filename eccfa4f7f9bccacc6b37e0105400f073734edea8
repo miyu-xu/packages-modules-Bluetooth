@@ -16,6 +16,29 @@
       "message": "Sorry for that comment removal",
       "revId": "eccfa4f7f9bccacc6b37e0105400f073734edea8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0758ef6_e20ce98d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-19T17:21:24Z",
+      "side": 1,
+      "message": "Please restore like it was before:\n```\n/*\n * Copyright ...\n```",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 4
+      },
+      "revId": "eccfa4f7f9bccacc6b37e0105400f073734edea8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
