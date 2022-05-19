@@ -16,6 +16,23 @@
       "message": "Uses `clap` to make it easier to add more command line flags. Is this okay? If so I will do the one in btmanagerd too since we need to debug more state machine states there.",
       "revId": "8b8de0d2fcc45137caa897afb8a1b04977a5430b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8142626c_03ec3be1",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-19T17:23:53Z",
+      "side": 1,
+      "message": "This will fail because adapter expects to parse \"--hci\" itself so `InitFlags::GetAdapterIndex()` has the right value.",
+      "revId": "8b8de0d2fcc45137caa897afb8a1b04977a5430b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
