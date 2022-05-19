@@ -51,6 +51,7 @@ import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
+import android.util.Pair;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
@@ -58,6 +59,7 @@ import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.mcp.McpService;
+import com.android.bluetooth.tbs.TbsGatt;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -284,7 +286,7 @@ public class LeAudioService extends ProfileService {
 
     private void init() {
         LeAudioNativeInterface nativeInterface = mLeAudioNativeInterface;
-        if (nativeInterface == null) {
+        if (mLeAudioNativeInterface == null) {
             Log.w(TAG, "the service is stopped. ignore init()");
         }
         nativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
@@ -1336,6 +1338,13 @@ public class LeAudioService extends ProfileService {
                 mBroadcastMetadataList.put(broadcastId, stackEvent.broadcastMetadata);
                 notifyBroadcastMetadataChanged(broadcastId, stackEvent.broadcastMetadata);
             }
+        } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_NATIVE_INITIALIZED) {
+            for (Map.Entry<ParcelUuid, Pair<Integer, Integer>> entry :
+                    ContentControlIdKeeper.getUserCcidMap().entrySet()) {
+                ParcelUuid userUuid = entry.getKey();
+                Pair<Integer, Integer> ccidInformation = entry.getValue();
+                setCcidInformation(userUuid, ccidInformation.first, ccidInformation.second);
+            }
         }
 
         if (intent != null) {
@@ -1682,6 +1691,22 @@ public class LeAudioService extends ProfileService {
         synchronized (mGroupLock) {
             return mDeviceGroupIdMap.getOrDefault(device, LE_AUDIO_GROUP_ID_INVALID);
         }
+    }
+
+    /**
+     * Set the user application ccid along with used context type
+     * @param userUuid user uuid
+     * @param ccid content control id
+     * @param contextType context type
+     */
+    public void setCcidInformation(ParcelUuid userUuid, int ccid, int contextType) {
+        /* for the moment we care only for GMCS and GTBS */
+        if (userUuid != BluetoothUuid.GENERIC_MEDIA_CONTROL
+                && userUuid.getUuid() != TbsGatt.UUID_GTBS) {
+            return;
+        }
+
+        mLeAudioNativeInterface.setCcidInformation(ccid, contextType);
     }
 
     /**
@@ -2209,6 +2234,27 @@ public class LeAudioService extends ProfileService {
                 enforceBluetoothPrivilegedPermission(service);
                 defaultValue = service.getConnectionPolicy(device);
                 receiver.send(defaultValue);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void setCcidInformation(ParcelUuid userUuid, int ccid, int contextType,
+                AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                Objects.requireNonNull(userUuid, "device cannot be null");
+                Objects.requireNonNull(source, "source cannot be null");
+                Objects.requireNonNull(receiver, "receiver cannot be null");
+
+                LeAudioService service = getService(source);
+                if (service == null) {
+                    throw new IllegalStateException("service is null");
+                }
+                enforceBluetoothPrivilegedPermission(service);
+                service.setCcidInformation(userUuid, ccid, contextType);
+                receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }

@@ -17,6 +17,13 @@
 
 package com.android.bluetooth.le_audio;
 
+import android.bluetooth.BluetoothLeAudio;
+import android.os.ParcelUuid;
+import android.util.Pair;
+
+import com.android.bluetooth.btservice.ServiceFactory;
+
+import java.util.HashMap;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -30,8 +37,19 @@ public class ContentControlIdKeeper {
     public static final int CCID_MAX = 0xFF;
 
     private static SortedSet<Integer> sAssignedCcidList = new TreeSet();
+    private static HashMap<ParcelUuid, Pair<Integer, Integer>> sUserMap = new HashMap();
+    private static ServiceFactory sServiceFactory = null;
 
-    public static synchronized int acquireCcid() {
+    /**
+     * Functions is used to acquire Content Control ID (Ccid). Ccid is connected
+     * with a context type  and the user uuid. In most of cases user uuid is the GATT service
+     * UUID which makes use of Ccid
+     *
+     * @param userUuid user identifier (GATT service)
+     * @param contextType the context types as defined in {@link BluetoothLeAudio}
+     * @return ccid to be used in the Gatt service Ccid characteristic.
+    */
+    public static synchronized int acquireCcid(ParcelUuid userUuid, int contextType) {
         int ccid = CCID_INVALID;
 
         if (sAssignedCcidList.size() == 0) {
@@ -51,11 +69,38 @@ public class ContentControlIdKeeper {
             }
         }
 
-        if (ccid != CCID_INVALID) sAssignedCcidList.add(ccid);
+        if (ccid != CCID_INVALID)  {
+            sAssignedCcidList.add(ccid);
+            sUserMap.put(userUuid, new Pair(ccid, contextType));
+
+            if (sServiceFactory == null) {
+                sServiceFactory = new ServiceFactory();
+            }
+            /* Notify LeAudioService about new ccid  */
+            LeAudioService service = sServiceFactory.getLeAudioService();
+            if (service != null) {
+                service.setCcidInformation(userUuid, ccid, contextType);
+            }
+        }
         return ccid;
     }
 
+    /**
+     * Release the acquired Ccid
+     *
+     * @param value Ccid value to release
+     */
     public static synchronized void releaseCcid(int value) {
         sAssignedCcidList.remove(value);
+        sUserMap.entrySet().removeIf(entry -> entry.getValue().first.equals(value));
+    }
+
+    /**
+     * Get Ccid information.
+     *
+     * @return HashMap of aquired ccids along with the user information.
+     */
+    public static synchronized HashMap<ParcelUuid, Pair<Integer, Integer>> getUserCcidMap() {
+        return sUserMap;
     }
 }
