@@ -270,8 +270,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_common_le_connection_complete(AddressWithType address_with_type) {
-    auto connecting_addr_with_type = connecting_le_.find(address_with_type);
-    if (connecting_addr_with_type == connecting_le_.end()) {
+    auto converted_address_with_type = convert_address_type_for_filter_accept_list(address_with_type);
+    if (connecting_le_.find(converted_address_with_type) == connecting_le_.end()) {
       LOG_WARN("No prior connection request for %s", address_with_type.ToString().c_str());
     }
     connecting_le_.clear();
@@ -552,19 +552,28 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     });
   }
 
+  AddressWithType convert_address_type_for_filter_accept_list(AddressWithType address_with_type) {
+    auto temp_address_type = address_with_type.GetAddressType();
+    if (temp_address_type != AddressType::PUBLIC_DEVICE_ADDRESS) {
+      temp_address_type = AddressType::RANDOM_DEVICE_ADDRESS;
+    }
+    return AddressWithType(address_with_type.GetAddress(), temp_address_type);
+  }
+
   void add_device_to_connect_list(AddressWithType address_with_type) {
     if (connections.alreadyConnected(address_with_type)) {
       LOG_INFO("Device already connected, return");
       return;
     }
 
-    if (connect_list.find(address_with_type) != connect_list.end()) {
+    auto converted_address_with_type = convert_address_type_for_filter_accept_list(address_with_type);
+    if (connect_list.find(converted_address_with_type) != connect_list.end()) {
       LOG_WARN(
           "Device already exists in acceptlist and cannot be added:%s", PRIVATE_ADDRESS_WITH_TYPE(address_with_type));
       return;
     }
 
-    connect_list.insert(address_with_type);
+    connect_list.insert(converted_address_with_type);
     register_with_address_manager();
     le_address_manager_->AddDeviceToFilterAcceptList(
         address_with_type.ToFilterAcceptListAddressType(), address_with_type.GetAddress());
@@ -575,12 +584,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void remove_device_from_connect_list(AddressWithType address_with_type) {
-    if (connect_list.find(address_with_type) == connect_list.end()) {
+    auto converted_address_with_type = convert_address_type_for_filter_accept_list(address_with_type);
+    if (connect_list.find(converted_address_with_type) == connect_list.end()) {
       LOG_WARN("Device not in acceptlist and cannot be removed:%s", PRIVATE_ADDRESS_WITH_TYPE(address_with_type));
       return;
     }
-    connect_list.erase(address_with_type);
-    direct_connections_.erase(address_with_type);
+    connect_list.erase(converted_address_with_type);
+    direct_connections_.erase(converted_address_with_type);
     register_with_address_manager();
     le_address_manager_->RemoveDeviceFromFilterAcceptList(
         address_with_type.ToFilterAcceptListAddressType(), address_with_type.GetAddress());
