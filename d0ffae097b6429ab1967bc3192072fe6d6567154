@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "67e367dd_7f144e04",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-05-20T17:41:00Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d9692ad2_bb84084b",
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a12a011e_e835ddd0",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4d7ce15_030c9e58",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-05-20T17:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a12a011e_e835ddd0",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 98
+      },
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "732ffd0a_c21b49d5",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-05-20T17:13:15Z",
       "side": 1,
       "message": "Let\u0027s remove this test for now.",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 0
+      },
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec0dffa_03b82c66",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-05-20T17:41:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "732ffd0a_c21b49d5",
       "range": {
         "startLine": 199,
         "startChar": 0,
