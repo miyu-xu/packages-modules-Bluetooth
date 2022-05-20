@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d1fbe50_94e6add2",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T09:18:59Z",
+      "side": 1,
+      "message": "this is something wrong",
+      "revId": "2b947b30a56820ff106a9333b93db731636c08db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
