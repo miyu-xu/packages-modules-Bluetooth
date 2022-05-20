@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "739ac0e9_8ac2d45d",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-05-20T17:57:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f949119_b1e18b3b",
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a12a011e_e835ddd0",
