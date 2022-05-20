@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fce8b06_6b58a788",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T19:45:21Z",
+      "side": 1,
+      "message": "Sorry for not being clear enough here in my previous comment. I meant that 12bit and above are all RFU. I think checking `(context_type \u003e\u003d LeAudioContextType::RFU)` is what we want here.",
+      "range": {
+        "startLine": 718,
+        "startChar": 28,
+        "endLine": 718,
+        "endChar": 44
+      },
+      "revId": "ba17bbccbbc01ee17ec949a7eca269ad095f7c52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
