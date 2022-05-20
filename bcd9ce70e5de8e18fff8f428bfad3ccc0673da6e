@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d3cc3b4_9e4de3f1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-20T21:49:13Z",
+      "side": 1,
+      "message": "is this method used any where?",
+      "range": {
+        "startLine": 2266,
+        "startChar": 8,
+        "endLine": 2268,
+        "endChar": 53
+      },
+      "revId": "bcd9ce70e5de8e18fff8f428bfad3ccc0673da6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
