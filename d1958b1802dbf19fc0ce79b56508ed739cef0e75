@@ -16,6 +16,24 @@
       "message": "there is a downstream conflict, so probably merge in downstream first",
       "revId": "d1958b1802dbf19fc0ce79b56508ed739cef0e75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd1a0dc3_3e06a863",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-05-20T02:39:38Z",
+      "side": 1,
+      "message": "Done, thanks",
+      "parentUuid": "c8519dac_d76cbc77",
+      "revId": "d1958b1802dbf19fc0ce79b56508ed739cef0e75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
