@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "e6399ef7_1c338ea3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/ContentControlIdKeeper.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T10:04:07Z",
+      "side": 1,
+      "message": "good point",
+      "parentUuid": "c9932d36_b69df271",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 23
+      },
+      "revId": "2b947b30a56820ff106a9333b93db731636c08db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "985cff6d_58b759e7",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-20T09:20:46Z",
       "side": 1,
       "message": "Oh, I thought we already have it in BluetoothUuid. I was wrong I guess.",
+      "range": {
+        "startLine": 1705,
+        "startChar": 41,
+        "endLine": 1705,
+        "endChar": 58
+      },
+      "revId": "2b947b30a56820ff106a9333b93db731636c08db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af7aa63b_07ffaf2c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1705,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T10:04:07Z",
+      "side": 1,
+      "message": "And we cannot change it now.",
+      "parentUuid": "985cff6d_58b759e7",
       "range": {
         "startLine": 1705,
         "startChar": 41,
@@ -83,6 +131,30 @@
       "writtenOn": "2022-05-20T09:21:03Z",
       "side": 1,
       "message": "this too.",
+      "revId": "2b947b30a56820ff106a9333b93db731636c08db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f544b393_0b4a9217",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T10:04:07Z",
+      "side": 1,
+      "message": "this is IDE who mess up with imports for me and I did not noticed that. Fixing that as there is more problems",
+      "parentUuid": "840c3def_55403a10",
+      "range": {
+        "startLine": 29,
+        "startChar": 60,
+        "endLine": 29,
+        "endChar": 84
+      },
       "revId": "2b947b30a56820ff106a9333b93db731636c08db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
