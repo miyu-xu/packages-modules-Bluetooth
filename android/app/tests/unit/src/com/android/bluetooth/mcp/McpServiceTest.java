@@ -62,6 +62,8 @@ public class McpServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        Assume.assumeTrue("Ignore test when McpService is not enabled", McpService.isEnabled());
+
         mTargetContext = InstrumentationRegistry.getTargetContext();
         if (Looper.myLooper() == null) {
             Looper.prepare();
@@ -81,6 +83,10 @@ public class McpServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        if (!McpService.isEnabled()) {
+            return;
+        }
+
         doReturn(false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.stopService(mServiceRule, McpService.class);
         mMcpService = McpService.getMcpService();
