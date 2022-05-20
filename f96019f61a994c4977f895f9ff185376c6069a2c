@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47e73f2d_ac0d2164",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-20T17:38:02Z",
+      "side": 1,
+      "message": "Martin, FYI I removed the short `-s` flag for systemd but only left the long `--systemd` since `-s` is very generic and we might want to use it for something else in the future.",
+      "revId": "f96019f61a994c4977f895f9ff185376c6069a2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
