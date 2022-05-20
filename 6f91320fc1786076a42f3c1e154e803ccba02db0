@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7074ec06_3a60b0f4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T14:19:32Z",
+      "side": 1,
+      "message": "this looks like separate patch.\n\nBtw according to BASS specification, it is OK to send AddSource to the BASS device if there is no room. It is up to the BASS device to decide if requrest will be accepted or not.",
+      "revId": "6f91320fc1786076a42f3c1e154e803ccba02db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dc2a9dc_8315bcf9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T14:19:32Z",
+      "side": 1,
+      "message": "why this is needed? Could you elaborate?",
+      "revId": "6f91320fc1786076a42f3c1e154e803ccba02db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774eb646_6a8e9ae4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T14:19:32Z",
+      "side": 1,
+      "message": "How this change is related to the issue with searching of broadcasters? This looks like some other issue.\nWe need separate patch for that describing why this is needed.",
+      "revId": "6f91320fc1786076a42f3c1e154e803ccba02db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
