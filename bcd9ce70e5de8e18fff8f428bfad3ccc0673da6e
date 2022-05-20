@@ -22,6 +22,30 @@
       },
       "revId": "bcd9ce70e5de8e18fff8f428bfad3ccc0673da6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66a3b453_6ffdedd4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2268,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T22:37:20Z",
+      "side": 1,
+      "message": "actually not, but don\u0027t we need it to fulfill the IBluetoothLeAudio.Stub ?",
+      "parentUuid": "5d3cc3b4_9e4de3f1",
+      "range": {
+        "startLine": 2266,
+        "startChar": 8,
+        "endLine": 2268,
+        "endChar": 53
+      },
+      "revId": "bcd9ce70e5de8e18fff8f428bfad3ccc0673da6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
