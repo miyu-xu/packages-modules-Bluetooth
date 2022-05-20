@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e74d75_ba6e79dc",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-20T21:54:03Z",
+      "side": 0,
+      "message": "This code cannot be called due to the `p_sdp_rec \u003d NULL;` above.\nby removing it the `scn_found` is always false",
+      "range": {
+        "startLine": 1098,
+        "startChar": 8,
+        "endLine": 1102,
+        "endChar": 9
+      },
+      "revId": "a1eb90e94febdbd3a0d1378da4939e2e6b5fc9e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e816d53a_74ef92bd",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-20T21:54:03Z",
+      "side": 0,
+      "message": "code can non longer be called",
+      "range": {
+        "startLine": 1237,
+        "startChar": 6,
+        "endLine": 1245,
+        "endChar": 7
+      },
+      "revId": "a1eb90e94febdbd3a0d1378da4939e2e6b5fc9e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

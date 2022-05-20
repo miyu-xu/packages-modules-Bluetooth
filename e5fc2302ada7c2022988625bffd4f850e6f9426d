@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dca40500_ec3b17e7",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-20T21:54:03Z",
+      "side": 1,
+      "message": "I made the if to be the opposite as it was before to handle the error return in a shorter if.\nNow we don\u0027t have to scroll 250 lines back to see what the `}` was for.",
+      "range": {
+        "startLine": 1085,
+        "startChar": 2,
+        "endLine": 1087,
+        "endChar": 54
+      },
+      "revId": "e5fc2302ada7c2022988625bffd4f850e6f9426d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
