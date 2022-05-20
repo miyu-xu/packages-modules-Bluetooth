@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604d1038_bd58f81a",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-20T20:08:14Z",
+      "side": 1,
+      "message": "This one should be PUBLIC still",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 98
+      },
+      "revId": "97fde72244675e2ad019a6e7a5fee3200623a798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
