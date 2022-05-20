@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a489f8d6_069807be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-20T21:57:20Z",
+      "side": 1,
+      "message": "These tests failed:\n\n* CsipSetCoordinatorStateMachineTest\n\n-\u003e at com.android.bluetooth.csip.CsipSetCoordinatorStateMachineTest.allowConnection(CsipSetCoordinatorStateMachineTest.java:106)\n\nYou cannot use argument matchers outside of verification or stubbing.\n\n* HapClientTest\n\njava.lang.NullPointerException: Attempt to invoke virtual method \u0027void java.util.HashMap.clear()\u0027 on a null object reference\njava.lang.NullPointerException: Attempt to invoke virtual method \u0027void java.util.HashMap.clear()\u0027 on a null object reference\n\tat com.android.bluetooth.hap.HapClientTest.tearDown(HapClientTest.java:180)\n",
+      "revId": "cddcfb6b8aa51a85f77c0bc62c93f82774575b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
