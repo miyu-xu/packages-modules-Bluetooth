@@ -78,6 +78,9 @@ public class CsipSetCoordinatorServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        Assume.assumeTrue("Ignore test when CsipSetCoordinatorService is not enabled",
+                CsipSetCoordinatorService.isEnabled());
+
         mTargetContext = InstrumentationRegistry.getTargetContext();
         if (Looper.myLooper() == null) {
             Looper.prepare();
@@ -132,6 +135,10 @@ public class CsipSetCoordinatorServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        if (!CsipSetCoordinatorService.isEnabled()) {
+            return;
+        }
+
         stopService();
         mTargetContext.unregisterReceiver(mCsipSetCoordinatorIntentReceiver);
         TestUtils.clearAdapterService(mAdapterService);

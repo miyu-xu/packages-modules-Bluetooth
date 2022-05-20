@@ -95,6 +95,9 @@ public class HapClientTest {
 
     @Before
     public void setUp() throws Exception {
+        Assume.assumeTrue("Ignore test when HapClientService is not enabled",
+                HapClientService.isEnabled());
+
         mTargetContext = InstrumentationRegistry.getTargetContext();
         // Set up mocks and test assets
         MockitoAnnotations.initMocks(this);
@@ -170,6 +173,10 @@ public class HapClientTest {
 
     @After
     public void tearDown() throws Exception {
+        if (!HapClientService.isEnabled()) {
+            return;
+        }
+
         mService.mCallbacks.unregister(mCallback);
 
         stopService();

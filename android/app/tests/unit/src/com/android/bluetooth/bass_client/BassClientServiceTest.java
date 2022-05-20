@@ -86,6 +86,9 @@ public class BassClientServiceTest {
 
     @Before
     public void setUp() throws Exception {
+        Assume.assumeTrue("Ignore test when BassClientService is not enabled",
+                BassClientService.isEnabled());
+
         mTargetContext = InstrumentationRegistry.getTargetContext();
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
@@ -125,6 +128,10 @@ public class BassClientServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        if (!BassClientService.isEnabled()) {
+            return;
+        }
+
         TestUtils.stopService(mServiceRule, BassClientService.class);
         mBassClientService = BassClientService.getBassClientService();
         assertThat(mBassClientService).isNull();
