@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f63a5b85_cc969cf2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T15:49:32Z",
+      "side": 1,
+      "message": "Isn\u0027t 12th bit already RFU?",
+      "range": {
+        "startLine": 718,
+        "startChar": 28,
+        "endLine": 718,
+        "endChar": 36
+      },
+      "revId": "96f4371c77a7f78b123d6527b9fcaee90cd1a84c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
