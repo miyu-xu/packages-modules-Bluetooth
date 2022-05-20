@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adccb2fc_1ddf3e5a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T11:58:16Z",
+      "side": 1,
+      "message": "This patch set cannot be reordered due to this line depending on the previous patch.",
+      "range": {
+        "startLine": 892,
+        "startChar": 8,
+        "endLine": 892,
+        "endChar": 35
+      },
+      "revId": "c698941e2a535aeb59af7ace0fab27329b67987d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
