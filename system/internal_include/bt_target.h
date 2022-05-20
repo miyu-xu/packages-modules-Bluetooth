@@ -248,6 +248,10 @@
 #define BTM_NO_SSP_ON_INQUIRY FALSE
 #endif
 
+#ifndef DISABLE_ENHANCED_ESCO
+#define DISABLE_ENHANCED_ESCO FALSE
+#endif
+
 #ifndef DISABLE_WBS
 #define DISABLE_WBS FALSE
 #endif
