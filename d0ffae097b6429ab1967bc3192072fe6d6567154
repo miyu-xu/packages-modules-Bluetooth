@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f949119_b1e18b3b",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-20T17:46:02Z",
+      "side": 1,
+      "message": "I think we should check the addresses in this test, as well. (test_dut_connects_resolvable_address)",
+      "parentUuid": "67e367dd_7f144e04",
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a12a011e_e835ddd0",
         "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
         "patchSetId": 7
