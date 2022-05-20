@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9692ad2_bb84084b",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-20T17:13:15Z",
+      "side": 1,
+      "message": "check here for a random address that is neither the random nor public address of the DUT.\n        assertThat(cert_le_acl.peer).isNotEqualTo(self.dut_public_address)\n        assertThat(cert_le_acl.peer).isNotEqualTo(self.dut_random_address)\n        assertThat(cert_le_acl.peer_type).isEqualTo(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)",
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a12a011e_e835ddd0",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-20T17:13:15Z",
+      "side": 1,
+      "message": "The cert can\u0027t resolve the address, so it will have a random address that is neither the public nor the normal random address.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 98
+      },
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "732ffd0a_c21b49d5",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-20T17:13:15Z",
+      "side": 1,
+      "message": "Let\u0027s remove this test for now.",
+      "range": {
+        "startLine": 199,
+        "startChar": 0,
+        "endLine": 211,
+        "endChar": 0
+      },
+      "revId": "d0ffae097b6429ab1967bc3192072fe6d6567154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
