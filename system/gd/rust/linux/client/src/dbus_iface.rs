@@ -184,8 +184,26 @@ impl IBluetoothConnectionCallback for IBluetoothConnectionCallbackDBus {
     fn on_device_disconnected(&self, remote_device: BluetoothDevice) {}
 }
 
+pub(crate) struct BluetoothDBusRPC {
+    client_proxy: ClientDBusProxy,
+}
+
+impl BluetoothDBusRPC {
+    pub(crate) fn new(conn: Arc<SyncConnection>, index: i32) -> Self {
+        Self {
+            client_proxy: ClientDBusProxy::new(
+                conn.clone(),
+                String::from("org.chromium.bluetooth"),
+                make_object_path(index, "adapter"),
+                String::from("org.chromium.bluetooth.Bluetooth"),
+            ),
+        }
+    }
+}
+
 pub(crate) struct BluetoothDBus {
     client_proxy: ClientDBusProxy,
+    pub rpc: BluetoothDBusRPC,
 }
 
 impl BluetoothDBus {
@@ -197,11 +215,12 @@ impl BluetoothDBus {
                 make_object_path(index, "adapter"),
                 String::from("org.chromium.bluetooth.Bluetooth"),
             ),
+            rpc: BluetoothDBusRPC::new(conn, index),
         }
     }
 }
 
-#[generate_dbus_interface_client]
+#[generate_dbus_interface_client(BluetoothDBusRPC)]
 impl IBluetooth for BluetoothDBus {
     #[dbus_method("RegisterCallback")]
     fn register_callback(&mut self, callback: Box<dyn IBluetoothCallback + Send>) {
@@ -413,8 +432,26 @@ pub struct AdapterWithEnabledDbus {
     enabled: bool,
 }
 
+pub(crate) struct BluetoothManagerDBusRPC {
+    client_proxy: ClientDBusProxy,
+}
+
+impl BluetoothManagerDBusRPC {
+    pub(crate) fn new(conn: Arc<SyncConnection>) -> Self {
+        Self {
+            client_proxy: ClientDBusProxy::new(
+                conn.clone(),
+                String::from("org.chromium.bluetooth.Manager"),
+                dbus::Path::new("/org/chromium/bluetooth/Manager").unwrap(),
+                String::from("org.chromium.bluetooth.Manager"),
+            ),
+        }
+    }
+}
+
 pub(crate) struct BluetoothManagerDBus {
     client_proxy: ClientDBusProxy,
+    pub rpc: BluetoothManagerDBusRPC,
 }
 
 impl BluetoothManagerDBus {
@@ -426,6 +463,7 @@ impl BluetoothManagerDBus {
                 dbus::Path::new("/org/chromium/bluetooth/Manager").unwrap(),
                 String::from("org.chromium.bluetooth.Manager"),
             ),
+            rpc: BluetoothManagerDBusRPC::new(conn.clone()),
         }
     }
 
@@ -435,7 +473,7 @@ impl BluetoothManagerDBus {
     }
 }
 
-#[generate_dbus_interface_client]
+#[generate_dbus_interface_client(BluetoothManagerDBusRPC)]
 impl IBluetoothManager for BluetoothManagerDBus {
     #[dbus_method("Start")]
     fn start(&mut self, hci_interface: i32) {
