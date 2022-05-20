@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "baeca0d1_07e3421c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T09:40:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9c467cad_f2eb9e25",
+      "range": {
+        "startLine": 714,
+        "startChar": 0,
+        "endLine": 715,
+        "endChar": 66
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a24ba473_c5b52027",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "this is just an implementation specific value saying there is no ccid available. \nIt is handled here: AppendMetadataLtvEntryForCcidList.",
       "parentUuid": "a24ba473_c5b52027",
+      "range": {
+        "startLine": 137,
+        "startChar": 45,
+        "endLine": 137,
+        "endChar": 58
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea72226_c27f3545",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T09:40:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ced49dcd_9b240a07",
       "range": {
         "startLine": 137,
         "startChar": 45,
@@ -142,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dfb100f_a1762b26",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T09:40:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ac3ac4b5_9d6e2c59",
+      "range": {
+        "startLine": 394,
+        "startChar": 5,
+        "endLine": 395,
+        "endChar": 48
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8ef2436_4028b9ca",
@@ -179,6 +251,30 @@
       "side": 1,
       "message": "it is actually single value.",
       "parentUuid": "e8ef2436_4028b9ca",
+      "range": {
+        "startLine": 150,
+        "startChar": 18,
+        "endLine": 150,
+        "endChar": 30
+      },
+      "revId": "f1ca85edd844be29dc63d50028cd91c77334dbb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f89f0b9f_d87f8d8d",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T09:40:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d644f5df_d4781764",
       "range": {
         "startLine": 150,
         "startChar": 18,

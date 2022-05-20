@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d67af81_d4e01f05",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-20T09:40:41Z",
+      "side": 1,
+      "message": "Unfortunately `LeAudioContextType` is an enum class and casting value which is not a defined enum value is an undefined behavior. We want value which has only a single bit set.",
+      "range": {
+        "startLine": 715,
+        "startChar": 40,
+        "endLine": 715,
+        "endChar": 58
+      },
+      "revId": "a4deeaf0449714f0e57d8c4b4580475ae79613f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
