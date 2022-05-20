@@ -212,6 +212,10 @@ public class LeAudioServiceTest {
             return;
         }
 
+        if ((mService == null) || (mAdapter == null)) {
+            return;
+        }
+
         mBondedDevices.clear();
         mGroupIntentQueue.clear();
         stopService();

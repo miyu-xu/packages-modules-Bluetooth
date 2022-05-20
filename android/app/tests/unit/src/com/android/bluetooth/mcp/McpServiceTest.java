@@ -87,6 +87,10 @@ public class McpServiceTest {
             return;
         }
 
+        if (mMcpService == null) {
+            return;
+        }
+
         doReturn(false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.stopService(mServiceRule, McpService.class);
         mMcpService = McpService.getMcpService();

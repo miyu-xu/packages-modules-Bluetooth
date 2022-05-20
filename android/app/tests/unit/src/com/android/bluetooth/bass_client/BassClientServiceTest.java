@@ -133,6 +133,10 @@ public class BassClientServiceTest {
             return;
         }
 
+        if (mBassClientService == null) {
+            return;
+        }
+
         TestUtils.stopService(mServiceRule, BassClientService.class);
         mBassClientService = BassClientService.getBassClientService();
         assertThat(mBassClientService).isNull();

@@ -139,6 +139,14 @@ public class CsipSetCoordinatorServiceTest {
             return;
         }
 
+        if (mService == null) {
+            return;
+        }
+
+        if (Looper.myLooper() == null) {
+            return;
+        }
+
         stopService();
         mTargetContext.unregisterReceiver(mCsipSetCoordinatorIntentReceiver);
         TestUtils.clearAdapterService(mAdapterService);

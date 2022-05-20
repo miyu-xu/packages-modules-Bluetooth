@@ -177,6 +177,10 @@ public class HapClientTest {
             return;
         }
 
+        if (mService == null) {
+            return;
+        }
+
         mService.mCallbacks.unregister(mCallback);
 
         stopService();

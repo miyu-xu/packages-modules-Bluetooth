@@ -125,6 +125,10 @@ public class VolumeControlServiceTest {
             return;
         }
 
+        if (mService == null) {
+            return;
+        }
+
         stopService();
         mTargetContext.unregisterReceiver(mVolumeControlIntentReceiver);
         mDeviceQueueMap.clear();
