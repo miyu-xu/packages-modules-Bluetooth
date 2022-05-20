@@ -22,6 +22,30 @@
       },
       "revId": "ba17bbccbbc01ee17ec949a7eca269ad095f7c52",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21ce38f1_b1c396ef",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-20T22:34:55Z",
+      "side": 1,
+      "message": "of course you are right",
+      "parentUuid": "7fce8b06_6b58a788",
+      "range": {
+        "startLine": 718,
+        "startChar": 28,
+        "endLine": 718,
+        "endChar": 44
+      },
+      "revId": "ba17bbccbbc01ee17ec949a7eca269ad095f7c52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
