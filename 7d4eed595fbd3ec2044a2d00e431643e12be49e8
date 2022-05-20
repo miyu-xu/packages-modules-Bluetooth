@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19f298f0_85f6896b",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-20T16:52:30Z",
+      "side": 1,
+      "message": "override?",
+      "range": {
+        "startLine": 131,
+        "startChar": 26,
+        "endLine": 131,
+        "endChar": 28
+      },
+      "revId": "7d4eed595fbd3ec2044a2d00e431643e12be49e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
