@@ -22,6 +22,30 @@
       },
       "revId": "97fde72244675e2ad019a6e7a5fee3200623a798",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cd65f29_aaf415dd",
+        "filename": "system/blueberry/tests/gd/hci/le_acl_manager_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-05-20T21:08:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "604d1038_bd58f81a",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 98
+      },
+      "revId": "97fde72244675e2ad019a6e7a5fee3200623a798",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
