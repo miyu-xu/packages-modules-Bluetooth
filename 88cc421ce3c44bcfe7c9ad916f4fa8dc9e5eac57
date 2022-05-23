@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c84e79a2_ed9b6a4c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-23T20:04:15Z",
+      "side": 1,
+      "message": "Please add description for why deadlock occurs and how it\u0027s fixed.",
+      "revId": "88cc421ce3c44bcfe7c9ad916f4fa8dc9e5eac57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42430979_df381ad5",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-23T20:04:15Z",
+      "side": 1,
+      "message": "Comment why this needs a locked block rather than just `lock().unwrap().foo`",
+      "revId": "88cc421ce3c44bcfe7c9ad916f4fa8dc9e5eac57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
