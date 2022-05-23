@@ -22,6 +22,30 @@
       },
       "revId": "41b6431000c8c6ed2227440f072b798f770946b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55687c5b_0dfc49bf",
+        "filename": "system/btif/src/btif_ble_scanner.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-23T19:29:30Z",
+      "side": 0,
+      "message": "Right now, if we find device name in advertisement, we would treat it as a device name.\n\nOnly for devices that have no name in advertisement, we would read if from GATT database after pairing.\n\nAfter this patch, we would always read name, in case it is different from what\u0027s advertised.\n\nYes, this was tested with non-audio LE devices. It was also tested with devices that return error when attempt to read name is made, and with devices that provide same name over advertising and over GATT database.",
+      "parentUuid": "60f78b60_056cd42e",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 186,
+        "endChar": 5
+      },
+      "revId": "41b6431000c8c6ed2227440f072b798f770946b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
