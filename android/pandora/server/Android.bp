@@ -39,6 +39,14 @@ android_test {
     test_suites: ["device-tests"],
 }
 
+android_test {
+    name: "pts-bot_l2cap",
+    required: ["PandoraServer"],
+    test_config: "configs/PtsBotL2capTest.xml",
+    data: ["configs/pts_bot_tests_config_l2cap.json", ":mmi2grpc"],
+    test_suites: ["device-tests"],
+}
+
 java_library {
     name: "pandora-grpc-java",
     visibility: ["//visibility:private"],

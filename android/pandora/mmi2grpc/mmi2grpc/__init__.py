@@ -23,6 +23,7 @@ import sys
 import grpc
 
 from mmi2grpc.a2dp import A2DPProxy
+from mmi2grpc.l2cap import L2CAPProxy
 from mmi2grpc._helpers import format_proxy
 from pandora.host_grpc import Host
 
@@ -50,6 +51,7 @@ class IUT:
 
         # Profile proxies.
         self._a2dp = None
+        self._l2cap = None
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
@@ -60,6 +62,7 @@ class IUT:
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
         self._a2dp = None
+        self._l2cap = None
 
     @property
     def address(self) -> bytes:
@@ -103,6 +106,13 @@ class IUT:
                 self._a2dp = A2DPProxy(
                     grpc.insecure_channel(f'localhost:{self.port}'))
             return self._a2dp.interact(
+                test, interaction, description, pts_address)
+
+        if profile in ('L2CAP'):
+            if not self._l2cap:
+                self._l2cap = L2CAPProxy(
+                    grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._l2cap.interact(
                 test, interaction, description, pts_address)
 
         # Handles unsupported profiles.

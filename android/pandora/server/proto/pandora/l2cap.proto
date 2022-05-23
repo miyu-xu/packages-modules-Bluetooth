@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "L2capProto";
+
+import "google/protobuf/empty.proto";
+
+service L2CAP {
+  rpc InitiateAclConnection(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+}
