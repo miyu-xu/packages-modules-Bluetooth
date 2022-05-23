@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d5e29b0_0f2caa8a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-05-23T03:46:17Z",
+      "side": 1,
+      "message": "It is needed for source searching.\nOtherwise source searching will fail.\nIn acquireAllBassChars(), we read all receiverstate that remote support.\nSo, I think It should also be fine that host decide if send addSource request.\n\nThanks,",
+      "parentUuid": "7074ec06_3a60b0f4",
+      "revId": "6f91320fc1786076a42f3c1e154e803ccba02db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dc2a9dc_8315bcf9",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f27255b8_36e3efdc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 819,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-05-23T03:46:17Z",
+      "side": 1,
+      "message": "It is used for updating pa sync state for removeSource.\nPlease refer to convertBroadcastMetadataToUpdateSourceByteArray()\nIf pa sync is not PA_SYNC_STATE_INVALID, we will update pasync state with this arg.\nHere we don\u0027t need it, hence assign it with PA_SYNC_STATE_INVALID.",
+      "parentUuid": "0dc2a9dc_8315bcf9",
+      "revId": "6f91320fc1786076a42f3c1e154e803ccba02db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "774eb646_6a8e9ae4",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-05-20T14:19:32Z",
       "side": 1,
       "message": "How this change is related to the issue with searching of broadcasters? This looks like some other issue.\nWe need separate patch for that describing why this is needed.",
+      "revId": "6f91320fc1786076a42f3c1e154e803ccba02db0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f32a2b03_ad0f00f0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1882545
+      },
+      "writtenOn": "2022-05-23T03:46:17Z",
+      "side": 1,
+      "message": "Create separate patch for it:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2098379\nWe need to first reset PA state to idle if pa is synchronized.\nOtherwise remote couldn\u0027t remove this source.\nThanks.",
+      "parentUuid": "774eb646_6a8e9ae4",
       "revId": "6f91320fc1786076a42f3c1e154e803ccba02db0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
