@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e6b761_849504db",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1849,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-23T21:56:36Z",
+      "side": 1,
+      "message": "bta_dm_rmt_name and bta_dm_disc_rmt_name can be triggered by either classic or LE. why are we only updating BLE properties below in btif_dm_update_ble_remote_properties ?",
+      "range": {
+        "startLine": 1849,
+        "startChar": 9,
+        "endLine": 1849,
+        "endChar": 29
+      },
+      "revId": "6ccd223cb9baf60f283dcb7c83edb34257f5d801",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1383ca41_c76f52ff",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1852,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-23T21:56:36Z",
+      "side": 1,
+      "message": "a little bit worries when we take this assumption. \n\nCould we at least add some log here when this happens?",
+      "range": {
+        "startLine": 1852,
+        "startChar": 0,
+        "endLine": 1852,
+        "endChar": 38
+      },
+      "revId": "6ccd223cb9baf60f283dcb7c83edb34257f5d801",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
