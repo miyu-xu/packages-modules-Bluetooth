@@ -21,6 +21,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothLeAudio;
 import android.bluetooth.BluetoothLeCall;
 import android.bluetooth.BluetoothLeCallControl;
+import android.bluetooth.BluetoothProfile;
 import android.bluetooth.IBluetoothLeCallControlCallback;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -32,7 +33,12 @@ import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.android.bluetooth.a2dp.A2dpService;
+import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.le_audio.ContentControlIdKeeper;
+import com.android.bluetooth.le_audio.LeAudioService;
+import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,6 +47,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 import java.util.UUID;
 
@@ -118,6 +125,8 @@ public class TbsGeneric {
     private List<String> mUriSchemes = new ArrayList<>(Arrays.asList("tel"));
     private Receiver mReceiver = null;
     private int mStoredRingerMode = -1;
+    private AdapterService mAdapterService;
+    private LeAudioService mLeAudioService;
 
     private final class Receiver extends BroadcastReceiver {
         @Override
@@ -151,6 +160,8 @@ public class TbsGeneric {
             Log.d(TAG, "init");
         }
         mTbsGatt = tbsGatt;
+        mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
+                "AdapterService shouldn't be null when creating TbsGeneric");
 
         int ccid = ContentControlIdKeeper.acquireCcid(new ParcelUuid(TbsGatt.UUID_GTBS),
                 BluetoothLeAudio.CONTEXT_TYPE_COMMUNICATION);
@@ -727,7 +738,7 @@ public class TbsGeneric {
             mLastIndexAssigned = requestId;
         }
 
-
+        setActiveLeDevice(device);
         return TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
     }
 
@@ -786,6 +797,7 @@ public class TbsGeneric {
                         Request request = new Request(device, callId, opcode, callIndex);
                         try {
                             if (opcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT) {
+                                setActiveLeDevice(device);
                                 bearer.callback.onAcceptCall(requestId, new ParcelUuid(callId));
                             } else if (opcode == TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE) {
                                 bearer.callback.onTerminateCall(requestId, new ParcelUuid(callId));
@@ -831,6 +843,7 @@ public class TbsGeneric {
 
                         Map.Entry<UUID, Bearer> firstEntry = null;
                         List<ParcelUuid> parcelUuids = new ArrayList<>();
+                        result = TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS;
                         for (int callIndex : args) {
                             Map.Entry<UUID, Bearer> entry = getCallIdByIndex(callIndex);
                             if (entry == null) {
@@ -852,6 +865,10 @@ public class TbsGeneric {
                             }
 
                             parcelUuids.add(new ParcelUuid(entry.getKey()));
+                        }
+
+                        if (result != TbsGatt.CALL_CONTROL_POINT_RESULT_SUCCESS) {
+                            break;
                         }
 
                         Bearer bearer = firstEntry.getValue();
@@ -1001,6 +1018,11 @@ public class TbsGeneric {
         mForegroundBearer = bearer;
     }
 
+    @VisibleForTesting
+    void setLeAudioServiceForTesting(LeAudioService leAudioService) {
+        mLeAudioService = leAudioService;
+    }
+
     private synchronized void notifyCclc() {
         if (DBG) {
             Log.d(TAG, "notifyCclc");
@@ -1023,6 +1045,23 @@ public class TbsGeneric {
 
         mUriSchemes = new ArrayList<>(newUriSchemes);
         mTbsGatt.setBearerUriSchemesSupportedList(mUriSchemes);
+    }
+
+    private void setActiveLeDevice(BluetoothDevice device) {
+        if (device == null) {
+            Log.w(TAG, "setActiveLeDevice: ignore null device");
+            return;
+        }
+        if (!mAdapterService.getActiveDevices(BluetoothProfile.A2DP).isEmpty()) {
+            A2dpService.getA2dpService().setActiveDevice(null);
+        }
+        if (!mAdapterService.getActiveDevices(BluetoothProfile.HEARING_AID).isEmpty()) {
+            HearingAidService.getHearingAidService().setActiveDevice(null);
+        }
+        if (mLeAudioService == null) {
+            mLeAudioService = LeAudioService.getLeAudioService();
+        }
+        mLeAudioService.setActiveDevice(device);
     }
 
     private static boolean isCallStateTransitionValid(int callState, int requestedOpcode) {
