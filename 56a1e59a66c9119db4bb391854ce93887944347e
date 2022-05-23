@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e29e231_bd62d8e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-23T16:21:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure if this was a bug or a feature.",
+      "revId": "56a1e59a66c9119db4bb391854ce93887944347e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
