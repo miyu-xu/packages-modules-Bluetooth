@@ -46,6 +46,30 @@
       },
       "revId": "2cb575f66f08862cac63ac73a2d74e1c1d0d927b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aee5a62e_1e55bf21",
+        "filename": "system/gd/rust/linux/socket/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-23T23:26:49Z",
+      "side": 1,
+      "message": "Good catch -- I didn\u0027t catch this in testing because I didn\u0027t have a second BT device available. I will add a test for this converter along with the fix.",
+      "parentUuid": "7ef3f333_4277651e",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 197,
+        "endChar": 47
+      },
+      "revId": "2cb575f66f08862cac63ac73a2d74e1c1d0d927b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
