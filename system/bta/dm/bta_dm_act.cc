@@ -1040,6 +1040,19 @@ void bta_dm_rmt_name(tBTA_DM_MSG* p_data) {
   if (p_data->rem_name.result.disc_res.bd_name[0] &&
       bta_dm_search_cb.p_btm_inq_info) {
     bta_dm_search_cb.p_btm_inq_info->appl_knows_rem_name = true;
+
+    if (p_data->rem_name.result.disc_res.bd_name[0]) {
+      tBTA_DM_SEC param = {
+          .remote_name_read =
+              {
+                  .bd_addr = p_data->rem_name.result.disc_res.bd_addr,
+              },
+      };
+
+      strlcpy((char*)param.remote_name_read.bd_name,
+              (char*)p_data->rem_name.result.disc_res.bd_name, BD_NAME_LEN + 1);
+      bta_dm_cb.p_sec_cback(BTA_DM_NAME_READ_EVT, &param);
+    }
   }
 
   bta_dm_discover_device(bta_dm_search_cb.peer_bdaddr);
@@ -1064,6 +1077,17 @@ void bta_dm_disc_rmt_name(tBTA_DM_MSG* p_data) {
   if (p_btm_inq_info) {
     if (p_data->rem_name.result.disc_res.bd_name[0]) {
       p_btm_inq_info->appl_knows_rem_name = true;
+
+      tBTA_DM_SEC param = {
+          .remote_name_read =
+              {
+                  .bd_addr = p_data->rem_name.result.disc_res.bd_addr,
+              },
+      };
+
+      strlcpy((char*)param.remote_name_read.bd_name,
+              (char*)p_data->rem_name.result.disc_res.bd_name, BD_NAME_LEN + 1);
+      bta_dm_cb.p_sec_cback(BTA_DM_NAME_READ_EVT, &param);
     }
   }
 
