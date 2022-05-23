@@ -809,6 +809,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
         group->SetTargetState(AseState::BTA_LE_AUDIO_ASE_STATE_IDLE);
+        if (alarm_is_scheduled(watchdog_)) alarm_cancel(watchdog_);
         /* If there is no more ase to stream. Notify it is in IDLE. */
         state_machine_callbacks_->StatusReportCb(group->group_id_,
                                                  GroupStreamStatus::IDLE);

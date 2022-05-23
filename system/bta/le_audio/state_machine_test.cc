@@ -2487,5 +2487,28 @@ TEST_F(StateMachineTest, testAttachDeviceToTheStream) {
             types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
 }
 
+TEST_F(StateMachineTest, testStateTransitionTimeoutOnCisDisconnect) {
+  const auto context_type = kContextTypeRingtone;
+  const int leaudio_group_id = 4;
+
+  // Prepare fake connected device group
+  auto* group = PrepareSingleTestDeviceGroup(leaudio_group_id, context_type);
+
+  auto* leAudioDevice = group->GetFirstDevice();
+  EXPECT_CALL(gatt_queue,
+              WriteCharacteristic(1, leAudioDevice->ctp_hdls_.val_hdl, _,
+                                  GATT_WRITE_NO_RSP, _, _))
+      .Times(1);
+
+  // Start the configuration and stream Media content
+  ASSERT_TRUE(LeAudioGroupStateMachine::Get()->StartStream(
+      group, static_cast<types::LeAudioContextType>(context_type)));
+
+  InjectCisDisconnected(group, leAudioDevice);
+
+  // Make sure timeout is cleared
+  ASSERT_TRUE(fake_osi_alarm_set_on_mloop_.cb == nullptr);
+}
+
 }  // namespace internal
 }  // namespace le_audio
