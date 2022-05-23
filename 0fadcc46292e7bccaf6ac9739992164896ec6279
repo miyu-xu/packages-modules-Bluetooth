@@ -22,6 +22,30 @@
       },
       "revId": "0fadcc46292e7bccaf6ac9739992164896ec6279",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37c66016_e85165de",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-23T21:10:22Z",
+      "side": 0,
+      "message": "Also, removing the case statement here does not prevent the event from being routed from GD to here right? \n\nCould we check if GD is actually forwarding this event to legacy stack?",
+      "parentUuid": "03c848da_088aa1ca",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "0fadcc46292e7bccaf6ac9739992164896ec6279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
