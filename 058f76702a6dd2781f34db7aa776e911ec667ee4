@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c95f12d_e5924780",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-23T21:08:46Z",
+      "side": 1,
+      "message": "just to confirm, this is still handled in legacy stack?",
+      "range": {
+        "startLine": 355,
+        "startChar": 7,
+        "endLine": 356,
+        "endChar": 51
+      },
+      "revId": "058f76702a6dd2781f34db7aa776e911ec667ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

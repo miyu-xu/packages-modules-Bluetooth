@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03c848da_088aa1ca",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-23T21:08:46Z",
+      "side": 0,
+      "message": "Are we sure this is handled in GD? could you point to the code where it is handled in GD? and does GD wait for HCI_READ_RMT_FEATURES_COMP_EVT before reporting connection as successful to upper layer?",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "0fadcc46292e7bccaf6ac9739992164896ec6279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
