@@ -1846,6 +1846,17 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
                                    pairing_cb.fail_reason);
       btif_dm_remove_bond(bd_addr);
       break;
+    case BTA_DM_NAME_READ_EVT: {
+      int dev_type;
+      if (!btif_get_device_type(p_data->remote_name_read.bd_addr, &dev_type)) {
+        dev_type = BT_DEVICE_TYPE_BLE;
+      }
+
+      /* Remote name update */
+      btif_dm_update_ble_remote_properties(p_data->remote_name_read.bd_addr,
+                                           p_data->remote_name_read.bd_name,
+                                           (tBT_DEVICE_TYPE)dev_type);
+    } break;
     default:
       BTIF_TRACE_WARNING("%s: unhandled event (%d)", __func__, event);
       break;
