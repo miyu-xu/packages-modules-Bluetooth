@@ -206,7 +206,7 @@ bool IsLc3SettingSupported(LeAudioContextType context_type, Lc3SettingId id) {
 
     case LeAudioContextType::CONVERSATIONAL:
       if (id == Lc3SettingId::LC3_16_1 || id == Lc3SettingId::LC3_16_2 ||
-          id == Lc3SettingId::LC3_32_2)
+          id == Lc3SettingId::LC3_24_2 || id == Lc3SettingId::LC3_32_2)
         return true;
 
       break;
@@ -588,6 +588,9 @@ class LeAudioAseConfigurationTest : public Test {
                       uint8_t frame_duration, uint16_t octets_per_frame) {
     for (const auto& device : devices_) {
       for (const auto& ase : device->ases_) {
+        /* Device may be microphone only */
+        if (!ase.active && ase.direction == kLeAudioDirectionSink) continue;
+
         ASSERT_TRUE(ase.active);
         ASSERT_EQ(ase.codec_id, codec_id);
 
