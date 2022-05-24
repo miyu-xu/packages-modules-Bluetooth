@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8cc5b42_857e22bb",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-05-24T12:09:24Z",
+      "side": 1,
+      "message": "According to the spec. \"If the server has not written a Source_ID value to the Broadcast Receive State characteristic, the Broadcast Receive State characteristic value shall be empty (zero length).\"\n\nDoes the getAllSources() return entries also for empty (zero length) characteristics? If not, then it might happen that for device with no sources configured getAllSources() will return an empty container. Shouldn\u0027t we check getMaximumSourceCapacity(device) as well?",
+      "range": {
+        "startLine": 332,
+        "startChar": 8,
+        "endLine": 337,
+        "endChar": 9
+      },
+      "revId": "d94ee6a67a745b81691017e5d776d2aaa7487d89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
