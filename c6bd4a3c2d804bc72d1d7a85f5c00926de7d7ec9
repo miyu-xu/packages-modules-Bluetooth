@@ -34,6 +34,24 @@
       "parentUuid": "bd41d54a_17637fa2",
       "revId": "c6bd4a3c2d804bc72d1d7a85f5c00926de7d7ec9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ddaef00_b11eb1eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1400304
+      },
+      "writtenOn": "2022-05-24T17:06:43Z",
+      "side": 1,
+      "message": "Is Every Profile Handled Like this ? \n\nI reported for Bluetooth A2dp Profile\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothA2dp.java;l\u003d293;drc\u003d2b8d2c412ad691193251f4d32be8506f237aee40\n\nProxy has published here.\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothA2dp.java;l\u003d276;drc\u003d2b8d2c412ad691193251f4d32be8506f237aee40",
+      "parentUuid": "eca1c7fa_8f4a116e",
+      "revId": "c6bd4a3c2d804bc72d1d7a85f5c00926de7d7ec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
