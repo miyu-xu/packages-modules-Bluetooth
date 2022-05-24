@@ -52,6 +52,24 @@
       "parentUuid": "eca1c7fa_8f4a116e",
       "revId": "c6bd4a3c2d804bc72d1d7a85f5c00926de7d7ec9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e21ffc0_dcd99a67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-24T17:11:21Z",
+      "side": 1,
+      "message": "I didn\u0027t check all the profile, but the connect from profileConnector is the same thing:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothProfileConnector.java;drc\u003d2b8d2c412ad691193251f4d32be8506f237aee40;l\u003d166\n\nI guess the BluetoothHeadset wasn\u0027t refactored to use the profileConnector but in the end it\u0027s the same thing.",
+      "parentUuid": "1ddaef00_b11eb1eb",
+      "revId": "c6bd4a3c2d804bc72d1d7a85f5c00926de7d7ec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
