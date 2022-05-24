@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78929f51_40bc4c2b",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T03:59:21Z",
+      "side": 0,
+      "message": "nvm, this makes sure that this method is never called and I see that GD handles remote device features in https://android-review.git.corp.google.com/c/platform/system/bt/+/1683355",
+      "range": {
+        "startLine": 849,
+        "startChar": 0,
+        "endLine": 849,
+        "endChar": 72
+      },
+      "revId": "058f76702a6dd2781f34db7aa776e911ec667ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
