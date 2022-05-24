@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39f5e546_de210837",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-24T07:09:03Z",
+      "side": 1,
+      "message": "Since you never .disconnect(), you should never attempt to .connect() to device, just connectGatt above done once should be enough.",
+      "range": {
+        "startLine": 232,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 9
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c07967_ae8c9475",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-24T07:09:03Z",
+      "side": 1,
+      "message": "There is no need to ever call disconnect() on opportunistic client. It doesnt\u0027 keep the connection anyway",
+      "range": {
+        "startLine": 354,
+        "startChar": 24,
+        "endLine": 354,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30eb50f2_a0c59549",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-24T07:09:03Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 445,
+        "startChar": 24,
+        "endLine": 445,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f4d60e9_df5dba38",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-24T07:09:03Z",
+      "side": 1,
+      "message": "Same as above",
+      "range": {
+        "startLine": 491,
+        "startChar": 24,
+        "endLine": 491,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2d79da2b_32f7fb58",
         "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
         "patchSetId": 2
