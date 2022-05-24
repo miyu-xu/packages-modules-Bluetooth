@@ -1379,7 +1379,11 @@ static jboolean removeBondNative(JNIEnv* env, jobject obj, jbyteArray address) {
   int ret = sBluetoothInterface->remove_bond((RawAddress*)addr);
   env->ReleaseByteArrayElements(address, addr, 0);
 
-  return (ret == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
+  if (ret != BT_STATUS_SUCCESS) {
+    ALOGE("%s: failed, ret=%d", __func__, ret);
+    return JNI_FALSE;
+  }
+  return JNI_TRUE;
 }
 
 static jboolean cancelBondNative(JNIEnv* env, jobject obj, jbyteArray address) {

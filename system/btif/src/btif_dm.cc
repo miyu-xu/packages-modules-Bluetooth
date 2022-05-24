@@ -1948,8 +1948,8 @@ bool btif_dm_pairing_is_busy() {
  *
  ******************************************************************************/
 void btif_dm_create_bond(const RawAddress bd_addr, int transport) {
-  BTIF_TRACE_EVENT("%s: bd_addr=%s, transport=%d", __func__,
-                   bd_addr.ToString().c_str(), transport);
+  LOG(INFO) << __func__ << ": bd_addr=" << bd_addr
+            << ",  transport=" << transport;
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_CREATE_BOND,
                             pairing_cb.state);
 
@@ -2122,7 +2122,7 @@ void btif_dm_hh_open_failed(RawAddress* bdaddr) {
  ******************************************************************************/
 
 void btif_dm_remove_bond(const RawAddress bd_addr) {
-  BTIF_TRACE_EVENT("%s: bd_addr=%s", __func__, bd_addr.ToString().c_str());
+  LOG(INFO) << __func__ << ": bd_addr=" << bd_addr;
 
   btif_stats_add_bond_event(bd_addr, BTIF_DM_FUNC_REMOVE_BOND,
                             pairing_cb.state);

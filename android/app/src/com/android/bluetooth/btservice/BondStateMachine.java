@@ -291,6 +291,7 @@ final class BondStateMachine extends StateMachine {
     }
 
     private boolean cancelBond(BluetoothDevice dev) {
+        infoLog("cancelBond: " + dev);
         if (dev.getBondState() == BluetoothDevice.BOND_BONDING) {
             byte[] addr = Utils.getBytesFromAddress(dev.getAddress());
             if (!mAdapterService.cancelBondNative(addr)) {
@@ -303,6 +304,7 @@ final class BondStateMachine extends StateMachine {
     }
 
     private boolean removeBond(BluetoothDevice dev, boolean transition) {
+        infoLog("removeBond: " + dev);
         DeviceProperties devProp = mRemoteDevices.getDeviceProperties(dev);
         if (devProp != null && devProp.getBondState() == BluetoothDevice.BOND_BONDED) {
             byte[] addr = Utils.getBytesFromAddress(dev.getAddress());
