@@ -120,6 +120,16 @@ void delete_old_btsnooz_files(const std::string& log_path, const std::chrono::mi
   }
 }
 
+bool is_android_sync_logcat_needed(const HciPacket& packet, SnoopLogger::PacketType type) {
+  if (type != SnoopLogger::PacketType::EVT) return false;
+
+  auto event_type = packet[0];
+  auto subevent_type = packet[2];
+
+  /* For the moment we are interested only in Enhanced Connection Complete Event*/
+  return (event_type == 0x3e && subevent_type == 0x0a);
+}
+
 size_t get_btsnooz_packet_length_to_write(
     const HciPacket& packet, SnoopLogger::PacketType type, bool qualcomm_debug_log_enabled) {
   static const size_t kAclHeaderSize = 4;
@@ -286,6 +296,8 @@ void SnoopLogger::Capture(const HciPacket& packet, Direction direction, PacketTy
       std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now().time_since_epoch())
           .count();
   std::bitset<32> flags = 0;
+  bool add_android_sync_log = false;
+
   switch (type) {
     case PacketType::CMD:
       flags.set(0, false);
@@ -300,6 +312,10 @@ void SnoopLogger::Capture(const HciPacket& packet, Direction direction, PacketTy
     case PacketType::EVT:
       flags.set(0, true);
       flags.set(1, true);
+      if (is_android_sync_logcat_needed(packet, type)) {
+        LOG_DEBUG("Add Android time as sync log in btsnoop.");
+        add_android_sync_log = true;
+      }
       break;
   }
   uint32_t length = packet.size() + /* type byte */ 1;
@@ -330,6 +346,49 @@ void SnoopLogger::Capture(const HciPacket& packet, Direction direction, PacketTy
     if (packet_counter_ > max_packets_per_file_) {
       OpenNextSnoopLogFile();
     }
+    if (add_android_sync_log) {
+      LOG_DEBUG("Adding timestamp for the logcat <-> btsnoop synchronization:");
+      std::string timestamp_log;
+
+      auto _now = std::chrono::system_clock::now();
+      auto _now_t = std::chrono::system_clock::to_time_t(_now);
+
+      /* YYYY-MM-DD_HH:MM:SS.sss */
+      char _buf[32];
+      std::strftime(_buf, sizeof(_buf), "Date:%Y-%m-%d Time:%H:%M:%S", std::localtime(&_now_t));
+
+      timestamp_log.append("--Android Time--");
+      timestamp_log.append(_buf);
+
+      /* Using Debug Event for this purpose.*/
+      char event_hdr[2];
+      event_hdr[0] = 0xfe;
+      event_hdr[1] = timestamp_log.size();
+
+      uint32_t l = sizeof(event_hdr) + timestamp_log.size() + /* 1 for type */ 1;
+
+      PacketHeaderType android_sync_hdr = {
+          .length_original = htonl(l),
+          .length_captured = htonl(l),
+          .flags = htonl(static_cast<uint32_t>(flags.to_ulong())),
+          .dropped_packets = 0,
+          .timestamp = htonll(timestamp_us + kBtSnoopEpochDelta),
+          .type = static_cast<uint8_t>(PacketType::EVT)};
+
+      if (!btsnoop_ostream_.write(reinterpret_cast<const char*>(&android_sync_hdr), sizeof(PacketHeaderType))) {
+        LOG_ERROR("Failed to write timestamp packet header for btsnoop, error: \"%s\"", strerror(errno));
+      }
+
+      if (!btsnoop_ostream_.write(reinterpret_cast<const char*>(&event_hdr), sizeof(event_hdr))) {
+        LOG_ERROR("Failed to write timestamp packet header for btsnoop, error: \"%s\"", strerror(errno));
+      }
+
+      btsnoop_ostream_ << timestamp_log;
+      if (!btsnoop_ostream_.flush()) {
+        LOG_ERROR("Failed to flush, error: \"%s\"", strerror(errno));
+      }
+    }
+
     if (!btsnoop_ostream_.write(reinterpret_cast<const char*>(&header), sizeof(PacketHeaderType))) {
       LOG_ERROR("Failed to write packet header for btsnoop, error: \"%s\"", strerror(errno));
     }
