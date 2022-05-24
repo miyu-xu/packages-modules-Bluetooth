@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf929520_bce6eaf3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 860,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-05-24T12:38:31Z",
+      "side": 1,
+      "message": "Why do we need to update the source on broadcast sink before removing it? It looks weird.\nCorrect me if I\u0027m wrong, but It seems to me that here we are trying to force the remote state change, to workaround the problem of finding free sources on our side.",
+      "range": {
+        "startLine": 854,
+        "startChar": 0,
+        "endLine": 860,
+        "endChar": 46
+      },
+      "revId": "b03e1033d78043b5ce8106862cb5b9ad03fdfd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
