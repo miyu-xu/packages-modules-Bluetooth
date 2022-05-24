@@ -23,6 +23,8 @@
 #include "btm_sco_hfp_hal.h"
 #include "gd/common/init_flags.h"
 #include "osi/include/log.h"
+#include "stack/acl/acl.h"
+#include "stack/include/acl_api.h"
 
 namespace hfp_hal_interface {
 namespace {
@@ -332,8 +334,71 @@ bool enable_offload(bool enable) {
   return true;
 }
 
-// Notify the codec datapath to lower layer for offload mode
-bool set_codec_datapath(int codec) { return true; }
+static bool get_single_codec(int codec, bt_codec** out) {
+  for (cached_codec_info c : cached_codecs) {
+    if (c.inner.codec == codec) {
+      *out = &c.inner;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+void set_codec_datapath(enh_esco_params_t* params) {
+  bool offload = get_offload_enabled();
+  bool found;
+  bt_codec* codec;
+
+  if (!params) {
+    return;
+  }
+
+  switch (esco_coding_to_codec(params->transmit_coding_format.coding_format)) {
+    case codec::MSBC:
+      if (get_offload_enabled() &&
+          (found = get_single_codec(codec::MSBC, &codec))) {
+        break;
+      }
+      [[fallthrough]];  // If offloaded MSBC doesn't work out, try transparent.
+    case codec::MSBC_TRANSPARENT:
+      found = get_single_codec(codec::MSBC_TRANSPARENT, &codec);
+      break;
+
+    // Default to CVSD
+    case codec::CVSD:
+    default:
+      found = get_single_codec(codec::CVSD, &codec);
+      break;
+  }
+
+  // Couldn't find the desired codec configuration. There's a config mistake so
+  // log it and do nothing.
+  if (!found) {
+    LOG_ERROR(
+        "Failed to find codec config for format (%u). Won't set datapath.",
+        params->transmit_coding_format.coding_format);
+  } else {
+    LOG_INFO("Configuring datapath for codec (%u)", codec->codec);
+  }
+
+  params->input_data_path = codec->data_path;
+  params->output_data_path = codec->data_path;
+
+  // Also modify the transmit_coding_format to transparent.
+  if (codec->codec == codec::MSBC_TRANSPARENT) {
+    params->transmit_coding_format.coding_format = ESCO_CODING_FORMAT_TRANSPNT;
+    params->receive_coding_format.coding_format = ESCO_CODING_FORMAT_TRANSPNT;
+  }
+
+  // If data path exists, make sure to configure both input and output for SCO.
+  if (codec->data_path) {
+    btm_configure_data_path(btm_data_direction::CONTROLLER_TO_HOST,
+                            codec->data_path, codec->data);
+    btm_configure_data_path(btm_data_direction::HOST_TO_CONTROLLER,
+                            codec->data_path, codec->data);
+  }
+}
 
 int get_packet_size(int codec) {
   for (const cached_codec_info& c : cached_codecs) {

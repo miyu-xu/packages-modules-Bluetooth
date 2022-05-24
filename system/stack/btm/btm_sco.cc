@@ -231,7 +231,8 @@ void btm_route_sco_data(BT_HDR* p_msg) {
 
   auto* active_sco = btm_get_active_sco();
   if (active_sco != nullptr && active_sco->hci_handle == handle) {
-    if (true /* MSBC */) {
+    if (active_sco->esco.setup.transmit_coding_format.coding_format ==
+        ESCO_CODING_FORMAT_TRANSPNT /* MSBC */) {
       if (length != 60) {
         LOG_ERROR("Received invalid mSBC packet with invalid length:%hhu",
                   length);
@@ -273,7 +274,8 @@ void btm_route_sco_data(BT_HDR* p_msg) {
   // For Chrome OS, we send the outgoing data after receiving an incoming one
   auto size_read = bluetooth::audio::sco::read(read_buf, length);
 
-  if (true /* MSBC */) {
+  if (active_sco->esco.setup.transmit_coding_format.coding_format ==
+      ESCO_CODING_FORMAT_TRANSPNT /* MSBC */) {
     /* The pre-computed zero input bit stream of mSBC codec, per HFP 1.7 spec.
      * This mSBC frame will be decoded into all-zero input PCM. */
     uint8_t encoded[BTM_MSBC_PKT_LEN] = {BTM_MSBC_H2_HEADER_0, frame_count};
