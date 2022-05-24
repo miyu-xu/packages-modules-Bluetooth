@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af1342c8_59acc6e6",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3399,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T23:11:46Z",
+      "side": 1,
+      "message": "this should go before line 3398",
+      "range": {
+        "startLine": 3399,
+        "startChar": 8,
+        "endLine": 3399,
+        "endChar": 41
+      },
+      "revId": "d92b347a7d3c10c19d7f23523f9aa2184cf9d3a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0312db83_b9ad4119",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3418,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T23:11:46Z",
+      "side": 1,
+      "message": "this should go before line 3415",
+      "range": {
+        "startLine": 3416,
+        "startChar": 8,
+        "endLine": 3418,
+        "endChar": 68
+      },
+      "revId": "d92b347a7d3c10c19d7f23523f9aa2184cf9d3a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
