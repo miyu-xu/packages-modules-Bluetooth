@@ -16,6 +16,24 @@
       "message": "Any Reason for revert? Is there any corner case we missed? \n",
       "revId": "c6bd4a3c2d804bc72d1d7a85f5c00926de7d7ec9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eca1c7fa_8f4a116e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-24T16:55:29Z",
+      "side": 1,
+      "message": "Hello,\n\nYes this is breaking a couple target in Android U.\nAfter a second analyze I think we shouldn\u0027t have merge this in first place.\nThe getProfileProxy doesn\u0027t care about the bluetooth state, it register a callback that will be call on next profile state change.\n\nEx for BluetoothHeadset:\n(1) Call constructor\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothAdapter.java;l\u003d3606?q\u003dbluetoothadapter\n(2) Call manager and register to be advertised on state changed: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothHeadset.java;l\u003d392;drc\u003d2b8d2c412ad691193251f4d32be8506f237aee40\nIf this call is not done, the next time you turn-on / turn-off bt, you will not have an update on the binder.\n\n(3) call the dobind() immediately in case the bt was already on, or call it later in the callback\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothHeadset.java;l\u003d398;drc\u003d2b8d2c412ad691193251f4d32be8506f237aee40;bpv\u003d1;bpt\u003d1",
+      "parentUuid": "bd41d54a_17637fa2",
+      "revId": "c6bd4a3c2d804bc72d1d7a85f5c00926de7d7ec9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
