@@ -1092,6 +1092,10 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       (p_data->sdp_event.sdp_result == SDP_NO_RECS_MATCH) ||
       (p_data->sdp_event.sdp_result == SDP_DB_FULL)) {
     APPL_TRACE_DEBUG("sdp_result::0x%x", p_data->sdp_event.sdp_result);
+    if (bta_dm_search_cb.service_index == 0) {
+      // prevent crash when later looking for [service_index - 1]
+      bta_dm_search_cb.service_index = 1;
+    }
     do {
       p_sdp_rec = NULL;
       if (bta_dm_search_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
