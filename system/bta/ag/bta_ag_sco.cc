@@ -24,17 +24,18 @@
 
 #include <base/bind.h>
 #include <base/logging.h>
+
 #include <cstdint>
 
 #include "bt_target.h"  // Must be first to define build configuration
 #include "bt_trace.h"   // Legacy trace logging
-
 #include "bta/ag/bta_ag_int.h"
 #include "device/include/controller.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/btm/btm_sco.h"
+#include "stack/btm/btm_sco_hfp_hal.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "types/raw_address.h"
@@ -373,7 +374,8 @@ static void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
   }
 
 #if (DISABLE_WBS == FALSE)
-  if ((p_scb->sco_codec == BTM_SCO_CODEC_MSBC) && !p_scb->codec_fallback)
+  if ((p_scb->sco_codec == BTM_SCO_CODEC_MSBC) && !p_scb->codec_fallback &&
+      hfp_hal_interface::get_wbs_supported())
     esco_codec = BTM_SCO_CODEC_MSBC;
 #endif
 
@@ -405,6 +407,9 @@ static void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
       params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3);
     }
   }
+
+  /* Configure input/output data path based on HAL settings. */
+  hfp_hal_interface::set_codec_datapath(&params);
 
   /* If initiating, setup parameters to start SCO/eSCO connection */
   if (is_orig) {
