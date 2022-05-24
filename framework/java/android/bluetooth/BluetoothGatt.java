@@ -1032,7 +1032,7 @@ public final class BluetoothGatt implements BluetoothProfile {
         try {
             // autoConnect is inverse of "isDirect"
             final SynchronousResultReceiver recv = new SynchronousResultReceiver();
-            mService.clientConnect(mClientIf, mDevice.getAddress(), false, mTransport,
+            mService.clientConnect(mClientIf, mDevice.getAddress(), !mAutoConnect, mTransport,
                     mOpportunistic, mPhy, mAttributionSource, recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
             return true;
