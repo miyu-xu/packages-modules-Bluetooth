@@ -16,6 +16,24 @@
       "message": "When APEX is enabled, these tests can be run, please check downstream branch",
       "revId": "8e060ffab9d2b649288c936514f2a8a10cf0870e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df26ebbb_54b9d0ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-24T16:49:24Z",
+      "side": 1,
+      "message": "Some other profile tests have these checks downstream as well. Am I missing something?",
+      "parentUuid": "89d7ec81_267741bd",
+      "revId": "8e060ffab9d2b649288c936514f2a8a10cf0870e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
