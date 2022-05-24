@@ -1149,17 +1149,14 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
       std::vector<Uuid> gatt_uuids;
 
-      do {
+      while ((p_sdp_rec = SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, 0,
+                                              p_sdp_rec))) {
         /* find a service record, report it */
-        p_sdp_rec =
-            SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, 0, p_sdp_rec);
-        if (p_sdp_rec) {
-          Uuid service_uuid;
-          if (SDP_FindServiceUUIDInRec(p_sdp_rec, &service_uuid)) {
-            gatt_uuids.push_back(service_uuid);
-          }
+        Uuid service_uuid;
+        if (SDP_FindServiceUUIDInRec(p_sdp_rec, &service_uuid)) {
+          gatt_uuids.push_back(service_uuid);
         }
-      } while (p_sdp_rec);
+      }
 
       if (!gatt_uuids.empty()) {
         LOG_INFO("GATT services discovered using SDP");
@@ -1206,18 +1203,15 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
   /* Collect the 128-bit services here and put them into the list */
   if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK) {
     p_sdp_rec = NULL;
-    do {
+    while ((p_sdp_rec = SDP_FindServiceInDb_128bit(bta_dm_search_cb.p_sdp_db,
+                                                   p_sdp_rec))) {
       /* find a service record, report it */
-      p_sdp_rec =
-          SDP_FindServiceInDb_128bit(bta_dm_search_cb.p_sdp_db, p_sdp_rec);
-      if (p_sdp_rec) {
-        // SDP_FindServiceUUIDInRec_128bit is used only once, refactor?
-        Uuid temp_uuid;
-        if (SDP_FindServiceUUIDInRec_128bit(p_sdp_rec, &temp_uuid)) {
-          uuid_list.push_back(temp_uuid);
-        }
+      Uuid temp_uuid;
+      // SDP_FindServiceUUIDInRec_128bit is used only once, refactor?
+      if (SDP_FindServiceUUIDInRec_128bit(p_sdp_rec, &temp_uuid)) {
+        uuid_list.push_back(temp_uuid);
       }
-    } while (p_sdp_rec);
+    }
   }
   /* if there are more services to search for */
   if (bta_dm_search_cb.services_to_search) {
