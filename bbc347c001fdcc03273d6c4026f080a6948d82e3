@@ -74,6 +74,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3a891bbb_46ec6570",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T07:20:05Z",
+      "side": 1,
+      "message": "Also see my suggestion below, I think mBluetoothGatt should be closed and assigned to null when the remote device is disconnected so that this state machine doesn\u0027t hold up GATT client interface id allocation. \n\nThis would also prevent the API problem exhibit in this CL. \n\nMaybe a separate patch to address these issues",
+      "parentUuid": "c5fb32c1_0c6336d4",
+      "range": {
+        "startLine": 232,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 9
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bd51a63_0d1f7d15",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T07:20:05Z",
+      "side": 1,
+      "message": "you should call mBluetoothGatt.close() when entering disconnected state and assign mBluetoothGatt \u003d null",
+      "range": {
+        "startLine": 255,
+        "startChar": 20,
+        "endLine": 255,
+        "endChar": 25
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4c07967_ae8c9475",
         "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
         "patchSetId": 2
@@ -168,6 +215,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89ef5ff6_04b5ca7c",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T07:20:05Z",
+      "side": 1,
+      "message": "same as above, someone may want to disconnect it earlier",
+      "parentUuid": "30eb50f2_a0c59549",
+      "range": {
+        "startLine": 445,
+        "startChar": 24,
+        "endLine": 445,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1f4d60e9_df5dba38",
         "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
         "patchSetId": 2
@@ -179,6 +250,30 @@
       "writtenOn": "2022-05-24T07:09:03Z",
       "side": 1,
       "message": "Same as above",
+      "range": {
+        "startLine": 491,
+        "startChar": 24,
+        "endLine": 491,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c1919dc_0fc6a89f",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T07:20:05Z",
+      "side": 1,
+      "message": "same as above, someone may want to disconnect it earlier",
+      "parentUuid": "1f4d60e9_df5dba38",
       "range": {
         "startLine": 491,
         "startChar": 24,
