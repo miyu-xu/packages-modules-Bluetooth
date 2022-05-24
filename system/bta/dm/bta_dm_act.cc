@@ -1118,8 +1118,6 @@ static void bta_dm_sdp_result_failed(tBTA_DM_MSG* p_data) {
  *
  ******************************************************************************/
 void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
-  tSDP_DISC_REC* p_sdp_rec = NULL;
-  tBTA_DM_MSG* p_msg;
   uint16_t service = 0xFFFF;
 
   std::vector<Uuid> uuid_list;
@@ -1135,7 +1133,7 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
     bta_dm_search_cb.service_index = 1;
   }
   do {
-    p_sdp_rec = NULL;
+    tSDP_DISC_REC* p_sdp_rec = NULL;
     if (bta_dm_search_cb.service_index != (BTA_USER_SERVICE_ID + 1)) {
       service =
           bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
@@ -1202,7 +1200,7 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
   /* Collect the 128-bit services here and put them into the list */
   if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK) {
-    p_sdp_rec = NULL;
+    tSDP_DISC_REC* p_sdp_rec = NULL;
     while ((p_sdp_rec = SDP_FindServiceInDb_128bit(bta_dm_search_cb.p_sdp_db,
                                                    p_sdp_rec))) {
       /* find a service record, report it */
@@ -1229,7 +1227,7 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
     }
 
-    p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
+    tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
     p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
     p_msg->disc_result.result.disc_res.result = BTA_SUCCESS;
     p_msg->disc_result.result.disc_res.num_uuids = uuid_list.size();
