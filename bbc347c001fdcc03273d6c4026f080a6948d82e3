@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d79da2b_32f7fb58",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-24T07:06:47Z",
+      "side": 1,
+      "message": "Even though this change looks good, I would be hesitant to put it in so late.\n\nMaybe you could rather modify the BatteryStateMachine to fix those issues ?",
+      "range": {
+        "startLine": 1035,
+        "startChar": 68,
+        "endLine": 1035,
+        "endChar": 82
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
