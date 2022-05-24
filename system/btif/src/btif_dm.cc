@@ -1234,8 +1234,17 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
                        p_search_data->inq_res.device_type);
       bdname.name[0] = 0;
 
-      if (!check_eir_remote_name(p_search_data, bdname.name, &remote_name_len))
+      if ((p_search_data->inq_res.inq_result_type & BTM_INQ_RESULT_BLE) &&
+          btm_sec_is_a_bonded_dev(bdaddr)) {
+        /* After pairing, we read device name from GATT database. It should not
+           be replaced by name in some random packets flying around. */
         check_cached_remote_name(p_search_data, bdname.name, &remote_name_len);
+      } else {
+        if (!check_eir_remote_name(p_search_data, bdname.name,
+                                   &remote_name_len))
+          check_cached_remote_name(p_search_data, bdname.name,
+                                   &remote_name_len);
+      }
 
       /* Check EIR for services */
       if (p_search_data->inq_res.p_eir) {
