@@ -16,6 +16,24 @@
       "message": "These tests failed:\n\n* CsipSetCoordinatorStateMachineTest\n\n-\u003e at com.android.bluetooth.csip.CsipSetCoordinatorStateMachineTest.allowConnection(CsipSetCoordinatorStateMachineTest.java:106)\n\nYou cannot use argument matchers outside of verification or stubbing.\n\n* HapClientTest\n\njava.lang.NullPointerException: Attempt to invoke virtual method \u0027void java.util.HashMap.clear()\u0027 on a null object reference\njava.lang.NullPointerException: Attempt to invoke virtual method \u0027void java.util.HashMap.clear()\u0027 on a null object reference\n\tat com.android.bluetooth.hap.HapClientTest.tearDown(HapClientTest.java:180)\n",
       "revId": "cddcfb6b8aa51a85f77c0bc62c93f82774575b0f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "006a67f2_13f38058",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-05-24T19:54:47Z",
+      "side": 1,
+      "message": "I can\u0027t figure this out. These errors seems to make no sense. It shows errors in mocking that was already working before or is the same as in other tests. In some cases the logs says about returning invalid type from the mocked method A and points to a code line where we mock the behaviour of method B, and for method B returning this type is correct. In case of HAP the problem also seems to be related to failed mocking in setUp(). It seems to be covered by NullPointerException in tearDown() because we clean up things that were not initialized in setUp() since it was interrupted by the mocking error. Can this mocking error be somehow related to APEX or class loader?",
+      "parentUuid": "a489f8d6_069807be",
+      "revId": "cddcfb6b8aa51a85f77c0bc62c93f82774575b0f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
