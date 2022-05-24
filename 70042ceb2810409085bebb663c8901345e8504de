@@ -33,6 +33,24 @@
       "message": "AND you are adding in the \u0027Oxford comma\u0027 to the lists...\n\none that I personally like presenting a convenient line re-ordering property \n\n(Without this property after re-ordering a list you then need to search for the line w/out the comma if it ordered somewhere into the body of the list)\n",
       "revId": "70042ceb2810409085bebb663c8901345e8504de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b717c14d_a77e90f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1946265
+      },
+      "writtenOn": "2022-05-24T18:33:59Z",
+      "side": 1,
+      "message": "The reformatting is the default formatting used by bpmodify. I can upload a patch that  removes the code cleanup if preferred",
+      "parentUuid": "ba51a431_235403aa",
+      "revId": "70042ceb2810409085bebb663c8901345e8504de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
