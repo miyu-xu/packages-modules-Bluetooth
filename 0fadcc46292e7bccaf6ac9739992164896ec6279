@@ -46,6 +46,30 @@
       },
       "revId": "0fadcc46292e7bccaf6ac9739992164896ec6279",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1eac965_65e432b6",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T04:02:51Z",
+      "side": 0,
+      "message": "this is handled here in GD:\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/acl_manager/classic_impl.h;l\u003d112",
+      "parentUuid": "37c66016_e85165de",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 269,
+        "endChar": 47
+      },
+      "revId": "0fadcc46292e7bccaf6ac9739992164896ec6279",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

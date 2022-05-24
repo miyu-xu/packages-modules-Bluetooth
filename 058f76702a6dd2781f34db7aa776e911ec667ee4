@@ -22,6 +22,30 @@
       },
       "revId": "058f76702a6dd2781f34db7aa776e911ec667ee4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f6a77e4_4a725f56",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-05-24T04:02:51Z",
+      "side": 1,
+      "message": "confirm that this is still handled in legacy stack",
+      "parentUuid": "1c95f12d_e5924780",
+      "range": {
+        "startLine": 355,
+        "startChar": 7,
+        "endLine": 356,
+        "endChar": 51
+      },
+      "revId": "058f76702a6dd2781f34db7aa776e911ec667ee4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
