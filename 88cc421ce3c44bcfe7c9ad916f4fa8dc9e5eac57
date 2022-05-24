@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "251dc262_30021fec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-24T17:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c84e79a2_ed9b6a4c",
+      "revId": "88cc421ce3c44bcfe7c9ad916f4fa8dc9e5eac57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42430979_df381ad5",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-05-23T20:04:15Z",
       "side": 1,
       "message": "Comment why this needs a locked block rather than just `lock().unwrap().foo`",
+      "revId": "88cc421ce3c44bcfe7c9ad916f4fa8dc9e5eac57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d3d0af5_f6029f8f",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-24T17:00:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42430979_df381ad5",
       "revId": "88cc421ce3c44bcfe7c9ad916f4fa8dc9e5eac57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
