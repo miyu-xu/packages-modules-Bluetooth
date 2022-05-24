@@ -51,6 +51,24 @@
       "parentUuid": "ba51a431_235403aa",
       "revId": "70042ceb2810409085bebb663c8901345e8504de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "803f490c_cb52af2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-05-24T18:36:17Z",
+      "side": 1,
+      "message": "No please don\u0027t...as mentioned I like the Oxford comma for the property of arbitrary re-sorting w/out hiding a line with a missing comma in the mix.",
+      "parentUuid": "b717c14d_a77e90f2",
+      "revId": "70042ceb2810409085bebb663c8901345e8504de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
