@@ -47,6 +47,19 @@
 PRIVATE OI_STATUS FindSyncword(OI_CODEC_SBC_DECODER_CONTEXT* context,
                                const OI_BYTE** frameData,
                                uint32_t* frameBytes) {
+  if (context->mSbcEnabled) {
+    while (*frameBytes >= 58 &&
+           ((**frameData != OI_SBC_MSBC_SYNCWORD) || ((*frameData)[1] != 0) ||
+            ((*frameData)[2] != 0))) {
+      (*frameBytes)--;
+      (*frameData)++;
+    }
+    if (**frameData != OI_SBC_MSBC_SYNCWORD) {
+      return OI_CODEC_SBC_NO_SYNCWORD;
+    }
+    return OI_OK;
+  }
+
 #ifdef SBC_ENHANCED
   OI_BYTE search1 = OI_SBC_SYNCWORD;
   OI_BYTE search2 = OI_SBC_ENHANCED_SYNCWORD;
@@ -240,6 +253,22 @@ OI_STATUS OI_CODEC_SBC_DecoderReset(OI_CODEC_SBC_DECODER_CONTEXT* context,
                                maxChannels, pcmStride, enhanced);
 }
 
+OI_STATUS OI_CODEC_SBC_DecoderConfigureMSbc(
+    OI_CODEC_SBC_DECODER_CONTEXT* context) {
+  context->mSbcEnabled = TRUE;
+  context->common.frameInfo.enhanced = FALSE;
+  context->common.frameInfo.freqIndex = SBC_FREQ_16000;
+  context->common.frameInfo.mode = SBC_MONO;
+  context->common.frameInfo.subbands = SBC_SUBBANDS_8;
+  context->common.frameInfo.blocks = SBC_BLOCKS_15;
+  context->common.frameInfo.alloc = SBC_LOUDNESS;
+  context->common.frameInfo.bitpool = 26;
+
+  OI_SBC_ExpandFrameFields(&context->common.frameInfo);
+
+  return OI_OK;
+}
+
 OI_STATUS OI_CODEC_SBC_DecodeFrame(OI_CODEC_SBC_DECODER_CONTEXT* context,
                                    const OI_BYTE** frameData,
                                    uint32_t* frameBytes, int16_t* pcmData,
@@ -262,9 +291,16 @@ OI_STATUS OI_CODEC_SBC_DecodeFrame(OI_CODEC_SBC_DECODER_CONTEXT* context,
     return OI_CODEC_SBC_NOT_ENOUGH_HEADER_DATA;
   }
 
-  TRACE(("Reading Header"));
-  OI_SBC_ReadHeader(&context->common, *frameData);
-
+  if (context->mSbcEnabled) {
+    /*
+     * There is no parameter embedded in mSBC's header as the parameters are
+     * fixed unlike the general SBC. We only need the packet's crc for mSBC.
+     */
+    context->common.frameInfo.crc = (*frameData)[3];
+  } else {
+    TRACE(("Reading Header"));
+    OI_SBC_ReadHeader(&context->common, *frameData);
+  }
   /*
    * Some implementations load the decoder into RAM and use overlays for 4 vs 8
    * subbands. We need
@@ -346,6 +382,11 @@ OI_STATUS OI_CODEC_SBC_DecodeFrame(OI_CODEC_SBC_DECODER_CONTEXT* context,
     *frameBytes -= framelen;
   }
   TRACE(("-OI_CODEC_SBC_DecodeFrame: %d", status));
+
+  /* mSBC is designed with 8 bits of zeros at the end for padding. */
+  if (context->mSbcEnabled) {
+    *frameBytes -= 1;
+  }
 
   return status;
 }
