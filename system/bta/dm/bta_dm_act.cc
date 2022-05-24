@@ -1072,6 +1072,41 @@ void bta_dm_disc_rmt_name(tBTA_DM_MSG* p_data) {
 
 /*******************************************************************************
  *
+ * Function         bta_dm_sdp_result_failed
+ *
+ * Description      Handle failure case while processing the sdp result
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void bta_dm_sdp_result_failed(tBTA_DM_MSG* p_data) {
+  /* conn failed. No need for timer */
+  if (p_data->sdp_event.sdp_result == SDP_CONN_FAILED)
+    bta_dm_search_cb.wait_disc = false;
+
+  /* not able to connect go to next device */
+  if (bta_dm_search_cb.p_sdp_db)
+    osi_free_and_reset((void**)&bta_dm_search_cb.p_sdp_db);
+
+  if (bluetooth::shim::is_gd_security_enabled()) {
+    bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
+        &bta_dm_service_search_remname_cback);
+  } else {
+    BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
+  }
+
+  tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
+  p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
+  p_msg->disc_result.result.disc_res.result = BTA_FAILURE;
+  p_msg->disc_result.result.disc_res.services = bta_dm_search_cb.services_found;
+  p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+  strlcpy((char*)p_msg->disc_result.result.disc_res.bd_name,
+          bta_dm_get_remname(), BD_NAME_LEN + 1);
+
+  bta_sys_sendmsg(p_msg);
+}
+/*******************************************************************************
+ *
  * Function         bta_dm_sdp_result
  *
  * Description      Process the discovery result from sdp
@@ -1088,179 +1123,115 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
   std::vector<Uuid> uuid_list;
 
-  if ((p_data->sdp_event.sdp_result == SDP_SUCCESS) ||
-      (p_data->sdp_event.sdp_result == SDP_NO_RECS_MATCH) ||
-      (p_data->sdp_event.sdp_result == SDP_DB_FULL)) {
-    APPL_TRACE_DEBUG("sdp_result::0x%x", p_data->sdp_event.sdp_result);
-    if (bta_dm_search_cb.service_index == 0) {
-      // prevent crash when later looking for [service_index - 1]
-      bta_dm_search_cb.service_index = 1;
+  if ((p_data->sdp_event.sdp_result != SDP_SUCCESS) &&
+      (p_data->sdp_event.sdp_result != SDP_NO_RECS_MATCH) &&
+      (p_data->sdp_event.sdp_result != SDP_DB_FULL)) {
+    return bta_dm_sdp_result_failed(p_data);
+  }
+  APPL_TRACE_DEBUG("sdp_result::0x%x", p_data->sdp_event.sdp_result);
+  if (bta_dm_search_cb.service_index == 0) {
+    // prevent crash when later looking for [service_index - 1]
+    bta_dm_search_cb.service_index = 1;
+  }
+  do {
+    p_sdp_rec = NULL;
+    if (bta_dm_search_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
+      if (p_sdp_rec &&
+          SDP_FindProtocolListElemInRec(p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
+        bta_dm_search_cb.peer_scn = (uint8_t)pe.params[0];
+        scn_found = true;
+      }
+    } else {
+      service =
+          bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
+      p_sdp_rec =
+          SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, service, p_sdp_rec);
     }
-    do {
-      p_sdp_rec = NULL;
-      if (bta_dm_search_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
-        if (p_sdp_rec && SDP_FindProtocolListElemInRec(
-                             p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
-          bta_dm_search_cb.peer_scn = (uint8_t)pe.params[0];
-          scn_found = true;
-        }
-      } else {
-        service =
-            bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
-        p_sdp_rec =
-            SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, service, p_sdp_rec);
-      }
-      /* finished with BR/EDR services, now we check the result for GATT based
-       * service UUID */
-      if (bta_dm_search_cb.service_index == BTA_MAX_SERVICE_ID) {
-        /* all GATT based services */
+    /* finished with BR/EDR services, now we check the result for GATT based
+     * service UUID */
+    if (bta_dm_search_cb.service_index == BTA_MAX_SERVICE_ID) {
+      /* all GATT based services */
 
-        std::vector<Uuid> gatt_uuids;
+      std::vector<Uuid> gatt_uuids;
 
-        do {
-          /* find a service record, report it */
-          p_sdp_rec =
-              SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, 0, p_sdp_rec);
-          if (p_sdp_rec) {
-            Uuid service_uuid;
-            if (SDP_FindServiceUUIDInRec(p_sdp_rec, &service_uuid)) {
-              gatt_uuids.push_back(service_uuid);
-            }
-          }
-        } while (p_sdp_rec);
-
-        if (!gatt_uuids.empty()) {
-          LOG_INFO("GATT services discovered using SDP");
-
-          // send all result back to app
-          tBTA_DM_SEARCH result;
-          result.disc_ble_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-          strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
-                  BD_NAME_LEN + 1);
-
-          result.disc_ble_res.services = &gatt_uuids;
-          bta_dm_search_cb.p_search_cback(BTA_DM_DISC_BLE_RES_EVT, &result);
-        }
-      } else {
-        /* SDP_DB_FULL means some records with the
-           required attributes were received */
-        if (((p_data->sdp_event.sdp_result == SDP_DB_FULL) &&
-             bta_dm_search_cb.services != BTA_ALL_SERVICE_MASK) ||
-            (p_sdp_rec != NULL)) {
-          if (service != UUID_SERVCLASS_PNP_INFORMATION) {
-            bta_dm_search_cb.services_found |=
-                (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(
-                    bta_dm_search_cb.service_index - 1));
-            uint16_t tmp_svc =
-                bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index -
-                                                1];
-            /* Add to the list of UUIDs */
-            uuid_list.push_back(Uuid::From16Bit(tmp_svc));
-          }
-        }
-      }
-
-      if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK &&
-          bta_dm_search_cb.services_to_search == 0) {
-        bta_dm_search_cb.service_index++;
-      } else /* regular one service per search or PNP search */
-        break;
-
-    } while (bta_dm_search_cb.service_index <= BTA_MAX_SERVICE_ID);
-
-    APPL_TRACE_DEBUG("%s services_found = %04x", __func__,
-                     bta_dm_search_cb.services_found);
-
-    /* Collect the 128-bit services here and put them into the list */
-    if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK) {
-      p_sdp_rec = NULL;
       do {
         /* find a service record, report it */
         p_sdp_rec =
-            SDP_FindServiceInDb_128bit(bta_dm_search_cb.p_sdp_db, p_sdp_rec);
+            SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, 0, p_sdp_rec);
         if (p_sdp_rec) {
-          // SDP_FindServiceUUIDInRec_128bit is used only once, refactor?
-          Uuid temp_uuid;
-          if (SDP_FindServiceUUIDInRec_128bit(p_sdp_rec, &temp_uuid)) {
-            uuid_list.push_back(temp_uuid);
+          Uuid service_uuid;
+          if (SDP_FindServiceUUIDInRec(p_sdp_rec, &service_uuid)) {
+            gatt_uuids.push_back(service_uuid);
           }
         }
       } while (p_sdp_rec);
-    }
-    /* if there are more services to search for */
-    if (bta_dm_search_cb.services_to_search) {
-      /* Free up the p_sdp_db before checking the next one */
-      bta_dm_free_sdp_db();
-      bta_dm_find_services(bta_dm_search_cb.peer_bdaddr);
+
+      if (!gatt_uuids.empty()) {
+        LOG_INFO("GATT services discovered using SDP");
+
+        // send all result back to app
+        tBTA_DM_SEARCH result;
+        result.disc_ble_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+        strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
+                BD_NAME_LEN + 1);
+
+        result.disc_ble_res.services = &gatt_uuids;
+        bta_dm_search_cb.p_search_cback(BTA_DM_DISC_BLE_RES_EVT, &result);
+      }
     } else {
-      /* callbacks */
-      /* start next bd_addr if necessary */
-
-      if (bluetooth::shim::is_gd_security_enabled()) {
-        bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-            &bta_dm_service_search_remname_cback);
-      } else {
-        BTM_SecDeleteRmtNameNotifyCallback(
-            &bta_dm_service_search_remname_cback);
+      /* SDP_DB_FULL means some records with the
+         required attributes were received */
+      if (((p_data->sdp_event.sdp_result == SDP_DB_FULL) &&
+           bta_dm_search_cb.services != BTA_ALL_SERVICE_MASK) ||
+          (p_sdp_rec != NULL)) {
+        if (service != UUID_SERVCLASS_PNP_INFORMATION) {
+          bta_dm_search_cb.services_found |=
+              (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(
+                  bta_dm_search_cb.service_index - 1));
+          uint16_t tmp_svc =
+              bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index -
+                                              1];
+          /* Add to the list of UUIDs */
+          uuid_list.push_back(Uuid::From16Bit(tmp_svc));
+        }
       }
-
-      p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
-      p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-      p_msg->disc_result.result.disc_res.result = BTA_SUCCESS;
-      p_msg->disc_result.result.disc_res.num_uuids = uuid_list.size();
-      p_msg->disc_result.result.disc_res.p_uuid_list = NULL;
-      if (uuid_list.size() > 0) {
-        // TODO(jpawlowski): make p_uuid_list into vector, and just copy
-        // vectors, but first get rid of bta_sys_sendmsg below.
-        p_msg->disc_result.result.disc_res.p_uuid_list =
-            (Uuid*)osi_calloc(uuid_list.size() * sizeof(Uuid));
-        memcpy(p_msg->disc_result.result.disc_res.p_uuid_list, uuid_list.data(),
-               uuid_list.size() * sizeof(Uuid));
-      }
-      // Copy the raw_data to the discovery result structure
-      if (bta_dm_search_cb.p_sdp_db != NULL &&
-          bta_dm_search_cb.p_sdp_db->raw_used != 0 &&
-          bta_dm_search_cb.p_sdp_db->raw_data != NULL) {
-        APPL_TRACE_DEBUG("%s raw_data used = 0x%x raw_data_ptr = 0x%x",
-                         __func__, bta_dm_search_cb.p_sdp_db->raw_used,
-                         bta_dm_search_cb.p_sdp_db->raw_data);
-
-        bta_dm_search_cb.p_sdp_db->raw_data =
-            NULL;  // no need to free this - it is a global assigned.
-        bta_dm_search_cb.p_sdp_db->raw_used = 0;
-        bta_dm_search_cb.p_sdp_db->raw_size = 0;
-      } else {
-        APPL_TRACE_DEBUG("%s raw data size is 0 or raw_data is null!!",
-                         __func__);
-      }
-      /* Done with p_sdp_db. Free it */
-      bta_dm_free_sdp_db();
-      p_msg->disc_result.result.disc_res.services =
-          bta_dm_search_cb.services_found;
-
-      // Piggy back the SCN over result field
-      if (scn_found) {
-        p_msg->disc_result.result.disc_res.result =
-            static_cast<tBTA_STATUS>((3 + bta_dm_search_cb.peer_scn));
-        p_msg->disc_result.result.disc_res.services |= BTA_USER_SERVICE_MASK;
-
-        APPL_TRACE_EVENT(" Piggy back the SCN over result field  SCN=%d",
-                         bta_dm_search_cb.peer_scn);
-      }
-      p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-      strlcpy((char*)p_msg->disc_result.result.disc_res.bd_name,
-              bta_dm_get_remname(), BD_NAME_LEN + 1);
-
-      bta_sys_sendmsg(p_msg);
     }
-  } else {
-    /* conn failed. No need for timer */
-    if (p_data->sdp_event.sdp_result == SDP_CONN_FAILED)
-      bta_dm_search_cb.wait_disc = false;
 
-    /* not able to connect go to next device */
-    if (bta_dm_search_cb.p_sdp_db)
-      osi_free_and_reset((void**)&bta_dm_search_cb.p_sdp_db);
+    if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK &&
+        bta_dm_search_cb.services_to_search == 0) {
+      bta_dm_search_cb.service_index++;
+    } else /* regular one service per search or PNP search */
+      break;
+
+  } while (bta_dm_search_cb.service_index <= BTA_MAX_SERVICE_ID);
+
+  APPL_TRACE_DEBUG("%s services_found = %04x", __func__,
+                   bta_dm_search_cb.services_found);
+
+  /* Collect the 128-bit services here and put them into the list */
+  if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK) {
+    p_sdp_rec = NULL;
+    do {
+      /* find a service record, report it */
+      p_sdp_rec =
+          SDP_FindServiceInDb_128bit(bta_dm_search_cb.p_sdp_db, p_sdp_rec);
+      if (p_sdp_rec) {
+        // SDP_FindServiceUUIDInRec_128bit is used only once, refactor?
+        Uuid temp_uuid;
+        if (SDP_FindServiceUUIDInRec_128bit(p_sdp_rec, &temp_uuid)) {
+          uuid_list.push_back(temp_uuid);
+        }
+      }
+    } while (p_sdp_rec);
+  }
+  /* if there are more services to search for */
+  if (bta_dm_search_cb.services_to_search) {
+    /* Free up the p_sdp_db before checking the next one */
+    bta_dm_free_sdp_db();
+    bta_dm_find_services(bta_dm_search_cb.peer_bdaddr);
+  } else {
+    /* callbacks */
+    /* start next bd_addr if necessary */
 
     if (bluetooth::shim::is_gd_security_enabled()) {
       bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
@@ -1271,9 +1242,46 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
     p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
     p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-    p_msg->disc_result.result.disc_res.result = BTA_FAILURE;
+    p_msg->disc_result.result.disc_res.result = BTA_SUCCESS;
+    p_msg->disc_result.result.disc_res.num_uuids = uuid_list.size();
+    p_msg->disc_result.result.disc_res.p_uuid_list = NULL;
+    if (uuid_list.size() > 0) {
+      // TODO(jpawlowski): make p_uuid_list into vector, and just copy
+      // vectors, but first get rid of bta_sys_sendmsg below.
+      p_msg->disc_result.result.disc_res.p_uuid_list =
+          (Uuid*)osi_calloc(uuid_list.size() * sizeof(Uuid));
+      memcpy(p_msg->disc_result.result.disc_res.p_uuid_list, uuid_list.data(),
+             uuid_list.size() * sizeof(Uuid));
+    }
+    // Copy the raw_data to the discovery result structure
+    if (bta_dm_search_cb.p_sdp_db != NULL &&
+        bta_dm_search_cb.p_sdp_db->raw_used != 0 &&
+        bta_dm_search_cb.p_sdp_db->raw_data != NULL) {
+      APPL_TRACE_DEBUG("%s raw_data used = 0x%x raw_data_ptr = 0x%x", __func__,
+                       bta_dm_search_cb.p_sdp_db->raw_used,
+                       bta_dm_search_cb.p_sdp_db->raw_data);
+
+      bta_dm_search_cb.p_sdp_db->raw_data =
+          NULL;  // no need to free this - it is a global assigned.
+      bta_dm_search_cb.p_sdp_db->raw_used = 0;
+      bta_dm_search_cb.p_sdp_db->raw_size = 0;
+    } else {
+      APPL_TRACE_DEBUG("%s raw data size is 0 or raw_data is null!!", __func__);
+    }
+    /* Done with p_sdp_db. Free it */
+    bta_dm_free_sdp_db();
     p_msg->disc_result.result.disc_res.services =
         bta_dm_search_cb.services_found;
+
+    // Piggy back the SCN over result field
+    if (scn_found) {
+      p_msg->disc_result.result.disc_res.result =
+          static_cast<tBTA_STATUS>((3 + bta_dm_search_cb.peer_scn));
+      p_msg->disc_result.result.disc_res.services |= BTA_USER_SERVICE_MASK;
+
+      APPL_TRACE_EVENT(" Piggy back the SCN over result field  SCN=%d",
+                       bta_dm_search_cb.peer_scn);
+    }
     p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
     strlcpy((char*)p_msg->disc_result.result.disc_res.bd_name,
             bta_dm_get_remname(), BD_NAME_LEN + 1);
