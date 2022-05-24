@@ -128,7 +128,9 @@ void bta_scan_results_cb_impl(RawAddress bd_addr, tBT_DEVICE_TYPE device_type,
     if (!btif_address_cache_find(bd_addr)) {
       btif_address_cache_add(bd_addr, addr_type);
 
-      if (p_eir_remote_name) {
+      /* After pairing, we read device name from GATT database. It should not
+         be replaced by name in some random packets flying around. */
+      if (p_eir_remote_name && (!btm_sec_is_a_bonded_dev(bd_addr))) {
         if (remote_name_len > BD_NAME_LEN + 1 ||
             (remote_name_len == BD_NAME_LEN + 1 &&
              p_eir_remote_name[BD_NAME_LEN] != '\0')) {

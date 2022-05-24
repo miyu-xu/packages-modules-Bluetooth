@@ -122,6 +122,7 @@ extern void btif_dm_update_ble_remote_properties(const RawAddress& bd_addr,
 
 extern void btm_ble_process_adv_addr(RawAddress& raw_address,
                                      tBLE_ADDR_TYPE* address_type);
+extern bool btm_sec_is_a_bonded_dev(const RawAddress& bda);
 
 using bluetooth::shim::BleScannerInterfaceImpl;
 
@@ -556,7 +557,7 @@ void BleScannerInterfaceImpl::handle_remote_properties(
     if (!address_cache_.find(bd_addr)) {
       address_cache_.add(bd_addr);
 
-      if (p_eir_remote_name) {
+      if (p_eir_remote_name && (!btm_sec_is_a_bonded_dev(bd_addr))) {
         if (remote_name_len > BD_NAME_LEN + 1 ||
             (remote_name_len == BD_NAME_LEN + 1 &&
              p_eir_remote_name[BD_NAME_LEN] != '\0')) {
