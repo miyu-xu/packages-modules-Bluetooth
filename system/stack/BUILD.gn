@@ -122,6 +122,8 @@ source_set("stack") {
     "btm/btm_scn.cc",
     "btm/btm_sco.cc",
     "btm/btm_sco_hci.cc",
+    "btm/hfp_msbc_encoder.cc",
+    "btm/hfp_msbc_decoder.cc",
     "btm/btm_sec.cc",
     "btu/btu_hcif.cc",
     "btu/btu_task.cc",
