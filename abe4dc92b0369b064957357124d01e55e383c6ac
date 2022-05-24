@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "052a152b_f316194f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-24T23:58:43Z",
+      "side": 1,
+      "message": "This CL only change indentation and add braces around if for the failed case",
+      "revId": "abe4dc92b0369b064957357124d01e55e383c6ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
