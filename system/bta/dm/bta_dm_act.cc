@@ -1115,8 +1115,6 @@ static void bta_dm_sdp_result_failed(tBTA_DM_MSG* p_data) {
  *
  ******************************************************************************/
 void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
-  uint16_t service = 0xFFFF;
-
   std::vector<Uuid> uuid_list;
 
   if ((p_data->sdp_event.sdp_result != SDP_SUCCESS) &&
@@ -1125,72 +1123,76 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
     return bta_dm_sdp_result_failed(p_data);
   }
   APPL_TRACE_DEBUG("sdp_result::0x%x", p_data->sdp_event.sdp_result);
-  if (bta_dm_search_cb.service_index == 0) {
-    // prevent crash when later looking for [service_index - 1]
-    bta_dm_search_cb.service_index = 1;
-  }
-  do {
+
+  bool one_service_search = false;
+
+  while (bta_dm_search_cb.service_index < BTA_MAX_SERVICE_ID) {
     tSDP_DISC_REC* p_sdp_rec = NULL;
-    if (bta_dm_search_cb.service_index != (BTA_USER_SERVICE_ID + 1)) {
-      service =
-          bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
-      p_sdp_rec =
-          SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, service, p_sdp_rec);
+    uint16_t service =
+        bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
+    tSDP_DISC_REC* p_sdp_rec =
+        SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, service, NULL);
+    /* SDP_DB_FULL means some records with the
+       required attributes were received */
+    if (((p_data->sdp_event.sdp_result == SDP_DB_FULL) &&
+         bta_dm_search_cb.services != BTA_ALL_SERVICE_MASK) ||
+        (p_sdp_rec != NULL)) {
+      if (service != UUID_SERVCLASS_PNP_INFORMATION) {
+        bta_dm_search_cb.services_found |=
+            (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(
+                bta_dm_search_cb.service_index - 1));
+        uint16_t tmp_svc =
+            bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
+        /* Add to the list of UUIDs */
+        uuid_list.push_back(Uuid::From16Bit(tmp_svc));
+      }
     }
-    /* finished with BR/EDR services, now we check the result for GATT based
-     * service UUID */
-    if (bta_dm_search_cb.service_index == BTA_MAX_SERVICE_ID) {
-      /* all GATT based services */
-
-      std::vector<Uuid> gatt_uuids;
-
-      while ((p_sdp_rec = SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, 0,
-                                              p_sdp_rec))) {
-        /* find a service record, report it */
-        Uuid service_uuid;
-        if (SDP_FindServiceUUIDInRec(p_sdp_rec, &service_uuid)) {
-          gatt_uuids.push_back(service_uuid);
-        }
-      }
-
-      if (!gatt_uuids.empty()) {
-        LOG_INFO("GATT services discovered using SDP");
-
-        // send all result back to app
-        tBTA_DM_SEARCH result;
-        result.disc_ble_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-        strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
-                BD_NAME_LEN + 1);
-
-        result.disc_ble_res.services = &gatt_uuids;
-        bta_dm_search_cb.p_search_cback(BTA_DM_DISC_BLE_RES_EVT, &result);
-      }
+    if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK &&
+        bta_dm_search_cb.services_to_search == 0) {
+      bta_dm_search_cb.service_index++;
     } else {
-      /* SDP_DB_FULL means some records with the
-         required attributes were received */
-      if (((p_data->sdp_event.sdp_result == SDP_DB_FULL) &&
-           bta_dm_search_cb.services != BTA_ALL_SERVICE_MASK) ||
-          (p_sdp_rec != NULL)) {
-        if (service != UUID_SERVCLASS_PNP_INFORMATION) {
-          bta_dm_search_cb.services_found |=
-              (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(
-                  bta_dm_search_cb.service_index - 1));
-          uint16_t tmp_svc =
-              bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index -
-                                              1];
-          /* Add to the list of UUIDs */
-          uuid_list.push_back(Uuid::From16Bit(tmp_svc));
-        }
+      /* regular one service per search or PNP search */
+      one_service_search = true;
+      break;
+    }
+  }
+
+  /* finished with BR/EDR services, now we check the result for GATT based
+   * service UUID */
+  if (!one_service_search &&
+      bta_dm_search_cb.service_index == BTA_MAX_SERVICE_ID) {
+    /* all GATT based services */
+
+    std::vector<Uuid> gatt_uuids;
+
+    tSDP_DISC_REC* p_sdp_rec = NULL;
+    while ((p_sdp_rec =
+                SDP_FindServiceInDb(bta_dm_search_cb.p_sdp_db, 0, p_sdp_rec))) {
+      /* find a service record, report it */
+      Uuid service_uuid;
+      if (SDP_FindServiceUUIDInRec(p_sdp_rec, &service_uuid)) {
+        gatt_uuids.push_back(service_uuid);
       }
+    }
+
+    if (!gatt_uuids.empty()) {
+      LOG_INFO("GATT services discovered using SDP");
+
+      // send all result back to app
+      tBTA_DM_SEARCH result;
+      result.disc_ble_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+      strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
+              BD_NAME_LEN + 1);
+
+      result.disc_ble_res.services = &gatt_uuids;
+      bta_dm_search_cb.p_search_cback(BTA_DM_DISC_BLE_RES_EVT, &result);
     }
 
     if (bta_dm_search_cb.services == BTA_ALL_SERVICE_MASK &&
         bta_dm_search_cb.services_to_search == 0) {
       bta_dm_search_cb.service_index++;
-    } else /* regular one service per search or PNP search */
-      break;
-
-  } while (bta_dm_search_cb.service_index <= BTA_MAX_SERVICE_ID);
+    }
+  }
 
   APPL_TRACE_DEBUG("%s services_found = %04x", __func__,
                    bta_dm_search_cb.services_found);
