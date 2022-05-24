@@ -1072,6 +1072,43 @@ void bta_dm_disc_rmt_name(tBTA_DM_MSG* p_data) {
 
 /*******************************************************************************
  *
+ * Function         bta_dm_sdp_result_failed
+ *
+ * Description      Handle failure case while processing the sdp result
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void bta_dm_sdp_result_failed(tBTA_DM_MSG* p_data) {
+    /* conn failed. No need for timer */
+    if (p_data->sdp_event.sdp_result == SDP_CONN_FAILED)
+      bta_dm_search_cb.wait_disc = false;
+
+    /* not able to connect go to next device */
+    if (bta_dm_search_cb.p_sdp_db)
+      osi_free_and_reset((void**)&bta_dm_search_cb.p_sdp_db);
+
+    if (bluetooth::shim::is_gd_security_enabled()) {
+      bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
+          &bta_dm_service_search_remname_cback);
+    } else {
+      BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
+    }
+
+    tBTA_DM_MSG* p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
+    p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
+    p_msg->disc_result.result.disc_res.result = BTA_FAILURE;
+    p_msg->disc_result.result.disc_res.services =
+        bta_dm_search_cb.services_found;
+    p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
+    strlcpy((char*)p_msg->disc_result.result.disc_res.bd_name,
+            bta_dm_get_remname(), BD_NAME_LEN + 1);
+
+    bta_sys_sendmsg(p_msg);
+}
+
+/*******************************************************************************
+ *
  * Function         bta_dm_sdp_result
  *
  * Description      Process the discovery result from sdp
@@ -1088,9 +1125,11 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
   std::vector<Uuid> uuid_list;
 
-  if ((p_data->sdp_event.sdp_result == SDP_SUCCESS) ||
-      (p_data->sdp_event.sdp_result == SDP_NO_RECS_MATCH) ||
-      (p_data->sdp_event.sdp_result == SDP_DB_FULL)) {
+  if ((p_data->sdp_event.sdp_result != SDP_SUCCESS) &&
+      (p_data->sdp_event.sdp_result != SDP_NO_RECS_MATCH) &&
+      (p_data->sdp_event.sdp_result != SDP_DB_FULL)) {
+    return bta_dm_sdp_result_failed(p_data);
+  }
     APPL_TRACE_DEBUG("sdp_result::0x%x", p_data->sdp_event.sdp_result);
     if (bta_dm_search_cb.service_index == 0) {
       // prevent crash when later looking for [service_index - 1]
@@ -1253,33 +1292,6 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
       bta_sys_sendmsg(p_msg);
     }
-  } else {
-    /* conn failed. No need for timer */
-    if (p_data->sdp_event.sdp_result == SDP_CONN_FAILED)
-      bta_dm_search_cb.wait_disc = false;
-
-    /* not able to connect go to next device */
-    if (bta_dm_search_cb.p_sdp_db)
-      osi_free_and_reset((void**)&bta_dm_search_cb.p_sdp_db);
-
-    if (bluetooth::shim::is_gd_security_enabled()) {
-      bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-          &bta_dm_service_search_remname_cback);
-    } else {
-      BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
-    }
-
-    p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
-    p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
-    p_msg->disc_result.result.disc_res.result = BTA_FAILURE;
-    p_msg->disc_result.result.disc_res.services =
-        bta_dm_search_cb.services_found;
-    p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-    strlcpy((char*)p_msg->disc_result.result.disc_res.bd_name,
-            bta_dm_get_remname(), BD_NAME_LEN + 1);
-
-    bta_sys_sendmsg(p_msg);
-  }
 }
 
 /*******************************************************************************
