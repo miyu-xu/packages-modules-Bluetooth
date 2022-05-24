@@ -1117,9 +1117,7 @@ static void bta_dm_sdp_result_failed(tBTA_DM_MSG* p_data) {
 void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
   tSDP_DISC_REC* p_sdp_rec = NULL;
   tBTA_DM_MSG* p_msg;
-  bool scn_found = false;
   uint16_t service = 0xFFFF;
-  tSDP_PROTOCOL_ELEM pe;
 
   std::vector<Uuid> uuid_list;
 
@@ -1135,13 +1133,7 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
   }
   do {
     p_sdp_rec = NULL;
-    if (bta_dm_search_cb.service_index == (BTA_USER_SERVICE_ID + 1)) {
-      if (p_sdp_rec &&
-          SDP_FindProtocolListElemInRec(p_sdp_rec, UUID_PROTOCOL_RFCOMM, &pe)) {
-        bta_dm_search_cb.peer_scn = (uint8_t)pe.params[0];
-        scn_found = true;
-      }
-    } else {
+    if (bta_dm_search_cb.service_index != (BTA_USER_SERVICE_ID + 1)) {
       service =
           bta_service_id_to_uuid_lkup_tbl[bta_dm_search_cb.service_index - 1];
       p_sdp_rec =
@@ -1273,15 +1265,6 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
     p_msg->disc_result.result.disc_res.services =
         bta_dm_search_cb.services_found;
 
-    // Piggy back the SCN over result field
-    if (scn_found) {
-      p_msg->disc_result.result.disc_res.result =
-          static_cast<tBTA_STATUS>((3 + bta_dm_search_cb.peer_scn));
-      p_msg->disc_result.result.disc_res.services |= BTA_USER_SERVICE_MASK;
-
-      APPL_TRACE_EVENT(" Piggy back the SCN over result field  SCN=%d",
-                       bta_dm_search_cb.peer_scn);
-    }
     p_msg->disc_result.result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
     strlcpy((char*)p_msg->disc_result.result.disc_res.bd_name,
             bta_dm_get_remname(), BD_NAME_LEN + 1);
