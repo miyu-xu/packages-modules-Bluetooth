@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b1a5c65_8efc5593",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-24T23:21:46Z",
+      "side": 1,
+      "message": "dbus-rs is fine after all, it\u0027s btadapterd that doesn\u0027t set it up early enough so that it isn\u0027t ready handling methods by the time it emits InterfacesAdded signal.",
+      "revId": "a3e4d518a9b86d3788172dad1beebd07e9715967",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
