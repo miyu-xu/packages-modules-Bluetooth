@@ -69,6 +69,24 @@
       "parentUuid": "7b39e623_ac8a525f",
       "revId": "820ac7ecbaf71343b3534eda5a9aa864e8bd84aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "882b94ad_9d16b114",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-05-25T23:52:03Z",
+      "side": 1,
+      "message": "Done, but we\u0027ll still need to refactor our configuration files to be able to have one per profile.",
+      "parentUuid": "ab728468_86e1e5b7",
+      "revId": "820ac7ecbaf71343b3534eda5a9aa864e8bd84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
