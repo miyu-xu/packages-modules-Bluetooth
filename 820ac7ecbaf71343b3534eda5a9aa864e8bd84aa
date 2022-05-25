@@ -51,6 +51,24 @@
       "parentUuid": "3c0a188c_d31fe18e",
       "revId": "820ac7ecbaf71343b3534eda5a9aa864e8bd84aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab728468_86e1e5b7",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-25T17:28:02Z",
+      "side": 1,
+      "message": "`pass` and `skip` will be very big too as soon as we add other profile",
+      "parentUuid": "7b39e623_ac8a525f",
+      "revId": "820ac7ecbaf71343b3534eda5a9aa864e8bd84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
