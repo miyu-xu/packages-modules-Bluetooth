@@ -468,25 +468,26 @@ bool setup_codec() {
   return active_hal_interface->UpdateAudioConfig(audio_config);
 }
 
-void start_session() {
+bool start_session() {
   if (!is_hal_enabled()) {
     LOG(ERROR) << __func__ << ": BluetoothAudio HAL is not enabled";
-    return;
+    return false;
   }
   active_hal_interface->SetLowLatencyModeAllowed(is_low_latency_mode_allowed);
-  active_hal_interface->StartSession();
+  return (active_hal_interface->StartSession() == 0);
 }
 
-void end_session() {
+bool end_session() {
   if (!is_hal_enabled()) {
     LOG(ERROR) << __func__ << ": BluetoothAudio HAL is not enabled";
-    return;
+    return false;
   }
-  active_hal_interface->EndSession();
+  int status = active_hal_interface->EndSession();
   static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())
       ->ResetPendingCmd();
   static_cast<A2dpTransport*>(active_hal_interface->GetTransportInstance())
       ->ResetPresentationPosition();
+  return (status == 0);
 }
 
 void ack_stream_started(const tA2DP_CTRL_ACK& ack) {
