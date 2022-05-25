@@ -22,6 +22,30 @@
       },
       "revId": "d94ee6a67a745b81691017e5d776d2aaa7487d89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a74f144_adc1a454",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1952866
+      },
+      "writtenOn": "2022-05-25T02:09:28Z",
+      "side": 1,
+      "message": "In parseBroadcastReceiverState(), we will create BluetoothLeBroadcastReceiveState instance with emptyBluetoothDevice address if Broadcast Receive State is empty (zero length). getAllSources() return all the entries including emptyBluetoothDevice entries. Hence here we compare emptyBluetoothDevice. Please let me know if have any concern.\nThanks",
+      "parentUuid": "a8cc5b42_857e22bb",
+      "range": {
+        "startLine": 332,
+        "startChar": 8,
+        "endLine": 337,
+        "endChar": 9
+      },
+      "revId": "d94ee6a67a745b81691017e5d776d2aaa7487d89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
