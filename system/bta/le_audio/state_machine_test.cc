@@ -27,6 +27,7 @@
 #include "btm_api_mock.h"
 #include "client_parser.h"
 #include "fake_osi.h"
+#include "gd/common/init_flags.h"
 #include "le_audio_set_configuration_provider.h"
 #include "mock_codec_manager.h"
 #include "mock_controller.h"
@@ -46,6 +47,10 @@ using ::testing::Test;
 std::map<std::string, int> mock_function_count_map;
 
 extern struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
+const char* test_flags[] = {
+    "INIT_logging_debug_enabled_for_all=true",
+    nullptr,
+};
 
 namespace le_audio {
 namespace internal {
@@ -155,6 +160,7 @@ class StateMachineTest : public Test {
  protected:
   void SetUp() override {
     mock_function_count_map.clear();
+    bluetooth::common::InitFlags::Load(test_flags);
     controller::SetMockControllerInterface(&mock_controller_);
     bluetooth::manager::SetMockBtmInterface(&btm_interface);
     gatt::SetMockBtaGattInterface(&gatt_interface);
