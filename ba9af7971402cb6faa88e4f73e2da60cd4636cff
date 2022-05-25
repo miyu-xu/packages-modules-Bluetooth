@@ -16,6 +16,24 @@
       "message": "Hey Chen, just checking why we\u0027re dropping catching IllegalStateExceptions? Are those never thrown? If they are, can we check for both?",
       "revId": "ba9af7971402cb6faa88e4f73e2da60cd4636cff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "220bbb4d_c21cb337",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-05-25T05:41:29Z",
+      "side": 1,
+      "message": "I believe we need both.\n\nIllegalStateExceptions is thrown if the database version gets changed and it cannot find implementation to migrate the data.\nOne easy way to hit this exception is by downgrading the Bluetooth apk to an earlier database version. The Room database throws the error because there\u0027s no migration to lower the database version.",
+      "parentUuid": "8b2bccf5_7f7d0dac",
+      "revId": "ba9af7971402cb6faa88e4f73e2da60cd4636cff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
