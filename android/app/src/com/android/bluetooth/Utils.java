@@ -258,6 +258,22 @@ public final class Utils {
         return puuids;
     }
 
+    public static ParcelUuid[] sumOfUuidArrays(ParcelUuid[] a, ParcelUuid[] b) {
+        if (a == null && b == null)
+            return null;
+
+        if (a == null)
+            return b;
+
+        if (b == null)
+            return a;
+
+        ParcelUuid[] sum = new ParcelUuid[a.length + b.length];
+        System.arraycopy(a, 0, sum, 0, a.length);
+        System.arraycopy(b, 0, sum, a.length, b.length);
+        return sum;
+    }
+
     public static String debugGetAdapterStateString(int state) {
         switch (state) {
             case BluetoothAdapter.STATE_OFF:

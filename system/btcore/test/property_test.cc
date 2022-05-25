@@ -153,6 +153,24 @@ TEST_F(PropertyTest, uuids) {
   property_free(property);
 }
 
+TEST_F(PropertyTest, uuids) {
+  Uuid uuid0 = Uuid::From128BitBE({{
+      0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb,
+      0xcc, 0xdd, 0xee, 0xff,
+  }});
+  bt_property_t* property = property_new_uuids_le_gatt(&uuid0, 1);
+
+  EXPECT_EQ(0, memcmp(uuid0.To128BitBE().data(), property->val, sizeof(Uuid)));
+  EXPECT_EQ(BT_PROPERTY_UUIDS_LE_GATT, property->type);
+  EXPECT_EQ((int)sizeof(Uuid), property->len);
+
+  size_t uuid_cnt1;
+  const Uuid* uuid1 = property_as_uuids(property, &uuid_cnt1);
+  EXPECT_EQ(uuid0, *uuid1);
+
+  property_free(property);
+}
+
 TEST_F(PropertyTest, copy) {
   {
     Uuid uuids[] = {

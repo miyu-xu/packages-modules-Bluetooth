@@ -340,6 +340,14 @@ typedef enum {
    */
   BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER,
 
+  /**
+   * Description - Bluetooth Service 128-bit UUIDs, over LE from GATT database
+   * Access mode - Only GET.
+   * Data type   - Array of bluetooth::Uuid (Array size inferred from property
+   *               length).
+   */
+  BT_PROPERTY_UUIDS_LE_GATT,
+
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
 
