@@ -402,6 +402,15 @@ class HearingAidImpl : public HearingAid {
       hearingDevice->connection_update_status = AWAITING;
     }
 
+    if (controller_get_interface()->supports_ble_2m_phy()) {
+      LOG(INFO) << address << " set preferred PHY to 2M";
+      BTM_BleSetPhy(address, PHY_LE_2M, PHY_LE_2M, 0);
+    }
+
+    // Set data length
+    // TODO(jpawlowski: for 16khz only 87 is required, optimize
+    BTM_SetBleDataLength(address, 167);
+
     if (BTM_SecIsSecurityPending(address)) {
       /* if security collision happened, wait for encryption done
        * (BTA_GATTC_ENC_CMPL_CB_EVT) */
@@ -889,15 +898,6 @@ class HearingAidImpl : public HearingAid {
 
   void ConnectSocket(HearingDevice* hearingDevice, uint16_t psm) {
     tL2CAP_CFG_INFO cfg_info = tL2CAP_CFG_INFO{.mtu = 512};
-
-    if (controller_get_interface()->supports_ble_2m_phy()) {
-      LOG(INFO) << hearingDevice->address << " set preferred PHY to 2M";
-      BTM_BleSetPhy(hearingDevice->address, PHY_LE_2M, PHY_LE_2M, 0);
-    }
-
-    // Set data length
-    // TODO(jpawlowski: for 16khz only 87 is required, optimize
-    BTM_SetBleDataLength(hearingDevice->address, 167);
 
     SendEnableServiceChangedInd(hearingDevice);
 
