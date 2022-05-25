@@ -33,6 +33,24 @@
       "message": "Can you move that at the end of the file as it\u0027s pretty bit and put `pass` then `skip` then `ixit` first ?",
       "revId": "820ac7ecbaf71343b3534eda5a9aa864e8bd84aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b39e623_ac8a525f",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-05-25T17:22:08Z",
+      "side": 1,
+      "message": "big*",
+      "parentUuid": "3c0a188c_d31fe18e",
+      "revId": "820ac7ecbaf71343b3534eda5a9aa864e8bd84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
