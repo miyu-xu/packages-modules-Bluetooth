@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2abce1e7_f83c9291",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-25T00:05:46Z",
+      "side": 1,
+      "message": "How about the RPC version doesn\u0027t have constructor but the client_proxy is supplied by one thing? This would avoid accidental wrong client proxy configuration.",
+      "parentUuid": "b8ef0ba7_ad32825f",
+      "revId": "46edff4dad6cc741c22f89aecd380bd6d4c40e4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "725b418f_53e6cb73",
         "filename": "system/gd/rust/linux/client/src/main.rs",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2022-05-24T23:05:21Z",
       "side": 1,
       "message": "return Ok(()) here since you\u0027re cleaning up. btclient is showing up in crash buckets when we run it without btmanagerd :P",
+      "revId": "46edff4dad6cc741c22f89aecd380bd6d4c40e4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2abde978_2c8c3f01",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-25T00:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "725b418f_53e6cb73",
       "revId": "46edff4dad6cc741c22f89aecd380bd6d4c40e4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -65,6 +101,24 @@
       "writtenOn": "2022-05-24T23:05:21Z",
       "side": 1,
       "message": "nit: Lets call it \"Bluetooth manager\" instead of \"btmanagerd\"",
+      "revId": "46edff4dad6cc741c22f89aecd380bd6d4c40e4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3d9ac2e_58f3e642",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-25T00:05:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fc69f04_2adccb89",
       "revId": "46edff4dad6cc741c22f89aecd380bd6d4c40e4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
