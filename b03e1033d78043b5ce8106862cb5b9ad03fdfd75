@@ -22,6 +22,30 @@
       },
       "revId": "b03e1033d78043b5ce8106862cb5b9ad03fdfd75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6290b8a_73bce98c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 860,
+      "author": {
+        "id": 1952866
+      },
+      "writtenOn": "2022-05-25T01:56:48Z",
+      "side": 1,
+      "message": "As per the spec:\nThe server shall not accept a Remove Source operation for a Source_ID value that matches the Source_ID written by the client in the Remove Source operation if the server is synchronized to the PA and/or any BIS as defined by the values of the PA_Sync_State and BIS_Sync_State fields in the Broadcast Receive State characteristic containing that Source_ID value.\nTo allowing the remove of source in synchronized state, we have to force PA to idle state first.\nThanks",
+      "parentUuid": "cf929520_bce6eaf3",
+      "range": {
+        "startLine": 854,
+        "startChar": 0,
+        "endLine": 860,
+        "endChar": 46
+      },
+      "revId": "b03e1033d78043b5ce8106862cb5b9ad03fdfd75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
