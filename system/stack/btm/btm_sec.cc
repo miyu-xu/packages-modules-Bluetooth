@@ -811,6 +811,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
 
   /* If connection already exists... */
   if (BTM_IsAclConnectionUpAndHandleValid(bd_addr, transport)) {
+    LOG(INFO) << __func__ << ": start auth for " << bd_addr;
     btm_sec_wait_and_start_authentication(p_dev_rec);
 
     btm_sec_change_pairing_state(BTM_PAIR_STATE_WAIT_PIN_REQ);
@@ -2657,9 +2658,12 @@ void btm_io_capabilities_req(const RawAddress& p) {
   btm_cb.devcb.loc_auth_req = evt_data.auth_req;
   btm_cb.devcb.loc_io_caps = evt_data.io_cap;
 
-  BTM_TRACE_EVENT("%s: State: %s  IO_CAP:%d oob_data:%d auth_req:%d", __func__,
-                  btm_pair_state_descr(btm_cb.pairing_state), evt_data.io_cap,
-                  evt_data.oob_data, evt_data.auth_req);
+  LOG(INFO) << __func__
+            << ": State: " << btm_pair_state_descr(btm_cb.pairing_state)
+            << " security mode: " << (int)btm_cb.security_mode
+            << " is orig: " << is_orig << " IO_CAP: " << (int)evt_data.io_cap
+            << " oob_data: " << (int)evt_data.oob_data
+            << " auth_req: " << (int)evt_data.auth_req;
 
   btsnd_hcic_io_cap_req_reply(evt_data.bd_addr, evt_data.io_cap,
                               evt_data.oob_data, evt_data.auth_req);
@@ -4328,7 +4332,7 @@ uint16_t BTM_GetClockOffset(const RawAddress& remote_bda) {
  ******************************************************************************/
 tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
   CHECK(p_dev_rec != nullptr);
-  LOG_DEBUG(
+  LOG_INFO(
       "security_required:0x%x security_flags:0x%x security_state:%s[%hhu]",
       p_dev_rec->security_required, p_dev_rec->sec_flags,
       security_state_text(static_cast<tSECURITY_STATE>(p_dev_rec->sec_state))
@@ -4370,7 +4374,8 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
      * authenticated connections, hence we cannot distinguish here.
      */
 
-    LOG_DEBUG("Security Manager: Start authentication");
+    LOG(INFO) << __func__ << "Security Manager: Start authentication for "
+              << p_dev_rec->bd_addr;
 
     /*
      * If we do have a link-key, but we end up here because we need an
