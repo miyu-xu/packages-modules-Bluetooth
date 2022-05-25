@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "935f0fcb_29a8057a",
+        "filename": "system/embdrv/sbc/decoder/srce/decoder-sbc.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-05-25T02:45:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d38b4039_140bab75",
+      "range": {
+        "startLine": 52,
+        "startChar": 52,
+        "endLine": 53,
+        "endChar": 38
+      },
+      "revId": "6b9c054e5e06370865a36c4d3b77de818f6e23b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e3500c7_b9a0c5fd",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-24T06:23:41Z",
       "side": 1,
       "message": "Suggest leave a TODO to make this \"packet size\" passed by HFP HAL",
+      "range": {
+        "startLine": 85,
+        "startChar": 20,
+        "endLine": 85,
+        "endChar": 22
+      },
+      "revId": "6b9c054e5e06370865a36c4d3b77de818f6e23b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76bdde99_8144ecaa",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-05-25T02:45:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3500c7_b9a0c5fd",
       "range": {
         "startLine": 85,
         "startChar": 20,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9107820_447897df",
+        "filename": "system/stack/btm/hfp_msbc_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-05-25T02:45:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "502fa411_57bc8267",
+      "range": {
+        "startLine": 37,
+        "startChar": 41,
+        "endLine": 37,
+        "endChar": 47
+      },
+      "revId": "6b9c054e5e06370865a36c4d3b77de818f6e23b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1eb972e_1ebf7976",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-05-24T06:23:41Z",
       "side": 1,
       "message": "OI_SBC_MSBC_SYNCWORD",
+      "range": {
+        "startLine": 52,
+        "startChar": 31,
+        "endLine": 52,
+        "endChar": 36
+      },
+      "revId": "6b9c054e5e06370865a36c4d3b77de818f6e23b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afd0346d_d71f2649",
+        "filename": "system/stack/btm/hfp_msbc_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-05-25T02:45:55Z",
+      "side": 1,
+      "message": "OI_SBC_MSBC_SYNCWORD is defined in decoder header. Add SBC_MSBC_SYNCWORD for encoder.",
+      "parentUuid": "e1eb972e_1ebf7976",
       "range": {
         "startLine": 52,
         "startChar": 31,
