@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e856264_0f0d3c79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-05-25T17:20:17Z",
+      "side": 1,
+      "message": "This CL has been downgrade to be a WIP ?\nWhat is the issue ?",
+      "revId": "820ac7ecbaf71343b3534eda5a9aa864e8bd84aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
