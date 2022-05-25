@@ -66,8 +66,8 @@ bool setup_codec();
  * Send command to the BluetoothAudio HAL: StartSession, EndSession,
  * StreamStarted, StreamSuspended
  ***/
-void start_session();
-void end_session();
+bool start_session();
+bool end_session();
 void ack_stream_started(const tA2DP_CTRL_ACK& status);
 void ack_stream_suspended(const tA2DP_CTRL_ACK& status);
 
