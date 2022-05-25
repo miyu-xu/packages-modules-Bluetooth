@@ -86,6 +86,7 @@ using bluetooth::groups::DeviceGroups;
 //#define BTIF_STORAGE_PATH_REMOTE_LINKKEYS "remote_linkkeys"
 #define BTIF_STORAGE_PATH_REMOTE_ALIASE "Aliase"
 #define BTIF_STORAGE_PATH_REMOTE_SERVICE "Service"
+#define BTIF_STORAGE_PATH_REMOTE_SERVICE_LE_GATT "ServiceLeGatt"
 #define BTIF_STORAGE_PATH_REMOTE_HIDINFO "HidInfo"
 #define BTIF_STORAGE_KEY_ADAPTER_NAME "Name"
 #define BTIF_STORAGE_KEY_ADAPTER_SCANMODE "ScanMode"
@@ -269,6 +270,15 @@ static int prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
       btif_config_set_str(bdstr, BTIF_STORAGE_PATH_REMOTE_SERVICE, val);
       break;
     }
+    case BT_PROPERTY_UUIDS_LE_GATT: {
+      std::string val;
+      size_t cnt = (prop->len) / sizeof(Uuid);
+      for (size_t i = 0; i < cnt; i++) {
+        val += (reinterpret_cast<Uuid*>(prop->val) + i)->ToString() + " ";
+      }
+      btif_config_set_str(bdstr, BTIF_STORAGE_PATH_REMOTE_SERVICE_LE_GATT, val);
+      break;
+    }
     case BT_PROPERTY_REMOTE_VERSION_INFO: {
       bt_remote_version_t* info = (bt_remote_version_t*)prop->val;
 
@@ -378,6 +388,22 @@ static int cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
       int size = sizeof(value);
       if (btif_config_get_str(bdstr, BTIF_STORAGE_PATH_REMOTE_SERVICE, value,
                               &size)) {
+        Uuid* p_uuid = reinterpret_cast<Uuid*>(prop->val);
+        size_t num_uuids =
+            btif_split_uuids_string(value, p_uuid, BT_MAX_NUM_UUIDS);
+        prop->len = num_uuids * sizeof(Uuid);
+        ret = true;
+      } else {
+        prop->val = NULL;
+        prop->len = 0;
+      }
+    } break;
+
+    case BT_PROPERTY_UUIDS_LE_GATT: {
+      char value[1280];
+      int size = sizeof(value);
+      if (btif_config_get_str(bdstr, BTIF_STORAGE_PATH_REMOTE_SERVICE_LE_GATT,
+                              value, &size)) {
         Uuid* p_uuid = reinterpret_cast<Uuid*>(prop->val);
         size_t num_uuids =
             btif_split_uuids_string(value, p_uuid, BT_MAX_NUM_UUIDS);
@@ -1652,6 +1678,18 @@ void btif_storage_load_bonded_hearing_aids() {
         }
       }
     }
+    if (btif_config_get_str(name, BTIF_STORAGE_PATH_REMOTE_SERVICE_LE_GATT,
+                            uuid_str, &size)) {
+      Uuid p_uuid[HEARINGAID_MAX_NUM_UUIDS];
+      size_t num_uuids =
+          btif_split_uuids_string(uuid_str, p_uuid, HEARINGAID_MAX_NUM_UUIDS);
+      for (size_t i = 0; i < num_uuids; i++) {
+        if (p_uuid[i] == Uuid::FromString("FDF0")) {
+          isHearingaidDevice = true;
+          break;
+        }
+      }
+    }
     if (!isHearingaidDevice) {
       continue;
     }
@@ -1848,6 +1886,18 @@ void btif_storage_load_bonded_leaudio() {
     bool isLeAudioDevice = false;
     if (btif_config_get_str(name, BTIF_STORAGE_PATH_REMOTE_SERVICE, uuid_str,
                             &size)) {
+      Uuid p_uuid[BT_MAX_NUM_UUIDS];
+      size_t num_uuids =
+          btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);
+      for (size_t i = 0; i < num_uuids; i++) {
+        if (p_uuid[i] == Uuid::FromString("184E")) {
+          isLeAudioDevice = true;
+          break;
+        }
+      }
+    }
+    if (btif_config_get_str(name, BTIF_STORAGE_PATH_REMOTE_SERVICE_LE_GATT,
+                            uuid_str, &size)) {
       Uuid p_uuid[BT_MAX_NUM_UUIDS];
       size_t num_uuids =
           btif_split_uuids_string(uuid_str, p_uuid, BT_MAX_NUM_UUIDS);

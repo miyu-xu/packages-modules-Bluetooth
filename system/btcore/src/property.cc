@@ -122,6 +122,12 @@ bt_property_t* property_new_uuids(const Uuid* uuid, size_t count) {
   return property_new_((void*)uuid, sizeof(Uuid) * count, BT_PROPERTY_UUIDS);
 }
 
+bt_property_t* property_new_uuids_le_gatt(const Uuid* uuid, size_t count) {
+  CHECK(uuid != NULL);
+  return property_new_((void*)uuid, sizeof(Uuid) * count,
+                       BT_PROPERTY_UUIDS_LE_GATT);
+}
+
 void property_free(bt_property_t* property) {
   property_free_array(property, 1);
 }
@@ -174,6 +180,11 @@ bool property_is_scan_mode(const bt_property_t* property) {
 bool property_is_uuids(const bt_property_t* property) {
   CHECK(property != NULL);
   return property->type == BT_PROPERTY_UUIDS;
+}
+
+bool property_is_uuids_le_gatt(const bt_property_t* property) {
+  CHECK(property != NULL);
+  return property->type == BT_PROPERTY_UUIDS_LE_GATT;
 }
 
 // Convenience conversion methods to property values

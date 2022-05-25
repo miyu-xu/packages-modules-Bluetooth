@@ -1409,7 +1409,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
           LOG_INFO("index:%d uuid:%s", i, temp.c_str());
         }
       }
-
+      LOG_ERROR("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ BT_PROPERTY_UUIDS");
       /* onUuidChanged requires getBondedDevices to be populated.
       ** bond_state_changed needs to be sent prior to remote_device_property
       */
@@ -1435,6 +1435,8 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
           prop_uuids.type = BT_PROPERTY_UUIDS;
           prop_uuids.val = &uuid;
           prop_uuids.len = Uuid::kNumBytes128;
+
+      LOG_ERROR("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ BT_PROPERTY_UUIDS");
 
           /* Send the event to the BTIF */
           invoke_remote_device_properties_cb(BT_STATUS_SUCCESS, bd_addr, 1,
@@ -1478,13 +1480,15 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         }
       }
 
+      LOG_ERROR("■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ BT_PROPERTY_UUIDS_LE_GATT");
+      
       if (num_uuids == 0) {
         LOG_INFO("No well known BLE services discovered");
         return;
       }
 
       RawAddress& bd_addr = p_data->disc_ble_res.bd_addr;
-      prop[0].type = BT_PROPERTY_UUIDS;
+      prop[0].type = BT_PROPERTY_UUIDS_LE_GATT;
       prop[0].val = (void*)property_value.data();
       prop[0].len = Uuid::kNumBytes128 * num_uuids;
 

@@ -283,6 +283,7 @@ final class RemoteDevices {
         @VisibleForTesting int mBondState;
         @VisibleForTesting int mDeviceType;
         @VisibleForTesting ParcelUuid[] mUuids;
+        @VisibleForTesting ParcelUuid[] mUuidsLeGatt;
 
         DeviceProperties() {
             mBondState = BluetoothDevice.BOND_NONE;
@@ -329,7 +330,7 @@ final class RemoteDevices {
          */
         ParcelUuid[] getUuids() {
             synchronized (mObject) {
-                return mUuids;
+                return Utils.sumOfUuidArrays(mUuids, mUuidsLeGatt);
             }
         }
 
@@ -406,6 +407,7 @@ final class RemoteDevices {
                     without waiting for the ACTION_UUID intent.
                     This was resulting in multiple calls to connect().*/
                     mUuids = null;
+                    mUuidsLeGatt = null;
                     mAlias = null;
                 }
                 mBondState = newBondState;
@@ -475,7 +477,7 @@ final class RemoteDevices {
     private void sendUuidIntent(BluetoothDevice device, DeviceProperties prop) {
         Intent intent = new Intent(BluetoothDevice.ACTION_UUID);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
-        intent.putExtra(BluetoothDevice.EXTRA_UUID, prop == null ? null : prop.mUuids);
+        intent.putExtra(BluetoothDevice.EXTRA_UUID, prop == null ? null : Utils.sumOfUuidArrays(prop.mUuids, prop.mUuidsLeGatt));
         sAdapterService.sendBroadcast(intent, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
 
@@ -648,7 +650,6 @@ final class RemoteDevices {
                             debugLog("Remote class is:" + device.mBluetoothClass);
                             break;
                         case AbstractionLayer.BT_PROPERTY_UUIDS:
-                            int numUuids = val.length / AbstractionLayer.BT_UUID_SIZE;
                             final ParcelUuid[] newUuids = Utils.byteArrayToUuid(val);
                             if (areUuidsEqual(newUuids, device.mUuids)) {
                                 debugLog( "Skip uuids update for " + bdDevice.getAddress());
@@ -663,6 +664,21 @@ final class RemoteDevices {
                                 sAdapterService.deviceUuidUpdated(bdDevice);
                             }
                             break;
+                        case AbstractionLayer.BT_PROPERTY_UUIDS_LE_GATT:
+                            final ParcelUuid[] newUuidsLeGatt = Utils.byteArrayToUuid(val);
+                            if (areUuidsEqual(newUuidsLeGatt, device.mUuidsLeGatt)) {
+                                debugLog( "Skip LE uuids update for " + bdDevice.getAddress());
+                                break;
+                            }
+                            device.mUuidsLeGatt = newUuidsLeGatt;
+                            if (sAdapterService.getState() == BluetoothAdapter.STATE_ON) {
+                                sAdapterService.deviceUuidUpdated(bdDevice);
+                                sendUuidIntent(bdDevice, device);
+                            } else if (sAdapterService.getState()
+                                    == BluetoothAdapter.STATE_BLE_ON) {
+                                sAdapterService.deviceUuidUpdated(bdDevice);
+                            }
+                            break;                            
                         case AbstractionLayer.BT_PROPERTY_TYPE_OF_DEVICE:
                             if (device.isConsolidated()) {
                                 return;
