@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67bf21f8_00064887",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3079,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-05-26T15:03:05Z",
+      "side": 1,
+      "message": "shouldn\u0027t we return current_context_type?\nThis fixes the problem when DTMF are played together with music but if you play DTMF during a call you would switch back to media instead of ignoring the change",
+      "range": {
+        "startLine": 3079,
+        "startChar": 17,
+        "endLine": 3079,
+        "endChar": 35
+      },
+      "revId": "0d144d7aa2e9d7900b1a6a507248cd3220d34f18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
