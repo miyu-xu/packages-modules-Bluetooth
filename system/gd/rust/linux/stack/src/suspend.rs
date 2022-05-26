@@ -3,12 +3,11 @@
 use crate::bluetooth::Bluetooth;
 use crate::callbacks::Callbacks;
 use crate::{bluetooth_gatt::IBluetoothGatt, BluetoothGatt, Message, RPCProxy};
-use bt_topshim::btif::BluetoothInterface;
+use bt_topshim::{btif::BluetoothInterface, topstack};
 use log::warn;
 use std::sync::{Arc, Mutex};
-use tokio::sync::mpsc::{channel, Sender};
+use tokio::sync::mpsc::Sender;
 use tokio::sync::oneshot::channel as OneShotChannel;
-use tokio::sync::oneshot::Sender as OneShotSender;
 
 /// Defines the Suspend/Resume API.
 ///
@@ -63,6 +62,7 @@ pub enum SuspendType {
 pub struct Suspend {
     bt: Arc<Mutex<Box<Bluetooth>>>,
     intf: Arc<Mutex<BluetoothInterface>>,
+    gatt: Arc<Mutex<Box<BluetoothGatt>>>,
     tx: Sender<Message>,
     callbacks: Callbacks<dyn ISuspendCallback + Send>,
     is_connected_suspend: bool,
@@ -79,6 +79,7 @@ impl Suspend {
         Self {
             bt: bt,
             intf: intf,
+            gatt: gatt,
             tx: tx.clone(),
             callbacks: Callbacks::new(tx.clone(), Message::SuspendCallbackDisconnected),
             is_connected_suspend: false,
@@ -120,7 +121,7 @@ impl ISuspend for Suspend {
         self.intf.lock().unwrap().clear_event_mask();
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
-        self.gatt.lock().unwrap().advertising_disable();
+        //        self.gatt.lock().unwrap().advertising_disable();
         self.gatt.lock().unwrap().stop_scan(0);
         self.intf.lock().unwrap().disconnect_all_acls();
 
@@ -146,15 +147,16 @@ impl ISuspend for Suspend {
         // Wait on LE Rand before firing callbacks
         let (p, mut c) = OneShotChannel::<u64>();
         self.bt.lock().unwrap().le_rand(p);
-        let random = c.try_recv();
-        println!("Random: {}", &random.unwrap());
-        self.for_all_callbacks(|callback| {
+        let rt = topstack::get_runtime();
+        rt.block_on(async {
+            let _ = c.try_recv();
+        });
+        self.callbacks.for_all_callbacks(|callback| {
             callback.on_suspend_ready(1 as u32);
         });
     }
 
     fn resume(&self) -> bool {
-        let suspend_id = 1;
         self.intf.lock().unwrap().set_default_event_mask();
         //        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         //        self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
@@ -171,9 +173,11 @@ impl ISuspend for Suspend {
         // Wait on LE Rand before firing callbacks
         let (p, mut c) = OneShotChannel::<u64>();
         self.bt.lock().unwrap().le_rand(p);
-        let random = c.try_recv();
-        println!("Random: {}", &random.unwrap());
-        self.for_all_callbacks(|callback| {
+        let rt = topstack::get_runtime();
+        rt.block_on(async {
+            let _ = c.try_recv();
+        });
+        self.callbacks.for_all_callbacks(|callback| {
             callback.on_resumed(suspend_id);
         });
 
