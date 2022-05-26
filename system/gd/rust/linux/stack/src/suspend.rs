@@ -64,6 +64,7 @@ pub enum SuspendType {
 pub struct Suspend {
     bt: Arc<Mutex<Box<Bluetooth>>>,
     intf: Arc<Mutex<BluetoothInterface>>,
+    gatt: Arc<Mutex<Box<BluetoothGatt>>>,
     tx: Sender<Message>,
     callbacks: HashMap<u32, Box<dyn ISuspendCallback + Send>>,
     is_connected_suspend: bool,
@@ -80,6 +81,7 @@ impl Suspend {
         Self {
             bt: bt,
             intf: intf,
+            gatt: gatt,
             tx,
             callbacks: HashMap::new(),
             is_connected_suspend: false,
@@ -174,7 +176,6 @@ impl ISuspend for Suspend {
     }
 
     fn resume(&self) -> bool {
-        let suspend_id = 1;
         self.intf.lock().unwrap().set_default_event_mask();
         self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
