@@ -63,6 +63,7 @@ pub enum SuspendType {
 pub struct Suspend {
     bt: Arc<Mutex<Box<Bluetooth>>>,
     intf: Arc<Mutex<BluetoothInterface>>,
+    gatt: Arc<Mutex<Box<BluetoothGatt>>>,
     tx: Sender<Message>,
     callbacks: Callbacks<dyn ISuspendCallback + Send>,
     is_connected_suspend: bool,
@@ -79,6 +80,7 @@ impl Suspend {
         Self {
             bt: bt,
             intf: intf,
+            gatt: gatt,
             tx: tx.clone(),
             callbacks: Callbacks::new(tx.clone(), Message::SuspendCallbackDisconnected),
             is_connected_suspend: false,
@@ -120,7 +122,7 @@ impl ISuspend for Suspend {
         self.intf.lock().unwrap().clear_event_mask();
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
-        self.gatt.lock().unwrap().advertising_disable();
+        //        self.gatt.lock().unwrap().advertising_disable();
         self.gatt.lock().unwrap().stop_scan(0);
         self.intf.lock().unwrap().disconnect_all_acls();
 
@@ -148,13 +150,12 @@ impl ISuspend for Suspend {
         self.bt.lock().unwrap().le_rand(p);
         let random = c.try_recv();
         println!("Random: {}", &random.unwrap());
-        self.for_all_callbacks(|callback| {
-            callback.on_suspend_ready(1 as u32);
-        });
+        //        self.for_all_callbacks(|callback| {
+        //            callback.on_suspend_ready(1 as u32);
+        //        });
     }
 
     fn resume(&self) -> bool {
-        let suspend_id = 1;
         self.intf.lock().unwrap().set_default_event_mask();
         //        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         //        self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
@@ -173,9 +174,9 @@ impl ISuspend for Suspend {
         self.bt.lock().unwrap().le_rand(p);
         let random = c.try_recv();
         println!("Random: {}", &random.unwrap());
-        self.for_all_callbacks(|callback| {
-            callback.on_resumed(suspend_id);
-        });
+        //        self.for_all_callbacks(|callback| {
+        //            callback.on_resumed(suspend_id);
+        //        });
 
         true
     }
