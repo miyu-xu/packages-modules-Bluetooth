@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce00983_5ee35798",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-05-26T14:54:40Z",
+      "side": 1,
+      "message": "Why are we getting *_IDENTITY_ADDRESS here?  The device record should always just have public or random.  This may be the best fix for the short term, but it makes me worry that we are missing a place where we are storing an address type that we shouldn\u0027t store.",
+      "range": {
+        "startLine": 929,
+        "startChar": 69,
+        "endLine": 929,
+        "endChar": 86
+      },
+      "revId": "d8d12cab0d9809b90fde0dc4b3049be5015143a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
