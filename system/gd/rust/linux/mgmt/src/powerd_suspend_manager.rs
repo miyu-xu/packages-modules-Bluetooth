@@ -227,7 +227,8 @@ impl PowerdSuspendManager {
             .await;
 
         // Watch events of btadapterd appearing or disappearing.
-        let adapter_watcher = ServiceWatcher::new(self.conn.clone(), String::from(ADAPTER_SERVICE));
+        let mut adapter_watcher =
+            ServiceWatcher::new(self.conn.clone(), String::from(ADAPTER_SERVICE));
         let tx1 = self.tx.clone();
         let tx2 = self.tx.clone();
         adapter_watcher
@@ -471,7 +472,7 @@ impl PowerdSuspendManager {
     }
 
     fn on_adapter_found(&mut self, path: dbus::Path<'static>) {
-        log::debug!("Found adapter {:?}", path);
+        log::debug!("Found adapter suspend {:?}", path);
 
         let conn = self.conn.clone();
         self.context.lock().unwrap().adapter_suspend_dbus =
@@ -492,7 +493,7 @@ impl PowerdSuspendManager {
     }
 
     fn on_adapter_removed(&mut self) {
-        log::debug!("Adapter removed");
+        log::debug!("Adapter suspend removed");
         self.context.lock().unwrap().adapter_suspend_dbus = None;
     }
 }
