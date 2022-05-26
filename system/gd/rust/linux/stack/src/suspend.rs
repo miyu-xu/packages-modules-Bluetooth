@@ -1,6 +1,6 @@
 //! Suspend/Resume API.
 
-use crate::{Message, RPCProxy};
+use crate::{bluetooth_gatt::IBluetoothGatt, BluetoothGatt, Message, RPCProxy};
 use bt_topshim::btif::BluetoothInterface;
 use log::warn;
 use std::collections::HashMap;
@@ -60,6 +60,7 @@ pub enum SuspendType {
 /// Implementation of the suspend API.
 pub struct Suspend {
     intf: Arc<Mutex<BluetoothInterface>>,
+    gatt: Arc<Mutex<Box<BluetoothGatt>>>,
     tx: Sender<Message>,
     callbacks: HashMap<u32, Box<dyn ISuspendCallback + Send>>,
     is_connected_suspend: bool,
@@ -67,9 +68,14 @@ pub struct Suspend {
 }
 
 impl Suspend {
-    pub fn new(intf: Arc<Mutex<BluetoothInterface>>, tx: Sender<Message>) -> Suspend {
+    pub fn new(
+        intf: Arc<Mutex<BluetoothInterface>>,
+        gatt: Arc<Mutex<Box<BluetoothGatt>>>,
+        tx: Sender<Message>,
+    ) -> Suspend {
         Self {
             intf: intf,
+            gatt: gatt,
             tx,
             callbacks: HashMap::new(),
             is_connected_suspend: false,
@@ -126,12 +132,15 @@ impl ISuspend for Suspend {
         self.remove_callback(callback_id)
     }
 
-    fn suspend(&self, suspend_id: i32, suspend_type: SuspendType) {
-        // Always clear out first!
+    fn suspend(&self, _suspend_id: i32, suspend_type: SuspendType) {
+        // Always clear out first for both cases!
         self.intf.lock().unwrap().clear_event_mask();
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
-        self.intf.lock().unwrap().disconnect_all_acls();
+        // TODO(optedoblivion): Get cached advertiser IDs and iterate
+        self.gatt.lock().unwrap().advertising_disable();
+        // TODO(optedoblivion): Get cached scanner IDs and iterate
+        self.gatt.lock().unwrap().stop_scan(0);
 
         // Handle wakeful cases (Connected/Other)
         match suspend_type {
@@ -145,20 +154,21 @@ impl ISuspend for Suspend {
             }
         }
 
+        self.intf.lock().unwrap().disconnect_all_acls();
+
         let (_tx, mut rx) = channel::<u64>(1);
         task::spawn(async move {
             let random = rx.recv().await;
             println!("Randommmmm: {:?}", random);
             // TODO(232547719): Figure out calling back
-            //            self.for_all_callbacks(|callback| {
-            //                callback.on_suspend_ready(suspend_id);
-            //            });
+            //  self.for_all_callbacks(|callback| {
+            //      callback.on_suspend_ready(suspend_id);
+            //  });
         });
         self.intf.lock().unwrap().le_rand(_tx.clone());
     }
 
     fn resume(&self) -> bool {
-        let suspend_id = 1;
         self.intf.lock().unwrap().set_default_event_mask();
         self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
         self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
@@ -174,9 +184,9 @@ impl ISuspend for Suspend {
             let random = rx.recv().await;
             println!("Randommmmm: {:?}", random);
             // TODO(232547719): Figure out calling back
-            //            self.for_all_callbacks(|callback| {
-            //                callback.on_resumed(suspend_id);
-            //            });
+            // self.for_all_callbacks(|callback| {
+            //     callback.on_resumed(suspend_id);
+            // });
         });
         self.intf.lock().unwrap().le_rand(_tx.clone());
 
