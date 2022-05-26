@@ -109,12 +109,15 @@ impl RPCProxy for IBluetoothCallbackDBus {
     fn register_disconnect(&mut self, _f: Box<dyn Fn(u32) + Send>) -> u32 {
         0
     }
+
     fn get_object_id(&self) -> String {
         String::from("")
     }
+
     fn unregister(&mut self, _id: u32) -> bool {
         false
     }
+
     fn export_for_rpc(self: Box<Self>) {}
 }
 
@@ -163,12 +166,15 @@ impl RPCProxy for IBluetoothConnectionCallbackDBus {
     fn register_disconnect(&mut self, _f: Box<dyn Fn(u32) + Send>) -> u32 {
         0
     }
+
     fn get_object_id(&self) -> String {
         String::from("")
     }
+
     fn unregister(&mut self, _id: u32) -> bool {
         false
     }
+
     fn export_for_rpc(self: Box<Self>) {}
 }
 
@@ -505,12 +511,15 @@ impl RPCProxy for IBluetoothManagerCallbackDBus {
     fn register_disconnect(&mut self, _f: Box<dyn Fn(u32) + Send>) -> u32 {
         0
     }
+
     fn get_object_id(&self) -> String {
         String::from("")
     }
+
     fn unregister(&mut self, _id: u32) -> bool {
         false
     }
+
     fn export_for_rpc(self: Box<Self>) {}
 }
 
@@ -545,20 +554,248 @@ impl BluetoothGattDBus {
 
 #[generate_dbus_interface_client]
 impl IBluetoothGatt for BluetoothGattDBus {
+    // Advertising
+    fn register_advertiser(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn unregister_advertiser(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn get_own_address(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn set_parameters(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn set_data(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn advertising_enable(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn advertising_disable(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn set_periodic_advertising_parameters(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn set_periodic_advertising_data(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn set_periodic_advertising_enable(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn start_advertising(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    fn start_advertising_set(&self) {
+        // TODO(b/233128294): implement
+        todo!()
+    }
+
+    // Scanning
     fn register_scanner(&self, _callback: Box<dyn IScannerCallback + Send>) {
         // TODO(b/200066804): implement
+        todo!()
     }
 
     fn unregister_scanner(&self, _scanner_id: i32) {
         // TODO(b/200066804): implement
+        todo!()
     }
 
     fn start_scan(&self, _scanner_id: i32, _settings: ScanSettings, _filters: Vec<ScanFilter>) {
         // TODO(b/200066804): implement
+        todo!()
     }
 
     fn stop_scan(&self, _scanner_id: i32) {
         // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn scan_filter_setup(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn scan_filter_add(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn scan_filter_clear(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn scan_filter_enable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn scan_filter_disable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn set_scan_parameters(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn batch_scan_config_storage(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn batch_scan_enable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn batch_scan_disable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    fn batch_scan_read_reports(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
+
+    // GATT Client
+    fn start_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn stop_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn cancel_create_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn transfer_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn transfer_set_info(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn sync_tx_parameters(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn execute_write(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn deregister_for_notification(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn get_device_type(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn test_command(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    fn get_gatt_db(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
+
+    // GATT Server
+    fn register_server(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn unregister_server(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn server_connect(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn server_disconnect(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn add_service(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn stop_service(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn delete_service(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn send_indication(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn send_response(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn server_set_preferred_phy(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
+
+    fn server_read_phy(&self) {
+        // TODO(b/193686564): implement
+        todo!()
     }
 
     #[dbus_method("RegisterClient")]
@@ -723,12 +960,15 @@ impl RPCProxy for IBluetoothGattCallbackDBus {
     fn register_disconnect(&mut self, _f: Box<dyn Fn(u32) + Send>) -> u32 {
         0
     }
+
     fn get_object_id(&self) -> String {
         String::from("")
     }
+
     fn unregister(&mut self, _id: u32) -> bool {
         false
     }
+
     fn export_for_rpc(self: Box<Self>) {}
 }
 
@@ -846,12 +1086,15 @@ impl RPCProxy for ISuspendCallbackDBus {
     fn register_disconnect(&mut self, _f: Box<dyn Fn(u32) + Send>) -> u32 {
         0
     }
+
     fn get_object_id(&self) -> String {
         String::from("")
     }
+
     fn unregister(&mut self, _id: u32) -> bool {
         false
     }
+
     fn export_for_rpc(self: Box<Self>) {}
 }
 
