@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d83c5587_a94cf630",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-26T20:26:14Z",
+      "side": 1,
+      "message": "This is also gonna fix b/228905413, so please add this bug to the list.",
+      "range": {
+        "startLine": 28,
+        "startChar": 5,
+        "endLine": 28,
+        "endChar": 14
+      },
+      "revId": "957f88c9eb058c8b941b6224e57753bc757fdef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09956afd_a74ad093",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-26T20:26:14Z",
+      "side": 1,
+      "message": "In my testing with rapid toggling from UI, there is an edge case where HciDevicePresence becomes false and process state is at TurningOn, and when this case is hit, the state machine is stuck at TurningOn.\n\nMaybe quick and dirty local fix is `action_on_hci_presence_changed` should return ProcessState::Off when `present` is false and prev_state is TurningOn, and additionally context.state_machine.action_on_bluetooth_stopped needs to be invoked.\n\nAfter that prototype fix, I don\u0027t see any other issue with rapid toggling.",
+      "revId": "957f88c9eb058c8b941b6224e57753bc757fdef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c33e09cc_3e02d1e2",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-26T20:26:14Z",
+      "side": 1,
+      "message": "there is compiler warning about this being unused. Is this intentionally not yet used? if so let\u0027s add `#[allow(dead_code)]` to keep warning clean. If not intentional, maybe this should be used somewhere or should not be written?",
+      "revId": "957f88c9eb058c8b941b6224e57753bc757fdef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
