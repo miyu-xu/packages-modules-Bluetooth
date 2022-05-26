@@ -557,7 +557,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     });
   }
 
-  void add_device_to_connect_list(AddressWithType address_with_type) {
+  void add_device_to_connect_list(AddressWithType remote_device) {
+    AddressWithType address_with_type = convertAddressType(remote_device);
     if (connections.alreadyConnected(address_with_type)) {
       LOG_INFO("Device already connected, return");
       return;
@@ -575,16 +576,14 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         address_with_type.ToFilterAcceptListAddressType(), address_with_type.GetAddress());
   }
 
-  bool is_device_in_connect_list(AddressWithType address_with_type) {
-    return (connect_list.find(address_with_type) != connect_list.end());
-  }
-
-  void remove_device_from_connect_list(AddressWithType address_with_type) {
+  void remove_device_from_connect_list(AddressWithType remote_device) {
+    AddressWithType address_with_type = convertAddressType(remote_device);
     if (connect_list.find(address_with_type) == connect_list.end()) {
       LOG_WARN("Device not in acceptlist and cannot be removed:%s", PRIVATE_ADDRESS_WITH_TYPE(address_with_type));
       return;
     }
     connect_list.erase(address_with_type);
+    connecting_le_.erase(address_with_type);
     direct_connections_.erase(address_with_type);
     register_with_address_manager();
     le_address_manager_->RemoveDeviceFromFilterAcceptList(
@@ -643,6 +642,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           connectability_state_machine_text(connectability_state_).c_str());
       return;
     }
+    if (connect_list.empty()) {
+      LOG_ERROR(
+          "Attempting to re-arm le connection state machine when filter accept list is empty");
+      return;
+    }
+
     AddressWithType empty(Address::kEmpty, AddressType::RANDOM_DEVICE_ADDRESS);
     connectability_state_ = ConnectabilityState::ARMING;
     connecting_le_ = connect_list;
@@ -754,7 +759,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         handler_->BindOnce(&le_impl::on_create_connection_cancel_complete, common::Unretained(this)));
   }
 
-  void create_le_connection(AddressWithType address_with_type, bool add_to_connect_list, bool is_direct) {
+  void create_le_connection(AddressWithType remote_device, bool add_to_connect_list, bool is_direct) {
+    AddressWithType address_with_type = convertAddressType(remote_device);
     if (le_client_callbacks_ == nullptr) {
       LOG_ERROR("No callbacks to call");
       return;
@@ -917,11 +923,26 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void add_device_to_background_connection_list(AddressWithType address_with_type) {
-    background_connections_.insert(address_with_type);
+    background_connections_.insert(convertAddressType(address_with_type));
   }
 
   void remove_device_from_background_connection_list(AddressWithType address_with_type) {
-    background_connections_.erase(address_with_type);
+    background_connections_.erase(convertAddressType(address_with_type));
+  }
+
+  AddressWithType convertAddressType(AddressWithType address_with_type) {
+    AddressType remote_address_type;
+    switch (address_with_type.GetAddressType()) {
+      case AddressType::PUBLIC_DEVICE_ADDRESS:
+      case AddressType::PUBLIC_IDENTITY_ADDRESS:
+        remote_address_type = AddressType::PUBLIC_DEVICE_ADDRESS;
+        break;
+      case AddressType::RANDOM_DEVICE_ADDRESS:
+      case AddressType::RANDOM_IDENTITY_ADDRESS:
+        remote_address_type = AddressType::RANDOM_DEVICE_ADDRESS;
+        break;
+    }
+    return AddressWithType(address_with_type.GetAddress(), remote_address_type);
   }
 
   void OnPause() override {  // bluetooth::hci::LeAddressManagerCallback
