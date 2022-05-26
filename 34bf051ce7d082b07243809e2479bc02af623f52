@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48581a01_dee092f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1952927
+      },
+      "writtenOn": "2022-05-26T03:32:50Z",
+      "side": 1,
+      "message": "HFP hal API\u0027s are aligned with both inband and outband audio path as per the \nhttps://docs.google.com/document/d/1R-DzYEJYfLX7SqYshGiLiAntavi1iJFbzk8gJSFlIPo/edit?resourcekey\u003d0-KgZCKBreX58Bwsw60cT7Yw#heading\u003dh.5irk4csrpu0y",
+      "revId": "34bf051ce7d082b07243809e2479bc02af623f52",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
