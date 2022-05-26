@@ -50,6 +50,7 @@ public abstract class BluetoothProfileConnector<T> {
     private final String mProfileName;
     private final String mServiceName;
     private volatile T mService;
+    private boolean mBindFail = false;
 
     // -3 match with UserHandle.USER_CURRENT_OR_SELF
     private static final UserHandle USER_HANDLE_CURRENT_OR_SELF = UserHandle.of(-3);
@@ -57,8 +58,14 @@ public abstract class BluetoothProfileConnector<T> {
     private final IBluetoothStateChangeCallback mBluetoothStateChangeCallback =
             new IBluetoothStateChangeCallback.Stub() {
         public void onBluetoothStateChange(boolean up) {
+	    if (mServiceListener == null) {
+	        logDebug("BluetoothStateChange : "+ up + ", disconncet or bind fail, ignore handle bind");
+		return;
+	    }
             if (up) {
-                doBind();
+		if (!doBind()){
+		    doUnbind();
+		}
             } else {
                 doUnbind();
             }
@@ -136,12 +143,15 @@ public abstract class BluetoothProfileConnector<T> {
                     if (comp == null || !mContext.bindServiceAsUser(intent, mConnection, 0,
                             USER_HANDLE_CURRENT_OR_SELF)) {
                         logError("Could not bind to Bluetooth Service with " + intent);
-                        return false;
+                        mBindFail = true;
+			return false;
                     }
                 } catch (SecurityException se) {
                     logError("Failed to bind service. " + se);
-                    return false;
+                    mBindFail = true;
+		    return false;
                 }
+		mBindFail = false;
             }
         }
         return true;
@@ -149,7 +159,7 @@ public abstract class BluetoothProfileConnector<T> {
 
     private void doUnbind() {
         synchronized (mConnection) {
-            if (mService != null) {
+            if (mBindFail || mService != null) {
                 logDebug("Unbinding service...");
                 mCloseGuard.close();
                 try {
@@ -158,6 +168,7 @@ public abstract class BluetoothProfileConnector<T> {
                     logError("Unable to unbind service: " + ie);
                 } finally {
                     mService = null;
+		    mBindFail = false;
                 }
             }
         }
