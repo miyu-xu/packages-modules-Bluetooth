@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2af0553_c11dc9fa",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-05-26T04:26:12Z",
+      "side": 1,
+      "message": "Done in another CL.",
+      "parentUuid": "6bd51a63_0d1f7d15",
+      "range": {
+        "startLine": 255,
+        "startChar": 20,
+        "endLine": 255,
+        "endChar": 25
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4c07967_ae8c9475",
@@ -349,6 +373,54 @@
         "startChar": 68,
         "endLine": 1035,
         "endChar": 82
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "314e7e74_6ccb6105",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-05-26T04:26:12Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "52607e50_b2a20198",
+      "range": {
+        "startLine": 1035,
+        "startChar": 68,
+        "endLine": 1035,
+        "endChar": 82
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f19bccda_85e99943",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1035,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-05-26T04:26:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30ed4c17_f1222548",
+      "range": {
+        "startLine": 1035,
+        "startChar": 0,
+        "endLine": 1035,
+        "endChar": 94
       },
       "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
