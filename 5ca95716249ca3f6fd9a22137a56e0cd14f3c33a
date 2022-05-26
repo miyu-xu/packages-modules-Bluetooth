@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "588bd729_1aa19364",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-05-26T19:08:18Z",
+      "side": 1,
+      "message": "squashed into wrong commit, will fix",
+      "revId": "5ca95716249ca3f6fd9a22137a56e0cd14f3c33a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
