@@ -22,6 +22,30 @@
       },
       "revId": "d8d12cab0d9809b90fde0dc4b3049be5015143a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b5ed570_1281df4f",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-05-26T17:37:55Z",
+      "side": 1,
+      "message": "Actually I didn\u0027t get *_IDENTITY_ADDRESS in this function, but this function will be called from out side (AclManager::CancelLeConnect) I would like have a protection here. \n\nBased on my test, we may get *_IDENTITY_ADDRESS in:\n\nle_impl.h:769 create_le_connection: CYDBG address_with_type 00:f8:71:98:28:49[PUBLIC_IDENTITY_ADDRESS]\nadd_device_to_connect_list: CYDBG add_device_to_connect_list 00:f8:71:98:28:49[PUBLIC_IDENTITY_ADDRESS]\non_create_connection_timeout: CYDBG on_create_connection_timeout, address: 00:f8:71:98:28:49[PUBLIC_IDENTITY_ADDRESS]\ncreate_le_connection: CYDBG address_with_type 00:f8:71:98:28:49[PUBLIC_IDENTITY_ADDRESS]\n\nIf we add PUBLIC_IDENTITY_ADDRESS to the connect_list_, it will never be remove by connection complete.",
+      "parentUuid": "4ce00983_5ee35798",
+      "range": {
+        "startLine": 929,
+        "startChar": 69,
+        "endLine": 929,
+        "endChar": 86
+      },
+      "revId": "d8d12cab0d9809b90fde0dc4b3049be5015143a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
