@@ -576,6 +576,9 @@ pub(crate) trait BtifBluetoothCallbacks {
         link_type: BtTransport,
         hci_reason: BtHciErrorCode,
     );
+
+    #[btif_callback(LeRandCallback)]
+    fn le_rand_cb(&mut self, random: u64);
 }
 
 #[btif_callbacks_dispatcher(Bluetooth, dispatch_sdp_callbacks, SdpCallbacks)]
