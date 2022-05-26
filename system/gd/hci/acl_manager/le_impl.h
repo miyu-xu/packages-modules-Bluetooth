@@ -374,6 +374,11 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         remote_address_type = AddressType::PUBLIC_DEVICE_ADDRESS;
         break;
       case AddressType::RANDOM_DEVICE_ADDRESS:
+        if (!peer_resolvable_address.IsEmpty()) {
+            LOG_DEBUG("Using resolvable address");
+            address = peer_resolvable_address;
+        }
+        // intentional fallthrough
       case AddressType::RANDOM_IDENTITY_ADDRESS:
         remote_address_type = AddressType::RANDOM_DEVICE_ADDRESS;
         break;
