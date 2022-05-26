@@ -16,6 +16,24 @@
       "message": "Could you add a crate-level doc here mentioning what the crate provides?",
       "revId": "99bf820b0febd560d4b323ce8cb29b4f87d0329e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da442101_46ac0ae8",
+        "filename": "system/gd/rust/linux/socket/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-26T23:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2f98bfca_6d5f9c19",
+      "revId": "99bf820b0febd560d4b323ce8cb29b4f87d0329e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
