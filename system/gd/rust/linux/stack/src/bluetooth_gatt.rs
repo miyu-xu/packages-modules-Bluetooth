@@ -650,99 +650,162 @@ pub enum GattWriteRequestStatus {
 impl IBluetoothGatt for BluetoothGatt {
     // Advertising
     fn register_advertiser(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn unregister_advertiser(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     /// Get the address currently being advertised
     fn get_own_address(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn set_parameters(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn set_data(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn enable(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn set_periodic_advertising_parameters(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn set_periodic_advertising_data(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn set_periodic_advertising_enable(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn start_advertising(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     fn start_advertising_set(&self) {
-        // TODO(b/200066804): implement
+        // TODO(b/233128294): implement
+        todo!()
     }
 
     // Scanning
     fn register_scanner(&self, _callback: Box<dyn IScannerCallback + Send>) {
         // TODO(b/200066804): implement
+        todo!()
     }
 
     fn unregister_scanner(&self, _scanner_id: i32) {
         // TODO(b/200066804): implement
+        todo!()
     }
 
     fn start_scan(&self, _scanner_id: i32, _settings: ScanSettings, _filters: Vec<ScanFilter>) {
         // TODO(b/200066804): implement
+        todo!()
     }
 
     fn stop_scan(&self, _scanner_id: i32) {
         // TODO(b/200066804): implement
+        todo!()
     }
 
-    fn scan_filter_setup(&self) {}
+    fn scan_filter_setup(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn scan_filter_add(&self) {}
+    fn scan_filter_add(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn scan_filter_clear(&self) {}
+    fn scan_filter_clear(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn scan_filter_enable(&self) {}
+    fn scan_filter_enable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn scan_filter_disable(&self) {}
+    fn scan_filter_disable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn set_scan_parameters(&self) {}
+    fn set_scan_parameters(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn batch_scan_config_storage(&self) {}
+    fn batch_scan_config_storage(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn batch_scan_enable(&self) {}
+    fn batch_scan_enable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn batch_scan_disable(&self) {}
+    fn batch_scan_disable(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
-    fn batch_scan_read_reports(&self) {}
+    fn batch_scan_read_reports(&self) {
+        // TODO(b/200066804): implement
+        todo!()
+    }
 
     // GATT Client
-    fn start_sync(&self) {}
+    fn start_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn stop_sync(&self) {}
+    fn stop_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn cancel_create_sync(&self) {}
+    fn cancel_create_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn transfer_sync(&self) {}
+    fn transfer_sync(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn transfer_set_info(&self) {}
+    fn transfer_set_info(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn sync_tx_parameters(&self) {}
+    fn sync_tx_parameters(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
     fn register_client(
         &mut self,
@@ -1025,11 +1088,20 @@ impl IBluetoothGatt for BluetoothGatt {
         );
     }
 
-    fn execute_write(&self) {}
+    fn execute_write(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn deregister_for_notification(&self) {}
+    fn deregister_for_notification(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn get_device_type(&self) {}
+    fn get_device_type(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
     fn client_set_preferred_phy(
         &self,
@@ -1061,32 +1133,71 @@ impl IBluetoothGatt for BluetoothGatt {
         self.gatt.as_mut().unwrap().client.read_phy(client_id, &address);
     }
 
-    fn test_command(&self) {}
+    fn test_command(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
-    fn get_gatt_db(&self) {}
+    fn get_gatt_db(&self) {
+        // TODO(b/193686094): implement
+        todo!()
+    }
 
     // GATT Server
-    fn register_server(&self) {}
+    fn register_server(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn unregister_server(&self) {}
+    fn unregister_server(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn server_connect(&self) {}
+    fn server_connect(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn server_disconnect(&self) {}
+    fn server_disconnect(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn add_service(&self) {}
+    fn add_service(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn stop_service(&self) {}
+    fn stop_service(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn delete_service(&self) {}
+    fn delete_service(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn send_indication(&self) {}
+    fn send_indication(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn send_response(&self) {}
+    fn send_response(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn server_set_preferred_phy(&self) {}
+    fn server_set_preferred_phy(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 
-    fn server_read_phy(&self) {}
+    fn server_read_phy(&self) {
+        // TODO(b/193686564): implement
+        todo!()
+    }
 }
 
 #[btif_callbacks_dispatcher(BluetoothGatt, dispatch_gatt_client_callbacks, GattClientCallbacks)]
