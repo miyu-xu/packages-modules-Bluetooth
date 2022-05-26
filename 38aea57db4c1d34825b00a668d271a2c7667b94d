@@ -16,6 +16,24 @@
       "message": "this function should return bool. Remove the ending semicolon?",
       "revId": "38aea57db4c1d34825b00a668d271a2c7667b94d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88820e04_3b962e2a",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-26T23:57:27Z",
+      "side": 1,
+      "message": "Done. I guess I never compiled the intermediate stage (this CL) and missed this issue.",
+      "parentUuid": "32c3fdbe_a24f7ac3",
+      "revId": "38aea57db4c1d34825b00a668d271a2c7667b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
