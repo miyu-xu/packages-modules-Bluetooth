@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b6bcb2b_79519b46",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 815,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-05-27T05:04:04Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 815,
+        "startChar": 35,
+        "endLine": 815,
+        "endChar": 44
+      },
+      "revId": "e1c319ebb782d9447c6948443626490f50777911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94927c5e_6970484e",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2664,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-05-27T05:04:04Z",
+      "side": 1,
+      "message": "Can we remote these lines? This is pretty much the same to the log you added.",
+      "range": {
+        "startLine": 2662,
+        "startChar": 0,
+        "endLine": 2664,
+        "endChar": 56
+      },
+      "revId": "e1c319ebb782d9447c6948443626490f50777911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0504173_6b46f03e",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4382,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-05-27T05:04:04Z",
+      "side": 1,
+      "message": "Can we use this line of log with the address of the remote device added instead of adding another one at line#4404?",
+      "range": {
+        "startLine": 4382,
+        "startChar": 4,
+        "endLine": 4382,
+        "endChar": 56
+      },
+      "revId": "e1c319ebb782d9447c6948443626490f50777911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c020b63_e9d78a6c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4405,
+      "author": {
+        "id": 1306903
+      },
+      "writtenOn": "2022-05-27T05:04:04Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 4405,
+        "startChar": 35,
+        "endLine": 4405,
+        "endChar": 46
+      },
+      "revId": "e1c319ebb782d9447c6948443626490f50777911",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
