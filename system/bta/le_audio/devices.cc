@@ -104,11 +104,15 @@ int LeAudioDeviceGroup::NumOfConnected(types::LeAudioContextType context_type) {
 
 void LeAudioDeviceGroup::Cleanup(void) {
   /* Bluetooth is off while streaming - disconnect CISes and remove CIG */
+  bool disconnection_cises = false;
   if (GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+    LOG_WARN("Bluetooth disabled while group %d was streaming.", group_id_);
     if (!stream_conf.sink_streams.empty()) {
       for (auto [cis_handle, audio_location] : stream_conf.sink_streams) {
         bluetooth::hci::IsoManager::GetInstance()->DisconnectCis(
             cis_handle, HCI_ERR_PEER_USER);
+
+        disconnection_cises = true;
 
         if (stream_conf.source_streams.empty()) {
           continue;
@@ -127,15 +131,34 @@ void LeAudioDeviceGroup::Cleanup(void) {
       for (auto [cis_handle, audio_location] : stream_conf.source_streams) {
         bluetooth::hci::IsoManager::GetInstance()->DisconnectCis(
             cis_handle, HCI_ERR_PEER_USER);
+        disconnection_cises = true;
       }
     }
   }
 
-  /* Note: CIG will stay in the controller. We cannot remove it here, because
-   * Cises are not yet disconnected.
-   * When user start Bluetooth, HCI Reset should remove it
-   */
+  LOG_INFO("CIG is in state %s for group id %d.",
+           bluetooth::common::ToString(cig_state_).c_str(), group_id_);
 
+  if (disconnection_cises) {
+    LOG_WARN(" Disconnectin CISes - let's wait for disconnection a bit.");
+    /* Workaround: Give some time to the controller for disconnection */
+    std::this_thread::sleep_for(std::chrono::milliseconds(200));
+  }
+
+  switch (cig_state_) {
+    case le_audio::types::CigState::CREATED:
+    case le_audio::types::CigState::CREATING:
+      LOG_WARN("Removing CIG for the group id %d", group_id_);
+      /* Note: If CIG is created, lets try to remove it. It might , because
+       * Cises are not yet disconnected.
+       * When user start Bluetooth, HCI Reset should remove it
+       */
+      bluetooth::hci::IsoManager::GetInstance()->RemoveCig(group_id_, false);
+      break;
+    case le_audio::types::CigState::REMOVING:
+    case le_audio::types::CigState::NONE:
+      break;
+  }
   leAudioDevices_.clear();
 }
 

@@ -107,8 +107,9 @@ class IsoManager {
    * Initiates removing of connected isochronous group (CIG).
    *
    * @param cig_id connected isochronous group id
+   * @param  response_required true if callback with shall be called when done
    */
-  virtual void RemoveCig(uint8_t cig_id);
+  virtual void RemoveCig(uint8_t cig_id, bool response_required = true);
 
   /**
    * Initiates creation of connected isochronous stream (CIS).

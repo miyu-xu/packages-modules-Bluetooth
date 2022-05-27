@@ -200,11 +200,15 @@ struct iso_impl {
     cig_callbacks_->OnCigEvent(kIsoEventCigOnRemoveCmpl, &evt);
   }
 
-  void remove_cig(uint8_t cig_id) {
+  void remove_cig(uint8_t cig_id, bool response_required) {
     LOG_ASSERT(IsCigKnown(cig_id)) << "No such cig: " << +cig_id;
 
-    btsnd_hcic_remove_cig(cig_id, base::BindOnce(&iso_impl::on_remove_cig,
-                                                 base::Unretained(this)));
+    if (response_required) {
+      btsnd_hcic_remove_cig(cig_id, base::BindOnce(&iso_impl::on_remove_cig,
+                                                   base::Unretained(this)));
+    } else {
+      btsnd_hcic_remove_cig(cig_id, base::DoNothing());
+    }
   }
 
   void on_status_establish_cis(
