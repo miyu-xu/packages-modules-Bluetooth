@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0cb03edf_f6397a6c",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-27T17:30:20Z",
+      "side": 1,
+      "message": "Documenting offline conversation: The bug is still reproducible. I shared the complete log offline.",
+      "parentUuid": "691803d1_8b4f9c84",
+      "revId": "957f88c9eb058c8b941b6224e57753bc757fdef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c33e09cc_3e02d1e2",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 2
