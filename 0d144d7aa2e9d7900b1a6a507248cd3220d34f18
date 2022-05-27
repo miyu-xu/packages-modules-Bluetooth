@@ -22,6 +22,30 @@
       },
       "revId": "0d144d7aa2e9d7900b1a6a507248cd3220d34f18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d47d86_2e5f013d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3079,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-05-27T01:40:58Z",
+      "side": 1,
+      "message": "For the case - play DTMF during a call, I expected bt stack should get the metadata with multiple tracks, one should be AUDIO_USAGE_VOICE_COMMUNICATION usage. We have the priorities check. Conversational\u0027s priority is higher than media\u0027s. If one of the track should use the conversational, it would pick conversational.\n\nIf only DTMF tone without any stream as content_type isn\u0027t AUDIO_CONTENT_TYPE_SPEECH, it would pick media.",
+      "parentUuid": "67bf21f8_00064887",
+      "range": {
+        "startLine": 3079,
+        "startChar": 17,
+        "endLine": 3079,
+        "endChar": 35
+      },
+      "revId": "0d144d7aa2e9d7900b1a6a507248cd3220d34f18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
