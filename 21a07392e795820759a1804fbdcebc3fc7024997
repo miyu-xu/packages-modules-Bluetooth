@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a98db55b_1e48f4d1",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-27T01:35:16Z",
+      "side": 1,
+      "message": "Would it be better to have `--alsologtostderr` or `--logtostderr` instead?",
+      "revId": "21a07392e795820759a1804fbdcebc3fc7024997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
