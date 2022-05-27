@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396b9229_942d3750",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-27T07:33:02Z",
+      "side": 1,
+      "message": "You will spam logs for every connected device.\nIf you want to LOG(INFO), move this line below line 372",
+      "range": {
+        "startLine": 362,
+        "startChar": 4,
+        "endLine": 362,
+        "endChar": 14
+      },
+      "revId": "349eb754bc957999472a453efdea41e334564bd5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
