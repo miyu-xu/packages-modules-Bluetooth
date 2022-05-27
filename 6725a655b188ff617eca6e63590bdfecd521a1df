@@ -16,6 +16,23 @@
       "message": "By passing the broken test as it is unrelated to the change. https://b.corp.google.com/issues/228408586",
       "revId": "6725a655b188ff617eca6e63590bdfecd521a1df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51b295f5_eb6aaced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-05-27T08:32:25Z",
+      "side": 1,
+      "message": "If that\u0027s the root cause of empty IRK issues, we should see \"Already in Address Resolving list device\" error log, but we didn\u0027t see that in any Bugreport.",
+      "revId": "6725a655b188ff617eca6e63590bdfecd521a1df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
