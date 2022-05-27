@@ -22,6 +22,30 @@
       },
       "revId": "437acdce6b57bbbaed18129cbf302051452913cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "684c85e2_bb1bb00a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-27T19:05:48Z",
+      "side": 1,
+      "message": "No -- I was using pre-submit to compile for Android too.\n\nSince this is new code (and the dbus projection is only used for ChromeOS), this doesn\u0027t need to be tested (beyond compile) on Android.",
+      "parentUuid": "f2f9433c_eefef084",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 3
+      },
+      "revId": "437acdce6b57bbbaed18129cbf302051452913cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
