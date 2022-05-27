@@ -26,8 +26,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.*
 import android.util.Log
-import pandora.A2DPGrpc.A2DPImplBase
-import pandora.A2dpProto.*
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.CoroutineScope
@@ -39,6 +37,8 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
+import pandora.A2DPGrpc.A2DPImplBase
+import pandora.A2dpProto.*
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class A2dp(val context: Context) : A2DPImplBase() {
@@ -48,31 +48,29 @@ class A2dp(val context: Context) : A2DPImplBase() {
   private val flow: Flow<Intent>
 
   private val audioManager: AudioManager =
-    context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+      context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
   private val bluetoothManager =
-    context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+      context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
   private val bluetoothAdapter = bluetoothManager.adapter
   private val bluetoothA2dp = getProfileProxy<BluetoothA2dp>(context, BluetoothProfile.A2DP)
 
   private val audioTrack: AudioTrack =
-    AudioTrack.Builder()
-      .setAudioAttributes(
-        AudioAttributes.Builder()
-          .setUsage(AudioAttributes.USAGE_MEDIA)
-          .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+      AudioTrack.Builder()
+          .setAudioAttributes(
+              AudioAttributes.Builder()
+                  .setUsage(AudioAttributes.USAGE_MEDIA)
+                  .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                  .build())
+          .setAudioFormat(
+              AudioFormat.Builder()
+                  .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                  .setSampleRate(44100)
+                  .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
+                  .build())
+          .setTransferMode(AudioTrack.MODE_STREAM)
+          .setBufferSizeInBytes(44100 * 2 * 2)
           .build()
-      )
-      .setAudioFormat(
-        AudioFormat.Builder()
-          .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
-          .setSampleRate(44100)
-          .setChannelMask(AudioFormat.CHANNEL_OUT_STEREO)
-          .build()
-      )
-      .setTransferMode(AudioTrack.MODE_STREAM)
-      .setBufferSizeInBytes(44100 * 2 * 2)
-      .build()
 
   init {
     scope = CoroutineScope(Dispatchers.Default)
@@ -89,8 +87,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
   }
 
   override fun openSource(
-    request: OpenSourceRequest,
-    responseObserver: StreamObserver<OpenSourceResponse>
+      request: OpenSourceRequest,
+      responseObserver: StreamObserver<OpenSourceResponse>
   ) {
     grpcUnary<OpenSourceResponse>(scope, responseObserver) {
       val address = request.connection.cookie.toByteArray().decodeToString()
@@ -105,13 +103,14 @@ class A2dp(val context: Context) : A2DPImplBase() {
       if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
         bluetoothA2dp.connect(device)
         val state =
-          flow
-            .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
-            .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
-            .filter {
-              it == BluetoothProfile.STATE_CONNECTED || it == BluetoothProfile.STATE_DISCONNECTED
-            }
-            .first()
+            flow
+                .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
+                .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
+                .filter {
+                  it == BluetoothProfile.STATE_CONNECTED ||
+                      it == BluetoothProfile.STATE_DISCONNECTED
+                }
+                .first()
 
         if (state == BluetoothProfile.STATE_DISCONNECTED) {
           Log.e(TAG, "openSource failed, A2DP has been disconnected")
@@ -124,8 +123,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
   }
 
   override fun waitSource(
-    request: WaitSourceRequest,
-    responseObserver: StreamObserver<WaitSourceResponse>
+      request: WaitSourceRequest,
+      responseObserver: StreamObserver<WaitSourceResponse>
   ) {
     grpcUnary<WaitSourceResponse>(scope, responseObserver) {
       val address = request.connection.cookie.toByteArray().decodeToString()
@@ -139,13 +138,14 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
       if (bluetoothA2dp.getConnectionState(device) != BluetoothA2dp.STATE_CONNECTED) {
         val state =
-          flow
-            .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
-            .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
-            .filter {
-              it == BluetoothProfile.STATE_CONNECTED || it == BluetoothProfile.STATE_DISCONNECTED
-            }
-            .first()
+            flow
+                .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
+                .map { it.getIntExtra(BluetoothProfile.EXTRA_STATE, BluetoothAdapter.ERROR) }
+                .filter {
+                  it == BluetoothProfile.STATE_CONNECTED ||
+                      it == BluetoothProfile.STATE_DISCONNECTED
+                }
+                .first()
 
         if (state == BluetoothProfile.STATE_DISCONNECTED) {
           Log.e(TAG, "waitSource failed, A2DP has been disconnected")
@@ -173,13 +173,14 @@ class A2dp(val context: Context) : A2DPImplBase() {
       // If A2dp is not already playing, wait for it
       if (!bluetoothA2dp.isA2dpPlaying(device)) {
         flow
-          .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
-          .filter {
-            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
-          }
-          .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
-          .filter { it == BluetoothA2dp.STATE_PLAYING }
-          .first()
+            .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
+            .filter {
+              it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address ==
+                  address
+            }
+            .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
+            .filter { it == BluetoothA2dp.STATE_PLAYING }
+            .first()
       }
       StartResponse.getDefaultInstance()
     }
@@ -202,12 +203,13 @@ class A2dp(val context: Context) : A2DPImplBase() {
       }
 
       val a2dpPlayingStateFlow =
-        flow
-          .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
-          .filter {
-            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
-          }
-          .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
+          flow
+              .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
+              .filter {
+                it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address ==
+                    address
+              }
+              .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
       audioTrack.pause()
       a2dpPlayingStateFlow.filter { it == BluetoothA2dp.STATE_NOT_PLAYING }.first()
@@ -216,8 +218,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
   }
 
   override fun isSuspended(
-    request: IsSuspendedRequest,
-    responseObserver: StreamObserver<IsSuspendedResponse>
+      request: IsSuspendedRequest,
+      responseObserver: StreamObserver<IsSuspendedResponse>
   ) {
     grpcUnary<IsSuspendedResponse>(scope, responseObserver) {
       val address = request.source.cookie.toByteArray().decodeToString()
@@ -229,7 +231,7 @@ class A2dp(val context: Context) : A2DPImplBase() {
         throw Status.UNKNOWN.asException()
       }
 
-      val isSuspended = bluetoothA2dp.isA2dpPlaying(device)
+      val isSuspended = !bluetoothA2dp.isA2dpPlaying(device)
       IsSuspendedResponse.newBuilder().setIsSuspended(isSuspended).build()
     }
   }
@@ -246,12 +248,13 @@ class A2dp(val context: Context) : A2DPImplBase() {
       }
 
       val a2dpConnectionStateChangedFlow =
-        flow
-          .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
-          .filter {
-            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
-          }
-          .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
+          flow
+              .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
+              .filter {
+                it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address ==
+                    address
+              }
+              .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
       bluetoothA2dp.disconnect(device)
       a2dpConnectionStateChangedFlow.filter { it == BluetoothA2dp.STATE_DISCONNECTED }.first()
@@ -261,13 +264,9 @@ class A2dp(val context: Context) : A2DPImplBase() {
   }
 
   override fun playbackAudio(
-    responseObserver: StreamObserver<PlaybackAudioResponse>
+      responseObserver: StreamObserver<PlaybackAudioResponse>
   ): StreamObserver<PlaybackAudioRequest> {
     Log.i(TAG, "playbackAudio")
-
-    if (audioTrack.getPlayState() != AudioTrack.PLAYSTATE_PLAYING) {
-      responseObserver.onError(Status.UNKNOWN.withDescription("AudioTrack is not started").asException())
-    }
 
     // Volume is maxed out to avoid any amplitude modification of the provided audio data,
     // enabling the test runner to do comparisons between input and output audio signal.
@@ -278,23 +277,29 @@ class A2dp(val context: Context) : A2DPImplBase() {
       val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
       if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) < maxVolume) {
         audioManager.setStreamVolume(
-          AudioManager.STREAM_MUSIC,
-          maxVolume,
-          AudioManager.FLAG_SHOW_UI
-        )
+            AudioManager.STREAM_MUSIC, maxVolume, AudioManager.FLAG_SHOW_UI)
       }
     }
 
     return object : StreamObserver<PlaybackAudioRequest> {
       override fun onNext(request: PlaybackAudioRequest) {
-        val data = request.data.toByteArray()
-        val written = synchronized(audioTrack) {
-          audioTrack.write(data, 0, data.size)
+        if (audioTrack.getPlayState() != AudioTrack.PLAYSTATE_PLAYING) {
+          val address = request.source.cookie.toByteArray().decodeToString()
+          val device = bluetoothAdapter.getRemoteDevice(address)
+          if (bluetoothA2dp.getConnectionState(device) == BluetoothA2dp.STATE_CONNECTED &&
+              bluetoothA2dp.isA2dpPlaying(device)) {
+            audioTrack.play()
+          } else {
+            responseObserver.onError(
+                Status.UNKNOWN.withDescription("Stream is not started, cannot playbackAudio")
+                    .asException())
+          }
         }
+        val data = request.data.toByteArray()
+        val written = synchronized(audioTrack) { audioTrack.write(data, 0, data.size) }
         if (written != data.size) {
           responseObserver.onError(
-            Status.UNKNOWN.withDescription("AudioTrack write failed").asException()
-          )
+              Status.UNKNOWN.withDescription("AudioTrack write failed").asException())
         }
       }
       override fun onError(t: Throwable?) {
@@ -309,8 +314,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
   }
 
   override fun getAudioEncoding(
-    request: GetAudioEncodingRequest,
-    responseObserver: StreamObserver<GetAudioEncodingResponse>
+      request: GetAudioEncodingRequest,
+      responseObserver: StreamObserver<GetAudioEncodingResponse>
   ) {
     grpcUnary<GetAudioEncodingResponse>(scope, responseObserver) {
       val address = request.source.cookie.toByteArray().decodeToString()
@@ -324,16 +329,16 @@ class A2dp(val context: Context) : A2DPImplBase() {
 
       // For now, we only support 44100 kHz sampling rate.
       GetAudioEncodingResponse.newBuilder()
-        .setEncoding(AudioEncoding.PCM_S16_LE_44K1_STEREO)
-        .build()
+          .setEncoding(AudioEncoding.PCM_S16_LE_44K1_STEREO)
+          .build()
     }
   }
 
   // TODO: Remove reflection and import framework bluetooth library when it will be available
   // on AOSP.
   fun BluetoothA2dp.connect(device: BluetoothDevice) =
-    this.javaClass.getMethod("connect", BluetoothDevice::class.java).invoke(this, device)
+      this.javaClass.getMethod("connect", BluetoothDevice::class.java).invoke(this, device)
 
   fun BluetoothA2dp.disconnect(device: BluetoothDevice) =
-    this.javaClass.getMethod("disconnect", BluetoothDevice::class.java).invoke(this, device)
+      this.javaClass.getMethod("disconnect", BluetoothDevice::class.java).invoke(this, device)
 }

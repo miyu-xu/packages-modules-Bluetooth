@@ -47,6 +47,8 @@ class A2DPProxy(ProfileProxy):
         self.host = Host(channel)
         self.a2dp = A2DP(channel)
 
+        self.src_initiated_start = False
+
         def convert_frame(data):
             return PlaybackAudioRequest(data=data, source=self.source)
         self.audio = AudioSignal(
@@ -117,9 +119,16 @@ class A2DPProxy(ProfileProxy):
         """
 
         if "SRC" in test:
+            # Play audio when initiating start to avoid errors when the Start
+            # command also sends (empty) audio data, which makes PTS disconnect
+            # the IUT instantly after begin_streaming, causing the subsequent
+            # PlaybackAudio command to fail.
             self.a2dp.Start(source=self.source)
+            self.audio.start()
+            self.src_initiated_start = True
         else:
             self.a2dp.Start(sink=self.sink)
+
         return "OK"
 
     @assert_description
@@ -130,6 +139,7 @@ class A2DPProxy(ProfileProxy):
 
         if "SRC" in test:
             self.a2dp.Suspend(source=self.source)
+            self.src_initiated_start = False
         else:
             assert False
         return "OK"
@@ -146,6 +156,7 @@ class A2DPProxy(ProfileProxy):
         if "SRC" in test:
             self.a2dp.Close(source=self.source)
             self.source = None
+            self.src_initiated_start = False
         else:
             self.a2dp.Close(sink=self.sink)
             self.sink = None
@@ -168,6 +179,7 @@ class A2DPProxy(ProfileProxy):
         self.connection = None
         self.sink = None
         self.source = None
+        self.self.src_initiated_start = False
         return "OK"
 
     @assert_description
@@ -179,20 +191,11 @@ class A2DPProxy(ProfileProxy):
         please restart the stream to begin streaming media.
         """
 
-        if test == "AVDTP/SRC/ACP/SIG/SMG/BI-29-C":
-            time.sleep(2)  # TODO: Remove, AVRCP SegFault
-        if test in ("A2DP/SRC/CC/BV-09-I",
-                    "A2DP/SRC/SET/BV-04-I",
-                    "AVDTP/SRC/ACP/SIG/SMG/BV-18-C",
-                    "AVDTP/SRC/ACP/SIG/SMG/BV-20-C",
-                    "AVDTP/SRC/ACP/SIG/SMG/BV-22-C"):
-            time.sleep(1)  # TODO: Remove, AVRCP SegFault
-        if test == "A2DP/SRC/SUS/BV-01-I":
-            # Stream is not suspended when we receive the interaction
-            time.sleep(1)
+        if not self.src_initiated_start:
+            if self.a2dp.IsSuspended(source=self.source):
+                self.a2dp.Start(source=self.source)
+            self.audio.start()
 
-        self.a2dp.Start(source=self.source)
-        self.audio.start()
         return "OK"
 
     @assert_description
@@ -201,7 +204,9 @@ class A2DPProxy(ProfileProxy):
         Take action if necessary to start streaming media to the tester.
         """
 
-        self.audio.start()
+        if not self.src_initiated_start:
+            self.audio.start()
+
         return "OK"
 
     @assert_description
@@ -216,7 +221,9 @@ class A2DPProxy(ProfileProxy):
         attempting to connect may trigger this action.
         """
 
-        self.audio.start()
+        if not self.src_initiated_start:
+            self.audio.start()
+
         return "OK"
 
     @assert_description
