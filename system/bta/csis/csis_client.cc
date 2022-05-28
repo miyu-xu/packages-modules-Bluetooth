@@ -1340,11 +1340,6 @@ class CsisClientImpl : public CsisClient {
         group_id =
             dev_groups_->AddDevice(device->addr, csis_instance->GetUuid());
         LOG_ASSERT(group_id != -1);
-
-        /* Create new group */
-        auto g =
-            std::make_shared<CsisGroup>(group_id, csis_instance->GetUuid());
-        csis_groups_.push_back(g);
       } else {
         dev_groups_->AddDevice(device->addr, csis_instance->GetUuid(),
                                group_id);
