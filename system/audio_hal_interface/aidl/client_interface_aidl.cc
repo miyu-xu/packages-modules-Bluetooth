@@ -134,8 +134,12 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
   }
   CHECK(provider_ != nullptr);
 
-  AIBinder_linkToDeath(provider_factory->asBinder().get(),
-                       death_recipient_.get(), this);
+  binder_status_t binder_status = AIBinder_linkToDeath(
+     provider_factory->asBinder().get(), death_recipient_.get(), this);
+  if (binder_status != STATUS_OK) {
+    LOG(ERROR) << "Failed to linkToDeath " << static_cast<int>(binder_status);
+  }
+  provider_factory_ = std::move(provider_factory);
 
   LOG(INFO) << "IBluetoothAudioProvidersFactory::openProvider() returned "
             << provider_.get()
