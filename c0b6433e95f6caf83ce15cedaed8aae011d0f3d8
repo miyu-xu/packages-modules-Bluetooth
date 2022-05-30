@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c0b05a8_111390a9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1340,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T11:09:34Z",
+      "side": 1,
+      "message": "Please have it as separate patch.",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c994ceee_77694fe0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2074,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T11:09:34Z",
+      "side": 1,
+      "message": "Lets use LOG_DEBUG() here to not spam logcat.\nTo enable LOG_DEBUG later you should do:\n`adb shell device_config put bluetooth INIT_logging_debug_enabled_for_all true`",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac1baf2c_073fad00",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3411,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T11:09:34Z",
+      "side": 1,
+      "message": "Previously we wanted to make sure that STREAMING group is the same as active_group_id_.\nCan we keep it?",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76ef4899_f8ec3311",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T11:09:34Z",
+      "side": 1,
+      "message": "Maybe those two could be a separate patch?",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28f521d4_30bf89b6",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T11:09:34Z",
+      "side": 1,
+      "message": "nit: IsReconfigurationNeeded() or maybe IsConfigurationSupported()",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
