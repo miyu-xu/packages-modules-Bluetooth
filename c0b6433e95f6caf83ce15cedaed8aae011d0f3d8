@@ -35,6 +35,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "324b363f_3832781d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T14:26:08Z",
+      "side": 1,
+      "message": "Couple more comments...review still ongoing..",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c0b05a8_111390a9",
@@ -116,6 +133,108 @@
       "writtenOn": "2022-05-30T11:09:34Z",
       "side": 1,
       "message": "nit: IsReconfigurationNeeded() or maybe IsConfigurationSupported()",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48c0276d_af2afc84",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T14:26:08Z",
+      "side": 1,
+      "message": "for new logs please use gd style logs: here LOG_ERROR()",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "213bb730_c116d6df",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T14:26:08Z",
+      "side": 1,
+      "message": "for new logs, lets use gd style: LOG_INFO()",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d319345_22939649",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T14:26:08Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4476790_661de349",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T14:26:08Z",
+      "side": 1,
+      "message": "nit: RemoveCisFromStreamConfiguration()",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3584ddd_c70a05da",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T14:26:08Z",
+      "side": 1,
+      "message": "for new logs: LOG_INFO()",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d6b623a_7415bbfd",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 946,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-30T14:26:08Z",
+      "side": 1,
+      "message": "ditto",
       "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
