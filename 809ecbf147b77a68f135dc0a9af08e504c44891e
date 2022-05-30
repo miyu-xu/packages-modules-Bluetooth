@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3b0e89d_54d0e094",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-05-30T17:01:51Z",
+      "side": 1,
+      "message": "Nice...I also had a CL removing this.\n\nThere are a couple other places that also mess around with bg/accept list stuff that need to be examined.\n",
+      "revId": "809ecbf147b77a68f135dc0a9af08e504c44891e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
