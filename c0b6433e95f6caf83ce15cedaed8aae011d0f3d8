@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "155bf713_86dbdcae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1130598
+      },
+      "writtenOn": "2022-05-30T11:21:42Z",
+      "side": 1,
+      "message": "Thanks Łukasz for picking this up for review. Partha is out of office this week. He will be able to check and respond your comments early next week.\n",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c0b05a8_111390a9",
