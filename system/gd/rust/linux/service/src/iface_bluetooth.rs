@@ -1,10 +1,12 @@
 extern crate bt_shim;
 
 use bt_topshim::btif::{BtDeviceType, BtSspVariant, BtTransport, Uuid128Bit};
+use bt_topshim::profiles::socket::SocketType;
 
 use btstack::bluetooth::{
     Bluetooth, BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback,
 };
+use btstack::socket_manager::{BluetoothSocketManager, IBluetoothSocketManager};
 use btstack::suspend::{ISuspend, ISuspendCallback, Suspend, SuspendType};
 use btstack::uuid::Profile;
 use btstack::RPCProxy;
@@ -23,11 +25,12 @@ use std::sync::{Arc, Mutex};
 
 use crate::dbus_arg::{DBusArg, DBusArgError, RefArgToRust};
 
-/// A mixin of the adapter and suspend interfaces. The naming of the fields in the mixin must match
+/// A mixin of the several interfaces. The naming of the fields in the mixin must match
 /// what is listed in the `generate_dbus_exporter` invocation.
 pub struct BluetoothMixin {
     pub adapter: Arc<Mutex<Box<Bluetooth>>>,
     pub suspend: Arc<Mutex<Box<Suspend>>>,
+    pub socket_mgr: Arc<Mutex<Box<BluetoothSocketManager>>>,
 }
 
 #[dbus_propmap(BluetoothDevice)]
@@ -313,6 +316,48 @@ impl IBluetooth for IBluetoothDBus {
 
     #[dbus_method("DisconnectAllEnabledProfiles")]
     fn disconnect_all_enabled_profiles(&mut self, device: BluetoothDevice) -> bool {
+        dbus_generated!()
+    }
+}
+
+impl_dbus_arg_enum!(SocketType);
+
+#[allow(dead_code)]
+struct IBluetoothSocketManagerDBus {}
+
+#[generate_dbus_exporter(
+    export_socket_mgr_intf,
+    "org.chromium.bluetooth.SocketManager",
+    BluetoothMixin,
+    socket_mgr
+)]
+impl IBluetoothSocketManager for IBluetoothSocketManagerDBus {
+    #[dbus_method("ConnectSocket")]
+    fn connect_socket(
+        &mut self,
+        device: BluetoothDevice,
+        sock_type: SocketType,
+        uuid: Option<Uuid128Bit>,
+        port: i32,
+        flags: i32,
+    ) -> Option<std::fs::File> {
+        dbus_generated!()
+    }
+
+    #[dbus_method("CreateSocketChannel")]
+    fn create_socket_channel(
+        &mut self,
+        sock_type: i32,
+        service_name: String,
+        uuid: Option<Uuid128Bit>,
+        port: i32,
+        flags: i32,
+    ) -> Option<std::fs::File> {
+        dbus_generated!()
+    }
+
+    #[dbus_method("RequestMaximumTxDataLength")]
+    fn request_maximum_tx_data_length(&mut self, device: BluetoothDevice) {
         dbus_generated!()
     }
 }
