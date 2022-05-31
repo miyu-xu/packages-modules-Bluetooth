@@ -46,6 +46,30 @@
       },
       "revId": "437acdce6b57bbbaed18129cbf302051452913cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d016326_66f3e67e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-05-31T17:20:37Z",
+      "side": 1,
+      "message": "I guess it wouldn\u0027t cover the code you have here.  I was just trying to think of a way to cover it with blueberry2 tests since that is becoming the direction for submitting bluetooth patches.  I have an idea we can discuss offline.",
+      "parentUuid": "f2f9433c_eefef084",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 3
+      },
+      "revId": "437acdce6b57bbbaed18129cbf302051452913cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
