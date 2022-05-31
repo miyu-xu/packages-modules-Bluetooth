@@ -52,6 +52,24 @@
       "parentUuid": "ce8aff6d_26af86ff",
       "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be3bc05a_c85cdf2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-05-31T23:20:51Z",
+      "side": 1,
+      "message": "Sorry for being ambiguous. I was asking if we should add admin specific code to a repo (aosp master) that will apply to all Android devices.\n\nIf that how you folks always adds adming related code, then it should be fine to add them here.",
+      "parentUuid": "5949aa5b_f72847c5",
+      "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

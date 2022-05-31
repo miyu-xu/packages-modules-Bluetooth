@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0352af6_8ae7a5a8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-05-31T23:20:51Z",
+      "side": 1,
+      "message": "Yes. Connecting-\u003edisconnected means failure. Connecting-\u003econnected means success.",
+      "parentUuid": "45d595f0_3aeb8121",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd8e10c1_44a5c10d",
         "filename": "system/gd/os/android/metrics.cc",
         "patchSetId": 4
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Fair point, I was a little concerned about overflowing the log with too much data (we have 64K circular buffer shared between all admin events), I\u0027ll give it a try to see how much data will be emitted if I log all SIMPLE_PAIRING_COMPLETE events.",
       "parentUuid": "bd8e10c1_44a5c10d",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4cccf5_80f8f62b",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-05-31T23:20:51Z",
+      "side": 1,
+      "message": "At least it\u0027s better to collect connection start points. If Bluetooth crashes during the connection, it should count as a failure. If only connection results are logged, we\u0027ll never know such failures.",
+      "parentUuid": "61a9c940_5c5465fb",
       "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
