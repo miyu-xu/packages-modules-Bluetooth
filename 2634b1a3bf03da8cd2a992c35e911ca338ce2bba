@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35045cdb_e21c164e",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-31T22:58:36Z",
+      "side": 1,
+      "message": "nit: Stopped",
+      "revId": "2634b1a3bf03da8cd2a992c35e911ca338ce2bba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
