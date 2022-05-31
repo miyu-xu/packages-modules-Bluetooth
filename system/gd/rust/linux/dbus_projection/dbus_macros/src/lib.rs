@@ -13,7 +13,7 @@ use syn::{Expr, FnArg, ImplItem, ItemImpl, ItemStruct, Meta, Pat, ReturnType, Ty
 
 use crate::proc_macro::TokenStream;
 
-const OUTPUT_DEBUG: bool = false;
+const OUTPUT_DEBUG: bool = true;
 
 fn debug_output_to_file(gen: &proc_macro2::TokenStream, filename: String) {
     if !OUTPUT_DEBUG {
@@ -807,7 +807,6 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
 #[proc_macro]
 pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
     let gen = quote! {
-        use dbus::arg::PropMap;
         use dbus::nonblock::SyncConnection;
         use dbus::strings::BusName;
         use dbus_projection::DisconnectWatcher;
@@ -815,6 +814,9 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
         use std::error::Error;
         use std::fmt;
         use std::sync::{Arc, Mutex};
+
+        // Key for serialized Option<T> in propmap
+        const OPTION_KEY: &'static str = "value";
 
         #[derive(Debug)]
         pub(crate) struct DBusArgError {
@@ -938,6 +940,7 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
         impl DirectDBus for u16 {}
         impl DirectDBus for u8 {}
         impl DirectDBus for String {}
+        impl DirectDBus for std::fs::File {}
         impl<T: DirectDBus> DBusArg for T {
             type DBusType = T;
 
@@ -984,6 +987,35 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
                     list.push(t);
                 }
                 Ok(list)
+            }
+        }
+
+        impl<T: DBusArg + Clone> DBusArg for Option<T> {
+            type DBusType = dbus::arg::PropMap;
+
+            fn from_dbus(
+                data: dbus::arg::PropMap,
+                conn: Option<Arc<dbus::nonblock::SyncConnection>>,
+                remote: Option<BusName<'static>>,
+                disconnect_watcher: Option<Arc<Mutex<DisconnectWatcher>>>)
+                -> Result<Option<T>, Box<dyn Error>> {
+                let mut result: Option<T> = None;
+
+                Ok(match data.remove(OPTION_KEY) {
+                    Some(v) => None,
+                    None => None
+                })
+            }
+
+            fn to_dbus(data: Option<T>) -> Result<dbus::arg::PropMap, Box<dyn Error>> {
+                let mut props: Self::DBusType = Self::DBusType::new();
+
+                if let Some(d) = data {
+                    let b = Box::new(T::to_dbus(d.clone())?) as Box<dyn dbus::arg::RefArg>;
+                    props.insert(OPTION_KEY.into(), dbus::arg::Variant(b));
+                }
+
+                Ok(props)
             }
         }
     };
