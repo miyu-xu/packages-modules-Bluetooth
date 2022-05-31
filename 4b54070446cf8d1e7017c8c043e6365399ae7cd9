@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dfbe19a_bfd1a22b",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-05-31T16:44:46Z",
+      "side": 1,
+      "message": "Calling clientConnect again for background connection doesn\u0027t make sense - once you called it, it would keep trying to reconnect after disconnection.",
+      "range": {
+        "startLine": 1040,
+        "startChar": 21,
+        "endLine": 1040,
+        "endChar": 34
+      },
+      "revId": "4b54070446cf8d1e7017c8c043e6365399ae7cd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
