@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc8d688d_a4524493",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-05-31T17:25:04Z",
+      "side": 1,
+      "message": "Would you like to log \"Connecting\" and \"disconnecting\" state? Simply with \"disconnected\", you can\u0027t tell if it\u0027s a disconnection or a connection failure.",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd8e10c1_44a5c10d",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-05-31T17:25:04Z",
+      "side": 1,
+      "message": "I recommand upload as much commands and events as you can and filter what you need at the server side. Maybe remove the switch and upload everything? Or, at least use \"blacklist\" to filter out obvious noice. \n\nIn the future, it would take much longer to release Android code than server code when you realize you need more things.",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "message": "Hi Chen, does this look like the right place to emit logs?",
       "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce8aff6d_26af86ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-05-31T17:25:04Z",
+      "side": 1,
+      "message": "The places look good to me but is it the normal way to put admin codes in the aosp?",
+      "parentUuid": "84e3ef47_8768d035",
+      "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
