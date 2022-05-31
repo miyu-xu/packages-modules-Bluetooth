@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0616b770_f98ec57c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-31T21:56:35Z",
+      "side": 1,
+      "message": "Doesn\u0027t compile currently",
+      "revId": "e5bfaf6ce6606148420af05f5c4fea315ac0aec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a01bc4a6_f0750c31",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-31T21:56:35Z",
+      "side": 1,
+      "message": "Not sure how to convert from Variant to type T either.",
+      "revId": "e5bfaf6ce6606148420af05f5c4fea315ac0aec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42398999_c647d398",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-31T21:56:35Z",
+      "side": 1,
+      "message": "the trait bound `\u003cT as DBusArg\u003e::DBusType: RefArg` is not satisfied",
+      "revId": "e5bfaf6ce6606148420af05f5c4fea315ac0aec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
