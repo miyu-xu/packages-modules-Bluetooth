@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdf96110_b99c2eb7",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-31T21:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf1d6e1b_328765d4",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 2
+      },
+      "revId": "a8d2b94c5daeb24c2841c51b62074cb5597f24e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3223e678_1fbf1869",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-05-31T14:15:37Z",
       "side": 1,
       "message": "should this be part of this patch ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 2
+      },
+      "revId": "a8d2b94c5daeb24c2841c51b62074cb5597f24e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "597a1e09_b5c9e3ca",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-05-31T21:20:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3223e678_1fbf1869",
       "range": {
         "startLine": 50,
         "startChar": 0,
