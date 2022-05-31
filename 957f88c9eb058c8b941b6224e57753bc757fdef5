@@ -101,6 +101,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3709ccab_d4f5b996",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-05-31T22:58:13Z",
+      "side": 1,
+      "message": "I verified that the latest patch fixes the issue. Patch LGTM.\n\nWhy did you use timer to detect the bad state instead of directly detecting the bad state when it happens?",
+      "parentUuid": "0cb03edf_f6397a6c",
+      "revId": "957f88c9eb058c8b941b6224e57753bc757fdef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c33e09cc_3e02d1e2",
