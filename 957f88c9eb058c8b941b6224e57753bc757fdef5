@@ -119,6 +119,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c665a86a_e74067e9",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-05-31T23:10:16Z",
+      "side": 1,
+      "message": "HCI presence is removed (in the current implementation of the kernel) when we use userchannel mode. Adapter enabled is when the stack module starts up.\n\nIt is more reliable to wait for adapter enable/disable indicators before taking any actions vs depending on the HCI presence alone since this can be affected by other things:\n\n* External user of userchannel\n* Firmware crash / chip lost event\n\nThe timer also helps act as a debouncer to prevent us from taking too many corrective actions quickly.",
+      "parentUuid": "3709ccab_d4f5b996",
+      "revId": "957f88c9eb058c8b941b6224e57753bc757fdef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c33e09cc_3e02d1e2",
