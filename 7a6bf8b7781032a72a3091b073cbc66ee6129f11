@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45d595f0_3aeb8121",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1059499
+      },
+      "writtenOn": "2022-05-31T22:13:21Z",
+      "side": 1,
+      "message": "Interesting point, so can this be distinguished by just looking at prevState here during STATE_DISCONNECTED? In other words, when state \u003d\u003d STATE_DISCONNECTED, will prevState be different values depending on whether it\u0027s going through disconnection vs connection failure? Or do I need to log \"Connecting\" and look for a quick sequence of \"connecting\" followed by \"disconnected\" as a heuristic for connection failure?",
+      "parentUuid": "cc8d688d_a4524493",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd8e10c1_44a5c10d",
         "filename": "system/gd/os/android/metrics.cc",
         "patchSetId": 4
@@ -31,6 +49,24 @@
       "writtenOn": "2022-05-31T17:25:04Z",
       "side": 1,
       "message": "I recommand upload as much commands and events as you can and filter what you need at the server side. Maybe remove the switch and upload everything? Or, at least use \"blacklist\" to filter out obvious noice. \n\nIn the future, it would take much longer to release Android code than server code when you realize you need more things.",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a9c940_5c5465fb",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1059499
+      },
+      "writtenOn": "2022-05-31T22:13:21Z",
+      "side": 1,
+      "message": "Fair point, I was a little concerned about overflowing the log with too much data (we have 64K circular buffer shared between all admin events), I\u0027ll give it a try to see how much data will be emitted if I log all SIMPLE_PAIRING_COMPLETE events.",
+      "parentUuid": "bd8e10c1_44a5c10d",
       "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

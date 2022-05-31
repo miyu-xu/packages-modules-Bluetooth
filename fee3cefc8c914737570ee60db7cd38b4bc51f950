@@ -34,6 +34,24 @@
       "parentUuid": "84e3ef47_8768d035",
       "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5949aa5b_f72847c5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1059499
+      },
+      "writtenOn": "2022-05-31T22:13:21Z",
+      "side": 1,
+      "message": "Not sure I follow your question. I landed the change in AOSP (instead of internal master) as I thought Bluetooth code changes is AOSP-first.",
+      "parentUuid": "ce8aff6d_26af86ff",
+      "revId": "fee3cefc8c914737570ee60db7cd38b4bc51f950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
