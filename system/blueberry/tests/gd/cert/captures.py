@@ -21,6 +21,7 @@ from bluetooth_packets_python3.l2cap_packets import CommandCode, LeCommandCode
 from blueberry.tests.gd.cert.capture import Capture
 from blueberry.tests.gd.cert.matchers import HciMatchers
 from blueberry.tests.gd.cert.matchers import L2capMatchers
+from blueberry.tests.gd.cert.matchers import AdvertisingMatchers
 from blueberry.tests.gd.cert.matchers import SecurityMatchers
 from blueberry.facade.security.facade_pb2 import UiMsgType
 
@@ -114,6 +115,18 @@ class HciCaptures(object):
         return Capture(HciMatchers.EventWithCode(hci_packets.EventCode.SIMPLE_PAIRING_COMPLETE),
             lambda packet: hci_packets.SimplePairingCompleteView(
                 HciMatchers.ExtractEventWithCode(packet.payload, hci_packets.EventCode.SIMPLE_PAIRING_COMPLETE)))
+
+
+class AdvertisingCaptures(object):
+
+    @staticmethod
+    def AdvertisingCallbackCapture(type, advertiser_id=None, status=None, data=None):
+        return Capture(
+            AdvertisingMatchers.AdvertisingCallbackMsg(type, advertiser_id, status, data), lambda packet: packet)
+
+    @staticmethod
+    def AddressMsgCapture(type, advertiser_id=None, address=None):
+        return Capture(AdvertisingMatchers.AddressMsg(type, advertiser_id, address), lambda packet: packet)
 
 
 class L2capCaptures(object):

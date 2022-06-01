@@ -20,6 +20,7 @@ from bluetooth_packets_python3 import hci_packets
 from blueberry.tests.gd.cert.event_stream import EventStream
 from blueberry.tests.gd.cert.closable import safeClose
 from blueberry.tests.gd.cert.matchers import AdvertisingMatchers
+from blueberry.tests.gd.cert.captures import AdvertisingCaptures
 from blueberry.tests.gd.cert.py_hci import PyHci
 from blueberry.tests.gd.cert.truth import assertThat
 from blueberry.tests.gd.cert import gd_base_test
@@ -59,6 +60,17 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
             logging.info("DUT: address Event Stream is None!")
         gd_base_test.GdBaseTestClass.teardown_test(self)
 
+    def set_address_policy_with_test_irk(self, min_time_ms=100, max_time_ms=200):
+        privacy_policy = le_initiator_address_facade.PrivacyPolicy(
+            address_policy=le_initiator_address_facade.AddressPolicy.USE_RESOLVABLE_ADDRESS,
+            address_with_type=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(b'd0:05:04:03:02:01')),
+                type=common.RANDOM_DEVICE_ADDRESS),
+            rotation_irk=b'\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e\x0f\x10',
+            minimum_rotation_time=min_time_ms,
+            maximum_rotation_time=max_time_ms)
+        self.dut.hci_le_initiator_address.SetPrivacyPolicyForInitiatorAddress(privacy_policy)
+
     def set_address_policy_with_static_address(self):
         privacy_policy = le_initiator_address_facade.PrivacyPolicy(
             address_policy=le_initiator_address_facade.AddressPolicy.USE_STATIC_ADDRESS,
@@ -87,8 +99,7 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
         create_response = self.dut.hci_le_advertising_manager.CreateAdvertiser(request)
         return create_response
 
-    def test_le_ad_scan_dut_advertises(self):
-        self.set_address_policy_with_static_address()
+    def start_cert_scan(self):
         self.cert_hci.register_for_le_events(hci_packets.SubeventCode.ADVERTISING_REPORT,
                                              hci_packets.SubeventCode.EXTENDED_ADVERTISING_REPORT)
 
@@ -105,6 +116,10 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
         self.cert_hci.send_command(
             hci_packets.LeSetExtendedScanEnableBuilder(hci_packets.Enable.ENABLED,
                                                        hci_packets.FilterDuplicates.DISABLED, 0, 0))
+
+    def test_le_ad_scan_dut_advertises(self):
+        self.set_address_policy_with_static_address()
+        self.start_cert_scan()
 
         create_response = self.create_advertiser()
 
@@ -117,22 +132,7 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
 
     def test_extended_create_advertises(self):
         self.set_address_policy_with_static_address()
-        self.cert_hci.register_for_le_events(hci_packets.SubeventCode.ADVERTISING_REPORT,
-                                             hci_packets.SubeventCode.EXTENDED_ADVERTISING_REPORT)
-
-        # CERT Scans
-        self.cert_hci.send_command(hci_packets.LeSetRandomAddressBuilder('0C:05:04:03:02:01'))
-        scan_parameters = hci_packets.PhyScanParameters()
-        scan_parameters.le_scan_type = hci_packets.LeScanType.ACTIVE
-        scan_parameters.le_scan_interval = 40
-        scan_parameters.le_scan_window = 20
-        self.cert_hci.send_command(
-            hci_packets.LeSetExtendedScanParametersBuilder(hci_packets.OwnAddressType.RANDOM_DEVICE_ADDRESS,
-                                                           hci_packets.LeScanningFilterPolicy.ACCEPT_ALL, 1,
-                                                           [scan_parameters]))
-        self.cert_hci.send_command(
-            hci_packets.LeSetExtendedScanEnableBuilder(hci_packets.Enable.ENABLED,
-                                                       hci_packets.FilterDuplicates.DISABLED, 0, 0))
+        self.start_cert_scan()
 
         gap_name = hci_packets.GapData()
         gap_name.data_type = hci_packets.GapDataType.COMPLETE_LOCAL_NAME
@@ -314,6 +314,32 @@ class LeAdvertisingManagerTest(gd_base_test.GdBaseTestClass):
         assertThat(self.dut.address_event_stream).emits(
             AdvertisingMatchers.AddressMsg(AdvertisingCallbackMsgType.OWN_ADDRESS_READ, create_response.advertiser_id,
                                            address_with_type))
+
+    def test_address_rotates(self):
+        self.set_address_policy_with_test_irk()
+        self.start_cert_scan()
+
+        create_response = self.create_advertiser()
+
+        assertThat(self.cert_hci.get_le_event_stream()).emits(lambda packet: b'Im_The_DUT' in packet.payload)
+
+        get_own_address_request = le_advertising_facade.GetOwnAddressRequest(
+            advertiser_id=create_response.advertiser_id)
+        self.dut.hci_le_advertising_manager.GetOwnAddress(get_own_address_request)
+        address_capture = AdvertisingCaptures.AddressMsgCapture(type=AdvertisingCallbackMsgType.OWN_ADDRESS_READ)
+        assertThat(self.dut.address_event_stream).emits(address_capture)
+        first_address = address_capture.get().address.address
+        second_address = first_address
+        tries = 0
+        while first_address == second_address and tries < 10:
+            tries = tries + 1
+            assertThat(self.cert_hci.get_le_event_stream()).emits(lambda packet: b'Im_The_DUT' in packet.payload)
+            self.dut.hci_le_advertising_manager.GetOwnAddress(get_own_address_request)
+            address_capture = AdvertisingCaptures.AddressMsgCapture(type=AdvertisingCallbackMsgType.OWN_ADDRESS_READ)
+            assertThat(self.dut.address_event_stream).emits(address_capture)
+            second_address = address_capture.get().address.address
+
+        assertThat(first_address).isNotEqualTo(second_address)
 
 
 if __name__ == '__main__':
