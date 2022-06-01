@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23c0755e_2def487c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-06-01T06:30:31Z",
+      "side": 1,
+      "message": "Please add the following sections\n Tag: #refactor\n Test: atest BluetoothInstrumentationTests",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 14
+      },
+      "revId": "697e49ebaa9cf4d2215631fec79d718a8791322c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
