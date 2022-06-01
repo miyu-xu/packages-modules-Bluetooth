@@ -70,6 +70,30 @@
       },
       "revId": "0d144d7aa2e9d7900b1a6a507248cd3220d34f18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "013aae07_a8e7e86f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3079,
+      "author": {
+        "id": 1003259
+      },
+      "writtenOn": "2022-06-01T16:34:48Z",
+      "side": 1,
+      "message": "I was just surprised that current_context_type is unused by this function and thought that it\u0027s purpose was typically for this situation where you don\u0027t want to alter current context.",
+      "parentUuid": "975a9633_27fdd1d0",
+      "range": {
+        "startLine": 3079,
+        "startChar": 17,
+        "endLine": 3079,
+        "endChar": 35
+      },
+      "revId": "0d144d7aa2e9d7900b1a6a507248cd3220d34f18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
