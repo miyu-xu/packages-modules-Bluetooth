@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ab14da3_1ee6764e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-06-01T06:44:06Z",
+      "side": 1,
+      "message": "I am not pretty sure why storing factory objects in the intance can help receiving death events? Could you describe more about it?",
+      "revId": "7c7f5f30a823d7b849c10c0df38240550e908755",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "902f5cfe_92708c40",
         "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
         "patchSetId": 2
