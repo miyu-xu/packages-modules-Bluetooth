@@ -16,6 +16,24 @@
       "message": "I would rather fix this at `dbus-rs` level because the library is missing this feature. I have created a prototype (https://github.com/diwic/dbus-rs/pull/387) and asked diwic if the idea is acceptable.\n\nDo we need this urgently? If not I suggest we wait until we fix in `dbus-rs`, otherwise I am okay with merging this temporarily and reverting it after `dbus-rs` supports this.",
       "revId": "bf375bc66f63b6ed7141a41a80206058cd7838fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceb13f81_190937b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-01T22:47:43Z",
+      "side": 1,
+      "message": "Lets wait a week to see if there\u0027s upstream traction. If yes, we\u0027ll use the upstream approach.",
+      "parentUuid": "d6a3fe21_cbd67062",
+      "revId": "bf375bc66f63b6ed7141a41a80206058cd7838fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
