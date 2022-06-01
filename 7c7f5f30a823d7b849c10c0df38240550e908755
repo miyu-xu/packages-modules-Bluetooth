@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f76a609_52b2f12e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1443525
+      },
+      "writtenOn": "2022-06-01T06:58:42Z",
+      "side": 1,
+      "message": "The service object that you are getting is of ProviderFactory, hence it would make sense to tie that to death recipient (based on what I have seen so far) rather than use the Provider object.",
+      "parentUuid": "8ab14da3_1ee6764e",
+      "revId": "7c7f5f30a823d7b849c10c0df38240550e908755",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "902f5cfe_92708c40",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8665cd98_a1727250",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1443525
+      },
+      "writtenOn": "2022-06-01T06:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "902f5cfe_92708c40",
+      "range": {
+        "startLine": 158,
+        "startChar": 27,
+        "endLine": 158,
+        "endChar": 36
+      },
+      "revId": "7c7f5f30a823d7b849c10c0df38240550e908755",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a081b73_2e07a7b8",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-06-01T06:39:50Z",
       "side": 1,
       "message": "And here",
+      "range": {
+        "startLine": 172,
+        "startChar": 27,
+        "endLine": 172,
+        "endChar": 36
+      },
+      "revId": "7c7f5f30a823d7b849c10c0df38240550e908755",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0944472_4a009e0b",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1443525
+      },
+      "writtenOn": "2022-06-01T06:58:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a081b73_2e07a7b8",
       "range": {
         "startLine": 172,
         "startChar": 27,
