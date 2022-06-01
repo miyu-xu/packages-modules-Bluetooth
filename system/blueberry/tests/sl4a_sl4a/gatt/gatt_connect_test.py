@@ -1002,6 +1002,98 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             if mac_address_pre_restart != mac_address_post_restart:
                 break
 
+    # @test_tracker_info(uuid='7d3442c5-f71f-44ae-bd35-f2569f01b3b8')
+    def test_gatt_and_rfcomm_omg(self):
+        """Test GATT connections multiple times.
+
+        Test establishing a gatt connection between a GATT server and GATT
+        client with multiple iterations.
+
+        Steps:
+          1. Start a generic advertisement.
+          2. Start a generic scanner.
+          3. Find the advertisement and extract the mac address.
+          4. Stop the first scanner.
+          5. Create a GATT connection between the scanner and advertiser.
+          6. Disconnect the GATT connection.
+
+        Expected Result:
+          Verify that a connection was established and then disconnected
+          successfully twenty times.
+
+        Returns:
+          Pass if True
+          Fail if False
+
+        TAGS: LE, Advertising, Filtering, Scanning, GATT, Stress
+        Priority: 1
+        """
+        from blueberry.utils import bt_constants
+
+        # gatt_server_cb = self.peripheral.sl4a.gattServerCreateGattServerCallback()
+        # gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(gatt_server_cb)
+        # self.gatt_server_list.append(gatt_server)
+        # mac_address, adv_callback, scan_callback = get_mac_address_of_generic_advertisement(
+        #     self.central, self.peripheral)
+
+        # start listening for rfcomm socket
+        server_address = self.peripheral.sl4a.bluetoothGetLocalAddress()
+        logging.info("Server Address {}".format(server_address))
+        logging.info('Pairing and connecting devices')
+        if not self.central.sl4a.bluetoothDiscoverAndBond(server_address):
+            logging.info('Failed to pair and connect devices')
+            return False
+
+        uuid = bt_constants.BT_RFCOMM_UUIDS['rfcomm']
+        self.peripheral.sl4a.bluetoothStartPairingHelper()
+        self.central.sl4a.bluetoothStartPairingHelper()
+        self.peripheral.sl4a.bluetoothSocketConnBeginAcceptThreadUuid(
+            uuid, bt_constants.DEFAULT_RFCOMM_TIMEOUT_MS)
+
+        end_time = time.time() + bt_constants.BT_DEFAULT_TIMEOUT_SECONDS
+        test_result = True
+
+        autoconnect = False
+        for i in range(1):
+            logging.info("Starting connection iteration {}".format(i + 1))
+            try:
+                # bluetooth_gatt, gatt_callback = setup_gatt_connection(self.central, mac_address, autoconnect)
+                self.central.sl4a.bluetoothSocketConnBeginConnectThreadUuid(
+                    self.peripheral.sl4a.bluetoothGetLocalAddress(), uuid)
+                # self.central.sl4a.bleStopBleScan(scan_callback)
+            except GattTestUtilsError as err:
+                logging.error(err)
+                return False
+
+            while time.time() < end_time:
+                number_socket_connections = len(
+                    self.peripheral.sl4a.bluetoothSocketConnActiveConnections())
+                connected = number_socket_connections > 0
+                if connected:
+                    test_result = True
+                    self.peripheral.log.info(
+                        'Bluetooth socket Client Connection Active')
+                    break
+                else:
+                    test_result = False
+                time.sleep(1)
+
+            if not test_result:
+                self.peripheral.log.error(
+                    'Failed to establish a Bluetooth socket connection')
+                return False
+
+            # gatt_test_result = self._orchestrate_gatt_disconnection(bluetooth_gatt, gatt_callback)
+            # if not gatt_test_result:
+            #     logging.info("Failed to disconnect from peripheral device.")
+            #     return False
+
+            self.peripheral.sl4a.bluetoothSocketConnStop()
+            self.central.sl4a.bluetoothSocketConnStop()
+
+        # self.adv_instances.append(adv_callback)
+        return True
+
 
 if __name__ == '__main__':
     test_runner.main()
