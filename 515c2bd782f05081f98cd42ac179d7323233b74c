@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75570ca9_abd3a786",
+        "filename": "system/stack/acl/ble_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-01T09:28:05Z",
+      "side": 1,
+      "message": "this is already called here",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 44
+      },
+      "revId": "515c2bd782f05081f98cd42ac179d7323233b74c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb77dd2a_c8c547ea",
+        "filename": "system/stack/acl/ble_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-01T09:28:05Z",
+      "side": 1,
+      "message": "this seems conflicting with https://android-review.googlesource.com/c/platform/system/bt/+/1708816/",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 68
+      },
+      "revId": "515c2bd782f05081f98cd42ac179d7323233b74c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
