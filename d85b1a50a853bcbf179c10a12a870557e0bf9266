@@ -46,6 +46,30 @@
       },
       "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fe04b15_53f5da23",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-01T18:21:46Z",
+      "side": 1,
+      "message": "Actually, even before that.  PUBLIC_IDENTITY_ADDRESS lets us know that the controller resolved the address, but that shouldn\u0027t be stored in the device record.",
+      "parentUuid": "bedf68ac_dc7bfd10",
+      "range": {
+        "startLine": 561,
+        "startChar": 1,
+        "endLine": 561,
+        "endChar": 74
+      },
+      "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
