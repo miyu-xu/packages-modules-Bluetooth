@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d8d4127_7ad4647c",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1043,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-01T18:59:00Z",
+      "side": 1,
+      "message": "Maybe remove these comments",
+      "revId": "1dd8f055381a17f24ad73f163ef9614ad092e58f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
