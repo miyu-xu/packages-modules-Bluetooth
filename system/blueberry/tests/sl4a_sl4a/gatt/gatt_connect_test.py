@@ -1002,6 +1002,72 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             if mac_address_pre_restart != mac_address_post_restart:
                 break
 
+    def test_omg_rfcomm_and_gatt(self):
+        from blueberry.utils import bt_constants
+
+        uuid = bt_constants.BT_RFCOMM_UUIDS['default_uuid']
+        timeout = bt_constants.BT_DEFAULT_TIMEOUT_SECONDS
+
+        server_address = self.peripheral.sl4a.bluetoothGetLocalAddress()
+        logging.info("Bonding with peripheral device")
+        if not self.central.sl4a.bluetoothDiscoverAndBond(server_address):
+            return False
+
+        self.peripheral.sl4a.bluetoothStartPairingHelper()
+        self.central.sl4a.bluetoothStartPairingHelper()
+
+        gatt_server_cb = self.peripheral.sl4a.gattServerCreateGattServerCallback()
+        gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(
+            gatt_server_cb)
+        self.gatt_server_list.append(gatt_server)
+        mac_address, adv_callback, scan_callback = get_mac_address_of_generic_advertisement(
+            self.central, self.peripheral)
+
+        NUM_OF_ITERS = 1
+        MAX_WAIT_TIME = 10
+        for i in range(NUM_OF_ITERS):
+            logging.info("\n\nStarting connection iteration {}".format(i + 1))
+
+            logging.info("Creating rfcomm begin connect thread")
+            self.central.sl4a.bluetoothRfcommBeginConnectThread(
+                server_address, uuid)
+
+            logging.info("Creating rfcomm accept thread on peripheral device")
+            self.peripheral.sl4a.bluetoothRfcommBeginAcceptThread(
+                uuid, timeout*6)
+
+            logging.info("Stopping ble scan")
+            self.central.sl4a.bleStopBleScan(scan_callback)
+
+            logging.info("Setting up gatt connection")
+            autoconnect = False
+            bluetooth_gatt, gatt_callback = setup_gatt_connection(
+                self.central, mac_address, autoconnect)
+
+            active_connections = None
+            for wait_time in range(1, MAX_WAIT_TIME, 5):
+                logging.info(
+                    "Waiting {}s for rfcomm connection".format(wait_time))
+                time.sleep(wait_time)
+                active_connections = self.central.sl4a.bluetoothRfcommActiveConnections()
+                if active_connections:
+                    break
+
+            logging.info("Active connections: {}".format(active_connections))
+
+            conn_id = self.central.sl4a.bluetoothGetLastConnId()
+            logging.info("Sending data using conn id: {}".format(conn_id))
+            self.central.sl4a.bluetoothRfcommWrite("Hello world", conn_id)
+
+            self.central.sl4a.bluetoothRfcommEndConnectThread()
+            self.peripheral.sl4a.bluetoothRfcommEndAcceptThread()
+
+            gatt_test_result = self._orchestrate_gatt_disconnection(
+                bluetooth_gatt, gatt_callback)
+            if not gatt_test_result:
+                logging.info("Failed to disconnect from peripheral device.")
+                return False
+
 
 if __name__ == '__main__':
     test_runner.main()
