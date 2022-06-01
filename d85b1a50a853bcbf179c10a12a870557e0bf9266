@@ -22,6 +22,30 @@
       },
       "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bedf68ac_dc7bfd10",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-01T17:55:22Z",
+      "side": 1,
+      "message": "I thought `convertAddressType` does exactly this to convert PUBLIC_IDENTITY_ADDRESS to PUBLIC?\n\nDo you mean doing this in the shim layer when this API is called?",
+      "parentUuid": "132f7cde_f1246035",
+      "range": {
+        "startLine": 561,
+        "startChar": 1,
+        "endLine": 561,
+        "endChar": 74
+      },
+      "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
