@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310e401c_65f1ccb8",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-01T19:00:59Z",
+      "side": 1,
+      "message": "You should use cb_variant! for callbacks. We want to avoid async/tokio inside topshim.",
+      "revId": "af38b148ae3debd8dbd5d6e16fb31cbe0173bf7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
