@@ -1002,6 +1002,53 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             if mac_address_pre_restart != mac_address_post_restart:
                 break
 
+    def test_omg_rfcomm_and_gatt(self):
+        from blueberry.utils import bt_constants
+
+        uuid = bt_constants.BT_RFCOMM_UUIDS['default_uuid']
+        timeout = bt_constants.BT_DEFAULT_TIMEOUT_SECONDS
+
+        server_address = self.peripheral.sl4a.bluetoothGetLocalAddress()
+        logging.info("Bonding with peripheral device")
+        if not self.central.sl4a.bluetoothDiscoverAndBond(server_address):
+            return False
+
+        self.peripheral.sl4a.bluetoothStartPairingHelper()
+        self.central.sl4a.bluetoothStartPairingHelper()
+
+        gatt_server_cb = self.peripheral.sl4a.gattServerCreateGattServerCallback()
+        gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(
+            gatt_server_cb)
+        self.gatt_server_list.append(gatt_server)
+        mac_address, adv_callback, scan_callback = get_mac_address_of_generic_advertisement(
+            self.central, self.peripheral)
+
+        logging.info("Connecting to peripheral device via rfcomm")
+        self.central.sl4a.bluetoothRfcommBeginConnectThread(
+            server_address, uuid)
+
+        autoconnect = False
+        bluetooth_gatt, gatt_callback = setup_gatt_connection(
+            self.central, mac_address, autoconnect)
+
+        logging.info("Creating rfcomm socket on peripheral device")
+        self.peripheral.sl4a.bluetoothRfcommBeginAcceptThread(uuid, timeout*4)
+
+        self.central.sl4a.bleStopBleScan(scan_callback)
+        time.sleep(20)
+        active_connections = self.central.sl4a.bluetoothRfcommActiveConnections()
+        logging.info("Active connections: {}".format(active_connections))
+        # assert len(active_connections) > 0
+
+        self.central.sl4a.bluetoothRfcommEndConnectThread()
+        self.peripheral.sl4a.bluetoothRfcommEndAcceptThread()
+
+        gatt_test_result = self._orchestrate_gatt_disconnection(
+            bluetooth_gatt, gatt_callback)
+        if not gatt_test_result:
+            logging.info("Failed to disconnect from peripheral device.")
+            return False
+
 
 if __name__ == '__main__':
     test_runner.main()
