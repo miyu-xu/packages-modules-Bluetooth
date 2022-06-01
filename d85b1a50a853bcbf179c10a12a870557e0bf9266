@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "132f7cde_f1246035",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-01T15:39:06Z",
+      "side": 1,
+      "message": "I would rather fix this where we\u0027re calling the API.  I don\u0027t want to be storing PUBLIC_IDENTITY_ADDRESS as an address type.",
+      "range": {
+        "startLine": 561,
+        "startChar": 1,
+        "endLine": 561,
+        "endChar": 74
+      },
+      "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
