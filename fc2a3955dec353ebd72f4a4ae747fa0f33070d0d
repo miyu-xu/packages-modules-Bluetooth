@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4142081_69844e40",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-02T17:38:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4acb0fe2_66f326ae",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ef54c00_5a82654c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-02T08:12:33Z",
       "side": 1,
       "message": "Have you checked it failed without the change?",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 72
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e994dbbd_19176ba0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-02T17:38:04Z",
+      "side": 1,
+      "message": "I checked without changes (following the reproduction steps) but it still works. Maybe because I have 1 Pixel and 2 Samsungs (probably with Samsung\u0027s fix). I will try to reproduce by borrowing another Pixel tomorrow",
+      "parentUuid": "2ef54c00_5a82654c",
       "range": {
         "startLine": 10,
         "startChar": 6,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd8eb2cf_1ca1714e",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-02T17:38:04Z",
+      "side": 1,
+      "message": "Thanks for pointing out. I\u0027m not sure if we should write comment for all functions because I see many functions without comment in this file. This function can be understood with its name and its code. I will add comment then",
+      "parentUuid": "c200aa3a_396a34d2",
+      "range": {
+        "startLine": 1358,
+        "startChar": 5,
+        "endLine": 1358,
+        "endChar": 33
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36013651_8aa60061",
         "filename": "system/stack/include/acl_hci_link_interface.h",
         "patchSetId": 1
@@ -83,6 +155,30 @@
       "writtenOn": "2022-06-02T08:12:33Z",
       "side": 1,
       "message": "Q) Is it adding a new global function? \nQ) Is the naming proper enough?",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a96855cd_45fb9776",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-02T17:38:04Z",
+      "side": 1,
+      "message": "Yes it is a global function, because it will be called from another file (but im not sure if it is a good practice)\n\nThe naming sounds intuitive to me, it assign the default role (HCI_ROLE_CENTRAL) if not yet assigned, and that\u0027s a delayed role.",
+      "parentUuid": "36013651_8aa60061",
       "range": {
         "startLine": 83,
         "startChar": 5,
