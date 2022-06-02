@@ -93,6 +93,30 @@
       },
       "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7988192e_cc811da9",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-02T23:03:15Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "3693151d_832b5a92",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 55
+      },
+      "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
