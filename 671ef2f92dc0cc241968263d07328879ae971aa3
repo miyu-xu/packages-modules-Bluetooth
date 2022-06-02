@@ -16,6 +16,23 @@
       "message": "I think the root cause for logging error is that it tries to connect without checking the availability in RemoteDevices#aclStateChangeCallback.\n\nShouldn\u0027t we change there?",
       "revId": "671ef2f92dc0cc241968263d07328879ae971aa3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e3a491_3517f42d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-02T10:01:15Z",
+      "side": 1,
+      "message": "How about aosp/2114874?",
+      "revId": "671ef2f92dc0cc241968263d07328879ae971aa3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
