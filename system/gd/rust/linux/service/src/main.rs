@@ -13,6 +13,7 @@ use syslog::{BasicLogger, Facility, Formatter3164};
 use bt_topshim::{btif::get_btinterface, topstack};
 use btstack::{
     bluetooth::{get_bt_dispatcher, Bluetooth, IBluetooth},
+    bluetooth_gatt::get_gatt_adv_inband_dispatcher,
     bluetooth_gatt::BluetoothGatt,
     bluetooth_media::BluetoothMedia,
     suspend::Suspend,
