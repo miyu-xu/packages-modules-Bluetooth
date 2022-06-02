@@ -17,6 +17,7 @@ package com.android.bluetooth.btservice;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -208,5 +209,14 @@ public class MetricsLogger {
         counterMetricsIntent.setPackage("com.android.bluetooth");
         return PendingIntent.getBroadcast(
                 mContext, 0, counterMetricsIntent, PendingIntent.FLAG_IMMUTABLE);
+    }
+
+    public static BluetoothProtoEnums getMacAddressTypeEnum(int addressType) {
+        if (addressType == BluetoothDevice.ADDRESS_TYPE_PUBLIC) {
+            return BluetoothProtoEnums.ADDRESS_TYPE_PUBLIC;
+        } else if (addressType == BluetoothDevice.ADDRESS_TYPE_RANDOM) {
+            return BluetoothProtoEnums.ADDRESS_TYPE_RANDOM;
+        }
+        return ADDRESS_TYPE_UNKNOWN;
     }
 }
