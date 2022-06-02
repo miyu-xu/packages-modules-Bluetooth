@@ -124,6 +124,9 @@ class PyLeAclManager(Closable):
         self.next_token += 1
         return token
 
+    def get_address_manager(self):
+        return le_acl_manager_facade.GetLeAddressManager()
+
     def complete_connection(self, event_stream):
         connection_complete = HciCaptures.LeConnectionCompleteCapture()
         assertThat(event_stream).emits(connection_complete)
