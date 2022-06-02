@@ -374,11 +374,15 @@ void LogMetricManufacturerInfo(
       model.c_str(),
       hardware_version.c_str(),
       software_version.c_str(),
-      metric_id);
+      metric_id,
+      address.address[5],
+      address.address[4],
+      address.address[3]);
   if (ret < 0) {
     LOG_WARN(
-        "Failed for %s, source_type %d, source_name %s, manufacturer %s, model %s, hardware_version %s, "
-        "software_version %s, error %d",
+        "Failed for %s, source_type %d, source_name %s, manufacturer %s, model %s, "
+        "hardware_version %s, "
+        "software_version %s, error %d MAC address prefix %d %d %d",
         address.ToString().c_str(),
         source_type,
         source_name.c_str(),
@@ -386,7 +390,10 @@ void LogMetricManufacturerInfo(
         model.c_str(),
         hardware_version.c_str(),
         software_version.c_str(),
-        ret);
+        ret,
+        address.address[5],
+        address.address[4],
+        address.address[3]);
   }
 }
 

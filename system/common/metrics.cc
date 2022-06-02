@@ -878,14 +878,16 @@ void LogManufacturerInfo(const RawAddress& address,
   int ret = stats_write(BLUETOOTH_DEVICE_INFO_REPORTED, obfuscated_id_field,
                         source_type, source_name.c_str(), manufacturer.c_str(),
                         model.c_str(), hardware_version.c_str(),
-                        software_version.c_str(), metric_id);
+                        software_version.c_str(), metric_id, address.address[5],
+                        address.address[4], address.address[3]);
   if (ret < 0) {
     LOG(WARNING) << __func__ << ": failed for " << address << ", source_type "
                  << source_type << ", source_name " << source_name
                  << ", manufacturer " << manufacturer << ", model " << model
                  << ", hardware_version " << hardware_version
                  << ", software_version " << software_version << ", error "
-                 << ret;
+                 << ret << " MAC address prefix" << address.address[5] << " "
+                 << address.address[4] << " " << address.address[3];
   }
 }
 
