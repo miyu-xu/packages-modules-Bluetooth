@@ -14,6 +14,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import logging
+
 from blueberry.tests.gd.cert import gd_base_test
 from blueberry.tests.gd.cert.closable import safeClose
 from blueberry.tests.gd.cert.truth import assertThat
@@ -402,6 +404,53 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
                 type=int(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)),
             is_direct=True)
         self.dut_le_acl_manager.complete_outgoing_connection(token)
+
+    def test_cmm(self):
+        # le_impl;:create_le_connection(addr, true, false)
+        # ASSERT_TRUE(le_acl_connection_interface_->EnqueueCommand(LeExtendedCreateConnection)
+        self.set_privacy_policy_static()
+
+        token_client = self.dut_le_acl_manager.register_with_address_manager()
+
+        # Cert Advertises
+        advertising_handle = 0
+        py_hci_adv = PyHciAdvertisement(advertising_handle, self.cert_hci)
+
+        self.cert_hci.create_advertisement(
+            advertising_handle,
+            self.cert_random_address,
+            hci_packets.LegacyAdvertisingProperties.ADV_IND,
+        )
+
+        py_hci_adv.set_data(b'Im_A_Cert')
+        py_hci_adv.set_scan_response(b'Im_A_C')
+        py_hci_adv.start()
+
+        logging.info('Initiating connection')
+
+        dut_le_acl = self.dut_le_acl_manager.initiate_connection(
+            remote_addr=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(self.cert_random_address, 'utf8')),
+                type=int(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)),
+            is_direct=False)
+
+        # le_impl::OnPause()
+        # We should be getting on OnPause here after the connection request
+        # Wait for on pause to complete
+        logging.info('Waiting for acl manager')
+        self.dut_le_acl_manager.wait_for_address_manager(token_client)
+        logging.info('Done waiting for acl manager')
+
+        # le_impl;:OnResume()
+        logging.info('Waiting for resume')
+        self.dut_le_acl_manager.unregister_with_address_manager()
+        logging.info('Done waiting for resume')
+
+        cert_le_acl = self.cert_hci.incoming_le_connection()
+
+        assertThat(cert_le_acl.handle).isNotNone()
+        assertThat(cert_le_acl.peer).isEqualTo(self.dut_random_address)
+        assertThat(cert_le_acl.peer_type).isEqualTo(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)
 
 
 if __name__ == '__main__':
