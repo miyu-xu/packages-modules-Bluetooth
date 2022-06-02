@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42d29121_93d70ea5",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-02T21:23:19Z",
+      "side": 1,
+      "message": "Here, we\u0027re calling to the shim",
+      "range": {
+        "startLine": 424,
+        "startChar": 0,
+        "endLine": 424,
+        "endChar": 53
+      },
+      "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3282892a_3606d96c",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-02T21:23:19Z",
+      "side": 1,
+      "message": "Here, we\u0027re sending the command directly.  Is this really the same case?",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 55
+      },
+      "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
