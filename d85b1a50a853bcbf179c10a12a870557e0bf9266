@@ -70,6 +70,30 @@
       },
       "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83acd5cb_3d66ee0f",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-02T03:58:18Z",
+      "side": 1,
+      "message": "If this also happens in the legacy stack, we should keep this as a future item.",
+      "parentUuid": "5fe04b15_53f5da23",
+      "range": {
+        "startLine": 561,
+        "startChar": 1,
+        "endLine": 561,
+        "endChar": 74
+      },
+      "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
