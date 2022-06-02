@@ -13,6 +13,7 @@ use syslog::{BasicLogger, Facility, Formatter3164};
 use bt_topshim::{btif::get_btinterface, topstack};
 use btstack::{
     bluetooth::{get_bt_dispatcher, Bluetooth, IBluetooth},
+    bluetooth_gatt::get_gatt_adv_inband_dispatcher,
     bluetooth_gatt::BluetoothGatt,
     bluetooth_media::BluetoothMedia,
     suspend::Suspend,
@@ -82,15 +83,16 @@ fn main() -> Result<(), Box<dyn Error>> {
     let bluetooth_gatt = Arc::new(Mutex::new(Box::new(BluetoothGatt::new(intf.clone()))));
     let bluetooth_media =
         Arc::new(Mutex::new(Box::new(BluetoothMedia::new(tx.clone(), intf.clone()))));
-    let suspend = Arc::new(Mutex::new(Box::new(Suspend::new(
-        intf.clone(),
-        bluetooth_gatt.clone(),
-        tx.clone(),
-    ))));
     let bluetooth = Arc::new(Mutex::new(Box::new(Bluetooth::new(
         tx.clone(),
         intf.clone(),
         bluetooth_media.clone(),
+    ))));
+    let suspend = Arc::new(Mutex::new(Box::new(Suspend::new(
+        bluetooth.clone(),
+        intf.clone(),
+        bluetooth_gatt.clone(),
+        tx.clone(),
     ))));
 
     topstack::get_runtime().block_on(async {
@@ -187,10 +189,12 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             bluetooth_media.lock().unwrap().set_adapter(bluetooth.clone());
 
+            println!("voot voot");
             let mut bluetooth = bluetooth.lock().unwrap();
             bluetooth.init_profiles();
             bluetooth.enable();
 
+            println!("xoot xoot");
             bluetooth_gatt.lock().unwrap().init_profiles(tx.clone());
         }
 
