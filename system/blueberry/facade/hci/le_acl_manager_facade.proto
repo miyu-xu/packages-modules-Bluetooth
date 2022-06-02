@@ -14,6 +14,10 @@ service LeAclManagerFacade {
   rpc FetchAclData(LeHandleMsg) returns (stream LeAclData) {}
   rpc FetchIncomingConnection(google.protobuf.Empty) returns (stream LeConnectionEvent) {}
   rpc AddDeviceToResolvingList(IrkMsg) returns (google.protobuf.Empty) {}
+  rpc RegisterAddressManagerClient(google.protobuf.Empty)
+      returns (google.protobuf.Empty) {}
+  rpc UnregisterAddressManagerClient(google.protobuf.Empty)
+      returns (google.protobuf.Empty) {}
 }
 
 message LeHandleMsg {

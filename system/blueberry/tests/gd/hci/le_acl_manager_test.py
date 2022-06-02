@@ -403,6 +403,68 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
             is_direct=True)
         self.dut_le_acl_manager.complete_outgoing_connection(token)
 
+    def test_cmm(self):
+        # le_impl;:create_le_connection(addr, true, false)
+        # le_impl::OnPause()
+        # le_impl;:OnResume()
+        # ASSERT_TRUE(le_acl_connection_interface_->EnqueueCommand(LeExtendedCreateConnection)
+        self.set_privacy_policy_static()
+
+        self.dut_le_acl_manager.register_with_address_manager()
+
+        # Cert Advertises
+        advertising_handle = 0
+        py_hci_adv = PyHciAdvertisement(advertising_handle, self.cert_hci)
+
+        self.cert_hci.create_advertisement(
+            advertising_handle,
+            self.cert_random_address,
+            hci_packets.LegacyAdvertisingProperties.ADV_IND,
+        )
+
+        py_hci_adv.set_data(b'Im_A_Cert')
+        py_hci_adv.set_scan_response(b'Im_A_C')
+        py_hci_adv.start()
+
+        dut_le_acl = self.dut_le_acl_manager.initiate_connection(
+            remote_addr=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(self.cert_random_address, 'utf8')),
+                type=int(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)),
+            is_direct=False)
+
+        self.dut_le_acl_manager.unregister_with_address_manager()
+
+        cert_le_acl = self.cert_hci.incoming_le_connection()
+
+        assertThat(cert_le_acl.handle).isNotNone()
+        assertThat(cert_le_acl.peer).isEqualTo(self.dut_random_address)
+        assertThat(cert_le_acl.peer_type).isEqualTo(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)
+
+        # CERT Advertises
+        gap_name = hci_packets.GapData()
+        gap_name.data_type = hci_packets.GapDataType.COMPLETE_LOCAL_NAME
+        gap_name.data = list(bytes(b'Scan response data'))
+        gap_data = le_advertising_facade.GapDataMsg(data=bytes(gap_name.Serialize()))
+        config = le_advertising_facade.AdvertisingConfig(
+            scan_response=[gap_data],
+            interval_min=512,
+            interval_max=768,
+            advertising_type=le_advertising_facade.AdvertisingEventType.ADV_IND,
+            own_address_type=common.USE_RANDOM_DEVICE_ADDRESS,
+            channel_map=7,
+            filter_policy=le_advertising_facade.AdvertisingFilterPolicy.ALL_DEVICES)
+        request = le_advertising_facade.CreateAdvertiserRequest(config=config)
+        create_response = self.dut.hci_le_advertising_manager.CreateAdvertiser(request)
+
+        set_scan_parameters_request = le_scanning_facade.SetScanParametersRequest(
+            scanner_id=0x01, scan_type=le_scanning_facade.LeScanType.ACTIVE, scan_interval=0x10, scan_window=0x04)
+        self.dut.hci_le_scanning_manager.SetScanParameters(set_scan_parameters_request)
+        scan_request = le_scanning_facade.ScanRequest(start=True)
+        self.dut.hci_le_scanning_manager.Scan(scan_request)
+
+        remove_request = le_advertising_facade.RemoveAdvertiserRequest(advertiser_id=create_response.advertiser_id)
+        pass
+
 
 if __name__ == '__main__':
     test_runner.main()
