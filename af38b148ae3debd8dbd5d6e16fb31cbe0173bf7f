@@ -16,6 +16,41 @@
       "message": "You should use cb_variant! for callbacks. We want to avoid async/tokio inside topshim.",
       "revId": "af38b148ae3debd8dbd5d6e16fb31cbe0173bf7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caa162ee_e18bcffd",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-02T00:28:20Z",
+      "side": 1,
+      "message": "I am using cb_variant!, however, without the additions to this file it doesn\u0027t work.",
+      "parentUuid": "310e401c_65f1ccb8",
+      "revId": "af38b148ae3debd8dbd5d6e16fb31cbe0173bf7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3cc0cc2_462146b8",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-02T00:28:20Z",
+      "side": 1,
+      "message": "Here is the cb_variant! declaration....",
+      "revId": "af38b148ae3debd8dbd5d6e16fb31cbe0173bf7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
