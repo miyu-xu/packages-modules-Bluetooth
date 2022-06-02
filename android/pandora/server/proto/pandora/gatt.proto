@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+option java_outer_classname = "GattProto";
+
+package pandora;
+
+import "pandora/host.proto";
+import "google/protobuf/empty.proto";
+
+service GATT {
+  rpc ConnectLe(AddrRequest) returns (AddrResponse);
+  rpc ConfirmPasskey(AddrRequest) returns (AddrResponse);
+  rpc ConnectBrEdr(AddrRequest) returns (AddrResponse);
+  rpc Disconnect(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc DiscoverServices(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc DiscoverServicesByUUID(DiscoverServicesRequest) returns (DiscoverServicesResponse);
+  rpc DiscoverServicesByUUID128(DiscoverServicesRequest) returns (DiscoverServicesResponse);
+  rpc ExchangeMTU(ExchangeMTURequest) returns (ExchangeMTUResponse);
+  rpc WriteCharacteristic(WriteCharacteristicRequest) returns (WriteCharacteristicResponse);
+  rpc DiscoverCharacteristics(DiscoverCharacteristicsRequest) returns (DiscoverCharacteristicsResponse);
+  rpc DiscoverDescriptors(DiscoverDescriptorsRequest) returns (DiscoverDescriptorsResponse);
+  rpc ReadCharacteristic(ReadCharacteristicRequest) returns (ReadCharacteristicResponse);
+}
+
+message AddrRequest {
+  bytes address = 1;
+}
+
+message AddrResponse {}
+
+// Request for the `ExchangeMTU` method.
+message ExchangeMTURequest {
+  int32 mtu = 1;
+}
+
+// Response for the `ExchangeMTU` method.
+message ExchangeMTUResponse {}
+
+message WriteCharacteristicRequest {
+  string handle = 1;
+  int32 size = 2;
+}
+
+message WriteCharacteristicResponse {
+  bool success = 1;
+}
+
+message DiscoverServicesRequest {
+  repeated string uuid = 1;
+  bytes address = 2;
+}
+
+message DiscoverServicesResponse {
+}
+
+message DiscoverCharacteristicsRequest {
+  repeated string service_uuids = 1;
+}
+
+message DiscoverCharacteristicsResponse {
+  repeated int32 characteristic_handles = 1;
+}
+
+message DiscoverDescriptorsRequest {}
+
+message DiscoverDescriptorsResponse {}
+
+message ReadCharacteristicRequest {
+  oneof id {
+    string handle = 1;
+    string uuid = 2;
+  }
+}
+
+message ReadCharacteristicResponse {
+  bool success = 1;
+  repeated string value = 2;
+}
