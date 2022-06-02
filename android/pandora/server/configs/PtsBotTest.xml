@@ -21,5 +21,6 @@
         <option name="physical" value="false" />
         <option name="profile" value="A2DP/SRC" />
         <option name="profile" value="AVDTP/SRC" />
+        <option name="profile" value="GATT" />
     </test>
 </configuration>
