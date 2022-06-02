@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f725f3e_c6610ca8",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-02T11:03:53Z",
+      "side": 1,
+      "message": "how we are sure that when mAdapterService is null the mDatabaseManager is still valid?",
+      "range": {
+        "startLine": 219,
+        "startChar": 8,
+        "endLine": 219,
+        "endChar": 24
+      },
+      "revId": "c7b7420e39565fde9ce492ddb0ad59a6771ff3f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
