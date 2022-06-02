@@ -45,6 +45,30 @@
       },
       "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac940c37_70c01e06",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-02T22:17:21Z",
+      "side": 1,
+      "message": "It\u0027s not part of the resolving list management which *is* part of the GD domain.\n\n7.8.38 LE Add Device To Resolving List command\n7.8.39 LE Remove Device From Resolving List command\n\nIt looks like it\u0027s done as part of address resolution\n```\nstack/btm/btm_ble_addr::btm_identity_addr_to_random_pseudo\n```\n\nGD does not export this functionality, so it is retrieved via legacy.\n\nThis is a read-only operation; or a `const` operation.\n\nThe legacy code appears to index into connection table using the IDENTITY to find the (possible) RPA of that connection, if any.\n\n7.8.42 LE Read Peer Resolvable Address command\n\nDescription:\nThe HCI_LE_Read_Peer_Resolvable_Address command is used to get the\ncurrent peer Resolvable Private Address being used for the corresponding\npeer Public and Random (static) Identity Address. The peer’s resolvable\naddress being used may change after the command is called.\nThis command may be used at any time.\nWhen a Controller cannot find a Resolvable Private Address associated with\nthe Peer Identity Address, or if the Peer Identity Address cannot be found in the\nresolving list, it shall return the error code Unknown Connection Identifier\n(0x02).",
+      "parentUuid": "3282892a_3606d96c",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 55
+      },
+      "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
