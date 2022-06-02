@@ -99,12 +99,15 @@ genrule {
          "    $(in)",
     srcs: [
         "proto/pandora/host.proto",
-        "proto/pandora/a2dp.proto"
+        "proto/pandora/a2dp.proto",
+        "proto/pandora/gatt.proto",
     ],
     out: [
         "pandora/host_pb2.py",
         "pandora/host_grpc.py",
         "pandora/a2dp_pb2.py",
         "pandora/a2dp_grpc.py",
+        "pandora/gatt_pb2.py",
+        "pandora/gatt_grpc.py",
     ]
 }
