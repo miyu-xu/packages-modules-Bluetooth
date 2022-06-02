@@ -107,6 +107,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         intf.clone(),
         bluetooth_media.clone(),
     ))));
+
     let suspend = Arc::new(Mutex::new(Box::new(Suspend::new(
         bluetooth.clone(),
         intf.clone(),
