@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4944e14_fdb471b2",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-02T00:01:27Z",
+      "side": 1,
+      "message": "Can we define this somewhere?",
+      "range": {
+        "startLine": 1045,
+        "startChar": 57,
+        "endLine": 1045,
+        "endChar": 63
+      },
+      "revId": "8c044a1e34928bf91849117435ca70a2580350eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
