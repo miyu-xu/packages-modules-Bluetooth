@@ -1336,6 +1336,28 @@ void btm_rejectlist_role_change_device(const RawAddress& bd_addr,
 
 /*******************************************************************************
  *
+ * Function         assign_delayed_role_
+ *
+ * Description      This function cache the role of the device associated
+ *                  with the given address. This happen if we get a role change
+ *                  before connection complete, we cache the new role here and
+ *                  then propagate it when ACL Link is created. If new_role is
+ *not specified, use HCI_ROLE_CENTRAL as default
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+
+void assign_delayed_role_(const RawAddress& bd_addr, tHCI_ROLE new_role) {
+  RoleChangeView role_change;
+  role_change.new_role = new_role;
+  role_change.bd_addr = bd_addr;
+  delayed_role_change_ =
+      std::make_unique<RoleChangeView>(std::move(role_change));
+}
+
+/*******************************************************************************
+ *
  * Function         btm_acl_role_changed
  *
  * Description      This function is called whan a link's central/peripheral
@@ -1353,11 +1375,7 @@ void StackAclBtmAcl::btm_acl_role_changed(tHCI_STATUS hci_status,
   if (p_acl == nullptr) {
     // If we get a role change before connection complete, we cache the new
     // role here and then propagate it when ACL Link is created.
-    RoleChangeView role_change;
-    role_change.new_role = new_role;
-    role_change.bd_addr = bd_addr;
-    delayed_role_change_ =
-        std::make_unique<RoleChangeView>(std::move(role_change));
+    assign_delayed_role_(bd_addr, new_role);
     LOG_WARN("Unable to find active acl");
     return;
   }
@@ -2161,16 +2179,6 @@ void btm_acl_reset_paging(void) {
  *
  ******************************************************************************/
 void btm_acl_paging(BT_HDR* p, const RawAddress& bda) {
-  // This function is called by the device initiating the connection.
-  // If no role change is requested from the remote device, we want
-  // to classify the connection initiator as the central device.
-  if (delayed_role_change_ == nullptr) {
-    RoleChangeView role_change;
-    role_change.bd_addr = bda;
-    role_change.new_role = HCI_ROLE_CENTRAL;
-    delayed_role_change_ =
-        std::make_unique<RoleChangeView>(std::move(role_change));
-  }
   if (!BTM_IsAclConnectionUp(bda, BT_TRANSPORT_BR_EDR)) {
     VLOG(1) << "connecting_bda: " << btm_cb.connecting_bda;
     if (btm_cb.paging && bda == btm_cb.connecting_bda) {
