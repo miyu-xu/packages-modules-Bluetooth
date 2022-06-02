@@ -403,6 +403,43 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
             is_direct=True)
         self.dut_le_acl_manager.complete_outgoing_connection(token)
 
+    def test_cmm(self):
+        # le_impl;:create_le_connection(addr, true, false)
+        # le_impl::OnPause()
+        # le_impl;:OnResume()
+        # ASSERT_TRUE(le_acl_connection_interface_->EnqueueCommand(LeExtendedCreateConnection)
+        self.set_privacy_policy_static()
+
+        self.dut_le_acl_manager.register_with_address_manager()
+
+        # Cert Advertises
+        advertising_handle = 0
+        py_hci_adv = PyHciAdvertisement(advertising_handle, self.cert_hci)
+
+        self.cert_hci.create_advertisement(
+            advertising_handle,
+            self.cert_random_address,
+            hci_packets.LegacyAdvertisingProperties.ADV_IND,
+        )
+
+        py_hci_adv.set_data(b'Im_A_Cert')
+        py_hci_adv.set_scan_response(b'Im_A_C')
+        py_hci_adv.start()
+
+        dut_le_acl = self.dut_le_acl_manager.initiate_connection(
+            remote_addr=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(self.cert_random_address, 'utf8')),
+                type=int(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)),
+            is_direct=False)
+
+        self.dut_le_acl_manager.unregister_with_address_manager()
+
+        cert_le_acl = self.cert_hci.incoming_le_connection()
+
+        assertThat(cert_le_acl.handle).isNotNone()
+        assertThat(cert_le_acl.peer).isEqualTo(self.dut_random_address)
+        assertThat(cert_le_acl.peer_type).isEqualTo(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)
+
 
 if __name__ == '__main__':
     test_runner.main()

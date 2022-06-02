@@ -358,6 +358,47 @@ class LeAclManagerFacadeService : public LeAclManagerFacade::Service, public LeC
                                                                    std::to_string(handle_)};
   };
 
+  class AddressManagerClient : public bluetooth::hci::LeAddressManagerCallback {
+   public:
+    void OnPause() override {  // bluetooth::hci::LeAddressManagerCallback
+      pause_connection = true;
+    }
+
+    void OnResume() override {  // bluetooth::hci::LeAddressManagerCallback
+      pause_connection = false;
+    }
+
+    bool IsPaused() const {
+      return pause_connection;
+    }
+
+   private:
+    bool pause_connection{false};
+  };
+  ::grpc::Status RegisterAddressManagerClient(
+      ::grpc::ServerContext* context,
+      const ::google::protobuf::Empty* request,
+      ::grpc::ServerWriter<ClientMsg>* writer) {
+    acl_manager_->GetLeAddressManager()->Register(&address_manager_client);
+    ClientMsg client_msg;
+    client_msg.set_client_id(123);
+    callback_events_.OnIncomingEvent(client_msg);
+    return ::grpc::Status::OK;
+  }
+  ::grpc::Status UnregisterAddressManagerClient(
+      ::grpc::ServerContext* context,
+      const ::google::protobuf::Empty* request,
+      ::grpc::ServerWriter<ClientMsg>* writer) {
+    acl_manager_->GetLeAddressManager()->Unregister(&address_manager_client);
+    ClientMsg client_msg;
+    client_msg.set_client_id(456);
+    callback_events_.OnIncomingEvent(client_msg);
+    return ::grpc::Status::OK;
+  }
+
+  AddressManagerClient address_manager_client;
+  ::bluetooth::grpc::GrpcEventQueue<ClientMsg> callback_events_{"callback events"};
+
  private:
   AclManager* acl_manager_;
   ::bluetooth::os::Handler* facade_handler_;
