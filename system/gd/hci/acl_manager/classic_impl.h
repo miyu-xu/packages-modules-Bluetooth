@@ -344,12 +344,12 @@ struct classic_impl : public security::ISecurityManagerListener {
           handler_,
           connection->GetEventCallbacks([this](uint16_t handle) { this->connections.invalidate(handle); }));
       connections.execute(address, [=](ConnectionManagementCallbacks* callbacks) {
-        if (delayed_role_change_ == nullptr) {
+        if (cached_role_ == nullptr) {
           callbacks->OnRoleChange(hci::ErrorCode::SUCCESS, current_role);
-        } else if (delayed_role_change_->GetBdAddr() == address) {
-          LOG_INFO("Sending delayed role change for %s", delayed_role_change_->GetBdAddr().ToString().c_str());
-          callbacks->OnRoleChange(delayed_role_change_->GetStatus(), delayed_role_change_->GetNewRole());
-          delayed_role_change_.reset();
+        } else if (cached_role_->GetBdAddr() == address) {
+          LOG_INFO("Sending delayed role change for %s", cached_role_->GetBdAddr().ToString().c_str());
+          callbacks->OnRoleChange(cached_role_->GetStatus(), cached_role_->GetNewRole());
+          cached_role_.reset();
         }
       });
       client_handler_->Post(common::BindOnce(
@@ -628,14 +628,14 @@ struct classic_impl : public security::ISecurityManagerListener {
       }
     });
     if (!sent) {
-      if (delayed_role_change_ != nullptr) {
-        LOG_WARN("Second delayed role change (@%s dropped)", delayed_role_change_->GetBdAddr().ToString().c_str());
+      if (cached_role_ != nullptr) {
+        LOG_WARN("Second delayed role change (@%s dropped)", cached_role_->GetBdAddr().ToString().c_str());
       }
       LOG_INFO(
           "Role change for %s with no matching connection (new role: %s)",
           role_change_view.GetBdAddr().ToString().c_str(),
           RoleText(role_change_view.GetNewRole()).c_str());
-      delayed_role_change_ = std::make_unique<RoleChangeView>(role_change_view);
+      cached_role_ = std::make_unique<RoleChangeView>(role_change_view);
     }
   }
 
@@ -732,7 +732,7 @@ struct classic_impl : public security::ISecurityManagerListener {
 
   common::Callback<bool(Address, ClassOfDevice)> should_accept_connection_;
   std::queue<std::pair<Address, std::unique_ptr<CreateConnectionBuilder>>> pending_outgoing_connections_;
-  std::unique_ptr<RoleChangeView> delayed_role_change_ = nullptr;
+  std::unique_ptr<RoleChangeView> cached_role_ = nullptr;
 
   std::unique_ptr<security::SecurityManager> security_manager_;
 
