@@ -2172,7 +2172,6 @@ void smp_br_process_link_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
                   __func__);
   smp_save_secure_connections_long_term_key(p_cb);
   smp_update_key_mask(p_cb, SMP_SEC_KEY_TYPE_ENC, false);
-  smp_br_select_next_key(p_cb, NULL);
 }
 
 /*******************************************************************************
