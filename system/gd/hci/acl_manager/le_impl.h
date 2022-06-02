@@ -767,6 +767,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
     // TODO: Configure default LE connection parameters?
     if (add_to_connect_list) {
+      // Registers with le address manager
       add_device_to_connect_list(address_with_type);
       if (is_direct) {
         direct_connections_.insert(address_with_type);
@@ -783,16 +784,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       }
     }
 
-    if (!address_manager_registered) {
-      auto policy = le_address_manager_->Register(this);
-      address_manager_registered = true;
-
-      // Pause connection, wait for set random address complete
-      if (policy == LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS ||
-          policy == LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS) {
-        pause_connection = true;
-      }
-    }
+    register_with_address_manager();
 
     if (pause_connection) {
       canceled_connections_.insert(address_with_type);

@@ -358,6 +358,72 @@ class LeAclManagerFacadeService : public LeAclManagerFacade::Service, public LeC
                                                                    std::to_string(handle_)};
   };
 
+  class AddressManagerClient : public bluetooth::hci::LeAddressManagerCallback {
+   public:
+    AddressManagerClient()
+        : q_(std::make_unique<::bluetooth::grpc::GrpcEventQueue<PauseResumeMsg>>(
+              std::string("incoming pause resume"))) {}
+
+    void OnPause() override {  // bluetooth::hci::LeAddressManagerCallback
+      PauseResumeMsg msg;
+      msg.set_is_paused(true);
+      q_->OnIncomingEvent(msg);
+    }
+
+    void OnResume() override {  // bluetooth::hci::LeAddressManagerCallback
+      PauseResumeMsg msg;
+      msg.set_is_paused(false);
+      q_->OnIncomingEvent(msg);
+    }
+
+    ::grpc::Status RunLoop(::grpc::ServerContext* context, ::grpc::ServerWriter<PauseResumeMsg>* writer) {
+      return q_->RunLoop(context, writer);
+    }
+
+   private:
+    std::unique_ptr<::bluetooth::grpc::GrpcEventQueue<PauseResumeMsg>> q_;
+  };
+
+  ::grpc::Status RegisterAddressManagerClient(
+      ::grpc::ServerContext* context,
+      const ::google::protobuf::Empty* request,
+      ::blueberry::facade::hci::ClientMsg* msg) {
+    acl_manager_->GetLeAddressManager()->Register(&address_manager_client);
+    msg->set_client_id(1);
+    LOG_ERROR("RegisterAddress Manager Client id:%d", msg->client_id());
+    return ::grpc::Status::OK;
+  }
+  ::grpc::Status UnregisterAddressManagerClient(
+      ::grpc::ServerContext* context,
+      const ::blueberry::facade::hci::ClientMsg* request,
+      ::google::protobuf::Empty* response) {
+    acl_manager_->GetLeAddressManager()->Unregister(&address_manager_client);
+    LOG_ERROR("UnregisterAddress Manager Client id:%d", request->client_id());
+    return ::grpc::Status::OK;
+  }
+
+  ::grpc::Status FetchClientStream(
+      ::grpc::ServerContext* context, const ClientMsg* request, ::grpc::ServerWriter<PauseResumeMsg>* writer) {
+    LOG_ERROR("FetchClientStream our client is_paused");
+    return address_manager_client.RunLoop(context, writer);
+  }
+
+  ::grpc::Status AckPauseForAddressManager(
+      ::grpc::ServerContext* context, const ClientMsg* request, ::google::protobuf::Empty* response) {
+    acl_manager_->GetLeAddressManager()->AckPause(&address_manager_client);
+    LOG_ERROR("AckPauseForAddressManager");
+    return ::grpc::Status::OK;
+  }
+  ::grpc::Status AckResumeForAddressManager(
+      ::grpc::ServerContext* context, const ClientMsg* request, ::google::protobuf::Empty* response) {
+    acl_manager_->GetLeAddressManager()->AckResume(&address_manager_client);
+    LOG_ERROR("AckResumeForAddressManager");
+    return ::grpc::Status::OK;
+  }
+
+ private:
+  AddressManagerClient address_manager_client;
+
  private:
   AclManager* acl_manager_;
   ::bluetooth::os::Handler* facade_handler_;

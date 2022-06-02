@@ -14,6 +14,9 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+import time
+import logging
+
 from blueberry.tests.gd.cert import gd_base_test
 from blueberry.tests.gd.cert.closable import safeClose
 from blueberry.tests.gd.cert.truth import assertThat
@@ -402,6 +405,73 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
                 type=int(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)),
             is_direct=True)
         self.dut_le_acl_manager.complete_outgoing_connection(token)
+
+    def create_advert(self, advertising_handle, remote_address):
+        py_hci_adv = PyHciAdvertisement(advertising_handle, self.cert_hci)
+
+        self.cert_hci.create_advertisement(
+            advertising_handle,
+            #self.cert_random_address,
+            remote_address,
+            hci_packets.LegacyAdvertisingProperties.ADV_IND,
+        )
+
+        py_hci_adv.set_data(b'Im_A_Cert')
+        py_hci_adv.set_scan_response(b'Im_A_C')
+        py_hci_adv.start()
+
+    def test_cmm(self):
+        # le_impl;:create_le_connection(addr, true, false)
+        # ASSERT_TRUE(le_acl_connection_interface_->EnqueueCommand(LeExtendedCreateConnection)
+        self.set_privacy_policy_static()
+
+        token_client = self.dut_le_acl_manager.register_with_address_manager()
+        logging.info('Getting address manager pause stream')
+        stream = self.dut_le_acl_manager.wait_for_address_manager(token_client)
+        logging.info('Done getting address manager stream %s' % stream)
+
+        # Cert Advertises
+        self.create_advert(0, self.cert_random_address)
+
+        logging.info('Initiating connection')
+
+        dut_le_acl = self.dut_le_acl_manager.initiate_connection(
+            remote_addr=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(self.cert_random_address, 'utf8')),
+                type=int(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)),
+            is_direct=False)
+
+        # Wait for on pause to complete
+        # We should be getting on OnPause here after the connection request
+        ## At this point we should have gotten an OnPause event
+        assertThat(stream).emits(lambda msg: msg.is_paused == True)
+
+        ## Create a second connect request
+        dut_random_address2 = 'd0:05:04:03:02:02'
+        self.create_advert(1, dut_random_address2)
+        dut_le_acl2 = self.dut_le_acl_manager.initiate_connection(
+            remote_addr=common.BluetoothAddressWithType(
+                address=common.BluetoothAddress(address=bytes(dut_random_address2, 'utf8')),
+                type=int(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)),
+            is_direct=False)
+
+        # Acknowledge address manager to allow connections to complete
+        rc = self.dut_le_acl_manager.ack_pause_address_manager(token_client)
+        assertThat(stream).emits(lambda msg: msg.is_paused == False)
+
+        ## Continue the first connection sequence
+        cert_le_acl = self.cert_hci.incoming_le_connection()
+        #        cert_le_acl2 = self.cert_hci.incoming_le_connection()
+
+        assertThat(cert_le_acl.handle).isNotNone()
+        assertThat(cert_le_acl.peer).isEqualTo(self.dut_random_address)
+        assertThat(cert_le_acl.peer_type).isEqualTo(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)
+
+        ##        assertThat(cert_le_acl2.handle).isNotNone()
+        ##        assertThat(cert_le_acl2.peer).isEqualTo(self.dut_random_address2)
+        ##        assertThat(cert_le_acl2.peer_type).isEqualTo(hci_packets.AddressType.RANDOM_DEVICE_ADDRESS)
+
+        stream.close()
 
 
 if __name__ == '__main__':
