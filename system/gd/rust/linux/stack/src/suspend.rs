@@ -1,6 +1,7 @@
 //! Suspend/Resume API.
 
 use crate::{bluetooth_gatt::IBluetoothGatt, BluetoothGatt, Message, RPCProxy};
+use crate::bluetooth::Bluetooth;
 use bt_topshim::btif::BluetoothInterface;
 use log::warn;
 use std::collections::HashMap;
@@ -156,6 +157,18 @@ impl ISuspend for Suspend {
 
         self.intf.lock().unwrap().disconnect_all_acls();
 
+        /// abps@ comments:
+        ///
+        /// We want a FIFO queue of le_rand + le_rand_cb from the Bluetooth
+        /// stack layer. We don't want to expose this over dbus so we won't
+        /// put a |#[dbus_method]| in the service layer. See |enable| and
+        /// |disable| as examples of internal apis.
+        let notify = Arc::new(tokio::sync::Notify::new());
+        self.bt.lock().unwrap().le_rand(notify.clone());
+        tokio::block_on(async move {
+            notify.notified().await;
+        });
+
         let (_tx, mut rx) = channel::<u64>(1);
         task::spawn(async move {
             let random = rx.recv().await;
@@ -166,6 +179,9 @@ impl ISuspend for Suspend {
             //  });
         });
         self.intf.lock().unwrap().le_rand(_tx.clone());
+        tokio::block_on(async move {
+            let random = le_rand_result.recv().await;
+        });
     }
 
     fn resume(&self) -> bool {

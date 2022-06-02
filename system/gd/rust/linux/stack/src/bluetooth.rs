@@ -165,6 +165,10 @@ pub trait IBluetooth {
 
     /// Disconnect all profiles supported by device and enabled on adapter.
     fn disconnect_all_enabled_profiles(&mut self, device: BluetoothDevice) -> bool;
+
+
+    // #### Internal apis below -- do not expose over dbus ####
+    fn le_rand(&mut self, notify: Arc<tokio::sync::Notify>);
 }
 
 /// Serializable device used in various apis.
@@ -303,6 +307,7 @@ pub struct Bluetooth {
     is_connectable: bool,
     is_discovering: bool,
     local_address: Option<RawAddress>,
+    le_rand_queue: VecDeque<Arc<tokio::sync::Notify>>,
     properties: HashMap<BtPropertyType, BluetoothProperty>,
     profiles_ready: bool,
     found_devices: HashMap<String, BluetoothDeviceContext>,
@@ -517,6 +522,16 @@ impl Bluetooth {
                 let _ = txl.send(Message::DeviceFreshnessCheck).await;
             }));
         }
+    }
+
+    fn le_rand(&mut self, notify: Arc<tokio::sync::Notify>) -> i32 {
+        self.le_rand_queue.push_back(notify);
+        let ret = self.intf.lock().unwrap().le_rand() ;
+        if ret != 0 {
+            self.le_rand_queue.pop_back(notify);
+        }
+
+        ret
     }
 }
 
@@ -912,7 +927,11 @@ impl BtifBluetoothCallbacks for Bluetooth {
 
     fn le_rand_cb(&mut self, random: u64) {
         println!("Random: {:?}", random);
-        self.intf.lock().unwrap().le_rand_cb(random)
+        self.intf.lock().unwrap().le_rand_cb(random);
+
+        if let Some(v) = self.le_rand_queue.pop_front() {
+            v.notify_one();
+        }
     }
 }
 

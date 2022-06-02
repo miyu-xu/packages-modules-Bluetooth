@@ -127,8 +127,20 @@ pub fn cb_variant(input: TokenStream) -> TokenStream {
         extern "C" fn #ident(#params) {
             #stmts
 
+            /// @abps notes:
+            ///
+            /// Added expect() instead of unwrap() so you get a custom panic!
+            /// message which is good for debugging.
             unsafe {
-                (get_dispatchers().lock().unwrap().get::<#dispatcher>().unwrap().clone().lock().unwrap().dispatch)(#rpath(#args));
+                (get_dispatchers()
+                    .lock()
+                    .expect("Couldn't lock dispatchers")
+                    .get::<#dispatcher>()
+                    .expect(format!("Couldn't find dispatcher type: {}", "#dispatcher"))
+                    .clone()
+                    .lock()
+                    .expect(format!("Couldn't lock specific dispatcher: {}", "#dispatcher"))
+                    .dispatch)(#rpath(#args));
             }
         }
     };
