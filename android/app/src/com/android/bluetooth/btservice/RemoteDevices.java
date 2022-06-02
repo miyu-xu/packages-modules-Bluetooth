@@ -25,6 +25,7 @@ import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadset;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothConnectionCallback;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -767,7 +768,11 @@ final class RemoteDevices {
                 intent = new Intent(BluetoothAdapter.ACTION_BLE_ACL_CONNECTED);
             }
             BatteryService batteryService = BatteryService.getBatteryService();
-            if (batteryService != null) {
+            if (batteryService != null
+                    && batteryService.getConnectionPolicy(device)
+                        != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
+                    && Utils.arrayContains(
+                    sAdapterService.getRemoteUuids(device), BluetoothUuid.BATTERY)) {
                 batteryService.connect(device);
             }
             debugLog(
@@ -792,7 +797,9 @@ final class RemoteDevices {
             // Reset battery level on complete disconnection
             if (sAdapterService.getConnectionState(device) == 0) {
                 BatteryService batteryService = BatteryService.getBatteryService();
-                if (batteryService != null) {
+                if (batteryService != null
+                        && batteryService.getConnectionState(device)
+                        != BluetoothProfile.STATE_DISCONNECTED) {
                     batteryService.disconnect(device);
                 }
                 resetBatteryLevel(device);
