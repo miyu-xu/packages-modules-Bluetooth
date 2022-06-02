@@ -6,9 +6,8 @@ use crate::{bluetooth_gatt::IBluetoothGatt, BluetoothGatt, Message, RPCProxy};
 use bt_topshim::btif::BluetoothInterface;
 use log::warn;
 use std::sync::{Arc, Mutex};
-use tokio::sync::mpsc::{channel, Sender};
+use tokio::sync::mpsc::Sender;
 use tokio::sync::oneshot::channel as OneShotChannel;
-use tokio::sync::oneshot::Sender as OneShotSender;
 
 /// Defines the Suspend/Resume API.
 ///
@@ -27,13 +26,13 @@ pub trait ISuspend {
     /// Returns true if the callback can be removed, false if `callback_id` is not recognized.
     fn unregister_callback(&mut self, callback_id: u32) -> bool;
 
-    /// Prepares the stack for suspend, identified by `suspend_id`.
+    /// Prepares the stack for suspend.
     ///
     /// Returns a positive number identifying the suspend if it can be started. If there is already
     /// a suspend, that active suspend id is returned.
     fn suspend(&self, suspend_type: SuspendType);
 
-    /// Undoes previous suspend preparation identified by `suspend_id`.
+    /// Undoes previous suspend preparation.
     ///
     /// Returns true if suspend can be resumed, and false if there is no suspend to resume.
     fn resume(&self) -> bool;
@@ -122,7 +121,7 @@ impl ISuspend for Suspend {
         self.intf.lock().unwrap().clear_event_mask();
         self.intf.lock().unwrap().clear_event_filter();
         self.intf.lock().unwrap().clear_filter_accept_list();
-        //        self.gatt.lock().unwrap().advertising_disable();
+        self.gatt.lock().unwrap().advertising_disable();
         self.gatt.lock().unwrap().stop_scan(0);
         self.intf.lock().unwrap().disconnect_all_acls();
 
@@ -150,15 +149,15 @@ impl ISuspend for Suspend {
         self.bt.lock().unwrap().le_rand(p);
         let random = c.try_recv();
         println!("Random: {}", &random.unwrap());
-        //        self.for_all_callbacks(|callback| {
-        //            callback.on_suspend_ready(1 as u32);
-        //        });
+        self.callbacks.for_all_callbacks(|callback| {
+            callback.on_suspend_ready(1 as u32);
+        });
     }
 
     fn resume(&self) -> bool {
         self.intf.lock().unwrap().set_default_event_mask();
-        //        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
-        //        self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
+        self.intf.lock().unwrap().set_event_filter_inquiry_result_all_devices();
+        self.intf.lock().unwrap().set_event_filter_connection_setup_all_devices();
         if self.is_connected_suspend {
             if self.was_a2dp_connected {
                 // TODO(230604670): self.intf.lock().unwrap().restore_filter_accept_list();
@@ -174,10 +173,9 @@ impl ISuspend for Suspend {
         self.bt.lock().unwrap().le_rand(p);
         let random = c.try_recv();
         println!("Random: {}", &random.unwrap());
-        //        self.for_all_callbacks(|callback| {
-        //            callback.on_resumed(suspend_id);
-        //        });
-
+        self.callbacks.for_all_callbacks(|callback| {
+            callback.on_resumed(suspend_id);
+        });
         true
     }
 }
