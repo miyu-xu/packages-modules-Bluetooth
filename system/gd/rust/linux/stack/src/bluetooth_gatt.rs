@@ -5,9 +5,10 @@ use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 use bt_topshim::bindings::root::bluetooth::Uuid;
 use bt_topshim::btif::{BluetoothInterface, RawAddress, Uuid128Bit};
 use bt_topshim::profiles::gatt::{
-    BtGattDbElement, BtGattNotifyParams, BtGattReadParams, Gatt, GattClientCallbacks,
-    GattClientCallbacksDispatcher, GattScannerCallbacks, GattScannerCallbacksDispatcher,
-    GattServerCallbacksDispatcher, GattStatus,
+    BtGattDbElement, BtGattNotifyParams, BtGattReadParams, Gatt, GattAdvInbandCallbacks,
+    GattAdvInbandCallbacksDispatcher, GattClientCallbacks, GattClientCallbacksDispatcher,
+    GattScannerCallbacks, GattScannerCallbacksDispatcher, GattServerCallbacksDispatcher,
+    GattStatus,
 };
 use bt_topshim::topstack;
 
@@ -654,6 +655,12 @@ impl BluetoothGatt {
             gatt_client_callbacks_dispatcher,
             gatt_server_callbacks_dispatcher,
             gatt_scanner_callbacks_dispatcher,
+            // TODO(optedoblivion): Make it like the other ones
+            GattAdvInbandCallbacksDispatcher {
+                dispatch: Box::new(move |cb| {
+                    debug!("received gatt advertiser inband callback: {:?}", cb);
+                }),
+            },
         );
     }
 
@@ -1297,6 +1304,30 @@ impl IBluetoothGatt for BluetoothGatt {
     }
 }
 
+#[btif_callbacks_dispatcher(
+    BluetoothGatt,
+    dispatch_gatt_adv_inband_callbacks,
+    GattAdvInbandCallbacks
+)]
+pub(crate) trait BtifGattAdvInbandCallbacks {
+    #[btif_callback(IdStatusCallback)]
+    fn gdadv_idstatus_callback(&mut self, advertiser_id: u8, status: u8);
+
+    #[btif_callback(IdTxPowerStatusCallback)]
+    fn gdadv_idtxpowerstatus_callback(&mut self, advertiser_id: u8, tx_power: i8, status: u8);
+
+    #[btif_callback(ParametersCallback)]
+    fn gdadv_parameters_callback(&mut self, advertiser_id: u8, status: u8, tx_power: i8);
+
+    #[btif_callback(GetAddressCallback)]
+    fn gdadv_getaddress_callback(
+        &mut self,
+        advertiser_id: u8,
+        address_type: u8,
+        address: RawAddress,
+    );
+}
+
 #[btif_callbacks_dispatcher(BluetoothGatt, dispatch_gatt_client_callbacks, GattClientCallbacks)]
 pub(crate) trait BtifGattClientCallbacks {
     #[btif_callback(RegisterClient)]
@@ -1382,6 +1413,38 @@ pub(crate) trait BtifGattClientCallbacks {
 
     #[btif_callback(ReadPhy)]
     fn read_phy_cb(&mut self, client_id: i32, addr: RawAddress, tx_phy: u8, rx_phy: u8, status: u8);
+}
+
+pub fn get_gatt_adv_inband_dispatcher(tx: Sender<Message>) -> GattAdvInbandCallbacksDispatcher {
+    GattAdvInbandCallbacksDispatcher {
+        dispatch: Box::new(move |cb| {
+            let txl = tx.clone();
+            topstack::get_runtime().spawn(async move {
+                let _ = txl.send(Message::GattAdvInband(cb)).await;
+            });
+        }),
+    }
+}
+
+impl BtifGattAdvInbandCallbacks for BluetoothGatt {
+    fn gdadv_idstatus_callback(&mut self, advertiser_id: u8, status: u8) {
+        println!("Got advertiser id: {} with status: {}", advertiser_id, status);
+        todo!();
+    }
+    fn gdadv_idtxpowerstatus_callback(&mut self, _advertiser_id: u8, _tx_power: i8, _status: u8) {
+        todo!();
+    }
+    fn gdadv_parameters_callback(&mut self, _advertiser_id: u8, _status: u8, _tx_power: i8) {
+        todo!();
+    }
+    fn gdadv_getaddress_callback(
+        &mut self,
+        _advertiser_id: u8,
+        _address_type: u8,
+        _address: RawAddress,
+    ) {
+        todo!();
+    }
 }
 
 impl BtifGattClientCallbacks for BluetoothGatt {
