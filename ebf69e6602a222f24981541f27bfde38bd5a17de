@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84574e3b_7ae32baa",
+        "filename": "system/stack/rfcomm/port_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 520,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-02T17:35:45Z",
+      "side": 1,
+      "message": "maybe we should do\n\n```\nLOG_INFO(\"RFC_MX_STATE_CONNECTED, found_port\u003d%d, tRFC_PORT_STATE\u003d%d\",\n                 found_port, p_port !\u003d nullptr ? p_port-\u003erfc.state : 0);\n```              \ninstead? \n\nSo that the log always show up?",
+      "range": {
+        "startLine": 520,
+        "startChar": 29,
+        "endLine": 520,
+        "endChar": 46
+      },
+      "revId": "ebf69e6602a222f24981541f27bfde38bd5a17de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
