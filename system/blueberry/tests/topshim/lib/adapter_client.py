@@ -106,6 +106,9 @@ class AdapterClient():
     async def set_event_filter_inquiry_result_all_devices(self):
         await self.__adapter_stub.SetEventFilterInquiryResultAllDevices(empty_proto.Empty())
 
+    async def remove_bond(self, adress):
+        await self.__adapter_stub.RemoveBond(facade_pb2.RemoveBondRequest(address=address))
+
 
 class A2dpAutomationHelper():
     """Invoke gRPC on topshim for A2DP testing"""
