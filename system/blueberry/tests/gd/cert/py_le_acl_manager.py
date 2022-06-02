@@ -78,6 +78,7 @@ class PyLeAclManager(Closable):
 
         self.incoming_connection_event_stream = None
         self.outgoing_connection_event_streams = {}
+        self.address_manager_stream = None
         self.active_connections = []
         self.next_token = 1
 
@@ -123,6 +124,23 @@ class PyLeAclManager(Closable):
         token = self.next_token
         self.next_token += 1
         return token
+
+    def register_with_address_manager(self):
+        return self.le_acl_manager.RegisterAddressManagerClient(empty_proto.Empty())
+
+    def unregister_with_address_manager(self):
+        self.le_acl_manager.UnregisterAddressManagerClient(empty_proto.Empty())
+
+    def wait_for_address_manager(self, token):
+        assertThat(self.address_manager_stream).isNone()
+        self.address_manager_stream = EventStream(self.le_acl_manager.FetchClientStream(empty_proto.Empty()))
+        return self.address_manager_stream
+
+    def ack_pause_address_manager(self, token):
+        self.le_acl_manager.AckPauseForAddressManager(empty_proto.Empty())
+
+    def ack_resume_address_manager(self, token):
+        self.le_acl_manager.AckResumeForAddressManager(empty_proto.Empty())
 
     def complete_connection(self, event_stream):
         connection_complete = HciCaptures.LeConnectionCompleteCapture()
