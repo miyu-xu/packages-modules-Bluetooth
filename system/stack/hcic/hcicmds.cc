@@ -561,6 +561,12 @@ void btsnd_hcic_create_conn(const RawAddress& dest, uint16_t packet_types,
   UINT8_TO_STREAM(pp, page_scan_mode);
   UINT16_TO_STREAM(pp, clock_offset);
   UINT8_TO_STREAM(pp, allow_switch);
+
+  // This function is called by the device initiating the connection.
+  // If no role change is requested from the remote device, we want
+  // to classify the connection initiator as the central device.
+  acl_cache_role(dest, HCI_ROLE_CENTRAL, /*overwrite_current_role=*/false);
+
   btm_acl_paging(p, dest);
 }
 
