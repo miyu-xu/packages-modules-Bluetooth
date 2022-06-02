@@ -25,6 +25,17 @@ from mobly import test_runner
 
 class SuspendTest(TopshimBaseTest):
 
+    async def __start_advertising(self):
+        advertiser_id = await self.dut_gatt.register_advertiser()
+        await self.dut_gatt.advertising_enable(advertiser_id)
+
+    async def __stop_advertising(self, advertising_id):
+        await self.dut_gatt.advertising_disable(advertiser_id)
+        await self.dut_gatt.unregister_advertiser(advertiser_id)
+
+    def test_woot(self):
+        asyncio.get_event_loop().run_until_complete(self.__start_advertising())
+
     async def __verify_no_wake_suspend(self):
         # Start suspend work
         await self.dut_adapter.clear_event_mask()
