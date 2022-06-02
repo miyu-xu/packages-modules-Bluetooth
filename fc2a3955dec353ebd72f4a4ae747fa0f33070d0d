@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4acb0fe2_66f326ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-02T08:12:33Z",
+      "side": 1,
+      "message": "Could you add details about why the bug happens and how this CL fixes the issue?",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 0
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ef54c00_5a82654c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-02T08:12:33Z",
+      "side": 1,
+      "message": "Have you checked it failed without the change?",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 72
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c200aa3a_396a34d2",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-02T08:12:33Z",
+      "side": 1,
+      "message": "Q) Why this function doesn\u0027t have comment? (At least for me, I can\u0027t guess what the method will do from the method name)",
+      "range": {
+        "startLine": 1358,
+        "startChar": 5,
+        "endLine": 1358,
+        "endChar": 33
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36013651_8aa60061",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-02T08:12:33Z",
+      "side": 1,
+      "message": "Q) Is it adding a new global function? \nQ) Is the naming proper enough?",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
