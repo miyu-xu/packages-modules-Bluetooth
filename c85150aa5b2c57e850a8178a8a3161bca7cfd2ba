@@ -69,6 +69,30 @@
       },
       "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3693151d_832b5a92",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-02T22:23:16Z",
+      "side": 1,
+      "message": "The whole point is to *not* enqueue anything into `btm_ble_enq_resolving_list_pending` if we are using privacy to satisfy some later condition that fails if the queue size is not empty.\n\nIf we never enqueue anything when using privacy, the check for queued data will always be true and we will remove the IRK entry as @chienyuan documented.",
+      "parentUuid": "ac940c37_70c01e06",
+      "range": {
+        "startLine": 485,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 55
+      },
+      "revId": "c85150aa5b2c57e850a8178a8a3161bca7cfd2ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
