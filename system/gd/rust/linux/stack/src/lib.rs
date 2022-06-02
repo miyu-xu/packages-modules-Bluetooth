@@ -27,9 +27,9 @@ use crate::suspend::Suspend;
 use bt_topshim::{
     btif::BaseCallbacks,
     profiles::{
-        a2dp::A2dpCallbacks, avrcp::AvrcpCallbacks, gatt::GattClientCallbacks,
-        gatt::GattScannerCallbacks, gatt::GattServerCallbacks, hfp::HfpCallbacks,
-        hid_host::HHCallbacks, sdp::SdpCallbacks,
+        a2dp::A2dpCallbacks, avrcp::AvrcpCallbacks, gatt::GattAdvInbandCallbacks,
+        gatt::GattClientCallbacks, gatt::GattScannerCallbacks, gatt::GattServerCallbacks,
+        hfp::HfpCallbacks, hid_host::HHCallbacks, sdp::SdpCallbacks,
     },
 };
 
@@ -42,6 +42,7 @@ pub enum Message {
     GattClient(GattClientCallbacks),
     GattServer(GattServerCallbacks),
     LeScanner(GattScannerCallbacks),
+    GattAdvInband(GattAdvInbandCallbacks),
     HidHost(HHCallbacks),
     Hfp(HfpCallbacks),
     Sdp(SdpCallbacks),
@@ -109,6 +110,10 @@ impl Stack {
 
                 Message::GattClient(m) => {
                     bluetooth_gatt.lock().unwrap().dispatch_gatt_client_callbacks(m);
+                }
+
+                Message::GattAdvInband(m) => {
+                    bluetooth_gatt.lock().unwrap().dispatch_gatt_adv_inband_callbacks(m);
                 }
 
                 Message::GattServer(m) => {

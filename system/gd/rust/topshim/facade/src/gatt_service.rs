@@ -2,7 +2,8 @@
 
 use bt_topshim::btif::{BluetoothInterface, Uuid};
 use bt_topshim::profiles::gatt::{
-    AdvertiseParameters, Gatt, GattFilterParam, PeriodicAdvertisingParameters,
+    AdvertiseParameters, Gatt, GattAdvInbandCallbacksDispatcher, GattFilterParam,
+    PeriodicAdvertisingParameters,
 };
 use bt_topshim::profiles::gatt::{
     GattClientCallbacksDispatcher, GattScannerCallbacksDispatcher, GattServerCallbacksDispatcher,
@@ -65,6 +66,11 @@ impl GattServiceImpl {
             GattScannerCallbacksDispatcher {
                 dispatch: Box::new(move |cb| {
                     println!("received Gatt scanner callback: {:?}", cb);
+                }),
+            },
+            GattAdvInbandCallbacksDispatcher {
+                dispatch: Box::new(move |cb| {
+                    println!("received Gatt adv inband callback: {:?}", cb);
                 }),
             },
         );
