@@ -25,12 +25,25 @@ from mobly import test_runner
 
 class SuspendTest(TopshimBaseTest):
 
+    async def __start_advertising(self):
+        advertiser_id = await self.dut_gatt.register_advertiser()
+        await self.dut_gatt.advertising_enable(advertiser_id)
+        return advertiser_id
+
+    async def __stop_advertising(self, advertiser_id):
+        await self.dut_gatt.advertising_disable(advertiser_id)
+        await self.dut_gatt.unregister_advertiser(advertiser_id)
+
+    def test_woot(self):
+        advertiser_id = asyncio.get_event_loop().run_until_complete(self.__start_advertising())
+        asyncio.get_event_loop().run_until_complete(self.__stop_advertising(advertiser_id))
+
     async def __verify_no_wake_suspend(self):
         # Start suspend work
         await self.dut_adapter.clear_event_mask()
         await self.dut_adapter.clear_event_filter()
         await self.dut_adapter.clear_filter_accept_list()
-        await self.dut_gatt.advertising_disable()
+        await self.dut_gatt.advertising_disable(0)
         await self.dut_gatt.stop_scan()
         await self.dut_adapter.disconnect_all_acls()
         return await self.dut_adapter.le_rand()
@@ -46,7 +59,7 @@ class SuspendTest(TopshimBaseTest):
         await self.dut_adapter.clear_event_mask()
         await self.dut_adapter.clear_event_filter()
         await self.dut_adapter.clear_filter_accept_list()
-        await self.dut_gatt.advertising_disable()
+        await self.dut_gatt.advertising_disable(0)
         await self.dut_gatt.stop_scan()
         if is_a2dp_connected:
             # await self.media_server.disconnect_a2dp()
@@ -66,7 +79,7 @@ class SuspendTest(TopshimBaseTest):
             # reconnect a2dp
             # await self.media_server.reconnect_last_a2dp()
             # await self.gatt.restart_all_previous_advertising()
-        await self.dut_gatt.advertising_enable()
+        await self.dut_gatt.advertising_enable(0)
         return await self.dut_adapter.le_rand()
 
     def test_no_wake_suspend(self):
