@@ -16,11 +16,12 @@
 
 from blueberry.tests.gd_sl4a.hci.le_advanced_scanning_test import LeAdvancedScanningTest
 from blueberry.tests.gd_sl4a.security.oob_pairing_sl4a_test import OobPairingSl4aTest
+from blueberry.tests.gd_sl4a.androidtv.androidtv_test import AndroidTvTest 
 
 from mobly import suite_runner
 import argparse
 
-ALL_TESTS = [LeAdvancedScanningTest, OobPairingSl4aTest]
+ALL_TESTS = [AndroidTvTest, LeAdvancedScanningTest, OobPairingSl4aTest]
 
 
 def main():
