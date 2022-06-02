@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option java_outer_classname = "GattProto";
+
+package pandora;
+
+import "google/protobuf/empty.proto";
+
+service GATT {
+  rpc ConnectLe(ConnectLeRequest) returns (ConnectLeResponse);
+  rpc Disconnect(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc DiscoverServices(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc ExchangeMTU(ExchangeMTURequest) returns (ExchangeMTUResponse);
+  rpc WriteCharacteristic(WriteCharacteristicRequest) returns (WriteCharacteristicResponse);
+}
+
+// Request for the `ConnectLe` method.
+message ConnectLeRequest {
+  bytes address = 1;
+}
+
+// Response for the `ConnectLe` method.
+message ConnectLeResponse {}
+
+// Request for the `ExchangeMTU` method.
+message ExchangeMTURequest {
+  int32 mtu = 1;
+}
+
+// Response for the `ExchangeMTU` method.
+message ExchangeMTUResponse {}
+
+message WriteCharacteristicRequest {
+  string handle = 1;
+  int32 size = 2;
+}
+
+message WriteCharacteristicResponse {
+  bool success = 1;
+}
