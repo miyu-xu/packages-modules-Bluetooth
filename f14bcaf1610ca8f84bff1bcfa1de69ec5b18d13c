@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "961c1f75_85ca3e50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-02T21:54:33Z",
+      "side": 1,
+      "message": "Nice start!",
+      "revId": "f14bcaf1610ca8f84bff1bcfa1de69ec5b18d13c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c42182b2_8a95d2cd",
+        "filename": "system/blueberry/tests/gd_sl4a/androidtv/androidtv_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-02T21:54:33Z",
+      "side": 1,
+      "message": "nit: You shouldn\u0027t have to pass this here.  It will be ignored.",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 113
+      },
+      "revId": "f14bcaf1610ca8f84bff1bcfa1de69ec5b18d13c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
