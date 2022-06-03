@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00049819_22ee2bb8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:41:54Z",
+      "side": 1,
+      "message": "I tried with another pixel today but it still work normally. I will discuss this further with Samsung team",
+      "parentUuid": "e994dbbd_19176ba0",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 72
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c200aa3a_396a34d2",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 1
