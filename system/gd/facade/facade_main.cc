@@ -57,7 +57,6 @@ void interrupt_handler(int signal_number) {
   if (!interrupted) {
     interrupted = true;
     LOG_INFO("Stopping gRPC root server due to signal: %s[%d]", strsignal(signal_number), signal_number);
-    grpc_root_server.StopServer();
   } else {
     LOG_WARN("Already interrupted by signal: %s[%d]", strsignal(signal_number), signal_number);
   }
@@ -150,7 +149,14 @@ int main(int argc, const char** argv) {
 
   grpc_root_server.StartServer("0.0.0.0", root_server_port, grpc_port);
   auto wait_thread = std::thread([] { grpc_root_server.RunGrpcLoop(); });
+  auto shutdown_thread = std::thread([] {
+    while (!interrupted) {
+      sleep(1);
+    }
+    grpc_root_server.StopServer();
+  });
   wait_thread.join();
+  shutdown_thread.join();
 
   return 0;
 }
