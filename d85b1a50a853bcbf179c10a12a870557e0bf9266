@@ -111,6 +111,30 @@
       },
       "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41a075b5_aa5b3572",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-06-03T09:31:33Z",
+      "side": 1,
+      "message": "With the fix of resolving list issue, I can remove the conversion logic.\nBut we still need to prevent create connection when filter accept list is empty.\nLine 588 can fix it, I also added a protection check",
+      "parentUuid": "83acd5cb_3d66ee0f",
+      "range": {
+        "startLine": 561,
+        "startChar": 1,
+        "endLine": 561,
+        "endChar": 74
+      },
+      "revId": "d85b1a50a853bcbf179c10a12a870557e0bf9266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
