@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b53951e_7aa46c54",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-03T01:02:02Z",
+      "side": 1,
+      "message": "What are the both devices?\n(A CL should be independently understandable.)",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5af31a59_e9186605",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-03T01:02:02Z",
+      "side": 1,
+      "message": "70 characters are the maximum per line in commit message.",
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc7e2a4_3c6bfe62",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-03T01:02:02Z",
+      "side": 1,
+      "message": "Please fix the indentation.",
+      "range": {
+        "startLine": 1345,
+        "startChar": 1,
+        "endLine": 1345,
+        "endChar": 2
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc0ce46_7fd7c9de",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-03T01:02:02Z",
+      "side": 1,
+      "message": "What about \"HCI_ROLE_CENTRAL will be used as default.\"?",
+      "range": {
+        "startLine": 1345,
+        "startChar": 17,
+        "endLine": 1345,
+        "endChar": 48
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "430c16f5_89069712",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-03T01:02:02Z",
+      "side": 1,
+      "message": "I think not having the default value could increase the readability.",
+      "range": {
+        "startLine": 84,
+        "startChar": 47,
+        "endLine": 84,
+        "endChar": 63
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
