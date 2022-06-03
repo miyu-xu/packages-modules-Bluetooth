@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4a85650_8a663ebc",
+        "filename": "system/blueberry/facade/hci/le_acl_manager_facade.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-03T00:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eefa2dce_95248121",
+      "range": {
+        "startLine": 18,
+        "startChar": 15,
+        "endLine": 18,
+        "endChar": 36
+      },
+      "revId": "d63d0ac53e05f7f05d9349fb4e50bbcd511d04e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e055d3ad_ae0252d4",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-02T19:42:26Z",
       "side": 1,
       "message": "ClientMsg",
+      "range": {
+        "startLine": 19,
+        "startChar": 37,
+        "endLine": 19,
+        "endChar": 58
+      },
+      "revId": "d63d0ac53e05f7f05d9349fb4e50bbcd511d04e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "253a2f96_b958f3d9",
+        "filename": "system/blueberry/facade/hci/le_acl_manager_facade.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-03T00:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e055d3ad_ae0252d4",
       "range": {
         "startLine": 19,
         "startChar": 37,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89ae5c97_f1d34bc0",
+        "filename": "system/blueberry/facade/hci/le_acl_manager_facade.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-03T00:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7aef308b_9cafa040",
+      "revId": "d63d0ac53e05f7f05d9349fb4e50bbcd511d04e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d45303d_74f6e459",
@@ -77,6 +143,24 @@
       "writtenOn": "2022-06-02T19:42:26Z",
       "side": 1,
       "message": "message ClientMsg {\n  uint32 client_id \u003d 1;\n}\n\nmessage PauseResumeMsg {\n  bool is_pause \u003d 1;\n}",
+      "revId": "d63d0ac53e05f7f05d9349fb4e50bbcd511d04e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84b277e7_bca2c894",
+        "filename": "system/blueberry/facade/hci/le_acl_manager_facade.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-03T00:12:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d45303d_74f6e459",
       "revId": "d63d0ac53e05f7f05d9349fb4e50bbcd511d04e4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
