@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ccc3998_05b8d707",
+        "filename": "system/blueberry/facade/hci/le_acl_manager_facade.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-03T23:11:25Z",
+      "side": 1,
+      "message": "I think a single client message should be enough",
+      "range": {
+        "startLine": 18,
+        "startChar": 15,
+        "endLine": 18,
+        "endChar": 32
+      },
+      "revId": "05235980681029a915b303d5c57b2dd797b38257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a030a22f_e68a4364",
+        "filename": "system/blueberry/facade/hci/le_acl_manager_facade.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-03T23:11:25Z",
+      "side": 1,
+      "message": "unregister shouldn\u0027t need to return anything",
+      "range": {
+        "startLine": 20,
+        "startChar": 15,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "05235980681029a915b303d5c57b2dd797b38257",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
