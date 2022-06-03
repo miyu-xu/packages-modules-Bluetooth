@@ -16,6 +16,23 @@
       "message": "KH",
       "revId": "0f335669f373b36abac8544af7f0ec8ca5eeb35f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbc92f2c_98ab02cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1853606
+      },
+      "writtenOn": "2022-06-03T14:42:59Z",
+      "side": 1,
+      "message": "Thanks for the patch.\nBut I have checked this scenario before uploaded and I did not see this issue.",
+      "revId": "0f335669f373b36abac8544af7f0ec8ca5eeb35f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
