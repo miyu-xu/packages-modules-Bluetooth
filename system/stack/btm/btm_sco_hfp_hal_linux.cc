@@ -23,6 +23,8 @@
 #include "btm_sco_hfp_hal.h"
 #include "gd/common/init_flags.h"
 #include "osi/include/log.h"
+#include "stack/acl/acl.h"
+#include "stack/include/acl_api.h"
 
 namespace hfp_hal_interface {
 namespace {
@@ -332,8 +334,46 @@ bool enable_offload(bool enable) {
   return true;
 }
 
-// Notify the codec datapath to lower layer for offload mode
-bool set_codec_datapath(int codec) { return true; }
+static bool get_single_codec(int codec, bt_codec** out) {
+  for (cached_codec_info c : cached_codecs) {
+    if (c.inner.codec == codec) {
+      *out = &c.inner;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+void set_codec_datapath(esco_coding_format_t coding_format) {
+  bool found;
+  bt_codec* codec;
+
+  found = get_single_codec(esco_coding_to_codec(coding_format), &codec);
+  if (!found) {
+    LOG_ERROR(
+        "Failed to find codec config for format (%u). Won't set datapath.",
+        coding_format);
+    return;
+  }
+
+  LOG_INFO("Configuring datapath for codec (%u)", codec->codec);
+  if (codec->codec == codec::MSBC && !get_offload_enabled()) {
+    LOG_ERROR(
+        "Tried to configure offload data path for format (%u) with offload "
+        "disabled. Won't set datapath.",
+        coding_format);
+    return;
+  }
+
+  // If data path exists, make sure to configure both input and output for SCO.
+  if (codec->data_path) {
+    btm_configure_data_path(btm_data_direction::CONTROLLER_TO_HOST,
+                            codec->data_path, codec->data);
+    btm_configure_data_path(btm_data_direction::HOST_TO_CONTROLLER,
+                            codec->data_path, codec->data);
+  }
+}
 
 int get_packet_size(int codec) {
   for (const cached_codec_info& c : cached_codecs) {
