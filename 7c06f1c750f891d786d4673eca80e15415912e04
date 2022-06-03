@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23442128_c3f01031",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-03T15:47:34Z",
+      "side": 1,
+      "message": "When OnResume is called, we should check this flag, but then check again to see if the filter accept list is empty and skip arming.\n\nBut for now this is in the right direction.\n",
+      "revId": "7c06f1c750f891d786d4673eca80e15415912e04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
