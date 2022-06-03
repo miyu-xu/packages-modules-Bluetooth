@@ -16,6 +16,52 @@
       "message": "Is there a bug ID tracking this issue?",
       "revId": "8f50aa7b22950c3db6c9e19590884680eb15fa9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85aaede6_07e4ba40",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-06-03T14:45:17Z",
+      "side": 1,
+      "message": "Will this now be warning logged every time connection attempt is made?",
+      "range": {
+        "startLine": 278,
+        "startChar": 11,
+        "endLine": 278,
+        "endChar": 75
+      },
+      "revId": "8f50aa7b22950c3db6c9e19590884680eb15fa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f854746e_f4cbb1b9",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-06-03T14:45:17Z",
+      "side": 1,
+      "message": "Will this now be warning logged every time connection attempt is made?",
+      "range": {
+        "startLine": 283,
+        "startChar": 12,
+        "endLine": 283,
+        "endChar": 89
+      },
+      "revId": "8f50aa7b22950c3db6c9e19590884680eb15fa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
