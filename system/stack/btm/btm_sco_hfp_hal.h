@@ -81,8 +81,7 @@ bool get_offload_enabled();
 bool set_offload_enabled(bool enable);
 
 // Notify the codec datapath to lower layer for offload mode.
-// TODO - This api may become unnecessary depending on how this is integrated.
-bool set_codec_datapath(int codec);
+void set_codec_datapath(esco_coding_format_t coding_format);
 
 // Get the maximum supported packet size from the lower layer.
 int get_packet_size(int codec);

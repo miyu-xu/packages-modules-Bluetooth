@@ -74,8 +74,8 @@ bool set_offload_enabled(bool enable) {
   return true;
 }
 
-// Notify the codec datapath to lower layer for offload mode.
-bool set_codec_datapath(int codec) { return true; }
+// On Android, this is a no-op because the settings default to offloaded case.
+void set_codec_datapath(enh_esco_params_t* params) {}
 
 // No packet size limits on Android since it will be offloaded.
 int get_packet_size() { return kDefaultPacketSize; }
