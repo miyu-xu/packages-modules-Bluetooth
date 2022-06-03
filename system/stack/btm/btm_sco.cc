@@ -1403,6 +1403,7 @@ static uint16_t btm_sco_voice_settings_to_legacy(enh_esco_params_t* p_params) {
       voice_settings |= HCI_AIR_CODING_FORMAT_A_LAW;
       break;
 
+    case ESCO_CODING_FORMAT_TRANSPNT:
     case ESCO_CODING_FORMAT_MSBC:
       voice_settings |= HCI_AIR_CODING_FORMAT_TRANSPNT;
       break;
