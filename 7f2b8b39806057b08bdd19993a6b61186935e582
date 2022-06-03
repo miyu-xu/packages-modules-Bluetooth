@@ -43,6 +43,48 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ca945f1_84a29eb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "CTKD required 2 devices, so I guess this is obvious when talking about CTKD",
+      "parentUuid": "1b53951e_7aa46c54",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de7f8f9_920c2402",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "How should I explain in detail as Kyunglyul suggest?",
+      "parentUuid": "5af31a59_e9186605",
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fc7e2a4_3c6bfe62",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 2
@@ -87,6 +129,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4da0491_6ba14dc4",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbc0ce46_7fd7c9de",
+      "range": {
+        "startLine": 1345,
+        "startChar": 17,
+        "endLine": 1345,
+        "endChar": 48
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00e84400_bba05f2e",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1345,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fc7e2a4_3c6bfe62",
+      "range": {
+        "startLine": 1345,
+        "startChar": 1,
+        "endLine": 1345,
+        "endChar": 2
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3af2b5dc_3456b0df",
@@ -112,6 +202,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd7104d4_55dca9fe",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "the delayed_role is already defined in the existing code, which, according the comment above this function, is a variable to cache the role change. We can process it after connection successfully established",
+      "parentUuid": "3af2b5dc_3456b0df",
+      "range": {
+        "startLine": 1351,
+        "startChar": 5,
+        "endLine": 1351,
+        "endChar": 25
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c828de24_89dd1ebe",
         "filename": "system/stack/include/acl_hci_link_interface.h",
         "patchSetId": 2
@@ -123,6 +237,30 @@
       "writtenOn": "2022-06-03T03:10:32Z",
       "side": 1,
       "message": "remove this.",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 25
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17292fd5_eff5649f",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c828de24_89dd1ebe",
       "range": {
         "startLine": 83,
         "startChar": 24,
@@ -170,6 +308,30 @@
       "side": 1,
       "message": "+1. This doesn\u0027t look trivial to me.",
       "parentUuid": "430c16f5_89069712",
+      "range": {
+        "startLine": 84,
+        "startChar": 47,
+        "endLine": 84,
+        "endChar": 63
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f5efc2_39347d4d",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0c0e774_b2c994d1",
       "range": {
         "startLine": 84,
         "startChar": 47,

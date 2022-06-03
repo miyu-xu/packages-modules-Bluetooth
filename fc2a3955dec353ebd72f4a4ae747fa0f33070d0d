@@ -211,6 +211,30 @@
       },
       "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "635df296_0b66a7c6",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-03T06:39:25Z",
+      "side": 1,
+      "message": "I added the acl prefix, is it appropriate?",
+      "parentUuid": "e08b7a7e_2244fe1b",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
