@@ -187,6 +187,30 @@
       },
       "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e08b7a7e_2244fe1b",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-03T03:10:32Z",
+      "side": 1,
+      "message": "As it\u0027s a global function, we should add some prefix.",
+      "parentUuid": "a96855cd_45fb9776",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

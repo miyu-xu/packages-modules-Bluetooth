@@ -89,6 +89,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3af2b5dc_3456b0df",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-03T03:10:32Z",
+      "side": 1,
+      "message": "Q) What is \"delayed_role\"? \nCould we guess what would happen when \"delayed_role\" is assigned?",
+      "range": {
+        "startLine": 1351,
+        "startChar": 5,
+        "endLine": 1351,
+        "endChar": 25
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c828de24_89dd1ebe",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-03T03:10:32Z",
+      "side": 1,
+      "message": "remove this.",
+      "range": {
+        "startLine": 83,
+        "startChar": 24,
+        "endLine": 83,
+        "endChar": 25
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "430c16f5_89069712",
         "filename": "system/stack/include/acl_hci_link_interface.h",
         "patchSetId": 2
@@ -100,6 +146,30 @@
       "writtenOn": "2022-06-03T01:02:02Z",
       "side": 1,
       "message": "I think not having the default value could increase the readability.",
+      "range": {
+        "startLine": 84,
+        "startChar": 47,
+        "endLine": 84,
+        "endChar": 63
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0c0e774_b2c994d1",
+        "filename": "system/stack/include/acl_hci_link_interface.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-03T03:10:32Z",
+      "side": 1,
+      "message": "+1. This doesn\u0027t look trivial to me.",
+      "parentUuid": "430c16f5_89069712",
       "range": {
         "startLine": 84,
         "startChar": 47,
