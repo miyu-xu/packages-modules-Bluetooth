@@ -23,6 +23,7 @@
 #include "model/setup/async_manager.h"
 #include "net/posix/posix_async_socket_connector.h"
 #include "net/posix/posix_async_socket_server.h"
+#include "net/async_transport_adapter.h"
 #include "os/log.h"
 #include "test_environment.h"
 
@@ -122,7 +123,7 @@ int main(int argc, char** argv) {
   AsyncManager am;
   TestEnvironment root_canal(
       std::make_shared<PosixAsyncSocketServer>(test_port, &am),
-      std::make_shared<PosixAsyncSocketServer>(hci_server_port, &am),
+      std::make_shared<AsyncHciTransportChannelAdapter>(std::make_shared<PosixAsyncSocketServer>(hci_server_port, &am)),
       std::make_shared<PosixAsyncSocketServer>(link_server_port, &am),
       std::make_shared<PosixAsyncSocketServer>(link_ble_server_port, &am),
       std::make_shared<PosixAsyncSocketConnector>(&am),

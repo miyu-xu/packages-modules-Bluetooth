@@ -35,6 +35,7 @@ namespace root_canal {
 using rootcanal::AsyncTaskId;
 using rootcanal::HciDevice;
 using rootcanal::HciSniffer;
+using rootcanal::HciTransport;
 using rootcanal::HciSocketTransport;
 using rootcanal::LinkLayerSocketDevice;
 using rootcanal::TaskCallback;
@@ -59,9 +60,8 @@ void TestEnvironment::initialize(std::promise<void> barrier) {
       });
 
   SetUpTestChannel();
-  SetUpHciServer([this](std::shared_ptr<AsyncDataChannel> socket,
-                        AsyncDataChannelServer* srv) {
-    auto transport = HciSocketTransport::Create(socket);
+  SetUpHciServer([this](std::shared_ptr<HciTransport> transport,
+                        AsyncHciTransportChannelServer* srv) {
     if (enable_hci_sniffer_) {
       transport = HciSniffer::Create(transport);
     }
@@ -88,15 +88,13 @@ void TestEnvironment::close() {
   test_model_.Reset();
 }
 
-void TestEnvironment::SetUpHciServer(ConnectCallback connection_callback) {
+void TestEnvironment::SetUpHciServer(AsyncHciTransportChannelServer::ConnectCallback connection_callback) {
   test_channel_.RegisterSendResponse([](const std::string& response) {
     LOG_INFO("No HCI Response channel: %s", response.c_str());
   });
 
-  if (!remote_hci_transport_.SetUp(hci_socket_server_, connection_callback)) {
-    LOG_ERROR("Remote HCI channel SetUp failed.");
-    return;
-  }
+  hci_transport_server_->SetOnConnectCallback(connection_callback);
+  hci_transport_server_->StartListening();
 }
 
 void TestEnvironment::SetUpLinkBleLayerServer() {
