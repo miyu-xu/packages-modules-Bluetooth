@@ -14,6 +14,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+from blueberry.tests.sl4a_sl4a.gatt.gatt_bonded_connect_test import GattBondedConnectTest
 from blueberry.tests.sl4a_sl4a.gatt.gatt_connect_test import GattConnectTest
 from blueberry.tests.sl4a_sl4a.gatt.gatt_connect_with_irk_test import GattConnectWithIrkTest
 from blueberry.tests.sl4a_sl4a.gatt.gatt_notify_test import GattNotifyTest
@@ -22,6 +23,7 @@ from mobly import suite_runner
 import argparse
 
 ALL_TESTS = [
+    GattBondedConnectTest,
     GattConnectTest,
     GattConnectWithIrkTest,
     GattNotifyTest,
