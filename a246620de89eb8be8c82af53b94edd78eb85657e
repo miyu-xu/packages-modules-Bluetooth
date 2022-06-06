@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4416e54e_4dc9d079",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-06T22:33:07Z",
+      "side": 1,
+      "message": "Quick question.",
+      "revId": "a246620de89eb8be8c82af53b94edd78eb85657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d07439a_574d5640",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-06T22:33:07Z",
+      "side": 1,
+      "message": "Should this happen after open to prevent any possible race condition where the callbacks are notified, but the open hasn\u0027t completed?",
+      "revId": "a246620de89eb8be8c82af53b94edd78eb85657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
