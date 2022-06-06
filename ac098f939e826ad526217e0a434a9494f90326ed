@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b71ae5c8_9ad101ec",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 961,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-06T14:26:08Z",
+      "side": 1,
+      "message": "This maybe deserves a comment.  It made me wonder if we should be reporting the identity address as the bonded address.",
+      "range": {
+        "startLine": 961,
+        "startChar": 10,
+        "endLine": 961,
+        "endChar": 26
+      },
+      "revId": "ac098f939e826ad526217e0a434a9494f90326ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
