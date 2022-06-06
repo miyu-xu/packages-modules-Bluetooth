@@ -19,6 +19,8 @@
 #include <chrono>
 #include <cstdint>
 #include <fstream>
+#include <memory>
+#include <ostream>
 
 #include "model/hci/h4.h"
 #include "model/hci/hci_transport.h"
@@ -41,7 +43,12 @@ class HciSniffer : public HciTransport {
     return std::make_shared<HciSniffer>(transport);
   }
 
+  // Write a pcap to the given file.
   void Open(const char* filename);
+
+  // Write the pcap header and start using this stream
+  // for capturing packets.
+  void Open(std::shared_ptr<std::ostream> outputStream);
 
   void SendEvent(const std::vector<uint8_t>& packet) override;
 
@@ -65,7 +72,8 @@ class HciSniffer : public HciTransport {
   void AppendRecord(PacketDirection direction, PacketType type,
                     const std::vector<uint8_t>& packet);
 
-  std::ofstream output_;
+  std::ofstream file_;
+  std::shared_ptr<std::ostream> output_;
   std::shared_ptr<HciTransport> transport_;
   std::chrono::time_point<std::chrono::steady_clock> start_;
 };
