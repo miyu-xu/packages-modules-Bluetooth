@@ -31,7 +31,7 @@ using std::vector;
 namespace rootcanal {
 
 bool TestChannelTransport::SetUp(std::shared_ptr<AsyncDataChannelServer> server,
-                                 ConnectCallback connection_callback) {
+                                 AsyncDataChannelServer::ConnectCallback connection_callback) {
   socket_server_ = server;
   socket_server_->SetOnConnectCallback(connection_callback);
   socket_server_->StartListening();

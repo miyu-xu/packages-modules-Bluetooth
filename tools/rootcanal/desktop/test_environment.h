@@ -41,7 +41,7 @@ namespace root_canal {
 using android::net::AsyncDataChannel;
 using android::net::AsyncDataChannelConnector;
 using android::net::AsyncDataChannelServer;
-using android::net::ConnectCallback;
+using android::net::AsyncHciTransportChannelServer;
 
 using rootcanal::Device;
 using rootcanal::Phy;
@@ -49,7 +49,7 @@ using rootcanal::Phy;
 class TestEnvironment {
  public:
   TestEnvironment(std::shared_ptr<AsyncDataChannelServer> test_port,
-                  std::shared_ptr<AsyncDataChannelServer> hci_server_port,
+                  std::shared_ptr<AsyncHciTransportChannelServer> hci_server_port,
                   std::shared_ptr<AsyncDataChannelServer> link_server_port,
                   std::shared_ptr<AsyncDataChannelServer> link_ble_server_port,
                   std::shared_ptr<AsyncDataChannelConnector> connector,
@@ -57,7 +57,7 @@ class TestEnvironment {
                   const std::string& default_commands_file = "",
                   bool enable_hci_sniffer = false)
       : test_socket_server_(test_port),
-        hci_socket_server_(hci_server_port),
+        hci_transport_server_(hci_server_port),
         link_socket_server_(link_server_port),
         link_ble_socket_server_(link_ble_server_port),
         connector_(connector),
@@ -74,7 +74,7 @@ class TestEnvironment {
  private:
   rootcanal::AsyncManager async_manager_;
   std::shared_ptr<AsyncDataChannelServer> test_socket_server_;
-  std::shared_ptr<AsyncDataChannelServer> hci_socket_server_;
+  std::shared_ptr<AsyncHciTransportChannelServer> hci_transport_server_;
   std::shared_ptr<AsyncDataChannelServer> link_socket_server_;
   std::shared_ptr<AsyncDataChannelServer> link_ble_socket_server_;
   std::shared_ptr<AsyncDataChannelConnector> connector_;
@@ -85,7 +85,7 @@ class TestEnvironment {
   std::promise<void> barrier_;
 
   void SetUpTestChannel();
-  void SetUpHciServer(ConnectCallback on_connect);
+  void SetUpHciServer(AsyncHciTransportChannelServer::ConnectCallback on_connect);
   void SetUpLinkLayerServer();
   void SetUpLinkBleLayerServer();
   std::shared_ptr<Device> ConnectToRemoteServer(const std::string& server,
@@ -94,7 +94,6 @@ class TestEnvironment {
   std::shared_ptr<rootcanal::DualModeController> controller_;
 
   rootcanal::TestChannelTransport test_channel_transport_;
-  rootcanal::TestChannelTransport remote_hci_transport_;
   rootcanal::TestChannelTransport remote_link_layer_transport_;
   rootcanal::TestChannelTransport remote_link_ble_layer_transport_;
 
