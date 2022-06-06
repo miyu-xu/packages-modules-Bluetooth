@@ -28,7 +28,6 @@ namespace rootcanal {
 
 using android::net::AsyncDataChannel;
 using android::net::AsyncDataChannelServer;
-using android::net::ConnectCallback;
 
 // Manages communications between test channel and the controller. Mirrors the
 // HciTransport for the test channel.
@@ -40,7 +39,7 @@ class TestChannelTransport {
 
   // Opens a port and returns and starts listening for incoming connections.
   bool SetUp(std::shared_ptr<AsyncDataChannelServer> server,
-             ConnectCallback connection_callback);
+             AsyncDataChannelServer::ConnectCallback connection_callback);
 
   // Closes the port (if succesfully opened in SetUp).
   void CleanUp();

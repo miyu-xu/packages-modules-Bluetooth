@@ -17,23 +17,26 @@
 #include <memory>
 
 #include "net/async_data_channel.h"
+#include "model/hci/hci_transport.h"   
 
 namespace android {
 namespace net {
 
-class AsyncDataChannelServer;
-
-// Callback thas is called when a new client connection has been accepted.
-using ConnectCallback = std::function<void(std::shared_ptr<AsyncDataChannel>,
-                                           AsyncDataChannelServer* server)>;
-
-// An AsyncDataChannelServer is capable of listening to incoming connections.
+// An AsyncChannelServer is capable of listening to incoming connections.
 //
 // A Callback will be invoked whenever a new connection has been accepted.
-class AsyncDataChannelServer {
+template<class T>
+class AsyncChannelServer {
  public:
+
+
+// Callback thas is called when a new client connection has been accepted.
+ using ConnectCallback = std::function<void(std::shared_ptr<T>,
+                                           AsyncChannelServer<T>* server)>;
+
+
   // Destructor.
-  virtual ~AsyncDataChannelServer() = default;
+  virtual ~AsyncChannelServer() = default;
 
   // Start listening for new connections. The callback will be invoked
   // when a new socket has been accepted.
@@ -69,6 +72,11 @@ class AsyncDataChannelServer {
  protected:
   ConnectCallback callback_;
 };
+
+// For backwards compatibility we create type aliases
+using AsyncDataChannelServer = AsyncChannelServer<AsyncDataChannel>;
+using ConnectCallback = AsyncChannelServer<AsyncDataChannel>::ConnectCallback; 
+using AsyncHciTransportChannelServer = AsyncChannelServer<rootcanal::HciTransport>;
 
 }  // namespace net
 }  // namespace android
