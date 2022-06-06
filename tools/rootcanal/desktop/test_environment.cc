@@ -63,18 +63,16 @@ void TestEnvironment::initialize(std::promise<void> barrier) {
                         AsyncDataChannelServer* srv) {
     auto transport = HciSocketTransport::Create(socket);
     if (enable_hci_sniffer_) {
-      transport = HciSniffer::Create(transport);
-    }
-    auto device = HciDevice::Create(transport, controller_properties_file_);
-    test_model_.AddHciConnection(device);
-    if (enable_hci_sniffer_) {
       auto filename = device->GetAddress().ToString() + ".pcap";
       for (auto i = 0; std::filesystem::exists(filename); i++) {
         filename =
             device->GetAddress().ToString() + "_" + std::to_string(i) + ".pcap";
       }
-      std::static_pointer_cast<HciSniffer>(transport)->Open(filename.c_str());
+      auto file = std::make_shared<std::ofstream>(filename, std::ios::binary);
+      transport = HciSniffer::Create(transport, file);
     }
+    auto device = HciDevice::Create(transport, controller_properties_file_);
+    test_model_.AddHciConnection(device);
     srv->StartListening();
   });
   SetUpLinkLayerServer();
