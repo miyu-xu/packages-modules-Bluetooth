@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88fb34cd_b4824045",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-06-06T12:41:46Z",
+      "side": 0,
+      "message": "We are in a for loop of device properties, we should not return here.",
+      "range": {
+        "startLine": 668,
+        "startChar": 32,
+        "endLine": 668,
+        "endChar": 38
+      },
+      "revId": "ac098f939e826ad526217e0a434a9494f90326ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
