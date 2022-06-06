@@ -16,6 +16,24 @@
       "message": "Would it be better to have `--alsologtostderr` or `--logtostderr` instead?",
       "revId": "21a07392e795820759a1804fbdcebc3fc7024997",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c1ead79_85415dcf",
+        "filename": "system/gd/rust/linux/mgmt/src/bin/btmanagerd/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-06T22:42:25Z",
+      "side": 1,
+      "message": "Looks like there is no way to log to both, so I thought that specifying log output is more suitable. If there was a way to log both I would agree with `--alsologtostderr` but otherwise I actually prefer `--log-output\u003d\u003coutput\u003e` because it will be easier to add more log output support, and to change the default log output.",
+      "parentUuid": "a98db55b_1e48f4d1",
+      "revId": "21a07392e795820759a1804fbdcebc3fc7024997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
