@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "933b6042_1f157e2e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-07T23:03:00Z",
+      "side": 1,
+      "message": "I\u0027ve verified with this change and confirmed the WbsCallback gotten triggered before the SLC connected.\n```\n2022-06-07T22:41:17.265624Z INFO btadapterd[12026]: [7C:96:D2:8B:F8:BC]: hfp connected.\n2022-06-07T22:41:17.322245Z INFO btadapterd[12026]: bluetooth: gd/rust/topshim/hfp/hfp_shim.cc:105 - WbsCallback: WbsCallback 2 from 7c:96:d2:8b:f8:bc\n2022-06-07T22:41:17.363805Z WARNING btadapterd[12026]: bluetooth: gd/rust/topshim/hfp/hfp_shim.cc:116 - AtCindCallback: Respond +CIND: 0,0,1,5,0,5,0 to AT+CIND? from 7c:96:d2:8b:f8:bc\n2022-06-07T22:41:17.442436Z INFO vm_concierge[6003]: BalloonTrace: { \"vm\": \"arcvm\", \"game_mode\": false, \"balloon\": 4435320832, \"guest_cached\": 1327165440, \"guest_unreclaimable\": 109436928, \"guest_free\": 320454656, \"target_free\": 320622592, \"host_available\": 3706049536, \"host_free\": 451104768, \"deflation_limit_1\": [0, 1049181184], \"deflation_limit_2\": [899, 1369259008], \"deflation_limit_3\": [999, 4015340544], \"delta\": -167936 }\n2022-06-07T22:41:17.450768Z WARNING btadapterd[12026]: bluetooth: gd/rust/topshim/hfp/hfp_shim.cc:159 - AtBindCallback: AT+BIND 1,2 from addr 7c:96:d2:8b:f8:bc: Bluetooth HF Indicators is not supported.\n2022-06-07T22:41:17.493868Z INFO btadapterd[12026]: bluetooth: gd/rust/topshim/hfp/hfp_shim.cc:60 - ConnectionStateCallback: ConnectionStateCallback from 7c:96:d2:8b:f8:bc\n2022-06-07T22:41:17.493971Z INFO btadapterd[12026]: bt_btif_queue: btif/src/btif_profile_queue.cc:121 - queue_int_advance: queue_int_advance: removing connection request: address\u003dxx:xx:xx:xx:f8:bc UUID\u003d111F busy\u003dtrue\n2022-06-07T22:41:17.494048Z INFO btadapterd[12026]: [7C:96:D2:8B:F8:BC]: hfp slc connected.\n```\n\nThe first WbsCallback was triggered by the \"AT+BAC\" in the SLC setup process.\n\nThe codes are at https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_hf.cc;drc\u003dbbe77d66e7bee8bd1f0bc7e5492b5376b0207ef6;l\u003d562\n\n```\n    case BTA_AG_AT_BAC_EVT:\n      BTIF_TRACE_DEBUG(\"AG Bitmap of peer-codecs %d\", p_data-\u003eval.num);\n      /* If the peer supports mSBC and the BTIF preferred codec is also mSBC,\n      then\n      we should set the BTA AG Codec to mSBC. This would trigger a +BCS to mSBC\n      at the time\n      of SCO connection establishment */\n      if (p_data-\u003eval.num \u0026 BTM_SCO_CODEC_MSBC) {\n        BTIF_TRACE_EVENT(\"%s: btif_hf override-Preferred Codec to MSBC\",\n                         __func__);\n        BTA_AgSetCodec(btif_hf_cb[idx].handle, BTM_SCO_CODEC_MSBC);\n      } else {\n        BTIF_TRACE_EVENT(\"%s btif_hf override-Preferred Codec to CVSD\",\n                         __func__);\n        BTA_AgSetCodec(btif_hf_cb[idx].handle, BTM_SCO_CODEC_CVSD);\n      }\n```\n\n\nAnd, the callback got called again when the actual +BCS was triggered by the AG when setting up the data pipeline.\n\n```\n2022-06-07T22:41:31.290694Z INFO btadapterd[12026]: bluetooth: stack/btm/btm_sco.cc:454 - btm_send_connect_request: Sending eSCO connect request over handle:0x0100\n2022-06-07T22:41:31.290790Z WARNING btadapterd[12026]: bluetooth: bta/ag/bta_ag_sco.cc:1098 - bta_ag_sco_event: SCO_state_change: [BTA_AG_SCO_CODEC_ST(0x02)]-\u003e[BTA_AG_SCO_OPENING_ST(0x03)] after event [BTA_AG_SCO_CN_DONE_E(0x03)]\n2022-06-07T22:41:31.290903Z INFO btadapterd[12026]: bluetooth: gd/rust/topshim/hfp/hfp_shim.cc:105 - WbsCallback: WbsCallback 2 from 7c:96:d2:8b:f8:bc\n```\n\nCodes:\n```\n    case BTA_AG_AT_BCS_EVT:\n      BTIF_TRACE_DEBUG(\"%s: AG final selected codec is 0x%02x 1\u003dCVSD 2\u003dMSBC\",\n                       __func__, p_data-\u003eval.num);\n      /* No BTHF_WBS_NONE case, because HF1.6 supported device can send BCS */\n      /* Only CVSD is considered narrow band speech */\n      bt_hf_callbacks-\u003eWbsCallback(\n          (p_data-\u003eval.num \u003d\u003d BTM_SCO_CODEC_CVSD) ? BTHF_WBS_NO : BTHF_WBS_YES,\n          \u0026btif_hf_cb[idx].connected_bda);\n      break;\n```\n\nSo, I think hfp_shim should have valid `wbs_supported` valueat SlcConnected. But, I do agree that we can add logics to handle the case that `+BCS: 2` failed and the stack falls back to CVSD, which is a known corner case instead of a synchronize work required for this change.",
+      "parentUuid": "fb92a54a_dbe59f07",
+      "revId": "2fe78da3508b7b0abb548771db15099ebee206cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a096b532_c025e544",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-06-07T09:43:07Z",
       "side": 1,
       "message": "What is the order of BthfConnectionState::SlcConnected and when this WbsCallback is called?\nI assume (a) SlcConnected happens before (b) WbsCallback(where codec negotiation happened).\n\nThat said, we need to block notifying CRAS until (b) to finalize `wbs_supported` value. Otherwise CRAS could immediately decide to start call in narrow-band.",
+      "revId": "2fe78da3508b7b0abb548771db15099ebee206cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0e22306_55604249",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-07T23:03:00Z",
+      "side": 1,
+      "message": "Answered on previous comment. The order should be:\n1. WbsCallback triggered by AT+BAC\n2. SLC connected\n3. StartSco\n4. WbsCallback triggered by BCS\n\nI\u0027ll propose to trigger another event from the topshim to CRAS to reflect the change if the BCS doesn\u0027t align with the information we get from AT+BAC.",
+      "parentUuid": "a096b532_c025e544",
       "revId": "2fe78da3508b7b0abb548771db15099ebee206cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
