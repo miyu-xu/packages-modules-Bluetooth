@@ -85,6 +85,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b3fd043_76d0af77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-07T10:05:12Z",
+      "side": 1,
+      "message": "Split it into multiple lines",
+      "parentUuid": "1de7f8f9_920c2402",
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1fc7e2a4_3c6bfe62",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 2
