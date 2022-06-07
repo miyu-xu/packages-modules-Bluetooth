@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d90ffac_61098fb0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-07T00:19:45Z",
+      "side": 1,
+      "message": "Added more details.",
+      "parentUuid": "1a578f4e_4266bae2",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "5b56516c33f03ac35d17c328ea28c8b1771340cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81b28af0_22916e57",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ddd65ff_d4cfb135",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-07T00:19:45Z",
+      "side": 1,
+      "message": "Yes. Done.",
+      "parentUuid": "81b28af0_22916e57",
+      "range": {
+        "startLine": 388,
+        "startChar": 36,
+        "endLine": 388,
+        "endChar": 57
+      },
+      "revId": "5b56516c33f03ac35d17c328ea28c8b1771340cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89fec737_d59b454c",
@@ -60,6 +108,24 @@
       "writtenOn": "2022-06-06T06:06:58Z",
       "side": 1,
       "message": "should we call this in `bta_ag_create_sco()` as well?",
+      "revId": "5b56516c33f03ac35d17c328ea28c8b1771340cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f3a8b3f_6ffb5f56",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-07T00:19:45Z",
+      "side": 1,
+      "message": "I think bta_ag_create_sco should trigger bta_ag_create_pending_sco so we\u0027ll only need to call this at either function.\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/ag/bta_ag_sco.cc;drc\u003d4e71b85759bc96f31ad74f9153e3fcac4e134266;l\u003d422",
+      "parentUuid": "89fec737_d59b454c",
       "revId": "5b56516c33f03ac35d17c328ea28c8b1771340cc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
