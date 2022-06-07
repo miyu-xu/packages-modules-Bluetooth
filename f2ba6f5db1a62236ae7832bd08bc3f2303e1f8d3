@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb8774a_201e9bbc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2022-06-07T21:45:53Z",
+      "side": 1,
+      "message": "This requires a +2 since I hit a merge-conflict in the system/gd/Android.bp file.",
+      "revId": "f2ba6f5db1a62236ae7832bd08bc3f2303e1f8d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
