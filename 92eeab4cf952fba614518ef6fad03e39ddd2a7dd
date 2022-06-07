@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f538c183_9dec5efa",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-07T09:59:36Z",
+      "side": 0,
+      "message": "Could removing this stubs cause problem to PATH_PCM cases?\n\nFor example:\nMaybe we should guard calling into this functions by examining `p_setup-\u003einput_data_path` before bluetooth:::audio::sco::open() is still called in btm_sco_connected().",
+      "revId": "92eeab4cf952fba614518ef6fad03e39ddd2a7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
