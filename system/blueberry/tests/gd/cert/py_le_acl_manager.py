@@ -51,6 +51,10 @@ class PyLeAclManagerAclConnection(IEventStream, Closable):
         self.own_address = address
         self.disconnect_reason = None
 
+    def disconnect(self, reason):
+        packet_bytes = bytes(hci_packets.DisconnectBuilder(self.handle, reason).Serialize())
+        self.le_acl_manager.ConnectionCommand(acl_manager_facade.ConnectionCommandMsg(packet=packet_bytes))
+
     def close(self):
         safeClose(self.connection_event_stream)
         safeClose(self.acl_stream)
@@ -123,6 +127,14 @@ class PyLeAclManager(Closable):
         token = self.next_token
         self.next_token += 1
         return token
+
+    def is_on_background_list(self, remote_addr):
+        return self.le_acl_manager.IsOnBackgroundList(
+            le_acl_manager_facade.BackgroundRequestMsg(peer_address=remote_addr))
+
+    def remove_from_background_list(self, remote_addr):
+        self.le_acl_manager.RemoveFromBackgroundList(
+            le_acl_manager_facade.BackgroundRequestMsg(peer_address=remote_addr))
 
     def complete_connection(self, event_stream):
         connection_complete = HciCaptures.LeConnectionCompleteCapture()
