@@ -34,6 +34,24 @@
       "parentUuid": "ca83712c_c7caca70",
       "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb2f1c28_d2775626",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-07T23:30:32Z",
+      "side": 1,
+      "message": "I wonder why this can\u0027t be passed into BTIF_dm_enable as a boolean flag?  overload the function for the default.",
+      "parentUuid": "d516733a_54832958",
+      "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
