@@ -22,6 +22,30 @@
       },
       "revId": "4b54070446cf8d1e7017c8c043e6365399ae7cd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35aea2bc_f0d0e6d6",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-07T08:40:28Z",
+      "side": 1,
+      "message": "In that case, we should document about the behavior.\n\nFor example, we\u0027d better discourage calling BluetoothGatt#disconnect for background connection (autoconnect\u003dtrue).\n\nOR support it from the native stack?",
+      "parentUuid": "0dfbe19a_bfd1a22b",
+      "range": {
+        "startLine": 1040,
+        "startChar": 21,
+        "endLine": 1040,
+        "endChar": 34
+      },
+      "revId": "4b54070446cf8d1e7017c8c043e6365399ae7cd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
