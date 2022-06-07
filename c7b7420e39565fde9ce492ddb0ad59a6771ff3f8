@@ -22,6 +22,30 @@
       },
       "revId": "c7b7420e39565fde9ce492ddb0ad59a6771ff3f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0689b89_b35442a4",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-07T07:26:26Z",
+      "side": 1,
+      "message": "At least it returns CONNECTION_POLICY_UNKNOWN when mDatabaseManager is not valid instead of throwing NPE.",
+      "parentUuid": "4f725f3e_c6610ca8",
+      "range": {
+        "startLine": 219,
+        "startChar": 8,
+        "endLine": 219,
+        "endChar": 24
+      },
+      "revId": "c7b7420e39565fde9ce492ddb0ad59a6771ff3f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
