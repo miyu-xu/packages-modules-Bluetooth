@@ -1002,6 +1002,59 @@ class GattConnectTest(sl4a_sl4a_base_test.Sl4aSl4aBaseTestClass):
             if mac_address_pre_restart != mac_address_post_restart:
                 break
 
+    def test_le_bond_before_classic(self):
+        gatt_server_cb = self.peripheral.sl4a.gattServerCreateGattServerCallback()
+        gatt_server = self.peripheral.sl4a.gattServerOpenGattServer(
+            gatt_server_cb)
+        self.gatt_server_list.append(gatt_server)
+        mac_address, _, scan_callback = get_mac_address_of_generic_advertisement(
+            self.central, self.peripheral)
+
+        autoconnect = False
+        try:
+            bluetooth_gatt, gatt_callback = setup_gatt_connection(
+                self.central, mac_address, autoconnect)
+            self.central.sl4a.bleStopBleScan(scan_callback)
+        except GattTestUtilsError as err:
+            logging.error(err)
+            return False
+        logging.info("Gatt connect successfull")
+
+        le_connected_devices = self.central.sl4a.bluetoothGetConnectedLeDevices(
+            BluetoothProfile.GATT)
+        if le_connected_devices:
+            logging.info(
+                "Le Devices connected to central: {}".format(le_connected_devices))
+
+        # logging.info("Bonding with peripheral device")
+        # if not self.central.sl4a.bluetoothDiscoverAndBond(mac_address):
+        #     return False
+
+        # self.peripheral.sl4a.bluetoothStartPairingHelper()
+        # self.central.sl4a.bluetoothStartPairingHelper()
+
+        # bonded_devices = self.central.sl4a.bluetoothGetBondedDevices()
+        # if bonded_devices:
+        #     logging.info(
+        #         "Devices connected to central: {}".format(bonded_devices))
+
+        self.central.sl4a.bluetoothStartDiscovery()
+        discovered_devices = self.central.sl4a.bluetoothGetDiscoveredDevices()
+        if discovered_devices:
+            logging.info("Discovered devices: {}".format(discovered_devices))
+
+        for device in discovered_devices:
+            if device['address'] == mac_address:
+                logging.info("Intended peripheral device found")
+                break
+
+        self.central.sl4a.bluetoothBond(mac_address)
+
+        test_result = self._orchestrate_gatt_disconnection(
+            bluetooth_gatt, gatt_callback)
+        if not test_result:
+            logging.error("Unable to disconnect gatt")
+
 
 if __name__ == '__main__':
     test_runner.main()
