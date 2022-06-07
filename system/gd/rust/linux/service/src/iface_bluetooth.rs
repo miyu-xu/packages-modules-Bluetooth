@@ -1,10 +1,12 @@
 extern crate bt_shim;
 
-use bt_topshim::btif::{BtDeviceType, BtSspVariant, BtTransport, Uuid128Bit};
+use bt_topshim::btif::{BtDeviceType, BtSspVariant, BtTransport, Uuid, Uuid128Bit};
+use bt_topshim::profiles::socket::SocketType;
 
 use btstack::bluetooth::{
     Bluetooth, BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback,
 };
+use btstack::socket_manager::{BluetoothSocketManager, IBluetoothSocketManager};
 use btstack::suspend::{ISuspend, ISuspendCallback, Suspend, SuspendType};
 use btstack::uuid::Profile;
 use btstack::RPCProxy;
@@ -19,15 +21,67 @@ use dbus_projection::{dbus_generated, impl_dbus_arg_enum};
 
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 
+use std::convert::TryFrom;
 use std::sync::{Arc, Mutex};
 
 use crate::dbus_arg::{DBusArg, DBusArgError, RefArgToRust};
 
-/// A mixin of the adapter and suspend interfaces. The naming of the fields in the mixin must match
+// Represents Uuid as an array in D-Bus.
+impl DBusArg for Uuid {
+    type DBusType = Vec<u8>;
+
+    fn from_dbus(
+        data: Vec<u8>,
+        _conn: Option<Arc<SyncConnection>>,
+        _remote: Option<dbus::strings::BusName<'static>>,
+        _disconnect_watcher: Option<Arc<std::sync::Mutex<DisconnectWatcher>>>,
+    ) -> Result<Uuid, Box<dyn std::error::Error>> {
+        match Uuid::try_from(data) {
+            Ok(v) => Ok(v),
+            Err(e) => Err(Box::new(DBusArgError::new(String::from(format!(
+                "FromDbus for Uuid failed: {}",
+                e
+            ))))),
+        }
+    }
+
+    fn to_dbus(data: Uuid) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
+        return Ok(data.uu.to_vec());
+    }
+}
+
+impl RefArgToRust for Uuid {
+    type RustType = Vec<u8>;
+
+    fn ref_arg_to_rust(
+        arg: &(dyn dbus::arg::RefArg + 'static),
+        name: String,
+    ) -> Result<Self::RustType, Box<dyn std::error::Error>> {
+        let any = arg.as_any();
+        if !any.is::<<Self as DBusArg>::DBusType>() {
+            return Err(Box::new(DBusArgError::new(String::from(format!(
+                "{} type does not match: expected {}, found {}",
+                name,
+                std::any::type_name::<<Self as DBusArg>::DBusType>(),
+                arg.arg_type().as_str(),
+            )))));
+        }
+
+        match any.downcast_ref::<<Self as DBusArg>::DBusType>() {
+            Some(v) => Ok(v.clone()),
+            None => {
+                Err(Box::new(DBusArgError::new(String::from(format!("Can't downcast to vec")))))
+            }
+        }
+    }
+}
+
+/// A mixin of the several interfaces. The naming of the fields in the mixin must match
 /// what is listed in the `generate_dbus_exporter` invocation.
 pub struct BluetoothMixin {
     pub adapter: Arc<Mutex<Box<Bluetooth>>>,
     pub suspend: Arc<Mutex<Box<Suspend>>>,
+    pub socket_mgr: Arc<Mutex<Box<BluetoothSocketManager>>>,
 }
 
 #[dbus_propmap(BluetoothDevice)]
@@ -313,6 +367,48 @@ impl IBluetooth for IBluetoothDBus {
 
     #[dbus_method("DisconnectAllEnabledProfiles")]
     fn disconnect_all_enabled_profiles(&mut self, device: BluetoothDevice) -> bool {
+        dbus_generated!()
+    }
+}
+
+impl_dbus_arg_enum!(SocketType);
+
+#[allow(dead_code)]
+struct IBluetoothSocketManagerDBus {}
+
+#[generate_dbus_exporter(
+    export_socket_mgr_intf,
+    "org.chromium.bluetooth.SocketManager",
+    BluetoothMixin,
+    socket_mgr
+)]
+impl IBluetoothSocketManager for IBluetoothSocketManagerDBus {
+    #[dbus_method("ConnectSocket")]
+    fn connect_socket(
+        &mut self,
+        device: BluetoothDevice,
+        sock_type: SocketType,
+        uuid: Option<Uuid>,
+        port: i32,
+        flags: i32,
+    ) -> Option<std::fs::File> {
+        dbus_generated!()
+    }
+
+    #[dbus_method("CreateSocketChannel")]
+    fn create_socket_channel(
+        &mut self,
+        sock_type: SocketType,
+        service_name: String,
+        uuid: Option<Uuid>,
+        port: i32,
+        flags: i32,
+    ) -> Option<std::fs::File> {
+        dbus_generated!()
+    }
+
+    #[dbus_method("RequestMaximumTxDataLength")]
+    fn request_maximum_tx_data_length(&mut self, device: BluetoothDevice) {
         dbus_generated!()
     }
 }
