@@ -106,6 +106,8 @@ public:
  virtual void RemoveFromBackgroundList(AddressWithType address_with_type);
 
  virtual void CancelLeConnect(AddressWithType address_with_type);
+ virtual void CancelLeConnectAndRemoveFromBackgroundList(AddressWithType address_with_type);
+
  virtual void AddDeviceToFilterAcceptList(AddressWithType address_with_type);
  virtual void RemoveDeviceFromFilterAcceptList(AddressWithType address_with_type);
  virtual void ClearFilterAcceptList();
