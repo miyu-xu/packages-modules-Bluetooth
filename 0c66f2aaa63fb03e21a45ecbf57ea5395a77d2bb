@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e2e2684_4fa57730",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-07T00:04:55Z",
+      "side": 1,
+      "message": "Is there a spec for these commands and events?",
+      "range": {
+        "startLine": 227,
+        "startChar": 8,
+        "endLine": 227,
+        "endChar": 44
+      },
+      "revId": "0c66f2aaa63fb03e21a45ecbf57ea5395a77d2bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1fe527d_c6eeeffe",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-07T00:04:55Z",
+      "side": 1,
+      "message": "Do we need an address type for SCO?",
+      "range": {
+        "startLine": 231,
+        "startChar": 10,
+        "endLine": 231,
+        "endChar": 19
+      },
+      "revId": "0c66f2aaa63fb03e21a45ecbf57ea5395a77d2bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
