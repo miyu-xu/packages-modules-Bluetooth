@@ -16,6 +16,24 @@
       "message": "nit: One more potential todo is to use a BLE_PRIVACY_ENABLED sysprop instead of statically assigning this value (i.e. the #else block below). That should be done before we re-enable LL privacy.",
       "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d516733a_54832958",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-07T22:32:08Z",
+      "side": 1,
+      "message": "How is sysprops going to integrate with Chrome OS or Linux? Is there a doc for this support?",
+      "parentUuid": "ca83712c_c7caca70",
+      "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
