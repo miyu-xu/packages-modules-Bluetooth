@@ -51,6 +51,24 @@
       "parentUuid": "4d07439a_574d5640",
       "revId": "a246620de89eb8be8c82af53b94edd78eb85657e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb3b1b3_55151458",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-07T10:25:38Z",
+      "side": 1,
+      "message": "The order shouldn\u0027t matter here, since notifying driver has no dependency with opening the channel to audio server.\n\nHowever talking about racing, we still have a long sleep on audio server side to make sure it starts send/read data after driver and domain socket are ready.\nhttps://source.corp.google.com/chromeos_public/src/third_party/adhd/cras/src/server/cras_hfp_manager.c;rcl\u003dfa09ee87ca54b8b25b5ee46a20fb9e5430841bec;l\u003d119",
+      "parentUuid": "5c0fa703_04c6c7df",
+      "revId": "a246620de89eb8be8c82af53b94edd78eb85657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
