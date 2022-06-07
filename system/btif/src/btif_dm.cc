@@ -1563,40 +1563,44 @@ void BTIF_dm_enable() {
     ble_privacy_enabled =
         android::sysprop::BluetoothProperties::isGapLePrivacyEnabled().value_or(
             true);
-  #else
-    char ble_privacy_text[PROPERTY_VALUE_MAX] = "true";  // default is enabled
-    if (osi_property_get(PROPERTY_BLE_PRIVACY_ENABLED, ble_privacy_text,
-                         "true") &&
-        !strcmp(ble_privacy_text, "false")) {
-      ble_privacy_enabled = false;
-    }
-  #endif
-
-  LOG_INFO("%s BLE Privacy: %d", __func__, ble_privacy_enabled);
-  BTA_DmBleConfigLocalPrivacy(ble_privacy_enabled);
-
-  /* for each of the enabled services in the mask, trigger the profile
-   * enable */
-  tBTA_SERVICE_MASK service_mask = btif_get_enabled_services_mask();
-  for (uint32_t i = 0; i <= BTA_MAX_SERVICE_ID; i++) {
-    if (service_mask & (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(i))) {
-      btif_in_execute_service_request(i, true);
-    }
+#elif TARGET_FLOSS
+  // TODO (b/235218533): Re-enable LL privacy on Floss
+  ble_privacy_enabled = false;
+#else
+  char ble_privacy_text[PROPERTY_VALUE_MAX] = "true";  // default is enabled
+  if (osi_property_get(PROPERTY_BLE_PRIVACY_ENABLED, ble_privacy_text,
+                       "true") &&
+      !strcmp(ble_privacy_text, "false")) {
+    ble_privacy_enabled = false;
   }
-  /* clear control blocks */
-  memset(&pairing_cb, 0, sizeof(btif_dm_pairing_cb_t));
-  pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
-  if (enable_address_consolidate) {
-    LOG_INFO("enable address consolidate");
-    btif_storage_load_consolidate_devices();
-  }
+#endif
 
-  /* This function will also trigger the adapter_properties_cb
-  ** and bonded_devices_info_cb
-  */
-  btif_storage_load_bonded_devices();
-  bluetooth::bqr::EnableBtQualityReport(true);
-  btif_enable_bluetooth_evt();
+    LOG_INFO("%s BLE Privacy: %d", __func__, ble_privacy_enabled);
+    BTA_DmBleConfigLocalPrivacy(ble_privacy_enabled);
+
+    /* for each of the enabled services in the mask, trigger the profile
+     * enable */
+    tBTA_SERVICE_MASK service_mask = btif_get_enabled_services_mask();
+    for (uint32_t i = 0; i <= BTA_MAX_SERVICE_ID; i++) {
+      if (service_mask &
+          (tBTA_SERVICE_MASK)(BTA_SERVICE_ID_TO_SERVICE_MASK(i))) {
+        btif_in_execute_service_request(i, true);
+      }
+    }
+    /* clear control blocks */
+    memset(&pairing_cb, 0, sizeof(btif_dm_pairing_cb_t));
+    pairing_cb.bond_type = tBTM_SEC_DEV_REC::BOND_TYPE_PERSISTENT;
+    if (enable_address_consolidate) {
+      LOG_INFO("enable address consolidate");
+      btif_storage_load_consolidate_devices();
+    }
+
+    /* This function will also trigger the adapter_properties_cb
+    ** and bonded_devices_info_cb
+    */
+    btif_storage_load_bonded_devices();
+    bluetooth::bqr::EnableBtQualityReport(true);
+    btif_enable_bluetooth_evt();
 }
 
 void BTIF_dm_disable() {
