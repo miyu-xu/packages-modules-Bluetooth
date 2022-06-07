@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb92a54a_dbe59f07",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-07T09:43:07Z",
+      "side": 1,
+      "message": "Not sure if hfp_shim has the up-to-date `wbs_supported` value at SlcConnected.\nThis could need some synchronize work eventually, if not trivial to fix then leave a TODO for it.",
+      "revId": "2fe78da3508b7b0abb548771db15099ebee206cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a096b532_c025e544",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-07T09:43:07Z",
+      "side": 1,
+      "message": "What is the order of BthfConnectionState::SlcConnected and when this WbsCallback is called?\nI assume (a) SlcConnected happens before (b) WbsCallback(where codec negotiation happened).\n\nThat said, we need to block notifying CRAS until (b) to finalize `wbs_supported` value. Otherwise CRAS could immediately decide to start call in narrow-band.",
+      "revId": "2fe78da3508b7b0abb548771db15099ebee206cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
