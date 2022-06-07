@@ -1563,6 +1563,9 @@ void BTIF_dm_enable() {
     ble_privacy_enabled =
         android::sysprop::BluetoothProperties::isGapLePrivacyEnabled().value_or(
             true);
+  #elif TARGET_FLOSS
+    // TODO (b/235218533): Re-enable LL privacy on Floss
+    ble_privacy_enabled = false;
   #else
     char ble_privacy_text[PROPERTY_VALUE_MAX] = "true";  // default is enabled
     if (osi_property_get(PROPERTY_BLE_PRIVACY_ENABLED, ble_privacy_text,
