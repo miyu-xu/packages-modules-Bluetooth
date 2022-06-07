@@ -33,6 +33,24 @@
       "message": "Should this happen after open to prevent any possible race condition where the callbacks are notified, but the open hasn\u0027t completed?",
       "revId": "a246620de89eb8be8c82af53b94edd78eb85657e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c0fa703_04c6c7df",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 767,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-07T00:15:17Z",
+      "side": 1,
+      "message": "If you were asking about the following \"bluetooth::audio::sco::open()\" call, I don\u0027t think so. The naming might be a little confusing, but the sco::open was designed to open a IPC socket and have it ready for the client to connect to it. The order now is correct but lacks of the error handling logic. Instead, we shouldn\u0027t call the audio::sco::open() if the notify_sco_connection_change fails. The actuall sco connection should already finish when this btm_sco_connected callback is called.",
+      "parentUuid": "4d07439a_574d5640",
+      "revId": "a246620de89eb8be8c82af53b94edd78eb85657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
