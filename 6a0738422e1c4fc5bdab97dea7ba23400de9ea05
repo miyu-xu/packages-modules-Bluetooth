@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ffeea13_116612fa",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1569,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-07T19:55:32Z",
+      "side": 1,
+      "message": "Running the pre-upload hook made this look really ugly, should I just reupload without running the hook?",
+      "revId": "6a0738422e1c4fc5bdab97dea7ba23400de9ea05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
