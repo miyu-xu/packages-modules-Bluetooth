@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d01298b_f39920aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-06-08T15:32:18Z",
+      "side": 1,
+      "message": "Thanks Łukasz for reviewing and sharing comments, tried to address the review comments and uploaded new patchset for review, do let know of any other comments.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "a3953389e855a5bb907b927ab008ff6a8a983100",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
