@@ -135,6 +135,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cefc272e_3defeb41",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-08T02:23:25Z",
+      "side": 1,
+      "message": "I could not get the meaning of this variable at a glance.\nHow about renaming it as \u0027forcefully_cache_role\u0027 (or something simliar) and flip the bool values?",
+      "range": {
+        "startLine": 1351,
+        "startChar": 25,
+        "endLine": 1351,
+        "endChar": 49
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ec2f8dee_b26a3c16",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 3
@@ -169,6 +192,29 @@
       "writtenOn": "2022-06-07T10:05:12Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 568,
+        "startChar": 41,
+        "endLine": 568,
+        "endChar": 45
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "558e5287_3efc4f55",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-08T02:23:25Z",
+      "side": 1,
+      "message": "May I ask why the HCI_ROLE_CENTRAL is not cached when delayed_role is already set (i.e. not nullptr)?\n\nWhen calling this method, isn\u0027t the delayed_role already nullptr (since it is before initiating connection)?",
       "range": {
         "startLine": 568,
         "startChar": 41,
