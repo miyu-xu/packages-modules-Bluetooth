@@ -15,9 +15,9 @@ service LeAclManagerFacade {
   rpc FetchIncomingConnection(google.protobuf.Empty) returns (stream LeConnectionEvent) {}
   rpc AddDeviceToResolvingList(IrkMsg) returns (google.protobuf.Empty) {}
   rpc RegisterAddressManagerClient(google.protobuf.Empty)
-      returns (stream ClientMsg) {}
-  rpc UnregisterAddressManagerClient(google.protobuf.Empty)
-      returns (stream ClientMsg) {}
+      returns (ClientMsg) {}
+  rpc UnregisterAddressManagerClient(ClientMsg)
+      returns (google.protobuf.Empty) {}
   rpc FetchClientStream(ClientMsg) returns (stream PauseResumeMsg) {}
   rpc AckPauseForAddressManager(ClientMsg) returns (google.protobuf.Empty) {}
   rpc AckResumeForAddressManager(ClientMsg) returns (google.protobuf.Empty) {}

@@ -411,10 +411,14 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
         # ASSERT_TRUE(le_acl_connection_interface_->EnqueueCommand(LeExtendedCreateConnection)
         self.set_privacy_policy_static()
 
-        token_client = self.dut_le_acl_manager.register_with_address_manager()
+        client = self.dut_le_acl_manager.register_with_address_manager()
         logging.info('Ensuring that we are not paused')
-        rc = self.dut_le_acl_manager.wait_for_address_manager(token_client)
-        logging.info('Done waiting for acl manager %s' % rc)
+        event_stream = client.get_event_stream()
+        logging.info('Got the stream')
+        assertThat(event_stream).emits(lambda packet: packet.is_pause)
+        logging.info('Paused')
+        client.ack_pause()
+        logging.info('Acked')
 
         # Cert Advertises
         advertising_handle = 0
@@ -442,8 +446,8 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
         # We should be getting on OnPause here after the connection request
         # Wait for on pause to complete
         logging.info('Checking if address manager has told us to pause')
-        rc = self.dut_le_acl_manager.wait_for_address_manager(token_client)
-        logging.info('Done waiting for acl manager %s' % rc)
+        assertThat(event_stream).emits(lambda packet: packet.is_pause)
+        logging.info('Paused')
 
         cert_random_address2 = 'c0:05:04:03:02:02'
 
@@ -457,7 +461,7 @@ class LeAclManagerTest(gd_base_test.GdBaseTestClass):
         time.sleep(5)
         # le_impl;:OnResume()
         logging.info('Waiting to ack pause')
-        rc = self.dut_le_acl_manager.ack_pause_address_manager(token_client)
+        client.ack_pause()
         logging.info('Done waiting for ack pause %s' % rc)
 
         cert_le_acl = self.cert_hci.incoming_le_connection()

@@ -360,68 +360,70 @@ class LeAclManagerFacadeService : public LeAclManagerFacade::Service, public LeC
 
   class AddressManagerClient : public bluetooth::hci::LeAddressManagerCallback {
    public:
+    AddressManagerClient(std::unique_ptr<::bluetooth::grpc::GrpcEventQueue<PauseResumeMsg>> events)
+        : callback_events_(std::move(events)) {}
     void OnPause() override {  // bluetooth::hci::LeAddressManagerCallback
-      is_paused = true;
+      PauseResumeMsg pause;
+      pause.set_is_pause(true);
+      callback_events_->OnIncomingEvent(pause);
     }
 
     void OnResume() override {  // bluetooth::hci::LeAddressManagerCallback
-      is_paused = false;
+      PauseResumeMsg resume;
+      resume.set_is_pause(true);
+      callback_events_->OnIncomingEvent(resume);
     }
 
-    bool IsPaused() const {
-      return is_paused;
+    ::grpc::Status Subscribe(::grpc::ServerContext* context, ::grpc::ServerWriter<PauseResumeMsg>* writer) {
+      return callback_events_->RunLoop(context, writer);
     }
-    bool is_paused{false};
+    std::unique_ptr<::bluetooth::grpc::GrpcEventQueue<PauseResumeMsg>> callback_events_;
   };
-  ::bluetooth::grpc::GrpcEventQueue<PauseResumeMsg> callback_events2_{"pause-resume events"};
 
   ::grpc::Status RegisterAddressManagerClient(
-      ::grpc::ServerContext* context,
-      const ::google::protobuf::Empty* request,
-      ::grpc::ServerWriter<ClientMsg>* writer) {
-    acl_manager_->GetLeAddressManager()->Register(&address_manager_client);
-    ClientMsg msg;
-    msg.set_client_id(123);
-    callback_events_.OnIncomingEvent(msg);
-    LOG_ERROR("RegisterAddress Manager Client id:%d", msg.client_id());
+      ::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ClientMsg* client_msg) override {
+    uint32_t client = address_manager_clients_number_++;
+    address_manager_clients_.emplace(
+        client,
+        std::make_unique<AddressManagerClient>(
+            std::make_unique<::bluetooth::grpc::GrpcEventQueue<PauseResumeMsg>>("pause/resume events")));
+    acl_manager_->GetLeAddressManager()->Register(address_manager_clients_[client].get());
+    LOG_ERROR("RegisterAddress Manager Client id:%d", client);
+    client_msg->set_client_id(client);
     return ::grpc::Status::OK;
   }
+
   ::grpc::Status UnregisterAddressManagerClient(
-      ::grpc::ServerContext* context,
-      const ::google::protobuf::Empty* request,
-      ::grpc::ServerWriter<ClientMsg>* writer) {
-    acl_manager_->GetLeAddressManager()->Unregister(&address_manager_client);
-    ClientMsg msg;
-    msg.set_client_id(456);
-    LOG_ERROR("UnregisterAddress Manager Client id:%d", msg.client_id());
-    callback_events_.OnIncomingEvent(msg);
+      ::grpc::ServerContext* context, const ClientMsg* client_msg, ::google::protobuf::Empty* response) override {
+    uint32_t id = client_msg->client_id();
+    LOG_ERROR("UnregisterAddress Manager Client id:%d", id);
+    acl_manager_->GetLeAddressManager()->Unregister(address_manager_clients_[id].get());
+    address_manager_clients_.erase(id);
     return ::grpc::Status::OK;
   }
 
   ::grpc::Status FetchClientStream(
-      ::grpc::ServerContext* context, const ClientMsg* request, ::grpc::ServerWriter<PauseResumeMsg>* writer) {
-    PauseResumeMsg msg;
-    msg.set_is_pause(address_manager_client.IsPaused());
-    LOG_ERROR("FetchClientStream our client is_paused:%u", msg.is_pause());
-    callback_events2_.OnIncomingEvent(msg);
-    return ::grpc::Status::OK;
+      ::grpc::ServerContext* context, const ClientMsg* request, ::grpc::ServerWriter<PauseResumeMsg>* writer) override {
+    uint32_t id = request->client_id();
+    LOG_ERROR("FetchClientStream client %d", id);
+    return address_manager_clients_[id]->Subscribe(context, writer);
   }
 
   ::grpc::Status AckPauseForAddressManager(
-      ::grpc::ServerContext* context, const ClientMsg* request, ::google::protobuf::Empty* response) {
-    acl_manager_->GetLeAddressManager()->AckPause(&address_manager_client);
-    LOG_ERROR("AckPauseForAddressManager");
-    return ::grpc::Status::OK;
-  }
-  ::grpc::Status AckResumeForAddressManager(
-      ::grpc::ServerContext* context, const ClientMsg* request, ::google::protobuf::Empty* response) {
-    acl_manager_->GetLeAddressManager()->AckResume(&address_manager_client);
-    LOG_ERROR("AckResumeForAddressManager");
+      ::grpc::ServerContext* context, const ClientMsg* request, ::google::protobuf::Empty* response) override {
+    uint32_t id = request->client_id();
+    acl_manager_->GetLeAddressManager()->AckPause(address_manager_clients_[id].get());
+    LOG_ERROR("AckPauseForAddressManager %d", id);
     return ::grpc::Status::OK;
   }
 
-  AddressManagerClient address_manager_client;
-  ::bluetooth::grpc::GrpcEventQueue<ClientMsg> callback_events_{"callback events"};
+  ::grpc::Status AckResumeForAddressManager(
+      ::grpc::ServerContext* context, const ClientMsg* request, ::google::protobuf::Empty* response) override {
+    uint32_t id = request->client_id();
+    acl_manager_->GetLeAddressManager()->AckResume(address_manager_clients_[id].get());
+    LOG_ERROR("AckResumeForAddressManager %d", id);
+    return ::grpc::Status::OK;
+  }
 
  private:
   AclManager* acl_manager_;
@@ -433,6 +435,8 @@ class LeAclManagerFacadeService : public LeAclManagerFacade::Service, public LeC
   bluetooth::hci::AddressWithType direct_connection_address_;
   std::shared_ptr<::bluetooth::grpc::GrpcEventQueue<LeConnectionEvent>> incoming_connection_events_;
   std::map<uint16_t, Connection> acl_connections_;
+  uint32_t address_manager_clients_number_ = 10;
+  std::map<uint32_t, std::unique_ptr<AddressManagerClient>> address_manager_clients_;
 };
 
 void LeAclManagerFacadeModule::ListDependencies(ModuleList* list) const {

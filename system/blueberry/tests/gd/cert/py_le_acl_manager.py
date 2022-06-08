@@ -63,6 +63,36 @@ class PyLeAclManagerAclConnection(IEventStream, Closable):
     def send(self, data):
         self.le_acl_manager.SendAclData(le_acl_manager_facade.LeAclData(handle=self.handle, payload=bytes(data)))
 
+
+class PyLeAddressManagerClient(IEventStream, Closable):
+
+    def __init__(self, le_acl_manager):
+        """
+        An abstract representation for an LE Address Manager client
+        :param le_acl_manager: The LeAclManager from this GD device
+        :param id: Client ID
+        :param event_stream: The event stream for this client
+        """
+        self.le_acl_manager = le_acl_manager
+        self.client_msg = le_acl_manager.RegisterAddressManagerClient(empty_proto.Empty())
+        self.id = self.client_msg.client_id
+        self.pause_resume_stream = EventStream(self.le_acl_manager.FetchClientStream(self.client_msg))
+
+    def close(self):
+        safeClose(self.pause_resume_stream)
+
+    def unregister(self):
+        self.le_acl_manager.UnregisterAddressManagerClient(self.client_msg)
+
+    def get_event_stream(self):
+        return self.pause_resume_stream
+
+    def ack_pause(self, token):
+        self.le_acl_manager.AckPauseForAddressManager(self.client_msg)
+
+    def ack_resume(self, token):
+        self.le_acl_manager.AckResumeForAddressManager(self.client_msg)
+
     def get_event_queue(self):
         return self.acl_stream.get_event_queue()
 
@@ -125,23 +155,6 @@ class PyLeAclManager(Closable):
         self.next_token += 1
         return token
 
-    def register_with_address_manager(self):
-        return self.le_acl_manager.RegisterAddressManagerClient(empty_proto.Empty())
-
-    def unregister_with_address_manager(self):
-        self.le_acl_manager.UnregisterAddressManagerClient(empty_proto.Empty())
-
-    def wait_for_address_manager(self, token):
-        assertThat(self.address_manager_stream).isNone()
-        self.address_manager_stream = EventStream(self.le_acl_manager.FetchClientStream(empty_proto.Empty()))
-        return self.address_manager_stream
-
-    def ack_pause_address_manager(self, token):
-        self.le_acl_manager.AckPauseForAddressManager(empty_proto.Empty())
-
-    def ack_resume_address_manager(self, token):
-        self.le_acl_manager.AckResumeForAddressManager(empty_proto.Empty())
-
     def complete_connection(self, event_stream):
         connection_complete = HciCaptures.LeConnectionCompleteCapture()
         assertThat(event_stream).emits(connection_complete)
@@ -168,3 +181,6 @@ class PyLeAclManager(Closable):
         assertThat(self.outgoing_connection_event_streams[token]).isNotNone()
         event_stream = self.outgoing_connection_event_streams.pop(token)[0]
         return self.complete_connection(event_stream)
+
+    def register_with_address_manager(self):
+        return PyLeAddressManagerClient(self.le_acl_manager)
