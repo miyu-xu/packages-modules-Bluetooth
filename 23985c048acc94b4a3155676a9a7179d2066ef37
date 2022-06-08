@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89e02632_cefa7b65",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "I will add when I can reproduce the error. Still waiting for Samsung to respond",
+      "parentUuid": "4840ed10_328abc3e",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b5347b5_81c49481",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 3
@@ -37,6 +61,24 @@
       "writtenOn": "2022-06-03T06:39:25Z",
       "side": 1,
       "message": "I addressed some issues and have some questions",
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75aaac52_8c62af07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b5347b5_81c49481",
       "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +96,30 @@
       "writtenOn": "2022-06-07T10:05:12Z",
       "side": 1,
       "message": "nit) caches",
+      "range": {
+        "startLine": 1341,
+        "startChar": 34,
+        "endLine": 1341,
+        "endChar": 39
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4f196a2_deb5942a",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1341,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "739966dc_963cfd03",
       "range": {
         "startLine": 1341,
         "startChar": 34,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceeddb18_c8a02cd6",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1342,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb56e6f8_1701fc26",
+      "range": {
+        "startLine": 1342,
+        "startChar": 49,
+        "endLine": 1342,
+        "endChar": 55
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "442fb08b_9325a2eb",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-06-07T10:05:12Z",
       "side": 1,
       "message": ". The cached role is propagated when ACL Link is created.",
+      "range": {
+        "startLine": 1343,
+        "startChar": 46,
+        "endLine": 1344,
+        "endChar": 63
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34563d83_d4e370cd",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1344,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "442fb08b_9325a2eb",
       "range": {
         "startLine": 1343,
         "startChar": 46,
@@ -156,6 +270,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eb53195_6d738450",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cefc272e_3defeb41",
+      "range": {
+        "startLine": 1351,
+        "startChar": 25,
+        "endLine": 1351,
+        "endChar": 49
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "634a9313_944dfd5c",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa1dee91_d811b106",
+      "range": {
+        "startLine": 1351,
+        "startChar": 25,
+        "endLine": 1351,
+        "endChar": 49
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec2f8dee_b26a3c16",
@@ -169,6 +331,30 @@
       "writtenOn": "2022-06-07T10:05:12Z",
       "side": 1,
       "message": "/*prioritize_assigned_role\u003d*/false\nhttps://engdoc.corp.google.com/eng/doc/devguide/cpp/styleguide.md?cl\u003dhead#Function_Argument_Comments",
+      "range": {
+        "startLine": 1380,
+        "startChar": 38,
+        "endLine": 1380,
+        "endChar": 43
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce3f944b_cf0d33ff",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1380,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec2f8dee_b26a3c16",
       "range": {
         "startLine": 1380,
         "startChar": 38,
@@ -215,6 +401,54 @@
       "writtenOn": "2022-06-08T02:23:25Z",
       "side": 1,
       "message": "May I ask why the HCI_ROLE_CENTRAL is not cached when delayed_role is already set (i.e. not nullptr)?\n\nWhen calling this method, isn\u0027t the delayed_role already nullptr (since it is before initiating connection)?",
+      "range": {
+        "startLine": 568,
+        "startChar": 41,
+        "endLine": 568,
+        "endChar": 45
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9a4c07a_9e6906d2",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68a46896_1710c461",
+      "range": {
+        "startLine": 568,
+        "startChar": 41,
+        "endLine": 568,
+        "endChar": 45
+      },
+      "revId": "23985c048acc94b4a3155676a9a7179d2066ef37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a9fa3e4_48757a15",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "I\u0027m not sure 100%, but from the comment of the author, it seems like the role change can be request by the remote device before connection initialization finish. In this CL, I simply rearrange the code and doesn\u0027t fix this logic",
+      "parentUuid": "558e5287_3efc4f55",
       "range": {
         "startLine": 568,
         "startChar": 41,

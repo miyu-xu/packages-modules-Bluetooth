@@ -166,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91dff24f_07a541a0",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd8eb2cf_1ca1714e",
+      "range": {
+        "startLine": 1358,
+        "startChar": 5,
+        "endLine": 1358,
+        "endChar": 33
+      },
+      "revId": "fc2a3955dec353ebd72f4a4ae747fa0f33070d0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36013651_8aa60061",

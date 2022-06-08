@@ -125,6 +125,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "39b904f8_6e7d3462",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ca945f1_84a29eb5",
+      "range": {
+        "startLine": 9,
+        "startChar": 26,
+        "endLine": 9,
+        "endChar": 30
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70878d2d_5a0275e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b3fd043_76d0af77",
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fc7e2a4_3c6bfe62",
@@ -256,6 +298,30 @@
       "side": 1,
       "message": "the delayed_role is already defined in the existing code, which, according the comment above this function, is a variable to cache the role change. We can process it after connection successfully established",
       "parentUuid": "3af2b5dc_3456b0df",
+      "range": {
+        "startLine": 1351,
+        "startChar": 5,
+        "endLine": 1351,
+        "endChar": 25
+      },
+      "revId": "7f2b8b39806057b08bdd19993a6b61186935e582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a114b7e9_0b69210e",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1351,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-08T19:52:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7104d4_55dca9fe",
       "range": {
         "startLine": 1351,
         "startChar": 5,
