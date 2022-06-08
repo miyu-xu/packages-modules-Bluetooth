@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61538c8_4624703c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-08T23:53:16Z",
+      "side": 1,
+      "message": "Please add tests as well.\nNot sure whether it is correct or not, but when I briefly searched, these could be related.\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/system/stack/test/btm/stack_btm_test.cc?q\u003dmock_stack_hcic_hcicmds\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/system/bta/test/bta_dm_test.cc?q\u003dmock_stack_acl\u0026ct\u003dos\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "revId": "dec6169bc84a580d68a4b8cd47f5dabe8314a759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
