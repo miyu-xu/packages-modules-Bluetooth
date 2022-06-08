@@ -46,6 +46,30 @@
       },
       "revId": "4b54070446cf8d1e7017c8c043e6365399ae7cd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f49c780f_153f021c",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1040,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-08T05:47:59Z",
+      "side": 1,
+      "message": "Q) What would be the expected behavior if BluetoothGatt#disconnect is called for the interface with mAutoConnect \u003d true?\n\nShould it reconnect even if the user called \"disconnect\" explicitly?",
+      "parentUuid": "35aea2bc_f0d0e6d6",
+      "range": {
+        "startLine": 1040,
+        "startChar": 21,
+        "endLine": 1040,
+        "endChar": 34
+      },
+      "revId": "4b54070446cf8d1e7017c8c043e6365399ae7cd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
