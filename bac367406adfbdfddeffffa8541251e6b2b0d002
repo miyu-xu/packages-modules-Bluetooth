@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18c61df8_0a3c0252",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-06-08T15:19:15Z",
+      "side": 1,
+      "message": "Should this be executed unconditionally, above line 930 ?",
+      "range": {
+        "startLine": 933,
+        "startChar": 6,
+        "endLine": 933,
+        "endChar": 74
+      },
+      "revId": "bac367406adfbdfddeffffa8541251e6b2b0d002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
