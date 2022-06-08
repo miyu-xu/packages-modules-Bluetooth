@@ -128,8 +128,17 @@ pub fn cb_variant(input: TokenStream) -> TokenStream {
             #stmts
 
             unsafe {
-                (get_dispatchers().lock().unwrap().get::<#dispatcher>().unwrap().clone().lock().unwrap().dispatch)(#rpath(#args));
+                (get_dispatchers()
+                    .lock()
+                    .expect("Couldn't lock dispatchers!")
+                    .get::<#dispatcher>()
+                    .expect("Couldn't find dispatcher type: #dispatcher")
+                    .clone()
+                    .lock()
+                    .expect("Couldn't lock specific dispatcher: #dispatcher")
+                    .dispatch)(#rpath(#args));
             }
+
         }
     };
 
