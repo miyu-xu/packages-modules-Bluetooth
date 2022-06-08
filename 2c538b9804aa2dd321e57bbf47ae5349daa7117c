@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fed2089_59a91887",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "Overall, I think more comments and docstrings are necessary to describe how this works. The core implementation looks ok (with some refactor suggestions) and I\u0027ll take a look again once you\u0027ve got the comments up.",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8ec1ecd_13f18b0e",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "note: New package will require update to rust_crates and will need license + security review.\n\nglob and base64 are already existing in android\u0027s rust crates but configparser is new.",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab27b34a_bdabe1c8",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "Add docstring at top (//!) describing the purpose of this module.\n\ni.e.\n```\n//! The migrate module is intended to make it possible to migrate settings between\n//! Bluez and Floss. Etc Etc\n```",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621af61d_4cb1bd45",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "Since this is a new file, lets try following use ordering from go/cros-rust-style-ideas",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a357405_82284d1a",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "nit: Docstrings",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b2c375c_30aaf178",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "I would refactor this slightly. Instead of taking `new` + `new_with_fn` + etc, I would just accept an enum:\n\n```\n\npub enum Converter {\n  HexToDec,\n  DecToHex,\n  Base64ToHex,\n  HexToBase64,\n  \n  TypeB2F,\n  TypeF2B,\n  AddrTypeB2F,\n  AddrTypeF2B,\n  \n  ReverseEndianLinkKey,\n}\n\npub enum KeyAction {\n    WrapOk,\n    Apply(Converter),\n    ToSection(String),\n    ApplyToSection(Converter, String)   \n}\n\npub type DeviceKeyError \u003d String;\n\nstruct DeviceKey {\n  pub key: \u0026\u0027static str,\n  pub action: KeyAction,\n}\n\nimpl DeviceKey {\n\n\n  fn new(key: \u0026\u0027static str, action: KeyAction){...}\n  \n  fn apply_action(\u0026self, value: String) -\u003e Result\u003cString, DeviceKeyError\u003e {\n    match self.action {\n      KeyAction::WrapOk \u003d\u003e Ok(value),\n      ...\n    }\n  }\n}\n\n```",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "706d6050_3f3e66f8",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "No raw unwraps please. unwrap_or_default()",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "031c8042_9e1d253a",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "To make the flow control clearer, prefer:\n\n```\nlet handled \u003d match sec.as_str() {\n  \"IdentityResolvingKey\" \u003d\u003e {\n    ...\n    true\n  }\n  _ \u003d\u003e false,\n};\n\nif handled {\n  continue;\n}\n```",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27229710_be5b1dc0",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-08T17:23:03Z",
+      "side": 1,
+      "message": "Get rid of expects in this file. We shouldn\u0027t crash because we failed this conversion.\n\nReplace with something like:\n\n```\nlet globbed \u003d match glob(...) {\n  Ok(v) \u003d\u003e v,\n  Err(_) \u003d\u003e {\n    error!(\"Failed to find Bluez adapters to migrate\");\n    return;\n  }\n};\n\nfor entry in globbed {\n...\n}\n```",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
