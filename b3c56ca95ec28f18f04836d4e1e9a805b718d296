@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbaa410b_ebb36dcc",
+        "filename": "system/gd/hci/acl_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-08T09:22:51Z",
+      "side": 1,
+      "message": "do we still want to keep this old function?",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 29
+      },
+      "revId": "b3c56ca95ec28f18f04836d4e1e9a805b718d296",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
