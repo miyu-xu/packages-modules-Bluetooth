@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4945fe80_79d55009",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-08T22:25:50Z",
+      "side": 1,
+      "message": "how do you handle config keys that exist in one stack but not the other? Let\u0027s say BlueZ has a config key called \"Foo\" that does not apply to Floss, when a device is migrated from BlueZ to Floss how is this \"Foo\" config kept (or is it dropped)?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 59
+      },
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8fed2089_59a91887",
@@ -14,6 +37,23 @@
       "writtenOn": "2022-06-08T17:23:03Z",
       "side": 1,
       "message": "Overall, I think more comments and docstrings are necessary to describe how this works. The core implementation looks ok (with some refactor suggestions) and I\u0027ll take a look again once you\u0027ve got the comments up.",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba055d50_ed223425",
+        "filename": "system/gd/rust/linux/mgmt/Cargo.toml",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-08T22:25:50Z",
+      "side": 1,
+      "message": "Do you have the corresponding change to `rust_crates` to add the new crates?",
       "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +145,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84e86cf3_4213ea34",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-08T22:25:50Z",
+      "side": 1,
+      "message": "nit: use const str to define these reusable strings to reduce the likelihood of typo mismatch.",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 17
+      },
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "706d6050_3f3e66f8",
         "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
         "patchSetId": 1
@@ -139,6 +202,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21a8d323_76e6fd3e",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-08T22:25:50Z",
+      "side": 1,
+      "message": "nit: Does this mean convert to bluez or from bluez? It\u0027s ambiguous without reading the body of the function. Would be better to name it more explicitly whether this is convert from bluez or convert to bluez.",
+      "range": {
+        "startLine": 258,
+        "startChar": 3,
+        "endLine": 258,
+        "endChar": 20
+      },
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27229710_be5b1dc0",
         "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
         "patchSetId": 1
@@ -150,6 +236,23 @@
       "writtenOn": "2022-06-08T17:23:03Z",
       "side": 1,
       "message": "Get rid of expects in this file. We shouldn\u0027t crash because we failed this conversion.\n\nReplace with something like:\n\n```\nlet globbed \u003d match glob(...) {\n  Ok(v) \u003d\u003e v,\n  Err(_) \u003d\u003e {\n    error!(\"Failed to find Bluez adapters to migrate\");\n    return;\n  }\n};\n\nfor entry in globbed {\n...\n}\n```",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2d91981_71402bf3",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-08T22:25:50Z",
+      "side": 1,
+      "message": "seems like the functions in this file are unit-test friendly. Could you add some? It also serves a self documentation for the reader to see how a bluez config might look like and how it\u0027s expected to change to floss.",
       "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
