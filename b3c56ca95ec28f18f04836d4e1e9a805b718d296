@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8944c8ca_5bb4bdf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-08T09:25:22Z",
+      "side": 1,
+      "message": "these two CLs seems solve the disconnect and cancel connect problem, but it doesn\u0027t seem to address the race condition between cancel connect and LE extended/normal connection complete. ",
+      "revId": "b3c56ca95ec28f18f04836d4e1e9a805b718d296",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbaa410b_ebb36dcc",
         "filename": "system/gd/hci/acl_manager.h",
         "patchSetId": 2
