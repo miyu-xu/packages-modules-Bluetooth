@@ -180,7 +180,7 @@ cc_defaults {
                 "libstatslog_bt",
             ],
             whole_static_libs: [
-                "PlatformProperties",
+                "libPlatformProperties",
             ],
             srcs: ["src/btif_avrcp_audio_track.cc"],
         },
