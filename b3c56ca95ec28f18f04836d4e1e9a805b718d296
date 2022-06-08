@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d925bc16_582ce593",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-08T16:20:04Z",
+      "side": 1,
+      "message": "Are you talking about the case where we are cancelling just as a connection arrives ?",
+      "parentUuid": "8944c8ca_5bb4bdf2",
+      "revId": "b3c56ca95ec28f18f04836d4e1e9a805b718d296",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbaa410b_ebb36dcc",
         "filename": "system/gd/hci/acl_manager.h",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2022-06-08T09:22:51Z",
       "side": 1,
       "message": "do we still want to keep this old function?",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 29
+      },
+      "revId": "b3c56ca95ec28f18f04836d4e1e9a805b718d296",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42437dc5_98f57ffa",
+        "filename": "system/gd/hci/acl_manager.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-08T16:20:04Z",
+      "side": 1,
+      "message": "I think for now we layer on top and accept the tech debt for consistency/observability/patchability",
+      "parentUuid": "bbaa410b_ebb36dcc",
       "range": {
         "startLine": 108,
         "startChar": 14,
