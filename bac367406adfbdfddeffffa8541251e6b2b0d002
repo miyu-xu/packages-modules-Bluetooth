@@ -22,6 +22,30 @@
       },
       "revId": "bac367406adfbdfddeffffa8541251e6b2b0d002",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1ad370c_e3a0417a",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-08T16:28:11Z",
+      "side": 1,
+      "message": "The background list operates over address_with_type, but the API requires the hci handle.\n\nIf the handle\u003d\u003eaddress_with_type look up fails, there is no way to remove from the background list.",
+      "parentUuid": "18c61df8_0a3c0252",
+      "range": {
+        "startLine": 933,
+        "startChar": 6,
+        "endLine": 933,
+        "endChar": 74
+      },
+      "revId": "bac367406adfbdfddeffffa8541251e6b2b0d002",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
