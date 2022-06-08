@@ -414,6 +414,7 @@ class ShimAclConnection {
 
   virtual void InitiateDisconnect(hci::DisconnectReason reason) = 0;
   virtual bool IsLocallyInitiated() const = 0;
+  virtual bool IsInFilterAcceptList() const { return false; }
 
   CreationTime GetCreationTime() const { return creation_time_; }
   uint16_t Handle() const { return handle_; }
@@ -777,6 +778,10 @@ class LeShimAclConnection
 
   bool IsLocallyInitiated() const override {
     return connection_->locally_initiated_;
+  }
+
+  bool IsInFilterAcceptList() const override {
+    return connection_->IsInFilterAcceptList();
   }
 
  private:
@@ -1521,6 +1526,15 @@ void shim::legacy::Acl::OnLeConnectSuccess(
                   acl_interface_.link.le, handler_, std::move(connection),
                   std::chrono::system_clock::now()));
   pimpl_->handle_to_le_connection_map_[handle]->RegisterCallbacks();
+
+  if (!pimpl_->handle_to_le_connection_map_[handle]->IsInFilterAcceptList()) {
+    pimpl_->handle_to_le_connection_map_[handle]->InitiateDisconnect(
+        hci::DisconnectReason::REMOTE_USER_TERMINATED_CONNECTION);
+    LOG_INFO("Disconnected ACL after connection canceled");
+    BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type),
+                   "Connection canceled", "Le");
+    return;
+  }
 
   pimpl_->handle_to_le_connection_map_[handle]
       ->ReadRemoteControllerInformation();
