@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3589f475_66c9ff60",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-08T16:21:28Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/system/bta/hearing_aid/hearing_aid.cc:596:7: error: use of undeclared identifier \u0027COMPACT_GOOGLE_LOG_WARN\u0027\n      LOG(WARN) \u003c\u003c hearingDevice-\u003eaddress\n      \nPlease just use LOG_WARN(), LOG_INFO() style logging",
+      "range": {
+        "startLine": 596,
+        "startChar": 6,
+        "endLine": 596,
+        "endChar": 16
+      },
+      "revId": "94cdb54598a22cbd3a17c36736399fef28479c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
