@@ -33,6 +33,41 @@
       "message": "This looks like a good catch. Thanks for the patch. ",
       "revId": "30393d0c817689098b4fe20ef3deae8003d78fee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dc5c077_bd93375d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873440
+      },
+      "writtenOn": "2022-06-08T09:28:41Z",
+      "side": 1,
+      "message": "Hi Łukasz,\nThanks for your review!",
+      "parentUuid": "2f44819f_bd3619a4",
+      "revId": "30393d0c817689098b4fe20ef3deae8003d78fee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ede69fe2_d34e252b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1873440
+      },
+      "writtenOn": "2022-06-08T09:28:41Z",
+      "side": 1,
+      "message": "Hi,\nThanks for reviewing! \nAnd how could I pass Lint check? Thanks! ",
+      "revId": "30393d0c817689098b4fe20ef3deae8003d78fee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
