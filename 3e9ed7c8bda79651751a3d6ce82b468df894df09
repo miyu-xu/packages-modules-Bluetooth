@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed913e86_f54b745c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-09T13:37:16Z",
+      "side": 1,
+      "message": "I think we can use this existing method to remove the device from the connect list.",
+      "range": {
+        "startLine": 845,
+        "startChar": 0,
+        "endLine": 848,
+        "endChar": 3
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b052f39_88361ca7",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-09T13:37:16Z",
+      "side": 1,
+      "message": "I think we should be able to do a role check and call CancelConnect \n\nGetAclManager()-\u003eCancelConnect(remote_address_with_type)\n\nor\n\nignore_le_connection_from (line 967 in this file)\n\nSince the fix is in the shim, I think we should add any new tests to the sl4a tests.",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 933,
+        "endChar": 74
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e5bb6fe_e35cbd7b",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-09T13:37:16Z",
+      "side": 1,
+      "message": "Should we also remove the device from the shadow_acceptlist?  Maybe we should call this function when we initiate a disconnect from a device on the accept list.",
+      "range": {
+        "startLine": 969,
+        "startChar": 0,
+        "endLine": 970,
+        "endChar": 56
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
