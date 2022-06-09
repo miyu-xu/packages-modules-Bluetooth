@@ -251,6 +251,9 @@ impl BluetoothDeviceContext {
 
 /// The interface for adapter callbacks registered through `IBluetooth::register_callback`.
 pub trait IBluetoothCallback: RPCProxy {
+    /// When any adapter property changes.
+    fn on_adapter_property_changed(&self, prop: BtPropertyType);
+
     /// When any of the adapter local address is changed.
     fn on_address_changed(&self, addr: String);
 
@@ -678,6 +681,9 @@ impl BtifBluetoothCallbacks for Bluetooth {
                 }
                 _ => {}
             }
+            self.for_all_callbacks(|callback| {
+                callback.on_adapter_property_changed(prop.get_type());
+            });
 
             self.properties.insert(prop.get_type(), prop);
         }
