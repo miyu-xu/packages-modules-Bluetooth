@@ -1036,6 +1036,10 @@ impl BluetoothInterface {
         ccall!(self, le_rand)
     }
 
+    pub fn some_hci_action(&self) -> i32 {
+        ccall!(self, some_hci_action)
+    }
+
     pub fn restore_filter_accept_list(&self) -> i32 {
         ccall!(self, restore_filter_accept_list)
     }

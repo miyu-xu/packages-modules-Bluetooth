@@ -166,6 +166,13 @@ impl AdapterService for AdapterServiceImpl {
         })
     }
 
+    fn some_hci_action(&mut self, ctx: RpcContext<'_>, _req: Empty, sink: UnarySink<Empty>) {
+        self.btif_intf.lock().unwrap().some_hci_action();
+        ctx.spawn(async move {
+            sink.success(Empty::default()).await.unwrap();
+        })
+    }
+
     fn restore_filter_accept_list(
         &mut self,
         ctx: RpcContext<'_>,
