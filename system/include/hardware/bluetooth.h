@@ -825,6 +825,13 @@ typedef struct {
    *
    */
   int (*restore_filter_accept_list)();
+
+  /**
+   *
+   * Some HCI Action the application needs to call like LE RAND
+   *
+   */
+  int (*some_hci_action)();
 } bt_interface_t;
 
 #define BLUETOOTH_INTERFACE_STRING "bluetoothInterface"

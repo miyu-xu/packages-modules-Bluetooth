@@ -3434,6 +3434,11 @@ void btif_dm_le_rand(LeRandCallback callback) {
   bta_dm_le_rand(callback);
 }
 
+void btif_dm_some_hci_action() {
+  // Autoplumbed
+  BTA_DmSomeHciAction();
+}
+
 void btif_dm_restore_filter_accept_list() {
   // Autoplumbed
   BTA_DmRestoreFilterAcceptList();
