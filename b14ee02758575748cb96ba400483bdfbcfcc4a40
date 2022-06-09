@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e0e79f8_a52f450a",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-09T14:01:07Z",
+      "side": 1,
+      "message": "CancelConnect already removes the device from the background connect list.",
+      "range": {
+        "startLine": 212,
+        "startChar": 17,
+        "endLine": 212,
+        "endChar": 32
+      },
+      "revId": "b14ee02758575748cb96ba400483bdfbcfcc4a40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
