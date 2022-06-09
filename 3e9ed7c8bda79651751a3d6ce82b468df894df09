@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f01c527_707bbab0",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-09T23:52:28Z",
+      "side": 1,
+      "message": "This was a rebase that entered here.\n\nKept it as the next CL may or may not be merged.\n\nI will move it.",
+      "parentUuid": "c36251b5_ceb4f5c5",
+      "range": {
+        "startLine": 934,
+        "startChar": 7,
+        "endLine": 934,
+        "endChar": 74
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b052f39_88361ca7",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 4
