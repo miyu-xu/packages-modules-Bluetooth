@@ -1871,6 +1871,17 @@ tBTM_STATUS BTM_LeRand(LeRandCallback);
 
 /*******************************************************************************
  *
+ * Function        BTM_SomeHciAction
+ *
+ * Description    Some HCI Action the application needs to call like LE RAND
+ *
+ * Parameters
+ *
+ *******************************************************************************/
+tBTM_STATUS BTM_SomeHciAction(void);
+
+/*******************************************************************************
+ *
  * Function        BTM_RestoreFilterAcceptList
  *
  * Description    Floss: Restore the state of the for the filter accept list

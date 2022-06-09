@@ -451,6 +451,11 @@ tBTM_STATUS bluetooth::shim::BTM_LeRand(LeRandCallback cb) {
   return BTM_SUCCESS;
 }
 
+tBTM_STATUS bluetooth::shim::BTM_SomeHciAction() {
+  mock_function_count_map[__func__]++;
+  return BTM_SUCCESS;
+}
+
 tBTM_STATUS bluetooth::shim::BTM_RestoreFilterAcceptList() {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
