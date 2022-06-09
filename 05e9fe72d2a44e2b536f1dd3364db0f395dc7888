@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a616b2_6f128912",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1320788
+      },
+      "writtenOn": "2022-06-09T10:02:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ffd2ce8b_c7526179",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 61
+      },
+      "revId": "05e9fe72d2a44e2b536f1dd3364db0f395dc7888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5355848_ad5d104a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-09T06:51:05Z",
       "side": 1,
       "message": "Nit: do you want to provide the Bug ID for regression test?",
+      "range": {
+        "startLine": 14,
+        "startChar": 6,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "05e9fe72d2a44e2b536f1dd3364db0f395dc7888",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b628506_186440f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1320788
+      },
+      "writtenOn": "2022-06-09T10:02:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5355848_ad5d104a",
       "range": {
         "startLine": 14,
         "startChar": 6,
