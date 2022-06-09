@@ -518,6 +518,10 @@ struct Controller::impl {
         module_.GetHandler()->BindOnceOn(this, &Controller::impl::le_rand_cb<LeRandCompleteView>, cb));
   }
 
+  void some_hci_action() {
+    // TODO(optedoblivion): Implement HCI Call
+  }
+
   template <class T>
   void le_rand_cb(LeRandCallback cb, CommandCompleteView view) {
     ASSERT(view.IsValid());
@@ -1038,6 +1042,10 @@ void Controller::Reset() {
 
 void Controller::LeRand(LeRandCallback cb) {
   CallOn(impl_.get(), &impl::le_rand, cb);
+}
+
+void Controller::SomeHciAction() {
+  CallOn(impl_.get(), &impl::some_hci_action);
 }
 
 void Controller::SetEventFilterClearAll() {

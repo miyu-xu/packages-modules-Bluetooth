@@ -129,6 +129,8 @@ class Controller : public Module {
 
   virtual void LeRand(LeRandCallback cb);
 
+  virtual void SomeHciAction();
+
   virtual void SetEventFilterClearAll();
 
   virtual void SetEventFilterInquiryResultAllDevices();
