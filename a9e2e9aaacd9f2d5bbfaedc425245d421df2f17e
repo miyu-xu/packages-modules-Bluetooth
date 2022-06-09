@@ -22,6 +22,29 @@
       },
       "revId": "a9e2e9aaacd9f2d5bbfaedc425245d421df2f17e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1756b88_487b1aa3",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-09T09:54:22Z",
+      "side": 1,
+      "message": "this breaks the connection on the advertiser side\n\nOn the advertiser side, a device wants to accept connection from unknown remote devices\n\nHence the incoming device address will not be in the filter allow list\n\nMaybe we should also check if there was\n* a prior extended create connection and a create connection cancel before the extended create connection was completed \n* AND if the device was in filter accept list when extended create connection was sent, but is no longer in filter accept list now\n* AND whether there is an ongoing connectable BLE advertisement?\n\nTo summarize, we should only disconnect a connection if\n\n* We are not sending connectable advertisement\n* AND the incoming connected device is no longer in local filter accept list",
+      "range": {
+        "startLine": 1530,
+        "startChar": 2,
+        "endLine": 1531,
+        "endChar": 69
+      },
+      "revId": "a9e2e9aaacd9f2d5bbfaedc425245d421df2f17e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
