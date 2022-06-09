@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99819cee_7d3adfce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-09T21:54:36Z",
+      "side": 1,
+      "message": "This is related to https://chromium-review.googlesource.com/c/chromium/src/+/3698983, not sure if there is a way to connect them. This gets us one step closer to a the property framework.",
+      "revId": "b377058112567be43b12ee0d792488b90b69b73d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
