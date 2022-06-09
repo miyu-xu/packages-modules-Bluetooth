@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ad3e7ee_0f628317",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-09T23:54:20Z",
+      "side": 1,
+      "message": "This comment refers to near simultaneous cancel/on_connect race common in any network stack. \n\nThis is not addressed in this CL and this CL likely is unnecessasry.",
+      "parentUuid": "d925bc16_582ce593",
+      "revId": "b3c56ca95ec28f18f04836d4e1e9a805b718d296",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbaa410b_ebb36dcc",
