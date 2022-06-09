@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0c60098_3f611784",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-06-09T12:54:23Z",
+      "side": 1,
+      "message": "Need to check whether the ase is active or not.",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19bf5847_bc3dbb59",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-06-09T12:54:23Z",
+      "side": 1,
+      "message": "Need to check ASE is active or not\n\n`ases_pair.sink \u0026\u0026 ases_pair.sink-\u003eactive`",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ea38f3_42f50a82",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-06-09T12:54:23Z",
+      "side": 1,
+      "message": "Need to check ASE is active or not\n\n`ases_pair.source \u0026\u0026 ases_pair.sink-\u003esource`",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
