@@ -46,6 +46,29 @@
       },
       "revId": "b14ee02758575748cb96ba400483bdfbcfcc4a40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d7f6846_5ff2f206",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-09T18:40:19Z",
+      "side": 1,
+      "message": "this method was added in the previous CL and not used in that CL, could you move the declaration of this method to this change instead? \n\nSo that we can clearly sees the content of this method",
+      "range": {
+        "startLine": 224,
+        "startChar": 16,
+        "endLine": 224,
+        "endChar": 83
+      },
+      "revId": "b14ee02758575748cb96ba400483bdfbcfcc4a40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
