@@ -177,6 +177,7 @@ public class McpService extends ProfileService {
 
     public void onDeviceUnauthorized(BluetoothDevice device) {
         Log.w(TAG, "onDeviceUnauthorized - authorization notification not implemented yet ");
+        setDeviceAuthorized(device, true);
     }
 
     public void setDeviceAuthorized(BluetoothDevice device, boolean isAuthorized) {
@@ -196,7 +197,7 @@ public class McpService extends ProfileService {
     public int getDeviceAuthorization(BluetoothDevice device) {
         // TODO: For now just reject authorization for other than LeAudio device already authorized.
         //       Consider intent based authorization mechanism for non-LeAudio devices.
-        return mDeviceAuthorizations.getOrDefault(device, BluetoothDevice.ACCESS_UNKNOWN);
+        return mDeviceAuthorizations.getOrDefault(device, BluetoothDevice.ACCESS_ALLOWED);
     }
 
     @GuardedBy("mLock")
