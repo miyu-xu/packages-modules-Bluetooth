@@ -50,6 +50,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c36251b5_ceb4f5c5",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-09T18:42:12Z",
+      "side": 1,
+      "message": "this method is not used in this CL and I was a bit confused why you need it. \n\nThe next change explains it. Could you just move this method\u0027s declaration to the next change so that it is clear?",
+      "range": {
+        "startLine": 934,
+        "startChar": 7,
+        "endLine": 934,
+        "endChar": 74
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b052f39_88361ca7",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 4
