@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebe6f000_cb41937c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2022-06-09T19:40:54Z",
+      "side": 1,
+      "message": "Has this been verified on AVRCP Controller devices? As I understand it, AVRCP Target and \"new avrcp\" was hacked into the legacy \"old avrcp\" code in such a way that enabling this on a system won\u0027t allow AVRCP Controller to work. We would need to untangle that integration a bit, otherwise I think this being defaulted to true would cause certain paths the AVRCP Controller relies on to instead enter the \"new avrcp\" stack. At the very least it might cause the code path to not be executed.",
+      "revId": "c5f020c6a0c9132e8c0dc376bdbbb2ac7efa7794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
