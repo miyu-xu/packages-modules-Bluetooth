@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c8105bf_d629695b",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-09T09:27:27Z",
+      "side": 1,
+      "message": "why do we need this in the base class? BT classic ACL does not need this method at all",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 417,
+        "endChar": 61
+      },
+      "revId": "a9e2e9aaacd9f2d5bbfaedc425245d421df2f17e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
