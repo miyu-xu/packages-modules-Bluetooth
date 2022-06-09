@@ -22,6 +22,30 @@
       },
       "revId": "b14ee02758575748cb96ba400483bdfbcfcc4a40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2a24082_217d9f52",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-09T17:36:57Z",
+      "side": 1,
+      "message": "Do you mean CancelLeConnect() and CancelLeConnectAndRemoveFromBackgroundList() provide the same functionality, or that [classic] CancelConnect() removes device from background connect list ?\n\nThe point of rolling them into the same event is b/c they should be synchronous as part of the same event.\n\nIt\u0027s unlikely another event could squeeze between the two which my cause issues, but the code reader understands these 2 events are effectively atomic.",
+      "parentUuid": "1e0e79f8_a52f450a",
+      "range": {
+        "startLine": 212,
+        "startChar": 17,
+        "endLine": 212,
+        "endChar": 32
+      },
+      "revId": "b14ee02758575748cb96ba400483bdfbcfcc4a40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
