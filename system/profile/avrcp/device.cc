@@ -488,6 +488,11 @@ void Device::TrackChangedNotificationResponse(uint8_t label, bool interim,
     DEVICE_LOG(ERROR) << "No match for media ID found";
   }
 
+  /* Handle for PTS AVRCP/TG/NFY/BV-05-C and AVRCP/TG/NFY/BV-08-C */
+  if (interim && stack_config_get_interface()->get_pts_avrcp_test()) {
+    uid = 0;
+  }
+
   auto response = RegisterNotificationResponseBuilder::MakeTrackChangedBuilder(
       interim, uid);
   send_message_cb_.Run(label, false, std::move(response));
