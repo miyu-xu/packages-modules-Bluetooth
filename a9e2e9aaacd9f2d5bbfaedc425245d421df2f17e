@@ -141,6 +141,30 @@
       },
       "revId": "a9e2e9aaacd9f2d5bbfaedc425245d421df2f17e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d7156e7_d8992cde",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1531,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-09T16:02:09Z",
+      "side": 1,
+      "message": "That makes sense.  In that case, I vote for just removing it unconditionally when we are the in the central role.  The connection cancel should just do the right thing.",
+      "parentUuid": "d177c80b_105049ab",
+      "range": {
+        "startLine": 1530,
+        "startChar": 2,
+        "endLine": 1531,
+        "endChar": 69
+      },
+      "revId": "a9e2e9aaacd9f2d5bbfaedc425245d421df2f17e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
