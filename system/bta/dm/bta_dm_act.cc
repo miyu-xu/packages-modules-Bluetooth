@@ -4083,6 +4083,20 @@ void bta_dm_le_rand(LeRandCallback cb) {
 
 /*******************************************************************************
  *
+ * Function        BTA_DmSomeHciAction
+ *
+ * Description    Some HCI Action the application needs to call like LE RAND
+ *
+ * Parameters
+ *
+ *******************************************************************************/
+void bta_dm_some_hci_action() {
+  // Autoplumbed
+  bluetooth::shim::BTM_SomeHciAction();
+}
+
+/*******************************************************************************
+ *
  * Function        BTA_DmRestoreFilterAcceptList
  *
  * Description    Floss: Restore the state of the for the filter accept list

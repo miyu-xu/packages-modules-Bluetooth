@@ -699,6 +699,11 @@ void BTA_DmLeRand(LeRandCallback cb) {
   do_in_main_thread(FROM_HERE, base::Bind(bta_dm_le_rand, cb));
 }
 
+void BTA_DmSomeHciAction() {
+  APPL_TRACE_API("BTA_DmSomeHciAction");
+  do_in_main_thread(FROM_HERE, base::Bind(bta_dm_some_hci_action));
+}
+
 void BTA_DmRestoreFilterAcceptList() {
   APPL_TRACE_API("BTA_DmRestoreFilterAcceptList");
   do_in_main_thread(FROM_HERE, base::Bind(bta_dm_restore_filter_accept_list));

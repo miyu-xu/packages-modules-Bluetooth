@@ -1220,6 +1220,17 @@ extern void BTA_DmLeRand(LeRandCallback cb);
 
 /*******************************************************************************
  *
+ * Function        BTA_DmSomeHciAction
+ *
+ * Description    Some HCI Action the application needs to call like LE RAND
+ *
+ * Parameters
+ *
+ *******************************************************************************/
+extern void BTA_DmSomeHciAction();
+
+/*******************************************************************************
+ *
  * Function        BTA_DmRestoreFilterAcceptList
  *
  * Description    Floss: Restore the state of the for the filter accept list
