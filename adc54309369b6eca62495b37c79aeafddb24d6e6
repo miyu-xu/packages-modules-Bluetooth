@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a62e69_436d1b8f",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-09T16:45:17Z",
+      "side": 1,
+      "message": "add a log here?",
+      "range": {
+        "startLine": 1326,
+        "startChar": 4,
+        "endLine": 1326,
+        "endChar": 11
+      },
+      "revId": "adc54309369b6eca62495b37c79aeafddb24d6e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c2967f5_f7df21bf",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1392,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-09T16:45:17Z",
+      "side": 1,
+      "message": "same here, pls add a log line",
+      "range": {
+        "startLine": 1392,
+        "startChar": 4,
+        "endLine": 1392,
+        "endChar": 11
+      },
+      "revId": "adc54309369b6eca62495b37c79aeafddb24d6e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
