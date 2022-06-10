@@ -17,14 +17,13 @@
 
 package android.bluetooth;
 
-import android.Manifest;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
-import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
-import android.content.ComponentName;
+import android.annotation.SuppressLint;
 import android.content.AttributionSource;
+import android.content.ComponentName;
 import android.content.Context;
 import android.os.Binder;
 import android.os.Handler;
@@ -34,16 +33,12 @@ import android.os.Message;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
-import android.annotation.SuppressLint;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.Executor;
 
@@ -301,20 +296,23 @@ public final class BluetoothLeCallControl implements BluetoothProfile {
         }
     }
 
-    private class CallbackWrapper extends IBluetoothLeCallControlCallback.Stub {
+    private static class CallbackWrapper extends IBluetoothLeCallControlCallback.Stub {
 
+        private WeakReference<BluetoothLeCallControl> mBleCallControl;
         private final Executor mExecutor;
         private final Callback mCallback;
 
-        CallbackWrapper(Executor executor, Callback callback) {
+        CallbackWrapper(BluetoothLeCallControl bleCallControl,
+                Executor executor, Callback callback) {
+            mBleCallControl = new WeakReference(bleCallControl);
             mExecutor = executor;
             mCallback = callback;
         }
 
         @Override
         public void onBearerRegistered(int ccid) {
-            if (mCallback != null) {
-                mCcid = ccid;
+            if (mBleCallControl.get() != null && mCallback != null) {
+                mBleCallControl.get().mCcid = ccid;
             } else {
                 // registration timeout
                 Log.e(TAG, "onBearerRegistered: mCallback is null");
@@ -583,7 +581,7 @@ public final class BluetoothLeCallControl implements BluetoothProfile {
 
         mCallback = callback;
         try {
-            CallbackWrapper callbackWrapper = new CallbackWrapper(executor, callback);
+            CallbackWrapper callbackWrapper = new CallbackWrapper(this, executor, callback);
             service.registerBearer(mToken, callbackWrapper, uci, uriSchemes, capabilities,
                                     provider, technology, mAttributionSource);
 
