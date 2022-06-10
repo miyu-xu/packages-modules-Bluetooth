@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fd422b8_7a47d5b9",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-10T03:41:43Z",
+      "side": 1,
+      "message": "BTM_MSBC_PKT_LEN\n\nI remember we had a TODO for supporting packet size !\u003d 60",
+      "range": {
+        "startLine": 240,
+        "startChar": 18,
+        "endLine": 240,
+        "endChar": 20
+      },
+      "revId": "092a3f0d73343cbd7be46b37badf1e575d8e2adb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5380cb5e_f7636f0d",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-10T03:41:43Z",
+      "side": 1,
+      "message": "BTM_MSBC_H2_HEADER_0",
+      "range": {
+        "startLine": 250,
+        "startChar": 21,
+        "endLine": 250,
+        "endChar": 25
+      },
+      "revId": "092a3f0d73343cbd7be46b37badf1e575d8e2adb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
