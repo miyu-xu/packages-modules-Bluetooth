@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18814313_bde25eb5",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-10T09:38:17Z",
+      "side": 1,
+      "message": "Change the code such that it doesn\u0027t call canConnect.",
+      "parentUuid": "85aaede6_07e4ba40",
+      "range": {
+        "startLine": 278,
+        "startChar": 11,
+        "endLine": 278,
+        "endChar": 75
+      },
+      "revId": "8f50aa7b22950c3db6c9e19590884680eb15fa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f854746e_f4cbb1b9",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-06-03T14:45:17Z",
       "side": 1,
       "message": "Will this now be warning logged every time connection attempt is made?",
+      "range": {
+        "startLine": 283,
+        "startChar": 12,
+        "endLine": 283,
+        "endChar": 89
+      },
+      "revId": "8f50aa7b22950c3db6c9e19590884680eb15fa9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1919acbb_4078ee18",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-10T09:38:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f854746e_f4cbb1b9",
       "range": {
         "startLine": 283,
         "startChar": 12,
