@@ -72,6 +72,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "aca78eb4_8efe2c6f",
+        "filename": "tools/pdl/script/pdl.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-10T08:25:53Z",
+      "side": 1,
+      "message": "Could you make this a raw string (my preference) or double the backslash? Right now you\u0027re relying on Python to let `\\x` pass through when `x` is not a valid escaped character.",
+      "range": {
+        "startLine": 143,
+        "startChar": 32,
+        "endLine": 143,
+        "endChar": 36
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eaa60ad8_fcb1f8e6",
         "filename": "tools/pdl/script/pdl_test.py",
         "patchSetId": 3
@@ -111,6 +134,29 @@
         "startChar": 29,
         "endLine": 44,
         "endChar": 35
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0eee98f7_8f6395f4",
+        "filename": "tools/pdl/script/pdl_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-10T08:25:53Z",
+      "side": 1,
+      "message": "You typically don\u0027t have to call the `assertXXXEqual` methods yourself, calling `assertEqual` is enough and it will call the more specialized method for you.",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 36
       },
       "revId": "77e8016470705561c70553308c9d30485f727f3c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
