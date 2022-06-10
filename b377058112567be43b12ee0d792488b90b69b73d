@@ -16,6 +16,40 @@
       "message": "This is related to https://chromium-review.googlesource.com/c/chromium/src/+/3698983, not sure if there is a way to connect them. This gets us one step closer to a the property framework.",
       "revId": "b377058112567be43b12ee0d792488b90b69b73d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2f044c0_434692ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-10T23:45:47Z",
+      "side": 1,
+      "message": "Please fix the comment and LGTM to submit.\n\nBtw, what happens if you only have the change on browser or floss but not the other? I assume it just works but the callback doesn\u0027t work right?",
+      "revId": "b377058112567be43b12ee0d792488b90b69b73d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83dd5bfe_98634ecc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-10T23:45:47Z",
+      "side": 1,
+      "message": "This should go after self.properties.insert.\n\nIt won\u0027t race because we serialize our dbus requests but we should do notifications AFTER the update has occurred, not before.",
+      "revId": "b377058112567be43b12ee0d792488b90b69b73d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
