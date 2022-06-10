@@ -22,6 +22,30 @@
       },
       "revId": "ba60dff87c256ee9b59f50cf28a40af85149fdf5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad7ce5ff_00f31003",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2700,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-06-10T21:23:26Z",
+      "side": 1,
+      "message": "This change aims to retrieve the previous behaviour of this method, so we have to leave this as empty array",
+      "parentUuid": "44104232_4a82994c",
+      "range": {
+        "startLine": 2700,
+        "startChar": 23,
+        "endLine": 2700,
+        "endChar": 40
+      },
+      "revId": "ba60dff87c256ee9b59f50cf28a40af85149fdf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
