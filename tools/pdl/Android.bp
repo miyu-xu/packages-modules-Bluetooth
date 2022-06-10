@@ -42,9 +42,6 @@ rust_test_host {
             enabled: true,
         },
     },
-    required: [
-        "rustfmt",
-    ],
     data: [
         ":rustfmt",
         "rustfmt.toml",
