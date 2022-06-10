@@ -56,7 +56,7 @@ public class TbsGeneric {
     private static final String UNKNOWN_FRIENDLY_NAME = "unknown";
 
     /** Class representing the pending request sent to the application */
-    private class Request {
+    private static class Request {
         BluetoothDevice device;
         List<UUID> callIdList;
         int requestedOpcode;
@@ -82,7 +82,7 @@ public class TbsGeneric {
     }
 
     /* Application-registered TBS instance */
-    private class Bearer {
+    private static class Bearer {
         final String token;
         final IBluetoothLeCallControlCallback callback;
         final String uci;
