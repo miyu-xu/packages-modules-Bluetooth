@@ -392,7 +392,7 @@ static inline void remove_poll(int h, poll_slot_t* ps, int flags) {
   if (flags == ps->flags) {
     // all monitored events signaled. To remove it, just clear the slot
     --ts[h].poll_count;
-    memset(ps, 0, sizeof(*ps));
+    *ps = {};
     ps->pfd.fd = -1;
   } else {
     // one read or one write monitor event signaled, removed the accordding bit
@@ -480,7 +480,7 @@ static void prepare_poll_fds(int h, struct pollfd* pfds) {
   int ps_i = 0;
   int pfd_i = 0;
   asrt(ts[h].poll_count <= MAX_POLL);
-  memset(pfds, 0, sizeof(pfds[0]) * ts[h].poll_count);
+  *pfds = {};
   while (count < ts[h].poll_count) {
     if (ps_i >= MAX_POLL) {
       APPL_TRACE_ERROR(
@@ -500,7 +500,7 @@ static void prepare_poll_fds(int h, struct pollfd* pfds) {
 }
 static void* sock_poll_thread(void* arg) {
   struct pollfd pfds[MAX_POLL];
-  memset(pfds, 0, sizeof(pfds));
+  *pfds = {};
   int h = (intptr_t)arg;
   for (;;) {
     prepare_poll_fds(h, pfds);
