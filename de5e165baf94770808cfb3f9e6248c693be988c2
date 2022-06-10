@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b54d7bb_e80d29a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-10T15:01:47Z",
+      "side": 1,
+      "message": "Is it okay to add such a file for the day-to-day development?",
+      "revId": "de5e165baf94770808cfb3f9e6248c693be988c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
