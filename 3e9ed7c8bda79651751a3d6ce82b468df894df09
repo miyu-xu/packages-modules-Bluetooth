@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83910ef5_c58041d9",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 848,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-10T00:05:17Z",
+      "side": 1,
+      "message": "This doesn\u0027t address the background list set that le_impl maintains",
+      "parentUuid": "42a5e7f0_6d64981c",
+      "range": {
+        "startLine": 845,
+        "startChar": 0,
+        "endLine": 848,
+        "endChar": 3
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c36251b5_ceb4f5c5",
@@ -142,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f678f95_d01266a5",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 933,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-10T00:05:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ec41e481_05cf8866",
+      "range": {
+        "startLine": 933,
+        "startChar": 0,
+        "endLine": 933,
+        "endChar": 74
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e5bb6fe_e35cbd7b",
@@ -179,6 +227,30 @@
       "side": 1,
       "message": "This gets into the \u0027primary key\u0027 issue where a disconnect uses the connection/hci handle, while and ignore used the address.",
       "parentUuid": "3e5bb6fe_e35cbd7b",
+      "range": {
+        "startLine": 969,
+        "startChar": 0,
+        "endLine": 970,
+        "endChar": 56
+      },
+      "revId": "3e9ed7c8bda79651751a3d6ce82b468df894df09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b8a1c18_a6250ba2",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-10T00:05:17Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2e1ab4cb_6bba9baf",
       "range": {
         "startLine": 969,
         "startChar": 0,
