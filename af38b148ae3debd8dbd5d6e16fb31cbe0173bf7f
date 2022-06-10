@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c56a255b_93dada03",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-10T16:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "caa162ee_e18bcffd",
+      "revId": "af38b148ae3debd8dbd5d6e16fb31cbe0173bf7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3cc0cc2_462146b8",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-06-02T00:28:20Z",
       "side": 1,
       "message": "Here is the cb_variant! declaration....",
+      "revId": "af38b148ae3debd8dbd5d6e16fb31cbe0173bf7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4e39a33_ec395614",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-10T16:06:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3cc0cc2_462146b8",
       "revId": "af38b148ae3debd8dbd5d6e16fb31cbe0173bf7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
