@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ed39307_d029d27e",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-10T00:44:42Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "9deb8937_796ed6d5",
+      "range": {
+        "startLine": 417,
+        "startChar": 0,
+        "endLine": 417,
+        "endChar": 61
+      },
+      "revId": "a9e2e9aaacd9f2d5bbfaedc425245d421df2f17e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1756b88_487b1aa3",
