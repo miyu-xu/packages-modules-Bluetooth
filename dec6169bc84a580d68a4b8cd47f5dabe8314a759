@@ -16,6 +16,24 @@
       "message": "Please add tests as well.\nNot sure whether it is correct or not, but when I briefly searched, these could be related.\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/system/stack/test/btm/stack_btm_test.cc?q\u003dmock_stack_hcic_hcicmds\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/system/bta/test/bta_dm_test.cc?q\u003dmock_stack_acl\u0026ct\u003dos\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
       "revId": "dec6169bc84a580d68a4b8cd47f5dabe8314a759",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcda852c_21b2af7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-11T07:21:10Z",
+      "side": 1,
+      "message": "I\u0027m looking for the correct place to set the test",
+      "parentUuid": "a61538c8_4624703c",
+      "revId": "dec6169bc84a580d68a4b8cd47f5dabe8314a759",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
