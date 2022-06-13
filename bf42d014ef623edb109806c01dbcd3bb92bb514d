@@ -16,6 +16,24 @@
       "message": "Should this return false?",
       "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cea24cd_1d6ad360",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-13T22:07:01Z",
+      "side": 1,
+      "message": "I find it confusing to use the shared signal listener. So instead I set up this in `main.rs`:\n```\n    // There are multiple signal handlers. We need to set signal match mode to true to allow signal\n    // handlers process the signals independently. Otherwise only the first signal handler will get\n    // the chance to handle the same signal in case the match rule overlaps.\n    conn.set_signal_match_mode(true);\n```\nSo that each signal handler can handle the signals independenty, therefore always returning \"true\".",
+      "parentUuid": "dc734d92_1eddc961",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
