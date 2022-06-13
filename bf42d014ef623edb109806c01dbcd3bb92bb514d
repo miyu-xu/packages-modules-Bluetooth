@@ -34,6 +34,24 @@
       "parentUuid": "dc734d92_1eddc961",
       "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a3f3f2_c3ca1159",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-13T22:11:10Z",
+      "side": 1,
+      "message": "Instead of the value true, we should use an Enum that evaluates to true\n\n```\nenum SignalAction {\n  Continue,\n  Stop,\n}\n\nimpl From\u003cSignalAction\u003e for bool {\n  fn from(item: SignalAction) -\u003e Self {\n    match item {\n      SignalAction::Continue \u003d\u003e true,\n      SignalAction::Stop \u003d\u003e false,\n    }\n  }\n}\n\n```",
+      "parentUuid": "0cea24cd_1d6ad360",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
