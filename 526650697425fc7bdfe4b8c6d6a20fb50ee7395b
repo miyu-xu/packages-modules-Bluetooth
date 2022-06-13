@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d66b9f_3dd0de40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-13T18:08:57Z",
+      "side": 1,
+      "message": "Failing build not related to changes. Retrying",
+      "revId": "526650697425fc7bdfe4b8c6d6a20fb50ee7395b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
