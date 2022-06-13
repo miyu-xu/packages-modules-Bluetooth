@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a27fccac_81e6baf0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-06-13T11:51:55Z",
+      "side": 1,
+      "message": "There is log from the issue. At first, I though we could fix the issue by checking the ASE is active. Based on your comment, I think we need to fix the problem in somewhere else",
+      "parentUuid": "d102f380_b6705f48",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19bf5847_bc3dbb59",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "As I wrote in previous comment. This may be bug of not clearing in inactive ASE connection handle that would match a pair of bi-directional ASEs.",
       "parentUuid": "19bf5847_bc3dbb59",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56baa763_73c4523e",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-06-13T11:51:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "90c5d88d_491ec71e",
       "revId": "a0ed213409e42134170de19d411490e68037d7c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -102,6 +138,24 @@
       "side": 1,
       "message": "As I wrote in previous comment. This may be bug of not clearing in inactive ASE connection handle that would match a pair of bi-directional ASEs.",
       "parentUuid": "f4ea38f3_42f50a82",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be694bcd_6c3895ee",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-06-13T11:51:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c9ea5e46_62f0fcfb",
       "revId": "a0ed213409e42134170de19d411490e68037d7c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
