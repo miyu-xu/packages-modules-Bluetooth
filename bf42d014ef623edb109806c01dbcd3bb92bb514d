@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc734d92_1eddc961",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-13T21:57:19Z",
+      "side": 1,
+      "message": "Should this return false?",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
