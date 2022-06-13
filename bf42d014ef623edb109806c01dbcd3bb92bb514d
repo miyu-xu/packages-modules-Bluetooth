@@ -106,6 +106,24 @@
       "parentUuid": "d5352c10_cf56ac39",
       "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a40433c5_508b97e8",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-13T22:49:40Z",
+      "side": 1,
+      "message": "In that case, I guess a comment is also acceptable. Like in Chromium (browser), lets try not to have undocumented primitive values used in the code.",
+      "parentUuid": "eda2e79b_ee9457c2",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
