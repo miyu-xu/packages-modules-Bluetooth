@@ -137,6 +137,10 @@ public class BassClientStateMachine extends StateMachine {
     static final int PSYNC_ACTIVE_TIMEOUT = 14;
     static final int CONNECT_TIMEOUT = 15;
 
+    // NOTE: the value is not "final" - it is modified in the unit tests
+    @VisibleForTesting
+    static int sConnectTimeoutMs = BassConstants.CONNECT_TIMEOUT_MS;
+
     /*key is combination of sourceId, Address and advSid for this hashmap*/
     private final Map<Integer, BluetoothLeBroadcastReceiveState>
             mBluetoothLeBroadcastReceiveStates =
@@ -156,7 +160,6 @@ public class BassClientStateMachine extends StateMachine {
     private boolean mMTUChangeRequested = false;
     private boolean mDiscoveryInitiated = false;
     private BassClientService mService;
-    private BluetoothGatt mBluetoothGatt = null;
 
     private BluetoothGattCharacteristic mBroadcastScanControlPoint;
     private boolean mFirstTimeBisDiscovery = false;
@@ -180,6 +183,9 @@ public class BassClientStateMachine extends StateMachine {
     private boolean mForceSB = false;
     private int mBroadcastSourceIdLength = 3;
     private byte mNextSourceId = 0;
+
+    BluetoothGatt mBluetoothGatt = null;
+    BluetoothGattCallback mGattCallback = null;
 
     BassClientStateMachine(BluetoothDevice device, BassClientService svc, Looper looper) {
         super(TAG + "(" + device.toString() + ")", looper);
@@ -238,6 +244,7 @@ public class BassClientStateMachine extends StateMachine {
             mBluetoothGatt.disconnect();
             mBluetoothGatt.close();
             mBluetoothGatt = null;
+            mGattCallback = null;
         }
         mPendingOperation = -1;
         mPendingSourceId = -1;
@@ -791,8 +798,7 @@ public class BassClientStateMachine extends StateMachine {
 
     // Implements callback methods for GATT events that the app cares about.
     // For example, connection change and services discovered.
-    private final BluetoothGattCallback mGattCallback =
-            new BluetoothGattCallback() {
+    final class GattCallback extends BluetoothGattCallback {
                 @Override
                 public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
                     boolean isStateChanged = false;
@@ -946,6 +952,25 @@ public class BassClientStateMachine extends StateMachine {
             };
 
     /**
+     * Connects to the GATT server of the device.
+     *
+     * @return {@code true} if it successfully connects to the GATT server.
+     */
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public boolean connectGatt(Boolean autoConnect) {
+        if (mGattCallback == null) {
+            mGattCallback = new GattCallback();
+        }
+
+        mBluetoothGatt = mDevice.connectGatt(mService, autoConnect,
+                mGattCallback, BluetoothDevice.TRANSPORT_LE,
+                (BluetoothDevice.PHY_LE_1M_MASK
+                        | BluetoothDevice.PHY_LE_2M_MASK
+                        | BluetoothDevice.PHY_LE_CODED_MASK), null);
+        return mBluetoothGatt != null;
+    }
+
+    /**
      * getAllSources
      */
     public List<BluetoothLeBroadcastReceiveState> getAllSources() {
@@ -1017,11 +1042,7 @@ public class BassClientStateMachine extends StateMachine {
                 if (mLastConnectionState != BluetoothProfile.STATE_DISCONNECTED) {
                     // Reconnect in background if not disallowed by the service
                     if (mService.okToConnect(mDevice)) {
-                        mBluetoothGatt = mDevice.connectGatt(mService, true,
-                                mGattCallback, BluetoothDevice.TRANSPORT_LE,
-                                (BluetoothDevice.PHY_LE_1M_MASK
-                                        | BluetoothDevice.PHY_LE_2M_MASK
-                                        | BluetoothDevice.PHY_LE_CODED_MASK), null);
+                        connectGatt(false);
                     }
                 }
             }
@@ -1047,16 +1068,10 @@ public class BassClientStateMachine extends StateMachine {
                         mBluetoothGatt.close();
                         mBluetoothGatt = null;
                     }
-                    mBluetoothGatt = mDevice.connectGatt(mService, mIsAllowedList,
-                            mGattCallback, BluetoothDevice.TRANSPORT_LE, false,
-                            (BluetoothDevice.PHY_LE_1M_MASK
-                                    | BluetoothDevice.PHY_LE_2M_MASK
-                                    | BluetoothDevice.PHY_LE_CODED_MASK), null);
-                    if (mBluetoothGatt == null) {
-                        Log.e(TAG, "Disconnected: error connecting to " + mDevice);
-                        break;
-                    } else {
+                    if (connectGatt(mIsAllowedList)) {
                         transitionTo(mConnecting);
+                    } else {
+                        Log.e(TAG, "Disconnected: error connecting to " + mDevice);
                     }
                     break;
                 case DISCONNECT:
@@ -1097,7 +1112,7 @@ public class BassClientStateMachine extends StateMachine {
         public void enter() {
             log("Enter Connecting(" + mDevice + "): "
                     + messageWhatToString(getCurrentMessage().what));
-            sendMessageDelayed(CONNECT_TIMEOUT, mDevice, BassConstants.CONNECT_TIMEOUT_MS);
+            sendMessageDelayed(CONNECT_TIMEOUT, mDevice, sConnectTimeoutMs);
             broadcastConnectionState(
                     mDevice, mLastConnectionState, BluetoothProfile.STATE_CONNECTING);
         }
@@ -1731,7 +1746,7 @@ public class BassClientStateMachine extends StateMachine {
         public void enter() {
             log("Enter Disconnecting(" + mDevice + "): "
                     + messageWhatToString(getCurrentMessage().what));
-            sendMessageDelayed(CONNECT_TIMEOUT, mDevice, BassConstants.CONNECT_TIMEOUT_MS);
+            sendMessageDelayed(CONNECT_TIMEOUT, mDevice, sConnectTimeoutMs);
             broadcastConnectionState(
                     mDevice, mLastConnectionState, BluetoothProfile.STATE_DISCONNECTING);
         }
