@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd996b2d_6eb71d45",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-13T23:13:36Z",
+      "side": 1,
+      "message": "nit: Add something like:\n\nFixes commit 526650697425fc7bdfe4b8c6d6a20fb50ee7395b.",
+      "revId": "65944dbd44a3b7045090a50c88769d9b4958a24d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
