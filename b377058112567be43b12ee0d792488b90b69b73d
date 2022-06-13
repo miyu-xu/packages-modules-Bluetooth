@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd6fa579_3bf84033",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-13T16:35:51Z",
+      "side": 1,
+      "message": "Right, on browser side it\u0027ll still work as it does now, we just won\u0027t get the cb and it\u0027ll still not update the bonded devices.",
+      "parentUuid": "f2f044c0_434692ab",
+      "revId": "b377058112567be43b12ee0d792488b90b69b73d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83dd5bfe_98634ecc",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-06-10T23:45:47Z",
       "side": 1,
       "message": "This should go after self.properties.insert.\n\nIt won\u0027t race because we serialize our dbus requests but we should do notifications AFTER the update has occurred, not before.",
+      "revId": "b377058112567be43b12ee0d792488b90b69b73d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5b54426_186420ae",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-13T16:35:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83dd5bfe_98634ecc",
       "revId": "b377058112567be43b12ee0d792488b90b69b73d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
