@@ -16,6 +16,24 @@
       "message": "maybe we should have setVolumeGroup in test app which would call .setVolume(group_id) by reflection, and setVolumeOffset used as separate control?",
       "revId": "aa16de85e6c3bac973929da03fc87676c2d9e52a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbbc7d89_199c5a34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-06-13T10:38:09Z",
+      "side": 1,
+      "message": "With the VCP only without LE audio case, group id is invalid, and we need to know the device address to set the absolute volume. I need the information from LeAudioTestApp.",
+      "parentUuid": "6e4c1b20_0520fcf8",
+      "revId": "aa16de85e6c3bac973929da03fc87676c2d9e52a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
