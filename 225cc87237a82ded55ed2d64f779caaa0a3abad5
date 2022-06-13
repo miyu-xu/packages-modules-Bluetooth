@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f920be_800493f6",
+        "filename": "tools/pdl/test/generated/packet_decl_empty.rs",
+        "patchSetId": 34
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-13T18:35:04Z",
+      "side": 1,
+      "message": "This will generate clippy warnings I think, maybe make a special case for empty packetsm or generate an #[allow] directive ?",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "225cc87237a82ded55ed2d64f779caaa0a3abad5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8853a4d_3656a296",
+        "filename": "tools/pdl/test/pdl_tests.rs",
+        "patchSetId": 34
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-13T18:35:04Z",
+      "side": 1,
+      "message": "There will be a bunch of those, so it might be useful to introduce a simple \nmacro to generate the pattern:\n```\nlet pdl_code \u003d r#\"\u003ccode\u003e\";\nlet new_rust \u003d rustfmt(\u0026pdl(pdl_code));\nlet old_rust \u003d rustfmt(\u0026bluetooth_packetgen(pdl_code));\nassert_eq_with_diff(\u0026strip_blank_lines(\u0026new_rust), \u0026strip_blank_lines(\u0026old_rust));\n```\nAdditionally, I would compare the output post-formatting with rustfmt, rather than the raw output. Stripping the empty lines is still required though.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 86
+      },
+      "revId": "225cc87237a82ded55ed2d64f779caaa0a3abad5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
