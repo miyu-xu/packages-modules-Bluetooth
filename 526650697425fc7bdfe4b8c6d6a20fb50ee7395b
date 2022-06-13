@@ -16,6 +16,52 @@
       "message": "Failing build not related to changes. Retrying",
       "revId": "526650697425fc7bdfe4b8c6d6a20fb50ee7395b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "240197f5_4160a987",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-13T22:22:44Z",
+      "side": 1,
+      "message": "produces warning of unused parameter. Suggest `_prop` if really unused or use it in the function body if this was missing usage.",
+      "range": {
+        "startLine": 104,
+        "startChar": 42,
+        "endLine": 104,
+        "endChar": 46
+      },
+      "revId": "526650697425fc7bdfe4b8c6d6a20fb50ee7395b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02619d29_6cd78f32",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-13T22:22:44Z",
+      "side": 1,
+      "message": "This doesn\u0027t compile because `prop` moved in line 685. Perhaps explicitly use `prop.clone()` above?",
+      "range": {
+        "startLine": 688,
+        "startChar": 53,
+        "endLine": 688,
+        "endChar": 57
+      },
+      "revId": "526650697425fc7bdfe4b8c6d6a20fb50ee7395b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
