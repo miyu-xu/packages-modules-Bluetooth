@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4501306_285dfed8",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-13T22:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a01bc4a6_f0750c31",
+      "revId": "e5bfaf6ce6606148420af05f5c4fea315ac0aec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42398999_c647d398",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-05-31T21:56:35Z",
       "side": 1,
       "message": "the trait bound `\u003cT as DBusArg\u003e::DBusType: RefArg` is not satisfied",
+      "revId": "e5bfaf6ce6606148420af05f5c4fea315ac0aec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "849f6e2f_54c88c26",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-13T22:04:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42398999_c647d398",
       "revId": "e5bfaf6ce6606148420af05f5c4fea315ac0aec7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
