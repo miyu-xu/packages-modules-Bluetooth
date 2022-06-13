@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e4c1b20_0520fcf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-13T10:09:12Z",
+      "side": 1,
+      "message": "maybe we should have setVolumeGroup in test app which would call .setVolume(group_id) by reflection, and setVolumeOffset used as separate control?",
+      "revId": "aa16de85e6c3bac973929da03fc87676c2d9e52a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
