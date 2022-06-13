@@ -88,6 +88,24 @@
       "parentUuid": "4f994af7_1a762a4e",
       "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eda2e79b_ee9457c2",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-13T22:46:15Z",
+      "side": 1,
+      "message": "With `conn.set_signal_match_mode(true)`, we should actually always return `true` and never returns `false`, because each signal handler always gets a chance to process a signal that it registers. Since we use it this way I think that the value of using the Enum is not apparent anymore? If this is to make the code more readable, should we instead add a comment somewhere to always return true?\n\nIf you still think it\u0027s more readable to use an enum, `true` should be `Stop` and `false` should be called `Continue` (but again `Continue` does not really make sense here because the signal is not shared among multiple handlers, so there is nothing to \"continue\").",
+      "parentUuid": "d5352c10_cf56ac39",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
