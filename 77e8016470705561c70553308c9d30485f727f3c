@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac84ae28_7b63838b",
+        "filename": "tools/pdl/script/pdl.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-13T10:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf22f7a8_b8602beb",
+      "range": {
+        "startLine": 17,
+        "startChar": 32,
+        "endLine": 17,
+        "endChar": 36
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a64975c2_556c0704",
+        "filename": "tools/pdl/script/pdl.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-13T10:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10b0cade_2231d39f",
+      "range": {
+        "startLine": 17,
+        "startChar": 15,
+        "endLine": 17,
+        "endChar": 21
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44a9cf72_43aba253",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-06-03T14:06:02Z",
       "side": 1,
       "message": "matches",
+      "range": {
+        "startLine": 29,
+        "startChar": 24,
+        "endLine": 29,
+        "endChar": 29
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fa4351a_d435ca14",
+        "filename": "tools/pdl/script/pdl.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-13T10:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44a9cf72_43aba253",
       "range": {
         "startLine": 29,
         "startChar": 24,
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f09fed03_3ae513a8",
+        "filename": "tools/pdl/script/pdl.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-13T10:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aca78eb4_8efe2c6f",
+      "range": {
+        "startLine": 143,
+        "startChar": 32,
+        "endLine": 143,
+        "endChar": 36
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eaa60ad8_fcb1f8e6",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-06-03T14:06:02Z",
       "side": 1,
       "message": "outputs the same json as the rust pdl implementation, minus some keys",
+      "range": {
+        "startLine": 14,
+        "startChar": 18,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "762cb8b2_d595f120",
+        "filename": "tools/pdl/script/pdl_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-13T10:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaa60ad8_fcb1f8e6",
       "range": {
         "startLine": 14,
         "startChar": 18,
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "13aa120d_72959f9b",
+        "filename": "tools/pdl/script/pdl_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-13T10:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fe69636_588a6b17",
+      "range": {
+        "startLine": 44,
+        "startChar": 29,
+        "endLine": 44,
+        "endChar": 35
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0eee98f7_8f6395f4",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-06-10T08:25:53Z",
       "side": 1,
       "message": "You typically don\u0027t have to call the `assertXXXEqual` methods yourself, calling `assertEqual` is enough and it will call the more specialized method for you.",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 36
+      },
+      "revId": "77e8016470705561c70553308c9d30485f727f3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8edc8abf_e350bc86",
+        "filename": "tools/pdl/script/pdl_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-13T10:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0eee98f7_8f6395f4",
       "range": {
         "startLine": 74,
         "startChar": 21,
