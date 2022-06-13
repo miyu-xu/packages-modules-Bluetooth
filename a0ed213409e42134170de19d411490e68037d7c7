@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d102f380_b6705f48",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 743,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-06-13T10:15:05Z",
+      "side": 1,
+      "message": "ASEs are set to active after scenario is selected (https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/devices.cc;drc\u003dbe4b9e52a7251a003e584fde636be4ed00ff65d8;l\u003d1006) Means that all active ASEs should participate in signalling set up.\n\nThis is just happening at very beginning of streaming stage. Setting to inactive happens when ASE goes to non streaming state or removed node.\n\nRemoving data path is a part of releasment part of ASE - I would not expect here to have false active ASEs, or we have a bug that we have a pair of bi-directional CIS and one of ASEs have the same \u003d not cleared CIS connection handle.\n\nDo we have logs for that - seems to be interesting case.",
+      "parentUuid": "a0c60098_3f611784",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "19bf5847_bc3dbb59",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90c5d88d_491ec71e",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-06-13T10:15:05Z",
+      "side": 1,
+      "message": "As I wrote in previous comment. This may be bug of not clearing in inactive ASE connection handle that would match a pair of bi-directional ASEs.",
+      "parentUuid": "19bf5847_bc3dbb59",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4ea38f3_42f50a82",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
@@ -48,6 +84,24 @@
       "writtenOn": "2022-06-09T12:54:23Z",
       "side": 1,
       "message": "Need to check ASE is active or not\n\n`ases_pair.source \u0026\u0026 ases_pair.sink-\u003esource`",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9ea5e46_62f0fcfb",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-06-13T10:15:05Z",
+      "side": 1,
+      "message": "As I wrote in previous comment. This may be bug of not clearing in inactive ASE connection handle that would match a pair of bi-directional ASEs.",
+      "parentUuid": "f4ea38f3_42f50a82",
       "revId": "a0ed213409e42134170de19d411490e68037d7c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
