@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac78689_006f3658",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-13T08:36:55Z",
+      "side": 1,
+      "message": "Let\u0027s merge this CL first. I\u0027ll rebase this CL.",
+      "revId": "a876f064cd9e53ca1c585945ee933e0728d4d401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
