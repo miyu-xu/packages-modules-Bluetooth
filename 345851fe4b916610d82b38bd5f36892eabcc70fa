@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc07570_4e577d3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-13T21:11:32Z",
+      "side": 1,
+      "message": "As discussed offline: It\u0027s okay to use this approach for now. In the long-term I would like to refactor this so that the caller of insert does not need to know about the mixin structure at all.",
+      "revId": "345851fe4b916610d82b38bd5f36892eabcc70fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
