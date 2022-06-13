@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be32ba8_094c6421",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-13T12:25:33Z",
+      "side": 1,
+      "message": "Hey Ivan, this change was prompted by your great questions in our chat 😊 We don\u0027t need to care about the `rustfmt` configuration if we simply format both the new and the existing code.",
+      "revId": "5c22776fe57a85b012fa7eea6e102c01da7a28b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
