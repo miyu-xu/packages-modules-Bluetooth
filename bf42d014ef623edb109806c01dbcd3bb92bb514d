@@ -70,6 +70,24 @@
       "parentUuid": "d9a3f3f2_c3ca1159",
       "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5352c10_cf56ac39",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-13T22:40:13Z",
+      "side": 1,
+      "message": "Yes. Use the enum and do `.into()` to return.",
+      "parentUuid": "4f994af7_1a762a4e",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
