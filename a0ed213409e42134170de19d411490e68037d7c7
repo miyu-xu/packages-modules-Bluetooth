@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ea4d515_c54bc1c6",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 964,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-06-13T12:23:27Z",
+      "side": 1,
+      "message": "Refer to aosp/2096477, we check whether the ASE is active or not in the create CIG event.\nCould you please check again whether we need to check the ASE is active or not for the create CIG command?",
+      "parentUuid": "56baa763_73c4523e",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4ea38f3_42f50a82",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 1
