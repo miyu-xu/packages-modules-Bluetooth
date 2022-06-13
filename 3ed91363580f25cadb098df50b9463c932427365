@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7136d46f_951faf5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-13T09:53:44Z",
+      "side": 1,
+      "message": "I used similar on UPF, when other side wanted to test MCS  but had no other LeAudio services",
+      "revId": "3ed91363580f25cadb098df50b9463c932427365",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
