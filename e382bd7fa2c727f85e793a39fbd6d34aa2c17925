@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cefa9ed4_f33eda62",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-14T11:42:10Z",
+      "side": 1,
+      "message": "Q) It seems codecConfigLength is checked before codecConfigInfo is accessed (here and others).\nWhere does the NPE happen?",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 13
+      },
+      "revId": "e382bd7fa2c727f85e793a39fbd6d34aa2c17925",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
