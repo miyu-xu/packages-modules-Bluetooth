@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99764213_4e8589b3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:15:35Z",
+      "side": 1,
+      "message": "note for later: This entire trait needs documentation. When you get a chance, please send up a CL with full docstrings.",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597863b6_f5e2d7e9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:15:35Z",
+      "side": 1,
+      "message": "nit: All these `device: String` should probably be `address: String` to be clearer. Please address this line in the current CL -- you can fix the others in another CL.",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6134c0fb_cb5a2dc9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:15:35Z",
+      "side": 1,
+      "message": "Does it make sense to set avrcp volume but not hfp volume if address is invalid. I feel like you should set both or neither.\n\ni.e.\n\n```\nlet addr \u003d match RawAddress::from_string(device.clone()) {\n  Some(v) \u003d\u003e v,\n  None \u003d\u003e {\n    warn!(\"Invalid device string {}\", device);\n    return;\n  }\n};\n\n\nif let Ok(val) \u003d i8::try_from(volume) {\n  self.hfp.as_mut().unwrap().set_volume(val, addr);\n  self.avrcp.as_mut().unwrap().set_volume(val);\n}\n```",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "739a9e2c_0dae7f9f",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:15:35Z",
+      "side": 1,
+      "message": "It seems like these params would still be unused afterwards (the content here is empty)... is this intentional?",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
