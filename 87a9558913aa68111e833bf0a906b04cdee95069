@@ -22,6 +22,30 @@
       },
       "revId": "87a9558913aa68111e833bf0a906b04cdee95069",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f947678c_720e1aa4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-06-14T14:24:29Z",
+      "side": 1,
+      "message": "There are calls to `hasPendingSourceOperation()` in `addSource()` and `modifySource()`, and `hasPendingSourceOperation()` checks `mPendingMetadata`",
+      "parentUuid": "37d0dd2b_8d198f3a",
+      "range": {
+        "startLine": 1676,
+        "startChar": 12,
+        "endLine": 1676,
+        "endChar": 36
+      },
+      "revId": "87a9558913aa68111e833bf0a906b04cdee95069",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
