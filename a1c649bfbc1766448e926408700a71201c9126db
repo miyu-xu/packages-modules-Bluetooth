@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec7282b4_69cd7907",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "Several nits -- we\u0027re getting close to state where it\u0027s ok to check-in. Overall LGTM.",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c83e004e_dcaaac7b",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "nit: ReplaceSemiColonWithSpace and ReplaceSpaceWithSemiColon",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31fb8616_4982a8c3",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "nit: forgot to close the addr`",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8363484c_63ac1725",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "How long is this line? I have my gerrit set to 120 line width but this line wrapped. Can you try running rustfmt on this file to see if it fixes it? Otherwise, you may want to split up the strings so that it\u0027s formatted better (hard to read otherwise).",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533f710a_b788f556",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "nit: You may want to add an example of what the expanded path looks like in the comment. The glob format isn\u0027t too clear.",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adfdd5ea_362c6af6",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "nit: rename to `info_path` and put the `hid_path` declaration right below.",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5577ca3_fc2c5549",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "nit: Lets either use enums here or do something like /*is_hid_file\u003d*/false (same as chrome browser code)",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fc8e78b_dad770a8",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "So conversion to and from LE_KEY_PENC should probably be its own struct with TryFrom/TryInto on it. You can just move this implementation into it.\n\nIt\u0027ll make this easier to test later via unit-tests too.\n\ni.e.\n\n```\nstruct LtkInfo {\n  rand: u64,\n  ediv: u16,\n  auth: u8,\n  len: u8,\n  key: u32,\n}\n\nimpl TryFrom\u003cString\u003e for LtkInfo {...}\nimpl TryInto\u003cString\u003e for LtkInfo {...}\n\n```",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8781f7_adf81360",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T23:47:55Z",
+      "side": 1,
+      "message": "nit: Would unwrap_or_default() work here? I\u0027d like to avoid `return` (prefer returns are used for guard statements at the top and then avoided for rest of func).\n\nFYI, you may also be able to use std::default::Default() in place of return if you want a default constructed object to return (i.e. an empty Path iterator)",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
