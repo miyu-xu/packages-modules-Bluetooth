@@ -16,6 +16,24 @@
       "message": "Shall we use string added in resources/ for internationalization?",
       "revId": "024e5c2323ffd13e9dede55721b7ed981c5175f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d20f629c_a8941247",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/LeAudioRecycleViewAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-06-14T01:02:59Z",
+      "side": 1,
+      "message": "Resolved offline",
+      "parentUuid": "899907e0_96d8c9d9",
+      "revId": "024e5c2323ffd13e9dede55721b7ed981c5175f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
