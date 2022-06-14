@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97ff8838_e19ffaf3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-14T11:07:47Z",
+      "side": 1,
+      "message": "Is this profile intentional connecting in other way than all others?\n\nAll the services connects in the PhonePolicy.java  - and there is check for the UUID support.",
+      "revId": "724ac3f14515c123c107a456b3aaabe668e3cb9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
