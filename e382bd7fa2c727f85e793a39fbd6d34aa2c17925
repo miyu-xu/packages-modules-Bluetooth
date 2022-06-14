@@ -22,6 +22,30 @@
       },
       "revId": "e382bd7fa2c727f85e793a39fbd6d34aa2c17925",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30d4898a_8be91b9f",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BaseData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-06-14T14:46:28Z",
+      "side": 1,
+      "message": "getBroadcastMetadataFromBaseData() uses them in BluetoothLeBroadcastChannel.Builder.setCodecMetadata() and BluetoothLeBroadcastSubgroup.Builder.setContentMetadata(), which both check for NonNull parameters. But when the announcement is missing any of these fields at any BASE level, there will be no buffer allocation done in the parsing routines BaseData.parseLevelXYZ(). BaseInformation has them still set to null which throws an exception when BluetoothLeBroadcastChannel and BluetoothLeBroadcastSubgroup builders are used when building BluetoothLeBroadcastMetadata.\n\nNext time I\u0027ll paste the exception in the commit message. Sorry.",
+      "parentUuid": "cefa9ed4_f33eda62",
+      "range": {
+        "startLine": 143,
+        "startChar": 12,
+        "endLine": 145,
+        "endChar": 13
+      },
+      "revId": "e382bd7fa2c727f85e793a39fbd6d34aa2c17925",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
