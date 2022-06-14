@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53ac9517_117a47c8",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-14T11:02:22Z",
+      "side": 1,
+      "message": "In general, we should register for notification before reading the value to avoid missing possible value update between read and subscription for notification.",
+      "revId": "e14fcef83170b572ff7b5532549a822c0125ffe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
