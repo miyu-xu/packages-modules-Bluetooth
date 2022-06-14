@@ -666,6 +666,14 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         static_cast<OwnAddressType>(le_address_manager_->GetCurrentAddress().GetAddressType());
     uint16_t conn_interval_min = 0x0018;
     uint16_t conn_interval_max = 0x0030;
+    if (bluetooth::common::InitFlags::IsPtsModeEnabled()) {
+      /* This means we are in PTS mode. Due to PTS controller issue it is better
+       * to use some high connection interval: like 200ms.
+       */
+      conn_interval_min = 0x0140;
+      conn_interval_max = 0x0140;
+    }
+
     uint16_t conn_latency = 0x0000;
     uint16_t supervision_timeout = 0x001f4;
     ASSERT(check_connection_parameters(conn_interval_min, conn_interval_max, conn_latency, supervision_timeout));
