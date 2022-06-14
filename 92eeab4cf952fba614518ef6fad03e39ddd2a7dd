@@ -34,6 +34,24 @@
       "parentUuid": "f538c183_9dec5efa",
       "revId": "92eeab4cf952fba614518ef6fad03e39ddd2a7dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7339553_b261f76a",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-14T06:28:00Z",
+      "side": 0,
+      "message": "Yes that would work. Thanks!",
+      "parentUuid": "f17eac86_7fa99fbd",
+      "revId": "92eeab4cf952fba614518ef6fad03e39ddd2a7dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
