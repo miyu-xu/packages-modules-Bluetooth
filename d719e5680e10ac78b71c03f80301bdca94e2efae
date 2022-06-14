@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ca2cd2a_9d1a64da",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T21:01:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec12c87a_f53a6ba5",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 1
+      },
+      "revId": "d719e5680e10ac78b71c03f80301bdca94e2efae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cac60af_0efec6a1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-13T21:48:32Z",
       "side": 1,
       "message": "we already have the more generic `impl\u003cT: \u0027static + RefArgToRust\u003cRustType \u003d T\u003e\u003e RefArgToRust for Vec\u003cT\u003e`. Would it work if we just call the specialized version of this template i.e. the one-liner `\u003cVec\u003cu8\u003e as RefArgToRust\u003e::ref_arg_to_rust(arg, name)`? Prefer to reuse if it works.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 9
+      },
+      "revId": "d719e5680e10ac78b71c03f80301bdca94e2efae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6768841a_d1586bb4",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-14T21:01:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cac60af_0efec6a1",
       "range": {
         "startLine": 60,
         "startChar": 0,
