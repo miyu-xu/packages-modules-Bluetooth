@@ -1368,6 +1368,16 @@ static bool btif_is_interesting_le_service(bluetooth::Uuid uuid) {
           uuid == UUID_BATTERY);
 }
 
+static bool btif_contains_uuid(bluetooth::Uuid* uuids, int length,
+                               bluetooth::Uuid uuid) {
+  for (int i = 0; i < length; i++) {
+    if (uuids[i] == uuid) {
+      return true;
+    }
+  }
+  return false;
+}
+
 /*******************************************************************************
  *
  * Function         btif_dm_search_services_evt
@@ -1407,17 +1417,43 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       if ((p_data->disc_res.result == BTA_SUCCESS) &&
           (p_data->disc_res.num_uuids > 0)) {
         LOG_INFO("New UUIDs:");
+        int num_uuids = 0;
         for (i = 0; i < p_data->disc_res.num_uuids; i++) {
           auto uuid = p_data->disc_res.p_uuid_list + i;
           LOG_INFO("index:%d uuid:%s", i, uuid->ToString().c_str());
           auto valAsBe = uuid->To128BitBE();
-          pairing_cb.uuids.insert(valAsBe);
+          property_value.insert(property_value.end(), valAsBe.begin(),
+                                valAsBe.end());
+          num_uuids++;
         }
-        for (auto uuid : pairing_cb.uuids) {
-          property_value.insert(property_value.end(), uuid.begin(), uuid.end());
+        bt_property_t tmp_prop;
+        Uuid remote_uuids[BT_MAX_NUM_UUIDS];
+        BTIF_STORAGE_FILL_PROPERTY(&tmp_prop, BT_PROPERTY_UUIDS,
+                                   sizeof(remote_uuids), remote_uuids);
+
+        btif_storage_get_remote_device_property(&(p_data->disc_res.bd_addr),
+                                                &tmp_prop);
+
+        for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
+          Uuid uuid = remote_uuids[i];
+          if (uuid.IsEmpty()) {
+            continue;
+          }
+          if (btif_is_interesting_le_service(uuid)) {
+            uint8_t* uuidsPointer = &property_value[0];
+            if (!btif_contains_uuid((bluetooth::Uuid*)uuidsPointer, num_uuids,
+                                    uuid)) {
+              LOG_INFO("interesting le service %s insert",
+                       uuid.ToString().c_str());
+              auto valAsBe = uuid.To128BitBE();
+              property_value.insert(property_value.end(), valAsBe.begin(),
+                                    valAsBe.end());
+              num_uuids++;
+            }
+          }
         }
         prop.val = (void*)property_value.data();
-        prop.len = Uuid::kNumBytes128 * pairing_cb.uuids.size();
+        prop.len = Uuid::kNumBytes128 * num_uuids;
       }
 
       /* onUuidChanged requires getBondedDevices to be populated.
@@ -1477,23 +1513,51 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       bt_property_t prop[2];
       std::vector<uint8_t> property_value;
       int num_uuids = 0;
+      bool interesting_le_services_exist = false;
+
+      LOG_INFO("New BLE UUIDs:");
+      bt_property_t tmp_prop;
+      Uuid remote_uuids[BT_MAX_NUM_UUIDS];
+      BTIF_STORAGE_FILL_PROPERTY(&tmp_prop, BT_PROPERTY_UUIDS,
+                                 sizeof(remote_uuids), remote_uuids);
+      btif_storage_get_remote_device_property(&(p_data->disc_ble_res.bd_addr),
+                                              &tmp_prop);
 
       LOG_INFO("New BLE UUIDs:");
       for (Uuid uuid : *p_data->disc_ble_res.services) {
-        LOG_INFO("index:%d uuid:%s", num_uuids, uuid.ToString().c_str());
         if (btif_is_interesting_le_service(uuid)) {
-          num_uuids++;
-          auto valAsBe = uuid.To128BitBE();
-          pairing_cb.uuids.insert(valAsBe);
+          interesting_le_services_exist = true;
+          if (!btif_contains_uuid(remote_uuids, BT_MAX_NUM_UUIDS, uuid)) {
+            LOG_INFO("index:%d uuid:%s", num_uuids, uuid.ToString().c_str());
+            auto valAsBe = uuid.To128BitBE();
+            property_value.insert(property_value.end(), valAsBe.begin(),
+                                  valAsBe.end());
+            num_uuids++;
+          }
         }
       }
       for (auto uuid : pairing_cb.uuids) {
         property_value.insert(property_value.end(), uuid.begin(), uuid.end());
       }
 
-      if (num_uuids == 0) {
+      if (!interesting_le_services_exist) {
         LOG_INFO("No well known BLE services discovered");
         return;
+      }
+
+      for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
+        Uuid uuid = remote_uuids[i];
+        if (uuid.IsEmpty()) {
+          continue;
+        }
+        uint8_t* uuidsPointer = &property_value[0];
+        if (!btif_contains_uuid((bluetooth::Uuid*)uuidsPointer, num_uuids,
+                                uuid)) {
+          auto valAsBe = uuid.To128BitBE();
+          property_value.insert(property_value.end(), valAsBe.begin(),
+                                valAsBe.end());
+          num_uuids++;
+        }
       }
 
       RawAddress& bd_addr = p_data->disc_ble_res.bd_addr;
