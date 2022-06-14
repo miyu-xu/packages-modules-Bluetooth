@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a85b7aa3_2e656f03",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1217,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-14T11:58:02Z",
+      "side": 1,
+      "message": "There are still usages of reverseBytes(). How can we remove the method?",
+      "range": {
+        "startLine": 1217,
+        "startChar": 0,
+        "endLine": 1217,
+        "endChar": 54
+      },
+      "revId": "fd9460171ab6db1fb0512a83d526e6928c6480d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
