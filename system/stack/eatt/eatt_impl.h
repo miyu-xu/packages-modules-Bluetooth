@@ -150,6 +150,7 @@ struct eatt_impl {
       eatt_dev->eatt_channels.insert({cid, chan});
 
       chan->EattChannelSetState(EattChannelState::EATT_CHANNEL_OPENED);
+      chan->EattChannelSetTxMTU(peer_mtu);
       eatt_dev->eatt_tcb_->eatt++;
 
       LOG(INFO) << __func__ << " Channel connected CID " << loghex(cid);
