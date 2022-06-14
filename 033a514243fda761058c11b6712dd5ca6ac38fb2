@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bfb2233_1c651145",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1602,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-06-14T21:42:03Z",
+      "side": 1,
+      "message": "nit: rebindCount\n\nor maybe rebindTtl to borrow the time to live concept from ip networking?",
+      "range": {
+        "startLine": 1602,
+        "startChar": 40,
+        "endLine": 1602,
+        "endChar": 49
+      },
+      "revId": "033a514243fda761058c11b6712dd5ca6ac38fb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
