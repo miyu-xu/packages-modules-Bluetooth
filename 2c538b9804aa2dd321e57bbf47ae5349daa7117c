@@ -507,6 +507,24 @@
       "parentUuid": "b2d91981_71402bf3",
       "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d467e4f4_12d95534",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-14T19:37:48Z",
+      "side": 1,
+      "message": "Okay to be a follow up.",
+      "parentUuid": "d9c1aa42_fe0e38d9",
+      "revId": "2c538b9804aa2dd321e57bbf47ae5349daa7117c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
