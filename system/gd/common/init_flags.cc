@@ -28,6 +28,7 @@ namespace bluetooth {
 namespace common {
 
 bool InitFlags::logging_debug_enabled_for_all = false;
+bool InitFlags::pts_mode_enabled = false;
 int InitFlags::hci_adapter = 0;
 std::unordered_map<std::string, bool> InitFlags::logging_debug_explicit_tag_settings = {};
 
@@ -70,6 +71,7 @@ void InitFlags::Load(const char** flags) {
     // Parse adapter index (defaults to 0)
     ParseIntFlag(flag_pair, "--hci", &hci_adapter);
 
+    ParseBoolFlag(flag_pair, "INIT_pts_mode_enabled", &pts_mode_enabled);
     ParseBoolFlag(flag_pair, "INIT_logging_debug_enabled_for_all", &logging_debug_enabled_for_all);
     if ("INIT_logging_debug_enabled_for_tags" == flag_pair[0]) {
       auto tags = StringSplit(flag_pair[1], ",");
