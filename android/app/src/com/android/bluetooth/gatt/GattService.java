@@ -447,7 +447,7 @@ public class GattService extends ProfileService {
     // Suppressed because we are conditionally enforcing
     @SuppressLint("AndroidFrameworkRequiresPermission")
     private void permissionCheck(int connId, int handle) {
-        if (!isHandleRestricted(connId, handle)) {
+        if (!isHandleRestricted(connId, handle) || Utils.isPtsTestMode()) {
             return;
         }
         enforceBluetoothPrivilegedPermission(this);
