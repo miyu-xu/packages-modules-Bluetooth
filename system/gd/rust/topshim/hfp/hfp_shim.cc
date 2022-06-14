@@ -68,11 +68,6 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
     switch (state) {
       case headset::bthf_audio_state_t::BTHF_AUDIO_STATE_CONNECTED:
         SetCallStatus(1, bd_addr);
-        // This triggers a +VGS command to set the speaker volume for HFP
-        // devices.
-        // TODO(b/215089433): Add a set volume API and have client to handle the
-        // set volume when start.
-        headset_->VolumeControl(headset::bthf_volume_type_t::BTHF_VOLUME_TYPE_SPK, 5, bd_addr);
         return;
       case headset::bthf_audio_state_t::BTHF_AUDIO_STATE_DISCONNECTED:
         SetCallStatus(0, bd_addr);
@@ -89,10 +84,7 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
 
   void HangupCallCallback([[maybe_unused]] RawAddress* bd_addr) override {}
 
-  void VolumeControlCallback(
-      [[maybe_unused]] headset::bthf_volume_type_t type,
-      [[maybe_unused]] int volume,
-      [[maybe_unused]] RawAddress* bd_addr) override {}
+  void VolumeControlCallback(headset::bthf_volume_type_t type, int volume, RawAddress* bd_addr) override {}
 
   void DialCallCallback([[maybe_unused]] char* number, [[maybe_unused]] RawAddress* bd_addr) override {}
 
@@ -217,6 +209,11 @@ int HfpIntf::connect(RustRawAddress bt_addr) {
 int HfpIntf::connect_audio(RustRawAddress bt_addr) {
   RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
   return intf_->ConnectAudio(&addr);
+}
+
+int HfpIntf::set_volume(int8_t volume, RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+  return intf_->VolumeControl(headset::bthf_volume_type_t::BTHF_VOLUME_TYPE_SPK, volume, &addr);
 }
 
 int HfpIntf::disconnect(RustRawAddress bt_addr) {

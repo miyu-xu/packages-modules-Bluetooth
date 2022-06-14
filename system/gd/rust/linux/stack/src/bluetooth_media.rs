@@ -48,7 +48,7 @@ pub trait IBluetoothMedia {
         bits_per_sample: i32,
         channel_mode: i32,
     ) -> bool;
-    fn set_volume(&mut self, volume: i32);
+    fn set_volume(&mut self, volume: i32, device: String);
     fn start_audio_request(&mut self);
     fn stop_audio_request(&mut self);
     fn get_presentation_position(&mut self) -> PresentationPosition;
@@ -527,9 +527,16 @@ impl IBluetoothMedia for BluetoothMedia {
         true
     }
 
-    fn set_volume(&mut self, volume: i32) {
+    fn set_volume(&mut self, volume: i32, device: String) {
         match i8::try_from(volume) {
-            Ok(val) => self.avrcp.as_mut().unwrap().set_volume(val),
+            Ok(val) => {
+                if let Some(addr) = RawAddress::from_string(device.clone()) {
+                    self.hfp.as_mut().unwrap().set_volume(val, addr);
+                } else {
+                    warn!("Invalid device string {}", device);
+                }
+                self.avrcp.as_mut().unwrap().set_volume(val);
+            }
             _ => (),
         };
     }
