@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c34ca5d4_4c981b19",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-15T23:22:04Z",
+      "side": 1,
+      "message": "You should document that volume must be 0-127 for set_volume and 0-15 for set_hfp_volume",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a6a2ce5_9843c353",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-15T23:22:04Z",
+      "side": 1,
+      "message": "If volume is limited to i8, you should probably expect i8 in the api:\n\n```\nfn set_volume(\u0026mut self, volume: i8)\n```",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9193577_daeb6d05",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-15T23:22:04Z",
+      "side": 1,
+      "message": "Check that 0 \u003c\u003d val \u003c\u003d 127.\n\nThis may work:\n```\nmatch ... {\n  Ok(val) if val \u003e\u003d 0 \u0026\u0026 val \u003c\u003d 127 \u003d\u003e {...}\n}\n```",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21bbc665_cb0db39e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-15T23:22:04Z",
+      "side": 1,
+      "message": "ditto about `volume: i8`",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
