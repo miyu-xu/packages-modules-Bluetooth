@@ -16,7 +16,6 @@
 
 #pragma once
 
-#include <chrono>
 #include <cstdint>
 #include <fstream>
 
@@ -32,8 +31,7 @@ enum class PacketDirection : uint8_t {
 
 class HciSniffer : public HciTransport {
  public:
-  HciSniffer(std::shared_ptr<HciTransport> transport)
-      : transport_(transport), start_(std::chrono::steady_clock::now()) {}
+  HciSniffer(std::shared_ptr<HciTransport> transport) : transport_(transport) {}
   ~HciSniffer() = default;
 
   static std::shared_ptr<HciTransport> Create(
@@ -67,7 +65,6 @@ class HciSniffer : public HciTransport {
 
   std::ofstream output_;
   std::shared_ptr<HciTransport> transport_;
-  std::chrono::time_point<std::chrono::steady_clock> start_;
 };
 
 }  // namespace rootcanal
