@@ -39,9 +39,9 @@ pub trait IBluetoothMedia {
     /// clean up media stack
     fn cleanup(&mut self) -> bool;
 
-    fn connect(&mut self, device: String);
-    fn set_active_device(&mut self, device: String);
-    fn disconnect(&mut self, device: String);
+    fn connect(&mut self, address: String);
+    fn set_active_device(&mut self, address: String);
+    fn disconnect(&mut self, address: String);
     fn set_audio_config(
         &mut self,
         sample_rate: i32,
@@ -54,8 +54,8 @@ pub trait IBluetoothMedia {
     fn stop_audio_request(&mut self);
     fn get_presentation_position(&mut self) -> PresentationPosition;
 
-    fn start_sco_call(&mut self, device: String);
-    fn stop_sco_call(&mut self, device: String);
+    fn start_sco_call(&mut self, address: String);
+    fn stop_sco_call(&mut self, address: String);
 }
 
 pub trait IBluetoothMediaCallback {
@@ -482,7 +482,7 @@ impl IBluetoothMedia for BluetoothMedia {
         true
     }
 
-    fn connect(&mut self, device: String) {
+    fn connect(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(device.clone()) {
             self.a2dp.as_mut().unwrap().connect(addr);
             self.hfp.as_mut().unwrap().connect(addr);
@@ -495,7 +495,7 @@ impl IBluetoothMedia for BluetoothMedia {
         true
     }
 
-    fn set_active_device(&mut self, device: String) {
+    fn set_active_device(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(device.clone()) {
             self.a2dp.as_mut().unwrap().set_active_device(addr);
         } else {
@@ -503,7 +503,7 @@ impl IBluetoothMedia for BluetoothMedia {
         }
     }
 
-    fn disconnect(&mut self, device: String) {
+    fn disconnect(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(device.clone()) {
             self.a2dp.as_mut().unwrap().disconnect(addr);
             self.hfp.as_mut().unwrap().disconnect(addr);
@@ -567,7 +567,7 @@ impl IBluetoothMedia for BluetoothMedia {
         self.a2dp.as_mut().unwrap().stop_audio_request();
     }
 
-    fn start_sco_call(&mut self, device: String) {
+    fn start_sco_call(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(device.clone()) {
             info!("Start sco call for {}", device);
             match self.hfp.as_mut().unwrap().connect_audio(addr) {
@@ -583,7 +583,7 @@ impl IBluetoothMedia for BluetoothMedia {
         }
     }
 
-    fn stop_sco_call(&mut self, device: String) {
+    fn stop_sco_call(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(device.clone()) {
             info!("Stop sco call for {}", device);
             self.hfp.as_mut().unwrap().disconnect_audio(addr);
