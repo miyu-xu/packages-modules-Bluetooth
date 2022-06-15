@@ -30,12 +30,6 @@ use bt_topshim::{
     },
 };
 
-#[derive(Clone, Debug)]
-pub enum BluetoothCallbackType {
-    Adapter,
-    Connection,
-}
-
 /// Message types that are sent to the stack main dispatch loop.
 pub enum Message {
     // Callbacks from libbluetooth
@@ -50,9 +44,11 @@ pub enum Message {
 
     // Actions within the stack
     Media(MediaActions),
+    MediaCallbackDisconnected(u32),
 
     // Client callback disconnections
-    BluetoothCallbackDisconnected(u32, BluetoothCallbackType),
+    AdapterCallbackDisconnected(u32),
+    ConnectionCallbackDisconnected(u32),
 
     // Update list of found devices and remove old instances.
     DeviceFreshnessCheck,
@@ -129,8 +125,16 @@ impl Stack {
                     bluetooth_media.lock().unwrap().dispatch_media_actions(action);
                 }
 
-                Message::BluetoothCallbackDisconnected(id, cb_type) => {
-                    bluetooth.lock().unwrap().callback_disconnected(id, cb_type);
+                Message::MediaCallbackDisconnected(cb_id) => {
+                    bluetooth_media.lock().unwrap().remove_callback(cb_id);
+                }
+
+                Message::AdapterCallbackDisconnected(id) => {
+                    bluetooth.lock().unwrap().adapter_callback_disconnected(id);
+                }
+
+                Message::ConnectionCallbackDisconnected(id) => {
+                    bluetooth.lock().unwrap().connection_callback_disconnected(id);
                 }
 
                 Message::DeviceFreshnessCheck => {
