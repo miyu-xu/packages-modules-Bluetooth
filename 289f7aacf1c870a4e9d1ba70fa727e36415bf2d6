@@ -70,6 +70,24 @@
       "parentUuid": "eb2f1c28_d2775626",
       "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a857ded8_5eb08d5b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-15T23:09:49Z",
+      "side": 1,
+      "message": "fyi, after aosp/2093867, you should be able to remove this #elif TARGET_FLOSS and modify `system/gd/os/linux/system_properties.cc` with:\n```\nstd::unordered_map\u003cstd::string, std::string\u003e properties \u003d {\n  // ... any previous entries\n  {\"bluetooth.core.gap.le.privacy.enabled\", \"false\"},\n};\n```",
+      "parentUuid": "b38cb4d1_a8aca385",
+      "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
