@@ -16,6 +16,24 @@
       "message": "Is this profile intentional connecting in other way than all others?\n\nAll the services connects in the PhonePolicy.java  - and there is check for the UUID support.",
       "revId": "724ac3f14515c123c107a456b3aaabe668e3cb9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ead797de_5104bdbf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-15T12:10:52Z",
+      "side": 1,
+      "message": "It is intentional and it\u0027s useful for HID devices using HOGP.",
+      "parentUuid": "97ff8838_e19ffaf3",
+      "revId": "724ac3f14515c123c107a456b3aaabe668e3cb9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
