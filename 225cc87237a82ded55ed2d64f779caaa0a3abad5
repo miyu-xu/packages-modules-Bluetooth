@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcc232ba_cdaaeaa1",
+        "filename": "tools/pdl/test/generated/packet_decl_empty.rs",
+        "patchSetId": 34
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-15T13:30:19Z",
+      "side": 1,
+      "message": "Yeah, it seems this is how the old compiler generates the code. I will like to keep it for now so I can do a direct comparison with the old compiler.",
+      "parentUuid": "e0c19ff8_a188ea8d",
+      "range": {
+        "startLine": 14,
+        "startChar": 8,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "225cc87237a82ded55ed2d64f779caaa0a3abad5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c8853a4d_3656a296",
@@ -61,6 +85,30 @@
       "writtenOn": "2022-06-13T18:35:04Z",
       "side": 1,
       "message": "There will be a bunch of those, so it might be useful to introduce a simple \nmacro to generate the pattern:\n```\nlet pdl_code \u003d r#\"\u003ccode\u003e\";\nlet new_rust \u003d rustfmt(\u0026pdl(pdl_code));\nlet old_rust \u003d rustfmt(\u0026bluetooth_packetgen(pdl_code));\nassert_eq_with_diff(\u0026strip_blank_lines(\u0026new_rust), \u0026strip_blank_lines(\u0026old_rust));\n```\nAdditionally, I would compare the output post-formatting with rustfmt, rather than the raw output. Stripping the empty lines is still required though.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 86
+      },
+      "revId": "225cc87237a82ded55ed2d64f779caaa0a3abad5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ba0c925_025588de",
+        "filename": "tools/pdl/test/pdl_tests.rs",
+        "patchSetId": 34
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-15T13:30:19Z",
+      "side": 1,
+      "message": "Thanks for the idea, I added a helper function for this. The `#[track_caller]` attribute makes macros unnecessary for this: it makes a `panic!` refer back to the caller so that we can debug failing tests nicely.",
+      "parentUuid": "c8853a4d_3656a296",
       "range": {
         "startLine": 73,
         "startChar": 0,
