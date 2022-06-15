@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e63c0237_6d979ae6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-15T17:09:59Z",
+      "side": 1,
+      "message": "Hi Team,\n\nMay you help review this CL? This is a long CL chain and I\u0027d like to gradually merged them in. The HFP WBS for Floss is pending on them.\n\nThanks.",
+      "revId": "1667430ddb1756d56cfbf09f8dae24ccd3ce7865",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
