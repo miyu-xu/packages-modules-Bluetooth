@@ -70,6 +70,30 @@
       },
       "revId": "87a9558913aa68111e833bf0a906b04cdee95069",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bdf876a_368ecb0b",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-06-15T08:05:57Z",
+      "side": 1,
+      "message": "Yes. I didn\u0027t mean the thread was blocked, but just that the implementation was blocking us from triggering additional actions while the first one was still considered pending (while in reality it has timed-out already). I have rephrased the commit message.",
+      "parentUuid": "da8d7a7f_5a963af6",
+      "range": {
+        "startLine": 1676,
+        "startChar": 12,
+        "endLine": 1676,
+        "endChar": 36
+      },
+      "revId": "87a9558913aa68111e833bf0a906b04cdee95069",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
