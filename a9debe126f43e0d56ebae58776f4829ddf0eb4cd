@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba5e6ac_c32c6b4c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-15T23:12:16Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "597863b6_f5e2d7e9",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6134c0fb_cb5a2dc9",
@@ -88,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c0d137b_9b902c17",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-15T23:12:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37fe671a_c4119f74",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "739a9e2c_0dae7f9f",
@@ -101,6 +137,24 @@
       "writtenOn": "2022-06-14T23:15:35Z",
       "side": 1,
       "message": "It seems like these params would still be unused afterwards (the content here is empty)... is this intentional?",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d57f86f_f3dba516",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-15T23:12:16Z",
+      "side": 1,
+      "message": "My bad, this should be at https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2126906. Missed to revert this when I decided to separate them.",
+      "parentUuid": "739a9e2c_0dae7f9f",
       "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
