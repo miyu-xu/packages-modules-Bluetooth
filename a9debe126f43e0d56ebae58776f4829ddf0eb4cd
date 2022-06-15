@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89006b8d_28a4bc72",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-15T07:31:38Z",
+      "side": 1,
+      "message": "Volume scales are different: HFP 0-15, A2DP/AVRCP 0-127\n\nRelying on existence of addr to decide which profile to use is bad for maintenance IMO.\nSuggest add a new dBus API `set_hfp_volume`. We can validate the volume range for each profile here.",
+      "parentUuid": "6134c0fb_cb5a2dc9",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "739a9e2c_0dae7f9f",
         "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
         "patchSetId": 2
