@@ -18,6 +18,7 @@
 
 #include <base/bind.h>
 #include <base/logging.h>
+
 #include <map>
 
 #include "avrc_defs.h"
@@ -488,6 +489,8 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
           }
         }
       }
+
+      avrc_->SaveControllerVersion(bdaddr, peer_avrcp_version);
     }
   }
 
