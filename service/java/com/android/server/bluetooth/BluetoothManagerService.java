@@ -120,7 +120,6 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
     private static final int ACTIVE_LOG_MAX_SIZE = 20;
     private static final int CRASH_LOG_MAX_SIZE = 100;
 
-    private static final int DEFAULT_REBIND_COUNT = 3;
     private static final int TIMEOUT_BIND_MS = 3000; //Maximum msec to wait for a bind
 
     /**
@@ -1470,7 +1469,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                 }
 
                 psc = new ProfileServiceConnections(intent);
-                if (!psc.bindService(DEFAULT_REBIND_COUNT)) {
+                if (!psc.bindService()) {
                     return false;
                 }
 
@@ -1599,7 +1598,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
             mIntent = intent;
         }
 
-        private boolean bindService(int rebindCount) {
+        private boolean bindService() {
             int state = BluetoothAdapter.STATE_OFF;
             try {
                 mBluetoothLock.readLock().lock();
@@ -1622,7 +1621,6 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                     UserHandle.CURRENT_OR_SELF)) {
                 Message msg = mHandler.obtainMessage(MESSAGE_BIND_PROFILE_SERVICE);
                 msg.obj = this;
-                msg.arg1 = rebindCount;
                 mHandler.sendMessageDelayed(msg, TIMEOUT_BIND_MS);
                 return true;
             }
@@ -1642,7 +1640,6 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                 if (!mHandler.hasMessages(MESSAGE_BIND_PROFILE_SERVICE, this)) {
                     Message msg = mHandler.obtainMessage(MESSAGE_BIND_PROFILE_SERVICE);
                     msg.obj = this;
-                    msg.arg1 = DEFAULT_REBIND_COUNT;
                     mHandler.sendMessage(msg);
                 }
             }
@@ -2196,10 +2193,7 @@ class BluetoothManagerService extends IBluetoothManager.Stub {
                     if (psc == null) {
                         break;
                     }
-                    if (msg.arg1 > 0) {
-                        mContext.unbindService(psc);
-                        psc.bindService(msg.arg1 - 1);
-                    }
+                    psc.bindService();
                     break;
                 }
                 case MESSAGE_BLUETOOTH_SERVICE_CONNECTED: {
