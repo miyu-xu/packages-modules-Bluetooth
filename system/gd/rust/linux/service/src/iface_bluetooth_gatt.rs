@@ -140,12 +140,7 @@ impl DBusArg for Uuid128Bit {
 struct ScannerCallbackDBus {}
 
 #[dbus_proxy_obj(ScannerCallback, "org.chromium.bluetooth.ScannerCallback")]
-impl IScannerCallback for ScannerCallbackDBus {
-    #[dbus_method("OnScannerRegistered")]
-    fn on_scanner_registered(&self, status: i32, scanner_id: i32) {
-        dbus_generated!()
-    }
-}
+impl IScannerCallback for ScannerCallbackDBus {}
 
 #[dbus_propmap(BluetoothGattDescriptor)]
 pub struct BluetoothGattDescriptorDBus {
@@ -203,12 +198,12 @@ struct IBluetoothGattDBus {}
 #[generate_dbus_exporter(export_bluetooth_gatt_dbus_intf, "org.chromium.bluetooth.BluetoothGatt")]
 impl IBluetoothGatt for IBluetoothGattDBus {
     #[dbus_method("RegisterScanner")]
-    fn register_scanner(&self, callback: Box<dyn IScannerCallback + Send>) {
+    fn register_scanner(&mut self, callback: Box<dyn IScannerCallback + Send>) -> u32 {
         dbus_generated!()
     }
 
     #[dbus_method("UnregisterScanner")]
-    fn unregister_scanner(&self, scanner_id: i32) {
+    fn unregister_scanner(&mut self, scanner_id: u32) -> bool {
         dbus_generated!()
     }
 
