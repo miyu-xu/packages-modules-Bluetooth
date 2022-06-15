@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f010bae0_8131dfd1",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c83e004e_dcaaac7b",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31fb8616_4982a8c3",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-06-14T23:47:55Z",
       "side": 1,
       "message": "nit: forgot to close the addr`",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "956a72b7_64c06d3e",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31fb8616_4982a8c3",
       "revId": "a1c649bfbc1766448e926408700a71201c9126db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3abd98f1_d0592785",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Interestingly I did run rustfmt on the file and it doesn\u0027t help. I had to manually split up the string",
+      "parentUuid": "8363484c_63ac1725",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "533f710a_b788f556",
@@ -82,6 +136,24 @@
       "writtenOn": "2022-06-14T23:47:55Z",
       "side": 1,
       "message": "nit: You may want to add an example of what the expanded path looks like in the comment. The glob format isn\u0027t too clear.",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de8ba19d_93c3713e",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "533f710a_b788f556",
       "revId": "a1c649bfbc1766448e926408700a71201c9126db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -103,6 +175,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e485605_a5506220",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adfdd5ea_362c6af6",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5577ca3_fc2c5549",
@@ -116,6 +206,24 @@
       "writtenOn": "2022-06-14T23:47:55Z",
       "side": 1,
       "message": "nit: Lets either use enums here or do something like /*is_hid_file\u003d*/false (same as chrome browser code)",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cf7ed63_7177ff7f",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5577ca3_fc2c5549",
       "revId": "a1c649bfbc1766448e926408700a71201c9126db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +245,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c668d7_6ea468f7",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0fc8e78b_dad770a8",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be8781f7_adf81360",
@@ -150,6 +276,24 @@
       "writtenOn": "2022-06-14T23:47:55Z",
       "side": 1,
       "message": "nit: Would unwrap_or_default() work here? I\u0027d like to avoid `return` (prefer returns are used for guard statements at the top and then avoided for rest of func).\n\nFYI, you may also be able to use std::default::Default() in place of return if you want a default constructed object to return (i.e. an empty Path iterator)",
+      "revId": "a1c649bfbc1766448e926408700a71201c9126db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60a2c9ab_a3e87491",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 707,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T22:56:25Z",
+      "side": 1,
+      "message": "Hm so glob returns a Paths struct and that doesn\u0027t have the Default trait implemented, so I can\u0027t use unwrap_or_default or std::default::default. I removed the early return by just handling the results in the Ok, but let me know if you prefer something else.",
+      "parentUuid": "be8781f7_adf81360",
       "revId": "a1c649bfbc1766448e926408700a71201c9126db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
