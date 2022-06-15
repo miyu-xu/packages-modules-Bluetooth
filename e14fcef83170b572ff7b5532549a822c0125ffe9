@@ -16,6 +16,24 @@
       "message": "In general, we should register for notification before reading the value to avoid missing possible value update between read and subscription for notification.",
       "revId": "e14fcef83170b572ff7b5532549a822c0125ffe9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2029d222_2de3857d",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-15T05:07:46Z",
+      "side": 1,
+      "message": "I see. \n\nBut when I tested with some devices, readCharacteristic after registering notification seems to be ignored (no callbacks are invoked at all) and sometimes it resulted in failure to getting the battery level until next update.\n\nAnd as battery level does not change dramatically, it would be okay to miss update once.",
+      "parentUuid": "53ac9517_117a47c8",
+      "revId": "e14fcef83170b572ff7b5532549a822c0125ffe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
