@@ -30,7 +30,7 @@ fn main() {
         paths.iter().map(|tail| format!("-I{}{}", search_root, tail)).collect::<Vec<String>>();
 
     // Also re-run bindgen if anything in the C++ source changes
-    println!("cargo:rerun-if-changed={}{}", search_root, "/system/");
+    // println!("cargo:rerun-if-changed={}{}", search_root, "/system/");
 
     // "-x" and "c++" must be separate due to a bug
     let clang_args: Vec<&str> = vec!["-x", "c++", "-std=c++17"];
