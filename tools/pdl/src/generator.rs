@@ -543,7 +543,7 @@ mod tests {
 
               packet Foo {
                 x: 8,
-                y: 16,
+                y: 24, // <- provoke an error so we can see the color diffs
               }
             "#,
         );
