@@ -18,14 +18,17 @@
 
 #include <base/bind.h>
 #include <base/logging.h>
+
 #include <map>
 
 #include "avrc_defs.h"
 #include "avrcp_message_converter.h"
+#include "os/log.h"
 #include "packet/avrcp/avrcp_packet.h"
 // TODO (apanicke): Remove dependency on this header once we cleanup feature
 // handling.
 #include "bta/include/bta_av_api.h"
+#include "btif/include/btif_config.h"
 #include "device/include/interop.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
@@ -487,6 +490,26 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
             peer_features |= (BTA_AV_FEAT_BROWSE);
           }
         }
+      }
+
+      // store AVRC controller version into BT config
+      uint16_t controller_version = 0;
+      size_t version_value_size = sizeof(controller_version);
+      if (btif_config_get_bin(
+              bdaddr.ToString(), AVRCP_CONTROLLER_VERSION_CONFIG_KEY,
+              (uint8_t*)&controller_version, &version_value_size) &&
+          peer_avrcp_version == controller_version) {
+        LOG_DEBUG("AVRC controller version same as cached config");
+      } else if (btif_config_set_bin(bdaddr.ToString(),
+                                     AVRCP_CONTROLLER_VERSION_CONFIG_KEY,
+                                     (const uint8_t*)&peer_avrcp_version,
+                                     sizeof(peer_avrcp_version))) {
+        btif_config_save();
+        LOG_DEBUG("store AVRC controller version %x for %s into config.",
+                  peer_avrcp_version, bdaddr.ToString().c_str());
+      } else {
+        LOG_WARN("Failed to store AVRC controller version for %s",
+                 bdaddr.ToString().c_str());
       }
     }
   }
