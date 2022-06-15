@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b52f93b_f8574fa6",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-15T01:13:59Z",
+      "side": 1,
+      "message": "nit: how about `optional_value` or `optional`? I also like `value` because it\u0027s concise, but I am also trying to make it such a way that the meaning is obvious when D-Bus is inspected raw.",
+      "revId": "9e521fa3988c5730758eff040924373e2eb338df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcedf200_a405a5ea",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-15T01:13:59Z",
+      "side": 1,
+      "message": "this can just be `DirectDBus` because now `DirectDBus` has to be `Clone` by definition.",
+      "range": {
+        "startLine": 849,
+        "startChar": 26,
+        "endLine": 849,
+        "endChar": 44
+      },
+      "revId": "9e521fa3988c5730758eff040924373e2eb338df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
