@@ -18,10 +18,12 @@
 
 #include <base/bind.h>
 #include <base/logging.h>
+
 #include <map>
 
 #include "avrc_defs.h"
 #include "avrcp_message_converter.h"
+#include "os/log.h"
 #include "packet/avrcp/avrcp_packet.h"
 // TODO (apanicke): Remove dependency on this header once we cleanup feature
 // handling.
@@ -488,6 +490,8 @@ void ConnectionHandler::SdpCb(RawAddress bdaddr, SdpCallback cb,
           }
         }
       }
+
+      avrc_->SaveControllerVersion(bdaddr, peer_avrcp_version);
     }
   }
 
