@@ -33,6 +33,24 @@
       "message": "Looks like you added test files in this commit by mistake (no tests in this commit). Maybe you meant to add it to the testing commit instead?",
       "revId": "c6d852694772bb2c36e176eb7c28bf93280f53a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0d2d79f_97a991f8",
+        "filename": "system/gd/rust/linux/mgmt/test/migrate/fake_bluez_hid.toml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-15T23:16:32Z",
+      "side": 1,
+      "message": "Ah darn, thanks for catching. Was working on unit tests at the same time",
+      "parentUuid": "fbf38a48_30194455",
+      "revId": "c6d852694772bb2c36e176eb7c28bf93280f53a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
