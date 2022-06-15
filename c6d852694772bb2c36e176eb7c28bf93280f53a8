@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf5cb8d_c92e894e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-15T23:02:10Z",
+      "side": 1,
+      "message": "LGTM",
+      "revId": "c6d852694772bb2c36e176eb7c28bf93280f53a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbf38a48_30194455",
+        "filename": "system/gd/rust/linux/mgmt/test/migrate/fake_bluez_hid.toml",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-15T23:02:10Z",
+      "side": 1,
+      "message": "Looks like you added test files in this commit by mistake (no tests in this commit). Maybe you meant to add it to the testing commit instead?",
+      "revId": "c6d852694772bb2c36e176eb7c28bf93280f53a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
