@@ -138,6 +138,11 @@
 #define AVRC_DEFAULT_VERSION AVRC_1_5_STRING
 #endif
 
+/* Configurable avrcp version key for bt_config.conf */
+#ifndef AVRCP_CONTROLLER_VERSION_CONFIG_KEY
+#define AVRCP_CONTROLLER_VERSION_CONFIG_KEY "AvrcpControllerVersion"
+#endif
+
 /* Supported categories */
 #define AVRC_SUPF_CT_CAT1 0x0001         /* Category 1 */
 #define AVRC_SUPF_CT_CAT2 0x0002         /* Category 2 */
