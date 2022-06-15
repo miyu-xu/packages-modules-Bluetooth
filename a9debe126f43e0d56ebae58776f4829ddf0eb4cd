@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37fe671a_c4119f74",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-15T17:16:12Z",
+      "side": 1,
+      "message": "Agree with both of you. That\u0027s exactly the feedbacks I\u0027d like to get.\n\nIMO, I think eventually it\u0027s better for the bluetooth stack to handle the difference and provide an abstract volume for the audio stack to digest. This will require a well defined media API regarding the volume. I\u0027ll proceeed with adding the set_hfp_volume dedicated for HFP and leave the refinement as a future work.",
+      "parentUuid": "89006b8d_28a4bc72",
+      "revId": "a9debe126f43e0d56ebae58776f4829ddf0eb4cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "739a9e2c_0dae7f9f",
         "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
         "patchSetId": 2
