@@ -46,6 +46,30 @@
       },
       "revId": "87a9558913aa68111e833bf0a906b04cdee95069",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da8d7a7f_5a963af6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1676,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-15T03:04:50Z",
+      "side": 1,
+      "message": "They just throw IllegalStateException, not block the thread. \n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/bass_client/BassClientService.java;drc\u003db03e1033d78043b5ce8106862cb5b9ad03fdfd75;l\u003d768\n\nDo you mean that this CL is to fix throwing IllegalStateException?",
+      "parentUuid": "f947678c_720e1aa4",
+      "range": {
+        "startLine": 1676,
+        "startChar": 12,
+        "endLine": 1676,
+        "endChar": 36
+      },
+      "revId": "87a9558913aa68111e833bf0a906b04cdee95069",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
