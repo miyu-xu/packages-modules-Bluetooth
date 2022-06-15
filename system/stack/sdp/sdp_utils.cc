@@ -22,6 +22,9 @@
  *
  ******************************************************************************/
 
+#include <base/logging.h>
+#include <log/log.h>
+
 #include <array>
 #include <cstdint>
 #include <cstring>
@@ -30,7 +33,9 @@
 #include <vector>
 
 #include "btif/include/btif_config.h"
+#include "device/include/interop.h"
 #include "osi/include/allocator.h"
+#include "stack/include/avrc_api.h"
 #include "stack/include/avrc_defs.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/sdp_api.h"
@@ -39,8 +44,6 @@
 #include "stack/sdp/sdpint.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
-
-#include <base/logging.h>
 
 using bluetooth::Uuid;
 static const uint8_t sdp_base_uuid[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -1195,5 +1198,87 @@ uint16_t sdpu_is_avrcp_profile_description_list(const tSDP_ATTRIBUTE* p_attr) {
       return AVRC_REV_1_6;
     default:
       return 0;
+  }
+}
+/*******************************************************************************
+ *
+ * Function         sdpu_is_service_id_avrc_target
+ *
+ * Description      This function is to check if attirbute is A/V Remote Control
+ *                  Target
+ *
+ *                  p_attr: attribute to be checked
+ *
+ * Returns          true if service id of attirbute is A/V Remote Control
+ *                  Target, else false
+ *
+ ******************************************************************************/
+bool sdpu_is_service_id_avrc_target(const tSDP_ATTRIBUTE* p_attr) {
+  if (p_attr->id != ATTR_ID_SERVICE_CLASS_ID_LIST || p_attr->len != 3) {
+    return false;
+  }
+
+  uint8_t* p_uuid = p_attr->value_ptr + 1;
+  // check UUID of A/V Remote Control Target
+  if (p_uuid[0] != 0x11 || p_uuid[1] != 0xc) {
+    return false;
+  }
+
+  return true;
+}
+/*******************************************************************************
+ *
+ * Function         sdpu_set_avrc_target_version
+ *
+ * Description      This function is to set AVRCP version of A/V Remote Control
+ *                  Target according to IOP table and cached Bluetooth config
+ *
+ *                  p_attr: attribute to be modified
+ *                  bdaddr: for searching IOP table and BT config
+ *
+ *
+ * Returns          true if service id of attirbute is A/V Remote Control
+ *                  Target, else false
+ *
+ ******************************************************************************/
+void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr,
+                                  const RawAddress* bdaddr) {
+  // Check if the attribute is AVRCP profile description list
+  uint16_t avrcp_version = sdpu_is_avrcp_profile_description_list(p_attr);
+  if (avrcp_version > AVRC_REV_1_4 &&
+      interop_match_addr(INTEROP_AVRCP_1_4_ONLY, bdaddr)) {
+    SDP_TRACE_DEBUG(
+        "%s, device=%s is only accept AVRCP 1.4, reply AVRCP 1.4 instead.",
+        __func__, bdaddr->ToString().c_str());
+    uint8_t* p_version = p_attr->value_ptr + 6;
+    UINT16_TO_BE_FIELD(p_version, 0x0104);
+  } else if (avrcp_version) {
+    // Read the AVRC Controller version from local storage
+    uint16_t controller_version = 0;
+    size_t version_value_size = sizeof(controller_version);
+    if (btif_config_get_bin(
+            bdaddr->ToString(), AVRCP_CONTROLLER_VERSION_CONFIG_KEY,
+            (uint8_t*)&controller_version, &version_value_size)) {
+      if (avrcp_version > controller_version) {
+        SDP_TRACE_DEBUG(
+            "%s: read cached AVRC Controller version %x of "
+            "%s. Reply AVRC Target version %x.",
+            __func__, controller_version, bdaddr->ToString().c_str(),
+            controller_version);
+        uint8_t* p_version = p_attr->value_ptr + 6;
+        UINT16_TO_BE_FIELD(p_version, controller_version);
+      } else {
+        SDP_TRACE_DEBUG(
+            "%s: read cached AVRC Controller version %x of "
+            "%s. Reply default AVRC Target version %x.",
+            __func__, controller_version, bdaddr->ToString().c_str(),
+            avrcp_version);
+      }
+    } else {
+      SDP_TRACE_DEBUG(
+          "%s: no cached AVRC Controller version for %s. "
+          "Reply default AVRC Target version %x.",
+          __func__, bdaddr->ToString().c_str(), avrcp_version);
+    }
   }
 }
