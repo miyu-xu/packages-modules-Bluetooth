@@ -9,6 +9,7 @@ extern crate num_derive;
 pub mod bluetooth;
 pub mod bluetooth_gatt;
 pub mod bluetooth_media;
+pub mod callbacks;
 pub mod suspend;
 pub mod uuid;
 
@@ -59,6 +60,9 @@ pub enum Message {
     // Suspend related
     SuspendCallbackRegistered(u32),
     SuspendCallbackDisconnected(u32),
+
+    // Scanner related
+    ScannerCallbackDisconnected(u32),
 }
 
 /// Umbrella class for the Bluetooth stack.
@@ -139,6 +143,10 @@ impl Stack {
 
                 Message::SuspendCallbackDisconnected(id) => {
                     suspend.lock().unwrap().remove_callback(id);
+                }
+
+                Message::ScannerCallbackDisconnected(id) => {
+                    bluetooth_gatt.lock().unwrap().remove_scanner_callback(id);
                 }
             }
         }
