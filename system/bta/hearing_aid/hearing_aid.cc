@@ -420,6 +420,7 @@ class HearingAidImpl : public HearingAid {
     /* verify bond */
     if (BTM_IsEncrypted(address, BT_TRANSPORT_LE)) {
       /* if link has been encrypted */
+      LOG(WARNING) << __func__ << ": do OnEncryptionComplete";
       OnEncryptionComplete(address, true);
       return;
     }
@@ -432,6 +433,7 @@ class HearingAidImpl : public HearingAid {
     }
 
     /* otherwise let it go through */
+    LOG(WARNING) << __func__ << ": do OnEncryptionComplete, go through";
     OnEncryptionComplete(address, true);
   }
 
@@ -630,7 +632,9 @@ class HearingAidImpl : public HearingAid {
       VLOG(2) << "Skipping unknown device" << address;
       return;
     }
+    LOG(WARNING) << __func__ << " " << address;
     if (hearingDevice->service_changed_rcvd) {
+      LOG(WARNING) << __func__ << " " << address << " do BTA_GATTC_ServiceSearchRequest";
       BTA_GATTC_ServiceSearchRequest(hearingDevice->conn_id, &HEARING_AID_UUID);
     }
   }
@@ -1831,7 +1835,7 @@ void read_rssi_cb(void* p_void) {
 }
 
 void hearingaid_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
-  VLOG(2) << __func__ << " event = " << +event;
+  LOG(WARNING) << __func__ << " event = " << +event;
 
   if (p_data == nullptr) return;
 
@@ -1854,6 +1858,7 @@ void hearingaid_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
     } break;
 
     case BTA_GATTC_SEARCH_CMPL_EVT:
+      LOG(WARNING) << __func__ << " conn_id: " << p_data->search_cmpl.conn_id << " received BTA_GATTC_SRVC_DISC_DONE_EVT";
       if (!instance) return;
       instance->OnServiceSearchComplete(p_data->search_cmpl.conn_id,
                                         p_data->search_cmpl.status);
@@ -1873,7 +1878,9 @@ void hearingaid_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
       break;
 
     case BTA_GATTC_ENC_CMPL_CB_EVT:
+      LOG(WARNING) << __func__ << " " << p_data->enc_cmpl.remote_bda << " received BTA_GATTC_ENC_CMPL_CB_EVT";
       if (!instance) return;
+      LOG(WARNING) << __func__ << " " << p_data->enc_cmpl.remote_bda << " do OnEncryptionComplete";
       instance->OnEncryptionComplete(
           p_data->enc_cmpl.remote_bda,
           BTM_IsEncrypted(p_data->enc_cmpl.remote_bda, BT_TRANSPORT_LE));
@@ -1890,6 +1897,7 @@ void hearingaid_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
       break;
 
     case BTA_GATTC_SRVC_DISC_DONE_EVT:
+      LOG(WARNING) << __func__ << " " << p_data->service_changed.remote_bda << " received BTA_GATTC_SRVC_DISC_DONE_EVT";
       if (!instance) return;
       instance->OnServiceDiscDoneEvent(p_data->service_changed.remote_bda);
       break;
@@ -1907,7 +1915,9 @@ void hearingaid_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
 
 void encryption_callback(const RawAddress* address, tBT_TRANSPORT, void*,
                          tBTM_STATUS status) {
+  LOG(WARNING) << __func__ << " " << address;
   if (instance) {
+    LOG(WARNING) << __func__ << " " << address << " do OnEncryptionComplete";
     instance->OnEncryptionComplete(*address,
                                    status == BTM_SUCCESS ? true : false);
   }
