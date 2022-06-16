@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4fbaa2_1d13170d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-16T07:51:10Z",
+      "side": 1,
+      "message": "I\u0027m not a big fan on modifying the `AsyncDataChannelServer` abstraction to be able to pass an HciTransport.\nI see two ways here:\n- Expose a method on TestEnvironment to be able to add a HciTransport (or HciDevice) to the TestModel.\n- Modify the emulator to use a TestModel directly and not a TestEnvironment\n\nI would prefer the second one as technically TestEnvironment is not part of `libbt-rootcanal` https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/tools/rootcanal/Android.bp;l\u003d47 and for me should not really be used",
+      "revId": "54b846c80f80966bb9281612dcd304d74652772b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
