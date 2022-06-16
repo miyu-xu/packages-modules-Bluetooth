@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da3f6748_b06e51a0",
+        "filename": "system/blueberry/tests/gd_sl4a/gatt/gatt_connect_low_layer_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1051483
+      },
+      "writtenOn": "2022-06-16T20:05:25Z",
+      "side": 1,
+      "message": "we really need synthetic time for this...",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 21
+      },
+      "revId": "2a2172d479e3a23a208091289b25c3bc1dc251f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
