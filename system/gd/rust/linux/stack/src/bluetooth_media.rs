@@ -70,13 +70,15 @@ pub trait IBluetoothMediaCallback {
     ///
     fn on_absolute_volume_supported_changed(&self, supported: bool);
 
-    ///
-    fn on_absolute_volume_changed(&self, volume: i32);
+    /// Triggered when a Bluetooth device triggers a AVRCP/A2DP volume change
+    /// event. We need to notify audio client to reflect the change on the audio
+    /// stack.
+    fn on_absolute_volume_changed(&self, volume: u8);
 
     /// Triggered when a Bluetooth device triggers a HFP AT command (AT+VGS) to
     /// notify AG about its speaker volume change. We need to notify audio
     /// client to reflect the change on the audio stack.
-    fn on_hfp_volume_changed(&self, volume: u32, addr: String);
+    fn on_hfp_volume_changed(&self, volume: u8, addr: String);
 }
 
 /// Serializable device used in.
@@ -192,7 +194,7 @@ impl BluetoothMedia {
             }
             AvrcpCallbacks::AvrcpAbsoluteVolumeUpdate(volume) => {
                 self.for_all_callbacks(|callback| {
-                    callback.on_absolute_volume_changed(i32::from(volume));
+                    callback.on_absolute_volume_changed(volume);
                 });
             }
         }
