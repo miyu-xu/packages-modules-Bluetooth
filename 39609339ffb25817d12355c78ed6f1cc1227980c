@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0421700e_3867bce6",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-16T07:44:53Z",
+      "side": 1,
+      "message": "I\u0027m not sure that we need to flush here, as the header alone is a bit useless, however maybe we should `flush` on each `AppendRecord`",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd49556_e0b5e772",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-16T07:44:53Z",
+      "side": 1,
+      "message": "I think you forgot to call `writeHeader` here 😊",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "878b72a0_b21ca1cb",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-16T07:44:53Z",
+      "side": 1,
+      "message": "I don\u0027t think `Open` is a good name here, as it made sense for a file, but for a `ostream` 🤔 maybe `SetOutput` ?",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0427a8_55db6b84",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-16T07:44:53Z",
+      "side": 1,
+      "message": "I think we should remove this field and only have the `ostream` as the user of this class can still instantiate and open the `ofstream` himself and pass it to this class",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
