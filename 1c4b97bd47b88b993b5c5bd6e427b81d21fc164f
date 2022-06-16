@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d58c29a7_343634ce",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-06-16T11:35:54Z",
+      "side": 1,
+      "message": "not very clear on what clear on the objective. Is the objective to disallow SSR on an ACL link if AVDTP START is issued? If so, this change may not really solve it. This function gets executed upon each profile (id) triggering a connection change. On the same ACL one could have multiple profiles connected and each of these will independently trigger an PM update. So for illustrations if you consider HH triggering an update here while AVDTP on the same link is in START (busy) state, then this check here will still allow SSR as id would BTA_ID_HH. What you need here is a loop through of all profiles for a given ACL to check if AVDTP is in START and then disallow.  May be something like what bta_dm_check_if_only_hd_connected() in bta_dm_act.cc does?",
+      "revId": "1c4b97bd47b88b993b5c5bd6e427b81d21fc164f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
