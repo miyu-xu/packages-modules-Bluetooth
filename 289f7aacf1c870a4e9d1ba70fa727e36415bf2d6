@@ -88,6 +88,24 @@
       "parentUuid": "b38cb4d1_a8aca385",
       "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79a3e9e7_fbf7d17b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1567,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-16T21:34:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a857ded8_5eb08d5b",
+      "revId": "289f7aacf1c870a4e9d1ba70fa727e36415bf2d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
