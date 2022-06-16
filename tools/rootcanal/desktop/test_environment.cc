@@ -21,6 +21,7 @@
 #include <utility>      // for move
 #include <vector>       // for vector
 
+#include "model/devices/baseband_sniffer.h"
 #include "model/devices/link_layer_socket_device.h"  // for LinkLayerSocketDevice
 #include "model/hci/hci_sniffer.h"                   // for HciSniffer
 #include "model/hci/hci_socket_transport.h"          // for HciSocketTransport
@@ -33,6 +34,7 @@ namespace bluetooth {
 namespace root_canal {
 
 using rootcanal::AsyncTaskId;
+using rootcanal::BaseBandSniffer;
 using rootcanal::HciDevice;
 using rootcanal::HciSniffer;
 using rootcanal::HciSocketTransport;
@@ -79,6 +81,9 @@ void TestEnvironment::initialize(std::promise<void> barrier) {
   });
   SetUpLinkLayerServer();
   SetUpLinkBleLayerServer();
+
+  test_model_.AddLinkLayerConnection(BaseBandSniffer::Create(),
+                                     Phy::Type::BR_EDR);
 
   LOG_INFO("%s: Finished", __func__);
 }
