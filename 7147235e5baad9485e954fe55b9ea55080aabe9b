@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "342b25aa_1c7a8685",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-16T02:35:10Z",
+      "side": 1,
+      "message": "and check val in 0-127?",
+      "range": {
+        "startLine": 540,
+        "startChar": 12,
+        "endLine": 540,
+        "endChar": 19
+      },
+      "revId": "7147235e5baad9485e954fe55b9ea55080aabe9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
