@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec98b6b4_565bec9e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-16T02:39:39Z",
+      "side": 1,
+      "message": "Suggest also document the volume range here and for hfp_volume below",
+      "revId": "6874b82cc95b1215147b1adc2a1ed188e86e05e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
