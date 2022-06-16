@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74b4984e_13e1c683",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-16T01:02:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c34ca5d4_4c981b19",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a6a2ce5_9843c353",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-06-15T23:22:04Z",
       "side": 1,
       "message": "If volume is limited to i8, you should probably expect i8 in the api:\n\n```\nfn set_volume(\u0026mut self, volume: i8)\n```",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd469ef6_db97c5f1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-16T01:02:23Z",
+      "side": 1,
+      "message": "DBus doesn\u0027t support i8. Align to use u8 at https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2127613/1",
+      "parentUuid": "3a6a2ce5_9843c353",
       "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f6ce32_a7de4101",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 533,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-16T01:02:23Z",
+      "side": 1,
+      "message": "https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2127613/1",
+      "parentUuid": "b9193577_daeb6d05",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21bbc665_cb0db39e",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-06-15T23:22:04Z",
       "side": 1,
       "message": "ditto about `volume: i8`",
+      "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a68222_e79e03c4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-16T01:02:23Z",
+      "side": 1,
+      "message": "DBus doesn\u0027t support i8. Use u8 instead.",
+      "parentUuid": "21bbc665_cb0db39e",
       "revId": "ad8680f23470f739671f2136fe57ba8f6f543401",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

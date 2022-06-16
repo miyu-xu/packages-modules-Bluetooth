@@ -16,6 +16,24 @@
       "message": "Should be consistent about u8 vs i8 between the two volumes",
       "revId": "439b1ad9ce45185775b74464ab99d9fe4d141fa0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e96539ee_fc798458",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-06-16T01:02:23Z",
+      "side": 1,
+      "message": "https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2127613/1",
+      "parentUuid": "15eaf1c9_5c12548e",
+      "revId": "439b1ad9ce45185775b74464ab99d9fe4d141fa0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
