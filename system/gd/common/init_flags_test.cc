@@ -22,6 +22,22 @@
 
 using bluetooth::common::InitFlags;
 
+TEST(InitFlagsTest, test_enable_pts_mode) {
+  const char* input[] = {"INIT_pts_mode_enabled=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsPtsModeEnabledForAll());
+}
+
+TEST(InitFlagsTest, test_enable_pts_mode_for_tags) {
+  const char* input[] = {"INIT_pts_mode_enabled_for_tags=cap,l2cap,eatt", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsPtsModeEnabledForTag("cap"));
+  ASSERT_TRUE(InitFlags::IsPtsModeEnabledForTag("l2cap"));
+  ASSERT_TRUE(InitFlags::IsPtsModeEnabledForTag("eatt"));
+  ASSERT_FALSE(InitFlags::IsPtsModeEnabledForTag("Foo"));
+  ASSERT_FALSE(InitFlags::IsPtsModeEnabledForAll());
+}
+
 TEST(InitFlagsTest, test_enable_debug_logging_for_all) {
   const char* input[] = {"INIT_logging_debug_enabled_for_all=true", nullptr};
   InitFlags::Load(input);

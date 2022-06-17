@@ -5058,6 +5058,10 @@ public class AdapterService extends Service {
             "INIT_logging_debug_disabled_for_tags";
     private static final String BTAA_HCI_LOG_FLAG = "INIT_btaa_hci";
 
+    // PTS mode enabled
+    private static final String PTS_MODE_ENABLED_FOR_ALL = "INIT_pts_mode_enabled_for_all";
+    private static final String PTS_MODE_ENABLED_FOR_TAGS_FLAG = "INIT_pts_mode_enabled_for_tags";
+
     private String[] getInitFlags() {
         ArrayList<String> initFlags = new ArrayList<>();
         if (DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, GD_CORE_FLAG, false)) {
@@ -5109,6 +5113,15 @@ public class AdapterService extends Service {
         }
         if (DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, BTAA_HCI_LOG_FLAG, true)) {
             initFlags.add(String.format("%s=%s", BTAA_HCI_LOG_FLAG, "true"));
+        }
+        if (DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, PTS_MODE_ENABLED_FOR_ALL, false)) {
+            initFlags.add(String.format("%s=%s", PTS_MODE_ENABLED_FOR_ALL, "true"));
+        }
+        String ptsModeEnabledTags = DeviceConfig.getString(DeviceConfig.NAMESPACE_BLUETOOTH,
+        PTS_MODE_ENABLED_FOR_TAGS_FLAG, "");
+        if (!ptsModeEnabledTags.isEmpty()) {
+            initFlags.add(String.format("%s=%s", PTS_MODE_ENABLED_FOR_TAGS_FLAG,
+            ptsModeEnabledTags));
         }
         return initFlags.toArray(new String[0]);
     }
