@@ -30,6 +30,7 @@
 #include "bt_target.h"
 #include "bta/include/bta_hearing_aid_api.h"
 #include "device/include/controller.h"
+#include "gd/common/init_flags.h"
 #include "main/shim/l2c_api.h"
 #include "main/shim/shim.h"
 #include "osi/include/allocator.h"
@@ -134,7 +135,8 @@ bool L2CA_EnableUpdateBleConnParams(const RawAddress& rem_bda, bool enable) {
     return bluetooth::shim::L2CA_EnableUpdateBleConnParams(rem_bda, enable);
   }
 
-  if (stack_config_get_interface()->get_pts_conn_updates_disabled())
+  if (stack_config_get_interface()->get_pts_conn_updates_disabled() ||
+      bluetooth::common::InitFlags::IsPtsModeEnabledForTag("CAP"))
     return false;
 
   tL2C_LCB* p_lcb;
