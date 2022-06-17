@@ -38,7 +38,7 @@
 #include "types/raw_address.h"
 
 #ifndef BTA_GATT_DEBUG
-#define BTA_GATT_DEBUG false
+#define BTA_GATT_DEBUG true
 #endif
 
 /*****************************************************************************
