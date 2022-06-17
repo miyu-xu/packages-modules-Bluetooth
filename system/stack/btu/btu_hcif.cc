@@ -92,7 +92,6 @@ static void btu_hcif_esco_connection_chg_evt(uint8_t* p);
 /* Simple Pairing Events */
 static void btu_hcif_io_cap_request_evt(const uint8_t* p);
 
-static void btu_ble_ll_conn_param_upd_evt(uint8_t* p, uint16_t evt_len);
 static void btu_ble_proc_ltk_req(uint8_t* p);
 static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p);
 static void btu_ble_data_length_change_evt(uint8_t* p, uint16_t evt_len);
@@ -342,9 +341,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
         case HCI_BLE_ADV_PKT_RPT_EVT: /* result of inquiry */
           btm_ble_process_adv_pkt(ble_evt_len, p);
           break;
-        case HCI_BLE_LL_CONN_PARAM_UPD_EVT:
-          btu_ble_ll_conn_param_upd_evt(p, hci_evt_len);
-          break;
         case HCI_BLE_READ_REMOTE_FEAT_CMPL_EVT:
           btm_ble_read_remote_features_complete(p);
           break;
@@ -409,6 +405,7 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
           // Events are now captured by gd/hci/le_acl_connection_interface.h
         case HCI_BLE_CONN_COMPLETE_EVT:  // SubeventCode::CONNECTION_COMPLETE
         case HCI_BLE_ENHANCED_CONN_COMPLETE_EVT:  // SubeventCode::ENHANCED_CONNECTION_COMPLETE
+        case HCI_BLE_LL_CONN_PARAM_UPD_EVT:  // SubEventCode::CONNECTION_UPDATE_COMPLETE
         default:
           LOG_ERROR(
               "Unexpectedly received LE sub_event_code:0x%02x that should not "
