@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f81bb8f7_1e50978a",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-17T02:39:17Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 565,
+        "startChar": 5,
+        "endLine": 565,
+        "endChar": 69
+      },
+      "revId": "3d6a5997e0f52818482d3c046bb176ee8510c66d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8aeed58_95635388",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-17T02:39:17Z",
+      "side": 1,
+      "message": "Can\u0027t we check this here and remove the \"overwrite_current_role\" argument in the acl_cache_role function?",
+      "range": {
+        "startLine": 566,
+        "startChar": 5,
+        "endLine": 566,
+        "endChar": 35
+      },
+      "revId": "3d6a5997e0f52818482d3c046bb176ee8510c66d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
