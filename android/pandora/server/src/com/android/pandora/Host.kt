@@ -210,4 +210,25 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       DisconnectResponse.getDefaultInstance()
     }
   }
+
+  override fun readPassKey(
+    request: ReadPassKeyRequest,
+    responseObserver: StreamObserver<ReadPassKeyResponse>
+  ) {
+    grpcUnary<ReadPassKeyResponse>(scope, responseObserver) {
+      Log.i(TAG, "readPassKey")
+      val pairingRequestIntent =
+        flow
+          .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
+          .first()
+      val bluetoothDevice = pairingRequestIntent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+      val pairingVariant = pairingRequestIntent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
+      if (pairingVariant == BluetoothDevice.PAIRING_VARIANT_CONSENT) {
+        bluetoothDevice.setPairingConfirmation(true)
+      }
+      val passkey = pairingRequestIntent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_KEY, BluetoothDevice.ERROR)
+      Log.i(TAG, "passkey: $passkey")
+      ReadPassKeyResponse.newBuilder().setPasskey(passkey).build()
+    }
+  }
 }
