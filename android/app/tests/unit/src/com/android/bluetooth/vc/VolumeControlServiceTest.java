@@ -496,6 +496,32 @@ public class VolumeControlServiceTest {
         mService.messageFromNative(stackEvent);
     }
 
+    /**
+     * Test Volume Control cache.
+     */
+    @Test
+    public void testVolumeCache() {
+        int groupId = 1;
+        int volume = 6;
+
+        Assert.assertEquals(-1, mService.getVolumeGroup(groupId));
+        mService.setVolumeGroup(groupId, volume);
+        Assert.assertEquals(volume, mService.getVolumeGroup(groupId));
+
+        volume = 10;
+
+        // Send autonomus volume change.
+        VolumeControlStackEvent stackEvent = new VolumeControlStackEvent(
+                VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED);
+        stackEvent.device = null;
+        stackEvent.valueInt1 = groupId;
+        stackEvent.valueInt2 = volume;
+        stackEvent.valueBool1 = false;
+        mService.messageFromNative(stackEvent);
+
+        Assert.assertEquals(volume, mService.getVolumeGroup(groupId));
+    }
+
     private void connectDevice(BluetoothDevice device) {
         VolumeControlStackEvent connCompletedEvent;
 
