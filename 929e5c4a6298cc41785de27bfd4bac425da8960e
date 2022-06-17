@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681d35b4_72bae651",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-17T08:21:39Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand why this changes something 🤔 as [`_InactiveRpcError` inherit from grpc.RpcError](https://github.com/grpc/grpc/blob/master/src/python/grpcio/grpc/_channel.py#L283), so it should already be handled here, and if not the exception should just flow through and be handled by PTS-bot",
+      "revId": "929e5c4a6298cc41785de27bfd4bac425da8960e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
