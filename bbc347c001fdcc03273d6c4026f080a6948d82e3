@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccf2b1d1_ed37429e",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-17T00:55:11Z",
+      "side": 1,
+      "message": "Addressed in separate patch",
+      "parentUuid": "3a891bbb_46ec6570",
+      "range": {
+        "startLine": 232,
+        "startChar": 10,
+        "endLine": 233,
+        "endChar": 9
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bd51a63_0d1f7d15",
@@ -214,6 +238,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6021cd3f_146c2b9b",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-17T00:55:11Z",
+      "side": 1,
+      "message": "Addressed in separate patch",
+      "parentUuid": "bab77055_d219777e",
+      "range": {
+        "startLine": 354,
+        "startChar": 24,
+        "endLine": 354,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "30eb50f2_a0c59549",
@@ -261,6 +309,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "594e9413_18bbdb84",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-17T00:55:11Z",
+      "side": 1,
+      "message": "Addressed in separate patch",
+      "parentUuid": "89ef5ff6_04b5ca7c",
+      "range": {
+        "startLine": 445,
+        "startChar": 24,
+        "endLine": 445,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f4d60e9_df5dba38",
@@ -298,6 +370,30 @@
       "side": 1,
       "message": "same as above, someone may want to disconnect it earlier",
       "parentUuid": "1f4d60e9_df5dba38",
+      "range": {
+        "startLine": 491,
+        "startChar": 24,
+        "endLine": 491,
+        "endChar": 52
+      },
+      "revId": "bbc347c001fdcc03273d6c4026f080a6948d82e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54197851_d2fd9913",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-17T00:55:11Z",
+      "side": 1,
+      "message": "Addressed in separate patch",
+      "parentUuid": "4c1919dc_0fc6a89f",
       "range": {
         "startLine": 491,
         "startChar": 24,
