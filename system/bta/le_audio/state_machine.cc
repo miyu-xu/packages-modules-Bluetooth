@@ -897,6 +897,11 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     timeoutMs =
         osi_property_get_int32(kStateTransitionTimeoutMsProp, timeoutMs);
 
+    if (bluetooth::common::InitFlags::IsPtsModeEnabledForTag("CAP")) {
+      LOG_INFO("Relax transition timeout for PTS purposes");
+      timeoutMs = 6000;
+    }
+
     if (alarm_is_scheduled(watchdog_)) alarm_cancel(watchdog_);
 
     alarm_set_on_mloop(
