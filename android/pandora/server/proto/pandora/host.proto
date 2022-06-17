@@ -1,13 +1,28 @@
-syntax = "proto3";
+// Copyright 2022 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 
-option java_outer_classname = "HostProto";
+syntax = "proto3";
 
 package pandora;
 
 import "google/protobuf/empty.proto";
 
+option java_outer_classname = "HostProto";
+
 // Service to trigger Bluetooth Host procedures
 //
+// Requirements for the implementer:
 // At startup, the Host must be in BR/EDR connectable mode
 // (see GAP connectability modes)
 service Host {
@@ -25,15 +40,47 @@ service Host {
   // If the two devices have not established a previous bond,
   // the peer must be discoverable.
   rpc Connect(ConnectRequest) returns (ConnectResponse);
+  // Read the Passkey
+  rpc ReadPasskey(ReadPasskeyRequest) returns (ReadPasskeyResponse);
+  // Write the given passkey on the HCI level
+  rpc WritePasskey(WritePasskeyRequest) returns (WritePasskeyResponse);
+  rpc ConfirmPasskey(ConfirmPasskeyRequest) returns (ConfirmPasskeyResponse);
   // Get an active ACL BR/EDR connection to a peer.
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse);
   // Wait for an ACL BR/EDR connection from a peer.
   rpc WaitConnection(WaitConnectionRequest) returns (WaitConnectionResponse);
-  // Disconnect an ACL BR/EDR connection. The Connection must not be reused afterwards.
+  // Disconnect an ACL BR/EDR connection. The Connection must not be reused
+  // afterwards.
   rpc Disconnect(DisconnectRequest) returns (DisconnectResponse);
   // Read the local Bluetooth device address.
   // This should return the same value as a Read BD_ADDR HCI command.
-  rpc ReadLocalAddress(google.protobuf.Empty) returns (ReadLocalAddressResponse);
+  rpc ReadLocalAddress(google.protobuf.Empty)
+      returns (ReadLocalAddressResponse);
+}
+
+message ReadPasskeyRequest {
+  bytes address = 1;
+}
+message ReadPasskeyResponse {
+  oneof result {
+    int32 passkey = 1;
+  }
+}
+message WritePasskeyRequest {
+  bytes address = 1;
+  int32 passkey = 2;
+}
+message WritePasskeyResponse {
+  oneof result {
+    Connection connection = 1;
+  }
+}
+message ConfirmPasskeyRequest {
+  bytes address = 1;
+  int32 passkey = 2;
+}
+message ConfirmPasskeyResponse {
+    bool isConfirmed = 1;
 }
 
 // A Token representing an ACL connection.

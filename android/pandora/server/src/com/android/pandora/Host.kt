@@ -19,6 +19,7 @@ package com.android.pandora
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -51,6 +52,18 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
+  private var passkeys = mutableMapOf<MacAddress, Int>()
+
+  inner class PasskeyReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context, intent: Intent) {
+      if (intent.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST) {
+        val bluetoothDevice =
+          intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+        val passkey = intent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_KEY, BluetoothDevice.ERROR)
+        passkeys[MacAddress.fromString(bluetoothDevice.getAddress())] = passkey
+      }
+    }
+  }
 
   init {
     scope = CoroutineScope(Dispatchers.Default)
@@ -61,6 +74,8 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     intentFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
     intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
+
+    context.registerReceiver(PasskeyReceiver(), intentFilter)
 
     // Creates a shared flow of intents that can be used in all methods in the coroutine scope.
     // This flow is started eagerly to make sure that the broadcast receiver is registered before
@@ -253,6 +268,55 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       connectionStateChangedFlow.filter { it == BluetoothAdapter.STATE_DISCONNECTED }.first()
 
       DisconnectResponse.getDefaultInstance()
+    }
+  }
+
+  override fun readPasskey(
+    request: ReadPasskeyRequest,
+    responseObserver: StreamObserver<ReadPasskeyResponse>
+  ) {
+    grpcUnary<ReadPasskeyResponse>(scope, responseObserver) {
+      val address = MacAddress.fromBytes(request.address.toByteArray())
+      Log.i(TAG, "readPasskey: $address")
+      val passkey =
+        if (passkeys.containsKey(address)) {
+          passkeys[address]!!
+        } else {
+          val pairingRequestIntent =
+            flow.filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }.first()
+          val bluetoothDevice =
+            pairingRequestIntent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+          val pairingVariant =
+            pairingRequestIntent.getIntExtra(
+              BluetoothDevice.EXTRA_PAIRING_VARIANT,
+              BluetoothDevice.ERROR
+            )
+          if (pairingVariant == BluetoothDevice.PAIRING_VARIANT_CONSENT) {
+            bluetoothDevice.setPairingConfirmation(true)
+          }
+          pairingRequestIntent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_KEY, BluetoothDevice.ERROR)
+        }
+      ReadPasskeyResponse.newBuilder().setPasskey(passkey).build()
+    }
+  }
+
+  override fun confirmPasskey(
+    request: ConfirmPasskeyRequest,
+    responseObserver: StreamObserver<ConfirmPasskeyResponse>
+  ) {
+    grpcUnary<ConfirmPasskeyResponse>(scope, responseObserver) {
+      val address = MacAddress.fromBytes(request.address.toByteArray())
+      Log.i(TAG, "confirmPasskey: $address")
+      val remote_passkey = request.passkey
+      val isConfirmed =
+        if (!passkeys.containsKey(address)) {
+          false
+        } else {
+          passkeys[address]!! == remote_passkey
+        }
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(request.address.toByteArray())
+      bluetoothDevice.setPairingConfirmation(isConfirmed)
+      ConfirmPasskeyResponse.newBuilder().setIsConfirmed(isConfirmed).build()
     }
   }
 }
