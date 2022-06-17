@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure to understand why this changes something 🤔 as [`_InactiveRpcError` inherit from grpc.RpcError](https://github.com/grpc/grpc/blob/master/src/python/grpcio/grpc/_channel.py#L283), so it should already be handled here, and if not the exception should just flow through and be handled by PTS-bot",
       "revId": "929e5c4a6298cc41785de27bfd4bac425da8960e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bc5ba42_20b68513",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-06-17T16:59:35Z",
+      "side": 1,
+      "message": "To be investigated later: http://b/236387931",
+      "parentUuid": "681d35b4_72bae651",
+      "revId": "929e5c4a6298cc41785de27bfd4bac425da8960e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
