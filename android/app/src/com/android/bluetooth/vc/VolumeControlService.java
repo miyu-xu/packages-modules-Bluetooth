@@ -179,6 +179,7 @@ public class VolumeControlService extends ProfileService {
     private final Map<BluetoothDevice, VolumeControlStateMachine> mStateMachines = new HashMap<>();
     private final Map<BluetoothDevice, VolumeControlOffsetDescriptor> mAudioOffsets =
                                                                             new HashMap<>();
+    private final Map<Integer, Integer> mGroupVolumeCache = new HashMap<>();
 
     private BroadcastReceiver mBondStateChangedReceiver;
     private BroadcastReceiver mConnectionStateChangedReceiver;
@@ -242,6 +243,7 @@ public class VolumeControlService extends ProfileService {
         registerReceiver(mConnectionStateChangedReceiver, filter);
 
         mAudioOffsets.clear();
+        mGroupVolumeCache.clear();
         mCallbacks = new RemoteCallbackList<IBluetoothVolumeControlCallback>();
 
         // Mark service as started
@@ -296,6 +298,7 @@ public class VolumeControlService extends ProfileService {
         mVolumeControlNativeInterface = null;
 
         mAudioOffsets.clear();
+        mGroupVolumeCache.clear();
 
         // Clear AdapterService, VolumeControlNativeInterface
         mAudioManager = null;
@@ -579,7 +582,16 @@ public class VolumeControlService extends ProfileService {
      * {@hide}
      */
     public void setVolumeGroup(int groupId, int volume) {
+        mGroupVolumeCache.put(groupId, volume);
         mVolumeControlNativeInterface.setVolumeGroup(groupId, volume);
+    }
+
+    /**
+     * {@hide}
+     * @param groupId
+     */
+    public int getVolumeGroup(int groupId) {
+        return mGroupVolumeCache.getOrDefault(groupId, -1);
     }
 
     /**
@@ -617,6 +629,11 @@ public class VolumeControlService extends ProfileService {
             return;
         }
         // TODO: Handle the other arguments: device, groupId, mute.
+
+        /* We are interested only in the group volume as any LeAudio device is a part of group */
+        if (device == null) {
+            mGroupVolumeCache.put(groupId, volume);
+        }
 
         int streamType = getBluetoothContextualVolumeStream();
         mAudioManager.setStreamVolume(streamType, getDeviceVolume(streamType, volume),
@@ -1142,6 +1159,24 @@ public class VolumeControlService extends ProfileService {
         }
 
         @Override
+        public void getVolumeGroup(int groupId, AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                Objects.requireNonNull(source, "source cannot be null");
+                Objects.requireNonNull(receiver, "receiver cannot be null");
+
+                VolumeControlService service = getService(source);
+                if (service != null) {
+                    service.getVolumeGroup(groupId);
+                }
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+
+        @Override
         public void mute(BluetoothDevice device,  AttributionSource source,
                 SynchronousResultReceiver receiver) {
             try {
@@ -1270,6 +1305,10 @@ public class VolumeControlService extends ProfileService {
             ProfileService.println(sb, "    Device: " + device);
             ProfileService.println(sb, "    Volume offset cnt: " + descriptor.size());
             descriptor.dump(sb);
+        }
+        for (Map.Entry<Integer, Integer> entry : mGroupVolumeCache.entrySet()) {
+            ProfileService.println(sb, "    GroupId: " + entry.getKey() + " volume: "
+                            + entry.getValue());
         }
     }
 }
