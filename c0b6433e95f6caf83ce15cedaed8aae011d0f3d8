@@ -212,6 +212,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3dcfa8e7_6e491d76",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-06-20T17:14:38Z",
+      "side": 1,
+      "message": "Uploading a new patchset, with the functions GetRtn and GetMaxSduSize removed from this patch",
+      "parentUuid": "76a9a400_a0ce4532",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28f521d4_30bf89b6",
         "filename": "system/bta/le_audio/devices.h",
         "patchSetId": 7
