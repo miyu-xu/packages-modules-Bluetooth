@@ -192,6 +192,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76a9a400_a0ce4532",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-06-20T17:11:15Z",
+      "side": 1,
+      "message": "Done : https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2130117",
+      "parentUuid": "511fdda3_f842f5d3",
+      "revId": "c0b6433e95f6caf83ce15cedaed8aae011d0f3d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28f521d4_30bf89b6",
