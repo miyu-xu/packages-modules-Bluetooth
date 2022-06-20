@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed5d856e_5d53af90",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-20T09:45:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f81bb8f7_1e50978a",
+      "range": {
+        "startLine": 565,
+        "startChar": 5,
+        "endLine": 565,
+        "endChar": 69
+      },
+      "revId": "3d6a5997e0f52818482d3c046bb176ee8510c66d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8aeed58_95635388",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "+1",
       "parentUuid": "a8aeed58_95635388",
+      "range": {
+        "startLine": 566,
+        "startChar": 5,
+        "endLine": 566,
+        "endChar": 35
+      },
+      "revId": "3d6a5997e0f52818482d3c046bb176ee8510c66d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fda0b19_61e1c531",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-20T09:45:45Z",
+      "side": 1,
+      "message": "We can\u0027t actually. The delayed_role_change_ is a private variable inside the btm_acl.cc file, so we need to pass overwrite_current_role to indicate whether or not we should check it in that file",
+      "parentUuid": "540bb229_3ee26c97",
       "range": {
         "startLine": 566,
         "startChar": 5,
