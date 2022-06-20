@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eeb293b_6e40ae94",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-20T13:42:55Z",
+      "side": 1,
+      "message": "This can also be empty. Empty string as rootId in MediaBrowserService seems valid:\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/src/com/android/bluetooth/audio_util/BrowsedPlayerWrapper.java;rcl\u003d411eb91759f362437fa024a456c79b7447c027be;l\u003d80\n\nhttps://source.corp.google.com/android/frameworks/base/media/java/android/service/media/MediaBrowserService.java;rcl\u003dff6347cc8bae5bc3dc992d8cb56e903c11ec07d0;l\u003d883\n\nAlso it may confuse users that clicking one folder makes the app plays all items (root).\nHow about printing some error and return if itemId is empty?",
+      "range": {
+        "startLine": 393,
+        "startChar": 12,
+        "endLine": 393,
+        "endChar": 41
+      },
+      "revId": "c407f1b1e3ab893883fd38e25e3b1f3610f0cdc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
