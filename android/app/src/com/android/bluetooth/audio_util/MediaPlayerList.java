@@ -385,14 +385,24 @@ public class MediaPlayerList {
         }
 
         int playerIndex = Integer.parseInt(mediaId.substring(0, 2));
+        BrowsedPlayerWrapper wrapper = mBrowsablePlayers.get(playerIndex);
+
         String itemId = mediaId.substring(2);
+        if (TextUtils.isEmpty(itemId)) {
+            Log.i(TAG, "Empty media id, getting the root for " + wrapper.getPackageName());
+            itemId = wrapper.getRootId();
+            if (TextUtils.isEmpty(itemId)) {
+                Log.i(TAG, "Filed to playFolderItem with an empty media id");
+                return;
+            }
+        }
 
         if (!haveMediaBrowser(playerIndex)) {
             e("playFolderItem: Do not have the a browsable player with ID " + playerIndex);
             return;
         }
 
-        mBrowsablePlayers.get(playerIndex).playItem(itemId);
+        wrapper.playItem(itemId);
     }
 
     void getFolderItemsMediaPlayerList(GetFolderItemsCallback cb) {
