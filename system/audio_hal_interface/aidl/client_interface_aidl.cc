@@ -224,9 +224,9 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
   }
   transport_->UpdateAudioConfiguration(audio_config);
 
-  if (provider_ == nullptr) {
-    LOG(INFO) << __func__
-              << ": BluetoothAudioHal nullptr, update it as session started";
+  // AudioConfiguration stored in transport_ will be passed to session later. No
+  // need to update here.
+  if (provider_ == nullptr || !session_started_) {
     return true;
   }
 
@@ -234,6 +234,7 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
   if (!aidl_retval.isOk()) {
     LOG(ERROR) << __func__ << ": BluetoothAudioHal failure: "
                << aidl_retval.getDescription();
+    return false;
   }
   return true;
 }
