@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37c1bd28_81a280bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-20T20:51:45Z",
+      "side": 1,
+      "message": "Hi Partha, I was testing it a bit, adding more changes on top but still have some issues when changing from media to phone.\n\nI will work on that. In the meantime, could you please try to fix unittests?\n\n`atest --host bluetooth_le_audio_test bluetooth_le_audio_client_test`",
+      "revId": "13b79b2b2a6fed1b7c37ab49b32db4a78d6789cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
