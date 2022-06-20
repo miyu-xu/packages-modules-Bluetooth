@@ -573,17 +573,20 @@ static void btif_a2dp_source_setup_codec_delayed(
   if (!bta_av_co_set_active_peer(peer_address)) {
     LOG_ERROR("%s: Cannot stream audio: cannot set active peer to %s", __func__,
               peer_address.ToString().c_str());
+    btif_a2dp_source_cleanup();
     return;
   }
   btif_a2dp_source_cb.encoder_interface = bta_av_co_get_encoder_interface();
   if (btif_a2dp_source_cb.encoder_interface == nullptr) {
     LOG_ERROR("%s: Cannot stream audio: no source encoder interface", __func__);
+    btif_a2dp_source_cleanup();
     return;
   }
 
   A2dpCodecConfig* a2dp_codec_config = bta_av_get_a2dp_current_codec();
   if (a2dp_codec_config == nullptr) {
     LOG_ERROR("%s: Cannot stream audio: current codec is not set", __func__);
+    btif_a2dp_source_cleanup();
     return;
   }
 
@@ -596,7 +599,9 @@ static void btif_a2dp_source_setup_codec_delayed(
       btif_a2dp_source_cb.encoder_interface->get_encoder_interval_ms();
 
   if (bluetooth::audio::a2dp::is_hal_enabled()) {
-    bluetooth::audio::a2dp::setup_codec();
+    if (!bluetooth::audio::a2dp::setup_codec()) {
+      btif_a2dp_source_cleanup();
+    }
   }
 }
 
