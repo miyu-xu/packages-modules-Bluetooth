@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e97faa05_f74b4d79",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-20T16:27:31Z",
+      "side": 1,
+      "message": "Lets make it LOG_DEBUG()",
+      "revId": "54c1a0436eff6d9aed98989b11ae84019181a5e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43610e0c_971fb4ae",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-20T16:27:31Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "54c1a0436eff6d9aed98989b11ae84019181a5e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93ebf4e0_70610382",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1002,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-20T16:27:31Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "54c1a0436eff6d9aed98989b11ae84019181a5e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a1540e8_26a48bf2",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1773,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-20T16:27:31Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "54c1a0436eff6d9aed98989b11ae84019181a5e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85afc738_152700c8",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1790,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-20T16:27:31Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "54c1a0436eff6d9aed98989b11ae84019181a5e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
