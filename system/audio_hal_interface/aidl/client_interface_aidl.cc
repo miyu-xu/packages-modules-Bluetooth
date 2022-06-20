@@ -234,6 +234,7 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
   if (!aidl_retval.isOk()) {
     LOG(ERROR) << __func__ << ": BluetoothAudioHal failure: "
                << aidl_retval.getDescription();
+    return false;
   }
   return true;
 }
