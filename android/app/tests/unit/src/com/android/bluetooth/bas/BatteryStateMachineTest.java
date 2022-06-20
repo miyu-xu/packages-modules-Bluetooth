@@ -215,6 +215,16 @@ public class BatteryStateMachineTest {
                 IsInstanceOf.instanceOf(BatteryStateMachine.Disconnected.class));
     }
 
+    @Test
+    public void testEmptyBatteryLevelIgnored() {
+        allowConnection(true);
+        allowConnectGatt(true);
+
+        // To create a callback
+        mBatteryStateMachine.connectGatt();
+        mBatteryStateMachine.mGattCallback.updateBatteryLevel(new byte[0]);
+    }
+
     // It simulates GATT connection for testing.
     public class StubBatteryStateMachine extends BatteryStateMachine {
         boolean mShouldAllowGatt = true;
