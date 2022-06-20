@@ -20,14 +20,15 @@ import static android.bluetooth.BluetoothGatt.GATT_SUCCESS;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.after;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.reset;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -38,16 +39,13 @@ import android.os.Looper;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.LargeTest;
-import androidx.test.filters.MediumTest;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -213,6 +211,36 @@ public class BatteryStateMachineTest {
 
         Assert.assertThat(mBatteryStateMachine.getCurrentState(),
                 IsInstanceOf.instanceOf(BatteryStateMachine.Disconnected.class));
+    }
+
+    @Test
+    public void testBatteryLevelChanged() {
+        allowConnection(true);
+        allowConnectGatt(true);
+
+        // To create a callback
+        mBatteryStateMachine.connectGatt();
+        mBatteryStateMachine.mGattCallback.updateBatteryLevel(new byte[]{(byte)0x30});
+
+        verify(mBatteryService, timeout(TIMEOUT_MS))
+                .handleBatteryChanged(any(BluetoothDevice.class), eq(0x30));
+    }
+
+    @Test
+    public void testEmptyBatteryLevelIgnored() {
+        allowConnection(true);
+        allowConnectGatt(true);
+
+        // To create a callback
+        mBatteryStateMachine.connectGatt();
+        mBatteryStateMachine.mGattCallback.updateBatteryLevel(new byte[0]);
+
+        try {
+            verify(mBatteryService, after(WAIT_MS).never())
+                    .handleBatteryChanged(any(BluetoothDevice.class), anyInt());
+        } catch (Exception ex) {
+            fail();
+        }
     }
 
     // It simulates GATT connection for testing.
