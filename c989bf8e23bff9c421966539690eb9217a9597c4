@@ -34,6 +34,29 @@
       "parentUuid": "0345bc9b_89a1b823",
       "revId": "c989bf8e23bff9c421966539690eb9217a9597c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8db2414_04467873",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-06-20T10:07:23Z",
+      "side": 1,
+      "message": "This invocation raises a lot of error message because ll mode cannot be set before session starts.",
+      "range": {
+        "startLine": 474,
+        "startChar": 24,
+        "endLine": 474,
+        "endChar": 48
+      },
+      "revId": "c989bf8e23bff9c421966539690eb9217a9597c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
