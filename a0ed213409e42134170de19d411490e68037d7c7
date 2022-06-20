@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4999f2f3_09ea5eca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-20T16:24:55Z",
+      "side": 1,
+      "message": "I think we need unit test for that.\n\nAlso, what will happen if e.g. We have media configuration and then we move to game with very same codec configuration?",
+      "revId": "a0ed213409e42134170de19d411490e68037d7c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0c60098_3f611784",
