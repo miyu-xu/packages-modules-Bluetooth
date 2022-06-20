@@ -117,6 +117,30 @@
       },
       "revId": "3d6a5997e0f52818482d3c046bb176ee8510c66d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e0be7d3_6bdd99d2",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-20T14:13:28Z",
+      "side": 1,
+      "message": "Acked.",
+      "parentUuid": "5fda0b19_61e1c531",
+      "range": {
+        "startLine": 566,
+        "startChar": 5,
+        "endLine": 566,
+        "endChar": 35
+      },
+      "revId": "3d6a5997e0f52818482d3c046bb176ee8510c66d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
