@@ -215,6 +215,23 @@ public class BatteryStateMachineTest {
                 IsInstanceOf.instanceOf(BatteryStateMachine.Disconnected.class));
     }
 
+    @Test
+    public void testEmptyBatteryLevelIgnored() {
+        allowConnection(true);
+        allowConnectGatt(true);
+
+        // Inject an event for when incoming connection is requested
+        mBatteryStateMachine.sendMessage(BatteryStateMachine.CONNECT);
+
+        // Wait while it's connected.
+        verify(mBatteryService, timeout(TIMEOUT_MS))
+                .handleConnectionStateChanged(any(BatteryStateMachine.class),
+                        eq(BluetoothProfile.STATE_CONNECTING),
+                        eq(BluetoothProfile.STATE_CONNECTED));
+
+        mBatteryStateMachine.mGattCallback.updateBatteryLevel(new byte[0]);
+    }
+
     // It simulates GATT connection for testing.
     public class StubBatteryStateMachine extends BatteryStateMachine {
         boolean mShouldAllowGatt = true;
