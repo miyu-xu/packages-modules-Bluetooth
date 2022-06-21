@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8fcd5cc2_1c95632d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-21T16:01:13Z",
+      "side": 1,
+      "message": "I think this is the correct strategy to add flags to enable/disable these types of cases",
+      "revId": "469978b7dd0d7b4c9ae85318bb0048132c400545",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
