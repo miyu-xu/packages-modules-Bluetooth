@@ -480,7 +480,6 @@ static void prepare_poll_fds(int h, struct pollfd* pfds) {
   int ps_i = 0;
   int pfd_i = 0;
   asrt(ts[h].poll_count <= MAX_POLL);
-  memset(pfds, 0, sizeof(pfds[0]) * ts[h].poll_count);
   while (count < ts[h].poll_count) {
     if (ps_i >= MAX_POLL) {
       APPL_TRACE_ERROR(
@@ -500,9 +499,9 @@ static void prepare_poll_fds(int h, struct pollfd* pfds) {
 }
 static void* sock_poll_thread(void* arg) {
   struct pollfd pfds[MAX_POLL];
-  memset(pfds, 0, sizeof(pfds));
   int h = (intptr_t)arg;
   for (;;) {
+    memset(pfds, 0, sizeof(pfds));
     prepare_poll_fds(h, pfds);
     int ret;
     OSI_NO_INTR(ret = poll(pfds, ts[h].poll_count, -1));
