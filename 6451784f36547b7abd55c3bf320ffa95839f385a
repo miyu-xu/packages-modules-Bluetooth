@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e46efa2_f8c2116d",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-06-21T06:49:41Z",
+      "side": 1,
+      "message": "This one is correct.",
+      "range": {
+        "startLine": 395,
+        "startChar": 4,
+        "endLine": 395,
+        "endChar": 13
+      },
+      "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a4523b9_0a044517",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-06-21T06:49:41Z",
+      "side": 1,
+      "message": "Same as below, this does not work as intended and proposed in the bug\n\nThe bug provide a correct fix:\n```\nmemset(pfds, 0, sizeof(*pfds) * MAX_POLL);\n```\n\nI am proposing to you an alternative solution below if you don\u0027t want to refer to an external #define in the memset call",
+      "range": {
+        "startLine": 483,
+        "startChar": 2,
+        "endLine": 483,
+        "endChar": 13
+      },
+      "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f7e4e72_f7bb2715",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-06-21T06:49:41Z",
+      "side": 1,
+      "message": "This does not work like intended.\nBefore your change, all the array is erased.\nAfter your change, only the first elem of the array is set to 0\n\nYou can test behavior with below test code\n```\nint main() { \n  int pfds[9];\n  pfds[8] \u003d 4242;\n  *pfds \u003d {};\n  for (int i \u003d 0; i \u003c 8; ++i) {\n    std::cout \u003c\u003c \"[i]\u003d\" \u003c\u003c i \u003c\u003c \"   pfds[i]\u003d\" \u003c\u003c pfds[i] \u003c\u003c \"\\n\";\n  }\n}\n```",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 13
+      },
+      "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97a4e7b1_f0c52521",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-06-21T06:49:41Z",
+      "side": 1,
+      "message": "You can address this issue by moving the memset from line 503 inside the for loop like this:\n\n```\n    for (;;) {\n++     memset(pfds, 0, sizeof(pfds));\n       prepare_poll_fds(h, pfds);\n```\n\n(and deleting the memset at line 483 because it will be useless at this point)",
+      "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
