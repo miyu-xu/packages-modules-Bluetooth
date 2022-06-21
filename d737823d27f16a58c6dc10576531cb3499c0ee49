@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77002589_2686843b",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-21T08:11:37Z",
+      "side": 1,
+      "message": "I\u0027m not sure I fully understand the idea of the previous contributor. So I will leave it as it is for now.",
+      "parentUuid": "5ecbd593_2b0a693f",
+      "range": {
+        "startLine": 103,
+        "startChar": 7,
+        "endLine": 103,
+        "endChar": 21
+      },
+      "revId": "d737823d27f16a58c6dc10576531cb3499c0ee49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa0bc0f9_5e118e98",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-21T04:59:55Z",
       "side": 1,
       "message": "acl_cache_role will update delayed_role_change_, but the method name and the variable name are not very matched.\n\nWhat about renaming delayed_role_change_ to cached_role_ and overwrite_current_role to overwrite_cache?",
+      "range": {
+        "startLine": 1350,
+        "startChar": 5,
+        "endLine": 1350,
+        "endChar": 19
+      },
+      "revId": "d737823d27f16a58c6dc10576531cb3499c0ee49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe473464_2164acef",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1350,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-21T08:11:37Z",
+      "side": 1,
+      "message": "Actually \"delayed\" sounds more accurate than \"cached\". But it seems like \"cached\" help people who read understand faster. I will change as you suggested",
+      "parentUuid": "aa0bc0f9_5e118e98",
       "range": {
         "startLine": 1350,
         "startChar": 5,
