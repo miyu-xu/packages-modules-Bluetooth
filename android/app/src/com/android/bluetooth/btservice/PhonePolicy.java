@@ -354,6 +354,20 @@ class PhonePolicy {
             debugLog("setting le audio profile priority for device " + device);
             mAdapterService.getDatabase().setProfileConnectionPolicy(device,
                     BluetoothProfile.LE_AUDIO, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAdapterService.getDatabase()
+                    .getProfileConnectionPolicy(device, BluetoothProfile.A2DP)
+                    >  BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                debugLog("clear a2dp profile priority for the le audio dual mode device " + device);
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.A2DP, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+            }
+            if (mAdapterService.getDatabase()
+                    .getProfileConnectionPolicy(device, BluetoothProfile.HEADSET)
+                    >  BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                debugLog("clear hfp profile priority for the le audio dual mode device " + device);
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.HEADSET, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+            }
         }
 
         if ((hearingAidService != null) && Utils.arrayContains(uuids,
