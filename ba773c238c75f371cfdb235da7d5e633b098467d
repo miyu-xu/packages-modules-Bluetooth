@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76dcebc1_6fd5c819",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-21T18:18:05Z",
+      "side": 1,
+      "message": "Move this before getting wrapper (Line 388)\nor wrapper could be null and NPE would be thrown.",
+      "range": {
+        "startLine": 401,
+        "startChar": 7,
+        "endLine": 404,
+        "endChar": 9
+      },
+      "revId": "ba773c238c75f371cfdb235da7d5e633b098467d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
