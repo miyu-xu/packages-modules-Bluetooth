@@ -3658,8 +3658,8 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
       /* Let l2cap start bond timer */
       l2cu_update_lcb_4_bonding(p_dev_rec->bd_addr, true);
     }
-
-    return;
+    LOG_INFO("Connection complete during pairing process peer:%s",
+             PRIVATE_ADDRESS(bda));
   }
 
   p_dev_rec->hci_handle = handle;
