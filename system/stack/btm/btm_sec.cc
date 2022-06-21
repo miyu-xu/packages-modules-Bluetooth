@@ -3634,6 +3634,10 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
     return;
   }
 
+  // A successful ACL has beem created
+  p_dev_rec->hci_handle = handle;
+  btm_acl_created(bda, handle, assigned_role, BT_TRANSPORT_BR_EDR);
+
   /* If initiated dedicated bonding, return the link key now, and initiate
    * disconnect */
   /* If dedicated bonding, and we now have a link key, we are all done */
@@ -3661,9 +3665,6 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
 
     return;
   }
-
-  p_dev_rec->hci_handle = handle;
-  btm_acl_created(bda, handle, assigned_role, BT_TRANSPORT_BR_EDR);
 
   /* role may not be correct here, it will be updated by l2cap, but we need to
    */
