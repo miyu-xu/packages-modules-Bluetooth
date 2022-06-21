@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78de8633_c957d3a4",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-21T17:49:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5c81c7ee_69d58259",
+      "range": {
+        "startLine": 227,
+        "startChar": 8,
+        "endLine": 227,
+        "endChar": 44
+      },
+      "revId": "0c66f2aaa63fb03e21a45ecbf57ea5395a77d2bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1fe527d_c6eeeffe",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "This is just the format required by the MGMT interface. It is unused.\n\nhttps://github.com/torvalds/linux/blob/master/include/net/bluetooth/mgmt.h#L61",
       "parentUuid": "2d27c044_62173302",
+      "range": {
+        "startLine": 231,
+        "startChar": 10,
+        "endLine": 231,
+        "endChar": 19
+      },
+      "revId": "0c66f2aaa63fb03e21a45ecbf57ea5395a77d2bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1e01a6e_7ea88282",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-21T17:49:25Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d97fb6b7_dc0423ec",
       "range": {
         "startLine": 231,
         "startChar": 10,
