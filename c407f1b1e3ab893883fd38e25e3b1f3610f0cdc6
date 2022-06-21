@@ -46,6 +46,30 @@
       },
       "revId": "c407f1b1e3ab893883fd38e25e3b1f3610f0cdc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27d576c8_2bfc9eda",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-06-21T05:03:39Z",
+      "side": 1,
+      "message": "I\u0027m saying about empty string (\"\"), not null.\nIn MediaBrowserService, empty string as root Id is valid.\nIn MediaController.playFromMediaId, empty string is not valid.",
+      "parentUuid": "4c9b8f96_ac0c514d",
+      "range": {
+        "startLine": 393,
+        "startChar": 12,
+        "endLine": 393,
+        "endChar": 41
+      },
+      "revId": "c407f1b1e3ab893883fd38e25e3b1f3610f0cdc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
