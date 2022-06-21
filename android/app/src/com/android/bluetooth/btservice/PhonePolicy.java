@@ -354,6 +354,20 @@ class PhonePolicy {
             debugLog("setting le audio profile priority for device " + device);
             mAdapterService.getDatabase().setProfileConnectionPolicy(device,
                     BluetoothProfile.LE_AUDIO, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+            if (mAdapterService.getDatabase()
+                    .getProfileConnectionPolicy(device, BluetoothProfile.A2DP)
+                    >  BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                debugLog("clear a2dp profile priority for the le audio dual mode device " + device);
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.A2DP, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+            }
+            if (mAdapterService.getDatabase()
+                    .getProfileConnectionPolicy(device, BluetoothProfile.HEADSET)
+                    >  BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
+                debugLog("clear hfp profile priority for the le audio dual mode device " + device);
+                mAdapterService.getDatabase().setProfileConnectionPolicy(device,
+                        BluetoothProfile.HEADSET, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+            }
         }
 
         if ((hearingAidService != null) && Utils.arrayContains(uuids,
@@ -413,6 +427,29 @@ class PhonePolicy {
                         break;
                     case BluetoothProfile.HEADSET:
                         mHeadsetRetrySet.remove(device);
+                        break;
+                    case BluetoothProfile.LE_AUDIO:
+                        resetStates();
+                        HeadsetService hsService = mFactory.getHeadsetService();
+                        if (hsService != null) {
+                            if ((hsService.getConnectionPolicy(device)
+                                    != BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+                                    && (hsService.getConnectionState(device)
+                                    == BluetoothProfile.STATE_CONNECTED)) {
+                                debugLog("Disconnect to Headset with device " + device);
+                                hsService.disconnect(device);
+                            }
+                        }
+                        A2dpService a2dpService = mFactory.getA2dpService();
+                        if (a2dpService != null) {
+                            if ((a2dpService.getConnectionPolicy(device)
+                                    != BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+                                    && (a2dpService.getConnectionState(device)
+                                    == BluetoothProfile.STATE_CONNECTED)) {
+                                debugLog("Disconnect to A2DP with device " + device);
+                                a2dpService.disconnect(device);
+                            }
+                        }
                         break;
                 }
                 connectOtherProfile(device);
