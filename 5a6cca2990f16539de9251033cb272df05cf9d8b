@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0444ed12_6992ddb0",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3639,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-21T21:51:59Z",
+      "side": 1,
+      "message": "Update the comments?",
+      "range": {
+        "startLine": 3637,
+        "startChar": 0,
+        "endLine": 3639,
+        "endChar": 73
+      },
+      "revId": "5a6cca2990f16539de9251033cb272df05cf9d8b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
