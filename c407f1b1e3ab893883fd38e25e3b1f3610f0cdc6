@@ -22,6 +22,30 @@
       },
       "revId": "c407f1b1e3ab893883fd38e25e3b1f3610f0cdc6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c9b8f96_ac0c514d",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-21T04:24:54Z",
+      "side": 1,
+      "message": "mRootId can be null if it is not connected or failed to connection.\nIn that case, playFolderItem shouldn\u0027t be called. (though I haven\u0027t checked it.)\n\nAlso now allowing playable folder from the playable list is outside of the issue what I want to resolve here.\n\nBut I could return early for no-op when the root id is null.",
+      "parentUuid": "4eeb293b_6e40ae94",
+      "range": {
+        "startLine": 393,
+        "startChar": 12,
+        "endLine": 393,
+        "endChar": 41
+      },
+      "revId": "c407f1b1e3ab893883fd38e25e3b1f3610f0cdc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
