@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65b1d1bb_0e6771d2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bas/BatteryStateMachineTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-21T01:51:46Z",
+      "side": 1,
+      "message": "You may want to make the test failed when exception happened.\n\n```\ntry {\n    ...\n} catch (Exception e) {\n    fail();\n}\n```",
+      "range": {
+        "startLine": 224,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 75
+      },
+      "revId": "7a0e10c44a6548f4d8360ca18b30a1451a74abe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
