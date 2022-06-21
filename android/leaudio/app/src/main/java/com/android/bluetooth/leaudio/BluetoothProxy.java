@@ -112,8 +112,8 @@ public class BluetoothProxy {
             LeAudioDeviceStateWrapper valid_device = valid_device_opt.get();
             LeAudioDeviceStateWrapper.LeAudioData svc_data = valid_device.leAudioData;
 
-            svc_data.nodeStatusMutable.setValue(new Pair<>(groupId, GROUP_NODE_ADDED));
-            svc_data.groupStatusMutable.setValue(new Pair<>(groupId, new Pair<>(-1, -1)));
+            svc_data.nodeStatusMutable.postValue(new Pair<>(groupId, GROUP_NODE_ADDED));
+            svc_data.groupStatusMutable.postValue(new Pair<>(groupId, new Pair<>(-1, -1)));
         }
         @Override
         public void onGroupNodeRemoved(BluetoothDevice device, int groupId) {
@@ -141,8 +141,8 @@ public class BluetoothProxy {
             LeAudioDeviceStateWrapper valid_device = valid_device_opt.get();
             LeAudioDeviceStateWrapper.LeAudioData svc_data = valid_device.leAudioData;
 
-            svc_data.nodeStatusMutable.setValue(new Pair<>(groupId, GROUP_NODE_REMOVED));
-            svc_data.groupStatusMutable.setValue(new Pair<>(groupId, new Pair<>(-1, -1)));
+            svc_data.nodeStatusMutable.postValue(new Pair<>(groupId, GROUP_NODE_REMOVED));
+            svc_data.groupStatusMutable.postValue(new Pair<>(groupId, new Pair<>(-1, -1)));
         }
     };
 
