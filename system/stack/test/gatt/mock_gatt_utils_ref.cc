@@ -36,7 +36,7 @@ bool direct_connect_remove(uint8_t app_id, const RawAddress& address) {
 
 /** stack/gatt/att_protocol.cc */
 BT_HDR* attp_build_sr_msg(tGATT_TCB& tcb, uint8_t op_code,
-                          tGATT_SR_MSG* p_msg) {
+                          tGATT_SR_MSG* p_msg, uint16_t payload_size) {
   return nullptr;
 }
 tGATT_STATUS attp_send_cl_confirmation_msg(tGATT_TCB& tcb, uint16_t cid) {
