@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59314784_460901f0",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-22T22:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3625fcae_da8415c7",
+      "revId": "c644f14741169620726d71a2b4c9f97f2e66c80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "870639cc_916eea7b",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8885da7a_5724390b",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-22T22:30:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "870639cc_916eea7b",
+      "revId": "c644f14741169620726d71a2b4c9f97f2e66c80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0ed8899_bbf62486",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-06-22T20:47:09Z",
       "side": 1,
       "message": "Can you add a comment of how you came up with these values? In case we want to add additional cases in the future or verify correctness because it starts failing.",
+      "revId": "c644f14741169620726d71a2b4c9f97f2e66c80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fadb36a_27e4047e",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-06-22T22:30:58Z",
+      "side": 1,
+      "message": "Actually I grabbed this from my actual HID mouse conversion. Added a comment",
+      "parentUuid": "e0ed8899_bbf62486",
       "revId": "c644f14741169620726d71a2b4c9f97f2e66c80d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
