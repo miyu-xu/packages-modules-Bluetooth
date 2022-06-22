@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e53b82ba_301caca0",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-06-22T03:37:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a4523b9_0a044517",
+      "range": {
+        "startLine": 483,
+        "startChar": 2,
+        "endLine": 483,
+        "endChar": 13
+      },
+      "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6f7e4e72_f7bb2715",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b07a0683_e7323d24",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-06-22T03:37:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f7e4e72_f7bb2715",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 503,
+        "endChar": 13
+      },
+      "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97a4e7b1_f0c52521",
@@ -83,6 +131,24 @@
       "writtenOn": "2022-06-21T06:49:41Z",
       "side": 1,
       "message": "You can address this issue by moving the memset from line 503 inside the for loop like this:\n\n```\n    for (;;) {\n++     memset(pfds, 0, sizeof(pfds));\n       prepare_poll_fds(h, pfds);\n```\n\n(and deleting the memset at line 483 because it will be useless at this point)",
+      "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dcd61db_ab61fd75",
+        "filename": "system/btif/src/btif_sock_thread.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-06-22T03:37:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97a4e7b1_f0c52521",
       "revId": "6451784f36547b7abd55c3bf320ffa95839f385a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
