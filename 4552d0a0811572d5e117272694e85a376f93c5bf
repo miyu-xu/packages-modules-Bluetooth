@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac8361c2_02b05ec2",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-22T15:10:33Z",
+      "side": 1,
+      "message": "4 ports by default\n?",
+      "range": {
+        "startLine": 30,
+        "startChar": 42,
+        "endLine": 30,
+        "endChar": 60
+      },
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab006ffb_9f0846d5",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-22T15:10:33Z",
+      "side": 1,
+      "message": "nit: exposes",
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ee1d937_1a645c20",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-22T15:10:33Z",
+      "side": 1,
+      "message": "channels",
+      "range": {
+        "startLine": 55,
+        "startChar": 13,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "042c214a_044c7802",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-22T15:10:33Z",
+      "side": 1,
+      "message": "Remove?  There are valid use cases for these ports.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 61
+      },
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
