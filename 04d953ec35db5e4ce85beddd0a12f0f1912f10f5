@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42558568_3fa757ed",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-22T05:55:03Z",
+      "side": 1,
+      "message": "\u003e 100 chars.",
+      "revId": "04d953ec35db5e4ce85beddd0a12f0f1912f10f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ae053aa_99a847d9",
         "filename": "system/stack/hcic/hcicmds.cc",
         "patchSetId": 9
@@ -14,6 +31,24 @@
       "writtenOn": "2022-06-22T01:04:46Z",
       "side": 1,
       "message": "This entry point is no longer used and should be removed.\n\nThe proper way is to use the GD method.",
+      "revId": "04d953ec35db5e4ce85beddd0a12f0f1912f10f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b07e733_9d591afd",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-22T05:55:03Z",
+      "side": 1,
+      "message": "That would be the reason that we can\u0027t repro the issue.\nAnyway, if it is not used, taking this CL for Samsung is no harmful at this moment.\nLet\u0027s just merge this CL and close the bug.\n\nAnd feel free to remove this dead code (if it is) in the following CL.",
+      "parentUuid": "6ae053aa_99a847d9",
       "revId": "04d953ec35db5e4ce85beddd0a12f0f1912f10f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
