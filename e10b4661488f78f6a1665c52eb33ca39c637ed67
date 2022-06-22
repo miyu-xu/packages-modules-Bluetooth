@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c66eee_f7d8b4d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-06-22T13:08:20Z",
+      "side": 1,
+      "message": "nit) IAE",
+      "range": {
+        "startLine": 7,
+        "startChar": 17,
+        "endLine": 7,
+        "endChar": 20
+      },
+      "revId": "e10b4661488f78f6a1665c52eb33ca39c637ed67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
