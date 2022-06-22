@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3625fcae_da8415c7",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 805,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-22T20:47:09Z",
+      "side": 1,
+      "message": "You seem to be missing hex to dec tests.",
+      "revId": "c644f14741169620726d71a2b4c9f97f2e66c80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "870639cc_916eea7b",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 808,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-22T20:47:09Z",
+      "side": 1,
+      "message": "Test should also capture error handling.",
+      "revId": "c644f14741169620726d71a2b4c9f97f2e66c80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0ed8899_bbf62486",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-22T20:47:09Z",
+      "side": 1,
+      "message": "Can you add a comment of how you came up with these values? In case we want to add additional cases in the future or verify correctness because it starts failing.",
+      "revId": "c644f14741169620726d71a2b4c9f97f2e66c80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
