@@ -85,6 +85,30 @@
       },
       "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b765e24d_c7738c7f",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-22T15:15:19Z",
+      "side": 1,
+      "message": "Yes indeed, I think I should rephrase that as the idea here was more than only \"advanced\" users should use that as there is not guarantee of stability on the link_layer_packets.pdl protocol so preferably it should not be relied upon and that most users shouldn\u0027t really look at it.",
+      "parentUuid": "042c214a_044c7802",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 61
+      },
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
