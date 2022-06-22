@@ -305,6 +305,11 @@ static BT_HDR* attp_build_value_cmd(uint16_t payload_size, uint8_t op_code,
     p_buf->len += 2;
   }
 
+  if (op_code == GATT_HANDLE_MULTI_VALUE_NOTIF) {
+    UINT16_TO_STREAM(p, len);
+    p_buf->len += 2;
+  }
+
   if (len > 0 && p_data != NULL) {
     /* ensure data not exceed MTU size */
     if (payload_size - p_buf->len < len) {
