@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7410495_794c16b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-06-22T01:51:36Z",
+      "side": 1,
+      "message": "Verify it with the device do the BR/EDR CTKD to LE. Need to check more with the device do the LE CTKD to BR/EDR.",
+      "revId": "99e6865a28667d6fcb5df73c2fcac4fbe24fabff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
