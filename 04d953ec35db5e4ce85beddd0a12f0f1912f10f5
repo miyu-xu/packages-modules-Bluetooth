@@ -51,6 +51,24 @@
       "parentUuid": "6ae053aa_99a847d9",
       "revId": "04d953ec35db5e4ce85beddd0a12f0f1912f10f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26953e5_cb23c4e5",
+        "filename": "system/stack/hcic/hcicmds.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 547,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2022-06-22T06:04:04Z",
+      "side": 1,
+      "message": "I aware that btsnd_hcic_create_conn is no longer used. But actually what we are fixing in this CL is the function btsnd_hcic_rmt_name_req (because this function call btm_acl_paging, which then change the delayed_role_change_). By separating the logic, btm_acl_paging won\u0027t change the delayed_role_change_ anymore. The code touching btsnd_hcic_create_conn is just for readability.",
+      "parentUuid": "6ae053aa_99a847d9",
+      "revId": "04d953ec35db5e4ce85beddd0a12f0f1912f10f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
