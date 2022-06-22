@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ca33044_104b81d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T20:38:42Z",
+      "side": 1,
+      "message": "Could you make an apex and install on a phone to test with AVRCP devices?",
+      "revId": "e10b4661488f78f6a1665c52eb33ca39c637ed67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "617f6eb4_aaab7790",
         "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
         "patchSetId": 5
