@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "982403a1_65ea6511",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "nit: add {} around if statement even if it is single line",
+      "range": {
+        "startLine": 493,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 65
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f34c853_d43ad4e3",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "nit: new_version",
+      "range": {
+        "startLine": 1387,
+        "startChar": 67,
+        "endLine": 1387,
+        "endChar": 74
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd08055d_8383ba5e",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "nit: old_version",
+      "range": {
+        "startLine": 1389,
+        "startChar": 11,
+        "endLine": 1389,
+        "endChar": 29
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e03a4b2_668e3790",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1395,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "LOG_INFO since this log doesn\u0027t happen that often",
+      "range": {
+        "startLine": 1395,
+        "startChar": 4,
+        "endLine": 1395,
+        "endChar": 13
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aef65fc3_ed706022",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "LOG_INFO since this log doesn\u0027t happen that often",
+      "range": {
+        "startLine": 1400,
+        "startChar": 4,
+        "endLine": 1400,
+        "endChar": 13
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4e35263_9e753ffd",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "generally we prefer check condition and return early to reduce code nesting\n\nInstead of \n\n```\nif (condition1) {\n  // do 1\n} else if (condition 2) {\n  // do 2\n  if (subcondition2_1) {\n    // do 2_1\n  }\n} else {\n  // do 3\n}\n```\n\nIt is preferred to do\n\n```\nif (condition1) {\n  // do 1\n  return;\n}\n\nif (condition2) {\n  // do 2\n  if (!subcondition2_1) {\n    return;\n  }\n  return;\n}\n\n// do 3\nreturn;\n```\n\nOf course, this pattern does NOT apply if you have comment logic for condition 1, 2, and 3 such as\n\n```\nif (condition1) {\n  // do 1\n} else if (condition 2) {\n  // do 2\n  if (subcondition2_1) {\n    // do 2_1\n  }\n  // do 2_common\n} else {\n  // do 3\n}\n// do common\n```",
+      "range": {
+        "startLine": 1245,
+        "startChar": 5,
+        "endLine": 1245,
+        "endChar": 33
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14492768_80e7850b",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1249,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "\u003e\u003d ?\n\nPreviously, \u003e is used because if the condition is not true, the logic won\u0027t be triggered, and `avrcp_version` variable will be left alone, \n\nAfter your change, if this condition is false, the code can fallback to the else if condition, which changes the logic of dealing with devices that makes interop_match_addr() returns true. \n\nPlease leave a comment about this, too\n\nHowever, if it is your intended behavior, it is fine. In that case, please comment about your design by adding it to the LOG message.",
+      "range": {
+        "startLine": 1249,
+        "startChar": 20,
+        "endLine": 1249,
+        "endChar": 21
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fca50750_be89b48d",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "use LOG_DEBUG, which will add __func__ automatically\n\nsame for all other logging methods used here",
+      "range": {
+        "startLine": 1251,
+        "startChar": 4,
+        "endLine": 1251,
+        "endChar": 19
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "379a00f6_72bf86dc",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "could you also log what was the original AVRCP version that got replaced",
+      "range": {
+        "startLine": 1252,
+        "startChar": 3,
+        "endLine": 1253,
+        "endChar": 46
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a18154fd_8eb999a7",
+        "filename": "system/stack/test/stack_sdp_utils_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "Could we create more test cases such as \n\n1. Corrupted AVRCP version value from config file (e.g. you get 1 byte instead of uint16_t\n2. Failed to read a value from config file\n\nthe goal of these tests is to explore the corner cases of our code that manual testing is hard to reach",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 57
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5fa94364_7617a84c",
+        "filename": "system/stack/test/stack_sdp_utils_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-22T08:15:45Z",
+      "side": 1,
+      "message": "Please use ASSERT_EQ instead so that the test fail early",
+      "range": {
+        "startLine": 111,
+        "startChar": 2,
+        "endLine": 111,
+        "endChar": 11
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
