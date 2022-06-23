@@ -16,6 +16,24 @@
       "message": "Maybe remove these comments",
       "revId": "1dd8f055381a17f24ad73f163ef9614ad092e58f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49602da3_02d10cc7",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1043,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-23T23:34:32Z",
+      "side": 1,
+      "message": "its cleaned up by a following CL in the stack.",
+      "parentUuid": "6d8d4127_7ad4647c",
+      "revId": "1dd8f055381a17f24ad73f163ef9614ad092e58f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
