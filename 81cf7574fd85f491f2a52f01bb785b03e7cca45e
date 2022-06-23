@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c4102dd_300cb3d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1019050
+      },
+      "writtenOn": "2022-06-23T17:13:13Z",
+      "side": 1,
+      "message": "This removes some libbacktrace references that are not related to the code.",
+      "revId": "81cf7574fd85f491f2a52f01bb785b03e7cca45e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
