@@ -377,6 +377,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4ad0210_31ddb48b",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1289,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T21:33:58Z",
+      "side": 1,
+      "message": "ACK on both of them. Good thinking and thanks for correcting my comments!",
+      "parentUuid": "2466d199_dbcb3888",
+      "range": {
+        "startLine": 1289,
+        "startChar": 0,
+        "endLine": 1289,
+        "endChar": 59
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a09c1889_4e1123aa",
