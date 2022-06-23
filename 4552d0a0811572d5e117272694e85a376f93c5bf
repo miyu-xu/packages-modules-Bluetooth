@@ -41,6 +41,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a0ceb474_e631bc4a",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-23T12:25:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab006ffb_9f0846d5",
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1335a15b_20299442",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-23T12:25:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac8361c2_02b05ec2",
+      "range": {
+        "startLine": 30,
+        "startChar": 42,
+        "endLine": 30,
+        "endChar": 60
+      },
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ee1d937_1a645c20",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-06-22T15:10:33Z",
       "side": 1,
       "message": "channels",
+      "range": {
+        "startLine": 55,
+        "startChar": 13,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc373552_916fc07f",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-23T12:25:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ee1d937_1a645c20",
       "range": {
         "startLine": 55,
         "startChar": 13,
@@ -101,6 +167,30 @@
       "side": 1,
       "message": "Yes indeed, I think I should rephrase that as the idea here was more than only \"advanced\" users should use that as there is not guarantee of stability on the link_layer_packets.pdl protocol so preferably it should not be relied upon and that most users shouldn\u0027t really look at it.",
       "parentUuid": "042c214a_044c7802",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 61
+      },
+      "revId": "4552d0a0811572d5e117272694e85a376f93c5bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df5e8cb9_6ee2dd5e",
+        "filename": "tools/rootcanal/README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-23T12:25:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b765e24d_c7738c7f",
       "range": {
         "startLine": 56,
         "startChar": 0,
