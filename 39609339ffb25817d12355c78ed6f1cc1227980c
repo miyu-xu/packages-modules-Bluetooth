@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "373ef84e_c26d0990",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-06-23T01:14:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0421700e_3867bce6",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0fd49556_e0b5e772",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-06-16T07:44:53Z",
       "side": 1,
       "message": "I think you forgot to call `writeHeader` here 😊",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9c81b9d_d9cb5e24",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-06-23T01:14:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0fd49556_e0b5e772",
       "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "520f4152_d0dc78f1",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-06-23T01:14:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "878b72a0_b21ca1cb",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb0427a8_55db6b84",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-06-16T07:44:53Z",
       "side": 1,
       "message": "I think we should remove this field and only have the `ostream` as the user of this class can still instantiate and open the `ofstream` himself and pass it to this class",
+      "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d0a89c8_83494b62",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1125918
+      },
+      "writtenOn": "2022-06-23T01:14:58Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "cb0427a8_55db6b84",
       "revId": "39609339ffb25817d12355c78ed6f1cc1227980c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
