@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f17f2e1a_ba9efcae",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "982403a1_65ea6511",
+      "range": {
+        "startLine": 493,
+        "startChar": 0,
+        "endLine": 494,
+        "endChar": 65
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f34c853_d43ad4e3",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-22T08:15:45Z",
       "side": 1,
       "message": "nit: new_version",
+      "range": {
+        "startLine": 1387,
+        "startChar": 67,
+        "endLine": 1387,
+        "endChar": 74
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78915465_02a4c152",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "2f34c853_d43ad4e3",
       "range": {
         "startLine": 1387,
         "startChar": 67,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cae2c24f_4366b702",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "fd08055d_8383ba5e",
+      "range": {
+        "startLine": 1389,
+        "startChar": 11,
+        "endLine": 1389,
+        "endChar": 29
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e03a4b2_668e3790",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-06-22T08:15:45Z",
       "side": 1,
       "message": "LOG_INFO since this log doesn\u0027t happen that often",
+      "range": {
+        "startLine": 1395,
+        "startChar": 4,
+        "endLine": 1395,
+        "endChar": 13
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39173af8_13444e60",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1395,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "7e03a4b2_668e3790",
       "range": {
         "startLine": 1395,
         "startChar": 4,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7429e2a_eae28ade",
+        "filename": "system/stack/avrc/avrc_api.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "aef65fc3_ed706022",
+      "range": {
+        "startLine": 1400,
+        "startChar": 4,
+        "endLine": 1400,
+        "endChar": 13
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4e35263_9e753ffd",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-06-22T08:15:45Z",
       "side": 1,
       "message": "generally we prefer check condition and return early to reduce code nesting\n\nInstead of \n\n```\nif (condition1) {\n  // do 1\n} else if (condition 2) {\n  // do 2\n  if (subcondition2_1) {\n    // do 2_1\n  }\n} else {\n  // do 3\n}\n```\n\nIt is preferred to do\n\n```\nif (condition1) {\n  // do 1\n  return;\n}\n\nif (condition2) {\n  // do 2\n  if (!subcondition2_1) {\n    return;\n  }\n  return;\n}\n\n// do 3\nreturn;\n```\n\nOf course, this pattern does NOT apply if you have comment logic for condition 1, 2, and 3 such as\n\n```\nif (condition1) {\n  // do 1\n} else if (condition 2) {\n  // do 2\n  if (subcondition2_1) {\n    // do 2_1\n  }\n  // do 2_common\n} else {\n  // do 3\n}\n// do common\n```",
+      "range": {
+        "startLine": 1245,
+        "startChar": 5,
+        "endLine": 1245,
+        "endChar": 33
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e34819ad_f9ed2c45",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "d4e35263_9e753ffd",
       "range": {
         "startLine": 1245,
         "startChar": 5,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ca09de1_95cb8e80",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1249,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Use \u003e at here is because of some remote devices will have interoperation issue when receive AVRCP version 1.5(default version right now). \nIf those devices are in IOP database and our version high than 1.4, we reply version 1.4 to them to avoid IOP issue. \nIf current avrcp_version is lower/equal to 1.4, we can just reply current avrcp_version.\n\navrcp_version return by sdpu_is_avrcp_profile_description_list will be vesions(0x01000, 0x0103, 0x0104, 0x0105, 0x0106) or 0 for value not valid. \nAt following Dynamic ACRCP version part, if Dynamic ACRCP version is disabled or avrcp_version is 0, Dynamic ACRCP version will be skiped",
+      "parentUuid": "14492768_80e7850b",
+      "range": {
+        "startLine": 1249,
+        "startChar": 20,
+        "endLine": 1249,
+        "endChar": 21
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fca50750_be89b48d",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-06-22T08:15:45Z",
       "side": 1,
       "message": "use LOG_DEBUG, which will add __func__ automatically\n\nsame for all other logging methods used here",
+      "range": {
+        "startLine": 1251,
+        "startChar": 4,
+        "endLine": 1251,
+        "endChar": 19
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcdcd3d5_03f1b35d",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "fca50750_be89b48d",
       "range": {
         "startLine": 1251,
         "startChar": 4,
@@ -208,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb1cc7d5_3717dcd8",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 1253,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "379a00f6_72bf86dc",
+      "range": {
+        "startLine": 1252,
+        "startChar": 3,
+        "endLine": 1253,
+        "endChar": 46
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a18154fd_8eb999a7",
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "405420f8_ad3fb53c",
+        "filename": "system/stack/test/stack_sdp_utils_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Thanks to point out the corner cases that may affect this fuction!\n\nUpdated function to check config value length first then get the value.\nAnd, it will check AVRCP version value is valid or not.\nAdd those test cases into unit test.",
+      "parentUuid": "a18154fd_8eb999a7",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 57
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fa94364_7617a84c",
@@ -244,6 +484,30 @@
       "writtenOn": "2022-06-22T08:15:45Z",
       "side": 1,
       "message": "Please use ASSERT_EQ instead so that the test fail early",
+      "range": {
+        "startLine": 111,
+        "startChar": 2,
+        "endLine": 111,
+        "endChar": 11
+      },
+      "revId": "72b1174a4f314f73f2c9c0efee2434fb8ebeba0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98dbc5ce_886c9dc1",
+        "filename": "system/stack/test/stack_sdp_utils_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-06-23T05:53:41Z",
+      "side": 1,
+      "message": "Updated on patchset 15.",
+      "parentUuid": "5fa94364_7617a84c",
       "range": {
         "startLine": 111,
         "startChar": 2,
