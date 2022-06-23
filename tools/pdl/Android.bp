@@ -48,3 +48,34 @@ rust_test_host {
         ":rustfmt",
     ],
 }
+
+genrule {
+    name: "generated_python_backend",
+    cmd: "$(location :pdl) $(in) | $(location scripts/generate_python_backend.py) --output $(out) --custom-type-location test.custom_types",
+    tools: [ ":pdl" ],
+    tool_files: [
+        "scripts/generate_python_backend.py",
+        "scripts/pdl/core.py",
+        "scripts/pdl/ast.py",
+        "test/custom_types.py",
+    ],
+    srcs: [
+        "test/grammars/test-grammar.pdl",
+    ],
+    out: [
+        "parser.py",
+    ],
+}
+
+python_test_host {
+    name: "pdl_python_backend_test",
+    main: "test/python_backend_test.py",
+    srcs: [
+        "test/python_backend_test.py",
+        "test/custom_types.py",
+        ":generated_python_backend",
+    ],
+    test_options: {
+        unit_test: true,
+    },
+}
