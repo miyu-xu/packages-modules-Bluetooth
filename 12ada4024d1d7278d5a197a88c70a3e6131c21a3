@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b522415b_ec57838c",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 1304,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T21:30:16Z",
+      "side": 1,
+      "message": "nit: wrong",
+      "range": {
+        "startLine": 1304,
+        "startChar": 26,
+        "endLine": 1304,
+        "endChar": 31
+      },
+      "revId": "12ada4024d1d7278d5a197a88c70a3e6131c21a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
