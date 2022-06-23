@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1babab46_b2571791",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "nit: in C++, we use lower case plus underscores for variable names\n\nhence this one should be `is_service_avrcp_target`\n\nhttps://google.github.io/styleguide/cppguide.html#Variable_Names",
+      "range": {
+        "startLine": 404,
+        "startChar": 7,
+        "endLine": 404,
+        "endChar": 26
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2abf03b4_f8a3db55",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "move STL library include together to the line between line 32 and line 33",
+      "range": {
+        "startLine": 24,
+        "startChar": 10,
+        "endLine": 24,
+        "endChar": 17
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fd8d615_214ad43a",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "move LOG_TAG to line 18, it should be the first line after license declaration",
+      "range": {
+        "startLine": 25,
+        "startChar": 17,
+        "endLine": 25,
+        "endChar": 26
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c0401f_d2e75e56",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1246,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "is this correct?\n\nshouldn\u0027t it be\n\n```\n  return version \u003d\u003d AVRC_REV_1_0 || version \u003d\u003d AVRC_REV_1_3 ||\n         version \u003d\u003d AVRC_REV_1_4 || version \u003d\u003d AVRC_REV_1_6;\n```\n??",
+      "range": {
+        "startLine": 1245,
+        "startChar": 0,
+        "endLine": 1246,
+        "endChar": 60
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73bb4df3_5630e170",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "Please use LOG_INFO since this log happens only once during connection and LOG_INFO is always printed",
+      "range": {
+        "startLine": 1274,
+        "startChar": 4,
+        "endLine": 1274,
+        "endChar": 13
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f381bf5_90f17b4a",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1279,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "Please use a constant instead, e.g. AVRC_REV_1_4",
+      "range": {
+        "startLine": 1279,
+        "startChar": 34,
+        "endLine": 1279,
+        "endChar": 40
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83ae094d_e79168b5",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1286,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "prefer return early on error to avoid nesting, also try to avoid casting int to bool as much as possible to make code more readable\n\ne.g.\n\n\n```\n// Move this as the first check after reading avrcp_version at line 1267\nif (avrcp_version \u003d\u003d 0) {\n  LOG_INFO(\"Did not find AVRCP entry for device %s\", bdaddr-\u003eToString().c_str());\n  return;\n}\n```\n\n```\nif (!osi_property_get_bool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, false)) {\n  LOG_INFO(\"Dynamic AVRCP version feature is not enabled, skipping this method\");\n  return;\n}\n```",
+      "range": {
+        "startLine": 1285,
+        "startChar": 0,
+        "endLine": 1286,
+        "endChar": 22
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d6afc1c_c4589210",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1289,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "nit: actually this step is not really needed, btif_config_get_bin() will set version_value_size to the actual size value after read\n\nsee: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/main/shim/config.cc;l\u003d127?q\u003dpackages%2Fmodules%2FBluetooth%2Fsystem%2Fmain%2Fshim%2Fconfig.cc\n\nHence, you just need to call btif_config_get_bin() first and then compare the modified version_value_size with sizeof(cached_version)\n\ne.g.\n```\nuint16_t cached_version \u003d 0;\nsize_t version_value_size \u003d sizeof(cached_version);\n\nif (!btif_config_get_bin(bdaddr-\u003eToString(),\n                         AVRCP_CONTROLLER_VERSION_CONFIG_KEY,\n                         static_cast\u003cuint8_t*\u003e(\u0026cached_version),\n                         \u0026version_value_size)) {\n  LOG_INFO(\n        \"no cached AVRC Controller version for %s. \"\n        \"Reply default AVRC Target version %x.\",\n        bdaddr-\u003eToString().c_str(), avrcp_version);\n  return;\n}\nif (version_value_size !\u003d sizeof(cached_version)) {\n  // handle this error;\n  return;\n}\nif (!spdu_is_avrcp_version_valid(cached_version)) {\n        LOG_ERROR(\n            \"cached AVRC Controller version %x of %s is not valid. \"\n            \"Reply default AVRC Target version %x.\",\n            cached_version, bdaddr-\u003eToString().c_str(), avrcp_version);\n        return;\n}\n\nif (avrcp_version \u003e cached_version) {\n     LOG_INFO(\n          \"Cached AVRCP Controller version %x of %s is smaller than SDP entry.\"\n          \"Set to cached version %x instead.\",\n            cached_version, bdaddr-\u003eToString().c_str(), cached_version);\n        uint8_t* p_version \u003d p_attr-\u003evalue_ptr + 6;\n        UINT16_TO_BE_FIELD(p_version, cached_version);\n} else {\n     LOG_INFO(\n           \"Cached AVRCP Controller version %x of %s is larger than new entry.\"\n           \"Keep SDP AVRCP version %x.\",\n           cached_version, bdaddr-\u003eToString().c_str(), avrcp_version);\n}\n```\n                         \n                         \n                         \nNote: for static_cast, this is a good article to read:\n\nhttps://stackoverflow.com/questions/332030/when-should-static-cast-dynamic-cast-const-cast-and-reinterpret-cast-be-used",
+      "range": {
+        "startLine": 1289,
+        "startChar": 0,
+        "endLine": 1289,
+        "endChar": 59
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a09c1889_4e1123aa",
+        "filename": "system/stack/sdp/sdp_utils.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 1293,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "use %zu for size_t so that you don\u0027t have to cast them to (int)\n\nsee: https://stackoverflow.com/questions/3766494/simple-printf-with-sizeof-does-not-work-at-all",
+      "range": {
+        "startLine": 1293,
+        "startChar": 70,
+        "endLine": 1293,
+        "endChar": 72
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a7a4d6e_ebb40c9d",
+        "filename": "system/stack/test/stack_sdp_utils_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "Could we break the test into smaller test cases?\n\ne.g. \n\nTEST_F(StackSdpUtilsTest, set_avrc_target_version_device_in_iop_table) {\n  RawAddress bdaddr;\n  set_avrcp_attr(8, ATTR_ID_BT_PROFILE_DESC_LIST,\n                 UUID_SERVCLASS_AV_REMOTE_CONTROL, AVRC_REV_1_5);\n  EXPECT_CALL(*localIopMock, InteropMatchAddr(INTEROP_AVRCP_1_4_ONLY, \u0026bdaddr))\n      .WillOnce(Return(true));\n  sdpu_set_avrc_target_version(\u0026avrcp_attr, \u0026bdaddr);\n  ASSERT_EQ(get_avrc_target_version(\u0026avrcp_attr), AVRC_REV_1_4);\n}\n\nTEST_F(StackSdpUtilsTest, set_avrc_target_version_wrong_len) {\n  RawAddress bdaddr;\n  set_avrcp_attr(5, ATTR_ID_BT_PROFILE_DESC_LIST,\n                 UUID_SERVCLASS_AV_REMOTE_CONTROL, AVRC_REV_1_5);\n  sdpu_set_avrc_target_version(\u0026avrcp_attr, \u0026bdaddr);\n  ASSERT_EQ(get_avrc_target_version(\u0026avrcp_attr), AVRC_REV_1_5);\n}",
+      "range": {
+        "startLine": 102,
+        "startChar": 26,
+        "endLine": 102,
+        "endChar": 54
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc78030_285618c0",
+        "filename": "system/stack/test/stack_sdp_utils_test.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-23T07:23:01Z",
+      "side": 1,
+      "message": "if this needs to run before every test, add it to SetUp() method",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 65
+      },
+      "revId": "4f79a9995a4bc3409dfa76783bde0718e5109f1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
