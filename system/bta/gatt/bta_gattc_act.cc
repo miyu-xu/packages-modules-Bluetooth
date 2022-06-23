@@ -607,6 +607,13 @@ void bta_gattc_close(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
                   .c_str());
   }
 
+  for (i = 0; i < BTA_GATTC_NOTIF_REG_MAX; i++) {
+    if (p_clreg->notif_reg[i].in_use &&
+        p_clreg->notif_reg[i].remote_bda == p_clcb->bda) {
+      memset((void*)&p_clreg->notif_reg[i], 0, sizeof(tBTA_GATTC_NOTIF_REG));
+    }
+  }
+
   if (p_cback) (*p_cback)(BTA_GATTC_CLOSE_EVT, &cb_data);
 
   if (p_clreg->num_clcb == 0 && p_clreg->dereg_pending) {
