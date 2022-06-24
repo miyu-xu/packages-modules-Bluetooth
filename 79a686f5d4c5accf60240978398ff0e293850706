@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0914b980_78e15408",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T18:24:05Z",
+      "side": 1,
+      "message": "Health test completed on Sunfish device. Ready to submit.",
+      "revId": "79a686f5d4c5accf60240978398ff0e293850706",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
