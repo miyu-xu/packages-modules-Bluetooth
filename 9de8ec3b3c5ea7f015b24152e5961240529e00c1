@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f895194e_f9eb7c47",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T16:48:24Z",
+      "side": 1,
+      "message": "Scanning and advertising should be separate interfaces from the generic GATT interface.\n\ni.e IBluetoothGattScanning, IBluetoothGattAdvertising",
+      "revId": "9de8ec3b3c5ea7f015b24152e5961240529e00c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
