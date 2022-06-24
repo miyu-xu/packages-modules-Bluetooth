@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1dd4ba0_0d08819e",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Ah, smart. Could you add a docstring explaining this so that others won\u0027t be similarly confused at a later point. I was reading the code from top to bottom and so I didn\u0027t not yet know how you would use the function when I read it.",
+      "parentUuid": "b212d870_c3bac5b4",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "774bd3f2_15f1bef5",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "That might actually not be very helpful since the check is not always for the entirety of the packet data, it is just a guard for a subset of the fields.",
       "parentUuid": "774bd3f2_15f1bef5",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c20e4c37_cca8d8f1",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Okay.",
+      "parentUuid": "d4d23219_e21ab28f",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -171,6 +207,24 @@
       "side": 1,
       "message": "I want to avoid generating `[n * 1: (n + 1) * 1]` here 😊",
       "parentUuid": "7b9e0286_7bd2b429",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "883bfa7c_cdf386ff",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Right, can you then at least wrap the line so it fits in Gerrit?\n\nI don\u0027t know if we have an auto-formatter enabled for Python?",
+      "parentUuid": "964dd313_9156aa9f",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -280,6 +334,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3aceb51_968fff4f",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Mkay... I don\u0027t fully understand how this will look to the end user, but you seem to say that \"type name\" makes sense in this context 😊",
+      "parentUuid": "b274ec28_d3889873",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "acc74f42_5bffd57d",
@@ -317,6 +389,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0cd9799f_dc714375",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Ah, that\u0027s a good point... Please add a comment to explain this to future readers who might be confused the same way as I was.",
+      "parentUuid": "2eafe99d_5d423de4",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3da4dff8_654ed35d",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -346,6 +436,24 @@
       "side": 1,
       "message": "Same justification",
       "parentUuid": "3da4dff8_654ed35d",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "385187f1_ea76e42a",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "65b3a85b_ef1cac1d",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -420,6 +528,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3837763a_8dbd1d5e",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Okay, I see.",
+      "parentUuid": "3d054183_8fd0e8f6",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fa2a6b8_cb6930da",
@@ -469,6 +595,24 @@
       "side": 1,
       "message": "external/python/cpython is at version 3.10, we could use pattern matching.",
       "parentUuid": "0c18c3f9_a19d73db",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03d16b53_c4740041",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T15:22:41Z",
+      "side": 1,
+      "message": "Pattern matching 😮 I didn\u0027t know Python had gained such a thing 😄\n\nIn the meantime, can we use `isinstance` the way it\u0027s supposed to be used?",
+      "parentUuid": "af5eb29a_aefba369",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
