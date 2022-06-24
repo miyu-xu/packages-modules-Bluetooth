@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82d2675f_2d2507c2",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T17:23:25Z",
+      "side": 1,
+      "message": "I would transform this into Result\u003cString, Vec\u003cDiagnostic\u003e\u003e to make it simpler to the caller.",
+      "range": {
+        "startLine": 475,
+        "startChar": 79,
+        "endLine": 475,
+        "endChar": 98
+      },
+      "revId": "2e00d6fac4d301daadc14c426db85389cc9e5bbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
