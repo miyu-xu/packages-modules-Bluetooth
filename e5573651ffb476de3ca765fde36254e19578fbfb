@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b922a37_6f38e442",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-24T16:25:50Z",
+      "side": 1,
+      "message": "remove :) ?",
+      "range": {
+        "startLine": 214,
+        "startChar": 1,
+        "endLine": 214,
+        "endChar": 34
+      },
+      "revId": "e5573651ffb476de3ca765fde36254e19578fbfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
