@@ -16,6 +16,346 @@
       "message": "I still have to post additional python tests, it takes a bit of time to do everything manually...",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b806fd09_0e25f867",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Hey Henri, this looks impressive. I have a few comments about the use of hand-crated OO instead of using methods and so on.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dea68e7_458e2847",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Should the first line also be indented? If I read the code correctly, this will turn `[\"foo\", \"bar\"]` into\n\n```\nfoo\n    bar\n```\n\ninstead of\n\n```\n    foo\n    bar\n```",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "774bd3f2_15f1bef5",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "I think the callers would appreciate seeing `size` and `len(span)` in the exception. That should help with debugging later.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e57e38b6_b3c01baf",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "`range(0, n)` should just be `range(n)`",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b9e0286_7bd2b429",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "You could use\n\n```\nspan[n * {element_width}:(n + 1) * {element_width}]\n```\n\nin both cases since it gives the same result if `element_width \u003d\u003d 1`. But I suppose you\u0027re trying to avoid generating \"weird\" code for that case?\n\nI only noticed this because the line is very long and thus got wrapped weirdly in Gerrit.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f66cd2cc_3c2d80d0",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Showing the actual an expected checksum would probably be useful?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "631f5893_77a56d38",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "This seems unused?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30312461_5de38d6d",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "What does `type name` mean here? I would expected the error to say\n\n\u003e Foo is not a Bar\n\nbut instead it will say\n\n\u003e Foo is not a type name\n\nwhich I think will be confusing for callers.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acc74f42_5bffd57d",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Given that we\u0027re writing Python, should you not just call the `parse` method and let the interpreter raise the error in the expected way? I think that would be my pythonic.\n\nThat way the caller gets the correct exception type:\n\n```\nAttributeError: \u0027Foo\u0027 object has no attribute \u0027parse\u0027\n```",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3da4dff8_654ed35d",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Same here, I don\u0027t think you should generate code for this.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77d66444_3a8a9332",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "This is normally written simply as\n\n```\nif custom_types and custom_type_location:\n```\n\nunless `\"\"` is a valid value for `custom_type_location`?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39d02df3_d64ab159",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Could you instead give `ast.EnumDeclaration` and the other `ast` types a `generate_xxx_declaration` method?\n\nThen you could use proper dynamic dispatch here instead of re-implementing it yourself :-)",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fa2a6b8_cb6930da",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "From `help(isinstance)`:\n\n\u003e Return whether an object is an instance of a class or of a subclass thereof A tuple, as in `isinstance(x, (A, B, ...))`, may be given as the target to check against. This is equivalent to `isinstance(x, A) or isinstance(x, B) or ...` etc.\n\nIn general, I would advice against using `isinstance` in Python since duck typing often lets you avoid having to do type-based dispatch.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1aed3b6_ea4ab429",
+        "filename": "tools/pdl/scripts/pdl/ast.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Hmm... This is turning `foo_bar` into `FooBar` and then looking up a `FooBar` function/constructor in the global namespace?\n\nCould we possibly do this in a less black-magic way? A way which makes the dependencies more explicit or at least documents more carefully what is going on :-)\n\nAn alternative could be to have the constructors register themselves somewhere and then pass in the list of known constructors to the `convert_` function here. I typically use a decorator for this:\n\n```\nCONSTRUCTORS \u003d {}\n\ndef constructor(func):\n    camel_case \u003d \u0027\u0027.join(w.title() for w in func.__name__.split(\u0027_\u0027))\n    CONSTRUCTORS[camel_case] \u003d func\n    return func\n\n@constructor\ndef foo_bar(x):\n    print(f\"Constructing a FooBar from {x}\")\n\nif __name__ \u003d\u003d \u0027__main__\u0027:\n    print(CONSTRUCTORS)\n    constructor \u003d CONSTRUCTORS.get(\u0027FooBar\u0027)\n    constructor(42)\n```\n\nThis way there is a link from the constructors to where you look them up: you can find all pieces of code that touch `CONSTRUCTORS` and that should let you quickly establish why a given constructor is or is not present there.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "264329c7_80ddbf05",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "I didn\u0027t know the word \"ascendance\" so I looked it up:\n\n\u003e Definitions of ascendance. the state that exists when one person or group has power over another. synonyms: ascendancy, ascendence, ascendency, control, dominance.\n\nI think you might be thinking of something else. It seems you look up the field in the parents, so perhaps you mean \"ancestors\"?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ffb7447_360b8156",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "You could do `if getattr(f, \u0027id\u0027, None) \u003d\u003d id` instead.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ddca671_ef4b18aa",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "This seems to say `isinstance(d.fields[0], PayloadField)` twice?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "592c1506_426b00fb",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Since Python has real support for object oriented programming, this should probably be a method on the data classes instead.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "239d5dab_92981577",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Please use `isinstance(field, (ScalarField, SizeField, CountField))` instead.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b1de6d4_bf5f47f4",
+        "filename": "tools/pdl/test/python_generator_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-24T10:17:17Z",
+      "side": 1,
+      "message": "Two comments :)\n\n* The lines are too long here and wrap in weird ways in Gerrit.\n* How did you generate these bytes? Could you add a comment to the test explaining how to update it later?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
