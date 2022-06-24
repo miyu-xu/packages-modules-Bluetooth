@@ -2398,7 +2398,7 @@ public class GattService extends ProfileService {
         if (VDBG) {
             Log.d(TAG,
                     "onReadDescriptor() - address=" + address + ", status=" + status + ", length="
-                            + data.length);
+                            + data.length + " data: " + Arrays.toString(data));
         }
 
         ClientMap.App app = mClientMap.getByConnId(connId);
@@ -2413,7 +2413,7 @@ public class GattService extends ProfileService {
 
         if (VDBG) {
             Log.d(TAG, "onWriteDescriptor() - address=" + address + ", status=" + status
-                    + ", length=" + data.length);
+                    + ", length=" + data.length + " data: " + Arrays.toString(data));
         }
 
         ClientMap.App app = mClientMap.getByConnId(connId);
@@ -3699,7 +3699,8 @@ public class GattService extends ProfileService {
             return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
         }
         if (VDBG) {
-            Log.d(TAG, "writeDescriptor() - address=" + address);
+            Log.d(TAG, "writeDescriptor() - address=" + address  + " data: "
+                    + Arrays.toString(value));
         }
 
         Integer connId = mClientMap.connIdByAddress(clientIf, address);

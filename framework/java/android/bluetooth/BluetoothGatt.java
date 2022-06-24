@@ -39,6 +39,7 @@ import com.android.modules.utils.SynchronousResultReceiver;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
@@ -440,7 +441,8 @@ public final class BluetoothGatt implements BluetoothProfile {
                         byte[] value) {
                     if (VDBG) {
                         Log.d(TAG, "onCharacteristicWrite() - Device=" + address
-                                + " handle=" + handle + " Status=" + status);
+                                + " handle=" + handle + " Status=" + status
+                                + " value: " + Arrays.ToString(value));
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
@@ -538,7 +540,8 @@ public final class BluetoothGatt implements BluetoothProfile {
                 public void onDescriptorRead(String address, int status, int handle, byte[] value) {
                     if (VDBG) {
                         Log.d(TAG,
-                                "onDescriptorRead() - Device=" + address + " handle=" + handle);
+                                "onDescriptorRead() - Device=" + address + " handle=" + handle
+                                + " value: " + Arrays.toString(value));
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
@@ -595,7 +598,8 @@ public final class BluetoothGatt implements BluetoothProfile {
                         byte[] value) {
                     if (VDBG) {
                         Log.d(TAG,
-                                "onDescriptorWrite() - Device=" + address + " handle=" + handle);
+                                "onDescriptorWrite() - Device=" + address + " handle=" + handle
+                                 + " value" + Arrays.toString(value));
                     }
 
                     if (!address.equals(mDevice.getAddress())) {
@@ -1366,7 +1370,10 @@ public final class BluetoothGatt implements BluetoothProfile {
         if (value == null) {
             throw new IllegalArgumentException("value must not be null");
         }
-        if (VDBG) Log.d(TAG, "writeCharacteristic() - uuid: " + characteristic.getUuid());
+        if (VDBG) {
+            Log.d(TAG, "writeCharacteristic() - uuid: " + characteristic.getUuid()
+                        + " value: " + Arrays.ToString(value));
+        }
         if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_WRITE) == 0
                 && (characteristic.getProperties()
                 & BluetoothGattCharacteristic.PROPERTY_WRITE_NO_RESPONSE) == 0) {
@@ -1521,7 +1528,10 @@ public final class BluetoothGatt implements BluetoothProfile {
         if (value == null) {
             throw new IllegalArgumentException("value must not be null");
         }
-        if (VDBG) Log.d(TAG, "writeDescriptor() - uuid: " + descriptor.getUuid());
+        if (VDBG) {
+            Log.d(TAG, "writeDescriptor() - uuid: " + descriptor.getUuid()
+                        + " value: " + Arrays.toString(value));
+        }
         if (mService == null || mClientIf == 0) {
             return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
         }
