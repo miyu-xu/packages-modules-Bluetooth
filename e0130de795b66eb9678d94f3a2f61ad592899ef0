@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df23db21_fda66363",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-24T17:23:40Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we fix this one as well?",
+      "range": {
+        "startLine": 297,
+        "startChar": 3,
+        "endLine": 302,
+        "endChar": 22
+      },
+      "revId": "e0130de795b66eb9678d94f3a2f61ad592899ef0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
