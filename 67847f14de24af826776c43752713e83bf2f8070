@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1bd01ce_f190ba10",
+        "filename": "system/include/hardware/bt_gatt_client.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-24T13:54:32Z",
+      "side": 1,
+      "message": "missing const",
+      "revId": "67847f14de24af826776c43752713e83bf2f8070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
