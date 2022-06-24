@@ -658,12 +658,19 @@ struct eatt_impl {
       return;
     }
 
-    /* For new device, first read GATT server supported features. */
-    if (gatt_cl_read_sr_supp_feat_req(
-            bd_addr, base::BindOnce(&eatt_impl::supported_features_cb,
-                                    base::Unretained(this), role)) == false) {
-      LOG(INFO) << __func__ << "Eatt is not supported. Checked for device "
-                << bd_addr;
+    /* This is needed for L2CAP test cases */
+    if (stack_config_get_interface()->get_pts_connect_eatt_unconditionally()) {
+      /* For PTS just start connecting EATT right away, */
+      eatt_device* eatt_dev = add_eatt_device(bd_addr);
+      connect_eatt(eatt_dev);
+    } else {
+      /* For new device, first read GATT server supported features. */
+      if (gatt_cl_read_sr_supp_feat_req(
+              bd_addr, base::BindOnce(&eatt_impl::supported_features_cb,
+                                      base::Unretained(this), role)) == false) {
+        LOG(INFO) << __func__ << "Eatt is not supported. Checked for device "
+                  << bd_addr;
+      }
     }
   }
 
