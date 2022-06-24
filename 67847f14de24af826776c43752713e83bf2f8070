@@ -16,6 +16,24 @@
       "message": "missing const",
       "revId": "67847f14de24af826776c43752713e83bf2f8070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86cf25d5_dc62a203",
+        "filename": "system/include/hardware/bt_gatt_client.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-24T14:15:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1bd01ce_f190ba10",
+      "revId": "67847f14de24af826776c43752713e83bf2f8070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
