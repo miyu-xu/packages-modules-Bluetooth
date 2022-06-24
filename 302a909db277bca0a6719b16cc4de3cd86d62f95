@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "759026e9_a2ebb34c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-24T18:12:05Z",
+      "side": 1,
+      "message": "Bug: 234049768",
+      "revId": "302a909db277bca0a6719b16cc4de3cd86d62f95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
