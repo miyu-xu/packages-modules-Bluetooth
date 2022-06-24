@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a800bff3_5f6ed89d",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-06-24T21:09:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a97fdfea_5fcf361e",
+      "range": {
+        "startLine": 380,
+        "startChar": 8,
+        "endLine": 380,
+        "endChar": 54
+      },
+      "revId": "7f6cb5691fb605faabbe425a2ee44a72ed68729a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b851a8d_109d4d70",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-24T17:37:39Z",
       "side": 1,
       "message": "nit: !p_clreg-\u003enotif_reg[i].app_disconnected",
+      "range": {
+        "startLine": 356,
+        "startChar": 8,
+        "endLine": 356,
+        "endChar": 55
+      },
+      "revId": "7f6cb5691fb605faabbe425a2ee44a72ed68729a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "181388bc_ee718dc1",
+        "filename": "system/bta/gatt/bta_gattc_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-06-24T21:09:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b851a8d_109d4d70",
       "range": {
         "startLine": 356,
         "startChar": 8,
