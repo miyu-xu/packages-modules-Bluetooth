@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc0eed06_a4818891",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2022-06-24T11:42:51Z",
+      "side": 1,
+      "message": "I understand your point,\nBut there are multiple vendor codecs possible already lineup having support on LE Audio.\nShould the name follow something like \nSOURCE_CODEC_TYPE_VENDOR_1 \u003d 1\nSOURCE_CODEC_TYPE_VENDOR_2 \u003d 2\n...\n\nAlso there is a concern for Google, AOSP might use these values 1,2 as some other codec purpose and vendor might have some other mapping. Is there a generic way for extendible vendor codec index ? As same index is used by Audio module, Settings App and other SDK Apps moving forward which may lead to different codec mapping.",
+      "parentUuid": "af987292_924533f5",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "79ebfacfa66528929e02e9c33dea4b699120bd7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2841170_ab0291b2",
         "filename": "framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java",
         "patchSetId": 11
