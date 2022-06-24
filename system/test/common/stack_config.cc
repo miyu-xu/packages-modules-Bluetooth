@@ -46,6 +46,8 @@ stack_config_t mock_stack_config{
     .get_pts_smp_failure_case = get_pts_smp_failure_case,
     .get_pts_force_eatt_for_notifications =
         get_pts_force_eatt_for_notifications,
+    .get_pts_connect_eatt_unconditionally =
+        get_pts_connect_eatt_unconditionally,
     .get_all = get_all,
 };
 
