@@ -500,8 +500,9 @@ static bt_status_t btif_gattc_read_char_descr(int conn_id, uint16_t handle,
 
 void write_char_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
                    uint16_t len, const uint8_t* value, void* data) {
-  CLI_CBACK_IN_JNI(write_characteristic_cb, conn_id, status, handle, len,
-                   value);
+  std::vector<uint8_t> val(value, value + len);
+  CLI_CBACK_IN_JNI(write_characteristic_cb, conn_id, status, handle,
+                   std::move(val));
 }
 
 static bt_status_t btif_gattc_write_char(int conn_id, uint16_t handle,
@@ -520,7 +521,9 @@ static bt_status_t btif_gattc_write_char(int conn_id, uint16_t handle,
 
 void write_descr_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
                     uint16_t len, const uint8_t* value, void* data) {
-  CLI_CBACK_IN_JNI(write_descriptor_cb, conn_id, status, handle, len, value);
+  std::vector<uint8_t> val(value, value + len);
+  CLI_CBACK_IN_JNI(write_descriptor_cb, conn_id, status, handle,
+                   std::move(val));
 }
 
 static bt_status_t btif_gattc_write_char_descr(int conn_id, uint16_t handle,
