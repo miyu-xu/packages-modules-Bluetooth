@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b212d870_c3bac5b4",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "The first indent is set manually when assembling the code blocks.\nThat way we can write:\n\n```\n\"\"\"\ndef generated():\n    {body}\n\"\"\"\n```\nrather than\n```\n\"\"\"\ndef generated():\n{body}\n\"\"\"\n```",
+      "parentUuid": "6dea68e7_458e2847",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "774bd3f2_15f1bef5",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -71,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4d23219_e21ab28f",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "That might actually not be very helpful since the check is not always for the entirety of the packet data, it is just a guard for a subset of the fields.",
+      "parentUuid": "774bd3f2_15f1bef5",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e57e38b6_b3c01baf",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -82,6 +118,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "`range(0, n)` should just be `range(n)`",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b051e6d9_b24462cd",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e57e38b6_b3c01baf",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -105,6 +159,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "964dd313_9156aa9f",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "I want to avoid generating `[n * 1: (n + 1) * 1]` here 😊",
+      "parentUuid": "7b9e0286_7bd2b429",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f66cd2cc_3c2d80d0",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -116,6 +188,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "Showing the actual an expected checksum would probably be useful?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15a99609_0494f373",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f66cd2cc_3c2d80d0",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -133,6 +223,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "This seems unused?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba7f23ef_6c336d8c",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "631f5893_77a56d38",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -156,6 +264,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b274ec28_d3889873",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "It is generating some code to check if the custom type implementation if in context, and if it is defined as a type.",
+      "parentUuid": "30312461_5de38d6d",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "acc74f42_5bffd57d",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -167,6 +293,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "Given that we\u0027re writing Python, should you not just call the `parse` method and let the interpreter raise the error in the expected way? I think that would be my pythonic.\n\nThat way the caller gets the correct exception type:\n\n```\nAttributeError: \u0027Foo\u0027 object has no attribute \u0027parse\u0027\n```",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eafe99d_5d423de4",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "- The check here is executed when the module is loaded, rather than when the parse method is called for a packet with a checksum\n- I am able to provide a better error message here: you provided a custom type implementation with no parse method",
+      "parentUuid": "acc74f42_5bffd57d",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -190,6 +334,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "65b3a85b_ef1cac1d",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "Same justification",
+      "parentUuid": "3da4dff8_654ed35d",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "77d66444_3a8a9332",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -201,6 +363,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "This is normally written simply as\n\n```\nif custom_types and custom_type_location:\n```\n\nunless `\"\"` is a valid value for `custom_type_location`?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaeb772e_c787e84b",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77d66444_3a8a9332",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -224,6 +404,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d054183_8fd0e8f6",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 629,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "Same as methods in the core module, I don\u0027t want the ast classes to become a mix of unrelated methods... Even more so here because I want the ast to be detached from the generator (I have other uses for the ast declarations).",
+      "parentUuid": "39d02df3_d64ab159",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fa2a6b8_cb6930da",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 3
@@ -235,6 +433,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "From `help(isinstance)`:\n\n\u003e Return whether an object is an instance of a class or of a subclass thereof A tuple, as in `isinstance(x, (A, B, ...))`, may be given as the target to check against. This is equivalent to `isinstance(x, A) or isinstance(x, B) or ...` etc.\n\nIn general, I would advice against using `isinstance` in Python since duck typing often lets you avoid having to do type-based dispatch.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c18c3f9_a19d73db",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T15:00:56Z",
+      "side": 1,
+      "message": "What I would want here is pattern matching, but I have to wait for python 3.10+ 😞",
+      "parentUuid": "6fa2a6b8_cb6930da",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
