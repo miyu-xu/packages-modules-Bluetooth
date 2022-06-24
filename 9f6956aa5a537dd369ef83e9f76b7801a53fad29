@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5d15282_26bc1c26",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 585,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-24T15:32:08Z",
+      "side": 1,
+      "message": "If it is not declared would we not get an error on the import ?\nIf yes, this is just verifying that the export is a type, in that case I would prefer that we remove this check.",
+      "revId": "9f6956aa5a537dd369ef83e9f76b7801a53fad29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
