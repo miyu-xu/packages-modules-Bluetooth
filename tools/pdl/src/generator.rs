@@ -3,6 +3,7 @@ use anyhow::{anyhow, bail, Context, Result};
 use quote::{format_ident, quote};
 use std::collections::HashMap;
 use std::path::Path;
+//use std::fmt::Write;
 use syn::parse_quote;
 
 /// Generate a block of code.
@@ -22,8 +23,8 @@ fn generate_preamble(path: &Path) -> Result<String> {
         .file_name()
         .and_then(|path| path.to_str())
         .ok_or_else(|| anyhow!("could not find filename in {:?}", path))?;
-    code.push_str(&format!("// @generated rust packets from {filename}\n\n"));
-
+    //code.push_str(&format!("// @generated rust packets from {filename}\n\n"));
+    let _ = write!(code, "// @generated rust packets from {filename}\n\n");
     code.push_str(&quote_block! {
         use bytes::{BufMut, Bytes, BytesMut};
         use num_derive::{FromPrimitive, ToPrimitive};
@@ -39,6 +40,7 @@ fn generate_preamble(path: &Path) -> Result<String> {
     });
 
     code.push_str(&quote_block! {
+    //write!(&quote_block! {
         #[derive(Debug, Error)]
         pub enum Error {
             #[error("Packet parsing failed")]
