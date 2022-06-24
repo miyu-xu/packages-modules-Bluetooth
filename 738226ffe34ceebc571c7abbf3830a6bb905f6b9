@@ -455,6 +455,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5eb29a_aefba369",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-24T15:04:52Z",
+      "side": 1,
+      "message": "external/python/cpython is at version 3.10, we could use pattern matching.",
+      "parentUuid": "0c18c3f9_a19d73db",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1aed3b6_ea4ab429",
