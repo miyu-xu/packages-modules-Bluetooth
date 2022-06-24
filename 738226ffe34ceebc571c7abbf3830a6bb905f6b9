@@ -256,6 +256,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "28a65518_ad0206c8",
+        "filename": "tools/pdl/scripts/pdl/ast.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T14:32:52Z",
+      "side": 1,
+      "message": "Added a decorator to replace @dataclass",
+      "parentUuid": "d1aed3b6_ea4ab429",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "264329c7_80ddbf05",
@@ -269,6 +287,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "I didn\u0027t know the word \"ascendance\" so I looked it up:\n\n\u003e Definitions of ascendance. the state that exists when one person or group has power over another. synonyms: ascendancy, ascendence, ascendency, control, dominance.\n\nI think you might be thinking of something else. It seems you look up the field in the parents, so perhaps you mean \"ancestors\"?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c60fcff7_e5bfd0b7",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T14:32:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "264329c7_80ddbf05",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -290,6 +326,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ec33064_6dcde733",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T14:32:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ffb7447_360b8156",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ddca671_ef4b18aa",
@@ -303,6 +357,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "This seems to say `isinstance(d.fields[0], PayloadField)` twice?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de6c8450_4818103f",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T14:32:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ddca671_ef4b18aa",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -326,6 +398,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90f93415_8f786f77",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T14:32:52Z",
+      "side": 1,
+      "message": "I am aware, but I want to avoid adding too many methods to the ast declaration to keep it more readable.",
+      "parentUuid": "592c1506_426b00fb",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "239d5dab_92981577",
         "filename": "tools/pdl/scripts/pdl/core.py",
         "patchSetId": 3
@@ -337,6 +427,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "Please use `isinstance(field, (ScalarField, SizeField, CountField))` instead.",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab635ca9_0ce72445",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T14:32:52Z",
+      "side": 1,
+      "message": "Did not know you could do that, nice 😊",
+      "parentUuid": "239d5dab_92981577",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -354,6 +462,24 @@
       "writtenOn": "2022-06-24T10:17:17Z",
       "side": 1,
       "message": "Two comments :)\n\n* The lines are too long here and wrap in weird ways in Gerrit.\n* How did you generate these bytes? Could you add a comment to the test explaining how to update it later?",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "accc6489_dfa2377c",
+        "filename": "tools/pdl/test/python_generator_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-06-24T14:32:52Z",
+      "side": 1,
+      "message": "- This is the result of the formatting pass in android presubmit, I have no control here ...\n- Generated using a local script (remember the script that I wrote a while back to generate test vectors). Currently not clean or complete enough to merge, so I am just pulling the output.",
+      "parentUuid": "0b1de6d4_bf5f47f4",
       "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
