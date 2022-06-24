@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b01a62e8_1ab8c04e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T17:54:55Z",
+      "side": 1,
+      "message": "This needs to be merged separately (and quickly) since build is currently broken",
+      "revId": "27da261f01b2c5e1fb42a47fac60fb106e216037",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
