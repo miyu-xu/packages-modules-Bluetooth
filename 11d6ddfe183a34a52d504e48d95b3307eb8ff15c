@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1e07f58_4ee665a0",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-24T16:24:38Z",
+      "side": 1,
+      "message": "should this match the suspend_id in suspend?",
+      "range": {
+        "startLine": 198,
+        "startChar": 32,
+        "endLine": 198,
+        "endChar": 42
+      },
+      "revId": "11d6ddfe183a34a52d504e48d95b3307eb8ff15c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
