@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c49791a_5d628486",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T16:35:59Z",
+      "side": 1,
+      "message": "If we\u0027re going to compare against BTM_Status, we should make it into an enum in topshim and compare against the enum instead.\n\nalso: returened",
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f38cd015_420bf397",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 7
@@ -26,6 +43,64 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c6fdc4fb_238d12e1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T16:35:59Z",
+      "side": 1,
+      "message": "nit: log::debug!(\"zoot zoot\")",
+      "parentUuid": "f38cd015_420bf397",
+      "range": {
+        "startLine": 361,
+        "startChar": 7,
+        "endLine": 361,
+        "endChar": 30
+      },
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a93987c_d7ce4556",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T16:35:59Z",
+      "side": 1,
+      "message": "nit: ye old Bluetoothe interface? :P",
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "257dd612_5032b24e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T16:35:59Z",
+      "side": 1,
+      "message": "Calls and callbacks to BluetoothInterface are both protected by Mutex so you could refactor this as:\n```\nif self.intf.lock().unwrap().le_rand() !\u003d BtStatus::Success {\n  debug!(\"le_rand failed\");\n  let _ \u003d promise.send(0);\n} else {\n  self.internal_le_rand_queue.push_back(promise);\n}\n```",
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7d128cc6_01798d08",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 7
@@ -43,6 +118,23 @@
         "endLine": 944,
         "endChar": 41
       },
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12f96986_fdb25224",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-06-24T16:35:59Z",
+      "side": 1,
+      "message": "This doesn\u0027t actually block -- instead, it returns right away. If le_rand hasn\u0027t returned by the time it runs, it will just return Err(_) and you unwrap below will crash.\n\nShove this into a tokio::block_on with a timeout:\n```\nconst SUSPEND_TIMEOUT \u003d 2000;\nlet result \u003d tokio::block_on(async move {\n  match tokio::time::timeout(Duration::from_millis(SUSPEND_TIMEOUT), c.recv()).await {\n    Ok(recv) \u003d\u003e match recv {\n      Ok(rand_value) \u003d\u003e rand_value !\u003d 0,\n      Err(_) \u003d\u003e false,\n    },\n    // Timeout\n    Err(_) \u003d\u003e false,\n  }\n});\n\nif result {\n  // Suspend ready\n} else {\n  // Bad suspend state. What do you do if le_rand times out or le_rand returns 0?\n  // To try to be resilient, maybe you just log it and just emit suspend ready\n  // anyway?\n}\n```",
       "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
