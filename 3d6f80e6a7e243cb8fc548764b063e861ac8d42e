@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4197b121_8aa27267",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-06-24T13:22:50Z",
+      "side": 1,
+      "message": "We probably don\u0027t want to log values. I understand it was useful for debugging, but shouldn\u0027t be submitted. Here , bleow and in next files.",
+      "range": {
+        "startLine": 2416,
+        "startChar": 49,
+        "endLine": 2416,
+        "endChar": 83
+      },
+      "revId": "3d6f80e6a7e243cb8fc548764b063e861ac8d42e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
