@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24f2edf8_8c2f757c",
+        "filename": "system/blueberry/tests/topshim/power/suspend_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-06-24T16:27:14Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "e5573651ffb476de3ca765fde36254e19578fbfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4b922a37_6f38e442",
         "filename": "system/gd/rust/linux/service/src/main.rs",
         "patchSetId": 4
