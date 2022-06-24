@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5c91017_c5afd36b",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 966,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-24T23:50:37Z",
+      "side": 0,
+      "message": "this is just so wrong :(",
+      "range": {
+        "startLine": 964,
+        "startChar": 0,
+        "endLine": 966,
+        "endChar": 47
+      },
+      "revId": "e3b3b84595b8c6838d8975bb2ba16916806ee1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
