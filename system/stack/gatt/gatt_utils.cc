@@ -21,16 +21,14 @@
  *  this file contains GATT utility functions
  *
  ******************************************************************************/
-#define LOG_TAG "gatt_utils"
-
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
 
 #include <cstdint>
 
 #include "bt_target.h"  // Must be first to define build configuration
+#include "main/shim/shim.h"
 #include "osi/include/allocator.h"
-#include "osi/include/log.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/eatt/eatt.h"
 #include "stack/gatt/connection_manager.h"
@@ -259,7 +257,7 @@ bool gatt_find_the_connected_bda(uint8_t start_idx, RawAddress& bda,
                                  tBT_TRANSPORT* p_transport) {
   uint8_t i;
   bool found = false;
-  LOG_DEBUG("start_idx=%d", +start_idx);
+  VLOG(1) << __func__ << " start_idx=" << +start_idx;
 
   for (i = start_idx; i < GATT_MAX_PHY_CHANNEL; i++) {
     if (gatt_cb.tcb[i].in_use && gatt_cb.tcb[i].ch_state == GATT_CH_OPEN) {
@@ -267,11 +265,11 @@ bool gatt_find_the_connected_bda(uint8_t start_idx, RawAddress& bda,
       *p_found_idx = i;
       *p_transport = gatt_cb.tcb[i].transport;
       found = true;
-      LOG_DEBUG("bda: %s", bda.ToString().c_str());
+      VLOG(1) << " bda :" << bda;
       break;
     }
   }
-  LOG_DEBUG("found=%d found_idx=%d", found, +i);
+  VLOG(1) << StringPrintf(" found=%d found_idx=%d", found, i);
   return found;
 }
 

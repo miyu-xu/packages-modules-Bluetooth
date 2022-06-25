@@ -158,9 +158,8 @@ void bta_gattc_disable() {
 
 /** start an application interface */
 static void bta_gattc_start_if(uint8_t client_if) {
-  LOG_DEBUG("client_if=%d", +client_if);
   if (!bta_gattc_cl_get_regcb(client_if)) {
-    LOG_ERROR("Unable to start app.: Unknown client_if=%d", +client_if);
+    LOG(ERROR) << "Unable to start app.: Unknown client_if=" << +client_if;
     return;
   }
 
@@ -169,26 +168,22 @@ static void bta_gattc_start_if(uint8_t client_if) {
 
 /** Register a GATT client application with BTA */
 void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback,
-                        BtaAppRegisterCallback cb, bool eatt_support) {
+                        BtaAppRegisterCallback cb, bool eatt_suppport) {
   tGATT_STATUS status = GATT_NO_RESOURCES;
   uint8_t client_if = 0;
-  LOG_DEBUG("state: %d, uuid=%s", +bta_gattc_cb.state,
-            app_uuid.ToString().c_str());
+  VLOG(1) << __func__ << ": state:" << +bta_gattc_cb.state;
 
   /* check if  GATTC module is already enabled . Else enable */
   if (bta_gattc_cb.state == BTA_GATTC_STATE_DISABLED) {
-    LOG_DEBUG("GATTC module not enabled, enabling it");
     bta_gattc_enable();
   }
   /* todo need to check duplicate uuid */
   for (uint8_t i = 0; i < BTA_GATTC_CL_MAX; i++) {
     if (!bta_gattc_cb.cl_rcb[i].in_use) {
-      bta_gattc_cb.cl_rcb[i].client_if = GATT_Register(
-          app_uuid, "GattClient", &bta_gattc_cl_cback, eatt_support);
-      if (bta_gattc_cb.cl_rcb[i].client_if == 0) {
-        LOG_ERROR(
-            "Register with GATT stack failed with index %d, trying next index",
-            +i);
+      if ((bta_gattc_cb.cl_rcb[i].client_if = GATT_Register(
+               app_uuid, "GattClient", &bta_gattc_cl_cback, eatt_suppport)) ==
+          0) {
+        LOG(ERROR) << "Register with GATT stack failed.";
         status = GATT_ERROR;
       } else {
         bta_gattc_cb.cl_rcb[i].in_use = true;
@@ -197,11 +192,6 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback,
 
         /* BTA use the same client interface as BTE GATT statck */
         client_if = bta_gattc_cb.cl_rcb[i].client_if;
-
-        LOG_DEBUG(
-            "Registered GATT client interface %d with uuid=%s, starting it on "
-            "main thread",
-            +client_if, app_uuid.ToString().c_str());
 
         do_in_main_thread(FROM_HERE,
                           base::Bind(&bta_gattc_start_if, client_if));
@@ -212,12 +202,7 @@ void bta_gattc_register(const Uuid& app_uuid, tBTA_GATTC_CBACK* p_cback,
     }
   }
 
-  if (!cb.is_null()) {
-    cb.Run(client_if, status);
-  } else {
-    LOG_WARN("No GATT callback available, client_if=%d, status=%d", +client_if,
-             +status);
-  }
+  if (!cb.is_null()) cb.Run(client_if, status);
 }
 
 /** De-Register a GATT client application with BTA */
@@ -1157,14 +1142,12 @@ static void bta_gattc_conn_cback(tGATT_IF gattc_if, const RawAddress& bdaddr,
                                  tGATT_DISCONN_REASON reason,
                                  tBT_TRANSPORT transport) {
   if (connected) {
-    LOG_INFO("Connected client_if:%hhu addr:%s, transport:%s reason:%s",
-             gattc_if, PRIVATE_ADDRESS(bdaddr),
+    LOG_INFO("Connected att_id:%hhu transport:%s reason:%s", gattc_if,
              bt_transport_text(transport).c_str(),
              gatt_disconnection_reason_text(reason).c_str());
     btif_debug_conn_state(bdaddr, BTIF_DEBUG_CONNECTED, GATT_CONN_OK);
   } else {
-    LOG_INFO("Disconnected att_id:%hhu addr:%s, transport:%s reason:%s",
-             gattc_if, PRIVATE_ADDRESS(bdaddr),
+    LOG_INFO("Disconnected att_id:%hhu transport:%s reason:%s", gattc_if,
              bt_transport_text(transport).c_str(),
              gatt_disconnection_reason_text(reason).c_str());
     btif_debug_conn_state(bdaddr, BTIF_DEBUG_DISCONNECTED, GATT_CONN_OK);
