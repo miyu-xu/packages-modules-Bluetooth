@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe0e56d6_a5601a96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1896606
+      },
+      "writtenOn": "2022-06-27T08:10:04Z",
+      "side": 1,
+      "message": "Could you please rebase this patch ?",
+      "revId": "188c9ec2ca5429ab9a2e8b3b9b55f3d6b78b7270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
