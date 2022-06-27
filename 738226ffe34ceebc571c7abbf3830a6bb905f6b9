@@ -938,6 +938,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ea504b9_1d5b452d",
+        "filename": "tools/pdl/scripts/pdl/core.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-27T13:54:30Z",
+      "side": 1,
+      "message": "We could do that, the visitor pattern is meant to solve exactly this problem.\n\nJust to be clear, I think it\u0027s fine to do this eventually in a later CL (or perhaps not do it if the code stays small like it is currently).",
+      "parentUuid": "514e63cd_19f74a52",
+      "revId": "738226ffe34ceebc571c7abbf3830a6bb905f6b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "239d5dab_92981577",
         "filename": "tools/pdl/scripts/pdl/core.py",
         "patchSetId": 3
