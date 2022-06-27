@@ -22,6 +22,30 @@
       },
       "revId": "2e00d6fac4d301daadc14c426db85389cc9e5bbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32705e1f_135812b9",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-27T10:17:04Z",
+      "side": 1,
+      "message": "Yeah, I considered this... it seemed like it would be useful for the generator to return code _and_ some warnings. But I might be overthinking it, so I\u0027ve simplified it like you suggest now.",
+      "parentUuid": "82d2675f_2d2507c2",
+      "range": {
+        "startLine": 475,
+        "startChar": 79,
+        "endLine": 475,
+        "endChar": 98
+      },
+      "revId": "2e00d6fac4d301daadc14c426db85389cc9e5bbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
