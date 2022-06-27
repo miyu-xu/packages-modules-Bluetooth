@@ -16,6 +16,23 @@
       "message": "I\u0027m not sure if this was a bug or a feature.",
       "revId": "56a1e59a66c9119db4bb391854ce93887944347e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dba921e6_000a3822",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-06-27T19:55:08Z",
+      "side": 1,
+      "message": "As discussed offline this change probably is not needed",
+      "revId": "56a1e59a66c9119db4bb391854ce93887944347e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
