@@ -34,6 +34,24 @@
       "parentUuid": "7fe69c6c_93fa4657",
       "revId": "2138a51194ca04e76660048f2911c14b0f9dde13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec873003_c30a81dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-27T14:21:02Z",
+      "side": 1,
+      "message": "Yes, you understood that correctly. I agree that this is the end goal.\n\nFor the code that you shared in my opinion we should crash as like you said it would be an internal error as this code should be valid. We could also refactor this code to not create errors by leveraging `parse_quote`\n\n```\nfn type_for_width(width: usize) -\u003e syn::Type {\n    match width {\n        8 \u003d\u003e syn::parse_quote!(u8),\n        _ \u003d\u003e todo!()\n    }\n}\n```\n\nBut I\u0027m digressing here.\nSo I think in the end the question is if we want to use Diagnostics while the rust backend is developed and maybe refactor that back when we will no need it anymore. Or just say that we will not need it and accept to have this less nice error reporting while it\u0027s developed.\n\nIn my opinion I think we can stick with the anyhow error reporting",
+      "parentUuid": "77b66c69_ed849495",
+      "revId": "2138a51194ca04e76660048f2911c14b0f9dde13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
