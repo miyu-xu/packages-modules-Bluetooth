@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure that we want to generate diagnostics from the generator in the end. As for me the rust generator should be able to handle any input from pdl and should not generate errors, at least no \"source\" errors as the parser should handle that the pdl file is \"valid\".\n\nI\u0027m under the impression that most of the errors of the generator is only because it\u0027s not complete yet.",
       "revId": "2138a51194ca04e76660048f2911c14b0f9dde13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b66c69_ed849495",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-06-27T14:00:49Z",
+      "side": 1,
+      "message": "Hmm, good point...\n\nI think you\u0027re saying that all errors should be moved to the linting layer and so the transformation of AST -\u003e Rust should be a function which cannot fail? That should be the end goal, in my opion.\n\nI introduced many code generating functions which return `Result`, but at least some of them look unnecessary. As an example, we could also crash if this function fails since it would mean that we have an internal error in the compiler:\n\n```rust\nfn type_for_width(width: usize) -\u003e Result\u003csyn::Type\u003e {\n    let rounded_width \u003d round_bit_width(width)?;\n    syn::parse_str(\u0026format!(\"u{rounded_width}\")).map_err(anyhow::Error::from)\n}\n```",
+      "parentUuid": "7fe69c6c_93fa4657",
+      "revId": "2138a51194ca04e76660048f2911c14b0f9dde13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
