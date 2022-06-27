@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fe69c6c_93fa4657",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-06-27T12:34:10Z",
+      "side": 1,
+      "message": "I\u0027m not sure that we want to generate diagnostics from the generator in the end. As for me the rust generator should be able to handle any input from pdl and should not generate errors, at least no \"source\" errors as the parser should handle that the pdl file is \"valid\".\n\nI\u0027m under the impression that most of the errors of the generator is only because it\u0027s not complete yet.",
+      "revId": "2138a51194ca04e76660048f2911c14b0f9dde13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
