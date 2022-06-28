@@ -122,6 +122,8 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
       hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version);
   virtual void RegisterLeMetaEventHandler(common::ContextualCallback<void(EventView)> event_handler);
 
+  DumpsysDataFinisher GetDumpsysData(flatbuffers::FlatBufferBuilder* builder) const override;  // Module
+
   std::list<common::ContextualCallback<void(uint16_t, ErrorCode)>> disconnect_handlers_;
   std::list<common::ContextualCallback<void(hci::ErrorCode, uint16_t, uint8_t, uint16_t, uint16_t)>>
       read_remote_version_handlers_;

@@ -417,6 +417,8 @@ struct HciLayer::impl {
     subevent_handlers_[subevent_code].Invoke(meta_event_view);
   }
 
+  void Dump(std::promise<flatbuffers::Offset<HciLayerData>> promise, flatbuffers::FlatBufferBuilder* fb_builder) const;
+
   hal::HciHal* hal_;
   HciLayer& module_;
 
@@ -697,6 +699,29 @@ void HciLayer::Stop() {
   impl_->sco_queue_.GetDownEnd()->UnregisterDequeue();
   impl_->iso_queue_.GetDownEnd()->UnregisterDequeue();
   delete impl_;
+}
+
+void HciLayer::impl::Dump(
+    std::promise<flatbuffers::Offset<HciLayerData>> promise, flatbuffers::FlatBufferBuilder* fb_builder) const {
+  auto title = fb_builder->CreateString("----- Hci Layer Dumpsys -----");
+  HciLayerDataBuilder builder(*fb_builder);
+  builder.add_title(title);
+  flatbuffers::Offset<HciLayerData> dumpsys_data = builder.Finish();
+  promise.set_value(dumpsys_data);
+}
+
+DumpsysDataFinisher HciLayer::GetDumpsysData(flatbuffers::FlatBufferBuilder* fb_builder) const {
+  ASSERT(fb_builder != nullptr);
+
+  std::promise<flatbuffers::Offset<HciLayerData>> promise;
+  auto future = promise.get_future();
+  pimpl_->Dump(std::move(promise), fb_builder);
+
+  auto dumpsys_data = future.get();
+
+  return [dumpsys_data](DumpsysDataBuilder* dumpsys_builder) {
+    dumpsys_builder->add_hci_layer_dumpsys_data(dumpsys_data);
+  };
 }
 
 }  // namespace hci
