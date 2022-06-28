@@ -24,6 +24,7 @@ apex {
 
     key: "com.android.bluetooth.key",
     certificate: ":com.android.bluetooth.certificate",
+    compressible:false,
 }
 
 apex_key {
