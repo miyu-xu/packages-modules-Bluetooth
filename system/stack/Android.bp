@@ -1034,6 +1034,7 @@ cc_test {
     ],
     srcs: [
         ":OsiCompatSources",
+        ":TestCommonStackConfig",
         ":TestMockBta",
         ":TestMockBtif",
         ":TestMockHci",

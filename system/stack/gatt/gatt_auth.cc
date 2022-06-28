@@ -32,6 +32,7 @@
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/btm_sec.h"
+#include "stack/eatt/eatt.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
 
@@ -166,6 +167,11 @@ void gatt_enc_cmpl_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
   }
 
   if (gatt_get_sec_act(p_tcb) == GATT_SEC_ENC_PENDING) return;
+
+  if (result == BTM_SUCCESS) {
+    /* We can try eatt now */
+    bluetooth::eatt::EattExtension::GetInstance()->Connect(*bd_addr);
+  }
 
   if (p_tcb->pending_enc_clcb.empty()) {
     LOG(ERROR) << StringPrintf("%s: no operation waiting for encrypting",
