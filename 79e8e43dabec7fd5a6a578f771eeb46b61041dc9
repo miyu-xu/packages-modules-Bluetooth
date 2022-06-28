@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "562f7cff_fda8f55b",
+        "filename": "system/stack/a2dp/a2dp_vendor_ldac_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-06-28T09:49:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49fc1c28_7e2713cb",
+      "revId": "79e8e43dabec7fd5a6a578f771eeb46b61041dc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab149d6b_eae1cdad",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-06-28T08:56:18Z",
       "side": 1,
       "message": "This should subtract the original `nof * pcm_bytes_per_frame`, not the adjusted one.",
+      "revId": "79e8e43dabec7fd5a6a578f771eeb46b61041dc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "281f07b7_7de29372",
+        "filename": "system/stack/a2dp/a2dp_vendor_ldac_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1659435
+      },
+      "writtenOn": "2022-06-28T09:49:14Z",
+      "side": 1,
+      "message": "Done (used a similar pattern as in https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/a2dp/a2dp_sbc_encoder.cc;drc\u003dadd3d02a9be211efeafa6cff8b27bdf7e44e4081;l\u003d393).",
+      "parentUuid": "ab149d6b_eae1cdad",
       "revId": "79e8e43dabec7fd5a6a578f771eeb46b61041dc9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
