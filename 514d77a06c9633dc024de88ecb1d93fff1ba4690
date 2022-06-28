@@ -39,6 +39,30 @@
       },
       "revId": "514d77a06c9633dc024de88ecb1d93fff1ba4690",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cd0efd3_1bdbfe6a",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-06-28T11:19:27Z",
+      "side": 1,
+      "message": "it is not, as gd/ stack accepts 120 long lines.  \n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/.clang-format",
+      "parentUuid": "c4e09209_f59b093a",
+      "range": {
+        "startLine": 149,
+        "startChar": 4,
+        "endLine": 149,
+        "endChar": 110
+      },
+      "revId": "514d77a06c9633dc024de88ecb1d93fff1ba4690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
