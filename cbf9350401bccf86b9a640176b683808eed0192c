@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a94a068c_f681ea9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1097417
+      },
+      "writtenOn": "2022-06-28T05:00:37Z",
+      "side": 1,
+      "message": "As discussed with Himanshu, please do update us on the connection update to be done for LE Audio",
+      "revId": "cbf9350401bccf86b9a640176b683808eed0192c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
