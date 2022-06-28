@@ -16,6 +16,24 @@
       "message": "There\u0027s a topshim api that is also called `RegisterScanner` and provides a scanner id back. This seems like it\u0027s only registering callbacks -- do you want to call it register_scanner_callback instead?",
       "revId": "567b0a1f203ccba89727116ac6f5a995a190ec9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0af473ac_5d00fdf3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-28T18:41:48Z",
+      "side": 1,
+      "message": "I was thinking of using this method to register both the callback and the scanner, but I think it\u0027s a good idea to separate the registration of the callback and the scanner since this convention makes implementation much easier. So I changed the name to `register_scanner_callback` and I will follow up with adding the `register_scanner` and `unregister_scanner` for the scanner itself.",
+      "parentUuid": "10e67cb8_aacec18a",
+      "revId": "567b0a1f203ccba89727116ac6f5a995a190ec9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
