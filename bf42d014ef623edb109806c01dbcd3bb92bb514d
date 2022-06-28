@@ -124,6 +124,42 @@
       "parentUuid": "eda2e79b_ee9457c2",
       "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ccbff751_6cf53b04",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-28T18:23:34Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "a40433c5_508b97e8",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a35f6fd_868301c9",
+        "filename": "system/gd/rust/linux/mgmt/src/service_watcher.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-06-28T18:23:34Z",
+      "side": 1,
+      "message": "Done. I added a comment to explain why we return true. Maybe an ideal",
+      "parentUuid": "a40433c5_508b97e8",
+      "revId": "bf42d014ef623edb109806c01dbcd3bb92bb514d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
