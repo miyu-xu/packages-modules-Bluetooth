@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be0fec04_19895695",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-28T13:30:08Z",
+      "side": 1,
+      "message": "Grzegorz please check: https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI90200010064334938\u0026testResultId\u003dTR74428106711981770",
+      "revId": "522629a8cede112b537d19d18e0de60df5d468bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
