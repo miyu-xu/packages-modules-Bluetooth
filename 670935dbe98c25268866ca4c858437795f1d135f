@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "494476fc_87748bb5",
+        "filename": "system/stack/gatt/att_protocol.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-06-28T20:59:36Z",
+      "side": 1,
+      "message": "this is actually not needed for now",
+      "revId": "670935dbe98c25268866ca4c858437795f1d135f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4afb0858_bdc75365",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-06-28T20:59:36Z",
+      "side": 1,
+      "message": "typos",
+      "range": {
+        "startLine": 495,
+        "startChar": 22,
+        "endLine": 495,
+        "endChar": 27
+      },
+      "revId": "670935dbe98c25268866ca4c858437795f1d135f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
