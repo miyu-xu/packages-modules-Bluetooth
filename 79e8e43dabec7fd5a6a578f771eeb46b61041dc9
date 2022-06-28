@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49fc1c28_7e2713cb",
+        "filename": "system/stack/a2dp/a2dp_vendor_ldac_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1871447
+      },
+      "writtenOn": "2022-06-28T08:56:18Z",
+      "side": 1,
+      "message": "Currently, the limiting is too strict: with MAX_PCM_FRAME_NUM_PER_TICK\u003d14 every write is truncated. A limit of 20 suggested in aosp/1930952 avoids truncating every write and practically only applies at the start of the audio track where only 0\u0027s are written.",
+      "revId": "79e8e43dabec7fd5a6a578f771eeb46b61041dc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab149d6b_eae1cdad",
+        "filename": "system/stack/a2dp/a2dp_vendor_ldac_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 576,
+      "author": {
+        "id": 1871447
+      },
+      "writtenOn": "2022-06-28T08:56:18Z",
+      "side": 1,
+      "message": "This should subtract the original `nof * pcm_bytes_per_frame`, not the adjusted one.",
+      "revId": "79e8e43dabec7fd5a6a578f771eeb46b61041dc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
