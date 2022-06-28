@@ -63,6 +63,30 @@
       },
       "revId": "514d77a06c9633dc024de88ecb1d93fff1ba4690",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb914b0f_9dbbabc5",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1023115
+      },
+      "writtenOn": "2022-06-28T18:29:40Z",
+      "side": 1,
+      "message": "Thanks for updates Lukasz, was not aware of this.",
+      "parentUuid": "7cd0efd3_1bdbfe6a",
+      "range": {
+        "startLine": 149,
+        "startChar": 4,
+        "endLine": 149,
+        "endChar": 110
+      },
+      "revId": "514d77a06c9633dc024de88ecb1d93fff1ba4690",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
