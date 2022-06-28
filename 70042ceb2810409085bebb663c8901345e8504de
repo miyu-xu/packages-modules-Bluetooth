@@ -69,6 +69,24 @@
       "parentUuid": "b717c14d_a77e90f2",
       "revId": "70042ceb2810409085bebb663c8901345e8504de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "038ab905_4ea9c4c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-06-28T18:12:40Z",
+      "side": 1,
+      "message": "I agree with that.\nIt\u0027s best if the CL are splitted but I can understand if you don\u0027t want to redo the CL.",
+      "parentUuid": "c57a3179_19beccde",
+      "revId": "70042ceb2810409085bebb663c8901345e8504de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
