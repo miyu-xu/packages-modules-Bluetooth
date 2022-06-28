@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c42d273c_e19a1a81",
+        "filename": "system/embdrv/sbc/encoder/srce/sbc_packing.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-06-28T01:57:19Z",
+      "side": 1,
+      "message": "These two bytes are \"reserved for future use\" in mSBC case. We should set them to 0x00.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 64
+      },
+      "revId": "a8bb85bcacdb95d66db437040ce721343446769e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
