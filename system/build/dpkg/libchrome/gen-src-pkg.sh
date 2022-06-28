@@ -32,7 +32,7 @@ cd "${pkgdir}"
 cp -a ../platform2/{common-mk,.gn} .
 
 # Download libchrome source and apply Chrome OS's patches.
-git clone --branch "${libchrome_branch}" https://chromium.googlesource.com/aosp/platform/external/libchrome || exit 1
+git clone --branch "${libchrome_branch}" https://chromium.googlesource.com/chromiumos/platform/libchrome || exit 1
 cd libchrome
 git checkout "${libchrome_commit}"
 rm -rf .git
