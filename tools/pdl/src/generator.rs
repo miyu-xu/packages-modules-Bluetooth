@@ -2,6 +2,7 @@ use crate::ast;
 use anyhow::{anyhow, bail, Context, Result};
 use quote::{format_ident, quote};
 use std::collections::HashMap;
+use std::fmt::Write;
 use std::path::Path;
 use syn::parse_quote;
 
@@ -22,50 +23,70 @@ fn generate_preamble(path: &Path) -> Result<String> {
         .file_name()
         .and_then(|path| path.to_str())
         .ok_or_else(|| anyhow!("could not find filename in {:?}", path))?;
-    code.push_str(&format!("// @generated rust packets from {filename}\n\n"));
+    write!(code, "// @generated rust packets from {filename}\n\n");
 
-    code.push_str(&quote_block! {
-        use bytes::{BufMut, Bytes, BytesMut};
-        use num_derive::{FromPrimitive, ToPrimitive};
-        use num_traits::{FromPrimitive, ToPrimitive};
-        use std::convert::{TryFrom, TryInto};
-        use std::fmt;
-        use std::sync::Arc;
-        use thiserror::Error;
-    });
-
-    code.push_str(&quote_block! {
-        type Result<T> = std::result::Result<T, Error>;
-    });
-
-    code.push_str(&quote_block! {
-        #[derive(Debug, Error)]
-        pub enum Error {
-            #[error("Packet parsing failed")]
-            InvalidPacketError,
-            #[error("{field} was {value:x}, which is not known")]
-            ConstraintOutOfBounds { field: String, value: u64 },
-            #[error("when parsing {obj}.{field} needed length of {wanted} but got {got}")]
-            InvalidLengthError { obj: String, field: String, wanted: usize, got: usize },
-            #[error("Due to size restrictions a struct could not be parsed.")]
-            ImpossibleStructError,
-            #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
-            InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
+    write!(
+        code,
+        "{}",
+        &quote_block! {
+            use bytes::{BufMut, Bytes, BytesMut};
+            use num_derive::{FromPrimitive, ToPrimitive};
+            use num_traits::{FromPrimitive, ToPrimitive};
+            use std::convert::{TryFrom, TryInto};
+            use std::fmt;
+            use std::sync::Arc;
+            use thiserror::Error;
         }
-    });
+    );
 
-    code.push_str(&quote_block! {
-        #[derive(Debug, Error)]
-        #[error("{0}")]
-        pub struct TryFromError(&'static str);
-    });
-
-    code.push_str(&quote_block! {
-        pub trait Packet {
-            fn to_bytes(self) -> Bytes;
-            fn to_vec(self) -> Vec<u8>;
+    write!(
+        code,
+        "{}",
+        &quote_block! {
+            type Result<T> = std::result::Result<T, Error>;
         }
-    });
+    );
+
+    write!(
+        code,
+        "{}",
+        &quote_block! {
+            #[derive(Debug, Error)]
+            pub enum Error {
+                #[error("Packet parsing failed")]
+                InvalidPacketError,
+                #[error("{field} was {value:x}, which is not known")]
+                ConstraintOutOfBounds { field: String, value: u64 },
+                #[error("when parsing {obj}.{field} needed length of {wanted} but got {got}")]
+                InvalidLengthError { obj: String, field: String, wanted: usize, got: usize },
+                #[error("Due to size restrictions a struct could not be parsed.")]
+                ImpossibleStructError,
+                #[error("when parsing field {obj}.{field}, {value} is not a valid {type_} value")]
+                InvalidEnumValueError { obj: String, field: String, value: u64, type_: String },
+            }
+        }
+    );
+
+    write!(
+        code,
+        "{}",
+        &quote_block! {
+            #[derive(Debug, Error)]
+            #[error("{0}")]
+            pub struct TryFromError(&'static str);
+        }
+    );
+
+    write!(
+        code,
+        "{}",
+        &quote_block! {
+            pub trait Packet {
+                fn to_bytes(self) -> Bytes;
+                fn to_vec(self) -> Vec<u8>;
+            }
+        }
+    );
 
     Ok(code)
 }
@@ -226,29 +247,32 @@ fn generate_packet_decl(
     let child_name = format_ident!("{id}Child");
     if has_children {
         let child_data_idents = child_idents.iter().map(|ident| format_ident!("{ident}Data"));
-        code.push_str(&quote_block! {
-            #[derive(Debug)]
-            enum #data_child_ident {
-                #(#child_idents(Arc<#child_data_idents>),)*
-                None,
-            }
+        write!(
+            code,
+            &quote_block! {
+                #[derive(Debug)]
+                enum #data_child_ident {
+                    #(#child_idents(Arc<#child_data_idents>),)*
+                    None,
+                }
 
-            impl #data_child_ident {
-                fn get_total_size(&self) -> usize {
-                    // TODO(mgeisler): use Self instad of #data_child_ident.
-                    match self {
-                        #(#data_child_ident::#child_idents(value) => value.get_total_size(),)*
-                        #data_child_ident::None => 0,
+                impl #data_child_ident {
+                    fn get_total_size(&self) -> usize {
+                        // TODO(mgeisler): use Self instad of #data_child_ident.
+                        match self {
+                            #(#data_child_ident::#child_idents(value) => value.get_total_size(),)*
+                            #data_child_ident::None => 0,
+                        }
                     }
                 }
-            }
 
-            #[derive(Debug)]
-            pub enum #child_name {
-                #(#child_idents(#child_decl_packet_name),)*
-                None,
+                #[derive(Debug)]
+                pub enum #child_name {
+                    #(#child_idents(#child_decl_packet_name),)*
+                    None,
+                }
             }
-        });
+        );
     }
 
     let data_name = format_ident!("{id}Data");
@@ -261,13 +285,16 @@ fn generate_packet_decl(
         .iter()
         .map(|field| generate_field(field, parse_quote!()))
         .collect::<Result<Vec<_>>>()?;
-    code.push_str(&quote_block! {
-        #[derive(Debug)]
-        struct #data_name {
-            #(#plain_fields,)*
-            #child_field
+    write!(
+        code,
+        &quote_block! {
+            #[derive(Debug)]
+            struct #data_name {
+                #(#plain_fields,)*
+                #child_field
+            }
         }
-    });
+    );
 
     let parent = parent_id.as_ref().map(|parent_id| match packets.get(parent_id.as_str()) {
         Some(ast::Decl::Packet { id, .. }) => {
