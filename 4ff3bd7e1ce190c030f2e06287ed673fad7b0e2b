@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "84aed11c_e638b884",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-29T23:06:18Z",
+      "side": 1,
+      "message": "Jakub is out and he did this patch on purpose. This is test APP, so if possible, let\u0027s not block others with getting this patches merged  - especially that this is \"nit\". This test app is needed for Qualification purposes.",
+      "parentUuid": "cfa407a4_3b53c76a",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "4ff3bd7e1ce190c030f2e06287ed673fad7b0e2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f2952ccd_7ad89d07",
         "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
         "patchSetId": 1
