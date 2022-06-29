@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2bba0e6_dcad335e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-06-29T05:22:41Z",
+      "side": 1,
+      "message": "Hi reviewers, please help me review this CL to avoid further merging issues, thanks!",
+      "revId": "e6a32ae2e7e40eb6cdd637933eb9e16a226f459c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
