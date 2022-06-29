@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb431684_3fe05068",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-29T17:09:22Z",
+      "side": 1,
+      "message": "Do not use APPL_TRACE_EVENT in new code. Instead use LOG_INFO, LOG_DEBUG, LOG_WARN\n\nin this case, LOG_ERROR() should be appropriate",
+      "range": {
+        "startLine": 172,
+        "startChar": 10,
+        "endLine": 172,
+        "endChar": 26
+      },
+      "revId": "346b637d7993c351f1d2ef4a65439304bc647ecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
