@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfa407a4_3b53c76a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-29T18:24:49Z",
+      "side": 1,
+      "message": "nit: It looks \"setValue() must be called in main thread.\" would be more correct.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "4ff3bd7e1ce190c030f2e06287ed673fad7b0e2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2952ccd_7ad89d07",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 803,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-29T18:24:49Z",
+      "side": 1,
+      "message": "Could you put @MainThread annotation since setValue() must be called in the main thread.",
+      "revId": "4ff3bd7e1ce190c030f2e06287ed673fad7b0e2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fe49a71_532119e3",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-29T18:24:49Z",
+      "side": 1,
+      "message": "Could you put @MainThread annotation since setValue() must be called in the main thread.",
+      "range": {
+        "startLine": 813,
+        "startChar": 16,
+        "endLine": 813,
+        "endChar": 35
+      },
+      "revId": "4ff3bd7e1ce190c030f2e06287ed673fad7b0e2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25186398_488269f0",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BluetoothProxy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-06-29T18:24:49Z",
+      "side": 1,
+      "message": "Q) Does it make any problem if we call setValue instead?",
+      "range": {
+        "startLine": 920,
+        "startChar": 37,
+        "endLine": 920,
+        "endChar": 46
+      },
+      "revId": "4ff3bd7e1ce190c030f2e06287ed673fad7b0e2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
