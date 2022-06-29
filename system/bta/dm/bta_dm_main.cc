@@ -88,6 +88,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_API_QUEUE_DISCOVER_EVT:
           bta_dm_queue_disc(message);
           break;
+        default:
+          LOG_ERROR("Unhandled event. Ignored");
+          break;
       }
       break;
     case BTA_DM_SEARCH_ACTIVE:
@@ -111,6 +114,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_API_QUEUE_DISCOVER_EVT:
           bta_dm_queue_disc(message);
           break;
+        default:
+          LOG_ERROR("Unhandled event. Ignored");
+          break;
       }
       break;
     case BTA_DM_SEARCH_CANCELLING:
@@ -131,6 +137,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
           bta_dm_free_sdp_db();
           bta_dm_search_cancel_notify();
           bta_dm_execute_queued_request();
+          break;
+        default:
+          LOG_ERROR("Unhandled event. Ignored");
           break;
       }
       break;
@@ -155,6 +164,9 @@ bool bta_dm_search_sm_execute(BT_HDR_RIGID* p_msg) {
         case BTA_DM_API_DISCOVER_EVT:
         case BTA_DM_API_QUEUE_DISCOVER_EVT:
           bta_dm_queue_disc(message);
+          break;
+        default:
+          LOG_ERROR("Unhandled event. Ignored");
           break;
       }
       break;
