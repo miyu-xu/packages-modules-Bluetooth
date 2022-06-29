@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6929f24_450d45c7",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-29T15:33:11Z",
+      "side": 1,
+      "message": "I\u0027m not sure we can do like this.\nBut since gatt_notif_vector is static we can avoid this memset as it should be already zeroed.",
+      "parentUuid": "c2235a3e_309333f9",
+      "range": {
+        "startLine": 567,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 45
+      },
+      "revId": "44259b2307a07aa9b8a2379c6c1937e5259665a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8a6ced75_3dd81fca",
         "filename": "system/stack/gatt/gatt_api.cc",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-29T06:35:25Z",
       "side": 1,
       "message": "C++ way of doing it is\n\nstd::copy(p_val, p_val + val_len, p_gatt_notif-\u003evalue);",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 50
+      },
+      "revId": "44259b2307a07aa9b8a2379c6c1937e5259665a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7ce25fa_df2d5a57",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-29T15:33:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a6ced75_3dd81fca",
       "range": {
         "startLine": 570,
         "startChar": 0,
