@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51cfbc77_4350e416",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-29T17:16:54Z",
+      "side": 1,
+      "message": "could we print out the original number of instances as well? \n\ne.g.\n\nLOG_INFO(\"num_instances_ reduced from %d to %d to reserve 2 instances for connection\", (uint16_t)original_num_instances, (uint16_t)num_instances_);",
+      "range": {
+        "startLine": 140,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 63
+      },
+      "revId": "13d0d036c157180a81e398f9f1e8ae54a65fe501",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
