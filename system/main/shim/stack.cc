@@ -48,6 +48,7 @@
 #include "gd/security/security_module.h"
 #include "gd/shim/dumpsys.h"
 #include "gd/storage/storage_module.h"
+#include "gd/sysprops/sysprops_module.h"
 
 #include "main/shim/acl_legacy_interface.h"
 #include "main/shim/activity_attribution.h"
@@ -169,6 +170,9 @@ void Stack::StartEverything() {
     modules.add<neighbor::ScanModule>();
     modules.add<storage::StorageModule>();
   }
+  #if defined(TARGET_FLOSS)
+    modules.add<sysprops::SyspropsModule>();
+  #endif
   Start(&modules);
   is_running_ = true;
   // Make sure the leaf modules are started
