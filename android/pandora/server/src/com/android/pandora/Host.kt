@@ -52,6 +52,9 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   private val bluetoothManager =
     context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
   private val bluetoothAdapter = bluetoothManager.adapter
+  private var passkey = -1
+
+  private var bluetoothDevice: BluetoothDevice? = null
 
   init {
     scope = CoroutineScope(Dispatchers.Default)
@@ -142,7 +145,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
               }
               .first()
 
-          val bluetoothDevice =
+          bluetoothDevice =
             pairingRequestIntent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
           val pairingVariant =
             pairingRequestIntent.getIntExtra(
@@ -154,7 +157,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
               pairingVariant == BluetoothDevice.PAIRING_VARIANT_CONSENT ||
               pairingVariant == BluetoothDevice.PAIRING_VARIANT_PIN
           ) {
-            bluetoothDevice.setPairingConfirmation(true)
+            bluetoothDevice!!.setPairingConfirmation(true)
           }
         }
 
@@ -189,9 +192,9 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       val address = request.connection.cookie.toByteArray().decodeToString()
       Log.i(TAG, "disconnect: address=$address")
 
-      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+      bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
 
-      if (!bluetoothDevice.isConnected()) {
+      if (!bluetoothDevice!!.isConnected()) {
         Log.e(TAG, "Device is not connected, cannot disconnect")
         throw Status.UNKNOWN.asException()
       }
@@ -204,7 +207,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
           }
           .map { it.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR) }
 
-      bluetoothDevice.disconnect()
+      bluetoothDevice!!.disconnect()
       connectionStateChangedFlow.filter { it == BluetoothAdapter.STATE_DISCONNECTED }.first()
 
       DisconnectResponse.getDefaultInstance()
@@ -218,17 +221,34 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     grpcUnary<ReadPasskeyResponse>(scope, responseObserver) {
       Log.i(TAG, "readPasskey")
       val pairingRequestIntent =
-        flow
-          .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
-          .first()
-      val bluetoothDevice = pairingRequestIntent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
-      val pairingVariant = pairingRequestIntent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
+        flow.filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }.first()
+      bluetoothDevice =
+        pairingRequestIntent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE)
+      val pairingVariant =
+        pairingRequestIntent.getIntExtra(
+          BluetoothDevice.EXTRA_PAIRING_VARIANT,
+          BluetoothDevice.ERROR
+        )
       if (pairingVariant == BluetoothDevice.PAIRING_VARIANT_CONSENT) {
-        bluetoothDevice.setPairingConfirmation(true)
+        bluetoothDevice!!.setPairingConfirmation(true)
       }
-      val passkey = pairingRequestIntent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_KEY, BluetoothDevice.ERROR)
+      passkey =
+        pairingRequestIntent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_KEY, BluetoothDevice.ERROR)
       Log.i(TAG, "passkey: $passkey")
       ReadPasskeyResponse.newBuilder().setPasskey(passkey).build()
+    }
+  }
+
+  override fun confirmPasskey(
+    request: ConfirmPasskeyRequest,
+    responseObserver: StreamObserver<ConfirmPasskeyResponse>
+  ) {
+    grpcUnary<ConfirmPasskeyResponse>(scope, responseObserver) {
+      val remote_passkey = request.passkey
+      Log.i(TAG, "confirmPasskey: local passkey: $passkey remote passkey: $remote_passkey")
+      val isConfirmed = passkey == remote_passkey
+      bluetoothDevice!!.setPairingConfirmation(isConfirmed)
+      ConfirmPasskeyResponse.newBuilder().setIsConfirmed(isConfirmed).build()
     }
   }
 }

@@ -38,10 +38,13 @@ service Host {
   // If the two devices have not established a previous bond,
   // the peer must be discoverable.
   rpc Connect(ConnectRequest) returns (ConnectResponse);
+  // Set the IO Capability
+  rpc SetIOCapability(SetIOCapabilityRequest) returns (SetIOCapabilityResponse);
   // Read the Passkey
   rpc ReadPasskey(ReadPasskeyRequest) returns (ReadPasskeyResponse);
   // Write the given passkey on the HCI level
   rpc WritePasskey(WritePasskeyRequest) returns (WritePasskeyResponse);
+  rpc ConfirmPasskey(ConfirmPasskeyRequest) returns (ConfirmPasskeyResponse);
   // Get an active ACL BR/EDR connection to a peer.
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse);
   // Wait for an ACL BR/EDR connection from a peer.
@@ -69,6 +72,12 @@ message WritePasskeyResponse {
     Connection connection = 1;
   }
 }
+message ConfirmPasskeyRequest {
+  int32 passkey = 1;
+}
+message ConfirmPasskeyResponse {
+    bool isConfirmed = 1;
+}
 
 // A Token representing an ACL connection.
 // It's acquired via a Connect on the Host service.
@@ -84,17 +93,12 @@ message ConnectRequest {
   bytes address = 1;
 }
 
-enum AuthenticationProtocol {
-  PasskeyEntry = 0;
-  NumericComparison = 1;
-}
 // Response of the `Connect` method.
 message ConnectResponse {
   // Result of the `Connect` call:
   // - If successful: a Connection
   oneof result {
     Connection connection = 1;
-    AuthenticationProtocol authenticationProtocol = 2;
   }
 }
 
