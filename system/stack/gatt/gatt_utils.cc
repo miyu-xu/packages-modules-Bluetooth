@@ -664,8 +664,17 @@ void gatt_rsp_timeout(void* data) {
     }
   }
 
-  LOG(WARNING) << __func__ << " disconnecting...";
-  gatt_disconnect(p_clcb->p_tcb);
+  auto eatt_channel = EattExtension::GetInstance()->FindEattChannelByCid(
+      p_clcb->p_tcb->peer_bda, p_clcb->cid);
+  if (eatt_channel) {
+    LOG(WARNING) << __func__ << " disconnecting EATT cid: " << p_clcb->cid;
+    EattExtension::GetInstance()->Disconnect(p_clcb->p_tcb->peer_bda,
+                                             p_clcb->cid);
+  } else {
+    LOG(WARNING) << __func__ << " disconnecting GATT...";
+    gatt_disconnect(p_clcb->p_tcb);
+    return;
+  }
 }
 
 extern void gatts_proc_srv_chg_ind_ack(tGATT_TCB tcb);
