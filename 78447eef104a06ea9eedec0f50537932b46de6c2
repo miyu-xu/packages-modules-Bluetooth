@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0f77a38_65edeb3a",
+        "filename": "system/stack/gatt/gatt_auth.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-29T10:29:48Z",
+      "side": 1,
+      "message": "This is actually not a good place, because we want this to be trigger no matter which layer started encryption. And this is called only when GATT triggered it.",
+      "revId": "78447eef104a06ea9eedec0f50537932b46de6c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
