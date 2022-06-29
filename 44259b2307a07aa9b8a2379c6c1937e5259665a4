@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2235a3e_309333f9",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-29T06:35:25Z",
+      "side": 1,
+      "message": "p_gatt_notif \u003d {}\n\nTry not not to use memset in new C++ code unless you know that it will be plain old data type forever like plain arrays",
+      "range": {
+        "startLine": 567,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 45
+      },
+      "revId": "44259b2307a07aa9b8a2379c6c1937e5259665a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a6ced75_3dd81fca",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-29T06:35:25Z",
+      "side": 1,
+      "message": "C++ way of doing it is\n\nstd::copy(p_val, p_val + val_len, p_gatt_notif-\u003evalue);",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 50
+      },
+      "revId": "44259b2307a07aa9b8a2379c6c1937e5259665a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
