@@ -188,6 +188,7 @@ cc_defaults {
         ":BluetoothShimSources",
         ":BluetoothSecuritySources",
         ":BluetoothStorageSources",
+        ":BluetoothSyspropsSources",
     ],
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
@@ -204,6 +205,9 @@ cc_defaults {
         "libbluetooth-protos",
         "libbluetooth_rust_interop",
         "libbt-platform-protos-lite",
+    ],
+    whole_static_libs: [
+        "libc++fs",
     ],
     export_static_lib_headers: ["libbluetooth_rust_interop"],
 }
