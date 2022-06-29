@@ -48,6 +48,7 @@
 #include "gd/security/security_module.h"
 #include "gd/shim/dumpsys.h"
 #include "gd/storage/storage_module.h"
+#include "gd/sysprops/sysprops_module.h"
 
 #include "main/shim/acl_legacy_interface.h"
 #include "main/shim/activity_attribution.h"
@@ -142,6 +143,7 @@ void Stack::StartEverything() {
   modules.add<storage::StorageModule>();
   modules.add<shim::Dumpsys>();
   modules.add<hci::VendorSpecificEventManager>();
+  modules.add<sysprops::SyspropsModule>();
 
   modules.add<hci::Controller>();
   modules.add<hci::AclManager>();
