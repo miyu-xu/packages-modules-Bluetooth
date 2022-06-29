@@ -113,10 +113,6 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     le_advertising_interface_ =
         hci_layer_->GetLeAdvertisingInterface(module_handler_->BindOn(this, &LeAdvertisingManager::impl::handle_event));
     num_instances_ = controller_->GetLeNumberOfSupportedAdverisingSets();
-    enabled_sets_ = std::vector<EnabledSet>(num_instances_);
-    for (size_t i = 0; i < enabled_sets_.size(); i++) {
-      enabled_sets_[i].advertising_handle_ = kInvalidHandle;
-    }
 
     if (controller_->SupportsBleExtendedAdvertising()) {
       advertising_api_type_ = AdvertisingApiType::EXTENDED;
@@ -136,6 +132,15 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
             LeReadAdvertisingPhysicalChannelTxPowerBuilder::Create(),
             handler->BindOnceOn(this, &impl::on_read_advertising_physical_channel_tx_power));
       }
+    }
+    // Reserve 2 connection resource for new incoming connection
+    if (num_instances_ > 2) {
+      num_instances_ -= 2;
+    }
+    LOG_INFO("num_instances_ is %d", (uint16_t)num_instances_);
+    enabled_sets_ = std::vector<EnabledSet>(num_instances_);
+    for (size_t i = 0; i < enabled_sets_.size(); i++) {
+      enabled_sets_[i].advertising_handle_ = kInvalidHandle;
     }
   }
 
