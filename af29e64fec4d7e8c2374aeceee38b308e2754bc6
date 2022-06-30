@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62416248_4ac0d66d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:39:26Z",
+      "side": 1,
+      "message": "Do we want to use device config for persistent property? \n\nDevice config should use the INIT_flag format in AdapterService.java\n\nHere, after 2nd thought, maybe persistent property is better?",
+      "range": {
+        "startLine": 291,
+        "startChar": 17,
+        "endLine": 291,
+        "endChar": 48
+      },
+      "revId": "af29e64fec4d7e8c2374aeceee38b308e2754bc6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
