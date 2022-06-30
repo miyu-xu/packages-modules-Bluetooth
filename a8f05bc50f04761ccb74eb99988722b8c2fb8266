@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89ef9bcc_1cca7023",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T07:02:54Z",
+      "side": 1,
+      "message": "need to add one more bug number to track this specific issue",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 14
+      },
+      "revId": "a8f05bc50f04761ccb74eb99988722b8c2fb8266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
