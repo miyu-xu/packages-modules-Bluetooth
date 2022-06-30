@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f896d484_d9962c9f",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:44:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "f6929f24_450d45c7",
+      "range": {
+        "startLine": 567,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 45
+      },
+      "revId": "44259b2307a07aa9b8a2379c6c1937e5259665a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a6ced75_3dd81fca",

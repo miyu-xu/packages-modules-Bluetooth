@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db1b844c_ddbd10ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:44:20Z",
+      "side": 1,
+      "message": "+1 with one nit",
+      "revId": "3b76118be25d20074c1e8239deb5524ac1d43a6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a96a9f85_e64dd654",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:44:20Z",
+      "side": 1,
+      "message": "please use LOG_INFO, LOG_DEBUG, LOG_WARN, etc marcos in new code, they will include __func__ by default and LOG_DEBUG and LOG_VERBOSE can be enabled or disabled via init flags\n\nSame for other code in this function",
+      "range": {
+        "startLine": 489,
+        "startChar": 2,
+        "endLine": 489,
+        "endChar": 24
+      },
+      "revId": "3b76118be25d20074c1e8239deb5524ac1d43a6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
