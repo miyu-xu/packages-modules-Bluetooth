@@ -34,6 +34,24 @@
       "parentUuid": "6f3924de_044d8473",
       "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9d7ec8c_d5737260",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-30T15:39:19Z",
+      "side": 1,
+      "message": "Ah, right.  I didn\u0027t expand all the lines.  sgtm",
+      "parentUuid": "e449f1d7_a936e36b",
+      "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
