@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73e57959_c531e92c",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:53:36Z",
+      "side": 1,
+      "message": "LOG_INFO",
+      "range": {
+        "startLine": 877,
+        "startChar": 0,
+        "endLine": 877,
+        "endChar": 78
+      },
+      "revId": "28c4f823fce8643e2965ddefd8cea5a7f6be9d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "754eebc4_5873d688",
+        "filename": "system/stack/gatt/gatt_cl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:53:36Z",
+      "side": 1,
+      "message": "fine since legacy code already use it, but we should think about how to do proper assignment instead of memcpy in the future",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 76
+      },
+      "revId": "28c4f823fce8643e2965ddefd8cea5a7f6be9d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
