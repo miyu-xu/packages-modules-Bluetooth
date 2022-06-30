@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cacb6f8c_d5460dab",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:49:14Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG to track early return",
+      "range": {
+        "startLine": 683,
+        "startChar": 0,
+        "endLine": 684,
+        "endChar": 66
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b361f03_c2f16a3c",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:49:14Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG to track early return",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 66
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c3e1cdd_69dd5f57",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:49:14Z",
+      "side": 1,
+      "message": "LOG_DEBUG",
+      "range": {
+        "startLine": 578,
+        "startChar": 0,
+        "endLine": 578,
+        "endChar": 55
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a9d312a_2ef77d64",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:49:14Z",
+      "side": 1,
+      "message": "same here, please add LOG_DEBUG to track different code paths",
+      "range": {
+        "startLine": 587,
+        "startChar": 0,
+        "endLine": 593,
+        "endChar": 5
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdf0c763_ba8e02e8",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:49:14Z",
+      "side": 1,
+      "message": "please add a LOG_DEBUG here to track the early return",
+      "range": {
+        "startLine": 597,
+        "startChar": 0,
+        "endLine": 597,
+        "endChar": 38
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea910fd_26b6bb86",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:49:14Z",
+      "side": 1,
+      "message": "Please use \n\ntGATT_READ_PARAM param \u003d {}\n\ninstead",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 46
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2837c43a_a68d4c9b",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T06:49:14Z",
+      "side": 1,
+      "message": "please use LOG_ERROR macro",
+      "range": {
+        "startLine": 763,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 77
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
