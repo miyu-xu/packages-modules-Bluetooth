@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8c15d71_bd2720fb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1605,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T17:19:43Z",
+      "side": 1,
+      "message": "LOG_INFO for new logs :)",
+      "revId": "8a0da1200d74e740e060f62dbb5f9a83f7e7da98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "035c845a_c38d50b2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1875,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T17:19:43Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "8a0da1200d74e740e060f62dbb5f9a83f7e7da98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06bad214_761f904a",
+        "filename": "system/bta/le_audio/client_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 635,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T17:19:43Z",
+      "side": 1,
+      "message": "LOG_ERROR()",
+      "revId": "8a0da1200d74e740e060f62dbb5f9a83f7e7da98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30e5cd3c_c4446fab",
+        "filename": "system/bta/le_audio/client_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 642,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T17:19:43Z",
+      "side": 1,
+      "message": "LOG_INFO",
+      "revId": "8a0da1200d74e740e060f62dbb5f9a83f7e7da98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
