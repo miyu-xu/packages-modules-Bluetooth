@@ -551,6 +551,11 @@
 #define GATT_CONFORMANCE_TESTING FALSE
 #endif
 
+
+/* Used to trigger invalid behaviour of CSIP test case PTS */
+#ifndef CSIP_UPPER_TESTER_FORCE_TO_SEND_LOCK
+#define CSIP_UPPER_TESTER_FORCE_TO_SEND_LOCK FALSE
+#endif
 /******************************************************************************
  *
  * SMP
