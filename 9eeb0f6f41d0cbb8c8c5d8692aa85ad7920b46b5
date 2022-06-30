@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8f489fe_e0a95664",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e650becd_a2f07945",
+      "revId": "9eeb0f6f41d0cbb8c8c5d8692aa85ad7920b46b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53ab17a0_330ec922",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de20ebde_930bcb82",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53ab17a0_330ec922",
+      "range": {
+        "startLine": 670,
+        "startChar": 0,
+        "endLine": 670,
+        "endChar": 75
+      },
+      "revId": "9eeb0f6f41d0cbb8c8c5d8692aa85ad7920b46b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "def45e30_f8ab47d4",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-06-30T06:51:12Z",
       "side": 1,
       "message": "LOG_WARN",
+      "range": {
+        "startLine": 674,
+        "startChar": 0,
+        "endLine": 674,
+        "endChar": 57
+      },
+      "revId": "9eeb0f6f41d0cbb8c8c5d8692aa85ad7920b46b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d09a9fd2_6eb57673",
+        "filename": "system/stack/gatt/gatt_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "def45e30_f8ab47d4",
       "range": {
         "startLine": 674,
         "startChar": 0,
