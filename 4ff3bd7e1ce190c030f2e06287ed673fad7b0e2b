@@ -48,6 +48,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc36a43c_b1ad0f2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T09:28:51Z",
+      "side": 1,
+      "message": "@Jakub - please check Sungsoo comments once you are back. ",
+      "revId": "4ff3bd7e1ce190c030f2e06287ed673fad7b0e2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f2952ccd_7ad89d07",
