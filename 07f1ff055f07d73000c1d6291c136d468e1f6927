@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b4c422a_70ef5e5c",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 684,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cacb6f8c_d5460dab",
+      "range": {
+        "startLine": 683,
+        "startChar": 0,
+        "endLine": 684,
+        "endChar": 66
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b361f03_c2f16a3c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-30T06:49:14Z",
       "side": 1,
       "message": "please add LOG_DEBUG to track early return",
+      "range": {
+        "startLine": 573,
+        "startChar": 0,
+        "endLine": 573,
+        "endChar": 66
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "972fc9e3_6b92cba2",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b361f03_c2f16a3c",
       "range": {
         "startLine": 573,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "195d2449_6791bafd",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c3e1cdd_69dd5f57",
+      "range": {
+        "startLine": 578,
+        "startChar": 0,
+        "endLine": 578,
+        "endChar": 55
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a9d312a_2ef77d64",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-06-30T06:49:14Z",
       "side": 1,
       "message": "same here, please add LOG_DEBUG to track different code paths",
+      "range": {
+        "startLine": 587,
+        "startChar": 0,
+        "endLine": 593,
+        "endChar": 5
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f31613bc_70e7ef2f",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a9d312a_2ef77d64",
       "range": {
         "startLine": 587,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d8ab147_18e394fd",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:05Z",
+      "side": 1,
+      "message": "this line is not needed - because of line 573.",
+      "parentUuid": "cdf0c763_ba8e02e8",
+      "range": {
+        "startLine": 597,
+        "startChar": 0,
+        "endLine": 597,
+        "endChar": 38
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cea910fd_26b6bb86",
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3a0d0fc_d948bcd9",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cea910fd_26b6bb86",
+      "range": {
+        "startLine": 754,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 46
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2837c43a_a68d4c9b",
@@ -152,6 +296,30 @@
       "writtenOn": "2022-06-30T06:49:14Z",
       "side": 1,
       "message": "please use LOG_ERROR macro",
+      "range": {
+        "startLine": 763,
+        "startChar": 0,
+        "endLine": 763,
+        "endChar": 77
+      },
+      "revId": "07f1ff055f07d73000c1d6291c136d468e1f6927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eaac41a_5b3885ca",
+        "filename": "system/stack/gatt/gatt_attr.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2837c43a_a68d4c9b",
       "range": {
         "startLine": 763,
         "startChar": 0,
