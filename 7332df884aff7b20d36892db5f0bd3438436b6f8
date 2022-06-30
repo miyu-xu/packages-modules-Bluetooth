@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b79bde0e_6cb60b58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-06-30T15:44:07Z",
+      "side": 1,
+      "message": "Other then style, it looks good to me",
+      "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64ed4601_1862c275",
