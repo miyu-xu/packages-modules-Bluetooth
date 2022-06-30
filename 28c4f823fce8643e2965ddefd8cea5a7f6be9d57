@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "45eca5b9_e3026056",
+        "filename": "system/stack/gatt/gatt_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T16:16:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73e57959_c531e92c",
+      "range": {
+        "startLine": 877,
+        "startChar": 0,
+        "endLine": 877,
+        "endChar": 78
+      },
+      "revId": "28c4f823fce8643e2965ddefd8cea5a7f6be9d57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "754eebc4_5873d688",
         "filename": "system/stack/gatt/gatt_cl.cc",
         "patchSetId": 2
