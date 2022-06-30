@@ -16,6 +16,24 @@
       "message": "Should we post this to the handler as well?",
       "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e449f1d7_a936e36b",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-06-30T15:30:19Z",
+      "side": 1,
+      "message": "ack_pause is private function which is post by AckPause, so it will always handle by handler. So we do not need to post it again.\nThanks!",
+      "parentUuid": "6f3924de_044d8473",
+      "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
