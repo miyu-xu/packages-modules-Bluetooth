@@ -554,6 +554,10 @@
 /* Used only for GATT Multiple Variable Length Notifications PTS tests */
 #ifndef GATT_UPPER_TESTER_MULT_VARIABLE_LENGTH_NOTIF
 #define GATT_UPPER_TESTER_MULT_VARIABLE_LENGTH_NOTIF FALSE
+
+/* Used to trigger invalid behaviour of CSIP test case PTS */
+#ifndef CSIP_UPPER_TESTER_FORCE_TO_SEND_LOCK
+#define CSIP_UPPER_TESTER_FORCE_TO_SEND_LOCK FALSE
 #endif
 /******************************************************************************
  *
