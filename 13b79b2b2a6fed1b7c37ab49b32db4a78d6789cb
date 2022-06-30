@@ -34,6 +34,24 @@
       "parentUuid": "37c1bd28_81a280bb",
       "revId": "13b79b2b2a6fed1b7c37ab49b32db4a78d6789cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9058c38e_36612cc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-06-30T02:31:40Z",
+      "side": 1,
+      "message": "Hi Lukasz, thanks for checking the patch and sharing your comments.\nLukasz, Jack, working to fix the bluetooth_le_audio_test and bluetooth_le_audio_client_test failures, will upload new patchset asap with the fixes. Sorry for the delay.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "b33ca8a1_17ac5fcd",
+      "revId": "13b79b2b2a6fed1b7c37ab49b32db4a78d6789cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
