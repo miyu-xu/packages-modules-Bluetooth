@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab78825d_583a63c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-06-30T17:21:43Z",
+      "side": 1,
+      "message": "please add prefix. maybe \"LeAudioTestApp: \"",
+      "revId": "a192332084bef7672745e996bf30777a30ccdd5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
