@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f3924de_044d8473",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-06-30T15:09:52Z",
+      "side": 1,
+      "message": "Should we post this to the handler as well?",
+      "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
