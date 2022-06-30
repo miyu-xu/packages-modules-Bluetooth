@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b24d1b3a_c87e89da",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-06-30T20:14:16Z",
+      "side": 1,
+      "message": "could we use a run time flag via the config file instead?",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 484,
+        "endChar": 49
+      },
+      "revId": "f5884986e150fa4b6a62dc923ca828040d365ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
