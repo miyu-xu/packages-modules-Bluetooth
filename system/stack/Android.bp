@@ -741,6 +741,7 @@ cc_test {
         "test/common/mock_l2cap_layer.cc",
         "test/gatt/mock_gatt_utils_ref.cc",
         "test/eatt/eatt_test.cc",
+        ":TestCommonMainHandler",
         ":TestCommonStackConfig",
     ],
     shared_libs: [
