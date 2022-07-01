@@ -22,6 +22,30 @@
       },
       "revId": "390c9e0a831839efd5c6e2845c801dfdc270284a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6b10869_6b023337",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-07-01T04:50:47Z",
+      "side": 1,
+      "message": "Yes, it is better to read. Updated at patchset 2.",
+      "parentUuid": "2fd23b22_ffdcbfd0",
+      "range": {
+        "startLine": 81,
+        "startChar": 67,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "390c9e0a831839efd5c6e2845c801dfdc270284a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
