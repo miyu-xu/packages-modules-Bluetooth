@@ -15,10 +15,18 @@
  */
 package com.android.bluetooth.sap;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 
 import androidx.test.InstrumentationRegistry;
@@ -26,9 +34,9 @@ import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.storage.DatabaseManager;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -47,9 +55,14 @@ public class SapServiceTest {
     private BluetoothAdapter mAdapter = null;
     private Context mTargetContext;
 
-    @Rule public final ServiceTestRule mServiceRule = new ServiceTestRule();
+    @Rule
+    public final ServiceTestRule mServiceRule = new ServiceTestRule();
 
-    @Mock private AdapterService mAdapterService;
+    @Mock
+    private AdapterService mAdapterService;
+    @Mock
+    private DatabaseManager mDatabaseManager;
+    private BluetoothDevice mDevice;
 
     @Before
     public void setUp() throws Exception {
@@ -61,10 +74,11 @@ public class SapServiceTest {
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.startService(mServiceRule, SapService.class);
         mService = SapService.getSapService();
-        Assert.assertNotNull(mService);
+        assertNotNull(mService);
         // Try getting the Bluetooth adapter
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        Assert.assertNotNull(mAdapter);
+        assertNotNull(mAdapter);
+        mDevice = TestUtils.getTestDevice(mAdapter, 0);
     }
 
     @After
@@ -79,7 +93,57 @@ public class SapServiceTest {
     }
 
     @Test
-    public void testInitialize() {
-        Assert.assertNotNull(SapService.getSapService());
+    public void testGetSapService() {
+        assertEquals(mService, SapService.getSapService());
+        assertTrue(mService.getConnectedDevices().isEmpty());
+    }
+
+    /**
+     * Test stop SAP Service
+     */
+    @Test
+    public void testStopSapService() {
+        // SAP Service is already running: test stop(). Note: must be done on the main thread
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+            public void run() {
+                Assert.assertTrue(mService.stop());
+            }
+        });
+        // Try to restart the service. Note: must be done on the main thread
+        InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+            public void run() {
+                Assert.assertTrue(mService.start());
+            }
+        });
+    }
+
+    /**
+     * Test get/set policy for BluetoothDevice
+     */
+    @Test
+    public void testGetSetPolicy() {
+        when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
+        when(mDatabaseManager
+                .getProfileConnectionPolicy(mDevice, BluetoothProfile.SAP))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
+        assertEquals("Initial device policy",
+                BluetoothProfile.CONNECTION_POLICY_UNKNOWN,
+                mService.getConnectionPolicy(mDevice));
+
+        when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
+        when(mDatabaseManager
+                .getProfileConnectionPolicy(mDevice, BluetoothProfile.SAP))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+        assertEquals("Setting device policy to POLICY_FORBIDDEN",
+                BluetoothProfile.CONNECTION_POLICY_FORBIDDEN,
+                mService.getConnectionPolicy(mDevice));
+
+        when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
+        when(mDatabaseManager
+                .getProfileConnectionPolicy(mDevice, BluetoothProfile.SAP))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+        assertEquals("Setting device policy to POLICY_ALLOWED",
+                BluetoothProfile.CONNECTION_POLICY_ALLOWED,
+                mService.getConnectionPolicy(mDevice));
     }
 }
