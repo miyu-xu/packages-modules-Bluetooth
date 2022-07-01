@@ -52,6 +52,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17c740d3_630c5bb0",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-07-01T03:31:50Z",
+      "side": 1,
+      "message": "I will upload another patch for it.\nThanks!",
+      "parentUuid": "64ed4601_1862c275",
+      "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dc6c10b_5c8a1d3b",
@@ -65,6 +83,24 @@
       "writtenOn": "2022-06-30T15:43:46Z",
       "side": 1,
       "message": "This is a simple signal with 4 states.  Does it make sense to (Switch) ?\n\nThis has 2 benefits.\n1) Inverts the logic so that `true` cases are entered, which is a little easier for the reader to understand quicker.\n2) Enumerates the actual conditions the logic is execute so one knows the exact 2 conditions at a glance why we are entering (WAITING_FOR_RESUME, RESUMED)\n\ne.g.\nfor (auto client : registered_clients_) {\n  switch (client.second) {\n    case ClientState::PAUSED:\n    case ClientState::WAITING_FOR_PAUSE:\n      break;\n    case WAITING_FOR_RESUME:\n    case RESUMED:\n        client.second \u003d ClientState::WAITING_FOR_PAUSE;\n        client.first-\u003eOnPause();\n  }\n}",
+      "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "401c9552_659b2fd4",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-07-01T03:31:50Z",
+      "side": 1,
+      "message": "I will upload another patch for it.\nThanks!",
+      "parentUuid": "8dc6c10b_5c8a1d3b",
       "revId": "7332df884aff7b20d36892db5f0bd3438436b6f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
