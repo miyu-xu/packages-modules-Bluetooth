@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fd23b22_ffdcbfd0",
+        "filename": "system/btif/include/btif_bqr.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-01T04:39:04Z",
+      "side": 1,
+      "message": "Could you change the values by using shift operator like 0x1 \u003c\u003c 1, 0x1 \u003c\u003c 2 etc?\n\ne.g. https://source.corp.google.com/android/system/tools/aidl/aidl_language.h;l\u003d251?q\u003dlang:cc%20%22%3C%3C%203%22\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$",
+      "range": {
+        "startLine": 81,
+        "startChar": 67,
+        "endLine": 81,
+        "endChar": 77
+      },
+      "revId": "390c9e0a831839efd5c6e2845c801dfdc270284a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
