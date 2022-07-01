@@ -16,6 +16,23 @@
       "message": "maybe we should have another switch for that instead unconditional() ?\n\nMaybe get_pts_continues_eatt_connection() ?\n\n\n",
       "revId": "ff90e71ee2243d685b77523e7fc7a1725d43aedb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f858769a_4c28e364",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-01T16:23:42Z",
+      "side": 1,
+      "message": "We don\u0027t need it anymore because of this set: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2143914",
+      "revId": "ff90e71ee2243d685b77523e7fc7a1725d43aedb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
