@@ -45,6 +45,30 @@
       },
       "revId": "f5884986e150fa4b6a62dc923ca828040d365ce2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "790af204_4d7f8521",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-01T07:05:44Z",
+      "side": 1,
+      "message": "I agree we need to came up with a single way of setting this kind of things.\nSince this is bad behavior I tend to think, compile flag is better here, especially that I filed errata on PTS with an idea how they should handle it on their side, so IUT implementation does not need to behave invalid. Hopefully we will revert this patch eventually.",
+      "parentUuid": "b24d1b3a_c87e89da",
+      "range": {
+        "startLine": 484,
+        "startChar": 0,
+        "endLine": 484,
+        "endChar": 49
+      },
+      "revId": "f5884986e150fa4b6a62dc923ca828040d365ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
