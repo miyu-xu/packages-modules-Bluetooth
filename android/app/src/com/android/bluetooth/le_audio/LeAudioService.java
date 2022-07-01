@@ -283,6 +283,7 @@ public class LeAudioService extends ProfileService {
         LeAudioNativeInterface nativeInterface = mLeAudioNativeInterface;
         if (nativeInterface == null) {
             Log.w(TAG, "the service is stopped. ignore init()");
+            return;
         }
         nativeInterface.init(mLeAudioCodecConfig.getCodecConfigOffloading());
     }
