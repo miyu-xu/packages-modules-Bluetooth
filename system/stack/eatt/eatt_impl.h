@@ -175,6 +175,11 @@ struct eatt_impl {
 
       LOG(INFO) << __func__ << " Channel connected CID " << loghex(cid);
     }
+
+    /* For PTS just start connecting another EATT connection*/
+    if (stack_config_get_interface()->get_pts_connect_eatt_unconditionally()) {
+      connect(bda);
+    }
   }
 
   void eatt_l2cap_connect_cfm(const RawAddress& bda, uint16_t lcid,
