@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d606f7e8_17b1762a",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-01T14:20:44Z",
+      "side": 1,
+      "message": "Oh, I need to update the other tests to use the same mechanism... this was just for testing.",
+      "revId": "a4b9845635f685de18efad4d1d7f6e0071946a4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
