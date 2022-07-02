@@ -16,6 +16,7 @@
 
 package com.android.pandora
 
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
@@ -23,7 +24,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.MacAddress
+
+import com.google.protobuf.ByteString
+
 import io.grpc.stub.StreamObserver
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
@@ -114,7 +120,7 @@ fun <T> grpcUnary(
 fun <T> getProfileProxy(context: Context, profile: Int): T {
   var proxy: T
   runBlocking {
-    val bluetoothManager = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+    val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
     val bluetoothAdapter = bluetoothManager.adapter
 
     val flow = callbackFlow {
@@ -134,6 +140,11 @@ fun <T> getProfileProxy(context: Context, profile: Int): T {
   }
   return proxy
 }
-
 fun Intent.getBluetoothDeviceExtra(): BluetoothDevice =
   this.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
+
+fun ByteString.decodeToString(): String = MacAddress.fromBytes(this.toByteArray()).toString().uppercase()
+fun ByteString.toBluetoothDevice(adapter : BluetoothAdapter): BluetoothDevice = adapter.getRemoteDevice(this.decodeToString())
+
+fun String.toByteArray(): ByteArray = MacAddress.fromString(this).toByteArray()
+fun BluetoothDevice.toByteArray(): ByteArray = this.address.toByteArray()

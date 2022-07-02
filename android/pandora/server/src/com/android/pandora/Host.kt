@@ -50,7 +50,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   private val flow: Flow<Intent>
 
   private val bluetoothManager =
-    context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+    context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
 
   init {
