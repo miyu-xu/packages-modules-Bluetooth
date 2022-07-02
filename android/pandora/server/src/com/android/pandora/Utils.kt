@@ -22,7 +22,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.net.MacAddress
+
+import com.google.protobuf.ByteString
+
 import io.grpc.stub.StreamObserver
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
@@ -132,4 +137,8 @@ fun <T> getProfileProxy(context: Context, profile: Int): T {
     proxy = flow.first() as T
   }
   return proxy
+}
+
+fun decodeAddressToString(addr: ByteString): String {
+  return MacAddress.fromBytes(addr.toByteArray()).toString().uppercase()
 }
