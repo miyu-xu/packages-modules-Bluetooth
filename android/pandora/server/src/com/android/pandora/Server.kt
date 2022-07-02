@@ -29,12 +29,40 @@ class Server(context: Context) {
 
   private var host: Host
   private var a2dp: A2dp
+  private var hfp: Hfp
   private var grpcServer: GrpcServer
 
+  // fun <T> CreateProfileServiceOrNull(context: Context, profile: Class<*>) : T? {
+  //   val actualRuntimeClassName : String = T::class.qualifiedName!!
+  //   return try { profile(context, this) }
+  //   catch (err: RuntimeException) { Log.e(TAG, "Failed to create " + T); null }
+  // }
+
   init {
+    // try { host = Host(context, this) }
+    // catch (err: RuntimeException) { Log.e(TAG, "Failed to create Host") }
+
+    // try { a2dp = A2dp(context) }
+    // catch (err: RuntimeException) { Log.e(TAG, "Failed to create A2dp") }
+
+    // try { hfp = Hfp(context) }
+    // catch (err: RuntimeException) { Log.e(TAG, "Failed to create Hfp") }
+
+    // var builder = NettyServerBuilder.forPort(GRPC_PORT)
+
+    // host?.let { builder.addService(host) }
+    // a2dp?.let { builder.addService(a2dp) }
+    // hfp?.let { builder.addService(hfp) }
+
+    // grpcServer = builder.build()
     host = Host(context, this)
     a2dp = A2dp(context)
-    grpcServer = NettyServerBuilder.forPort(GRPC_PORT).addService(host).addService(a2dp).build()
+    hfp = Hfp(context)
+    grpcServer = NettyServerBuilder.forPort(GRPC_PORT)
+          .addService(a2dp)
+          .addService(host)
+          .addService(hfp)
+          .build()
 
     Log.d(TAG, "Starting Pandora Server")
     grpcServer.start()
@@ -44,6 +72,7 @@ class Server(context: Context) {
   fun shutdownNow() {
     host.deinit()
     a2dp.deinit()
+    hfp.deinit()
     grpcServer.shutdownNow()
   }
 

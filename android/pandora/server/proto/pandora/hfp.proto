@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+option java_outer_classname = "HfpProto";
+
+package pandora;
+
+import "pandora/host.proto";
+import "google/protobuf/wrappers.proto";
+
+// Service to trigger HFP (Hands Free Profile) procedures.
+service HFP {
+  // Remove pairing
+  rpc DeletePairing(DeletePairingRequest) returns (DeletePairingResponse);
+  // Simulate incoming dial
+  rpc StartIncomingCall(StartIncomingCallRequest) returns (StartIncomingCallResponse);
+  // Enable Service level connection
+  rpc EnableSlc(EnableSlcRequest) returns (EnableSlcResponse);
+  // Disable Service level connection
+  rpc DisableSlc(DisableSlcRequest) returns (DisableSlcResponse);
+}
+
+message DeletePairingRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+message DeletePairingResponse { }
+
+message StartIncomingCallRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+message StartIncomingCallResponse { }
+
+message EnableSlcRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+message EnableSlcResponse { }
+
+message DisableSlcRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+message DisableSlcResponse { }
