@@ -52,6 +52,24 @@
       "parentUuid": "b33ca8a1_17ac5fcd",
       "revId": "13b79b2b2a6fed1b7c37ab49b32db4a78d6789cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf0f6c83_d2607670",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-03T21:17:38Z",
+      "side": 1,
+      "message": "Hi Lukasz,\n\nUploaded new interim patchset with changes to fix bluetooth_le_audio_client_test failures, bluetooth_le_audio_client_test is passing now with the changes.\nbluetooth_le_audio_test -\u003e state_machine_test showing some failures related to codec location, looking further to fix them, will upload new patchset with the fixes.\nPlease let know of any comments.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "9058c38e_36612cc8",
+      "revId": "13b79b2b2a6fed1b7c37ab49b32db4a78d6789cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
