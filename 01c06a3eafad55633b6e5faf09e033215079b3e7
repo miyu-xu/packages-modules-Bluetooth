@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fb9bc27_e0af245c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-04T09:10:06Z",
+      "side": 1,
+      "message": "nit: I think DualMode might be confusing. Can we name it \"mPreferLeAudioOnlyMode\"?",
+      "range": {
+        "startLine": 113,
+        "startChar": 20,
+        "endLine": 113,
+        "endChar": 40
+      },
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38f4f5a3_697797d2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-04T09:10:06Z",
+      "side": 1,
+      "message": "did you consider moving this check above headset service (line 323) and when LeAudio is available then local \u0027bool leAudioPresent` could be set which could be later checked ?\n\ne.g\n\n```\nif ((a2dpService !\u003d null) \u0026\u0026 (!leAudioPresent || !mPreferLeAudioOnlyMode) \u0026\u0026 (Utils.arrayContains(uuids, BluetoothUuid.A2DP_SINK)\n                || Utils.arrayContains(uuids, BluetoothUuid.ADV_AUDIO_DIST)) \u0026\u0026 (\n                a2dpService.getConnectionPolicy(device)\n                        \u003d\u003d BluetoothProfile.CONNECTION_POLICY_UNKNOWN))\n```\n \nThis local bool would be needed to disabled HearingAid",
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9412f8ca_43e781d2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-04T09:10:06Z",
+      "side": 1,
+      "message": "I think this description is outdated",
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd3a8409_9913414c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-04T09:10:06Z",
+      "side": 1,
+      "message": "please add debugLog here in return\n\nnot sure if I follow here - if mDualModeLeAudioOnly is enabled then when LEAudio become Active, we disconnect HFP and A2DP, right?\n\nBut how those two would be connected if those are disabled at the Init?",
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
