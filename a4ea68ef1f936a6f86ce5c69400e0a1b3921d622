@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d21aef01_db9ea3d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-04T14:49:12Z",
+      "side": 1,
+      "message": "TODO: Need to handle wait() part.",
+      "revId": "a4ea68ef1f936a6f86ce5c69400e0a1b3921d622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
