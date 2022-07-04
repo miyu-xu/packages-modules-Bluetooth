@@ -70,6 +70,24 @@
       "parentUuid": "9058c38e_36612cc8",
       "revId": "13b79b2b2a6fed1b7c37ab49b32db4a78d6789cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4977ab3_e517de60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-04T05:30:10Z",
+      "side": 1,
+      "message": "Hi Lukasz, All,\n\n\"atest --host bluetooth_le_audio_test bluetooth_le_audio_client_test\" works fine with latest patchset, please let know of any other review comments to be taken care of.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "cf0f6c83_d2607670",
+      "revId": "13b79b2b2a6fed1b7c37ab49b32db4a78d6789cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
