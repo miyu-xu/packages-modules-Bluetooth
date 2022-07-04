@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14710c3c_17f2b3d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-07-04T22:30:21Z",
+      "side": 1,
+      "message": "Thank you for the update. Couple comments.",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b44e171e_cb0d5aef",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-07-04T22:30:21Z",
+      "side": 1,
+      "message": "In Unit test we actually would like to have fixed numbers here with a full understanding why it is happening like that.",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7e12142_46eb2814",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2339,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-07-04T22:30:21Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e763a732_a04ccaf9",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-07-04T22:30:21Z",
+      "side": 1,
+      "message": "could you put a comment why 3 times is a good number now?",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
