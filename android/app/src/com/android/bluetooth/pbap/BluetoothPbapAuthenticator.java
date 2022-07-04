@@ -37,6 +37,9 @@ import android.util.Log;
 import com.android.bluetooth.obex.Authenticator;
 import com.android.bluetooth.obex.PasswordAuthentication;
 
+
+import com.android.internal.annotations.VisibleForTesting;
+
 /**
  * BluetoothPbapAuthenticator is a used by BluetoothObexServer for obex
  * authentication procedure.
@@ -44,10 +47,10 @@ import com.android.bluetooth.obex.PasswordAuthentication;
 public class BluetoothPbapAuthenticator implements Authenticator {
     private static final String TAG = "PbapAuthenticator";
 
-    private boolean mChallenged;
-    private boolean mAuthCancelled;
-    private String mSessionKey;
-    private PbapStateMachine mPbapStateMachine;
+    @VisibleForTesting boolean mChallenged;
+    @VisibleForTesting boolean mAuthCancelled;
+    @VisibleForTesting String mSessionKey;
+    @VisibleForTesting PbapStateMachine mPbapStateMachine;
 
     BluetoothPbapAuthenticator(final PbapStateMachine stateMachine) {
         mPbapStateMachine = stateMachine;
