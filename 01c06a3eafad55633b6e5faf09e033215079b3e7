@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a35408a_0e7b6f33",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-05T03:10:13Z",
+      "side": 1,
+      "message": "Why we need to handle LE audio and Hearing Aid? I thought it should be check with HAP_CLIENT for the HearingAid/HAP dual mode. Is it correct?",
+      "parentUuid": "38f4f5a3_697797d2",
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9412f8ca_43e781d2",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 7
@@ -71,6 +89,24 @@
       "writtenOn": "2022-07-04T09:10:06Z",
       "side": 1,
       "message": "please add debugLog here in return\n\nnot sure if I follow here - if mDualModeLeAudioOnly is enabled then when LEAudio become Active, we disconnect HFP and A2DP, right?\n\nBut how those two would be connected if those are disabled at the Init?",
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d0a5b1_c191d2b6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-05T03:10:13Z",
+      "side": 1,
+      "message": "Yes, we should disconnect A2DP/HFP after LE audio become active to make the switch seamlessly during streaming. As the init, it only update the connection policy, and doesn\u0027t do the disconnection.\n\nThose two are already get connected as the sdp service discovery.\nThe flow would be pair with BR/EDR -\u003e sdp service discovery -\u003e update uuid to java layer, and A2DP/HFP connected.\n\nIn the mean time, the lower layer do the CTKD, and then trigger GATT service discovery -\u003e update uuid to java layer -\u003e connect LE audio and become active one -\u003e disconnect A2DP/HFP",
+      "parentUuid": "cd3a8409_9913414c",
       "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
