@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a37cc78a_992548e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dd219ac_29c80321",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "1ef00cfa_265743db",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 14
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a97555b_ef44ebd8",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31891a06_a72e180e",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2c3ad29_d6056897",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-07-05T10:34:09Z",
       "side": 1,
       "message": "do we need to add the type already here?\nThis information is in the ASE, and when Assigning ASE, we could assign the type.\n\nI have feeling that number of total CISes we need for the configuration should be enough. Could you please reconsider?\n\nIf this have to be like this, please elaborate why.",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aca81971_3025d2fe",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Hi Lukasz, thanks for your suggestion, checking more, will update",
+      "parentUuid": "b2c3ad29_d6056897",
       "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebac34c2_e6da9f0f",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Thanks Lukasz for the suggested change, added now.",
+      "parentUuid": "36482af3_99c5b8fb",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b44d984_7f5f2094",
@@ -99,6 +171,24 @@
       "writtenOn": "2022-07-05T10:34:09Z",
       "side": 1,
       "message": "My local changes to make it work for me. This is just for reference.\n\n```\n     if (matching_bidir_ase) {\n-      cis_id \u003d GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);\n+      cis_id \u003d ase-\u003ecis_id !\u003d kInvalidCisId\n+                   ? ase-\u003ecis_id\n+                   : GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);\n```",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "231736ff_463255e3",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Thanks Lukasz for the suggested change, added now.",
+      "parentUuid": "4b44d984_7f5f2094",
       "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +210,47 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "114bc09a_3288ce27",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Thanks Lukasz for the suggested change, added now.",
+      "parentUuid": "1888808c_cb2e19ef",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42d05567_04054489",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Added change for CisType::CIS_TYPE_UNIDIRECTIONAL_SOURCE, similar to CisType::CIS_TYPE_BIDIRECTIONAL and CisType::CIS_TYPE_UNIDIRECTIONAL_SINK",
+      "range": {
+        "startLine": 908,
+        "startChar": 6,
+        "endLine": 908,
+        "endChar": 12
+      },
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4c04bbf1_cb945e89",
@@ -133,6 +264,24 @@
       "writtenOn": "2022-07-05T10:34:09Z",
       "side": 1,
       "message": "please add LOG_DEBUG(\"\")",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f52504f3_0d0a18c9",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c04bbf1_cb945e89",
       "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +303,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc761e35_c3e2c423",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0727a1a3_a37268ca",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "018019db_863790ba",
@@ -167,6 +334,24 @@
       "writtenOn": "2022-07-05T10:34:09Z",
       "side": 1,
       "message": "please add LOG_DEBUG()",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1b2fc5_6960a883",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "018019db_863790ba",
       "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -188,6 +373,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ced24c1d_40638349",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0401ed14_3895a614",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5485b240_aa2565d6",
@@ -201,6 +404,24 @@
       "writtenOn": "2022-07-05T10:34:09Z",
       "side": 1,
       "message": "This is called from the client.cc after reconfiguration. The typical use case is that you are streaming media and there is incoming call. Once reconfiguration is detected, stream is stopped and later move to reconfigured.\n\nWhen stream is stopped then `cises_` is cleared.\nSo here I believe we shall call `CigGenerateCisIds()`",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b8ad45e_ce486e20",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Thanks Lukasz for the suggested change, added now.",
+      "parentUuid": "5485b240_aa2565d6",
       "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

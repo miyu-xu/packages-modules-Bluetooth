@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1a008f3_4d1815ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T20:38:58Z",
+      "side": 1,
+      "message": "Hi Lukasz, thank you for checking the patch and sharing your comments and suggestions. Addressed your review comments, regarding your suggestion for the type assignment, checking more, will update.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "cb5a769faccbda38be49e1577bb3097b00db3039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
