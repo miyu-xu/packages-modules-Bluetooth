@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81924381_aaa139b6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-05T15:27:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3fb9bc27_e0af245c",
+      "range": {
+        "startLine": 113,
+        "startChar": 20,
+        "endLine": 113,
+        "endChar": 40
+      },
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38f4f5a3_697797d2",
@@ -76,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ae99b07_7b122806",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-05T15:27:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9412f8ca_43e781d2",
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd3a8409_9913414c",
@@ -107,6 +149,24 @@
       "side": 1,
       "message": "Yes, we should disconnect A2DP/HFP after LE audio become active to make the switch seamlessly during streaming. As the init, it only update the connection policy, and doesn\u0027t do the disconnection.\n\nThose two are already get connected as the sdp service discovery.\nThe flow would be pair with BR/EDR -\u003e sdp service discovery -\u003e update uuid to java layer, and A2DP/HFP connected.\n\nIn the mean time, the lower layer do the CTKD, and then trigger GATT service discovery -\u003e update uuid to java layer -\u003e connect LE audio and become active one -\u003e disconnect A2DP/HFP",
       "parentUuid": "cd3a8409_9913414c",
+      "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b965a35_52dd4483",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-05T15:27:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90d0a5b1_c191d2b6",
       "revId": "01c06a3eafad55633b6e5faf09e033215079b3e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
