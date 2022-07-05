@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a126ef4d_66c30856",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T07:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "975b05d9_003941e9",
+      "range": {
+        "startLine": 414,
+        "startChar": 0,
+        "endLine": 420,
+        "endChar": 9
+      },
+      "revId": "1d613ac53fe4d5c614d181b619a35a897a2b84e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15a90086_110a00c0",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-30T12:07:33Z",
       "side": 1,
       "message": "nit: we don\u0027t need to add the new line here :)",
+      "range": {
+        "startLine": 841,
+        "startChar": 0,
+        "endLine": 841,
+        "endChar": 0
+      },
+      "revId": "1d613ac53fe4d5c614d181b619a35a897a2b84e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e20dab1_e0c27ca6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T07:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15a90086_110a00c0",
       "range": {
         "startLine": 841,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "488a68e2_857924b8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 911,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T07:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "618d2903_11851600",
+      "range": {
+        "startLine": 911,
+        "startChar": 12,
+        "endLine": 911,
+        "endChar": 28
+      },
+      "revId": "1d613ac53fe4d5c614d181b619a35a897a2b84e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22605d4f_bd573947",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-06-30T12:07:33Z",
       "side": 1,
       "message": "could we define it as the invalid value?",
+      "range": {
+        "startLine": 596,
+        "startChar": 55,
+        "endLine": 596,
+        "endChar": 57
+      },
+      "revId": "1d613ac53fe4d5c614d181b619a35a897a2b84e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a41a0fa2_b413830e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T07:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22605d4f_bd573947",
       "range": {
         "startLine": 596,
         "startChar": 55,
