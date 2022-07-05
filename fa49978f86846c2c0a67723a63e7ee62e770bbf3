@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f02055c_d3b14edc",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2310,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T03:49:07Z",
+      "side": 1,
+      "message": "Sure Lukasz, do you want me to add comment in the test case?\n\nThe additional CodecManager::GetCodecLocation is invoked as when\nLeAudioGroupStateMachine::StartStream() is invoked, calls LeAudioDeviceGroup::CigGenerateCisIds() (AseState::BTA_LE_AUDIO_ASE_STATE_IDLE), which calls AudioSetConfigurationProvider::GetConfigurations(), which in turn calls CodecManager::GetCodecLocation().",
+      "parentUuid": "b44e171e_cb0d5aef",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7e12142_46eb2814",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc2714dc_96d77fe2",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2339,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T03:49:07Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "c7e12142_46eb2814",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e763a732_a04ccaf9",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-07-04T22:30:21Z",
       "side": 1,
       "message": "could you put a comment why 3 times is a good number now?",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dca36f53_6b4f1fde",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-05T03:49:07Z",
+      "side": 1,
+      "message": "Sure Lukasz, do you want me to add comment in the test case?\n\nThe initial LE Audio Media Streaming Audio Data Path Setup for the two member devices in the Group (before one of the member device got disconnected) accounts for SetupIsoDataPath() count (+2). The Audio Data Path Setup after the disconnected member device got reconnected and attached to the ongoing LE Audio Media stream accounts for SetupIsoDataPath() count (+1).",
+      "parentUuid": "e763a732_a04ccaf9",
       "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
