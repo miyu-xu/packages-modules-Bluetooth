@@ -157,6 +157,24 @@
       "parentUuid": "e763a732_a04ccaf9",
       "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0945e8b2_1b25416a",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 2416,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "yes, put comment here. Thanks you for clarification, I just wondering, why it was not needed before.",
+      "parentUuid": "dca36f53_6b4f1fde",
+      "revId": "fa49978f86846c2c0a67723a63e7ee62e770bbf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

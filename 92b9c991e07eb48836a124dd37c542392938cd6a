@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ef00cfa_265743db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "Thank you Partha,\n\nI tested it with our audio servers which after disconnection keeps ASEs in configuration state and I faced issues with reconfiguration.\nI did local modification to make it work and I posted it here for you as a reference.\nI also have doubt if while generating CISes we need to assigning type already then.\nThis can create problems with assigning CISes because type of already assigned CIS might not be same as the one generated. I thing type should be taken from ASEs.\n\n\n\n",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31891a06_a72e180e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG() here",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c3ad29_d6056897",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "do we need to add the type already here?\nThis information is in the ASE, and when Assigning ASE, we could assign the type.\n\nI have feeling that number of total CISes we need for the configuration should be enough. Could you please reconsider?\n\nIf this have to be like this, please elaborate why.",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36482af3_99c5b8fb",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 873,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "This cause an issue when testing Reconfiguration scenario (Media-\u003eConversational).\nThis is because stack remembers CIS_ID for devices which uses configuration caching. (I think we might need unittest for that).\n\nHere is patch which should give some lights on that: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2045727/\n\nAnyways, to make it work on my end I had to add here this:\n\n```\n   do {\n     /* CIS ID already set */\n     if (ase-\u003ecis_id !\u003d kInvalidCisId) {\n-      cises_[ase-\u003ecis_id].addr \u003d leAudioDevice-\u003eaddress_;\n-      LOG_DEBUG(\" ASE ID: %d, is already assigned CIS ID: %d\", +ase-\u003eid,\n-                +ase-\u003ecis_id);\n-      continue;\n+      LOG_DEBUG(\" ASE ID: %d, is already assigned CIS ID: %d, type %d\",\n+                +ase-\u003eid, +ase-\u003ecis_id, cises_[ase-\u003ecis_id].type);\n+        if (cises_[ase-\u003eid].addr !\u003d RawAddress::kEmpty) {\n+          LOG_DEBUG(\"Bidirectional ASE already assigned \");\n+          continue;\n+        }\n     }\n```",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b44d984_7f5f2094",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "My local changes to make it work for me. This is just for reference.\n\n```\n     if (matching_bidir_ase) {\n-      cis_id \u003d GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);\n+      cis_id \u003d ase-\u003ecis_id !\u003d kInvalidCisId\n+                   ? ase-\u003ecis_id\n+                   : GetFirstFreeCisId(CisType::CIS_TYPE_BIDIRECTIONAL);\n```",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1888808c_cb2e19ef",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 897,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "Local changes for reference\n\n```\n\n-      cis_id \u003d GetFirstFreeCisId(CisType::CIS_TYPE_UNIDIRECTIONAL_SINK);\n+      cis_id \u003d ase-\u003ecis_id !\u003d kInvalidCisId\n+                   ? ase-\u003ecis_id\n+                   : GetFirstFreeCisId(CisType::CIS_TYPE_UNIDIRECTIONAL_SINK);\n\n```",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c04bbf1_cb945e89",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 929,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG(\"\")",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0727a1a3_a37268ca",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG(\"device: %s\", leAudioDevice-\u003eaddress_.ToString().c_str());",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "018019db_863790ba",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG()",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0401ed14_3895a614",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 981,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG()",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5485b240_aa2565d6",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-05T10:34:09Z",
+      "side": 1,
+      "message": "This is called from the client.cc after reconfiguration. The typical use case is that you are streaming media and there is incoming call. Once reconfiguration is detected, stream is stopped and later move to reconfigured.\n\nWhen stream is stopped then `cises_` is cleared.\nSo here I believe we shall call `CigGenerateCisIds()`",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
