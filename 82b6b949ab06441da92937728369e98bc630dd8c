@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d217e5b_144c21ea",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-05T12:59:16Z",
+      "side": 1,
+      "message": "I think we should rename this to reflect that we are rounding according to rust types \"boundaries\". What do you think of `round_up_to_type_width` ?",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37720a4a_3e7e8c39",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-05T12:59:16Z",
+      "side": 1,
+      "message": "nit: Rust also have a 128 bit type, however I don\u0027t know if we want to include that in.\n\nWe may want to limit the bitsize on the parser to a value that we know is handled by multiple language and 64 seems a good fit.\nBut if we don\u0027t want that, I think we should include 128 here",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f34c5b80_821f9539",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-05T12:59:16Z",
+      "side": 1,
+      "message": "```\n[8, 16, 32, 64].iter().find(|rust_width| width \u003c\u003d rust_width).ok_or_else(...)\n```\n\nI wonder if we may want to `unwrap/expect` here instead of returning an error and put a check in the parser.",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324ce214_ef7e00db",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-05T12:59:16Z",
+      "side": 1,
+      "message": "I think no, it does not, bitwise operation perform the same way no matter of endianness. `\u003c\u003c` will shift towards the most significant digit. Endianness is only relevant when you \"load numbers\" in \u0026 out of memory.",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc22fcfc_c872d9fd",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-05T12:59:16Z",
+      "side": 1,
+      "message": "When possible could we avoid updating the test and the code in the same commit when updating a snapshot ?\nMy rationale behind that is that it makes harder to follow which part changed what on the snapshot",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
