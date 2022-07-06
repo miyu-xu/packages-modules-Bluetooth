@@ -49,6 +49,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0bb18af8_82a67e41",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-06T08:48:12Z",
+      "side": 1,
+      "message": "What does it test is not clear. Please add assert or verify methods",
+      "revId": "219d25ca0bd9299f34bd55ab2d2454e0d6c41980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "412d2f98_4097880c",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServerTest.java",
         "patchSetId": 2
@@ -89,6 +106,23 @@
         "endLine": 118,
         "endChar": 50
       },
+      "revId": "219d25ca0bd9299f34bd55ab2d2454e0d6c41980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34dc5f0_d9a593af",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-06T08:48:12Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we call mSapServer.run() somewhere in the test code?",
       "revId": "219d25ca0bd9299f34bd55ab2d2454e0d6c41980",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -164,6 +198,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "99ce738b_04aaac58",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-06T08:48:12Z",
+      "side": 1,
+      "message": "testGetSetConnectionPolicy?\n\nThe test code doesn\u0027t call setConnectionPolicy. Is it intended?",
+      "range": {
+        "startLine": 124,
+        "startChar": 16,
+        "endLine": 124,
+        "endChar": 32
+      },
+      "revId": "219d25ca0bd9299f34bd55ab2d2454e0d6c41980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb42d74d_fb14b904",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServiceTest.java",
         "patchSetId": 2
@@ -204,6 +261,23 @@
         "endLine": 141,
         "endChar": 73
       },
+      "revId": "219d25ca0bd9299f34bd55ab2d2454e0d6c41980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec09f3db_68169c91",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-06T08:48:12Z",
+      "side": 1,
+      "message": "Why don\u0027t you add tests for getRemoteDevice, and getRemoteDeviceName?",
       "revId": "219d25ca0bd9299f34bd55ab2d2454e0d6c41980",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
