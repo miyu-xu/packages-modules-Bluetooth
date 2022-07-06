@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31f5983e_4130ac16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:03:25Z",
+      "side": 1,
+      "message": "I would have preferred stronger typing, but I see no way around that.",
+      "revId": "fba5acb314a7cf43beb36d9dfcb43ebb3666ded9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
