@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd42c48d_c0ba9c68",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-06T00:43:41Z",
+      "side": 1,
+      "message": "You fixed the case of start -\u003e post(init) -\u003e stop -\u003e init\nWhat if start -\u003e post(init) -\u003e stop -\u003e start -\u003e post(init) -\u003e init -\u003e init?",
+      "range": {
+        "startLine": 282,
+        "startChar": 4,
+        "endLine": 282,
+        "endChar": 25
+      },
+      "revId": "7d9fda4ce591849682cb383ef1e55123a606f2e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
