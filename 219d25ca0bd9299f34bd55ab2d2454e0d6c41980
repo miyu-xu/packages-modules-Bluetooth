@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e6640e2_8167bd1c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-06T09:10:57Z",
+      "side": 1,
+      "message": "Please ignore this comment. mContext is a spy object, so it is better to use doReturn() to prevent side effects.",
+      "parentUuid": "1ea01a16_06616cf7",
+      "range": {
+        "startLine": 79,
+        "startChar": 47,
+        "endLine": 79,
+        "endChar": 51
+      },
+      "revId": "219d25ca0bd9299f34bd55ab2d2454e0d6c41980",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bb18af8_82a67e41",
