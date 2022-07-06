@@ -572,7 +572,12 @@ mod tests {
     fn test_generate_preamble() {
         let actual_code = generate_preamble(Path::new("some/path/foo.pdl")).unwrap();
         let expected_code = include_str!("../test/generated/preamble.rs");
-        assert_eq_with_diff(&rustfmt(expected_code), &rustfmt(&actual_code));
+        assert_eq_with_diff(
+            "test/generated/preamble.rs",
+            &rustfmt(expected_code),
+            "actual",
+            &rustfmt(&actual_code),
+        );
     }
 
     #[test]
@@ -588,7 +593,12 @@ mod tests {
         let decl = &grammar.declarations[0];
         let actual_code = generate_decl(&grammar, &packets, &children, decl).unwrap();
         let expected_code = include_str!("../test/generated/packet_decl_empty.rs");
-        assert_eq_with_diff(&rustfmt(expected_code), &rustfmt(&actual_code));
+        assert_eq_with_diff(
+            "test/generated/packet_decl_empty.rs",
+            &rustfmt(expected_code),
+            "actual",
+            &rustfmt(&actual_code),
+        );
     }
 
     #[test]
@@ -608,7 +618,12 @@ mod tests {
         let decl = &grammar.declarations[0];
         let actual_code = generate_decl(&grammar, &packets, &children, decl).unwrap();
         let expected_code = include_str!("../test/generated/packet_decl_simple_little_endian.rs");
-        assert_eq_with_diff(&rustfmt(expected_code), &rustfmt(&actual_code));
+        assert_eq_with_diff(
+            "generated/packet_decl_simple_little_endian.rs",
+            &rustfmt(expected_code),
+            "actual",
+            &rustfmt(&actual_code),
+        );
     }
 
     #[test]
@@ -628,6 +643,11 @@ mod tests {
         let decl = &grammar.declarations[0];
         let actual_code = generate_decl(&grammar, &packets, &children, decl).unwrap();
         let expected_code = include_str!("../test/generated/packet_decl_simple_big_endian.rs");
-        assert_eq_with_diff(&rustfmt(expected_code), &rustfmt(&actual_code));
+        assert_eq_with_diff(
+            "test/generated/packet_decl_simple_big_endian.rs",
+            &rustfmt(expected_code),
+            "actual",
+            &rustfmt(&actual_code),
+        );
     }
 }
