@@ -152,7 +152,7 @@ sequence! { procedure, context,
     }
     Lower Tester -> IUT: Sres {
         transaction_id: 0,
-        authentication_rsp: [0; 4],
+        authentication_rsp: crate::procedure::authentication::generate_sres([0; 16], [0; 16]),
     }
     Lower Tester -> IUT: AuRand {
         transaction_id: 0,
@@ -160,7 +160,7 @@ sequence! { procedure, context,
     }
     IUT -> Lower Tester: Sres {
         transaction_id: 0,
-        authentication_rsp: [0; 4],
+        authentication_rsp: crate::procedure::authentication::generate_sres([0; 16], [0; 16]),
     }
     IUT -> Upper Tester: LinkKeyNotification {
         bd_addr: context.peer_address(),
