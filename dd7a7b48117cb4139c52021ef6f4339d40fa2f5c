@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1abcc337_231e9639",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-06T17:49:38Z",
+      "side": 1,
+      "message": "I would prefer to have some sanity check about how many advertising instances are available before subtracting 2.",
+      "revId": "dd7a7b48117cb4139c52021ef6f4339d40fa2f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
