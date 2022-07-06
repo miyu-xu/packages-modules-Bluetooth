@@ -62,7 +62,7 @@ pub fn rustfmt(input: &str) -> String {
 ///
 /// Panics if `diff` cannot be found on `$PATH` or if it returns an
 /// error.
-pub fn diff(left: &str, right: &str) -> String {
+pub fn diff(left_label: &str, left: &str, right_label: &str, right: &str) -> String {
     let mut temp_left = NamedTempFile::new().unwrap();
     temp_left.write_all(left.as_bytes()).unwrap();
     let mut temp_right = NamedTempFile::new().unwrap();
@@ -73,9 +73,9 @@ pub fn diff(left: &str, right: &str) -> String {
         .arg("--unified")
         .arg("--color=always")
         .arg("--label")
-        .arg("left")
+        .arg(left_label)
         .arg("--label")
-        .arg("right")
+        .arg(right_label)
         .arg(temp_left.path())
         .arg(temp_right.path())
         .output()
@@ -92,6 +92,48 @@ pub fn diff(left: &str, right: &str) -> String {
 
 /// Compare two strings and output a diff if they are not equal.
 #[track_caller]
-pub fn assert_eq_with_diff(left: &str, right: &str) {
-    assert!(left == right, "texts did not match, diff:\n{}\n", diff(left, right));
+pub fn assert_eq_with_diff(left_label: &str, left: &str, right_label: &str, right: &str) {
+    assert!(
+        left == right,
+        "texts did not match, diff:\n{}\n",
+        diff(left_label, left, right_label, right)
+    );
+}
+
+/// Check that `needle` occurs in `haystack` and print a nice error
+/// message if not.
+#[track_caller]
+pub fn assert_contains(haystack: &str, needle: &str) {
+    assert!(haystack.find(needle).is_some(), "Could not find {:?} in {:?}", needle, haystack);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_diff_labels_with_special_chars() {
+        // Check that special characters in labels are passed
+        // correctly to diff. This also checks that we handle the four
+        // &str arguments correctly.
+        let left = "foo\nbar\n";
+        let right = "foo\nnew line\nbar\n";
+        let patch = diff("left 'file'", left, "right ~file!", right);
+
+        assert_contains(&patch, "left 'file'");
+        assert_contains(&patch, "right ~file!");
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_assert_eq_with_diff_on_diff() {
+        // We use identical labels to check that we haven't
+        // accidentally mixed up the labels with the file content.
+        assert_eq_with_diff("", "foo\nbar\n", "", "foo\nnew line\nbar\n");
+    }
+
+    #[test]
+    fn test_assert_eq_with_diff_on_eq() {
+        assert_eq_with_diff("left", "foo\nbar\n", "right", "foo\nbar\n");
+    }
 }
