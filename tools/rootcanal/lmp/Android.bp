@@ -22,6 +22,7 @@ rust_ffi {
         "libbt_packets",
         "libbytes",
         "libnum_traits",
+        "libopenssl",
         "libthiserror",
         "libpin_utils",
     ],
