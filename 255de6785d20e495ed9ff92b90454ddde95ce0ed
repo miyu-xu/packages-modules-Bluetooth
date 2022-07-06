@@ -45,6 +45,30 @@
       },
       "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15f1f1cc_c55333d9",
+        "filename": "tools/rootcanal/packets/bredr_bb.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-06T17:26:19Z",
+      "side": 1,
+      "message": "This is not a format that is present inside the specification, this format has been created for the sole purpose of putting Bluetooth Baseband packets inside a pcap file. This link is the one provided for the specification of the format used for LINKTYPE_BLUETOOTH_BREDR_BB in https://www.tcpdump.org/linktypes.html",
+      "parentUuid": "bdb8343b_e91d969f",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 65
+      },
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
