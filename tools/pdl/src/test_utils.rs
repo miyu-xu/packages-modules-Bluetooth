@@ -62,7 +62,7 @@ pub fn rustfmt(input: &str) -> String {
 ///
 /// Panics if `diff` cannot be found on `$PATH` or if it returns an
 /// error.
-pub fn diff(left: &str, right: &str) -> String {
+pub fn diff(left_label: &str, left: &str, right_label: &str, right: &str) -> String {
     let mut temp_left = NamedTempFile::new().unwrap();
     temp_left.write_all(left.as_bytes()).unwrap();
     let mut temp_right = NamedTempFile::new().unwrap();
@@ -73,9 +73,9 @@ pub fn diff(left: &str, right: &str) -> String {
         .arg("--unified")
         .arg("--color=always")
         .arg("--label")
-        .arg("left")
+        .arg(left_label)
         .arg("--label")
-        .arg("right")
+        .arg(right_label)
         .arg(temp_left.path())
         .arg(temp_right.path())
         .output()
@@ -92,6 +92,49 @@ pub fn diff(left: &str, right: &str) -> String {
 
 /// Compare two strings and output a diff if they are not equal.
 #[track_caller]
-pub fn assert_eq_with_diff(left: &str, right: &str) {
-    assert!(left == right, "texts did not match, diff:\n{}\n", diff(left, right));
+pub fn assert_eq_with_diff(left_label: &str, left: &str, right_label: &str, right: &str) {
+    assert!(
+        left == right,
+        "texts did not match, diff:\n{}\n",
+        diff(left_label, left, right_label, right)
+    );
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_diff_labels_with_special_chars() {
+        // Check that special characters in labels are passed
+        // correctly to diff. This also checks that we handle the four
+        // &str arguments correctly.
+        let left = "foo\nbar\n";
+        let right = "foo\nnew line\nbar\n";
+        let patch = diff("left 'file'", &left, "right ~file!", &right);
+
+        assert_eq!(
+            patch,
+            "\u{1b}[1m--- left 'file'\u{1b}[0m\n\
+             \u{1b}[1m+++ right ~file!\u{1b}[0m\n\
+             \u{1b}[36m@@ -1,2 +1,3 @@\u{1b}[0m\n\
+             \u{20}foo\n\
+             \u{1b}[32m+new line\u{1b}[0m\n\
+             \u{20}bar\n\
+            "
+        );
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_assert_eq_with_diff_on_diff() {
+        // We use identical labels to check that we haven't
+        // accidentally mixed up the labels with the file content.
+        assert_eq_with_diff("", "foo\nbar\n", "", "foo\nnew line\nbar\n");
+    }
+
+    #[test]
+    fn test_assert_eq_with_diff_on_eq() {
+        assert_eq_with_diff("left", "foo\nbar\n", "right", "foo\nbar\n");
+    }
 }
