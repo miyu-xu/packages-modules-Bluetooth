@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e24f5b1_5d851bd4",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:54:57Z",
+      "side": 1,
+      "message": "I would go with `get_backing_type_width`",
+      "parentUuid": "2d217e5b_144c21ea",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "37720a4a_3e7e8c39",
@@ -54,6 +72,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33270ec1_6f619547",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:54:57Z",
+      "side": 1,
+      "message": "`let mut end \u003d (offset + width + 7) / 8;`",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 5
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "127f0291_da9f5aa2",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:54:57Z",
+      "side": 1,
+      "message": "`get_field_shift` to match `get_field_range` ?",
+      "range": {
+        "startLine": 158,
+        "startChar": 3,
+        "endLine": 158,
+        "endChar": 22
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40ec7112_394c7a87",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:54:57Z",
+      "side": 1,
+      "message": "Your way of handling the endianness will not work.\ne.g.\n```\nbig_endian_packets;\nstruct LotsOfBitfields {\n   a: 1,\n   b: 6, // offset 7\n   c: 2, // offset 9\n   d: 6, // offset 15\n   e: 1, // offset 16\n};\n```\n\nThe documented way of parsing this is:\n```\nlet a \u003d from_big_endian(buf[0..2]) \u0026 0x1;\nlet b \u003d (from_big_endian(buf[0..2]) \u003e\u003e 1) \u0026 0x7f;\n..\n```\nBy taking the fields one by one, you would get:\n```\nlet a \u003d from_big_endian(buf[0..1]) \u0026 0x1;\nlet b \u003d (from_big_endian(buf[0..1]) \u003e\u003e 1) \u0026 0x7f;\n..\n```\ni.e. `a` and `b` are parsed from the wrong byte.\nThe same remark applies for the field serialization.",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "324ce214_ef7e00db",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 4
@@ -65,6 +146,52 @@
       "writtenOn": "2022-07-05T12:59:16Z",
       "side": 1,
       "message": "I think no, it does not, bitwise operation perform the same way no matter of endianness. `\u003c\u003c` will shift towards the most significant digit. Endianness is only relevant when you \"load numbers\" in \u0026 out of memory.",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e62ace_ad839388",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:54:57Z",
+      "side": 1,
+      "message": "`#field_name \u003e\u003e #byte_boundary_offset`\n \ne.g.\n```\nstruct Test {\n  x: 2,\n  y: 6,\n}\n```\n`y` is parsed as `buf[0] \u003e\u003e 2`",
+      "range": {
+        "startLine": 221,
+        "startChar": 49,
+        "endLine": 221,
+        "endChar": 73
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04bc82d3_4f9ef098",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:54:57Z",
+      "side": 1,
+      "message": "Where you place the zero padding will make a difference for big endian fields.",
+      "range": {
+        "startLine": 234,
+        "startChar": 82,
+        "endLine": 234,
+        "endChar": 94
+      },
       "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
