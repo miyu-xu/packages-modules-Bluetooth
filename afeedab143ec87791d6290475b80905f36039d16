@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88ca35ac_241edd29",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-06T21:15:58Z",
+      "side": 1,
+      "message": "This goes a bit further than generating the mask, since you also rewrite the bound field let-binding.\nI think you should have a function to generate a bit-mask from a field (say `generate_field_mask`, and another to apply it (`apply_field_mask`), or a single one which clearly states the effect `mask_field_value`.",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 79
+      },
+      "revId": "afeedab143ec87791d6290475b80905f36039d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
