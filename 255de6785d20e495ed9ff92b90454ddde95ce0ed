@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a65ec065_fce728d9",
+        "filename": "tools/rootcanal/lmp/lmp_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-06T17:23:25Z",
+      "side": 1,
+      "message": "This seems like a separate fix.",
+      "range": {
+        "startLine": 111,
+        "startChar": 9,
+        "endLine": 111,
+        "endChar": 10
+      },
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdb8343b_e91d969f",
+        "filename": "tools/rootcanal/packets/bredr_bb.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-06T17:23:25Z",
+      "side": 1,
+      "message": "This seems surprising to link here.  Normally we would add a reference to the Bluetooth specification.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 65
+      },
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
