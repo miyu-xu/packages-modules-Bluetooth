@@ -1,4 +1,5 @@
 // Bluetooth Core, Vol 2, Part C, 4.2.1
+use num_traits::ToPrimitive;
 
 use crate::either::Either;
 use crate::num_hci_command_packets;
@@ -27,23 +28,13 @@ pub async fn receive_challenge(ctx: &impl Context, _link_key: [u8; 16]) {
     ctx.send_lmp_packet(lmp::SresBuilder { transaction_id: 0, authentication_rsp: [0; 4] }.build());
 }
 
-pub async fn initiate(ctx: &impl Context) {
-    let _ = ctx.receive_hci_command::<hci::AuthenticationRequestedPacket>().await;
-    ctx.send_hci_event(
-        hci::AuthenticationRequestedStatusBuilder {
-            num_hci_command_packets,
-            status: hci::ErrorCode::Success,
-        }
-        .build(),
-    );
-
+pub async fn request_link_key_from_host(ctx: &impl Context) -> Option<[u8; 16]> {
     ctx.send_hci_event(hci::LinkKeyRequestBuilder { bd_addr: ctx.peer_address() }.build());
-
-    let status = match ctx.receive_hci_command::<Either<
+    match ctx.receive_hci_command::<Either<
         hci::LinkKeyRequestReplyPacket,
         hci::LinkKeyRequestNegativeReplyPacket,
     >>().await {
-        Either::Left(_reply) => {
+        Either::Left(reply) => {
             ctx.send_hci_event(
                 hci::LinkKeyRequestReplyCompleteBuilder {
                     num_hci_command_packets,
@@ -52,7 +43,7 @@ pub async fn initiate(ctx: &impl Context) {
                 }
                 .build(),
             );
-            hci::ErrorCode::Success
+            Some(*reply.get_link_key())
         },
         Either::Right(_) => {
             ctx.send_hci_event(
@@ -63,18 +54,41 @@ pub async fn initiate(ctx: &impl Context) {
                 }
                 .build(),
             );
+            None
+        }
+    }
+}
 
-            let result = if features::supported_on_both_page1(ctx, hci::LMPFeaturesPage1Bits::SecureSimplePairingHostSupport).await {
+pub async fn initiate(ctx: &impl Context) {
+    let _ = ctx.receive_hci_command::<hci::AuthenticationRequestedPacket>().await;
+    ctx.send_hci_event(
+        hci::AuthenticationRequestedStatusBuilder {
+            num_hci_command_packets,
+            status: hci::ErrorCode::Success,
+        }
+        .build(),
+    );
+
+    let result = match request_link_key_from_host(ctx).await {
+        Some(link_key) => send_challenge(ctx, 0, link_key).await,
+        None => {
+            // No link key, start pairing
+            if features::supported_on_both_page1(
+                ctx,
+                hci::LMPFeaturesPage1Bits::SecureSimplePairingHostSupport,
+            )
+            .await
+            {
                 secure_simple_pairing::initiate(ctx).await
             } else {
                 legacy_pairing::initiate(ctx).await
-            };
-
-            match result {
-                Ok(_) => hci::ErrorCode::Success,
-                Err(_) => hci::ErrorCode::AuthenticationFailure
             }
         }
+    };
+
+    let status = match result {
+        Ok(_) => hci::ErrorCode::Success,
+        Err(_) => hci::ErrorCode::AuthenticationFailure,
     };
 
     ctx.send_hci_event(
@@ -89,13 +103,18 @@ pub async fn respond(ctx: &impl Context) {
     >>()
     .await
     {
-        Either::Left(_random_number) => {
-            // TODO: Resolve authentication challenge
-            // TODO: Ask for link key
-            ctx.send_lmp_packet(lmp::SresBuilder { transaction_id: 0, authentication_rsp: [0; 4] }.build());
+        Either::Left(_au_rand) => {
+            match request_link_key_from_host(ctx).await {
+                Some(_link_key) => {
+                    ctx.send_lmp_packet(lmp::SresBuilder { transaction_id: 0, authentication_rsp: [0; 4] }.build());
+                },
+                None => {
+                    ctx.send_lmp_packet(lmp::NotAcceptedBuilder { transaction_id: 0, not_accepted_opcode: lmp::Opcode::AuRand, error_code: hci::ErrorCode::PinOrKeyMissing.to_u8().unwrap() }.build());
+                }
+            }
         },
         Either::Right(pairing) => {
-            let _result = match pairing {
+            let _ = match pairing {
                 Either::Left(io_capability_request) =>
                     secure_simple_pairing::respond(ctx, io_capability_request).await,
                 Either::Right(in_rand) =>
