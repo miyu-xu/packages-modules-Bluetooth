@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff48d3cc_123f7a73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-07T00:24:30Z",
+      "side": 1,
+      "message": "Sorry ahead of time for giant CL.\n\nFor an easier review, here are some important areas to functions:\n* socket_listen (common api for creating a listening socket)\n* socket_connect (common api for creating a connecting socket)\n* listening_task (task that runs in tokio that polls the socket for new connections)\n* connecting_task (task that runs in tokio that handles connection results)\n\nMost of the api surface comes from Android with some adaptations for the RPC format we have.\n\nIf you need additional context, I can update the design doc at go/floss-socket-manager with additional details on how the implementation works.",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
