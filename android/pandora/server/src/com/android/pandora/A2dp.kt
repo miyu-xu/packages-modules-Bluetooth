@@ -192,7 +192,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
         flow
           .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
           .filter {
-            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
+            it.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
+              .address == address
           }
           .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
           .filter { it == BluetoothA2dp.STATE_PLAYING }
@@ -222,7 +223,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
         flow
           .filter { it.getAction() == BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED }
           .filter {
-            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
+            it.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
+              .address == address
           }
           .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
@@ -266,7 +268,8 @@ class A2dp(val context: Context) : A2DPImplBase() {
         flow
           .filter { it.getAction() == BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED }
           .filter {
-            it.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE).address == address
+            it.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
+              .address == address
           }
           .map { it.getIntExtra(BluetoothA2dp.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
