@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d490bbb_a538a879",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-07T15:23:00Z",
+      "side": 1,
+      "message": "Good suggestion. Done.",
+      "parentUuid": "9f38aee6_011d1061",
+      "range": {
+        "startLine": 110,
+        "startChar": 60,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "5140acbdf82604d0733adda7196f3da5047642fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1b11a92_33d60b8f",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-07T07:31:12Z",
       "side": 1,
       "message": "Q) Can it be package-private?",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 10
+      },
+      "revId": "5140acbdf82604d0733adda7196f3da5047642fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcb46b65_22bcb7ad",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-07T15:23:00Z",
+      "side": 1,
+      "message": "It may be possible, but let\u0027s not consider this in this CL since I followed the other classes\u0027 setInstanceForTesting.\n\nIf it is necessary, I\u0027ll make this and all other setInstanceForTesting() in bluetooth as package private at once.",
+      "parentUuid": "d1b11a92_33d60b8f",
       "range": {
         "startLine": 57,
         "startChar": 4,
