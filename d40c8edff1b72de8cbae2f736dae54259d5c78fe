@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f0c0c30_0821a698",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T08:11:19Z",
+      "side": 1,
+      "message": "```\nif let Some(pairing_link_key) \u003d result {\n    (true, pairing_link_key)\n} else {\n     ctx.send_hci_event(\n         hci::AuthenticationCompleteBuilder {\n             status: hci::ErrorCode::AuthenticationFailure,\n             connection_handle: ctx.peer_handle(),\n         }\n         .build(),\n      );\n      return;\n}\n```",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "199d25be_07524e29",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T08:11:19Z",
+      "side": 1,
+      "message": "Can we move that just before the\n```\n    ctx.send_hci_event(\n        hci::AuthenticationCompleteBuilder { status, connection_handle: ctx.peer_handle() }.build(),\n    );\n```\n\nline ?",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5de09a3_d490f503",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T08:11:19Z",
+      "side": 1,
+      "message": "I would prefer that we keep the `Link Key Calculation` comment as this is the name of the phase in the specification",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d57a5e67_e226a9e1",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T08:11:19Z",
+      "side": 1,
+      "message": "You can use `hci::ErrorCode::PinOrKeyMissing.to_u8().unwrap()` instead of `0x06`",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8db95f55_4ad6222d",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T08:11:19Z",
+      "side": 1,
+      "message": "```\nlet link_key \u003d if let Some(link_key) \u003d result {\n   link_key\n} else {\n   return;\n};\n```",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
