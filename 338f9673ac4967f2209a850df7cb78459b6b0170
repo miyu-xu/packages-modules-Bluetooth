@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "583f634a_cf4009b4",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 20
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T13:06:51Z",
+      "side": 1,
+      "message": "This should be BV-13-C, fixed thanks",
+      "parentUuid": "814937ae_97d761e6",
+      "range": {
+        "startLine": 705,
+        "startChar": 32,
+        "endLine": 705,
+        "endChar": 39
+      },
+      "revId": "338f9673ac4967f2209a850df7cb78459b6b0170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "890462fe_e6327694",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-04-26T21:21:17Z",
       "side": 1,
       "message": "Is it always handle 0x42?",
+      "range": {
+        "startLine": 4,
+        "startChar": 27,
+        "endLine": 4,
+        "endChar": 31
+      },
+      "revId": "338f9673ac4967f2209a850df7cb78459b6b0170",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90936b55_3dacd541",
+        "filename": "tools/rootcanal/lmp/test/SP/BV-06-C.in",
+        "patchSetId": 20
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T13:06:51Z",
+      "side": 1,
+      "message": "In this case yes, as this is the value that is also hardcoded in the TestContext, hardcoding that here is not great indeed, I changed that 😊",
+      "parentUuid": "890462fe_e6327694",
       "range": {
         "startLine": 4,
         "startChar": 27,
