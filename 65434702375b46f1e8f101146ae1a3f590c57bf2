@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e480c6f_48b745b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-07T05:05:29Z",
+      "side": 1,
+      "message": "It seems unlike atest results, Mockito cannot make package-private classes.\n\nhttps://stackoverflow.com/questions/40534101/unsupportedoperationexception-with-mockito-and-dexmaker\n\nAdded @VisibleForTesting for PbapStateMaching to fix the test failure.",
+      "revId": "65434702375b46f1e8f101146ae1a3f590c57bf2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
