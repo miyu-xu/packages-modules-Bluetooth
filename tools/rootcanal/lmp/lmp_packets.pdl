@@ -175,6 +175,10 @@ packet CombKey : Packet(opcode = COMB_KEY) {
   random_number: 8[16],
 }
 
+packet UnitKey : Packet(opcode = UNIT_KEY) {
+  key: 8[16],
+}
+
 packet EncryptionModeReq : Packet(opcode = ENCRYPTION_MODE_REQ) {
   encryption_mode: 8,
 }

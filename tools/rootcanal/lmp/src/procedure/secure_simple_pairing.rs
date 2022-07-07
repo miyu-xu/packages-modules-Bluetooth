@@ -1,5 +1,6 @@
 // Bluetooth Core, Vol 2, Part C, 4.2.7
 
+use openssl::rand::rand_bytes;
 use std::convert::TryInto;
 
 use num_traits::{FromPrimitive, ToPrimitive};
@@ -458,7 +459,11 @@ pub async fn initiate(ctx: &impl Context) -> Result<([u8; 16]), ()> {
         .build(),
     );
 
-    Ok([0; 16])
+    let mut link_key = [0; 16];
+    rand_bytes(&mut link_key).unwrap();
+    ctx.send_lmp_packet(lmp::UnitKeyBuilder { transaction_id: 0, key: link_key }.build());
+
+    Ok(link_key)
 }
 
 pub async fn respond(
@@ -619,7 +624,9 @@ pub async fn respond(
         .build(),
     );
 
-    Ok([0; 16])
+    // A out-of-spec unit key packet is used to exchange link key.
+    let link_key = *ctx.receive_lmp_packet::<lmp::UnitKeyPacket>().await.get_key();
+    Ok(link_key)
 }
 
 #[cfg(test)]
