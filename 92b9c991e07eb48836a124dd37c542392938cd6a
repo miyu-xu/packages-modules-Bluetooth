@@ -125,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1eebebc3_fde65623",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-07-07T11:13:01Z",
+      "side": 1,
+      "message": "Hi Lukasz,\n\nYes CIS type can be assigned during CIS assignment to active ASE(s), based on ASE direction information.\nDuring CIG creation, not all active device(s)/ASE(s) may be available, yet need to assign all required CIS parameters based on required CIS type(s), the Connection_Handle(s) obtained are subsequently mapped to the CIS ID(s).\nWhenever active device(s)/ASE(s) are available, active ASE(s) are assigned free CIS ID(s) related to type. Similarly, whenever active device(s)/ASE(s) are unavailable, the related CIS Id(s) are unassigned.\nFor assigning type to CIS ID(s) during CIS ID assignment to active ASE(s) and not during CIS ID generation, we need to maintain separately list of CIS Id(s) of a given type, search for free CIS ID(s) of the required type based on ASE direction information and then assign CIS ID to ASE and type information to CIS.\nAssigning type during CIS ID(s) generation simplifies the implementation.\nPlease let know of any concern with the current approach.\nAlso, in the latest patchset, fixed issue related to partially available active device(s)/ASE(s) during CIG creation. Testing more.\nPlease let know of any comments.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "aca81971_3025d2fe",
+      "revId": "92b9c991e07eb48836a124dd37c542392938cd6a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36482af3_99c5b8fb",
         "filename": "system/bta/le_audio/devices.cc",
         "patchSetId": 14
