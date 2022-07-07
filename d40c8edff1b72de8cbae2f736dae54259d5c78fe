@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3018cfe_96bf7239",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-07T11:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f0c0c30_0821a698",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "199d25be_07524e29",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-07T08:11:19Z",
       "side": 1,
       "message": "Can we move that just before the\n```\n    ctx.send_hci_event(\n        hci::AuthenticationCompleteBuilder { status, connection_handle: ctx.peer_handle() }.build(),\n    );\n```\n\nline ?",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1443e8f_734701b2",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-07T11:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "199d25be_07524e29",
       "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be58537_400a734b",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-07T11:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5de09a3_d490f503",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d57a5e67_e226a9e1",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47f97060_dd9a55c7",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-07T11:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d57a5e67_e226a9e1",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8db95f55_4ad6222d",
@@ -82,6 +154,24 @@
       "writtenOn": "2022-07-07T08:11:19Z",
       "side": 1,
       "message": "```\nlet link_key \u003d if let Some(link_key) \u003d result {\n   link_key\n} else {\n   return;\n};\n```",
+      "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11bf2883_f7ca1e3d",
+        "filename": "tools/rootcanal/lmp/src/procedure/authentication.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-07T11:28:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8db95f55_4ad6222d",
       "revId": "d40c8edff1b72de8cbae2f736dae54259d5c78fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
