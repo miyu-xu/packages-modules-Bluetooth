@@ -95,6 +95,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3c7c4ae_db56e5cf",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-07T08:39:22Z",
+      "side": 1,
+      "message": "It\u0027s funny as I asked myself, if I should do the same comment. And in the end I think that the current code is more clear as is. I think we are used to read rounding up that way but it\u0027s still a \"clever hack\".",
+      "parentUuid": "33270ec1_6f619547",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 5
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "127f0291_da9f5aa2",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 4
