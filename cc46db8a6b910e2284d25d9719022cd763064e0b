@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "063a84a5_5625ed46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-07T21:06:44Z",
+      "side": 1,
+      "message": "+ 2 but if we could have a getBluetoothDeviceExtra as extensions fun that would be awesome\n",
+      "revId": "cc46db8a6b910e2284d25d9719022cd763064e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
