@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1edeb3a3_018d54b9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-07T14:57:09Z",
+      "side": 1,
+      "message": "How about:\n\n1) Skipping the test if SapMessage.TEST \u003d\u003d false (Or splitting this test into other test method)\n2) Not branching according to previousValue. Instead calling setTestMode (and asserting) two times with TEST_MODE_ENABLE/DISABLE, respectively",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 9
+      },
+      "revId": "ba5e2a957e060e7c13189e1811285841ebbf0029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
