@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f38aee6_011d1061",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-07-07T07:31:12Z",
+      "side": 1,
+      "message": "queryContentResolver or similar \nto note how we get the cursor.",
+      "range": {
+        "startLine": 110,
+        "startChar": 60,
+        "endLine": 110,
+        "endChar": 69
+      },
+      "revId": "5140acbdf82604d0733adda7196f3da5047642fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1b11a92_33d60b8f",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-07-07T07:31:12Z",
+      "side": 1,
+      "message": "Q) Can it be package-private?",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 10
+      },
+      "revId": "5140acbdf82604d0733adda7196f3da5047642fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
