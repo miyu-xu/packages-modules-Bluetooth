@@ -22,6 +22,30 @@
       },
       "revId": "a8bb85bcacdb95d66db437040ce721343446769e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bd52c96_7ff49b9d",
+        "filename": "system/embdrv/sbc/encoder/srce/sbc_packing.c",
+        "patchSetId": 15
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-07-07T22:45:09Z",
+      "side": 1,
+      "message": "Fixed by https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2140938.",
+      "parentUuid": "c42d273c_e19a1a81",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 64
+      },
+      "revId": "a8bb85bcacdb95d66db437040ce721343446769e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
