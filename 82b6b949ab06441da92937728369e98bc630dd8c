@@ -74,6 +74,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a223655c_cfc6eb0a",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T15:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73daad20_d06ce334",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "37720a4a_3e7e8c39",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 4
@@ -85,6 +103,24 @@
       "writtenOn": "2022-07-05T12:59:16Z",
       "side": 1,
       "message": "nit: Rust also have a 128 bit type, however I don\u0027t know if we want to include that in.\n\nWe may want to limit the bitsize on the parser to a value that we know is handled by multiple language and 64 seems a good fit.\nBut if we don\u0027t want that, I think we should include 128 here",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de72bf59_5e3089aa",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T15:27:32Z",
+      "side": 1,
+      "message": "You resolved this because PDL only supports 64 bit integers, right?",
+      "parentUuid": "37720a4a_3e7e8c39",
       "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -377,6 +413,24 @@
       "side": 1,
       "message": "That is a good point, let me try and restructure this.",
       "parentUuid": "dc22fcfc_c872d9fd",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46665367_8c32fcf0",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T15:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cda1837_1b40cac4",
       "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
