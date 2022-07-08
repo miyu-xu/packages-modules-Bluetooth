@@ -34,6 +34,24 @@
       "parentUuid": "da8aaf5a_2fc1228a",
       "revId": "9f5834b647cdab343b44b5c8e2c92cfae9be827b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7275bd84_61b225d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-08T08:52:36Z",
+      "side": 1,
+      "message": "That\u0027s intended due to ref\u0027s pairing parameter",
+      "parentUuid": "d3ee856f_443f0a39",
+      "revId": "9f5834b647cdab343b44b5c8e2c92cfae9be827b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
