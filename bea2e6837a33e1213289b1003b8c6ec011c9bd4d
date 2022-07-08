@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e768f51_fda10fb5",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-08T20:14:52Z",
+      "side": 1,
+      "message": "The little-endian one looks correct to me",
+      "parentUuid": "aba1768c_38cf6f27",
+      "revId": "bea2e6837a33e1213289b1003b8c6ec011c9bd4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "612ad55e_83878a56",
         "filename": "tools/pdl/doc/reference.md",
         "patchSetId": 1
