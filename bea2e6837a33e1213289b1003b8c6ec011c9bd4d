@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "612ad55e_83878a56",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-08T17:38:54Z",
+      "side": 1,
+      "message": "I like the documentation of the little-endian layout!\n\nIs this documenting the way it is or the way it should be?  Big-endian fields are not well tested (or used at all until we implement SDP).",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 11
+      },
+      "revId": "bea2e6837a33e1213289b1003b8c6ec011c9bd4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
