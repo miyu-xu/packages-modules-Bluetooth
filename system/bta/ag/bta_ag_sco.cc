@@ -409,6 +409,8 @@ static void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
     }
   }
 
+  hfp_hal_interface::set_codec_datapath(esco_codec);
+
   /* If initiating, setup parameters to start SCO/eSCO connection */
   if (is_orig) {
     bta_ag_cb.sco.is_local = true;
