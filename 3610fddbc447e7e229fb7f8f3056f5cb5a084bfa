@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f58ca24d_37049298",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-08T00:17:24Z",
+      "side": 1,
+      "message": "It turns out that there\u0027s a problem with the rust test, so that will need to be fixed before this can be committed.\n\n[TEST_BINARY_EXIT_CODE_ERROR|530007|TEST_FAILURE] Something went wrong when running the rust binary:Exit Code: 101\nstdout: \nrunning 1 test\ntest hci::read_local_supported_codecs_v1_complete_builder_test_00 ... FAILED \u003c0.031s\u003e\n\nfailures:\n\n---- hci::read_local_supported_codecs_v1_complete_builder_test_00 stdout ----\nthread \u0027hci::read_local_supported_codecs_v1_complete_builder_test_00\u0027 panicked at \u0027assertion failed: `(left \u003d\u003d right)`\n  left: `[14, 11, 1, 11, 16, 0, 5, 0, 1, 2, 3, 5, 0]`,\n right: `[14, 15, 1, 11, 16, 0, 5, 0, 1, 2, 3, 5, 1, 17, 0, 34, 0]`\u0027, ./out/soong/.intermediates/packages/modules/Bluetooth/system/gd/libbt_packets_test/linux_glibc_x86_64/out/hci_packets.rs:13097:108\nstack backtrace:",
+      "revId": "3610fddbc447e7e229fb7f8f3056f5cb5a084bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
