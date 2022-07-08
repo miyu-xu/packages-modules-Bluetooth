@@ -22,6 +22,30 @@
       },
       "revId": "bea2e6837a33e1213289b1003b8c6ec011c9bd4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66183cc8_9dc97acb",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-08T18:13:30Z",
+      "side": 1,
+      "message": "That is the way they are implemented in the C++ backend as far as I know; and that is how I implement the endianness in the python backend.\nWe discussed with David about adding a construct to make it clearer to the user what is being packed together when endianness is applied, e.g.\n\n```\npacket Test {\n    packed {\n    a: 2,\n    b: 14,\n    }\n}\n```\nThis change is just to ensure that the current semantic is well-defined until we decide if we want to make the change.",
+      "parentUuid": "612ad55e_83878a56",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 11
+      },
+      "revId": "bea2e6837a33e1213289b1003b8c6ec011c9bd4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
