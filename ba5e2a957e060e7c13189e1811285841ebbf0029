@@ -46,6 +46,30 @@
       },
       "revId": "ba5e2a957e060e7c13189e1811285841ebbf0029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e2cde3_213b3dbd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/sap/SapServerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-08T04:07:01Z",
+      "side": 1,
+      "message": "Ack. LGTM",
+      "parentUuid": "6e5df443_f8e6c950",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 9
+      },
+      "revId": "ba5e2a957e060e7c13189e1811285841ebbf0029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
