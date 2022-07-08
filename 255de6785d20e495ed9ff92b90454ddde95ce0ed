@@ -69,6 +69,30 @@
       },
       "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d1405fb_b06b1b65",
+        "filename": "tools/rootcanal/packets/bredr_bb.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-08T21:09:35Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "15f1f1cc_c55333d9",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 65
+      },
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
