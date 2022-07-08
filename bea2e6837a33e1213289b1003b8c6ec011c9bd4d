@@ -46,6 +46,30 @@
       },
       "revId": "bea2e6837a33e1213289b1003b8c6ec011c9bd4d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d522149_d03de2ce",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-08T18:18:22Z",
+      "side": 1,
+      "message": "Another way to do it would be to remove big-endian until we need it.  I hate to document a poor (and unused) implementation, only to change it after others have implemented it.",
+      "parentUuid": "66183cc8_9dc97acb",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 11
+      },
+      "revId": "bea2e6837a33e1213289b1003b8c6ec011c9bd4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
