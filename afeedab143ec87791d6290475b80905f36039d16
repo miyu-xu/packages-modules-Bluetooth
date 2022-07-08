@@ -22,6 +22,30 @@
       },
       "revId": "afeedab143ec87791d6290475b80905f36039d16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfdaa166_e4e9910c",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T14:03:50Z",
+      "side": 1,
+      "message": "Sure, I can give it a better name.",
+      "parentUuid": "88ca35ac_241edd29",
+      "range": {
+        "startLine": 148,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 79
+      },
+      "revId": "afeedab143ec87791d6290475b80905f36039d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
