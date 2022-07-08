@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f9fc62_25f461eb",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-08T05:52:19Z",
+      "side": 1,
+      "message": "What about this?\n```\nBluetoothPbapMethodWrapper.getInstance().call(mContentResolver,\n  (contentResolver) -\u003e contentResolver.query(\n     contentUri, projection, selection, selectionArgs, sortOrder));\n```\nor\n```\nBluetoothPbapObjectFactory.getContentResolver(mContentResolver).query(contentUri, projection, selection, selectionArgs, sortOrder)\n```",
+      "range": {
+        "startLine": 110,
+        "startChar": 18,
+        "endLine": 112,
+        "endChar": 27
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b9c3380_b542f5ea",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-08T05:52:19Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10c07a6f_6d324df0",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-08T05:52:19Z",
+      "side": 1,
+      "message": "What about BluetoothPbapMethodCallProxy?",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d7df465_6df6b6ec",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-08T05:52:19Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
