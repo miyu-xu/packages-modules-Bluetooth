@@ -24,6 +24,7 @@ fn main() {
     // the libbluetooth-static.a
     Config::new().probe("libchrome").unwrap();
     Config::new().probe("libmodp_b64").unwrap();
+    Config::new().probe("libstructuredmetrics").unwrap();
     Config::new().probe("tinyxml2").unwrap();
 
     println!("cargo:rerun-if-changed=build.rs");
