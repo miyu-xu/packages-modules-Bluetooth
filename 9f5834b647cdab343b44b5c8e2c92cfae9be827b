@@ -16,6 +16,24 @@
       "message": "There is an issue that pairing cannot be completed on Android side with RootCanal(no matter if this CL is applied). I will investigate this issue and then submit it.",
       "revId": "9f5834b647cdab343b44b5c8e2c92cfae9be827b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3ee856f_443f0a39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-08T07:45:00Z",
+      "side": 1,
+      "message": "If you want some help to investigate this issue, feel free to ask me 😊",
+      "parentUuid": "da8aaf5a_2fc1228a",
+      "revId": "9f5834b647cdab343b44b5c8e2c92cfae9be827b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
