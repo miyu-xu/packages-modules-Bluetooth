@@ -170,6 +170,10 @@ impl ClientContext {
             let _ = fg.send(ForegroundActions::RunCallback(callback)).await;
         });
     }
+
+    fn get_found_devices(&mut self) -> Vec<String> {
+        self.found_devices.keys().map(|key| String::from(key)).collect::<Vec<String>>()
+    }
 }
 
 /// Actions to take on the foreground loop. This allows us to queue actions in
@@ -276,14 +280,15 @@ async fn start_interactive_shell(
     mut rx: mpsc::Receiver<ForegroundActions>,
     context: Arc<Mutex<ClientContext>>,
 ) {
-    let command_list = handler.get_command_list().clone();
+    let command_rule_list = handler.get_command_rule_list().clone();
+    let context_for_closure = context.clone();
 
     let semaphore_fg = Arc::new(tokio::sync::Semaphore::new(1));
 
     // Async task to keep reading new lines from user
     let semaphore = semaphore_fg.clone();
     tokio::spawn(async move {
-        let editor = AsyncEditor::new(command_list);
+        let editor = AsyncEditor::new(command_rule_list, context_for_closure);
 
         loop {
             // Wait until ForegroundAction::Readline finishes its task.
