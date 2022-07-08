@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5cad0e1_c31554c3",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T14:13:46Z",
+      "side": 1,
+      "message": "Do we have a concept of a \"backing type\"? I haven\u0027t seen that terminology yet. What about `get_rust_type_width` instead?",
+      "parentUuid": "6e24f5b1_5d851bd4",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "37720a4a_3e7e8c39",
@@ -117,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b553d4d_8f660c56",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T14:13:46Z",
+      "side": 1,
+      "message": "Yeah, I looked up how to best do an integer division with rounding up and found that code. Since I had to look it up, I consider it too smart for us to use on a daily basis 😊",
+      "parentUuid": "a3c7c4ae_db56e5cf",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 153,
+        "endChar": 5
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "127f0291_da9f5aa2",
@@ -140,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "77f054b4_b5b0a448",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T14:13:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "127f0291_da9f5aa2",
+      "range": {
+        "startLine": 158,
+        "startChar": 3,
+        "endLine": 158,
+        "endChar": 22
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40ec7112_394c7a87",
@@ -153,6 +219,24 @@
       "writtenOn": "2022-07-06T21:54:57Z",
       "side": 1,
       "message": "Your way of handling the endianness will not work.\ne.g.\n```\nbig_endian_packets;\nstruct LotsOfBitfields {\n   a: 1,\n   b: 6, // offset 7\n   c: 2, // offset 9\n   d: 6, // offset 15\n   e: 1, // offset 16\n};\n```\n\nThe documented way of parsing this is:\n```\nlet a \u003d from_big_endian(buf[0..2]) \u0026 0x1;\nlet b \u003d (from_big_endian(buf[0..2]) \u003e\u003e 1) \u0026 0x7f;\n..\n```\nBy taking the fields one by one, you would get:\n```\nlet a \u003d from_big_endian(buf[0..1]) \u0026 0x1;\nlet b \u003d (from_big_endian(buf[0..1]) \u003e\u003e 1) \u0026 0x7f;\n..\n```\ni.e. `a` and `b` are parsed from the wrong byte.\nThe same remark applies for the field serialization.",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7457bae_f82d6ab7",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T14:13:46Z",
+      "side": 1,
+      "message": "Yeah, it\u0027s no wonder that this is broken: I\u0027ve been very much in doubt about what little- and big-endian even means when you\u0027re talking about non-byte-aligned fields 😄\n\nYou say this is documented, but where? The best pointer is from David who sent me to your new Python code for this (which I should read and port to Rust).",
+      "parentUuid": "40ec7112_394c7a87",
       "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -210,6 +294,30 @@
       "writtenOn": "2022-07-06T21:54:57Z",
       "side": 1,
       "message": "Where you place the zero padding will make a difference for big endian fields.",
+      "range": {
+        "startLine": 234,
+        "startChar": 82,
+        "endLine": 234,
+        "endChar": 94
+      },
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1fe1588_c292d392",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-08T14:13:46Z",
+      "side": 1,
+      "message": "I see, thanks! I\u0027ll have to add more tests for this.",
+      "parentUuid": "04bc82d3_4f9ef098",
       "range": {
         "startLine": 234,
         "startChar": 82,
