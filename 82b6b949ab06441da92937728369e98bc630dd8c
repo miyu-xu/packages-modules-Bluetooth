@@ -315,6 +315,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6627b014_b1707a35",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-08T15:36:02Z",
+      "side": 1,
+      "message": "It seems we did not add it to the reference doc. The idea is that you group bit fields up to a byte boundary (e.g. 1+7, 2+5+9, ..), and apply the endianness to the group of bytes being written.\nI will update the reference to clearly explain this semantic.",
+      "parentUuid": "b7457bae_f82d6ab7",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "324ce214_ef7e00db",
         "filename": "tools/pdl/src/generator.rs",
         "patchSetId": 4
