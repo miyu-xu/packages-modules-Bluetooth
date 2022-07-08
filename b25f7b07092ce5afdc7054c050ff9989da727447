@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b35e5b4f_ce49fda3",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-08T06:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bba1c026_21eaad7b",
+      "range": {
+        "startLine": 110,
+        "startChar": 18,
+        "endLine": 112,
+        "endChar": 27
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b9c3380_b542f5ea",
@@ -61,6 +85,30 @@
       "writtenOn": "2022-07-08T05:52:19Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4770e517_400dc0dd",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-08T06:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b9c3380_b542f5ea",
       "range": {
         "startLine": 2,
         "startChar": 13,
@@ -118,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "570cadbd_8288718a",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-08T06:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10c07a6f_6d324df0",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3d7df465_6df6b6ec",
@@ -131,6 +203,30 @@
       "writtenOn": "2022-07-08T05:52:19Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 16
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09b2742f_5888205b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-08T06:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d7df465_6df6b6ec",
       "range": {
         "startLine": 2,
         "startChar": 13,
