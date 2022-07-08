@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bba1c026_21eaad7b",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapCallLogComposer.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-08T06:32:53Z",
+      "side": 1,
+      "message": "Talked offline.\n\nBluetoothPbapMethodProxy.getInstance().contentResolverQuery(mContentResolver, ...)",
+      "parentUuid": "e5f9fc62_25f461eb",
+      "range": {
+        "startLine": 110,
+        "startChar": 18,
+        "endLine": 112,
+        "endChar": 27
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b9c3380_b542f5ea",
         "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
         "patchSetId": 3
@@ -60,6 +84,30 @@
       "writtenOn": "2022-07-08T05:52:19Z",
       "side": 1,
       "message": "What about BluetoothPbapMethodCallProxy?",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "b25f7b07092ce5afdc7054c050ff9989da727447",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8e2d0e1_2150e65d",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapObjectsFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-08T06:32:53Z",
+      "side": 1,
+      "message": "Please ignore",
+      "parentUuid": "10c07a6f_6d324df0",
       "range": {
         "startLine": 30,
         "startChar": 13,
