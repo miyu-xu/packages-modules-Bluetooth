@@ -249,12 +249,12 @@
 #endif
 
 #ifndef DISABLE_WBS
-#define DISABLE_WBS FALSE
+#define DISABLE_WBS TRUE
 #endif
 
 /*  This is used to work around a controller bug that doesn't like Disconnect
  *  issued while there is a role switch in progress
-*/
+ */
 #ifndef BTM_DISC_DURING_RS
 #define BTM_DISC_DURING_RS TRUE
 #endif
@@ -899,7 +899,7 @@
 
 /*************************************************************************
  * Definitions for Both HID-Host & Device
-*/
+ */
 #ifndef HID_MAX_SVC_NAME_LEN
 #define HID_MAX_SVC_NAME_LEN 32
 #endif
@@ -914,7 +914,7 @@
 
 /*************************************************************************
  * Definitions for HID-Host
-*/
+ */
 #ifndef HID_HOST_INCLUDED
 #define HID_HOST_INCLUDED TRUE
 #endif

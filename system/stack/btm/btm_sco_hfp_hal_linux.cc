@@ -15,6 +15,7 @@
  */
 
 #include <poll.h>
+#include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
@@ -23,11 +24,14 @@
 #include "btm_sco_hfp_hal.h"
 #include "gd/common/init_flags.h"
 #include "osi/include/log.h"
+#include "stack/acl/acl.h"
+#include "stack/include/acl_api.h"
 
 namespace hfp_hal_interface {
 namespace {
-bool offload_supported = false;
-bool offload_enabled = false;
+/* TODO: set this properly */
+bool offload_supported = true;
+bool offload_enabled = true;
 
 struct mgmt_bt_codec {
   uint8_t codec;
@@ -66,6 +70,7 @@ struct mgmt_ev_cmd_complete {
 } __attribute__((packed));
 
 #define MGMT_OP_GET_SCO_CODEC_CAPABILITES 0x0057
+
 #define MGMT_SCO_CODEC_CVSD 0x1
 #define MGMT_SCO_CODEC_MSBC_TRANSPARENT 0x2
 #define MGMT_SCO_CODEC_MSBC 0x3
@@ -88,7 +93,7 @@ struct mgmt_rp_get_codec_capabilities {
 void cache_codec_capabilities(struct mgmt_rp_get_codec_capabilities* rp) {
   uint8_t* ptr = reinterpret_cast<uint8_t*>(rp->codecs);
   // Copy into cached codec information
-  offload_supported = rp->offload_capable;
+  offload_supported = 1;  // TODO: put this back: rp->offload_capable;
   for (int i = 0; i < rp->num_codecs; i++) {
     struct mgmt_bt_codec* mc = reinterpret_cast<struct mgmt_bt_codec*>(ptr);
     cached_codec_info c = {
@@ -126,7 +131,7 @@ constexpr uint16_t HCI_DEV_NONE = 0xffff;
 int btsocket_open_mgmt(uint16_t hci) {
   int fd = socket(PF_BLUETOOTH, SOCK_RAW | SOCK_NONBLOCK, BTPROTO_HCI);
   if (fd < 0) {
-    LOG_DEBUG("Failed to open BT socket.");
+    LOG_ERROR("Failed to open BT socket.");
     return -errno;
   }
 
@@ -138,12 +143,67 @@ int btsocket_open_mgmt(uint16_t hci) {
 
   int ret = bind(fd, (struct sockaddr*)&addr, sizeof(addr));
   if (ret < 0) {
-    LOG_DEBUG("Failed to bind BT socket.");
+    LOG_ERROR("Failed to bind BT socket.");
     close(fd);
     return -errno;
   }
 
   return fd;
+}
+
+#define MGMT_OP_SET_EXP_FEATURE 0x004a
+
+struct mgmt_cp_set_exp_feature {
+  uint8_t uuid[16];
+  uint8_t param[];
+} __attribute__((packed));
+
+struct mgmt_exp_uuid {
+  uint8_t val[16];
+  const char* str;
+};
+
+/* a6695ace-ee7f-4fb9-881a-5fac66c629af */
+static const struct mgmt_exp_uuid codec_offload_uuid = {
+    .val = {0xaf, 0x29, 0xc6, 0x66, 0xac, 0x5f, 0x1a, 0x88, 0xb9, 0x4f, 0x7f,
+            0xee, 0xce, 0x5a, 0x69, 0xa6},
+    .str = "a6695ace-ee7f-4fb9-881a-5fac66c629af"};
+
+int mgmt_set_codec_datapath(int fd, uint16_t hci, bool offload) {
+  struct mgmt_pkt ev;
+  ev.opcode = MGMT_OP_SET_EXP_FEATURE;
+  ev.index = hci;
+  ev.len = sizeof(struct mgmt_cp_set_exp_feature) + 1;
+
+  struct mgmt_cp_set_exp_feature* cp =
+      reinterpret_cast<struct mgmt_cp_set_exp_feature*>(ev.data);
+  memcpy(cp->uuid, codec_offload_uuid.val, 16);
+  cp->param[0] = offload;
+
+  int ret;
+
+  struct pollfd writable[1];
+  writable[0].fd = fd;
+  writable[0].events = POLLOUT;
+
+  do {
+    ret = poll(writable, 1, MGMT_POLL_TIMEOUT_MS);
+    if (ret > 0) {
+      RETRY_ON_INTR(ret = write(fd, &ev, MGMT_PKT_HDR_SIZE + ev.len));
+      if (ret < 0) {
+        LOG_ERROR("Failed to call MGMT_OP_SET_EXP_FEATURE: %d", -errno);
+        return -errno;
+      };
+      break;
+    }
+  } while (ret > 0);
+
+  if (ret <= 0) {
+    LOG_ERROR("Failed waiting for mgmt socket to be writable. %d", ret);
+    return -1;
+  }
+
+  return ret;
 }
 
 int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
@@ -172,7 +232,7 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
     if (ret > 0) {
       RETRY_ON_INTR(ret = write(fd, &ev, MGMT_PKT_HDR_SIZE + ev.len));
       if (ret < 0) {
-        LOG_DEBUG("Failed to call MGMT_OP_GET_SCO_CODEC_CAPABILITES: %d",
+        LOG_ERROR("Failed to call MGMT_OP_GET_SCO_CODEC_CAPABILITES: %d",
                   -errno);
         return -errno;
       };
@@ -181,7 +241,7 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
   } while (ret > 0);
 
   if (ret <= 0) {
-    LOG_DEBUG("Failed waiting for mgmt socket to be writable.");
+    LOG_ERROR("Failed waiting for mgmt socket to be writable.");
     return -1;
   }
 
@@ -196,7 +256,7 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
       if (fds[0].revents & POLLIN) {
         RETRY_ON_INTR(ret = read(fd, &ev, sizeof(ev)));
         if (ret < 0) {
-          LOG_DEBUG("Failed to read mgmt socket: %d", -errno);
+          LOG_ERROR("Failed to read mgmt socket: %d", -errno);
           return -errno;
         }
 
@@ -216,7 +276,7 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
         }
       }
     } else if (ret == 0) {
-      LOG_DEBUG("Timeout while waiting for codec capabilities response.");
+      LOG_ERROR("Timeout while waiting for codec capabilities response.");
       ret = -1;
     }
   } while (ret > 0);
@@ -268,7 +328,7 @@ int mgmt_notify_sco_connection_change(int fd, int hci, RawAddress device,
   } while (ret > 0);
 
   if (ret <= 0) {
-    LOG_DEBUG("Failed waiting for mgmt socket to be writable.");
+    LOG_ERROR("Failed waiting for mgmt socket to be writable.");
     return -1;
   }
 
@@ -289,6 +349,14 @@ void init() {
     LOG_ERROR("Failed to get codec capabilities with error = %d.", ret);
   } else {
     LOG_INFO("Successfully queried SCO codec capabilities.");
+  }
+
+  ret = mgmt_set_codec_datapath(fd, hci, get_offload_enabled());
+  if (ret) {
+    LOG_ERROR("Failed to set codec datapath to %d with error = %d.",
+              get_offload_enabled(), ret);
+  } else {
+    LOG_INFO("Successfully set codec datapath to %d.", get_offload_enabled());
   }
 
   close(fd);
@@ -332,8 +400,19 @@ bool enable_offload(bool enable) {
   return true;
 }
 
-// Notify the codec datapath to lower layer for offload mode
-bool set_codec_datapath(int codec) { return true; }
+static bool get_single_codec(esco_coding_format_t codec, bt_codec** out) {
+  for (cached_codec_info c : cached_codecs) {
+    if (c.inner.codec == codec) {
+      *out = &c.inner;
+      return true;
+    }
+  }
+  return false;
+}
+
+void set_codec_datapath(esco_coding_format_t coding_format) {
+  LOG_ERROR("in set_codec_datapath");
+}
 
 int get_packet_size(int codec) {
   for (const cached_codec_info& c : cached_codecs) {
