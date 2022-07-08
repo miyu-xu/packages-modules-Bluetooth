@@ -15,17 +15,22 @@ use std::sync::{Arc, Mutex};
 use std::task::{Context, Poll};
 
 use crate::console_blue;
+use crate::ClientContext;
 
 #[derive(Helper)]
 struct BtHelper {
-    commands: Vec<String>,
+    command_rules: Vec<String>,
+    client_context: Arc<Mutex<ClientContext>>
+}
+
+struct CommandCandidate {
+    suggest_word: String,
+    matched_len: usize
 }
 
 impl Completer for BtHelper {
     type Candidate = String;
 
-    // Returns completion based on supported commands.
-    // TODO: Add support to autocomplete BT address, command parameters, etc.
     fn complete(
         &self,
         line: &str,
@@ -33,13 +38,17 @@ impl Completer for BtHelper {
         _ctx: &rustyline::Context<'_>,
     ) -> Result<(usize, Vec<String>), ReadlineError> {
         let slice = &line[..pos];
-        let mut completions = vec![];
-
-        for cmd in self.commands.iter() {
-            if cmd.starts_with(slice) {
-                completions.push(cmd.clone());
+        let candidates = self.get_candidates(slice.to_string().clone());
+        let completions = candidates.iter().map(|c| {
+            if candidates.len() == 1 {
+                // If only one candidate, Completer will replace the input by
+                // the returned string. Return the complete string here to avoid
+                // input being replaced by the suggested word.
+                slice.to_string() + &c.suggest_word[c.matched_len..]
+            } else {
+                c.suggest_word.clone()
             }
-        }
+        }).collect();
 
         Ok((0, completions))
     }
@@ -52,6 +61,54 @@ impl Hinter for BtHelper {
 impl Highlighter for BtHelper {}
 
 impl Validator for BtHelper {}
+
+impl BtHelper {
+    fn get_candidates (&self, cmd: String) -> Vec<CommandCandidate> {
+
+        let mut result = Vec::<CommandCandidate>::new();
+
+        for rule in self.command_rules.iter() {
+
+            for (rule_token, cmd_token) in rule.split(" ").zip(cmd.split(" ")) {
+                let mut candidates = Vec::<String>::new();
+                let mut match_some = false;
+
+                for opt in rule_token.replace("<", "").replace(">", "").split("|") {
+                    if opt.eq("address") {
+                        candidates.extend(self.client_context.lock().unwrap().get_found_devices());
+                    } else {
+                        candidates.push(opt.to_string());
+                    }
+                }
+
+                if cmd_token.len() == 0 {
+                    result.extend(candidates.iter().map(
+                        |s| CommandCandidate{
+                            suggest_word: s.clone(),
+                            matched_len: 0}
+                        ).collect::<Vec<CommandCandidate>>());
+                    break;
+                }
+
+                for opt in candidates {
+                    if opt.starts_with(cmd_token) {
+                        match_some = true;
+                        if cmd_token.len() != opt.len() {
+                            result.push(CommandCandidate{
+                                suggest_word: opt.clone(),
+                                matched_len: cmd_token.len()});
+                        }
+                    }
+                }
+
+                if !match_some {
+                    break;
+                }
+            }
+        }
+        result
+    }
+}
 
 /// A future that does async readline().
 ///
@@ -94,14 +151,14 @@ impl AsyncEditor {
     /// Creates new async rustyline editor.
     ///
     /// * `commands` - List of commands for autocomplete.
-    pub fn new(commands: Vec<String>) -> AsyncEditor {
+    pub(crate) fn new(command_rules: Vec<String>, client_context: Arc<Mutex<ClientContext>>) -> AsyncEditor {
         let builder = Config::builder()
             .auto_add_history(true)
             .history_ignore_dups(true)
             .completion_type(CompletionType::List);
         let config = builder.build();
         let mut rl = rustyline::Editor::with_config(config);
-        let helper = BtHelper { commands };
+        let helper = BtHelper { command_rules, client_context };
         rl.set_helper(Some(helper));
         AsyncEditor { rl: Arc::new(Mutex::new(rl)) }
     }
