@@ -16,6 +16,24 @@
       "message": "Do we need to add the check for flush audio?",
       "revId": "18cb5dbbfa10ff271134681f47a9fcaf56e78201",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0885a64_6015ac62",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-11T08:28:42Z",
+      "side": 1,
+      "message": "Thanks for the remind, but I couldn\u0027t verify the flow now. I will add it after the flow could be checked.",
+      "parentUuid": "1a65dc61_02b9589a",
+      "revId": "18cb5dbbfa10ff271134681f47a9fcaf56e78201",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
