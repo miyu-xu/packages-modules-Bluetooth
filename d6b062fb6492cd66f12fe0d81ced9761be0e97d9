@@ -16,6 +16,24 @@
       "message": "nit: Missing space after the \u0027:\u0027",
       "revId": "d6b062fb6492cd66f12fe0d81ced9761be0e97d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79169ac1_a35cf4a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-11T20:48:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6be30b3a_9a36f509",
+      "revId": "d6b062fb6492cd66f12fe0d81ced9761be0e97d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
