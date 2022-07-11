@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b56e069f_2befa95d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2874,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-11T18:41:20Z",
+      "side": 1,
+      "message": "I would like to remove the helper function.  Any reason not to?",
+      "range": {
+        "startLine": 2874,
+        "startChar": 8,
+        "endLine": 2874,
+        "endChar": 39
+      },
+      "revId": "3f27f18ad2df969eb30a9fbf57cc95488ace0b81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
