@@ -2883,8 +2883,7 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
           // unbonded, and will disconnect HID profile.
           return;
         }
-
-        btif_dm_remove_ble_bonding_keys();
+        btif_storage_remove_ble_bonding_keys(&bd_addr);
         status = BT_STATUS_AUTH_FAILURE;
         break;
       }
