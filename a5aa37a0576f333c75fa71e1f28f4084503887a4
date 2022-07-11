@@ -33,6 +33,24 @@
       "message": "nit: Put full path here (i.e. gd/metrics/metrics.h)",
       "revId": "a5aa37a0576f333c75fa71e1f28f4084503887a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2325aeed_00bf7582",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-11T21:27:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eac53ebc_1f949aa7",
+      "revId": "a5aa37a0576f333c75fa71e1f28f4084503887a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
