@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d59d32f9_52a163cd",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-11T05:43:12Z",
+      "side": 1,
+      "message": "I was wondering if you\u0027re trying to complete the partially matched word for the case c.matched_len \u003e 0? May I know the case candidates.len() \u003d\u003d 1 needs to be dealt with specially?",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "8f3fe5b858bde2f2c89f8036da13049cd23c32d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
