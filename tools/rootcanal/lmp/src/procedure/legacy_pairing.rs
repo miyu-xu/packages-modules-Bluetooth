@@ -39,7 +39,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
         ctx.send_hci_event(
             hci::LinkKeyNotificationBuilder {
                 bd_addr: ctx.peer_address(),
-                key_type: hci::KeyType::AuthenticatedP192,
+                key_type: hci::KeyType::Combination,
                 link_key,
             }
             .build(),
@@ -80,7 +80,7 @@ pub async fn respond(ctx: &impl Context, _request: lmp::InRandPacket) -> Result<
         ctx.send_hci_event(
             hci::LinkKeyNotificationBuilder {
                 bd_addr: ctx.peer_address(),
-                key_type: hci::KeyType::AuthenticatedP192,
+                key_type: hci::KeyType::Combination,
                 link_key,
             }
             .build(),
