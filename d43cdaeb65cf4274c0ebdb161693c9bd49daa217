@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac32522d_735f465b",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-07-11T22:10:59Z",
+      "side": 1,
+      "message": "remove the trailing whitespaces",
+      "revId": "d43cdaeb65cf4274c0ebdb161693c9bd49daa217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c36f29cf_2b0a49ed",
+        "filename": "system/main/shim/stack.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-07-11T22:10:59Z",
+      "side": 1,
+      "message": "I would just always add the module and have the module provide the data.  This way we can eliminate ifdefs in calling locations as well as here.",
+      "revId": "d43cdaeb65cf4274c0ebdb161693c9bd49daa217",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
