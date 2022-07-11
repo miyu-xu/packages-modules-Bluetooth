@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a65dc61_02b9589a",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-07-11T02:25:49Z",
+      "side": 1,
+      "message": "Do we need to add the check for flush audio?",
+      "revId": "18cb5dbbfa10ff271134681f47a9fcaf56e78201",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
