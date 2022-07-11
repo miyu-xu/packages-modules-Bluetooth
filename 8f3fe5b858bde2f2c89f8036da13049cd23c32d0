@@ -22,6 +22,30 @@
       },
       "revId": "8f3fe5b858bde2f2c89f8036da13049cd23c32d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b2989f0_9bb71c89",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-11T06:07:12Z",
+      "side": 1,
+      "message": "This is because when there is only one candidate, Completer will replace the input string with that candidate. For example, if one types \"list bon\" then press tab to see the candidates, if Completer.complete returns \"bonded\" as the other case, the input will become \"bonded\" instead of \"list bonded\".\n\nI\u0027ve also added some comments in this case for clarity.",
+      "parentUuid": "d59d32f9_52a163cd",
+      "range": {
+        "startLine": 43,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "8f3fe5b858bde2f2c89f8036da13049cd23c32d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
