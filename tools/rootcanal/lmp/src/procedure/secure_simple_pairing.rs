@@ -6,7 +6,7 @@ use num_traits::{FromPrimitive, ToPrimitive};
 
 use crate::either::Either;
 use crate::packets::{hci, lmp};
-use crate::procedure::{authentication, Context};
+use crate::procedure::{authentication, features, Context};
 
 use crate::num_hci_command_packets;
 
@@ -23,7 +23,8 @@ fn has_mitm(requirements: hci::AuthenticationRequirements) -> bool {
 
 enum AuthenticationMethod {
     OutOfBand,
-    NumericComparaison,
+    NumericComparaisonJustWork,
+    NumericComparaisonUserConfirm,
     PasskeyEntry,
 }
 
@@ -47,28 +48,74 @@ fn authentication_method(
     } else if !has_mitm(initiator.authentication_requirements)
         && !has_mitm(responder.authentication_requirements)
     {
-        AuthenticationMethod::NumericComparaison
+        AuthenticationMethod::NumericComparaisonJustWork
     } else if (initiator.io_capability == KeyboardOnly
         && responder.io_capability != NoInputNoOutput)
         || (responder.io_capability == KeyboardOnly && initiator.io_capability != NoInputNoOutput)
     {
         AuthenticationMethod::PasskeyEntry
+    } else if initiator.io_capability == DisplayYesNo && responder.io_capability == DisplayYesNo {
+        AuthenticationMethod::NumericComparaisonUserConfirm
     } else {
-        AuthenticationMethod::NumericComparaison
+        AuthenticationMethod::NumericComparaisonJustWork
+    }
+}
+
+async fn secure_connection_supported(ctx: &impl Context) -> bool {
+    let ssp_bit = hci::LMPFeaturesPage1Bits::SecureConnectionsHostSupport.to_u64().unwrap();
+    let local_supported = ctx.extended_features(1) & ssp_bit != 0;
+    // Lazy peer features
+    let peer_supported = async move {
+        let page = if let Some(page) = ctx.peer_extended_features(1) {
+            page
+        } else {
+            features::initiate(ctx, 1).await
+        };
+        page & ssp_bit != 0
+    };
+    local_supported && peer_supported.await
+}
+
+// Bluetooth Core, Vol 3, Part C, 5.2.2.6
+async fn link_key_type(ctx: &impl Context, auth_method: AuthenticationMethod) -> hci::KeyType {
+    use hci::KeyType::*;
+    use AuthenticationMethod::*;
+
+    match auth_method {
+        OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm => {
+            if secure_connection_supported(ctx).await {
+                AuthenticatedP256
+            } else {
+                AuthenticatedP192
+            }
+        }
+        NumericComparaisonJustWork => {
+            if secure_connection_supported(ctx).await {
+                UnauthenticatedP256
+            } else {
+                UnauthenticatedP192
+            }
+        }
     }
 }
 
 const P192_PUBLIC_KEY_SIZE: usize = 48;
+const P256_PUBLIC_KEY_SIZE: usize = 64;
 
-async fn send_public_key(ctx: &impl Context, transaction_id: u8, key: &[u8; P192_PUBLIC_KEY_SIZE]) {
+async fn send_public_key(ctx: &impl Context, transaction_id: u8, key: &[u8]) {
     // TODO: handle error
+    let key_size = if secure_connection_supported(ctx).await {
+        P256_PUBLIC_KEY_SIZE
+    } else {
+        P192_PUBLIC_KEY_SIZE
+    };
     let _ = ctx
         .send_accepted_lmp_packet(
             lmp::EncapsulatedHeaderBuilder {
                 transaction_id,
                 major_type: 1,
                 minor_type: 1,
-                payload_length: P192_PUBLIC_KEY_SIZE as u8,
+                payload_length: key_size as u8,
             }
             .build(),
         )
@@ -85,16 +132,21 @@ async fn send_public_key(ctx: &impl Context, transaction_id: u8, key: &[u8; P192
     }
 }
 
-async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> [u8; P192_PUBLIC_KEY_SIZE] {
-    let _ = ctx.receive_lmp_packet::<lmp::EncapsulatedHeaderPacket>().await;
+async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> Vec<u8> {
+    let key_size: usize =
+        ctx.receive_lmp_packet::<lmp::EncapsulatedHeaderPacket>().await.get_payload_length().into();
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder { transaction_id, accepted_opcode: lmp::Opcode::EncapsulatedHeader }
             .build(),
     );
 
-    let mut key = [0; P192_PUBLIC_KEY_SIZE];
+    let mut key = [0; P256_PUBLIC_KEY_SIZE];
 
+    let mut index = 0;
     for chunk in key.chunks_mut(16) {
+        if index >= key_size {
+            break;
+        }
         let payload = ctx.receive_lmp_packet::<lmp::EncapsulatedPayloadPacket>().await;
         chunk.copy_from_slice(payload.get_data().as_slice());
         ctx.send_lmp_packet(
@@ -104,9 +156,10 @@ async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> [u8; P192
             }
             .build(),
         );
+        index += chunk.len();
     }
 
-    key
+    key[0..key_size].try_into().unwrap()
 }
 
 const COMMITMENT_VALUE_SIZE: usize = 16;
@@ -370,9 +423,11 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     }
 
     // Authentication Stage 1
+    let auth_method = authentication_method(initiator, responder);
     let result: Result<(), ()> = async {
-        match authentication_method(initiator, responder) {
-            AuthenticationMethod::NumericComparaison => {
+        match auth_method {
+            AuthenticationMethod::NumericComparaisonJustWork
+            | AuthenticationMethod::NumericComparaisonUserConfirm => {
                 send_commitment(ctx, true).await;
 
                 user_confirmation_request(ctx).await?;
@@ -466,13 +521,10 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     if auth_result.is_err() {
         Err(())
     }
+
+    let key_type = link_key_type(ctx, auth_method).await;
     ctx.send_hci_event(
-        hci::LinkKeyNotificationBuilder {
-            bd_addr: ctx.peer_address(),
-            key_type: hci::KeyType::AuthenticatedP192,
-            link_key,
-        }
-        .build(),
+        hci::LinkKeyNotificationBuilder { bd_addr: ctx.peer_address(), key_type, link_key }.build(),
     );
 
     Ok(())
@@ -539,9 +591,10 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     }
 
     // Authentication Stage 1
-
-    let negative_user_confirmation = match authentication_method(initiator, responder) {
-        AuthenticationMethod::NumericComparaison => {
+    let auth_method = authentication_method(initiator, responder);
+    let negative_user_confirmation = match auth_method {
+        AuthenticationMethod::NumericComparaisonJustWork
+        | AuthenticationMethod::NumericComparaisonUserConfirm => {
             receive_commitment(ctx, true).await;
 
             let user_confirmation = user_confirmation_request(ctx).await;
@@ -641,13 +694,10 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     if auth_result.is_err() {
         Err(())
     }
+
+    let key_type = link_key_type(ctx, auth_method).await;
     ctx.send_hci_event(
-        hci::LinkKeyNotificationBuilder {
-            bd_addr: ctx.peer_address(),
-            key_type: hci::KeyType::AuthenticatedP192,
-            link_key,
-        }
-        .build(),
+        hci::LinkKeyNotificationBuilder { bd_addr: ctx.peer_address(), key_type, link_key }.build(),
     );
 
     Ok(())
