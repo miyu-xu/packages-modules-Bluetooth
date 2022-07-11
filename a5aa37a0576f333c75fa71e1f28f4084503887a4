@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "977df935_d1f9307a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-11T18:01:22Z",
+      "side": 1,
+      "message": "overall lgtm but please fix headers nit for consistency.",
+      "revId": "a5aa37a0576f333c75fa71e1f28f4084503887a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac53ebc_1f949aa7",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-11T18:01:22Z",
+      "side": 1,
+      "message": "nit: Put full path here (i.e. gd/metrics/metrics.h)",
+      "revId": "a5aa37a0576f333c75fa71e1f28f4084503887a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
