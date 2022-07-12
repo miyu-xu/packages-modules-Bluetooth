@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2903adfa_139fbc10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-12T07:25:53Z",
+      "side": 1,
+      "message": "I don\u0027t think relying on features like that is a good idea, and I think that we should find a solution in PTS-bot instead 😊",
+      "revId": "d1def1d67ab6b982968c48bb3847e20bd283cc9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
