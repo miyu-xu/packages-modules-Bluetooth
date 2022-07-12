@@ -64,7 +64,7 @@ sequence! { procedure, context,
     repeat 3 times {
         IUT -> Lower Tester: EncapsulatedPayload {
             transaction_id: 0,
-            data: [0; 16],
+            data: sample_p192_public_key(&context),
         }
         Lower Tester -> IUT: Accepted {
             transaction_id: 0,
@@ -84,7 +84,7 @@ sequence! { procedure, context,
     repeat 3 times {
         Lower Tester -> IUT: EncapsulatedPayload {
             transaction_id: 0,
-            data: [0; 16],
+            data: sample_p192_public_key(&context),
         }
         IUT -> Lower Tester: Accepted {
             transaction_id: 0,
