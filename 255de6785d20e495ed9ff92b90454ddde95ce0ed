@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d23d6f03_94b2379e",
+        "filename": "tools/rootcanal/model/devices/baseband_sniffer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-07-12T15:24:51Z",
+      "side": 1,
+      "message": "Allow off/on for sniffers (1) for long running callers like the simulator, (2) to let developers better isolate the sniff data.\n\nIn that case HciSniffer was a good API approach, passing around outputStream that if null disables sniffing.\n\nvoid HciSniffer::SetOutputStream(std::shared_ptr\u003cstd::ostream\u003e outputStream)",
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bdb8343b_e91d969f",
         "filename": "tools/rootcanal/packets/bredr_bb.pdl",
         "patchSetId": 2
@@ -91,6 +108,23 @@
         "endLine": 1,
         "endChar": 65
       },
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82356252_365c5c94",
+        "filename": "tools/rootcanal/packets/bredr_bb.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-07-12T15:24:51Z",
+      "side": 1,
+      "message": "where does this come from?",
       "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
