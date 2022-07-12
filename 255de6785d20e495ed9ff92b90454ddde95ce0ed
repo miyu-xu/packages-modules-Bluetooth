@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a6e22323_af51ec93",
+        "filename": "tools/rootcanal/model/devices/baseband_sniffer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-12T15:44:30Z",
+      "side": 1,
+      "message": "This is already available by default as you just need to add/remove the BaseBandSniffer from your TestModel to enable and disable it.\n\nFor the HciSniffer the `SetOutputStream` was added because we had a chicken and egg problem where we wanted to put the Bluetooth Device Address in the name of the file but to get the address we need to have the transport.",
+      "parentUuid": "d23d6f03_94b2379e",
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bdb8343b_e91d969f",
         "filename": "tools/rootcanal/packets/bredr_bb.pdl",
         "patchSetId": 2
@@ -125,6 +143,24 @@
       "writtenOn": "2022-07-12T15:24:51Z",
       "side": 1,
       "message": "where does this come from?",
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bff4663f_5dd9cfca",
+        "filename": "tools/rootcanal/packets/bredr_bb.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-12T15:44:30Z",
+      "side": 1,
+      "message": "This comes from the http://www.whiterocker.com/bt/LINKTYPE_BLUETOOTH_BREDR_BB.html specification, it\u0027s optional and can be used to store the noise power in dBm for this packet during the capture.",
+      "parentUuid": "82356252_365c5c94",
       "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
