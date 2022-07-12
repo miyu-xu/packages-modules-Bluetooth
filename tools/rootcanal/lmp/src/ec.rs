@@ -1,0 +1,218 @@
+use num_bigint::BigInt;
+use num_integer::Integer;
+use num_traits::{One, Zero};
+use std::fmt;
+
+#[derive(Debug)]
+pub struct EcPoint {
+    pub x: BigInt,
+    pub y: BigInt,
+}
+
+impl EcPoint {
+    pub fn zero() -> Self {
+        EcPoint { x: BigInt::zero(), y: BigInt::zero() }
+    }
+
+    pub fn is_zero(&self) -> bool {
+        self.x.is_zero() && self.y.is_zero()
+    }
+}
+
+impl Clone for EcPoint {
+    fn clone(&self) -> Self {
+        EcPoint { x: self.x.clone(), y: self.y.clone() }
+    }
+}
+
+impl PartialEq for EcPoint {
+    fn eq(&self, other: &Self) -> bool {
+        self.x == other.x && self.y == other.y
+    }
+}
+
+impl fmt::Display for EcPoint {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({}, {})", self.x, self.y)
+    }
+}
+
+// Modular Inverse
+fn mod_inv(x: BigInt, m: BigInt) -> Option<BigInt> {
+    let egcd = x.extended_gcd(&m);
+    if !egcd.gcd.is_one() {
+        None
+    } else {
+        Some(egcd.x % m)
+    }
+}
+
+const SECP192R1_P: &[u8; 48] = b"fffffffffffffffffffffffffffffffeffffffffffffffff";
+const SECP192R1_A: i32 = -3;
+const SECP192R1_G_X: &[u8; 48] = b"188da80eb03090f67cbf20eb43a18800f4ff0afd82ff1012";
+const SECP192R1_G_Y: &[u8; 48] = b"07192b95ffc8da78631011ed6b24cdd573f977a11e794811";
+
+const SECP256R1_P: &[u8; 64] = b"ffffffff00000001000000000000000000000000ffffffffffffffffffffffff";
+const SECP256R1_A: i32 = -3;
+const SECP256R1_G_X: &[u8; 64] =
+    b"6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296";
+const SECP256R1_G_Y: &[u8; 64] =
+    b"4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5";
+
+// E: y^2 = x^3 + a * x + b (mod p)
+pub struct EcGroup {
+    p: BigInt,
+    a: BigInt,
+    // Generator point
+    g: EcPoint,
+}
+
+impl EcGroup {
+    pub fn p192() -> Self {
+        EcGroup {
+            p: BigInt::parse_bytes(SECP192R1_P, 16).unwrap(),
+            a: BigInt::from(SECP192R1_A),
+            g: EcPoint {
+                x: BigInt::parse_bytes(SECP192R1_G_X, 16).unwrap(),
+                y: BigInt::parse_bytes(SECP192R1_G_Y, 16).unwrap(),
+            },
+        }
+    }
+
+    pub fn p256() -> Self {
+        EcGroup {
+            p: BigInt::parse_bytes(SECP256R1_P, 16).unwrap(),
+            a: BigInt::from(SECP256R1_A),
+            g: EcPoint {
+                x: BigInt::parse_bytes(SECP256R1_G_X, 16).unwrap(),
+                y: BigInt::parse_bytes(SECP256R1_G_Y, 16).unwrap(),
+            },
+        }
+    }
+
+    fn add(&self, p1: EcPoint, p2: EcPoint) -> EcPoint {
+        if p1.is_zero() {
+            return p2;
+        }
+        if p2.is_zero() {
+            return p1;
+        }
+        if p1.x == p2.x && p1.y != p2.y {
+            return EcPoint::zero();
+        }
+        let l = if p1.x == p2.x {
+            ((3 * p1.x.pow(2) + self.a.clone())
+                * mod_inv(2 * p1.y.clone(), self.p.clone()).unwrap())
+                % self.p.clone()
+        } else {
+            ((p2.y - p1.y.clone()) * mod_inv(p2.x.clone() - p1.x.clone(), self.p.clone()).unwrap())
+                % self.p.clone()
+        };
+        // else:
+        let x = (l.pow(2) - p1.x.clone() - p2.x) % self.p.clone();
+        let y = (l * (p1.x.clone() - x.clone()) - p1.y) % self.p.clone();
+        EcPoint { x, y }
+    }
+
+    fn mul(&self, p: EcPoint, n: BigInt) -> EcPoint {
+        let mut addend = p;
+        let mut result = EcPoint::zero();
+        let mut i = n;
+
+        while !i.is_zero() {
+            if i.is_odd() {
+                result = self.add(result, addend.clone());
+            }
+            addend = self.add(addend.clone(), addend);
+            i >>= 1;
+        }
+        result
+    }
+
+    pub fn generate(&self, private_key: BigInt) -> EcPoint {
+        self.mul(self.g.clone(), private_key)
+    }
+
+    pub fn shared_secret(&self, private_key: BigInt, public_key: EcPoint) -> EcPoint {
+        self.mul(public_key, private_key)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::ec::EcGroup;
+    use num_bigint::BigInt;
+
+    // Private A, Private B, Public A(x), DHKey
+    const P192_TEST_CASES: [(&[u8; 48], &[u8; 48], &[u8; 48], &[u8; 48]); 4] = [
+        (
+            b"07915f86918ddc27005df1d6cf0c142b625ed2eff4a518ff",
+            b"1e636ca790b50f68f15d8dbe86244e309211d635de00e16d",
+            b"15207009984421a6586f9fc3fe7e4329d2809ea51125f8ed",
+            b"fb3ba2012c7e62466e486e229290175b4afebc13fdccee46",
+        ),
+        (
+            b"52ec1ca6e0ec973c29065c3ca10be80057243002f09bb43e",
+            b"57231203533e9efe18cc622fd0e34c6a29c6e0fa3ab3bc53",
+            b"45571f027e0d690795d61560804da5de789a48f94ab4b07e",
+            b"a20a34b5497332aa7a76ab135cc0c168333be309d463c0c0",
+        ),
+        (
+            b"00a0df08eaf51e6e7be519d67c6749ea3f4517cdd2e9e821",
+            b"2bf5e0d1699d50ca5025e8e2d9b13244b4d322a328be1821",
+            b"2ed35b430fa45f9d329186d754eeeb0495f0f653127f613d",
+            b"3b3986ba70790762f282a12a6d3bcae7a2ca01e25b87724e",
+        ),
+        (
+            b"030a4af66e1a4d590a83e0284fca5cdf83292b84f4c71168",
+            b"12448b5c69ecd10c0471060f2bf86345c5e83c03d16bae2c",
+            b"f24a6899218fa912e7e4a8ba9357cb8182958f9fa42c968c",
+            b"4a78f83fba757c35f94abea43e92effdd2bc700723c61939",
+        ),
+    ];
+
+    const P256_TEST_CASES: [(&[u8; 64], &[u8; 64], &[u8; 64], &[u8; 64]); 2] = [
+        (
+            b"3f49f6d4a3c55f3874c9b3e3d2103f504aff607beb40b7995899b8a6cd3c1abd",
+            b"55188b3d32f6bb9a900afcfbeed4e72a59cb9ac2f19d7cfb6b4fdd49f47fc5fd",
+            b"20b003d2f297be2c5e2c83a7e9f9a5b9eff49111acf4fddbcc0301480e359de6",
+            b"ec0234a357c8ad05341010a60a397d9b99796b13b4f866f1868d34f373bfa698",
+        ),
+        (
+            b"06a516693c9aa31a6084545d0c5db641b48572b97203ddffb7ac73f7d0457663",
+            b"529aa0670d72cd6497502ed473502b037e8803b5c60829a5a3caa219505530ba",
+            b"2c31a47b5779809ef44cb5eaaf5c3e43d5f8faad4a8794cb987e9b03745c78dd",
+            b"ab85843a2f6d883f62e5684b38e307335fe6e1945ecd19604105c6f23221eb69",
+        ),
+    ];
+
+    #[test]
+    fn p192() {
+        let group = EcGroup::p192();
+        for test_case in P192_TEST_CASES {
+            let priv_a = BigInt::parse_bytes(test_case.0, 16).unwrap();
+            let priv_b = BigInt::parse_bytes(test_case.1, 16).unwrap();
+            let pub_a = group.generate(priv_a.clone());
+            let pub_b = group.generate(priv_b.clone());
+            assert_eq!(pub_a.clone().x, BigInt::parse_bytes(test_case.2, 16).unwrap());
+            let shared = group.shared_secret(priv_b, pub_a);
+            assert_eq!(shared.x, BigInt::parse_bytes(test_case.3, 16).unwrap());
+            assert_eq!(shared.x, group.shared_secret(priv_a, pub_b).x)
+        }
+    }
+
+    #[test]
+    fn p256() {
+        let group = EcGroup::p256();
+        for test_case in P256_TEST_CASES {
+            let priv_a = BigInt::parse_bytes(test_case.0, 16).unwrap();
+            let priv_b = BigInt::parse_bytes(test_case.1, 16).unwrap();
+            let pub_a = group.generate(priv_a.clone());
+            let pub_b = group.generate(priv_b.clone());
+            assert_eq!(pub_a.clone().x, BigInt::parse_bytes(test_case.2, 16).unwrap());
+            let shared = group.shared_secret(priv_b, pub_a);
+            assert_eq!(shared.x, BigInt::parse_bytes(test_case.3, 16).unwrap());
+            assert_eq!(shared.x, group.shared_secret(priv_a, pub_b).x)
+        }
+    }
+}
