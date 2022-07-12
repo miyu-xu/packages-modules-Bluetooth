@@ -2,13 +2,20 @@
 
 use std::convert::TryInto;
 
+use num_bigint::BigInt;
 use num_traits::{FromPrimitive, ToPrimitive};
 
+use crate::ec::{EcGroup, EcPoint};
 use crate::either::Either;
 use crate::packets::{hci, lmp};
 use crate::procedure::{authentication, features, Context};
 
 use crate::num_hci_command_packets;
+
+const P192_PRIVATE_KEY_SIZE: usize = 24;
+const P256_PRIVATE_KEY_SIZE: usize = 32;
+const P192_PUBLIC_KEY_SIZE: usize = 48;
+const P256_PUBLIC_KEY_SIZE: usize = 64;
 
 fn has_mitm(requirements: hci::AuthenticationRequirements) -> bool {
     use hci::AuthenticationRequirements::*;
@@ -28,8 +35,10 @@ enum AuthenticationMethod {
     PasskeyEntry,
 }
 
-const P192_PUBLIC_KEY_SIZE: usize = 48;
-const P256_PUBLIC_KEY_SIZE: usize = 64;
+enum DhKey {
+    P192(BigInt),
+    P256(BigInt),
+}
 
 enum PublicKey {
     P192([u8; P192_PUBLIC_KEY_SIZE]),
@@ -63,6 +72,28 @@ impl PublicKey {
         match self {
             PublicKey::P192(_) => P192_PUBLIC_KEY_SIZE,
             PublicKey::P256(_) => P256_PUBLIC_KEY_SIZE,
+        }
+    }
+
+    fn to_ec_point(&self) -> EcPoint {
+        let size = self.get_size();
+        let inner = self.as_slice();
+        EcPoint {
+            x: BigInt::from_signed_bytes_le(&inner[0..size / 2]),
+            y: BigInt::from_signed_bytes_le(&inner[size / 2..size]),
+        }
+    }
+
+    fn from_point(point: EcPoint, key_size: usize) -> Option<PublicKey> {
+        let mut x = point.x.to_signed_bytes_le();
+        x.resize(key_size / 2, 0);
+        let mut y = point.y.to_signed_bytes_le();
+        y.resize(key_size / 2, 0);
+        x.append(&mut y);
+        match key_size {
+            P192_PUBLIC_KEY_SIZE => Some(PublicKey::P192(x.try_into().unwrap())),
+            P256_PUBLIC_KEY_SIZE => Some(PublicKey::P256(x.try_into().unwrap())),
+            _ => None,
         }
     }
 }
@@ -101,19 +132,19 @@ fn authentication_method(
 }
 
 // Bluetooth Core, Vol 3, Part C, 5.2.2.6
-fn link_key_type(auth_method: AuthenticationMethod, public_key: PublicKey) -> hci::KeyType {
+fn link_key_type(auth_method: AuthenticationMethod, dh_key: DhKey) -> hci::KeyType {
     use hci::KeyType::*;
     use AuthenticationMethod::*;
 
-    match (public_key, auth_method) {
-        (PublicKey::P256(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
+    match (dh_key, auth_method) {
+        (DhKey::P256(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
             AuthenticatedP256
         }
-        (PublicKey::P192(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
+        (DhKey::P192(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
             AuthenticatedP192
         }
-        (PublicKey::P256(_), NumericComparaisonJustWork) => UnauthenticatedP256,
-        (PublicKey::P192(_), NumericComparaisonJustWork) => UnauthenticatedP192,
+        (DhKey::P256(_), NumericComparaisonJustWork) => UnauthenticatedP256,
+        (DhKey::P192(_), NumericComparaisonJustWork) => UnauthenticatedP192,
     }
 }
 
@@ -420,15 +451,28 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     };
 
     // Public Key Exchange
-    let peer_public_key = {
+    let dh_key = {
         use hci::LMPFeaturesPage1Bits::SecureConnectionsHostSupport;
-        let key = if features::supported_on_both_page1(ctx, SecureConnectionsHostSupport).await {
-            PublicKey::generate(P256_PUBLIC_KEY_SIZE).unwrap()
+
+        if features::supported_on_both_page1(ctx, SecureConnectionsHostSupport).await {
+            let curve = EcGroup::p192();
+            let private_key = ctx.generate_private_key(P192_PRIVATE_KEY_SIZE);
+            let local_public_key =
+                PublicKey::from_point(curve.generate(private_key.clone()), P192_PUBLIC_KEY_SIZE)
+                    .unwrap();
+            send_public_key(ctx, 0, local_public_key).await;
+            let peer_public_key = receive_public_key(ctx, 0).await;
+            DhKey::P192(curve.shared_secret(private_key, peer_public_key.to_ec_point()).x)
         } else {
-            PublicKey::generate(P192_PUBLIC_KEY_SIZE).unwrap()
-        };
-        send_public_key(ctx, 0, key).await;
-        receive_public_key(ctx, 0).await
+            let curve = EcGroup::p256();
+            let private_key = ctx.generate_private_key(P256_PRIVATE_KEY_SIZE);
+            let local_public_key =
+                PublicKey::from_point(curve.generate(private_key.clone()), P256_PUBLIC_KEY_SIZE)
+                    .unwrap();
+            send_public_key(ctx, 0, local_public_key).await;
+            let peer_public_key = receive_public_key(ctx, 0).await;
+            DhKey::P256(curve.shared_secret(private_key, peer_public_key.to_ec_point()).x)
+        }
     };
 
     // Authentication Stage 1
@@ -523,7 +567,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     );
 
     // Link Key Calculation
-    let link_key = [0; 16];
+    let link_key = ctx.generate_random_bytes(16).try_into().unwrap();
     let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
     authentication::receive_challenge(ctx, link_key).await;
 
@@ -534,7 +578,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     ctx.send_hci_event(
         hci::LinkKeyNotificationBuilder {
             bd_addr: ctx.peer_address(),
-            key_type: link_key_type(auth_method, peer_public_key),
+            key_type: link_key_type(auth_method, dh_key),
             link_key,
         }
         .build(),
@@ -597,11 +641,34 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     };
 
     // Public Key Exchange
-    let peer_public_key = {
+    let dh_key = {
         let peer_public_key = receive_public_key(ctx, 0).await;
-        let public_key = PublicKey::generate(peer_public_key.get_size()).unwrap();
-        send_public_key(ctx, 0, public_key).await;
-        peer_public_key
+        match peer_public_key {
+            PublicKey::P192(_) => {
+                let curve = EcGroup::p192();
+                let private_key = ctx.generate_private_key(P192_PRIVATE_KEY_SIZE);
+                let local_public_key = PublicKey::from_point(
+                    curve.generate(private_key.clone()),
+                    P192_PUBLIC_KEY_SIZE,
+                )
+                .unwrap();
+                let shared_secret = curve.shared_secret(private_key, peer_public_key.to_ec_point());
+                send_public_key(ctx, 0, local_public_key).await;
+                DhKey::P192(shared_secret.x)
+            }
+            PublicKey::P256(_) => {
+                let curve = EcGroup::p256();
+                let private_key = ctx.generate_private_key(P256_PRIVATE_KEY_SIZE);
+                let local_public_key = PublicKey::from_point(
+                    curve.generate(private_key.clone()),
+                    P256_PUBLIC_KEY_SIZE,
+                )
+                .unwrap();
+                let shared_secret = curve.shared_secret(private_key, peer_public_key.to_ec_point());
+                send_public_key(ctx, 0, local_public_key).await;
+                DhKey::P256(shared_secret.x)
+            }
+        }
     };
 
     // Authentication Stage 1
@@ -712,7 +779,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     ctx.send_hci_event(
         hci::LinkKeyNotificationBuilder {
             bd_addr: ctx.peer_address(),
-            key_type: link_key_type(auth_method, peer_public_key),
+            key_type: link_key_type(auth_method, dh_key),
             link_key,
         }
         .build(),
