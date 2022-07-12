@@ -1,3 +1,6 @@
+use num_bigint::BigInt;
+use num_traits::sign::Signed;
+use rand::prelude::*;
 use std::convert::TryFrom;
 use std::future::Future;
 use std::pin::Pin;
@@ -38,6 +41,19 @@ pub trait Context {
         self.send_lmp_packet(packet);
 
         SendAcceptedLmpPacketFuture(self, opcode)
+    }
+
+    fn generate_random_bytes(&self, length: usize) -> Vec<u8> {
+        (0..length).map(|_| rand::thread_rng().gen()).collect()
+    }
+
+    fn generate_private_key(&self, key_size: usize) -> BigInt {
+        let key = BigInt::from_signed_bytes_le(&self.generate_random_bytes(key_size / 8));
+        if key.is_negative() {
+            -key
+        } else {
+            key
+        }
     }
 }
 
