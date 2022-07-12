@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b9fab9d_3ac69be2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-12T10:07:04Z",
+      "side": 1,
+      "message": "There are some places that checking different things before call batteryService.connect().\n\nhttps://source.corp.google.com/search?q\u003dbatteryService.connect\u0026sq\u003dpackage:%5Eaosp-master$%7C%5Eaosp-androidx$\n\nIs it intended? or can we just have a method in BatteryService like canConnect() or connectIfPossible(BluetoothDevice device)?",
+      "revId": "8e855a2fc06ec2880f4fba91d8dbce5d05d6c509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da1524c8_ba555f7f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-12T10:07:04Z",
+      "side": 1,
+      "message": "Please fix the indentation",
+      "revId": "8e855a2fc06ec2880f4fba91d8dbce5d05d6c509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01f4a138_ca55c5a9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-12T10:07:04Z",
+      "side": 1,
+      "message": "Please fix the indentation",
+      "revId": "8e855a2fc06ec2880f4fba91d8dbce5d05d6c509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
