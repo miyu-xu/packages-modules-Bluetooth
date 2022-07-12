@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61a94208_270d94bd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-12T21:09:55Z",
+      "side": 1,
+      "message": "prefer: `HashMap\u003cCallbackId, Vec\u003cScannerInfo\u003e\u003e`. Makes disconnect much simpler and is probably better in the long run.\n\nSince you need to look up by uuid too, you could have another map of active registrations `HashMap\u003cUuid, CallbackId\u003e` which you remove from on success/failure.",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd42466_1fb62cf0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-12T21:09:55Z",
+      "side": 1,
+      "message": "Since we\u0027re dispatching, maybe get rid of this debug!",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817e71d4_1738539c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-12T21:09:55Z",
+      "side": 1,
+      "message": "Alternative would be to require unique identifier from client -- any reason why not? (Maybe we document it -- clients should serialize register scanner?)",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "259d6dc9_b6c794c1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-12T21:09:55Z",
+      "side": 1,
+      "message": "We should remove the scanner info from the list of scanners when register fails. Otherwise, failing registrations would just keep growing this vector.",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
