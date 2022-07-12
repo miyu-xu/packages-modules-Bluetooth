@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcb0651c_b96465a2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-12T18:54:31Z",
+      "side": 1,
+      "message": "The methods here are intended to be a public interface between Floss and clients and this code is the source of truth of the API. Can we add a follow up to complete the documentation of the methods here?",
+      "revId": "7b95f9a0c722a2cf2939344b356bbf72b1e5757a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
