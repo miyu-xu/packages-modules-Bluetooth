@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07946a3f_3d4a1dac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-12T19:53:48Z",
+      "side": 1,
+      "message": "The Rust generator has a breakage on the test.  Filing a bug to remember to re-add the test when it is fixed.\n\n\ntest ReadLocalSupportedCodecsV1Complete {\n  \"\\x0E\\x0F\\x01\\x0B\\x10\\x00\\x05\\x00\\x01\\x02\\x03\\x05\\x01\\x11\\x00\\x22\\x00\",\n}",
+      "revId": "670540e7ce162623289522aec6bbba876a393626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
