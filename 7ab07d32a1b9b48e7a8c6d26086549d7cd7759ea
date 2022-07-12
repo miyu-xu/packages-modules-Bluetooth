@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4253975c_fba0c7f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-07-12T23:24:41Z",
+      "side": 1,
+      "message": "Corresponding overlay change: https://chromium-review.googlesource.com/c/chromiumos/overlays/chromiumos-overlay/+/3759412",
+      "revId": "7ab07d32a1b9b48e7a8c6d26086549d7cd7759ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
