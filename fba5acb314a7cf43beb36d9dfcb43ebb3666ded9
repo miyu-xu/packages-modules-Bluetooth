@@ -16,6 +16,24 @@
       "message": "I would have preferred stronger typing, but I see no way around that.",
       "revId": "fba5acb314a7cf43beb36d9dfcb43ebb3666ded9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e3b731d_0230f1e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-12T15:24:22Z",
+      "side": 1,
+      "message": "Yeah... I was conflicted about this too. I considered adding a newtype (`Label(String)`) but it all seems like a lot of indirection for little benefit.",
+      "parentUuid": "31f5983e_4130ac16",
+      "revId": "fba5acb314a7cf43beb36d9dfcb43ebb3666ded9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
