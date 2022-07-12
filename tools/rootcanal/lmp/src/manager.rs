@@ -8,6 +8,7 @@ use std::task::{Context, Poll};
 
 use thiserror::Error;
 
+use crate::ec::PrivateKey;
 use crate::ffi::LinkManagerOps;
 use crate::future::noop_waker;
 use crate::packets::{hci, lmp};
@@ -136,7 +137,11 @@ impl LinkManager {
 
         if let Some(index) = index {
             self.links[index].peer.set(peer);
-            let context = LinkContext { index: index as u8, manager: Rc::downgrade(self) };
+            let context = LinkContext {
+                index: index as u8,
+                manager: Rc::downgrade(self),
+                private_key: Default::default(),
+            };
             self.procedures.borrow_mut()[index] = Some(Box::pin(procedure::run(context)));
             Ok(())
         } else {
@@ -172,6 +177,7 @@ impl LinkManager {
 struct LinkContext {
     index: u8,
     manager: Weak<LinkManager>,
+    private_key: RefCell<Option<PrivateKey>>,
 }
 
 impl procedure::Context for LinkContext {
@@ -225,5 +231,13 @@ impl procedure::Context for LinkContext {
         } else {
             0
         }
+    }
+
+    fn get_private_key(&self) -> Option<PrivateKey> {
+        self.private_key.borrow().clone()
+    }
+
+    fn set_private_key(&self, key: &PrivateKey) {
+        *self.private_key.borrow_mut() = Some(key.clone())
     }
 }
