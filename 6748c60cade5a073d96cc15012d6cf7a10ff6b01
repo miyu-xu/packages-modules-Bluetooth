@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e972033d_e3d2ee7d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-12T16:50:56Z",
+      "side": 1,
+      "message": "Test: Turn PCAP logging off",
+      "revId": "6748c60cade5a073d96cc15012d6cf7a10ff6b01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
