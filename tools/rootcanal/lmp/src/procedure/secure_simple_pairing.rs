@@ -2,8 +2,10 @@
 
 use std::convert::TryInto;
 
+use num_bigint::BigInt;
 use num_traits::{FromPrimitive, ToPrimitive};
 
+use crate::ec::{EcGroup, EcPoint};
 use crate::either::Either;
 use crate::packets::{hci, lmp};
 use crate::procedure::{authentication, features, Context};
@@ -28,6 +30,8 @@ enum AuthenticationMethod {
     PasskeyEntry,
 }
 
+const P192_PRIVATE_KEY_SIZE: usize = 24;
+const P256_PRIVATE_KEY_SIZE: usize = 32;
 const P192_PUBLIC_KEY_SIZE: usize = 48;
 const P256_PUBLIC_KEY_SIZE: usize = 64;
 
@@ -37,7 +41,7 @@ enum PublicKey {
 }
 
 impl PublicKey {
-    fn generate(key_size: usize) -> Option<PublicKey> {
+    fn new(key_size: usize) -> Option<Self> {
         match key_size {
             P192_PUBLIC_KEY_SIZE => Some(PublicKey::P192([0; P192_PUBLIC_KEY_SIZE])),
             P256_PUBLIC_KEY_SIZE => Some(PublicKey::P256([0; P256_PUBLIC_KEY_SIZE])),
@@ -63,6 +67,41 @@ impl PublicKey {
         match self {
             PublicKey::P192(_) => P192_PUBLIC_KEY_SIZE,
             PublicKey::P256(_) => P256_PUBLIC_KEY_SIZE,
+        }
+    }
+
+    fn to_ec_point(&self) -> EcPoint {
+        let size = self.get_size();
+        let inner = self.as_slice();
+        EcPoint {
+            x: BigInt::from_signed_bytes_le(&inner[0..size / 2]),
+            y: BigInt::from_signed_bytes_le(&inner[size / 2..size]),
+        }
+    }
+
+    fn from_point(point: EcPoint, key_size: usize) -> Self {
+        let mut x = point.x.to_signed_bytes_le();
+        x.resize(key_size / 2, 0);
+        let mut y = point.y.to_signed_bytes_le();
+        y.resize(key_size / 2, 0);
+        x.append(&mut y);
+        let mut key = Self::new(key_size).unwrap();
+        key.as_mut_slice().copy_from_slice(&x);
+        key
+    }
+}
+
+enum DhKey {
+    P192(BigInt),
+    P256(BigInt),
+}
+
+impl DhKey {
+    fn shared_secret(curve: EcGroup, private_key: BigInt, public_key: PublicKey) -> Self {
+        let secret = curve.shared_secret(private_key, public_key.to_ec_point()).x;
+        match public_key {
+            PublicKey::P192(_) => DhKey::P192(secret),
+            PublicKey::P256(_) => DhKey::P256(secret),
         }
     }
 }
@@ -101,19 +140,19 @@ fn authentication_method(
 }
 
 // Bluetooth Core, Vol 3, Part C, 5.2.2.6
-fn link_key_type(auth_method: AuthenticationMethod, public_key: PublicKey) -> hci::KeyType {
+fn link_key_type(auth_method: AuthenticationMethod, dh_key: DhKey) -> hci::KeyType {
     use hci::KeyType::*;
     use AuthenticationMethod::*;
 
-    match (public_key, auth_method) {
-        (PublicKey::P256(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
+    match (dh_key, auth_method) {
+        (DhKey::P256(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
             AuthenticatedP256
         }
-        (PublicKey::P192(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
+        (DhKey::P192(_), OutOfBand | PasskeyEntry | NumericComparaisonUserConfirm) => {
             AuthenticatedP192
         }
-        (PublicKey::P256(_), NumericComparaisonJustWork) => UnauthenticatedP256,
-        (PublicKey::P192(_), NumericComparaisonJustWork) => UnauthenticatedP192,
+        (DhKey::P256(_), NumericComparaisonJustWork) => UnauthenticatedP256,
+        (DhKey::P192(_), NumericComparaisonJustWork) => UnauthenticatedP192,
     }
 }
 
@@ -145,7 +184,7 @@ async fn send_public_key(ctx: &impl Context, transaction_id: u8, public_key: Pub
 async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> PublicKey {
     let key_size: usize =
         ctx.receive_lmp_packet::<lmp::EncapsulatedHeaderPacket>().await.get_payload_length().into();
-    let mut key = PublicKey::generate(key_size).unwrap();
+    let mut key = PublicKey::new(key_size).unwrap();
 
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder { transaction_id, accepted_opcode: lmp::Opcode::EncapsulatedHeader }
@@ -420,15 +459,21 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     };
 
     // Public Key Exchange
-    let peer_public_key = {
+    let dh_key = {
         use hci::LMPFeaturesPage1Bits::SecureConnectionsHostSupport;
-        let key = if features::supported_on_both_page1(ctx, SecureConnectionsHostSupport).await {
-            PublicKey::generate(P256_PUBLIC_KEY_SIZE).unwrap()
-        } else {
-            PublicKey::generate(P192_PUBLIC_KEY_SIZE).unwrap()
-        };
-        send_public_key(ctx, 0, key).await;
-        receive_public_key(ctx, 0).await
+
+        let (curve, private_key_size, public_key_size) =
+            if features::supported_on_both_page1(ctx, SecureConnectionsHostSupport).await {
+                (EcGroup::p256(), P256_PRIVATE_KEY_SIZE, P256_PUBLIC_KEY_SIZE)
+            } else {
+                (EcGroup::p192(), P192_PRIVATE_KEY_SIZE, P192_PUBLIC_KEY_SIZE)
+            };
+        let private_key = ctx.generate_private_key(private_key_size);
+        let local_public_key =
+            PublicKey::from_point(curve.generate(private_key.clone()), public_key_size);
+        send_public_key(ctx, 0, local_public_key).await;
+        let peer_public_key = receive_public_key(ctx, 0).await;
+        DhKey::shared_secret(curve, private_key, peer_public_key)
     };
 
     // Authentication Stage 1
@@ -523,7 +568,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     );
 
     // Link Key Calculation
-    let link_key = [0; 16];
+    let link_key = ctx.generate_random_bytes(16).try_into().unwrap();
     let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
     authentication::receive_challenge(ctx, link_key).await;
 
@@ -534,7 +579,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     ctx.send_hci_event(
         hci::LinkKeyNotificationBuilder {
             bd_addr: ctx.peer_address(),
-            key_type: link_key_type(auth_method, peer_public_key),
+            key_type: link_key_type(auth_method, dh_key),
             link_key,
         }
         .build(),
@@ -597,11 +642,17 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     };
 
     // Public Key Exchange
-    let peer_public_key = {
+    let dh_key = {
         let peer_public_key = receive_public_key(ctx, 0).await;
-        let public_key = PublicKey::generate(peer_public_key.get_size()).unwrap();
-        send_public_key(ctx, 0, public_key).await;
-        peer_public_key
+        let (curve, private_key_size, public_key_size) = match peer_public_key {
+            PublicKey::P192(_) => (EcGroup::p192(), P192_PRIVATE_KEY_SIZE, P192_PUBLIC_KEY_SIZE),
+            PublicKey::P256(_) => (EcGroup::p256(), P256_PRIVATE_KEY_SIZE, P256_PUBLIC_KEY_SIZE),
+        };
+        let private_key = ctx.generate_private_key(private_key_size);
+        let local_public_key =
+            PublicKey::from_point(curve.generate(private_key.clone()), public_key_size);
+        send_public_key(ctx, 0, local_public_key).await;
+        DhKey::shared_secret(curve, private_key, peer_public_key)
     };
 
     // Authentication Stage 1
@@ -712,7 +763,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     ctx.send_hci_event(
         hci::LinkKeyNotificationBuilder {
             bd_addr: ctx.peer_address(),
-            key_type: link_key_type(auth_method, peer_public_key),
+            key_type: link_key_type(auth_method, dh_key),
             link_key,
         }
         .build(),
@@ -723,11 +774,21 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
 
 #[cfg(test)]
 mod tests {
+    use crate::ec::EcGroup;
+    use crate::procedure::secure_simple_pairing::PublicKey;
     use crate::procedure::Context;
     use crate::test::{sequence, TestContext};
+    use std::convert::TryInto;
     // simple pairing is part of authentication procedure
     use super::super::authentication::initiate;
     use super::super::authentication::respond;
+
+    fn sample_p192_public_key(context: &crate::test::TestContext, part: usize) -> [u8; 16] {
+        PublicKey::from_point(EcGroup::p192().generate(context.generate_private_key(24)), 48)
+            .as_slice()[part * 16..(part + 1) * 16]
+            .try_into()
+            .unwrap()
+    }
 
     #[test]
     fn initiate_size() {

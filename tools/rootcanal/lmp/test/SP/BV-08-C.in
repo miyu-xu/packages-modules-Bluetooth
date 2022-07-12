@@ -61,15 +61,29 @@ sequence! { procedure, context,
         transaction_id: 0,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
-    repeat 3 times {
-        IUT -> Lower Tester: EncapsulatedPayload {
-            transaction_id: 0,
-            data: [0; 16],
-        }
-        Lower Tester -> IUT: Accepted {
-            transaction_id: 0,
-            accepted_opcode: Opcode::EncapsulatedPayload,
-        }
+    IUT -> Lower Tester: EncapsulatedPayload {
+        transaction_id: 0,
+        data: sample_p192_public_key(&context, 0),
+    }
+    Lower Tester -> IUT: Accepted {
+        transaction_id: 0,
+        accepted_opcode: Opcode::EncapsulatedPayload,
+    }
+    IUT -> Lower Tester: EncapsulatedPayload {
+        transaction_id: 0,
+        data: sample_p192_public_key(&context, 1),
+    }
+    Lower Tester -> IUT: Accepted {
+        transaction_id: 0,
+        accepted_opcode: Opcode::EncapsulatedPayload,
+    }
+    IUT -> Lower Tester: EncapsulatedPayload {
+        transaction_id: 0,
+        data: sample_p192_public_key(&context, 2),
+    }
+    Lower Tester -> IUT: Accepted {
+        transaction_id: 0,
+        accepted_opcode: Opcode::EncapsulatedPayload,
     }
     Lower Tester -> IUT: EncapsulatedHeader {
         transaction_id: 0,
@@ -81,15 +95,29 @@ sequence! { procedure, context,
         transaction_id: 0,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
-    repeat 3 times {
-        Lower Tester -> IUT: EncapsulatedPayload {
-            transaction_id: 0,
-            data: [0; 16],
-        }
-        IUT -> Lower Tester: Accepted {
-            transaction_id: 0,
-            accepted_opcode: Opcode::EncapsulatedPayload,
-        }
+    Lower Tester -> IUT: EncapsulatedPayload {
+        transaction_id: 0,
+        data: sample_p192_public_key(&context, 0),
+    }
+    IUT -> Lower Tester: Accepted {
+        transaction_id: 0,
+        accepted_opcode: Opcode::EncapsulatedPayload,
+    }
+    Lower Tester -> IUT: EncapsulatedPayload {
+        transaction_id: 0,
+        data: sample_p192_public_key(&context, 1),
+    }
+    IUT -> Lower Tester: Accepted {
+        transaction_id: 0,
+        accepted_opcode: Opcode::EncapsulatedPayload,
+    }
+    Lower Tester -> IUT: EncapsulatedPayload {
+        transaction_id: 0,
+        data: sample_p192_public_key(&context, 2),
+    }
+    IUT -> Lower Tester: Accepted {
+        transaction_id: 0,
+        accepted_opcode: Opcode::EncapsulatedPayload,
     }
     // Authentication Stage 1: Numeric Comparaison Protocol
     Lower Tester -> IUT: SimplePairingConfirm {
