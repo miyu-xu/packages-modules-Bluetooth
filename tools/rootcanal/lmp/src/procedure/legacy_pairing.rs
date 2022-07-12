@@ -1,4 +1,5 @@
 // Bluetooth Core, Vol 2, Part C, 4.2.2
+use std::convert::TryInto;
 
 use crate::packets::{hci, lmp};
 use crate::procedure::{authentication, Context};
@@ -26,7 +27,8 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
         )
         .await;
 
-    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: [0; 16] }.build());
+    let link_key = ctx.generate_random_bytes(16).try_into().unwrap();
+    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: link_key }.build());
 
     let _ = ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await;
 
@@ -68,9 +70,9 @@ pub async fn respond(ctx: &impl Context, _request: lmp::InRandPacket) -> Result<
         lmp::AcceptedBuilder { transaction_id: 0, accepted_opcode: lmp::Opcode::InRand }.build(),
     );
 
-    let _ = ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await;
+    let link_key = *ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await.get_random_number();
 
-    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: [0; 16] }.build());
+    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: link_key }.build());
 
     // Post pairing authentication
     let link_key = [0; 16];
