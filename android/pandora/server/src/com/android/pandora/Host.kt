@@ -28,6 +28,7 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
+import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -39,6 +40,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
 
@@ -117,56 +119,80 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
+  suspend fun waitBondIntent(address:String?) {
+    // We only wait for bonding to be completed since we only need the ACL connection to be
+    // established with the peer device (on Android state connected is sent when all profiles
+    // have been connected).
+    Log.i(TAG, "waitBondIntent: address=$address")
+    flow.filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
+        .also{ if (address != null) it.filter { it.getBluetoothDeviceExtra().address == address } }
+        .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
+        .filter { it == BluetoothDevice.BOND_BONDED }
+        .first()
+  }
+
+  suspend fun waitPairingRequestIntent(address:String?):String {
+    Log.i(TAG, "waitPairingRequestIntent: address=$address")
+    var pairingRequestIntent = flow
+        .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
+        .also{ if (address != null) it.filter { it.getBluetoothDeviceExtra().address == address } }
+        .first()
+
+    val bluetoothDevice = pairingRequestIntent.getBluetoothDeviceExtra()
+    val pairingAddress = address?:bluetoothDevice.address
+    val pairingVariant = pairingRequestIntent.getIntExtra(
+      BluetoothDevice.EXTRA_PAIRING_VARIANT,
+      BluetoothDevice.ERROR
+    )
+
+    if (pairingVariant == BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION ||
+        pairingVariant == BluetoothDevice.PAIRING_VARIANT_CONSENT ||
+        pairingVariant == BluetoothDevice.PAIRING_VARIANT_PIN) {
+      bluetoothDevice.setPairingConfirmation(true)
+    }
+    return pairingAddress
+  }
+
   override fun waitConnection(
     request: WaitConnectionRequest,
     responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
     grpcUnary<WaitConnectionResponse>(scope, responseObserver) {
-      val address = MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
+      var address: String? = if (request.address.size() != 0) {
+        MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
+      } else {
+        null
+      }
       Log.i(TAG, "waitConnection: address=$address")
 
       if (!bluetoothAdapter.isEnabled) {
         Log.e(TAG, "Bluetooth is not enabled, cannot waitConnection")
         throw Status.UNKNOWN.asException()
       }
-
-      // Start a new coroutine that will accept any pairing request from the device.
-      val acceptPairingJob =
-        scope.launch {
-          val pairingRequestIntent =
-            flow
-              .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
-              .filter { it.getBluetoothDeviceExtra().address == address }
-              .first()
-
-          val bluetoothDevice = pairingRequestIntent.getBluetoothDeviceExtra()
-          val pairingVariant =
-            pairingRequestIntent.getIntExtra(
-              BluetoothDevice.EXTRA_PAIRING_VARIANT,
-              BluetoothDevice.ERROR
-            )
-
-          if (pairingVariant == BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION ||
-              pairingVariant == BluetoothDevice.PAIRING_VARIANT_CONSENT ||
-              pairingVariant == BluetoothDevice.PAIRING_VARIANT_PIN
-          ) {
-            bluetoothDevice.setPairingConfirmation(true)
+      runBlocking {
+        var pairingAddress: String? = null
+        val acceptPairingJob = scope.launch { pairingAddress = waitPairingRequestIntent(address) }
+        var acceptBondingJob = scope.launch { waitBondIntent(address) }
+        if (address == null) {
+          acceptPairingJob.invokeOnCompletion {cause: Throwable? ->
+            if (!(cause is CancellationException)) {
+              address = pairingAddress
+              acceptBondingJob.cancel()
+              acceptBondingJob = scope.launch { waitBondIntent(address) }
+            }
           }
         }
-
-      // We only wait for bonding to be completed since we only need the ACL connection to be
-      // established with the peer device (on Android state connected is sent when all profiles
-      // have been connected).
-      flow
-        .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
-        .filter { it.getBluetoothDeviceExtra().address == address }
-        .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
-        .filter { it == BluetoothDevice.BOND_BONDED }
-        .first()
-
-      // Cancel the accept pairing coroutine if still active.
-      if (acceptPairingJob.isActive) {
-        acceptPairingJob.cancel()
+        acceptBondingJob.invokeOnCompletion {
+          // If bonding is complete, we can discard any accept pairing job
+          if (acceptPairingJob.isActive) {
+            acceptPairingJob.cancel()
+          }
+        }
+        acceptBondingJob.join()
+        // Join again if bonding is restarted on real address
+        if (acceptBondingJob.isActive) {
+          acceptBondingJob.join()
+        }
       }
 
       WaitConnectionResponse.newBuilder()
