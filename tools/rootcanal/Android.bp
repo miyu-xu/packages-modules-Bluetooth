@@ -189,6 +189,7 @@ cc_binary_host {
         "libscriptedbeaconpayload-protos-lite",
         "breakpad_client",
         "libgflags",
+        "libssl",
     ],
     sanitize: {
         address: true,

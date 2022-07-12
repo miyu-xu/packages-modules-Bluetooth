@@ -145,6 +145,11 @@ sequence! { procedure, context,
         status: ErrorCode::Success,
         bd_addr: context.peer_address(),
     }
+    // Out-of-spec Link Key Exchange
+    IUT -> Lower Tester: CombKey {
+        transaction_id: 0,
+        random_number: [0; 16],
+    }
     // Link Key Calculation
     IUT -> Lower Tester: AuRand {
         transaction_id: 0,
