@@ -1,3 +1,4 @@
+use rand::prelude::*;
 use std::convert::TryFrom;
 use std::future::Future;
 use std::pin::Pin;
@@ -38,6 +39,10 @@ pub trait Context {
         self.send_lmp_packet(packet);
 
         SendAcceptedLmpPacketFuture(self, opcode)
+    }
+
+    fn generate_random_bytes(&self, length: usize) -> Vec<u8> {
+        (0..length).map(|_| rand::thread_rng().gen()).collect()
     }
 }
 
@@ -84,6 +89,7 @@ where
 }
 
 pub mod authentication;
+mod ec;
 mod encryption;
 pub mod features;
 pub mod legacy_pairing;
