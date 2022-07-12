@@ -79,10 +79,10 @@ packet FixedEnum_BitField {
 // The parser should generate a checksum guard for the buffer covered by the
 // checksum.
 packet Checksum_Field_FromStart {
-    _checksum_start_(crc),
     a: 16,
     b: 16,
     crc: Checksum,
+    _checksum_start_(crc),
 }
 
 // The parser must be able to handle checksum fields if the checksum value
@@ -90,9 +90,9 @@ packet Checksum_Field_FromStart {
 // The parser should generate a checksum guard for the buffer covered by the
 // checksum.
 packet Checksum_Field_FromEnd {
-    _checksum_start_(crc),
     _payload_,
     crc: Checksum,
+    _checksum_start_(crc),
     a: 16,
     b: 16,
 }
