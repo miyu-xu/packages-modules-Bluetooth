@@ -16,6 +16,24 @@
       "message": "Test: Turn PCAP logging off",
       "revId": "6748c60cade5a073d96cc15012d6cf7a10ff6b01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d912f6_82b87fe2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-07-12T20:16:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e972033d_e3d2ee7d",
+      "revId": "6748c60cade5a073d96cc15012d6cf7a10ff6b01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
