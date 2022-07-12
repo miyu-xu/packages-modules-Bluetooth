@@ -80,7 +80,8 @@ macro_rules! sequence_body {
             $($inner:tt)*
         } $($tail:tt)*) => {{
             println!("repeat {}", $number);
-            for _ in 0..$number {
+            for round in 0..$number {
+                *$ctx.0.round.borrow_mut() = round;
                 sequence_body!($ctx, $($inner)*);
             }
             println!("endrepeat");

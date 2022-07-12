@@ -1,4 +1,5 @@
-use std::convert::TryFrom;
+use rand::prelude::*;
+use std::convert::{TryFrom, TryInto};
 use std::future::Future;
 use std::pin::Pin;
 use std::task::{self, Poll};
@@ -38,6 +39,11 @@ pub trait Context {
         self.send_lmp_packet(packet);
 
         SendAcceptedLmpPacketFuture(self, opcode)
+    }
+
+    fn generate_random_bytes<const N: usize>(&self) -> [u8; N] {
+        let buf: Vec<u8> = (0..N).map(|_| rand::thread_rng().gen()).collect();
+        buf.try_into().unwrap()
     }
 }
 
@@ -84,6 +90,7 @@ where
 }
 
 pub mod authentication;
+mod ec;
 mod encryption;
 pub mod features;
 pub mod legacy_pairing;

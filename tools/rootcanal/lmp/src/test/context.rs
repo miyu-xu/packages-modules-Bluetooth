@@ -15,6 +15,7 @@ pub struct TestContext {
     pub out_lmp_packets: RefCell<VecDeque<lmp::PacketPacket>>,
     pub hci_events: RefCell<VecDeque<hci::EventPacket>>,
     pub hci_commands: RefCell<VecDeque<hci::CommandPacket>>,
+    pub round: RefCell<usize>,
 }
 
 impl TestContext {
@@ -78,6 +79,10 @@ impl Context for TestContext {
         } else {
             0
         }
+    }
+
+    fn generate_random_bytes<const N: usize>(&self) -> [u8; N] {
+        [0; N]
     }
 }
 
