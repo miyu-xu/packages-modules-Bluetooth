@@ -61,10 +61,10 @@ sequence! { procedure, context,
         transaction_id: 0,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
-    repeat 3 times {
+    repeat 3 times with sample_p192_public_key(&context).as_slice().chunks(16) => {
         IUT -> Lower Tester: EncapsulatedPayload {
             transaction_id: 0,
-            data: [0; 16],
+            data: context.pop(),
         }
         Lower Tester -> IUT: Accepted {
             transaction_id: 0,
@@ -81,10 +81,10 @@ sequence! { procedure, context,
         transaction_id: 0,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
-    repeat 3 times {
+    repeat 3 times with sample_p192_public_key(&context).as_slice().chunks(16) => {
         Lower Tester -> IUT: EncapsulatedPayload {
             transaction_id: 0,
-            data: [0; 16],
+            data: context.pop(),
         }
         IUT -> Lower Tester: Accepted {
             transaction_id: 0,

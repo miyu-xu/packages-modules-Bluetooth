@@ -15,11 +15,25 @@ pub struct TestContext {
     pub out_lmp_packets: RefCell<VecDeque<lmp::PacketPacket>>,
     pub hci_events: RefCell<VecDeque<hci::EventPacket>>,
     pub hci_commands: RefCell<VecDeque<hci::CommandPacket>>,
+    stack: RefCell<Vec<u8>>,
 }
 
 impl TestContext {
     pub fn new() -> Self {
         Default::default()
+    }
+
+    pub fn push(&self, data: &[u8]) {
+        self.stack.borrow_mut().extend_from_slice(data);
+    }
+
+    pub fn pop<const N: usize>(&self) -> [u8; N] {
+        let mut buf = [0u8; N];
+        let mut stack_inner = self.stack.borrow_mut();
+        let stack_len = stack_inner.len();
+        let drained_data: Vec<u8> = stack_inner.drain(stack_len - N..).collect();
+        buf.copy_from_slice(drained_data.as_slice());
+        buf
     }
 }
 
@@ -78,6 +92,10 @@ impl Context for TestContext {
         } else {
             0
         }
+    }
+
+    fn generate_random_bytes<const N: usize>(&self) -> [u8; N] {
+        [0; N]
     }
 }
 
