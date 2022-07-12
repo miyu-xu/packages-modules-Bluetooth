@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f944a6f5_d7ad0aae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-12T10:36:32Z",
+      "side": 1,
+      "message": "I realized bonded devices were not included in the suggestion list.\nUpdated the patch to include bonded devices.",
+      "revId": "3bc53d7826d5dff1d4f9a1788e4c0bc266ec2c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
