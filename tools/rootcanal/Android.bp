@@ -101,10 +101,12 @@ cc_library_static {
     ],
     whole_static_libs: [
         "liblmp",
+        "libcrypto_static",
     ],
     static_libs: [
         "libjsoncpp",
         "libscriptedbeaconpayload-protos-lite",
+        "libssl",
     ],
 }
 
@@ -189,6 +191,7 @@ cc_binary_host {
         "libscriptedbeaconpayload-protos-lite",
         "breakpad_client",
         "libgflags",
+        "libssl",
     ],
     sanitize: {
         address: true,

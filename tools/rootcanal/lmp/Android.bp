@@ -23,6 +23,7 @@ rust_ffi {
         "libbytes",
         "libnum_traits",
         "libthiserror",
+        "libopenssl",
         "libpin_utils",
     ],
     include_dirs: ["include"],
@@ -57,6 +58,7 @@ rust_test_host {
         "libbytes",
         "libnum_traits",
         "libthiserror",
+        "libopenssl",
         "libpin_utils",
     ],
 }

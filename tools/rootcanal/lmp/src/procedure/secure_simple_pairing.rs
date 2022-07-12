@@ -523,7 +523,8 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     );
 
     // Link Key Calculation
-    let link_key = [0; 16];
+    let link_key = ctx.generate_random_bytes(16).try_into().unwrap();
+    ctx.send_lmp_packet(lmp::CombKeyBuilder { transaction_id: 0, random_number: link_key }.build());
     let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
     authentication::receive_challenge(ctx, link_key).await;
 
@@ -701,7 +702,7 @@ pub async fn respond(ctx: &impl Context, request: lmp::IoCapabilityReqPacket) ->
     );
 
     // Link Key Calculation
-    let link_key = [0; 16];
+    let link_key = *ctx.receive_lmp_packet::<lmp::CombKeyPacket>().await.get_random_number();
     authentication::receive_challenge(ctx, link_key).await;
     let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
 
