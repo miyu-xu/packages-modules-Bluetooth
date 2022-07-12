@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2507677a_f86e9ee3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-07-12T03:52:11Z",
+      "side": 1,
+      "message": "add description:\nThis will be used after audio stack sent StartAudioRequest, to periodically query if the AudioState has been transitioned to the \u0027Started\u0027 state so audio stack can finally start sending data over.",
+      "revId": "06de8a9a4e6333f310788cc1e4b409dbcd0a4f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
