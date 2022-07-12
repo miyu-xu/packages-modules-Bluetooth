@@ -59,6 +59,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c2b3eb_511fec04",
+        "filename": "tools/rootcanal/model/devices/baseband_sniffer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-07-12T15:51:13Z",
+      "side": 1,
+      "message": "Ah, I understand the setup now.",
+      "parentUuid": "a6e22323_af51ec93",
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdb8343b_e91d969f",
@@ -161,6 +179,24 @@
       "side": 1,
       "message": "This comes from the http://www.whiterocker.com/bt/LINKTYPE_BLUETOOTH_BREDR_BB.html specification, it\u0027s optional and can be used to store the noise power in dBm for this packet during the capture.",
       "parentUuid": "82356252_365c5c94",
+      "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec9a8397_12f16c24",
+        "filename": "tools/rootcanal/packets/bredr_bb.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2022-07-12T15:51:13Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "bff4663f_5dd9cfca",
       "revId": "255de6785d20e495ed9ff92b90454ddde95ce0ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
