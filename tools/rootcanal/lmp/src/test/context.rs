@@ -1,3 +1,5 @@
+use num_bigint::BigInt;
+
 use std::cell::RefCell;
 use std::collections::VecDeque;
 use std::convert::{TryFrom, TryInto};
@@ -78,6 +80,16 @@ impl Context for TestContext {
         } else {
             0
         }
+    }
+
+    fn generate_random_bytes(&self, length: usize) -> Vec<u8> {
+        let mut buf = Vec::new();
+        buf.resize(length, 0);
+        buf
+    }
+
+    fn generate_private_key(&self, key_size: usize) -> BigInt {
+        BigInt::one()
     }
 }
 
