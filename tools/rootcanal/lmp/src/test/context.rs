@@ -79,6 +79,12 @@ impl Context for TestContext {
             0
         }
     }
+
+    fn generate_random_bytes(&self, length: usize) -> Vec<u8> {
+        let mut buf = Vec::new();
+        buf.resize(length, 0);
+        buf
+    }
 }
 
 pub fn poll(future: Pin<&mut impl Future<Output = ()>>) -> Poll<()> {
