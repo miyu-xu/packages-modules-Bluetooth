@@ -39,6 +39,13 @@ pub trait Context {
 
         SendAcceptedLmpPacketFuture(self, opcode)
     }
+
+    fn generate_random_bytes(&self, length: usize) -> Vec<u8> {
+        let mut buf = Vec::new();
+        buf.resize(length, 0);
+        openssl::rand::rand_bytes(&mut buf).unwrap();
+        buf
+    }
 }
 
 /// Future for Context::receive_hci_command and Context::receive_lmp_packet
