@@ -16,6 +16,24 @@
       "message": "Q) Is it okay not checking A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH in here?\n\nIf not, what about create a method for isHardwardOffloadSession or similar?",
       "revId": "eb4b018aed5a62abbd49ff8011aecb93ecf46d16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de3d6226_199cde30",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-13T11:12:58Z",
+      "side": 1,
+      "message": "The function only used for LE audio unciast/broadcast. A2DP handle itself inside a2dp_encoder_aidl/hidl.cc file.\n\nJust search the checker, we only check the le hardware offload session type here. So it might be ok to keep the current logic. What do you think?",
+      "parentUuid": "15c00ead_e9d8bdec",
+      "revId": "eb4b018aed5a62abbd49ff8011aecb93ecf46d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
