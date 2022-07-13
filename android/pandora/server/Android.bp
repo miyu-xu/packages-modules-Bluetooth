@@ -11,6 +11,7 @@ android_test_helper_app {
     static_libs: [
         "androidx.test.runner",
         "androidx.test.core",
+        "compatibility-device-util-axt",
         "grpc-java-netty-shaded-test",
         "grpc-java-lite",
         "guava",
