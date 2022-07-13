@@ -16,6 +16,143 @@
       "message": "Sorry ahead of time for giant CL.\n\nFor an easier review, here are some important areas to functions:\n* socket_listen (common api for creating a listening socket)\n* socket_connect (common api for creating a connecting socket)\n* listening_task (task that runs in tokio that polls the socket for new connections)\n* connecting_task (task that runs in tokio that handles connection results)\n\nMost of the api surface comes from Android with some adaptations for the RPC format we have.\n\nIf you need additional context, I can update the design doc at go/floss-socket-manager with additional details on how the implementation works.",
       "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c4cae77_a57639e3",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:41:25Z",
+      "side": 1,
+      "message": "this warning suppression is not needed anymore",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e3600a1_31756ac4",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:41:25Z",
+      "side": 1,
+      "message": "I planned to remove Default requirement for propmap, because the generated code makes all fields required anyway.\n\nWhile you are here, could you remove this line https://android.googlesource.com/platform/packages/modules/Bluetooth/+/07969fbe65c3678bb3bac7b615adc271a10aab2a/system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs#622?\n\nThat way these `impl Default`s can be removed since they aren\u0027t useful anywhere else.",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9493481d_7e689c9d",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:41:25Z",
+      "side": 1,
+      "message": "an alternative that makes use of Rust\u0027s std::fmt design, to build a string without allocating temporary strings:\n\n```\n        use std::fmt::Write;                                                                         \n        let mut err \u003d String::new();                                                                 \n                                                                                                     \n        write!(err, \"port\u003d\").ok();                                                                   \n        match (self.psm, self.channel) {                                                             \n            (Some(psm), Some(cn)) \u003d\u003e write!(err, \"psm {} | cn {}\", psm, cn),                         \n            (None, Some(cn)) \u003d\u003e write!(err, \"cn {}\", cn),                                            \n            (Some(psm), None) \u003d\u003e write!(err, \"psm {}\", psm),                                         \n            (None, None) \u003d\u003e write!(err, \"none\"),                                                     \n        }.ok();                                                                                      \n                                                                                                     \n        write!(err, \", type\u003d{:?}\", self.sock_type).ok();                                             \n                                                                                                     \n        if let Some(name) \u003d \u0026self.name {                                                             \n            write!(err, \", name\u003d{}\", name).ok();                                                     \n        }                                                                                            \n                                                                                                     \n        if let Some(uuid) \u003d \u0026self.uuid {                                                             \n            write!(err, \", uuid\u003d{}\", uuid).ok();                                                     \n        }                                                                                            \n                                                                                                     \n        err\n```",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31103123_cf1502cd",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:41:25Z",
+      "side": 1,
+      "message": "nit: no need to clone?",
+      "range": {
+        "startLine": 128,
+        "startChar": 26,
+        "endLine": 128,
+        "endChar": 34
+      },
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "481c9e8d_05261ec4",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:41:25Z",
+      "side": 1,
+      "message": "nit: clone not needed?",
+      "range": {
+        "startLine": 129,
+        "startChar": 56,
+        "endLine": 129,
+        "endChar": 64
+      },
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cdd3703_6f561ecb",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:41:25Z",
+      "side": 1,
+      "message": "no need for clone?\n\nAlso, it\u0027s possible to use Rust\u0027s power to build string without allocating temporary string using `write!`.",
+      "range": {
+        "startLine": 232,
+        "startChar": 38,
+        "endLine": 232,
+        "endChar": 46
+      },
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c041f2c_83d3d45f",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:41:25Z",
+      "side": 1,
+      "message": "also remove the callbacks? `self.callbacks.remove_callback(callback)`.",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
