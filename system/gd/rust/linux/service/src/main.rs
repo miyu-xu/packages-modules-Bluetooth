@@ -12,6 +12,7 @@ use syslog::{BasicLogger, Facility, Formatter3164};
 
 use bt_topshim::{btif::get_btinterface, topstack};
 use btstack::{
+    battery_provider_manager::BatteryProviderManager,
     bluetooth::{get_bt_dispatcher, Bluetooth, IBluetooth},
     bluetooth_gatt::BluetoothGatt,
     bluetooth_media::BluetoothMedia,
@@ -22,6 +23,7 @@ use btstack::{
 use dbus_projection::DisconnectWatcher;
 
 mod dbus_arg;
+mod iface_battery_provider_manager;
 mod iface_bluetooth;
 mod iface_bluetooth_gatt;
 mod iface_bluetooth_media;
@@ -103,6 +105,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         Arc::new(Mutex::new(Box::new(BluetoothGatt::new(intf.clone(), tx.clone()))));
     let bluetooth_media =
         Arc::new(Mutex::new(Box::new(BluetoothMedia::new(tx.clone(), intf.clone()))));
+    let battery_provider_manager = Arc::new(Mutex::new(Box::new(BatteryProviderManager::new())));
     let bluetooth = Arc::new(Mutex::new(Box::new(Bluetooth::new(
         tx.clone(),
         intf.clone(),
@@ -194,6 +197,12 @@ fn main() -> Result<(), Box<dyn Error>> {
             disconnect_watcher.clone(),
         );
 
+        let battery_provider_manager_iface = iface_battery_provider_manager::export_battery_provider_manager_dbus_intf(
+            conn.clone(),
+            &mut cr.lock().unwrap(),
+            disconnect_watcher.clone(),
+        );
+
         // Create mixin object for Bluetooth + Suspend interfaces.
         let mixin = Box::new(iface_bluetooth::BluetoothMixin {
             adapter: bluetooth.clone(),
@@ -216,6 +225,11 @@ fn main() -> Result<(), Box<dyn Error>> {
             make_object_name(adapter_index, "media"),
             &[media_iface],
             bluetooth_media.clone(),
+        );
+        cr.lock().unwrap().insert(
+            make_object_name(adapter_index, "battery_provider_manager"),
+            &[battery_provider_manager_iface],
+            battery_provider_manager.clone(),
         );
 
         // Hold locks and initialize all interfaces. This must be done AFTER DBus is
