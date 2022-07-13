@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6fb3d3b7_e0715a98",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T18:38:19Z",
+      "side": 1,
+      "message": "I think that the natural look up of this structure is by UUID, i.e. `HashMap\u003cUuid, ScannerInfo\u003e`.\n\nI agree that `HashMap\u003cCallbackId, Vec\u003cScannerInfo\u003e\u003e` would make disconnect much simpler, but it would make the simple Uuid lookup look a bit unnatural. The problem with unidiomatic \"remove and unregister all scanner having a specific callback id\" at disconnect will be solved by the Rust language when drain_filter is stable: https://doc.rust-lang.org/std/vec/struct.Vec.html#method.drain_filter.\n\nSince we expect that the number of scanners is low practically, I prefer to keep it simple this way. Also practically there will be very little CallbackId (maybe even 1 or 2, Chrome + Lacros) owning the ScannerInfos, so HashMapping by CallbackId provides little look up benefit. If you worry about performance, I prefer to change this to HashMap\u003cUuid, ScannerInfo\u003e since that will actually have the most look up performance benefit, while we can still solve the unidiomatic disconnect logic when drain_filter is in Rust stable.\n\nWhat do you think?",
+      "parentUuid": "61a94208_270d94bd",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbd42466_1fb62cf0",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-12T21:09:55Z",
       "side": 1,
       "message": "Since we\u0027re dispatching, maybe get rid of this debug!",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a302dab_b4bc4738",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T18:38:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbd42466_1fb62cf0",
       "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -54,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2490259_ff088737",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T18:38:19Z",
+      "side": 1,
+      "message": "In Android it is also random UUID. Requiring UUID from client also has a benefit, which allows us to plumb through client identification down the stack, making debugging scanning sessions easier.\n\nAt the moment I prefer random UUID because it aligns with Android and is also a simpler approach.",
+      "parentUuid": "817e71d4_1738539c",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "259d6dc9_b6c794c1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -65,6 +119,24 @@
       "writtenOn": "2022-07-12T21:09:55Z",
       "side": 1,
       "message": "We should remove the scanner info from the list of scanners when register fails. Otherwise, failing registrations would just keep growing this vector.",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9ce45db_286173dd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T18:38:19Z",
+      "side": 1,
+      "message": "Good catch! Done.",
+      "parentUuid": "259d6dc9_b6c794c1",
       "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
