@@ -17,10 +17,14 @@
 
 #include <cstdint>
 
+#include "types/raw_address.h"
+
 namespace bluetooth {
 namespace metrics {
 
 void LogMetricsAdapterStateChanged(uint32_t state);
+void LogMetricsBondCreateAttempt(RawAddress* addr);
+void LogMetricsBondStateChanged(uint32_t status, RawAddress* addr, uint32_t bond_state, int32_t fail_reason);
 
 }  // namespace metrics
 }  // namespace bluetooth
