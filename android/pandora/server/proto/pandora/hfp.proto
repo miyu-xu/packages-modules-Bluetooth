@@ -13,6 +13,8 @@ service HFP {
   rpc EnableSlc(EnableSlcRequest) returns (google.protobuf.Empty);
   // Disable Service level connection
   rpc DisableSlc(DisableSlcRequest) returns (google.protobuf.Empty);
+  // Disable inband ring
+  rpc DisableInbandRing(google.protobuf.Empty) returns (google.protobuf.Empty);
   // Change the battery level to the one requested
   rpc SetBatteryLevel(SetBatteryLevelRequest) returns (google.protobuf.Empty);
 }
