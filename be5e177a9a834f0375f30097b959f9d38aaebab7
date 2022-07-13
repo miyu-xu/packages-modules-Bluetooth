@@ -34,6 +34,23 @@
       "parentUuid": "371a79b1_f117667c",
       "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e9aa323_8afb0c26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T17:48:33Z",
+      "side": 1,
+      "message": "Nice feature! Could you please format the .rs codes with `rustfmt`?",
+      "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
