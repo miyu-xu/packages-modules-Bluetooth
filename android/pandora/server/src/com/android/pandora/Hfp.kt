@@ -34,7 +34,7 @@ import pandora.HFPGrpc.HFPImplBase
 import pandora.HfpProto.*
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
-class Hfp(val context: Context) : HFPImplBase() {
+class Hfp(val context: Context, val host: Host) : HFPImplBase() {
   private val TAG = "PandoraHfp"
 
   private val scope: CoroutineScope
@@ -54,6 +54,21 @@ class Hfp(val context: Context) : HFPImplBase() {
 
   fun deinit() {
     scope.cancel()
+  }
+
+  override fun enableSlc(
+    request: EnableSlcRequest,
+    responseObserver: StreamObserver<EnableSlcResponse>
+  ) {
+    grpcUnary<EnableSlcResponse>(scope, responseObserver) {
+      val device = request.address.toBluetoothDevice(bluetoothAdapter)
+
+      host.bondDeviceIfNotConnected(device)
+
+      bluetoothHfp.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+
+      EnableSlcResponse.getDefaultInstance()
+    }
   }
 
   override fun disableSlc(
