@@ -6,6 +6,8 @@ edition = "2018"
 [dependencies]
 bt_topshim = { path = "../../topshim" }
 bt_shim = { path = "../../shim" }
+dbus_projection = { path = "../dbus_projection" }
+dbus_macros = { path = "../dbus_projection/dbus_macros" }
 
 btif_macros = { path = "btif_macros" }
 
