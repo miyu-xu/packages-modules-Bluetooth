@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14d37370_3f091674",
+        "filename": "tools/pdl/src/main.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-13T10:39:14Z",
+      "side": 1,
+      "message": "Ah, hmm... it turns out that the Python generator uses an input file with a lint error which now becomes a hard error:\n\n```\nerror: invalid checksum start declaration\n   ┌─ packages/modules/Bluetooth/tools/pdl/tests/grammars/test-grammar.pdl:82:5\n   │\n82 │     _checksum_start_(crc),\n   │     ^^^^^^^^^^^^^^^^^^^^^ checksum start precedes checksum field\n   ·\n85 │     crc: Checksum,\n   │     ------------- checksum field is declared here\n\nerror: invalid checksum start declaration\n   ┌─ packages/modules/Bluetooth/tools/pdl/tests/grammars/test-grammar.pdl:93:5\n   │\n93 │     _checksum_start_(crc),\n   │     ^^^^^^^^^^^^^^^^^^^^^ checksum start precedes checksum field\n94 │     _payload_,\n95 │     crc: Checksum,\n   │     ------------- checksum field is declared here\n```\n\nWe could consider adding a `--force` or `--ignore-lint-errors` flag to `pdl` if these errors are benign? We would then need to distinguish carefully between warnings (potential problems) and hard errors (actual invariants which the code generators rely on). Something similar to what I added [here](https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2076458/comments/6bd51e30_114b135d).\n\nA simpler solution would be to say that all errors here are hard errors. I\u0027ll then need to fix `test-grammar.pdl` and update the unit tests to match.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "7dc4bd6f285750c98fbd6c6fad5e94023cbd0ddc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
