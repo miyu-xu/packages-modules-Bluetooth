@@ -24,6 +24,9 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.BatteryManager
+import android.os.SystemProperties
+import android.util.Log
+import androidx.test.platform.app.InstrumentationRegistry
 import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.CoroutineScope
@@ -73,6 +76,19 @@ class Hfp(val context: Context) : HFPImplBase() {
       val device = request.connection.toBluetoothDevice(bluetoothAdapter)
 
       bluetoothHfp.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN)
+
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun disableInbandRing(
+    request: Empty,
+    responseObserver: StreamObserver<Empty>
+  ) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      // properties define in
+      // com.android.bluetooth.hfp.HeadsetService.DISABLE_INBAND_RINGING_PROPERTY
+      SystemProperties.set("persist.bluetooth.disableinbandringing", "0")
 
       Empty.getDefaultInstance()
     }
