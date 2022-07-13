@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e627b20_f4f960de",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T21:29:50Z",
+      "side": 1,
+      "message": "nit: completed",
+      "range": {
+        "startLine": 56,
+        "startChar": 21,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "13b67b89e952e7f6c1f1b8a1d62bb38a443218d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9981439b_f1c39d7e",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T21:29:50Z",
+      "side": 1,
+      "message": "how about `std::mem::size_of::\u003cConnectionComplete\u003e()`?",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "13b67b89e952e7f6c1f1b8a1d62bb38a443218d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f3d49c1_889dc826",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T21:29:50Z",
+      "side": 1,
+      "message": "Where does the bytes data come from? Is ConnectionComplete packet an RFCOMM packet? Or is this data that is constructed by libbluetooth? Please explain the source of the data, and that will make it clear why we use machine endianness instead of fixed endianness.",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "13b67b89e952e7f6c1f1b8a1d62bb38a443218d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
