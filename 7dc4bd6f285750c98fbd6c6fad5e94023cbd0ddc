@@ -46,6 +46,30 @@
       },
       "revId": "7dc4bd6f285750c98fbd6c6fad5e94023cbd0ddc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b044b6a6_f18bf84a",
+        "filename": "tools/pdl/src/main.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-13T14:03:17Z",
+      "side": 1,
+      "message": "Right, and that lint is going away in https://r.android.com/2151418 so I think this is resolved.",
+      "parentUuid": "4927b1ac_a6709e58",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 55
+      },
+      "revId": "7dc4bd6f285750c98fbd6c6fad5e94023cbd0ddc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
