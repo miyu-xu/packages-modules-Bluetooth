@@ -51,6 +51,40 @@
       "message": "Nice feature! Could you please format the .rs codes with `rustfmt`?",
       "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4100407_51e05eff",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T18:06:51Z",
+      "side": 1,
+      "message": "Looks like this completer works by taking rules having some conventions. Could you document how to write completion rules here?",
+      "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e1fa1d9_951fe71d",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T18:06:51Z",
+      "side": 1,
+      "message": "in my testing, typing \"g\" will show 4 \"gatt\":\n```\nbluetooth\u003e g\ngatt         gatt         gatt         gatt         get-address\n```\n\nCan you find a way to avoid this? Maybe dedup before returning?",
+      "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
