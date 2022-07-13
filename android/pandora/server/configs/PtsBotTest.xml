@@ -24,5 +24,6 @@
         <option name="profile" value="AVDTP/SRC" />
         <option name="profile" value="HFP/AG/DIS" />
         <option name="profile" value="HFP/AG/HFI" />
+        <option name="profile" value="HFP/AG" />
     </test>
 </configuration>
