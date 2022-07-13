@@ -754,7 +754,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
         status: BtStatus,
         addr: RawAddress,
         bond_state: BtBondState,
-        _fail_reason: i32,
+        fail_reason: i32,
     ) {
         let address = addr.to_string();
 
@@ -801,6 +801,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
                 bond_state.to_u32().unwrap(),
             );
         });
+        metrics::bond_state_changed(status, addr, bond_state, fail_reason);
     }
 
     fn remote_device_properties_changed(
@@ -1074,16 +1075,38 @@ impl IBluetooth for Bluetooth {
         let addr = RawAddress::from_string(device.address.clone());
 
         if addr.is_none() {
+            metrics::bond_create_attempt(RawAddress::default());
+            metrics::bond_state_changed(
+                BtStatus::InvalidParam,
+                RawAddress::default(),
+                BtBondState::NotBonded,
+                0,
+            );
             warn!("Can't create bond. Address {} is not valid", device.address);
             return false;
         }
 
         let address = addr.unwrap();
 
+        // We explicitly log the attempt to start the bonding separate from logging the bond state.
+        // The start of the attempt is critical to help identify a bonding/pairing session.
+        metrics::bond_create_attempt(address);
+
         // BREDR connection won't work when Inquiry is in progress.
         self.cancel_discovery();
 
-        self.intf.lock().unwrap().create_bond(&address, transport) == 0
+        let status = self.intf.lock().unwrap().create_bond(&address, transport);
+
+        if status != 0 {
+            metrics::bond_state_changed(
+                BtStatus::from(status as u32),
+                address,
+                BtBondState::NotBonded,
+                0,
+            );
+            return false;
+        }
+        return true;
     }
 
     fn cancel_bond_process(&self, device: BluetoothDevice) -> bool {

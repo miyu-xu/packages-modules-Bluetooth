@@ -19,12 +19,17 @@
 #include <memory>
 
 #include "rust/cxx.h"
+#include "types/raw_address.h"
 
 namespace bluetooth {
 namespace topshim {
 namespace rust {
 
+struct RustRawAddress;
+
 void adapter_state_changed(uint32_t state);
+void bond_state_changed(uint32_t status, RustRawAddress bt_addr, uint32_t bond_state, int32_t fail_reason);
+void bond_create_attempt(RustRawAddress bt_addr);
 
 }  // namespace rust
 }  // namespace topshim
