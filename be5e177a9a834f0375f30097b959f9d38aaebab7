@@ -16,6 +16,24 @@
       "message": "Please pairing with a classic keyboard with btclient before submitting this patch.",
       "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "673e7028_92b69f81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-13T02:26:43Z",
+      "side": 1,
+      "message": "I\u0027ve tested pairing a classic keyboard and remove the bond on btclient.",
+      "parentUuid": "371a79b1_f117667c",
+      "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
