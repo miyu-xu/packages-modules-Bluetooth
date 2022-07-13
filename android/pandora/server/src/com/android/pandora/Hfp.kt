@@ -23,6 +23,11 @@ import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.BatteryManager;
+import android.os.SystemProperties
+import android.util.Log
+import androidx.test.platform.app.InstrumentationRegistry
+import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -73,14 +78,43 @@ class Hfp(val context: Context, val host: Host) : HFPImplBase() {
 
   override fun disableSlc(
     request: DisableSlcRequest,
-    responseObserver: StreamObserver<DisableSlcResponse>
+    responseObserver: StreamObserver<Empty>
   ) {
-    grpcUnary<DisableSlcResponse>(scope, responseObserver) {
+    grpcUnary<Empty>(scope, responseObserver) {
       val device = request.address.toBluetoothDevice(bluetoothAdapter)
 
       bluetoothHfp.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN)
 
-      DisableSlcResponse.getDefaultInstance()
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun disableInbandRing(
+    request: Empty,
+    responseObserver: StreamObserver<Empty>
+  ) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      // properties define in
+      // com.android.bluetooth.hfp.HeadsetService.DISABLE_INBAND_RINGING_PROPERTY
+      SystemProperties.set("persist.bluetooth.disableinbandringing", "0")
+
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun setBatteryLevel(
+    request: SetBatteryLevelRequest,
+    responseObserver: StreamObserver<Empty>
+  ) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      val sendIntent: Intent = Intent().apply {
+          action = Intent.ACTION_BATTERY_CHANGED
+          putExtra(BatteryManager.EXTRA_LEVEL, request.batteryPercentage)
+          putExtra(BatteryManager.EXTRA_SCALE, 100)
+      }
+      context.sendBroadcast(sendIntent)
+
+      Empty.getDefaultInstance()
     }
   }
 }

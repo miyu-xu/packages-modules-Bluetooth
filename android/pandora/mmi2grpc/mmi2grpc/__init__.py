@@ -51,7 +51,7 @@ class IUT:
 
         # Profile proxies.
         self._a2dp = None
-        self._hfp = None
+        self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'), test)
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
@@ -109,7 +109,8 @@ class IUT:
         # Handles HFP MMIs.
         if profile in ('HFP'):
             if not self._hfp:
-                self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+                self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'), test)
+            return self._hfp.interact(test, interaction, description, pts_address)
             return self._hfp.interact(test, interaction, description, pts_address)
 
         # Handles unsupported profiles.

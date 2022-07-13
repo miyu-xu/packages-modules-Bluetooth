@@ -6,13 +6,18 @@ package pandora;
 
 import "pandora/host.proto";
 import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
 
 // Service to trigger HFP (Hands Free Profile) procedures.
 service HFP {
   // Enable Service level connection
   rpc EnableSlc(EnableSlcRequest) returns (EnableSlcResponse);
   // Disable Service level connection
-  rpc DisableSlc(DisableSlcRequest) returns (DisableSlcResponse);
+  rpc DisableSlc(DisableSlcRequest) returns (google.protobuf.Empty);
+  // Disable inband ring
+  rpc DisableInbandRing(google.protobuf.Empty) returns (google.protobuf.Empty);
+  // Change the battery level to the one requested
+  rpc SetBatteryLevel(SetBatteryLevelRequest) returns (google.protobuf.Empty);
 }
 
 // Request of the `EnableSlc` method.
@@ -30,5 +35,8 @@ message DisableSlcRequest {
   bytes address = 1;
 }
 
-// Response of the `DisableSlc` method.
-message DisableSlcResponse {}
+// Request of the `DisableSlc` method.
+message SetBatteryLevelRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  int32 battery_percentage = 1;
+}
