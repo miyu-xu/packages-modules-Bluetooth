@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8e93b5_c566b7a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-13T17:46:55Z",
+      "side": 1,
+      "message": "Could we move that to another change ?",
+      "revId": "5e4618b1ec770a0360d01a6dd79b9ed66a539066",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
