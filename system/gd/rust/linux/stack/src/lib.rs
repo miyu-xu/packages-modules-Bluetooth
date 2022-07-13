@@ -6,10 +6,12 @@
 #[macro_use]
 extern crate num_derive;
 
+pub mod battery_provider_manager;
 pub mod bluetooth;
 pub mod bluetooth_gatt;
 pub mod bluetooth_media;
 pub mod callbacks;
+pub mod dbus_arg;
 pub mod socket_manager;
 pub mod suspend;
 pub mod uuid;
