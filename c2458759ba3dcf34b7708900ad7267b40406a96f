@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6939ee6_f975de0a",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T20:19:11Z",
+      "side": 1,
+      "message": "nit: this warning suppression shouldn\u0027t be needed. But the `fn new` inside this struct produces dead code warning, if it is not yet used I suggest prefix with underscore until it\u0027s used?",
+      "revId": "c2458759ba3dcf34b7708900ad7267b40406a96f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4792d18e_a8b58b99",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T20:19:11Z",
+      "side": 1,
+      "message": "nit: this warning suppression is not needed anymore",
+      "revId": "c2458759ba3dcf34b7708900ad7267b40406a96f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc349bd4_6dba0e53",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T20:19:11Z",
+      "side": 1,
+      "message": "nit: add one blank line to separate from the previous block",
+      "revId": "c2458759ba3dcf34b7708900ad7267b40406a96f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
