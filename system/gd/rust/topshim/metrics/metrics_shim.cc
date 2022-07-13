@@ -17,7 +17,11 @@
 #include "gd/rust/topshim/metrics/metrics_shim.h"
 
 #include "gd/metrics/metrics.h"
+#include "gd/rust/topshim/common/utils.h"
 #include "src/metrics.rs.h"
+#include "types/raw_address.h"
+
+namespace rusty = ::bluetooth::topshim::rust;
 
 namespace bluetooth {
 namespace topshim {
@@ -25,6 +29,12 @@ namespace rust {
 
 void adapter_state_changed(uint32_t state) {
   metrics::LogMetricsAdapterStateChanged(state);
+}
+
+void bond_state_changed(uint32_t status, RustRawAddress bt_addr, uint32_t bond_state, int32_t fail_reason) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+
+  metrics::LogMetricsBondStateChanged(status, &addr, bond_state, fail_reason);
 }
 
 }  // namespace rust
