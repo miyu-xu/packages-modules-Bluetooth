@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ad1c6e4_b8d57b5d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-13T23:18:10Z",
+      "side": 1,
+      "message": "You might wanna try the a2dp/avdtp tests:\natest pts-bot:A2DP/SRC\natest pts-bot:AVDTP/SRC\n\nSince you modify the Host.kt file and the pts-bot in presubmit is only triggering warning on error",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "827cdc3b25a3eb173b458772a6f03ee0444bf84e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe78bf5c_ccf950ec",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-13T23:18:10Z",
+      "side": 1,
+      "message": "You can make the wait[...]Intent methods private",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 57
+      },
+      "revId": "827cdc3b25a3eb173b458772a6f03ee0444bf84e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8600f77_49e18e60",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-13T23:18:10Z",
+      "side": 1,
+      "message": "It\u0027s a bit odd to wait for BOND_SUCCESS on a removeBond call, is this wanted ?",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "827cdc3b25a3eb173b458772a6f03ee0444bf84e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

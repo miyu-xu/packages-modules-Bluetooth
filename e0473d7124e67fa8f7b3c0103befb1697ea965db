@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e629bb1e_98a42d95",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-13T23:18:10Z",
+      "side": 1,
+      "message": "nit: remove space ; for DisableSlcResponse as well",
+      "range": {
+        "startLine": 97,
+        "startChar": 31,
+        "endLine": 97,
+        "endChar": 32
+      },
+      "revId": "e0473d7124e67fa8f7b3c0103befb1697ea965db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
