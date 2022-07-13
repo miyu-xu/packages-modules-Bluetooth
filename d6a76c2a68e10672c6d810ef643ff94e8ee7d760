@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e21b74_64a0b8b0",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-13T15:07:04Z",
+      "side": 1,
+      "message": "While reading this in more detail, I don\u0027t think I understand it.\n\nIn the case below, where `a` has width 1 and `b` has width 15, what is the result when `a \u003d 1` and `b \u003d 0x50a0`? We have:\n\n```\nIn [91]: \"{:_b}\".format(0x50a0)\nOut[91]: \u0027101_0000_1010_0000\u0027\n```\n\nso `b` is a 15 bit number. The MSB is 1 (call this `b14`) and the LSB is 0 (call this `b0`). Reversing the number to get the LSB first, we get\n\n```\nIn [92]: \"{:_b}\".format(int(\"\".join(reversed(\"{:_b}\".format(0x50a0))), base\u003d2))\nOut[92]: \u002710_1000_0101\u0027\n```\n\nWith zero-padding, this is `000_0010_1000_0101`. So grouping this with `a` might be\n\n```\n1 0 0 0 _ 0 0 1 0 _ 1 0 0 0 _ 0 1 0 1\n^ ^                                 ^ \na b0                                b14\n```\n\nWhen we put this number into bytes on the wire, we get the following in little-endian encoding:\n\n```\n1 0 0 0 _ 0 1 0 1 _ 1 0 0 0 _ 0 0 1 0\n^               ^   ^ ^             ^\nb7              b14 a b0            b6\n```\n\nIn big-endian encoding we get the same thing back:\n\n```\n1 0 0 0 _ 0 0 1 0 _ 1 0 0 0 _ 0 1 0 1\n^ ^                                 ^ \na b0                                b14\n```\n\nHow does this correspond to your picture?",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 21
+      },
+      "revId": "d6a76c2a68e10672c6d810ef643ff94e8ee7d760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
