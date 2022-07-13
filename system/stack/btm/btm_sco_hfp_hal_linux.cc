@@ -351,14 +351,6 @@ void init() {
     LOG_INFO("Successfully queried SCO codec capabilities.");
   }
 
-  ret = mgmt_set_codec_datapath(fd, hci, get_offload_enabled());
-  if (ret) {
-    LOG_ERROR("Failed to set codec datapath to %d with error = %d.",
-              get_offload_enabled(), ret);
-  } else {
-    LOG_INFO("Successfully set codec datapath to %d.", get_offload_enabled());
-  }
-
   close(fd);
 }
 
@@ -412,6 +404,38 @@ static bool get_single_codec(esco_coding_format_t codec, bt_codec** out) {
 
 void set_codec_datapath(esco_coding_format_t coding_format) {
   LOG_ERROR("in set_codec_datapath");
+  bool found;
+  bt_codec* codec;
+
+  found = get_single_codec(esco_coding_to_codec(coding_format), &codec);
+  if (!found) {
+    LOG_ERROR(
+        "Failed to find codec config for format (%u). Won't set datapath.",
+        coding_format);
+    // return;
+  }
+
+  LOG_INFO("Configuring datapath for codec (%u)", codec->codec);
+  if (codec->codec == codec::MSBC && !get_offload_enabled()) {
+    LOG_ERROR(
+        "Tried to configure offload data path for format (%u) with offload "
+        "disabled. Won't set datapath.",
+        coding_format);
+    // return;
+  }
+
+  // If data path exists, make sure to configure both input and output for SCO.
+  LOG_ERROR("config was %u, %u, %u", codec->codec, codec->data_path,
+            codec->data.size());
+  codec->codec = codec::CVSD;
+  codec->data_path = 0x01;
+  codec->data.clear();
+  btm_configure_data_path(btm_data_direction::CONTROLLER_TO_HOST,
+                          codec->data_path, codec->data);
+  btm_configure_data_path(btm_data_direction::HOST_TO_CONTROLLER,
+                          codec->data_path, codec->data);
+  LOG_ERROR("configed with %u, %u, %u", codec->codec, codec->data_path,
+            codec->data.size());
 }
 
 int get_packet_size(int codec) {
