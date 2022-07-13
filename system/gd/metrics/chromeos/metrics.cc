@@ -37,7 +37,9 @@ void LogMetricsAdapterStateChanged(uint32_t state) {
       .SetIsFloss(true)
       .SetAdapterState((int64_t)ToAdapterState(state))
       .Record();
-};
+}
+
+void LogMetricsBondStateChanged(uint32_t status, RawAddress* addr, uint32_t bond_state, int32_t fail_reason) {}
 
 }  // namespace metrics
 }  // namespace bluetooth

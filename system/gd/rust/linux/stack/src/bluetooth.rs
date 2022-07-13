@@ -754,7 +754,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
         status: BtStatus,
         addr: RawAddress,
         bond_state: BtBondState,
-        _fail_reason: i32,
+        fail_reason: i32,
     ) {
         let address = addr.to_string();
 
@@ -801,6 +801,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
                 bond_state.to_u32().unwrap(),
             );
         });
+        metrics::bond_state_changed(status, addr, bond_state, fail_reason);
     }
 
     fn remote_device_properties_changed(
@@ -1074,11 +1075,31 @@ impl IBluetooth for Bluetooth {
         let addr = RawAddress::from_string(device.address.clone());
 
         if addr.is_none() {
+            // Use a pair of metrics event to log the attempt of pairing request and failed due
+            // to an invalid address.
+            metrics::bond_state_changed(
+                BtStatus::Success,
+                RawAddress::from_string("").unwrap(),
+                BtBondState::Bonding,
+                0,
+            );
+            metrics::bond_state_changed(
+                BtStatus::InvalidParam,
+                RawAddress::from_string("").unwrap(),
+                BtBondState::NotBonded,
+                0,
+            );
             warn!("Can't create bond. Address {} is not valid", device.address);
             return false;
         }
 
         let address = addr.unwrap();
+
+        // BtBondState::Bonding is used here to indicate that the pairing "session" is started from
+        // the metrics perspective. This is different from how BtBondState defined Bonding, which
+        // means the bonding begins with the device but undergoes certain time-consuming operations
+        // (e.g., authentication).
+        metrics::bond_state_changed(BtStatus::Success, address, BtBondState::Bonding, 0);
 
         // BREDR connection won't work when Inquiry is in progress.
         self.cancel_discovery();
