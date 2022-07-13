@@ -92,7 +92,7 @@ genrule {
         "tests/custom_types.py",
     ],
     srcs: [
-        "tests/grammars/test-grammar.pdl",
+        "tests/canonical/grammar.pdl",
     ],
     out: [
         "pdl_test.py",
@@ -108,6 +108,9 @@ python_test_host {
         "tests/python_generator_test.py",
         "tests/custom_types.py",
         ":pdl_python_generator_test_gen",
+    ],
+    data: [
+        "tests/canonical/tests.json",
     ],
     test_options: {
         unit_test: true,
