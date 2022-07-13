@@ -71,6 +71,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed116929_a9a57758",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-13T23:56:29Z",
+      "side": 1,
+      "message": "needs https://r.android.com/2149214 for `Display`-able `Uuid`.",
+      "parentUuid": "9493481d_7e689c9d",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31103123_cf1502cd",
         "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
         "patchSetId": 2
