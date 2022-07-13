@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ee1869b_6328bbe1",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-13T21:23:47Z",
+      "side": 1,
+      "message": "nit: known",
+      "range": {
+        "startLine": 356,
+        "startChar": 36,
+        "endLine": 356,
+        "endChar": 40
+      },
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff1be03_edd25120",
+        "filename": "tools/pdl/tests/canonical/tests.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-13T21:23:47Z",
+      "side": 1,
+      "message": "These tests would be more specific if the values in the array were different.",
+      "range": {
+        "startLine": 727,
+        "startChar": 21,
+        "endLine": 727,
+        "endChar": 24
+      },
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79e98ce3_ee78863b",
+        "filename": "tools/pdl/tests/canonical/tests.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-13T21:23:47Z",
+      "side": 1,
+      "message": "here too.",
+      "range": {
+        "startLine": 794,
+        "startChar": 14,
+        "endLine": 794,
+        "endChar": 19
+      },
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
