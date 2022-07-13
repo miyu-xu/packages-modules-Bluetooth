@@ -56,6 +56,19 @@ class Hfp(val context: Context) : HFPImplBase() {
     scope.cancel()
   }
 
+  override fun enableSlc(
+    request: EnableSlcRequest,
+    responseObserver: StreamObserver<EnableSlcResponse>
+  ) {
+    grpcUnary<EnableSlcResponse>(scope, responseObserver) {
+      val device = request.address.toBluetoothDevice(bluetoothAdapter)
+
+      bluetoothHfp.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+
+      EnableSlcResponse.getDefaultInstance()
+    }
+  }
+
   override fun disableSlc(
     request: DisableSlcRequest,
     responseObserver: StreamObserver<DisableSlcResponse>

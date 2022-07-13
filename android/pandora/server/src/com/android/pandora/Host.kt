@@ -28,6 +28,7 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
+import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -116,15 +117,16 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
-  private suspend fun waitPairingRequestIntent(address: String) {
+  private suspend fun waitPairingRequestIntent(address: String?): String {
     Log.i(TAG, "waitPairingRequestIntent: address=$address")
     var pairingRequestIntent =
       flow
         .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
-        .filter { it.getBluetoothDeviceExtra().address == address }
+        .also { if (address != null) it.filter { it.getBluetoothDeviceExtra().address == address } }
         .first()
 
     val bluetoothDevice = pairingRequestIntent.getBluetoothDeviceExtra()
+    val pairingAddress = address ?: bluetoothDevice.address
     val pairingVariant =
       pairingRequestIntent.getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
 
@@ -135,27 +137,45 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     ) {
       bluetoothDevice.setPairingConfirmation(true)
     }
+    return pairingAddress
   }
 
-  private suspend fun waitBondIntent(address: String) {
+  private suspend fun waitBondIntent(address: String?) {
     // We only wait for bonding to be completed since we only need the ACL connection to be
     // established with the peer device (on Android state connected is sent when all profiles
     // have been connected).
     Log.i(TAG, "waitBondIntent: address=$address")
     flow
       .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
-      .filter { it.getBluetoothDeviceExtra().address == address }
+      .also { if (address != null) it.filter { it.getBluetoothDeviceExtra().address == address } }
       .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
       .filter { it == BluetoothDevice.BOND_BONDED }
       .first()
   }
 
-  private suspend fun waitConnectionIntent(address: String) {
-    val acceptPairingJob = scope.launch { waitPairingRequestIntent(address) }
-    waitBondIntent(address)
-    if (acceptPairingJob.isActive) {
-      acceptPairingJob.cancel()
+  private suspend fun waitConnectionIntent(address: String?): String {
+    var pairingAddress = address
+    val acceptPairingJob = scope.launch { pairingAddress = waitPairingRequestIntent(address) }
+    var acceptBondingJob = scope.launch { waitBondIntent(address) }
+    if (address == null) {
+      acceptPairingJob.invokeOnCompletion { cause: Throwable? ->
+        if (!(cause is CancellationException)) {
+          acceptBondingJob.cancel()
+          acceptBondingJob = scope.launch { waitBondIntent(pairingAddress) }
+        }
+      }
     }
+    acceptBondingJob.invokeOnCompletion {
+      if (acceptPairingJob.isActive) {
+        acceptPairingJob.cancel()
+      }
+    }
+    acceptBondingJob.join()
+    if (acceptBondingJob.isActive) {
+      // Bonding is restarted on real address
+      acceptBondingJob.join()
+    }
+    return pairingAddress!!
   }
 
   override fun waitConnection(
@@ -163,8 +183,12 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
     grpcUnary<WaitConnectionResponse>(scope, responseObserver) {
-      val address = request.address.decodeToString()
-
+      var address: String? =
+        if (request.address.size() != 0) {
+          MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
+        } else {
+          null
+        }
       Log.i(TAG, "waitConnection: address=$address")
 
       if (!bluetoothAdapter.isEnabled) {
@@ -172,7 +196,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
         throw Status.UNKNOWN.asException()
       }
 
-      waitConnectionIntent(address)
+      address = waitConnectionIntent(address)
 
       WaitConnectionResponse.newBuilder()
         .setConnection(Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build())
