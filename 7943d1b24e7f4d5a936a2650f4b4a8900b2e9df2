@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bd51e30_114b135d",
+        "filename": "tools/pdl/src/main.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-13T10:37:51Z",
+      "side": 1,
+      "message": "This allows callers to distinguish between internal bugs, errors in the input and benign warnings.",
+      "revId": "7943d1b24e7f4d5a936a2650f4b4a8900b2e9df2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
