@@ -46,6 +46,30 @@
       },
       "revId": "dac7b3d87d0d2e0796dc7c4c27b5c216c96dd06c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c3b53a_3e26443c",
+        "filename": "system/stack/include/l2c_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-14T22:34:31Z",
+      "side": 1,
+      "message": "Fixed in latest patchset",
+      "parentUuid": "e35baea6_82146124",
+      "range": {
+        "startLine": 296,
+        "startChar": 42,
+        "endLine": 296,
+        "endChar": 45
+      },
+      "revId": "dac7b3d87d0d2e0796dc7c4c27b5c216c96dd06c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
