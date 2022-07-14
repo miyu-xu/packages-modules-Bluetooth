@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a3c65998_40c5286f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-14T16:49:22Z",
+      "side": 1,
+      "message": "`HashMap\u003cUuid, ScannerInfo\u003e` sgtm.",
+      "parentUuid": "6fb3d3b7_e0715a98",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbd42466_1fb62cf0",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "In Android it is also random UUID. Requiring UUID from client also has a benefit, which allows us to plumb through client identification down the stack, making debugging scanning sessions easier.\n\nAt the moment I prefer random UUID because it aligns with Android and is also a simpler approach.",
       "parentUuid": "817e71d4_1738539c",
+      "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cefd0e9c_23ccf65c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-14T16:49:22Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b2490259_ff088737",
       "revId": "1664e0de76c765f8c61bbb87728ac811461e5fde",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
