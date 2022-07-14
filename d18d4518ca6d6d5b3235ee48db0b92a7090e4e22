@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32b60652_f1947b01",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-14T16:48:26Z",
+      "side": 1,
+      "message": "Won\u0027t this result in a double entry of `Bonding` since the bond_state callback also logs the `Bonding` state.",
+      "revId": "d18d4518ca6d6d5b3235ee48db0b92a7090e4e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1095f478_2e790ca6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-14T16:48:26Z",
+      "side": 1,
+      "message": "If this call fails, you don\u0027t log the failure of bonding.\n\nYou may want to create a helper function, `metric_failed_bond_attempt()`, that does something similar to above (under `if addr.is_none()`) and use it when addr is invalid or this `create_bond` fails.",
+      "revId": "d18d4518ca6d6d5b3235ee48db0b92a7090e4e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
