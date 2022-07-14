@@ -142,6 +142,30 @@
       },
       "revId": "d6a76c2a68e10672c6d810ef643ff94e8ee7d760",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7304e23c_f1da55f1",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T13:59:53Z",
+      "side": 1,
+      "message": "\u003e The MSB of a b0 .. b14 is b14. Written normally you would have \n\u003e MSB -\u003e b14 .. b0 a \u003c- LSB.\n\nThat\u0027s indeed confusing to me. I think the notation is less clear than I thought when I first read the update. So in the above, when I talk about the number `a b0 ... b14`, I am talking about the mathematical number where the LSB is b14.",
+      "parentUuid": "28e0ddba_ec893c61",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 21
+      },
+      "revId": "d6a76c2a68e10672c6d810ef643ff94e8ee7d760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
