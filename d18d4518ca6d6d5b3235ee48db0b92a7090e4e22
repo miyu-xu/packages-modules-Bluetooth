@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f8bc331_4db21567",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-07-14T16:57:55Z",
+      "side": 1,
+      "message": "Yeah that\u0027s my main concern too. Besides double counting, another source of repeated logging is the state machine. In previous pairing metrics on java BondStateMachine, we have observe that the sequence won\u0027t be perfectly bonding -\u003e bonded. Sometimes it could be something like bonding-\u003ebonding-\u003enone-\u003ebonding-\u003ebonded. I\u0027m not sure if you have the same issue at rust layer. \n\nBe sure to test it with logcat to make sure state transitions reporting to metrics, are exactly what you want.",
+      "parentUuid": "32b60652_f1947b01",
+      "revId": "d18d4518ca6d6d5b3235ee48db0b92a7090e4e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1095f478_2e790ca6",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
