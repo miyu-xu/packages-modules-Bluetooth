@@ -9,9 +9,20 @@ import "google/protobuf/wrappers.proto";
 
 // Service to trigger HFP (Hands Free Profile) procedures.
 service HFP {
+  // Enable Service level connection
+  rpc EnableSlc(EnableSlcRequest) returns (EnableSlcResponse);
   // Disable Service level connection
   rpc DisableSlc(DisableSlcRequest) returns (DisableSlcResponse);
 }
+
+// Request of the `EnableSlc` method.
+message EnableSlcRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+// Response of the `EnableSlc` method.
+message EnableSlcResponse {}
 
 // Request of the `DisableSlc` method.
 message DisableSlcRequest {

@@ -35,7 +35,7 @@ class Server(context: Context) {
   init {
     host = Host(context, this)
     a2dp = A2dp(context)
-    hfp = Hfp(context)
+    hfp = Hfp(context, host)
     grpcServer =
       NettyServerBuilder.forPort(GRPC_PORT)
         .addService(host)

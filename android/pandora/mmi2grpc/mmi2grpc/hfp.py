@@ -41,6 +41,16 @@ class HFPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
+    def TSC_iut_enable_slc(self, pts_addr: bytes, **kwargs):
+        """
+        Click Ok, then initiate a service level connection from the
+        Implementation Under Test (IUT) to the PTS.
+        """
+
+        self.hfp.EnableSlc(address=pts_addr)
+        return "OK"
+
+    @assert_description
     def TSC_iut_search(self, **kwargs):
         """
         Using the Implementation Under Test (IUT), perform a search for the PTS.
