@@ -22,6 +22,30 @@
       },
       "revId": "29cb77ec716865a7edefe59e7443ade445ebce75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03faf946_38aa311e",
+        "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T16:29:58Z",
+      "side": 1,
+      "message": "Thanks, let me fix that... please see https://r.android.com/2153555.",
+      "parentUuid": "e757c3f0_f398c051",
+      "range": {
+        "startLine": 54,
+        "startChar": 65,
+        "endLine": 54,
+        "endChar": 67
+      },
+      "revId": "29cb77ec716865a7edefe59e7443ade445ebce75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
