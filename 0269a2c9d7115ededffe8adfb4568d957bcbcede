@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d86f920f_618ed19c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-14T22:35:24Z",
+      "side": 1,
+      "message": "build failure with:\n\npackages/modules/Bluetooth/system/profile/avrcp/tests/avrcp_device_fuzz/avrcp_device_fuzz.cc\npackages/modules/Bluetooth/system/profile/avrcp/tests/avrcp_device_fuzz/avrcp_device_fuzz.cc:62:51: error: missing field \u0027get_all\u0027 initializer [-Werror,-Wmissing-field-initializers]\n                                  nullptr, nullptr};\n                                                  ^",
+      "revId": "0269a2c9d7115ededffe8adfb4568d957bcbcede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
