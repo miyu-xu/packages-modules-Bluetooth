@@ -16,6 +16,29 @@
       "message": "build failure with:\n\npackages/modules/Bluetooth/system/profile/avrcp/tests/avrcp_device_fuzz/avrcp_device_fuzz.cc\npackages/modules/Bluetooth/system/profile/avrcp/tests/avrcp_device_fuzz/avrcp_device_fuzz.cc:62:51: error: missing field \u0027get_all\u0027 initializer [-Werror,-Wmissing-field-initializers]\n                                  nullptr, nullptr};\n                                                  ^",
       "revId": "0269a2c9d7115ededffe8adfb4568d957bcbcede",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee3e0b4f_feb80497",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-14T23:06:19Z",
+      "side": 1,
+      "message": "I don\u0027t quite understand the meaning of this comment. \n\nAndroid lets the Central to create EATT, isn\u0027t Android the central device?\n\nbut some PTS test cases wants us to do it anyway, who is us? \n\nDoes it mean that:\n1. Android always want central device to create EATT\n2. But some PTS wants Android to create it even when Android is peripheral?",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 34
+      },
+      "revId": "0269a2c9d7115ededffe8adfb4568d957bcbcede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
