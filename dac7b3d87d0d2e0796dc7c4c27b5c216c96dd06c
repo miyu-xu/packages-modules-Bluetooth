@@ -22,6 +22,30 @@
       },
       "revId": "dac7b3d87d0d2e0796dc7c4c27b5c216c96dd06c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e35baea6_82146124",
+        "filename": "system/stack/include/l2c_api.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-14T22:33:28Z",
+      "side": 1,
+      "message": "tL2CA_CREDIT_BASED_COLLISION_IND_CB ?",
+      "parentUuid": "c17ed137_80c39092",
+      "range": {
+        "startLine": 296,
+        "startChar": 42,
+        "endLine": 296,
+        "endChar": 45
+      },
+      "revId": "dac7b3d87d0d2e0796dc7c4c27b5c216c96dd06c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
