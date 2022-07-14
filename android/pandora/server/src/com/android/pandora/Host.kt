@@ -180,16 +180,20 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
+  suspend fun bondDeviceIfNotConnected(bluetoothDevice: BluetoothDevice) {
+    if (!bluetoothDevice.isConnected()) {
+      bluetoothDevice.createBond()
+      waitConnectionIntent(bluetoothDevice.address)
+    }
+  }
+
   override fun connect(request: ConnectRequest, responseObserver: StreamObserver<ConnectResponse>) {
     grpcUnary<ConnectResponse>(scope, responseObserver) {
       val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
 
       Log.i(TAG, "connect: address=$bluetoothDevice")
 
-      if (!bluetoothDevice.isConnected()) {
-        bluetoothDevice.createBond()
-        waitConnectionIntent(bluetoothDevice.address)
-      }
+      bondDeviceIfNotConnected(bluetoothDevice)
 
       ConnectResponse.newBuilder()
         .setConnection(
