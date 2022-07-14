@@ -381,6 +381,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * Used as an int extra field in {@link #ACTION_PAIRING_REQUEST}
      * intents for unbond reason.
      * Possible value are :
+     *  - {@link #BOND_SUCCESS}
      *  - {@link #UNBOND_REASON_AUTH_FAILED}
      *  - {@link #UNBOND_REASON_AUTH_REJECTED}
      *  - {@link #UNBOND_REASON_AUTH_CANCELED}

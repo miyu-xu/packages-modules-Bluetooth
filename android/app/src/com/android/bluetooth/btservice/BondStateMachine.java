@@ -155,7 +155,7 @@ final class BondStateMachine extends StateMachine {
                         transitionTo(mPendingCommandState);
                     } else if (newState == BluetoothDevice.BOND_NONE) {
                     /* if the link key was deleted by the stack */
-                        sendIntent(dev, newState, 0, false);
+                        sendIntent(dev, newState, BluetoothDevice.BOND_SUCCESS, false);
                     } else {
                         Log.e(TAG, "In stable state, received invalid newState: "
                                 + state2str(newState));
@@ -163,12 +163,14 @@ final class BondStateMachine extends StateMachine {
                     break;
                 case BONDED_INTENT_DELAY:
                     if (mPendingBondedDevices.contains(dev)) {
-                        sendIntent(dev, BluetoothDevice.BOND_BONDED, 0, true);
+                        sendIntent(dev, BluetoothDevice.BOND_BONDED, BluetoothDevice.BOND_SUCCESS,
+                                true);
                     }
                     break;
                 case UUID_UPDATE:
                     if (mPendingBondedDevices.contains(dev)) {
-                        sendIntent(dev, BluetoothDevice.BOND_BONDED, 0, false);
+                        sendIntent(dev, BluetoothDevice.BOND_BONDED, BluetoothDevice.BOND_SUCCESS,
+                                false);
                     }
                     break;
                 case CANCEL_BOND:
