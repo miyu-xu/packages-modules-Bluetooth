@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e757c3f0_f398c051",
+        "filename": "tools/pdl/tests/generated/packet_decl_simple_big_endian.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-14T14:20:25Z",
+      "side": 1,
+      "message": "Note that the padding is not generated at the correct place here; when applying the mask you will get the value `0x{bytes[4]}{bytes[5]}00` instead of `0x{bytes[3]}{bytes[4]}{bytes[5]}`\nThat comes from a previous change though.",
+      "range": {
+        "startLine": 54,
+        "startChar": 65,
+        "endLine": 54,
+        "endChar": 67
+      },
+      "revId": "29cb77ec716865a7edefe59e7443ade445ebce75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
