@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "049e3e3b_01556466",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-14T07:56:20Z",
+      "side": 1,
+      "message": "It seems the build was fixed without this CL.\nPlease abandon this CL. ",
+      "revId": "df433c6d7b84b2bbea5099bb6d4e8162db193ae2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
