@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "698eafd0_fc73dac7",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetNativeInterface.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-14T15:17:19Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetService.java\n(lines 226 - 258)\n\nIt looks like the order of the calls is incorrect.  If we move setHeadsetService(null) after line 259, this shouldn\u0027t have to be changed.",
+      "revId": "eb7ad388e0039b4714449664fcd19bbe5db71a28",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
