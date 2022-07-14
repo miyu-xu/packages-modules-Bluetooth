@@ -94,6 +94,30 @@
       },
       "revId": "d6a76c2a68e10672c6d810ef643ff94e8ee7d760",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1e9fcf7_5eff8302",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T07:34:13Z",
+      "side": 1,
+      "message": "You write\n\n\u003e In big endian, the MSB comes first, so:\n\u003e B0 : b7 - b14\n\u003e B1 : a, b0 - b6\n\nbut the most significant bit of the number `a b0 ... b14` is the `a` bit, no? So should your B1 not come before your B0?\n\nI\u0027ve been referring to https://en.wikipedia.org/wiki/Endianness#/media/File:Big-Endian.svg when trying to remember how this all works.\n\n\u003e I can change the bit order to be MSB -\u003e LSB if that would make it clearer ?\n\nThat might help a lot since my brain apparently thinks in big-endian by default 😊",
+      "parentUuid": "2189622a_4ab1c9a2",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 59,
+        "endChar": 21
+      },
+      "revId": "d6a76c2a68e10672c6d810ef643ff94e8ee7d760",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
