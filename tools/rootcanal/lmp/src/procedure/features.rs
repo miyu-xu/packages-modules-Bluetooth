@@ -33,3 +33,26 @@ pub async fn respond(ctx: &impl Context) {
         .build(),
     );
 }
+
+macro_rules! supported_on_both {
+    ($ctx:ident, $feature_page:expr, $feature:ident) => {{
+        use paste::paste;
+        use num_traits::ToPrimitive;
+        paste! {
+            let feature_mask = crate::packets::hci::[<LMPFeaturesPage $feature_page Bits>]::[<$feature>].to_u64().unwrap();
+        }
+        let local_supported = $ctx.extended_features($feature_page) & feature_mask != 0;
+        // Lazy peer features
+        let peer_supported = async move {
+            let page = if let Some(page) = $ctx.peer_extended_features($feature_page) {
+                page
+            } else {
+                features::initiate($ctx, $feature_page).await
+            };
+            page & feature_mask != 0
+        };
+        local_supported && peer_supported.await
+    }};
+}
+
+pub(crate) use supported_on_both;

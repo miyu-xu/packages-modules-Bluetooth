@@ -17,7 +17,7 @@ rust_ffi {
         ":LmpGeneratedPackets_rust",
     ],
     edition: "2018",
-    proc_macros: ["libnum_derive"],
+    proc_macros: ["libnum_derive", "libpaste"],
     rustlibs: [
         "libbt_packets",
         "libbytes",
