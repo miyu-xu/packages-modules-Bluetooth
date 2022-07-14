@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96f0ffe9_88e70405",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T14:41:18Z",
+      "side": 1,
+      "message": "I wonder why you call it \"grammar\"? It\u0027s a file which exercises all constructs in the PDL language (I think?).",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b87ec5fe_e89bd596",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T14:41:18Z",
+      "side": 1,
+      "message": "This feels like a file full of \"test vectors\" to me, and I think you also used that terminology somewhere? Right now, I cannot guess what a `canonical/tests` JSON file should contain.",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ee1869b_6328bbe1",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 2
@@ -66,6 +100,40 @@
         "endLine": 794,
         "endChar": 19
       },
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4bc2eb8_ba34573c",
+        "filename": "tools/pdl/tests/python_generator_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T14:41:18Z",
+      "side": 1,
+      "message": "Could we document that this module doesn\u0027t exist anywhere in the source tree 😊 It\u0027s generated on demand when the unit test is run.",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "943ee151_36b176e7",
+        "filename": "tools/pdl/tests/python_generator_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T14:41:18Z",
+      "side": 1,
+      "message": "Please add some comments to this test to explain what the indirection is about. Calls to `getattr` can very quickly make it hard to understand what Python code does and if it fails, then it\u0027s near impossible for others to decipher.",
       "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
