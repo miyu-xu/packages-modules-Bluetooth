@@ -16,6 +16,24 @@
       "message": "I am not sure if it\u0027s the best thing to do.\nShould we add a UNBOND_SUCCESS that equal to the BOND_SUCCESS ?",
       "revId": "8164c43c524e8b74a498e2753093ab6120ab20c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d69cbbb7_4f2ecc69",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-14T02:34:40Z",
+      "side": 1,
+      "message": "I agree that having a UNBOND_SUCESS make more sense, even if its value is equal to BOND_SUCCESS",
+      "parentUuid": "e270d053_823382f7",
+      "revId": "8164c43c524e8b74a498e2753093ab6120ab20c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
