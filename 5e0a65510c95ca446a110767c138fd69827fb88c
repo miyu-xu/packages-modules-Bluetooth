@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f69fe2_413d9995",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-14T17:11:58Z",
+      "side": 1,
+      "message": "crrev/c/3759775 needs to be merged before this patch otherwise ChromeOS build will break. ",
+      "revId": "5e0a65510c95ca446a110767c138fd69827fb88c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
