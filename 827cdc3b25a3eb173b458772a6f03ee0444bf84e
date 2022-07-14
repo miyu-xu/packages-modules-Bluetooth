@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1cf315e_9bf3768c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-14T00:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ad1c6e4_b8d57b5d",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 41
+      },
+      "revId": "827cdc3b25a3eb173b458772a6f03ee0444bf84e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe78bf5c_ccf950ec",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb89cf6_33bf22d2",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-14T00:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fe78bf5c_ccf950ec",
+      "range": {
+        "startLine": 119,
+        "startChar": 2,
+        "endLine": 119,
+        "endChar": 57
+      },
+      "revId": "827cdc3b25a3eb173b458772a6f03ee0444bf84e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8600f77_49e18e60",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-07-13T23:18:10Z",
       "side": 1,
       "message": "It\u0027s a bit odd to wait for BOND_SUCCESS on a removeBond call, is this wanted ?",
+      "range": {
+        "startLine": 221,
+        "startChar": 0,
+        "endLine": 221,
+        "endChar": 44
+      },
+      "revId": "827cdc3b25a3eb173b458772a6f03ee0444bf84e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8742394a_24b045c8",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-14T00:17:41Z",
+      "side": 1,
+      "message": "Yes it is wanted 😕 And you are perfectly right to say it\u0027s odd\n\nExtra is added to intent here:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java;l\u003d445\nThe method sendIntent is called here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java;l\u003d158\nAnd the mactching value for the 0 is here:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothDevice.java;l\u003d961\n\nFun fact it does not match the documentation: (I will do a CL to update it later)\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothDevice.java;l\u003d380",
+      "parentUuid": "a8600f77_49e18e60",
       "range": {
         "startLine": 221,
         "startChar": 0,
