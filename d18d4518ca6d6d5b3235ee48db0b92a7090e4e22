@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a4849da_f92801de",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1102,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-14T21:32:14Z",
+      "side": 1,
+      "message": "From what Chen Chen said, the start of a bonding attempt is unique but may pair up with multiple Bonding, None, and Bonded status. Hence, I separate the logging for start the bond to be a separate metrics event as it is a critical session indicator. At the server side, we will allow a the pair session to have more than one end events.",
+      "parentUuid": "3f8bc331_4db21567",
+      "revId": "d18d4518ca6d6d5b3235ee48db0b92a7090e4e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1095f478_2e790ca6",
@@ -49,6 +67,24 @@
       "writtenOn": "2022-07-14T16:48:26Z",
       "side": 1,
       "message": "If this call fails, you don\u0027t log the failure of bonding.\n\nYou may want to create a helper function, `metric_failed_bond_attempt()`, that does something similar to above (under `if addr.is_none()`) and use it when addr is invalid or this `create_bond` fails.",
+      "revId": "d18d4518ca6d6d5b3235ee48db0b92a7090e4e22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6979bc47_f238a401",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1107,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-14T21:32:14Z",
+      "side": 1,
+      "message": "Done by logging the start attempt and emit a failed event with btif returned status.",
+      "parentUuid": "1095f478_2e790ca6",
       "revId": "d18d4518ca6d6d5b3235ee48db0b92a7090e4e22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
