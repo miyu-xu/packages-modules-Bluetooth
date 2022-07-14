@@ -34,6 +34,24 @@
       "parentUuid": "15c00ead_e9d8bdec",
       "revId": "eb4b018aed5a62abbd49ff8011aecb93ecf46d16",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8837f34_94f7508d",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-14T01:07:14Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "de3d6226_199cde30",
+      "revId": "eb4b018aed5a62abbd49ff8011aecb93ecf46d16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
