@@ -160,6 +160,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcf12b0f_fccbd6a9",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T10:26:56Z",
+      "side": 1,
+      "message": "Yeah, this is being done in parallel in https://r.android.com/2151413.",
+      "parentUuid": "f34c5b80_821f9539",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33270ec1_6f619547",
@@ -362,6 +380,24 @@
       "writtenOn": "2022-07-05T12:59:16Z",
       "side": 1,
       "message": "I think no, it does not, bitwise operation perform the same way no matter of endianness. `\u003c\u003c` will shift towards the most significant digit. Endianness is only relevant when you \"load numbers\" in \u0026 out of memory.",
+      "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "265042c2_60d341ea",
+        "filename": "tools/pdl/src/generator.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-14T10:26:56Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "324ce214_ef7e00db",
       "revId": "82b6b949ab06441da92937728369e98bc630dd8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
