@@ -1,3 +1,5 @@
+//! Rust compiler backend.
+
 use crate::ast;
 use quote::{format_ident, quote};
 use std::collections::HashMap;
@@ -588,7 +590,7 @@ fn generate_decl(
 ///
 /// The code is not formatted, pipe it through `rustfmt` to get
 /// readable source code.
-pub fn generate_rust(sources: &ast::SourceDatabase, file: &ast::File) -> String {
+pub fn generate(sources: &ast::SourceDatabase, file: &ast::File) -> String {
     let source = sources.get(file.file).expect("could not read source");
 
     let mut children = HashMap::new();
