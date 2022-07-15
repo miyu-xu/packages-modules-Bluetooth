@@ -16,6 +16,24 @@
       "message": "Hmm but this is for single channel - single bis there should be only single stream.",
       "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77fa51bd_5baded60",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-15T17:06:50Z",
+      "side": 1,
+      "message": "When we only have one BIS, it would be 2 audio channel per BIS, 1 Audio stream. It\u0027s the audio configuration 14 in BAP. \n\nThe concept num_channels seems not meet the meaning, we put it in the level 2 as 1 BIS only. It more like be the count of BIS.",
+      "parentUuid": "55608234_1e823d74",
+      "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
