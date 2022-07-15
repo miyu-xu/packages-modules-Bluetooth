@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80c9e134_21a30748",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T13:10:06Z",
+      "side": 1,
+      "message": "\u003e because they are not a part of pairing\nDo you mean here because they are not a part of authentication ?",
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71d1050a_cabb2d46",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T13:10:06Z",
+      "side": 1,
+      "message": "nit: `determine`",
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
