@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "850f4c2f_94b25bf5",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T13:37:40Z",
+      "side": 1,
+      "message": "I think we should either look at the size of the public key or take a boolean as argument here instead of querying the peer features.\nThis would as a benefit makes this method sync",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2886d96_69af056a",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T13:37:40Z",
+      "side": 1,
+      "message": "As there is a limited number of key sizes I would prefer that we create an enum and use that as return type\n```\nenum PublicKey {\n    P192([u8; P192_PUBLIC_KEY_SIZE]),\n    P256([u8; P256_PUBLIC_KEY_SIZE]),\n}\n```",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ae8503a_ca887f09",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T13:37:40Z",
+      "side": 1,
+      "message": "Why did you broke that in two statements ?",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01bd7587_da309ffc",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T13:37:40Z",
+      "side": 1,
+      "message": "Why did you broke that in two statements ?",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
