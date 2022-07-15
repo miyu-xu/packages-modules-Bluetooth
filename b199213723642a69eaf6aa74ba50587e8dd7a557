@@ -16,6 +16,24 @@
       "message": "bluetooth_le_audio_test64.LeAudioAseConfigurationTest#test_bounded_headphones_ringt\nbluetooth_le_audio_test64.LeAudioAseConfigurationTest#test_mono_speaker_ringtone\nbluetooth_le_audio_test64.LeAudioClientAudioTest#testLeAudioClientAudioSinkStartStop",
       "revId": "b199213723642a69eaf6aa74ba50587e8dd7a557",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "047eb42e_f9af5cf3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-15T18:38:31Z",
+      "side": 1,
+      "message": "Thanks, fixed!",
+      "parentUuid": "f5c9be72_afaa06e8",
+      "revId": "b199213723642a69eaf6aa74ba50587e8dd7a557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
