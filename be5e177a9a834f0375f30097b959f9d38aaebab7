@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4935a813_9e2495c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-15T06:57:38Z",
+      "side": 1,
+      "message": "I\u0027ve run rustfmt and addressed the issues until `rustfmt \nsystem/gd/rust/linux/client/src/*` produce no result.\n\nThanks",
+      "parentUuid": "0e9aa323_8afb0c26",
+      "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4100407_51e05eff",
@@ -70,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ad3a423_b7cfb887",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-15T06:57:38Z",
+      "side": 1,
+      "message": "Added some comments inside BtHelper struct.",
+      "parentUuid": "a4100407_51e05eff",
+      "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e1fa1d9_951fe71d",
@@ -83,6 +119,24 @@
       "writtenOn": "2022-07-13T18:06:51Z",
       "side": 1,
       "message": "in my testing, typing \"g\" will show 4 \"gatt\":\n```\nbluetooth\u003e g\ngatt         gatt         gatt         gatt         get-address\n```\n\nCan you find a way to avoid this? Maybe dedup before returning?",
+      "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac0295a1_0fa60a8f",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-15T06:57:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e1fa1d9_951fe71d",
       "revId": "be5e177a9a834f0375f30097b959f9d38aaebab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
