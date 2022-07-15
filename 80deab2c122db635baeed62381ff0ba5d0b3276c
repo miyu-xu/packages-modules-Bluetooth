@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6d8cdc5_6ad65ea4",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-15T15:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd0ab3cc_60d8d7bf",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b87ec5fe_e89bd596",
@@ -139,6 +157,24 @@
       "side": 1,
       "message": "Yeah, `canonical/test_vectors.json` is great!",
       "parentUuid": "af49f9f7_17188a2b",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90aa076e_00b37133",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-15T15:25:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64ce73d5_51730c06",
       "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
