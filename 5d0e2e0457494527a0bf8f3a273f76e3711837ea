@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec04ff57_25e95997",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-07-15T17:20:38Z",
+      "side": 1,
+      "message": "lgtm as long as there is no redundant, duplicate or unwanted events uploaded",
+      "revId": "5d0e2e0457494527a0bf8f3a273f76e3711837ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
