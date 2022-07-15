@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfb65ca9_628521d9",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e627b20_f4f960de",
+      "range": {
+        "startLine": 56,
+        "startChar": 21,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "13b67b89e952e7f6c1f1b8a1d62bb38a443218d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9981439b_f1c39d7e",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "24c1b288_a25a58ee",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:01Z",
+      "side": 1,
+      "message": "The data is packed over the wire into 20 bytes but this struct can have padding. Prefer this constant instead.",
+      "parentUuid": "9981439b_f1c39d7e",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "13b67b89e952e7f6c1f1b8a1d62bb38a443218d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f3d49c1_889dc826",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-07-13T21:29:50Z",
       "side": 1,
       "message": "Where does the bytes data come from? Is ConnectionComplete packet an RFCOMM packet? Or is this data that is constructed by libbluetooth? Please explain the source of the data, and that will make it clear why we use machine endianness instead of fixed endianness.",
+      "range": {
+        "startLine": 80,
+        "startChar": 16,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "13b67b89e952e7f6c1f1b8a1d62bb38a443218d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10c543e3_d98fbab9",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:01Z",
+      "side": 1,
+      "message": "This packet is constructed within libbluetooth to indicate when a connection has completed. See https://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/btif/src/btif_sock_rfc.cc;l\u003d452?q\u003dbtif_sock_rfc.cc\n\nI will add a comment here explaining why it\u0027s native endian.",
+      "parentUuid": "0f3d49c1_889dc826",
       "range": {
         "startLine": 80,
         "startChar": 16,
