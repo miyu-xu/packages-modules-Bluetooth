@@ -76,8 +76,8 @@ rust_test_host {
     ],
 }
 
-// Generate the python parser+serializer backend for the test file
-// located at tests/examples/complex.pdl.
+// Generate the python parser+serializer backend for the
+// test file located at tests/canonical/le_test_file.pdl.
 genrule {
     name: "pdl_python_generator_test_gen",
     cmd: "$(location :pdl) $(in) |" +
@@ -91,10 +91,10 @@ genrule {
         "tests/custom_types.py",
     ],
     srcs: [
-        "tests/examples/complex.pdl",
+        "tests/canonical/le_test_file.pdl",
     ],
     out: [
-        "pdl_test.py",
+        "le_pdl_test.py",
     ],
 }
 
@@ -107,6 +107,9 @@ python_test_host {
         "tests/python_generator_test.py",
         "tests/custom_types.py",
         ":pdl_python_generator_test_gen",
+    ],
+    data: [
+        "tests/canonical/le_test_vectors.json",
     ],
     test_options: {
         unit_test: true,
