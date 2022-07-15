@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0008b241_b4a5aab4",
+        "filename": "system/gd/rust/linux/service/src/iface_bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c4cae77_a57639e3",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e3600a1_31756ac4",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-07-13T23:41:25Z",
       "side": 1,
       "message": "I planned to remove Default requirement for propmap, because the generated code makes all fields required anyway.\n\nWhile you are here, could you remove this line https://android.googlesource.com/platform/packages/modules/Bluetooth/+/07969fbe65c3678bb3bac7b615adc271a10aab2a/system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs#622?\n\nThat way these `impl Default`s can be removed since they aren\u0027t useful anywhere else.",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "267ba360_f90be374",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e3600a1_31756ac4",
       "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -89,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81ef8951_0d0338b1",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:15Z",
+      "side": 1,
+      "message": "Switching this to Display trait. \n\nHowever, I don\u0027t want to re-write the log message to be missing entries. Keeping a consistent log signature makes it easier to search (and makes it clearer that name + uuid are empty).",
+      "parentUuid": "ed116929_a9a57758",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31103123_cf1502cd",
         "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
         "patchSetId": 2
@@ -100,6 +154,30 @@
       "writtenOn": "2022-07-13T23:41:25Z",
       "side": 1,
       "message": "nit: no need to clone?",
+      "range": {
+        "startLine": 128,
+        "startChar": 26,
+        "endLine": 128,
+        "endChar": 34
+      },
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89366383_02ef6faa",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31103123_cf1502cd",
       "range": {
         "startLine": 128,
         "startChar": 26,
@@ -133,6 +211,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b84545e_3a85128c",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "481c9e8d_05261ec4",
+      "range": {
+        "startLine": 129,
+        "startChar": 56,
+        "endLine": 129,
+        "endChar": 64
+      },
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cdd3703_6f561ecb",
@@ -156,6 +258,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94a26214_15f8d4a1",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cdd3703_6f561ecb",
+      "range": {
+        "startLine": 232,
+        "startChar": 38,
+        "endLine": 232,
+        "endChar": 46
+      },
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c041f2c_83d3d45f",
@@ -169,6 +295,24 @@
       "writtenOn": "2022-07-13T23:41:25Z",
       "side": 1,
       "message": "also remove the callbacks? `self.callbacks.remove_callback(callback)`.",
+      "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fc61ba1_8688dfd6",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 956,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:15Z",
+      "side": 1,
+      "message": "Good catch! Done.",
+      "parentUuid": "1c041f2c_83d3d45f",
       "revId": "40c58706341ee56fed8a3f8f845afbd4e741fb4f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
