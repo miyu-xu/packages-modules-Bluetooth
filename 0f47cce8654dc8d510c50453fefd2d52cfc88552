@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91aa4a57_0689e501",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-15T17:46:44Z",
+      "side": 1,
+      "message": "Chen Chen, thanks for reviewing the child CL. This CL kindly needs your owners stamp as well. ",
+      "revId": "0f47cce8654dc8d510c50453fefd2d52cfc88552",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
