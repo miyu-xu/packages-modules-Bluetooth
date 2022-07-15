@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0aa0b2e_22a8b2ad",
+        "filename": "tools/rootcanal/lmp/src/procedure/features.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T13:22:50Z",
+      "side": 1,
+      "message": "I would prefer to avoid a macro here, by making this function specialised for page 1.\nAnd if we need more we can create later a macro to create the functions for page 0 and page 1.",
+      "revId": "45e003d32b4ebba13cb741bd72b235ba24d62a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
