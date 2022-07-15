@@ -588,7 +588,7 @@ fn generate_decl(
 ///
 /// The code is not formatted, pipe it through `rustfmt` to get
 /// readable source code.
-pub fn generate_rust(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> String {
+pub fn generate(sources: &ast::SourceDatabase, grammar: &ast::Grammar) -> String {
     let source = sources.get(grammar.file).expect("could not read source");
 
     let mut children = HashMap::new();
