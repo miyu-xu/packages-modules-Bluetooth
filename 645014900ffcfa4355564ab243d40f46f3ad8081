@@ -46,6 +46,30 @@
       },
       "revId": "645014900ffcfa4355564ab243d40f46f3ad8081",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e98bca_6a44605e",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-15T14:10:13Z",
+      "side": 1,
+      "message": "So, to reformulate what I think the approach is:\n\n* you take a big-endian encoding of each field (the same encoding as the \"mathematical\" encoding where the MSB comes first)\n* you add these bits together to a bigger number, start starting with the _last_ field\n* finally, you take this number and encode it as little- or big-endian as necessary.\n\nThat should match what I get above and what you\u0027ve documented.\n\nSo if we have\n\n```\npacket Foo {\n  a: 1,\n  b: 2,\n  c: 5,\n}\n```\n\nthen you would still put the bits into a single byte like this:\n\n```\nc4 c3 c2 c1 c0 b1 b0 a0\n```\n\nThat would be the encoding in both little- and big-endian, right?",
+      "parentUuid": "b32e10cf_7e38dc9e",
+      "range": {
+        "startLine": 74,
+        "startChar": 7,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "645014900ffcfa4355564ab243d40f46f3ad8081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
