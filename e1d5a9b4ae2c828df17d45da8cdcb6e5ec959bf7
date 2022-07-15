@@ -22,6 +22,30 @@
       },
       "revId": "e1d5a9b4ae2c828df17d45da8cdcb6e5ec959bf7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94024b4a_491fc400",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 22
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-15T20:11:41Z",
+      "side": 1,
+      "message": "We need to land this one first and then land another CL that introduce the new API so that other OEMs can use this CL first.",
+      "parentUuid": "f022745a_d7aa848b",
+      "range": {
+        "startLine": 1057,
+        "startChar": 0,
+        "endLine": 1066,
+        "endChar": 5
+      },
+      "revId": "e1d5a9b4ae2c828df17d45da8cdcb6e5ec959bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
