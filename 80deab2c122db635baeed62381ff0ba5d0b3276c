@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af49f9f7_17188a2b",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-15T08:20:03Z",
+      "side": 1,
+      "message": "I think we should keep the `.json` extension",
+      "parentUuid": "31a9be83_b24ab15c",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ee1869b_6328bbe1",
         "filename": "tools/pdl/scripts/generate_python_backend.py",
         "patchSetId": 2
