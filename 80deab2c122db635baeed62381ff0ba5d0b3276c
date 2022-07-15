@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd0ab3cc_60d8d7bf",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-15T08:41:23Z",
+      "side": 1,
+      "message": "A second thought: if the content of `grammar.pdl` is aligned with the test vectors, then it would be good to name them similarly to emphasize this.",
+      "parentUuid": "051c2ca4_f2712861",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b87ec5fe_e89bd596",
         "filename": "tools/pdl/Android.bp",
         "patchSetId": 2
