@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f98200b_5e606d5b",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 862,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e6939ee6_f975de0a",
+      "revId": "c2458759ba3dcf34b7708900ad7267b40406a96f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4792d18e_a8b58b99",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f7e5633_ae596c09",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4792d18e_a8b58b99",
+      "revId": "c2458759ba3dcf34b7708900ad7267b40406a96f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fc349bd4_6dba0e53",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-07-13T20:19:11Z",
       "side": 1,
       "message": "nit: add one blank line to separate from the previous block",
+      "revId": "c2458759ba3dcf34b7708900ad7267b40406a96f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8a90425_e46bf910",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 983,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-07-15T17:13:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc349bd4_6dba0e53",
       "revId": "c2458759ba3dcf34b7708900ad7267b40406a96f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
