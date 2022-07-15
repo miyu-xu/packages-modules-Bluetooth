@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23807cd3_3b2d204f",
+        "filename": "tools/pdl/scripts/generate_python_backend.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 450,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-15T13:38:05Z",
+      "side": 1,
+      "message": "nit: you can also remove the parentheses",
+      "range": {
+        "startLine": 450,
+        "startChar": 13,
+        "endLine": 450,
+        "endChar": 14
+      },
+      "revId": "23b4d2d455013ae0839b3602456719c1d97c4d19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
