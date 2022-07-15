@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29516f49_19d22365",
+        "filename": "tools/pdl/doc/reference.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-15T10:18:51Z",
+      "side": 1,
+      "message": "I still wonder why `a` is put here?\n\nWhen I read the explanation text above, my mind has a picture where the fields are grouped in a \"mathematical sense\" first. When `a` is 1 bit (just `a0`) and `b` is 15 bit (MSB `b14`, LSB `b0`), then we have 16 bits in total. We group them into a single number.\n\nIf we put the number `a` before `b`, the bits look like this:\n\n    a0 b14 b13 ... b1 b0\n    \nif we put `a` after `b`, then it looks like\n\n    b14 b13 ... b1 b0 a0\n\nTo me, the first arrangement is the logical one since `a` is before `b` in the packet definition.\n\nThe new 16 bit number (still a pure mathematical concept) can be encoded with little- or big-endian encoding.\n\nWith a little-endian encoding of the `a` after `b` number, we get what you document:\n\n    b6 ...  b0 a0\n    b14 ... b8 b7\n\nSo I think that\u0027s the explanation to my confusion: when you say\n\n\u003e Such fields are grouped together to the next byte boundary, least significant bit first\n\nthen you\u0027re grouping things differently than what I had expected.",
+      "range": {
+        "startLine": 74,
+        "startChar": 7,
+        "endLine": 74,
+        "endChar": 48
+      },
+      "revId": "645014900ffcfa4355564ab243d40f46f3ad8081",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
