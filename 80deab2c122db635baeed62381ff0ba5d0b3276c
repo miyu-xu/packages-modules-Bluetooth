@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "051c2ca4_f2712861",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-15T08:39:37Z",
+      "side": 1,
+      "message": "Sorry, I should have thought harder to find an alternative...\n\nFrom a \"rg grammar\" at the root, it seems we use the word \"grammar\" for the top-level construct in the `pdl.pest` file. I would suggest renaming this to `pdl` or `pdl_file`. We can do this any time, of course, so it\u0027s not related to this chagne.\n\nHere I would suggest calling the file `all-pdl-constructs.pdl` or something like that.",
+      "parentUuid": "456326e3_7e641bb4",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b87ec5fe_e89bd596",
         "filename": "tools/pdl/Android.bp",
         "patchSetId": 2
@@ -85,6 +103,24 @@
       "side": 1,
       "message": "I think we should keep the `.json` extension",
       "parentUuid": "31a9be83_b24ab15c",
+      "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64ce73d5_51730c06",
+        "filename": "tools/pdl/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1943701
+      },
+      "writtenOn": "2022-07-15T08:39:37Z",
+      "side": 1,
+      "message": "Yeah, `canonical/test_vectors.json` is great!",
+      "parentUuid": "af49f9f7_17188a2b",
       "revId": "80deab2c122db635baeed62381ff0ba5d0b3276c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
