@@ -47,7 +47,6 @@ import android.media.BluetoothProfileConnectionInfo;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import android.os.Parcel;
 import android.os.ParcelUuid;
 import android.os.RemoteCallbackList;
 import android.os.RemoteException;
@@ -1354,7 +1353,7 @@ public class LeAudioService extends ProfileService {
                         mActiveAudioOutDevice = null;
                         mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                                 previousDevice,
-                                getBroadcastProfile(true));
+                                BluetoothProfileConnectionInfo.createLeAudioBroadcastInfo(true));
                     }
                 }
 
@@ -1387,7 +1386,7 @@ public class LeAudioService extends ProfileService {
                         mActiveAudioOutDevice = device;
                         mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                                 previousDevice,
-                                getBroadcastProfile(false));
+                                BluetoothProfileConnectionInfo.createLeAudioBroadcastInfo(false));
                     }
                 }
             }
