@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bab366cf_126c7e03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-15T21:28:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d86f920f_618ed19c",
+      "revId": "0269a2c9d7115ededffe8adfb4568d957bcbcede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee3e0b4f_feb80497",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-14T23:06:19Z",
       "side": 1,
       "message": "I don\u0027t quite understand the meaning of this comment. \n\nAndroid lets the Central to create EATT, isn\u0027t Android the central device?\n\nbut some PTS test cases wants us to do it anyway, who is us? \n\nDoes it mean that:\n1. Android always want central device to create EATT\n2. But some PTS wants Android to create it even when Android is peripheral?",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 181,
+        "endChar": 34
+      },
+      "revId": "0269a2c9d7115ededffe8adfb4568d957bcbcede",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a274227_5d53a4bc",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-15T21:28:09Z",
+      "side": 1,
+      "message": "I\u0027ve tried to make this comment more precise - I think :)",
+      "parentUuid": "ee3e0b4f_feb80497",
       "range": {
         "startLine": 180,
         "startChar": 0,
