@@ -163,6 +163,24 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     return announcement;
   }
 
+  std::vector<uint8_t> GetAllCcids(std::bitset<16> context_types) const {
+    auto ccid_keeper = ContentControlIdKeeper::GetInstance();
+    std::vector<uint8_t> ccid_vec;
+
+    std::size_t bit_pos = 0;
+    while (bit_pos < context_types.size()) {
+      if (context_types.test(bit_pos)) {
+        auto ccid = ccid_keeper->GetCcid(static_cast<uint16_t>(0b1 << bit_pos));
+        if (ccid != -1) {
+          ccid_vec.push_back(static_cast<uint8_t>(ccid));
+        }
+      }
+      ++bit_pos;
+    }
+
+    return ccid_vec;
+  }
+
   void UpdateMetadata(uint32_t broadcast_id,
                       std::vector<uint8_t> metadata) override {
     if (broadcasts_.count(broadcast_id) == 0) {
@@ -181,6 +199,22 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     if (!is_metadata_valid) {
       LOG_ERROR("Invalid metadata provided.");
       return;
+    }
+
+    uint16_t context_type =
+        static_cast<std::underlying_type<LeAudioContextType>::type>(
+            LeAudioContextType::MEDIA);
+    auto stream_context_vec =
+        ltv.Find(le_audio::types::kLeAudioMetadataTypeStreamingAudioContext);
+    if (stream_context_vec) {
+      auto pp = stream_context_vec.value().data();
+      STREAM_TO_UINT16(context_type, pp);
+    }
+
+    // Append the CCID list
+    auto ccid_vec = GetAllCcids(context_type);
+    if (!ccid_vec.empty()) {
+      ltv.Add(le_audio::types::kLeAudioMetadataTypeCcidList, ccid_vec);
     }
 
     BasicAudioAnnouncementData announcement =
@@ -217,12 +251,9 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     }
 
     // Append the CCID list
-    // TODO: We currently support only one context (and CCID) at a time for both
-    //       Unicast and broadcast.
-    auto ccid = ContentControlIdKeeper::GetInstance()->GetCcid(context_type);
-    if (ccid != -1) {
-      ltv.Add(le_audio::types::kLeAudioMetadataTypeCcidList,
-              {static_cast<uint8_t>(ccid)});
+    auto ccid_vec = GetAllCcids(context_type);
+    if (!ccid_vec.empty()) {
+      ltv.Add(le_audio::types::kLeAudioMetadataTypeCcidList, ccid_vec);
     }
 
     auto codec_qos_pair =

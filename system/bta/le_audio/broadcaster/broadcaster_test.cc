@@ -108,6 +108,7 @@ static void cleanup_message_loop_thread() {
 namespace le_audio {
 namespace broadcaster {
 namespace {
+static constexpr uint8_t default_ccid = 0xDE;
 static constexpr auto default_context =
     static_cast<std::underlying_type<LeAudioContextType>::type>(
         LeAudioContextType::ALERTS);
@@ -203,6 +204,7 @@ class BroadcasterTest : public Test {
                                    base::Bind([]() -> bool { return true; }));
 
     ContentControlIdKeeper::GetInstance()->Start();
+    ContentControlIdKeeper::GetInstance()->SetCcid(0x0004, media_ccid);
 
     /* Simulate random generator */
     uint8_t random[] = {0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08};
@@ -405,12 +407,29 @@ TEST_F(BroadcasterTest, GetBroadcastAllStates) {
 
 TEST_F(BroadcasterTest, UpdateMetadata) {
   auto broadcast_id = InstantiateBroadcast();
-
+  std::vector<uint8_t> ccid_list;
   EXPECT_CALL(*MockBroadcastStateMachine::GetLastInstance(),
               UpdateBroadcastAnnouncement)
-      .Times(1);
+      .WillOnce(
+          [&](bluetooth::le_audio::BasicAudioAnnouncementData announcement) {
+            for (auto subgroup : announcement.subgroup_configs) {
+              if (subgroup.metadata.count(
+                      types::kLeAudioMetadataTypeCcidList)) {
+                ccid_list =
+                    subgroup.metadata.at(types::kLeAudioMetadataTypeCcidList);
+                break;
+              }
+            }
+          });
+
+  ContentControlIdKeeper::GetInstance()->SetCcid(0x0400, default_ccid);
   LeAudioBroadcaster::Get()->UpdateMetadata(
-      broadcast_id, std::vector<uint8_t>({0x02, 0x01, 0x02}));
+      broadcast_id,
+      std::vector<uint8_t>({0x02, 0x01, 0x02, 0x03, 0x02, 0x04, 0x04}));
+
+  ASSERT_EQ(2u, ccid_list.size());
+  ASSERT_NE(0, std::count(ccid_list.begin(), ccid_list.end(), media_ccid));
+  ASSERT_NE(0, std::count(ccid_list.begin(), ccid_list.end(), default_ccid));
 }
 
 static BasicAudioAnnouncementData prepareAnnouncement(
