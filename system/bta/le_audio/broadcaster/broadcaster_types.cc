@@ -292,7 +292,7 @@ types::LeAudioLtvMap BroadcastCodecWrapper::GetSubgroupCodecSpecData() const {
   if (source_codec_config.num_channels == 1) {
     codec_spec_ltvs
         [codec_spec_conf::kLeAudioCodecLC3TypeAudioChannelAllocation] =
-            UINT32_TO_VEC_UINT8(codec_spec_conf::kLeAudioLocationFrontCenter);
+            UINT32_TO_VEC_UINT8(codec_spec_conf::kLeAudioLocationStereo);
   }
 
   return types::LeAudioLtvMap(codec_spec_ltvs);
