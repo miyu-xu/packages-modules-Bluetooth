@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_outer_classname = "GattProto";
+
+package pandora;
+
+import "pandora/host.proto";
+
+service GATT {
+  // Calls BluetoothGatt#requestMtu, then returns.
+  rpc ExchangeMTU(ExchangeMTURequest) returns (ExchangeMTUResult);
+
+  // Loops on BluetoothGatt discovered services and if the characteristic with given handle is found,
+  // calls BluetoothGatt#writeCharacteristic on it.
+  // NOTE: Service discovery is not performed in this method.
+  rpc WriteCharacteristicFromHandle(WriteCharacteristicRequest) returns (WriteCharacteristicResult);
+}
+
+// Request for the `ExchangeMTU` method.
+message ExchangeMTURequest {
+  Connection connection = 1;
+  int32 mtu = 2;
+}
+
+// Result of `ExchangeMTU` method.
+// No known errors in case of failure so there is only a bool
+// indicating wether or not the connection is made.
+message ExchangeMTUResult {
+  bool success = 1;
+}
+
+// Request for the `writeCharacteristicFromHandle` method.
+message WriteCharacteristicRequest {
+  Connection connection = 1;
+  uint32 handle = 2;
+  bytes value = 3;
+}
+
+// Response for the `writeCharacteristicFromHandle` method.
+message WriteCharacteristicResult {
+  bool success = 1;
+}
