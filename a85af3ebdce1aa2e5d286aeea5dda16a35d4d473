@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f30818c1_3f6a4751",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-16T00:12:49Z",
+      "side": 1,
+      "message": "This test still failed\n\nbluetooth_le_audio_test.LeAudioAseConfigurationTest#test_lc3_config_ringtone",
+      "revId": "a85af3ebdce1aa2e5d286aeea5dda16a35d4d473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
