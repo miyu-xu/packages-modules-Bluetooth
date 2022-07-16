@@ -709,4 +709,8 @@ void on_acl_br_edr_failed(const RawAddress& bda, tHCI_STATUS status) {
   test::mock::stack_acl::on_acl_br_edr_failed(bda, status);
 }
 
+// Manual Adds
+void acl_gatt_le_connection_cancel(const tGATT_IF gatt_if,
+                                   const RawAddress& bd_addr) {}
+
 // END mockcify generation

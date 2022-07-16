@@ -39,3 +39,5 @@ bool gatt_cl_read_sr_supp_feat_req(
     base::OnceCallback<void(const RawAddress&, uint8_t)> cb) {
   return gatt_interface->ClientReadSupportedFeatures(peer_bda, std::move(cb));
 }
+
+void acl_gatt_le_connection_cancel(unsigned char, RawAddress const&) {}
