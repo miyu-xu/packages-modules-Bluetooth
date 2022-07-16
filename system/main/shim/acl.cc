@@ -61,6 +61,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btm_status.h"
+#include "stack/include/gatt_api.h"
 #include "stack/include/pan_api.h"
 #include "stack/include/sec_hci_link_interface.h"
 #include "stack/l2cap/l2c_int.h"
@@ -964,8 +965,11 @@ struct shim::legacy::Acl::impl {
     GetAclManager()->CreateLeConnection(address_with_type, is_direct);
     LOG_DEBUG("Allow Le connection from remote:%s",
               PRIVATE_ADDRESS(address_with_type));
-    BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type),
-                   "Allow connection from", "Le");
+    BTM_LogHistory(
+        kBtmLogTag, ToLegacyAddressWithType(address_with_type),
+        "Allow connection from",
+        base::StringPrintf("Le auto_connect:%c[%s]", !(is_direct) ? 'T' : 'F',
+                           (is_direct) ? "direct" : "background"));
   }
 
   void ignore_le_connection_from(
@@ -1223,9 +1227,17 @@ void DumpsysRecord(int fd) {
 }
 #undef DUMPSYS_TAG
 
+constexpr uint32_t kRunicBjarkan = 0x0016D2;
+constexpr uint32_t kRunicHagall = 0x0016BC;
+
 void shim::legacy::Acl::Dump(int fd) const {
+#define DUMPSYS_TAG "shim::legacy::stack"
+  LOG_DUMPSYS(fd, "Stack information %lc%lc", kRunicHagall, kRunicBjarkan);
+#undef DUMPSYS_TAG
+
   PAN_Dumpsys(fd);
   DumpsysHid(fd);
+  GATT_Dumpsys(fd);
   DumpsysRecord(fd);
   DumpsysAcl(fd);
   DumpsysL2cap(fd);

@@ -39,3 +39,11 @@ bool gatt_cl_read_sr_supp_feat_req(
     base::OnceCallback<void(const RawAddress&, uint8_t)> cb) {
   return gatt_interface->ClientReadSupportedFeatures(peer_bda, std::move(cb));
 }
+
+bool acl_gatt_remove_device(const tBLE_BD_ADDR& address_with_type,
+                            tGATT_IF& gatt_if, RawAddress& bd_addr) {
+  return true;
+}
+
+void acl_gatt_remove_device(const tGATT_IF gatt_if, const RawAddress& bd_addr) {
+}

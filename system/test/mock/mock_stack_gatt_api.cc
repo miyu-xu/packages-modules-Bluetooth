@@ -235,4 +235,6 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, bool is_direct,
                                                   transport, opportunistic, 0);
 }
 
+void GATT_Dumpsys(int fd) { mock_function_count_map[__func__]++; }
+
 // END mockcify generation

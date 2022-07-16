@@ -16,7 +16,9 @@
 
 #include <cstdint>
 
+#include "bta/gatt/bta_gattc_int.h"
 #include "osi/include/log.h"
+#include "osi/include/osi.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
@@ -136,24 +138,40 @@ void acl_ble_enhanced_connection_complete_from_shim(
                                        conn_latency, conn_timeout, local_rpa,
                                        peer_rpa, peer_addr_type);
 
+  acl_gatt_le_connection_success(address_with_type);
   // The legacy stack continues the LE connection after the read remote version
   // complete has been received.
   // maybe_chain_more_commands_after_read_remote_version_complete
 }
 
+bool acl_gatt_remove_device(const tBLE_BD_ADDR& address_with_type,
+                            tGATT_IF& gatt_if, RawAddress& bd_addr);
+
 void acl_ble_connection_fail(const tBLE_BD_ADDR& address_with_type,
-                             uint16_t handle, bool enhanced,
-                             tHCI_STATUS status) {
-  if (status != HCI_ERR_ADVERTISING_TIMEOUT) {
+                             UNUSED_ATTR uint16_t handle,
+                             UNUSED_ATTR bool enhanced,
+                             tHCI_STATUS hci_status) {
+  if (hci_status != HCI_ERR_ADVERTISING_TIMEOUT) {
     btm_cb.ble_ctr_cb.set_connection_state_idle();
     btm_ble_clear_topology_mask(BTM_BLE_STATE_INIT_BIT);
     connection_manager::on_connection_timed_out_from_shim(
         address_with_type.bda);
   } else {
+    LOG_DEBUG("Disabled legacy advertising mode peer:%s",
+              PRIVATE_ADDRESS(address_with_type));
     btm_cb.ble_ctr_cb.inq_var.adv_mode = BTM_BLE_ADV_DISABLE;
   }
   btm_ble_update_mode_operation(HCI_ROLE_UNKNOWN, &address_with_type.bda,
-                                status);
+                                hci_status);
+  tGATT_IF gatt_if;
+  RawAddress bd_addr;
+  if (acl_gatt_remove_device(address_with_type, gatt_if, bd_addr)) {
+    connection_manager::on_connection_timed_out(gatt_if, bd_addr);
+    bta_gattc_process_api_open_fail(gatt_if, bd_addr, hci_status);
+  } else {
+    LOG_WARN("Unable to find gatt client connection record for peer:%s",
+             PRIVATE_ADDRESS(address_with_type));
+  }
 }
 
 void gatt_notify_conn_update(const RawAddress& remote, uint16_t interval,

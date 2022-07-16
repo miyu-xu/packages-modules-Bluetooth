@@ -709,4 +709,15 @@ void on_acl_br_edr_failed(const RawAddress& bda, tHCI_STATUS status) {
   test::mock::stack_acl::on_acl_br_edr_failed(bda, status);
 }
 
+// Manual Adds
+bool acl_gatt_remove_device(const tBLE_BD_ADDR& address_with_type,
+                            tGATT_IF& gatt_if, RawAddress& bd_addr) {
+  mock_function_count_map[__func__]++;
+  return true;
+}
+
+void acl_gatt_remove_device(const tGATT_IF gatt_if, const RawAddress& bd_addr) {
+  mock_function_count_map[__func__]++;
+}
+
 // END mockcify generation

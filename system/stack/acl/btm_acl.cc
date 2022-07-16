@@ -36,7 +36,9 @@
 #include <base/logging.h>
 
 #include <cstdint>
+#include <unordered_map>
 
+#include "bta/gatt/bta_gattc_int.h"
 #include "bta/include/bta_dm_acl.h"
 #include "bta/sys/bta_sys.h"
 #include "btif/include/btif_acl.h"
@@ -75,14 +77,58 @@
 void BTM_update_version_info(const RawAddress& bd_addr,
                              const remote_version_info& remote_version_info);
 
-void gatt_find_in_device_record(const RawAddress& bd_addr,
-                                tBLE_BD_ADDR* address_with_type);
 void l2c_link_hci_conn_comp(tHCI_STATUS status, uint16_t handle,
                             const RawAddress& p_bda);
 
 void BTM_db_reset(void);
 
 extern tBTM_CB btm_cb;
+
+class GattClientMap {
+ public:
+  bool insert(const tBLE_BD_ADDR& address_with_type, const tGATT_IF gatt_if,
+              const RawAddress& bd_addr) {
+    const auto it =
+        address_to_gatt_interface_address_map_.find(address_with_type);
+    if (it == address_to_gatt_interface_address_map_.end()) {
+      address_to_gatt_interface_address_map_[address_with_type] = {
+          .gatt_if = gatt_if,
+          .bd_addr = bd_addr,
+      };
+      return true;
+    }
+    return false;
+  }
+
+  bool remove(const tBLE_BD_ADDR& address_with_type, tGATT_IF& gatt_if,
+              RawAddress& bd_addr) {
+    const auto& it =
+        address_to_gatt_interface_address_map_.find(address_with_type);
+    if (it != address_to_gatt_interface_address_map_.end()) {
+      gatt_if = it->second.gatt_if;
+      bd_addr = it->second.bd_addr;
+      address_to_gatt_interface_address_map_.erase(it);
+      return true;
+    }
+    return false;
+  }
+
+  bool remove(const tBLE_BD_ADDR& address_with_type) {
+    tGATT_IF gatt_if;
+    RawAddress bd_addr;
+    return remove(address_with_type, gatt_if, bd_addr);
+  }
+
+  size_t size() const { return address_to_gatt_interface_address_map_.size(); }
+
+ private:
+  struct GattInterfaceAddress {
+    RawAddress bd_addr;
+    tGATT_IF gatt_if;
+  };
+  std::unordered_map<tBLE_BD_ADDR, GattInterfaceAddress>
+      address_to_gatt_interface_address_map_;
+};
 
 struct StackAclBtmAcl {
   tACL_CONN* acl_allocate_connection();
@@ -98,6 +144,8 @@ struct StackAclBtmAcl {
   void set_default_packet_types_supported(uint16_t packet_types_supported) {
     btm_cb.acl_cb_.btm_acl_pkt_types_supported = packet_types_supported;
   }
+
+  GattClientMap gatt_client_map_;
 };
 
 struct RoleChangeView {
@@ -177,6 +225,26 @@ void NotifyAclFeaturesReadComplete(tACL_CONN& p_acl,
   btm_process_remote_ext_features(&p_acl, max_page_number);
   btm_set_link_policy(&p_acl, btm_cb.acl_cb_.DefaultLinkPolicy());
   BTA_dm_notify_remote_features_complete(p_acl.remote_addr);
+}
+
+void gatt_find_in_device_record(const RawAddress& bd_addr,
+                                tBLE_BD_ADDR* address_with_type) {
+  const tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
+  if (p_dev_rec == nullptr) {
+    return;
+  }
+
+  if (p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) {
+    if (p_dev_rec->ble.identity_address_with_type.bda.IsEmpty()) {
+      *address_with_type = {.type = p_dev_rec->ble.AddressType(),
+                            .bda = bd_addr};
+      return;
+    }
+    *address_with_type = p_dev_rec->ble.identity_address_with_type;
+    return;
+  }
+  *address_with_type = {.type = BLE_ADDR_PUBLIC, .bda = bd_addr};
+  return;
 }
 
 }  // namespace
@@ -2692,14 +2760,13 @@ void acl_write_automatic_flush_timeout(const RawAddress& bd_addr,
   btsnd_hcic_write_auto_flush_tout(p_acl->hci_handle, flush_timeout_in_ticks);
 }
 
-bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr) {
+bool acl_create_le_connection_with_id(tGATT_IF gatt_if,
+                                      const RawAddress& bd_addr) {
   tBLE_BD_ADDR address_with_type{
       .bda = bd_addr,
       .type = BLE_ADDR_PUBLIC,
   };
   gatt_find_in_device_record(bd_addr, &address_with_type);
-  LOG_DEBUG("Creating le direct connection to:%s",
-            PRIVATE_ADDRESS(address_with_type));
 
   if (address_with_type.type == BLE_ADDR_ANONYMOUS) {
     LOG_WARN(
@@ -2709,13 +2776,74 @@ bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr) {
     return false;
   }
 
-    bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
-                                                /* is_direct */ true);
-    return true;
+  if (!internal_.gatt_client_map_.insert(address_with_type, gatt_if, bd_addr)) {
+    LOG_WARN(
+        "Ignoring already have connection outstanding for peer:%s gatt_if:%hhu "
+        "gatt_client_map_size:%zu",
+        PRIVATE_ADDRESS(address_with_type), gatt_if,
+        internal_.gatt_client_map_.size());
+    return false;
+  }
+
+  bluetooth::shim::ACL_AcceptLeConnectionFrom(address_with_type,
+                                              /* is_direct */ true);
+
+  LOG_DEBUG("Accepted le timed connection peer:%s gatt_if:%hhu",
+            PRIVATE_ADDRESS(address_with_type), gatt_if);
+  return true;
 }
 
 bool acl_create_le_connection(const RawAddress& bd_addr) {
   return acl_create_le_connection_with_id(CONN_MGR_ID_L2CAP, bd_addr);
+}
+
+void acl_gatt_le_connection_success(const tBLE_BD_ADDR& address_with_type) {
+  if (!internal_.gatt_client_map_.remove(address_with_type)) {
+    LOG_WARN("Gatt client map had no record peer:%s gatt_client_map_size:%zu",
+             PRIVATE_ADDRESS(address_with_type),
+             internal_.gatt_client_map_.size());
+  }
+}
+
+void acl_gatt_le_connection_fail(const tBLE_BD_ADDR& address_with_type,
+                                 tHCI_STATUS hci_status) {
+  tGATT_IF gatt_if;
+  RawAddress bd_addr;
+  if (internal_.gatt_client_map_.remove(address_with_type, gatt_if, bd_addr)) {
+    connection_manager::on_connection_timed_out(gatt_if, address_with_type.bda);
+    bta_gattc_process_api_open_fail(gatt_if, bd_addr, hci_status);
+  } else {
+    LOG_WARN(
+        "Gatt client map had no record peer:%s hci_status:%s "
+        "gatt_client_map_size:%zu",
+        PRIVATE_ADDRESS(address_with_type),
+        hci_status_code_text(hci_status).c_str(),
+        internal_.gatt_client_map_.size());
+  }
+}
+
+bool acl_gatt_remove_device(const tBLE_BD_ADDR& address_with_type,
+                            tGATT_IF& gatt_if, RawAddress& bd_addr) {
+  return internal_.gatt_client_map_.remove(address_with_type, gatt_if, bd_addr);
+}
+
+void acl_gatt_remove_device(const tGATT_IF gatt_if, const RawAddress& bd_addr) {
+  tBLE_BD_ADDR address_with_type{
+      .bda = bd_addr,
+      .type = BLE_ADDR_PUBLIC,
+  };
+  gatt_find_in_device_record(bd_addr, &address_with_type);
+
+  if (internal_.gatt_client_map_.remove(address_with_type)) {
+    LOG_INFO("Cancelled connection gatt_if:%hhu address_with_type:%s", gatt_if,
+             PRIVATE_ADDRESS(address_with_type));
+  } else {
+    LOG_WARN(
+        "Gatt client map had no record address_with_type:%s[%s] gatt_if:%hhu "
+        "gatt_client_map_size:%zu",
+        PRIVATE_ADDRESS(address_with_type), PRIVATE_ADDRESS(bd_addr), gatt_if,
+        internal_.gatt_client_map_.size());
+  }
 }
 
 void acl_rcv_acl_data(BT_HDR* p_msg) {

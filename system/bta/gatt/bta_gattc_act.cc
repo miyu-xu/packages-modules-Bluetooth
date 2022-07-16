@@ -406,6 +406,24 @@ void bta_gattc_open(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
   /* else wait for the callback event */
 }
 
+/** Process API Open failed for connection timeout */
+void bta_gattc_process_api_open_fail(tGATT_IF gatt_if, const RawAddress bd_addr,
+                                     tHCI_STATUS hci_status) {
+  tBTA_GATTC_CLCB* p_clcb =
+      bta_gattc_find_clcb_by_cif(gatt_if, bd_addr, BT_TRANSPORT_LE);
+  if (p_clcb == nullptr) {
+    LOG_WARN("Unable to process failed open for peer:%s gatt_if:%hhu status:%s",
+             PRIVATE_ADDRESS(bd_addr), gatt_if,
+             hci_status_code_text(hci_status).c_str());
+    return;
+  }
+  LOG_DEBUG("Connection failed or timeout peer:%s gatt_if:%hhu status:%s",
+            PRIVATE_ADDRESS(bd_addr), gatt_if,
+            hci_status_code_text(hci_status).c_str());
+  bta_gattc_sm_execute(p_clcb, BTA_GATTC_INT_OPEN_FAIL_EVT,
+                       /* unused */ nullptr);
+}
+
 /** Process API Open for a background connection */
 static void bta_gattc_init_bk_conn(const tBTA_GATTC_API_OPEN* p_data,
                                    tBTA_GATTC_RCB* p_clreg) {

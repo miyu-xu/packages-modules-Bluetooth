@@ -42,6 +42,10 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
+namespace {
+constexpr char kBtmLogTag[] = "GATT";
+}  // namespace
+
 uint8_t btm_ble_read_sec_key_size(const RawAddress& bd_addr);
 
 using base::StringPrintf;
@@ -1435,6 +1439,13 @@ bool gatt_cancel_open(tGATT_IF gatt_if, const RawAddress& bda) {
         "gatt_if:%hhu peer:%s",
         gatt_if, PRIVATE_ADDRESS(bda));
   }
+  acl_gatt_remove_device(gatt_if, bda);
+
+  BTM_LogHistory(
+      kBtmLogTag, bda, "Cancel open",
+      base::StringPrintf("gatt_if:%-3hhu lcid:0x%-4x transport:%s", gatt_if,
+                         p_tcb->att_lcid,
+                         bt_transport_text(p_tcb->transport).c_str()));
   return true;
 }
 
@@ -1610,6 +1621,9 @@ void gatt_cleanup_upon_disc(const RawAddress& bda, tGATT_DISCONN_REASON reason,
     }
   }
 
+  LOG_DEBUG("Reset gatt control block for peer:%s reason:%s",
+            PRIVATE_ADDRESS(bda),
+            gatt_disconnection_reason_text(reason).c_str());
   *p_tcb = tGATT_TCB();
   VLOG(1) << __func__ << ": exit";
 }

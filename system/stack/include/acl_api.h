@@ -315,6 +315,14 @@ extern tBTM_STATUS btm_remove_acl(const RawAddress& bd_addr,
 void btm_acl_device_down(void);
 void btm_acl_update_inquiry_status(uint8_t status);
 
+// Gatt acl interface
+void acl_gatt_le_connection_success(const tBLE_BD_ADDR& address_with_type);
+void acl_gatt_le_connection_fail(const tBLE_BD_ADDR& address_with_type,
+                                 tHCI_STATUS);
+bool acl_gatt_remove_device(const tBLE_BD_ADDR& address_with_type,
+                            tGATT_IF& gatt_if, RawAddress& bd_addr);
+void acl_gatt_remove_device(const tGATT_IF gatt_if, const RawAddress& bd_addr);
+
 void ACL_RegisterClient(struct acl_client_callback_s* callbacks);
 void ACL_UnregisterClient(struct acl_client_callback_s* callbacks);
 bool ACL_SupportTransparentSynchronousData(const RawAddress& bd_addr);

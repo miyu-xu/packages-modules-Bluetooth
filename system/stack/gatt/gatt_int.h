@@ -198,6 +198,7 @@ typedef struct {
   bool in_use{false};
   uint8_t listening{0}; /* if adv for all has been enabled */
   bool eatt_support{false};
+  bool opportunistic{false};
   std::string name;
 } tGATT_REG;
 
@@ -343,6 +344,16 @@ typedef struct {
 
   bool in_use;
   uint8_t tcb_idx;
+
+  struct {
+    struct {
+      uint64_t bytes;
+      uint64_t pkts;
+      uint64_t errs;
+      uint64_t drops;
+    } tx, rx;
+  } stats;
+
 } tGATT_TCB;
 
 /* logic channel */

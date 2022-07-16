@@ -46,6 +46,11 @@
 using bluetooth::Uuid;
 
 extern bool BTM_BackgroundConnectAddressKnown(const RawAddress& address);
+
+namespace {
+constexpr char kBtmLogTag[] = "GATT";
+}  // namespace
+
 /**
  * Add an service handle range to the list in decending order of the start
  * handle. Return reference to the newly added element.
@@ -1125,6 +1130,7 @@ tGATT_IF GATT_Register(const Uuid& app_uuid128, std::string name,
       p_reg->app_cb = *p_cb_info;
       p_reg->in_use = true;
       p_reg->eatt_support = eatt_support;
+      p_reg->opportunistic = false;
       p_reg->name = name;
       LOG_INFO("Allocated name:%s uuid:%s gatt_if:%hhu eatt_support:%u",
                name.c_str(), app_uuid128.ToString().c_str(), gatt_if,
@@ -1289,6 +1295,7 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, bool is_direct,
   }
 
   if (opportunistic) {
+    p_reg->opportunistic = true;
     LOG_INFO("Registered for opportunistic connection gatt_if=%d", +gatt_if);
     return true;
   }
@@ -1298,6 +1305,18 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, bool is_direct,
     LOG_DEBUG("Starting direct connect gatt_if=%u address=%s", gatt_if,
               bd_addr.ToString().c_str());
     ret = gatt_act_connect(p_reg, bd_addr, transport, initiating_phys);
+    if (ret) {
+      LOG_DEBUG("Direct connect gatt_if:%u address:%s", gatt_if,
+                PRIVATE_ADDRESS(bd_addr));
+    } else {
+      LOG_WARN("Unable to start direct connect gatt_if:%u address:%s", gatt_if,
+               PRIVATE_ADDRESS(bd_addr));
+    }
+    BTM_LogHistory(
+        kBtmLogTag, bd_addr, "Direct connect",
+        base::StringPrintf("gatt_if:%-3hhu transport:%s name:\"%s\" status:%s",
+                           gatt_if, bt_transport_text(transport).c_str(),
+                           p_reg->name.c_str(), (ret) ? "Success" : "FAILED"));
   } else {
     LOG_DEBUG("Starting background connect gatt_if=%u address=%s", gatt_if,
               bd_addr.ToString().c_str());
@@ -1311,6 +1330,13 @@ bool GATT_Connect(tGATT_IF gatt_if, const RawAddress& bd_addr, bool is_direct,
     } else {
       LOG_DEBUG("Adding to accept list device:%s", PRIVATE_ADDRESS(bd_addr));
       ret = connection_manager::background_connect_add(gatt_if, bd_addr);
+      if (ret) {
+        LOG_DEBUG("Background connect gatt_if:%u address:%s", gatt_if,
+                  PRIVATE_ADDRESS(bd_addr));
+      } else {
+        LOG_WARN("Unable to background connect gatt_if:%u address:%s", gatt_if,
+                 PRIVATE_ADDRESS(bd_addr));
+      }
     }
   }
 
@@ -1359,9 +1385,23 @@ bool GATT_CancelConnect(tGATT_IF gatt_if, const RawAddress& bd_addr,
     }
 
     if (is_direct) {
-      return gatt_cancel_open(gatt_if, bd_addr);
+      const bool ret = gatt_cancel_open(gatt_if, bd_addr);
+      BTM_LogHistory(
+          kBtmLogTag, bd_addr, "Direct cancel",
+          base::StringPrintf("gatt_if:%-3hhu status:%s uuid:%s name:\"%s\"",
+                             gatt_if, (ret) ? "Success" : "FAILED",
+                             p_reg->app_uuid128.ToString().c_str(),
+                             p_reg->name.c_str()));
+      return ret;
     } else {
-      return gatt_auto_connect_dev_remove(p_reg->gatt_if, bd_addr);
+      const bool ret = gatt_auto_connect_dev_remove(p_reg->gatt_if, bd_addr);
+      BTM_LogHistory(
+          kBtmLogTag, bd_addr, "Background cancel",
+          base::StringPrintf("gatt_if:%-3hhu status:%s uuid:%s name:\"%s\"",
+                             gatt_if, (ret) ? "Success" : "FAILED",
+                             p_reg->app_uuid128.ToString().c_str(),
+                             p_reg->name.c_str()));
+      return ret;
     }
   }
 
@@ -1380,11 +1420,17 @@ bool GATT_CancelConnect(tGATT_IF gatt_if, const RawAddress& bd_addr,
     }
   }
 
-  if (!connection_manager::remove_unconditional(bd_addr)) {
-    LOG(ERROR)
-        << __func__
-        << ": no app associated with the bg device for unconditional removal";
-    return false;
+  BTM_AcceptlistRemove(bd_addr);
+  if (p_tcb != nullptr) {
+    BTM_LogHistory(
+        kBtmLogTag, bd_addr, "Unconditional cancel",
+        base::StringPrintf("gatt_if:%-3hhu transport:%s channel_state:%s",
+                           gatt_if, bt_transport_text(p_tcb->transport).c_str(),
+                           gatt_channel_state_text(p_tcb->ch_state).c_str()));
+  } else {
+    BTM_LogHistory(
+        kBtmLogTag, bd_addr, "Unconditional cancel",
+        base::StringPrintf("gatt_if:%-3hhu NO TRANSPORT FOUND", gatt_if));
   }
 
   return true;
@@ -1477,3 +1523,81 @@ bool GATT_GetConnIdIfConnected(tGATT_IF gatt_if, const RawAddress& bd_addr,
   LOG_DEBUG("status=%d", status);
   return status;
 }
+
+#define DUMPSYS_TAG "shim::legacy::gatt"
+extern tGATT_CB gatt_cb;
+
+void GATT_Dumpsys(int fd) {
+  LOG_DUMPSYS_TITLE(fd, DUMPSYS_TAG);
+
+  for (auto i = 0; i < GATT_MAX_APPS; i++) {
+    const tGATT_REG& reg = gatt_cb.cl_rcb[i];
+    if (!reg.in_use) continue;
+    LOG_DUMPSYS(fd,
+                "APP gatt_if:%-3hhu opportunistic:%c uuid:%s eatt_supported:%c "
+                "name:\"%s\"",
+                reg.gatt_if, (reg.opportunistic) ? 'T' : 'F',
+                reg.app_uuid128.ToString().c_str(),
+                (reg.eatt_support) ? 'T' : 'F', reg.name.c_str());
+  }
+
+  for (auto i = 0; i < GATT_MAX_APPS; i++) {
+    const tGATT_PROFILE_CLCB& clcb = gatt_cb.profile_clcb[i];
+    if (!clcb.in_use) continue;
+    LOG_DUMPSYS(
+        fd, "PROFILE connection_id:0x%04x connected:%c address:%s transport:%s",
+        clcb.conn_id, (clcb.connected) ? 'T' : 'F', PRIVATE_ADDRESS(clcb.bda),
+        bt_transport_text(clcb.transport).c_str());
+    LOG_DUMPSYS(fd,
+                "PROFILE   start_handle:%-5hu end_handle:%-5hu "
+                "CCC_stage:%-3hhu CCC_result:%-3hhu ",
+                clcb.s_handle, clcb.e_handle, clcb.ccc_stage, clcb.ccc_result);
+  }
+
+  for (auto i = 0; i < GATT_CL_MAX_LCB; i++) {
+    const tGATT_CLCB& clcb = gatt_cb.clcb[i];
+    if (!clcb.in_use) continue;
+    LOG_DUMPSYS(fd, "LINK conn_id:0x%04x address:%s cid:0x%04x", clcb.conn_id,
+                PRIVATE_ADDRESS(clcb.p_tcb->peer_bda), clcb.cid);
+    LOG_DUMPSYS(fd, "LINK   uuid128:%s",
+                clcb.p_reg->app_uuid128.ToString().c_str());
+    LOG_DUMPSYS(fd, "LINK   start_handle:%-5hu end_handle:%-5hu", clcb.s_handle,
+                clcb.e_handle);
+    if (clcb.p_tcb != nullptr && clcb.p_tcb->in_use) {
+      LOG_DUMPSYS(fd, "LINK   CHAN idx:%-3hhu", clcb.p_tcb->tcb_idx);
+    }
+    if (clcb.p_reg != nullptr && clcb.p_reg->in_use) {
+      LOG_DUMPSYS(fd, "LINK   APP name:\"%s\" uuid128:%s",
+                  clcb.p_reg->name.c_str(),
+                  clcb.p_reg->app_uuid128.ToString().c_str());
+    }
+  }
+
+  for (auto i = 0; i < GATT_MAX_PHY_CHANNEL; i++) {
+    const tGATT_TCB& tcb = gatt_cb.tcb[i];
+    if (!tcb.in_use) continue;
+    LOG_DUMPSYS(fd, "CHAN idx:%-3hhu address:%s transport:%s clients:%zu",
+                tcb.tcb_idx, PRIVATE_ADDRESS(tcb.peer_bda),
+                bt_transport_text(tcb.transport).c_str(),
+                tcb.app_hold_link.size());
+    for (auto gatt_if : tcb.app_hold_link) {
+      const tGATT_REG* p_reg = gatt_get_regcb(gatt_if);
+      LOG_DUMPSYS(fd, "CHAN  client gatt_if:%-3hhu name:\"%s\"", gatt_if,
+                  (p_reg) ? p_reg->name.c_str() : "UNKNOWN");
+    }
+    LOG_DUMPSYS(fd, "CHAN   Security action:%s num_eatt_channels:%hhu",
+                gatt_security_action_text(tcb.sec_act).c_str(), tcb.eatt);
+    LOG_DUMPSYS(fd, "CHAN   L2cap cid:0x%04x payload_size_bytes:%-5hu state:%s",
+                tcb.att_lcid, tcb.payload_size,
+                gatt_channel_state_text(tcb.ch_state).c_str());
+    LOG_DUMPSYS(
+        fd, "CHAN   RX packets:%-6lu bytes:%-10lu errors:%-3lu drops:%lu",
+        (unsigned long)tcb.stats.rx.pkts, (unsigned long)tcb.stats.rx.bytes,
+        (unsigned long)tcb.stats.rx.errs, (unsigned long)tcb.stats.rx.drops);
+    LOG_DUMPSYS(
+        fd, "CHAN   TX packets:%-6lu bytes:%-10lu errors:%-3lu drops:%lu",
+        (unsigned long)tcb.stats.tx.pkts, (unsigned long)tcb.stats.tx.bytes,
+        (unsigned long)tcb.stats.tx.errs, (unsigned long)tcb.stats.tx.drops);
+  }
+}
+#undef DUMPSYS_TAG

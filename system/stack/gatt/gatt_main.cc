@@ -183,26 +183,6 @@ void gatt_free(void) {
   EattExtension::GetInstance()->Stop();
 }
 
-void gatt_find_in_device_record(const RawAddress& bd_addr,
-                                tBLE_BD_ADDR* address_with_type) {
-  const tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
-  if (p_dev_rec == nullptr) {
-    return;
-  }
-
-  if (p_dev_rec->device_type & BT_DEVICE_TYPE_BLE) {
-    if (p_dev_rec->ble.identity_address_with_type.bda.IsEmpty()) {
-      *address_with_type = {.type = p_dev_rec->ble.AddressType(),
-                            .bda = bd_addr};
-      return;
-    }
-    *address_with_type = p_dev_rec->ble.identity_address_with_type;
-    return;
-  }
-  *address_with_type = {.type = BLE_ADDR_PUBLIC, .bda = bd_addr};
-  return;
-}
-
 /*******************************************************************************
  *
  * Function         gatt_connect
@@ -395,19 +375,28 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
                       tBT_TRANSPORT transport, int8_t initiating_phys) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, transport);
   if (p_tcb != NULL) {
-    /* before link down, another app try to open a GATT connection */
-    uint8_t st = gatt_get_ch_state(p_tcb);
+    LOG_DEBUG(
+        "Another app trying to open a GATT connection before link goes down");
+    const tGATT_CH_STATE st = gatt_get_ch_state(p_tcb);
     if (st == GATT_CH_OPEN && p_tcb->app_hold_link.empty() &&
         transport == BT_TRANSPORT_LE) {
       if (!gatt_connect(bd_addr, p_tcb, transport, initiating_phys,
-                        p_reg->gatt_if))
+                        p_reg->gatt_if)) {
+        LOG_WARN("Unable to reconnect to peer:%s", PRIVATE_ADDRESS(bd_addr));
         return false;
+      } else {
+        LOG_INFO("Reconnected to peer:%s gatt_ch_state:%s",
+                 PRIVATE_ADDRESS(bd_addr), gatt_channel_state_text(st).c_str());
+      }
     } else if (st == GATT_CH_CLOSING) {
-      LOG(INFO) << "Must finish disconnection before new connection";
       /* need to complete the closing first */
+      LOG(INFO) << "Must finish disconnection before new connection";
       return false;
+    } else {
+      LOG_INFO(
+          "Unhandled GATT connection channel state peer:%s gatt_ch_state:%s",
+          PRIVATE_ADDRESS(bd_addr), gatt_channel_state_text(st).c_str());
     }
-
     return true;
   }
 
@@ -429,7 +418,8 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
 }
 
 namespace connection_manager {
-void on_connection_timed_out(uint8_t app_id, const RawAddress& address) {
+void on_connection_timed_out(UNUSED_ATTR uint8_t app_id,
+                             const RawAddress& address) {
   gatt_le_connect_cback(L2CAP_ATT_CID, address, false, 0xff, BT_TRANSPORT_LE);
 }
 }  // namespace connection_manager
@@ -438,8 +428,10 @@ void on_connection_timed_out(uint8_t app_id, const RawAddress& address) {
  * channel for LE is connected (conn = true)/disconnected (conn = false).
  */
 static void gatt_le_connect_cback(uint16_t chan, const RawAddress& bd_addr,
-                                  bool connected, uint16_t reason,
+                                  bool connected, uint16_t reason_raw,
                                   tBT_TRANSPORT transport) {
+  const tGATT_DISCONN_REASON reason =
+      static_cast<tGATT_DISCONN_REASON>(reason_raw);
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, transport);
   bool check_srv_chg = false;
   tGATTS_SRV_CHG* p_srv_chg_clt = NULL;
@@ -461,8 +453,11 @@ static void gatt_le_connect_cback(uint16_t chan, const RawAddress& bd_addr,
   }
 
   if (!connected) {
-    gatt_cleanup_upon_disc(bd_addr, static_cast<tGATT_DISCONN_REASON>(reason),
-                           transport);
+    LOG_DEBUG("Le disconnected callback peer:%s reason:%s transport:%s",
+              PRIVATE_ADDRESS(bd_addr),
+              gatt_disconnection_reason_text(reason).c_str(),
+              bt_transport_text(transport).c_str());
+    gatt_cleanup_upon_disc(bd_addr, reason, transport);
     return;
   }
 
@@ -807,6 +802,9 @@ static void gatt_send_conn_cback(tGATT_TCB* p_tcb) {
      * the idle timer */
     GATT_SetIdleTimeout(p_tcb->peer_bda, GATT_LINK_NO_IDLE_TIMEOUT,
                         p_tcb->transport);
+    LOG_INFO("Disabled idle timeout for device:%s transport:%s",
+             PRIVATE_ADDRESS(p_tcb->peer_bda),
+             bt_transport_text(p_tcb->transport).c_str());
   }
 }
 
@@ -847,8 +845,12 @@ void gatt_data_process(tGATT_TCB& tcb, uint16_t cid, BT_HDR* p_buf) {
     LOG(ERROR) << __func__
                << ": ATT - Rcvd L2CAP data, unknown cmd: " << loghex(op_code);
     gatt_send_error_rsp(tcb, cid, GATT_REQ_NOT_SUPPORTED, op_code, 0, false);
+    tcb.stats.rx.errs++;
     return;
   }
+
+  tcb.stats.rx.bytes += p_buf->len;
+  tcb.stats.rx.pkts++;
 
   if (op_code == GATT_SIGN_CMD_WRITE) {
     gatt_verify_signature(tcb, cid, p_buf);

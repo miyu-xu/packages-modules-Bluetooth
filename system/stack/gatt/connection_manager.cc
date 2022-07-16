@@ -28,6 +28,7 @@
 #include <set>
 
 #include "internal_include/bt_trace.h"
+#include "main/shim/dumpsys.h"
 #include "main/shim/shim.h"
 #include "osi/include/alarm.h"
 #include "osi/include/log.h"
@@ -157,7 +158,9 @@ bool background_connect_remove(uint8_t app_id, const RawAddress& address) {
             address.ToString().c_str());
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
-    LOG_WARN("address %s is not found", address.ToString().c_str());
+    LOG_WARN(
+        "Unable to find and remove connection peer:%s connection_count:%zu",
+        PRIVATE_ADDRESS(address), bgconn_dev.size());
     return false;
   }
 
@@ -299,7 +302,9 @@ bool direct_connect_remove(uint8_t app_id, const RawAddress& address) {
             address.ToString().c_str());
   auto it = bgconn_dev.find(address);
   if (it == bgconn_dev.end()) {
-    LOG_WARN("Unable to find background connection to remove");
+    LOG_WARN(
+        "Unable to find and remove connection peer:%s connection_count:%zu",
+        PRIVATE_ADDRESS(address), bgconn_dev.size());
     return false;
   }
 
