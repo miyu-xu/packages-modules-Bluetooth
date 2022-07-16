@@ -22,6 +22,98 @@
       },
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3afada1b_da799793",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-16T02:02:49Z",
+      "side": 1,
+      "message": "I think this method should live in Host.proto since `confirmPasskey` could be used by other profiles and it is not GATT specific.",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 57
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dac5038_2e1f0abb",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-16T02:02:49Z",
+      "side": 1,
+      "message": "It is just a guess but maybe we can `lateinit` the `gatt` like that we can get rid of the `?` and avoid the gatt to be `null` ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 35,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6402a64a_0895473a",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-16T02:02:49Z",
+      "side": 1,
+      "message": "Do we need to save the BluetoohDevice as global here ? We can retrieve it from the BluetoothAdapter and actually it is instantiate and used only  in the `connectLe` method",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 57
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dcdc7a4_021a137c",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-16T02:02:49Z",
+      "side": 1,
+      "message": "Is the `waitConnection` method in Host.kt working ? I don\u0027t have the context and I saw the the MMI is telling us to explicitly do a confirm passkey. `waitConnection` is performing a confirmPasskey but I don\u0027t know if it will work since we need to wait for the bond intent in it which might cause us a timeout if it\u0027s already happenned.",
+      "range": {
+        "startLine": 165,
+        "startChar": 17,
+        "endLine": 165,
+        "endChar": 31
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
