@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+option java_outer_classname = "GattProto";
+
+package pandora;
+
+import "pandora/host.proto";
+import "google/protobuf/empty.proto";
+
+service GATT {
+  // Connects GATT profile over Bluetooth LE.
+  rpc ConnectLe(AddrRequest) returns (AddrResponse);
+
+  // Confirms passkey when bonding device.
+  rpc ConfirmPasskey(AddrRequest) returns (AddrResponse);
+
+  // Connects GATT profile over BR/EDR, creates bond if necessary.
+  // The connection is made asynchronously so the ConfirmPasskey MMI
+  // can be used.
+  rpc ConnectBrEdr(AddrRequest) returns (AddrResponse);
+
+  // Disconnects gatt.
+  rpc Disconnect(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // Calls BluetoothGatt#discoverServices and waits for discovery end.
+  rpc DiscoverServices(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // Calls BluetoothGatt#discoverServiceByUUID, and returns immediately.
+  // Note that in some cases we have to wait for the previous discovery to be done before calling it.
+  rpc DiscoverServicesByUUID(DiscoverServicesRequest) returns (DiscoverServicesResponse);
+
+  // Calls BluetoothGatt#discoverServiceByUUID, and returns immediately.
+  // Note that in some cases we have to wait for the previous discovery to be done before calling it.
+  rpc DiscoverServicesByUUID128(DiscoverServicesRequest) returns (DiscoverServicesResponse);
+
+  // Calls BluetoothGatt#requestMtu, then returns.
+  rpc ExchangeMTU(ExchangeMTURequest) returns (ExchangeMTUResponse);
+
+  // Loops on BluetoothGatt discovered services and if the characteristic with given handle is found,
+  // calls BluetoothGatt#writeCharacteristic on it.
+  // NOTE: Service discovery is not performed in this method.
+  rpc WriteCharacteristic(WriteCharacteristicRequest) returns (WriteCharacteristicResponse);
+
+  // Starts a service discovery then loops through the services to find the characteristics
+  rpc DiscoverCharacteristics(DiscoverCharacteristicsRequest) returns (DiscoverCharacteristicsResponse);
+
+  // Starts a service discovery then loops through the services to find the descriptors
+  rpc DiscoverDescriptors(DiscoverDescriptorsRequest) returns (DiscoverDescriptorsResponse);
+
+  // Loops on BluetoothGatt discovered services and if the characteristic with given handle is found,
+  // calls BluetoothGatt#readCharacteristic on it.
+  // NOTE: Service discovery is not performed in this method.
+  rpc ReadCharacteristic(ReadCharacteristicRequest) returns (ReadCharacteristicResponse);
+}
+
+// Request for device address.
+message AddrRequest {
+  bytes address = 1;
+}
+
+// Response for device address.
+message AddrResponse {}
+
+// Request for the `ExchangeMTU` method.
+message ExchangeMTURequest {
+  int32 mtu = 1;
+}
+
+// Response for the `ExchangeMTU` method.
+message ExchangeMTUResponse {}
+
+// Request for the `WriteCharacteristic` method.
+message WriteCharacteristicRequest {
+  string handle = 1;
+  int32 size = 2;
+}
+
+// Response for the `WriteCharacteristic` method.
+message WriteCharacteristicResponse {
+  bool success = 1;
+}
+
+// Request for the `DiscoverServicesByUUID` and `DiscoverServicesByUUID128` methods
+message DiscoverServicesRequest {
+  repeated string uuid = 1;
+  bytes address = 2;
+}
+
+// Response for the `DiscoverServicesByUUID` and `DiscoverServicesByUUID128` methods
+message DiscoverServicesResponse {}
+
+// Request for the `DiscoverCharacteristics` method
+message DiscoverCharacteristicsRequest {
+  repeated string service_uuids = 1;
+}
+
+// Response for the `DiscoverCharacteristics` method
+message DiscoverCharacteristicsResponse {
+  repeated int32 characteristic_handles = 1;
+}
+
+// Request for the `DiscoverDescriptors` method
+message DiscoverDescriptorsRequest {}
+
+// Response for the `DiscoverDescriptors` method
+message DiscoverDescriptorsResponse {}
+
+// Request for the `ReadCharacteristic` method
+message ReadCharacteristicRequest {
+  oneof id {
+    string handle = 1;
+    string uuid = 2;
+  }
+}
+
+// Response for the `ReadCharacteristic` method
+message ReadCharacteristicResponse {
+  bool success = 1;
+  repeated string value = 2;
+}
