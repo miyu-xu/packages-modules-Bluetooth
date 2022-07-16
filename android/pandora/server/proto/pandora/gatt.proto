@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+option java_outer_classname = "GattProto";
+
+package pandora;
+
+import "pandora/host.proto";
+import "google/protobuf/empty.proto";
+
+service GATT {
+  // Connects GATT profile over Bluetooth LE.
+  rpc ConnectLe(BdAddr) returns (ConnectLeResult);
+
+  // Disconnects gatt.
+  rpc Disconnect(BdAddr) returns (DisconnectResult);
+
+  // Calls BluetoothGatt#discoverServices and waits for discovery end.
+  // Does not return the services.
+  rpc DiscoverServices(BdAddr) returns (DiscoverServicesResult);
+
+  // Calls BluetoothGatt#requestMtu, then returns.
+  rpc ExchangeMTU(ExchangeMTURequest) returns (ExchangeMTUResult);
+
+  // Loops on BluetoothGatt discovered services and if the characteristic with given handle is found,
+  // calls BluetoothGatt#writeCharacteristic on it.
+  // NOTE: Service discovery is not performed in this method.
+  rpc writeCharacteristicFromHandle(WriteCharacteristicRequest) returns (WriteCharacteristicResult);
+}
+
+// Bluetooth device address.
+message BdAddr {
+  bytes address = 1;
+}
+
+// Result of `ConnectLe`.
+// No known errors in case of failure so there is only a bool
+// indicating wether or not the connection is made.
+message ConnectLeResult {
+  bool success = 1;
+}
+
+// Result of `Disconnect`.
+// No known errors in case of failure so there is only a bool
+// indicating wether or not the connection is made.
+message DisconnectResult {
+  bool success = 1;
+}
+
+// Result of `DiscoverServices`, true if the call succeeded false otherwise.
+// No known errors in case of failure so there is only a bool
+// indicating wether or not the connection is made.
+message DiscoverServicesResult {
+  bool success = 1;
+}
+
+// Request for the `ExchangeMTU` method.
+message ExchangeMTURequest {
+  bytes address = 1;
+  int32 mtu = 2;
+}
+
+// Result of `ExchangeMTU` method.
+// No known errors in case of failure so there is only a bool
+// indicating wether or not the connection is made.
+message ExchangeMTUResult {
+  bool success = 1;
+}
+
+// Request for the `writeCharacteristicFromHandle` method.
+message WriteCharacteristicRequest {
+  bytes address = 1;
+  uint32 handle = 2;
+  bytes value = 3;
+}
+
+// Response for the `writeCharacteristicFromHandle` method.
+message WriteCharacteristicResult {
+  bool success = 1;
+}
