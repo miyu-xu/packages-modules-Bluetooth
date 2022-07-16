@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9915732_72ac7552",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-16T01:50:37Z",
+      "side": 1,
+      "message": "Because you specified GAC, the GAD test you mention in the commit message will not be run yet",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 49
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
