@@ -395,19 +395,28 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
                       tBT_TRANSPORT transport, int8_t initiating_phys) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, transport);
   if (p_tcb != NULL) {
-    /* before link down, another app try to open a GATT connection */
-    uint8_t st = gatt_get_ch_state(p_tcb);
+    LOG_DEBUG(
+        "Another app trying to open a GATT connection before link goes down");
+    const tGATT_CH_STATE st = gatt_get_ch_state(p_tcb);
     if (st == GATT_CH_OPEN && p_tcb->app_hold_link.empty() &&
         transport == BT_TRANSPORT_LE) {
       if (!gatt_connect(bd_addr, p_tcb, transport, initiating_phys,
-                        p_reg->gatt_if))
+                        p_reg->gatt_if)) {
+        LOG_WARN("Unable to reconnect to peer:%s", PRIVATE_ADDRESS(bd_addr));
         return false;
+      } else {
+        LOG_INFO("Reconnected to peer:%s gatt_ch_state:%s",
+                 PRIVATE_ADDRESS(bd_addr), gatt_channel_state_text(st).c_str());
+      }
     } else if (st == GATT_CH_CLOSING) {
-      LOG(INFO) << "Must finish disconnection before new connection";
       /* need to complete the closing first */
+      LOG(INFO) << "Must finish disconnection before new connection";
       return false;
+    } else {
+      LOG_INFO(
+          "Unhandled GATT connection channel state peer:%s gatt_ch_state:%s",
+          PRIVATE_ADDRESS(bd_addr), gatt_channel_state_text(st).c_str());
     }
-
     return true;
   }
 
@@ -429,7 +438,8 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
 }
 
 namespace connection_manager {
-void on_connection_timed_out(uint8_t app_id, const RawAddress& address) {
+void on_connection_timed_out(UNUSED_ATTR uint8_t app_id,
+                             const RawAddress& address) {
   gatt_le_connect_cback(L2CAP_ATT_CID, address, false, 0xff, BT_TRANSPORT_LE);
 }
 }  // namespace connection_manager

@@ -964,8 +964,11 @@ struct shim::legacy::Acl::impl {
     GetAclManager()->CreateLeConnection(address_with_type, is_direct);
     LOG_DEBUG("Allow Le connection from remote:%s",
               PRIVATE_ADDRESS(address_with_type));
-    BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(address_with_type),
-                   "Allow connection from", "Le");
+    BTM_LogHistory(
+        kBtmLogTag, ToLegacyAddressWithType(address_with_type),
+        "Allow connection from",
+        base::StringPrintf("Le auto_connect:%c[%s]", !(is_direct) ? 'T' : 'F',
+                           (is_direct) ? "direct" : "background"));
   }
 
   void ignore_le_connection_from(

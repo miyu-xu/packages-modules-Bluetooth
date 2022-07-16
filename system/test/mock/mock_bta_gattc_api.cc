@@ -168,3 +168,8 @@ void BTA_GATTC_WriteCharValue(uint16_t conn_id, uint16_t handle,
                               GATT_WRITE_OP_CB callback, void* cb_data) {
   mock_function_count_map[__func__]++;
 }
+
+void bta_gattc_process_api_open_fail(unsigned char, RawAddress,
+                                     tHCI_ERROR_CODE) {
+  mock_function_count_map[__func__]++;
+}

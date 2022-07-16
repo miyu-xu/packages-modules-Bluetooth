@@ -17,6 +17,7 @@
 #include <cstdint>
 
 #include "osi/include/log.h"
+#include "osi/include/osi.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
@@ -136,14 +137,15 @@ void acl_ble_enhanced_connection_complete_from_shim(
                                        conn_latency, conn_timeout, local_rpa,
                                        peer_rpa, peer_addr_type);
 
+  acl_gatt_le_connection_success(address_with_type);
   // The legacy stack continues the LE connection after the read remote version
   // complete has been received.
   // maybe_chain_more_commands_after_read_remote_version_complete
 }
 
 void acl_ble_connection_fail(const tBLE_BD_ADDR& address_with_type,
-                             uint16_t handle, bool enhanced,
-                             tHCI_STATUS status) {
+                             UNUSED_ATTR uint16_t handle,
+                             UNUSED_ATTR bool enhanced, tHCI_STATUS status) {
   if (status != HCI_ERR_ADVERTISING_TIMEOUT) {
     btm_cb.ble_ctr_cb.set_connection_state_idle();
     btm_ble_clear_topology_mask(BTM_BLE_STATE_INIT_BIT);
@@ -154,6 +156,7 @@ void acl_ble_connection_fail(const tBLE_BD_ADDR& address_with_type,
   }
   btm_ble_update_mode_operation(HCI_ROLE_UNKNOWN, &address_with_type.bda,
                                 status);
+  acl_gatt_le_connection_fail(address_with_type, status);
 }
 
 void gatt_notify_conn_update(const RawAddress& remote, uint16_t interval,
