@@ -1435,6 +1435,7 @@ bool gatt_cancel_open(tGATT_IF gatt_if, const RawAddress& bda) {
         "gatt_if:%hhu peer:%s",
         gatt_if, PRIVATE_ADDRESS(bda));
   }
+  acl_gatt_le_connection_cancel(gatt_if, bda);
   return true;
 }
 
