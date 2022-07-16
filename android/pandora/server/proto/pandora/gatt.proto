@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+option java_outer_classname = "GattProto";
+
+package pandora;
+
+import "pandora/host.proto";
+import "google/protobuf/empty.proto";
+
+service GATT {
+  // Connects GATT profile over Bluetooth LE.
+  rpc ConnectLe(AddrRequest) returns (AddrResponse);
+
+  // Disconnects gatt.
+  rpc Disconnect(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // Calls BluetoothGatt#discoverServices and waits for discovery end.
+  rpc DiscoverServices(google.protobuf.Empty) returns (google.protobuf.Empty);
+
+  // Calls BluetoothGatt#requestMtu, then returns.
+  rpc ExchangeMTU(ExchangeMTURequest) returns (ExchangeMTUResponse);
+
+  // Loops on BluetoothGatt discovered services and if the characteristic with given handle is found,
+  // calls BluetoothGatt#writeCharacteristic on it.
+  // NOTE: Service discovery is not performed in this method.
+  rpc WriteCharacteristic(WriteCharacteristicRequest) returns (WriteCharacteristicResponse);
+}
+
+// Request for device address.
+message AddrRequest {
+  bytes address = 1;
+}
+
+// Response for device address.
+message AddrResponse {}
+
+// Request for the `ExchangeMTU` method.
+message ExchangeMTURequest {
+  int32 mtu = 1;
+}
+
+// Response for the `ExchangeMTU` method.
+message ExchangeMTUResponse {}
+
+// Request for the `WriteCharacteristic` method.
+message WriteCharacteristicRequest {
+  string handle = 1;
+  int32 size = 2;
+}
+
+// Response for the `WriteCharacteristic` method.
+message WriteCharacteristicResponse {
+  bool success = 1;
+}
