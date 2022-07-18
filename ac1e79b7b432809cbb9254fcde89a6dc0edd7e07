@@ -16,6 +16,29 @@
       "message": "Thanks for the review, PTAL~",
       "revId": "ac1e79b7b432809cbb9254fcde89a6dc0edd7e07",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "908730ae_296faca4",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-18T17:47:40Z",
+      "side": 1,
+      "message": "nit: I think the description above already explains that this address will be matched by any found or bonded device, so you can shorten this to `any-cached-address`",
+      "range": {
+        "startLine": 35,
+        "startChar": 22,
+        "endLine": 35,
+        "endChar": 56
+      },
+      "revId": "ac1e79b7b432809cbb9254fcde89a6dc0edd7e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
