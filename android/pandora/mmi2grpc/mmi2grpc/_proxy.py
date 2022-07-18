@@ -35,6 +35,11 @@ class ProfileProxy:
             AttributeError: the MMI is not implemented.
         """
         try:
+          if mmi_name.isidentifier() :
+            return getattr(self, mmi_name)(
+                test=test, description=mmi_description, pts_addr=pts_addr)
+          else:
+            mmi_name = "_mmi_" + mmi_name
             return getattr(self, mmi_name)(
                 test=test, description=mmi_description, pts_addr=pts_addr)
         except AttributeError:
