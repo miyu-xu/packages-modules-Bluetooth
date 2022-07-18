@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "101745a5_3af0a625",
+        "filename": "android/pandora/server/proto/pandora/hfp.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-18T22:04:35Z",
+      "side": 1,
+      "message": "We can\u0027t because of the comment that was put on the Connection:\n```\n  // Opaque value filled by the GRPC server, must not\n  // be modified nor crafted.\n  bytes cookie \u003d 1;\n```\nAnd this request is crafted from python.\n\nPlus the `cookie` naming does not match the explicit `address` content we do have",
+      "parentUuid": "33d350b2_db3ec468",
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b55a2b7f_d50dc3a7",
         "filename": "android/pandora/server/src/com/android/pandora/Hfp.kt",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2022-07-18T09:34:15Z",
       "side": 1,
       "message": "This seems to be similar to a `Connect`, I think we should instead trigger the `Connect` if we are not connected inside `mmi2grpc`.",
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0f79dfc_d69a18ee",
+        "filename": "android/pandora/server/src/com/android/pandora/Hfp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-18T22:04:35Z",
+      "side": 1,
+      "message": "Do you mean the MMI should call both method and remove this call from the hfp.kt file?\n```\nself.connection \u003d self.host.Connect(address\u003dpts_addr).connection\nself.hfp.EnableSlc(address\u003dpts_addr)\n```\n\nThe `setConnectionPolicy` is an extra step compared to connect that we need (and we don\u0027t want to do it on each connect)",
+      "parentUuid": "b55a2b7f_d50dc3a7",
       "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
