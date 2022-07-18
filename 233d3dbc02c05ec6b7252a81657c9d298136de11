@@ -46,6 +46,30 @@
       },
       "revId": "233d3dbc02c05ec6b7252a81657c9d298136de11",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6785e70b_286df82f",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-18T22:56:29Z",
+      "side": 1,
+      "message": "Yes, I borrow the same implementation from: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/1964917/1/system/bta/av/bta_av_main.cc",
+      "parentUuid": "ea420411_13882abe",
+      "range": {
+        "startLine": 217,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 21
+      },
+      "revId": "233d3dbc02c05ec6b7252a81657c9d298136de11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
