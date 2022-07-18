@@ -22,6 +22,30 @@
       },
       "revId": "fea5c2faa71848970e9f289fc6ae9798c75033df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d22b74d_eb7ea51c",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T16:09:52Z",
+      "side": 1,
+      "message": "Whoops, thank you Myles !",
+      "parentUuid": "a6e9d3c2_321e8913",
+      "range": {
+        "startLine": 48,
+        "startChar": 68,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "fea5c2faa71848970e9f289fc6ae9798c75033df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
