@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d806b0_fc287745",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T09:36:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ac36549_8d74733d",
+      "revId": "d2b48a05920e4ce349d13fe8a7a2ae642d877c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2e9a0ec_30aa6efc",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "040091eb_3e3b1934",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T09:36:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2e9a0ec_30aa6efc",
+      "revId": "d2b48a05920e4ce349d13fe8a7a2ae642d877c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1e1eb358_c3b9d567",
@@ -48,6 +84,30 @@
       "writtenOn": "2022-07-18T08:21:17Z",
       "side": 1,
       "message": "I think that we should create the PublicKey directly and use it afterwards something like\n\n```\n    let key_size: usize \u003d\n        ctx.receive_lmp_packet::\u003clmp::EncapsulatedHeaderPacket\u003e().await.get_payload_length().into();\n\n    let key \u003d match key_size {\n        P192_PUBLIC_KEY_SIZE \u003d\u003e PublicKey::P192([0; P192_PUBLIC_KEY_SIZE]),\n        P256_PUBLIC_KEY_SIZE \u003d\u003e PublicKey::P256([0; P256_PUBLIC_KEY_SIZE]),\n        // TODO: send NotAccepted\n        _ \u003d\u003e panic!(\"Unexpected key size!\"),\n    };\n\n    ctx.send_lmp_packet(\n        lmp::AcceptedBuilder { transaction_id, accepted_opcode: lmp::Opcode::EncapsulatedHeader }\n            .build(),\n    );\n    for chunk in key.as_mut_slice().chunks_mut(16) {\n        let payload \u003d ctx.receive_lmp_packet::\u003clmp::EncapsulatedPayloadPacket\u003e().await;\n        chunk.copy_from_slice(payload.get_data().as_slice());\n        ctx.send_lmp_packet(\n            lmp::AcceptedBuilder {\n                transaction_id,\n                accepted_opcode: lmp::Opcode::EncapsulatedPayload,\n            }\n            .build(),\n        );\n    }\n\n    key\n```\n\nBy adding something like that to the PublicKey enum\n\n```\nimpl PublicKey {\n    fn as_slice(\u0026self) -\u003e \u0026[u8] {\n        match self {\n            PublicKey::P192(inner) \u003d\u003e inner,\n            PublicKey::P256(inner) \u003d\u003e inner,\n        }\n    }\n    \n    fn as_mut_slice(\u0026mut self) -\u003e \u0026mut [u8] {\n        match self {\n            PublicKey::P192(inner) \u003d\u003e inner,\n            PublicKey::P256(inner) \u003d\u003e inner,\n        }\n    }\n}\n```",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 1
+      },
+      "revId": "d2b48a05920e4ce349d13fe8a7a2ae642d877c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6d1ceb8_6a76d8c0",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T09:36:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e1eb358_c3b9d567",
       "range": {
         "startLine": 124,
         "startChar": 0,
