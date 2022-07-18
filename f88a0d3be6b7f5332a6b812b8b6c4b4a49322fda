@@ -16,6 +16,40 @@
       "message": "A few others test will be validated by this (list non exhaustive):\nHFP/AG/SLC/BV-09-I\nHFP/AG/SLC/BV-10-I",
       "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33d350b2_db3ec468",
+        "filename": "android/pandora/server/proto/pandora/hfp.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T09:34:15Z",
+      "side": 1,
+      "message": "Could we use a `Connection` here ?",
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b55a2b7f_d50dc3a7",
+        "filename": "android/pandora/server/src/com/android/pandora/Hfp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T09:34:15Z",
+      "side": 1,
+      "message": "This seems to be similar to a `Connect`, I think we should instead trigger the `Connect` if we are not connected inside `mmi2grpc`.",
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
