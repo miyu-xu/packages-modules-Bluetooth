@@ -52,6 +52,24 @@
       "parentUuid": "77fa51bd_5baded60",
       "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49dbf21e_9f9292c3",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-18T08:44:10Z",
+      "side": 1,
+      "message": "Ok... got it but I think this is not enough to change only location 😊\nThere should be also introduced a mechanism as is for unicast for interleaving encoded frames and a little bit more.\n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;drc\u003d07327df79c068cbe5bfb631a1e16d391e54ff5fe;l\u003d2121",
+      "parentUuid": "77fa51bd_5baded60",
+      "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
