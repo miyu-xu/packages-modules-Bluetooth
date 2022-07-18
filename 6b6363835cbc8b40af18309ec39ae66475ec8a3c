@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf5e4b96_708633c0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-07-18T09:18:32Z",
+      "side": 1,
+      "message": "There\u0027s something wrong here. Most likely the rebase went sideways.",
+      "range": {
+        "startLine": 1040,
+        "startChar": 7,
+        "endLine": 1046,
+        "endChar": 9
+      },
+      "revId": "6b6363835cbc8b40af18309ec39ae66475ec8a3c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
