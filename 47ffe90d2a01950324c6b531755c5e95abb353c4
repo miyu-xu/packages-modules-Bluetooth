@@ -16,6 +16,24 @@
       "message": "Note: SSL libraries such as libring or libopenssl provide Pkey types. If we want to completely follow the spec, they might be replaced with these SSL types finally.\n\nHowever, it\u0027s a dilemma that neither OpenSSL nor BoringSSL provides traditional DH or P192 ECDH(only P256 ECDH is supported), not to mention SAFER.",
       "revId": "47ffe90d2a01950324c6b531755c5e95abb353c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67cf0899_43337460",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T09:56:16Z",
+      "side": 1,
+      "message": "For SAFER as it\u0027s \"only\" used for Message Authentication Code (MAC) we only need the encrypt function, if we want to follow completely the spec we might just implement one but for a MAC I think we can ignore that and do something custom.\n\nFor ECDH doing `openssl ecparam -list_curves` seems to list me the two curves that we want `prime192v1` for P192 and `prime256v1` for P256.\nAnd they seems available in Rust https://docs.rs/openssl/latest/openssl/nid/struct.Nid.html#associatedconstant.X9_62_PRIME192V1",
+      "parentUuid": "fb3c5c31_e562e170",
+      "revId": "47ffe90d2a01950324c6b531755c5e95abb353c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
