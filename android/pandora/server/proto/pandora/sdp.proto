@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_outer_classname = "SdpProto";
+
+package pandora;
+
+import "pandora/host.proto";
+import "google/protobuf/wrappers.proto";
+
+// Service to trigger SDP (Service Discovery Profile) procedures.
+service SDP {
+}
