@@ -153,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66a9c523_3657c5fa",
+        "filename": "tools/rootcanal/lmp/src/procedure/legacy_pairing.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T08:01:51Z",
+      "side": 1,
+      "message": "I think we can be able to see what is expected by looking at the LMP TestSuite document, I will take a look and add a comment",
+      "parentUuid": "cb072da0_c3b31a29",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1677a5a9_d3bf7647",
