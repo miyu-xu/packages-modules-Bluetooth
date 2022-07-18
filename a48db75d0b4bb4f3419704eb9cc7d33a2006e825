@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa03d3a_6b39b3bf",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-18T23:48:40Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "656fa05a_3299be79",
+      "range": {
+        "startLine": 93,
+        "startChar": 8,
+        "endLine": 93,
+        "endChar": 19
+      },
+      "revId": "a48db75d0b4bb4f3419704eb9cc7d33a2006e825",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ee59d22_f93383a1",
