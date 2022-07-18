@@ -68,6 +68,30 @@
       },
       "revId": "4849bd5c813f181451fb533ae1be1fa82687f422",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "040f6947_6f7a4bf8",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-18T23:19:58Z",
+      "side": 1,
+      "message": "There isn\u0027t any call to the server regardings the MMIs, but indeed it will be better to add it",
+      "parentUuid": "97367872_e8d0b120",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "4849bd5c813f181451fb533ae1be1fa82687f422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
