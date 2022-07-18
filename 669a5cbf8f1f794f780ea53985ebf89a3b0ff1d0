@@ -49,6 +49,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2872b41_48f97184",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T09:06:18Z",
+      "side": 1,
+      "message": "This seems to overlap with the `Connect` rpc in `host.proto`, would it be possible to reuse it and take a `Connection` instead of an Address here ?",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7601a3d8_23ef9b8d",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T09:06:18Z",
+      "side": 1,
+      "message": "Does the `Disconnect` of `host.proto` could be used here ?",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03993847_1ab55df1",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-18T09:06:18Z",
+      "side": 1,
+      "message": "I would expect this to take at least an `Address` or a `Connection`",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2dac5038_2e1f0abb",
         "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
         "patchSetId": 5
