@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1705125f_ffbb875a",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-07-18T13:39:02Z",
+      "side": 1,
+      "message": "This field isn\u0027t initialized in the constructor.  I\u0027m not able to follow all the logic; are we assured that this ends up getting initialized before we read this value on line 1284 of client.cc?",
+      "revId": "e94ee290077c3f52f89e4acc89b1ec375c3105a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
