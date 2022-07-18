@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45c0113e_ccde8987",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:51:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80c9e134_21a30748",
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "71d1050a_cabb2d46",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce0f147b_8555b13b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:51:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71d1050a_cabb2d46",
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "903d0612_c5417190",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-07-15T13:15:40Z",
       "side": 1,
       "message": "There is not Link Key Calculation in legacy pairing, it will be the combination key that will be used as Link Key, so you can remove the comment 😊",
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e26cd3c_a8411224",
+        "filename": "tools/rootcanal/lmp/src/procedure/legacy_pairing.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:51:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "903d0612_c5417190",
       "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb072da0_c3b31a29",
+        "filename": "tools/rootcanal/lmp/src/procedure/legacy_pairing.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:51:28Z",
+      "side": 1,
+      "message": "The remote device has no mean to know if the Sres code is matched(though it always matches for now), so it will keep waiting for a challenge and hang there.\nI didn\u0027t see if there is any error handling pattern for this situation in the spec, so I let them send mutual challenges still, and fail later.",
+      "parentUuid": "536cb8fa_2d59f2ce",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 5
+      },
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1677a5a9_d3bf7647",
@@ -88,6 +166,30 @@
       "writtenOn": "2022-07-15T13:15:40Z",
       "side": 1,
       "message": "I think here we want to return Err(() before `receive_challenge` as if this is not accepted it will not continue further.\n\nAnd if this is what we want we can write that as:\n\n```\n    authentication::send_challenge(ctx, 0, link_key).await?;\n    authentication::receive_challenge(ctx, link_key).await;\n```",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 468,
+        "endChar": 5
+      },
+      "revId": "74a0d80505aedf14e48586398d8e1ca617cfe65d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0720be9c_ac25fb4e",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:51:28Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1677a5a9_d3bf7647",
       "range": {
         "startLine": 463,
         "startChar": 0,
