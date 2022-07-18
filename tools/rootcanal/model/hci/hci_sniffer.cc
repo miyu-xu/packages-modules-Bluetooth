@@ -16,6 +16,8 @@
 
 #include "hci_sniffer.h"
 
+#include <arpa/inet.h>
+
 #include "pcap.h"
 
 namespace rootcanal {
@@ -45,7 +47,7 @@ void HciSniffer::AppendRecord(PacketDirection packet_direction,
   pcap::WriteRecordHeader(*output_, 4 + 1 + packet.size());
 
   // http://www.tcpdump.org/linktypes.html LINKTYPE_BLUETOOTH_HCI_H4_WITH_PHDR
-  uint32_t direction = static_cast<uint32_t>(packet_direction);
+  uint32_t direction = htonl(static_cast<uint32_t>(packet_direction));
   uint8_t idc = static_cast<uint8_t>(packet_type);
 
   output_->write((char*)&direction, 4);
