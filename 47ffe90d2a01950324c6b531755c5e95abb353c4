@@ -34,6 +34,24 @@
       "parentUuid": "fb3c5c31_e562e170",
       "revId": "47ffe90d2a01950324c6b531755c5e95abb353c4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32a80e36_32c5cc62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T11:18:13Z",
+      "side": 1,
+      "message": "Defined in external/boringssl/src/crypto/fipsmodule/ec/ec.c, Android BoringSSL supports only 4 curves: P224, P256, P384, P521. Though there is definition in Rust interface, it would throw exception if we try to access curves not built-in.",
+      "parentUuid": "67cf0899_43337460",
+      "revId": "47ffe90d2a01950324c6b531755c5e95abb353c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
