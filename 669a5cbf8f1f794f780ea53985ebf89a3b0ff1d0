@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a2ee243_7a18b14e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7064edf6_322cd155",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adf2e8dc_83087b8b",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "Could you add the description for this mmi ?",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a316e2bb_63cf21ed",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "adf2e8dc_83087b8b",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ec64ac_3ae9a062",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "db4e80c9_04d02305",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b94fbfeb_24308bc8",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "This should be a `Yes`/`No` here.",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75208e66_0f263595",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "b94fbfeb_24308bc8",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +164,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f338a51_49facec9",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP, I will comment.",
+      "parentUuid": "bdffeea8_0d2825b8",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 45
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54bbe01b_1e307d30",
@@ -105,6 +201,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "Please add a TODO/FIXME that we should verify that we didn\u0027t received any service uuid of the small database file.\n\nAnd same for all the other `CONFIRM` functions 😊",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b4972bf_f8b0b6a1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "54bbe01b_1e307d30",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +240,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "791e6a68_1030dec6",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "649b7586_9649c1fa",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07c6b06b_ea86a2fb",
@@ -139,6 +271,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "This should be `Yes` or `No` here.",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0a7e4e1_a8274732",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "07c6b06b_ea86a2fb",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -160,6 +310,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63302072_cb439fa4",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "cfc65e87_d56355bd",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce83961f_c1a70d43",
@@ -173,6 +341,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "This should be `Yes`/`No` here.",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5e9bbc_167ea4f0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "ce83961f_c1a70d43",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -194,6 +380,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa5e101_c892a99f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "cb724998_e4fac893",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0d501ed_ddbb8c2e",
@@ -207,6 +411,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "This should be `Yes`/`No` here.",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a2a4a02_83ffbaa2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "d0d501ed_ddbb8c2e",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -228,6 +450,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87846cff_89245186",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "8a60f6e7_7603ce75",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b7214d6d_8c1193fa",
@@ -241,6 +481,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "Should we not use the range asked by the PTS ?",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ae743a_4ae73929",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "b7214d6d_8c1193fa",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -262,6 +520,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19ec40d4_6a075aec",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "746732f6_2ba7a934",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e3e6c7c6_65c6bd8e",
@@ -279,6 +555,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "baaae8bf_ff178bf4",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "e3e6c7c6_65c6bd8e",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9915732_72ac7552",
@@ -292,6 +586,30 @@
       "writtenOn": "2022-07-16T01:50:37Z",
       "side": 1,
       "message": "Because you specified GAC, the GAD test you mention in the commit message will not be run yet",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 49
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52544d08_0b733ebd",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9915732_72ac7552",
       "range": {
         "startLine": 26,
         "startChar": 46,
@@ -325,6 +643,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06dcc621_e657c717",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "3afada1b_da799793",
+      "range": {
+        "startLine": 14,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 57
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2872b41_48f97184",
@@ -338,6 +680,24 @@
       "writtenOn": "2022-07-18T09:06:18Z",
       "side": 1,
       "message": "This seems to overlap with the `Connect` rpc in `host.proto`, would it be possible to reuse it and take a `Connection` instead of an Address here ?",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e278d3_7b89c2fb",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "This is not an overlap.\nThe GATT MMIs work differently than the ones in A2DP or HFP and can\u0027t be handled the same.\nWhen when calling createBond, the pts-bot will call the \"confirm passkey\" MMI so we have to have answered the connect MMI beforehand. Only when we confirmed the passkey and returned we will be able to call connectGatt so it has to be done asynchronously.",
+      "parentUuid": "b2872b41_48f97184",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -359,6 +719,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db917874_4060633e",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "No, the MMI specifies that it wants a GATT disconnection, not the device disconnection.",
+      "parentUuid": "7601a3d8_23ef9b8d",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03993847_1ab55df1",
@@ -372,6 +750,24 @@
       "writtenOn": "2022-07-18T09:06:18Z",
       "side": 1,
       "message": "I would expect this to take at least an `Address` or a `Connection`",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e3fcf30_052310dd",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03993847_1ab55df1",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -393,6 +789,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a166d0da_fc5c9eb5",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "effe2d04_7f04637d",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e1104a9_b1dad628",
@@ -406,6 +820,24 @@
       "writtenOn": "2022-07-18T09:27:38Z",
       "side": 1,
       "message": "I would expect this to take an `address` or a `Connection`.",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29289f94_5620549d",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "4e1104a9_b1dad628",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -427,6 +859,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d861cf57_1f3cee5b",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Was WIP",
+      "parentUuid": "6d62f017_f1ef13e4",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2dac5038_2e1f0abb",
@@ -440,6 +890,30 @@
       "writtenOn": "2022-07-16T02:02:49Z",
       "side": 1,
       "message": "It is just a guess but maybe we can `lateinit` the `gatt` like that we can get rid of the `?` and avoid the gatt to be `null` ?",
+      "range": {
+        "startLine": 56,
+        "startChar": 35,
+        "endLine": 56,
+        "endChar": 43
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc56a979_5328dc84",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "The gatt object can change during the test so we can\u0027t lateinit here",
+      "parentUuid": "2dac5038_2e1f0abb",
       "range": {
         "startLine": 56,
         "startChar": 35,
@@ -473,6 +947,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c3be247_2eaafec1",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6402a64a_0895473a",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 57
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dcdc7a4_021a137c",
@@ -486,6 +984,30 @@
       "writtenOn": "2022-07-16T02:02:49Z",
       "side": 1,
       "message": "Is the `waitConnection` method in Host.kt working ? I don\u0027t have the context and I saw the the MMI is telling us to explicitly do a confirm passkey. `waitConnection` is performing a confirmPasskey but I don\u0027t know if it will work since we need to wait for the bond intent in it which might cause us a timeout if it\u0027s already happenned.",
+      "range": {
+        "startLine": 165,
+        "startChar": 17,
+        "endLine": 165,
+        "endChar": 31
+      },
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35999f8e_deac4422",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-18T18:12:19Z",
+      "side": 1,
+      "message": "The bond process for the GATT profile is done differently than the one for A2DP and HFP so we can\u0027t use the `waitConnection` here",
+      "parentUuid": "0dcdc7a4_021a137c",
       "range": {
         "startLine": 165,
         "startChar": 17,
