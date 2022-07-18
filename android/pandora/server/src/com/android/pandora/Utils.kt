@@ -148,6 +148,9 @@ fun ByteString.decodeToString(): String =
 fun ByteString.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
   adapter.getRemoteDevice(this.decodeToString())
 
+fun String.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
+  adapter.getRemoteDevice(this)
+
 fun String.toByteArray(): ByteArray = MacAddress.fromString(this).toByteArray()
 
 fun BluetoothDevice.toByteArray(): ByteArray = this.address.toByteArray()
