@@ -88,6 +88,24 @@
       "parentUuid": "49dbf21e_9f9292c3",
       "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8de1818d_f8bf860f",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-07-18T11:49:56Z",
+      "side": 1,
+      "message": "Just correcting myself here...multiple frame blocks per SDU are not required. Nevertheless we don\u0027t support pushing two channels audio data to one BIS yet. 😊",
+      "parentUuid": "319bb5c0_9e64ac0c",
+      "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
