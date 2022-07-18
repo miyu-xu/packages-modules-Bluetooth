@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bf0c7bf_ba582285",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-18T23:12:51Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "4849bd5c813f181451fb533ae1be1fa82687f422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "007be75c_5ddd7808",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-18T23:12:51Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 48,
+        "endChar": 0
+      },
+      "revId": "4849bd5c813f181451fb533ae1be1fa82687f422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97367872_e8d0b120",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-18T23:12:51Z",
+      "side": 1,
+      "message": "@charliebout@google.com\nThere is no addServie(sdp)\nHow can it work ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 24
+      },
+      "revId": "4849bd5c813f181451fb533ae1be1fa82687f422",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
