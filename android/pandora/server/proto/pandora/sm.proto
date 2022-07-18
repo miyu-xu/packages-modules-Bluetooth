@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_outer_classname = "SmProto";
+
+import "google/protobuf/empty.proto";
+
+package pandora;
+
+service SM { 
+    rpc ConnectLE(SMCommonRequest) returns (google.protobuf.Empty);
+    rpc Pair(SMCommonRequest) returns (google.protobuf.Empty);
+    rpc DisconnectLE(SMCommonRequest) returns (google.protobuf.Empty);
+    rpc AcceptPairingRequestAction(SMCommonRequest) returns (google.protobuf.Empty);
+}
+
+message SMCommonRequest{
+    bytes address = 1;
+}

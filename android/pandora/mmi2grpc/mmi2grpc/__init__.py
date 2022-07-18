@@ -23,6 +23,7 @@ import grpc
 
 from mmi2grpc.a2dp import A2DPProxy
 from mmi2grpc.hfp import HFPProxy
+from mmi2grpc.sm import SMProxy
 from mmi2grpc._helpers import format_proxy
 
 from pandora.host_grpc import Host
@@ -52,6 +53,7 @@ class IUT:
         # Profile proxies.
         self._a2dp = None
         self._hfp = None
+        self._sm = None
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
@@ -111,6 +113,11 @@ class IUT:
             if not self._hfp:
                 self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._hfp.interact(test, interaction, description, pts_address)
+
+        if profile in ('SM'):
+            if not self._sm:
+                self._sm = SMProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._sm.interact(test, interaction, description, pts_address)
 
         # Handles unsupported profiles.
         code = format_proxy(profile, interaction, description)
