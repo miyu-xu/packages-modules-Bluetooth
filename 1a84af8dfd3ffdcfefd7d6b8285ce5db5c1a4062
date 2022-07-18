@@ -70,6 +70,24 @@
       "parentUuid": "77fa51bd_5baded60",
       "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "319bb5c0_9e64ac0c",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-18T09:04:46Z",
+      "side": 1,
+      "message": "@Jakub I think TMAP may requires to have multiple locations per single stream - but just verifying signalling not content of stream.",
+      "parentUuid": "49dbf21e_9f9292c3",
+      "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
