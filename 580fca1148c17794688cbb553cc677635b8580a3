@@ -22,6 +22,23 @@
       },
       "revId": "580fca1148c17794688cbb553cc677635b8580a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99a2f899_ffc6ad49",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-18T21:59:03Z",
+      "side": 1,
+      "message": "Build failure\nFAILED: out/soong/.intermediates/packages/modules/Bluetooth/system/stack/net_test_stack_gatt_sr_hash_native/linux_glibc_x86/net_test_stack_gatt_sr_hash_native32\n..../../../lib -Wl,-rpath,\\$ORIGIN/ -Wl,-rpath,\\$ORIGIN/../lib -Wl,-rpath,\\$ORIGIN/lib  -pie -Wl,--exclude-libs\u003dlibclang_rt.ubsan_minimal-i386.a -Wl,--exclude-libs\u003dlibclang_rt.builtins-i386.a -nostdlib++\nld.lld: error: undefined symbol: acl_gatt_le_connection_cancel(unsigned char, RawAddress const\u0026)\n\u003e\u003e\u003e referenced by gatt_utils.cc:1438 (packages/modules/Bluetooth/system/stack/gatt/gatt_utils.cc:1438)\n...ges/modules/Bluetooth/system/stack/net_test_stack_gatt_sr_hash_native/linux_glibc_x86/obj/packages/modules/Bluetooth/system/stack/gatt/gatt_utils.o:(gatt_cancel_open(unsigned char, RawAddress const\u0026))\nclang-14: error: linker command failed with exit code 1 (use -v to see invocation)",
+      "revId": "580fca1148c17794688cbb553cc677635b8580a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
