@@ -106,6 +106,24 @@
       "parentUuid": "319bb5c0_9e64ac0c",
       "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "638dce84_5d36c5d5",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-18T14:52:13Z",
+      "side": 1,
+      "message": "Yes, it\u0027s optional for BAP and TMAP. For TMAP test case, it only verify the signal indeed, not for the context. 😂\n\nThanks for the comments. I think we may need more than audio location for BAP audio configuration 14. Let me abandon this patch, and please add it back as we have plan to support the feature.",
+      "parentUuid": "8de1818d_f8bf860f",
+      "revId": "1a84af8dfd3ffdcfefd7d6b8285ce5db5c1a4062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
