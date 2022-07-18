@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6e9d3c2_321e8913",
+        "filename": "tools/rootcanal/model/hci/hci_sniffer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-18T16:00:46Z",
+      "side": 1,
+      "message": "/mnt/disks/build-disk/src/googleplex-android/master/packages/modules/Bluetooth/tools/rootcanal/model/hci/hci_sniffer.cc:48:68: error: expected \u0027}\u0027 [clang-diagnostic-error]\n  char direction[4] \u003d {0, 0, 0, static_cast\u003cchar\u003e(packet_direction));",
+      "range": {
+        "startLine": 48,
+        "startChar": 68,
+        "endLine": 48,
+        "endChar": 69
+      },
+      "revId": "fea5c2faa71848970e9f289fc6ae9798c75033df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
