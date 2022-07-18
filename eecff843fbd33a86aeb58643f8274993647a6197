@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9094e962_540d3ae7",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:52:07Z",
+      "side": 1,
+      "message": "Oh! That\u0027s right. I forgot we already have key size info in this stage.",
+      "parentUuid": "850f4c2f_94b25bf5",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2886d96_69af056a",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-15T13:37:40Z",
       "side": 1,
       "message": "As there is a limited number of key sizes I would prefer that we create an enum and use that as return type\n```\nenum PublicKey {\n    P192([u8; P192_PUBLIC_KEY_SIZE]),\n    P256([u8; P256_PUBLIC_KEY_SIZE]),\n}\n```",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab9a6b5a_c4a83804",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:52:07Z",
+      "side": 1,
+      "message": "Thanks! There are so many tricks in Rust 😂",
+      "parentUuid": "a2886d96_69af056a",
       "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4877c20c_f034f639",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:52:07Z",
+      "side": 1,
+      "message": "So that we can reuse it in #510",
+      "parentUuid": "3ae8503a_ca887f09",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01bd7587_da309ffc",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-07-15T13:37:40Z",
       "side": 1,
       "message": "Why did you broke that in two statements ?",
+      "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f722abb8_18663cfb",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 580,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-18T07:52:07Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "01bd7587_da309ffc",
       "revId": "eecff843fbd33a86aeb58643f8274993647a6197",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
