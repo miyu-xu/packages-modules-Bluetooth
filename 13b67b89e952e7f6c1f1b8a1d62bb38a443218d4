@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74259fe5_88283222",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-18T17:32:49Z",
+      "side": 1,
+      "message": "Ack, could you add a comment explaining this?",
+      "parentUuid": "24c1b288_a25a58ee",
+      "range": {
+        "startLine": 68,
+        "startChar": 41,
+        "endLine": 68,
+        "endChar": 43
+      },
+      "revId": "13b67b89e952e7f6c1f1b8a1d62bb38a443218d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f3d49c1_889dc826",
