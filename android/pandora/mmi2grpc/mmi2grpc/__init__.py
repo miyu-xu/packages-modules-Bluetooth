@@ -25,6 +25,7 @@ from mmi2grpc.a2dp import A2DPProxy
 from mmi2grpc.avrcp import AVRCPProxy
 from mmi2grpc.gatt import GATTProxy
 from mmi2grpc.hfp import HFPProxy
+from mmi2grpc.rfcomm import RFCOMMProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
 from mmi2grpc._helpers import format_proxy
@@ -58,6 +59,7 @@ class IUT:
         self._avrcp = None
         self._gatt = None
         self._hfp = None
+        self._rfcomm = None
         self._sdp = None
         self._sm = None
 
@@ -73,6 +75,7 @@ class IUT:
         self._avrcp = None
         self._gatt = None
         self._hfp = None
+        self._rfcomm = None
         self._sdp = None
         self._sm = None
 
@@ -133,6 +136,11 @@ class IUT:
             if not self._hfp:
                 self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._hfp.interact(test, interaction, description, pts_address)
+        # Handles RFCOMM MMIs.
+        if profile in ('RFCOMM'):
+            if not self._rfcomm:
+                self._rfcomm = RFCOMMProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._rfcomm.interact(test, interaction, description, pts_address)
         # Handles SDP MMIs.
         if profile in ('SDP'):
             if not self._sdp:
