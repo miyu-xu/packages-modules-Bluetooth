@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+option java_outer_classname = "RfcommProto";
+
+package pandora;
+
+// Service to trigger RFCOMM procedures.
+service RFCOMM {
+  rpc Connect(RfcommConnectRequest) returns (RfcommConnectResponse);
+  rpc StartServer(RfcommServerOptions) returns (RfcommStartServerResponse);
+  rpc AcceptConnection(RfcommAcceptConnectionRequest) returns (RfcommAcceptConnectionResponse);
+  rpc Disconnect(RfcommDisconnectRequest) returns (RfcommDisconnectResponse);
+  rpc StopRfcommServer(RfcommStopServerRequest) returns (RfcommStopServerResponse);
+  rpc Send(RfcommTxRequest) returns (RfcommTxResponse);
+  rpc Receive(RfcommRxRequest) returns (RfcommRxResponse);
+}
+
+message RfcommConnectRequest {
+  bytes address = 1;
+  string uuid = 2;
+}
+
+message RfcommConnection {
+  uint32 id = 1;
+}
+
+message RfcommConnectResponse {
+  RfcommConnection connection = 1;
+}
+
+message RfcommServerOptions {
+  string name = 1;
+  string uuid = 2;
+}
+
+message RfcommServer {
+  uint32 id = 1;
+}
+
+message RfcommStartServerResponse {
+  RfcommServer server = 1;
+}
+
+message RfcommStopServerRequest {
+  RfcommServer server = 1;
+}
+
+message RfcommStopServerResponse {
+}
+
+message RfcommAcceptConnectionRequest {
+  RfcommServer server = 1;
+}
+
+message RfcommAcceptConnectionResponse {
+  RfcommConnection connection = 1;
+}
+
+message RfcommDisconnectRequest {
+  RfcommConnection connection = 1;
+}
+
+message RfcommDisconnectResponse {
+}
+
+message RfcommTxRequest {
+  RfcommConnection connection = 1;
+  bytes data = 2;
+}
+
+message RfcommTxResponse {
+}
+
+message RfcommRxRequest {
+  RfcommConnection connection = 1;
+}
+
+message RfcommRxResponse {
+  bytes data = 1;
+}
