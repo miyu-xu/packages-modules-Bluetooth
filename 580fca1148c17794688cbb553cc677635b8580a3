@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f3f847e7_1875c958",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2769,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-07-19T08:55:05Z",
+      "side": 1,
+      "message": "When uplayer close connection with is_direct \u003d\u003d false. The code flow is GATT_CancelConnect -\u003e gatt_auto_connect_dev_remove -\u003e BTM_AcceptlistRemove -\u003e ACL_IgnoreLeConnectionFrom -\u003e IgnoreLeConnectionFrom -\u003e ignore_le_connection_from -\u003e CancelLeConnectAndRemoveFromBackgroundList.\n\nThe connection will be cancel and LE Enhanced Connection Complete with error code !\u003d SUCCESS will trigger this function.\n\nDuring this time, address_to_gatt_interface_address_map_.find(address_with_type) will return true.\n\nIt means, if a app call close/connect very fast, the connect will be ignored.",
+      "range": {
+        "startLine": 2769,
+        "startChar": 53,
+        "endLine": 2769,
+        "endChar": 58
+      },
+      "revId": "580fca1148c17794688cbb553cc677635b8580a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ee19839_a563c038",
         "filename": "system/stack/acl/btm_acl.cc",
         "patchSetId": 2
