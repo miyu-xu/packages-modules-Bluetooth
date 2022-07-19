@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_outer_classname = "RfcommProto";
+
+package pandora;
+
+import "google/protobuf/empty.proto";
+import "pandora/host.proto";
+
+// Service to trigger RFCOMM procedures.
+service RFCOMM {
+  rpc Connect(ConnectRequest) returns (RfcommCookie);
+  rpc StartConnection(ConnectRequest) returns (google.protobuf.Empty);
+}
+
+message RfcommCookie {
+  uint32 id = 1;
+}
