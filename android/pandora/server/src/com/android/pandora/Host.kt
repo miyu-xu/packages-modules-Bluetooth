@@ -255,4 +255,28 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       DisconnectResponse.getDefaultInstance()
     }
   }
+
+  override fun createPairing(
+    request: CreatePairingRequest,
+    responseObserver: StreamObserver<CreatePairingResponse>
+  ) {
+    grpcUnary<CreatePairingResponse>(scope, responseObserver) {
+      val address = MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
+      Log.i(TAG, "Pair: address=$address, transport=${request.transport.name}")
+
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+
+      if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
+        Log.e(TAG, "Device is bonding")
+        throw Status.UNKNOWN.asException()
+      } else if(bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+        Log.e(TAG, "Device is bonded")
+        throw Status.UNKNOWN.asException()
+      }
+
+      bluetoothDevice.createBond(request.transport.getNumber())
+
+      CreatePairingResponse.getDefaultInstance()
+    }
+  }
 }
