@@ -1788,8 +1788,7 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
 
       case SMP_CONSENT_REQ_EVT:
       case SMP_SEC_REQUEST_EVT:
-        if (event == SMP_SEC_REQUEST_EVT &&
-            btm_cb.pairing_state != BTM_PAIR_STATE_IDLE) {
+        if (btm_cb.pairing_state != BTM_PAIR_STATE_IDLE) {
           BTM_TRACE_DEBUG("%s: Ignoring SMP Security request", __func__);
           break;
         }
@@ -1810,7 +1809,6 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
                                       (tBTM_LE_EVT_DATA*)p_data);
         }
 
-        if (event == SMP_COMPLT_EVT) {
           p_dev_rec = btm_find_dev(bd_addr);
           if (p_dev_rec == NULL) {
             BTM_TRACE_ERROR("%s: p_dev_rec is NULL", __func__);
@@ -1871,7 +1869,6 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
           }
 
           btm_sec_dev_rec_cback_event(p_dev_rec, res, true);
-        }
         break;
 
       default:
