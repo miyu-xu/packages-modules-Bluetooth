@@ -46,6 +46,30 @@
       },
       "revId": "d64d484f2ca66418e423dfbcdfefdd7b1a10f674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beab0180_1a38e894",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-19T15:28:56Z",
+      "side": 0,
+      "message": "Could you please add the function or add comment that it should consider the audio channel allocation and block of codec frame number together with MaxSduSizePerChannel?",
+      "parentUuid": "39ec8964_41167a85",
+      "range": {
+        "startLine": 90,
+        "startChar": 11,
+        "endLine": 90,
+        "endChar": 27
+      },
+      "revId": "d64d484f2ca66418e423dfbcdfefdd7b1a10f674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
