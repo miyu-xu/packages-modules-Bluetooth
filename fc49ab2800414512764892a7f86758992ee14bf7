@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b05ac14c_20767409",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T07:40:30Z",
+      "side": 1,
+      "message": "I love how this `isindentifier` thing, thanks python x)",
+      "revId": "fc49ab2800414512764892a7f86758992ee14bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2592a8b3_99df3942",
