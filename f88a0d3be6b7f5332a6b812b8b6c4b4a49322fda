@@ -169,6 +169,30 @@
       },
       "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04aa4ca6_57e8f512",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:19:25Z",
+      "side": 1,
+      "message": "The complexity of implementation is not really what drives thoses interfaces, it\u0027s more to have interfaces that follows the specification and that multiple stacks should be able to implement. The complexity here is only an implementation detail of thoses interfaces on Android.\n\nI don\u0027t think we should modify the interface without having a test plan first as not every stacks expose the pairing flow or pairing informations.\nAnd in the context of pairing/authentication tests we might only need to have instrumentation in the peer to implement the tests.\n\nI\u0027m resolving this comment as the discussion should not happen here I think, feel free to move that to a mail thread or on Google Chat.",
+      "parentUuid": "0862c877_7228c67e",
+      "range": {
+        "startLine": 196,
+        "startChar": 6,
+        "endLine": 196,
+        "endChar": 30
+      },
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
