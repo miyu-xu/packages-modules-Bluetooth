@@ -1810,7 +1810,6 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
                                       (tBTM_LE_EVT_DATA*)p_data);
         }
 
-        if (event == SMP_COMPLT_EVT) {
           p_dev_rec = btm_find_dev(bd_addr);
           if (p_dev_rec == NULL) {
             BTM_TRACE_ERROR("%s: p_dev_rec is NULL", __func__);
@@ -1871,7 +1870,6 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
           }
 
           btm_sec_dev_rec_cback_event(p_dev_rec, res, true);
-        }
         break;
 
       default:
