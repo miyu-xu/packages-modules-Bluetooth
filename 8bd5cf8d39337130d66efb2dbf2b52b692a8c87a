@@ -1,0 +1,254 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b5411e_3f21a93a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "Is the test asking to do a `DiscoverServices` or is it only needed for Android to find the `handle` in the WriteCharacteristic ?\n\nIf it\u0027s the second one, I don\u0027t think this should appear here.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60c59a6c_998e8544",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "I think this should be splitted into two rpc one in `host.proto` to trigger the LE Connection and a second one here taking the `Connection` message to open a `GATT` connection.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b25e15b_2bf6e741",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "I would expect this to take a `Connection` or an `address`.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14c23130_cf23f7c0",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "I would expect this to return the list of discovered services.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90441898_e8be9f77",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "Could we not do this as part of the connection ?\nNot all stacks exposes the MTU exchange.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce680412_16fb0f6a",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "As this is used for `ConnectLe` this should be named `ConnectLeRequest` and same for the Response.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81d8efe3_28abeff3",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "We should have an `address` or a `Connection` here.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8092c5e0_efc48011",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "Should this be a `uint32` instead ?",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72ff1cad_ff321a9a",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "Should this not be a `bytes` with the actual data instead of a `size` ?",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "239bc070_22fe69fe",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "We usually represent the result with a `oneof` (you can look at `host.proto` for that) to be able to extend the result with errors later if needed.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "952ca09a_5d142251",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "This flow seems to be unused.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9636b0b_aeefc5d4",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "We should avoid using globals like that as this means that this interface will only work with one device. Even if the PTS only do tests with one device only, the goal of these interfaces is to reuse them to do our own tests where we will most likely want to test multi device behaviors.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73175951_5dfa4377",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "We should wait for a value on a kotlin flow here instead of polling a boolean flag.\n\nAlso we could be subject to a race condition here if we connect two devices in parallel so we need to check that the device that connected is the one with the address specified in the request.",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 13
+      },
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8eda152e_32e89341",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "This should be done in `mmi2grpc`.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 23
+      },
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

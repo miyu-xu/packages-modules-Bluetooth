@@ -704,6 +704,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cd1d86e7_524bc381",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "We don\u0027t need to something when the PTS asks it, it is a correct and I would say even preferred implementation for us to do the confirm passkey as part of the connect and just do nothing when the pts will ask to \"confirm passkey\" as this is either already done or this will be triggered by the connection.\n\nThe MMIs are just a hint on what the PTS expects as long as we do what is wanted and the test pass we are free to implement that how we want.",
+      "parentUuid": "59e278d3_7b89c2fb",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7601a3d8_23ef9b8d",
         "filename": "android/pandora/server/proto/pandora/gatt.proto",
         "patchSetId": 5
@@ -733,6 +751,24 @@
       "side": 1,
       "message": "No, the MMI specifies that it wants a GATT disconnection, not the device disconnection.",
       "parentUuid": "7601a3d8_23ef9b8d",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b1090b_6bbc689e",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T13:42:13Z",
+      "side": 1,
+      "message": "I\u0027m expecting GATT to be used over a fixed L2CAP channel, over a fixed channel there is no concept of connection or disconnection and there is no such thing over GATT too. So I\u0027m expecting this disconnection to do an HCI level disconnection.\n\nDid you tried to use the Disconnect on `Host` ? Because if it works I think that we prefer using that.",
+      "parentUuid": "db917874_4060633e",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
