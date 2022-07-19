@@ -145,6 +145,30 @@
       },
       "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0862c877_7228c67e",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-19T12:01:15Z",
+      "side": 1,
+      "message": "`waitForConnection()` also contains a huge part related to pairing instead of connection. To ensure a testing flexibility, shall we have another `waitForPairing(response)-\u003eresult`?",
+      "parentUuid": "7c733ef5_0ed91186",
+      "range": {
+        "startLine": 196,
+        "startChar": 6,
+        "endLine": 196,
+        "endChar": 30
+      },
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
