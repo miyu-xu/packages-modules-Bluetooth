@@ -16,6 +16,97 @@
       "message": "r",
       "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28acc5ec_e479b4d7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T07:59:19Z",
+      "side": 1,
+      "message": "You can remove the `test` argument here",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b821ea_dbd99814",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T07:59:19Z",
+      "side": 1,
+      "message": "You can remove the `test` argument here",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "816aba93_080dfe09",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T07:59:19Z",
+      "side": 1,
+      "message": "You can remove thoses if they are unused",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "637711d1_de407a11",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T07:59:19Z",
+      "side": 1,
+      "message": "The list 16 bit uuids here will change depending on the implementation.\n\nWith `@assert_description` this will be checked and if the list of services changes the test will break so this is good.\n\nThis makes it android specific but I\u0027m fine with that as this can be made configurable later if we want to support another stack.\n\nHowever having the 16 bit uuids listed there is not very readable. If possible I would prefer that we remove the `assert_description` and map the uuid list to readable names and assert those names. I\u0027m fine of having only the android uuids in this list.\n\nAll of this is under the assumption that the list of SDP services is static, if this is not true we should list the current services via a GRPC call and assert with thoses.",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76c8a4bf_f6adbc66",
+        "filename": "android/pandora/server/proto/pandora/sdp.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T07:59:19Z",
+      "side": 1,
+      "message": "I think we can remove this file as we are not defining any RPC methods",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
