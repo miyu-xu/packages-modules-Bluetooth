@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4dcce4aa_11f1dc58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-19T19:02:21Z",
+      "side": 1,
+      "message": "Also, original bug is about Music cannot come back after call, how is this assert fixing that audio issue? Is this only for capturing more logs? ",
+      "revId": "bf85615e64cc7523e269c07f2bf971714982f58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e26c4df8_0e3b4c11",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 4
