@@ -22,6 +22,30 @@
       },
       "revId": "d64d484f2ca66418e423dfbcdfefdd7b1a10f674",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39ec8964_41167a85",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-07-19T14:25:46Z",
+      "side": 0,
+      "message": "From my understanding, there is no audio channel defined for each BIS.\nIn current design, seems the number of channels equal to the number of BISes in the BIG, and each BIS has one channel.",
+      "parentUuid": "8d59d3dd_169b3c79",
+      "range": {
+        "startLine": 90,
+        "startChar": 11,
+        "endLine": 90,
+        "endChar": 27
+      },
+      "revId": "d64d484f2ca66418e423dfbcdfefdd7b1a10f674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
