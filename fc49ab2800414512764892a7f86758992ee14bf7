@@ -22,6 +22,30 @@
       },
       "revId": "fc49ab2800414512764892a7f86758992ee14bf7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92ebe4d0_de4c53dd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T07:39:56Z",
+      "side": 1,
+      "message": "\u003e Do we want to have different mmi between different implementation ? Right now eiffel will receive a different string than android\n\nNot really as Eiffel don\u0027t use mmi2grpc right now and this change only affects mmi2grpc.\n\n\u003e Do we want to add a per profile mmi ? something like  \"_mmi_ \" + profileName + \"_\" + mmi_name  Te example in the commit message would become _mmi_sdp_6000\n\nI don\u0027t think we need to, as the mmi id are already scoped to a specific profile and the functions will be implemented in the class representing the profile.",
+      "parentUuid": "2592a8b3_99df3942",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "fc49ab2800414512764892a7f86758992ee14bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
