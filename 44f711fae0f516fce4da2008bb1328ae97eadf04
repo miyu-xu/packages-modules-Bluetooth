@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8d9e238_3014bb7f",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-07-19T08:58:49Z",
+      "side": 1,
+      "message": "CancelLeConnect will call remove_device_from_background_connection_list as well.\nThis function seems exactly same as AclManager::CancelLeConnect?",
+      "range": {
+        "startLine": 221,
+        "startChar": 17,
+        "endLine": 221,
+        "endChar": 59
+      },
+      "revId": "44f711fae0f516fce4da2008bb1328ae97eadf04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
