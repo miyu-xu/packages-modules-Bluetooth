@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2592a8b3_99df3942",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-19T04:39:21Z",
+      "side": 1,
+      "message": "* Do we want to have different mmi between different implementation ? Right now eiffel will receive a different string than android\n\n* Do we want to add a per profile mmi ? something like `\"_mmi_ \" + profileName + \"_\" + mmi_name` Te example in the commit message would become _mmi_sdp_6000",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "fc49ab2800414512764892a7f86758992ee14bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
