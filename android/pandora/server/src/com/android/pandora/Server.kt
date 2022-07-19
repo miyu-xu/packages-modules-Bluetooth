@@ -30,6 +30,7 @@ class Server(context: Context) {
   private var host: Host
   private var a2dp: A2dp
   private var hfp: Hfp
+  private var rfcomm: Rfcomm
   private var sm: Sm
   private var grpcServer: GrpcServer
 
@@ -37,12 +38,14 @@ class Server(context: Context) {
     host = Host(context, this)
     a2dp = A2dp(context)
     hfp = Hfp(context)
+    rfcomm = Rfcomm(context)
     sm = Sm(context)
     grpcServer =
       NettyServerBuilder.forPort(GRPC_PORT)
         .addService(host)
         .addService(a2dp)
         .addService(hfp)
+        .addService(rfcomm)
         .addService(sm)
         .build()
 
@@ -56,6 +59,7 @@ class Server(context: Context) {
     a2dp.deinit()
     hfp.deinit()
     sm.deinit()
+    rfcomm.deinit()
     grpcServer.shutdownNow()
   }
 

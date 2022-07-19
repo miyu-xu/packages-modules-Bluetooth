@@ -101,6 +101,7 @@ genrule {
         "proto/pandora/a2dp.proto",
         "proto/pandora/hfp.proto",
         "proto/pandora/host.proto",
+        "proto/pandora/rfcomm.proto",
         "proto/pandora/sm.proto"
     ],
     out: [
@@ -110,6 +111,8 @@ genrule {
         "pandora/hfp_pb2.py",
         "pandora/host_grpc.py",
         "pandora/host_pb2.py",
+        "pandora/rfcomm_grpc.py",
+        "pandora/rfcomm_pb2.py",
         "pandora/sm_pb2.py",
         "pandora/sm_grpc.py",
     ]

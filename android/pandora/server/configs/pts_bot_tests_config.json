@@ -1090,7 +1090,10 @@
     "PAN": {},
     "PBAP": {},
     "PROD": {},
-    "RFCOMM": {},
+    "RFCOMM": {
+      "TSPX_security_enabled": "FALSE",
+      "TSPX_server_channel_iut": "1"
+    },
     "SAP": {},
     "SCPP": {},
     "SDP": {},
