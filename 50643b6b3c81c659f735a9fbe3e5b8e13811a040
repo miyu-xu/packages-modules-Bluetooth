@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0d96ce6_f5cc21e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-19T17:02:45Z",
+      "side": 1,
+      "message": "LGTM. Could you rebase before submitting?",
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
