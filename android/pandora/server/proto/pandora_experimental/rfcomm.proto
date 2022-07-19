@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option java_outer_classname = "RfcommProto";
+
+package pandora;
+
+import "pandora/host.proto";
+
+// Service to trigger RFCOMM procedures.
+service RFCOMM {
+  rpc Connect(ConnectRequest) returns (RfcommConnectRsp);
+  rpc StartServer(RfcommServerOptions) returns (RfcommStartServerRsp);
+  rpc AcceptConnection(RfcommServerCookie) returns (RfcommAcceptConnectionRsp);
+  rpc Disconnect(RfcommDisconnect) returns (RfcommDisconnectRsp);
+}
+
+message RfcommCookie {
+  uint32 id = 1;
+}
+
+message RfcommConnectRsp {
+  RfcommCookie cookie = 1;
+}
+
+message RfcommServerOptions {
+}
+
+message RfcommServerCookie {
+  RfcommCookie cookie = 1;
+}
+
+message RfcommStartServerRsp {
+  RfcommCookie cookie = 1;
+}
+
+message RfcommAcceptConnectionRsp {
+  RfcommCookie cookie = 1;
+}
+
+message RfcommDisconnect {
+  RfcommCookie cookie = 1;
+}
+
+message RfcommDisconnectRsp {
+}
