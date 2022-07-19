@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c7bcfd6_25709863",
+        "filename": "android/pandora/server/proto/pandora/hfp.proto",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T08:15:34Z",
+      "side": 1,
+      "message": "Yes, this is here because the client shouldn’t touch was is contained in a `Connection` as this could be anything so the way you use that as a client is that you call a function that gives you a `Connection` as a response and give that back when needed.\n\nSo for example you can call `WaitConnection` or `Connect` to get a `Connection`.",
+      "parentUuid": "101745a5_3af0a625",
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b55a2b7f_d50dc3a7",
         "filename": "android/pandora/server/src/com/android/pandora/Hfp.kt",
         "patchSetId": 1
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Do you mean the MMI should call both method and remove this call from the hfp.kt file?\n```\nself.connection \u003d self.host.Connect(address\u003dpts_addr).connection\nself.hfp.EnableSlc(address\u003dpts_addr)\n```\n\nThe `setConnectionPolicy` is an extra step compared to connect that we need (and we don\u0027t want to do it on each connect)",
       "parentUuid": "b55a2b7f_d50dc3a7",
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "843df59f_4af81e24",
+        "filename": "android/pandora/server/src/com/android/pandora/Hfp.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-19T08:15:34Z",
+      "side": 1,
+      "message": "\u003e Do you mean the MMI should call both method and remove this call from the hfp.kt file?\n\nYes exactly and if `EnableSlc` takes a connection it would look like\n\n```\nself.connection \u003d self.host.Connect(address\u003dpts_addr).connection\nself.hfp.EnableSlc(connection\u003dself.connection)\n```",
+      "parentUuid": "a0f79dfc_d69a18ee",
       "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
