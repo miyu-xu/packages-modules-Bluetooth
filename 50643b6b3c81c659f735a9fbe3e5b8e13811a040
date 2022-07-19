@@ -58,6 +58,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "010ce9f5_de0c01e3",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-19T20:22:47Z",
+      "side": 1,
+      "message": "Bonus point: it\u0027d be great if we can avoid duplication of these command definitions (right now it\u0027s duplicated like in line 107) and instead have a single source of truth for command definitions. But this probably requires larger refactoring so I think it\u0027s optional for now and may be good for future follow up.",
+      "range": {
+        "startLine": 456,
+        "startChar": 34,
+        "endLine": 456,
+        "endChar": 86
+      },
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bdf8ce2_3fe2b80d",
