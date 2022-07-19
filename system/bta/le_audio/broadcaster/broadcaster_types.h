@@ -86,9 +86,7 @@ struct BroadcastCodecWrapper {
     return 0;
   }
 
-  uint16_t GetMaxSduSize() const {
-    return GetNumChannels() * GetMaxSduSizePerChannel();
-  }
+  uint16_t GetMaxSduSize() const { return GetMaxSduSizePerChannel(); }
 
   const LeAudioCodecConfiguration& GetLeAudioCodecConfiguration() const {
     return source_codec_config;
