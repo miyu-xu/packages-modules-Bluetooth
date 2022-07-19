@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cb003ea_a6bb562e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-19T18:49:50Z",
+      "side": 1,
+      "message": "These unit tests are broken, could you fix it?\n\n- CsipSetCoordinatorStateMachineTest\n- HapClientTest",
+      "revId": "c90137090418c8884cc3b946786253ec3fc33d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
