@@ -24,6 +24,7 @@ java_library_static {
         "grpc-java-lite",
         "guava",
         "opencensus-java-api",
+        "kotlin-test",
         "kotlinx_coroutines",
         "pandora-grpc-java",
         "pandora-proto-java",
@@ -133,14 +134,40 @@ genrule {
          "    --python_out=$(genDir)" +
          "    $(in)",
     srcs: [
+<<<<<<< PATCH SET (6a7206 Pandora: Implement RFCOMM/)
+        "proto/pandora/a2dp.proto",
+        "proto/pandora/avrcp.proto",
+        "proto/pandora/gatt.proto",
+        "proto/pandora/hfp.proto",
+        "proto/pandora/host.proto",
+        "proto/pandora/rfcomm.proto",
+        "proto/pandora/security.proto",
+=======
         "proto/pandora_experimental/a2dp.proto",
         "proto/pandora_experimental/avrcp.proto",
         "proto/pandora_experimental/gatt.proto",
         "proto/pandora_experimental/hfp.proto",
         "proto/pandora_experimental/host.proto",
         "proto/pandora_experimental/security.proto",
+>>>>>>> BASE      (2bb6e8 Merge "Floss: Fix cb_variant expect message")
     ],
     out: [
+<<<<<<< PATCH SET (6a7206 Pandora: Implement RFCOMM/)
+        "pandora/a2dp_grpc.py",
+        "pandora/a2dp_pb2.py",
+        "pandora/avrcp_grpc.py",
+        "pandora/avrcp_pb2.py",
+        "pandora/gatt_grpc.py",
+        "pandora/gatt_pb2.py",
+        "pandora/hfp_grpc.py",
+        "pandora/hfp_pb2.py",
+        "pandora/host_grpc.py",
+        "pandora/host_pb2.py",
+        "pandora/rfcomm_grpc.py",
+        "pandora/rfcomm_pb2.py",
+        "pandora/security_grpc.py",
+        "pandora/security_pb2.py",
+=======
         "pandora_experimental/a2dp_grpc.py",
         "pandora_experimental/a2dp_pb2.py",
         "pandora_experimental/avrcp_grpc.py",
@@ -153,6 +180,7 @@ genrule {
         "pandora_experimental/host_pb2.py",
         "pandora_experimental/security_grpc.py",
         "pandora_experimental/security_pb2.py",
+>>>>>>> BASE      (2bb6e8 Merge "Floss: Fix cb_variant expect message")
     ]
 }
 
