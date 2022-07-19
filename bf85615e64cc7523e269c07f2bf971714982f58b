@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26c4df8_0e3b4c11",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2654,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-19T19:01:36Z",
+      "side": 1,
+      "message": "Could you use LOG_ALWAYS_FATAL instead? With that you don\u0027t have to use __func__ any more\n\n\u003c\u003c style logging methods are deprecated in new code",
+      "range": {
+        "startLine": 2654,
+        "startChar": 6,
+        "endLine": 2654,
+        "endChar": 80
+      },
+      "revId": "bf85615e64cc7523e269c07f2bf971714982f58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
