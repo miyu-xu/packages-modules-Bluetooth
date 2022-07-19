@@ -16,6 +16,103 @@
       "message": "LGTM. Could you rebase before submitting?",
       "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b74b4194_ac502ffb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-19T18:59:25Z",
+      "side": 1,
+      "message": "Removing CR+2 since I found a bug in `get_candidates`, please see comments below. Also added some nits.",
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d301e3ec_0ba1fd7a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-19T18:59:25Z",
+      "side": 1,
+      "message": "These should be lower cases: `enable|disable|show`",
+      "range": {
+        "startLine": 88,
+        "startChar": 47,
+        "endLine": 88,
+        "endChar": 66
+      },
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bdf8ce2_3fe2b80d",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-19T18:59:25Z",
+      "side": 1,
+      "message": "nit: in Rust you can also shorten this into a one-liner:\n```\nself.command_options.values().flat_map(|cmd| cmd.rules.clone()).collect()\n```",
+      "range": {
+        "startLine": 684,
+        "startChar": 0,
+        "endLine": 692,
+        "endChar": 13
+      },
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e7d650_7a2cea3f",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-19T18:59:25Z",
+      "side": 1,
+      "message": "I suggest we add a trailing space when we autocomplete a word:\n```\nslice.to_string() + \u0026c.suggest_word[c.matched_len..] + \"\"\n```\n\nThis behavior is more consistent with other autocompletes like, e.g. bash.",
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53f1aca1_529c5db2",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-19T18:59:25Z",
+      "side": 1,
+      "message": "We should still allow the candidate even if the length is the same as cmd_token if the user hasn\u0027t finished typing it, e.g. when typing `discovery` it will autocomplete to `discovery `, and let\u0027s say we have 2 commands sharing the same prefix `bond` and `bonding`, when the user types `bond` the autocomplete should still suggest both `bond` and `bonding`.\n\nIf I understand correctly, in this line 115 you actually intended to avoid suggesting words that are not the last word, so this should be solvable by changing this if condition to be:\n\n```\nif i \u003d\u003d n_cmd - 1 { // we add candidates only if it\u0027s the last word\n  result.insert(...\n  ...\n```\nwhereby `n_cmd` is the number of commands (e.g. `n_cmd \u003d cmd.split(\" \").count();`) and `i` is the index of the iteration (e.g. by adding it to the for statement `for (i, (rule_token, cmd_token)) in rule.split(\" \").zip(cmd.split(\" \")).enumerate() {`).",
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
