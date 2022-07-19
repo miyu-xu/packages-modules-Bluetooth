@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d59d3dd_169b3c79",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-19T14:16:39Z",
+      "side": 0,
+      "message": "Are there any functions to get the number of channel on a single BIS?",
+      "range": {
+        "startLine": 90,
+        "startChar": 11,
+        "endLine": 90,
+        "endChar": 27
+      },
+      "revId": "d64d484f2ca66418e423dfbcdfefdd7b1a10f674",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
