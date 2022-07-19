@@ -122,6 +122,29 @@
       "parentUuid": "a0f79dfc_d69a18ee",
       "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c733ef5_0ed91186",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-19T11:56:39Z",
+      "side": 1,
+      "message": "Can be separate pairing to an independent method? Behavior of `Connect()` is getting complicated.\n\n2158256: Pandora: Add createPairing() rpc methods | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2158256",
+      "range": {
+        "startLine": 196,
+        "startChar": 6,
+        "endLine": 196,
+        "endChar": 30
+      },
+      "revId": "f88a0d3be6b7f5332a6b812b8b6c4b4a49322fda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
