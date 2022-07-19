@@ -202,4 +202,49 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       DisconnectResponse.getDefaultInstance()
     }
   }
+
+  override fun pair(
+    request: PairRequest,
+    responseObserver: StreamObserver<PairResponse>
+  ) {
+    grpcUnary<PairResponse>(scope, responseObserver) {
+      val address = MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
+      Log.i(TAG, "Pair: address=$address, transport=${request.transport.name}")
+
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+
+      if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
+        Log.e(TAG, "Device is bonding")
+        throw Status.UNKNOWN.asException()
+      } else if(bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+        Log.e(TAG, "Device is bonded")
+        throw Status.UNKNOWN.asException()
+      }
+
+      bluetoothDevice.createBond(request.transport.getNumber())
+
+      PairResponse.getDefaultInstance()
+    }
+  }
+
+  override fun unpair(
+    request: UnpairRequest,
+    responseObserver: StreamObserver<UnpairResponse>
+  ) {
+    grpcUnary<UnpairResponse>(scope, responseObserver) {
+      val address = MacAddress.fromBytes(request.address.toByteArray()).toString().uppercase()
+      Log.i(TAG, "Unpair: address=$address")
+
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+
+      if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_NONE) {
+        Log.e(TAG, "No bond to device")
+        throw Status.UNKNOWN.asException()
+      }
+
+      bluetoothDevice.removeBond()
+
+      UnpairResponse.getDefaultInstance()
+    }
+  }
 }

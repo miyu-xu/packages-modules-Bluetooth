@@ -32,6 +32,10 @@ service Host {
   // Read the local Bluetooth device address.
   // This should return the same value as a Read BD_ADDR HCI command.
   rpc ReadLocalAddress(google.protobuf.Empty) returns (ReadLocalAddressResponse);
+  // Pair a device on given transport
+  rpc Pair(PairRequest) returns (PairResponse);
+  // Unpair a device
+  rpc Unpair(UnpairRequest) returns (UnpairResponse);
 }
 
 // A Token representing an ACL connection.
@@ -101,3 +105,28 @@ message ReadLocalAddressResponse {
   // Local Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
 }
+
+enum Transport {
+  TRANSPORT_AUTO = 0;
+  TRANSPORT_BREDR = 1;
+  TRANSPORT_LE = 2;
+}
+
+// Request of the `Pair` method.
+message PairRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+  Transport transport = 2;
+}
+
+// Response of the `Pair` method.
+message PairResponse {}
+
+// Request of the `Unpair` method.
+message UnpairRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+// Response of the `Unpair` method.
+message UnpairResponse {}
