@@ -24,6 +24,7 @@ java_library_static {
         "grpc-java-lite",
         "guava",
         "opencensus-java-api",
+        "kotlin-test",
         "kotlinx_coroutines",
         "pandora-grpc-java",
         "pandora-proto-java",
@@ -138,6 +139,7 @@ genrule {
         "proto/pandora_experimental/gatt.proto",
         "proto/pandora_experimental/hfp.proto",
         "proto/pandora_experimental/host.proto",
+        "proto/pandora_experimental/rfcomm.proto",
         "proto/pandora_experimental/security.proto",
     ],
     out: [
@@ -151,6 +153,8 @@ genrule {
         "pandora_experimental/hfp_pb2.py",
         "pandora_experimental/host_grpc.py",
         "pandora_experimental/host_pb2.py",
+        "pandora_experimental/rfcomm_grpc.py",
+        "pandora_experimental/rfcomm_pb2.py",
         "pandora_experimental/security_grpc.py",
         "pandora_experimental/security_pb2.py",
     ]
