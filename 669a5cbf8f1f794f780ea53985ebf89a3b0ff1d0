@@ -722,6 +722,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "470dc200_c9219227",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-19T17:03:04Z",
+      "side": 1,
+      "message": "We\u0027ll discuss this, but this is not part of this change",
+      "parentUuid": "cd1d86e7_524bc381",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7601a3d8_23ef9b8d",
         "filename": "android/pandora/server/proto/pandora/gatt.proto",
         "patchSetId": 5
@@ -769,6 +787,24 @@
       "side": 1,
       "message": "I\u0027m expecting GATT to be used over a fixed L2CAP channel, over a fixed channel there is no concept of connection or disconnection and there is no such thing over GATT too. So I\u0027m expecting this disconnection to do an HCI level disconnection.\n\nDid you tried to use the Disconnect on `Host` ? Because if it works I think that we prefer using that.",
       "parentUuid": "db917874_4060633e",
+      "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cef92624_94377fbd",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-19T17:03:04Z",
+      "side": 1,
+      "message": "Aren\u0027t we testing the Android APIs though?",
+      "parentUuid": "77b1090b_6bbc689e",
       "revId": "669a5cbf8f1f794f780ea53985ebf89a3b0ff1d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

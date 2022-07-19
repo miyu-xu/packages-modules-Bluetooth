@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60b151d2_f6c2e13e",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-19T17:03:04Z",
+      "side": 1,
+      "message": "We don\u0027t connect to LE, we connect to gatt and specify the transport to be LE.",
+      "parentUuid": "60c59a6c_998e8544",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6b25e15b_2bf6e741",
         "filename": "android/pandora/server/proto/pandora/gatt.proto",
         "patchSetId": 7
@@ -71,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "861a5cd4_322d4995",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-19T17:03:04Z",
+      "side": 1,
+      "message": "This seems counter-intuitive to me as the BluetoothGatt#discoverServices don\u0027t return the discovered services",
+      "parentUuid": "14c23130_cf23f7c0",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90441898_e8be9f77",
         "filename": "android/pandora/server/proto/pandora/gatt.proto",
         "patchSetId": 7
@@ -88,6 +124,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2c35cfa_488132f5",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-19T17:03:04Z",
+      "side": 1,
+      "message": "I\u0027m not sure what you\u0027re talking about here. The pts-bot calls this MMI: MMI_IUT_MTU_EXCHANGE, do you want me to ignore it? I don\u0027t think the test will pass then.",
+      "parentUuid": "90441898_e8be9f77",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce680412_16fb0f6a",
         "filename": "android/pandora/server/proto/pandora/gatt.proto",
         "patchSetId": 7
@@ -99,6 +153,24 @@
       "writtenOn": "2022-07-19T13:42:13Z",
       "side": 1,
       "message": "As this is used for `ConnectLe` this should be named `ConnectLeRequest` and same for the Response.",
+      "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f348e7b_f5351392",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-19T17:03:04Z",
+      "side": 1,
+      "message": "This is not only used for ConnectLe, this is used to pass a message containing only an address.",
+      "parentUuid": "ce680412_16fb0f6a",
       "revId": "8bd5cf8d39337130d66efb2dbf2b52b692a8c87a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
