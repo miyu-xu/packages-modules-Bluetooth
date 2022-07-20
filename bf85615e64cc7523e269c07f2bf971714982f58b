@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd4ca32d_412a89a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-20T13:27:22Z",
+      "side": 1,
+      "message": "Kind of guard for obtaining decoders.",
+      "parentUuid": "4dcce4aa_11f1dc58",
+      "revId": "bf85615e64cc7523e269c07f2bf971714982f58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e26c4df8_0e3b4c11",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-19T19:01:36Z",
       "side": 1,
       "message": "Could you use LOG_ALWAYS_FATAL instead? With that you don\u0027t have to use __func__ any more\n\n\u003c\u003c style logging methods are deprecated in new code",
+      "range": {
+        "startLine": 2654,
+        "startChar": 6,
+        "endLine": 2654,
+        "endChar": 80
+      },
+      "revId": "bf85615e64cc7523e269c07f2bf971714982f58b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1bb49f7_48f65fff",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2654,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-20T13:27:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e26c4df8_0e3b4c11",
       "range": {
         "startLine": 2654,
         "startChar": 6,
