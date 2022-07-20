@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27f9f839_e661f436",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1801,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-20T18:52:50Z",
+      "side": 1,
+      "message": "FALLTHROUGH_INTENDED",
+      "range": {
+        "startLine": 1801,
+        "startChar": 8,
+        "endLine": 1801,
+        "endChar": 28
+      },
+      "revId": "0f6ea6e12aa7ddd25397fe768efa0f6d5372203f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
