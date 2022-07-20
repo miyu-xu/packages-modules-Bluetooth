@@ -1755,11 +1755,11 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private boolean createBondInternal(int transport, @Nullable OobData remoteP192Data,
             @Nullable OobData remoteP256Data) {
-        if (DBG) log("createBondOutOfBand()");
+        log("createBondInternal()");
         final IBluetooth service = sService;
         final boolean defaultValue = false;
         if (service == null || !isBluetoothEnabled()) {
-            Log.w(TAG, "BT not enabled, createBondOutOfBand failed");
+            Log.w(TAG, "BT not enabled, createBondInternal failed");
             if (DBG) log(Log.getStackTraceString(new Throwable()));
         } else if (NULL_MAC_ADDRESS.equals(mAddress)) {
             Log.e(TAG, "Unable to create bond, invalid address " + mAddress);
@@ -2246,7 +2246,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             android.Manifest.permission.BLUETOOTH_PRIVILEGED,
     })
     public boolean fetchUuidsWithSdp(@Transport int transport) {
-        if (DBG) log("fetchUuidsWithSdp()");
+        log("fetchUuidsWithSdp()");
         final IBluetooth service = sService;
         final boolean defaultValue = false;
         if (service == null || !isBluetoothEnabled()) {
@@ -3038,6 +3038,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     public BluetoothGatt connectGatt(Context context, boolean autoConnect,
             BluetoothGattCallback callback, int transport,
             boolean opportunistic, int phy, Handler handler) {
+        Log.d(TAG, "connectGatt");
         if (callback == null) {
             throw new NullPointerException("callback is null");
         }
