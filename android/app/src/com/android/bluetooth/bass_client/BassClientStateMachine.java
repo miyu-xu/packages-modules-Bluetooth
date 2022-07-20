@@ -178,7 +178,6 @@ public class BassClientStateMachine extends StateMachine {
     private final Map<Integer, Boolean> mPendingRemove = new HashMap();
     // Psync and PAST interfaces
     private PeriodicAdvertisingManager mPeriodicAdvManager;
-    private boolean mAutoAssist = false;
     private boolean mAutoTriggered = false;
     private boolean mNoStopScanOffload = false;
     private boolean mDefNoPAS = false;
@@ -590,12 +589,6 @@ public class BassClientStateMachine extends StateMachine {
                     log("Initiate PAST for: " + mDevice + ", syncHandle: " +  syncHandle
                             + "serviceData" + serviceData);
                     mPeriodicAdvManager.transferSync(mDevice, serviceData, syncHandle);
-                }
-            } else {
-                Log.e(TAG, "There is no valid sync handle for this Source");
-                if (mAutoAssist) {
-                    //initiate Auto Assist procedure for this device
-                    mService.getBassUtils().triggerAutoAssist(recvState);
                 }
             }
         } else if (state == BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_SYNCHRONIZED
