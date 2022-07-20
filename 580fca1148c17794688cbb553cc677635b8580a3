@@ -241,6 +241,30 @@
       },
       "revId": "580fca1148c17794688cbb553cc677635b8580a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f734f956_59825b12",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2798,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-20T19:53:40Z",
+      "side": 1,
+      "message": "acl_gatt_on_cancelled?",
+      "parentUuid": "cf7bbc18_98955359",
+      "range": {
+        "startLine": 2791,
+        "startChar": 2,
+        "endLine": 2798,
+        "endChar": 3
+      },
+      "revId": "580fca1148c17794688cbb553cc677635b8580a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
