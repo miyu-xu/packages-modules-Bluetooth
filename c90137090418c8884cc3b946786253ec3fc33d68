@@ -16,6 +16,24 @@
       "message": "These unit tests are broken, could you fix it?\n\n- CsipSetCoordinatorStateMachineTest\n- HapClientTest",
       "revId": "c90137090418c8884cc3b946786253ec3fc33d68",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e759ae4b_95b12b21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-07-20T06:02:23Z",
+      "side": 1,
+      "message": "I tried but I cant figure this out. Both are mocking CsipSetCoordinatorService class and these mock are somehow broken. I\u0027m not sure what\u0027s so special about this class that it cannot be mocked properly. I\u0027m getting random results and exceptions that make no sense.",
+      "parentUuid": "9cb003ea_a6bb562e",
+      "revId": "c90137090418c8884cc3b946786253ec3fc33d68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
