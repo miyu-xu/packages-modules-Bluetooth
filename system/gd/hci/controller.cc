@@ -548,7 +548,9 @@ struct Controller::impl {
     ASSERT(view.IsValid());
     auto status_view = T::Create(view);
     ASSERT(status_view.IsValid());
-    ASSERT(status_view.GetStatus() == ErrorCode::SUCCESS);
+    if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+      LOG_ERROR("status_view.GetStatus() != ErrorCode::SUCCESS");
+    }
   }
 
 #define OP_CODE_MAPPING(name)                                                  \
