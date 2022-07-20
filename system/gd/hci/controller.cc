@@ -564,7 +564,8 @@ struct Controller::impl {
     ASSERT(view.IsValid());
     auto status_view = T::Create(view);
     ASSERT(status_view.IsValid());
-    ASSERT(status_view.GetStatus() == ErrorCode::SUCCESS);
+    ASSERT(status_view.GetStatus() == ErrorCode::SUCCESS ||
+           status_view.GetStatus() == ErrorCode::UNSUPPORTED_LMP_OR_LL_PARAMETER);
   }
 
 #define OP_CODE_MAPPING(name)                                                  \
