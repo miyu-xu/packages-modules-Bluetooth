@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80dd2c31_6cc32e9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-07-20T15:43:51Z",
+      "side": 1,
+      "message": "This CL caused LE Audio related issues when Samsung tested it. They had some suggestions which have been incorporated in a separate CL.",
+      "revId": "28f9fd3d6704e0e6c2ad90613ec2199a6da9b076",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
