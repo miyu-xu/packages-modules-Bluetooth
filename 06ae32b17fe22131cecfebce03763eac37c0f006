@@ -35,6 +35,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "042bacb6_9405461d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28acc5ec_e479b4d7",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2aa6b98a_84939312",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28acc5ec_e479b4d7",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87b821ea_dbd99814",
@@ -48,6 +84,42 @@
       "writtenOn": "2022-07-19T07:59:19Z",
       "side": 1,
       "message": "You can remove the `test` argument here",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "722344c7_5713e373",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87b821ea_dbd99814",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35c90ef2_7e5d1bed",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87b821ea_dbd99814",
       "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +147,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51e13d9d_b3f417a7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "816aba93_080dfe09",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1913ddb3_7150950f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "816aba93_080dfe09",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "637711d1_de407a11",
@@ -92,6 +212,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a1a8426_9efd2dda",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "I tried to get the UUIDs from Android and compare.  I\u0027ve updated the description for the next person who wants to try.",
+      "parentUuid": "637711d1_de407a11",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "76c8a4bf_f6adbc66",
@@ -105,6 +243,24 @@
       "writtenOn": "2022-07-19T07:59:19Z",
       "side": 1,
       "message": "I think we can remove this file as we are not defining any RPC methods",
+      "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a755146f_1e95e982",
+        "filename": "android/pandora/server/proto/pandora/sdp.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:19:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76c8a4bf_f6adbc66",
       "revId": "06ae32b17fe22131cecfebce03763eac37c0f006",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
