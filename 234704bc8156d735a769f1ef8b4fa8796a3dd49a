@@ -16,6 +16,24 @@
       "message": "The valid password length is 4 ~ 16.",
       "revId": "234704bc8156d735a769f1ef8b4fa8796a3dd49a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5682ff1_61e99ce3",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BroadcastScanActivity.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-07-20T14:24:02Z",
+      "side": 1,
+      "message": "Where this is mentioned ? If code would be less than 16 bytes what should be done to fill it to 16 ? Fill with zeros ?\n\n16 bytes is from BASS 3.1.1.6 Set Broadcast_Code operation and Core for BIG 3.1.1.6\nSet Broadcast_Code operation",
+      "parentUuid": "192ca6c2_9066c873",
+      "revId": "234704bc8156d735a769f1ef8b4fa8796a3dd49a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
