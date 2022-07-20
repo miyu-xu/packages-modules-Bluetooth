@@ -178,7 +178,6 @@ public class BassClientStateMachine extends StateMachine {
     private final Map<Integer, Boolean> mPendingRemove = new HashMap();
     // Psync and PAST interfaces
     private PeriodicAdvertisingManager mPeriodicAdvManager;
-    private boolean mAutoAssist = false;
     private boolean mAutoTriggered = false;
     private boolean mNoStopScanOffload = false;
     private boolean mDefNoPAS = false;
