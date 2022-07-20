@@ -270,7 +270,6 @@ public class BassClientService extends ProfileService {
             mActiveSourceMap = null;
         }
         if (mBassUtils != null) {
-            mBassUtils.cleanUp();
             mBassUtils = null;
         }
         return true;
