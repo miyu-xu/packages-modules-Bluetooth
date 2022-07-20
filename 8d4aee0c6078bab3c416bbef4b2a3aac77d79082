@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74d8d658_fafe03b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:29:09Z",
+      "side": 1,
+      "message": "Nice!",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c007229_2b148275",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:29:09Z",
+      "side": 1,
+      "message": "Should we add the comment to match the others, or remove the comments from the others?",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3e0ce8b_a435c708",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:29:09Z",
+      "side": 1,
+      "message": "Is this a pairing confirmation dialog, or a pairing request?\n\nDoes it have a PIN comparison that we should look at?",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b33f22dc_4835acad",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:29:09Z",
+      "side": 1,
+      "message": "Do we have to wait 30s here?",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 70
+      },
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eded76e4_a709d379",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-20T22:29:09Z",
+      "side": 1,
+      "message": "We talked about using the same implementation as GATT Pts-bot.  Have we checked to see if that\u0027s ready to converge?",
+      "range": {
+        "startLine": 171,
+        "startChar": 16,
+        "endLine": 171,
+        "endChar": 27
+      },
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
