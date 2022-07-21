@@ -25,6 +25,7 @@
 #pragma once
 #include <cstdint>
 
+#include "stack/btm/btm_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/btm_api_types.h"
@@ -807,3 +808,14 @@ void btm_sec_cr_loc_oob_data_cback_event(const RawAddress& address,
 
 // Return DEV_CLASS (uint8_t[3]) of bda. If record doesn't exist, create one.
 const uint8_t* btm_get_dev_class(const RawAddress& bda);
+
+/*******************************************************************************
+ *
+ * Function         btm_sec_get_pairing_state
+ *
+ * Description      This function is called to get the current pairing state
+ *
+ * Returns          tBTM_PAIRING_STATE
+ *
+ ******************************************************************************/
+tBTM_PAIRING_STATE btm_sec_get_pairing_state(void);

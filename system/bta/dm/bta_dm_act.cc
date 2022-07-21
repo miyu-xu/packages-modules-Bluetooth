@@ -1533,7 +1533,13 @@ void bta_dm_search_cancel_notify() {
   if (!bta_dm_search_cb.name_discover_done &&
       (bta_dm_search_cb.state == BTA_DM_SEARCH_ACTIVE ||
        bta_dm_search_cb.state == BTA_DM_SEARCH_CANCELLING)) {
-    BTM_CancelRemoteDeviceName();
+    if (btm_sec_get_pairing_state() != BTM_PAIR_STATE_GET_REM_NAME) {
+      BTM_CancelRemoteDeviceName();
+    } else {
+      LOG_INFO(
+          "Skipping remote name request cancellation because pairing_state == "
+          "GET_REM_NAME");
+    }
   }
 }
 
