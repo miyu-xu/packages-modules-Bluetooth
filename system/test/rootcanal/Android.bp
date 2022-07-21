@@ -96,6 +96,8 @@ cc_library_shared {
         "liblog",
         "libutils",
         "libprotobuf-cpp-lite",
+        "libssl",
+        "libcrypto",
     ],
     cflags: [
         "-Wall",

@@ -98,6 +98,8 @@ cc_library_static {
     ],
     shared_libs: [
         "liblog",
+        "libssl",
+        "libcrypto",
     ],
     whole_static_libs: [
         "liblmp",
@@ -146,6 +148,8 @@ cc_test_host {
     ],
     shared_libs: [
         "liblog",
+        "libssl",
+        "libcrypto",
     ],
     static_libs: [
         "libbt-rootcanal",
@@ -178,6 +182,8 @@ cc_binary_host {
     shared_libs: [
         "liblog",
         "libunwindstack",
+        "libssl",
+        "libcrypto",
     ],
     whole_static_libs: [
         "libbt-rootcanal",
