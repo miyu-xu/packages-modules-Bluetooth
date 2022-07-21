@@ -13,6 +13,7 @@
 # limitations under the License.
 """HFP proxy module."""
 
+from pam import authenticate
 from mmi2grpc._helpers import assert_description
 from mmi2grpc._proxy import ProfileProxy
 
@@ -56,7 +57,7 @@ class HFPProxy(ProfileProxy):
         Implementation Under Test (IUT).
         """
 
-        self.connection = self.host.Connect(address=pts_addr).connection
+        self.connection = self.host.Connect(address=pts_addr, authenticate=True, blocking=True).connection
         return "OK"
 
     @assert_description

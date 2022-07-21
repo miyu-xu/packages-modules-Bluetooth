@@ -36,18 +36,31 @@ service Host {
   rpc ReadLocalAddress(google.protobuf.Empty) returns (ReadLocalAddressResponse);
 }
 
+enum Transport {
+  AUTO = 0;
+  BREDR = 1;
+  LE = 2;
+}
+
 // A Token representing an ACL connection.
 // It's acquired via a Connect on the Host service.
 message Connection {
   // Opaque value filled by the GRPC server, must not
   // be modified nor crafted.
   bytes cookie = 1;
+  Transport transport = 2;
+  bool authenticated = 3;
+  bool connected = 4;
 }
 
 // Request of the `Connect` method.
 message ConnectRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  // If the invocation should be blocked until connection complete
+  bool blocking = 2;
+  // If authentication is required
+  bool authenticate = 3;
 }
 
 // Response of the `Connect` method.
@@ -78,6 +91,8 @@ message GetConnectionResponse {
 message WaitConnectionRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  // If authentication is required
+  bool authenticate = 2;
 }
 
 // Response of the `WaitConnection` method.

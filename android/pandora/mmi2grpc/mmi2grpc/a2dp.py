@@ -71,8 +71,7 @@ class A2DPProxy(ProfileProxy):
         """
 
         if "SRC" in test:
-            self.connection = self.host.WaitConnection(
-                address=pts_addr).connection
+            self.connection = self.host.WaitConnection(address=pts_addr, authenticate=True).connection
             try:
                 if "INT" in test:
                     self.source = self.a2dp.OpenSource(
@@ -83,8 +82,7 @@ class A2DPProxy(ProfileProxy):
             except RpcError:
                 pass
         else:
-            self.connection = self.host.WaitConnection(
-                address=pts_addr).connection
+            self.connection = self.host.WaitConnection(address=pts_addr, authenticate=True).connection
             try:
                 self.sink = self.a2dp.WaitSink(
                     connection=self.connection).sink
