@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2e13387_90f33656",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-21T00:33:05Z",
+      "side": 1,
+      "message": "Not sure, but I\u0027m guessing follows may fix the TH test failures in CsipSetCoordinatorStateMachineTest.java.\n\ndoReturn(allow).when(mService).okToConnect(any(BluetoothDevice.class));\n-\u003e\ndoReturn(allow).when(mService).okToConnect(mTestDevice);\n\nhttps://source.corp.google.com/android/packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/csip/CsipSetCoordinatorStateMachineTest.java;l\u003d106;rcl\u003dHEAD?q\u003dCsipSetCoordinatorStateMachineTest\u0026ct\u003dos\u0026sq\u003dpackage:%5Eandroid$%7C%5Eaosp-androidx$\n",
+      "revId": "2d678a471eb2223abeb36613b106a41782132db9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "504fdcd0_a8c0d5aa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-21T00:33:05Z",
+      "side": 1,
+      "message": "Please fix.",
+      "revId": "2d678a471eb2223abeb36613b106a41782132db9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
