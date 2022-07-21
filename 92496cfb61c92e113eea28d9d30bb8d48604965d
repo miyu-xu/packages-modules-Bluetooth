@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2eacfb43_3a0325ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-21T19:07:45Z",
+      "side": 1,
+      "message": "Chen chen, this might be the reason you see:\n\nbonding-\u003ebonding-\u003enone-\u003ebonding-\u003ebonded",
+      "revId": "92496cfb61c92e113eea28d9d30bb8d48604965d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
