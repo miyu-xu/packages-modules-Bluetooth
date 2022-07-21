@@ -34,6 +34,24 @@
       "parentUuid": "192ca6c2_9066c873",
       "revId": "234704bc8156d735a769f1ef8b4fa8796a3dd49a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f2acdae_19e2c451",
+        "filename": "android/leaudio/app/src/main/java/com/android/bluetooth/leaudio/BroadcastScanActivity.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-07-21T08:45:06Z",
+      "side": 1,
+      "message": "Hi Grzegorz,\nYeap, we should fill the remaining octets with zeros. More at b/239697620 .... and the length is also mentioned in BluetoothLeBroadcastMetadata.java docs.",
+      "parentUuid": "c5682ff1_61e99ce3",
+      "revId": "234704bc8156d735a769f1ef8b4fa8796a3dd49a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
