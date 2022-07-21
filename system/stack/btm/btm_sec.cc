@@ -5052,3 +5052,5 @@ void BTM_update_version_info(const RawAddress& bd_addr,
 
   p_dev_rec->remote_version_info = remote_version_info;
 }
+
+tBTM_PAIRING_STATE btm_sec_get_pairing_state() { return btm_cb.pairing_state; }
