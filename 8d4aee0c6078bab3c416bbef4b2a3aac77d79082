@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18cc816c_ef16faea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d5e9718_ec3c8eb1",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c007229_2b148275",
@@ -70,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ea6beba_4a8bc7f0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3b57789_a63dcbaa",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3e0ce8b_a435c708",
@@ -95,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "263ed027_9a6ceb65",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sm.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "It is pairing confirmation dialog. I will change the name. so far I have not seen PIN comparison.",
+      "parentUuid": "d3e0ce8b_a435c708",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "020048e0_7f1c0eb7",
         "filename": "android/pandora/server/proto/pandora/sm.proto",
         "patchSetId": 2
@@ -106,6 +166,24 @@
       "writtenOn": "2022-07-21T11:57:42Z",
       "side": 1,
       "message": "I think we should return an Opaque Token as result of `ConnectLE` that we reuse in `Pair`, `DisconnectLE` and `AcceptPairingRequestAction` like the `Connection` returned by `Connect` in host.proto.\n\nThis allows to add to the type system the lifecycle of the calls so that you can only `Pair` if you called `ConnectLE`.",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82720c20_ca53546f",
+        "filename": "android/pandora/server/proto/pandora/sm.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "020048e0_7f1c0eb7",
       "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -144,6 +222,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "860cc7b6_adb398b2",
+        "filename": "android/pandora/server/proto/pandora/sm.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f50e5f5_e10413de",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b33f22dc_4835acad",
@@ -169,6 +265,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "370daf76_fdfa6b29",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "This is essentially allowing the job to wait for pairing confirmation dialog for 30 seconds before cancelling the job. I think I can reduce the wait time to 15 sec may be.",
+      "parentUuid": "b33f22dc_4835acad",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 70
+      },
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6b9cacd_0237f00a",
         "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
         "patchSetId": 2
@@ -180,6 +300,24 @@
       "writtenOn": "2022-07-21T11:57:42Z",
       "side": 1,
       "message": "We should remove the client from the `gattClients` map",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92cf20ed_118ef746",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b6b9cacd_0237f00a",
       "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -220,6 +358,24 @@
       "writtenOn": "2022-07-21T11:57:42Z",
       "side": 1,
       "message": "You can remove this line I think",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d89f58_6a81a031",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-21T21:36:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa964991_57224dcb",
       "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
