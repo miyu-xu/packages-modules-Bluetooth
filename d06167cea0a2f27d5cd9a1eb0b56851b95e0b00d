@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6d2c824_f06d7923",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T08:44:39Z",
+      "side": 1,
+      "message": "It seems that `GATT Service 0x1855 TMAS (Telephone and Media Audio Service)` is missing",
+      "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a83a1c_b3c61038",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T08:44:39Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand that, should not all services listed here be returned by Android ?",
+      "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
