@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e7f4fcd_c90cba54",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-21T22:08:05Z",
+      "side": 1,
+      "message": "Maybe we can use `request.connection.cookie.toBluetoothDevice(adapter)` instead ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 23,
+        "endLine": 105,
+        "endChar": 79
+      },
+      "revId": "7f51ea973ec8d5bbaa285c57d2704dab00ae95d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca2cbbc1_09522e1e",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-21T22:08:05Z",
+      "side": 1,
+      "message": "Not needed if you have the bluetoothDevice",
+      "range": {
+        "startLine": 112,
+        "startChar": 52,
+        "endLine": 112,
+        "endChar": 60
+      },
+      "revId": "7f51ea973ec8d5bbaa285c57d2704dab00ae95d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128677e0_63a94667",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-21T22:08:05Z",
+      "side": 1,
+      "message": "You may want to directly call `host.waitPairingRequestIntent`",
+      "range": {
+        "startLine": 109,
+        "startChar": 10,
+        "endLine": 125,
+        "endChar": 9
+      },
+      "revId": "7f51ea973ec8d5bbaa285c57d2704dab00ae95d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
