@@ -42,12 +42,20 @@ message Connection {
   // Opaque value filled by the GRPC server, must not
   // be modified nor crafted.
   bytes cookie = 1;
+  // If the connection is authenticated.
+  // The real meaning of this field differs between platforms.
+  bool authenticated = 2;
 }
 
 // Request of the `Connect` method.
 message ConnectRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  // If the invocation should be blocked until connection complete
+  // Note: in nonblocking mode, response does not stand for result.
+  bool blocking = 2;
+  // If authentication is required
+  bool authenticate = 3;
 }
 
 // Response of the `Connect` method.
@@ -78,6 +86,8 @@ message GetConnectionResponse {
 message WaitConnectionRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+  // If authentication is required
+  bool authenticate = 2;
 }
 
 // Response of the `WaitConnection` method.

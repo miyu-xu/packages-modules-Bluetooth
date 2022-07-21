@@ -150,11 +150,25 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       .first()
   }
 
-  private suspend fun waitConnectionIntent(address: String) {
-    val acceptPairingJob = scope.launch { waitPairingRequestIntent(address) }
-    waitBondIntent(address)
-    if (acceptPairingJob.isActive) {
-      acceptPairingJob.cancel()
+  private suspend fun waitConnectionIntent(address: String, authenticate: Boolean) {
+    val connectedJob = scope.launch {
+      flow
+        .filter { it.getAction() == BluetoothDevice.ACTION_ACL_CONNECTED }
+        .filter { it.getBluetoothDeviceExtra().address == address }
+        .map { it.getIntExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothAdapter.ERROR) }
+        .filter { it == BluetoothDevice.TRANSPORT_BREDR }
+        .first()
+    }
+    if (authenticate){
+      val acceptPairingJob = scope.launch { waitPairingRequestIntent(address) }
+      waitBondIntent(address)
+      if (acceptPairingJob.isActive) {
+        acceptPairingJob.cancel()
+      }
+    }
+
+    if (connectedJob.isActive) {
+      connectedJob.cancel()
     }
   }
 
@@ -172,10 +186,16 @@ class Host(private val context: Context, private val server: Server) : HostImplB
         throw Status.UNKNOWN.asException()
       }
 
-      waitConnectionIntent(address)
+      waitConnectionIntent(address, request.authenticate)
+
+      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
 
       WaitConnectionResponse.newBuilder()
-        .setConnection(Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build())
+        .setConnection(
+          Connection.newBuilder()
+          .setCookie(ByteString.copyFromUtf8(address))
+          .setAuthenticated(bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED)
+          .build())
         .build()
     }
   }
@@ -187,14 +207,20 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       Log.i(TAG, "connect: address=$bluetoothDevice")
 
       if (!bluetoothDevice.isConnected()) {
-        bluetoothDevice.createBond()
-        waitConnectionIntent(bluetoothDevice.address)
+        bluetoothDevice.connect()
+        if (request.authenticate){
+          bluetoothDevice.createBond()
+        }
+        if (request.blocking){
+          waitConnectionIntent(bluetoothDevice.address, request.authenticate)
+        }
       }
 
       ConnectResponse.newBuilder()
         .setConnection(
           Connection.newBuilder()
             .setCookie(ByteString.copyFromUtf8(bluetoothDevice.address))
+            .setAuthenticated(bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED)
             .build()
         )
         .build()
