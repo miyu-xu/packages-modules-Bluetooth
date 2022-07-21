@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d5e9718_ec3c8eb1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T11:57:42Z",
+      "side": 1,
+      "message": "Thanks !\n\nIt seems that you are running more tests that what you currently support\nhttps://android-build.googleplex.com/builds/tests/view?invocationId\u003dI56400010072563817\u0026testResultId\u003dTR15228151522906339\u0026redirect\u003dhttp://sponge2/89764e61-ace6-4efe-ae42-d1cfc0610248\n\nCould you either skip the tests that you don\u0027t implement yet or restrict more the filter in `PtsBotTest.xml`",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c007229_2b148275",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
         "patchSetId": 2
@@ -31,6 +48,24 @@
       "writtenOn": "2022-07-20T22:29:09Z",
       "side": 1,
       "message": "Should we add the comment to match the others, or remove the comments from the others?",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3b57789_a63dcbaa",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T11:57:42Z",
+      "side": 1,
+      "message": "I\u0027m not too opiniated on this as I find the comment not adding a lot to the code.\n\nMaybe @girardier have an opinion on this ?",
+      "parentUuid": "8c007229_2b148275",
       "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -60,6 +95,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "020048e0_7f1c0eb7",
+        "filename": "android/pandora/server/proto/pandora/sm.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T11:57:42Z",
+      "side": 1,
+      "message": "I think we should return an Opaque Token as result of `ConnectLE` that we reuse in `Pair`, `DisconnectLE` and `AcceptPairingRequestAction` like the `Connection` returned by `Connect` in host.proto.\n\nThis allows to add to the type system the lifecycle of the calls so that you can only `Pair` if you called `ConnectLE`.",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6532a2b_a332fea6",
+        "filename": "android/pandora/server/proto/pandora/sm.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T11:57:42Z",
+      "side": 1,
+      "message": "We might want to move the `ConnectLE` and `DisconnectLE` to host.proto to mutualise it with GATT or other LE profiles.",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f50e5f5_e10413de",
+        "filename": "android/pandora/server/proto/pandora/sm.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T11:57:42Z",
+      "side": 1,
+      "message": "I would prefer that we do not reuse requests or responses as this would make adding a parameter to only one of them harder later",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b33f22dc_4835acad",
         "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
         "patchSetId": 2
@@ -83,6 +169,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6b9cacd_0237f00a",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T11:57:42Z",
+      "side": 1,
+      "message": "We should remove the client from the `gattClients` map",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eded76e4_a709d379",
         "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
         "patchSetId": 2
@@ -100,6 +203,23 @@
         "endLine": 171,
         "endChar": 27
       },
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa964991_57224dcb",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-21T11:57:42Z",
+      "side": 1,
+      "message": "You can remove this line I think",
       "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
