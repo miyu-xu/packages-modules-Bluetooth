@@ -24,6 +24,7 @@ rust_ffi {
         "libnum_traits",
         "libthiserror",
         "libpin_utils",
+        "libopenssl",
     ],
     include_dirs: ["include"],
 }
