@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "755ab235_9fd063ac",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-21T14:22:43Z",
+      "side": 1,
+      "message": "I wouldn\u0027t expect LE GATT services to be listed in SDP, since classic devices shouldn\u0027t connect to them.",
+      "parentUuid": "c6d2c824_f06d7923",
+      "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4a83a1c_b3c61038",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-21T08:44:39Z",
       "side": 1,
       "message": "I\u0027m not sure to understand that, should not all services listed here be returned by Android ?",
+      "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71564980_99e67915",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-21T14:22:43Z",
+      "side": 1,
+      "message": "Good question. I\u0027m not sure who uses the API.  I don\u0027t think we should change that as part of this test.",
+      "parentUuid": "d4a83a1c_b3c61038",
       "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
