@@ -60,6 +60,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "25be8dca_37e138e4",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-21T08:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d301e3ec_0ba1fd7a",
+      "range": {
+        "startLine": 88,
+        "startChar": 47,
+        "endLine": 88,
+        "endChar": 66
+      },
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "010ce9f5_de0c01e3",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 9
@@ -104,6 +128,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc111bb_e77c4ab9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-21T08:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1bdf8ce2_3fe2b80d",
+      "range": {
+        "startLine": 684,
+        "startChar": 0,
+        "endLine": 692,
+        "endChar": 13
+      },
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04e7d650_7a2cea3f",
@@ -121,6 +169,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5a1ad3_173f4d30",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-21T08:17:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04e7d650_7a2cea3f",
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53f1aca1_529c5db2",
@@ -134,6 +200,24 @@
       "writtenOn": "2022-07-19T18:59:25Z",
       "side": 1,
       "message": "We should still allow the candidate even if the length is the same as cmd_token if the user hasn\u0027t finished typing it, e.g. when typing `discovery` it will autocomplete to `discovery `, and let\u0027s say we have 2 commands sharing the same prefix `bond` and `bonding`, when the user types `bond` the autocomplete should still suggest both `bond` and `bonding`.\n\nIf I understand correctly, in this line 115 you actually intended to avoid suggesting words that are not the last word, so this should be solvable by changing this if condition to be:\n\n```\nif i \u003d\u003d n_cmd - 1 { // we add candidates only if it\u0027s the last word\n  result.insert(...\n  ...\n```\nwhereby `n_cmd` is the number of commands (e.g. `n_cmd \u003d cmd.split(\" \").count();`) and `i` is the index of the iteration (e.g. by adding it to the for statement `for (i, (rule_token, cmd_token)) in rule.split(\" \").zip(cmd.split(\" \")).enumerate() {`).",
+      "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa4d5e63_e66e18fc",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-07-21T08:17:02Z",
+      "side": 1,
+      "message": "Done, thanks for the suggestion!",
+      "parentUuid": "53f1aca1_529c5db2",
       "revId": "50643b6b3c81c659f735a9fbe3e5b8e13811a040",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
