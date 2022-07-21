@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1a0def1_d7334c50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-07-21T16:23:48Z",
+      "side": 1,
+      "message": "Hey, Howard. The change LGTM, but I am actively working on this so the next patch I upload will include the change to extend all pairing event with the device type. ",
+      "revId": "e3b275161921d8dd1f49130a08c336a5fa1549bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
