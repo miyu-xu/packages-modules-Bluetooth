@@ -1176,8 +1176,10 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     }
     // Report bond state change to java only if we are bonding to a device or
     // a device is removed from the pairing list.
-    if (pairing_cb.state == BT_BOND_STATE_BONDING || is_bonded_device_removed) {
-      bond_state_changed(status, bd_addr, state);
+    if (pairing_cb.state == BT_BOND_STATE_BONDING) {
+      bond_state_changed(BT_BOND_STATE_BONDING, bd_addr, state);
+    } else if (is_bonded_device_removed) {
+      bond_state_changed(BT_BOND_STATE_NONE, bd_addr, state);
     }
   }
 }
