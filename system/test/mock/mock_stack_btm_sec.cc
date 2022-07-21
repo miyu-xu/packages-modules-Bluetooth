@@ -316,3 +316,8 @@ void btm_sec_update_clock_offset(uint16_t handle, uint16_t clock_offset) {
 void btm_simple_pair_complete(const uint8_t* p) {
   mock_function_count_map[__func__]++;
 }
+
+tBTM_PAIRING_STATE btm_sec_get_pairing_state(void) {
+  mock_function_count_map[__func__]++;
+  return BTM_PAIR_STATE_IDLE;
+}
