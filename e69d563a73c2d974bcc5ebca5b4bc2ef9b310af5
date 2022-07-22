@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2252c047_3348edaa",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-22T18:10:03Z",
+      "side": 1,
+      "message": "C\u0027mon 😄",
+      "range": {
+        "startLine": 104,
+        "startChar": 80,
+        "endLine": 104,
+        "endChar": 82
+      },
+      "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3931017e_5dac2aa0",
+        "filename": "android/pandora/server/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-22T18:10:03Z",
+      "side": 1,
+      "message": "Why is this needed ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
