@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ac861ce_cd574329",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-22T01:47:47Z",
+      "side": 1,
+      "message": "could we rename this closer to its intended use case?\n\ne.g. \n\npending_gatt_connection_interfaces_",
+      "range": {
+        "startLine": 109,
+        "startChar": 6,
+        "endLine": 109,
+        "endChar": 44
+      },
+      "revId": "3b0787036caaa63300d7b0e01a676c5f9eb25dd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b067a628_7bd1eab6",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2774,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-22T01:47:47Z",
+      "side": 1,
+      "message": "this is the key part of this CL\n\nWe want to make sure this is called once and only once a pending GATT connection",
+      "range": {
+        "startLine": 2771,
+        "startChar": 0,
+        "endLine": 2774,
+        "endChar": 80
+      },
+      "revId": "3b0787036caaa63300d7b0e01a676c5f9eb25dd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
