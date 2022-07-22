@@ -23,6 +23,7 @@ import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.BatteryManager
 import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.CoroutineScope
@@ -74,6 +75,17 @@ class Hfp(val context: Context) : HFPImplBase() {
 
       bluetoothHfp.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN)
 
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun setBatteryLevel(
+    request: SetBatteryLevelRequest,
+    responseObserver: StreamObserver<Empty>
+  ) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      val action = "android.intent.action.BATTERY_CHANGED"
+      shell("am broadcast -a $action --ei level ${request.batteryPercentage} --ei scale 100")
       Empty.getDefaultInstance()
     }
   }
