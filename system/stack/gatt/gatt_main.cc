@@ -264,8 +264,7 @@ bool gatt_disconnect(tGATT_TCB* p_tcb) {
       L2CA_RemoveFixedChnl(L2CAP_ATT_CID, p_tcb->peer_bda);
       gatt_set_ch_state(p_tcb, GATT_CH_CLOSING);
     } else {
-      connection_manager::direct_connect_remove(CONN_MGR_ID_L2CAP,
-                                                p_tcb->peer_bda);
+      BTM_AcceptlistRemove(p_tcb->peer_bda);
       gatt_cleanup_upon_disc(p_tcb->peer_bda, GATT_CONN_TERMINATE_LOCAL_HOST,
                              p_tcb->transport);
     }
