@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ce8caa6_812505cd",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-22T08:16:35Z",
+      "side": 1,
+      "message": "We can drop the `assert_description` on this one, as we don\u0027t care a lot about the description. And I think that we can also drop the description from the function",
+      "revId": "d1a77014c1bd8ee71677637560e4be996e9369e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00f39a42_28a51924",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-22T08:16:35Z",
+      "side": 1,
+      "message": "I think I would prefer that we name this `test_started` (and that we change also the id of the MMI on PTS-bot)",
+      "revId": "d1a77014c1bd8ee71677637560e4be996e9369e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "598cbf52_11a63e89",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_proxy.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-22T08:16:35Z",
+      "side": 1,
+      "message": "I don\u0027t think we should print something here as this is fine if it\u0027s not overriden",
+      "revId": "d1a77014c1bd8ee71677637560e4be996e9369e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
