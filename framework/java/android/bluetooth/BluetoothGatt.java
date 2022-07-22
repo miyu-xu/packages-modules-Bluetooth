@@ -194,7 +194,24 @@ public final class BluetoothGatt implements BluetoothProfile {
                             }
                         }
                     }
-                    mClientIf = clientIf;
+                    // If we disconnected during App Registration there is no point continuing here
+                    synchronized (mStateLock) {
+                        if (mConnState == CONN_STATE_DISCONNECTING) {
+                            Log.i(TAG,
+                                    "Disconnected after registration before initiated connection");
+                            return;
+                        }
+                        mClientIf = clientIf;
+                    }
+
+                    // If we closed during App Registration we must unregister the App now that we
+                    // have a proper client interface
+                    if (mConnState == CONN_STATE_CLOSED) {
+                        Log.i(TAG, "Client registered but was already in closed state");
+                        unregisterApp();
+                        return;
+                    }
+
                     if (status != GATT_SUCCESS) {
                         runOrQueueCallback(new Runnable() {
                             @Override
@@ -1006,7 +1023,18 @@ public final class BluetoothGatt implements BluetoothProfile {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void disconnect() {
         if (DBG) Log.d(TAG, "cancelOpen() - device: " + mDevice.getAddress());
-        if (mService == null || mClientIf == 0) return;
+        if (mService == null) return;
+
+        synchronized (mStateLock) {
+            if (mClientIf == 0) {
+                // A disconnect occurred on an unregistered service or before a registration
+                // has completed.
+                if (mConnState == CONN_STATE_CONNECTING) {
+                    mConnState = CONN_STATE_DISCONNECTING;
+                }
+                return;
+            }
+        }
 
         try {
             final SynchronousResultReceiver recv = new SynchronousResultReceiver();
