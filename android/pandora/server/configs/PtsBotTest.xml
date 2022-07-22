@@ -26,5 +26,6 @@
         <option name="profile" value="HFP/AG/HFI" />
         <option name="profile" value="HFP/AG/PSI" />
         <option name="profile" value="HFP/AG/SLC" />
+        <option name="profile" value="HFP/AG/WBS" />
     </test>
 </configuration>
