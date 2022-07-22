@@ -22,6 +22,30 @@
       },
       "revId": "db230e8bd564ffe7a6f3fec01f108e4d15da3196",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7842b13b_27e09278",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-07-22T16:16:51Z",
+      "side": 1,
+      "message": "Just had to remove a call for the timeout mapping",
+      "parentUuid": "704e1f64_0e699009",
+      "range": {
+        "startLine": 282,
+        "startChar": 6,
+        "endLine": 282,
+        "endChar": 28
+      },
+      "revId": "db230e8bd564ffe7a6f3fec01f108e4d15da3196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
