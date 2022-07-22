@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "704e1f64_0e699009",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-22T05:44:53Z",
+      "side": 1,
+      "message": "where is this method defined? \n\nIs this CL based on another CL?\n\n(The code does not compile)",
+      "range": {
+        "startLine": 282,
+        "startChar": 6,
+        "endLine": 282,
+        "endChar": 28
+      },
+      "revId": "db230e8bd564ffe7a6f3fec01f108e4d15da3196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
