@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0a6d484_42f85432",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-07-22T18:43:22Z",
+      "side": 1,
+      "message": "This is a prototype for the change I mentioned. It passes A2DP/AVRCP tests, but HFP tests cannot be passed even without this CL.",
+      "revId": "0609f22bccde4a6cbbf760221a3ccc5a42341448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
