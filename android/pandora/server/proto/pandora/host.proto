@@ -17,9 +17,13 @@ service Host {
   // This is comparable to a process restart or an hardware reset.
   // The GRPC server might take some time to be available after
   // this command.
-  rpc Reset(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Reset(ResetRequest) returns (google.protobuf.Empty);
+  // Create pairing
+  rpc CreatePairing(CreatePairingRequest) returns (CreatePairingResponse);
   // Remove pairing
   rpc DeletePairing(DeletePairingRequest) returns (DeletePairingResponse);
+  // Wait pairing
+  rpc WaitPairing(WaitPairingRequest) returns (WaitPairingResponse);
   // Create an ACL BR/EDR connection to a peer.
   // This should send a CreateConnection on the HCI level.
   // If the two devices have not established a previous bond,
@@ -27,6 +31,9 @@ service Host {
   rpc Connect(ConnectRequest) returns (ConnectResponse);
   // Get an active ACL BR/EDR connection to a peer.
   rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse);
+  // Get info of a remote device, including connection handle, bond state, and other
+  // critical info.
+  rpc GetRemoteDevice(GetRemoteDeviceRequest) returns (GetRemoteDeviceResponse);
   // Wait for an ACL BR/EDR connection from a peer.
   rpc WaitConnection(WaitConnectionRequest) returns (WaitConnectionResponse);
   // Disconnect an ACL BR/EDR connection. The Connection must not be reused afterwards.
@@ -34,6 +41,12 @@ service Host {
   // Read the local Bluetooth device address.
   // This should return the same value as a Read BD_ADDR HCI command.
   rpc ReadLocalAddress(google.protobuf.Empty) returns (ReadLocalAddressResponse);
+}
+
+// Request of the `Reset` method.
+message ResetRequest {
+  // If RPC server should be reset after transaction
+  bool reset_rpc_server = 1;
 }
 
 // A Token representing an ACL connection.
@@ -74,6 +87,20 @@ message GetConnectionResponse {
   }
 }
 
+// Request of the `GetRemoteDevice` method.
+message GetRemoteDeviceRequest {
+  // Peer Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+// Response of the `GetRemoteDevice` method.
+message GetRemoteDeviceResponse {
+  oneof result {
+    Connection connection = 1;
+  }
+  bool bonded = 2;
+}
+
 // Request of the `WaitConnection` method.
 message WaitConnectionRequest {
   // Peer Bluetooth Device Address as array of 6 bytes.
@@ -89,6 +116,17 @@ message WaitConnectionResponse {
   }
 }
 
+// Request of the `CreatePairing` method.
+message CreatePairingRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+// Response of the `CreatePairing` method.
+message CreatePairingResponse {
+  bool success = 1;
+}
+
 // Request of the `DeletePairing` method.
 message DeletePairingRequest {
   // Local Bluetooth Device Address as array of 6 bytes.
@@ -97,6 +135,18 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+// Request of the `WaitPairing` method.
+message WaitPairingRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+  bool accept = 2;
+}
+
+// Response of the `WaitPairing` method.
+message WaitPairingResponse {
+  bool success = 1;
+}
 
 // Request of the `Disconnect` method.
 message DisconnectRequest {

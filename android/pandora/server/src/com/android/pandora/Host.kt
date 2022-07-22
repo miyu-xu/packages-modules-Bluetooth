@@ -19,6 +19,7 @@ package com.android.pandora
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothStatusCodes
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -72,7 +73,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     scope.cancel()
   }
 
-  override fun reset(request: Empty, responseObserver: StreamObserver<Empty>) {
+  override fun reset(request: ResetRequest, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
         Log.i(TAG, "reset")
 
@@ -98,8 +99,10 @@ class Host(private val context: Context, private val server: Server) : HostImplB
         Empty.getDefaultInstance()
       }
       .invokeOnCompletion {
-        Log.i(TAG, "Shutdown the gRPC Server")
-        server.shutdownNow()
+        if (request.resetRpcServer) {
+          Log.i(TAG, "Shutdown the gRPC Server")
+          server.shutdownNow()
+        }
       }
   }
 
@@ -116,7 +119,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
-  private suspend fun waitPairingRequestIntent(address: String) {
+  private suspend fun waitPairingRequestIntent(address: String, accept: Boolean) {
     Log.i(TAG, "waitPairingRequestIntent: address=$address")
     var pairingRequestIntent =
       flow
@@ -133,7 +136,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
         pairingVariant == BluetoothDevice.PAIRING_VARIANT_CONSENT ||
         pairingVariant == BluetoothDevice.PAIRING_VARIANT_PIN
     ) {
-      bluetoothDevice.setPairingConfirmation(true)
+      bluetoothDevice.setPairingConfirmation(accept)
     }
   }
 
@@ -146,16 +149,18 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
       .filter { it.getBluetoothDeviceExtra().address == address }
       .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
-      .filter { it == BluetoothDevice.BOND_BONDED }
+      .filter { it == BluetoothDevice.BOND_BONDED || it == BluetoothDevice.BOND_NONE }
       .first()
   }
 
   private suspend fun waitConnectionIntent(address: String) {
-    val acceptPairingJob = scope.launch { waitPairingRequestIntent(address) }
-    waitBondIntent(address)
-    if (acceptPairingJob.isActive) {
-      acceptPairingJob.cancel()
-    }
+    Log.i(TAG, "waitConnectionIntent: address=$address")
+    flow
+      .filter {
+        it.getAction() == BluetoothDevice.ACTION_ACL_CONNECTED &&
+          it.getBluetoothDeviceExtra().address == address
+      }
+      .first()
   }
 
   override fun waitConnection(
@@ -187,7 +192,10 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       Log.i(TAG, "connect: address=$bluetoothDevice")
 
       if (!bluetoothDevice.isConnected()) {
-        bluetoothDevice.createBond()
+        val status = bluetoothDevice.connect()
+        if (status != BluetoothStatusCodes.SUCCESS) {
+          Log.w(TAG, "connect: failed with status=$status")
+        }
         waitConnectionIntent(bluetoothDevice.address)
       }
 
@@ -197,6 +205,31 @@ class Host(private val context: Context, private val server: Server) : HostImplB
             .setCookie(ByteString.copyFromUtf8(bluetoothDevice.address))
             .build()
         )
+        .build()
+    }
+  }
+
+  override fun createPairing(
+    request: CreatePairingRequest,
+    responseObserver: StreamObserver<CreatePairingResponse>
+  ) {
+    grpcUnary<CreatePairingResponse>(scope, responseObserver) {
+      val address = request.address.decodeToString()
+      val device = request.address.toBluetoothDevice(bluetoothAdapter)
+      Log.i(TAG, "CreatePairing: device=$device")
+
+      if (device.getBondState() == BluetoothDevice.BOND_NONE) {
+        device.createBond()
+        val acceptPairingJob =
+          scope.launch { waitPairingRequestIntent(address, /* accept= */ true) }
+        waitBondIntent(address)
+        if (acceptPairingJob.isActive) {
+          acceptPairingJob.cancel()
+        }
+      }
+
+      CreatePairingResponse.newBuilder()
+        .setSuccess(device.getBondState() == BluetoothDevice.BOND_BONDED)
         .build()
     }
   }
@@ -228,6 +261,28 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
+  override fun waitPairing(
+    request: WaitPairingRequest,
+    responseObserver: StreamObserver<WaitPairingResponse>
+  ) {
+    grpcUnary<WaitPairingResponse>(scope, responseObserver) {
+      val address = request.address.decodeToString()
+
+      Log.i(TAG, "WaitPairing: address=$address")
+
+      val acceptPairingJob = scope.launch { waitPairingRequestIntent(address, request.accept) }
+      waitBondIntent(address)
+      if (acceptPairingJob.isActive) {
+        acceptPairingJob.cancel()
+      }
+
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+      WaitPairingResponse.newBuilder()
+        .setSuccess(bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED)
+        .build()
+    }
+  }
+
   override fun disconnect(
     request: DisconnectRequest,
     responseObserver: StreamObserver<DisconnectResponse>
@@ -253,6 +308,50 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       connectionStateChangedFlow.filter { it == BluetoothAdapter.STATE_DISCONNECTED }.first()
 
       DisconnectResponse.getDefaultInstance()
+    }
+  }
+
+  override fun getConnection(
+    request: GetConnectionRequest,
+    responseObserver: StreamObserver<GetConnectionResponse>
+  ) {
+    grpcUnary<GetConnectionResponse>(scope, responseObserver) {
+      val address = request.address.decodeToString()
+      Log.i(TAG, "GetConnection: address=$address")
+
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+
+      if (bluetoothDevice.isConnected()) {
+        GetConnectionResponse.newBuilder()
+          .setConnection(
+            Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build()
+          )
+          .build()
+      } else {
+        GetConnectionResponse.getDefaultInstance()
+      }
+    }
+  }
+
+  override fun getRemoteDevice(
+    request: GetRemoteDeviceRequest,
+    responseObserver: StreamObserver<GetRemoteDeviceResponse>
+  ) {
+    grpcUnary<GetRemoteDeviceResponse>(scope, responseObserver) {
+      val address = request.address.decodeToString()
+      Log.i(TAG, "GetRemoteDevice: address=$address")
+
+      val bluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+
+      val builder = GetRemoteDeviceResponse.newBuilder()
+      if (bluetoothDevice.isConnected()) {
+        builder.setConnection(
+          Connection.newBuilder().setCookie(ByteString.copyFromUtf8(address)).build()
+        )
+      }
+
+      builder.setBonded(bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED)
+      builder.build()
     }
   }
 }
