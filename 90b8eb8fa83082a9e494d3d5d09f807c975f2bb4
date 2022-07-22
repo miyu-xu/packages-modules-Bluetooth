@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b89bbd35_8d956534",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-22T04:57:50Z",
+      "side": 1,
+      "message": "Is this still useful?  Should the new log handle other states?",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 21
+      },
+      "revId": "90b8eb8fa83082a9e494d3d5d09f807c975f2bb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5be744ce_df8e67d6",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-22T04:57:50Z",
+      "side": 1,
+      "message": "Should this be inside the synchronized block, since we\u0027re checking the state?",
+      "range": {
+        "startLine": 209,
+        "startChar": 18,
+        "endLine": 209,
+        "endChar": 58
+      },
+      "revId": "90b8eb8fa83082a9e494d3d5d09f807c975f2bb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
