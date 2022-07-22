@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde0f1c4_5f5b64be",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-22T00:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca2cbbc1_09522e1e",
+      "range": {
+        "startLine": 112,
+        "startChar": 52,
+        "endLine": 112,
+        "endChar": 60
+      },
+      "revId": "7f51ea973ec8d5bbaa285c57d2704dab00ae95d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "128677e0_63a94667",
@@ -84,6 +108,30 @@
       "writtenOn": "2022-07-21T22:08:05Z",
       "side": 1,
       "message": "You may want to directly call `host.waitPairingRequestIntent`",
+      "range": {
+        "startLine": 109,
+        "startChar": 10,
+        "endLine": 125,
+        "endChar": 9
+      },
+      "revId": "7f51ea973ec8d5bbaa285c57d2704dab00ae95d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5cdea7f_b166a28c",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-22T00:12:05Z",
+      "side": 1,
+      "message": "I think I need this method as the MMI `MMI_ASK_IUT_PERFORM_PAIRING_PROCESS` may or may not start Pairing Dialog. In one test, the pairing is started with incorrect encryption size and thus no Pairing Confirmation Dialog appears. In this case it is useful to wait for few seconds and cancel the pairing job. But on another test, the pairing is done correctly and we accept the Pairing Confirmation Dialog.",
+      "parentUuid": "128677e0_63a94667",
       "range": {
         "startLine": 109,
         "startChar": 10,

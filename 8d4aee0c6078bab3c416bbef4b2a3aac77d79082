@@ -229,6 +229,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ee3dd7_6fd67729",
+        "filename": "android/pandora/server/proto/pandora/sm.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-07-22T00:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6532a2b_a332fea6",
+      "revId": "8d4aee0c6078bab3c416bbef4b2a3aac77d79082",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f50e5f5_e10413de",
