@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "589dae36_fc4a5edc",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-22T18:17:05Z",
+      "side": 1,
+      "message": "42 forever ! 😎",
+      "parentUuid": "2252c047_3348edaa",
+      "range": {
+        "startLine": 104,
+        "startChar": 80,
+        "endLine": 104,
+        "endChar": 82
+      },
+      "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3931017e_5dac2aa0",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-22T18:10:03Z",
       "side": 1,
       "message": "Why is this needed ?",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a57350c_0ba0ce29",
+        "filename": "android/pandora/server/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-22T18:17:05Z",
+      "side": 1,
+      "message": "This allow the app to send intent with the same uid as the bluetooth\nWithout it, the following will not be allowed: (setBatteryLevel in hfp.kt)\n```\nIntent().apply { action \u003d Intent.ACTION_BATTERY_CHANGED }\ncontext.sendBroadcast(sendIntent)      \n```",
+      "parentUuid": "3931017e_5dac2aa0",
       "range": {
         "startLine": 19,
         "startChar": 4,
