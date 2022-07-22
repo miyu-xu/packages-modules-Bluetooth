@@ -32,7 +32,7 @@ using token = yy::parser::token;
 %option bison-locations
 
 identifier [a-zA-Z][_a-zA-Z0-9]*
-size_modifier [+*/-][ +*/\-0-9]*
+size_modifier \+[ \t\n]*[0-9]+
 intvalue (0|[1-9][0-9]*)
 hexvalue 0[x|X][0-9a-fA-F]+
 string_literal \".*\"
