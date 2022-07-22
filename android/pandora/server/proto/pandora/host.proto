@@ -18,8 +18,12 @@ service Host {
   // The GRPC server might take some time to be available after
   // this command.
   rpc Reset(google.protobuf.Empty) returns (google.protobuf.Empty);
+  // Create pairing
+  rpc CreatePairing(CreatePairingRequest) returns (CreatePairingResponse);
   // Remove pairing
   rpc DeletePairing(DeletePairingRequest) returns (DeletePairingResponse);
+  // Wait pairing
+  rpc WaitPairing(WaitPairingRequest) returns (WaitPairingResponse);
   // Create an ACL BR/EDR connection to a peer.
   // This should send a CreateConnection on the HCI level.
   // If the two devices have not established a previous bond,
@@ -89,6 +93,17 @@ message WaitConnectionResponse {
   }
 }
 
+// Request of the `CreatePairing` method.
+message CreatePairingRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+}
+
+// Response of the `CreatePairing` method.
+message CreatePairingResponse {
+  bool success = 1;
+}
+
 // Request of the `DeletePairing` method.
 message DeletePairingRequest {
   // Local Bluetooth Device Address as array of 6 bytes.
@@ -97,6 +112,18 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+// Request of the `WaitPairing` method.
+message WaitPairingRequest {
+  // Local Bluetooth Device Address as array of 6 bytes.
+  bytes address = 1;
+  bool accept = 2;
+}
+
+// Response of the `WaitPairing` method.
+message WaitPairingResponse {
+  bool success = 1;
+}
 
 // Request of the `Disconnect` method.
 message DisconnectRequest {
