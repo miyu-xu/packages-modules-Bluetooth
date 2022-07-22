@@ -71,7 +71,8 @@ class A2DPProxy(ProfileProxy):
         """
 
         if "SRC" in test:
-            self.connection = self.host.WaitConnection(
+            self.host.WaitPairing(address=pts_addr, accept=True)
+            self.connection = self.host.GetRemoteDevice(
                 address=pts_addr).connection
             try:
                 if "INT" in test:
@@ -83,7 +84,8 @@ class A2DPProxy(ProfileProxy):
             except RpcError:
                 pass
         else:
-            self.connection = self.host.WaitConnection(
+            self.host.WaitPairing(address=pts_addr, accept=True)
+            self.connection = self.host.GetRemoteDevice(
                 address=pts_addr).connection
             try:
                 self.sink = self.a2dp.WaitSink(
@@ -162,7 +164,7 @@ class A2DPProxy(ProfileProxy):
          """
 
         if self.connection is None:
-            self.connection = self.host.GetConnection(
+            self.connection = self.host.GetRemoteDevice(
                 address=pts_addr).connection
         self.host.Disconnect(connection=self.connection)
         self.connection = None
