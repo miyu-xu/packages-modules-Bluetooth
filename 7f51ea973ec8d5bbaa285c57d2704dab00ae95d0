@@ -164,6 +164,30 @@
       },
       "revId": "7f51ea973ec8d5bbaa285c57d2704dab00ae95d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e23ab1c0_4bc26b11",
+        "filename": "android/pandora/server/src/com/android/pandora/Sm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-22T03:29:51Z",
+      "side": 1,
+      "message": "In this case, are you sure the MMI should call the waitForPairingConfirmation grpc when the test is supposed to fail ?\n\nMaybe you can do something like this in the python side:\n```\nif test in [\u0027SM/foo/bar\u0027, \u0027SM/foo2/bar2\u0027]:\n  delay(3) # Pairing will fail in this test and can\u0027t be confirmed on phone\nelse:\n  self.sm.acceptPairingConfirmation(xxx)\n```",
+      "parentUuid": "f37768e0_59f4b2b9",
+      "range": {
+        "startLine": 109,
+        "startChar": 10,
+        "endLine": 125,
+        "endChar": 9
+      },
+      "revId": "7f51ea973ec8d5bbaa285c57d2704dab00ae95d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
