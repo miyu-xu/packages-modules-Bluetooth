@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43699b24_5c2c754e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-22T18:04:47Z",
+      "side": 1,
+      "message": "This CL NEED the fake mmi to be merged (and the binary updated in pre-submit) ",
+      "revId": "11f775f211c18f7f3ce6fe7ea2e1a145feeaca50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
