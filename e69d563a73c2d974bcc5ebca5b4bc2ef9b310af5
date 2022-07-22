@@ -93,6 +93,30 @@
       },
       "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8adc255_94ea034b",
+        "filename": "android/pandora/server/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-07-22T18:23:04Z",
+      "side": 1,
+      "message": "Ah interesting, I\u0027ve ran into this issue and didn\u0027t know it came from that 👍",
+      "parentUuid": "9a57350c_0ba0ce29",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
