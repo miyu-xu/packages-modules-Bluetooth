@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21487eb7_6476cf2d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-22T11:14:36Z",
+      "side": 1,
+      "message": "Yes true, I was thinking that with GATT over BR/EDR you could include GATT services over SDP, but it\u0027s only the GATT service himself that you add in SDP.\n\nSo one question remains, what is this `0x1855` UUID\n\nBy looking at the packet capture for `SDP/SR/BRW/BV-02-C` tests, I can see all the UUIDs listed by the PTS in the Service Search Attribute Response sent by Android: 0x1801, 0x1800, 0x110a, 0x110c, 0x110e, 0x1112, 0x1203, 0x111f, 0x1203, 0x1855, 0x1132, 0x1116, 0x1115, 0x112f, 0x1105\n\nSo Android is definitely returning those UUIDs.\n\nI think this should be investigated to understand what is this thing.\n\nIn the meantime we should include it in the list of `decoded` list of UUIDs as Unknown I think",
+      "parentUuid": "755ab235_9fd063ac",
+      "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4a83a1c_b3c61038",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
         "patchSetId": 5
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Good question. I\u0027m not sure who uses the API.  I don\u0027t think we should change that as part of this test.",
       "parentUuid": "d4a83a1c_b3c61038",
+      "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af405ce5_7ad44dc8",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/sdp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-22T11:14:36Z",
+      "side": 1,
+      "message": "Maybe clarify that by saying that it\u0027s the Android `API` that is only returning a subset of the profiles\n\n```\n        Android API only returns a subset of the profiles:\n```",
+      "parentUuid": "71564980_99e67915",
       "revId": "d06167cea0a2f27d5cd9a1eb0b56851b95e0b00d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
