@@ -141,6 +141,30 @@
       },
       "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "344b1594_a7b7fca2",
+        "filename": "android/pandora/server/AndroidManifest.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-22T23:08:45Z",
+      "side": 1,
+      "message": "We may want to use the `android.uid.system` in order to avoid the signature mismatch with the internal bluetooth uid using apex signing.\n\nBut let\u0027s talk about this on monday to see if the uiautomation can be used instead",
+      "parentUuid": "0aa66f3d_f992254e",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "e69d563a73c2d974bcc5ebca5b4bc2ef9b310af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
