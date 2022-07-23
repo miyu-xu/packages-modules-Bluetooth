@@ -32,6 +32,7 @@ class Server(context: Context) {
   private var gatt: Gatt
   private var hfp: Hfp
   private var sm: Sm
+  private var hid11: Hid11
   private var grpcServer: GrpcServer
 
   init {
@@ -40,6 +41,7 @@ class Server(context: Context) {
     gatt = Gatt(context)
     hfp = Hfp(context)
     sm = Sm(context)
+    hid11 = Hid11(context)
     grpcServer =
       NettyServerBuilder.forPort(GRPC_PORT)
         .addService(host)
@@ -47,6 +49,7 @@ class Server(context: Context) {
         .addService(gatt)
         .addService(hfp)
         .addService(sm)
+        .addService(hid11)
         .build()
 
     Log.d(TAG, "Starting Pandora Server")
@@ -60,6 +63,7 @@ class Server(context: Context) {
     gatt.deinit()
     hfp.deinit()
     sm.deinit()
+    hid11.deinit()
     grpcServer.shutdownNow()
   }
 

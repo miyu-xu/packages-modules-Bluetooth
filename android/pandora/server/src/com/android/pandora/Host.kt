@@ -38,15 +38,18 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.transformWhile
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
 
@@ -69,6 +72,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     intentFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
     intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
+    intentFilter.addAction(BluetoothDevice.ACTION_FOUND)
 
     // Creates a shared flow of intents that can be used in all methods in the coroutine scope.
     // This flow is started eagerly to make sure that the broadcast receiver is registered before
@@ -324,5 +328,42 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothDevice = flow.first()
     }
     return bluetoothDevice
+  }
+
+
+  override fun runInquiry(
+    request: RunInquiryRequest,
+    responseObserver: StreamObserver<RunInquiryResponse>
+  ) {
+    grpcUnary<RunInquiryResponse>(scope, responseObserver) {
+      bluetoothAdapter.startDiscovery()
+      Log.e(TAG, "we want to find a device!");
+
+      val collector = flow
+        .filter { it.action == BluetoothDevice.ACTION_FOUND }
+        .map {
+          val device = it.getBluetoothDeviceExtra()
+          Log.e(TAG, "we found a device! $device");
+          Device.newBuilder().setName(device.name).setAddress(ByteString.copyFrom(device.address.toByteArray())).build()
+         }
+
+      val responseBuilder = RunInquiryResponse.newBuilder();
+
+      withTimeoutOrNull(request.timeoutSeconds * 1000L) {
+        when (request.stopConditionCase!!) {
+          RunInquiryRequest.StopConditionCase.ADDRESS -> {
+            collector.transformWhile {
+              emit(it)
+              !it.address.toByteArray().contentEquals(request.address.toByteArray())
+            }
+          }
+          RunInquiryRequest.StopConditionCase.STOPCONDITION_NOT_SET -> collector
+        }.collect { responseBuilder.addDevice(it) }
+      }
+
+      bluetoothAdapter.cancelDiscovery();
+
+      responseBuilder.build()
+    }
   }
 }

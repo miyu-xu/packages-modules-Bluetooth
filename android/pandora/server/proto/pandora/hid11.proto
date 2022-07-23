@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "Hid11Proto";
+
+import "google/protobuf/empty.proto";
+
+service HID11 {}
