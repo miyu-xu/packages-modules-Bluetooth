@@ -179,6 +179,7 @@ DualModeController::DualModeController(const std::string& properties_filename,
   SET_SUPPORTED(WRITE_DEFAULT_LINK_POLICY_SETTINGS,
                 WriteDefaultLinkPolicySettings);
   SET_SUPPORTED(FLOW_SPECIFICATION, FlowSpecification);
+  SET_SUPPORTED(READ_LINK_POLICY_SETTINGS, ReadLinkPolicySettings);
   SET_SUPPORTED(WRITE_LINK_POLICY_SETTINGS, WriteLinkPolicySettings);
   SET_SUPPORTED(CHANGE_CONNECTION_PACKET_TYPE, ChangeConnectionPacketType);
   SET_SUPPORTED(WRITE_LOCAL_NAME, WriteLocalName);
@@ -1322,6 +1323,22 @@ void DualModeController::FlowSpecification(CommandView command) {
 
   send_event_(bluetooth::hci::FlowSpecificationStatusBuilder::Create(
       status, kNumCommandPackets));
+}
+
+void DualModeController::ReadLinkPolicySettings(CommandView command) {
+  auto command_view = gd_hci::ReadLinkPolicySettingsView::Create(
+      gd_hci::ConnectionManagementCommandView::Create(
+          gd_hci::AclCommandView::Create(command)));
+  ASSERT(command_view.IsValid());
+
+  uint16_t handle = command_view.GetConnectionHandle();
+  uint16_t settings;
+
+  auto status =
+      link_layer_controller_.ReadLinkPolicySettings(handle, &settings);
+
+  send_event_(bluetooth::hci::ReadLinkPolicySettingsCompleteBuilder::Create(
+      kNumCommandPackets, status, handle, settings));
 }
 
 void DualModeController::WriteLinkPolicySettings(CommandView command) {

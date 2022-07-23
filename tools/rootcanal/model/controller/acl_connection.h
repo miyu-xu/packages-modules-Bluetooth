@@ -49,6 +49,10 @@ class AclConnection {
 
   Phy::Type GetPhyType() const;
 
+  uint16_t GetLinkPolicySettings() const;
+
+  void SetLinkPolicySettings(uint16_t settings);
+
  private:
   AddressWithType address_;
   AddressWithType own_address_;
@@ -57,6 +61,7 @@ class AclConnection {
 
   // State variables
   bool encrypted_{false};
+  uint16_t link_policy_settings_{0};
 };
 
 }  // namespace rootcanal

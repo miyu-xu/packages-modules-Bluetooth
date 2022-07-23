@@ -3083,11 +3083,24 @@ ErrorCode LinkLayerController::SwitchRole(Address /* bd_addr */,
   return ErrorCode::COMMAND_DISALLOWED;
 }
 
-ErrorCode LinkLayerController::WriteLinkPolicySettings(uint16_t handle,
-                                                       uint16_t) {
+ErrorCode LinkLayerController::ReadLinkPolicySettings(uint16_t handle,
+                                                      uint16_t* settings) {
   if (!connections_.HasHandle(handle)) {
     return ErrorCode::UNKNOWN_CONNECTION;
   }
+  *settings = connections_.GetAclLinkPolicySettings(handle);
+  return ErrorCode::SUCCESS;
+}
+
+ErrorCode LinkLayerController::WriteLinkPolicySettings(uint16_t handle,
+                                                       uint16_t settings) {
+  if (!connections_.HasHandle(handle)) {
+    return ErrorCode::UNKNOWN_CONNECTION;
+  }
+  if (settings > 7 /* Sniff + Hold + Role switch */) {
+    return ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
+  }
+  connections_.SetAclLinkPolicySettings(handle, settings);
   return ErrorCode::SUCCESS;
 }
 

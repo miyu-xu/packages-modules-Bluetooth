@@ -46,4 +46,12 @@ void AclConnection::SetOwnAddress(AddressWithType address) {
 
 Phy::Type AclConnection::GetPhyType() const { return type_; }
 
+uint16_t AclConnection::GetLinkPolicySettings() const {
+  return link_policy_settings_;
+};
+
+void AclConnection::SetLinkPolicySettings(uint16_t settings) {
+  link_policy_settings_ = settings;
+}
+
 }  // namespace rootcanal
