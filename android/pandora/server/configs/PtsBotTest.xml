@@ -31,5 +31,8 @@
         <option name="profile" value="SDP/SR" />
         <option name="profile" value="SM/CEN/EKS" />
         <option name="profile" value="SM/CEN/JW" />
+        <option name="profile" value="HID/HOS/HCE" />
+        <option name="profile" value="HID/HOS/HCR" />
+        <option name="profile" value="HID/HOS/HDT" />
     </test>
 </configuration>

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pandora;
+
+option java_outer_classname = "HidProto";
+
+import "google/protobuf/empty.proto";
+
+service HID {
+  rpc SendHostReport(SendHostReportRequest) returns (google.protobuf.Empty);
+}
+
+message SendHostReportRequest {
+
+}

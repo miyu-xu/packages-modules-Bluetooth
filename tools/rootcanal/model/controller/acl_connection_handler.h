@@ -72,6 +72,7 @@ class AclConnectionHandler {
   bool HasHandle(uint16_t handle) const;
   bool HasScoHandle(uint16_t handle) const;
 
+  bool HasHandleOnlyAddress(bluetooth::hci::Address addr) const;
   uint16_t GetHandle(bluetooth::hci::AddressWithType addr) const;
   uint16_t GetHandleOnlyAddress(bluetooth::hci::Address addr) const;
   bluetooth::hci::AddressWithType GetAddress(uint16_t handle) const;
@@ -83,6 +84,12 @@ class AclConnectionHandler {
   bool IsEncrypted(uint16_t handle) const;
 
   Phy::Type GetPhyType(uint16_t handle) const;
+
+  uint16_t GetAclLinkPolicySettings(uint16_t handle) const;
+  void SetAclLinkPolicySettings(uint16_t handle, uint16_t settings);
+
+  bluetooth::hci::Role GetAclRole(uint16_t handle) const;
+  void SetAclRole(uint16_t handle, bluetooth::hci::Role role);
 
   std::unique_ptr<bluetooth::hci::LeSetCigParametersCompleteBuilder>
   SetCigParameters(uint8_t id, uint32_t sdu_interval_m_to_s,
