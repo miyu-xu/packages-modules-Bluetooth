@@ -22,6 +22,7 @@ import sys
 import grpc
 
 from mmi2grpc.a2dp import A2DPProxy
+from mmi2grpc.hid11 import HID11Proxy
 from mmi2grpc.hfp import HFPProxy
 from mmi2grpc._helpers import format_proxy
 
@@ -52,6 +53,7 @@ class IUT:
         # Profile proxies.
         self._a2dp = None
         self._hfp = None
+        self._hid11 = None
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
@@ -63,6 +65,7 @@ class IUT:
     def __exit__(self, exc_type, exc_value, exc_traceback):
         self._a2dp = None
         self._hfp = None
+        self._hid11 = None
 
     def _retry(self, func):
 
@@ -111,6 +114,11 @@ class IUT:
             if not self._hfp:
                 self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._hfp.interact(test, interaction, description, pts_address)
+        # Handles HID MMIs.
+        if profile in ('HID11'):
+            if not self._hid11:
+                self._hid11 = HID11Proxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._hid11.interact(test, interaction, description, pts_address)
 
         # Handles unsupported profiles.
         code = format_proxy(profile, interaction, description)

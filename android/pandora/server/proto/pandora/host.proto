@@ -34,6 +34,8 @@ service Host {
   // Read the local Bluetooth device address.
   // This should return the same value as a Read BD_ADDR HCI command.
   rpc ReadLocalAddress(google.protobuf.Empty) returns (ReadLocalAddressResponse);
+  // Run BR/EDR inquiry and returns each device found
+  rpc RunInquiry(RunInquiryRequest) returns (RunInquiryResponse);
 }
 
 // A Token representing an ACL connection.
@@ -111,4 +113,24 @@ message DisconnectResponse {}
 message ReadLocalAddressResponse {
   // Local Bluetooth Device Address as array of 6 bytes.
   bytes address = 1;
+}
+
+// Request of the `RunInquiry` method.
+message RunInquiryRequest {
+  // timeout after which we stop discovery no matter what
+  int32 timeout_seconds = 1;
+  oneof stop_condition {
+    // early-stop if we detect this MAC address
+    bytes address = 2;
+  };
+}
+
+// Response of the `RunInquiry` method.
+message RunInquiryResponse {
+  repeated Device device = 1;
+}
+
+message Device {
+  string name = 1;
+  bytes address = 2;
 }
