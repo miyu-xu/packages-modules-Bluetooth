@@ -18,6 +18,8 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothDevice.BOND_BONDED
+import android.bluetooth.BluetoothDevice.BOND_NONE
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
@@ -38,15 +40,18 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
+import kotlinx.coroutines.flow.transformWhile
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostGrpc.HostImplBase
 import pandora.HostProto.*
 
@@ -69,6 +74,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     intentFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
     intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
+    intentFilter.addAction(BluetoothDevice.ACTION_FOUND)
 
     // Creates a shared flow of intents that can be used in all methods in the coroutine scope.
     // This flow is started eagerly to make sure that the broadcast receiver is registered before
@@ -145,20 +151,30 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
+  private suspend fun waitConnectionIntent(bluetoothDevice: BluetoothDevice) {
+    Log.i(TAG, "waitConnectionIntent: device=$bluetoothDevice")
+    flow
+      .filter { it.action == BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED }
+      .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+      .map { it.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR) }
+      .filter { it == BluetoothAdapter.STATE_CONNECTED }
+      .first()
+  }
+
   private suspend fun waitBondIntent(bluetoothDevice: BluetoothDevice) {
     // We only wait for bonding to be completed since we only need the ACL connection to be
     // established with the peer device (on Android state connected is sent when all profiles
     // have been connected).
     Log.i(TAG, "waitBondIntent: device=$bluetoothDevice")
     flow
-      .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
+      .filter { it.action == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
       .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
       .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
-      .filter { it == BluetoothDevice.BOND_BONDED }
+      .filter { it == BOND_BONDED }
       .first()
   }
 
-  private suspend fun waitConnectionIntent(bluetoothDevice: BluetoothDevice) {
+  private suspend fun acceptPairingAndAwaitBonded(bluetoothDevice: BluetoothDevice) {
     val acceptPairingJob = scope.launch { waitPairingRequestIntent(bluetoothDevice) }
     waitBondIntent(bluetoothDevice)
     if (acceptPairingJob.isActive) {
@@ -170,7 +186,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     request: WaitConnectionRequest,
     responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
-    grpcUnary<WaitConnectionResponse>(scope, responseObserver) {
+    grpcUnary(scope, responseObserver) {
       val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
 
       Log.i(TAG, "waitConnection: device=$bluetoothDevice")
@@ -180,7 +196,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
         throw Status.UNKNOWN.asException()
       }
 
-      waitConnectionIntent(bluetoothDevice)
+      acceptPairingAndAwaitBonded(bluetoothDevice)
 
       WaitConnectionResponse.newBuilder()
         .setConnection(
@@ -193,14 +209,21 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   }
 
   override fun connect(request: ConnectRequest, responseObserver: StreamObserver<ConnectResponse>) {
-    grpcUnary<ConnectResponse>(scope, responseObserver) {
+    grpcUnary(scope, responseObserver) {
       val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
 
       Log.i(TAG, "connect: address=$bluetoothDevice")
 
       if (!bluetoothDevice.isConnected()) {
-        bluetoothDevice.createBond()
-        waitConnectionIntent(bluetoothDevice)
+        if (bluetoothDevice.bondState == BOND_BONDED) {
+          // already bonded, just reconnect
+          bluetoothDevice.connect()
+          waitConnectionIntent(bluetoothDevice)
+        } else {
+          // need to bond
+          bluetoothDevice.createBond()
+          acceptPairingAndAwaitBonded(bluetoothDevice)
+        }
       }
 
       ConnectResponse.newBuilder()
@@ -324,5 +347,42 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothDevice = flow.first()
     }
     return bluetoothDevice
+  }
+
+
+  override fun runInquiry(
+    request: RunInquiryRequest,
+    responseObserver: StreamObserver<RunInquiryResponse>
+  ) {
+    grpcUnary<RunInquiryResponse>(scope, responseObserver) {
+      bluetoothAdapter.startDiscovery()
+      Log.e(TAG, "we want to find a device!");
+
+      val collector = flow
+        .filter { it.action == BluetoothDevice.ACTION_FOUND }
+        .map {
+          val device = it.getBluetoothDeviceExtra()
+          Log.e(TAG, "we found a device! $device");
+          Device.newBuilder().setName(device.name).setAddress(ByteString.copyFrom(device.address.toByteArray())).build()
+         }
+
+      val responseBuilder = RunInquiryResponse.newBuilder();
+
+      withTimeoutOrNull(request.timeoutSeconds * 1000L) {
+        when (request.stopConditionCase!!) {
+          RunInquiryRequest.StopConditionCase.ADDRESS -> {
+            collector.transformWhile {
+              emit(it)
+              !it.address.toByteArray().contentEquals(request.address.toByteArray())
+            }
+          }
+          RunInquiryRequest.StopConditionCase.STOPCONDITION_NOT_SET -> collector
+        }.collect { responseBuilder.addDevice(it) }
+      }
+
+      bluetoothAdapter.cancelDiscovery();
+
+      responseBuilder.build()
+    }
   }
 }
