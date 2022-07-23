@@ -45,6 +45,8 @@ service Host {
   rpc OnPairing(stream PairingEventAnswer) returns (stream PairingEvent);
   // Remove pairing.
   rpc DeletePairing(DeletePairingRequest) returns (DeletePairingResponse);
+  // Run BR/EDR inquiry and returns each device found
+  rpc RunInquiry(RunInquiryRequest) returns (RunInquiryResponse);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -181,3 +183,23 @@ message DeletePairingRequest {
 
 // Response of the `DeletePairing` method.
 message DeletePairingResponse {}
+
+// Request of the `RunInquiry` method.
+message RunInquiryRequest {
+  // timeout after which we stop discovery no matter what
+  int32 timeout_seconds = 1;
+  oneof stop_condition {
+    // early-stop if we detect this MAC address
+    bytes address = 2;
+  };
+}
+
+// Response of the `RunInquiry` method.
+message RunInquiryResponse {
+  repeated Device device = 1;
+}
+
+message Device {
+  string name = 1;
+  bytes address = 2;
+}
