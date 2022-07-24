@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4255e537_24cb6089",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-24T23:54:56Z",
+      "side": 1,
+      "message": "Could you add some extra logging around this area so that we know when this condition is met?\n\ne.g.\n\n```\nvoid bta_dm_search_cancel_notify() {\n  if (bta_dm_search_cb.p_search_cback) {\n    bta_dm_search_cb.p_search_cback(BTA_DM_SEARCH_CANCEL_CMPL_EVT, NULL);\n  }\n  if (!bta_dm_search_cb.name_discover_done \u0026\u0026\n      (bta_dm_search_cb.state \u003d\u003d BTA_DM_SEARCH_ACTIVE ||\n       bta_dm_search_cb.state \u003d\u003d BTA_DM_SEARCH_CANCELLING)) {\n    if (btm_sec_get_pairing_state() !\u003d BTM_PAIR_STATE_GET_REM_NAME) {\n      BTM_CancelRemoteDeviceName();\n    } else {\n      LOG_INFO(\"Do not cancel read remote name request when pairing state is BTM_PAIR_STATE_GET_REM_NAME\");\n    }\n  }\n}\n```",
+      "range": {
+        "startLine": 1536,
+        "startChar": 0,
+        "endLine": 1538,
+        "endChar": 5
+      },
+      "revId": "51d8282e410a33fd1b74fa845a8e068e8225ca88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
