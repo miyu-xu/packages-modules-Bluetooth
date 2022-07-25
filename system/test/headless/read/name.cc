@@ -51,9 +51,10 @@ int bluetooth::test::headless::Name::Run() {
     promise_ = std::promise<tBTM_REMOTE_DEV_NAME>();
 
     auto future = promise_.get_future();
+    tBTM_PENDING_REMNAME_HANDLE handle;
 
     tBTM_STATUS status = BTM_ReadRemoteDeviceName(
-        raw_address, &RemoteNameCallback, BT_TRANSPORT_BR_EDR);
+        raw_address, &RemoteNameCallback, BT_TRANSPORT_BR_EDR, &handle);
     if (status != BTM_CMD_STARTED) {
       fprintf(stdout, "Failure to start read remote device\n");
       return -1;

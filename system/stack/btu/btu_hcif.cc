@@ -1002,8 +1002,6 @@ static void btu_hcif_rmt_name_request_comp_evt(const uint8_t* p,
   evt_len -= (1 + BD_ADDR_LEN);
 
   btm_process_remote_name(&bd_addr, p, evt_len, to_hci_status_code(status));
-
-  btm_sec_rmt_name_request_complete(&bd_addr, p, to_hci_status_code(status));
 }
 
 constexpr uint8_t MIN_KEY_SIZE = 7;
@@ -1377,8 +1375,6 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
         // Tell inquiry processing that we are done
         btm_process_remote_name(nullptr, nullptr, 0,
                                 to_hci_status_code(status));
-        btm_sec_rmt_name_request_complete(nullptr, nullptr,
-                                          to_hci_status_code(status));
       }
       break;
     case HCI_READ_RMT_EXT_FEATURES:

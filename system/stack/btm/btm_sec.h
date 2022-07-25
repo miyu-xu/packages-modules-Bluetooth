@@ -58,30 +58,6 @@ bool BTM_SecRegister(const tBTM_APPL_INFO* p_cb_info);
 
 /*******************************************************************************
  *
- * Function         BTM_SecAddRmtNameNotifyCallback
- *
- * Description      Any profile can register to be notified when name of the
- *                  remote device is resolved.
- *
- * Returns          true if registered OK, else false
- *
- ******************************************************************************/
-bool BTM_SecAddRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
-
-/*******************************************************************************
- *
- * Function         BTM_SecDeleteRmtNameNotifyCallback
- *
- * Description      Any profile can deregister notification when a new Link Key
- *                  is generated per connection.
- *
- * Returns          true if OK, else false
- *
- ******************************************************************************/
-bool BTM_SecDeleteRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
-
-/*******************************************************************************
- *
  * Function         BTM_GetSecurityFlagsByTransport
  *
  * Description      Get security flags for the device on a particular transport
@@ -493,9 +469,7 @@ bool is_state_getting_name(void* data, void* context);
  * Returns          void
  *
  ******************************************************************************/
-void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
-                                       const uint8_t* p_bd_name,
-                                       tHCI_STATUS status);
+void btm_sec_rmt_name_request_complete(void* p);
 
 /*******************************************************************************
  *
