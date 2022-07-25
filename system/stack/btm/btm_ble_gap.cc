@@ -60,7 +60,6 @@
 
 extern tBTM_CB btm_cb;
 
-extern void btm_inq_remote_name_timer_timeout(void* data);
 extern bool btm_ble_init_pseudo_addr(tBTM_SEC_DEV_REC* p_dev_rec,
                                      const RawAddress& new_pseudo_addr);
 extern bool btm_identity_addr_to_random_pseudo(RawAddress* bd_addr,
@@ -72,7 +71,6 @@ extern void btm_clear_all_pending_le_entry(void);
 extern const tBLE_BD_ADDR convert_to_address_with_type(
     const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
 
-#define BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS (30 * 1000)
 #define MIN_ADV_LENGTH 2
 #define BTM_VSC_CHIP_CAPABILITY_RSP_LEN 9
 #define BTM_VSC_CHIP_CAPABILITY_RSP_LEN_L_RELEASE \
@@ -691,7 +689,7 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
   if (btm_cb.cmn_ble_vsc_cb.max_filter > 0) btm_ble_adv_filter_init();
 
   /* VS capability included and non-4.2 device */
-  if (controller_get_interface()->supports_ble() && 
+  if (controller_get_interface()->supports_ble() &&
       controller_get_interface()->supports_ble_privacy() &&
       btm_cb.cmn_ble_vsc_cb.max_irk_list_sz > 0 &&
       controller_get_interface()->get_ble_resolving_list_max_size() == 0)
@@ -805,7 +803,7 @@ bool BTM_BleConfigPrivacy(bool privacy_mode) {
 
   GAP_BleAttrDBUpdate(GATT_UUID_GAP_CENTRAL_ADDR_RESOL, &gap_ble_attr_value);
 
-    bluetooth::shim::ACL_ConfigureLePrivacy(privacy_mode);
+  bluetooth::shim::ACL_ConfigureLePrivacy(privacy_mode);
   return true;
 }
 
@@ -1991,8 +1989,9 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
   adv_filt_param->list_logic_type = BTA_DM_BLE_PF_LIST_LOGIC_OR;
   adv_filt_param->rssi_low_thres = LOWEST_RSSI_VALUE;
   adv_filt_param->rssi_high_thres = LOWEST_RSSI_VALUE;
-  BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_ADD, static_cast<tBTM_BLE_PF_FILT_INDEX>(0),
-                 std::move(adv_filt_param), base::Bind(btm_ble_scan_filt_param_cfg_evt));
+  BTM_BleAdvFilterParamSetup(
+      BTM_BLE_SCAN_COND_ADD, static_cast<tBTM_BLE_PF_FILT_INDEX>(0),
+      std::move(adv_filt_param), base::Bind(btm_ble_scan_filt_param_cfg_evt));
 
   if (!p_ble_cb->is_ble_scan_active()) {
     cache.ClearAll();
@@ -2058,7 +2057,6 @@ void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
   }
 
   btm_process_remote_name(&bda, bd_name, length + 1, hci_status);
-  btm_sec_rmt_name_request_complete(&bda, (const uint8_t*)p_name, hci_status);
 }
 
 /*******************************************************************************
@@ -2073,10 +2071,7 @@ void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
  * Returns          void
  *
  ******************************************************************************/
-tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
-                                     tBTM_CMPL_CB* p_cb) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
+tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda) {
   if (!controller_get_interface()->supports_ble()) return BTM_ERR_PROCESSING;
 
   tINQ_DB_ENT* p_i = btm_inq_db_find(remote_bda);
@@ -2085,44 +2080,10 @@ tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
     return BTM_ERR_PROCESSING;
   }
 
-  /* read remote device name using GATT procedure */
-  if (p_inq->remname_active) return BTM_BUSY;
-
   if (!GAP_BleReadPeerDevName(remote_bda, btm_ble_read_remote_name_cmpl))
     return BTM_BUSY;
 
-  p_inq->p_remname_cmpl_cb = p_cb;
-  p_inq->remname_active = true;
-  p_inq->remname_bda = remote_bda;
-
-  alarm_set_on_mloop(p_inq->remote_name_timer, BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS,
-                     btm_inq_remote_name_timer_timeout, NULL);
-
   return BTM_CMD_STARTED;
-}
-
-/*******************************************************************************
- *
- * Function         btm_ble_cancel_remote_name
- *
- * Description      This function cancel read remote LE device name.
- *
- * Parameters:       None.
- *
- * Returns          void
- *
- ******************************************************************************/
-bool btm_ble_cancel_remote_name(const RawAddress& remote_bda) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-  bool status;
-
-  status = GAP_BleCancelReadPeerDevName(remote_bda);
-
-  p_inq->remname_active = false;
-  p_inq->remname_bda = RawAddress::kEmpty;
-  alarm_cancel(p_inq->remote_name_timer);
-
-  return status;
 }
 
 /*******************************************************************************
@@ -3298,7 +3259,7 @@ void btm_ble_update_mode_operation(uint8_t link_role, const RawAddress* bd_addr,
   /* in case of disconnected, we must cancel bgconn and restart
      in order to add back device to acceptlist in order to reconnect */
   if (bd_addr != nullptr) {
-      LOG_DEBUG("gd_acl enabled so skip background connection logic");
+    LOG_DEBUG("gd_acl enabled so skip background connection logic");
   }
 
   /* when no connection is attempted, and controller is not rejecting last

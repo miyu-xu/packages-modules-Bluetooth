@@ -16,6 +16,8 @@
 
 #define LOG_TAG "bt_headless_sdp"
 
+#include "test/headless/read/name.h"
+
 #include <future>
 
 #include "base/logging.h"     // LOG() stdout and android log
@@ -24,13 +26,13 @@
 #include "stack/include/btm_api_types.h"
 #include "test/headless/get_options.h"
 #include "test/headless/headless.h"
-#include "test/headless/read/name.h"
 #include "types/raw_address.h"
 
-std::promise<tBTM_REMOTE_DEV_NAME> promise_;
+std::promise<bluetooth::inquiry::RemoteNameRequestResult> promise_;
 
-void RemoteNameCallback(void* data) {
-  promise_.set_value(*static_cast<tBTM_REMOTE_DEV_NAME*>(data));
+void RemoteNameCallback(
+    const bluetooth::inquiry::RemoteNameRequestResult& data) {
+  promise_.set_value(data);
 }
 
 int bluetooth::test::headless::Name::Run() {
@@ -48,18 +50,22 @@ int bluetooth::test::headless::Name::Run() {
   const RawAddress& raw_address = options_.device_.front();
 
   return RunOnHeadlessStack<int>([&raw_address]() {
-    promise_ = std::promise<tBTM_REMOTE_DEV_NAME>();
+    promise_ = std::promise<bluetooth::inquiry::RemoteNameRequestResult>();
 
     auto future = promise_.get_future();
+    bluetooth::inquiry::PendingRemoteNameRequestHandle handle;
 
     tBTM_STATUS status = BTM_ReadRemoteDeviceName(
-        raw_address, &RemoteNameCallback, BT_TRANSPORT_BR_EDR);
+        raw_address,
+        bluetooth::inquiry::RemoteNameRequestCallbacks::forName(
+            RemoteNameCallback),
+        BT_TRANSPORT_BR_EDR, &handle);
     if (status != BTM_CMD_STARTED) {
       fprintf(stdout, "Failure to start read remote device\n");
       return -1;
     }
 
-    tBTM_REMOTE_DEV_NAME name_packet = future.get();
+    auto name_packet = future.get();
     switch (name_packet.status) {
       case BTM_SUCCESS: {
         char buf[BD_NAME_LEN];

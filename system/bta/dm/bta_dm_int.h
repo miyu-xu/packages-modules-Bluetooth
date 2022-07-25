@@ -34,6 +34,7 @@
 #include "bta/include/bta_gatt_api.h"
 #include "bta/sys/bta_sys.h"
 #include "main/shim/dumpsys.h"
+#include "stack/btm/remote_name_request.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "types/bluetooth/uuid.h"
@@ -317,7 +318,7 @@ typedef struct {
   alarm_t* disable_timer;
   uint8_t pm_id;
   tBTA_PM_TIMER pm_timer[BTA_DM_NUM_PM_TIMER];
-  uint8_t cur_av_count;   /* current AV connecions */
+  uint8_t cur_av_count; /* current AV connecions */
 
   /* Storage for pin code request parameters */
   RawAddress pin_bd_addr;
@@ -353,6 +354,8 @@ typedef struct {
   tSDP_DISCOVERY_DB* p_sdp_db;
   uint16_t state;
   RawAddress peer_bdaddr;
+  bluetooth::inquiry::PendingRemoteNameRequestHandle
+      pending_name_request_handle;
   bool name_discover_done;
   BD_NAME peer_name;
   alarm_t* search_timer;
@@ -370,7 +373,7 @@ typedef struct {
   uint8_t uuid_to_search;
   bool gatt_disc_active;
   uint16_t conn_id;
-  alarm_t* gatt_close_timer; /* GATT channel close delay timer */
+  alarm_t* gatt_close_timer;    /* GATT channel close delay timer */
   RawAddress pending_close_bda; /* pending GATT channel remote device address */
 
 } tBTA_DM_SEARCH_CB;
@@ -426,7 +429,7 @@ typedef struct {
 
 typedef struct {
   uint8_t allow_mask; /* mask of sniff/hold/park modes to allow */
-  uint8_t ssr; /* set SSR on conn open/unpark */
+  uint8_t ssr;        /* set SSR on conn open/unpark */
   tBTA_DM_PM_ACTN actn_tbl[BTA_DM_PM_NUM_EVTS][2];
 
 } tBTA_DM_PM_SPEC;
@@ -556,7 +559,7 @@ uint8_t bta_dm_search_get_state();
 void bta_dm_search_set_state(uint8_t state);
 
 void bta_dm_eir_update_uuid(uint16_t uuid16, bool adding);
-void bta_dm_eir_update_cust_uuid(const tBTA_CUSTOM_UUID &curr, bool adding);
+void bta_dm_eir_update_cust_uuid(const tBTA_CUSTOM_UUID& curr, bool adding);
 
 #undef CASE_RETURN_TEXT
 #endif /* BTA_DM_INT_H */

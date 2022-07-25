@@ -30,13 +30,16 @@
 #include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/btm_sco.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/btm/remote_name_request.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/security_client_callbacks.h"
 #include "types/raw_address.h"
 
-#define BTM_MAX_SCN_ 31  // PORT_MAX_RFC_PORTS packages/modules/Bluetooth/system/stack/include/rfcdefs.h
+#define BTM_MAX_SCN_ \
+  31  // PORT_MAX_RFC_PORTS
+      // packages/modules/Bluetooth/system/stack/include/rfcdefs.h
 
 constexpr size_t kMaxLogSize = 255;
 constexpr size_t kBtmLogHistoryBufferSize = 100;
@@ -65,10 +68,10 @@ class TimestampedStringCircularBuffer
  * Local device configuration
  */
 typedef struct {
-  tBTM_LOC_BD_NAME bd_name;  /* local Bluetooth device name */
-  bool pin_type;             /* true if PIN type is fixed */
-  uint8_t pin_code_len;      /* Bonding information */
-  PIN_CODE pin_code;         /* PIN CODE if pin type is fixed */
+  tBTM_LOC_BD_NAME bd_name; /* local Bluetooth device name */
+  bool pin_type;            /* true if PIN type is fixed */
+  uint8_t pin_code_len;     /* Bonding information */
+  PIN_CODE pin_code;        /* PIN CODE if pin type is fixed */
 } tBTM_CFG;
 
 /* Pairing State */
@@ -121,7 +124,7 @@ typedef struct {
 } tBTM_SEC_QUEUE_ENTRY;
 
 /* Define a structure to hold all the BTM data
-*/
+ */
 
 #define BTM_STATE_BUFFER_SIZE 5 /* size of state buffer */
 
@@ -255,8 +258,6 @@ typedef struct tBTM_CB {
   tBTM_APPL_INFO api;
 
 #define BTM_SEC_MAX_RMT_NAME_CALLBACKS 2
-  tBTM_RMT_NAME_CALLBACK* p_rmt_name_callback[BTM_SEC_MAX_RMT_NAME_CALLBACKS];
-
   tBTM_SEC_DEV_REC* p_collided_dev_rec{nullptr};
   alarm_t* sec_collision_timer{nullptr};
   uint64_t collision_start_time{0};
@@ -267,16 +268,18 @@ typedef struct tBTM_CB {
   bool pin_type_changed{false};      /* pin type changed during bonding */
   bool sec_req_pending{false};       /*   true if a request is pending */
 
-  uint8_t pin_code_len{0};          /* for legacy devices */
-  PIN_CODE pin_code;                /* for legacy devices */
+  uint8_t pin_code_len{0}; /* for legacy devices */
+  PIN_CODE pin_code;       /* for legacy devices */
   tBTM_PAIRING_STATE pairing_state{
-      BTM_PAIR_STATE_IDLE};         /* The current pairing state    */
-  uint8_t pairing_flags{0};         /* The current pairing flags    */
-  RawAddress pairing_bda;           /* The device currently pairing */
-  alarm_t* pairing_timer{nullptr};  /* Timer for pairing process    */
+      BTM_PAIR_STATE_IDLE};               /* The current pairing state    */
+  uint8_t pairing_flags{0};               /* The current pairing flags    */
+  RawAddress pairing_bda;                 /* The device currently pairing */
+  alarm_t* pairing_timer{nullptr};        /* Timer for pairing process    */
   alarm_t* execution_wait_timer{nullptr}; /* To avoid concurrent auth request */
-  uint16_t disc_handle{0};          /* for legacy devices */
-  uint8_t disc_reason{0};           /* for legacy devices */
+  uint16_t disc_handle{0};                /* for legacy devices */
+  uint8_t disc_reason{0};                 /* for legacy devices */
+  bluetooth::inquiry::PendingRemoteNameRequestHandle
+      pending_remname_handle; /* hande for pending remote name request */
   tBTM_SEC_SERV_REC sec_serv_rec[BTM_SEC_MAX_SERVICE_RECORDS];
   list_t* sec_dev_rec{nullptr}; /* list of tBTM_SEC_DEV_REC */
   tBTM_SEC_SERV_REC* p_out_serv{nullptr};
@@ -320,7 +323,6 @@ typedef struct tBTM_CB {
     memset(&btm_inq_vars, 0, sizeof(btm_inq_vars));
     memset(&sco_cb, 0, sizeof(sco_cb));
     memset(&api, 0, sizeof(api));
-    memset(p_rmt_name_callback, 0, sizeof(p_rmt_name_callback));
     memset(&pin_code, 0, sizeof(pin_code));
     memset(sec_serv_rec, 0, sizeof(sec_serv_rec));
 
@@ -347,7 +349,7 @@ typedef struct tBTM_CB {
     /* Initialize BTM component structures */
     btm_inq_vars.Init(); /* Inquiry Database and Structures */
     acl_cb_ = {};
-    sco_cb.Init();       /* SCO Database and Structures (If included) */
+    sco_cb.Init(); /* SCO Database and Structures (If included) */
     devcb.Init();
 
     history_ = std::make_shared<TimestampedStringCircularBuffer>(
