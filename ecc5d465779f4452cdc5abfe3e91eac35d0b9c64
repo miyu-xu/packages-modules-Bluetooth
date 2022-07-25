@@ -16,6 +16,24 @@
       "message": "Why don\u0027t we just never cancel the remote name request? Instead always let it come back and fail. Will this cause issues?\n\nMy reasoning is that this will simplify the logic and reduce the probability of timing-dependent edge cases (cancelling inquiry simultaneously with bonding).",
       "revId": "ecc5d465779f4452cdc5abfe3e91eac35d0b9c64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4eead35_3e803b33",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-25T21:06:12Z",
+      "side": 1,
+      "message": "I think it can take a while to fail.",
+      "parentUuid": "62918438_9615641a",
+      "revId": "ecc5d465779f4452cdc5abfe3e91eac35d0b9c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
