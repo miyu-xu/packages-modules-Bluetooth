@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ee12135_434f2c04",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1890,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-25T19:49:27Z",
+      "side": 1,
+      "message": "should this be moved inside the if then ?",
+      "range": {
+        "startLine": 1890,
+        "startChar": 0,
+        "endLine": 1890,
+        "endChar": 29
+      },
+      "revId": "366706ffd63d5701b302efdf2c873dff1bed74ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
