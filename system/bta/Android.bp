@@ -550,6 +550,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs : [
+        ":TestCommonStackConfig",
         ":TestStubOsi",
         ":TestMockBtaLeAudioHalVerifier",
         "test/common/bta_gatt_api_mock.cc",
@@ -616,6 +617,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/include",
     ],
     srcs : [
+        ":TestCommonStackConfig",
         ":TestStubOsi",
         ":TestMockBtaLeAudioHalVerifier",
         "gatt/database.cc",
@@ -707,6 +709,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/btm",
     ],
     srcs : [
+        ":TestCommonStackConfig",
         "le_audio/broadcaster/broadcaster_types.cc",
         "le_audio/broadcaster/mock_ble_advertising_manager.cc",
         "le_audio/broadcaster/state_machine.cc",
@@ -755,6 +758,7 @@ cc_test {
         "packages/modules/Bluetooth/system/stack/btm",
     ],
     srcs : [
+        ":TestCommonStackConfig",
         ":TestStubOsi",
         "le_audio/broadcaster/broadcaster.cc",
         "le_audio/broadcaster/broadcaster_test.cc",
