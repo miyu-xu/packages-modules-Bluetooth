@@ -46,6 +46,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "state_machine.h"
+#include "storage_helper.h"
 
 using base::Closure;
 using bluetooth::Uuid;
@@ -935,10 +936,17 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   /* Restore paired device from storage to recreate groups */
-  void AddFromStorage(const RawAddress& address, bool autoconnect) {
+  void AddFromStorage(const RawAddress& address, bool autoconnect,
+                      int sink_audio_location, int source_audio_location,
+                      int sink_supporeted_context_types,
+                      int source_supporeted_context_types,
+                      const std::vector<uint8_t>& handles,
+                      const std::vector<uint8_t>& sink_pacs,
+                      const std::vector<uint8_t>& source_pacs,
+                      const std::vector<uint8_t>& ases) {
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(address);
 
-    LOG(INFO) << __func__ << ", restoring: " << address;
+    LOG_INFO("restoring: %s", address.ToString().c_str());
 
     if (!leAudioDevice) {
       leAudioDevices_.Add(address, false);
@@ -951,9 +959,69 @@ class LeAudioClientImpl : public LeAudioClient {
       group_add_node(group_id, address);
     }
 
+    leAudioDevice->snk_audio_locations_ = sink_audio_location;
+    if (sink_audio_location != 0) {
+      leAudioDevice->audio_directions_ |=
+          le_audio::types::kLeAudioDirectionSink;
+    }
+
+    leAudioDevice->src_audio_locations_ = source_audio_location;
+    if (source_audio_location != 0) {
+      leAudioDevice->audio_directions_ |=
+          le_audio::types::kLeAudioDirectionSource;
+    }
+
+    leAudioDevice->SetSupportedContexts(
+        (uint16_t)sink_supporeted_context_types,
+        (uint16_t)source_supporeted_context_types);
+
+    /* Use same as or supported ones for now. */
+    leAudioDevice->SetAvailableContexts(
+        (uint16_t)sink_supporeted_context_types,
+        (uint16_t)source_supporeted_context_types);
+
+    if (!DeserializeHandles(leAudioDevice, handles)) {
+      LOG_WARN("Could not load Handles");
+    }
+
+    if (!DeserializeSinkPacs(leAudioDevice, sink_pacs)) {
+      LOG_WARN("Could not load sink pacs");
+    }
+
+    if (!DeserializeSourcePacs(leAudioDevice, source_pacs)) {
+      LOG_WARN("Could not load source pacs");
+    }
+
+    if (!DeserializeAses(leAudioDevice, ases)) {
+      LOG_WARN("Could not load ases");
+    }
+
     if (autoconnect) {
       BTA_GATTC_Open(gatt_if_, address, false, false);
     }
+  }
+
+  bool GetHandlesForStorage(const RawAddress& addr, std::vector<uint8_t>& out) {
+    LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(addr);
+    return SerializeHandles(leAudioDevice, out);
+  }
+
+  bool GetSinkPacsForStorage(const RawAddress& addr,
+                             std::vector<uint8_t>& out) {
+    LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(addr);
+    return SerializeSinkPacs(leAudioDevice, out);
+  }
+
+  bool GetSourcePacsForStorage(const RawAddress& addr,
+                               std::vector<uint8_t>& out) {
+    LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(addr);
+    return SerializeSourcePacs(leAudioDevice, out);
+  }
+
+  bool GetAsesForStorage(const RawAddress& addr, std::vector<uint8_t>& out) {
+    LeAudioDevice* leAudioDevice = leAudioDevices_.FindByAddress(addr);
+
+    return SerializeAses(leAudioDevice, out);
   }
 
   void BackgroundConnectIfGroupConnected(LeAudioDevice* leAudioDevice) {
@@ -1074,7 +1142,7 @@ class LeAudioClientImpl : public LeAudioClient {
    * are dispatched to correct elements e.g. ASEs, PACs, audio locations etc.
    */
   void LeAudioCharValueHandle(uint16_t conn_id, uint16_t hdl, uint16_t len,
-                              uint8_t* value) {
+                              uint8_t* value, bool notif = false) {
     LeAudioDevice* leAudioDevice = leAudioDevices_.FindByConnId(conn_id);
     struct ase* ase;
 
@@ -1101,7 +1169,7 @@ class LeAudioClientImpl : public LeAudioClient {
       std::vector<struct le_audio::types::acs_ac_record> pac_recs;
 
       /* Guard consistency of PAC records structure */
-      if (!le_audio::client_parser::pacs::ParsePac(pac_recs, len, value))
+      if (!le_audio::client_parser::pacs::ParsePacs(pac_recs, len, value))
         return;
 
       LOG(INFO) << __func__ << ", Registering sink PACs";
@@ -1122,6 +1190,9 @@ class LeAudioClientImpl : public LeAudioClient {
                                 group->src_audio_locations_.to_ulong(),
                                 group->GetActiveContexts().to_ulong());
       }
+      if (notif) {
+        btif_storage_leaudio_update_pacs_bin(leAudioDevice->address_);
+      }
       return;
     }
 
@@ -1132,7 +1203,7 @@ class LeAudioClientImpl : public LeAudioClient {
       std::vector<struct le_audio::types::acs_ac_record> pac_recs;
 
       /* Guard consistency of PAC records structure */
-      if (!le_audio::client_parser::pacs::ParsePac(pac_recs, len, value))
+      if (!le_audio::client_parser::pacs::ParsePacs(pac_recs, len, value))
         return;
 
       LOG(INFO) << __func__ << ", Registering source PACs";
@@ -1152,6 +1223,10 @@ class LeAudioClientImpl : public LeAudioClient {
                                 group->snk_audio_locations_.to_ulong(),
                                 group->src_audio_locations_.to_ulong(),
                                 group->GetActiveContexts().to_ulong());
+      }
+
+      if (notif) {
+        btif_storage_leaudio_update_pacs_bin(leAudioDevice->address_);
       }
       return;
     }
@@ -1178,6 +1253,14 @@ class LeAudioClientImpl : public LeAudioClient {
       LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
       callbacks_->OnSinkAudioLocationAvailable(leAudioDevice->address_,
                                                snk_audio_locations.to_ulong());
+
+      if (notif) {
+        btif_storage_set_leaudio_audio_location(
+            leAudioDevice->address_,
+            leAudioDevice->snk_audio_locations_.to_ulong(),
+            leAudioDevice->src_audio_locations_.to_ulong());
+      }
+
       /* Read of source audio locations during initial attribute discovery.
        * Group would be assigned once service search is completed.
        */
@@ -1212,6 +1295,14 @@ class LeAudioClientImpl : public LeAudioClient {
       leAudioDevice->src_audio_locations_ = src_audio_locations;
 
       LeAudioDeviceGroup* group = aseGroups_.FindById(leAudioDevice->group_id_);
+
+      if (notif) {
+        btif_storage_set_leaudio_audio_location(
+            leAudioDevice->address_,
+            leAudioDevice->snk_audio_locations_.to_ulong(),
+            leAudioDevice->src_audio_locations_.to_ulong());
+      }
+
       /* Read of source audio locations during initial attribute discovery.
        * Group would be assigned once service search is completed.
        */
@@ -1275,6 +1366,12 @@ class LeAudioClientImpl : public LeAudioClient {
       /* Just store if for now */
       leAudioDevice->SetSupportedContexts(supp_audio_contexts->snk_supp_cont,
                                           supp_audio_contexts->src_supp_cont);
+
+      btif_storage_set_leaudio_supported_context_types(
+          leAudioDevice->address_,
+          supp_audio_contexts->snk_supp_cont.to_ulong(),
+          supp_audio_contexts->src_supp_cont.to_ulong());
+
     } else if (hdl == leAudioDevice->ctp_hdls_.val_hdl) {
       auto ntf =
           std::make_unique<struct le_audio::client_parser::ascs::ctp_ntf>();
@@ -1877,6 +1974,8 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     leAudioDevice->known_service_handles_ = true;
+    btif_storage_leaudio_update_handles_bin(leAudioDevice->address_);
+
     leAudioDevice->notify_connected_after_read_ = true;
 
     /* If already known group id */
@@ -3376,6 +3475,16 @@ class LeAudioClientImpl : public LeAudioClient {
       LeAudioDevice* leAudioDevice =
           instance->leAudioDevices_.FindByConnId(conn_id);
       leAudioDevice->notify_connected_after_read_ = false;
+
+      /* Update PACs and ASEs when all is read.*/
+      btif_storage_leaudio_update_pacs_bin(leAudioDevice->address_);
+      btif_storage_leaudio_update_ase_bin(leAudioDevice->address_);
+
+      btif_storage_set_leaudio_audio_location(
+          leAudioDevice->address_,
+          leAudioDevice->snk_audio_locations_.to_ulong(),
+          leAudioDevice->src_audio_locations_.to_ulong());
+
       instance->connectionReady(leAudioDevice);
     }
   }
@@ -3706,7 +3815,7 @@ void le_audio_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
     case BTA_GATTC_NOTIF_EVT:
       instance->LeAudioCharValueHandle(
           p_data->notify.conn_id, p_data->notify.handle, p_data->notify.len,
-          static_cast<uint8_t*>(p_data->notify.value));
+          static_cast<uint8_t*>(p_data->notify.value), true);
 
       if (!p_data->notify.is_notify)
         BTA_GATTC_SendIndConfirm(p_data->notify.conn_id, p_data->notify.handle);
@@ -3874,13 +3983,61 @@ DeviceGroupsCallbacksImpl deviceGroupsCallbacksImpl;
 
 }  // namespace
 
-void LeAudioClient::AddFromStorage(const RawAddress& addr, bool autoconnect) {
+void LeAudioClient::AddFromStorage(
+    const RawAddress& addr, bool autoconnect, int sink_audio_location,
+    int source_audio_location, int sink_supported_context_types,
+    int source_supported_context_types, const std::vector<uint8_t>& handles,
+    const std::vector<uint8_t>& sink_pacs,
+    const std::vector<uint8_t>& source_pacs, const std::vector<uint8_t>& ases) {
   if (!instance) {
     LOG(ERROR) << "Not initialized yet";
     return;
   }
 
-  instance->AddFromStorage(addr, autoconnect);
+  instance->AddFromStorage(addr, autoconnect, sink_audio_location,
+                           source_audio_location, sink_supported_context_types,
+                           source_supported_context_types, handles, sink_pacs,
+                           source_pacs, ases);
+}
+
+bool LeAudioClient::GetHandlesForStorage(const RawAddress& addr,
+                                         std::vector<uint8_t>& out) {
+  if (!instance) {
+    LOG_ERROR("Not initialized yet");
+    return false;
+  }
+
+  return instance->GetHandlesForStorage(addr, out);
+}
+
+bool LeAudioClient::GetSinkPacsForStorage(const RawAddress& addr,
+                                          std::vector<uint8_t>& out) {
+  if (!instance) {
+    LOG_ERROR("Not initialized yet");
+    return false;
+  }
+
+  return instance->GetSinkPacsForStorage(addr, out);
+}
+
+bool LeAudioClient::GetSourcePacsForStorage(const RawAddress& addr,
+                                            std::vector<uint8_t>& out) {
+  if (!instance) {
+    LOG_ERROR("Not initialized yet");
+    return false;
+  }
+
+  return instance->GetSourcePacsForStorage(addr, out);
+}
+
+bool LeAudioClient::GetAsesForStorage(const RawAddress& addr,
+                                      std::vector<uint8_t>& out) {
+  if (!instance) {
+    LOG_ERROR("Not initialized yet");
+    return false;
+  }
+
+  return instance->GetAsesForStorage(addr, out);
 }
 
 bool LeAudioClient::IsLeAudioClientRunning(void) { return instance != nullptr; }
