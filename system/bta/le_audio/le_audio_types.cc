@@ -29,6 +29,7 @@
 #include "bta_le_audio_api.h"
 #include "client_audio.h"
 #include "client_parser.h"
+#include "internal_include/stack_config.h"
 
 namespace le_audio {
 using types::acs_ac_record;
@@ -400,10 +401,29 @@ std::string LeAudioLtvMap::ToString() const {
 
 void AppendMetadataLtvEntryForCcidList(std::vector<uint8_t>& metadata,
                                        int ccid) {
-  if (ccid < 0) return;
+  const std::string* options =
+      stack_config_get_interface()->get_pts_context_type_option();
+  if (ccid < 0 && !options) return;
 
   std::vector<uint8_t> ccid_ltv_entry;
   std::vector<uint8_t> ccid_value = {static_cast<uint8_t>(ccid)};
+
+  if (options) {
+    if (!options->compare("none")) {
+      if (!ccid_value.empty()) ccid_value.clear();
+    } else if (!options->compare("single")) {
+      if (ccid_value.size() != 1) {
+        ccid_value.clear();
+        ccid_value.push_back(0xab);
+      }
+    } else if (!options->compare("multiple")) {
+      if (ccid_value.size() < 2) {
+        ccid_value.clear();
+        ccid_value.push_back(0xab);
+        ccid_value.push_back(0xcd);
+      }
+    }
+  }
 
   ccid_ltv_entry.push_back(
       static_cast<uint8_t>(types::kLeAudioMetadataTypeLen + ccid_value.size()));
