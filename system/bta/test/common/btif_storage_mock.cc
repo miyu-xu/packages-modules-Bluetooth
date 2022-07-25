@@ -33,6 +33,37 @@ void btif_storage_set_leaudio_autoconnect(RawAddress const& addr,
   btif_storage_interface->AddLeaudioAutoconnect(addr, autoconnect);
 }
 
+void btif_storage_leaudio_update_pacs_bin(const RawAddress& addr) {
+  LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
+  btif_storage_interface->LeaudioUpdatePacs(addr);
+}
+
+void btif_storage_leaudio_update_ase_bin(const RawAddress& addr) {
+  LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
+  btif_storage_interface->LeaudioUpdateAses(addr);
+}
+
+void btif_storage_leaudio_update_handles_bin(const RawAddress& addr) {
+  LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
+  btif_storage_interface->LeaudioUpdateHandles(addr);
+}
+
+void btif_storage_set_leaudio_audio_location(const RawAddress& addr,
+                                             uint32_t sink_location,
+                                             uint32_t source_location) {
+  LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
+  btif_storage_interface->SetLeaudioLocations(addr, sink_location,
+                                              source_location);
+}
+
+void btif_storage_set_leaudio_supported_context_types(
+    const RawAddress& addr, uint16_t sink_supported_context_type,
+    uint16_t source_supported_context_type) {
+  LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
+  btif_storage_interface->SetLeaudioContexts(addr, sink_supported_context_type,
+                                             source_supported_context_type);
+}
+
 void btif_storage_remove_leaudio(RawAddress const& addr) {
   LOG_ASSERT(btif_storage_interface) << "Mock storage module not set!";
   btif_storage_interface->RemoveLeaudio(addr);
