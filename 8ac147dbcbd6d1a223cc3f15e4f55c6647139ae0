@@ -16,6 +16,24 @@
       "message": "I am unable to repro b/238914503 with this change. Please add that bug to the commit description as well.",
       "revId": "8ac147dbcbd6d1a223cc3f15e4f55c6647139ae0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a579af5_5fa36a76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-25T22:46:25Z",
+      "side": 1,
+      "message": "Jack marked it as dup with this issue (b/235293624). So I believe I don\u0027t have to. Thanks.",
+      "parentUuid": "2653c0d8_926887ab",
+      "revId": "8ac147dbcbd6d1a223cc3f15e4f55c6647139ae0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
