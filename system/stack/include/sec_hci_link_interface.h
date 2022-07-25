@@ -42,8 +42,6 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
 void btm_sec_link_key_request(const uint8_t* p_event);
 void btm_sec_pin_code_request(const uint8_t* p_event);
 void btm_sec_rmt_host_support_feat_evt(const uint8_t* p);
-void btm_sec_rmt_name_request_complete(const RawAddress* bd_addr,
-                                       const uint8_t* bd_name,
-                                       tHCI_STATUS status);
+void btm_sec_rmt_name_request_complete(void *p);
 void btm_sec_update_clock_offset(uint16_t handle, uint16_t clock_offset);
 void btm_simple_pair_complete(const uint8_t* p);

@@ -383,7 +383,8 @@ void BTM_EnableInterlacedPageScan();
  ******************************************************************************/
 tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
                                      tBTM_CMPL_CB* p_cb,
-                                     tBT_TRANSPORT transport);
+                                     tBT_TRANSPORT transport,
+                                     tBTM_PENDING_REMNAME_HANDLE* handle);
 
 /*******************************************************************************
  *
@@ -402,7 +403,7 @@ tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
  *                  BTM_WRONG_MODE if there is no active remote name request.
  *
  ******************************************************************************/
-tBTM_STATUS BTM_CancelRemoteDeviceName(void);
+tBTM_STATUS BTM_CancelRemoteDeviceName(tBTM_PENDING_REMNAME_HANDLE handle);
 
 /*******************************************************************************
  *
@@ -927,11 +928,6 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
  *
  ******************************************************************************/
 tBTM_CONTRL_STATE BTM_PM_ReadControllerState(void);
-
-/**
- * Send remote name request, either to legacy HCI, or to GD shim Name module
- */
-void SendRemoteNameRequest(const RawAddress& raw_address);
 
 bool BTM_IsScoActiveByBdaddr(const RawAddress& remote_bda);
 

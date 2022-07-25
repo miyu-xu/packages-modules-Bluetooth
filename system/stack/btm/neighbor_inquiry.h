@@ -17,6 +17,7 @@
 #pragma once
 
 #include <cstdint>
+#include <deque>
 
 #include "osi/include/alarm.h"
 #include "stack/include/bt_device_type.h"
@@ -183,9 +184,39 @@ typedef struct {
   uint8_t num_resp; /* Number of results from the current inquiry */
 } tBTM_INQUIRY_CMPL;
 
-typedef struct {
-  tBTM_CMPL_CB* p_remname_cmpl_cb;
+/* Structures holding the parameters of an enqueued remote device name request
+ * before it is executed */
+struct tBTM_PENDING_REMNAME_HANDLE {
+ public:
+  bool operator==(tBTM_PENDING_REMNAME_HANDLE other) {
+    return handle == other.handle;
+  }
 
+  static tBTM_PENDING_REMNAME_HANDLE newHandle() {
+    static uint16_t next_handle = 0xbeef;
+    return {++next_handle};
+  }
+
+  // default constructor produces an invalid handle
+  tBTM_PENDING_REMNAME_HANDLE() : handle(-1) {}
+
+ private:
+  uint16_t handle;
+  tBTM_PENDING_REMNAME_HANDLE(uint16_t handle) : handle(handle) {}
+};
+
+struct tBTM_PENDING_REMNAME_CALLBACK {
+  tBTM_PENDING_REMNAME_HANDLE handle;
+  tBTM_CMPL_CB* callback;
+};
+
+struct tBTM_PENDING_REMNAME_REQUEST {
+  RawAddress remote_addr;
+  std::vector<tBTM_PENDING_REMNAME_CALLBACK> callbacks;
+  tBT_TRANSPORT transport;
+};
+
+typedef struct {
 #define BTM_EXT_RMT_NAME_TIMEOUT_MS (40 * 1000) /* 40 seconds */
 
   alarm_t* remote_name_timer;
@@ -199,9 +230,11 @@ typedef struct {
   uint16_t inq_scan_type;
   uint16_t page_scan_type; /* current page scan type */
 
-  RawAddress remname_bda; /* Name of bd addr for active remote name request */
+  tBTM_PENDING_REMNAME_REQUEST
+      active_request; /* Name of bd addr for active remote name request */
 #define BTM_RMT_NAME_EXT 0x1 /* Initiated through API */
   bool remname_active; /* State of a remote name request by external API */
+  std::deque<tBTM_PENDING_REMNAME_REQUEST> pending_remname_request_queue;
 
   tBTM_CMPL_CB* p_inq_cmpl_cb;
   tBTM_INQ_RESULTS_CB* p_inq_results_cb;
@@ -233,6 +266,7 @@ typedef struct {
   void Init() {
     alarm_free(remote_name_timer);
     remote_name_timer = alarm_new("btm_inq.remote_name_timer");
+    pending_remname_request_queue = {};
     no_inc_ssp = BTM_NO_SSP_ON_INQUIRY;
   }
   void Free() { alarm_free(remote_name_timer); }
@@ -241,7 +275,8 @@ typedef struct {
 
 /* Structure returned with remote name  request */
 typedef struct {
-  uint16_t status;
+  tBTM_STATUS status;
+  tHCI_STATUS hci_status;
   RawAddress bd_addr;
   uint16_t length;
   BD_NAME remote_bd_name;

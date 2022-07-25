@@ -248,52 +248,6 @@ bool BTM_SecRegister(const tBTM_APPL_INFO* p_cb_info) {
   return (true);
 }
 
-/*******************************************************************************
- *
- * Function         BTM_SecAddRmtNameNotifyCallback
- *
- * Description      Any profile can register to be notified when name of the
- *                  remote device is resolved.
- *
- * Returns          true if registered OK, else false
- *
- ******************************************************************************/
-bool BTM_SecAddRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback) {
-  int i;
-
-  for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
-    if (btm_cb.p_rmt_name_callback[i] == NULL) {
-      btm_cb.p_rmt_name_callback[i] = p_callback;
-      return (true);
-    }
-  }
-
-  return (false);
-}
-
-/*******************************************************************************
- *
- * Function         BTM_SecDeleteRmtNameNotifyCallback
- *
- * Description      Any profile can deregister notification when a new Link Key
- *                  is generated per connection.
- *
- * Returns          true if OK, else false
- *
- ******************************************************************************/
-bool BTM_SecDeleteRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback) {
-  int i;
-
-  for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
-    if (btm_cb.p_rmt_name_callback[i] == p_callback) {
-      btm_cb.p_rmt_name_callback[i] = NULL;
-      return (true);
-    }
-  }
-
-  return (false);
-}
-
 bool BTM_IsEncrypted(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
   uint8_t flags = 0;
   BTM_GetSecurityFlagsByTransport(bd_addr, &flags, transport);
@@ -835,7 +789,9 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
        * -> RNR (to learn if peer is 2.1)
        * RNR when no ACL causes HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT */
       btm_sec_change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
-      status = BTM_ReadRemoteDeviceName(bd_addr, NULL, BT_TRANSPORT_BR_EDR);
+      status = BTM_ReadRemoteDeviceName(
+          bd_addr, btm_sec_rmt_name_request_complete, BT_TRANSPORT_BR_EDR,
+          &btm_cb.pending_remname_handle);
     } else {
       /* We are accepting connection request from peer */
       btm_sec_change_pairing_state(BTM_PAIR_STATE_WAIT_PIN_REQ);
@@ -976,7 +932,7 @@ tBTM_STATUS BTM_SecBondCancel(const RawAddress& bd_addr) {
         return BTM_CMD_STARTED;
       }
       if (btm_cb.pairing_state == BTM_PAIR_STATE_GET_REM_NAME) {
-        BTM_CancelRemoteDeviceName();
+        BTM_CancelRemoteDeviceName(btm_cb.pending_remname_handle);
         btm_cb.pairing_flags |= BTM_PAIR_FLAGS_WE_CANCEL_DD;
         return BTM_CMD_STARTED;
       }
@@ -2226,12 +2182,13 @@ bool is_state_getting_name(void* data, void* context) {
  * Returns          void
  *
  ******************************************************************************/
-void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
-                                       const uint8_t* p_bd_name,
-                                       tHCI_STATUS status) {
-  tBTM_SEC_DEV_REC* p_dev_rec = nullptr;
+void btm_sec_rmt_name_request_complete(void* p) {
+  tBTM_REMOTE_DEV_NAME* p_remote_name = (tBTM_REMOTE_DEV_NAME*)p;
 
-  int i;
+  const RawAddress* p_bd_addr = &p_remote_name->bd_addr;
+  const uint8_t* p_bd_name = (uint8_t*)p_remote_name->remote_bd_name;
+  tHCI_STATUS status = p_remote_name->hci_status;
+
   uint8_t old_sec_state;
 
   if ((!p_bd_addr &&
@@ -2241,21 +2198,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
     btm_acl_resubmit_page();
   }
 
-  /* If remote name request failed, p_bd_addr is null and we need to search */
-  /* based on state assuming that we are doing 1 at a time */
-  if (p_bd_addr)
-    p_dev_rec = btm_find_dev(*p_bd_addr);
-  else {
-    LOG_INFO(
-        "Remote read request complete with no address so searching device "
-        "database");
-    list_node_t* node =
-        list_foreach(btm_cb.sec_dev_rec, is_state_getting_name, NULL);
-    if (node != NULL) {
-      p_dev_rec = static_cast<tBTM_SEC_DEV_REC*>(list_node(node));
-      p_bd_addr = &p_dev_rec->bd_addr;
-    }
-  }
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(*p_bd_addr);
 
   if (!p_bd_name) p_bd_name = (const uint8_t*)"";
 
@@ -2288,28 +2231,12 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
 
     if (p_dev_rec->sec_state == BTM_SEC_STATE_GETTING_NAME)
       p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
-
-    /* Notify all clients waiting for name to be resolved */
-    for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
-      if (btm_cb.p_rmt_name_callback[i] && p_bd_addr)
-        (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, p_dev_rec->dev_class,
-                                         p_dev_rec->sec_bd_name);
-    }
   } else {
     LOG_DEBUG(
         "Remote read request complete for unknown device pairing_state:%s "
         "status:%s name:%s",
         btm_pair_state_descr(btm_cb.pairing_state),
         hci_status_code_text(status).c_str(), p_bd_name);
-
-    /* Notify all clients waiting for name to be resolved even if not found so
-     * clients can continue */
-    for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
-      if (btm_cb.p_rmt_name_callback[i] && p_bd_addr)
-        (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, (uint8_t*)kDevClassEmpty,
-                                         (uint8_t*)kBtmBdNameEmpty);
-    }
-
     return;
   }
 
@@ -2398,8 +2325,10 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
       return;
     } else {
       BTM_TRACE_WARNING("%s: wrong BDA, retry with pairing BDA", __func__);
-      if (BTM_ReadRemoteDeviceName(btm_cb.pairing_bda, NULL,
-                                   BT_TRANSPORT_BR_EDR) != BTM_CMD_STARTED) {
+      if (BTM_ReadRemoteDeviceName(
+              btm_cb.pairing_bda, btm_sec_rmt_name_request_complete,
+              BT_TRANSPORT_BR_EDR,
+              &btm_cb.pending_remname_handle) != BTM_CMD_STARTED) {
         BTM_TRACE_ERROR("%s: failed to start remote name request", __func__);
         NotifyBondingChange(*p_dev_rec, HCI_ERR_MEMORY_FULL);
       };
@@ -3504,9 +3433,10 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
                                btm_sec_connect_after_reject_timeout, NULL);
           } else {
             btm_sec_change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
-            if (BTM_ReadRemoteDeviceName(p_dev_rec->bd_addr, NULL,
-                                         BT_TRANSPORT_BR_EDR) !=
-                BTM_CMD_STARTED) {
+            if (BTM_ReadRemoteDeviceName(
+                    p_dev_rec->bd_addr, btm_sec_rmt_name_request_complete,
+                    BT_TRANSPORT_BR_EDR,
+                    &btm_cb.pending_remname_handle) != BTM_CMD_STARTED) {
               BTM_TRACE_ERROR("%s cannot read remote name", __func__);
               btm_sec_change_pairing_state(BTM_PAIR_STATE_IDLE);
             }
@@ -3538,8 +3468,9 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
       if (BTM_SEC_IS_SM4_UNKNOWN(p_dev_rec->sm4)) {
         /* Try again: RNR when no ACL causes HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT */
         btm_sec_change_pairing_state(BTM_PAIR_STATE_GET_REM_NAME);
-        if (BTM_ReadRemoteDeviceName(bda, NULL, BT_TRANSPORT_BR_EDR) !=
-            BTM_CMD_STARTED) {
+        if (BTM_ReadRemoteDeviceName(
+                bda, btm_sec_rmt_name_request_complete, BT_TRANSPORT_BR_EDR,
+                &btm_cb.pending_remname_handle) != BTM_CMD_STARTED) {
           BTM_TRACE_ERROR("%s cannot read remote name", __func__);
           btm_sec_change_pairing_state(BTM_PAIR_STATE_IDLE);
         }
@@ -3958,7 +3889,9 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
     /* If it is for bonding nothing else will follow, so we need to start name
      * resolution */
     if (we_are_bonding) {
-      SendRemoteNameRequest(p_bda);
+      BTM_ReadRemoteDeviceName(p_bda, btm_sec_rmt_name_request_complete,
+                               BT_TRANSPORT_BR_EDR,
+                               &btm_cb.pending_remname_handle);
     }
 
     BTM_TRACE_EVENT("rmt_io_caps:%d, sec_flags:x%x, dev_class[1]:x%02x",
@@ -4275,7 +4208,9 @@ void btm_sec_pin_code_request(const uint8_t* p_event) {
       /* We received PIN code request for the device with unknown name */
       /* it is not user friendly just to ask for the PIN without name */
       /* try to get name at first */
-      SendRemoteNameRequest(p_dev_rec->bd_addr);
+      BTM_ReadRemoteDeviceName(
+          p_dev_rec->bd_addr, btm_sec_rmt_name_request_complete,
+          BT_TRANSPORT_BR_EDR, &btm_cb.pending_remname_handle);
     }
   }
 
@@ -4451,9 +4386,10 @@ static bool btm_sec_start_get_name(tBTM_SEC_DEV_REC* p_dev_rec) {
 
   p_dev_rec->sec_state = BTM_SEC_STATE_GETTING_NAME;
 
-  /* 0 and NULL are as timeout and callback params because they are not used in
+  /* NULL is callback because it is not used in
    * security get name case */
-  SendRemoteNameRequest(p_dev_rec->bd_addr);
+  BTM_ReadRemoteDeviceName(p_dev_rec->bd_addr, btm_sec_rmt_name_request_complete,
+                           BT_TRANSPORT_BR_EDR, &btm_cb.pending_remname_handle);
   return true;
 }
 
