@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b2ef9c_8b8a52dd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-25T20:16:32Z",
+      "side": 1,
+      "message": "Remove.  Commit messages are to document what the CL does, not what it is :)",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 77
+      },
+      "revId": "253b06d6ef7186b8fd859ea9ea31df6ea27a54c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
