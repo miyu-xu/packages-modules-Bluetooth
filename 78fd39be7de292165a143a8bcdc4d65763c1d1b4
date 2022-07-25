@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8889bd2a_33520331",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-25T16:20:13Z",
+      "side": 1,
+      "message": "Could a unit test be added for this change so that we won\u0027t have this issue in the future?",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 84
+      },
+      "revId": "78fd39be7de292165a143a8bcdc4d65763c1d1b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
