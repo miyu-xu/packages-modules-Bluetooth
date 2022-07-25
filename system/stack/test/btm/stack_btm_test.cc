@@ -251,48 +251,6 @@ TEST(BtmTest, BTM_EIR_MAX_SERVICES) { ASSERT_EQ(46, BTM_EIR_MAX_SERVICES); }
 
 }  // namespace
 
-void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
-                                       const uint8_t* p_bd_name,
-                                       tHCI_STATUS status);
-
-struct {
-  RawAddress bd_addr;
-  DEV_CLASS dc;
-  tBTM_BD_NAME bd_name;
-} btm_test;
-
-TEST(SecTest, btm_sec_rmt_name_request_complete) {
-  bluetooth::common::InitFlags::SetAllForTesting();
-  btm_cb.Init(0);
-
-  ASSERT_TRUE(BTM_SecAddRmtNameNotifyCallback(
-      [](const RawAddress& bd_addr, DEV_CLASS dc, tBTM_BD_NAME bd_name) {
-        btm_test.bd_addr = bd_addr;
-        memcpy(btm_test.dc, dc, DEV_CLASS_LEN);
-        memcpy(btm_test.bd_name, bd_name, BTM_MAX_REM_BD_NAME_LEN);
-      }));
-
-  RawAddress bd_addr = RawAddress({0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6});
-  const uint8_t* p_bd_name = (const uint8_t*)"MyTestName";
-
-  btm_test = {};
-  btm_sec_rmt_name_request_complete(&bd_addr, p_bd_name, HCI_SUCCESS);
-
-  ASSERT_THAT(btm_test.bd_name, Each(Eq(0)));
-  ASSERT_THAT(btm_test.dc, Each(Eq(0)));
-  ASSERT_EQ(bd_addr, btm_test.bd_addr);
-
-  btm_test = {};
-  ASSERT_TRUE(btm_find_or_alloc_dev(bd_addr) != nullptr);
-  btm_sec_rmt_name_request_complete(&bd_addr, p_bd_name, HCI_SUCCESS);
-
-  ASSERT_STREQ((const char*)p_bd_name, (const char*)btm_test.bd_name);
-  ASSERT_THAT(btm_test.dc, Each(Eq(0)));
-  ASSERT_EQ(bd_addr, btm_test.bd_addr);
-
-  btm_cb.Free();
-}
-
 TEST_F(StackBtmWithInitFreeTest, btm_sec_encrypt_change) {
   bluetooth::common::InitFlags::SetAllForTesting();
 
