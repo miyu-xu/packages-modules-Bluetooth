@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31ddc05b_c3adbf1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-25T19:02:45Z",
+      "side": 1,
+      "message": "I\u0027ll sort out the random diff noise before merging, the pre-commit hook doesn\u0027t like how the file currently is formatted.",
+      "revId": "ccc930029b8345fae707cad7ecda84a580d8352a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
