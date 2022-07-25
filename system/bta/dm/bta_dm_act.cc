@@ -359,7 +359,7 @@ void BTA_dm_on_hw_on() {
 
   btif_dm_get_local_class_of_device(dev_class);
   LOG_INFO("%s: Read default class of device {0x%x, 0x%x, 0x%x}", __func__,
-      dev_class[0], dev_class[1], dev_class[2]);
+           dev_class[0], dev_class[1], dev_class[2]);
 
   if (bluetooth::shim::is_gd_security_enabled()) {
     bluetooth::shim::BTM_SetDeviceClass(dev_class);
@@ -1912,6 +1912,9 @@ static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
       APPL_TRACE_WARNING("%s: BTM_ReadRemoteDeviceName returns 0x%02X",
                          __func__, btm_status);
 
+      // needed so our response is not ignored, since this corresponds to the
+      // actual peer_bdaddr
+      rem_name.bd_addr = bta_dm_search_cb.peer_bdaddr;
       rem_name.length = 0;
       rem_name.remote_bd_name[0] = 0;
       rem_name.status = btm_status;
@@ -1934,11 +1937,6 @@ static void bta_dm_remname_cback(void* p) {
   APPL_TRACE_DEBUG("bta_dm_remname_cback len = %d name=<%s>",
                    p_remote_name->length, p_remote_name->remote_bd_name);
 
-  /* remote name discovery is done but it could be failed */
-  bta_dm_search_cb.name_discover_done = true;
-  strlcpy((char*)bta_dm_search_cb.peer_name,
-          (char*)p_remote_name->remote_bd_name, BD_NAME_LEN + 1);
-
   if (bta_dm_search_cb.peer_bdaddr == p_remote_name->bd_addr) {
     if (bluetooth::shim::is_gd_security_enabled()) {
       bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
@@ -1946,7 +1944,17 @@ static void bta_dm_remname_cback(void* p) {
     } else {
       BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
     }
+  } else {
+    // if we got a different response, ignore it
+    // we will have made a request directly from BTM_ReadRemoteDeviceName so we
+    // expect a dedicated response for us
+    return;
   }
+
+  /* remote name discovery is done but it could be failed */
+  bta_dm_search_cb.name_discover_done = true;
+  strlcpy((char*)bta_dm_search_cb.peer_name,
+          (char*)p_remote_name->remote_bd_name, BD_NAME_LEN + 1);
 
   if (bta_dm_search_cb.transport == BT_TRANSPORT_LE) {
     GAP_BleReadPeerPrefConnParams(bta_dm_search_cb.peer_bdaddr);
@@ -3126,7 +3134,7 @@ static uint8_t bta_dm_get_cust_uuid_index(uint32_t handle) {
   uint8_t c_uu_idx = 0;
 
   while(c_uu_idx < BTA_EIR_SERVER_NUM_CUSTOM_UUID &&
-      bta_dm_cb.bta_custom_uuid[c_uu_idx].handle != handle) {
+         bta_dm_cb.bta_custom_uuid[c_uu_idx].handle != handle) {
     c_uu_idx++;
   }
 
@@ -4201,9 +4209,9 @@ void bta_dm_process_delete_key_RC_to_unpair(const RawAddress& bd_addr)
     tBTA_DM_SEC param = {
         .delete_key_RC_to_unpair = {
             .bd_addr = bd_addr,
-        },
-    };
-    bta_dm_cb.p_sec_cback(BTA_DM_REPORT_BONDING_EVT, &param);
+          },
+  };
+  bta_dm_cb.p_sec_cback(BTA_DM_REPORT_BONDING_EVT, &param);
 }
 
 namespace bluetooth {
