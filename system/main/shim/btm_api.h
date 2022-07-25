@@ -198,6 +198,9 @@ void BTM_CancelInquiry(void);
  *                                    A pointer to tBTM_REMOTE_DEV_NAME is
  *                                    passed to the callback.
  *
+ * Output Params:    handle      - the handle of the pending request, used for
+ *                                 cancellation
+ *
  * Returns
  *                  BTM_CMD_STARTED is returned if the request was successfully
  *                                  sent to HCI.
@@ -210,7 +213,8 @@ void BTM_CancelInquiry(void);
  ******************************************************************************/
 tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
                                      tBTM_CMPL_CB* p_cb,
-                                     tBT_TRANSPORT transport);
+                                     tBT_TRANSPORT transport,
+                                     tBTM_PENDING_REMNAME_HANDLE* handle);
 
 /*******************************************************************************
  *
@@ -229,7 +233,7 @@ tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
  *                  BTM_WRONG_MODE if there is no active remote name request.
  *
  ******************************************************************************/
-tBTM_STATUS BTM_CancelRemoteDeviceName(void);
+tBTM_STATUS BTM_CancelRemoteDeviceName(tBTM_PENDING_REMNAME_HANDLE handle);
 
 /*******************************************************************************
  *
@@ -1277,31 +1281,6 @@ bool BTM_SecRegister(const tBTM_APPL_INFO* p_cb_info);
 
 /*******************************************************************************
  *
- * Function         BTM_SecAddRmtNameNotifyCallback
- *
- * Description      Profiles can register to be notified when name of the
- *                  remote device is resolved (up to
- *                  BTM_SEC_MAX_RMT_NAME_CALLBACKS).
- *
- * Returns          true if registered OK, else false
- *
- ******************************************************************************/
-bool BTM_SecAddRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
-
-/*******************************************************************************
- *
- * Function         BTM_SecDeleteRmtNameNotifyCallback
- *
- * Description      A profile can deregister notification when a new Link Key
- *                  is generated per connection.
- *
- * Returns          true if OK, else false
- *
- ******************************************************************************/
-bool BTM_SecDeleteRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
-
-/*******************************************************************************
- *
  * Function         BTM_GetSecurityFlagsByTransport
  *
  * Description      Get security flags for the device on a particular transport
@@ -1901,11 +1880,6 @@ tBTM_STATUS BTM_SetDefaultEventMask(void);
  *
  *******************************************************************************/
 tBTM_STATUS BTM_SetEventFilterInquiryResultAllDevices(void);
-
-/**
- * Send remote name request to GD shim Name module
- */
-void SendRemoteNameRequest(const RawAddress& raw_address);
 
 tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr,
                                       bool is_originator,

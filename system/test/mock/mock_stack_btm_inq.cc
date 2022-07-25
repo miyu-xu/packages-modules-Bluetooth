@@ -50,9 +50,6 @@ extern std::map<std::string, int> mock_function_count_map;
 #define UNUSED_ATTR
 #endif
 
-void SendRemoteNameRequest(const RawAddress& raw_address) {
-  mock_function_count_map[__func__]++;
-}
 bool BTM_HasEirService(const uint32_t* p_eir_uuid, uint16_t uuid16) {
   mock_function_count_map[__func__]++;
   return false;
@@ -78,7 +75,7 @@ tBTM_INQ_INFO* BTM_InqDbRead(const RawAddress& p_bda) {
   mock_function_count_map[__func__]++;
   return nullptr;
 }
-tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
+tBTM_STATUS BTM_CancelRemoteDeviceName(tBTM_PENDING_REMNAME_HANDLE handle) {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }
@@ -88,7 +85,8 @@ tBTM_STATUS BTM_ClearInqDb(const RawAddress* p_bda) {
 }
 tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
                                      tBTM_CMPL_CB* p_cb,
-                                     tBT_TRANSPORT transport) {
+                                     tBT_TRANSPORT transport,
+                                     tBTM_PENDING_REMNAME_HANDLE* handle) {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }
@@ -109,7 +107,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }
-tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint8_t origin,
+tBTM_STATUS btm_initiate_classic_rem_name(const RawAddress& remote_bda, uint8_t origin,
                                   uint64_t timeout_ms, tBTM_CMPL_CB* p_cb) {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
@@ -160,6 +158,10 @@ void btm_inq_remote_name_timer_timeout(UNUSED_ATTR void* data) {
 }
 void btm_inq_rmt_name_failed_cancelled(void) {
   mock_function_count_map[__func__]++;
+}
+tBTM_STATUS btm_inq_rmt_name_dequeue(bool synchronous) {
+  mock_function_count_map[__func__]++;
+  return BTM_SUCCESS;
 }
 void btm_inq_stop_on_ssp(void) { mock_function_count_map[__func__]++; }
 void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode) {
