@@ -22,6 +22,30 @@
       },
       "revId": "366706ffd63d5701b302efdf2c873dff1bed74ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0fcbbcdc_41ebc3a4",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1890,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-25T20:00:30Z",
+      "side": 1,
+      "message": "I guess so? It doesn\u0027t change functionality, but might as well.",
+      "parentUuid": "1ee12135_434f2c04",
+      "range": {
+        "startLine": 1890,
+        "startChar": 0,
+        "endLine": 1890,
+        "endChar": 29
+      },
+      "revId": "366706ffd63d5701b302efdf2c873dff1bed74ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
