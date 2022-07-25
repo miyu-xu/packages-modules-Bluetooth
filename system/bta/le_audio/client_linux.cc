@@ -52,7 +52,20 @@ void LeAudioClient::Initialize(
 void LeAudioClient::Cleanup(base::Callback<void()> cleanupCb) {}
 LeAudioClient* LeAudioClient::Get(void) { return nullptr; }
 void LeAudioClient::DebugDump(int fd) {}
-void LeAudioClient::AddFromStorage(const RawAddress& addr, bool autoconnect) {}
+void LeAudioClient::AddFromStorage(const RawAddress& addr, bool autoconnect,
+                                   int sink_audio_location,
+                                   int source_audio_location,
+                                   int sink_supported_context_types,
+                                   int source_supported_context_types,
+                                   const std::vector<uint8_t>& handles,
+                                   const std::vector<uint8_t>& sink_pacs,
+                                   const std::vector<uint8_t>& source_pacs,
+                                   const std::vector<uint8_t>& ases) {}
+bool GetHandlesForStorage(const RawAddress& addr, std::vector<uint8_t>& out) {}
+bool GetSinkPacsForStorage(const RawAddress& addr, std::vector<uint8_t>& out) {}
+bool GetSourcePacsForStorage(const RawAddress& addr,
+                             std::vector<uint8_t>& out) {}
+bool GetAsesForStorage(const RawAddress& addr, std::vector<uint8_t>& out) {}
 bool LeAudioClient::IsLeAudioClientRunning() { return false; }
 void LeAudioClient::InitializeAudioSetConfigurationProvider(void) {}
 void LeAudioClient::CleanupAudioSetConfigurationProvider(void) {}
