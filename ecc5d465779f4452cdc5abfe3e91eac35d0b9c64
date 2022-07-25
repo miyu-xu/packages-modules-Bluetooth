@@ -34,6 +34,24 @@
       "parentUuid": "62918438_9615641a",
       "revId": "ecc5d465779f4452cdc5abfe3e91eac35d0b9c64",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c423dff_bb4c3ea7",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1538,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-25T21:14:55Z",
+      "side": 1,
+      "message": "The timeout for failure is 40s. But the actual device name lookup only takes a couple seconds. So what I\u0027m suggesting is we just let the lookup continue in the background, and when it comes back, just ignore the response (since we will be in the IDLE state).\n\nThese extra couple of seconds will only matter if we do inquiry, cancel it, and then redo inquiry _again_, right? In which case we\u0027d have to wait for the response to complete before resending the request.",
+      "parentUuid": "d4eead35_3e803b33",
+      "revId": "ecc5d465779f4452cdc5abfe3e91eac35d0b9c64",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
