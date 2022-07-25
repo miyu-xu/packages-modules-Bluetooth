@@ -46,6 +46,29 @@
       },
       "revId": "366706ffd63d5701b302efdf2c873dff1bed74ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70190abe_6fb4b443",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1950,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-25T20:01:07Z",
+      "side": 1,
+      "message": "Can we add a log message here?",
+      "range": {
+        "startLine": 1948,
+        "startChar": 0,
+        "endLine": 1950,
+        "endChar": 41
+      },
+      "revId": "366706ffd63d5701b302efdf2c873dff1bed74ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
