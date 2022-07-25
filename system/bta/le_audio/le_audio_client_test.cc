@@ -2806,14 +2806,14 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchSimple) {
   Mock::VerifyAndClearExpectations(mock_unicast_audio_source_);
   SyncOnMainLoop();
 
-  // Do a content switch to ALERTS
+  // Do a content switch to INSTRUCTIONAL
   EXPECT_CALL(*mock_unicast_audio_source_, Release).Times(0);
   EXPECT_CALL(*mock_unicast_audio_source_, Stop).Times(0);
   EXPECT_CALL(*mock_unicast_audio_source_, Start).Times(0);
   EXPECT_CALL(mock_state_machine_,
-              StartStream(_, le_audio::types::LeAudioContextType::ALERTS, _))
+              StartStream(_, le_audio::types::LeAudioContextType::INSTRUCTIONAL, _))
       .Times(1);
-  UpdateMetadata(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN);
+  UpdateMetadata(AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE, AUDIO_CONTENT_TYPE_UNKNOWN);
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(mock_unicast_audio_source_);
 

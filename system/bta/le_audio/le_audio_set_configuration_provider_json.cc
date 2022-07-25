@@ -477,6 +477,8 @@ struct AudioSetConfigurationProviderJson {
         return "VoiceAssinstants";
       case types::LeAudioContextType::RINGTONE:
         return "Ringtone";
+      case types::LeAudioContextType::ALERTS:
+        return "Alerts";
       default:
         return "Default";
     }
@@ -492,6 +494,7 @@ struct AudioSetConfigurationProviderJson {
             {"Recording", types::LeAudioContextType::LIVE},
             {"Game", types::LeAudioContextType::GAME},
             {"VoiceAssistants", types::LeAudioContextType::VOICEASSISTANTS},
+            {"Alerts", types::LeAudioContextType::ALERTS},
             {"Default", types::LeAudioContextType::UNSPECIFIED},
         };
     return scenarios.count(scenario) ? scenarios.at(scenario)
