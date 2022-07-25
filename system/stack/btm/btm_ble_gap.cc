@@ -72,7 +72,8 @@ extern void btm_clear_all_pending_le_entry(void);
 extern const tBLE_BD_ADDR convert_to_address_with_type(
     const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
 
-#define BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS (30 * 1000)
+extern tBTM_STATUS btm_inq_rmt_name_dequeue(bool);
+
 #define MIN_ADV_LENGTH 2
 #define BTM_VSC_CHIP_CAPABILITY_RSP_LEN 9
 #define BTM_VSC_CHIP_CAPABILITY_RSP_LEN_L_RELEASE \
@@ -2058,7 +2059,6 @@ void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
   }
 
   btm_process_remote_name(&bda, bd_name, length + 1, hci_status);
-  btm_sec_rmt_name_request_complete(&bda, (const uint8_t*)p_name, hci_status);
 }
 
 /*******************************************************************************
@@ -2073,10 +2073,7 @@ void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
  * Returns          void
  *
  ******************************************************************************/
-tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
-                                     tBTM_CMPL_CB* p_cb) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
+tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda) {
   if (!controller_get_interface()->supports_ble()) return BTM_ERR_PROCESSING;
 
   tINQ_DB_ENT* p_i = btm_inq_db_find(remote_bda);
@@ -2085,18 +2082,8 @@ tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
     return BTM_ERR_PROCESSING;
   }
 
-  /* read remote device name using GATT procedure */
-  if (p_inq->remname_active) return BTM_BUSY;
-
   if (!GAP_BleReadPeerDevName(remote_bda, btm_ble_read_remote_name_cmpl))
     return BTM_BUSY;
-
-  p_inq->p_remname_cmpl_cb = p_cb;
-  p_inq->remname_active = true;
-  p_inq->remname_bda = remote_bda;
-
-  alarm_set_on_mloop(p_inq->remote_name_timer, BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS,
-                     btm_inq_remote_name_timer_timeout, NULL);
 
   return BTM_CMD_STARTED;
 }
@@ -2118,9 +2105,10 @@ bool btm_ble_cancel_remote_name(const RawAddress& remote_bda) {
 
   status = GAP_BleCancelReadPeerDevName(remote_bda);
 
-  p_inq->remname_active = false;
-  p_inq->remname_bda = RawAddress::kEmpty;
+  // DO NOT SUBMIT: what happens to the callbacks here?
   alarm_cancel(p_inq->remote_name_timer);
+
+  btm_inq_rmt_name_dequeue(/* synchronous = */ false);
 
   return status;
 }

@@ -95,17 +95,7 @@ bool bluetooth::shim::BTM_SecAddDevice(const RawAddress& bd_addr,
   mock_function_count_map[__func__]++;
   return false;
 }
-bool bluetooth::shim::BTM_SecAddRmtNameNotifyCallback(
-    tBTM_RMT_NAME_CALLBACK* p_callback) {
-  mock_function_count_map[__func__]++;
-  return false;
-}
 bool bluetooth::shim::BTM_SecDeleteDevice(const RawAddress& bd_addr) {
-  mock_function_count_map[__func__]++;
-  return false;
-}
-bool bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-    tBTM_RMT_NAME_CALLBACK* p_callback) {
   mock_function_count_map[__func__]++;
   return false;
 }
@@ -160,7 +150,8 @@ void bluetooth::shim::BTM_BleOpportunisticObserve(
     bool enable, tBTM_INQ_RESULTS_CB* p_results_cb) {
   mock_function_count_map[__func__]++;
 }
-tBTM_STATUS bluetooth::shim::BTM_CancelRemoteDeviceName(void) {
+tBTM_STATUS bluetooth::shim::BTM_CancelRemoteDeviceName(
+    tBTM_PENDING_REMNAME_HANDLE handle) {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }
@@ -170,7 +161,7 @@ tBTM_STATUS bluetooth::shim::BTM_ClearInqDb(const RawAddress* p_bda) {
 }
 tBTM_STATUS bluetooth::shim::BTM_ReadRemoteDeviceName(
     const RawAddress& raw_address, tBTM_CMPL_CB* callback,
-    tBT_TRANSPORT transport) {
+    tBT_TRANSPORT transport, tBTM_PENDING_REMNAME_HANDLE* handle) {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }
@@ -399,9 +390,6 @@ void bluetooth::shim::BTM_SecClearSecurityFlags(const RawAddress& bd_addr) {
 }
 void bluetooth::shim::BTM_SecurityGrant(const RawAddress& bd_addr,
                                         uint8_t res) {
-  mock_function_count_map[__func__]++;
-}
-void bluetooth::shim::SendRemoteNameRequest(const RawAddress& raw_address) {
   mock_function_count_map[__func__]++;
 }
 void btm_api_process_extended_inquiry_result(RawAddress raw_address,

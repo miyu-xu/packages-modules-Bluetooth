@@ -831,7 +831,9 @@ void bluetooth::shim::BTM_CancelInquiry(void) {
 
 tBTM_STATUS bluetooth::shim::BTM_ReadRemoteDeviceName(
     const RawAddress& raw_address, tBTM_CMPL_CB* callback,
-    tBT_TRANSPORT transport) {
+    tBT_TRANSPORT transport, tBTM_PENDING_REMNAME_HANDLE* handle) {
+  LOG_INFO("UNIMPLEMENTED %s need to support handle-based cancellation", __func__);
+
   CHECK(callback != nullptr);
   tBTM_STATUS status = BTM_NO_RESOURCES;
 
@@ -851,7 +853,9 @@ tBTM_STATUS bluetooth::shim::BTM_ReadRemoteDeviceName(
   return status;
 }
 
-tBTM_STATUS bluetooth::shim::BTM_CancelRemoteDeviceName(void) {
+tBTM_STATUS bluetooth::shim::BTM_CancelRemoteDeviceName(
+    tBTM_PENDING_REMNAME_HANDLE handle) {
+  LOG_INFO("UNIMPLEMENTED %s: needs support for handles", __func__);
   return Stack::GetInstance()->GetBtm()->CancelAllReadRemoteDeviceName();
 }
 
@@ -1254,15 +1258,6 @@ uint16_t bluetooth::shim::BTM_GetHCIConnHandle(const RawAddress& remote_bda,
   return Stack::GetInstance()->GetBtm()->GetAclHandle(remote_bda, transport);
 }
 
-static void remote_name_request_complete_noop(void* p_name){
-    // Should notify BTM_Sec, but we should use GD SMP.
-};
-
-void bluetooth::shim::SendRemoteNameRequest(const RawAddress& raw_address) {
-  Stack::GetInstance()->GetBtm()->ReadClassicRemoteDeviceName(
-      raw_address, remote_name_request_complete_noop);
-}
-
 tBTM_STATUS bluetooth::shim::btm_sec_mx_access_request(
     const RawAddress& bd_addr, bool is_originator,
     uint16_t security_requirement, tBTM_SEC_CALLBACK* p_callback,
@@ -1297,20 +1292,6 @@ void bluetooth::shim::BTM_SecClearSecurityFlags(const RawAddress& bd_addr) {
 char* bluetooth::shim::BTM_SecReadDevName(const RawAddress& address) {
   static char name[] = "TODO: See if this is needed";
   return name;
-}
-
-bool bluetooth::shim::BTM_SecAddRmtNameNotifyCallback(
-    tBTM_RMT_NAME_CALLBACK* p_callback) {
-  // TODO(optedoblivion): keep track of callback
-  LOG_WARN("Unimplemented");
-  return true;
-}
-
-bool bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-    tBTM_RMT_NAME_CALLBACK* p_callback) {
-  // TODO(optedoblivion): stop keeping track of callback
-  LOG_WARN("Unimplemented");
-  return true;
 }
 
 void bluetooth::shim::BTM_PINCodeReply(const RawAddress& bd_addr,
