@@ -16,6 +16,24 @@
       "message": "This is a prototype for the change I mentioned. It passes A2DP/AVRCP tests, but HFP tests cannot be passed even without this CL.",
       "revId": "0609f22bccde4a6cbbf760221a3ccc5a42341448",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30ac06f0_85b69361",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-26T20:56:21Z",
+      "side": 1,
+      "message": "HFP test are running fine on my setup (just ran it again now after a sync)\nCan you send me the error you have ?",
+      "parentUuid": "f0a6d484_42f85432",
+      "revId": "0609f22bccde4a6cbbf760221a3ccc5a42341448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
