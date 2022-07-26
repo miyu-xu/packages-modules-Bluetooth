@@ -46,6 +46,30 @@
       },
       "revId": "78fd39be7de292165a143a8bcdc4d65763c1d1b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a15f03_c91b3de0",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2022-07-26T04:22:07Z",
+      "side": 1,
+      "message": "Talked with Chienyuan, we added new test w/o building and testing. Chienyuan will enable it later.",
+      "parentUuid": "ff5166d6_f8b2f5ea",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 84
+      },
+      "revId": "78fd39be7de292165a143a8bcdc4d65763c1d1b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
