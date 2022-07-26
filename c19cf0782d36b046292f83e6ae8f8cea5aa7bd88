@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b60634_8bed3255",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958250
+      },
+      "writtenOn": "2022-07-26T08:24:21Z",
+      "side": 1,
+      "message": "Please check comments",
+      "revId": "c19cf0782d36b046292f83e6ae8f8cea5aa7bd88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a957fec_b5e852bd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1526,
+      "author": {
+        "id": 1958250
+      },
+      "writtenOn": "2022-07-26T08:24:21Z",
+      "side": 1,
+      "message": "It is duplicate logs.\nPlease consider removing it.",
+      "revId": "c19cf0782d36b046292f83e6ae8f8cea5aa7bd88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ead6171f_f2577daa",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1540,
+      "author": {
+        "id": 1958250
+      },
+      "writtenOn": "2022-07-26T08:24:21Z",
+      "side": 1,
+      "message": "insert operation duplicated with line 1533.\nfor loop and insert operations need to be removed",
+      "revId": "c19cf0782d36b046292f83e6ae8f8cea5aa7bd88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536a11f9_0b798ef1",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1566,
+      "author": {
+        "id": 1958250
+      },
+      "writtenOn": "2022-07-26T08:24:21Z",
+      "side": 1,
+      "message": "num_uuids should be used instead of pairing_cb.uuids.size()",
+      "revId": "c19cf0782d36b046292f83e6ae8f8cea5aa7bd88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
