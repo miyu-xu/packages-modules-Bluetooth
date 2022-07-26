@@ -16,6 +16,24 @@
       "message": "I launched a ATBD run for pts-bot to see if it still runs on ATP at https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI20900010074178562\u0026tab\u003ddetails\n\nThis is still running at the time I\u0027m writing this comment. I would like that we wait for the results before merging.\n\nThanks !",
       "revId": "80996c6ebfb353391e5c258beed62c91abdd9350",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2064825b_ff75228f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-26T15:39:04Z",
+      "side": 1,
+      "message": "It just passed x)",
+      "parentUuid": "a89975b2_15f6ddf9",
+      "revId": "80996c6ebfb353391e5c258beed62c91abdd9350",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
