@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57b8147b_4ef280d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-26T16:06:26Z",
+      "side": 1,
+      "message": "It looks like the test needs to be updated to make this pass.\n\npackages/modules/Bluetooth/system/gd/packet/parser/test/generated_packet_test.cc:1966: Failure\npackages/modules/Bluetooth/system/gd/packet/parser/test/generated_packet_test.cc:1966: Failure\nExpected equality of these values:\n\"OneFixedTypesStruct { one \u003d StructWithFixedTypes { four_bits \u003d FIVE, id \u003d 0xd, array \u003d ARRAY[0x1, 0x2, 0x3], \" \"example_checksum \u003d CHECKSUM, six_bytes \u003d SixBytes } }\"\nWhich is: \"OneFixedTypesStruct { one \u003d StructWithFixedTypes { four_bits \u003d FIVE, id \u003d 0xd, array \u003d ARRAY[0x1, 0x2, 0x3], example_checksum \u003d CHECKSUM, six_bytes \u003d SixBytes } }\"\nview.ToString()\nWhich is: \"OneFixedTypesStruct { one \u003d StructWithFixedTypes { four_bits \u003d FIVE, id \u003d \\r, array \u003d ARRAY[\\x1, \\x2, \\x3], example_checksum \u003d CHECKSUM, six_bytes \u003d SixBytes } }\"",
+      "revId": "69ca159f29bc618647d42bbabaaf74dbfc249178",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
