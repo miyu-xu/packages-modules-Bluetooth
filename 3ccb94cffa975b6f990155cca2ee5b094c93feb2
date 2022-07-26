@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b39bb2b6_0068de86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-07-26T05:05:38Z",
+      "side": 1,
+      "message": "The build failure is due to package name difference of OBEX.\nI\u0027ll merge CLs in internal branches first.",
+      "revId": "3ccb94cffa975b6f990155cca2ee5b094c93feb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
