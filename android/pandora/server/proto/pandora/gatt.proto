@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+option java_outer_classname = "GattProto";
+
+package pandora;
+
+import "pandora/host.proto";
+
+service GATT {
+  // Request an MTU size.
+  rpc ExchangeMTU(ExchangeMTURequest) returns (ExchangeMTUResponse);
+
+  // Writes on a characteristic.
+  rpc WriteCharacteristicFromHandle(WriteCharacteristicRequest) returns (WriteCharacteristicResponse);
+}
+
+// Request for the `ExchangeMTU` method.
+message ExchangeMTURequest {
+  Connection connection = 1;
+  int32 mtu = 2;
+}
+
+// Result of `ExchangeMTU` method.
+message ExchangeMTUResponse {
+  bool success = 1;
+}
+
+// Request for the `writeCharacteristicFromHandle` method.
+message WriteCharacteristicRequest {
+  Connection connection = 1;
+  uint32 handle = 2;
+  bytes value = 3;
+}
+
+// Response for the `writeCharacteristicFromHandle` method.
+message WriteCharacteristicResponse {
+  bool success = 1;
+}
