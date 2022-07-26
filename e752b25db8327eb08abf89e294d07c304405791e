@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dca2bf6e_ec90b181",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-07-26T16:41:53Z",
+      "side": 1,
+      "message": "CTS test alone wont suffice here - hoping Samsung or us have tested that SCO and HFP flows work correctly after this upstream.",
+      "revId": "e752b25db8327eb08abf89e294d07c304405791e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
