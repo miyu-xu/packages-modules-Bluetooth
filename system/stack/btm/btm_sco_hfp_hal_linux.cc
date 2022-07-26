@@ -26,8 +26,8 @@
 
 namespace hfp_hal_interface {
 namespace {
-bool offload_supported = false;
-bool offload_enabled = false;
+bool offload_supported = true;
+bool offload_enabled = true;
 
 struct mgmt_bt_codec {
   uint8_t codec;
@@ -94,7 +94,9 @@ void cache_codec_capabilities(struct mgmt_rp_get_codec_capabilities* rp) {
     cached_codec_info c = {
         .inner =
             {
-                .codec = static_cast<codec>(1 << (mc->codec - 1)),
+                /* mSBC: 0x05 -> 0x04, mSBCt: 0x03 -> 0x02, CVSD: 0x02 -> 0x01
+                 */
+                .codec = static_cast<codec>(mc->codec - 1),
                 .data_path = mc->data_path,
                 .data = mc->data_length == 0
                             ? std::vector<uint8_t>{}
@@ -172,7 +174,7 @@ int mgmt_get_codec_capabilities(int fd, uint16_t hci) {
     if (ret > 0) {
       RETRY_ON_INTR(ret = write(fd, &ev, MGMT_PKT_HDR_SIZE + ev.len));
       if (ret < 0) {
-        LOG_DEBUG("Failed to call MGMT_OP_GET_SCO_CODEC_CAPABILITES: %d",
+        LOG_ERROR("Failed to call MGMT_OP_GET_SCO_CODEC_CAPABILITES: %d",
                   -errno);
         return -errno;
       };
@@ -242,6 +244,9 @@ int mgmt_notify_sco_connection_change(int fd, int hci, RawAddress device,
 
   struct mgmt_cp_notify_sco_connection_change* cp =
       reinterpret_cast<struct mgmt_cp_notify_sco_connection_change*>(ev.data);
+
+  if (codec >= MGMT_SCO_CODEC_MSBC) return 0;
+
   cp->hci_dev = hci;
   cp->connected = is_connected;
   cp->codec = codec;
@@ -332,8 +337,48 @@ bool enable_offload(bool enable) {
   return true;
 }
 
-// Notify the codec datapath to lower layer for offload mode
-bool set_codec_datapath(int codec) { return true; }
+static bool get_single_codec(int codec, bt_codec** out) {
+  for (cached_codec_info& c : cached_codecs) {
+    if (c.inner.codec == codec) {
+      *out = &c.inner;
+      return true;
+    }
+  }
+
+  return false;
+}
+
+void set_codec_datapath(esco_coding_format_t coding_format) {
+  bool found;
+  bt_codec* codec;
+
+  /* TODO: fix mismatched esco enum */
+  found = get_single_codec(codec::MSBC, &codec);
+  if (!found) {
+    LOG_ERROR(
+        "Failed to find codec config for format (%u). Won't set datapath.",
+        coding_format);
+    return;
+  }
+
+  LOG_INFO("Configuring datapath for codec (%u)", codec->codec);
+  if (codec->codec == codec::MSBC && !get_offload_enabled()) {
+    LOG_ERROR(
+        "Tried to configure offload data path for format (%u) with offload "
+        "disabled. Won't set datapath.",
+        coding_format);
+    return;
+  }
+
+  // If data path exists, make sure to configure both input and output for SCO.
+  if (codec->data_path) {
+    LOG_INFO("codec->data.size() = %u", codec->data.size());
+    btm_configure_data_path(btm_data_direction::CONTROLLER_TO_HOST,
+                            codec->data_path, codec->data);
+    btm_configure_data_path(btm_data_direction::HOST_TO_CONTROLLER,
+                            codec->data_path, codec->data);
+  }
+}
 
 int get_packet_size(int codec) {
   for (const cached_codec_info& c : cached_codecs) {
