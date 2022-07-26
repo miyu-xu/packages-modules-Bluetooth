@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9484ca3f_5f8aa830",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-26T22:00:58Z",
+      "side": 1,
+      "message": "maybe add some warning logs here for empty uuids",
+      "range": {
+        "startLine": 1439,
+        "startChar": 31,
+        "endLine": 1440,
+        "endChar": 21
+      },
+      "revId": "998184b8a585e2f0e27ee5a5530dbc3c50f62eb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
