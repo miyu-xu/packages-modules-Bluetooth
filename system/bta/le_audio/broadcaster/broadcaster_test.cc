@@ -17,6 +17,7 @@
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+#include <hardware/audio.h>
 
 #include <chrono>
 
@@ -29,6 +30,8 @@
 #include "bta/test/common/mock_controller.h"
 #include "device/include/controller.h"
 #include "stack/include/btm_iso_api.h"
+
+using namespace std::chrono_literals;
 
 using le_audio::types::LeAudioContextType;
 
@@ -463,10 +466,87 @@ static BasicAudioAnnouncementData prepareAnnouncement(
   return announcement;
 }
 
+TEST_F(BroadcasterTest, UpdateMetadataFromAudioTrackMetadata) {
+  ContentControlIdKeeper::GetInstance()->SetCcid(media_context, media_ccid);
+  auto broadcast_id = InstantiateBroadcast();
+
+  LeAudioClientAudioSinkReceiver* audio_receiver;
+  EXPECT_CALL(*mock_audio_source_, Start)
+      .WillOnce(DoAll(SaveArg<1>(&audio_receiver), Return(true)));
+
+  LeAudioBroadcaster::Get()->StartAudioBroadcast(broadcast_id);
+  ASSERT_NE(audio_receiver, nullptr);
+
+  auto sm = MockBroadcastStateMachine::GetLastInstance();
+  std::vector<uint8_t> ccid_list;
+  std::vector<uint8_t> context_types_map;
+  EXPECT_CALL(*sm, UpdateBroadcastAnnouncement)
+      .WillOnce(
+          [&](bluetooth::le_audio::BasicAudioAnnouncementData announcement) {
+            for (auto subgroup : announcement.subgroup_configs) {
+              if (subgroup.metadata.count(
+                      types::kLeAudioMetadataTypeCcidList)) {
+                ccid_list =
+                    subgroup.metadata.at(types::kLeAudioMetadataTypeCcidList);
+              }
+              if (subgroup.metadata.count(
+                      types::kLeAudioMetadataTypeStreamingAudioContext)) {
+                context_types_map = subgroup.metadata.at(
+                    types::kLeAudioMetadataTypeStreamingAudioContext);
+              }
+            }
+          });
+
+  std::map<uint8_t, std::vector<uint8_t>> meta = {};
+  BroadcastCodecWrapper codec_config(
+      {.coding_format = le_audio::types::kLeAudioCodingFormatLC3,
+       .vendor_company_id = le_audio::types::kLeAudioVendorCompanyIdUndefined,
+       .vendor_codec_id = le_audio::types::kLeAudioVendorCodecIdUndefined},
+      {.num_channels = LeAudioCodecConfiguration::kChannelNumberMono,
+       .sample_rate = LeAudioCodecConfiguration::kSampleRate16000,
+       .bits_per_sample = LeAudioCodecConfiguration::kBitsPerSample16,
+       .data_interval_us = LeAudioCodecConfiguration::kInterval10000Us},
+      32000, 40);
+  auto announcement = prepareAnnouncement(codec_config, meta);
+
+  ON_CALL(*sm, GetBroadcastAnnouncement())
+      .WillByDefault(ReturnRef(announcement));
+
+  std::promise<void> do_update_metadata_promise;
+  struct playback_track_metadata tracks_[] = {
+      {AUDIO_USAGE_GAME, AUDIO_CONTENT_TYPE_SONIFICATION, 0},
+      {AUDIO_USAGE_MEDIA, AUDIO_CONTENT_TYPE_MUSIC, 0},
+      {AUDIO_USAGE_VOICE_COMMUNICATION_SIGNALLING, AUDIO_CONTENT_TYPE_SPEECH,
+       0},
+      {AUDIO_USAGE_UNKNOWN, AUDIO_CONTENT_TYPE_UNKNOWN, 0}};
+
+  source_metadata_t multitrack_source_metadata = {.track_count = 4,
+                                                  .tracks = &tracks_[0]};
+
+  auto do_update_metadata_future = do_update_metadata_promise.get_future();
+  audio_receiver->OnAudioMetadataUpdate(std::move(do_update_metadata_promise),
+                                        multitrack_source_metadata);
+  do_update_metadata_future.wait_for(3s);
+
+  // Verify ccid
+  ASSERT_NE(ccid_list.size(), 0u);
+  ASSERT_TRUE(std::find(ccid_list.begin(), ccid_list.end(), media_ccid) !=
+              ccid_list.end());
+
+  // Verify context type
+  ASSERT_NE(context_types_map.size(), 0u);
+  uint16_t context_type;
+  auto pp = context_types_map.data();
+  STREAM_TO_UINT16(context_type, pp);
+  ASSERT_NE(context_type &
+                static_cast<std::underlying_type<LeAudioContextType>::type>(
+                    LeAudioContextType::MEDIA | LeAudioContextType::GAME),
+            0);
+}
+
 TEST_F(BroadcasterTest, GetMetadata) {
   auto broadcast_id = InstantiateBroadcast();
   bluetooth::le_audio::BroadcastMetadata metadata;
-  // bluetooth::le_audio::BasicAudioAnnouncementData announcement;
 
   static const uint8_t test_adv_sid = 0x14;
   std::optional<bluetooth::le_audio::BroadcastCode> test_broadcast_code =
