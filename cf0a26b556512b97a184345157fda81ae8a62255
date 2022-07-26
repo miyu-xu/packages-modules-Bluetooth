@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba573459_fce12a72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1905048
+      },
+      "writtenOn": "2022-07-26T04:50:14Z",
+      "side": 1,
+      "message": "It looks good. \nCan \u0027offload\u0027 be written instead of \u0027hfp_hal_interface::get_offload_enabled()\u0027?",
+      "revId": "cf0a26b556512b97a184345157fda81ae8a62255",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
