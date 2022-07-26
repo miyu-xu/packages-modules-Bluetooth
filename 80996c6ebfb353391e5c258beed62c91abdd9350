@@ -34,6 +34,23 @@
       "parentUuid": "a89975b2_15f6ddf9",
       "revId": "80996c6ebfb353391e5c258beed62c91abdd9350",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde80ae7_702c7540",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-07-26T15:42:59Z",
+      "side": 1,
+      "message": "ProvidePairingConfirmation should be removed from sm.proto in the future (b/240276298).",
+      "revId": "80996c6ebfb353391e5c258beed62c91abdd9350",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
