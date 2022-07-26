@@ -19,10 +19,11 @@ package com.android.pandora
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
-import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGatt.GATT_SUCCESS
 import android.bluetooth.BluetoothGattCallback
+import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothProfile
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.content.Context
@@ -62,7 +63,30 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
 
-  private val gattClients: MutableMap<String, BluetoothGatt> = mutableMapOf<String, BluetoothGatt>()
+  public val gattClients: MutableMap<String, GattInstance> = mutableMapOf<String, GattInstance>()
+
+  private val mGattCallback = object : BluetoothGattCallback() {
+    override fun onConnectionStateChange(bluetoothGatt: BluetoothGatt,
+        status: Int, newState: Int) {
+      val deviceAddr = bluetoothGatt.getDevice()?.getAddress()
+      val gattInstance: GattInstance? = gattClients.get(deviceAddr)
+      if (gattInstance == null) {
+        return
+      }
+      gattInstance.setConnectionState(newState)
+    }
+
+    override fun onServicesDiscovered(bluetoothGatt: BluetoothGatt, status: Int) {
+      val deviceAddr = bluetoothGatt.getDevice()?.getAddress()
+      val gattInstance: GattInstance? = gattClients.get(deviceAddr)
+      if (gattInstance == null) {
+        return
+      }
+      if (status == BluetoothGatt.GATT_SUCCESS) {
+        gattInstance.setServicesDiscovered()
+      }
+    }
+  }
 
 
   init {
@@ -292,9 +316,12 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     grpcUnary<Empty>(scope, responseObserver) {
       val ptsAddress = request.connection.cookie.toByteArray().decodeToString()
       Log.i(TAG, "disconnect: $ptsAddress")
-      val gatt = gattClients[ptsAddress]
-      gatt?.close()
-      gatt?.disconnect()
+      val gattInstance: GattInstance? = gattClients.get(ptsAddress)
+      if (gattInstance == null) {
+        Log.e(TAG, "Trying to disconnect a device that is not in instances map")
+      } else if (!gattInstance.disconnectInstance()) {
+        Log.e(TAG, "Error while disconnecting $gattInstance")
+      }
       gattClients.remove(ptsAddress)
       Empty.getDefaultInstance()
     }
@@ -332,27 +359,15 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
   private fun gattConnect(device: BluetoothDevice): Boolean {
     Log.d(TAG, "gattConnect")
-    var isConnected = false
-    runBlocking {
-      val flow = callbackFlow {
-        val gattCallback =
-          object : BluetoothGattCallback() {
-            override fun onConnectionStateChange(
-              bluetoothGatt: BluetoothGatt?,
-              status: Int,
-              newState: Int
-            ) {
-              Log.d(TAG, "status: $status newState: $newState")
-              trySendBlocking(status == GATT_SUCCESS)
-            }
-          }
-        val bluetoothGatt: BluetoothGatt =
-          device.connectGatt(context, false, gattCallback, TRANSPORT_LE)
-        gattClients[device.address] = bluetoothGatt
-        awaitClose {}
-      }
-      isConnected = flow.first()
+    val gattInstance = GattInstance(device)
+    gattClients.put(device.address, gattInstance)
+    if (!gattInstance.connectInstance(TRANSPORT_LE, mGattCallback, context)) {
+      Log.e(TAG, "$gattInstance failed to connect")
+      return false
     }
-    return isConnected
+    runBlocking {
+      gattInstance.waitForState(BluetoothProfile.STATE_CONNECTED)
+    }
+    return true
   }
 }
