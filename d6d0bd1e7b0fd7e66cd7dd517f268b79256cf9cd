@@ -22,6 +22,30 @@
       },
       "revId": "d6d0bd1e7b0fd7e66cd7dd517f268b79256cf9cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55563574_59243ec6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-07-26T08:22:30Z",
+      "side": 1,
+      "message": "Yeap, but for some reason `stop()` can be called multiple times and the exception will be raised about unregistering not-registered broadcast receiver. While `stop()` has all these checks for null on other class members, we should probably track the callback registration status as well. Introducing another bool variable to track it didn\u0027t appeal to me, so maybe we could keep the `if (mIntentReceiver !\u003d null)` check in `stop()` and allow it to be nullable?",
+      "parentUuid": "2576f939_70a09de8",
+      "range": {
+        "startLine": 254,
+        "startChar": 8,
+        "endLine": 277,
+        "endChar": 10
+      },
+      "revId": "d6d0bd1e7b0fd7e66cd7dd517f268b79256cf9cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
