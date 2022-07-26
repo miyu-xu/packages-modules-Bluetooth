@@ -22,6 +22,30 @@
       },
       "revId": "78fd39be7de292165a143a8bcdc4d65763c1d1b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff5166d6_f8b2f5ea",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1608690
+      },
+      "writtenOn": "2022-07-26T03:58:15Z",
+      "side": 1,
+      "message": "We tried to add a case to le_advertising_manager_test.cc, but le_advertising_manager_test.cc is disabled right now. We also tried to add le_advertising_manager_test.cc into the bluetooth_test_gd_unit, but it couldn\u0027t pass building. So we can\u0027t build and verify our case.",
+      "parentUuid": "8889bd2a_33520331",
+      "range": {
+        "startLine": 321,
+        "startChar": 0,
+        "endLine": 321,
+        "endChar": 84
+      },
+      "revId": "78fd39be7de292165a143a8bcdc4d65763c1d1b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
