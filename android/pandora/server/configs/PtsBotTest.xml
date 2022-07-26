@@ -28,5 +28,6 @@
         <option name="profile" value="SDP/SR" />
         <option name="profile" value="SM/CEN/EKS" />
         <option name="profile" value="SM/CEN/JW" />
+        <option name="profile" value="GATT/CL/GAC" />
     </test>
 </configuration>
