@@ -265,6 +265,30 @@
       },
       "revId": "580fca1148c17794688cbb553cc677635b8580a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e691770_a04a637e",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2798,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-07-26T03:03:34Z",
+      "side": 1,
+      "message": "*on* prefix/term typically is a async callback, but this could also be called, more or less synchronously, upon cancel connect which would do the same thing of removing this entry.",
+      "parentUuid": "f734f956_59825b12",
+      "range": {
+        "startLine": 2791,
+        "startChar": 2,
+        "endLine": 2798,
+        "endChar": 3
+      },
+      "revId": "580fca1148c17794688cbb553cc677635b8580a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
