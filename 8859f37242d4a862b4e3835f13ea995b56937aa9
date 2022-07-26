@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e487e5c7_1518cd3a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1414,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-26T21:53:34Z",
+      "side": 0,
+      "message": "is this set still used anywhere after this CL?\n\nIf not, should we remove from pairing_cb?",
+      "range": {
+        "startLine": 1414,
+        "startChar": 10,
+        "endLine": 1414,
+        "endChar": 26
+      },
+      "revId": "8859f37242d4a862b4e3835f13ea995b56937aa9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
