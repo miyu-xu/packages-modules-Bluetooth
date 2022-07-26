@@ -16,6 +16,52 @@
       "message": "Could you please rebase this patch ?",
       "revId": "188c9ec2ca5429ab9a2e8b3b9b55f3d6b78b7270",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff627f74_93afb6ae",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-07-26T11:36:37Z",
+      "side": 1,
+      "message": "I think we need reference here, otherwise Vec: c.inner.data is its own copy and will be destructed once it goes out of scope.",
+      "range": {
+        "startLine": 338,
+        "startChar": 25,
+        "endLine": 338,
+        "endChar": 26
+      },
+      "revId": "188c9ec2ca5429ab9a2e8b3b9b55f3d6b78b7270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e31bd5fc_f282803d",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-07-26T11:36:37Z",
+      "side": 1,
+      "message": "The enum seems to be mismatched with that of the caller added in `bta_ag_sco.cc` (ESCO_CODING_FORMAT_MSBC !\u003d BTM_SCO_CODEC_MSBC).",
+      "range": {
+        "startLine": 352,
+        "startChar": 48,
+        "endLine": 352,
+        "endChar": 61
+      },
+      "revId": "188c9ec2ca5429ab9a2e8b3b9b55f3d6b78b7270",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
