@@ -22,6 +22,30 @@
       },
       "revId": "44f711fae0f516fce4da2008bb1328ae97eadf04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05d5f013_52623e90",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-07-26T23:48:30Z",
+      "side": 1,
+      "message": "Yes but it does this in a single reactor call enforcing it to be synchronous.\n\n```\n  CallOn(pimpl_-\u003ele_impl_, \u0026le_impl::remove_device_from_background_connection_list, address_with_type);\n  CallOn(pimpl_-\u003ele_impl_, \u0026le_impl::cancel_connect, address_with_type);\n```\nThis is 2 reactor calls; probably no difference but I expect create/cancel connections API to be removed; \n\nThe API should be if there is an item on the filter accept list, we arm; once that list goes to zero we disarm.\n\nCancelling connection really means remove from filter acceptlist...that is all.",
+      "parentUuid": "a8d9e238_3014bb7f",
+      "range": {
+        "startLine": 221,
+        "startChar": 17,
+        "endLine": 221,
+        "endChar": 59
+      },
+      "revId": "44f711fae0f516fce4da2008bb1328ae97eadf04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
