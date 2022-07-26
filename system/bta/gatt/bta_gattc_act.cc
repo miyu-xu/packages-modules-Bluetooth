@@ -536,9 +536,12 @@ void bta_gattc_conn(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
       p_clcb->p_srcb->state != BTA_GATTC_SERV_IDLE) {
     if (p_clcb->p_srcb->state == BTA_GATTC_SERV_IDLE) {
       p_clcb->p_srcb->state = BTA_GATTC_SERV_LOAD;
-      // For bonded devices, read cache directly, and back to connected state.
+      // When flag off, use local cache if cache exists
+      // When flag on, use local cache if cache exists and device bonded
       gatt::Database db = bta_gattc_cache_load(p_clcb->p_srcb->server_bda);
-      if (!db.IsEmpty() && btm_sec_is_a_bonded_dev(p_clcb->p_srcb->server_bda)) {
+      if (!db.IsEmpty() &&
+          (!bta_gattc_is_robust_caching_enabled() ||
+           btm_sec_is_a_bonded_dev(p_clcb->p_srcb->server_bda))) {
         p_clcb->p_srcb->gatt_database = db;
         p_clcb->p_srcb->state = BTA_GATTC_SERV_IDLE;
         bta_gattc_reset_discover_st(p_clcb->p_srcb, GATT_SUCCESS);
