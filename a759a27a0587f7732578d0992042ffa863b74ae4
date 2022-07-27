@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819a2507_a72dfa7f",
+        "filename": "system/stack/test/fuzzers/a2dp/codec/a2dpCodecHelperFunctions.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-27T18:01:10Z",
+      "side": 1,
+      "message": "Can you detail why ?\n\nIn my mind fuzzer should send a lots of mal formats data, in order to trigger an error.\nShouldn\u0027t the stack handle the erroneous offset instead ?",
+      "range": {
+        "startLine": 141,
+        "startChar": 10,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "a759a27a0587f7732578d0992042ffa863b74ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
