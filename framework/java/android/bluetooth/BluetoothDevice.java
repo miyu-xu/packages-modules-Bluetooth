@@ -1514,6 +1514,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 service.getRemoteName(this, mAttributionSource, recv);
                 String name = recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
                 if (name != null) {
+                    log("aaaaaaaa111111 " + name);
                     // remove whitespace characters from the name
                     return name
                         .replace('\t', ' ')
@@ -1524,6 +1525,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
         }
+        log("aaaaaaaa22222 " + defaultValue);
+
         return defaultValue;
     }
 
