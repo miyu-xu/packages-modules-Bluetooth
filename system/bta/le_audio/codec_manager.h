@@ -64,6 +64,12 @@ class CodecManager {
           update_receiver);
   virtual const ::le_audio::set_configurations::AudioSetConfigurations*
   GetOffloadCodecConfig(::le_audio::types::LeAudioContextType ctx_type);
+  virtual void UpdateCisHandleMap(
+      uint16_t conn_handle, bool add,
+      std::function<void(const ::le_audio::offload_config& config)>
+          update_source_receiver,
+      std::function<void(const ::le_audio::offload_config& config)>
+          update_sink_receiver);
   virtual const ::le_audio::broadcast_offload_config*
   GetBroadcastOffloadConfig();
   virtual void UpdateBroadcastConnHandle(

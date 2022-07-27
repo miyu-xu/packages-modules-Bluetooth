@@ -803,6 +803,12 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           LOG_WARN(
               "Group member disconnected during streaming. Cis handle 0x%04x",
               event->cis_conn_hdl);
+          if (CodecManager::GetInstance()->GetCodecLocation() ==
+              CodecLocation::ADSP) {
+            LOG_INFO("Update steamMap as CIS disconnected for offload ");
+            state_machine_callbacks_->OnActiveCisHandleChanged(
+                event->cis_conn_hdl, false);
+          }
           return;
         }
 

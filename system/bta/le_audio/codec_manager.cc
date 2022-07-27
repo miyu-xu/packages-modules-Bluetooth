@@ -125,6 +125,36 @@ struct codec_manager_impl {
     return &context_type_offload_config_map_[ctx_type];
   }
 
+  void UpdateCisHandleMap(
+      uint16_t conn_handle, bool add,
+      std::function<void(const ::le_audio::offload_config& config)>
+          update_source_receiver,
+      std::function<void(const ::le_audio::offload_config& config)>
+          update_sink_receiver) {
+    if (!add) {
+      if (sink_config.stream_map.size() > 1) {
+        sink_config.stream_map.erase(
+            std::remove_if(sink_config.stream_map.begin(),
+                           sink_config.stream_map.end(),
+                           [&conn_handle](auto& pair) {
+                             return pair.first == conn_handle;
+                           }),
+            sink_config.stream_map.end());
+        update_source_receiver(sink_config);
+      }
+      if (source_config.stream_map.size() > 1) {
+        source_config.stream_map.erase(
+            std::remove_if(source_config.stream_map.begin(),
+                           source_config.stream_map.end(),
+                           [&conn_handle](auto& pair) {
+                             return pair.first == conn_handle;
+                           }),
+            source_config.stream_map.end());
+        update_sink_receiver(source_config);
+      }
+    }
+  }
+
   const broadcast_offload_config* GetBroadcastOffloadConfig() {
     // TODO: Need to check the offload capabilities and audio policy further
     // Use 48_1_2 for the media quality as default by now.
@@ -376,6 +406,18 @@ const AudioSetConfigurations* CodecManager::GetOffloadCodecConfig(
   }
 
   return nullptr;
+}
+
+void CodecManager::UpdateCisHandleMap(
+    uint16_t conn_handle, bool add,
+    std::function<void(const ::le_audio::offload_config& config)>
+        update_source_receiver,
+    std::function<void(const ::le_audio::offload_config& config)>
+        update_sink_receiver) {
+  if (pimpl_->IsRunning()) {
+    return pimpl_->codec_manager_impl_->UpdateCisHandleMap(
+        conn_handle, add, update_source_receiver, update_sink_receiver);
+  }
 }
 
 const ::le_audio::broadcast_offload_config*
