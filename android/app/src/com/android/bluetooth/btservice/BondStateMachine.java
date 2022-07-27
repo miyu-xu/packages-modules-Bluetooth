@@ -338,7 +338,7 @@ final class BondStateMachine extends StateMachine {
                             ? BluetoothProtoEnums.BOND_SUB_STATE_UNKNOWN
                             : BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_OOB_DATA_PROVIDED,
                     BluetoothProtoEnums.UNBOND_REASON_UNKNOWN);
-
+            infoLog("aaaaaaaabbbbbbbbb createBond " +  dev.getName());
             if (!result) {
                 BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_BOND_STATE_CHANGED,
                         mAdapterService.obfuscateAddress(dev), transport, dev.getType(),
