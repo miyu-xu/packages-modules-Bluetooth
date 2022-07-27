@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6efc7f3_6b33fd1b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-07-27T19:42:07Z",
+      "side": 1,
+      "message": "sorry I didn\u0027t catch this before, yeah this would probably break android.  I\u0027m uncertain if state is the right state here..",
+      "revId": "c3ceaf0725435ba7b535930965743c73bf4e38a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
