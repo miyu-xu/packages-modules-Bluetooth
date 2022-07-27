@@ -150,6 +150,8 @@ class MockLeAudioGroupStateMachineCallbacks
               (int group_id, bluetooth::le_audio::GroupStreamStatus status),
               (override));
   MOCK_METHOD((void), OnStateTransitionTimeout, (int group_id), (override));
+  MOCK_METHOD((void), OnActiveCisHandleChanged,
+              (uint16_t conn_handle, bool add), (override));
 };
 
 class StateMachineTest : public Test {

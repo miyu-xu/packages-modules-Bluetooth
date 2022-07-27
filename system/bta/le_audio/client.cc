@@ -377,6 +377,19 @@ class LeAudioClientImpl : public LeAudioClient {
     } while (leAudioDevice);
   }
 
+  void OnActiveCisHandleChanged(uint16_t conn_handle, bool add) {
+    if (CodecManager::GetInstance()->GetCodecLocation() ==
+        le_audio::types::CodecLocation::ADSP) {
+      CodecManager::GetInstance()->UpdateCisHandleMap(
+          conn_handle, add,
+          std::bind(&LeAudioUnicastClientAudioSource::UpdateAudioConfigToHal,
+                    leAudioClientAudioSource, std::placeholders::_1),
+          std::bind(&LeAudioUnicastClientAudioSink::UpdateAudioConfigToHal,
+                    leAudioClientAudioSink, std::placeholders::_1));
+      return;
+    }
+  }
+
   void UpdateContextAndLocations(LeAudioDeviceGroup* group,
                                  LeAudioDevice* leAudioDevice) {
     std::optional<AudioContexts> new_group_updated_contexts =
@@ -3799,6 +3812,10 @@ class CallbacksImpl : public LeAudioGroupStateMachine::Callbacks {
 
   void OnStateTransitionTimeout(int group_id) override {
     if (instance) instance->OnLeAudioDeviceSetStateTimeout(group_id);
+  }
+
+  void OnActiveCisHandleChanged(uint16_t conn_handle, bool add) override {
+    if (instance) instance->OnActiveCisHandleChanged(conn_handle, add);
   }
 };
 

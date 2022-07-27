@@ -61,6 +61,17 @@ CodecManager::GetOffloadCodecConfig(types::LeAudioContextType ctx_type) {
   return pimpl_->GetOffloadCodecConfig(ctx_type);
 }
 
+void CodecManager::UpdateCisHandleMap(
+    uint16_t conn_handle, bool add,
+    std::function<void(const ::le_audio::offload_config& config)>
+        update_source_receiver,
+    std::function<void(const ::le_audio::offload_config& config)>
+        update_sink_receiver) {
+  if (pimpl_)
+    return pimpl_->UpdateCisHandleMap(conn_handle, add, update_source_receiver,
+                                      update_sink_receiver);
+}
+
 const ::le_audio::broadcast_offload_config*
 CodecManager::GetBroadcastOffloadConfig() {
   if (!pimpl_) return nullptr;
