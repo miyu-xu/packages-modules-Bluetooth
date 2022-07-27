@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23a29ea_d9d89a27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958250
+      },
+      "writtenOn": "2022-07-27T08:51:05Z",
+      "side": 1,
+      "message": "Need to delete unused member uuids in btif_dm_pairing_cb_t",
+      "revId": "998184b8a585e2f0e27ee5a5530dbc3c50f62eb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9484ca3f_5f8aa830",
@@ -14,6 +31,30 @@
       "writtenOn": "2022-07-26T22:00:58Z",
       "side": 1,
       "message": "maybe add some warning logs here for empty uuids",
+      "range": {
+        "startLine": 1439,
+        "startChar": 31,
+        "endLine": 1440,
+        "endChar": 21
+      },
+      "revId": "998184b8a585e2f0e27ee5a5530dbc3c50f62eb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2d985ec_a8d9a522",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1958250
+      },
+      "writtenOn": "2022-07-27T08:51:05Z",
+      "side": 1,
+      "message": "The loop is executed as many times as BT_MAX_NUM_UUIDS (32), and there are many empty uuids.\nI think a lot of logs will be taken.",
+      "parentUuid": "9484ca3f_5f8aa830",
       "range": {
         "startLine": 1439,
         "startChar": 31,
