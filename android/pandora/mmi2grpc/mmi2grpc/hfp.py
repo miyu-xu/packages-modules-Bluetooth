@@ -70,7 +70,8 @@ class HFPProxy(ProfileProxy):
         Implementation Under Test (IUT).
         """
 
-        self.connection = self.host.Connect(address=pts_addr).connection
+        if not self.connection:
+            self.connection = self.host.Connect(address=pts_addr).connection
         return "OK"
 
     @assert_description
@@ -81,4 +82,5 @@ class HFPProxy(ProfileProxy):
         """
 
         self.hfp.DisableSlc(connection=self.connection)
+        self.connection = None
         return "OK"
