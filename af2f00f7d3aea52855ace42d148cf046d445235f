@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdcffb5b_abe16e92",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3692,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-27T07:07:34Z",
+      "side": 1,
+      "message": "Please ignore this one as well",
+      "parentUuid": "31de2a4b_c3e09466",
+      "range": {
+        "startLine": 3692,
+        "startChar": 11,
+        "endLine": 3692,
+        "endChar": 96
+      },
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4a9e2fd_3d14663f",
@@ -77,6 +101,30 @@
       "writtenOn": "2022-07-27T06:01:39Z",
       "side": 1,
       "message": "We should also check isLeAudioSupport() \u0026\u0026 BluetoothProperties.isProfileVcpControllerEnabled().orElse(false)",
+      "range": {
+        "startLine": 3697,
+        "startChar": 16,
+        "endLine": 3697,
+        "endChar": 81
+      },
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a46afeb6_12c3e451",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3697,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-27T07:07:34Z",
+      "side": 1,
+      "message": "ignore me on this one, we allow VOLUME_CONTROL to enable by itself",
+      "parentUuid": "e4a9e2fd_3d14663f",
       "range": {
         "startLine": 3697,
         "startChar": 16,
@@ -110,6 +158,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1c170ec_ea0f3f89",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3702,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-27T07:07:34Z",
+      "side": 1,
+      "message": "ignore me on this one, we allow CSIP_SET_COORDINATOR to enable by itself",
+      "parentUuid": "535ed920_353121c3",
+      "range": {
+        "startLine": 3702,
+        "startChar": 16,
+        "endLine": 3702,
+        "endChar": 86
+      },
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b20454e_b80479da",
@@ -123,6 +195,30 @@
       "writtenOn": "2022-07-27T06:01:39Z",
       "side": 1,
       "message": "We should also check isLeAudioSupport() \u0026\u0026 BluetoothProperties.isProfileVcpControllerEnabled().orElse(false)",
+      "range": {
+        "startLine": 3708,
+        "startChar": 12,
+        "endLine": 3708,
+        "endChar": 87
+      },
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80151293_9eb36132",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3708,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-27T07:07:34Z",
+      "side": 1,
+      "message": "ignore me on this one, we allow LE_CALL_CONTROL to enable by itself",
+      "parentUuid": "2b20454e_b80479da",
       "range": {
         "startLine": 3708,
         "startChar": 12,
