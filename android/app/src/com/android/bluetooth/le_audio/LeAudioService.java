@@ -91,6 +91,11 @@ public class LeAudioService extends ProfileService {
     private static LeAudioService sLeAudioService;
 
     /**
+     * Indicates group audio support for none direction
+     */
+    private static final int AUDIO_DIRECTION_NONE = 0x00;
+
+    /**
      * Indicates group audio support for input direction
      */
     private static final int AUDIO_DIRECTION_INPUT_BIT = 0x01;
@@ -99,11 +104,6 @@ public class LeAudioService extends ProfileService {
      * Indicates group audio support for output direction
      */
     private static final int AUDIO_DIRECTION_OUTPUT_BIT = 0x02;
-
-    /*
-     * Indicates no active contexts
-     */
-    private static final int ACTIVE_CONTEXTS_NONE = 0;
 
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
@@ -131,14 +131,14 @@ public class LeAudioService extends ProfileService {
         LeAudioGroupDescriptor() {
             mIsConnected = false;
             mIsActive = false;
-            mActiveContexts = ACTIVE_CONTEXTS_NONE;
+            mDirection = AUDIO_DIRECTION_NONE;
             mCodecStatus = null;
             mLostLeadDeviceWhileStreaming = null;
         }
 
         public Boolean mIsConnected;
         public Boolean mIsActive;
-        public Integer mActiveContexts;
+        public Integer mDirection;
         public BluetoothLeAudioCodecStatus mCodecStatus;
         /* This can be non empty only for the streaming time */
         BluetoothDevice mLostLeadDeviceWhileStreaming;
@@ -154,21 +154,6 @@ public class LeAudioService extends ProfileService {
     @GuardedBy("mGroupLock")
     private final Map<BluetoothDevice, Integer> mDeviceGroupIdMap = new ConcurrentHashMap<>();
     private final Map<BluetoothDevice, Integer> mDeviceAudioLocationMap = new ConcurrentHashMap<>();
-
-    private final int mContextSupportingInputAudio =
-            BluetoothLeAudio.CONTEXT_TYPE_COMMUNICATION | BluetoothLeAudio.CONTEXT_TYPE_MAN_MACHINE;
-
-    private final int mContextSupportingOutputAudio = BluetoothLeAudio.CONTEXT_TYPE_COMMUNICATION |
-            BluetoothLeAudio.CONTEXT_TYPE_MEDIA |
-            BluetoothLeAudio.CONTEXT_TYPE_INSTRUCTIONAL |
-            BluetoothLeAudio.CONTEXT_TYPE_ATTENTION_SEEKING |
-            BluetoothLeAudio.CONTEXT_TYPE_IMMEDIATE_ALERT |
-            BluetoothLeAudio.CONTEXT_TYPE_MAN_MACHINE |
-            BluetoothLeAudio.CONTEXT_TYPE_EMERGENCY_ALERT |
-            BluetoothLeAudio.CONTEXT_TYPE_RINGTONE |
-            BluetoothLeAudio.CONTEXT_TYPE_TV |
-            BluetoothLeAudio.CONTEXT_TYPE_LIVE |
-            BluetoothLeAudio.CONTEXT_TYPE_GAME;
 
     private BroadcastReceiver mBondStateChangedReceiver;
     private BroadcastReceiver mConnectionStateChangedReceiver;
@@ -314,8 +299,8 @@ public class LeAudioService extends ProfileService {
                 Integer group_id = entry.getKey();
                 if (descriptor.mIsActive) {
                     descriptor.mIsActive = false;
-                    updateActiveDevices(group_id, descriptor.mActiveContexts,
-                            ACTIVE_CONTEXTS_NONE, descriptor.mIsActive);
+                    updateActiveDevices(group_id, descriptor.mDirection, AUDIO_DIRECTION_NONE,
+                            descriptor.mIsActive);
                     break;
                 }
             }
@@ -604,28 +589,6 @@ public class LeAudioService extends ProfileService {
         return result;
     }
 
-    /**
-     * Get supported group audio direction from available context.
-     *
-     * @param activeContexts bitset of active context to be matched with possible audio direction
-     * support.
-     * @return matched possible audio direction support masked bitset
-     * {@link #AUDIO_DIRECTION_INPUT_BIT} if input audio is supported
-     * {@link #AUDIO_DIRECTION_OUTPUT_BIT} if output audio is supported
-     */
-    private Integer getAudioDirectionsFromActiveContextsMap(Integer activeContexts) {
-        Integer supportedAudioDirections = 0;
-
-        if ((activeContexts & mContextSupportingInputAudio) != 0) {
-            supportedAudioDirections |= AUDIO_DIRECTION_INPUT_BIT;
-        }
-        if ((activeContexts & mContextSupportingOutputAudio) != 0) {
-            supportedAudioDirections |= AUDIO_DIRECTION_OUTPUT_BIT;
-        }
-
-        return supportedAudioDirections;
-    }
-
     private Integer getActiveGroupId() {
         synchronized (mGroupLock) {
             for (Map.Entry<Integer, LeAudioGroupDescriptor> entry : mGroupDescriptors.entrySet()) {
@@ -768,12 +731,7 @@ public class LeAudioService extends ProfileService {
     }
 
     private boolean updateActiveInDevice(BluetoothDevice device, Integer groupId,
-            Integer oldActiveContexts, Integer newActiveContexts) {
-        Integer oldSupportedAudioDirections =
-                getAudioDirectionsFromActiveContextsMap(oldActiveContexts);
-        Integer newSupportedAudioDirections =
-                getAudioDirectionsFromActiveContextsMap(newActiveContexts);
-
+            Integer oldSupportedAudioDirections, Integer newSupportedAudioDirections) {
         boolean oldSupportedByDeviceInput = (oldSupportedAudioDirections
                 & AUDIO_DIRECTION_INPUT_BIT) != 0;
         boolean newSupportedByDeviceInput = (newSupportedAudioDirections
@@ -832,12 +790,7 @@ public class LeAudioService extends ProfileService {
     }
 
     private boolean updateActiveOutDevice(BluetoothDevice device, Integer groupId,
-            Integer oldActiveContexts, Integer newActiveContexts) {
-        Integer oldSupportedAudioDirections =
-                getAudioDirectionsFromActiveContextsMap(oldActiveContexts);
-        Integer newSupportedAudioDirections =
-                getAudioDirectionsFromActiveContextsMap(newActiveContexts);
-
+            Integer oldSupportedAudioDirections, Integer newSupportedAudioDirections) {
         boolean oldSupportedByDeviceOutput = (oldSupportedAudioDirections
                 & AUDIO_DIRECTION_OUTPUT_BIT) != 0;
         boolean newSupportedByDeviceOutput = (newSupportedAudioDirections
@@ -1202,13 +1155,13 @@ public class LeAudioService extends ProfileService {
             if (descriptor != null) {
                 if (descriptor.mIsActive) {
                     descriptor.mIsActive =
-                            updateActiveDevices(groupId, descriptor.mActiveContexts,
-                                    available_contexts, descriptor.mIsActive);
+                            updateActiveDevices(groupId, descriptor.mDirection, direction,
+                            descriptor.mIsActive);
                     if (!descriptor.mIsActive) {
                         notifyGroupStatusChanged(groupId, BluetoothLeAudio.GROUP_STATUS_INACTIVE);
                     }
                 }
-                descriptor.mActiveContexts = available_contexts;
+                descriptor.mDirection = direction;
             } else {
                 Log.e(TAG, "no descriptors for group: " + groupId);
             }
@@ -1234,7 +1187,7 @@ public class LeAudioService extends ProfileService {
                     if (descriptor != null) {
                         if (!descriptor.mIsActive) {
                             descriptor.mIsActive = updateActiveDevices(groupId,
-                                    ACTIVE_CONTEXTS_NONE, descriptor.mActiveContexts, true);
+                                    AUDIO_DIRECTION_NONE, descriptor.mDirection, true);
                             notifyGroupStatus = descriptor.mIsActive;
                         }
                     } else {
@@ -1247,8 +1200,8 @@ public class LeAudioService extends ProfileService {
                     if (descriptor != null) {
                         if (descriptor.mIsActive) {
                             descriptor.mIsActive = false;
-                            updateActiveDevices(groupId, descriptor.mActiveContexts,
-                                    ACTIVE_CONTEXTS_NONE, descriptor.mIsActive);
+                            updateActiveDevices(groupId, descriptor.mDirection,
+                                    AUDIO_DIRECTION_NONE, descriptor.mIsActive);
                             notifyGroupStatus = true;
                             /* Clear lost devices */
                             if (DBG) Log.d(TAG, "Clear for group: " + groupId);
@@ -1551,8 +1504,8 @@ public class LeAudioService extends ProfileService {
                     descriptor.mIsActive = false;
                     /* Update audio framework */
                     updateActiveDevices(myGroupId,
-                            descriptor.mActiveContexts,
-                            descriptor.mActiveContexts,
+                            descriptor.mDirection,
+                            descriptor.mDirection,
                             descriptor.mIsActive);
                     return;
                 }
@@ -1560,8 +1513,8 @@ public class LeAudioService extends ProfileService {
 
             if (descriptor.mIsActive) {
                 updateActiveDevices(myGroupId,
-                        descriptor.mActiveContexts,
-                        descriptor.mActiveContexts,
+                        descriptor.mDirection,
+                        descriptor.mDirection,
                         descriptor.mIsActive);
             }
         }
@@ -2592,7 +2545,7 @@ public class LeAudioService extends ProfileService {
             ProfileService.println(sb, "  Group: " + groupId);
             ProfileService.println(sb, "    isActive: " + descriptor.mIsActive);
             ProfileService.println(sb, "    isConnected: " + descriptor.mIsConnected);
-            ProfileService.println(sb, "    mActiveContexts: " + descriptor.mActiveContexts);
+            ProfileService.println(sb, "    mDirection: " + descriptor.mDirection);
             ProfileService.println(sb, "    group lead: " + getConnectedGroupLeadDevice(groupId));
             ProfileService.println(sb, "    first device: " + getFirstDeviceFromGroup(groupId));
             ProfileService.println(sb, "    lost lead device: "
