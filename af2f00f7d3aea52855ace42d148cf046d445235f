@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09632cc0_db037d9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-27T07:43:57Z",
+      "side": 1,
+      "message": "You may need to combine with the dynamic switch property \naosp/2111464\n\nAs the phone default disable LE audio, the properties would be false, but we enable the LE audio unicast related profiles in runtime based on persist.bluetooth.leaudio_switcher.enabled",
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "624bad47_eb923d37",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
