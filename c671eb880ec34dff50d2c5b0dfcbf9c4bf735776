@@ -34,6 +34,24 @@
       "parentUuid": "bbe09798_b0c26aee",
       "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43181b4e_969155ac",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T16:27:33Z",
+      "side": 1,
+      "message": "(And I think it\u0027s best to assert here given that the following code won\u0027t work anyway)",
+      "parentUuid": "1f52b828_35e18084",
+      "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
