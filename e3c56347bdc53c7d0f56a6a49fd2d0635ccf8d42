@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "954f615a_f3076a8b",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T02:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "850b5c8b_640e6343",
+      "range": {
+        "startLine": 10,
+        "startChar": 2,
+        "endLine": 10,
+        "endChar": 50
+      },
+      "revId": "e3c56347bdc53c7d0f56a6a49fd2d0635ccf8d42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a54b495_7cf07c6a",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-27T01:39:40Z",
       "side": 1,
       "message": "If we write `ExchangeMTUResponse` it will be more consistent with the others interfaces. The same apply to WriteCharacteristic response",
+      "range": {
+        "startLine": 11,
+        "startChar": 47,
+        "endLine": 11,
+        "endChar": 64
+      },
+      "revId": "e3c56347bdc53c7d0f56a6a49fd2d0635ccf8d42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "062a0b00_e35ebf45",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T02:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a54b495_7cf07c6a",
       "range": {
         "startLine": 11,
         "startChar": 47,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef6a10b0_47e98b0a",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T02:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee500d4a_a6f8b6e2",
+      "range": {
+        "startLine": 13,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 61
+      },
+      "revId": "e3c56347bdc53c7d0f56a6a49fd2d0635ccf8d42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "086c71a6_9085fc58",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "886fd25c_3db2bfc4",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T02:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "086c71a6_9085fc58",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 52
+      },
+      "revId": "e3c56347bdc53c7d0f56a6a49fd2d0635ccf8d42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2aededda_9f54dc2b",
@@ -106,6 +202,30 @@
       "writtenOn": "2022-07-27T01:39:40Z",
       "side": 1,
       "message": "I think in that case we should answer an error to the gRPC client by throwing one:\n```\nimport io.grpc.Status\nthrow Status.UNKNOWN.asException()\n```\nThe same apply to the other errors checks\n\nThe list of the different error status:\ngrpc.github.io/grpc-java/javadoc/io/grpc/Status.html",
+      "range": {
+        "startLine": 321,
+        "startChar": 8,
+        "endLine": 321,
+        "endChar": 80
+      },
+      "revId": "e3c56347bdc53c7d0f56a6a49fd2d0635ccf8d42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b498ce_dd8976d9",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T02:02:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aededda_9f54dc2b",
       "range": {
         "startLine": 321,
         "startChar": 8,
