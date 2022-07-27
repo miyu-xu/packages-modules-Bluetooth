@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25248160_00ca4de3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-27T18:02:27Z",
+      "side": 1,
+      "message": "This CL isn\u0027t ready for a full review, but I\u0027d appreciate your thoughts on the initial approach + implementation. All the code is written and works on my machine, but it needs more thorough testing before it\u0027s ready to be merged, and I will write unit tests. But your initial thoughts would be great!",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
