@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba66700_a268f290",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T02:17:58Z",
+      "side": 1,
+      "message": "Actually, if we have to throw on error checks I\u0027ll remove the response here. I believe you intend the response to carry more than just a true/false, so in this case we don\u0027t need it.",
+      "parentUuid": "062a0b00_e35ebf45",
+      "range": {
+        "startLine": 11,
+        "startChar": 47,
+        "endLine": 11,
+        "endChar": 64
+      },
+      "revId": "e3c56347bdc53c7d0f56a6a49fd2d0635ccf8d42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee500d4a_a6f8b6e2",
