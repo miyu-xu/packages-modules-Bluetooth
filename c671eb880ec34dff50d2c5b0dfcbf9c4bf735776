@@ -16,6 +16,24 @@
       "message": "We should assert that `self.connection` is not None here instead of testing if it\u0027s there",
       "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f52b828_35e18084",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T16:25:56Z",
+      "side": 1,
+      "message": "Done, should this be done for the other profiles as well in future patches? I know HFP doesn\u0027t check the connection and SM just tests if it\u0027s there.",
+      "parentUuid": "bbe09798_b0c26aee",
+      "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
