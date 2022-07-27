@@ -3395,6 +3395,9 @@ public class GattService extends ProfileService {
             Log.d(TAG, "clientConnect() - address=" + address + ", isDirect=" + isDirect
                     + ", opportunistic=" + opportunistic + ", phy=" + phy);
         }
+        Log.w(TAG, "aaaaaaaaaa clientConnect() - package name=" + attributionSource.getPackageName());
+        Log.w(TAG, "aaaaaaaaaa clientConnect() - attribution tag=" + attributionSource.getAttributionTag());
+
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
                 BluetoothProtoEnums.CONNECTION_STATE_CONNECTING);
@@ -3986,6 +3989,7 @@ public class GattService extends ProfileService {
         }
 
         app.callback.onServerConnectionState((byte) 0, serverIf, connected, address);
+        Log.w(TAG, "aaaaaaaaaa onClientConnected() - package name=" + app.name);
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT_SERVER, address, serverIf, connectionState);
     }

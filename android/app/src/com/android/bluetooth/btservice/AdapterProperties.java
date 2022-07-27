@@ -690,6 +690,8 @@ class AdapterProperties {
         Log.d(TAG,
                 "PROFILE_CONNECTION_STATE_CHANGE: profile=" + profile + ", device=" + device + ", "
                         + prevState + " -> " + state);
+        Log.w("aaaa", "aaaaaaaabbbbbbbbb profile " +  device.getName());
+
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, state,
                 0 /* deprecated */, profile, mService.obfuscateAddress(device),
                 mService.getMetricId(device), 0);
