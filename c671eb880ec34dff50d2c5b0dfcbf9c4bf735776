@@ -70,6 +70,24 @@
       "parentUuid": "43181b4e_969155ac",
       "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f15cb32e_693d5bd1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-27T16:45:25Z",
+      "side": 1,
+      "message": "We also will throw in the kotlin as we won\u0027t be able to retrieve a GattInstance though!",
+      "parentUuid": "2a26f4df_672c3856",
+      "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
