@@ -52,6 +52,24 @@
       "parentUuid": "1f52b828_35e18084",
       "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a26f4df_672c3856",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-27T16:31:10Z",
+      "side": 1,
+      "message": "Yes indeed, we should modify SM as well, I missed that during the review 😅\nFor HFP it\u0027s fine, we can add them as well, but it report an error too because the connection will be None so it will not work on the Java size and trigger an exception that will be reported via grpc to the python",
+      "parentUuid": "43181b4e_969155ac",
+      "revId": "c671eb880ec34dff50d2c5b0dfcbf9c4bf735776",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
