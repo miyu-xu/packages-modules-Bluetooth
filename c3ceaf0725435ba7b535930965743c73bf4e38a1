@@ -16,6 +16,24 @@
       "message": "sorry I didn\u0027t catch this before, yeah this would probably break android.  I\u0027m uncertain if state is the right state here..",
       "revId": "c3ceaf0725435ba7b535930965743c73bf4e38a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d54a3390_822abd24",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-07-27T22:52:21Z",
+      "side": 1,
+      "message": "I didn\u0027t add that code :) I think this is from me rebasing. If you look at base-\u003elatest patchset, it\u0027s not there.",
+      "parentUuid": "d6efc7f3_6b33fd1b",
+      "revId": "c3ceaf0725435ba7b535930965743c73bf4e38a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
