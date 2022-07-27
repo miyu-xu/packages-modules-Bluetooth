@@ -16,6 +16,74 @@
       "message": "This CL isn\u0027t ready for a full review, but I\u0027d appreciate your thoughts on the initial approach + implementation. All the code is written and works on my machine, but it needs more thorough testing before it\u0027s ready to be merged, and I will write unit tests. But your initial thoughts would be great!",
       "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04459e1a_1918dfdf",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-27T18:05:17Z",
+      "side": 1,
+      "message": "In old code, when we cancelled an LE remote name request, we seem to just drop the callbacks and immediately start the next request. TODO BEFORE SUBMITTING: figure out whether these callbacks are meant to be invoked, and if the LE remname request returns a confirmation of cancellation.",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05deb7ae_c2fdc417",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-27T18:05:17Z",
+      "side": 1,
+      "message": "core logic is here",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da19068e_d220c692",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1595,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-27T18:05:17Z",
+      "side": 1,
+      "message": "more core logic here",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95735570_48c88480",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-27T18:05:17Z",
+      "side": 1,
+      "message": "core structs here",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
