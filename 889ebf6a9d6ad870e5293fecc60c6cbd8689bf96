@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00ada8be_7062b932",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-28T19:10:47Z",
+      "side": 1,
+      "message": "overall LGTM!\n\nSome nits below",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7310a7b4_af3a1d01",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-28T19:10:47Z",
+      "side": 1,
+      "message": "Why do we need the `fuse()`?",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28a50e56_0fe4880a",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-28T19:10:47Z",
+      "side": 1,
+      "message": "nit: rustfmt does not work for `quote!`, so let\u0027s manually break this line:\n```\n        impl\u003c\n                K: \u0027static + Eq + Hash + RefArgToRust\u003cRustType \u003d K\u003e,\n                V: \u0027static + RefArgToRust\u003cRustType \u003d V\u003e,\n            \u003e RefArgToRust for std::collections::HashMap\u003cK, V\u003e\n        {\n```",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c600b44_deb4ca80",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-28T19:10:47Z",
+      "side": 1,
+      "message": "nit: rustfmt does not work for `quote!`, so it\u0027d be great if this long line is broken:\n```\n        impl\u003cK: Eq + Hash + DBusArg, V: DBusArg\u003e DBusArg for std::collections::HashMap\u003cK, V\u003e\n        where\n            \u003cK as DBusArg\u003e::DBusType: \u0027static\n                + Eq\n                + Hash\n                + dbus::arg::RefArg\n                + RefArgToRust\u003cRustType \u003d \u003cK as DBusArg\u003e::DBusType\u003e,\n        {\n        ...\n```",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc594b2_5041793e",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-28T19:10:47Z",
+      "side": 1,
+      "message": "nit: we know that HashMap data contains no callback, so we can ignore all other parameters:\n```\n                    map.insert(                                                                      \n                        K::from_dbus(key, None, None, None)?,                                        \n                        V::from_dbus(val, None, None, None)?,                                        \n                    ); \n```",
+      "range": {
+        "startLine": 1198,
+        "startChar": 0,
+        "endLine": 1210,
+        "endChar": 41
+      },
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6866efdb_626bdb1f",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-28T19:10:47Z",
+      "side": 1,
+      "message": "nit: this can be shortened to:\n```\nmap.insert(K::to_dbus(key)?, V::to_dbus(val)?);\n```",
+      "range": {
+        "startLine": 1221,
+        "startChar": 0,
+        "endLine": 1224,
+        "endChar": 0
+      },
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a342b8_6b2a11ea",
+        "filename": "system/gd/rust/linux/dbus_projection/tests/conversions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-07-28T19:10:47Z",
+      "side": 1,
+      "message": "To make sure the implementation covers deep conversion, let\u0027s test with a vector inside a hashmap, e.g. `dict: HashMap\u003cString, Vec\u003ci32\u003e\u003e`",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
