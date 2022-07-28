@@ -22,6 +22,30 @@
       },
       "revId": "4963f7469ebbfe14dcfbbf561311af05ede7f944",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e02d706_5f05925f",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-28T18:50:07Z",
+      "side": 1,
+      "message": "Done in the next CL.\n\nThanks!",
+      "parentUuid": "6434446e_42575925",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 42
+      },
+      "revId": "4963f7469ebbfe14dcfbbf561311af05ede7f944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
