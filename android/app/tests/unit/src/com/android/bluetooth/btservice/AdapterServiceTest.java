@@ -290,6 +290,9 @@ public class AdapterServiceTest {
                 .thenReturn(mBluetoothManager);
         when(mMockContext.getSystemServiceName(BluetoothManager.class))
                 .thenReturn(Context.BLUETOOTH_SERVICE);
+        when(mMockContext.getSharedPreferences(anyString(), anyInt()))
+                .thenReturn(InstrumentationRegistry.getTargetContext()
+                        .getSharedPreferences(TEST_PREF, Context.MODE_PRIVATE));
 
         when(mMockContext.getAttributionSource()).thenReturn(mAttributionSource);
         doAnswer(invocation -> {
