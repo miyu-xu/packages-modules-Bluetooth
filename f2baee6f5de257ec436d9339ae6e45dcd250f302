@@ -434,6 +434,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e9caa62_6d4b49d4",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-28T05:27:44Z",
+      "side": 1,
+      "message": "My model is that the remote name state machine is either \"active\" or \"inactive\". When it is active, a request is in-flight or about to be in-flight - the machine is \"doing something\". When it is \"inactive\", nothing is happening/about to happen and the queue is empty.\n\nOtherwise we basically have to set this flag to false before invoking this function everywhere, which seems a bit redundant. But I\u0027m happy to change the logic if you think it\u0027s more understandable.",
+      "parentUuid": "e427ebbc_b02741b3",
+      "range": {
+        "startLine": 1596,
+        "startChar": 2,
+        "endLine": 1598,
+        "endChar": 3
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2babb6f7_3a099b69",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 4
