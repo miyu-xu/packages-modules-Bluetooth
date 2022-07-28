@@ -3,6 +3,69 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd9c34df_2a380967",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1438,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-28T14:59:54Z",
+      "side": 1,
+      "message": "Can we check if the UUID is empty before we store it (line 1424)?",
+      "range": {
+        "startLine": 1438,
+        "startChar": 0,
+        "endLine": 1438,
+        "endChar": 31
+      },
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1682ff00_5cc32237",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-28T14:59:54Z",
+      "side": 1,
+      "message": "Should this go in the earlier loop as well?  Do we need two loops?",
+      "range": {
+        "startLine": 1441,
+        "startChar": 14,
+        "endLine": 1441,
+        "endChar": 44
+      },
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "129e3304_bcf5321d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1515,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-28T14:59:54Z",
+      "side": 1,
+      "message": "This seems like a lot of repeated code.  Did we think about factoring out the common code?",
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ca97956_d8f23882",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 4
