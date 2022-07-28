@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07878787_d992c210",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2022-07-28T01:03:48Z",
+      "side": 0,
+      "message": "nit: remove extra line",
+      "revId": "06f59899f9ab66cae850237c92c9553719a1c076",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
