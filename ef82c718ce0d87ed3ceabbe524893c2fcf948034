@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52d057d3_192bdd39",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10586852_c254a800",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "af690770_09e6e1dd",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-07-28T16:01:38Z",
       "side": 1,
       "message": "nit: remove runBlocking and mark function suspend",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a28886d4_fd23a7f9",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af690770_09e6e1dd",
       "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd963052_be2a6e96",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "164781c6_b21eb24d",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "07b1fe43_09ecedbd",
@@ -65,6 +119,24 @@
       "writtenOn": "2022-07-28T16:01:38Z",
       "side": 1,
       "message": "We should try to move that as the constructor to have a non nullable mGatt",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98602cf7_47324e84",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07b1fe43_09ecedbd",
       "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3d385fc_f52190c3",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fb59c9e_0ff022e0",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f079cf5d_70cef71e",
@@ -99,6 +189,24 @@
       "writtenOn": "2022-07-28T16:01:38Z",
       "side": 1,
       "message": "nit: Do something that show that its a GattInstance like `\"GattInstance(${mDevice.getAddress()})\"`",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8461107_6bd4cbd4",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f079cf5d_70cef71e",
       "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +234,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "060076ef_dedea0c7",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47fcbfaf_c9d18876",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75429a0e_6cfeb7b5",
@@ -143,6 +275,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7a88930_26426c07",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Tested, pts-bot will timeout if we wait for the disconnect callback before returning here.",
+      "parentUuid": "75429a0e_6cfeb7b5",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22f60f30_133f90d9",
@@ -156,6 +306,24 @@
       "writtenOn": "2022-07-28T16:01:38Z",
       "side": 1,
       "message": "nit: remove and mark the function suspend",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05420a88_72e94fa5",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-07-28T17:23:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22f60f30_133f90d9",
       "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
