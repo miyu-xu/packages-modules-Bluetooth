@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "068fa986_3abf104f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-28T20:30:33Z",
+      "side": 1,
+      "message": "LGTM, but shouldn\u0027t we perform extensive testing with QA team to be sure ?",
+      "revId": "7b669bf7a28a3c29b7d2ef5f82ded87a62e9b0d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
