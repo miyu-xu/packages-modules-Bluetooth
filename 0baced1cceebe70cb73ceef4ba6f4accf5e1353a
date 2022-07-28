@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca97956_d8f23882",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-07-28T13:17:59Z",
+      "side": 1,
+      "message": "Jack, I am leaving this as is instead of using C++ find, because we still need btif_contains_uuid in other places where its being called.",
+      "range": {
+        "startLine": 1548,
+        "startChar": 8,
+        "endLine": 1548,
+        "endChar": 51
+      },
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

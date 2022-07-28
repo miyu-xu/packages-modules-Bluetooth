@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2321529a_611b6b02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-07-28T13:17:59Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "b23a29ea_d9d89a27",
+      "revId": "998184b8a585e2f0e27ee5a5530dbc3c50f62eb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9484ca3f_5f8aa830",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "The loop is executed as many times as BT_MAX_NUM_UUIDS (32), and there are many empty uuids.\nI think a lot of logs will be taken.",
       "parentUuid": "9484ca3f_5f8aa830",
+      "range": {
+        "startLine": 1439,
+        "startChar": 31,
+        "endLine": 1440,
+        "endChar": 21
+      },
+      "revId": "998184b8a585e2f0e27ee5a5530dbc3c50f62eb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2699265f_e16d5b70",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-07-28T13:17:59Z",
+      "side": 1,
+      "message": "remote_uuids is a fixed size array of empty UUIDs.",
+      "parentUuid": "f2d985ec_a8d9a522",
       "range": {
         "startLine": 1439,
         "startChar": 31,
