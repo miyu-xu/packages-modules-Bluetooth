@@ -301,6 +301,7 @@ public class AdapterService extends Service {
     private ActiveDeviceManager mActiveDeviceManager;
     private DatabaseManager mDatabaseManager;
     private SilenceDeviceManager mSilenceDeviceManager;
+    private CompanionGattDeviceManager mCompanionGattDeviceManager;
     private AppOpsManager mAppOps;
 
     private BluetoothSocketManagerBinder mBluetoothSocketManagerBinder;
@@ -553,6 +554,8 @@ public class AdapterService extends Service {
         mSilenceDeviceManager = new SilenceDeviceManager(this, new ServiceFactory(),
                 Looper.getMainLooper());
         mSilenceDeviceManager.start();
+
+        mCompanionGattDeviceManager = new CompanionGattDeviceManager(this, new ServiceFactory());
 
         mBluetoothSocketManagerBinder = new BluetoothSocketManagerBinder(this);
 
@@ -3307,6 +3310,10 @@ public class AdapterService extends Service {
                 service.mBluetoothKeystoreService.factoryReset();
             }
 
+            if (service.mCompanionDeviceManager != null) {
+                service.mCompanionGattDeviceManager.factoryReset();
+            }
+
             return service.factoryResetNative();
         }
 
@@ -5879,6 +5886,22 @@ public class AdapterService extends Service {
      */
     public void setBatteryLevel(BluetoothDevice device, int batteryLevel) {
         mRemoteDevices.updateBatteryLevel(device, batteryLevel);
+    }
+
+    public CompanionGattDeviceManager getCompanionGattDeviceManager() {
+        return mCompanionGattDeviceManager;
+    }
+
+    /**
+     *  Call for the AdapterService receives bond state change
+     *
+     *  @param device Bluetooth device
+     *  @param state bond state
+     */
+    public void onBondStateChanged(BluetoothDevice device, int state) {
+        if (mCompanionGattDeviceManager != null) {
+            mCompanionGattDeviceManager.onBondStateChanged(device, state);
+        }
     }
 
     static native void classInitNative();
