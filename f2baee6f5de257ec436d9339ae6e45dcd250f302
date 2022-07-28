@@ -264,6 +264,69 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff0bf789_ff9f53a2",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1448,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-28T01:27:10Z",
+      "side": 1,
+      "message": "Not returned any more",
+      "range": {
+        "startLine": 1446,
+        "startChar": 0,
+        "endLine": 1448,
+        "endChar": 48
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b94000b6_9fc16cab",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1510,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-28T01:27:10Z",
+      "side": 1,
+      "message": "You might be missing a return here",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a09d17ad_21ed9469",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1539,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-28T01:27:10Z",
+      "side": 1,
+      "message": "I know this is from the old code, but is this a memcpy ?\nAlso `\u0027\\0\u0027`would be better for marking the end of string.",
+      "range": {
+        "startLine": 1535,
+        "startChar": 3,
+        "endLine": 1539,
+        "endChar": 49
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "da19068e_d220c692",
@@ -281,6 +344,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2babb6f7_3a099b69",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-28T01:27:10Z",
+      "side": 1,
+      "message": "`front()` returns a reference; `pop_front()` will invalidate it I think",
+      "range": {
+        "startLine": 1601,
+        "startChar": 0,
+        "endLine": 1603,
+        "endChar": 66
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "95735570_48c88480",
@@ -294,6 +380,52 @@
       "writtenOn": "2022-07-27T18:05:17Z",
       "side": 1,
       "message": "core structs here",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36b323b_ae88c7e2",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-28T01:27:10Z",
+      "side": 1,
+      "message": "Just pointing at, the invalid handle will be valid once after 0xffff - 0xbeef invocations.",
+      "range": {
+        "startLine": 200,
+        "startChar": 37,
+        "endLine": 200,
+        "endChar": 51
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dabfa31_5e875f61",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-07-28T01:27:10Z",
+      "side": 1,
+      "message": "Comment not updated",
+      "range": {
+        "startLine": 234,
+        "startChar": 22,
+        "endLine": 234,
+        "endChar": 74
+      },
       "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
