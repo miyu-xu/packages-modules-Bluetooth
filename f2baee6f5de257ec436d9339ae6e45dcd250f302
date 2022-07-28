@@ -323,6 +323,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "35c8b324_97b86699",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1510,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-28T17:29:18Z",
+      "side": 1,
+      "message": "Agreed. (though this case should really never happen, I guess we don\u0027t want to trigger the callbacks randomly)\n\nWhat do you think of triggering the callbacks with an error response, so they\u0027re unblocked?",
+      "parentUuid": "b94000b6_9fc16cab",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a09d17ad_21ed9469",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 4
