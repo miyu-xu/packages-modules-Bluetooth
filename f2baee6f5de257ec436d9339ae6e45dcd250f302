@@ -125,6 +125,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "882af883_ab26fce9",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-28T03:44:52Z",
+      "side": 1,
+      "message": "note to self: add a break; here just to be safe",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9617f423_1a526d9c",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 4
@@ -369,6 +386,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75c3023c_da94618a",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1598,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-28T03:44:52Z",
+      "side": 1,
+      "message": "I don\u0027t think so? Dequeue should be called only when we are active. When we finish one request and go to the next, we \"stay\" active throughout. When we initially start dequeuing at the beginning, we manually set active to true.\n\nPerhaps the variable could be better named - any suggestions?",
+      "parentUuid": "c98f3a6f_4d8abc11",
+      "range": {
+        "startLine": 1596,
+        "startChar": 2,
+        "endLine": 1598,
+        "endChar": 3
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2babb6f7_3a099b69",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 4
@@ -380,6 +421,30 @@
       "writtenOn": "2022-07-28T01:27:10Z",
       "side": 1,
       "message": "`front()` returns a reference; `pop_front()` will invalidate it I think",
+      "range": {
+        "startLine": 1601,
+        "startChar": 0,
+        "endLine": 1603,
+        "endChar": 66
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee2d3e10_59f51d2b",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-28T03:44:52Z",
+      "side": 1,
+      "message": "I believe `auto` will never infer a reference type, only value types (`auto\u0026` is needed to infer a reference) so we will do a copy. So we should be fine here?",
+      "parentUuid": "2babb6f7_3a099b69",
       "range": {
         "startLine": 1601,
         "startChar": 0,
