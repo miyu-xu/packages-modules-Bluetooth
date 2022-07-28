@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de52c1ca_212c917f",
+        "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-07-28T14:24:21Z",
+      "side": 1,
+      "message": "Multiple comments on this:\n\n- I think a single `Open` method should handle all these behaviors.\n- You should reuse the `Connection` object from `host.proto` instead of crafting your own `RfcommConnectionOptions` object.\n- You should use the nomenclature from the RFCOMM spec rather than the one from the Android Bluetooth stack (see below).\n\nHere is an example of how the interface could look like:\n\n```\nrpc Open(OpenRequest) returns (OpenResponse);\nrpc Close(CloseRequest) returns (CloseResponse);\n\nmessage DataLinkConnection {\n  bytes cookie \u003d 1;\n}\n\nmessage OpenRequest {\n  Connection connection \u003d 1;\n}\n\nmessage OpenResponse {\n  DataLinkConnection dlc \u003d 1;\n}\n\nmessage CloseRequest {\n  DataLinkConnection dlc \u003d 1;\n}\n\nmessage CloseResponse {\n}\n```",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24ad679c_5bb2d0ab",
+        "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-07-28T14:24:21Z",
+      "side": 1,
+      "message": "I don\u0027t think we should pass the UUID in the opening request. Connecting a service on top of RFCOMM indeed requires a ServiceClassIDList and a ProtocolDescriptorList, but in our case, for simplicity, I think we should limit ourselves to the Serial Port Profile (SPP, which is already the UUID you\u0027re using on the python side), which is based on RFCOMM. \n\nIn this case, we should also rename this interface to `spp.proto` rather than `rfcomm.proto` and the service accordingly.",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
