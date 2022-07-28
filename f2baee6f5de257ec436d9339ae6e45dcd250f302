@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "929f8635_f8410b07",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-28T00:47:18Z",
+      "side": 1,
+      "message": "Do you plan to implement it before merging the CL ?\nIf not I think a LOG_WARN should be used. (same below)",
+      "range": {
+        "startLine": 835,
+        "startChar": 12,
+        "endLine": 835,
+        "endChar": 25
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04459e1a_1918dfdf",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 4
@@ -48,6 +71,75 @@
       "writtenOn": "2022-07-27T18:05:17Z",
       "side": 1,
       "message": "core logic is here",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9617f423_1a526d9c",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-28T00:47:18Z",
+      "side": 1,
+      "message": "Why not\n```\nfor (auto\u0026 request: queue) {\n```\n?",
+      "range": {
+        "startLine": 664,
+        "startChar": 6,
+        "endLine": 664,
+        "endChar": 73
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e70999ac_69365770",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-28T00:47:18Z",
+      "side": 1,
+      "message": "Same, why not for (auto callback : request-\u003ecallbacks)",
+      "range": {
+        "startLine": 666,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 60
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ef5a96d_d4887ce9",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-28T00:47:18Z",
+      "side": 1,
+      "message": "would it be cleaner to do a\n```\nif (callback-\u003ehandle !\u003d handle) {\n  continue;\n}\n```\n\nTo avoid one ident and the cascade of } \n(same below)",
+      "range": {
+        "startLine": 668,
+        "startChar": 6,
+        "endLine": 668,
+        "endChar": 39
+      },
       "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
