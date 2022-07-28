@@ -713,8 +713,7 @@ public class BluetoothInCallService extends InCallService {
         }
 
         BluetoothCall conferenceCall = getBluetoothCallById(call.getParentId());
-        if (!mCallInfo.isNullCall(conferenceCall)
-                && conferenceCall.hasProperty(Call.Details.PROPERTY_GENERIC_CONFERENCE)) {
+        if (!mCallInfo.isNullCall(conferenceCall)) {
             isPartOfConference = true;
 
             // Run some alternative states for Conference-level merge/swap support.
@@ -726,8 +725,10 @@ public class BluetoothInCallService extends InCallService {
             // Before doing any special logic, ensure that we are dealing with an
             // ACTIVE BluetoothCall and that the conference itself has a notion of
             // the current "active" child call.
-            BluetoothCall activeChild = getBluetoothCallById(
-                    conferenceCall.getGenericConferenceActiveChildCallId());
+            BluetoothCall activeChild =
+                    getBluetoothCallById(
+                            conferenceCall.getCall().getConferenceLevelActiveCall().getId());
+
             if (state == CALL_STATE_ACTIVE && !mCallInfo.isNullCall(activeChild)) {
                 // Reevaluate state if we can MERGE or if we can SWAP without previously having
                 // MERGED.
@@ -1384,7 +1385,8 @@ public class BluetoothInCallService extends InCallService {
             // ACTIVE BluetoothCall and that the conference itself has a notion of
             // the current "active" child call.
             BluetoothCall activeChild =
-                getBluetoothCallById(conferenceCall.getGenericConferenceActiveChildCallId());
+                    getBluetoothCallById(
+                            conferenceCall.getCall().getConferenceLevelActiveCall().getId());
             if (state == BluetoothLeCall.STATE_ACTIVE && !mCallInfo.isNullCall(activeChild)) {
                 // Reevaluate state if we can MERGE or if we can SWAP without previously having
                 // MERGED.
