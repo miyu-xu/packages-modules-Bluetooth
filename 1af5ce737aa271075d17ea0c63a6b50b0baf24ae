@@ -45,6 +45,29 @@
       },
       "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbf6ef51_c4b1640e",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-07-28T14:29:41Z",
+      "side": 1,
+      "message": "Why using this and not `createRfcommSocketToServiceRecord`?",
+      "range": {
+        "startLine": 70,
+        "startChar": 28,
+        "endLine": 70,
+        "endChar": 69
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
