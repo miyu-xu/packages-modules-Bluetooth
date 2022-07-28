@@ -54,6 +54,7 @@ import androidx.test.runner.AndroidJUnit4;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.CompanionGattDeviceManager;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -107,6 +108,7 @@ public class GattServiceTest {
     @Mock private GattObjectsFactory mFactory;
     @Mock private GattNativeInterface mNativeInterface;
     private BluetoothDevice mCurrentDevice;
+    private CompanionGattDeviceManager mCompanionGattDeviceManager;
 
     @Before
     public void setUp() throws Exception {
@@ -122,6 +124,13 @@ public class GattServiceTest {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mAdapter.getAttributionSource();
         mDevice = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(REMOTE_DEVICE_ADDRESS);
+
+        when(mAdapterService.getSharedPreferences(anyString(), anyInt()))
+                .thenReturn(InstrumentationRegistry.getTargetContext()
+                        .getSharedPreferences("GattServiceTestPrefs", Context.MODE_PRIVATE));
+
+        mCompanionGattDeviceManager = new CompanionGattDeviceManager(mAdapterService);
+        doReturn(mCompanionGattDeviceManager).when(mAdapterService).getCompanionGattDeviceManager();
 
         TestUtils.startService(mServiceRule, GattService.class);
         mService = GattService.getGattService();
