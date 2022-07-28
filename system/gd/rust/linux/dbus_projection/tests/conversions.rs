@@ -1,4 +1,5 @@
 use core::any::Any;
+use std::collections::HashMap;
 
 use dbus_macros::{dbus_propmap, generate_dbus_arg};
 
@@ -23,6 +24,7 @@ struct SomeStruct {
     number: i32,
     other_struct: OtherStruct,
     bytes: Vec<u8>,
+    dict: HashMap<String, u8>,
     nested: Vec<Vec<String>>,
     recursive: Vec<SomeStruct>,
 }
@@ -33,6 +35,7 @@ struct SomeStructDBus {
     number: i32,
     other_struct: OtherStruct,
     bytes: Vec<u8>,
+    dict: HashMap<String, u8>,
     nested: Vec<Vec<String>>,
     recursive: Vec<SomeStruct>,
 }
@@ -113,6 +116,13 @@ mod tests {
                 ),
                 (String::from("bytes"), Box::new(vec![1 as u8, 2, 3])),
                 (
+                    String::from("dict"),
+                    Box::new(HashMap::from([
+                        (String::from("key-0"), 5 as u8),
+                        (String::from("key-1"), 6),
+                    ])),
+                ),
+                (
                     String::from("nested"),
                     Box::new(vec![
                         vec![
@@ -139,6 +149,13 @@ mod tests {
                                 }),
                             ),
                             (String::from("bytes"), Box::new(Vec::<u8>::new())),
+                            (
+                                String::from("dict"),
+                                Box::new(HashMap::from([
+                                    (String::from("key-2"), 7 as u8),
+                                    (String::from("key-3"), 8),
+                                ])),
+                            ),
                             (String::from("nested"), Box::new(Vec::<Vec<u8>>::new())),
                             (String::from("recursive"), Box::new(Vec::<FakeDictionary>::new())),
                         ],
@@ -158,6 +175,7 @@ mod tests {
             number: 100,
             other_struct: OtherStruct { address: String::from("aa:bb:cc:dd:ee:ff") },
             bytes: vec![1, 2, 3],
+            dict: HashMap::from([(String::from("key-0"), 5 as u8), (String::from("key-1"), 6)]),
             nested: vec![
                 vec![String::from("string a"), String::from("string b"), String::from("string c")],
                 vec![String::from("string 1"), String::from("string 2")],
@@ -167,6 +185,7 @@ mod tests {
                 number: 200,
                 other_struct: OtherStruct { address: String::from("xx") },
                 bytes: vec![],
+                dict: HashMap::from([(String::from("key-2"), 7 as u8), (String::from("key-3"), 8)]),
                 nested: vec![],
                 recursive: vec![],
             }],
