@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10586852_c254a800",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "nit: remove parent",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af690770_09e6e1dd",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "nit: remove runBlocking and mark function suspend",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "164781c6_b21eb24d",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "I think we can remove that as `Connect` and `WaitConnection` grpc methods will handle bonding",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07b1fe43_09ecedbd",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "We should try to move that as the constructor to have a non nullable mGatt",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb59c9e_0ff022e0",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "nit: remove reset as the GattInstance are remove from the map, we should not need to reset it",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f079cf5d_70cef71e",
+        "filename": "android/pandora/server/src/com/android/pandora/GattInstance.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "nit: Do something that show that its a GattInstance like `\"GattInstance(${mDevice.getAddress()})\"`",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47fcbfaf_c9d18876",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "nitpick: Create a BluetoothGattCallback for each connection to avoid the need looking up a gattInstance",
+      "range": {
+        "startLine": 68,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 3
+      },
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75429a0e_6cfeb7b5",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "nit: waitForState ?",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22f60f30_133f90d9",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-07-28T16:01:38Z",
+      "side": 1,
+      "message": "nit: remove and mark the function suspend",
+      "revId": "ef82c718ce0d87ed3ceabbe524893c2fcf948034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
