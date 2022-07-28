@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7058b8c9_b14b7aef",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-07-28T01:00:29Z",
+      "side": 1,
+      "message": "oh, I guess I used LOG_INFO to match what is currently used in the other unimplemented functions",
+      "parentUuid": "7b5d8b4a_da681814",
+      "range": {
+        "startLine": 835,
+        "startChar": 12,
+        "endLine": 835,
+        "endChar": 25
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "04459e1a_1918dfdf",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 4
