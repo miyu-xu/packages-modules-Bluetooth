@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f212c0b_b0a4c1d5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-07-28T10:09:51Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be also removed?",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "6c4871ab381e337c468584cea8a5706dd5345733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ba26237_e706944d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-07-28T10:09:51Z",
+      "side": 1,
+      "message": "I think this can also be removed.",
+      "range": {
+        "startLine": 41,
+        "startChar": 28,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "6c4871ab381e337c468584cea8a5706dd5345733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
