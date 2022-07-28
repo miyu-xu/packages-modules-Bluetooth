@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7de901b6_18299457",
+        "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-28T15:38:36Z",
+      "side": 1,
+      "message": "We don\u0027t have that level of control from the APIs, so most of them would be unused.",
+      "parentUuid": "de52c1ca_212c917f",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24ad679c_5bb2d0ab",
         "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
         "patchSetId": 3
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f5859491_5a48eb81",
+        "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-28T15:38:36Z",
+      "side": 1,
+      "message": "I was expecting that some other profile might want to test an RFCOMM connection (OPP, PBAP, ..?)",
+      "parentUuid": "24ad679c_5bb2d0ab",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bbf6ef51_c4b1640e",
         "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
         "patchSetId": 3
@@ -60,6 +108,30 @@
       "writtenOn": "2022-07-28T14:29:41Z",
       "side": 1,
       "message": "Why using this and not `createRfcommSocketToServiceRecord`?",
+      "range": {
+        "startLine": 70,
+        "startChar": 28,
+        "endLine": 70,
+        "endChar": 69
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02494021_da1c511a",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-07-28T15:38:36Z",
+      "side": 1,
+      "message": "It doesn\u0027t require pairing.",
+      "parentUuid": "bbf6ef51_c4b1640e",
       "range": {
         "startLine": 70,
         "startChar": 28,
