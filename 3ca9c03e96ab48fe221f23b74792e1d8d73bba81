@@ -16,6 +16,24 @@
       "message": "Need to change ParsePac to ParseSinglePac",
       "revId": "3ca9c03e96ab48fe221f23b74792e1d8d73bba81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ef6ebe4_c9b3fd7e",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T16:01:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e659ff7_a2e2f329",
+      "revId": "3ca9c03e96ab48fe221f23b74792e1d8d73bba81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
