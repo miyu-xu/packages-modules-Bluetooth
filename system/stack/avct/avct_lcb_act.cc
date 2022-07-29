@@ -68,7 +68,8 @@ static BT_HDR* avct_lcb_msg_asmbl(tAVCT_LCB* p_lcb, BT_HDR* p_buf) {
   pkt_type = AVCT_PKT_TYPE(p);
 
   /* quick sanity check on length */
-  if (p_buf->len < avct_lcb_pkt_type_len[pkt_type]) {
+  if (p_buf->len < avct_lcb_pkt_type_len[pkt_type] ||
+      (sizeof(BT_HDR) + p_buf->offset + p_buf->len) > BT_DEFAULT_BUFFER_SIZE) {
     osi_free(p_buf);
     AVCT_TRACE_WARNING("Bad length during reassembly");
     p_ret = NULL;
