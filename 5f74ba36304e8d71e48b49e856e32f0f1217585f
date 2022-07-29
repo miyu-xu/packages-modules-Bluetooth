@@ -110,6 +110,30 @@
       },
       "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09ee9a35_e07c76fd",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-29T07:43:33Z",
+      "side": 1,
+      "message": "Yup, for the initial implementation, I didn\u0027t add it, but I would agree with context type, it would be more flexible, and support more use case if we plan further. :) I could plan it later. Thanks for the suggestion.",
+      "parentUuid": "dffe55f9_682a2aa0",
+      "range": {
+        "startLine": 68,
+        "startChar": 27,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
