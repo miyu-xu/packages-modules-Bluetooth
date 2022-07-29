@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61839e6f_fc7713e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-29T01:35:04Z",
+      "side": 1,
+      "message": "Yes, but for the control profile, if you only check system properties. It would get wrong. :( \n\nSuch as we set all the profile disables by default, and dynamic switch LE audio enable, all the properties are still false, but all the LE profile containing the control profile would be enable.",
+      "parentUuid": "9769f507_c93a9b7c",
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "624bad47_eb923d37",
