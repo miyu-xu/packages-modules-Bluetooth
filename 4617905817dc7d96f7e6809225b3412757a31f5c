@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80720c5e_6e8b1c3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "Thank you. Couple more changes which we need to support devices which keeps ASE in CONFIGURED state.",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b377bdb1_94552ecf",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "please add LOG_DEBUG()",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e0a1cfb_9cad7d14",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "To support devices which keeps CONFIGURED State we need to add following change here:\n\nPlease changed that to:\n```\n+    bool activated \u003d leAudioDevice.lock()-\u003eActivateConfiguredAses(context_type);\n+    LOG_DEBUG(\"Device %s is activated now: \", leAudioDevice.lock().get()-\u003eaddress_.ToString().c_str());\n+    if (activated) {\n+      CigAssignCisIds(leAudioDevice.lock().get());\n+    }\n\n```\n\n and below in `ActivateConfiguredAses` function.",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e65fe53_c01f2e1b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 2111,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "bool",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ea7d229_3e4c12e2",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 2114,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "return false.",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6db707d0_f2d398b1",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 2116,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "bool ret \u003d false;",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6704628_1615e6e9",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 2122,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "ret \u003d true;",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f34c28fa_e87cffc6",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 2124,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "return ret;",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae60fdee_2a70da0d",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "bool",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44397972_a81bc389",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-07-29T17:01:13Z",
+      "side": 1,
+      "message": "Please move it to ReleaseCisId function (line 577-578)\n\nSome of the devices keeps ASEs in the configured state and we want keep same CIS ids in that case.",
+      "revId": "4617905817dc7d96f7e6809225b3412757a31f5c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
