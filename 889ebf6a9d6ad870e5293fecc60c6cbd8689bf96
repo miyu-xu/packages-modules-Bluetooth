@@ -170,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71fcaddb_657070b9",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T01:11:07Z",
+      "side": 1,
+      "message": "Using the operator \"?\" in map.insert() will cause build error:\nerror[E0308]: `?` operator has incompatible types \n\nSo, I\u0027ll split it into 3 expressions and ignore other parameters.",
+      "parentUuid": "4c7ae958_cb69cf7b",
+      "range": {
+        "startLine": 1198,
+        "startChar": 0,
+        "endLine": 1210,
+        "endChar": 41
+      },
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6866efdb_626bdb1f",
@@ -207,6 +231,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "6866efdb_626bdb1f",
+      "range": {
+        "startLine": 1221,
+        "startChar": 0,
+        "endLine": 1224,
+        "endChar": 0
+      },
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1200f602_ccc9cc06",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T01:11:07Z",
+      "side": 1,
+      "message": "Revert the change for build error found in a clean build.",
+      "parentUuid": "9cd46a60_7105e9db",
       "range": {
         "startLine": 1221,
         "startChar": 0,
