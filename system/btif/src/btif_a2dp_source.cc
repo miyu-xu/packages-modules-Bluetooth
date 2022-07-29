@@ -795,8 +795,12 @@ static void btif_a2dp_source_audio_tx_start_event(void) {
 
   if (btif_av_is_a2dp_offload_running()) return;
 
+  if (btif_a2dp_source_cb.encoder_interface == nullptr) {
+    LOG_WARN("Cannot start streaming: no source encoder interface");
+    return;
+  }
+
   /* Reset the media feeding state */
-  CHECK(btif_a2dp_source_cb.encoder_interface != nullptr);
   btif_a2dp_source_cb.encoder_interface->feeding_reset();
 
   APPL_TRACE_EVENT(
