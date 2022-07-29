@@ -210,8 +210,17 @@ cc_library_static {
     ],
     target: {
         android: {
+<<<<<<< HEAD   (13a420 Merge "Floss: enabling logger earlier")
             whole_static_libs: [
                 "libPlatformProperties",
+=======
+            shared_libs: [
+                "android.hardware.bluetooth.audio-V1-ndk",
+                "libaaudio",
+                "libbinder_ndk",
+                "libfmq",
+                "libstatslog_bt",
+>>>>>>> CHANGE (a9a33d Use the "bluetooth.core.gap.le.conn.min.limit" sysprop confi)
             ],
             srcs: ["src/btif_avrcp_audio_track.cc"],
         },
