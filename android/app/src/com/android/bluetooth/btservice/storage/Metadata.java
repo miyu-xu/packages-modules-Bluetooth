@@ -361,7 +361,9 @@ class Metadata {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(address)
-            .append(" {profile connection policy(")
+            .append(" { is_active_a2dp_device=" + is_active_a2dp_device)
+            .append(", last_active_time=" + last_active_time)
+            .append(", profile connection policy(")
             .append(profileConnectionPolicies)
             .append("), optional codec(support=")
             .append(a2dpSupportsOptionalCodecs)
