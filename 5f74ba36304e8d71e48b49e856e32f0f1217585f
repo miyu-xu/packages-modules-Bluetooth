@@ -86,6 +86,30 @@
       },
       "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dffe55f9_682a2aa0",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-07-29T07:37:13Z",
+      "side": 1,
+      "message": "Yeah, I know, context types other than Media do no fit well with the Broadcast use case. I guess we can always switch to SW path if that turns out to be to rigid for the testing needs.",
+      "parentUuid": "cfc6d086_189ed034",
+      "range": {
+        "startLine": 68,
+        "startChar": 27,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
