@@ -29,6 +29,7 @@ class Server(context: Context) {
 
   private var host: Host
   private var a2dp: A2dp
+  private var avrcp: Avrcp
   private var hfp: Hfp
   private var sm: Sm
   private var grpcServer: GrpcServer
@@ -36,6 +37,7 @@ class Server(context: Context) {
   init {
     host = Host(context, this)
     a2dp = A2dp(context)
+    avrcp = Avrcp(context)
     hfp = Hfp(context)
     sm = Sm(context)
     grpcServer =
@@ -43,6 +45,7 @@ class Server(context: Context) {
         .addService(host)
         .addService(a2dp)
         .addService(hfp)
+        .addService(avrcp)
         .addService(sm)
         .build()
 
@@ -56,6 +59,7 @@ class Server(context: Context) {
     a2dp.deinit()
     hfp.deinit()
     sm.deinit()
+    avrcp.deinit()
     grpcServer.shutdownNow()
   }
 
