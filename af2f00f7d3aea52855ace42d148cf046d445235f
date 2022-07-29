@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a6c76c8_9eb8cb7c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-29T02:19:39Z",
+      "side": 1,
+      "message": "Maybe for the control profile, we could check system properties || isLeAudioXxxSupported().",
+      "parentUuid": "61839e6f_fc7713e8",
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "624bad47_eb923d37",
