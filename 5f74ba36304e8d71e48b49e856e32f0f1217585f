@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "52a8dd5b_beacc6ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-29T07:08:45Z",
+      "side": 1,
+      "message": "Hold on the review, it seems cause issue on SW path.",
+      "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df006a3d_b0c3a5f9",
         "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
         "patchSetId": 1
@@ -37,6 +54,30 @@
       "writtenOn": "2022-07-28T09:25:57Z",
       "side": 1,
       "message": "Will there be any other mechanism for selecting offload configuration at run time if we are not passing context type here?",
+      "range": {
+        "startLine": 68,
+        "startChar": 27,
+        "endLine": 68,
+        "endChar": 29
+      },
+      "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfc6d086_189ed034",
+        "filename": "system/bta/le_audio/codec_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-29T07:08:45Z",
+      "side": 1,
+      "message": "For now, no. Do we have any user journey that we would switch the context and audio configuration for broadcast except for testing?",
+      "parentUuid": "dc9f458b_0f2ed961",
       "range": {
         "startLine": 68,
         "startChar": 27,
