@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_outer_classname = "AvrcpProto";
+
+package pandora;
+
+import "pandora/host.proto";
+import "pandora/a2dp.proto";
+
+service AVRCP {
+
+    rpc WaitSource(WaitSourceRequest) returns (WaitSourceResponse);
+    rpc WaitSink(WaitSinkRequest) returns (WaitSinkResponse);
+}
