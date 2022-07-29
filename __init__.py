@@ -22,10 +22,11 @@ import sys
 import grpc
 
 from mmi2grpc.a2dp import A2DPProxy
+from mmi2grpc.avrcp import AVRCPProxy
+from mmi2grpc.gatt import GATTProxy
 from mmi2grpc.hfp import HFPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
-from mmi2grpc.avrcp import AVRCPProxy
 from mmi2grpc._helpers import format_proxy
 
 from pandora.host_grpc import Host
@@ -55,6 +56,7 @@ class IUT:
         # Profile proxies.
         self._a2dp = None
         self._avrcp = None
+        self._gatt = None
         self._hfp = None
         self._sdp = None
         self._sm = None
@@ -69,8 +71,10 @@ class IUT:
     def __exit__(self, exc_type, exc_value, exc_traceback):
         self._a2dp = None
         self._avrcp = None
+        self._gatt = None
         self._hfp = None
         self._sdp = None
+        self._sm = None
 
     def _retry(self, func):
 
@@ -114,17 +118,22 @@ class IUT:
             if not self._a2dp:
                 self._a2dp = A2DPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._a2dp.interact(test, interaction, description, pts_address)
-        # Handles HFP MMIs.
-        if profile in ('HFP'):
-            if not self._hfp:
-                self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
-            return self._hfp.interact(test, interaction, description, pts_address)
-        
+
         # Handles AVRCP and AVCTP MMIs.
         if profile in ('AVRCP', 'AVCTP'):
             if not self._avrcp:
                 self._avrcp = AVRCPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._avrcp.interact(test, interaction, description, pts_address)
+        # Handles GATT MMIs.
+        if profile in ('GATT'):
+            if not self._gatt:
+                self._gatt = GATTProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._gatt.interact(test, interaction, description, pts_address)
+        # Handles HFP MMIs.
+        if profile in ('HFP'):
+            if not self._hfp:
+                self._hfp = HFPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._hfp.interact(test, interaction, description, pts_address)
         # Handles SDP MMIs.
         if profile in ('SDP'):
             if not self._sdp:
