@@ -217,6 +217,13 @@ cc_library_static {
         "libldacBT_enc",
         "libldacBT_abr",
     ],
+    target: {
+        android: {
+            shared_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
     host_supported: true,
 }
 
@@ -1148,6 +1155,13 @@ cc_test {
         "libcrypto",
         "libprotobuf-cpp-lite",
     ],
+    target: {
+        android: {
+            shared_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
     sanitize: {
         address: true,
         all_undefined: true,

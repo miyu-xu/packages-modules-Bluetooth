@@ -138,6 +138,7 @@ cc_library_shared {
                 "libtinyxml2",
                 "libutils",
                 "libz",
+                "PlatformProperties",
             ],
             required: [
                 "libldacBT_enc",
