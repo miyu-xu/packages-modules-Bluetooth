@@ -264,6 +264,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   // connection canceled by LeAddressManager.OnPause(), will auto reconnect by LeAddressManager.OnResume()
   void on_le_connection_canceled_on_pause() {
+    LOG_INFO("");
     ASSERT_LOG(pause_connection, "Connection must be paused to ack the le address manager");
     arm_on_resume_ = true;
     connectability_state_ = ConnectabilityState::DISARMED;
@@ -271,6 +272,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_common_le_connection_complete(AddressWithType address_with_type) {
+    LOG_INFO("");
     auto connecting_addr_with_type = connecting_le_.find(address_with_type);
     if (connecting_addr_with_type == connecting_le_.end()) {
       LOG_WARN("No prior connection request for %s", address_with_type.ToString().c_str());
@@ -284,6 +286,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_connection_complete(LeMetaEventView packet) {
+    LOG_INFO("");
     LeConnectionCompleteView connection_complete = LeConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
@@ -357,6 +360,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_enhanced_connection_complete(LeMetaEventView packet) {
+    LOG_INFO("");
     LeEnhancedConnectionCompleteView connection_complete = LeEnhancedConnectionCompleteView::Create(packet);
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
@@ -455,6 +459,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   static constexpr bool kRemoveConnectionAfterwards = true;
   void on_le_disconnect(uint16_t handle, ErrorCode reason) {
+    LOG_INFO("");
     AddressWithType remote_address = connections.getAddressWithType(handle);
     bool event_also_routes_to_other_receivers = connections.crash_on_unknown_handle_;
     connections.crash_on_unknown_handle_ = false;
@@ -475,6 +480,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_connection_update_complete(LeMetaEventView view) {
+    LOG_INFO("");
     auto complete_view = LeConnectionUpdateCompleteView::Create(view);
     if (!complete_view.IsValid()) {
       LOG_ERROR("Received on_le_connection_update_complete with invalid packet");
@@ -491,6 +497,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_le_phy_update_complete(LeMetaEventView view) {
+    LOG_INFO("");
     auto complete_view = LePhyUpdateCompleteView::Create(view);
     if (!complete_view.IsValid()) {
       LOG_ERROR("Received on_le_phy_update_complete with invalid packet");
@@ -504,12 +511,14 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
 
   void on_le_read_remote_version_information(
       hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
+    LOG_INFO("");
     connections.execute(handle, [=](LeConnectionManagementCallbacks* callbacks) {
       callbacks->OnReadRemoteVersionInformationComplete(hci_status, version, manufacturer_name, sub_version);
     });
   }
 
   void on_data_length_change(LeMetaEventView view) {
+    LOG_INFO("");
     auto data_length_view = LeDataLengthChangeView::Create(view);
     if (!data_length_view.IsValid()) {
       LOG_ERROR("Invalid packet");
@@ -526,6 +535,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_remote_connection_parameter_request(LeMetaEventView view) {
+    LOG_INFO("");
     auto request_view = LeRemoteConnectionParameterRequestView::Create(view);
     if (!request_view.IsValid()) {
       LOG_ERROR("Invalid packet");
@@ -550,6 +560,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   uint16_t HACK_get_handle(Address address) {
+    LOG_INFO("");
     return connections.HACK_get_handle(address);
   }
 
@@ -570,6 +581,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           "Device already exists in acceptlist and cannot be added:%s", PRIVATE_ADDRESS_WITH_TYPE(address_with_type));
       return;
     }
+    LOG_INFO("");
 
     connect_list.insert(address_with_type);
     register_with_address_manager();
@@ -586,6 +598,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       LOG_WARN("Device not in acceptlist and cannot be removed:%s", PRIVATE_ADDRESS_WITH_TYPE(address_with_type));
       return;
     }
+    LOG_INFO("");
     connect_list.erase(address_with_type);
     connecting_le_.erase(address_with_type);
     direct_connections_.erase(address_with_type);
@@ -594,7 +607,8 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         address_with_type.ToFilterAcceptListAddressType(), address_with_type.GetAddress());
   }
 
-  void clear_filter_accept_list() {
+  void clear_connect_list() {
+    LOG_INFO("");
     connect_list.clear();
     register_with_address_manager();
     le_address_manager_->ClearFilterAcceptList();
@@ -605,17 +619,20 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       const std::array<uint8_t, 16>& peer_irk,
       const std::array<uint8_t, 16>& local_irk) {
     register_with_address_manager();
+    LOG_INFO("");
     le_address_manager_->AddDeviceToResolvingList(
         address_with_type.ToPeerAddressType(), address_with_type.GetAddress(), peer_irk, local_irk);
   }
 
   void remove_device_from_resolving_list(AddressWithType address_with_type) {
+    LOG_INFO("");
     register_with_address_manager();
     le_address_manager_->RemoveDeviceFromResolvingList(
         address_with_type.ToPeerAddressType(), address_with_type.GetAddress());
   }
 
   void on_extended_create_connection(CommandStatusView status) {
+    LOG_INFO("");
     ASSERT(status.IsValid());
     ASSERT(status.GetCommandOpCode() == OpCode::LE_EXTENDED_CREATE_CONNECTION);
     if (connectability_state_ != ConnectabilityState::ARMING) {
@@ -628,6 +645,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_create_connection(CommandStatusView status) {
+    LOG_INFO("");
     ASSERT(status.IsValid());
     ASSERT(status.GetCommandOpCode() == OpCode::LE_CREATE_CONNECTION);
     if (connectability_state_ != ConnectabilityState::ARMING) {
@@ -640,6 +658,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void arm_connectability() {
+    LOG_INFO("");
     if (connectability_state_ != ConnectabilityState::DISARMED) {
       LOG_ERROR(
           "Attempting to re-arm le connection state machine in unexpected state:%s",
@@ -755,6 +774,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
           connectability_state_machine_text(connectability_state_).c_str());
       return;
     }
+    LOG_INFO("");
     connectability_state_ = ConnectabilityState::DISARMING;
     le_acl_connection_interface_->EnqueueCommand(
         LeCreateConnectionCancelBuilder::Create(),
@@ -772,6 +792,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       return;
     }
 
+    LOG_INFO("");
     // TODO: Configure default LE connection parameters?
     if (add_to_connect_list) {
       add_device_to_connect_list(address_with_type);
@@ -810,7 +831,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       case ConnectabilityState::ARMED:
       case ConnectabilityState::ARMING:
         // Ignored, if we add new device to the filter accept list, create connection command will be sent by OnResume.
-        LOG_DEBUG(
+        LOG_INFO(
             "Deferred until filter accept list updated create connection state %s",
             connectability_state_machine_text(connectability_state_).c_str());
         break;
@@ -819,7 +840,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
         // must wait until the filter accept list command as completed
         if (add_to_connect_list) {
           arm_on_resume_ = true;
-          LOG_DEBUG("Deferred until filter accept list has completed");
+          LOG_INFO("Deferred until filter accept list has completed");
         } else {
           handler_->CallOn(this, &le_impl::arm_connectability);
         }
@@ -847,6 +868,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void cancel_connect(AddressWithType address_with_type) {
+    LOG_INFO("");
     // Remove any alarms for this peer, if any
     if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
@@ -857,12 +879,14 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void set_le_suggested_default_data_parameters(uint16_t length, uint16_t time) {
+    LOG_INFO("");
     auto packet = LeWriteSuggestedDefaultDataLengthBuilder::Create(length, time);
     le_acl_connection_interface_->EnqueueCommand(
         std::move(packet), handler_->BindOnce([](CommandCompleteView complete) {}));
   }
 
   void clear_resolving_list() {
+    LOG_INFO("");
     le_address_manager_->ClearResolvingList();
   }
 
@@ -872,6 +896,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       crypto_toolbox::Octet16 rotation_irk,
       std::chrono::milliseconds minimum_rotation_time,
       std::chrono::milliseconds maximum_rotation_time) {
+    LOG_INFO("");
     le_address_manager_->SetPrivacyPolicyForInitiatorAddress(
         address_policy,
         fixed_address,
@@ -888,6 +913,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       crypto_toolbox::Octet16 rotation_irk,
       std::chrono::milliseconds minimum_rotation_time,
       std::chrono::milliseconds maximum_rotation_time) {
+    LOG_INFO("");
     le_address_manager_->SetPrivacyPolicyForInitiatorAddressForTest(
         address_policy, fixed_address, rotation_irk, minimum_rotation_time, maximum_rotation_time);
   }
@@ -929,10 +955,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void add_device_to_background_connection_list(AddressWithType address_with_type) {
+    LOG_INFO("");
     background_connections_.insert(address_with_type);
   }
 
   void remove_device_from_background_connection_list(AddressWithType address_with_type) {
+    LOG_INFO("");
     background_connections_.erase(address_with_type);
   }
 
@@ -941,11 +969,13 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void cancel_connection_and_remove_device_from_background_connection_list(AddressWithType address_with_type) {
+    LOG_INFO("");
     remove_device_from_background_connection_list(address_with_type);
     cancel_connect(address_with_type);
   }
 
   void OnPause() override {  // bluetooth::hci::LeAddressManagerCallback
+    LOG_INFO("");
     pause_connection = true;
     if (connectability_state_ == ConnectabilityState::DISARMED) {
       le_address_manager_->AckPause(this);
@@ -956,6 +986,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void OnResume() override {  // bluetooth::hci::LeAddressManagerCallback
+    LOG_INFO("");
     pause_connection = false;
     if (arm_on_resume_) {
       arm_connectability();
@@ -966,6 +997,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
   }
 
   void on_create_connection_cancel_complete(CommandCompleteView view) {
+    LOG_INFO("");
     auto complete_view = LeCreateConnectionCancelCompleteView::Create(view);
     ASSERT(complete_view.IsValid());
     if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
@@ -985,6 +1017,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       le_address_manager_->Register(this);
       address_manager_registered = true;
       pause_connection = true;
+      LOG_INFO("Registered with address manager");
     }
   }
 
@@ -994,6 +1027,7 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
       address_manager_registered = false;
       pause_connection = false;
       ready_to_unregister = false;
+      LOG_INFO("Unregistered from address manager");
     }
   }
 
