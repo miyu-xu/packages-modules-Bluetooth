@@ -118,6 +118,7 @@ class IUT:
             if not self._a2dp:
                 self._a2dp = A2DPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._a2dp.interact(test, interaction, description, pts_address)
+
         # Handles AVRCP and AVCTP MMIs.
         if profile in ('AVRCP', 'AVCTP'):
             if not self._avrcp:

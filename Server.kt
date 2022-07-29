@@ -31,7 +31,7 @@ class Server(context: Context) {
   private var a2dp: A2dp
   private var avrcp: Avrcp
   private var gatt: Gatt
-    private var hfp: Hfp
+  private var hfp: Hfp
   private var sm: Sm
   private var grpcServer: GrpcServer
 
