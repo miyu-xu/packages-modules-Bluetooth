@@ -226,3 +226,5 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG is null after header inclusion");
   case code:                   \
     return #code
 #endif
+
+#define TO_C_STR(obj) ((obj)->ToString().c_str())
