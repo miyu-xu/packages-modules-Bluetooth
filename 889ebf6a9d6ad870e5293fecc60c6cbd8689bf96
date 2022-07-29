@@ -232,6 +232,24 @@
       "message": "To make sure the implementation covers deep conversion, let\u0027s test with a vector inside a hashmap, e.g. `dict: HashMap\u003cString, Vec\u003ci32\u003e\u003e`",
       "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2166d67_80762e85",
+        "filename": "system/gd/rust/linux/dbus_projection/tests/conversions.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T00:31:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3a342b8_6b2a11ea",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
