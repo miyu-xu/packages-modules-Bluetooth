@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76a72724_899c5e3b",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T00:21:33Z",
+      "side": 1,
+      "message": "Because we call next() twice for each iteration, the 2nd call to next() at each iteration might or might not return None if the 1st one returns None [1]. Using fuse() here can have the both yield None. I know it\u0027s not necessary in this case as the while loop checks both key and val, it\u0027s less confusing to the reader.\n\n[1] https://doc.rust-lang.org/std/iter/trait.Iterator.html#tymethod.next",
+      "parentUuid": "7310a7b4_af3a1d01",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28a50e56_0fe4880a",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "590e418a_96acf533",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T00:21:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28a50e56_0fe4880a",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c600b44_deb4ca80",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-07-28T19:10:47Z",
       "side": 1,
       "message": "nit: rustfmt does not work for `quote!`, so it\u0027d be great if this long line is broken:\n```\n        impl\u003cK: Eq + Hash + DBusArg, V: DBusArg\u003e DBusArg for std::collections::HashMap\u003cK, V\u003e\n        where\n            \u003cK as DBusArg\u003e::DBusType: \u0027static\n                + Eq\n                + Hash\n                + dbus::arg::RefArg\n                + RefArgToRust\u003cRustType \u003d \u003cK as DBusArg\u003e::DBusType\u003e,\n        {\n        ...\n```",
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e16ef1e_a3bcb294",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1184,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T00:21:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c600b44_deb4ca80",
       "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +146,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c7ae958_cb69cf7b",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1210,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T00:21:33Z",
+      "side": 1,
+      "message": "Thanks for the tips. It looks more clean.",
+      "parentUuid": "bbc594b2_5041793e",
+      "range": {
+        "startLine": 1198,
+        "startChar": 0,
+        "endLine": 1210,
+        "endChar": 41
+      },
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6866efdb_626bdb1f",
@@ -105,6 +183,30 @@
       "writtenOn": "2022-07-28T19:10:47Z",
       "side": 1,
       "message": "nit: this can be shortened to:\n```\nmap.insert(K::to_dbus(key)?, V::to_dbus(val)?);\n```",
+      "range": {
+        "startLine": 1221,
+        "startChar": 0,
+        "endLine": 1224,
+        "endChar": 0
+      },
+      "revId": "889ebf6a9d6ad870e5293fecc60c6cbd8689bf96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cd46a60_7105e9db",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1224,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-07-29T00:21:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6866efdb_626bdb1f",
       "range": {
         "startLine": 1221,
         "startChar": 0,
