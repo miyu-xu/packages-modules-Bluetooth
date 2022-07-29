@@ -54,7 +54,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 public class Config {
@@ -240,7 +239,7 @@ public class Config {
         sSupportedMask |= (1 << supportedProfile);
     }
 
-    static HashSet<Class> geLeAudioUnicastProfiles() {
+    static HashSet<Class> getLeAudioUnicastProfiles() {
         return mLeAudioUnicastProfiles;
     }
 
