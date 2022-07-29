@@ -293,6 +293,7 @@ cc_defaults {
                 "libhidlbase",
                 "libstatslog_bt",
                 "libutils",
+                "libPlatformProperties",
             ],
         },
         android: {
