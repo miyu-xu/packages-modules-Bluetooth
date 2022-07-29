@@ -217,6 +217,13 @@ cc_library_static {
         "libldacBT_enc",
         "libldacBT_abr",
     ],
+    target: {
+        android: {
+            shared_libs: [
+                "PlatformProperties",
+            ],
+        },
+    },
     host_supported: true,
 }
 
