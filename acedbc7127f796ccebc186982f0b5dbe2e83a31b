@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e7ce3ad_030ba53a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-29T21:21:48Z",
+      "side": 1,
+      "message": "Is is better to do a nice if like this\nOr to not check anything like previously\nOr to throw an exception if the connection already exist ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "acedbc7127f796ccebc186982f0b5dbe2e83a31b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
