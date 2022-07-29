@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a78330_aa1ee265",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-29T22:13:03Z",
+      "side": 1,
+      "message": "could we log more states here? e.g. what devices with address type are on the pending connection list?",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 12
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afc8308f_202eb3b2",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-29T22:13:03Z",
+      "side": 1,
+      "message": "same here, which device and address type?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 17
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a32ebd9_03224e54",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-29T22:13:03Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 17
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a977e89_e3d4b469",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-07-29T22:13:03Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 363,
+        "endChar": 17
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
