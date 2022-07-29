@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "198e0ea2_60140b07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-29T07:15:59Z",
+      "side": 1,
+      "message": "PTAL.\n\nAfter having a short talk with Alice, I realized that we can\u0027t believe the return value of BluetoothProperties.isProfileXxxEnabled().\n\ne.g. LE_AUDIO profiles could be set false by default, and enabled by developer options.",
+      "revId": "a14d053780f02e59916b1c4df8eec6c45498e57e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
