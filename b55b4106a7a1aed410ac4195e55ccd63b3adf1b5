@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e13947fc_ae2e11ca",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-07-29T23:28:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d3a78330_aa1ee265",
+      "range": {
+        "startLine": 267,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 12
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "afc8308f_202eb3b2",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-29T22:13:03Z",
       "side": 1,
       "message": "same here, which device and address type?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 275,
+        "endChar": 17
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40f47600_8e04777b",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-07-29T23:28:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "afc8308f_202eb3b2",
       "range": {
         "startLine": 275,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb5e9657_26b78227",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-07-29T23:28:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "8a32ebd9_03224e54",
+      "range": {
+        "startLine": 289,
+        "startChar": 0,
+        "endLine": 289,
+        "endChar": 17
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a977e89_e3d4b469",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-07-29T22:13:03Z",
       "side": 1,
       "message": "same as above",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 363,
+        "endChar": 17
+      },
+      "revId": "b55b4106a7a1aed410ac4195e55ccd63b3adf1b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "42221787_d036cef3",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-07-29T23:28:11Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5a977e89_e3d4b469",
       "range": {
         "startLine": 363,
         "startChar": 0,
