@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8fc6cc1_574b6623",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-07-29T05:43:53Z",
+      "side": 1,
+      "message": "We cannot call getSupportedProfiles() is a system api that requires BLUETOOTH_PRIVILEGED permission, but the getProfileProxy() is a public method that doesn\u0027t require any permissions, and it looks we should depends on the value from getSupportedProfiles.",
+      "parentUuid": "e014d965_822b690a",
+      "revId": "af2f00f7d3aea52855ace42d148cf046d445235f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "624bad47_eb923d37",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 1
