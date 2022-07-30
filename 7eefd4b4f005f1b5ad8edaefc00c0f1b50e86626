@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04eda933_0bb769f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-07-30T00:23:53Z",
+      "side": 1,
+      "message": "MMI called are already implemented:\ntest_started          \nTSC_iut_enable_slc    \nTSC_iut_disable_slc   ",
+      "revId": "7eefd4b4f005f1b5ad8edaefc00c0f1b50e86626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
