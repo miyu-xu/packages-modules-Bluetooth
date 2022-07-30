@@ -43,6 +43,8 @@ class PhyLayerFactory {
           device_receive,
       uint32_t device_id);
 
+  const std::list<std::shared_ptr<PhyLayer>>& GetPhyLayers() const {return phy_layers_;}
+
   void UnregisterPhyLayer(uint32_t id);
 
   void UnregisterAllPhyLayers();
@@ -54,8 +56,8 @@ class PhyLayerFactory {
  protected:
   virtual void Send(
       std::shared_ptr<model::packets::LinkLayerPacketBuilder> packet,
-      uint32_t id);
-  virtual void Send(model::packets::LinkLayerPacketView packet, uint32_t id);
+      uint32_t phy_id, uint32_t device_id);
+  virtual void Send(model::packets::LinkLayerPacketView packet, uint32_t phy_id, uint32_t device_id);
 
  private:
   Phy::Type phy_type_;
