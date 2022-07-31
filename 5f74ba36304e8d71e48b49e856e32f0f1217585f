@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff171757_fb25822c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-31T06:41:44Z",
+      "side": 1,
+      "message": "Updated the new version, and verified with SW and offload path",
+      "parentUuid": "52a8dd5b_beacc6ce",
+      "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df006a3d_b0c3a5f9",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-07-28T09:25:57Z",
       "side": 1,
       "message": "This can\u0027t be moved multiple times in a loop.",
+      "range": {
+        "startLine": 185,
+        "startChar": 30,
+        "endLine": 185,
+        "endChar": 51
+      },
+      "revId": "5f74ba36304e8d71e48b49e856e32f0f1217585f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c066671d_d7c931cc",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-07-31T06:41:44Z",
+      "side": 1,
+      "message": "You\u0027re right. Not sure why it still work well. Done.",
+      "parentUuid": "df006a3d_b0c3a5f9",
       "range": {
         "startLine": 185,
         "startChar": 30,
