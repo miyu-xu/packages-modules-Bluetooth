@@ -39,6 +39,9 @@ rust_library {
         "//apex_available:platform",
         "com.android.bluetooth",
     ],
+    whole_static_libs: [
+        "libbt_l2cap_experiment_bridge_cxx",
+    ],
     min_sdk_version: "30",
     target: {
         android: {
@@ -120,3 +123,53 @@ cc_library_static {
     min_sdk_version: "30",
 }
 
+genrule {
+    name: "libbt_l2cap_experiment_bridge_header",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) --header > $(out)",
+    srcs: ["src/l2cap/bridge.rs"],
+    out: ["src/l2cap/bridge.rs.h"],
+}
+
+genrule {
+    name: "libbt_l2cap_experiment_bridge_code",
+    tools: ["cxxbridge"],
+    cmd: "$(location cxxbridge) $(in) >> $(out)",
+    srcs: ["src/l2cap/bridge.rs"],
+    out: ["l2cap_bridge_generated.cc"],
+}
+
+cc_library_static {
+    name: "libbt_l2cap_experiment_bridge_cxx",
+    defaults: ["gd_ffi_defaults"],
+    srcs: ["src/l2cap/ffi/callbacks.cc"],
+    local_include_dirs: ["src/l2cap/ffi"],
+    cflags: ["-DHAS_NO_BDROID_BUILDCFG"],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/bta/include",
+        "packages/modules/Bluetooth/system/btif/avrcp",
+        "packages/modules/Bluetooth/system/btif/include",
+        "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/internal_include",
+        "packages/modules/Bluetooth/system/stack/include",
+        "packages/modules/Bluetooth/system/stack/btm",
+        "packages/modules/Bluetooth/system/udrv/include",
+        "packages/modules/Bluetooth/system/vnd/include",
+        "packages/modules/Bluetooth/system/utils/include",
+        "packages/modules/Bluetooth/system/gd/rust/shim",
+
+        "packages/modules/Bluetooth/system/bta/groups",
+        "packages/modules/Bluetooth/system/osi/include",
+    ],
+    generated_headers: ["libbt_l2cap_experiment_bridge_header", "cxx-bridge-header"],
+    generated_sources: ["libbt_l2cap_experiment_bridge_code"],
+    export_generated_headers: ["libbt_l2cap_experiment_bridge_header", "cxx-bridge-header"],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.bluetooth",
+    ],
+    host_supported: true,
+    header_libs: ["libbluetooth_headers"],
+    min_sdk_version: "30",
+}

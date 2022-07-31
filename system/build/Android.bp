@@ -94,9 +94,13 @@ fluoride_defaults {
     generated_headers: [
         "libbt_shim_bridge_header",
         "libbt_message_loop_thread_bridge_header",
+        "libbt_l2cap_experiment_bridge_header",
         "cxx-bridge-header",
     ],
-    include_dirs: ["packages/modules/Bluetooth/system/gd/rust/shim"],
+    include_dirs: [
+        "packages/modules/Bluetooth/system/gd/rust/shim",
+        "packages/modules/Bluetooth/system/gd/rust/stack",
+    ],
     static_libs: [
         "libbluetooth-types",
         "libbt-platform-protos-lite",

@@ -6,6 +6,7 @@ extern crate lazy_static;
 pub mod hal;
 pub mod hci;
 pub mod link;
+pub mod l2cap;
 
 use crate::hal::rootcanal_hal::RootcanalConfig;
 use crate::hal::snoop::{SnoopConfig, SnoopMode};
@@ -19,6 +20,7 @@ module! {
     submodules {
         crate::hal::hal_module,
         crate::hci::hci_module,
+        crate::l2cap::l2cap_module,
     }
 }
 
