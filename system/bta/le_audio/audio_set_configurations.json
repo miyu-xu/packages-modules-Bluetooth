@@ -443,6 +443,11 @@
             "qos_config_name": ["QoS_Config_24_2_2"]
         },
         {
+            "name": "DualDev_OneChanStereoSnk_32_2_Server_Preferred",
+            "codec_config_name": "DualDev_OneChanStereoSnk_32_2",
+            "qos_config_name": ["QoS_Config_Server_Preferred"]
+        },
+        {
             "name": "DualDev_OneChanStereoSnk_OneChanStereoSrc_32_2_Server_Preferred",
             "codec_config_name": "DualDev_OneChanStereoSnk_OneChanStereoSrc_32_2",
             "qos_config_name": ["QoS_Config_Server_Preferred"]
@@ -9002,6 +9007,73 @@
                     "device_cnt": 1,
                     "ase_cnt": 1,
                     "direction": "SOURCE",
+                    "codec_id": {
+                        "coding_format": 6,
+                        "vendor_company_id": 0,
+                        "vendor_codec_id": 0
+                    },
+                    "codec_configuration": [
+                        {
+                            "name": "sampling_frequency",
+                            "type": 1,
+                            "compound_value": {
+                                "value": [
+                                    6
+                                ]
+                            }
+                        },
+                        {
+                            "name": "frame_duration",
+                            "type": 2,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        },
+                        {
+                            "name": "audio_channel_allocation",
+                            "type": 3,
+                            "compound_value": {
+                                "value": [
+                                    1,
+                                    0,
+                                    0,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "octets_per_codec_frame",
+                            "type": 4,
+                            "compound_value": {
+                                "value": [
+                                    80,
+                                    0
+                                ]
+                            }
+                        },
+                        {
+                            "name": "codec_frame_blocks_per_sdu",
+                            "type": 5,
+                            "compound_value": {
+                                "value": [
+                                    1
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "DualDev_OneChanStereoSnk_32_2",
+            "subconfigurations": [
+                {
+                    "device_cnt": 2,
+                    "ase_cnt": 2,
+                    "direction": "SINK",
+                    "configuration_strategy": "MONO_ONE_CIS_PER_DEVICE",
                     "codec_id": {
                         "coding_format": 6,
                         "vendor_company_id": 0,

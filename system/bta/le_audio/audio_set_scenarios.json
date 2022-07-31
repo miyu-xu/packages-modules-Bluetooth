@@ -89,6 +89,7 @@
                 "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_2_1",
                 "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_Server_Preferred",
                 "SingleDev_OneChanMonoSnk_OneChanMonoSrc_16_1_1",
+                "DualDev_OneChanStereoSnk_32_2_Server_Preferred",
                 "DualDev_OneChanMonoSrc_16_2_Server_Preferred",
                 "SingleDev_OneChanStereoSrc_16_2_Server_Preferred",
                 "SingleDev_OneChanMonoSrc_24_2_Server_Preferred",
