@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c81b6de_3f0cb731",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-01T16:50:40Z",
+      "side": 1,
+      "message": "nit: I would have done the reverse, seems more natural to me:\n`if NEEDS_WAIT_CONNECTION_BEFORE_TEST in test:`",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 53
+      },
+      "revId": "6be19635a9d44bc94db23f153afccc915ab0237c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
