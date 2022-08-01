@@ -16,6 +16,23 @@
       "message": "Thanks Lukasz for reviewing and sharing your comments, uploaded new patchset with your suggested changes. Please review and let know of anything else to be taken care of.\n\nThanks and Regards,\nPartha Sarathi",
       "revId": "20be1aaf46b6fc309ae2efc7d29a39e74a385619",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "924b8655_5d9cee6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-01T15:36:44Z",
+      "side": 1,
+      "message": "Hi Partha,\n\nThanks for updates.\n\nlooks like test case bluetooth_le_audio_client_test is failing. Could you have a look on it?\n\nBest\nŁukasz",
+      "revId": "20be1aaf46b6fc309ae2efc7d29a39e74a385619",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
