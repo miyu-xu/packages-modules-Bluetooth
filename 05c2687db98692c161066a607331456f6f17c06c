@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a69479_e1a3f43d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-01T22:58:56Z",
+      "side": 1,
+      "message": "return early here should be ok, since the error log below doesn\u0027t make sense any more",
+      "range": {
+        "startLine": 977,
+        "startChar": 8,
+        "endLine": 977,
+        "endChar": 44
+      },
+      "revId": "05c2687db98692c161066a607331456f6f17c06c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
