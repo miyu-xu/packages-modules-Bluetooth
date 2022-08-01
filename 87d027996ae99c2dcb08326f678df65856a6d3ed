@@ -33,6 +33,24 @@
       "message": "typo in the commit message: ther -\u003e there",
       "revId": "87d027996ae99c2dcb08326f678df65856a6d3ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75b011a4_bc50c80a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-08-01T02:26:13Z",
+      "side": 1,
+      "message": "Nice catch, thanks!",
+      "parentUuid": "58b1ecfb_537c0c31",
+      "revId": "87d027996ae99c2dcb08326f678df65856a6d3ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
