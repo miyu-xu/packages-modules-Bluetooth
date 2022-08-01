@@ -81,11 +81,9 @@
     "SDP/SR/SSA/BV-17-C",
     "SDP/SR/SSA/BV-20-C",
     "SDP/SR/SSA/BV-23-C",
-    "SM/CEN/EKS/BI-01-C",
-    "SM/CEN/EKS/BV-01-C",
-    "SM/CEN/JW/BI-01-C",
-    "SM/CEN/JW/BI-04-C",
-    "SM/CEN/JW/BV-05-C"
+    "SM/CEN/EKS",
+    "SM/CEN/JW",
+    "SM/CEN/KDU"
   ],
   "skip": [
     "A2DP/SRC/AS/BV-01-I",
