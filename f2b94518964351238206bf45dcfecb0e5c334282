@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33925b99_1989fa35",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2601,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-01T04:55:20Z",
+      "side": 1,
+      "message": "From the Android 13 CDD, it also need to contain BluetotohProfile#LE_CALL_CONTROL. We would add the further patch to add BluetoothProrfile#LE_CALL_CONTORL to be included in isLeAudioSupported()",
+      "range": {
+        "startLine": 2601,
+        "startChar": 48,
+        "endLine": 2601,
+        "endChar": 94
+      },
+      "revId": "f2b94518964351238206bf45dcfecb0e5c334282",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
