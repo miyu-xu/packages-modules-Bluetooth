@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da2448d5_69acfa57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-01T05:25:28Z",
+      "side": 1,
+      "message": "Thanks Lukasz for reviewing and sharing your comments, uploaded new patchset with your suggested changes. Please review and let know of anything else to be taken care of.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "20be1aaf46b6fc309ae2efc7d29a39e74a385619",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
