@@ -971,7 +971,9 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
       auto status = complete_view.GetStatus();
       std::string error_code = ErrorCodeText(status);
-      LOG_WARN("Received on_create_connection_cancel_complete with error code %s", error_code.c_str());
+      LOG_WARN("Received on_create_connection_cancel_complete with error code %s, AckPause", error_code.c_str());
+      le_address_manager_->AckPause(this);
+      return;
     }
     if (connectability_state_ != ConnectabilityState::DISARMING) {
       LOG_ERROR(
