@@ -774,6 +774,7 @@ class Bootstrap():
         self._print_missing_packages()
         self._print_missing_rust_packages()
 
+# DO NOT SUBMIT
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simple build for host.')
