@@ -14,6 +14,7 @@ rust_library {
     srcs: ["src/lib.rs"],
     edition: "2018",
     rustlibs: [
+        "libanyhow",
         "libbt_facade_proto",
         "libbt_packets",
         "libbytes",
@@ -162,7 +163,14 @@ cc_library_static {
         "packages/modules/Bluetooth/system/bta/groups",
         "packages/modules/Bluetooth/system/osi/include",
     ],
-    generated_headers: ["libbt_l2cap_experiment_bridge_header", "cxx-bridge-header"],
+    generated_headers: [
+        "libbt_l2cap_experiment_bridge_header", 
+        "cxx-bridge-header",
+        // other generated headers included in the main header
+        "libbt_init_flags_bridge_header",
+        "libbt_shim_bridge_header",
+        "libbt_message_loop_thread_bridge_header", 
+    ],
     generated_sources: ["libbt_l2cap_experiment_bridge_code"],
     export_generated_headers: ["libbt_l2cap_experiment_bridge_header", "cxx-bridge-header"],
     apex_available: [

@@ -441,7 +441,7 @@ class HostBuild():
         """ Runs the host tests.
         """
         # Rust tests first
-        rust_test_cmd = ['cargo', 'test']
+        rust_test_cmd = ['cargo', 'test', '-p', 'bluetooth_rs']
         if self.args.test_name:
             rust_test_cmd = rust_test_cmd + [self.args.test_name]
 

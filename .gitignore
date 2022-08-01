@@ -7,3 +7,12 @@ tags
 cscope.out
 cscope.files
 *.sw?
+android/pandora/lib/
+android/pandora/server/src/pandora/*.java
+android/pandora/server/pandora/*.py
+.gitignore
+.idea/
+android/pandora/pandora.iml
+.vscode/
+system/build/dpkg/*
+setup.sh

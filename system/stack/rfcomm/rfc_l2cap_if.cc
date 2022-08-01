@@ -41,7 +41,7 @@
 
 /*
  * Define Callback functions to be called by L2CAP
-*/
+ */
 static void RFCOMM_ConnectInd(const RawAddress& bd_addr, uint16_t lcid,
                               uint16_t psm, uint8_t id);
 static void RFCOMM_ConnectCnf(uint16_t lcid, uint16_t err);

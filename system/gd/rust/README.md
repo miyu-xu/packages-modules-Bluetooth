@@ -24,7 +24,7 @@ found in `$CARGO_HOME/bin`.
 1. Run `m -j32 bluetooth_packetgen` to compile `bluetooth_packetgen` c++ binary.
 2. Change directory to `$CARGO_HOME/bin`.
 3. Create a symlink in `$CARGO_HOME/bin` to compiled `bluetooth_packetgen`.
-`ln -s ~/aosp/out/host/linux-x86/bin/bluetooth_packetgen bluetooth_packetgen`
+`ln -s ~/master/out/host/linux-x86/bin/bluetooth_packetgen bluetooth_packetgen`
 
 ### Enable GD Rust
 1. `adb shell device_config put bluetooth INIT_gd_rust true`
