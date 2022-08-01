@@ -46,6 +46,30 @@
       },
       "revId": "6be19635a9d44bc94db23f153afccc915ab0237c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efe638e2_bed2b41d",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-01T18:12:14Z",
+      "side": 1,
+      "message": "Oh ok, make sense 👍 !",
+      "parentUuid": "00c4a18e_74f77838",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 53
+      },
+      "revId": "6be19635a9d44bc94db23f153afccc915ab0237c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
