@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36269f13_8d0dd90c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-01T08:25:44Z",
+      "side": 1,
+      "message": "`AddFromStorage()` does the `leAudioDevices_.FindByAddress(address)` lookup and if not found, then it creates a new device. However the `DeserializeXYZ()` always assume that the device is brand new, with empty containers inside as they do not erase their content before adding stuff (e.g. ASES container). Either `leAudioDevices_.FindByAddress(address)` should never find a device (and we should handle case when it does or we should assert), or we should make sure that the device is clean (e.g. the deserializers could clean up the containers before adding stuff to it).",
+      "revId": "6c1b45035850fea7b82c82674e501eb3a51c5740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a289017_416dfa38",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 2102,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-01T08:25:44Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 2102,
+        "startChar": 11,
+        "endLine": 2102,
+        "endChar": 12
+      },
+      "revId": "6c1b45035850fea7b82c82674e501eb3a51c5740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d99e2c_51a2a461",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-01T08:25:44Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 34,
+        "startChar": 32,
+        "endLine": 34,
+        "endChar": 39
+      },
+      "revId": "6c1b45035850fea7b82c82674e501eb3a51c5740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b975c9cb_cabf969e",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-01T08:25:44Z",
+      "side": 1,
+      "message": "please use reference here",
+      "range": {
+        "startLine": 82,
+        "startChar": 15,
+        "endLine": 82,
+        "endChar": 23
+      },
+      "revId": "6c1b45035850fea7b82c82674e501eb3a51c5740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dd254a3_75ec86b2",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-01T08:25:44Z",
+      "side": 1,
+      "message": "please use reference here",
+      "range": {
+        "startLine": 109,
+        "startChar": 15,
+        "endLine": 109,
+        "endChar": 23
+      },
+      "revId": "6c1b45035850fea7b82c82674e501eb3a51c5740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
