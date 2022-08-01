@@ -16,6 +16,29 @@
       "message": "Gentle ping for review",
       "revId": "c824c8e4187441fe1be5a137c9fe87820f5a3e2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6248bd32_3a03cca2",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-01T02:44:20Z",
+      "side": 1,
+      "message": "s/Remove/We only removes",
+      "range": {
+        "startLine": 619,
+        "startChar": 9,
+        "endLine": 619,
+        "endChar": 15
+      },
+      "revId": "c824c8e4187441fe1be5a137c9fe87820f5a3e2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
