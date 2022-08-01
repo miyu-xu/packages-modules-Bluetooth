@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05718dff_787f1d1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1609802
+      },
+      "writtenOn": "2022-08-01T22:05:37Z",
+      "side": 1,
+      "message": "LGTM. It would be better if you can unit test cover the original bug scenarios and verify it is fixed, though.",
+      "revId": "d1d6a483d190128340995c678105ba3e13caee6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
