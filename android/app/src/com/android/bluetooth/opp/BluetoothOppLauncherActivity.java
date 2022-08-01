@@ -103,8 +103,16 @@ public class BluetoothOppLauncherActivity extends Activity {
              */
             if (action.equals(Intent.ACTION_SEND)) {
                 // TODO: handle type == null case
+		Uri temp = null;
+		try {
+		    temp = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+		} catch (RuntimeException e) {
+		    Log.e(TAG, "ACTION_SEND getParcelable EXTRA_STREAM exception!");
+		    finish();
+		    return;
+		}
                 final String type = intent.getType();
-                final Uri stream = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                final Uri stream = temp;
                 CharSequence extraText = intent.getCharSequenceExtra(Intent.EXTRA_TEXT);
                 // If we get ACTION_SEND intent with EXTRA_STREAM, we'll use the
                 // uri data;
