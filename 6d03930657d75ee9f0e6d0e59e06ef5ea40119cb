@@ -22,6 +22,30 @@
       },
       "revId": "6d03930657d75ee9f0e6d0e59e06ef5ea40119cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79fb01d2_10543182",
+        "filename": "system/gd/os/linux/system_properties.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-02T02:30:34Z",
+      "side": 0,
+      "message": "It doesn\u0027t enable LL privacy, it just moves the setting from setting it here, to setting it in centralized file sysprops.conf (which I\u0027m trying to model on main.conf). Here\u0027s the corresponding CL for adding the new file:\n\nhttps://chromium-review.googlesource.com/c/chromiumos/overlays/chromiumos-overlay/+/3759412",
+      "parentUuid": "dda9eb63_7734814a",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 55
+      },
+      "revId": "6d03930657d75ee9f0e6d0e59e06ef5ea40119cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
