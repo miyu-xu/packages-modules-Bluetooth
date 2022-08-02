@@ -77,6 +77,15 @@ LinkLayerController::LinkLayerController(const DeviceProperties& properties)
                 Address(*address));
           },
 
+      .local_address =
+          [](void* user, uint8_t(*result)[6]) {
+            auto controller = static_cast<LinkLayerController*>(user);
+
+            auto address = controller->properties_.GetAddress();
+            std::copy(address.data(), address.data() + 6,
+                      reinterpret_cast<uint8_t*>(result));
+          },
+
       .get_address =
           [](void* user, uint16_t handle, uint8_t(*result)[6]) {
             auto controller = static_cast<LinkLayerController*>(user);

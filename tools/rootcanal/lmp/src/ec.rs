@@ -111,6 +111,13 @@ impl DhKey {
             None
         }
     }
+
+    pub fn as_slice(&self) -> &[u8] {
+        match self {
+            Self::P192(inner) => inner,
+            Self::P256(inner) => inner,
+        }
+    }
 }
 
 impl PrivateKey {
