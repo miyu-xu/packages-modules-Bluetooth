@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64d82d32_348a1160",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-02T00:52:24Z",
+      "side": 1,
+      "message": "This one should be fixed with:\naosp/2170511",
+      "range": {
+        "startLine": 120,
+        "startChar": 5,
+        "endLine": 120,
+        "endChar": 22
+      },
+      "revId": "588a08e166fcb2f8c2cf64b31a44a0a52a917902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
