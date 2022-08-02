@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42137d92_9163149b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 863,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-02T12:58:31Z",
+      "side": 1,
+      "message": "this seems to be updated",
+      "revId": "199aafa412441072fbe508d193fae420b5b4ae81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
