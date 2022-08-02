@@ -17,9 +17,12 @@
 package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothDevice.TRANSPORT_BREDR
 import android.bluetooth.BluetoothGattService
 import android.bluetooth.BluetoothGattCharacteristic
+import android.bluetooth.BluetoothGattDescriptor
+import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothProfile
 import android.content.Context
 import android.util.Log
 
@@ -28,9 +31,13 @@ import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
 
+import java.lang.StringBuilder
+import java.util.UUID
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 import pandora.GATTGrpc.GATTImplBase
@@ -44,6 +51,22 @@ class Gatt(private val context: Context) : GATTImplBase() {
 
   private val mBluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val mBluetoothAdapter = mBluetoothManager.adapter
+
+  private val baseUUID: String = "-0000-1000-8000-00805f9b34fb"
+  private val handlePadding: Int = 4
+  private val uuidPadding: Int = 8
+
+  private fun String.toBaseUuid(): UUID {
+    if (this.length == 4) {
+      return UUID.fromString(this.lowercase().padStart(uuidPadding, '0').plus(baseUUID))
+    } else {
+      return UUID.fromString(StringBuilder(this.replace("-", "").lowercase())
+          .insert(8, "-").insert(13, "-").insert(18, "-").insert(23, "-").toString())
+    }
+  }
+
+  private fun Int.toBaseUuid(): UUID =
+      UUID.fromString(String.format("%04X", this).lowercase().padStart(uuidPadding, '0').plus(baseUUID))
 
   init {
     mScope = CoroutineScope(Dispatchers.Default)
@@ -85,6 +108,47 @@ class Gatt(private val context: Context) : GATTImplBase() {
     }
   }
 
+  override fun connectGattBrEdr(request: ConnectGattBrEdrRequest,
+      responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(mScope, responseObserver) {
+      val device = request.connection.toBluetoothDevice(mBluetoothAdapter)
+      GattInstance(device, TRANSPORT_BREDR, context).waitForState(BluetoothProfile.STATE_CONNECTED)
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun discoverServiceByUuid(request: DiscoverServiceByUuidRequest,
+      responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(mScope, responseObserver) {
+      val addr = request.connection.cookie.toByteArray().decodeToString()
+      val gattInstance = GattInstance.get(addr)
+      if (!gattInstance.isBLETransport()) {
+        // Non BLE transport GATT needs 1s delay before being able to discover services
+        delay(1000L)
+      } else {
+        // BLE transport GATT starts a discovery immediately after being connected, and
+        // in some cases no service is found and we can start immediately, but in most cases
+        // we need to wait until the service discovery is finished to be able to discover again.
+        // This takes about 24s, and there is no way to know if the service is busy or not.
+        delay(30000L)
+      }
+      check(gattInstance.mGatt.discoverServiceByUuid(request.uuid.toBaseUuid()))
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun discoverServices(request: DiscoverServicesRequest,
+      responseObserver: StreamObserver<DiscoverServicesResponse>) {
+    grpcUnary<DiscoverServicesResponse>(mScope, responseObserver) {
+      val addr = request.connection.cookie.toByteArray().decodeToString()
+      val gattInstance = GattInstance.get(addr)
+      check(gattInstance.mGatt.discoverServices())
+      gattInstance.waitForDiscoveryEnd()
+      DiscoverServicesResponse.newBuilder()
+          .addAllServices(generateServicesList(gattInstance.mGatt.services)).build()
+    }
+  }
+
   private suspend fun getCharacteristicWithHandle(handle: Int,
       gattInstance: GattInstance): BluetoothGattCharacteristic? {
     if (!gattInstance.servicesDiscovered() && !gattInstance.mGatt.discoverServices()) {
@@ -101,5 +165,47 @@ class Gatt(private val context: Context) : GATTImplBase() {
       }
     }
     return null
+  }
+
+  private fun generateServicesList(servicesList: List<BluetoothGattService>)
+      : ArrayList<GattService> {
+    val newServicesList = arrayListOf<GattService>()
+    for (service in servicesList) {
+      val serviceBuilder = GattService.newBuilder()
+          .setHandle(service.getInstanceId())
+          .setType(service.getType())
+          .setUuid(service.getUuid().toString())
+          .addAllIncludedServices(generateServicesList(service.getIncludedServices()))
+          .addAllCharacteristics(generateCharacteristicsList(service.characteristics))
+      newServicesList.add(serviceBuilder.build())
+    }
+    return newServicesList
+  }
+
+  private fun generateCharacteristicsList(characteristicsList : List<BluetoothGattCharacteristic>)
+      : ArrayList<GattCharacteristic> {
+    val newCharacteristicsList = arrayListOf<GattCharacteristic>()
+    for (characteristic in characteristicsList) {
+      val characteristicBuilder = GattCharacteristic.newBuilder()
+          .setProperties(characteristic.getProperties())
+          .setPermissions(characteristic.getPermissions())
+          .setUuid(characteristic.getUuid().toString())
+          .addAllDescriptors(generateDescriptorsList(characteristic.getDescriptors()))
+      newCharacteristicsList.add(characteristicBuilder.build())
+    }
+    return newCharacteristicsList
+  }
+
+  private fun generateDescriptorsList(descriptorsList : List<BluetoothGattDescriptor>)
+      : ArrayList<GattDescriptor> {
+    val newDescriptorsList = arrayListOf<GattDescriptor>()
+    for (descriptor in descriptorsList) {
+      val descriptorBuilder = GattDescriptor.newBuilder()
+          .setHandle(descriptor.getInstanceId())
+          .setPermissions(descriptor.getPermissions())
+          .setUuid(descriptor.getUuid().toString())
+      newDescriptorsList.add(descriptorBuilder.build())
+    }
+    return newDescriptorsList
   }
 }
