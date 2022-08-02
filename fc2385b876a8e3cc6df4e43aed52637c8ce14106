@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cbefb48_3fac31f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-02T00:54:39Z",
+      "side": 1,
+      "message": "Update pts_bot_tests_config.json and moce `SM/CEN/JW/BV-05-C` from \"skip\" to \"pass\". Does this CL fixed `SM/CEN/JW/BI-01-C` as well ?",
+      "revId": "fc2385b876a8e3cc6df4e43aed52637c8ce14106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
