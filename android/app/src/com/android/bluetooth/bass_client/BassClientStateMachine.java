@@ -1535,18 +1535,9 @@ public class BassClientStateMachine extends StateMachine {
                         mBluetoothGatt.writeCharacteristic(mBroadcastScanControlPoint);
                         mPendingOperation = message.what;
                         mPendingMetadata = metaData;
-
-                        if (metaData.isEncrypted()) {
-                            if ((metaData.getBroadcastCode().length > 16)
-                                    || (metaData.getBroadcastCode().length < 4)) {
-                                Log.e(TAG, "Delivered invalid length of broadcast code: "
-                                        + metaData.getBroadcastCode().length
-                                        + ", should be between 4 and 16 octets");
-                            } else {
-                                mSetBroadcastCodePending = true;
-                            }
+                        if (metaData.isEncrypted() && (metaData.getBroadcastCode() != null)) {
+                            mSetBroadcastCodePending = true;
                         }
-
                         transitionTo(mConnectedProcessing);
                         sendMessageDelayed(GATT_TXN_TIMEOUT, BassConstants.GATT_TXN_TIMEOUT_MS);
                     } else {
@@ -1573,6 +1564,9 @@ public class BassClientStateMachine extends StateMachine {
                         mPendingSourceId = (byte) sourceId;
                         if (paSync == BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE) {
                             setPendingRemove(sourceId, true);
+                        }
+                        if (metaData.isEncrypted() && (metaData.getBroadcastCode() != null)) {
+                            mSetBroadcastCodePending = true;
                         }
                         mPendingMetadata = metaData;
                         transitionTo(mConnectedProcessing);

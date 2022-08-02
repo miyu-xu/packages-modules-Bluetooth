@@ -664,6 +664,12 @@ public class LeAudioService extends ProfileService {
             Log.w(TAG, "Native interface not available.");
             return;
         }
+        if (broadcastCode.length != 0) {
+            if ((broadcastCode.length > 16) || (broadcastCode.length < 4)) {
+                Log.e(TAG, "Invalid broadcast code length. Should be from 4 to 16 octets long.");
+                return;
+            }
+        }
         mLeAudioBroadcasterNativeInterface.createBroadcast(metadata.getRawMetadata(),
                 broadcastCode);
     }
