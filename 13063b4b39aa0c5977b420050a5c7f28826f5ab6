@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8e1aec0_87465124",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-02T12:52:28Z",
+      "side": 1,
+      "message": "I thought we discussed that onAudioMetadataUpdate() should handle multiple context types update",
+      "revId": "13063b4b39aa0c5977b420050a5c7f28826f5ab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5489926f_338009b8",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-02T12:52:28Z",
+      "side": 1,
+      "message": "I know this is for testing, but do we care about specific value of this ccid? If so,  if ccid is negative and option is \"single\", we can end up with different value we want.\n\nMaybe if(option) we should always ccid_value.clear() and then don\u0027t need to to check size(), just add what you need.",
+      "revId": "13063b4b39aa0c5977b420050a5c7f28826f5ab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
