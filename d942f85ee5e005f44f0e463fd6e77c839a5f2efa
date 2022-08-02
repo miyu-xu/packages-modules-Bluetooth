@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a41312_859d5f5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-02T12:15:30Z",
+      "side": 1,
+      "message": "Hi All, this is an upstream to avoid merge conflicts. We will need another CL on `system/common/metrics.cc` to enable this atom.",
+      "revId": "d942f85ee5e005f44f0e463fd6e77c839a5f2efa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
