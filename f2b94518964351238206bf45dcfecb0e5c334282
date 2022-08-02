@@ -22,6 +22,30 @@
       },
       "revId": "f2b94518964351238206bf45dcfecb0e5c334282",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ed44b69_bfe1a55a",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 2601,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-02T03:58:10Z",
+      "side": 1,
+      "message": "Let\u0027s handle it in the CL for LE_CALL_CONTROL\nAdded a TODO comment in Config.java",
+      "parentUuid": "33925b99_1989fa35",
+      "range": {
+        "startLine": 2601,
+        "startChar": 48,
+        "endLine": 2601,
+        "endChar": 94
+      },
+      "revId": "f2b94518964351238206bf45dcfecb0e5c334282",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
