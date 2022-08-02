@@ -1,5 +1,6 @@
 //! Link Manager implemented in Rust
 
+mod crypto_toolbox;
 mod ec;
 mod either;
 mod ffi;
