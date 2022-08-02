@@ -1,5 +1,46 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd07a5a_0f8e4e6b",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T00:45:43Z",
+      "side": 1,
+      "message": "This line is over 80 characters. Shall we break it to multiple lines?",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 104
+      },
+      "revId": "3313ba2194382d27eb6c0e4866cc723794ff9f25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48d1a9b5_c2d29e58",
+        "filename": "system/gd/metrics/chromeos/metrics_event.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T00:45:43Z",
+      "side": 1,
+      "message": "I don\u0027t see `addr` in the function declared below?",
+      "revId": "3313ba2194382d27eb6c0e4866cc723794ff9f25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
