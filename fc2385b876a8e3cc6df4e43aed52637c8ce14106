@@ -16,6 +16,24 @@
       "message": "Update pts_bot_tests_config.json and moce `SM/CEN/JW/BV-05-C` from \"skip\" to \"pass\". Does this CL fixed `SM/CEN/JW/BI-01-C` as well ?",
       "revId": "fc2385b876a8e3cc6df4e43aed52637c8ce14106",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1373552d_1f0f85f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-02T01:09:19Z",
+      "side": 1,
+      "message": "Both are passing locally.\nShould I wait for the other change to add these to skip, then edit this to add them to pass? This will delay the fix, can\u0027t we just not add these to skip right now?",
+      "parentUuid": "7cbefb48_3fac31f7",
+      "revId": "fc2385b876a8e3cc6df4e43aed52637c8ce14106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
