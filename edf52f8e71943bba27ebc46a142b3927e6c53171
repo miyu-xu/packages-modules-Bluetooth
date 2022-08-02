@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4048a1e8_0fc0bd68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T06:30:04Z",
+      "side": 1,
+      "message": "Done. Thanks for catching this.",
+      "parentUuid": "efa449c2_239ce669",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cf0993b_b8578095",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d77a9a1c_4ad9bb74",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T06:30:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cf0993b_b8578095",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5251eccf_c113e847",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-08-02T03:06:26Z",
       "side": 1,
       "message": "Please add `./build.py --target test` here if you\u0027ve run the unit tests as well.",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "897107c6_74fdac9d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T06:30:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5251eccf_c113e847",
       "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e40ac996_5d94a891",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T06:30:04Z",
+      "side": 1,
+      "message": "It\u0027s not a must-have in this case. I\u0027ll remove it.",
+      "parentUuid": "bad53cec_2fb6e689",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b802157_6f2442a6",
@@ -103,6 +175,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c833d95b_63f28b26",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T06:30:04Z",
+      "side": 1,
+      "message": "I wrote a small program to test this interesting idea and found that iter is moved at the 1st call to step_by(2) and thus the 2nd call to step_by(2) leads to an \u0027use of moved value\u0027 error. To make this works, we have to clone 1st iterator as below:\n\nfor (key, val) in std::iter::zip(iter.clone().step_by(2), iter.skip(1).step_by(2)) {...}\n\nCloning an iterator in this case might cost more than an unwrap, so I prefer to keep the original implementation. Thanks.",
+      "parentUuid": "9b802157_6f2442a6",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c61a8cce_ad1a3d38",
@@ -116,6 +206,24 @@
       "writtenOn": "2022-08-02T03:06:26Z",
       "side": 1,
       "message": "If it\u0027s safe to pass None to all params here, we should remove these params instead (since they seem to be unused).",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29434174_34227b28",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1205,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T06:30:04Z",
+      "side": 1,
+      "message": "They are used in Box\u003cdyn #trait + Send\u003e case. For the HashMap case, I\u0027ll pass these parameters to from_dbus(), which aligns to other container cases.",
+      "parentUuid": "c61a8cce_ad1a3d38",
       "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
