@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23cf73b2_6126503e",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-02T17:52:16Z",
+      "side": 1,
+      "message": "Can you also add the passing tests to `pts_bot_tests_config.json` and update pts-bot tracker (go/pts-bot-tracker, including implemented MMIs)? It\u0027s purely an indication but it\u0027s useful to track PTS-bot status.",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 49
+      },
+      "revId": "688c000139e1cf7a98fa94a08fcb404e6128b8e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
