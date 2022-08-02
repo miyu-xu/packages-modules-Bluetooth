@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9897c9e0_f4610493",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-02T12:39:11Z",
+      "side": 1,
+      "message": "would be nice to know why place of the broadcast code check is moved. I think I got it, but commit message should mention it.",
+      "revId": "1b1698dbca431fb15cab0d1d2fc0f3657055e26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
