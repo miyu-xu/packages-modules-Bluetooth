@@ -27,6 +27,7 @@ rust_ffi {
         "libthiserror",
         "libpin_utils",
         "librand",
+        "libring",
     ],
     include_dirs: ["include"],
 }
@@ -64,5 +65,6 @@ rust_test_host {
         "libthiserror",
         "libpin_utils",
         "librand",
+        "libring",
     ],
 }

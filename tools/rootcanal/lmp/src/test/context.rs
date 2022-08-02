@@ -58,6 +58,10 @@ impl Context for TestContext {
         self.out_lmp_packets.borrow_mut().push_back(packet.into());
     }
 
+    fn local_address(&self) -> hci::Address {
+        hci::Address { bytes: [0; 6] }
+    }
+
     fn peer_address(&self) -> hci::Address {
         hci::Address { bytes: [0; 6] }
     }
