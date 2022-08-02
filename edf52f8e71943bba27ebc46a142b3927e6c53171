@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efa449c2_239ce669",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-02T03:06:26Z",
+      "side": 1,
+      "message": "nit: single \"in\"",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cf0993b_b8578095",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-02T03:06:26Z",
+      "side": 1,
+      "message": "nit: RefArgToRust and DBusArg",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5251eccf_c113e847",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-02T03:06:26Z",
+      "side": 1,
+      "message": "Please add `./build.py --target test` here if you\u0027ve run the unit tests as well.",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57833a53_9babeb8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-02T03:06:26Z",
+      "side": 1,
+      "message": "I would like Sonny to review before you submit but overall LGTM. Some nits mentioned here.",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bad53cec_2fb6e689",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-02T03:06:26Z",
+      "side": 1,
+      "message": "Add a comment describing why `fuse` is necessary. You don\u0027t see this commonly used.",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b802157_6f2442a6",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-02T03:06:26Z",
+      "side": 1,
+      "message": "nit: I would re-write this to avoid unwrap()\n\n```\nfor (key, val) in std::iter::zip(iter.step_by(2), iter.step_by(2).skip(1)) {\n  ...\n}\n```",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c61a8cce_ad1a3d38",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1205,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-02T03:06:26Z",
+      "side": 1,
+      "message": "If it\u0027s safe to pass None to all params here, we should remove these params instead (since they seem to be unused).",
+      "revId": "edf52f8e71943bba27ebc46a142b3927e6c53171",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
