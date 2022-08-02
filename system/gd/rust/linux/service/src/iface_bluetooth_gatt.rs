@@ -1,9 +1,10 @@
 use bt_topshim::{btif::Uuid128Bit, profiles::gatt::GattStatus};
 
 use btstack::bluetooth_gatt::{
-    BluetoothGattCharacteristic, BluetoothGattDescriptor, BluetoothGattService,
-    GattWriteRequestStatus, GattWriteType, IBluetoothGatt, IBluetoothGattCallback,
-    IScannerCallback, LePhy, RSSISettings, ScanFilter, ScanSettings, ScanType,
+    AdvertiseData, AdvertisingSetParameters, BluetoothGattCharacteristic, BluetoothGattDescriptor,
+    BluetoothGattService, GattWriteRequestStatus, GattWriteType, IAdvertisingSetCallback,
+    IBluetoothGatt, IBluetoothGattCallback, IScannerCallback, LePhy, PeriodicAdvertisingParameters,
+    RSSISettings, ScanFilter, ScanSettings, ScanType,
 };
 use btstack::RPCProxy;
 
@@ -19,6 +20,7 @@ use dbus_projection::{dbus_generated, impl_dbus_arg_enum};
 
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 
+use std::collections::HashMap;
 use std::convert::TryInto;
 use std::sync::Arc;
 
@@ -196,6 +198,92 @@ impl_dbus_arg_enum!(ScanType);
 
 #[dbus_propmap(ScanFilter)]
 struct ScanFilterDBus {}
+
+#[allow(dead_code)]
+struct AdvertisingSetCallbackDBus {}
+
+#[dbus_proxy_obj(AdvertisingSetCallback, "org.chromium.bluetooth.AdvertisingSetCallback")]
+impl IAdvertisingSetCallback for AdvertisingSetCallbackDBus {
+    #[dbus_method("OnAdvertisingSetStarted")]
+    fn on_advertising_set_started(&self, advertiser_id: i32, tx_power: i32, status: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnOwnAddressRead")]
+    fn on_own_address_read(&self, advertiser_id: i32, address_type: i32, address: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnAdvertisingSetStopped")]
+    fn on_advertising_set_stopped(&self, advertiser_id: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnAdvertisingEnabled")]
+    fn on_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnAdvertisingDataSet")]
+    fn on_advertising_data_set(&self, advertiser_id: i32, status: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnScanResponseDataSet")]
+    fn on_scan_response_data_set(&self, advertiser_id: i32, status: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnAdvertisingParametersUpdated")]
+    fn on_advertising_parameters_updated(&self, advertiser_id: i32, tx_power: i32, status: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnPeriodicAdvertisingParametersUpdated")]
+    fn on_periodic_advertising_parameters_updated(&self, advertiser_id: i32, status: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnPeriodicAdvertisingDataSet")]
+    fn on_periodic_advertising_data_set(&self, advertiser_id: i32, status: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnPeriodicAdvertisingEnabled")]
+    fn on_periodic_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: i32) {
+        dbus_generated!()
+    }
+}
+
+#[dbus_propmap(AdvertisingSetParameters)]
+struct AdvertisingSetParametersDBus {
+    connectable: bool,
+    scannable: bool,
+    is_legacy: bool,
+    is_anonymous: bool,
+    include_tx_power: bool,
+    primary_phy: i32,
+    secondary_phy: i32,
+    interval: i32,
+    tx_power_level: i32,
+    own_address_type: i32,
+}
+
+#[dbus_propmap(AdvertiseData)]
+pub struct AdvertiseDataDBus {
+    service_uuids: Vec<String>,
+    solicit_uuids: Vec<String>,
+    manufacturer_data: HashMap<i32, Vec<u8>>,
+    service_data: HashMap<String, Vec<u8>>,
+    include_tx_power_level: bool,
+    include_device_name: bool,
+}
+
+#[dbus_propmap(PeriodicAdvertisingParameters)]
+pub struct PeriodicAdvertisingParametersDBus {
+    pub include_tx_power: bool,
+    pub interval: i32,
+}
 
 #[allow(dead_code)]
 struct IBluetoothGattDBus {}

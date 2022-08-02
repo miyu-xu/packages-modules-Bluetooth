@@ -160,6 +160,65 @@ pub trait IBluetoothGatt {
     fn start_scan(&self, scanner_id: i32, settings: ScanSettings, filters: Vec<ScanFilter>);
     fn stop_scan(&self, scanner_id: i32);
 
+    /// Create a new BLE advertising set and start advertising.
+    ///
+    /// * `parameters` - Advertising set parameters.
+    /// * `advertise_data` - Advertisement data to be broadcasted.
+    /// * `scan_response` - Scan response.
+    /// * `periodic_parameters` - Periodic advertising parameters. If None, periodic advertising
+    ///     will not be started.
+    /// * `periodic_data` - Periodic advertising data.
+    /// * `duration` - Advertising duration, in 10ms unit. Valid range is from 1 (10ms) to
+    ///     65535 (655.35s). 0ms advertising should continue until stopped.
+    fn start_advertising_set(
+        &self,
+        parameters: AdvertisingSetParameters,
+        advertise_data: Option<AdvertiseData>,
+        scan_response: Option<AdvertiseData>,
+        periodic_parameters: Option<PeriodicAdvertisingParameters>,
+        periodic_data: Option<AdvertiseData>,
+        duration: i32,
+        max_ext_adv_events: i32,
+        callback: Box<dyn IAdvertisingSetCallback + Send>,
+    );
+
+    /// Dispose a BLE advertising set.
+    fn stop_advertising_set(&self, advertiser_id: i32);
+
+    /// Query address associated with the advertising set.
+    fn get_own_address(&self, advertiser_id: i32);
+
+    /// Enable/disable the advertising set.
+    fn enable_advertising_set(
+        &self,
+        advertiser_id: i32,
+        enable: bool,
+        duration: i32,
+        max_ext_adv_events: i32,
+    );
+
+    /// Update data being Advertised.
+    fn set_advertising_data(&self, advertiser_id: i32, data: Option<AdvertiseData>);
+
+    /// Update scan response data.
+    fn set_scan_response_data(&self, advertiser_id: i32, data: Option<AdvertiseData>);
+
+    /// Update advertising parameters.
+    fn set_advertising_parameters(&self, advertiser_id: i32, parameters: AdvertisingSetParameters);
+
+    /// Update periodic advertising parameters.
+    fn set_periodic_advertising_parameters(
+        &self,
+        advertiser_id: i32,
+        parameters: Option<PeriodicAdvertisingParameters>,
+    );
+
+    /// Set periodic advertising data.
+    ///
+    /// It must be called after set_periodic_advertising_parameters or after
+    /// advertising was started with a periodic advertising data set.
+    fn set_periodic_advertising_data(&self, advertiser_id: i32, data: Option<AdvertiseData>);
+
     /// Registers a GATT Client.
     fn register_client(
         &mut self,
@@ -423,6 +482,21 @@ pub trait IScannerCallback: RPCProxy {
     fn on_scanner_registered(&self, uuid: Uuid128Bit, status: u8, scanner_id: u8);
 }
 
+/// Interface for advertiser callbacks to clients, passed to
+/// `IBluetoothGatt::start_advertising_set`.
+pub trait IAdvertisingSetCallback: RPCProxy {
+    fn on_advertising_set_started(&self, advertiser_id: i32, tx_power: i32, status: i32);
+    fn on_own_address_read(&self, advertiser_id: i32, address_type: i32, address: String);
+    fn on_advertising_set_stopped(&self, advertiser_id: i32);
+    fn on_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: i32);
+    fn on_advertising_data_set(&self, advertiser_id: i32, status: i32);
+    fn on_scan_response_data_set(&self, advertiser_id: i32, status: i32);
+    fn on_advertising_parameters_updated(&self, advertiser_id: i32, tx_power: i32, status: i32);
+    fn on_periodic_advertising_parameters_updated(&self, advertiser_id: i32, status: i32);
+    fn on_periodic_advertising_data_set(&self, advertiser_id: i32, status: i32);
+    fn on_periodic_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: i32);
+}
+
 #[derive(Debug, FromPrimitive, ToPrimitive)]
 #[repr(u8)]
 /// GATT write type.
@@ -489,6 +563,64 @@ pub struct ScanSettings {
     pub window: i32,
     pub scan_type: ScanType,
     pub rssi_settings: RSSISettings,
+}
+
+/// Advertising parameters for each BLE advertising set.
+#[derive(Debug, Default)]
+pub struct AdvertisingSetParameters {
+    /// Whether the advertisement will be connectable.
+    pub connectable: bool,
+    /// Whether the advertisement will be scannable.
+    pub scannable: bool,
+    /// Whether the legacy advertisement will be used.
+    pub is_legacy: bool,
+    /// Whether the advertisement will be anonymous.
+    pub is_anonymous: bool,
+    /// Whether the TX Power will be included.
+    pub include_tx_power: bool,
+    /// Primary advertising phy. Valid values are: 1 (1M), 2 (2M), 3 (Coded).
+    pub primary_phy: i32,
+    /// Secondary advertising phy. Valid values are: 1 (1M), 2 (2M), 3 (Coded).
+    pub secondary_phy: i32,
+    /// The advertising interval. Bluetooth LE Advertising interval, in 0.625ms unit.
+    /// The valid range is from 160 (100ms) to 16777215 (10,485.759375 s).
+    /// Recommended values are: 160 (100ms), 400 (250ms), 1600 (1s).
+    pub interval: i32,
+    /// Transmission power of Bluetooth LE Advertising, in dBm. The valid range is [-127, 1].
+    /// Recommended values are: -21, -15, 7, 1.
+    pub tx_power_level: i32,
+    /// Own address type for advertising to control public or privacy mode.
+    /// The valid types are: -1 (default), 0 (public), 1 (random).
+    pub own_address_type: i32,
+}
+
+/// Represents the data to be advertised and the scan response data for active scans.
+#[derive(Debug, Default)]
+pub struct AdvertiseData {
+    /// A list of service UUIDs within the advertisement that are used to identify
+    /// the Bluetooth GATT services.
+    pub service_uuids: Vec<String>,
+    /// A list of service solicitation UUIDs within the advertisement that we invite to connect.
+    pub solicit_uuids: Vec<String>,
+    /// A collection of manufacturer Id and the corresponding manufacturer specific data.
+    pub manufacturer_data: HashMap<i32, Vec<u8>>,
+    /// A map of 16-bit UUID and its corresponding service data.
+    pub service_data: HashMap<String, Vec<u8>>,
+    /// Whether TX Power level will be included in the advertising packet.
+    pub include_tx_power_level: bool,
+    /// Whether the device name will be included in the advertisement packet.
+    pub include_device_name: bool,
+}
+
+/// Parameters of the periodic advertising packet for BLE advertising set.
+#[derive(Debug, Default)]
+pub struct PeriodicAdvertisingParameters {
+    /// Whether TX Power level will be included.
+    pub include_tx_power: bool,
+    /// Periodic advertising interval in 1.25ms unit. Valid values are from 80 (100ms) to
+    /// 65519 ms (81.89875s). Value from range [interval, interval+20ms] will be picked as
+    /// the actual value.
+    pub interval: i32,
 }
 
 /// Represents a scan filter to be passed to `IBluetoothGatt::start_scan`.
@@ -660,6 +792,70 @@ impl IBluetoothGatt for BluetoothGatt {
 
     fn stop_scan(&self, _scanner_id: i32) {
         // TODO(b/200066804): implement
+    }
+
+    fn start_advertising_set(
+        &self,
+        _parameters: AdvertisingSetParameters,
+        _advertise_data: Option<AdvertiseData>,
+        _scan_response: Option<AdvertiseData>,
+        _periodic_parameters: Option<PeriodicAdvertisingParameters>,
+        _periodic_data: Option<AdvertiseData>,
+        _duration: i32,
+        _max_ext_adv_events: i32,
+        _callback: Box<dyn IAdvertisingSetCallback + Send>,
+    ) {
+        // TODO(b/233128394)
+    }
+
+    fn stop_advertising_set(&self, _advertiser_id: i32) {
+        // TODO(b/233128394)
+    }
+
+    fn get_own_address(&self, _advertiser_id: i32) {
+        // TODO(b/233128394)
+    }
+
+    fn enable_advertising_set(
+        &self,
+        _advertiser_id: i32,
+        _enable: bool,
+        _duration: i32,
+        _max_ext_adv_events: i32,
+    ) {
+        // TODO(b/233128394)
+    }
+
+    fn set_advertising_data(&self, _advertiser_id: i32, _data: Option<AdvertiseData>) {
+        // TODO(b/233128394)
+    }
+
+    fn set_scan_response_data(&self, _advertiser_id: i32, _data: Option<AdvertiseData>) {
+        // TODO(b/233128394)
+    }
+
+    fn set_advertising_parameters(
+        &self,
+        _advertiser_id: i32,
+        _parameters: AdvertisingSetParameters,
+    ) {
+        // TODO(b/233128394)
+    }
+
+    fn set_periodic_advertising_parameters(
+        &self,
+        _advertiser_id: i32,
+        _parameters: Option<PeriodicAdvertisingParameters>,
+    ) {
+        // TODO(b/233128394)
+    }
+
+    fn set_periodic_advertising_data(&self, _advertiser_id: i32, _data: Option<AdvertiseData>) {
+        // TODO(b/233128394)
+    }
+
+    fn set_periodic_advertising_enable(&self, _advertiser_id: i32, _enable: bool) {
+        // TODO(b/233128394)
     }
 
     fn register_client(
