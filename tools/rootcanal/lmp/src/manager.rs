@@ -203,6 +203,14 @@ impl procedure::Context for LinkContext {
         }
     }
 
+    fn local_address(&self) -> hci::Address {
+        if let Some(manager) = self.manager.upgrade() {
+            manager.ops.local_address()
+        } else {
+            hci::EMPTY_ADDRESS
+        }
+    }
+
     fn peer_address(&self) -> hci::Address {
         if let Some(manager) = self.manager.upgrade() {
             manager.link(self.index).peer.get()

@@ -106,6 +106,8 @@ cc_library_static {
     static_libs: [
         "libjsoncpp",
         "libscriptedbeaconpayload-protos-lite",
+        "libssl",
+        "libcrypto_static",
     ],
 }
 
