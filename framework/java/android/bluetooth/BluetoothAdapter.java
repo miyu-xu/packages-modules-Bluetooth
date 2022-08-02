@@ -3623,10 +3623,6 @@ public final class BluetoothAdapter {
      * BluetoothProfile#HEARING_AID} or {@link BluetoothProfile#GATT_SERVER}.
      * @return true on success, false on error
      */
-    @SuppressLint({
-            "AndroidFrameworkRequiresPermission",
-            "AndroidFrameworkBluetoothPermission"
-    })
     public boolean getProfileProxy(Context context, BluetoothProfile.ServiceListener listener,
             int profile) {
         if (context == null || listener == null) {
@@ -3634,80 +3630,155 @@ public final class BluetoothAdapter {
         }
 
         if (profile == BluetoothProfile.HEADSET) {
-            BluetoothHeadset headset = new BluetoothHeadset(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileHfpAgEnabled().orElse(false)) {
+                BluetoothHeadset headset = new BluetoothHeadset(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.A2DP) {
-            BluetoothA2dp a2dp = new BluetoothA2dp(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileA2dpSourceEnabled().orElse(false)) {
+                BluetoothA2dp a2dp = new BluetoothA2dp(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.A2DP_SINK) {
-            BluetoothA2dpSink a2dpSink = new BluetoothA2dpSink(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileA2dpSinkEnabled().orElse(false)) {
+                BluetoothA2dpSink a2dpSink = new BluetoothA2dpSink(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.AVRCP_CONTROLLER) {
-            BluetoothAvrcpController avrcp = new BluetoothAvrcpController(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileAvrcpControllerEnabled().orElse(false)) {
+                BluetoothAvrcpController avrcp =
+                        new BluetoothAvrcpController(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.HID_HOST) {
-            BluetoothHidHost iDev = new BluetoothHidHost(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileHidHostEnabled().orElse(false)) {
+                BluetoothHidHost iDev = new BluetoothHidHost(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.PAN) {
-            BluetoothPan pan = new BluetoothPan(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfilePanNapEnabled().orElse(false)
+                    || BluetoothProperties.isProfilePanPanuEnabled().orElse(false)) {
+                BluetoothPan pan = new BluetoothPan(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.PBAP) {
-            BluetoothPbap pbap = new BluetoothPbap(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfilePbapServerEnabled().orElse(false)) {
+                BluetoothPbap pbap = new BluetoothPbap(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.HEALTH) {
             Log.e(TAG, "getProfileProxy(): BluetoothHealth is deprecated");
             return false;
         } else if (profile == BluetoothProfile.MAP) {
-            BluetoothMap map = new BluetoothMap(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileMapServerEnabled().orElse(false)) {
+                BluetoothMap map = new BluetoothMap(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.HEADSET_CLIENT) {
-            BluetoothHeadsetClient headsetClient =
-                    new BluetoothHeadsetClient(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileHfpHfEnabled().orElse(false)) {
+                BluetoothHeadsetClient headsetClient =
+                        new BluetoothHeadsetClient(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.SAP) {
-            BluetoothSap sap = new BluetoothSap(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileSapServerEnabled().orElse(false)) {
+                BluetoothSap sap = new BluetoothSap(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.PBAP_CLIENT) {
-            BluetoothPbapClient pbapClient = new BluetoothPbapClient(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfilePbapClientEnabled().orElse(false)) {
+                BluetoothPbapClient pbapClient = new BluetoothPbapClient(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.MAP_CLIENT) {
-            BluetoothMapClient mapClient = new BluetoothMapClient(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileMapClientEnabled().orElse(false)) {
+                BluetoothMapClient mapClient = new BluetoothMapClient(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.HID_DEVICE) {
-            BluetoothHidDevice hidDevice = new BluetoothHidDevice(context, listener, this);
-            return true;
+            if (BluetoothProperties.isProfileHidDeviceEnabled().orElse(false)) {
+                BluetoothHidDevice hidDevice = new BluetoothHidDevice(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.HAP_CLIENT) {
-            BluetoothHapClient HapClient = new BluetoothHapClient(context, listener);
-            return true;
+            if (BluetoothProperties.isProfileHapClientEnabled().orElse(false)) {
+                BluetoothHapClient HapClient = new BluetoothHapClient(context, listener);
+                return true;
+            }
         } else if (profile == BluetoothProfile.HEARING_AID) {
             if (isHearingAidProfileSupported()) {
                 BluetoothHearingAid hearingAid = new BluetoothHearingAid(context, listener, this);
                 return true;
             }
-            return false;
         } else if (profile == BluetoothProfile.LE_AUDIO) {
-            BluetoothLeAudio leAudio = new BluetoothLeAudio(context, listener, this);
-            return true;
+            if (mService == null) {
+                if (BluetoothProperties.isProfileBapUnicastClientEnabled().orElse(false)) {
+                    BluetoothLeAudio leAudio = new BluetoothLeAudio(context, listener, this);
+                    return true;
+                }
+            } else if (isLeAudioSupported() == BluetoothStatusCodes.FEATURE_SUPPORTED) {
+                BluetoothLeAudio leAudio = new BluetoothLeAudio(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.LE_AUDIO_BROADCAST) {
-            BluetoothLeBroadcast leAudio = new BluetoothLeBroadcast(context, listener);
-            return true;
+            if (mService == null) {
+                if (BluetoothProperties.isProfileBapBroadcastSourceEnabled().orElse(false)) {
+                    BluetoothLeBroadcast leBroadcast = new BluetoothLeBroadcast(context, listener);
+                    return true;
+                }
+            } else if (isLeAudioBroadcastSourceSupported()
+                    == BluetoothStatusCodes.FEATURE_SUPPORTED) {
+                BluetoothLeBroadcast leBroadcast = new BluetoothLeBroadcast(context, listener);
+                return true;
+            }
         } else if (profile == BluetoothProfile.VOLUME_CONTROL) {
-            BluetoothVolumeControl vcs = new BluetoothVolumeControl(context, listener, this);
-            return true;
+            if (mService == null) {
+                if (BluetoothProperties.isProfileVcpControllerEnabled().orElse(false)) {
+                    BluetoothVolumeControl vcs =
+                            new BluetoothVolumeControl(context, listener, this);
+                    return true;
+                }
+            } else if (isLeAudioSupported() == BluetoothStatusCodes.FEATURE_SUPPORTED) {
+                BluetoothVolumeControl vcs = new BluetoothVolumeControl(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.CSIP_SET_COORDINATOR) {
-            BluetoothCsipSetCoordinator csipSetCoordinator =
-                    new BluetoothCsipSetCoordinator(context, listener, this);
-            return true;
+            if (mService == null) {
+                if (BluetoothProperties.isProfileCsipSetCoordinatorEnabled().orElse(false)) {
+                    BluetoothCsipSetCoordinator csipSetCoordinator =
+                            new BluetoothCsipSetCoordinator(context, listener, this);
+                    return true;
+                }
+            } else if (isLeAudioSupported() == BluetoothStatusCodes.FEATURE_SUPPORTED) {
+                BluetoothCsipSetCoordinator csipSetCoordinator =
+                        new BluetoothCsipSetCoordinator(context, listener, this);
+                return true;
+            }
         } else if (profile == BluetoothProfile.LE_CALL_CONTROL) {
-            BluetoothLeCallControl tbs = new BluetoothLeCallControl(context, listener);
-            return true;
+            if (mService == null) {
+                if (BluetoothProperties.isProfileCcpServerEnabled().orElse(false)) {
+                    BluetoothLeCallControl tbs = new BluetoothLeCallControl(context, listener);
+                    return true;
+                }
+            } else if (isLeAudioSupported() == BluetoothStatusCodes.FEATURE_SUPPORTED) {
+                BluetoothLeCallControl tbs = new BluetoothLeCallControl(context, listener);
+                return true;
+            }
         } else if (profile == BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT) {
-            BluetoothLeBroadcastAssistant leAudioBroadcastAssistant =
-                    new BluetoothLeBroadcastAssistant(context, listener);
-            return true;
-        } else {
-            return false;
+            if (mService == null) {
+                if (BluetoothProperties.isProfileBapBroadcastAssistEnabled().orElse(false)) {
+                    BluetoothLeBroadcastAssistant leAudioBroadcastAssistant =
+                            new BluetoothLeBroadcastAssistant(context, listener);
+                    return true;
+                }
+            } else if (isLeAudioBroadcastAssistantSupported()
+                    == BluetoothStatusCodes.FEATURE_SUPPORTED) {
+                BluetoothLeBroadcastAssistant leAudioBroadcastAssistant =
+                        new BluetoothLeBroadcastAssistant(context, listener);
+                return true;
+            }
         }
+        return false;
     }
 
     /**
