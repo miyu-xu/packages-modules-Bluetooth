@@ -16,6 +16,29 @@
       "message": "lgtm as long as there is no redundant, duplicate or unwanted events uploaded",
       "revId": "5d0e2e0457494527a0bf8f3a273f76e3711837ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d59b0a6_8d6f978e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-02T01:10:05Z",
+      "side": 1,
+      "message": "For the NotBonded case, the device type should be available before we update bonded_list. If it\u0027s required for metrics, can we get the device_type earlier?",
+      "range": {
+        "startLine": 813,
+        "startChar": 0,
+        "endLine": 813,
+        "endChar": 39
+      },
+      "revId": "5d0e2e0457494527a0bf8f3a273f76e3711837ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
