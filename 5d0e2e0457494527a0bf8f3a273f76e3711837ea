@@ -39,6 +39,30 @@
       },
       "revId": "5d0e2e0457494527a0bf8f3a273f76e3711837ea",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d622437b_55604eae",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-02T01:21:30Z",
+      "side": 1,
+      "message": "Sure we can! And this is a good suggestion. Created b/241028775 to track the effort.",
+      "parentUuid": "6d59b0a6_8d6f978e",
+      "range": {
+        "startLine": 813,
+        "startChar": 0,
+        "endLine": 813,
+        "endChar": 39
+      },
+      "revId": "5d0e2e0457494527a0bf8f3a273f76e3711837ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
