@@ -16,6 +16,29 @@
       "message": "Lets add here error log.",
       "revId": "d2e9aec4b8ff6905c7c5242e7851192b9b19e8af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ab1bb6_26b9dc21",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-02T16:13:12Z",
+      "side": 1,
+      "message": "How about removing length 0 checker, and replace by the following logic\n```\nif ((broadcastCode.length \u003c 4) || (broadcastCode.length \u003e 16))\n```\n\nThe result should be the same.",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 76
+      },
+      "revId": "d2e9aec4b8ff6905c7c5242e7851192b9b19e8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
