@@ -10,6 +10,7 @@ use crate::packets::{hci, lmp};
 #[derive(Clone)]
 pub struct LinkManagerOps {
     user_pointer: *mut (),
+    local_address: unsafe extern "C" fn(user: *mut (), result: *mut [u8; 6]),
     get_handle: unsafe extern "C" fn(user: *mut (), address: *const [u8; 6]) -> u16,
     get_address: unsafe extern "C" fn(user: *mut (), handle: u16, result: *mut [u8; 6]),
     extended_features: unsafe extern "C" fn(user: *mut (), features_page: u8) -> u64,
@@ -22,6 +23,12 @@ impl LinkManagerOps {
     pub(crate) fn get_address(&self, handle: u16) -> hci::Address {
         let mut result = hci::EMPTY_ADDRESS;
         unsafe { (self.get_address)(self.user_pointer, handle, &mut result.bytes as *mut _) };
+        result
+    }
+
+    pub(crate) fn local_address(&self) -> hci::Address {
+        let mut result = hci::EMPTY_ADDRESS;
+        unsafe { (self.local_address)(self.user_pointer, &mut result.bytes as *mut _) };
         result
     }
 
