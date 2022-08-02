@@ -13,6 +13,14 @@ service GATT {
 
   // Writes on a characteristic.
   rpc WriteCharacteristicFromHandle(WriteCharacteristicRequest) returns (google.protobuf.Empty);
+
+  // Connects GATT over BR/EDR
+  rpc ConnectGattBrEdr(ConnectGattBrEdrRequest) returns (google.protobuf.Empty);
+
+  // Starts service discovery for given uuid
+  rpc DiscoverServiceByUuid(DiscoverServiceByUuidRequest) returns (google.protobuf.Empty);
+
+  // Starts primary services
 }
 
 // Request for the `ExchangeMTU` method.
@@ -26,4 +34,15 @@ message WriteCharacteristicRequest {
   Connection connection = 1;
   uint32 handle = 2;
   bytes value = 3;
+}
+
+// Request for the `ConnectGattBrEdr` method.
+message ConnectGattBrEdrRequest {
+  Connection connection = 1;
+}
+
+// Request for the `DiscoverServiceByUuid` method.
+message DiscoverServiceByUuidRequest {
+  Connection connection = 1;
+  string uuid = 2;
 }
