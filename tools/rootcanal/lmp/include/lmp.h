@@ -9,6 +9,7 @@
 /// Link Manager callbacks
 struct LinkManagerOps {
   void* user_pointer;
+  void (*local_address)(void* user, uint8_t (*result)[6]);
   uint16_t (*get_handle)(void* user, const uint8_t (*address)[6]);
   void (*get_address)(void* user, uint16_t handle, uint8_t (*result)[6]);
   uint64_t (*extended_features)(void* user, uint8_t features_page);
