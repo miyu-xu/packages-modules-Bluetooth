@@ -22,6 +22,30 @@
       },
       "revId": "a759a27a0587f7732578d0992042ffa863b74ae4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5c11cf8_613d8edc",
+        "filename": "system/stack/test/fuzzers/a2dp/codec/a2dpCodecHelperFunctions.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1616561
+      },
+      "writtenOn": "2022-08-02T12:16:57Z",
+      "side": 1,
+      "message": "Hi William,\nThanks for your input. We will re-triage this bug and abandon this CL.",
+      "parentUuid": "819a2507_a72dfa7f",
+      "range": {
+        "startLine": 141,
+        "startChar": 10,
+        "endLine": 141,
+        "endChar": 45
+      },
+      "revId": "a759a27a0587f7732578d0992042ffa863b74ae4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
