@@ -33,6 +33,24 @@
       "message": "nit: can we consolidate the lines here?\n\nBTM_WritePageTimeout(osi_property_get_int32(PROPERTY_PAGE_TIMEOUT, p_bta_dm_cfg-\u003epage_timeout));",
       "revId": "55e162efee083ff44ffb0da533364491d7e121dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14649edc_fde4a0eb",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-02T17:25:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b469009b_82055067",
+      "revId": "55e162efee083ff44ffb0da533364491d7e121dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
