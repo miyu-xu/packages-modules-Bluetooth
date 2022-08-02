@@ -15,6 +15,7 @@ pub trait Context {
     fn send_hci_event<E: Into<hci::EventPacket>>(&self, event: E);
     fn send_lmp_packet<P: Into<lmp::PacketPacket>>(&self, packet: P);
 
+    fn local_address(&self) -> hci::Address;
     fn peer_address(&self) -> hci::Address;
     fn peer_handle(&self) -> u16;
 
