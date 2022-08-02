@@ -5,6 +5,7 @@ use std::convert::TryInto;
 use num_bigint::BigInt;
 use num_traits::{FromPrimitive, ToPrimitive};
 
+use crate::crypto_toolbox;
 use crate::crypto_toolbox::ec::{EcGroup, EcPoint};
 use crate::either::Either;
 use crate::packets::{hci, lmp};
@@ -102,6 +103,13 @@ impl DhKey {
         match public_key {
             PublicKey::P192(_) => DhKey::P192(secret),
             PublicKey::P256(_) => DhKey::P256(secret),
+        }
+    }
+
+    fn to_bytes(&self) -> Vec<u8> {
+        match self {
+            DhKey::P192(inner) => inner.to_signed_bytes_be(),
+            DhKey::P256(inner) => inner.to_signed_bytes_be(),
         }
     }
 }
@@ -208,7 +216,7 @@ async fn receive_public_key(ctx: &impl Context, transaction_id: u8) -> PublicKey
 const COMMITMENT_VALUE_SIZE: usize = 16;
 const NONCE_SIZE: usize = 16;
 
-async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
+async fn receive_commitment(ctx: &impl Context, skip_first: bool) -> ([u8; 16], [u8; 16]) {
     let commitment_value = [0; COMMITMENT_VALUE_SIZE];
 
     if !skip_first {
@@ -222,7 +230,7 @@ async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
         lmp::SimplePairingConfirmBuilder { transaction_id: 0, commitment_value }.build(),
     );
 
-    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
+    let nonce_peer = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
     // TODO: check pairing number
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder {
@@ -232,17 +240,18 @@ async fn receive_commitment(ctx: &impl Context, skip_first: bool) {
         .build(),
     );
 
-    let nonce = [0; NONCE_SIZE];
+    let nonce_local: [u8; NONCE_SIZE] = ctx.generate_random_bytes(NONCE_SIZE).try_into().unwrap();
 
     // TODO: handle error
     let _ = ctx
         .send_accepted_lmp_packet(
-            lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build(),
+            lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce: nonce_local }.build(),
         )
         .await;
+    (nonce_local, *nonce_peer.get_nonce())
 }
 
-async fn send_commitment(ctx: &impl Context, skip_first: bool) {
+async fn send_commitment(ctx: &impl Context, skip_first: bool) -> ([u8; 16], [u8; 16]) {
     let commitment_value = [0; COMMITMENT_VALUE_SIZE];
 
     if !skip_first {
@@ -256,16 +265,16 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) {
     if confirm.get_commitment_value() != &commitment_value {
         todo!();
     }
-    let nonce = [0; NONCE_SIZE];
+    let nonce_local: [u8; NONCE_SIZE] = ctx.generate_random_bytes(NONCE_SIZE).try_into().unwrap();
 
     // TODO: handle error
     let _ = ctx
         .send_accepted_lmp_packet(
-            lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce }.build(),
+            lmp::SimplePairingNumberBuilder { transaction_id: 0, nonce: nonce_local }.build(),
         )
         .await;
 
-    let _pairing_number = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
+    let nonce_peer = ctx.receive_lmp_packet::<lmp::SimplePairingNumberPacket>().await;
     // TODO: check pairing number
     ctx.send_lmp_packet(
         lmp::AcceptedBuilder {
@@ -274,6 +283,7 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) {
         }
         .build(),
     );
+    (nonce_local, *nonce_peer.get_nonce())
 }
 
 async fn user_confirmation_request(ctx: &impl Context) -> Result<(), ()> {
@@ -402,6 +412,7 @@ async fn remote_oob_data_request(ctx: &impl Context) -> Result<(), ()> {
 
 const CONFIRMATION_VALUE_SIZE: usize = 16;
 const PASSKEY_ENTRY_REPEAT_NUMBER: usize = 20;
+const F1_LINK_KEY_ID: &[u8] = b"bltk";
 
 pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     let initiator = {
@@ -478,14 +489,14 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
 
     // Authentication Stage 1
     let auth_method = authentication_method(initiator, responder);
-    let result: Result<(), ()> = async {
+    let result: Result<([u8; 16], [u8; 16]), ()> = async {
         match auth_method {
             AuthenticationMethod::NumericComparaisonJustWork
             | AuthenticationMethod::NumericComparaisonUserConfirm => {
-                send_commitment(ctx, true).await;
+                let (nonce_c, nonce_p) = send_commitment(ctx, true).await;
 
                 user_confirmation_request(ctx).await?;
-                Ok(())
+                Ok((nonce_c, nonce_p))
             }
             AuthenticationMethod::PasskeyEntry => {
                 if initiator.io_capability == hci::IoCapability::KeyboardOnly {
@@ -499,18 +510,19 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
                         .build(),
                     );
                 }
-                for _ in 0..PASSKEY_ENTRY_REPEAT_NUMBER {
+                for _ in 0..(PASSKEY_ENTRY_REPEAT_NUMBER - 1) {
                     send_commitment(ctx, false).await;
                 }
-                Ok(())
+                let (nonce_c, nonce_p) = send_commitment(ctx, false).await;
+                Ok((nonce_c, nonce_p))
             }
             AuthenticationMethod::OutOfBand => {
                 if initiator.oob_data_present != hci::OobDataPresent::NotPresent {
                     remote_oob_data_request(ctx).await?;
                 }
 
-                send_commitment(ctx, false).await;
-                Ok(())
+                let (nonce_c, nonce_p) = send_commitment(ctx, true).await;
+                Ok((nonce_c, nonce_p))
             }
         }
     }
@@ -527,6 +539,7 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
         );
         return Err(());
     }
+    let (nonce_c, nonce_p) = result.unwrap();
 
     // Authentication Stage 2
     {
@@ -568,7 +581,14 @@ pub async fn initiate(ctx: &impl Context) -> Result<(), ()> {
     );
 
     // Link Key Calculation
-    let link_key = ctx.generate_random_bytes(16).try_into().unwrap();
+    let link_key = crypto_toolbox::f2(
+        &dh_key.to_bytes(),
+        &nonce_c,
+        &nonce_p,
+        F1_LINK_KEY_ID,
+        &[0; 16],
+        &ctx.peer_address().bytes,
+    );
     let auth_result = authentication::send_challenge(ctx, 0, link_key).await;
     authentication::receive_challenge(ctx, link_key).await;
 
