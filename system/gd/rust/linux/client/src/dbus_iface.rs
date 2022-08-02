@@ -10,9 +10,10 @@ use btstack::bluetooth::{
     BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback,
 };
 use btstack::bluetooth_gatt::{
-    BluetoothGattCharacteristic, BluetoothGattDescriptor, BluetoothGattService,
-    GattWriteRequestStatus, GattWriteType, IBluetoothGatt, IBluetoothGattCallback,
-    IScannerCallback, LePhy, ScanFilter, ScanSettings,
+    AdvertiseData, AdvertisingSetParameters, BluetoothGattCharacteristic, BluetoothGattDescriptor,
+    BluetoothGattService, GattWriteRequestStatus, GattWriteType, IAdvertisingSetCallback,
+    IBluetoothGatt, IBluetoothGattCallback, IScannerCallback, LePhy, PeriodicAdvertisingParameters,
+    ScanFilter, ScanSettings,
 };
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, CallbackId, IBluetoothSocketManager,
@@ -40,6 +41,7 @@ use manager_service::iface_bluetooth_manager::{
 
 use num_traits::{FromPrimitive, ToPrimitive};
 
+use std::collections::HashMap;
 use std::convert::{TryFrom, TryInto};
 use std::sync::Arc;
 
@@ -574,6 +576,98 @@ impl IBluetoothManagerCallback for IBluetoothManagerCallbackDBus {
     fn on_hci_enabled_changed(&self, hci_interface: i32, enabled: bool) {}
 }
 
+#[allow(dead_code)]
+struct IAdvertisingSetCallbackDBus {}
+
+impl RPCProxy for IAdvertisingSetCallbackDBus {
+    // Placeholder to satisfy impl RPCProxy requirements.
+    fn register_disconnect(&mut self, _f: Box<dyn Fn(u32) + Send>) -> u32 {
+        0
+    }
+    fn get_object_id(&self) -> String {
+        String::from("")
+    }
+    fn unregister(&mut self, _id: u32) -> bool {
+        false
+    }
+    fn export_for_rpc(self: Box<Self>) {}
+}
+
+#[generate_dbus_exporter(
+    export_advertising_set_callback_dbus_intf,
+    "org.chromium.bluetooth.AdvertisingSetCallback"
+)]
+impl IAdvertisingSetCallback for IAdvertisingSetCallbackDBus {
+    fn on_advertising_set_started(&self, _advertiser_id: i32, _tx_power: i32, _status: i32) {
+        // TODO(b/233128828)
+    }
+
+    fn on_own_address_read(&self, _advertiser_id: i32, _address_type: i32, _address: String) {
+        // TODO(b/233128828)
+    }
+
+    fn on_advertising_set_stopped(&self, _advertiser_id: i32) {
+        // TODO(b/233128828)
+    }
+
+    fn on_advertising_enabled(&self, _advertiser_id: i32, _enable: bool, _status: i32) {
+        // TODO(b/233128828)
+    }
+
+    fn on_advertising_data_set(&self, _advertiser_id: i32, _status: i32) {
+        // TODO(b/233128828)
+    }
+
+    fn on_scan_response_data_set(&self, _advertiser_id: i32, _status: i32) {
+        // TODO(b/233128828)
+    }
+    fn on_advertising_parameters_updated(&self, _advertiser_id: i32, _tx_power: i32, _status: i32) {
+        // TODO(b/233128828)
+    }
+
+    fn on_periodic_advertising_parameters_updated(&self, _advertiser_id: i32, _status: i32) {
+        // TODO(b/233128828)
+    }
+
+    fn on_periodic_advertising_data_set(&self, _advertiser_id: i32, _status: i32) {
+        // TODO(b/233128828)
+    }
+
+    fn on_periodic_advertising_enabled(&self, _advertiser_id: i32, _enable: bool, _status: i32) {
+        // TODO(b/233128828)
+    }
+}
+
+#[dbus_propmap(AdvertisingSetParameters)]
+struct AdvertisingSetParametersDBus {
+    connectable: bool,
+    scannable: bool,
+    is_legacy: bool,
+    is_anonymous: bool,
+    include_tx_power: bool,
+    primary_phy: i32,
+    secondary_phy: i32,
+    interval: i32,
+    tx_power_level: i32,
+    own_address_type: i32,
+}
+
+#[dbus_propmap(AdvertiseData)]
+pub struct AdvertiseDataDBus {
+    service_uuids: Vec<String>,
+    solicit_uuids: Vec<String>,
+    manufacturer_data: HashMap<i32, Vec<u8>>,
+    service_data: HashMap<String, Vec<u8>>,
+    include_tx_power_level: bool,
+    include_device_name: bool,
+}
+
+#[dbus_propmap(PeriodicAdvertisingParameters)]
+pub struct PeriodicAdvertisingParametersDBus {
+    pub include_tx_power: bool,
+    pub interval: i32,
+}
+
 pub(crate) struct BluetoothGattDBusRPC {
     client_proxy: ClientDBusProxy,
 }
@@ -630,6 +724,76 @@ impl IBluetoothGatt for BluetoothGattDBus {
     }
 
     fn stop_scan(&self, _scanner_id: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("StartAdvertisingSet")]
+    fn start_advertising_set(
+        &self,
+        parameters: AdvertisingSetParameters,
+        advertise_data: Option<AdvertiseData>,
+        scan_response: Option<AdvertiseData>,
+        periodic_parameters: Option<PeriodicAdvertisingParameters>,
+        periodic_data: Option<AdvertiseData>,
+        duration: i32,
+        max_ext_adv_events: i32,
+        callback: Box<dyn IAdvertisingSetCallback + Send>,
+    ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("StopAdvertisingSet")]
+    fn stop_advertising_set(&self, advertiser_id: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("GetOwnAddress")]
+    fn get_own_address(&self, advertiser_id: i32) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("EnableAdvertisingSet")]
+    fn enable_advertising_set(
+        &self,
+        advertiser_id: i32,
+        enable: bool,
+        duration: i32,
+        max_ext_adv_events: i32,
+    ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetAdvertisingData")]
+    fn set_advertising_data(&self, advertiser_id: i32, data: Option<AdvertiseData>) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetScanResponseData")]
+    fn set_scan_response_data(&self, advertiser_id: i32, data: Option<AdvertiseData>) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetAdvertisingParameters")]
+    fn set_advertising_parameters(&self, advertiser_id: i32, parameters: AdvertisingSetParameters) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPeriodicAdvertisingParameters")]
+    fn set_periodic_advertising_parameters(
+        &self,
+        advertiser_id: i32,
+        parameters: Option<PeriodicAdvertisingParameters>,
+    ) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPeriodicAdvertisingData")]
+    fn set_periodic_advertising_data(&self, advertiser_id: i32, data: Option<AdvertiseData>) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetPeriodicAdvertisingEnable")]
+    fn set_periodic_advertising_enable(&self, _advertiser_id: i32, _enable: bool) {
         dbus_generated!()
     }
 
