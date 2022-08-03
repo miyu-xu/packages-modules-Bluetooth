@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "863839c9_1924a2ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-03T21:13:38Z",
+      "side": 1,
+      "message": "Code only affects Floss build and failing builders are failing in java. Build was tested locally.",
+      "revId": "ab1f52e1b3b81c17f735a878e41781e2e3ed6ba0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
