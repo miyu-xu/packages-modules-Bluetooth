@@ -81,6 +81,30 @@
       },
       "revId": "d2e9aec4b8ff6905c7c5242e7851192b9b19e8af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c1750b4_75e5bf9d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-03T14:52:19Z",
+      "side": 1,
+      "message": "I see. Could we add the verbose debug log here to know the broadcast is encrypted or not?",
+      "parentUuid": "f9ec7118_2fdc328f",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 76
+      },
+      "revId": "d2e9aec4b8ff6905c7c5242e7851192b9b19e8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
