@@ -39,6 +39,30 @@
       },
       "revId": "d2e9aec4b8ff6905c7c5242e7851192b9b19e8af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9ec7118_2fdc328f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-03T07:32:40Z",
+      "side": 1,
+      "message": "Do we want to disallow unencrypted broadcasts?",
+      "parentUuid": "29ab1bb6_26b9dc21",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 76
+      },
+      "revId": "d2e9aec4b8ff6905c7c5242e7851192b9b19e8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
