@@ -39,6 +39,30 @@
       },
       "revId": "1b1698dbca431fb15cab0d1d2fc0f3657055e26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56537652_6d4b8afd",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-03T07:27:35Z",
+      "side": 1,
+      "message": "In general we should be fine adding broadcast source without or with an invalid code at this stage. It would go the same path as it was before the aosp/2139656. The remote can still sync to the broadcast and then ask for the valid code.\nWe could call a `break;` here and keep the previous behavior, but to me that execution path seems to be a fail without actually notifying the user about it. Adding source does not require the broadcast code at this stage, and transitioning to `mConnectedProcessing` at least gives us a safety net by starting the GATT_TXN_TIMEOUT timeout, which should close the loop by calling the callback if something fails.",
+      "parentUuid": "cb725221_6078785a",
+      "range": {
+        "startLine": 1542,
+        "startChar": 0,
+        "endLine": 1544,
+        "endChar": 81
+      },
+      "revId": "1b1698dbca431fb15cab0d1d2fc0f3657055e26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
