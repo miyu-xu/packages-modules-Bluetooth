@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "317c0ba5_2f2105a0",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-03T08:07:54Z",
+      "side": 1,
+      "message": "LeAudioService.java makes sure that never happens, but I\u0027ll add a log here just in case the caller logic gets changed in future for some reason.",
+      "parentUuid": "12c236c6_208595fe",
+      "revId": "d2e9aec4b8ff6905c7c5242e7851192b9b19e8af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29ab1bb6_26b9dc21",
