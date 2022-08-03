@@ -16,6 +16,29 @@
       "message": "Hi Chienyuan, Myles and Jack, could you PTAL the CL?",
       "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aabbb30b_1b564643",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-03T22:55:50Z",
+      "side": 1,
+      "message": "Can we close this hole a bit.  I\u0027d prefer that we just do this for this one command.\n\nSomething like this (not tested or compiled):\n\n  void check_set_event_mask_complete(CommandCompleteView view) {\n    ASSERT(view.IsValid());\n    auto status_view \u003d LeSetEventMaskCompleteView::Create(view);\n    ASSERT(status_view.IsValid());\n    auto status \u003d status_view.GetStatus()\n    if (status_view.GetStatus() !\u003d ErrorCode::SUCCESS \u0026\u0026 \n        status_view.GetStatus() !\u003d ErrorCode::LMP_) {\n      LOG_ERROR(\"status_view.GetStatus() \u003d %s\", ErrorCodeText(status_view);\n    }\n  }",
+      "range": {
+        "startLine": 540,
+        "startChar": 0,
+        "endLine": 544,
+        "endChar": 3
+      },
+      "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
