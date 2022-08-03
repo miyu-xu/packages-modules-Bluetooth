@@ -1885,10 +1885,47 @@ public class HeadsetStateMachine extends StateMachine {
         Object[] args = generateArgs(arg);
         if (command.equals(BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_XAPL)) {
             processAtXapl(args, device);
+        } else if (command.equals(BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_ANDROID)) {
+            processAtAndroid(args, device);
         }
         broadcastVendorSpecificEventIntent(command, companyId, BluetoothHeadset.AT_CMD_TYPE_SET,
                 args, device);
         mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_OK, 0);
+    }
+
+    /**
+     * Process AT+ANDROID AT command
+     *
+     * @param args command arguments after the equal sign
+     * @param device Remote device that has sent this command
+     */
+    private void processAtAndroid(Object[] args, BluetoothDevice device) {
+        if (args.length != 2) {
+            Log.w(TAG, "processAtAndroid() args length must be 2: " + String.valueOf(args.length));
+            return;
+        }
+        // if (!(args[0] instanceof String) || !(args[1] instanceof Integer)) {
+        //     Log.w(TAG, "processAtAndroid() argument types not match");
+        //     return;
+        // }
+        String[] deviceInfo = ((String) args[0]).split("-");
+        if (deviceInfo.length != 3) {
+            Log.w(TAG, "processAtAndroid() deviceInfo length " + deviceInfo.length + " is wrong");
+            return;
+        }
+        String vendorId = deviceInfo[0];
+        String productId = deviceInfo[1];
+        String version = deviceInfo[2];
+        String[] macAddress = device.getAddress().split(":");
+        BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_DEVICE_INFO_REPORTED,
+                mAdapterService.obfuscateAddress(device), BluetoothProtoEnums.DEVICE_INFO_INTERNAL,
+                BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_XAPL, vendorId, productId, version,
+                null, mAdapterService.getMetricId(device),
+                device.getAddressType(),
+                Integer.parseInt(macAddress[0], 16),
+                Integer.parseInt(macAddress[1], 16), Integer.parseInt(macAddress[2], 16));
+        // feature = 2 indicates that we support battery level reporting only
+        mNativeInterface.atResponseString(device, "+XAPL=iPhone," + String.valueOf(2));
     }
 
     /**

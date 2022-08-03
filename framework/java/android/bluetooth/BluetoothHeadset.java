@@ -245,6 +245,13 @@ public final class BluetoothHeadset implements BluetoothProfile {
      *
      * @hide
      */
+    public static final String VENDOR_SPECIFIC_HEADSET_EVENT_ANDROID = "+ANDROID";
+
+    /**
+     * A vendor-specific AT command
+     *
+     * @hide
+     */
     public static final String VENDOR_SPECIFIC_HEADSET_EVENT_XAPL = "+XAPL";
 
     /**
