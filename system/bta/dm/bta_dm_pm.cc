@@ -24,8 +24,10 @@
  ******************************************************************************/
 
 #include <base/bind.h>
+
 #include <cstdint>
 #include <mutex>
+#include <vector>
 
 #include "bta/dm/bta_dm_int.h"
 #include "bta/include/bta_api.h"
@@ -34,6 +36,7 @@
 #include "device/include/controller.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/log.h"
+#include "osi/include/properties.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/btu.h"  // do_in_main_thread
 #include "types/raw_address.h"
@@ -62,6 +65,16 @@ static void bta_dm_pm_ssr(const RawAddress& peer_addr, const int ssr);
 tBTA_DM_CONNECTED_SRVCS bta_dm_conn_srvcs;
 static std::recursive_mutex pm_timer_schedule_mutex;
 static std::recursive_mutex pm_timer_state_mutex;
+
+/* Sysprop paths for sniff parameters */
+static const char kPropertySniffMaxIntervals[] =
+    "bluetooth.core.classic.sniff_max_intervals";
+static const char kPropertySniffMinIntervals[] =
+    "bluetooth.core.classic.sniff_min_intervals";
+static const char kPropertySniffAttempts[] =
+    "bluetooth.core.classic.sniff_attempts";
+static const char kPropertySniffTimeouts[] =
+    "bluetooth.core.classic.sniff_timeouts";
 
 /*******************************************************************************
  *
@@ -689,7 +702,51 @@ static bool bta_dm_pm_park(const RawAddress& peer_addr) {
   }
   return true;
 }
+/*******************************************************************************
+ *
+ * Function         get_sniff_entry
+ *
+ * Description      Helper function to get sniff entry from sysprop or
+ *                  default table.
+ *
+ *
+ * Returns          tBTM_PM_PWR_MD with specified |index|.
+ *
+ ******************************************************************************/
+tBTM_PM_PWR_MD get_sniff_entry(uint8_t index) {
+  if (index >= BTA_DM_PM_PARK_IDX) {
+    return p_bta_dm_pm_md[0];
+  }
 
+  // If any of the sysprops are malformed or don't exist, return default table
+  // value
+  std::vector<uint32_t> invalid_list(BTA_DM_PM_PARK_IDX, 0);
+  std::vector<uint32_t> max =
+      osi_property_get_uintlist(kPropertySniffMaxIntervals, invalid_list);
+  if (index >= max.size() || max == invalid_list) {
+    return p_bta_dm_pm_md[index];
+  }
+  std::vector<uint32_t> min =
+      osi_property_get_uintlist(kPropertySniffMinIntervals, invalid_list);
+  if (index >= min.size() || min == invalid_list) {
+    return p_bta_dm_pm_md[index];
+  }
+  std::vector<uint32_t> attempt =
+      osi_property_get_uintlist(kPropertySniffAttempts, invalid_list);
+  if (index >= attempt.size() || attempt == invalid_list) {
+    return p_bta_dm_pm_md[index];
+  }
+  std::vector<uint32_t> timeout =
+      osi_property_get_uintlist(kPropertySniffTimeouts, invalid_list);
+  if (index >= timeout.size() || timeout == invalid_list) {
+    return p_bta_dm_pm_md[index];
+  }
+
+  return tBTM_PM_PWR_MD{static_cast<uint16_t>(max[index]),
+                        static_cast<uint16_t>(min[index]),
+                        static_cast<uint16_t>(attempt[index]),
+                        static_cast<uint16_t>(timeout[index]), BTM_PM_MD_SNIFF};
+}
 /*******************************************************************************
  *
  * Function         bta_ag_pm_sniff
@@ -734,7 +791,8 @@ void bta_dm_pm_sniff(tBTA_DM_PEER_DEVICE* p_peer_dev, uint8_t index) {
   }
   /* if the current mode is not sniff, issue the sniff command.
    * If sniff, but SSR is not used in this link, still issue the command */
-  memcpy(&pwr_md, &p_bta_dm_pm_md[index], sizeof(tBTM_PM_PWR_MD));
+  tBTM_PM_PWR_MD sniff_entry = get_sniff_entry(index);
+  memcpy(&pwr_md, &sniff_entry, sizeof(tBTM_PM_PWR_MD));
   if (p_peer_dev->Info() & BTA_DM_DI_INT_SNIFF) {
     LOG_DEBUG("Trying to force power mode");
     pwr_md.mode |= BTM_PM_MD_FORCE;
