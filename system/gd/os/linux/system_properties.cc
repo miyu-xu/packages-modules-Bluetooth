@@ -41,6 +41,15 @@ std::optional<std::string> GetSystemProperty(const std::string& property) {
   return iter->second;
 }
 
+int32_t GetSystemPropertyInt32(const std::string& property, int32_t default_value) {
+  std::optional<std::string> result = GetSystemProperty(property);
+  if (result) {
+    return stoi(*result, nullptr);
+  } else {
+    return default_value;
+  }
+}
+
 bool SetSystemProperty(const std::string& property, const std::string& value) {
   std::lock_guard<std::mutex> lock(properties_mutex);
   properties.insert_or_assign(property, value);

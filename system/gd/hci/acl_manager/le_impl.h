@@ -37,11 +37,57 @@
 #include "hci/le_address_manager.h"
 #include "os/alarm.h"
 #include "os/handler.h"
+#include "os/system_properties.h"
 #include "packet/packet_view.h"
 
 using bluetooth::crypto_toolbox::Octet16;
 
 #define PRIVATE_ADDRESS_WITH_TYPE(addr) addr.ToString().substr(12U).c_str()
+
+/* Sysprop path LE connection parameters */
+#ifndef PROPERTY_MIN_CONN_INTERVAL
+#define PROPERTY_MIN_CONN_INTERVAL "bluetooth.core.le.min_connection_interval"
+#endif
+
+#ifndef PROPERTY_MAX_CONN_INTERVAL
+#define PROPERTY_MAX_CONN_INTERVAL "bluetooth.core.le.max_connection_interval"
+#endif
+
+#ifndef PROPERTY_CONN_LATENCY
+#define PROPERTY_CONN_LATENCY "bluetooth.core.le.connection_latency"
+#endif
+
+#ifndef PROPERTY_CONN_SUPERVISION_TIMEOUT
+#define PROPERTY_CONN_SUPERVISION_TIMEOUT "bluetooth.core.le.connection_supervision_timeout"
+#endif
+
+#ifndef PROPERTY_DIRECT_CONN_TIMEOUT
+#define PROPERTY_DIRECT_CONN_TIMEOUT "bluetooth.core.le.direct_connection_timeout"
+#endif
+
+#ifndef PROPERTY_CONN_SCAN_INTERVAL_FAST
+#define PROPERTY_CONN_SCAN_INTERVAL_FAST "bluetooth.core.le.connection_scan_interval_fast"
+#endif
+
+#ifndef PROPERTY_CONN_SCAN_WINDOW_FAST
+#define PROPERTY_CONN_SCAN_WINDOW_FAST "bluetooth.core.le.connection_scan_window_fast"
+#endif
+
+#ifndef PROPERTY_CONN_SCAN_WINDOW_2M_FAST
+#define PROPERTY_CONN_SCAN_WINDOW_2M_FAST "bluetooth.core.le.connection_scan_window_2m_fast"
+#endif
+
+#ifndef PROPERTY_CONN_SCAN_WINDOW_CODED_FAST
+#define PROPERTY_CONN_SCAN_WINDOW_CODED_FAST "bluetooth.core.le.connection_scan_window_coded_fast"
+#endif
+
+#ifndef PROPERTY_CONN_SCAN_INTERVAL_SLOW
+#define PROPERTY_CONN_SCAN_INTERVAL_SLOW "bluetooth.core.le.connection_scan_interval_slow"
+#endif
+
+#ifndef PROPERTY_CONN_SCAN_WINDOW_SLOW
+#define PROPERTY_CONN_SCAN_WINDOW_SLOW "bluetooth.core.le.connection_scan_window_slow"
+#endif
 
 namespace bluetooth {
 namespace hci {
@@ -55,7 +101,7 @@ constexpr uint16_t kScanWindow2mFast = 0x0018;    /* 15 ms = 24 *0.625 */
 constexpr uint16_t kScanWindowCodedFast = 0x0018; /* 15 ms = 24 *0.625 */
 constexpr uint16_t kScanIntervalSlow = 0x0800;    /* 1.28 s = 2048 *0.625 */
 constexpr uint16_t kScanWindowSlow = 0x0030;      /* 30 ms = 48 *0.625 */
-constexpr std::chrono::milliseconds kCreateConnectionTimeoutMs = std::chrono::milliseconds(30 * 1000);
+constexpr uint32_t kCreateConnectionTimeoutMs = 30 * 1000;
 constexpr uint8_t PHY_LE_NO_PACKET = 0x00;
 constexpr uint8_t PHY_LE_1M = 0x01;
 constexpr uint8_t PHY_LE_2M = 0x02;
@@ -654,24 +700,24 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     connectability_state_ = ConnectabilityState::ARMING;
     connecting_le_ = connect_list;
 
-    uint16_t le_scan_interval = kScanIntervalSlow;
-    uint16_t le_scan_window = kScanWindowSlow;
-    uint16_t le_scan_window_2m = kScanWindowSlow;
-    uint16_t le_scan_window_coded = kScanWindowSlow;
+    uint16_t le_scan_interval = os::GetSystemPropertyInt32(PROPERTY_CONN_SCAN_INTERVAL_SLOW, kScanIntervalSlow);
+    uint16_t le_scan_window = os::GetSystemPropertyInt32(PROPERTY_CONN_SCAN_WINDOW_SLOW, kScanWindowSlow);
+    uint16_t le_scan_window_2m = le_scan_window;
+    uint16_t le_scan_window_coded = le_scan_window;
     // If there is any direct connection in the connection list, use the fast parameter
     if (!direct_connections_.empty()) {
-      le_scan_interval = kScanIntervalFast;
-      le_scan_window = kScanWindowFast;
-      le_scan_window_2m = kScanWindow2mFast;
-      le_scan_window_coded = kScanWindowCodedFast;
+      le_scan_interval = os::GetSystemPropertyInt32(PROPERTY_CONN_SCAN_INTERVAL_FAST, kScanIntervalFast);
+      le_scan_window = os::GetSystemPropertyInt32(PROPERTY_CONN_SCAN_WINDOW_FAST, kScanWindowFast);
+      le_scan_window_2m = os::GetSystemPropertyInt32(PROPERTY_CONN_SCAN_WINDOW_2M_FAST, kScanWindow2mFast);
+      le_scan_window_coded = os::GetSystemPropertyInt32(PROPERTY_CONN_SCAN_WINDOW_CODED_FAST, kScanWindowCodedFast);
     }
     InitiatorFilterPolicy initiator_filter_policy = InitiatorFilterPolicy::USE_FILTER_ACCEPT_LIST;
     OwnAddressType own_address_type =
         static_cast<OwnAddressType>(le_address_manager_->GetCurrentAddress().GetAddressType());
-    uint16_t conn_interval_min = 0x0018;
-    uint16_t conn_interval_max = 0x0028;
-    uint16_t conn_latency = 0x0000;
-    uint16_t supervision_timeout = 0x001f4;
+    uint16_t conn_interval_min = os::GetSystemPropertyInt32(PROPERTY_MIN_CONN_INTERVAL, 0x0018);
+    uint16_t conn_interval_max = os::GetSystemPropertyInt32(PROPERTY_MAX_CONN_INTERVAL, 0x0028);
+    uint16_t conn_latency = os::GetSystemPropertyInt32(PROPERTY_CONN_LATENCY, 0x0000);
+    uint16_t supervision_timeout = os::GetSystemPropertyInt32(PROPERTY_CONN_SUPERVISION_TIMEOUT, 0x001f4);
     ASSERT(check_connection_parameters(conn_interval_min, conn_interval_max, conn_latency, supervision_timeout));
 
     AddressWithType address_with_type = connection_peer_address_with_type_;
@@ -782,10 +828,12 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
               std::piecewise_construct,
               std::forward_as_tuple(address_with_type.GetAddress(), address_with_type.GetAddressType()),
               std::forward_as_tuple(handler_));
+          uint32_t connection_timeout =
+              os::GetSystemPropertyInt32(PROPERTY_DIRECT_CONN_TIMEOUT, kCreateConnectionTimeoutMs);
           create_connection_timeout_alarms_.at(address_with_type)
               .Schedule(
                   common::BindOnce(&le_impl::on_create_connection_timeout, common::Unretained(this), address_with_type),
-                  kCreateConnectionTimeoutMs);
+                  std::chrono::milliseconds(connection_timeout));
         }
       }
     }

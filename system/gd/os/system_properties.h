@@ -26,6 +26,10 @@ namespace os {
 // or if the platform does not support system property
 std::optional<std::string> GetSystemProperty(const std::string& property);
 
+// Get |property| keyed system property as int32_t from supported platform, return |default_value| if the property
+// does not exist or if the platform does not support system property
+int32_t GetSystemPropertyInt32(const std::string& property, int32_t default_value);
+
 // Set |property| keyed system property to |value|, return true if the set was successful and false if the set failed
 // Replace existing value if property already exists
 bool SetSystemProperty(const std::string& property, const std::string& value);
