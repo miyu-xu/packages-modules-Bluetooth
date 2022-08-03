@@ -1251,7 +1251,9 @@
     "SAP": {},
     "SCPP": {},
     "SDP": {},
-    "SM": {},
+    "SM": {
+      "TSPX_Min_Encryption_Key_Length": "16"
+    },
     "SPP": {},
     "SUM ICS": {}
   }

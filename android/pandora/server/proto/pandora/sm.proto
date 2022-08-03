@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option java_outer_classname = "SmProto";
+
+import "pandora/host.proto";
+import "google/protobuf/empty.proto";
+
+package pandora;
+
+service SM {
+    rpc Pair(PairRequest) returns (google.protobuf.Empty);
+    rpc ProvidePairingConfirmation(PairingConfirmationRequest) returns (google.protobuf.Empty);
+    rpc GetPasskey(PasskeyRequest) returns (PasskeyResponse);
+    rpc CreateClassicConnection(ConnectionRequest) returns (google.protobuf.Empty);
+    rpc EnableConnectableMode(EnableConnectableModeRequest) returns (google.protobuf.Empty);
+}
+
+message PairRequest {
+    oneof pairing_method {
+        Connection connection = 1;
+        bytes address = 2;
+    }
+}
+
+message PairingConfirmationRequest {
+    oneof pairing_method {
+        Connection connection = 1;
+        bytes address = 3;
+    }
+    bool pairing_confirmation_value = 2;
+}
+
+message PasskeyRequest {
+    bytes address = 1;
+}
+
+message PasskeyResponse {
+    int32 passkey = 1;
+}
+
+message ConnectionRequest {
+    bytes address = 1;
+}
+
+message EnableConnectableModeRequest {
+    bytes address = 1;
+}
