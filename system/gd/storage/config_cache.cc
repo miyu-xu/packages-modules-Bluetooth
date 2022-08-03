@@ -420,6 +420,13 @@ bool FixDeviceTypeInconsistencyInSection(
   if (!hci::Address::IsValidAddress(section_name)) {
     return false;
   }
+  auto device_type_iter = device_section_entries.find("DevType");
+  if (device_type_iter != device_section_entries.end() && *device_type_iter == hci::DeviceType::DUAL) {
+      // We might only have one of classic/LE keys for a dual device, but it is still a dual device,
+      // so we should not change the DevType.
+      return false;
+  }
+
   bool is_le = false;
   bool is_classic = false;
   // default
@@ -441,11 +448,10 @@ bool FixDeviceTypeInconsistencyInSection(
   }
   bool inconsistent = true;
   std::string device_type_str = std::to_string(device_type);
-  auto it = device_section_entries.find("DevType");
-  if (it != device_section_entries.end()) {
-    inconsistent = device_type_str != it->second;
+  if (device_type_iter != device_section_entries.end()) {
+    inconsistent = device_type_str != device_type_iter->second;
     if (inconsistent) {
-      it->second = std::move(device_type_str);
+      device_type_iter->second = std::move(device_type_str);
     }
   } else {
     device_section_entries.insert_or_assign("DevType", std::move(device_type_str));
