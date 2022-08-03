@@ -39,6 +39,30 @@
       },
       "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dac76a12_743f2b85",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-03T22:57:44Z",
+      "side": 1,
+      "message": "status should be used in place of status_view.GetStatus() and in ErrorCodeText()",
+      "parentUuid": "aabbb30b_1b564643",
+      "range": {
+        "startLine": 540,
+        "startChar": 0,
+        "endLine": 544,
+        "endChar": 3
+      },
+      "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
