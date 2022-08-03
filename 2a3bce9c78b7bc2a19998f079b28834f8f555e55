@@ -33,6 +33,24 @@
       "message": "I left comments on the design doc too -- we probably don\u0027t want to be registering callbacks on EVERY advertising set. Instead, we should a single advertising callback for each client and use the advertising id to differentiate between them.",
       "revId": "2a3bce9c78b7bc2a19998f079b28834f8f555e55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "641d3199_69dbf0ef",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-03T18:07:51Z",
+      "side": 1,
+      "message": "+1 to registering callback at one place rather than at every method call.",
+      "parentUuid": "e2dad3ba_d6be7f66",
+      "revId": "2a3bce9c78b7bc2a19998f079b28834f8f555e55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
