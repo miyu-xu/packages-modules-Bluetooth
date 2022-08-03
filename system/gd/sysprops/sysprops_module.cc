@@ -1,7 +1,6 @@
 /*
  * Copyright 2020 The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -77,6 +76,10 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.core.classic.inq_scan_window",
       "bluetooth.core.acl.link_supervision_timeout",
       "bluetooth.core.classic.page_timeout",
+      "bluetooth.core.classic.sniff_max_intervals",
+      "bluetooth.core.classic.sniff_min_intervals",
+      "bluetooth.core.classic.sniff_attempts",
+      "bluetooth.core.classic.sniff_timeouts",
   };
 
   auto config = storage::LegacyConfigFile::FromPath(file_path).Read(kDefaultCapacity);
