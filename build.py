@@ -228,7 +228,7 @@ class HostBuild():
             '-C',
             'link-arg=-Wl,--allow-multiple-definition',
             # exclude uninteresting warnings
-            '-A improper_ctypes_definitions -A improper_ctypes -A unknown_lints',
+            '-A improper_ctypes_definitions -A improper_ctypes -A unknown_lints -A soft_unstable',
         ]
 
         return ' '.join(rust_flags)

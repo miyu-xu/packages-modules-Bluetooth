@@ -64,6 +64,7 @@ rust_test_host {
     test_suites: ["general-tests"],
     edition: "2018",
     rustlibs: [
+        "libanyhow",
         "libbt_facade_proto",
         "libbt_packets",
         "libbluetooth_rs",
