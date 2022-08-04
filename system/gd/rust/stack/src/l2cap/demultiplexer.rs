@@ -20,6 +20,10 @@ enum ControlSignal<E, K> {
     Subscribe { key: K, event_tx: Sender<E>, reply_tx: oneshot::Sender<()> },
 }
 
+// TODO: make rx destructor have a oneshot that unregisters it, but be careful to avoid races
+// e.g. destruct -> enqueue register -> enqueue destruct -> register + overwrite -> whoops
+
+
 async fn event_loop<E, K, C>(
     mut event_rx: Receiver<E>,
     mut selector: C,
@@ -53,7 +57,7 @@ async fn event_loop<E, K, C>(
                         } else {
                             entry.or_insert(dispatch_tx);
                         }
-                        if let Err(_) = reply_tx.send(()) {
+                        if reply_tx.send(()).is_err() {
                             warn!("registering caller hung up while subscribing")
                         };
                     }

@@ -7,6 +7,7 @@ pub mod hal;
 pub mod hci;
 pub mod link;
 pub mod l2cap;
+pub mod rfcomm;
 
 use crate::hal::rootcanal_hal::RootcanalConfig;
 use crate::hal::snoop::{SnoopConfig, SnoopMode};

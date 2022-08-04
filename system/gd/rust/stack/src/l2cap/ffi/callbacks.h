@@ -16,4 +16,10 @@ void L2CA_Register_from_rust(
     uint16_t required_remote_mtu,
     OneshotU16& completion);
 
+void L2CA_Deregister_from_rust(uint16_t psm);
+
+void L2CA_ConnectReq_from_rust(uint16_t psm, const RawAddress& p_bd_addr, OneshotU16& completion);
+
+void L2CA_DisconnectReq_from_rust(uint16_t cid);
+
 void initialize_l2cap_tx_on_main_thread(EventChannel& tx);

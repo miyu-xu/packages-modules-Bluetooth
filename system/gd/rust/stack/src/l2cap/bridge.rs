@@ -4,7 +4,10 @@ use std::ptr::null_mut;
 
 use self::ffi::L2CA_Register_from_rust;
 
-use crate::l2cap::listeners::{incoming_connection_handler, initialize_l2cap_tx, CallbackEvent};
+use crate::l2cap::listeners::{
+    incoming_connection_handler, incoming_data_handler, initialize_l2cap_tx,
+    outgoing_connection_handler, CallbackEvent,
+};
 use crate::l2cap::types::RawAddress;
 
 use cxx::{type_id, ExternType};
@@ -34,7 +37,11 @@ pub mod ffi {
         type EventChannel;
 
         fn run_l2cap_self_test();
+
         fn incoming_connection_handler(remote_addr: &RawAddress, local_cid: u16, psm: u16, id: u8);
+        fn outgoing_connection_handler(local_cid: u16, result: u16);
+        fn incoming_data_handler(local_cid: u16, result: &[u8]);
+
         fn oneshot_send_u16(sender: &mut OneshotU16, value: u16);
         fn initialize_l2cap_tx(tx: &mut EventChannel);
     }
@@ -55,6 +62,16 @@ pub mod ffi {
             required_remote_mtu: u16,
             completion: &mut OneshotU16,
         );
+
+        unsafe fn L2CA_Deregister_from_rust(psm: u16);
+
+        unsafe fn L2CA_ConnectReq_from_rust(
+            psm: u16,
+            p_bd_addr: &RawAddress,
+            completion: &mut OneshotU16,
+        );
+
+        unsafe fn L2CA_DisconnectReq_from_rust(cid: u16);
 
         unsafe fn initialize_l2cap_tx_on_main_thread(tx: &mut EventChannel);
 

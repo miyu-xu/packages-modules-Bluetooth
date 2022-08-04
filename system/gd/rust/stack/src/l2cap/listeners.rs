@@ -1,4 +1,4 @@
-use std::cell::RefCell;
+use std::{cell::RefCell, num::NonZeroU16};
 
 use anyhow::{anyhow, Context, Result};
 use tokio::sync::mpsc::Sender;
@@ -14,7 +14,17 @@ use super::{
 #[derive(Debug)]
 pub enum CallbackEvent {
     /// An incoming L2CAP connection to a registered listener ("connection indication")
-    IncomingConnection { incoming_addr: IdentityAddress, local_cid: L2capChannelId, psm: L2capPsm },
+    IncomingConnectionEstablished {
+        incoming_addr: IdentityAddress,
+        local_cid: L2capChannelId,
+        psm: L2capPsm,
+    },
+    /// An outgoing L2CAP connection to a registered listener ("connection response")
+    OutgoingConnectionEstablished { local_cid: L2capChannelId },
+    /// An error occurred tied to a particular channel ID ("connection response")
+    ChannelError { local_cid: L2capChannelId, error_code: NonZeroU16 },
+    /// Incoming (unparsed) data on an L2CAP channel
+    IncomingData { local_cid: L2capChannelId, data: Box<[u8]> },
 }
 
 struct StaticHandlers(Sender<CallbackEvent>);
@@ -53,13 +63,62 @@ pub fn incoming_connection_handler(remote_addr: &RawAddress, local_cid: u16, psm
         with_static_handlers(|handlers| {
             handlers
                 .0
-                .blocking_send(CallbackEvent::IncomingConnection {
+                .blocking_send(CallbackEvent::IncomingConnectionEstablished {
                     incoming_addr: IdentityAddress(*remote_addr),
                     local_cid: L2capChannelId { cid: local_cid },
                     psm: L2capPsm { psm },
                 })
                 .with_context(|| {
                     format!("failed to enqueue incoming connection to {psm:?}, ignoring it")
+                })
+        })
+    } {
+        log::error!("On incoming connection, got error {e:?}");
+    }
+}
+
+/// Triggered when an outgoing connection completes (interface: tL2CA_CONNECT_CFM_CB)
+pub fn outgoing_connection_handler(local_cid: u16, result: u16) {
+    if let Err(e) = {
+        log::info!("outgoing L2CAP connection potentially established at lcid={local_cid} (result={result} should be 0 for success)");
+
+        let event = if result == 0 {
+            CallbackEvent::OutgoingConnectionEstablished {
+                local_cid: L2capChannelId { cid: local_cid },
+            }
+        } else {
+            CallbackEvent::ChannelError {
+                local_cid: L2capChannelId { cid: local_cid },
+                error_code: NonZeroU16::new(result).unwrap(),
+            }
+        };
+
+        with_static_handlers(|handlers| {
+            handlers.0.blocking_send(event).with_context(|| {
+                format!(
+                    "failed to enqueue completed connection to channel {local_cid:?}, ignoring it"
+                )
+            })
+        })
+    } {
+        log::error!("On incoming connection, got error {e:?}");
+    }
+}
+
+/// Triggered when incoming data is available (interface: tL2CA_DATA_IND_CB)
+pub fn incoming_data_handler(local_cid: u16, data: &[u8]) {
+    if let Err(e) = {
+        with_static_handlers(|handlers| {
+            handlers
+                .0
+                .blocking_send(CallbackEvent::IncomingData {
+                    local_cid: L2capChannelId { cid: local_cid },
+                    data: Box::from(data),
+                })
+                .with_context(|| {
+                    format!(
+                    "failed to enqueue completed connection to channel {local_cid:?}, ignoring it"
+                )
                 })
         })
     } {

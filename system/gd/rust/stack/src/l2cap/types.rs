@@ -18,7 +18,7 @@ pub enum Address {
 
 #[derive(Copy, Clone, Hash, Eq, PartialEq, Debug)]
 pub struct L2capPsm {
-    pub psm: u16,
+    pub psm: u16, // possibly split this into an enum of static + dynamic PSMs?
 }
 
 #[derive(Copy, Clone, Hash, Eq, PartialEq, Debug)]
