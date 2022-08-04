@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a08e7cbc_e33a9bc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-04T19:44:31Z",
+      "side": 1,
+      "message": "Instead of having the audio stack to query the codec, I tend to add codes to the WbsCallback to trigger a notification to the audio stack about the codec change made by \"AT+BCS\" for that case that HF chooses to change the codec to use.\n\nAFAIK, WbsCallback is always involved when there is a codec change.\n\nYou may check packages/modules/Bluetooth/system/btif/src/btif_hf.cc to confirm.",
+      "revId": "970c8d7e0f0608e5c81e1ae0652e920684d1b1bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dea9eac2_be9d65fc",
