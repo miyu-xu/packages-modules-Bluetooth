@@ -1128,6 +1128,14 @@ public class HeadsetClientService extends ProfileService {
             return null;
         }
 
+        // Some platform does not support three way calling (ex: watch)
+        final boolean support_three_way_calling = SystemProperties
+                .getBoolean("bluetooth.headset_client.three_way_calling.enabled", true);
+        if (!support_three_way_calling && !getCurrentCalls(device).isEmpty()) {
+            Log.e(TAG, String.format("dial(%s): Line is busy, reject dialing", device));
+            return null;
+        }
+
         HfpClientCall call = new HfpClientCall(device,
                 HeadsetClientStateMachine.HF_ORIGINATED_CALL_ID,
                 HfpClientCall.CALL_STATE_DIALING, number, false  /* multiparty */,
