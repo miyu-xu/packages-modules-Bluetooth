@@ -39,6 +39,7 @@ class HfpIntf {
   int disconnect(RustRawAddress bt_addr);
   int disconnect_audio(RustRawAddress bt_addr);
   bool get_wbs_supported();
+  uint8_t get_inuse_codec(); /* CVSD=1, mSBC=2 */
   void cleanup();
 
  private:
