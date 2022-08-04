@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f21381ba_5905962f",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-04T09:27:34Z",
+      "side": 1,
+      "message": "1. Default value of other_transport is BT_TRANSPORT_AUTO",
+      "range": {
+        "startLine": 591,
+        "startChar": 2,
+        "endLine": 591,
+        "endChar": 51
+      },
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5143340_a6fc4e8e",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-04T09:27:34Z",
+      "side": 1,
+      "message": "2. if we remove bond over BLE address while it not connected. We will not enter here to get real value of other_transport.",
+      "range": {
+        "startLine": 611,
+        "startChar": 8,
+        "endLine": 614,
+        "endChar": 44
+      },
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbc4da71_367652cc",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-04T09:27:34Z",
+      "side": 1,
+      "message": "3. BT_TRANSPORT_AUTO can\u0027t not match any peer_device.transport",
+      "range": {
+        "startLine": 650,
+        "startChar": 10,
+        "endLine": 650,
+        "endChar": 50
+      },
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
