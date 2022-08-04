@@ -22,6 +22,30 @@
       },
       "revId": "461225a92a655ccb7c696afc20abe43facd7e15a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24e0e6e7_fb1dae28",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1215,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-04T00:15:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8388f3b8_57dcef5f",
+      "range": {
+        "startLine": 1213,
+        "startChar": 0,
+        "endLine": 1215,
+        "endChar": 50
+      },
+      "revId": "461225a92a655ccb7c696afc20abe43facd7e15a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
