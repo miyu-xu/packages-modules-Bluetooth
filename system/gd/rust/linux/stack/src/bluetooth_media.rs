@@ -60,8 +60,8 @@ pub trait IBluetoothMedia {
     fn set_hfp_volume(&mut self, volume: u8, address: String);
     fn start_audio_request(&mut self);
     fn stop_audio_request(&mut self);
-    fn get_a2dp_audio_started(&mut self) -> bool;
-    fn get_hfp_audio_started(&mut self) -> bool;
+    fn get_a2dp_audio_started(&mut self) -> u8;
+    fn get_hfp_audio_started(&mut self) -> u8;
     fn get_presentation_position(&mut self) -> PresentationPosition;
 
     fn start_sco_call(&mut self, address: String);
@@ -622,17 +622,17 @@ impl IBluetoothMedia for BluetoothMedia {
         }
     }
 
-    fn get_a2dp_audio_started(&mut self) -> bool {
+    fn get_a2dp_audio_started(&mut self) -> u8 {
         match self.a2dp_audio_state {
-            BtavAudioState::Started => true,
-            _ => false,
+            BtavAudioState::Started => 1,
+            _ => 0,
         }
     }
 
-    fn get_hfp_audio_started(&mut self) -> bool {
+    fn get_hfp_audio_started(&mut self) -> u8 {
         match self.hfp_audio_state {
-            BthfAudioState::Connected => true,
-            _ => false,
+            BthfAudioState::Connected => self.hfp.as_mut().unwrap().get_inuse_codec(),
+            _ => 0,
         }
     }
 

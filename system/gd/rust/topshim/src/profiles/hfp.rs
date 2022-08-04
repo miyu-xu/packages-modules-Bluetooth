@@ -81,6 +81,7 @@ pub mod ffi {
         fn disconnect(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
         fn disconnect_audio(self: Pin<&mut HfpIntf>, bt_addr: RustRawAddress) -> i32;
         fn get_wbs_supported(self: Pin<&mut HfpIntf>) -> bool;
+        fn get_inuse_codec(self: Pin<&mut HfpIntf>) -> u8;
         fn cleanup(self: Pin<&mut HfpIntf>);
 
     }
@@ -188,6 +189,10 @@ impl Hfp {
 
     pub fn get_wbs_supported(&mut self) -> bool {
         self.internal.pin_mut().get_wbs_supported()
+    }
+
+    pub fn get_inuse_codec(&mut self) -> u8 {
+        self.internal.pin_mut().get_inuse_codec()
     }
 
     pub fn cleanup(&mut self) -> bool {

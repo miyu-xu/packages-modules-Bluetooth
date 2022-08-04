@@ -16,6 +16,7 @@
 
 #include "gd/rust/topshim/hfp/hfp_shim.h"
 
+#include "bta/ag/bta_ag_int.h"
 #include "btif/include/btif_hf.h"
 #include "gd/os/log.h"
 #include "gd/rust/topshim/common/utils.h"
@@ -237,6 +238,14 @@ int HfpIntf::disconnect_audio(RustRawAddress bt_addr) {
 
 bool HfpIntf::get_wbs_supported() {
   return internal::wbs_supported;
+}
+
+uint8_t HfpIntf::get_inuse_codec() {
+  if (!bta_ag_cb.sco.p_curr_scb) {
+    LOG_WARN("%s: sco is closed", __func__);
+    return BTM_SCO_CODEC_NONE;
+  }
+  return bta_ag_cb.sco.p_curr_scb->inuse_codec;
 }
 
 void HfpIntf::cleanup() {}

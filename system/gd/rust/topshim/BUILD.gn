@@ -65,11 +65,18 @@ source_set("btif_cxx_bridge_code") {
     "metrics/metrics_shim.cc",
   ]
 
+  include_dirs = [
+    "//bt/system/internal_include",
+    "//bt/system/stack/include",
+    "//bt/system/stack/btm",
+  ]
+
   deps = [
     ":btif_bridge_header",
     "//bt/system/gd:BluetoothGeneratedPackets_h",
     "//bt/system/gd/metrics:BluetoothMetricsSources",
   ]
+
   configs += [ "//bt/system/gd:gd_defaults" ]
 }
 
