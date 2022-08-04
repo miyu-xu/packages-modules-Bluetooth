@@ -210,7 +210,7 @@ class HciHalHidl : public HciHal {
     auto get_service_alarm = new os::Alarm(GetHandler());
     get_service_alarm->Schedule(
         BindOnce([] {
-          LOG_ALWAYS_FATAL("Unable to get a Bluetooth service after 500ms, start the HAL before starting Bluetooth");
+          LOG_ERROR("Unable to get a Bluetooth service after 500ms, start the HAL before starting Bluetooth");
         }),
         std::chrono::milliseconds(500));
 
