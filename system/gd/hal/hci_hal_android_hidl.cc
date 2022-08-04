@@ -30,6 +30,7 @@
 #include "hal/snoop_logger.h"
 #include "os/alarm.h"
 #include "os/log.h"
+#include "osi/include/properties.h"
 
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
@@ -210,7 +211,13 @@ class HciHalHidl : public HciHal {
     auto get_service_alarm = new os::Alarm(GetHandler());
     get_service_alarm->Schedule(
         BindOnce([] {
-          LOG_ALWAYS_FATAL("Unable to get a Bluetooth service after 500ms, start the HAL before starting Bluetooth");
+          char board_value[256] = "";
+          int ret = osi_property_get("ro.product.board", board_value, "");
+          bool emulator = ret > 0 && !strncmp(board_value, "cutf");
+          LOG_ERROR("Unable to get a Bluetooth service after 500ms, start the HAL before starting Bluetooth");
+          LOG_ERROR("board_value: %s", board_value);
+          ASSERT_LOG(
+              !emulator, "Unable to get a Bluetooth service after 500ms, start the HAL before starting Bluetooth");
         }),
         std::chrono::milliseconds(500));
 
