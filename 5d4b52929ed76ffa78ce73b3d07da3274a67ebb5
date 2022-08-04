@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2455145d_e9f5f84c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-04T08:47:47Z",
+      "side": 1,
+      "message": "Hi David, Myles, this CL is ready for review.",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
