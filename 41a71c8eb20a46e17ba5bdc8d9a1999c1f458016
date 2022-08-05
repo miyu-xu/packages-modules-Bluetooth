@@ -55,6 +55,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f2f99141_ff3aad47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-05T10:42:41Z",
+      "side": 1,
+      "message": "(maybe don\u0027t call `GATT_CancelConnect` on classic connections to avoid sendling double-cancels)",
+      "parentUuid": "c58eabf0_c853928e",
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f21381ba_5905962f",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 2
