@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de5dfba6_81bffba2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-05T01:32:19Z",
+      "side": 1,
+      "message": "Aha, right there\u0027s WbsCallback to help. Thanks!\nJust need to make sure WbsCallback is triggered before AudioState to reflect the latest codec negotiation result, then get_hfp_audio_started() can use that directly.",
+      "parentUuid": "a08e7cbc_e33a9bc5",
+      "revId": "970c8d7e0f0608e5c81e1ae0652e920684d1b1bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dea9eac2_be9d65fc",
