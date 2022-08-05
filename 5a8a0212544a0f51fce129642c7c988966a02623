@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d15f04a4_807e87fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:22:13Z",
+      "side": 1,
+      "message": "Additional explanations provided in https://docs.google.com/document/d/1PyO15XJJx-YXImzYywPubKp9J97MSsseZwApDIBqFK8.",
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ac28839_99b81b48",
