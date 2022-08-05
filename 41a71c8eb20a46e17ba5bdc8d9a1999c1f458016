@@ -64,6 +64,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfdf3721_95563e64",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 638,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-05T10:13:42Z",
+      "side": 1,
+      "message": "How can the BR_EDR connection be up if `other_transport` is not set?",
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bbc4da71_367652cc",
