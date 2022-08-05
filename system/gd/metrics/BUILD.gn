@@ -18,6 +18,7 @@ source_set("BluetoothMetricsSources_chromeos") {
   sources = [
     "chromeos/metrics.cc",
     "chromeos/metrics_event.cc",
+    "chromeos/metrics_allowlist.cc",
   ]
 
   deps = [ "//bt/system/gd:gd_default_deps" ]
