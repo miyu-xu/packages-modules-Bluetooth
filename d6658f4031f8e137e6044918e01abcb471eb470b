@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d866d69_2adeb88f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961243
+      },
+      "writtenOn": "2022-08-05T08:50:42Z",
+      "side": 1,
+      "message": "Please review the python file for AVCTP test cases",
+      "revId": "d6658f4031f8e137e6044918e01abcb471eb470b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
