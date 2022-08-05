@@ -135,7 +135,7 @@ fluoride_defaults {
                 "libhidlbase",
                 "libstatslog_bt",
                 "libutils",
-                "PlatformProperties",
+                "libPlatformProperties",
             ],
             cflags: [
                 "-DOS_ANDROID",
