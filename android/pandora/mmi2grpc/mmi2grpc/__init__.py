@@ -54,6 +54,7 @@ class IUT:
 
         # Profile proxies.
         self._a2dp = None
+        self._avrcp = None
         self._gatt = None
         self._hfp = None
         self._sdp = None
@@ -115,6 +116,11 @@ class IUT:
             if not self._a2dp:
                 self._a2dp = A2DPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._a2dp.interact(test, interaction, description, pts_address)
+        # Handles AVRCP and AVCTP MMIs.
+        if profile in ('AVRCP', 'AVCTP'):
+            if not self._avrcp:
+                self._avrcp = AVRCPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._avrcp.interact(test, interaction, description, pts_address)
         # Handles GATT MMIs.
         if profile in ('GATT'):
             if not self._gatt:
@@ -135,7 +141,6 @@ class IUT:
             if not self._sm:
                 self._sm = SMProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._sm.interact(test, interaction, description, pts_address)
-
         # Handles unsupported profiles.
         code = format_proxy(profile, interaction, description)
         error_msg = (f'Missing {profile} proxy and mmi: {interaction}\n'
