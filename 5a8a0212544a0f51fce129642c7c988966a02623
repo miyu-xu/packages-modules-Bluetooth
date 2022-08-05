@@ -16,6 +16,374 @@
       "message": "Hi,\n\nRequest you to provide your feedback for my first CL check-in. As discussed I have removed the Avrcp.kt file",
       "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac28839_99b81b48",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Move these lines above `# Handles HFP MMIs.` to keep an alphabetical order for the profiles.",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 84
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "550aed57_f4e4e95e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Should be removed since it\u0027s not used.",
+      "range": {
+        "startLine": 29,
+        "startChar": 43,
+        "endLine": 29,
+        "endChar": 63
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86540eb2_1a7a04c0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Remove those lines since it\u0027s not yet used.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 3
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26166c5_ed8ae168",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Wrong indentation: should be 8 spaces and not 5.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 32
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0266278_1c458c29",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "These lines are identical in both `if \"CT\" in test:` and `else` and so can be put them only a single time before the `if`.",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 44
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c0dad90_d3b9e3a7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "This should be `a2dp` and not `avrcp`. \n\nWe don\u0027t want to reimplement `WaitSource` in `avrcp.proto` and `Avrcp.kt`, it\u0027s preferable to reuse the `a2dp` interface here. Which means that you must also add `self.a2dp \u003d A2DP(channel)` after `self.host \u003d Host(channel)`.",
+      "range": {
+        "startLine": 72,
+        "startChar": 39,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25aee70_be532a8e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "`\"INT\" in test` is always `false` because there is no AVRCP tests which contains \"INT\" in its name. These lines must thus be removed.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd5ced97_662c531a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "This should be `a2dp` and not `avrcp`.",
+      "range": {
+        "startLine": 75,
+        "startChar": 39,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78b7a6bb_0f6a80a5",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "This should be `a2dp` and not `avrcp`.",
+      "range": {
+        "startLine": 83,
+        "startChar": 33,
+        "endLine": 83,
+        "endChar": 38
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83475628_8a030339",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "This MMI requires us to wait for a connection to be established by the PTS with the IUT. While returning just \"OK\" may work here, we probably want to implement a behavior similar to `TSC_AVDTP_mmi_iut_accept_connect` in the future:\n\n1/ We should wait for a connection to be established using the `self.host.WaitConnection` method.\n\n2/ Then, we should call a method waiting for the control channel to be established, which depends on the type of the test, similar to `WaitSink`/`WaitSource` for A2DP: if the test is CT, we should define a `WaitController` method in an `avrcp.proto` file that we should implement in the `Avrcp.kt` file. If the test is TG, we should define a `WaitTarget` method in a similar fashion.\n\nHowever since it\u0027s not needed right now, just add a `#TODO: Wait for connection to be established and AVCTP control channel to be open` before the `return`.",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 48
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2c10e2_899c1194",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Removing the empty line below should probably fix the `assert_description`.",
+      "range": {
+        "startLine": 98,
+        "startChar": 59,
+        "endLine": 98,
+        "endChar": 60
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "242309dd_f3434a42",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Wrong indentation: must be 8 spaces and not 7.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 18
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2f5535c_b1b837a0",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Remove line.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 12
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baf883f3_2231ff1d",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "You must all tests starting with `AVRCP/TG` in the `pts_bot_tests_config.json` `skip` list.",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 50
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e8e4ab1_fc75a312",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Move this line after `.addService(a2dp)` to keep an alphabetical order  for profiles.",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b26159d9_8ef33d8b",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:00:05Z",
+      "side": 1,
+      "message": "Move this line after `a2dp.deinit()` to keep an alphabetical order  for profiles.",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
