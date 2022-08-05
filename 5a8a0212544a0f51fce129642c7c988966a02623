@@ -342,6 +342,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1d650007_2bd261a3",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-05T21:01:09Z",
+      "side": 1,
+      "message": "This cannot compile without `Avrcp.kt`. Create `avrcp.proto` and `Avrcp.kt` basic files.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e8e4ab1_fc75a312",
         "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
         "patchSetId": 2
