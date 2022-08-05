@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b20772_4c1a4fd8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattNativeInterface.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-05T05:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c55cb567_e4935386",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "d3d4dc59d66b7a6f2b506a1b40c1f14397f56b54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d8797989_9eaaf0a4",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8862cc81_89447dad",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattNativeInterface.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-05T05:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8797989_9eaaf0a4",
+      "revId": "d3d4dc59d66b7a6f2b506a1b40c1f14397f56b54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "894a7deb_00e596bf",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-08-02T06:54:15Z",
       "side": 1,
       "message": "2022",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "d3d4dc59d66b7a6f2b506a1b40c1f14397f56b54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42d81bd_cf48951b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattObjectsFactory.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-05T05:48:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "894a7deb_00e596bf",
       "range": {
         "startLine": 2,
         "startChar": 13,
