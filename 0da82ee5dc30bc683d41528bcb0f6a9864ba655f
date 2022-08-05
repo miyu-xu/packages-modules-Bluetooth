@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6bcfe4e_886ab91e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-05T20:12:17Z",
+      "side": 1,
+      "message": "Thanks Lukasz for the code suggestions, incorporated the same with few additional changes. Please review the changes and let know of any comments.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "0da82ee5dc30bc683d41528bcb0f6a9864ba655f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
