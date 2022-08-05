@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "d6f8aa7e_69ea5d1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-05T10:14:42Z",
+      "side": 1,
+      "message": "Actually, ignore that edge case: it seems to be handled because, if an LE connection exists but is not up, `BTM_ReadConnectedTransportAddress()` will modify `other_address2` to be the RPA.",
+      "parentUuid": "a1bed99e_22fda7ae",
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f21381ba_5905962f",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 2
