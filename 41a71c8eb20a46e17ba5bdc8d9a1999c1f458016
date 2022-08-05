@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a1bed99e_22fda7ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-05T10:04:57Z",
+      "side": 1,
+      "message": "To me, the logic in this method is fairly difficult to understand/review, so it might be nice to do a refactor rather than adding even more logic? (not your fault, it\u0027s legacy code!)\n\nOne edge case I can think of with the current logic is if *neither* BR_EDR nor BLE are connected. Then we seem to use the identity address `bd_addr` to unbond over both BR_EDR and BLE transports. But we should really be using the RPA, right? (at least, that\u0027s what we\u0027re doing if we are connected, and I thought we keyed LE devices by the RPA at pair time) Or is it intentional that we unbond LE devices using the identity address if currently disconnected, but the RPA if connected?\n\nThanks!",
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f21381ba_5905962f",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 2
