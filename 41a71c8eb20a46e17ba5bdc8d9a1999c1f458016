@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "9039adc4_c6caf41f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-05T10:47:50Z",
+      "side": 1,
+      "message": "better pseudocode:\n```\nbool bta_dm_disconnect_and_unpair(const RawAddress\u0026 bd_addr, tBT_TRANSPORT transport) {\n  for (int i \u003d 0; i \u003c bta_dm_cb.device_list.count; i++) {\n      auto\u0026 peer_device \u003d bta_dm_cb.device_list.peer_device[i];\n      if (peer_device.peer_bdaddr \u003d\u003d bd_addr \u0026\u0026 \n            peer_device.transport \u003d\u003d transport) {\n        peer_device.conn_state \u003d BTA_DM_UNPAIRING;\n\n        if (transport \u003d\u003d BT_TRANSPORT_LE) {\n          /* Make sure device is not in acceptlist before we disconnect */\n          GATT_CancelConnect(0, bd_addr, false);\n        }\n\n        btm_remove_acl(bd_addr, peer_device.transport);\n        return true;\n      }\n    }\n    return false;\n}\n\nvoid bta_dm_remove_device(const RawAddress\u0026 bd_addr) {\n  auto currentlyRemovedAddress \u003d RawAddress::kEmpty.\n  for (auto transport : {BT_TRANSPORT_BR_EDR, BT_TRANSPORT_LE}) {\n    RawAddress resolvedAddress \u003d RawAddress::kEmpty;\n    auto isConnectedOnTransport \u003d \n      BTM_ReadConnectedTransportAddress(\u0026resolvedAddress, transport);\n    if (resolvedAddress \u003d\u003d RawAddress::kEmpty) {\n      // not bonded on transport, skip\n      continue;\n    }\n    if (isConnectedOnTransport) {\n      // log::error if the below method returns false\n      bta_dm_disconnect_and_unpair(bd_addr, BT_TRANSPORT_BR_EDR);\n    } else {\n      // not currently connected, we can directly unbond\n      // don\u0027t unbond on both transports if the address is the same\n      if (bd_addr !\u003d currentlyRemovedAddress) {\n        currentlyRemovedAddress \u003d bd_addr;\n        bta_dm_process_remove_device(bd_addr);\n      }\n    }\n  }\n}\n```",
+      "parentUuid": "c9e4f083_7bdf6c91",
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f21381ba_5905962f",
