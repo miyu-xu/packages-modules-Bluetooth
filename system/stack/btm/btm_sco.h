@@ -25,27 +25,53 @@
 
 constexpr uint16_t kMaxScoLinks = static_cast<uint16_t>(BTM_MAX_SCO_LINKS);
 
-// SCO-over-HCI audio related definitions
+/* SCO-over-HCI audio related definitions */
 namespace bluetooth::audio::sco {
 
-// Initialize SCO-over-HCI socket (UIPC); the client is audio server.
+/* Initialize SCO-over-HCI socket (UIPC); the client is audio server */
 void init();
 
-// Open the socket when there is SCO connection open
+/* Open the socket when there is SCO connection open */
 void open();
 
-// Clean up the socket when the SCO connection is done
+/* Clean up the socket when the SCO connection is done */
 void cleanup();
 
-// Read from the socket (audio server) for SCO Tx
+/* Read PCM data from the socket (audio server) for SCO Tx */
 size_t read(uint8_t* p_buf, uint32_t len);
 
-// Write to the socket from SCO Rx
+/* Write PCM data to the socket from SCO Rx */
 size_t write(const uint8_t* buf, uint32_t len);
 }  // namespace bluetooth::audio::sco
 
-/* Define the structures needed by sco
+/* SCO-over-HCI audio HFP WBS related definitions */
+namespace bluetooth::audio::sco::wbs {
+
+/* Initialize struct used for storing WBS related information */
+void init(size_t pkt_size);
+
+/* Clean up when the SCO connection is done */
+void cleanup();
+
+/* Try to enqueue a packet to a buffer.
+ * Args:
+ *    data - Pointer to received packet data bytes.
+ *    pkt_size - Length of input packet. Passing packet with inconsistent size
+ *        from the pkt_size set in init() will trigger a reset of the buffer.
+ * Returns:
+ *    The length of enqueued bytes. 0 if failed.
  */
+size_t enqueue_packet(const uint8_t* data, size_t pkt_size);
+
+/* Try to decode mSBC frames from the packets in the buffer.
+ * Args:
+ *    output - Pointer to output PCM bytes decoded by the decoder.
+ * Returns:
+ *    The length of decoded bytes. 0 if failed.
+ */
+size_t decode(const uint8_t** output);
+
+}  // namespace bluetooth::audio::sco::wbs
 
 typedef enum : uint16_t {
   SCO_ST_UNUSED = 0,
@@ -90,15 +116,14 @@ typedef struct {
   uint8_t hci_status;
 } tBTM_ESCO_INFO;
 
-/* Define the structure used for SCO Management
- */
+/* Define the structure used for SCO Management */
 typedef struct {
   tBTM_ESCO_INFO esco;    /* Current settings             */
   tBTM_SCO_CB* p_conn_cb; /* Callback for when connected  */
   tBTM_SCO_CB* p_disc_cb; /* Callback for when disconnect */
   tSCO_STATE state;       /* The state of the SCO link    */
 
-  uint16_t hci_handle;    /* HCI Handle                   */
+  uint16_t hci_handle; /* HCI Handle                   */
  public:
   bool is_active() const { return state != SCO_ST_UNUSED; }
   bool is_inband() const {
@@ -112,8 +137,8 @@ typedef struct {
   }
   uint16_t Handle() const { return hci_handle; }
 
-  bool is_orig;           /* true if the originator       */
-  bool rem_bd_known;      /* true if remote BD addr known */
+  bool is_orig;      /* true if the originator       */
+  bool rem_bd_known; /* true if remote BD addr known */
 
 } tSCO_CONN;
 
@@ -121,7 +146,7 @@ typedef struct {
 typedef struct {
   tSCO_CONN sco_db[BTM_MAX_SCO_LINKS];
   enh_esco_params_t def_esco_parms;
-  bool esco_supported;        /* true if 1.2 cntlr AND supports eSCO links */
+  bool esco_supported; /* true if 1.2 cntlr AND supports eSCO links */
 
   tSCO_CONN* get_sco_connection_from_index(uint16_t index) {
     return (index < kMaxScoLinks) ? (&sco_db[index]) : nullptr;
