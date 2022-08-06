@@ -21,6 +21,8 @@
 
 #include <memory>
 
+#include "hfp_msbc_decoder.h"
+#include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "stack/btm/btm_sco.h"
 #include "udrv/include/uipc.h"
@@ -29,6 +31,11 @@
 #define SCO_HOST_DATA_PATH "/var/run/bluetooth/audio/.sco_data"
 // TODO(b/198260375): Make SCO data owner group configurable.
 #define SCO_HOST_DATA_GROUP "bluetooth-audio"
+
+#define BTM_MSBC_H2_HEADER_0 0x01
+#define BTM_MSBC_CODE_SIZE 240
+#define BTM_MSBC_PKT_LEN 60
+#define BTM_MSBC_SYNC_WORD 0xAD
 
 namespace {
 
@@ -77,6 +84,7 @@ void cleanup() {
   if (sco_uipc == nullptr) {
     return;
   }
+
   UIPC_Close(*sco_uipc, UIPC_CH_ID_ALL);
   sco_uipc = nullptr;
 }
@@ -94,8 +102,222 @@ size_t write(const uint8_t* p_buf, uint32_t len) {
     LOG_WARN("Write to uninitialized or closed UIPC");
     return 0;
   }
-  return UIPC_Send(*sco_uipc, UIPC_CH_ID_AV_AUDIO, 0, p_buf, len);
+
+  return UIPC_Send(*sco_uipc, UIPC_CH_ID_AV_AUDIO, 0, p_buf, len) ? len : 0;
 }
+
+namespace wbs {
+
+/* Second octet of H2 header is composed by 4 bits fixed 0x8 and 4 bits
+ * sequence number 0000, 0011, 1100, 1111. */
+static const uint8_t btm_h2_header_frames_count[] = {0x08, 0x38, 0xc8, 0xf8};
+
+/* Supported SCO packet sizes for mSBC. The wideband speech mSBC frame parsing
+ * code ties to limited packet size values. Specifically list them out
+ * to check against when setting packet size. The first entry is the default
+ * value as a fallback. */
+constexpr size_t btm_wbs_supported_bpk_sizes[] = {BTM_MSBC_PKT_LEN, 24, 48, 72,
+                                                  0};
+/* Buffer size should be set to least common multiple of SCO packet size and
+ * BTM_MSBC_PKT_LEN for optimizing buffer copy. */
+constexpr size_t btm_wbs_msbc_buffer_size[] = {BTM_MSBC_PKT_LEN, 120, 240, 360,
+                                               0};
+
+static const uint8_t btm_msbc_zero_frames[BTM_MSBC_CODE_SIZE] = {0};
+
+/* Define the structure that contains mSBC data */
+typedef struct {
+  uint8_t packet_size;  /* SCO mSBC packet size supported by lower layer */
+  bool check_alignment; /* True to wait for mSBC packet to align */
+  uint8_t* msbc_buf;
+  size_t size;
+  size_t write_offset;
+  size_t read_offset;
+
+  static size_t get_supported_packet_size(size_t pkt_size,
+                                          size_t* buffer_size) {
+    int i;
+    for (i = 0; btm_wbs_supported_bpk_sizes[i] != 0 &&
+                btm_wbs_supported_bpk_sizes[i] != pkt_size;
+         i++)
+      ;
+    /* In case of unsupported value, error log and fallback to
+     * BTM_MSBC_PKT_LEN(60). */
+    if (btm_wbs_supported_bpk_sizes[i] == 0) {
+      LOG_WARN("Unsupported packet size %zu", pkt_size);
+      i = 0;
+    }
+
+    if (buffer_size) {
+      *buffer_size = btm_wbs_msbc_buffer_size[i];
+    }
+    return btm_wbs_supported_bpk_sizes[i];
+  }
+
+  bool verify_h2_header_seq_num(const uint8_t num) {
+    for (int i = 0; i < 4; i++) {
+      if (num == btm_h2_header_frames_count[i]) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+ public:
+  void init(size_t pkt_size) {
+    size_t buffer_size;
+    uint8_t new_pkt_size;
+
+    new_pkt_size = get_supported_packet_size(pkt_size, &size);
+    if (new_pkt_size == packet_size) return;
+    packet_size = new_pkt_size;
+    if (packet_size != BTM_MSBC_PKT_LEN) check_alignment = true;
+
+    if (msbc_buf) osi_free(msbc_buf);
+    msbc_buf = (uint8_t*)osi_calloc(size);
+
+    write_offset = 0;
+    read_offset = 0;
+  }
+
+  void clean() {
+    if (msbc_buf) osi_free(msbc_buf);
+  }
+
+  size_t readable() { return write_offset - read_offset; }
+
+  const uint8_t* read_ptr() { return msbc_buf + read_offset; }
+  void mark_read(size_t len) {
+    read_offset += len;
+    //    LOG_WARN("ro %u, wo %u", read_offset, write_offset);
+
+    if (read_offset == write_offset) {
+      read_offset = 0;
+      write_offset = 0;
+    }
+  }
+
+  size_t write(const uint8_t* input, size_t len) {
+    if (len > size - write_offset) {
+      return 0;
+    }
+
+    std::copy(input, input + len, msbc_buf + write_offset);
+    write_offset += len;
+    return len;
+  }
+
+  const uint8_t* find_msbc_pkt_head() {
+    size_t rp = 0;
+    while (write_offset - read_offset - rp >= BTM_MSBC_PKT_LEN) {
+      if ((msbc_buf[read_offset + rp] != BTM_MSBC_H2_HEADER_0) ||
+          (!verify_h2_header_seq_num(msbc_buf[read_offset + rp + 1])) ||
+          (msbc_buf[read_offset + rp + 2] != BTM_MSBC_SYNC_WORD)) {
+        rp++;
+        continue;
+      }
+      return &msbc_buf[read_offset + rp];
+    }
+
+    return nullptr;
+  }
+
+} tBTM_MSBC_INFO;
+
+static tBTM_MSBC_INFO* msbc_info = nullptr;
+
+void init(size_t pkt_size) {
+  hfp_msbc_decoder_init();
+
+  if (msbc_info) {
+    LOG_WARN("Re-initiating mSBC buffer that is active or not cleaned");
+    msbc_info->clean();
+    osi_free(msbc_info);
+  }
+
+  msbc_info = (tBTM_MSBC_INFO*)osi_calloc(sizeof(*msbc_info));
+  msbc_info->init(pkt_size);
+}
+
+void cleanup() {
+  hfp_msbc_decoder_cleanup();
+
+  if (msbc_info == nullptr) return;
+
+  msbc_info->clean();
+  osi_free(msbc_info);
+  msbc_info = nullptr;
+}
+
+size_t enqueue_packet(const uint8_t* data, size_t pkt_size) {
+  if (msbc_info == nullptr) {
+    LOG_WARN("mSBC buffer uninitialized or cleaned");
+    return 0;
+  }
+
+  if (pkt_size != msbc_info->packet_size) {
+    LOG_WARN(
+        "Re-initiating mSBC buffer as the coming packet size %u is "
+        "inconsistent with reported size %u",
+        (unsigned)pkt_size, (unsigned)msbc_info->packet_size);
+    msbc_info->init(pkt_size);
+  }
+
+  if (msbc_info->check_alignment) {
+    if (data[0] != BTM_MSBC_H2_HEADER_0 || data[2] != BTM_MSBC_SYNC_WORD) {
+      LOG_WARN("Waiting for valid mSBC frame head");
+      LOG_DEBUG("Waiting for valid mSBC frame head");
+      return 0;
+    }
+    msbc_info->check_alignment = false;
+  }
+
+  if (msbc_info->write(data, pkt_size) != pkt_size) {
+    LOG_DEBUG("Fail to write packet with size %u to buffer", pkt_size);
+    return 0;
+  }
+
+  return pkt_size;
+}
+
+size_t decode(const uint8_t** out_data) {
+  const uint8_t* frame_head = nullptr;
+
+  if (msbc_info == nullptr) {
+    LOG_WARN("mSBC buffer uninitialized or cleaned");
+    return 0;
+  }
+
+  if (msbc_info->readable() < BTM_MSBC_PKT_LEN) {
+    LOG_DEBUG("No complete mSBC packet to decode");
+    return 0;
+  }
+
+  frame_head = msbc_info->find_msbc_pkt_head();
+  if (frame_head == nullptr) {
+    LOG_DEBUG("No valid mSBC packet to decode %u, %u", msbc_info->read_offset,
+              msbc_info->write_offset);
+    /* Done with parsing the raw bytes just read. If mSBC frame head not found,
+     * we shall handle it as packet loss. */
+    goto packet_loss;
+  }
+
+  if (!hfp_msbc_decoder_decode_packet(frame_head, out_data)) {
+    LOG_DEBUG("Decoding mSBC packet failed");
+    LOG_WARN("Decoding mSBC packet failed");
+    goto packet_loss;
+  }
+
+  msbc_info->mark_read(BTM_MSBC_PKT_LEN);
+  return BTM_MSBC_CODE_SIZE;
+
+packet_loss:
+  *out_data = btm_msbc_zero_frames;
+  msbc_info->mark_read(BTM_MSBC_PKT_LEN);
+  return BTM_MSBC_CODE_SIZE;
+}
+
+}  // namespace wbs
 
 }  // namespace sco
 }  // namespace audio
