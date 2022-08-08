@@ -16,6 +16,9 @@
 
 #include "gd/rust/topshim/hfp/hfp_shim.h"
 
+#include <map>
+#include <string>
+
 #include "btif/include/btif_hf.h"
 #include "gd/os/log.h"
 #include "gd/rust/topshim/common/utils.h"
@@ -30,7 +33,7 @@ namespace topshim {
 namespace rust {
 namespace internal {
 static HfpIntf* g_hfpif;
-static bool wbs_supported;
+static std::map<std::string, bool> wbs_supported;
 
 static void connection_state_cb(bluetooth::headset::bthf_connection_state_t state, RawAddress* addr) {
   RustRawAddress raddr = rusty::CopyToRustAddress(*addr);
@@ -104,7 +107,7 @@ class DBusHeadsetCallbacks : public headset::Callbacks {
 
   void WbsCallback(headset::bthf_wbs_config_t wbs, RawAddress* bd_addr) override {
     LOG_INFO("WbsCallback %d from %s", wbs, bd_addr->ToString().c_str());
-    internal::wbs_supported = (wbs == headset::BTHF_WBS_YES);
+    internal::wbs_supported[bd_addr->ToString()] = (wbs == headset::BTHF_WBS_YES);
   }
 
   void AtChldCallback([[maybe_unused]] headset::bthf_chld_type_t chld, [[maybe_unused]] RawAddress* bd_addr) override {}
@@ -235,8 +238,20 @@ int HfpIntf::disconnect_audio(RustRawAddress bt_addr) {
   return intf_->DisconnectAudio(&addr);
 }
 
-bool HfpIntf::get_wbs_supported() {
-  return internal::wbs_supported;
+bool HfpIntf::get_wbs_supported(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+  auto it = internal::wbs_supported.find(addr.ToString());
+  if (it == internal::wbs_supported.end()) {
+    LOG_WARN("Unknown address %s", addr.ToString().c_str());
+    return false;
+  }
+  return it->second;
+}
+
+void HfpIntf::reset(RustRawAddress bt_addr) {
+  RawAddress addr = rusty::CopyFromRustAddress(bt_addr);
+  auto it = internal::wbs_supported.find(addr.ToString());
+  if (it != internal::wbs_supported.end()) internal::wbs_supported.erase(it);
 }
 
 void HfpIntf::cleanup() {}

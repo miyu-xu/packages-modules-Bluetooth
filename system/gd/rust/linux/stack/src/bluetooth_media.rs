@@ -244,7 +244,7 @@ impl BluetoothMedia {
                     BthfConnectionState::SlcConnected => {
                         info!("[{}]: hfp slc connected.", addr.to_string());
                         let mut hfp_caps = HfpCodecCapability::CVSD;
-                        if self.hfp.as_mut().unwrap().get_wbs_supported() {
+                        if self.hfp.as_mut().unwrap().get_wbs_supported(addr) {
                             hfp_caps = hfp_caps | HfpCodecCapability::MSBC;
                         }
                         self.hfp_caps.insert(addr, hfp_caps);
@@ -253,7 +253,10 @@ impl BluetoothMedia {
                     BthfConnectionState::Disconnected => {
                         info!("[{}]: hfp disconnected.", addr.to_string());
                         match self.hfp_states.remove(&addr) {
-                            Some(_) => self.notify_media_capability_removed(addr),
+                            Some(_) => {
+                                self.notify_media_capability_removed(addr);
+                                self.hfp.as_mut().unwrap().reset(addr);
+                            }
                             None => {
                                 warn!("[{}] Unknown address hfp disconnected.", addr.to_string())
                             }
