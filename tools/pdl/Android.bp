@@ -155,6 +155,9 @@ python_test_host {
         "tests/canonical/le_test_vectors.json",
         "tests/canonical/be_test_vectors.json",
     ],
+    libs: [
+        "typing_extensions",
+    ],
     test_options: {
         unit_test: true,
     },

@@ -9,6 +9,7 @@ import dataclasses
 import enum
 import json
 import typing
+import typing_extensions
 import unittest
 
 # (le|be)_pdl_test are the names of the modules generated from the canonical
@@ -43,12 +44,12 @@ def create_object(typ, value):
             field_type = field_types[f]
             values[f] = create_object(field_type, v)
         return typ(**values)
-    elif typing.get_origin(typ) is list:
-        typ = typing.get_args(typ)[0]
+    elif typing_extensions.get_origin(typ) is list:
+        typ = typing_extensions.get_args(typ)[0]
         return [create_object(typ, v) for v in value]
-    elif typing.get_origin(typ) is typing.Union:
+    elif typing_extensions.get_origin(typ) is typing.Union:
         # typing.Optional[int] expands to typing.Union[int, None]
-        typ = typing.get_args(typ)[0]
+        typ = typing_extensions.get_args(typ)[0]
         return create_object(typ, value) if value else None
     elif typ is bytes:
         return bytes(value)
