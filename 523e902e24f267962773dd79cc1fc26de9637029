@@ -51,6 +51,24 @@
       "message": "Where is the command being sent?  Why not handle the event there?",
       "revId": "523e902e24f267962773dd79cc1fc26de9637029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23bc4f7a_a9d6dd14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-08T21:51:54Z",
+      "side": 1,
+      "message": "We have tooling on Linux/ChromeOS that writes directly the the HAL (for tests, debugging and controller coredumps) while the stack is active. It is sent independently of the Fluoride stack hence why we can\u0027t handle the event there.",
+      "parentUuid": "52a15e07_54200db2",
+      "revId": "523e902e24f267962773dd79cc1fc26de9637029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
