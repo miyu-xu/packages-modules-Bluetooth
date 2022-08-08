@@ -111,6 +111,30 @@
       },
       "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cdc75fe_82fbfa96",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-08T21:13:47Z",
+      "side": 1,
+      "message": "Actually, the right way to fix this is to have set of default events that are supported for different versions of the spec.",
+      "parentUuid": "f10a3c2a_5a1c0a57",
+      "range": {
+        "startLine": 540,
+        "startChar": 0,
+        "endLine": 544,
+        "endChar": 3
+      },
+      "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
