@@ -5,8 +5,8 @@ use std::ptr::null_mut;
 use self::ffi::L2CA_Register_from_rust;
 
 use crate::l2cap::listeners::{
-    incoming_connection_handler, incoming_data_handler, initialize_l2cap_tx,
-    outgoing_connection_handler, CallbackEvent,
+    disconnect_connection_handler, incoming_connection_handler, incoming_data_handler,
+    initialize_l2cap_tx, outgoing_connection_handler, CallbackEvent,
 };
 use crate::l2cap::types::RawAddress;
 
@@ -41,6 +41,7 @@ pub mod ffi {
         fn incoming_connection_handler(remote_addr: &RawAddress, local_cid: u16, psm: u16, id: u8);
         fn outgoing_connection_handler(local_cid: u16, result: u16);
         fn incoming_data_handler(local_cid: u16, result: &[u8]);
+        fn disconnect_connection_handler(local_cid: u16, should_ack: bool);
 
         fn oneshot_send_u16(sender: &mut OneshotU16, value: u16);
         fn initialize_l2cap_tx(tx: &mut EventChannel);

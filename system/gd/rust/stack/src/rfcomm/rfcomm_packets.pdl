@@ -1,0 +1,262 @@
+little_endian_packets
+
+// SABM - set asynchronous balanced mode i.e. initating the connection on DLCI 0
+// UA - ACK
+// DM - Response if the DLCI is currently disconnected
+// DISC - Disconnect command on a particular channel / kill the whole multiplexer
+// UIH - send information
+
+// COMMANDS
+// PN (aka DlcParameterNegotiation), TEST, FCON, FCOFF, MSC, NSC, RPN, RLS
+
+// "type 1 convergence layer"
+// the data lives in the I field, we ignore V.24
+
+// I-field (information field) only present in UIH frames
+// length field is presumably zero in non-UIH frames?
+
+// serial ports:
+
+
+packet BasicFrame {
+	// Extended Address bit: whether the address field is 1 (EA=1) or 2 (EA=0) octets
+	// currrently always equal to 1
+	_fixed_ = 1: 1,
+
+	// Command/Response (CR) bit
+	// For SABM + DISC + UA + DM frames: 1 if a command from the initiator (or a reply to the initator), else 0
+	// For UIH frames: 1 if from the initiator, else 0
+	frame_command_response : 1,
+
+	// the DLCI (0 = control channel)
+	frame_dlci : 6,
+
+	// always fixed in "basic" frame type
+	_fixed_ = 3 : 2,
+
+	// control_1 and control_2 are used to determine the frame type
+	control_1 : 2,
+
+	// Poll/Final (PF) bit.
+	// For SABM + DISC + UA, this should be 1. For DM, it is disregarded.
+	// For UIH, it is used to determine if the credit field is present (should not be present for control signals).
+	poll_final : 1,
+
+	// see control_1
+	control_2 : 3,
+
+	// Extended Length (EA) bit: whether the length field is 1 (EA=1) or 2 (EA=0) octets
+	extended_frame_length : 1,
+
+	_body_,
+
+	// Frame-Check Sequence (checksum)
+	fcs : 8,
+}
+
+packet Basic1 : BasicFrame(extended_frame_length = 1) {
+  _size_(_body_) : 7,
+	_body_,
+}
+
+packet Basic2 : BasicFrame(extended_frame_length = 0) {
+  _size_(_body_) : 15,
+	_body_,
+}
+
+// used to initiate a connection
+packet SabmFrame : Basic1(control_1 = 0x03, control_2 = 0x01, poll_final = 1) {
+	// empty
+}
+
+// UA (Unnumbered Acknowledgement)
+packet AcknowledgementFrame : Basic1(control_1 = 0x03, control_2 = 0x03, poll_final = 1) {
+	// empty
+}
+
+// DM (Disconnected Mode)
+packet IsDisconnectedFrame : Basic1(control_1 = 0x03, control_2 = 0x00) {
+	// empty
+}
+
+// DISC (Disconnection)
+packet DisconnectionFrame : Basic1(control_1 = 0x00, control_2 = 0x02, poll_final = 1) {
+	// empty
+}
+
+// Unnumbered Information with Header Check (UIH)
+packet InformationFrame1 : Basic1(control_1 = 0x03, control_2 = 0x03) {
+	_body_	
+}
+
+// Unnumbered Information with Header Check (UIH), with extended length
+packet InformationFrame2 : Basic2(control_1 = 0x03, control_2 = 0x03) {
+	_body_	
+}
+
+packet InformationFrame1WithoutCredits : InformationFrame1(poll_final = 0) {
+	_body_
+}
+
+packet InformationFrame1WithCredits : InformationFrame1(poll_final = 1) {
+	// number of additional credits allocated for this channel on the sender
+	num_credits: 8,
+	_body_
+}
+
+packet InformationFrame2WithoutCredits : InformationFrame1(poll_final = 0) {
+	_body_
+}
+
+packet InformationFrame2WithCredits : InformationFrame1(poll_final = 1) {
+	// number of additional credits allocated for this channel on the sender
+	num_credits: 8,
+	_body_
+}
+
+// Commands / Responses sent on DLCI 0
+// TODO: we should support information frames with extended length too, by making Commands structs and embedding them in the frames, but that doesn't work ATM
+packet CommandHeader : InformationFrame1WithoutCredits(frame_dlci = 0) {
+	// the type of command to be sent
+	// this is theoretically of variable length, but all types we care about are 8 bits
+	// thus, the extended_type field (EA) is fixed to 1
+	_fixed_ = 1 : 1,
+
+	// whether this is a command (CR = 1) or a response (CR = 0) to a a previous command
+	// all commands must be responded to
+	message_command_response : 1,
+
+	// only 6 bits are actually used to distinguish the type of command
+	// responses have the same type as the original command
+	command_type : 6,
+
+	// Extended Length (EA) bit: Whether the length field is 7 bits (EA = 1) or 15 bits (EA = 0)
+	// Theoretically longer lengths are allowed, but we don't support them because of the frame size limit (N1 <= 2^15)
+	// In fact, extended lengths are only needed for the TEST command, that is not used in practice
+	extended_command_length : 1,
+
+	_body_,
+}
+
+packet Command : CommandHeader ( extended_command_length = 1 ) {
+	_size_(_body_) : 7,
+	_body_,
+}
+
+// Commands with extended length are only used for TEST packets
+// FIXME: there is also a random EA bit in this, we should drop it otherwise the size is wrong
+packet CommandWithExtendedLength : CommandHeader ( extended_command_length = 0 ) {
+	_size_(_body_) : 15,
+	_body_,
+}
+
+// See Section 5.5.3 in the RFCOMM spec for usage
+enum FlowControlPseudoConvergenceLayer : 4 {
+	UNSUPPORTED = 0x0,
+	COMMAND_SUPPORTED = 0xF,
+	RESPONSE_SUPPORTED = 0xE,
+}
+
+// DlcParameterNegotiation (PN)
+// See Section 5.5.3 in the RFCOMM spec, NOT just the GSM spec (the values are redefined)
+packet ParameterNegotiation : Command(command_type = 0x20) {
+	// DLCI that we are negotiating for
+	message_dlci : 6,
+	_fixed_ = 0 : 2,
+
+	// Frame Type
+	// the only supported information frame type is UIH, so hardcode the expected value here
+	// TODO: if we get an incoming request to use something else, do we support that / should we early-fail?
+	// (since RFCOMM never supports other frame types, the other device is being weird)
+	_fixed_ =  0 : 4,
+
+	// Used to determine flow-control support
+	// Note that once a single channel has this enabled, all subsequent channels MUST use it
+	flow_control : FlowControlPseudoConvergenceLayer,
+	
+	// Priority (not used in our multiplexer, but maybe we should? If we are credit-constrained)
+	priority : 6,
+	_fixed_ = 0 : 2,
+
+	// Acknowledgement timer (T1) - RFCOMM lets implementations hardcode this, so negotiation is not required
+	_fixed_ = 0 : 8,
+
+	// Maximum frame size (N1)
+	// Anything between 23-32767, we should use this to split outgoing packets
+	// TODO: mimic whatever legacy stack does
+	maximum_frame_size : 16,
+
+	// Number of retransmissions (N2)
+	// RFCOMM does not retransmit, always zero
+	_fixed_ = 0 : 8,
+
+	// Initial credits allocated to other side (retries in GSM, but redefined in RFCOMM)
+	initial_credits : 3,
+
+	_fixed_ = 0 : 5,
+}
+
+// Test Command - we should just retransmit the payload in another TEST command
+packet Test : Command(command_type = 0x08) {
+	_payload_,
+}
+
+// Flow Control On (FCON)
+// Note: this command only applies if credit-based flow control is not used, otherwise it is ignored
+packet EnableFlowControl : Command(command_type = 0x28) {
+	// empty
+}
+
+// Flow Control Off (FCOFF)
+// Note: this command only applies if credit-based flow control is not used, otherwise it is ignored
+packet DisableFlowControl : Command(command_type = 0x18) {
+	// empty
+}
+
+// Modem Status Command (MSC)
+// Used to control V.24 control signals, which are passed to upper layers
+// The FC bit is used to toggle flow for this DLCI, if we aren't using credit-based flow control
+packet ModemStatus : Command(command_type = 0x38) {
+	// The DLCI along which we are passing data
+	_fixed_ = 0x3 : 2,
+	message_dlci : 6,
+
+	// Whether a second packet of control signals is provided
+	extended_address : 1,
+	flow_control : 1,
+
+	rtc : 1,
+	rtr : 1,
+	
+	_reserved_ : 2,
+	incoming_call : 1,
+	data_valid : 1,
+
+	_body_,
+}
+
+packet ModemStatusWithoutBreakSignals : ModemStatus(extended_address = 1) {
+	// empty
+}
+
+packet ModemStatusWithBreakSignals : ModemStatus(extended_address = 0) {
+	// The extended bit (EA) must equal 1
+	_fixed_ = 1 : 1,
+
+	// Whether a break signal is present
+	has_break : 1,
+	_reserved_ : 2,
+
+	break_duration : 4,
+}
+
+// TODO: use these once struct fields work with codegen, so we can put commands in I-frames with extended length
+// // A frame on DLCI 0 containing a command / a command response
+// packet CommandFrame1 : InformationFrame1WithoutCredits(dlci = 0) {
+// 	command: Command;
+// }
+
+// // A frame on DLCI 0, with extended length, containing a command / a command response
+// packet CommandFrame2 : InformationFrame2WithoutCredits(dlci = 0) {
+// 	command: Command;
+// }

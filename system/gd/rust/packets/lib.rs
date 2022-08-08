@@ -11,3 +11,9 @@ pub mod hci {
 
     include!(concat!(env!("OUT_DIR"), "/hci_packets.rs"));
 }
+
+pub mod rfcomm {
+    use crate::custom_types::*;
+
+    include!(concat!(env!("OUT_DIR"), "/rfcomm_packets.rs"));
+}

@@ -29,11 +29,12 @@ use tokio_stream::wrappers::{self, ReceiverStream};
 use tokio_stream::StreamExt;
 
 use self::bridge::ffi::{
-    initialize_l2cap_tx_on_main_thread, L2CA_ConnectReq_from_rust, L2CA_Register_from_rust,
+    initialize_l2cap_tx_on_main_thread, L2CA_ConnectReq_from_rust, L2CA_DisconnectReq_from_rust,
+    L2CA_Register_from_rust,
 };
 use self::bridge::EventChannel;
 use self::control_demultiplexer::L2capControlDemultiplexer;
-use self::demultiplexer::Demultiplexer;
+use self::demultiplexer::{DemultiplexedReceiver, Demultiplexer};
 use self::listeners::CallbackEvent;
 use self::types::{Address, IdentityAddress, L2capChannelId, L2capPsm};
 use bt_packets::hci::{
@@ -163,11 +164,11 @@ pub struct L2capService {
     /// The allocated PSM (typically the same as the requested PSM)
     psm: L2capPsm,
     /// New channels opened by a remote device
-    incoming_channel_rx: Receiver<IncomingConnection>,
+    incoming_channel_rx: DemultiplexedReceiver<L2capPsm, IncomingConnection>,
 }
 
 impl L2capService {
-    async fn accept(&mut self) -> Result<L2capChannel> {
+    pub async fn accept(&mut self) -> Result<L2capChannel> {
         Ok(self.incoming_channel_rx.recv().await.context("listening psm was unregistered")?.channel)
     }
 }
@@ -176,11 +177,17 @@ impl L2capService {
 #[derive(Debug)]
 pub struct L2capChannel {
     local_cid: L2capChannelId,
-    data_rx: Receiver<IncomingData>,
+    data_rx: DemultiplexedReceiver<L2capChannelId, IncomingData>,
 }
 
 impl L2capChannel {
-    async fn read(&mut self) -> Result<Box<[u8]>> {
+    pub async fn read(&mut self) -> Result<Box<[u8]>> {
         Ok(self.data_rx.recv().await.context("channel closed, probably by remote device")?.data)
+    }
+}
+
+impl Drop for L2capChannel {
+    fn drop(&mut self) {
+        unsafe { L2CA_DisconnectReq_from_rust(self.local_cid.cid) }
     }
 }

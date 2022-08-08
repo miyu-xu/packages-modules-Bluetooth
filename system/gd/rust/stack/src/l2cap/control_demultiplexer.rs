@@ -1,6 +1,8 @@
 use super::{
-    demultiplexer::Demultiplexer, listeners::CallbackEvent, types::L2capChannelId, ChannelError,
-    IncomingConnection, IncomingData, L2capChannel,
+    demultiplexer::{DemultiplexedReceiver, Demultiplexer},
+    listeners::CallbackEvent,
+    types::L2capChannelId,
+    ChannelError, IncomingConnection, IncomingData, L2capChannel,
 };
 use anyhow::{Context, Result};
 use log::{info, warn};
@@ -71,11 +73,17 @@ impl L2capControlDemultiplexer {
     async fn register_data_channel(
         &mut self,
         local_cid: L2capChannelId,
-    ) -> Result<Receiver<IncomingData>> {
+    ) -> Result<DemultiplexedReceiver<L2capChannelId, IncomingData>> {
         self.data_demultiplexer
             .subscribe(local_cid)
             .await
             .with_context(|| format!("failed to register cid {local_cid:?} in data demultiplexer"))
+    }
+
+    async fn unregister_data_channel(&mut self, local_cid: L2capChannelId) -> Result<()> {
+        self.data_demultiplexer.unsubscribe(local_cid).await.with_context(|| {
+            format!("failed to unregister cid {local_cid:?} in data demultiplexer")
+        })
     }
 
     async fn process_incoming_event(&mut self, event: CallbackEvent) -> Result<()> {
@@ -107,6 +115,13 @@ impl L2capControlDemultiplexer {
                 .send(IncomingData { local_cid, data })
                 .await
                 .context("failed to dispatch incoming data event"),
+            CallbackEvent::ChannelDisconnect { local_cid } => {
+                self.unregister_data_channel(local_cid).await.with_context(|| {
+                    format!(
+                        "failed to deregister channel {local_cid} - are we currently listening?"
+                    )
+                })
+            }
         }
     }
 }

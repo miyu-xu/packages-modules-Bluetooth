@@ -30,8 +30,14 @@ fn generate_packets() {
         Err(_) => PathBuf::from(env::current_dir().unwrap()).join("../..").canonicalize().unwrap(),
     };
 
-    let input_files = [gd_root.join("hci/hci_packets.pdl")];
-    let outputted = [out_dir.join("../../hci/hci_packets.rs")];
+    let input_files = [
+        gd_root.join("hci/hci_packets.pdl"),
+        gd_root.join("rust/stack/src/rfcomm/rfcomm_packets.pdl"),
+    ];
+    let outputted = [
+        out_dir.join("../../hci/hci_packets.rs"),
+        out_dir.join("../../rust/stack/src/rfcomm/rfcomm_packets.rs"),
+    ];
 
     // Find the packetgen tool. Expecting it at CARGO_HOME/bin
     let packetgen = match env::var("CARGO_HOME") {
@@ -40,10 +46,15 @@ fn generate_packets() {
     };
 
     if !Path::new(packetgen.as_os_str()).exists() {
-        panic!("Unable to locate bluetooth packet generator:{:?}", packetgen.as_os_str().to_str().unwrap());
+        panic!(
+            "Unable to locate bluetooth packet generator:{:?}",
+            packetgen.as_os_str().to_str().unwrap()
+        );
     }
 
     for i in 0..input_files.len() {
+        // rerun?
+        println!("cargo:rerun-if-changed={}", input_files[i].display());
         let output = Command::new(packetgen.as_os_str().to_str().unwrap())
             .arg("--source_root=".to_owned() + gd_root.as_os_str().to_str().unwrap())
             .arg("--out=".to_owned() + out_dir.as_os_str().to_str().unwrap())
@@ -59,6 +70,10 @@ fn generate_packets() {
             String::from_utf8_lossy(output.stdout.as_slice()),
             String::from_utf8_lossy(output.stderr.as_slice())
         );
+
+        if !output.status.success() {
+            panic!("build failed");
+        }
 
         // File will be at ${OUT_DIR}/../../${input_files[i].strip('.pdl')}.rs
         std::fs::rename(

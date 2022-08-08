@@ -20,6 +20,7 @@ void L2CA_Register_in_main_thread(
   callbacks.pL2CA_ConnectInd_Cb = incoming_connection_handler;
   callbacks.pL2CA_ConnectCfm_Cb = outgoing_connection_handler;
   callbacks.pL2CA_DataInd_Cb = incoming_data_handler_proxy;
+  callbacks.pL2ca_DisconnectInd_Cb = disconnect_connection_handler;
   auto result = L2CA_Register2(psm, callbacks, enable_snoop, p_ertm_info, my_mtu, required_remote_mtu, 0);
   oneshot_send_u16(completion, result);
 }

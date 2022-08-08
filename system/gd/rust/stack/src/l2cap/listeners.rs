@@ -25,6 +25,8 @@ pub enum CallbackEvent {
     ChannelError { local_cid: L2capChannelId, error_code: NonZeroU16 },
     /// Incoming (unparsed) data on an L2CAP channel
     IncomingData { local_cid: L2capChannelId, data: Box<[u8]> },
+    /// An L2CAP channel was disconnected by the remote
+    ChannelDisconnect { local_cid: L2capChannelId },
 }
 
 struct StaticHandlers(Sender<CallbackEvent>);
@@ -49,6 +51,12 @@ where
     })
 }
 
+fn log_errors<T>(f: impl FnOnce() -> Result<T>) {
+    if let Err(err) = f() {
+        log::error!("an error in an incoming callback was dropped: {}", err);
+    }
+}
+
 pub fn initialize_l2cap_tx(tx: &mut EventChannel) {
     STATIC_HANDLERS.with(|handlers| {
         *handlers.borrow_mut() = Some(StaticHandlers(tx.0.clone()));
@@ -57,9 +65,9 @@ pub fn initialize_l2cap_tx(tx: &mut EventChannel) {
 
 /// Handles incoming connections to a registered listening PSM (interface: tL2CA_CONNECT_IND_CB)
 pub fn incoming_connection_handler(remote_addr: &RawAddress, local_cid: u16, psm: u16, id: u8) {
-    if let Err(e) = {
-        log::info!("receiving incoming L2CAP connection from {remote_addr:?} to listener at {psm:?} with allocated lcid={local_cid:?}");
+    log::info!("receiving incoming L2CAP connection from {remote_addr:?} to listener at {psm:?} with allocated lcid={local_cid:?}");
 
+    log_errors(|| {
         with_static_handlers(|handlers| {
             handlers
                 .0
@@ -72,27 +80,24 @@ pub fn incoming_connection_handler(remote_addr: &RawAddress, local_cid: u16, psm
                     format!("failed to enqueue incoming connection to {psm:?}, ignoring it")
                 })
         })
-    } {
-        log::error!("On incoming connection, got error {e:?}");
-    }
+    })
 }
 
 /// Triggered when an outgoing connection completes (interface: tL2CA_CONNECT_CFM_CB)
 pub fn outgoing_connection_handler(local_cid: u16, result: u16) {
-    if let Err(e) = {
-        log::info!("outgoing L2CAP connection potentially established at lcid={local_cid} (result={result} should be 0 for success)");
+    log::info!("outgoing L2CAP connection potentially established at lcid={local_cid} (result={result} should be 0 for success)");
 
-        let event = if result == 0 {
-            CallbackEvent::OutgoingConnectionEstablished {
-                local_cid: L2capChannelId { cid: local_cid },
-            }
-        } else {
-            CallbackEvent::ChannelError {
-                local_cid: L2capChannelId { cid: local_cid },
-                error_code: NonZeroU16::new(result).unwrap(),
-            }
-        };
-
+    let event = if result == 0 {
+        CallbackEvent::OutgoingConnectionEstablished {
+            local_cid: L2capChannelId { cid: local_cid },
+        }
+    } else {
+        CallbackEvent::ChannelError {
+            local_cid: L2capChannelId { cid: local_cid },
+            error_code: NonZeroU16::new(result).unwrap(),
+        }
+    };
+    log_errors(|| {
         with_static_handlers(|handlers| {
             handlers.0.blocking_send(event).with_context(|| {
                 format!(
@@ -100,14 +105,12 @@ pub fn outgoing_connection_handler(local_cid: u16, result: u16) {
                 )
             })
         })
-    } {
-        log::error!("On incoming connection, got error {e:?}");
-    }
+    });
 }
 
 /// Triggered when incoming data is available (interface: tL2CA_DATA_IND_CB)
 pub fn incoming_data_handler(local_cid: u16, data: &[u8]) {
-    if let Err(e) = {
+    log_errors(|| {
         with_static_handlers(|handlers| {
             handlers
                 .0
@@ -116,12 +119,25 @@ pub fn incoming_data_handler(local_cid: u16, data: &[u8]) {
                     data: Box::from(data),
                 })
                 .with_context(|| {
+                    format!("failed to enqueue new data from channel {local_cid:?}, DANGEROUSLY discarding it")
+                })
+        })
+    })
+}
+
+pub fn disconnect_connection_handler(local_cid: u16, should_ack: bool) {
+    log_errors(|| {
+        with_static_handlers(|handlers| {
+            handlers
+                .0
+                .blocking_send(CallbackEvent::ChannelDisconnect {
+                    local_cid: L2capChannelId { cid: local_cid },
+                })
+                .with_context(|| {
                     format!(
-                    "failed to enqueue completed connection to channel {local_cid:?}, ignoring it"
+                    "failed to enqueue remote disconnection from channel {local_cid:?}, dropping it"
                 )
                 })
         })
-    } {
-        log::error!("On incoming connection, got error {e:?}");
-    }
+    })
 }

@@ -16,31 +16,66 @@ use tokio::{
     task::JoinHandle,
 };
 
-enum ControlSignal<E, K> {
-    Subscribe { key: K, event_tx: Sender<E>, reply_tx: oneshot::Sender<()> },
+#[derive(Debug)]
+enum ControlSignal<E: Debug, K: Debug + Copy> {
+    Subscribe { key: K, reply_tx: oneshot::Sender<DemultiplexedReceiver<K, E>> },
+    Unsubscribe { key: K, reply_tx: oneshot::Sender<()> },
+    UnsubscribeWithNonce { key: K, nonce: Nonce },
 }
 
 // TODO: make rx destructor have a oneshot that unregisters it, but be careful to avoid races
 // e.g. destruct -> enqueue register -> enqueue destruct -> register + overwrite -> whoops
 
+#[derive(Copy, Clone, Eq, PartialEq, Debug)]
+struct Nonce {
+    value: u32,
+}
+
+struct NonceGenerator {
+    next_val: u32,
+}
+
+impl NonceGenerator {
+    fn new() -> Self {
+        NonceGenerator { next_val: 0xdeadbeef }
+    }
+
+    fn next(&mut self) -> Nonce {
+        self.next_val += 1;
+        Nonce { value: self.next_val }
+    }
+}
+
+/// A struct representing a subscription on a given key
+struct SubscriptionSender<E> {
+    /// The nonce is used so that, if a destructor runs after a key has been unregistered + reregistered,
+    /// we don't accidentally unregister the *new* subscription
+    nonce: Nonce,
+    event_tx: Sender<E>,
+}
 
 async fn event_loop<E, K, C>(
     mut event_rx: Receiver<E>,
     mut selector: C,
+    mut control_tx: Sender<ControlSignal<E, K>>,
     mut control_rx: Receiver<ControlSignal<E, K>>,
 ) where
-    E: Send + 'static,
+    E: Send + Debug + 'static,
     K: Send + Eq + Copy + Hash + Debug + 'static,
-    C: Send + FnMut(&E) -> K + 'static,
+    C: Send + FnMut(&E) -> K,
 {
-    let mut dispatch: HashMap<K, Sender<E>> = HashMap::new();
+    let mut nonce_gen = NonceGenerator::new();
+    let mut dispatch: HashMap<K, SubscriptionSender<E>> = HashMap::new();
+
     loop {
         select! {
             control_signal = control_rx.recv() => {
                 match control_signal {
                     None => return,
-                    Some(ControlSignal::Subscribe { key, event_tx, reply_tx }) => {
+                    Some(ControlSignal::Subscribe { key, reply_tx }) => {
                         let (dispatch_tx, dispatch_rx) = channel(16);
+                        let nonce = nonce_gen.next();
+                        let sender = SubscriptionSender { nonce, event_tx: dispatch_tx };
                         let entry = dispatch.entry(key);
                         if let Entry::Occupied(ref occupied_entry) = entry {
                             // we have an entry already recorded
@@ -48,18 +83,35 @@ async fn event_loop<E, K, C>(
                             // note that TOCTOU means that it is possible for the sender to be closed
                             // after this check. But then we are being invoked in a racey manner
                             // so what we do is valid behavior.
-                            if (!occupied_entry.get().is_closed()) {
+                            if (!occupied_entry.get().event_tx.is_closed()) {
                                 error!("attempt to register duplicate key {key:?} on demultiplexer");
                                 drop(reply_tx); // explicitly fail to provide a reply
                                 continue;
                             }
-                            entry.and_modify(|x| *x = dispatch_tx);
+                            entry.and_modify(|x| *x =sender);
                         } else {
-                            entry.or_insert(dispatch_tx);
+                            entry.or_insert(sender);
                         }
-                        if reply_tx.send(()).is_err() {
-                            warn!("registering caller hung up while subscribing")
+                        if reply_tx.send(DemultiplexedReceiver { key, control_tx: control_tx.clone(), event_rx: dispatch_rx, nonce }).is_err() {
+                            warn!("registering caller hung up while subscribing - destructor will immediately run, so this is OK")
                         };
+                    }
+                    Some(ControlSignal::Unsubscribe { key, reply_tx }) => {
+                        if dispatch.remove(&key).is_some() {
+                            reply_tx.send(());
+                        } else {
+                            // explicitly fail to reply => failure
+                            drop(reply_tx);
+                        }
+                    }
+                    // this is only used by the destructor, so no need for a callback
+                    Some(ControlSignal::UnsubscribeWithNonce { key, nonce }) => {
+                        let entry = dispatch.entry(key);
+                        if let Entry::Occupied(entry) = entry {
+                            if (entry.get().nonce == nonce) {
+                                entry.remove();
+                            }
+                        }
                     }
                 }
             }
@@ -79,7 +131,7 @@ async fn event_loop<E, K, C>(
                             }
                             Some(rx) => {
                                 // TODO: what happens if there is backpressure on a demultiplexer output?
-                                rx.send(event).await;
+                                rx.event_tx.send(event).await;
                             }
                         }
                     }
@@ -89,14 +141,15 @@ async fn event_loop<E, K, C>(
     }
 }
 
-pub struct Demultiplexer<E, K> {
+#[derive(Debug)]
+pub struct Demultiplexer<E: Debug, K: Debug + Copy> {
     control_tx: Sender<ControlSignal<E, K>>,
     task_handle: JoinHandle<()>,
 }
 
 impl<E, K> Demultiplexer<E, K>
 where
-    E: Send + 'static,
+    E: Send + Debug + 'static,
     K: Send + Eq + Copy + Hash + Debug + 'static,
 {
     pub fn new<C>(event_rx: Receiver<E>, selector: C) -> Demultiplexer<E, K>
@@ -104,26 +157,59 @@ where
         C: Send + FnMut(&E) -> K + 'static,
     {
         let (control_tx, control_rx) = channel(1);
-        let task_handle = spawn(event_loop(event_rx, selector, control_rx));
+        let task_handle = spawn(event_loop(event_rx, selector, control_tx.clone(), control_rx));
         Demultiplexer { control_tx, task_handle }
     }
 
-    pub async fn subscribe(&self, key: K) -> Result<Receiver<E>> {
+    pub async fn subscribe(&self, key: K) -> Result<DemultiplexedReceiver<K, E>> {
         let (reply_tx, reply_rx) = oneshot::channel();
-        let (event_tx, event_rx) = channel(16);
         self.control_tx
-            .clone()
-            .send(ControlSignal::Subscribe { key, event_tx, reply_tx })
+            .send(ControlSignal::Subscribe { key, reply_tx })
             .await
             .map_err(|_| anyhow!("demultiplexer has shut down, unable to subscribe"))?;
-        reply_rx.await.with_context(|| format!("demultiplexer failed to register key {key:?}"))?;
-        Ok(event_rx)
+        reply_rx.await.with_context(|| format!("demultiplexer failed to register key {key:?}"))
+    }
+
+    pub async fn unsubscribe(&self, key: K) -> Result<()> {
+        let (reply_tx, reply_rx) = oneshot::channel();
+        self.control_tx
+            .send(ControlSignal::Unsubscribe { key, reply_tx })
+            .await
+            .map_err(|_| anyhow!("demultiplexer has shut down, unable to unsubscribe"))?;
+        reply_rx
+            .await
+            .with_context(|| format!("demultiplexer failed to unsubscribe from key {key:?}"))
     }
 }
 
-impl<E, K> Drop for Demultiplexer<E, K> {
+impl<E: Debug, K: Debug + Copy> Drop for Demultiplexer<E, K> {
     fn drop(&mut self) {
         // stop task loop to release handle on incoming stream
         self.task_handle.abort();
+    }
+}
+
+#[derive(Debug)]
+pub struct DemultiplexedReceiver<K: Debug + Copy, E: Debug> {
+    key: K,
+    nonce: Nonce,
+    control_tx: Sender<ControlSignal<E, K>>,
+    event_rx: Receiver<E>,
+}
+
+impl<K: Debug + Copy, E: Debug> DemultiplexedReceiver<K, E> {
+    pub async fn recv(&mut self) -> Option<E> {
+        self.event_rx.recv().await
+    }
+}
+
+impl<K: Debug + Copy, E: Debug> Drop for DemultiplexedReceiver<K, E> {
+    fn drop(&mut self) {
+        if let Err(err) = self
+            .control_tx
+            .try_send(ControlSignal::UnsubscribeWithNonce { key: self.key, nonce: self.nonce })
+        {
+            error!("failed to drop demultiplexed receiver {self:?} with error {err:?}");
+        }
     }
 }
