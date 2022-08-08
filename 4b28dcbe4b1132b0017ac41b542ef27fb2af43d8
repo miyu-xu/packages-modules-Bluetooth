@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b26df57_9487184c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-08T11:45:45Z",
+      "side": 1,
+      "message": "Thank you Partha - lets try to merge it in this version.",
+      "revId": "4b28dcbe4b1132b0017ac41b542ef27fb2af43d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cf61cb9_565195fd",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 1005,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-08T11:45:45Z",
+      "side": 1,
+      "message": "Had to add this for to find `max_sdu_size_mtos`, `max_sdu_size_stom`, `rtn_mtos`, `rtn_stom` first and later use it in CIG Parameters.\n\nWithout that, if first CIS was the one disconnected, we could end up with setting CIG with invalid sdu and rtn values.",
+      "revId": "4b28dcbe4b1132b0017ac41b542ef27fb2af43d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
