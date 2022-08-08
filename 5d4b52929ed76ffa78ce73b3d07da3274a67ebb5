@@ -20,6 +20,505 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e085ff4c_fdf6682f",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "As we will only do ECDH with this module I think the api that we expose should be something with a `PublicKey` and a `PrivateKey` type",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf26f7ca_940be629",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I would prefer to drop the `Ec` prefix here as we are already in an `ec` module",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae03a704_6167f421",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I think we should not use `0` as the Infinity/Identity point as we can use a Rust Enum for that and I think that we should transform the `EcPoint` into an enum like\n\n```rust\nenum Point {\n    Identity, // or AtInfinity ?\n    Point { // or OnCurve ?\n        x: ...,\n        y: ...\n    }\n}\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c0a553_19c75e77",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "You can derive the implementation of `Clone` by using `#[derive(Clone)]` on the  `EcPoint` struct\n\nhttps://doc.rust-lang.org/std/clone/trait.Clone.html#derivable",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 0
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c33545e_2ee47b02",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "You can derive the implementation of PartialEq by using `#[derive(PartialEq)]` on the `EcPoint` struct\n\nhttps://doc.rust-lang.org/std/cmp/trait.PartialEq.html#derivable",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b51fda0_52902841",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I don\u0027t think we should implement `fmt::Display` on it, why not use the Debug representation ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33d21f9f_9222bf6e",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Where does `Group` come from ?\n\nIs it from the group law https://en.wikipedia.org/wiki/Elliptic_curve#The_group_law ?\n\nI would have expected this to be named `Curve` or `EllipticCurve` but I don\u0027t know to much about elliptic curves.",
+      "range": {
+        "startLine": 79,
+        "startChar": 13,
+        "endLine": 79,
+        "endChar": 18
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0d49ad4_367a54dc",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Could we use an infallible method of BigInt like `from_slice` or `new` ?",
+      "range": {
+        "startLine": 89,
+        "startChar": 51,
+        "endLine": 89,
+        "endChar": 60
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fdfe4c8_3a9b421f",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I would prefer that we write explicitly `p1.y \u003d\u003d -p2.y` and assert for the case where `p1.y !\u003d p2.y` because if I understood correctly here we want to handle case 3 and 4 of the [image on Wikipedia] (https://en.wikipedia.org/wiki/Elliptic_curve#The_group_law) which is `p1.y \u003d -p2.y` and `p1.y \u003d p2.y \u003d 0` And I think `p1.y \u003d\u003d -p2.y` handle them both and so if something is outside of that it means that the point is not on the curve",
+      "range": {
+        "startLine": 116,
+        "startChar": 27,
+        "endLine": 116,
+        "endChar": 39
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0355dc1a_deff4519",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Where does this `l` names come from is it the slope ?",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 119,
+        "endChar": 13
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa95c148_e2eacd81",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Could we comment a bit more what we are doing here and give some links as well.\n\nI found the Wikipedia page really useful to understand what was going on here https://en.wikipedia.org/wiki/Elliptic_curve#The_group_law\n\nWe could also number each case with the number given on the picture of wikipedia",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 32
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8d078d9_3437a990",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Maybe take a reference in `mod_inv` to avoid the clone here",
+      "range": {
+        "startLine": 124,
+        "startChar": 80,
+        "endLine": 124,
+        "endChar": 88
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3037b441_bd3364a7",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand why you need to clone here\nAnd in:\n- `p2.x.clone() - p1.x.clone()` (the two clones)\n- `self.p.clone()`",
+      "range": {
+        "startLine": 124,
+        "startChar": 25,
+        "endLine": 124,
+        "endChar": 33
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74e64054_f7883f6c",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand what is this else",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad752e4_48a6dfda",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Can we write `i !\u003d 0` ?",
+      "range": {
+        "startLine": 138,
+        "startChar": 14,
+        "endLine": 138,
+        "endChar": 26
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "793e0559_80c7775c",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "As we are checking `is_odd` (so not checking bits) can we do a `i /\u003d 2` instead ?",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c530060_db90f438",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I think we should invert the way EcGroup and EcPoint works together to be able to use operator overloading here.\nBy that I mean \"store\" the curve in the point\n\nWe can even use generics to associate the points with the curves https://play.rust-lang.org/?version\u003dstable\u0026mode\u003ddebug\u0026edition\u003d2021\u0026gist\u003d2c0083a3522480e2eec302b9a20835e2",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd7d8df2_cc10c6da",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Can we write in a comment saying that this is an optimised `O(log2(n))` version of the `O(n)`\n\n```\nlet mut result \u003d EcPoint::zero();\nfor _ in 0..n {\n    result +\u003d p\n}\n```",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f16a01ca_a757dd63",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Take a non mutable reference in mul to avoid a clone here ?",
+      "range": {
+        "startLine": 149,
+        "startChar": 24,
+        "endLine": 149,
+        "endChar": 31
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc9b4603_707c58de",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Could we do a struct to hold these to make it easier to read ?",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a7a867e_4fca5211",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/mod.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "I don\u0027t think we need to put that in a `crypto_toolbox` module, having an `ec` or `ecdh` at root is fine",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d86e4d2_dd858dc0",
+        "filename": "tools/rootcanal/lmp/src/procedure/mod.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Do we need this to be in the context ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e80e4a2e_eeb0f1ed",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be of a fixed size ?",
+      "range": {
+        "startLine": 95,
+        "startChar": 9,
+        "endLine": 95,
+        "endChar": 15
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9257bc8c_91fd68d0",
         "filename": "tools/rootcanal/lmp/src/test/context.rs",
         "patchSetId": 19
@@ -61,6 +560,23 @@
         "endLine": 88,
         "endChar": 30
       },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "017d9823_ca6c3117",
+        "filename": "tools/rootcanal/lmp/test/SP/BV-06-C.in",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-08T18:13:14Z",
+      "side": 1,
+      "message": "Could we keep the repeat syntax and extend it ?\n\nSomething like `repeat 3 times with data of sample_p192_public_key`\n\nWhere `data` will be the variable name and `sample_p192_public_key` an iterable thing with 3 elements",
       "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
