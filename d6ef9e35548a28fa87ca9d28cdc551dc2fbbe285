@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db2a4eac_1e1fdfc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T18:47:01Z",
+      "side": 1,
+      "message": "Would it make more sense to initialize `classic_address` and `le_address` both to empty addresses? And then only take action if they\u0027re populated - otherwise move on to the next transport. Since if we can\u0027t read the connected device address, then we aren\u0027t even bonded (right?) so we shouldn\u0027t do anything.\n\nSo it would be like:\n```\nfor transport in {CLASSIC, LE}:\n  addr \u003d empty()\n  is_connected \u003d readConnectedAddress(addr, transport);\n  if addr \u003d\u003d empty(): continue\n  if is_connected:\n    disconnect_peer(addr, transport)\n  else if addr is not already removed:\n    remove_device(addr)\n```",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28ee66c1_5c3143e4",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T18:47:01Z",
+      "side": 1,
+      "message": "Is it possible that this gets invoked twice? Since we invoke it even for the CLASSIC transport + with the classic address.",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c4cef2f_10f5c686",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T18:47:01Z",
+      "side": 1,
+      "message": "Can the `IsEmpty()` check ever fail if we are connected?",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c514d8ef_c8519074",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T18:47:01Z",
+      "side": 1,
+      "message": "Is it correct to potentially invoke device removal twice with the same address? Even if it\u0027s not dual mode.",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
