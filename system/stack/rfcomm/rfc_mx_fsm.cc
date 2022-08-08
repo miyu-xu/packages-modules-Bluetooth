@@ -23,6 +23,8 @@
  *
  ******************************************************************************/
 
+#include <base/logging.h>
+
 #include <cstdint>
 
 #include "main/shim/dumpsys.h"
@@ -34,8 +36,6 @@
 #include "stack/include/l2c_api.h"
 #include "stack/rfcomm/port_int.h"
 #include "stack/rfcomm/rfc_int.h"
-
-#include <base/logging.h>
 
 #define L2CAP_SUCCESS 0
 #define L2CAP_ERROR 1
@@ -331,16 +331,16 @@ void rfc_mx_sm_sabme_wait_ua(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
       RFCOMM_TRACE_ERROR("Mx error state %d event %d", p_mcb->state, event);
       return;
 
-    /* workaround: we don't support reconfig */
-    /* commented out until we support reconfig
-    case RFC_MX_EVENT_CONF_IND:
-        rfc_mx_conf_ind (p_mcb, (tL2CAP_CFG_INFO *)p_data);
-        return;
+      /* workaround: we don't support reconfig */
+      /* commented out until we support reconfig
+      case RFC_MX_EVENT_CONF_IND:
+          rfc_mx_conf_ind (p_mcb, (tL2CAP_CFG_INFO *)p_data);
+          return;
 
-    case RFC_MX_EVENT_CONF_CNF:
-        rfc_mx_conf_cnf (p_mcb, (tL2CAP_CFG_INFO *)p_data);
-        return;
-    */
+      case RFC_MX_EVENT_CONF_CNF:
+          rfc_mx_conf_cnf (p_mcb, (tL2CAP_CFG_INFO *)p_data);
+          return;
+      */
 
     case RFC_MX_EVENT_DISC_IND:
       p_mcb->state = RFC_MX_STATE_IDLE;
@@ -645,10 +645,10 @@ static void rfc_mx_conf_cnf(tRFC_MCB* p_mcb, uint16_t result) {
       rfc_timer_start(p_mcb, RFC_T1_TIMEOUT);
     } else {
       p_mcb->state = RFC_MX_STATE_WAIT_SABME;
-      rfc_timer_start(
-          p_mcb, RFCOMM_CONN_TIMEOUT); /* - increased from T2=20 to CONN=120
-                             to allow the user more than 10 sec to type in the
-                             pin which can be e.g. 16 digits */
+      rfc_timer_start(p_mcb,
+                      RFCOMM_CONN_TIMEOUT); /* - increased from T2=20 to
+                                  CONN=120 to allow the user more than 10 sec to
+                                  type in the pin which can be e.g. 16 digits */
     }
   }
 }

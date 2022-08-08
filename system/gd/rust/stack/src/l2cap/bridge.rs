@@ -74,6 +74,8 @@ pub mod ffi {
 
         unsafe fn L2CA_DisconnectReq_from_rust(cid: u16);
 
+        unsafe fn L2CA_DataWrite_from_rust(cid: u16, data: &[u8], completion: &mut OneshotU16);
+
         unsafe fn initialize_l2cap_tx_on_main_thread(tx: &mut EventChannel);
 
     }

@@ -563,9 +563,11 @@ genrule {
     cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) $(in) --rust",
     srcs: [
         "hci/hci_packets.pdl",
+        "rust/stack/src/rfcomm/rfcomm_packets.pdl",
     ],
     out: [
         "hci/hci_packets.rs",
+        "rust/stack/src/rfcomm/rfcomm_packets.rs",
     ],
 }
 

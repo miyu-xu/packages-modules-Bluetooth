@@ -2,7 +2,6 @@ use std::{
     collections::{hash_map::Entry, HashMap},
     fmt::Debug,
     hash::Hash,
-    ops::{Deref, DerefMut},
 };
 
 use anyhow::{anyhow, Context, Result};
@@ -16,34 +15,13 @@ use tokio::{
     task::JoinHandle,
 };
 
+use super::nonce::{Nonce, NonceGenerator};
+
 #[derive(Debug)]
 enum ControlSignal<E: Debug, K: Debug + Copy> {
     Subscribe { key: K, reply_tx: oneshot::Sender<DemultiplexedReceiver<K, E>> },
     Unsubscribe { key: K, reply_tx: oneshot::Sender<()> },
     UnsubscribeWithNonce { key: K, nonce: Nonce },
-}
-
-// TODO: make rx destructor have a oneshot that unregisters it, but be careful to avoid races
-// e.g. destruct -> enqueue register -> enqueue destruct -> register + overwrite -> whoops
-
-#[derive(Copy, Clone, Eq, PartialEq, Debug)]
-struct Nonce {
-    value: u32,
-}
-
-struct NonceGenerator {
-    next_val: u32,
-}
-
-impl NonceGenerator {
-    fn new() -> Self {
-        NonceGenerator { next_val: 0xdeadbeef }
-    }
-
-    fn next(&mut self) -> Nonce {
-        self.next_val += 1;
-        Nonce { value: self.next_val }
-    }
 }
 
 /// A struct representing a subscription on a given key
@@ -57,7 +35,7 @@ struct SubscriptionSender<E> {
 async fn event_loop<E, K, C>(
     mut event_rx: Receiver<E>,
     mut selector: C,
-    mut control_tx: Sender<ControlSignal<E, K>>,
+    control_tx: Sender<ControlSignal<E, K>>,
     mut control_rx: Receiver<ControlSignal<E, K>>,
 ) where
     E: Send + Debug + 'static,
@@ -83,7 +61,7 @@ async fn event_loop<E, K, C>(
                             // note that TOCTOU means that it is possible for the sender to be closed
                             // after this check. But then we are being invoked in a racey manner
                             // so what we do is valid behavior.
-                            if (!occupied_entry.get().event_tx.is_closed()) {
+                            if !occupied_entry.get().event_tx.is_closed() {
                                 error!("attempt to register duplicate key {key:?} on demultiplexer");
                                 drop(reply_tx); // explicitly fail to provide a reply
                                 continue;
@@ -98,7 +76,7 @@ async fn event_loop<E, K, C>(
                     }
                     Some(ControlSignal::Unsubscribe { key, reply_tx }) => {
                         if dispatch.remove(&key).is_some() {
-                            reply_tx.send(());
+                            let _ = reply_tx.send(());
                         } else {
                             // explicitly fail to reply => failure
                             drop(reply_tx);
@@ -108,7 +86,7 @@ async fn event_loop<E, K, C>(
                     Some(ControlSignal::UnsubscribeWithNonce { key, nonce }) => {
                         let entry = dispatch.entry(key);
                         if let Entry::Occupied(entry) = entry {
-                            if (entry.get().nonce == nonce) {
+                            if entry.get().nonce == nonce {
                                 entry.remove();
                             }
                         }
@@ -131,7 +109,7 @@ async fn event_loop<E, K, C>(
                             }
                             Some(rx) => {
                                 // TODO: what happens if there is backpressure on a demultiplexer output?
-                                rx.event_tx.send(event).await;
+                                let _ = rx.event_tx.send(event).await;
                             }
                         }
                     }
@@ -144,6 +122,7 @@ async fn event_loop<E, K, C>(
 #[derive(Debug)]
 pub struct Demultiplexer<E: Debug, K: Debug + Copy> {
     control_tx: Sender<ControlSignal<E, K>>,
+    pub event_tx: Sender<E>,
     task_handle: JoinHandle<()>,
 }
 
@@ -152,13 +131,22 @@ where
     E: Send + Debug + 'static,
     K: Send + Eq + Copy + Hash + Debug + 'static,
 {
-    pub fn new<C>(event_rx: Receiver<E>, selector: C) -> Demultiplexer<E, K>
+    pub fn new<C>(selector: C) -> Demultiplexer<E, K>
     where
         C: Send + FnMut(&E) -> K + 'static,
     {
-        let (control_tx, control_rx) = channel(1);
+        let (control_tx, control_rx) = channel(4);
+        let (event_tx, event_rx) = channel(16);
         let task_handle = spawn(event_loop(event_rx, selector, control_tx.clone(), control_rx));
-        Demultiplexer { control_tx, task_handle }
+        Demultiplexer { control_tx, event_tx, task_handle }
+    }
+
+    pub async fn send(&self, data: E) -> Result<()> {
+        self.event_tx.send(data).await.map_err(|_| {
+            anyhow!(
+                "demultiplexer internal error: somehow the worker task stopped accepting messages"
+            )
+        })
     }
 
     pub async fn subscribe(&self, key: K) -> Result<DemultiplexedReceiver<K, E>> {

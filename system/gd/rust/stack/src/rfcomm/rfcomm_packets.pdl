@@ -45,21 +45,23 @@ packet BasicFrame {
 	// see control_1
 	control_2 : 3,
 
-	// Extended Length (EA) bit: whether the length field is 1 (EA=1) or 2 (EA=0) octets
-	extended_frame_length : 1,
-
 	_body_,
 
 	// Frame-Check Sequence (checksum)
 	fcs : 8,
 }
 
-packet Basic1 : BasicFrame(extended_frame_length = 1) {
+packet Basic1 : BasicFrame {
+	// Extended Length (EA) bit: whether the length field is 1 (EA=1) or 2 (EA=0) octets
+	_fixed_  = 1 : 1,
+
   _size_(_body_) : 7,
 	_body_,
 }
 
-packet Basic2 : BasicFrame(extended_frame_length = 0) {
+packet Basic2 : BasicFrame {
+	// Extended Length (EA) bit: whether the length field is 1 (EA=1) or 2 (EA=0) octets
+	_fixed_  = 0 : 1,
   _size_(_body_) : 15,
 	_body_,
 }
@@ -90,9 +92,9 @@ packet InformationFrame1 : Basic1(control_1 = 0x03, control_2 = 0x03) {
 }
 
 // Unnumbered Information with Header Check (UIH), with extended length
-packet InformationFrame2 : Basic2(control_1 = 0x03, control_2 = 0x03) {
-	_body_	
-}
+// packet InformationFrame2 : Basic2(control_1 = 0x03, control_2 = 0x03) {
+// 	_body_	
+// }
 
 packet InformationFrame1WithoutCredits : InformationFrame1(poll_final = 0) {
 	_body_
@@ -104,15 +106,15 @@ packet InformationFrame1WithCredits : InformationFrame1(poll_final = 1) {
 	_body_
 }
 
-packet InformationFrame2WithoutCredits : InformationFrame1(poll_final = 0) {
-	_body_
-}
+// packet InformationFrame2WithoutCredits : InformationFrame1(poll_final = 0) {
+// 	_body_
+// }
 
-packet InformationFrame2WithCredits : InformationFrame1(poll_final = 1) {
-	// number of additional credits allocated for this channel on the sender
-	num_credits: 8,
-	_body_
-}
+// packet InformationFrame2WithCredits : InformationFrame1(poll_final = 1) {
+// 	// number of additional credits allocated for this channel on the sender
+// 	num_credits: 8,
+// 	_body_
+// }
 
 // Commands / Responses sent on DLCI 0
 // TODO: we should support information frames with extended length too, by making Commands structs and embedding them in the frames, but that doesn't work ATM
@@ -130,22 +132,27 @@ packet CommandHeader : InformationFrame1WithoutCredits(frame_dlci = 0) {
 	// responses have the same type as the original command
 	command_type : 6,
 
-	// Extended Length (EA) bit: Whether the length field is 7 bits (EA = 1) or 15 bits (EA = 0)
-	// Theoretically longer lengths are allowed, but we don't support them because of the frame size limit (N1 <= 2^15)
-	// In fact, extended lengths are only needed for the TEST command, that is not used in practice
-	extended_command_length : 1,
-
 	_body_,
 }
 
-packet Command : CommandHeader ( extended_command_length = 1 ) {
+packet Command : CommandHeader 
+{
+	// Extended Length (EA) bit: Whether the length field is 7 bits (EA = 1) or 15 bits (EA = 0)
+	// Theoretically longer lengths are allowed, but we don't support them because of the frame size limit (N1 <= 2^15)
+	// In fact, extended lengths are only needed for the TEST command, that is not used in practice
+	_fixed_  = 1 : 1,
+
 	_size_(_body_) : 7,
 	_body_,
 }
 
 // Commands with extended length are only used for TEST packets
 // FIXME: there is also a random EA bit in this, we should drop it otherwise the size is wrong
-packet CommandWithExtendedLength : CommandHeader ( extended_command_length = 0 ) {
+packet CommandWithExtendedLength : CommandHeader 
+{
+	// Extended Length (EA) bit
+	_fixed_  = 0 : 1,
+
 	_size_(_body_) : 15,
 	_body_,
 }
@@ -198,7 +205,7 @@ packet ParameterNegotiation : Command(command_type = 0x20) {
 
 // Test Command - we should just retransmit the payload in another TEST command
 packet Test : Command(command_type = 0x08) {
-	_payload_,
+	_body_,
 }
 
 // Flow Control On (FCON)
@@ -221,8 +228,10 @@ packet ModemStatus : Command(command_type = 0x38) {
 	_fixed_ = 0x3 : 2,
 	message_dlci : 6,
 
-	// Whether a second packet of control signals is provided
-	extended_address : 1,
+	// Whether a second packet of control signals is provided (EA = 1 if no, 0 if yes)
+	extended_signals : 1,
+
+	// FC = 1 if this DLCI can no longer accept frames, if credit flow control is not being used
 	flow_control : 1,
 
 	rtc : 1,
@@ -235,11 +244,11 @@ packet ModemStatus : Command(command_type = 0x38) {
 	_body_,
 }
 
-packet ModemStatusWithoutBreakSignals : ModemStatus(extended_address = 1) {
+packet ModemStatusWithoutBreakSignals : ModemStatus(extended_signals = 1) {
 	// empty
 }
 
-packet ModemStatusWithBreakSignals : ModemStatus(extended_address = 0) {
+packet ModemStatusWithBreakSignals : ModemStatus(extended_signals = 0) {
 	// The extended bit (EA) must equal 1
 	_fixed_ = 1 : 1,
 

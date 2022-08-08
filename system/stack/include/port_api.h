@@ -36,7 +36,7 @@
 /*
  * Define port settings structure send from the application in the
  * set settings request, or to the application in the set settings indication.
-*/
+ */
 typedef struct {
 #define PORT_BAUD_RATE_9600 0x03
 
@@ -75,7 +75,7 @@ typedef struct {
 /*
  * Define the callback function prototypes.  Parameters are specific
  * to each event and are described bellow
-*/
+ */
 typedef int(tPORT_DATA_CALLBACK)(uint16_t port_handle, void* p_data,
                                  uint16_t len);
 
@@ -89,7 +89,7 @@ typedef void(tPORT_CALLBACK)(uint32_t code, uint16_t port_handle);
 
 /*
  * Define events that registered application can receive in the callback
-*/
+ */
 
 #define PORT_EV_RXCHAR 0x00000001  /* Any Character received */
 #define PORT_EV_RXFLAG 0x00000002  /* Received certain character */
@@ -117,7 +117,7 @@ typedef void(tPORT_CALLBACK)(uint32_t code, uint16_t port_handle);
 
 /*
  * Define port result codes
-*/
+ */
 #define PORT_SUCCESS 0
 
 #define PORT_ERR_BASE 0
@@ -340,7 +340,7 @@ extern int PORT_FlowControl_MaxCredit(uint16_t handle, bool enable);
 
 /*
  * Define default initial local modem signals state after connection established
-*/
+ */
 #define PORT_OBEX_DEFAULT_SIGNAL_STATE \
   (PORT_DTRDSR_ON | PORT_CTSRTS_ON | PORT_DCD_ON)
 #define PORT_SPP_DEFAULT_SIGNAL_STATE \

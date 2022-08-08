@@ -42,7 +42,7 @@
 
 /*
  * Local function definitions
-*/
+ */
 uint32_t port_rfc_send_tx_data(tPORT* p_port);
 void port_rfc_closed(tPORT* p_port, uint8_t res);
 void port_get_credits(tPORT* p_port, uint8_t k);

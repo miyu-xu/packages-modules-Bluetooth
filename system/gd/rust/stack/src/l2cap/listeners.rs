@@ -64,7 +64,7 @@ pub fn initialize_l2cap_tx(tx: &mut EventChannel) {
 }
 
 /// Handles incoming connections to a registered listening PSM (interface: tL2CA_CONNECT_IND_CB)
-pub fn incoming_connection_handler(remote_addr: &RawAddress, local_cid: u16, psm: u16, id: u8) {
+pub fn incoming_connection_handler(remote_addr: &RawAddress, local_cid: u16, psm: u16, _id: u8) {
     log::info!("receiving incoming L2CAP connection from {remote_addr:?} to listener at {psm:?} with allocated lcid={local_cid:?}");
 
     log_errors(|| {
@@ -125,7 +125,7 @@ pub fn incoming_data_handler(local_cid: u16, data: &[u8]) {
     })
 }
 
-pub fn disconnect_connection_handler(local_cid: u16, should_ack: bool) {
+pub fn disconnect_connection_handler(local_cid: u16, _should_ack: bool) {
     log_errors(|| {
         with_static_handlers(|handlers| {
             handlers

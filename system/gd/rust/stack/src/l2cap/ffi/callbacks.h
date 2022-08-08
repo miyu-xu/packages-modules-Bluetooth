@@ -22,4 +22,6 @@ void L2CA_ConnectReq_from_rust(uint16_t psm, const RawAddress& p_bd_addr, Onesho
 
 void L2CA_DisconnectReq_from_rust(uint16_t cid);
 
+void L2CA_DataWrite_from_rust(uint16_t cid, rust::Slice<const uint8_t> data, OneshotU16& completion);
+
 void initialize_l2cap_tx_on_main_thread(EventChannel& tx);
