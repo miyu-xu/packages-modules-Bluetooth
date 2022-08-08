@@ -1,11 +1,11 @@
 from dataclasses import dataclass
-from typing import Tuple
+from typing import Tuple, Optional
 
 
 @dataclass
 class SizedCustomField:
 
-    def __init__(self, value: int):
+    def __init__(self, value: Optional[int] = 0):
         self.value = value
 
     def parse(span: bytes) -> Tuple['SizedCustomField', bytes]:
@@ -23,7 +23,7 @@ class SizedCustomField:
 @dataclass
 class UnsizedCustomField:
 
-    def __init__(self, value: int):
+    def __init__(self, value: Optional[int] = 0):
         self.value = value
 
     def parse(span: bytes) -> Tuple['UnsizedCustomField', bytes]:

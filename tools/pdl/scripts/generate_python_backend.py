@@ -479,16 +479,196 @@ class FieldParser:
         self.consume_span_()
 
 
+@dataclass
+class FieldSerializer:
+    byteorder: str
+    shift: int = 0
+    chunk: List[Tuple[int, int, ast.Field]] = field(default_factory=lambda: [])
+    code: List[str] = field(default_factory=lambda: [])
+    indent: int = 0
+
+    def indent_(self):
+        self.indent += 1
+
+    def unindent_(self):
+        self.indent -= 1
+
+    def append_(self, line: str):
+        """Append field serializing code."""
+        self.code.append('    ' * self.indent + line)
+
+    def extend_(self, value: str, length: int):
+        if length == 1:
+            self.append_(f"span.append({value})")
+        else:
+            self.append_(f"span.extend(int.to_bytes({value}, length={length}," + f" byteorder='{self.byteorder}'))")
+
+    def serialize_array_element_(self, field: ast.ArrayField):
+        """Serialize a single array field element."""
+        if field.width is not None:
+            length = int(field.width / 8)
+            self.extend_('element', length)
+        elif isinstance(field.type, ast.EnumDeclaration):
+            length = int(field.type.width / 8)
+            self.extend_('element', length)
+        else:
+            self.append_("    span.extend(element.serialize())")
+
+    def serialize_array_field_(self, field: ast.ArrayField):
+        """Serialize the selected array field."""
+        if field.width == 8:
+            self.append_(f"span.extend(self.{field.id})")
+        else:
+            self.append_(f"for element in self.{field.id}:")
+            self.indent_()
+            self.serialize_array_element_(field)
+            self.unindent_()
+
+    def serialize_bit_field_(self, field: ast.Field):
+        """Serialize the selected field as a bit field.
+        The field is added to the current chunk. When a byte boundary
+        is reached all saved fields are serialized together."""
+
+        # Add to current chunk.
+        width = core.get_field_size(field)
+        self.chunk.append((self.shift, width, field))
+        self.shift += width
+
+        # Wait for more fields if not on a byte boundary.
+        if (self.shift % 8) != 0:
+            return
+
+        # Generate the backing integer, and serialize it
+        # using the configured endiannes,
+        size = int(self.shift / 8)
+
+        value = []
+        for shift, width, field in self.chunk:
+            if isinstance(field, ast.ScalarField):
+                max_value = (1 << field.width) - 1
+                self.append_(f"if self.{field.id} > {max_value}:")
+                self.append_(f"    print(f\"Invalid value for field {field.parent.id}::{field.id}:" +
+                             f" {{self.{field.id}}} > {max_value}; the value will be truncated\")")
+                self.append_(f"    self.{field.id} &= {max_value}")
+                value.append(f"(self.{field.id} << {shift})")
+            elif isinstance(field, ast.FixedField) and field.enum_id:
+                value.append(f"({field.enum_id}.{field.tag_id} << {shift})")
+            elif isinstance(field, ast.FixedField):
+                value.append(f"({field.value} << {shift})")
+            elif isinstance(field, ast.TypedefField):
+                value.append(f"(self.{field.id} << {shift})")
+            elif isinstance(field, ast.SizeField):
+                # TODO unsupported size
+                # raise Exception('TODO Unsupported size')
+                pass
+            elif isinstance(field, ast.CountField):
+                max_count = (1 << field.width) - 1
+                self.append_(f"if len(self.{field.field_id}) > {max_count}:")
+                self.append_(f"    print(f\"Invalid length for field {field.parent.id}::{field.field_id}:" +
+                             f"  {{len(self.{field.field_id})}} > {max_count}; the array will be truncated\")")
+                self.append_(f"    del self.{field.field_id}[{max_count}:]")
+                value.append(f"(len(self.{field.field_id}) << {shift})")
+            elif isinstance(field, ast.ReservedField):
+                pass
+            else:
+                raise Exception(f'Unsupported bit field type {field.kind}')
+
+        if len(value) == 0:
+            self.append_(f"span.extend([0] * {size})")
+        elif len(value) == 1:
+            self.extend_(value[0], size)
+        else:
+            self.append_(f"value_ = (")
+            self.append_("    " + "|\n    ".join(value))
+            self.append_(")")
+            self.extend_('value_', size)
+
+        # Reset state.
+        self.shift = 0
+        self.chunk = []
+
+    def serialize_typedef_field_(self, field: ast.TypedefField):
+        """Serialize a typedef field, to the exclusion of Enum fields."""
+
+        if self.shift != 0:
+            raise Exception('Typedef field does not start on an octet boundary')
+        if (isinstance(field.type, ast.StructDeclaration) and field.type.parent_id is not None):
+            raise Exception('Derived struct used in typedef field')
+
+        if isinstance(field.type, ast.ChecksumDeclaration):
+            size = int(field.type.width / 8)
+            self.append_(f"checksum_ = {field.type.function}(span[checksum_start_:])")
+            self.extend_('checksum_', size)
+        else:
+            self.append_(f"span.extend(self.{field.id}.serialize())")
+
+    def serialize_padding_field_(self, field: ast.PaddingField):
+        """Serialize a padding field. The value is zero."""
+
+        if self.shift != 0:
+            raise Exception('Padding field does not start on an octet boundary')
+        self.append_(f"span.extend([0] * {field.width})")
+
+    def serialize_payload_field_(self, field: Union[ast.BodyField, ast.PayloadField]):
+        """Serialize body and payload fields."""
+
+        if self.shift != 0:
+            raise Exception('Payload field does not start on an octet boundary')
+        self.append_(f"span.extend(payload or self.payload)")
+
+    def serialize_checksum_field_(self, field: ast.ChecksumField):
+        """Generate a checksum check."""
+
+        self.append_("checksum_start_ = len(span)")
+
+    def serialize(self, field: ast.Field):
+        # Field has bit granularity.
+        # Append the field to the current chunk,
+        # check if a byte boundary was reached.
+        if core.is_bit_field(field):
+            self.serialize_bit_field_(field)
+
+        # Padding fields.
+        elif isinstance(field, ast.PaddingField):
+            self.serialize_padding_field_(field)
+
+        # Array fields.
+        elif isinstance(field, ast.ArrayField):
+            self.serialize_array_field_(field)
+
+        # Other typedef fields.
+        elif isinstance(field, ast.TypedefField):
+            self.serialize_typedef_field_(field)
+
+        # Payload and body fields.
+        elif (isinstance(field, ast.PayloadField) or isinstance(field, ast.BodyField)):
+            self.serialize_payload_field_(field)
+
+        # Checksum fields.
+        elif isinstance(field, ast.ChecksumField):
+            self.serialize_checksum_field_(field)
+
+        else:
+            raise Exception(f'Unimplemented field type {field.kind}')
+
+
 def generate_toplevel_packet_serializer(packet: ast.Declaration) -> List[str]:
     """Generate the serialize() function for a toplevel Packet or Struct
        declaration."""
-    return ["pass"]
+    serializer = FieldSerializer(byteorder=packet.file.byteorder)
+    for f in packet.fields:
+        serializer.serialize(f)
+    return ['span = bytearray()'] + serializer.code + ['return bytes(span)']
 
 
 def generate_derived_packet_serializer(packet: ast.Declaration) -> List[str]:
     """Generate the serialize() function for a derived Packet or Struct
        declaration."""
-    return ["pass"]
+    serializer = FieldSerializer(byteorder=packet.file.byteorder)
+    for f in packet.fields:
+        serializer.serialize(f)
+    return ['span = bytearray()'
+           ] + serializer.code + [f'return {packet.parent.id}.serialize(self, payload = bytes(span))']
 
 
 def generate_packet_parser(packet: ast.Declaration) -> List[str]:
@@ -530,12 +710,58 @@ def generate_packet_parser(packet: ast.Declaration) -> List[str]:
 def generate_derived_packet_parser(packet: ast.Declaration) -> List[str]:
     """Generate the parse() function for a derived Packet or Struct
        declaration."""
-    print(f"Parsing packet {packet.id}", file=sys.stderr)
     parser = FieldParser(byteorder=packet.file.byteorder)
     for f in packet.fields:
         parser.parse(f)
     parser.done()
     return parser.code + [f"return {packet.id}(**fields)"]
+
+
+def generate_default_field_values(decl: ast.Declaration, constraints: List[ast.Constraint]) -> List[str]:
+    """Generate initializer values for the fields in a packet and
+    its parents."""
+
+    initializers = []
+    for f in decl.fields:
+        if isinstance(
+                f,
+            (ast.SizeField, ast.CountField, ast.FixedField, ast.ReservedField, ast.PaddingField, ast.ChecksumField)):
+            continue
+        elif isinstance(f, ast.ArrayField):
+            initializers.append(f"{f.id}=[]")
+        elif isinstance(f, (ast.PayloadField, ast.BodyField)) and decl.parent_id is None:
+            initializers.append(f"payload=bytearray()")
+        elif isinstance(f, (ast.PayloadField, ast.BodyField)):
+            continue
+        elif isinstance(f, ast.TypedefField):
+            if isinstance(f.type, ast.EnumDeclaration):
+                value = f.type.tags[0].id
+                for c in constraints:
+                    if c.id == f.id:
+                        value = c.tag_id
+                initializers.append(f"{f.id}={f.type_id}.{value}")
+            elif isinstance(f.type, ast.ChecksumDeclaration):
+                continue
+            elif isinstance(f.type, ast.CustomFieldDeclaration):
+                initializers.append(f"{f.id}={f.type.function}()")
+            elif isinstance(f.type, ast.StructDeclaration):
+                initializers.append(f"{f.id}={f.type_id}.default()")
+            else:
+                raise Exception("Unsupported typedef field type")
+        elif isinstance(f, ast.ScalarField):
+            value = 0
+            for c in constraints:
+                if c.id == f.id:
+                    value = c.value
+            assert value is not None
+            initializers.append(f"{f.id}={value}")
+        else:
+            raise Exception(f"Unsupported field type {f}")
+
+    if decl.parent_id:
+        initializers.extend(generate_default_field_values(decl.parent, decl.constraints))
+
+    return initializers
 
 
 def generate_enum_declaration(decl: ast.EnumDeclaration) -> str:
@@ -562,15 +788,19 @@ def generate_packet_declaration(packet: ast.Declaration) -> str:
     field_decls = []
     for f in packet.fields:
         if isinstance(f, ast.ScalarField):
-            field_decls.append(f"{f.id}: int")
+            field_decls.append(f"{f.id}: int = 0")
         elif isinstance(f, ast.TypedefField):
-            field_decls.append(f"{f.id}: {f.type_id}")
+            if isinstance(f.type, ast.EnumDeclaration):
+                initializer = f"{f.type_id}.{f.type.tags[0].id}"
+            else:
+                initializer = f"{f.type_id}()"
+            field_decls.append(f"{f.id}: {f.type_id} = {initializer}")
         elif isinstance(f, ast.ArrayField) and f.width == 8:
-            field_decls.append(f"{f.id}: bytes")
+            field_decls.append(f"{f.id}: bytearray = bytearray()")
         elif isinstance(f, ast.ArrayField) and f.width:
-            field_decls.append(f"{f.id}: List[int]")
+            field_decls.append(f"{f.id}: List[int] = []")
         elif isinstance(f, ast.ArrayField) and f.type_id:
-            field_decls.append(f"{f.id}: List[{f.type_id}]")
+            field_decls.append(f"{f.id}: List[{f.type_id}] = []")
 
     if packet.parent_id:
         parent_name = packet.parent_id
@@ -582,6 +812,7 @@ def generate_packet_declaration(packet: ast.Declaration) -> str:
         serializer = generate_toplevel_packet_serializer(packet)
 
     parser = generate_packet_parser(packet)
+    default_field_values = generate_default_field_values(packet, [])
 
     return dedent("""\
 
@@ -590,15 +821,21 @@ def generate_packet_declaration(packet: ast.Declaration) -> str:
             {field_decls}
 
             @staticmethod
+            def default():
+                return {packet_name}(
+                    {default_field_values})
+
+            @staticmethod
             def parse({parent_fields}span: bytes) -> Tuple['{packet_name}', bytes]:
                 {parser}
 
-            def serialize(self) -> bytes:
+            def serialize(self, payload: bytes = None) -> bytes:
                 {serializer}
         """).format(
         packet_name=packet_name,
         parent_name=parent_name,
         parent_fields=parent_fields,
+        default_field_values=',\n            '.join(default_field_values),
         field_decls=indent(field_decls, 1),
         parser=indent(parser, 2),
         serializer=indent(serializer, 2))
