@@ -573,7 +573,6 @@ static void bta_dm_process_remove_device_no_callback(
 
 void bta_dm_process_remove_device(const RawAddress& bd_addr) {
   bta_dm_process_remove_device_no_callback(bd_addr);
-
   if (bta_dm_cb.p_sec_cback) {
     tBTA_DM_SEC sec_event;
     sec_event.link_down.bd_addr = bd_addr;
@@ -581,83 +580,56 @@ void bta_dm_process_remove_device(const RawAddress& bd_addr) {
   }
 }
 
-/** Removes device, disconnects ACL link if required */
-void bta_dm_remove_device(const RawAddress& bd_addr) {
-  /* If ACL exists for the device in the remove_bond message*/
-  bool is_bd_addr_connected =
-      BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE) ||
-      BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_BR_EDR);
-
-  tBT_TRANSPORT other_transport = BT_TRANSPORT_AUTO;
-  if (is_bd_addr_connected) {
-    APPL_TRACE_DEBUG("%s: ACL Up count: %d", __func__,
-                     bta_dm_cb.device_list.count);
-
-    /* Take the link down first, and mark the device for removal when
-     * disconnected */
+static void disconnect_peer(const RawAddress& bd_addr,
+                            tBT_TRANSPORT transport) {
+  if (BTM_IsAclConnectionUp(bd_addr, transport)) {
+    LOG_ERROR("%s: ACL Up count: %d", __func__, bta_dm_cb.device_list.count);
     for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
       auto& peer_device = bta_dm_cb.device_list.peer_device[i];
-      if (peer_device.peer_bdaddr == bd_addr) {
+      LOG_ERROR(
+          "Found Peer: %s with transport %s",
+          peer_device.peer_bdaddr.ToString().c_str(),
+          ((peer_device.transport == BT_TRANSPORT_LE) ? "BT_TRANSPORT_LE"
+                                                      : "BT_TRANSPORT_BR_EDR"));
+      // Set the connection state to indicate removal, then disconnect for
+      // matchin address
+      if (peer_device.peer_bdaddr == bd_addr &&
+          peer_device.transport == transport) {
         peer_device.conn_state = BTA_DM_UNPAIRING;
 
         /* Make sure device is not in acceptlist before we disconnect */
         GATT_CancelConnect(0, bd_addr, false);
 
         btm_remove_acl(bd_addr, peer_device.transport);
-        APPL_TRACE_DEBUG("%s: transport: %d", __func__, peer_device.transport);
-
-        /* save the other transport to check if device is connected on
-         * other_transport */
-        if (peer_device.transport == BT_TRANSPORT_LE)
-          other_transport = BT_TRANSPORT_BR_EDR;
-        else
-          other_transport = BT_TRANSPORT_LE;
-
-        break;
       }
     }
+  } else {
+    LOG_ERROR("ACL Connection not found for %s", bd_addr.ToString().c_str());
   }
+}
 
-  RawAddress other_address = bd_addr;
-  RawAddress other_address2 = bd_addr;
-
-  // If it is DUMO device and device is paired as different address, unpair that
-  // device
-  bool other_address_connected =
-      (other_transport)
-          ? BTM_ReadConnectedTransportAddress(&other_address, other_transport)
-          : (BTM_ReadConnectedTransportAddress(&other_address,
-                                               BT_TRANSPORT_BR_EDR) ||
-             BTM_ReadConnectedTransportAddress(&other_address2,
-                                               BT_TRANSPORT_LE));
-  if (other_address == bd_addr) other_address = other_address2;
-
-  if (other_address_connected) {
-    /* Take the link down first, and mark the device for removal when
-     * disconnected */
-    for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
-      auto& peer_device = bta_dm_cb.device_list.peer_device[i];
-      if (peer_device.peer_bdaddr == other_address &&
-          peer_device.transport == other_transport) {
-        peer_device.conn_state = BTA_DM_UNPAIRING;
-
-        /* Make sure device is not in acceptlist before we disconnect */
-        GATT_CancelConnect(0, bd_addr, false);
-
-        btm_remove_acl(other_address, peer_device.transport);
-        break;
-      }
+/** Removes device, disconnects ACL link if required */
+void bta_dm_remove_device(const RawAddress& bd_addr) {
+  LOG_ERROR("Address: %s", bd_addr.ToString().c_str());
+  RawAddress classic_address = bd_addr;
+  RawAddress le_address = bd_addr;
+  bool classic_address_connected =
+      BTM_ReadConnectedTransportAddress(&classic_address, BT_TRANSPORT_BR_EDR);
+  if (classic_address_connected) {
+    if (!classic_address.IsEmpty()) {
+      disconnect_peer(classic_address, BT_TRANSPORT_BR_EDR);
     }
+  } else {
+    bta_dm_process_remove_device(classic_address);
   }
-
-  /* Delete the device mentioned in the msg */
-  if (!is_bd_addr_connected) {
-    bta_dm_process_remove_device(bd_addr);
-  }
-
-  /* Delete the other paired device too */
-  if (!other_address_connected && !other_address.IsEmpty()) {
-    bta_dm_process_remove_device(other_address);
+  bool le_address_connected =
+      BTM_ReadConnectedTransportAddress(&le_address, BT_TRANSPORT_LE);
+  if (le_address_connected) {
+    if (!le_address.IsEmpty()) {
+      disconnect_peer(le_address, BT_TRANSPORT_LE);
+    }
+  } else {
+    bta_dm_process_remove_device(le_address);
   }
 
   /* Check the length of the paired devices, and if 0 then reset IRK */
