@@ -66,12 +66,56 @@ class PacketParserTest(unittest.TestCase):
             tests = item['tests']
             with self.subTest(packet=packet):
                 # Retrieve the class object from the generated
-                # module, in order to invoke the proper parse
+                # module, in order to invoke the proper constructor
                 # method for this test.
                 cls = getattr(be_pdl_test, packet)
                 for test in tests:
                     result = cls.parse_all(bytes.fromhex(test['packed']))
                     match_object(self, result, test['unpacked'])
+
+class PacketSerializerTest(unittest.TestCase):
+    """Validate the generated serializer against pre-generated test
+       vectors in canonical/(le|be)_test_vectors.json"""
+
+    def testLittleEndian(self):
+        with open('tests/canonical/le_test_vectors.json') as f:
+            reference = json.load(f)
+
+        for item in reference:
+            # 'packet' is the name of the packet being tested,
+            # 'tests' lists input vectors that must match the
+            # selected packet.
+            packet = item['packet']
+            tests = item['tests']
+            with self.subTest(packet=packet):
+                # Retrieve the class object from the generated
+                # module, in order to invoke the proper constructor
+                # method for this test.
+                cls = getattr(le_pdl_test, packet)
+                for test in tests:
+                    obj = cls.default(**test['unpacked'])
+                    result = obj.serialize()
+                    self.assertEqual(result, bytes.fromhex(test['packed']))
+
+    def testBigEndian(self):
+        with open('tests/canonical/be_test_vectors.json') as f:
+            reference = json.load(f)
+
+        for item in reference:
+            # 'packet' is the name of the packet being tested,
+            # 'tests' lists input vectors that must match the
+            # selected packet.
+            packet = item['packet']
+            tests = item['tests']
+            with self.subTest(packet=packet):
+                # Retrieve the class object from the generated
+                # module, in order to invoke the proper parse
+                # method for this test.
+                cls = getattr(be_pdl_test, packet)
+                for test in tests:
+                    obj = cls.default(**test['unpacked'])
+                    result = obj.serialize()
+                    self.assertEqual(result, bytes.fromhex(test['packed']))
 
 
 class CustomPacketParserTest(unittest.TestCase):
