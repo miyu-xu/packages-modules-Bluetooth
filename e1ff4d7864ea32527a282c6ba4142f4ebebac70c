@@ -49,6 +49,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "a8ec598a_8d6919a9",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T15:50:54Z",
+      "side": 1,
+      "message": "I don\u0027t think so - `BTM_ReadConnectedTransportAddress` writes the resolved address into the first argument as an output parameter, right? So we are automatically resolving the address.",
+      "parentUuid": "e99d0869_934bd43a",
+      "range": {
+        "startLine": 607,
+        "startChar": 33,
+        "endLine": 607,
+        "endChar": 52
+      },
+      "revId": "e1ff4d7864ea32527a282c6ba4142f4ebebac70c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fafcd43c_e7357a52",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 3
@@ -83,6 +107,30 @@
       "writtenOn": "2022-08-08T11:20:37Z",
       "side": 1,
       "message": "Here should be resolvedAddress, otherwise for dual device with two different addresses. The other one will not be removed.",
+      "range": {
+        "startLine": 622,
+        "startChar": 37,
+        "endLine": 622,
+        "endChar": 44
+      },
+      "revId": "e1ff4d7864ea32527a282c6ba4142f4ebebac70c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1377b3e8_3f89fce4",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T15:50:54Z",
+      "side": 1,
+      "message": "That\u0027s what happens if we keep the originally resolved address using the output parameter - see above comment.",
+      "parentUuid": "d518f94c_70bc3a0b",
       "range": {
         "startLine": 622,
         "startChar": 37,
