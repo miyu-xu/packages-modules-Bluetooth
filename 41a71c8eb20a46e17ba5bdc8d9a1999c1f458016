@@ -109,6 +109,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1396c715_1f0891a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-08T11:41:07Z",
+      "side": 1,
+      "message": "Let\u0027s do it by another patch.\nThanks",
+      "parentUuid": "9039adc4_c6caf41f",
+      "revId": "41a71c8eb20a46e17ba5bdc8d9a1999c1f458016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f21381ba_5905962f",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 2
