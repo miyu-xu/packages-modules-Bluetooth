@@ -16,6 +16,52 @@
       "message": "Fix comments plus couple of other stuff I found.",
       "revId": "8044aca1a38cb0b665fe191fbf0cd456097831cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dc13051_1fa06dbc",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-08T20:39:48Z",
+      "side": 1,
+      "message": "const auto\u0026",
+      "range": {
+        "startLine": 274,
+        "startChar": 7,
+        "endLine": 274,
+        "endChar": 11
+      },
+      "revId": "8044aca1a38cb0b665fe191fbf0cd456097831cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6eb3b06_a6a82d8e",
+        "filename": "system/bta/test/common/btif_storage_mock.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-08T20:39:48Z",
+      "side": 1,
+      "message": "LeAudioUpdateHandles",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 46
+      },
+      "revId": "8044aca1a38cb0b665fe191fbf0cd456097831cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
