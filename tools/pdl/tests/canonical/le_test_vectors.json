@@ -593,6 +593,7 @@
     "packet": "ScalarParent",
     "tests": [
       {
+        "packet": "ScalarChild_A",
         "packed": "0001da",
         "unpacked": {
           "a": 0,
@@ -600,6 +601,7 @@
         }
       },
       {
+        "packet": "ScalarChild_B",
         "packed": "0102dcde",
         "unpacked": {
           "a": 1,
@@ -607,6 +609,7 @@
         }
       },
       {
+        "packet": "AliasedChild_A",
         "packed": "0201d8",
         "unpacked": {
           "a": 2,
@@ -614,6 +617,7 @@
         }
       },
       {
+        "packet": "AliasedChild_B",
         "packed": "03020ae7",
         "unpacked": {
           "a": 3,
@@ -626,6 +630,7 @@
     "packet": "EnumParent",
     "tests": [
       {
+        "packet": "EnumChild_A",
         "packed": "bbaa01dd",
         "unpacked": {
           "a": 43707,
@@ -633,6 +638,7 @@
         }
       },
       {
+        "packet": "EnumChild_B",
         "packed": "ddcc02f7de",
         "unpacked": {
           "a": 52445,
