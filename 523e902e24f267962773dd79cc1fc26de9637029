@@ -34,6 +34,23 @@
       "parentUuid": "ce4bc4d6_053088d3",
       "revId": "523e902e24f267962773dd79cc1fc26de9637029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a15e07_54200db2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-08T19:07:58Z",
+      "side": 1,
+      "message": "Where is the command being sent?  Why not handle the event there?",
+      "revId": "523e902e24f267962773dd79cc1fc26de9637029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
