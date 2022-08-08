@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b87a625_404cc158",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-08T14:58:30Z",
+      "side": 1,
+      "message": "I had to move it up as well to proper calculate phone call scenario.",
+      "revId": "4c13241a8f1da960961b3d210ee4daf3fc687aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
