@@ -16,6 +16,24 @@
       "message": "Do you plan to follow up with removing the ifdefs once this is proven stable in the field? ",
       "revId": "523e902e24f267962773dd79cc1fc26de9637029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b23a4514_b3d6cf0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-08T16:55:13Z",
+      "side": 1,
+      "message": "Yes. I think this needs to be a DCHECK that only crashes on dev builds. The follow-up will be to convert this to something like:\n\n```\n#define DCHECK_LOG(condition, ...) \\\n  if (!(condition)) { \\\n    LOG_WARN(...);    \\\n    DCHECK(condition);\\\n    return;           \\\n  }\n```",
+      "parentUuid": "ce4bc4d6_053088d3",
+      "revId": "523e902e24f267962773dd79cc1fc26de9637029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
