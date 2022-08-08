@@ -70,6 +70,15 @@ def get_packet_field(packet: Union[PacketDeclaration, StructDeclaration], id: st
         return None
 
 
+def get_packet_ancestor(
+        decl: Union[PacketDeclaration, StructDeclaration]) -> Union[PacketDeclaration, StructDeclaration]:
+    """Return the root ancestor of the selected packet or struct."""
+    if decl.parent_id is None:
+        return decl
+    else:
+        return get_packet_ancestor(decl.grammar.packet_scope[decl.parent_id])
+
+
 def get_derived_packets(decl: Union[PacketDeclaration, StructDeclaration]
                        ) -> List[Tuple[List[Constraint], Union[PacketDeclaration, StructDeclaration]]]:
     """Return the list of packets or structs that immediately derive from the
