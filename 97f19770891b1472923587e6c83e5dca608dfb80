@@ -87,6 +87,30 @@
       },
       "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f10a3c2a_5a1c0a57",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 544,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-08T21:05:16Z",
+      "side": 1,
+      "message": "Instead of this:\n\n    hci_-\u003eEnqueueCommand(std::move(packet), module_.GetHandler()-\u003eBindOnceOn(\n                                                this, \u0026Controller::impl::check_status\u003cLeSetEventMaskCompleteView\u003e));\n\nI think we need this:                                                \nhci_-\u003eEnqueueCommand(std::move(packet), module_.GetHandler()-\u003eBindOnceOn(\n                                                this, \u0026Controller::impl::check_set_event_mask_status));\n                                                \nThen we need the change you made in a single function to match:\n\n  void check_event_mask_status(CommandCompleteView view) {\n    ASSERT(view.IsValid());\n    auto status_view \u003d LeSetEventMaskCompleteView::Create(view);\n    ASSERT(status_view.IsValid());\n    ASSERT(status_view.GetStatus() \u003d\u003d ErrorCode::SUCCESS ||\n           status_view.GetStatus() \u003d\u003d ErrorCode::UNSUPPORTED_LMP_OR_LL_PARAMETER);\n  }",
+      "parentUuid": "1346f4a4_a57e80ef",
+      "range": {
+        "startLine": 540,
+        "startChar": 0,
+        "endLine": 544,
+        "endChar": 3
+      },
+      "revId": "97f19770891b1472923587e6c83e5dca608dfb80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
