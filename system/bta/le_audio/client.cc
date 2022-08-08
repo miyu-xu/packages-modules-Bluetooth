@@ -38,6 +38,7 @@
 #include "embdrv/lc3/include/lc3.h"
 #include "gatt/bta_gattc_int.h"
 #include "gd/common/strings.h"
+#include "internal_include/stack_config.h"
 #include "le_audio_set_configuration_provider.h"
 #include "le_audio_types.h"
 #include "metrics_collector.h"
@@ -296,7 +297,8 @@ class LeAudioClientImpl : public LeAudioClient {
         lc3_decoder_right(nullptr),
         audio_source_instance_(nullptr),
         audio_sink_instance_(nullptr),
-        suspend_timeout_(alarm_new("LeAudioSuspendTimeout")) {
+        suspend_timeout_(alarm_new("LeAudioSuspendTimeout")),
+        disable_timer_(alarm_new("LeAudioDisableTimer")) {
     LeAudioGroupStateMachine::Initialize(state_machine_callbacks_);
     groupStateMachine_ = LeAudioGroupStateMachine::Get();
 
@@ -2931,6 +2933,19 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
+    if (stack_config_get_interface()->get_pts_le_audio_suspend_streaming()) {
+      DLOG(INFO) << __func__
+                 << " Stream disable_timer_ started: " << disable_timer_;
+      if (alarm_is_scheduled(disable_timer_)) alarm_cancel(disable_timer_);
+
+      alarm_set_on_mloop(
+          disable_timer_, kAudioSuspendTimeoutMs,
+          [](void* data) {
+            if (instance) instance->GroupSuspend(PTR_TO_INT(data));
+          },
+          INT_TO_PTR(active_group_id_));
+    }
+
     /* Group should tie in time to get requested status */
     uint64_t timeoutMs = kAudioSuspentKeepIsoAliveTimeoutMs;
     timeoutMs = osi_property_get_int32(kAudioSuspentKeepIsoAliveTimeoutMsProp,
@@ -3766,10 +3781,12 @@ class LeAudioClientImpl : public LeAudioClient {
   std::vector<uint8_t> encoded_data;
   const void* audio_source_instance_;
   const void* audio_sink_instance_;
-  static constexpr uint64_t kAudioSuspentKeepIsoAliveTimeoutMs = 5000;
+  static constexpr uint64_t kAudioSuspentKeepIsoAliveTimeoutMs = 8000;
+  static constexpr uint64_t kAudioSuspendTimeoutMs = 3000;
   static constexpr char kAudioSuspentKeepIsoAliveTimeoutMsProp[] =
       "persist.bluetooth.leaudio.audio.suspend.timeoutms";
   alarm_t* suspend_timeout_;
+  alarm_t* disable_timer_;
 
   std::vector<int16_t> cached_channel_data_;
   uint32_t cached_channel_timestamp_ = 0;
