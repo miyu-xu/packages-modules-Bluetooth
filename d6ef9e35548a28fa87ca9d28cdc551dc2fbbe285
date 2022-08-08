@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7eced527_3715effa",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T20:44:32Z",
+      "side": 1,
+      "message": "I guess then, what is the purpose of cancelling a GATT connection to the classic address? And _only_ doing so if a _classic_ connection exists?\n\nIt seems strange to me that we invoke this GATT function differently depending on the presence of a classic connection. Either we should invoke it exactly once, on the RPA, or we should always invoke it twice: on the RPA, and on the identity address.\n\nBut right now this CL invokes it differently depending on whether or not we are connected using a classic connection, which I don\u0027t understand.",
+      "parentUuid": "034be97f_1d165787",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c4cef2f_10f5c686",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 3
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "If you are connected to an address of all 0s in which case you likely have a larger problem of having connected to a device with all 0s?  Otherwise someone else could reset the address in code somewhere later in the future?\n\n00:00:00:00:00:00",
       "parentUuid": "0c4cef2f_10f5c686",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1150f6c1_3e2a8692",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-08T20:44:32Z",
+      "side": 1,
+      "message": "Then why don\u0027t we also have this check for `bta_dm_process_remove_device`? \n\nOr in fact, why not then gate this whole thing (disconnection/device removal) inside an isEmpty() check? So if the classic address is empty, we skip anything to do with it.",
+      "parentUuid": "9073bfd7_a507d664",
       "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
