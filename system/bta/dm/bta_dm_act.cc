@@ -581,8 +581,58 @@ void bta_dm_process_remove_device(const RawAddress& bd_addr) {
   }
 }
 
+bool bta_dm_disconnect_and_unpair(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
+  for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
+      auto& peer_device = bta_dm_cb.device_list.peer_device[i];
+      if (peer_device.peer_bdaddr == bd_addr &&
+            peer_device.transport == transport) {
+        peer_device.conn_state = BTA_DM_UNPAIRING;
+
+        if (transport == BT_TRANSPORT_LE) {
+          /* Make sure device is not in acceptlist before we disconnect */
+          GATT_CancelConnect(0, bd_addr, false);
+        }
+
+        btm_remove_acl(bd_addr, peer_device.transport);
+        return true;
+      }
+    }
+    return false;
+}
+
 /** Removes device, disconnects ACL link if required */
 void bta_dm_remove_device(const RawAddress& bd_addr) {
+  auto lastRemovedAddress = RawAddress::kEmpty;
+  for (auto transport : {BT_TRANSPORT_BR_EDR, BT_TRANSPORT_LE}) {
+    RawAddress resolvedAddress = bd_addr;
+    auto isConnectedOnTransport =
+      BTM_ReadConnectedTransportAddress(&resolvedAddress, transport);
+    if (resolvedAddress == RawAddress::kEmpty) {
+      // not bonded on transport, skip
+      continue;
+    }
+    if (isConnectedOnTransport) {
+      // log::error if the below method returns false
+      bta_dm_disconnect_and_unpair(resolvedAddress, transport);
+    } else {
+      // not currently connected, we can directly unbond
+      // don't unbond on both transports if the address is the same
+      if (resolvedAddress != lastRemovedAddress) {
+        lastRemovedAddress = resolvedAddress;
+        bta_dm_process_remove_device(resolvedAddress);
+      }
+    }
+  }
+  /* Check the length of the paired devices, and if 0 then reset IRK */
+  auto paired_devices = btif_config_get_paired_devices();
+  if (paired_devices.empty()) {
+    LOG_INFO("Last paired device removed, resetting IRK");
+    btm_ble_reset_id();
+  }
+}
+
+/** Removes device, disconnects ACL link if required */
+void bta_dm_remove_device_old(const RawAddress& bd_addr) {
   /* If ACL exists for the device in the remove_bond message*/
   bool is_bd_addr_connected =
       BTM_IsAclConnectionUp(bd_addr, BT_TRANSPORT_LE) ||
