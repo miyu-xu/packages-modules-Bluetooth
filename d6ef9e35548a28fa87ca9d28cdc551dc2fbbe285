@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "034be97f_1d165787",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-08T20:39:14Z",
+      "side": 1,
+      "message": "Usually the classic address and the rpa are different.  Given MAC addresses have \u003c1% collision rate, I\u0027m not seeing them be the same.  Thus each call being in most cases unique.",
+      "parentUuid": "28ee66c1_5c3143e4",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c4cef2f_10f5c686",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9073bfd7_a507d664",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-08T20:39:14Z",
+      "side": 1,
+      "message": "If you are connected to an address of all 0s in which case you likely have a larger problem of having connected to a device with all 0s?  Otherwise someone else could reset the address in code somewhere later in the future?\n\n00:00:00:00:00:00",
+      "parentUuid": "0c4cef2f_10f5c686",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c514d8ef_c8519074",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-08-08T18:47:01Z",
       "side": 1,
       "message": "Is it correct to potentially invoke device removal twice with the same address? Even if it\u0027s not dual mode.",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e0ce4cd_b644e6a1",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-08T20:39:14Z",
+      "side": 1,
+      "message": "Given the classic address and the le address shouldn\u0027t be the same, and if LE only is at play then classic address connected would be false in which case it would attempt to remove the device.  and then in the case of LE if it isn\u0027t then we would in fact call it a second time.  good catch.  This should likely be just consolidated into a single call after the logic.",
+      "parentUuid": "c514d8ef_c8519074",
       "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
