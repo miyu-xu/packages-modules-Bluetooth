@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "161dcff8_0df2f87a",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-09T21:56:11Z",
+      "side": 1,
+      "message": "you don\u0027t need to remove the comma here.\nMaybe it will solve the merge conflict...\nOr not since the PlatformProperties on internal has a comma at the end on the line too",
+      "revId": "174debd75136d6ec9e0f939cb15ffcdb2350f714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
