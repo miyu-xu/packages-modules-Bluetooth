@@ -860,6 +860,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c077cf96_596e0435",
+        "filename": "tools/rootcanal/lmp/src/procedure/mod.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:41:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d86e4d2_dd858dc0",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e80e4a2e_eeb0f1ed",
@@ -873,6 +897,30 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "Shouldn\u0027t this be of a fixed size ?",
+      "range": {
+        "startLine": 95,
+        "startChar": 9,
+        "endLine": 95,
+        "endChar": 15
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c210a6_ac511803",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:41:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e80e4a2e_eeb0f1ed",
       "range": {
         "startLine": 95,
         "startChar": 9,
@@ -943,6 +991,24 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "Could we keep the repeat syntax and extend it ?\n\nSomething like `repeat 3 times with data of sample_p192_public_key`\n\nWhere `data` will be the variable name and `sample_p192_public_key` an iterable thing with 3 elements",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69cfe81f_0fc99a43",
+        "filename": "tools/rootcanal/lmp/test/SP/BV-06-C.in",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:41:51Z",
+      "side": 1,
+      "message": "That\u0027s a thing I want your opinion. I would like to have round visible in repeatments.",
+      "parentUuid": "017d9823_ca6c3117",
       "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
