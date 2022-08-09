@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8df1b5f_4c3515a3",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-09T03:36:57Z",
+      "side": 1,
+      "message": "Agree. Please expose callback up one layer to bluetooth_media as possible. So we don\u0027t need to store any state in this hfp_shim.cc",
+      "parentUuid": "3e0a21af_75e90322",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 82
+      },
+      "revId": "2a3028bdd313f3ae557ce9a3367aca03001d9503",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4426e4d7_4528983c",
         "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
         "patchSetId": 3
