@@ -76,6 +76,7 @@ bool get_pts_connect_eatt_before_encryption(void) { return false; }
 bool get_pts_unencrypt_broadcast(void) { return false; }
 bool get_pts_eatt_peripheral_collision_support(void) { return false; }
 bool get_pts_le_audio_suspend_streaming(void) { return false; }
+bool get_pts_force_update_source_metadata(void) { return false; }
 config_t* get_all(void) { return nullptr; }
 const packet_fragmenter_t* packet_fragmenter_get_interface() { return nullptr; }
 
@@ -98,6 +99,8 @@ stack_config_t mock_stack_config{
         get_pts_eatt_peripheral_collision_support,
     .get_pts_le_audio_suspend_streaming =
         get_pts_le_audio_suspend_streaming,
+    .get_pts_force_update_source_metadata =
+        get_pts_force_update_source_metadata,
     .get_all = get_all,
 };
 const stack_config_t* stack_config_get_interface(void) {

@@ -3461,6 +3461,15 @@ class LeAudioClientImpl : public LeAudioClient {
     if (StopStreamIfNeeded(group, new_context)) return;
 
     if (group->GetTargetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
+      if (stack_config_get_interface()->get_pts_force_update_source_metadata) {
+        for (LeAudioContextType ctx_type : le_audio::types::kLeAudioContextAllTypesArray) {
+          if (group->IsContextSupported(ctx_type) && ctx_type != new_context) {
+            LOG_DEBUG("Update context to: %s",
+                    bluetooth::common::ToString(ctx_type).c_str());
+            new_context = ctx_type;
+          }
+        }
+      }
       /* Configuration is the same for new context, just will do update
        * metadata of stream
        */

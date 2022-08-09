@@ -39,6 +39,7 @@ const char* PTS_CONNECT_EATT_UNCONDITIONALLY =
 const char* PTS_CONNECT_EATT_UNENCRYPTED = "PTS_ConnectEattUnencrypted";
 const char* PTS_BROADCAST_UNENCRYPTED = "PTS_BroadcastUnencrypted";
 const char* PTS_LE_AUDIO_SUSPEND_STREAMING = "PTS_LEAudioSuspnedStreaming";
+const char* PTS_FORCE_UPDATE_SOURCE_METADATA = "PTS_ForceUpdateSourceMetadata";
 const char* PTS_EATT_PERIPHERAL_COLLISION_SUPPORT =
     "PTS_EattPeripheralCollionSupport";
 
@@ -148,6 +149,11 @@ static bool get_pts_le_audio_suspend_streaming(void) {
                          PTS_LE_AUDIO_SUSPEND_STREAMING, false);
 }
 
+static bool get_pts_force_update_source_metadata(void) {
+  return config_get_bool(*config, CONFIG_DEFAULT_SECTION,
+                         PTS_FORCE_UPDATE_SOURCE_METADATA, false);
+}
+
 static config_t* get_all(void) { return config.get(); }
 
 const stack_config_t interface = {get_trace_config_enabled,
@@ -163,6 +169,7 @@ const stack_config_t interface = {get_trace_config_enabled,
                                   get_pts_unencrypt_broadcast,
                                   get_pts_eatt_peripheral_collision_support,
                                   get_pts_le_audio_suspend_streaming,
+                                  get_pts_force_update_source_metadata,
                                   get_all};
 
 const stack_config_t* stack_config_get_interface(void) { return &interface; }

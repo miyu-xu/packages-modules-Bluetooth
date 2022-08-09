@@ -39,6 +39,7 @@ typedef struct {
   bool (*get_pts_unencrypt_broadcast)(void);
   bool (*get_pts_eatt_peripheral_collision_support)(void);
   bool (*get_pts_le_audio_suspend_streaming)(void);
+  bool (*get_pts_force_update_source_metadata)(void);
   config_t* (*get_all)(void);
 } stack_config_t;
 
