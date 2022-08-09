@@ -73,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "73ed3441_4bdeaf8f",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-09T03:35:25Z",
+      "side": 1,
+      "message": "Here is the code of BTM_ReadConnectedTransportAddress\n```\nbool BTM_ReadConnectedTransportAddress(RawAddress* remote_bda,\n                                       tBT_TRANSPORT transport) {\n  if (bluetooth::shim::is_gd_shim_enabled()) {\n    return bluetooth::shim::BTM_ReadConnectedTransportAddress(remote_bda,\n                                                              transport);\n  }\n  tBTM_SEC_DEV_REC* p_dev_rec \u003d btm_find_dev(*remote_bda);\n\n  /* if no device can be located, return */\n  if (p_dev_rec \u003d\u003d NULL) return false;\n...\n}\n```\n\nremote_bda is used for btm_find_dev as well, if we use kEmpty, how can we find the device?",
+      "parentUuid": "a8ec598a_8d6919a9",
+      "range": {
+        "startLine": 607,
+        "startChar": 33,
+        "endLine": 607,
+        "endChar": 52
+      },
+      "revId": "e1ff4d7864ea32527a282c6ba4142f4ebebac70c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "fafcd43c_e7357a52",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 3
@@ -131,6 +155,30 @@
       "side": 1,
       "message": "That\u0027s what happens if we keep the originally resolved address using the output parameter - see above comment.",
       "parentUuid": "d518f94c_70bc3a0b",
+      "range": {
+        "startLine": 622,
+        "startChar": 37,
+        "endLine": 622,
+        "endChar": 44
+      },
+      "revId": "e1ff4d7864ea32527a282c6ba4142f4ebebac70c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1091ac6_1d02737d",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 622,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-09T03:35:25Z",
+      "side": 1,
+      "message": "bd_addr is const, when BR_EDR and BLE have different address and they are disconnected. We can\u0027t use a const to remove two different address.",
+      "parentUuid": "1377b3e8_3f89fce4",
       "range": {
         "startLine": 622,
         "startChar": 37,
