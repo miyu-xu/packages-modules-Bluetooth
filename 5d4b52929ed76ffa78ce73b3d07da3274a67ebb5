@@ -699,6 +699,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a989339_b64e9e31",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T18:06:02Z",
+      "side": 1,
+      "message": "This is impossible",
+      "parentUuid": "410ebf4e_63be34f4",
+      "range": {
+        "startLine": 138,
+        "startChar": 14,
+        "endLine": 138,
+        "endChar": 26
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7b1c8e7_1f250c47",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T18:06:02Z",
+      "side": 1,
+      "message": "BigInt cannot compare with integer, though we can use `i !\u003d BigInt::zero()` but it doesn\u0027t make sense.",
+      "parentUuid": "410ebf4e_63be34f4",
+      "range": {
+        "startLine": 138,
+        "startChar": 14,
+        "endLine": 138,
+        "endChar": 26
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "793e0559_80c7775c",
