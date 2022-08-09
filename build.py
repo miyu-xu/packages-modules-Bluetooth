@@ -42,7 +42,7 @@ import time
 COMMON_MK_USES = [
     'asan',
     'coverage',
-    'cros_host',
+   # 'cros_host',
     'fuzzer',
     'fuzzer',
     'msan',
@@ -57,6 +57,11 @@ USE_DEFAULTS = {
     'android': False,
     'bt_nonstandard_codecs': False,
     'test': False,
+    # Temporary workaround to prevent common-mk BUILD.gn from including sysroot
+    # in all compiler invocations, breaking cross compiles.
+    # See http://cs/chromeos_public/src/platform2/common-mk/BUILD.gn?l=116
+    # Solution: Patch common-mk
+    'cros_host': True,
 }
 
 VALID_TARGETS = [
@@ -195,6 +200,9 @@ class HostBuild():
         self.libdir = self.args.libdir
         self.install_dir = os.path.join(self.output_dir, 'install')
 
+        self.triplet = self.args.triplet
+        self.cross_compile = True if self.triplet else False
+
         # If default target isn't set, build everything
         self.target = 'all'
         if hasattr(self.args, 'target') and self.args.target:
@@ -234,6 +242,58 @@ class HostBuild():
 
         return ' '.join(rust_flags)
 
+    def _generate_target_rustflags(self, triplet):
+        """ Rustflags to include for target cross compilation.
+
+            Order matters here, e.g. 'link-arg' set before setting
+            'linker' does not apply to the new linker.
+      """
+        rust_flags = [
+            '-C',
+            'linker=clang++',
+            '-C',
+            'link-arg=-fuse-ld=lld',
+            '-C',
+            'link-arg=--target=' + triplet,
+            '-C',
+            'link-arg=--sysroot=' + self.sysroot,
+            '-C',
+            'link-arg=-Wl,--allow-multiple-definition',
+            '-L',
+            '{}/out/Default'.format(self.output_dir),
+            '-L',
+            '/usr/local/google/home/andrebraga/copy-arm-to-lib/lib',
+            # exclude uninteresting warnings
+            '-A improper_ctypes_definitions -A improper_ctypes -A unknown_lints',
+        ]
+
+        return ' '.join(rust_flags)
+
+    def _generate_target_cppflags(self, triplet):
+        """ C/C++ flags to include for target cross compilation.
+      """
+        cpp_flags = [
+            '-march=armv7l',
+            '-mtune=cortex-a72',
+            '-mfpu=vfpv4',
+            '-mfloat-abi=hard',
+            '--sysroot',
+            self.sysroot,
+            '-I',
+            os.path.join(self.sysroot, 'usr/include'),
+            '-I',
+            os.path.join(self.sysroot, 'usr/include/c++'),
+            '-I',
+            os.path.join(self.sysroot, 'usr/include/c++/v1'),
+            '-fuse-ld=lld',
+            '-lpthread',
+            '-Wno-unused-command-line-argument',
+            "-target",
+            triplet,
+        ]
+
+        return cpp_flags
+
     def configure_environ(self):
         """ Configure environment variables for GN and Cargo.
         """
@@ -247,10 +307,20 @@ class HostBuild():
         # Configure Rust env variables
         self.env['CARGO_TARGET_DIR'] = self.output_dir
         self.env['CARGO_HOME'] = os.path.join(self.output_dir, 'cargo_home')
-        self.env['RUSTFLAGS'] = self._generate_rustflags()
+        self.env['RUSTFLAGS'] = self._generate_rustflags() if not self.cross_compile else \
+            self._generate_target_rustflags(self.triplet)
         self.env['CXX_ROOT_PATH'] = os.path.join(self.platform_dir, 'bt')
         self.env['CROS_SYSTEM_API_ROOT'] = os.path.join(self.platform_dir, 'system_api')
         self.env['CXX_OUTDIR'] = self._gn_default_output()
+        if self.cross_compile:
+            self.env['PKG_CONFIG_PATH'] = ""
+            self.env['PKG_CONFIG_LIBDIR'] = os.path.join(self.sysroot, self.libdir, 'pkgconfig/')
+            self.env['PKG_CONFIG_SYSROOT_DIR'] = self.sysroot
+            self.env['RUSTFLAGS_' + self.triplet] = self._generate_target_rustflags(self.triplet)
+            self.env['CXX_' + self.triplet] = 'clang++'
+            self.env['CC_' + self.triplet] = 'clang'
+            self.env['CXXFLAGS_' + self.triplet] = ' '.join(self._generate_target_cppflags(self.triplet))
+            self.env['CFLAGS_' + self.triplet] = ' '.join(self._generate_target_cppflags(self.triplet))
 
     def run_command(self, target, args, cwd=None, env=None):
         """ Run command and stream the output.
@@ -331,27 +401,43 @@ class HostBuild():
             'clang_cc': clang,
             'clang_cxx': clang,
             'OS': 'linux',
+            'cross_compile': self.cross_compile,
+            'target_os': 'linux',
+            'target_cppflags': self._generate_target_cppflags(self.triplet),
             'sysroot': self.sysroot,
             'libdir': os.path.join(self.sysroot, self.libdir),
             'build_root': self.output_dir,
             'platform2_root': self.platform_dir,
             'libbase_ver': self._get_basever(),
             'enable_exceptions': os.environ.get('CXXEXCEPTIONS', 0) == '1',
-            'external_cflags': [],
-            'external_cxxflags': ["-DNDEBUG"],
+            # Flags used by chroot arm-generic build.
+            # Added -Wno-deprecated-declarations to combat deprecated features used in /bt/system/gd
+            # Note that cross compile flags are not passed in here as
+            # these flags apply to all compiler invocations,
+            # including those for host tools.
+            'external_cflags': [] if not self.cross_compile else ["-Os", "-pipe", "-g",
+                "-fno-exceptions", "-fno-unwind-tables", "-fno-asynchronous-unwind-tables", \
+                "-ffunction-sections", "-fdata-sections", "-Wno-deprecated-declarations"],
+            'external_cxxflags': ["-DNDEBUG"] if not self.cross_compile else ["-DNDEBUG", "-Os", "-pipe", "-g",
+                "-fno-exceptions", "-fno-unwind-tables", "-fno-asynchronous-unwind-tables", \
+                "-ffunction-sections", "-fdata-sections", "-Wno-deprecated-declarations"],
             'enable_werror': False,
         }
 
         if clang:
             # Make sure to mark the clang use flag as true
             self.use.set_flag('clang', True)
-            gn_args['external_cxxflags'] += ['-I/usr/include/']
+            # external_cxxflags are passed into all compiler invocations, including those for the host tools
+            # which breaks cross compiles.
+            if not self.cross_compile:
+                gn_args['external_cxxflags'] += ['-I' + self.sysroot + '/usr/include/']
 
         gn_args_args = list(to_gn_args_args(gn_args))
         use_args = ['%s=%s' % (k, str(v).lower()) for k, v in self.use.flags.items()]
         gn_args_args += ['use={%s}' % (' '.join(use_args))]
 
         gn_args = [
+            # Note: If one has installed depot_tools for CrOs development, the depot_tools version of gn is used which fails.
             'gn',
             'gen',
         ]
@@ -404,7 +490,12 @@ class HostBuild():
     def _rust_build(self):
         """ Run `cargo build` from platform2/bt directory.
         """
-        self.run_command('rust', ['cargo', 'build'], cwd=os.path.join(self.platform_dir, 'bt'), env=self.env)
+        command = ['cargo', 'build']
+        if self.cross_compile:
+            command.append('--target=' + self.triplet)
+        if self.args.verbose:
+            command.append('-v')
+        self.run_command('rust', command, cwd=os.path.join(self.platform_dir, 'bt'), env=self.env)
 
     def _target_prepare(self):
         """ Target to prepare the output directory for building.
@@ -792,12 +883,15 @@ if __name__ == '__main__':
     parser.add_argument('--notest', help='Don\'t compile test code.', default=False, action='store_true')
     parser.add_argument('--test-name', help='Run test with this string in the name.', default=None)
     parser.add_argument('--target', help='Run specific build target')
-    parser.add_argument('--sysroot', help='Set a specific sysroot path', default='/')
+    parser.add_argument(
+        '--triplet', help='Cross compile for a specific target triplet of the form <arch>-<vendor>-<sys>-<abi>. Builds for the host if unset.', default="")
+    # Require absolute sysroot path to combat breakages arising from the use of "~" or "."
+    parser.add_argument('--sysroot', help='Set a specific ABSOLUTE sysroot path', default='/')
     parser.add_argument('--libdir', help='Libdir - default = usr/lib', default='usr/lib')
     parser.add_argument('--jobs', help='Number of jobs to run', default=0, type=int)
     parser.add_argument(
         '--no-vendored-rust', help='Do not use vendored rust crates', default=False, action='store_true')
-    parser.add_argument('--verbose', help='Verbose logs for build.')
+    parser.add_argument('--verbose', help='Verbose logs for build.', default=False, action='store_true')
     args = parser.parse_args()
 
     # Make sure we get absolute path + expanded path for bootstrap directory
