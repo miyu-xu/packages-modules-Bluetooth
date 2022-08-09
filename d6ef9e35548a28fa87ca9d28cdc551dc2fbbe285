@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88427571_daa89629",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-09T06:34:51Z",
+      "side": 1,
+      "message": "This seems not a ERROR? Should we use LOG_INFO? Same as Line 613",
+      "range": {
+        "startLine": 589,
+        "startChar": 6,
+        "endLine": 589,
+        "endChar": 15
+      },
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28ee66c1_5c3143e4",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 3
