@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee0f4f58_be416e13",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-09T19:10:22Z",
+      "side": 1,
+      "message": "I don\u0027t like that a lot, I would prefer this to be explicit by modifing the repeat syntax and assigning a variable with it.\n\nI like having no index with `repeat 3 times with data of sample_p192_public_key` in a functional programming fashion as the index is an implementation detail.\n\nBut I guess we can do `i @ repeat 3 times` if we want to have the index",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
