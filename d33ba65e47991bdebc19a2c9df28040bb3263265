@@ -22,6 +22,30 @@
       },
       "revId": "d33ba65e47991bdebc19a2c9df28040bb3263265",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cef7baff_e8925cdb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1889140
+      },
+      "writtenOn": "2022-08-09T19:13:19Z",
+      "side": 1,
+      "message": "Right. Thanks for catching it.",
+      "parentUuid": "f30a2ed7_1eb41150",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 14
+      },
+      "revId": "d33ba65e47991bdebc19a2c9df28040bb3263265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
