@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21d73e59_29d74091",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-09T14:54:47Z",
+      "side": 1,
+      "message": "Can you rather list all the tests? (Like we are doing for the other profiles) I know this might on the long term transform into a huge list and we\u0027ll need to figure out what to, but in the meantime, I\u0027d prefer having explicit test referencing",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 16
+      },
+      "revId": "4ebd3a25634043f500295e1d3727ccd000e066ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
