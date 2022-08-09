@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6da52889_48a660cb",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-09T06:56:14Z",
+      "side": 1,
+      "message": "first thing should be to examine `data_len` equal to HFP hal\u0027s packet size, since the decode logic is highly tied to it.",
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eccfc94f_ef1e108b",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-09T06:56:14Z",
+      "side": 1,
+      "message": "is this check necessary?",
+      "range": {
+        "startLine": 248,
+        "startChar": 6,
+        "endLine": 248,
+        "endChar": 46
+      },
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7886b09_a6cbb271",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-09T06:56:14Z",
+      "side": 1,
+      "message": "I don\u0027t think we ever expect packet size to change on the fly.\n\nIn existing CRAS-BlueZ code we had similar thing because there was no HAL layer telling us the true packet size so we had to assume 60, and updatsimilare it on the first read.\n\nNow with Floss stack we shall respect and stick to the packet size value passed from HFP hal.\nif SCO-\u003eread gives data size unequal to this pkt size, treat as WARN or ERR (but not reset)",
+      "range": {
+        "startLine": 64,
+        "startChar": 43,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "660f4dbb_29eb7a31",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-09T06:56:14Z",
+      "side": 1,
+      "message": "nit: deinit",
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ef885ea_41b702aa",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-09T06:56:14Z",
+      "side": 1,
+      "message": "check if read_offset \u003e write_offset",
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d067549_c90fb28b",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-09T06:56:14Z",
+      "side": 1,
+      "message": "as I commented in header, HFP hal should never lie about the packet size and this should be a fatal error.",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 3
+      },
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
