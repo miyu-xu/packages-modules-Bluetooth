@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90979938_7051f7a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-09T10:17:02Z",
+      "side": 1,
+      "message": "Thanks Lukasz for taking care of the review comments.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "66ed52f7967be5943863fe1b1c868652ca60b390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
