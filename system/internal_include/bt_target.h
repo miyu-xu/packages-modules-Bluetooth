@@ -524,6 +524,11 @@
 #define BLE_MAX_L2CAP_CLIENTS 15
 #endif
 
+/* Usefull for PTS testing, when Android acts as peripheral 77:C2:CB:26:23:58 */
+#ifndef BLE_PTS_FIXED_RPA_ADDRESS
+#define BLE_PTS_FIXED_RPA_ADDRESS TRUE
+#endif
+
 /******************************************************************************
  *
  * ATT/GATT Protocol/Profile Settings

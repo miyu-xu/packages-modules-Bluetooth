@@ -318,6 +318,17 @@ void LeAddressManager::rotate_random_address() {
 /* This function generates Resolvable Private Address (RPA) from Identity
  * Resolving Key |irk| and |prand|*/
 hci::Address LeAddressManager::generate_rpa() {
+#if BLE_PTS_FIXED_RPA_ADDRESS == TRUE
+  /* For testing use same address 77:C2:CB:26:23:58 */
+  hci::Address address;
+  address.address[3] = 0xcb;  // prand[0];
+  address.address[4] = 0xc2;  // prand[1];
+  address.address[5] = 0x77;  // prand[2];
+  address.address[0] = 0x58;  // p[0];
+  address.address[1] = 0x23;  // p[1];
+  address.address[2] = 0x26;  // p[2];
+
+#else
   // most significant bit, bit7, bit6 is 01 to be resolvable random
   // Bits of the random part of prand shall not be all 1 or all 0
   std::array<uint8_t, 3> prand = os::GenerateRandom<3>();
@@ -341,6 +352,8 @@ hci::Address LeAddressManager::generate_rpa() {
   address.address[0] = p[0];
   address.address[1] = p[1];
   address.address[2] = p[2];
+
+#endif
   return address;
 }
 
