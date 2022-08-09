@@ -75,6 +75,7 @@ bool get_pts_connect_eatt_unconditionally(void) { return false; }
 bool get_pts_connect_eatt_before_encryption(void) { return false; }
 bool get_pts_unencrypt_broadcast(void) { return false; }
 bool get_pts_eatt_peripheral_collision_support(void) { return false; }
+bool get_pts_use_eatt_for_all_services(void) {return false; }
 config_t* get_all(void) { return nullptr; }
 const packet_fragmenter_t* packet_fragmenter_get_interface() { return nullptr; }
 

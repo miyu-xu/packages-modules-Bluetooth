@@ -57,6 +57,7 @@ stack_config_t mock_stack_config{
     .get_pts_unencrypt_broadcast = get_pts_unencrypt_broadcast,
     .get_pts_eatt_peripheral_collision_support =
         get_pts_eatt_peripheral_collision_support,
+    .get_pts_use_eatt_for_all_services = get_pts_use_eatt_for_all_services,
     .get_all = get_all,
 };
 
