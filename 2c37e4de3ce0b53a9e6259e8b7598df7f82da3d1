@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fc240e3_96a626bf",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T21:59:51Z",
+      "side": 1,
+      "message": "I found following scenario with current configuration set for the RINGTONE.\nSome of the configuration expects SINK and SOURCE.\nAnd some - only SINK.\n\nIf the remote device expect only SINK (there is no SOURCE ases), we still expect maximum scenario for bidirectional and this is a problem - as there will not be possible to find a cis for that in `cises_`\n\nActually this was handled by unittest - you can remove this and run atest --host bluetooth_le_audio_client_test",
+      "parentUuid": "df0578ec_5c1b91eb",
+      "range": {
+        "startLine": 936,
+        "startChar": 8,
+        "endLine": 936,
+        "endChar": 14
+      },
+      "revId": "2c37e4de3ce0b53a9e6259e8b7598df7f82da3d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2002c930_1071a97e",
         "filename": "system/bta/le_audio/devices.cc",
         "patchSetId": 22
@@ -37,6 +61,24 @@
       "writtenOn": "2022-08-09T18:58:53Z",
       "side": 1,
       "message": "Same as previous comment",
+      "revId": "2c37e4de3ce0b53a9e6259e8b7598df7f82da3d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e569d25_8aaa629f",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T21:59:51Z",
+      "side": 1,
+      "message": "same",
+      "parentUuid": "2002c930_1071a97e",
       "revId": "2c37e4de3ce0b53a9e6259e8b7598df7f82da3d1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
