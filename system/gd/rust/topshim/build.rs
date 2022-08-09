@@ -43,7 +43,18 @@ fn main() {
     }
 
     // "-x" and "c++" must be separate due to a bug
-    let clang_args: Vec<&str> = vec!["-x", "c++", "-std=c++17"];
+    let mut clang_args: Vec<String> =
+        vec!["-x".to_string(), "c++".to_string(), "-std=c++17".to_string()];
+    // If cross compiling, add in target cpp flags to correctly compile bindgen code for the target.
+    if env::var("TARGET").unwrap() != env::var("HOST").unwrap() {
+        match env::var("CFLAGS_".to_owned() + &env::var("TARGET").unwrap()) {
+            Err(_) => (),
+            Ok(cflags) => {
+                let flags: Vec<String> = cflags.split(' ').map(String::from).collect();
+                clang_args.extend(flags)
+            }
+        }
+    }
 
     // The bindgen::Builder is the main entry point
     // to bindgen, and lets you build up options for
