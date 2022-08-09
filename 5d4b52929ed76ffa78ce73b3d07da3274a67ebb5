@@ -940,6 +940,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8742b549_e9dd77bc",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T18:34:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc9b4603_707c58de",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a7a867e_4fca5211",
@@ -1106,6 +1124,30 @@
       "side": 1,
       "message": "Yes because in tests we do not have any mean to capture inputs such as random numbers, so we need to set them all zero.",
       "parentUuid": "9257bc8c_91fd68d0",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 30
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1f0f134_9f61e175",
+        "filename": "tools/rootcanal/lmp/src/test/context.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T18:34:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92a83b45_5bb9c66e",
       "range": {
         "startLine": 88,
         "startChar": 8,
