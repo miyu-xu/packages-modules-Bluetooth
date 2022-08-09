@@ -569,6 +569,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b71df3_ad6b9b88",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T17:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3037b441_bd3364a7",
+      "range": {
+        "startLine": 124,
+        "startChar": 25,
+        "endLine": 124,
+        "endChar": 33
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bce2a4b_04cad6a9",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T17:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8d078d9_3437a990",
+      "range": {
+        "startLine": 124,
+        "startChar": 80,
+        "endLine": 124,
+        "endChar": 88
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74e64054_f7883f6c",
@@ -756,6 +804,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25747e77_9db23865",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T17:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c530060_db90f438",
+      "range": {
+        "startLine": 109,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f16a01ca_a757dd63",
@@ -833,6 +905,24 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "I don\u0027t think we need to put that in a `crypto_toolbox` module, having an `ec` or `ecdh` at root is fine",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244b7d30_de637ec2",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/mod.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T17:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a7a867e_4fca5211",
       "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -1009,6 +1099,24 @@
       "side": 1,
       "message": "That\u0027s a thing I want your opinion. I would like to have round visible in repeatments.",
       "parentUuid": "017d9823_ca6c3117",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9c6100c_6f617a9d",
+        "filename": "tools/rootcanal/lmp/test/SP/BV-06-C.in",
+        "patchSetId": 19
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T17:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69cfe81f_0fc99a43",
       "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
