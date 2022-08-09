@@ -38,7 +38,6 @@ struct Controller::impl {
     hci_->RegisterEventHandler(
         EventCode::NUMBER_OF_COMPLETED_PACKETS, handler->BindOn(this, &Controller::impl::NumberOfCompletedPackets));
 
-    le_set_event_mask(kDefaultLeEventMask);
     set_event_mask(kDefaultEventMask);
     write_le_host_support(Enable::ENABLED, Enable::DISABLED);
     hci_->EnqueueCommand(ReadLocalNameBuilder::Create(),
@@ -59,6 +58,16 @@ struct Controller::impl {
     // Wait for all extended features read
     std::promise<void> features_promise;
     auto features_future = features_promise.get_future();
+
+    if (local_version_information_.hci_version_ >= HciVersion::V_5_2) {
+      le_set_event_mask(kDefaultLeEventMask);
+    } else if (local_version_information_.hci_version_ >= HciVersion::V_5_1) {
+      le_set_event_mask(kDefaultLeEventMask & kLeEventMask51);
+    } else if (local_version_information_.hci_version_ >= HciVersion::V_4_2) {
+      le_set_event_mask(kDefaultLeEventMask & kLeEventMask42);
+    } else {
+      le_set_event_mask(kDefaultLeEventMask & kLeEventMask41);
+    }
     hci_->EnqueueCommand(ReadLocalExtendedFeaturesBuilder::Create(0x00),
                          handler->BindOnceOn(this, &Controller::impl::read_local_extended_features_complete_handler,
                                              std::move(features_promise)));
