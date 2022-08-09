@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cbfc5a4_57c02581",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T14:05:00Z",
+      "side": 1,
+      "message": "I think order is correct, it is the configuration picker having problem:\n\naosp/2179678",
+      "revId": "7381d393097718105072406afe590eeff0a21a14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
