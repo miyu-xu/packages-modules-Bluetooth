@@ -182,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4383155b_1f6d2ef8",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "CigAssignCisIds gives us LOG_ERROR whenever false is returned",
+      "parentUuid": "8b87dee6_8d5827a0",
+      "range": {
+        "startLine": 171,
+        "startChar": 6,
+        "endLine": 171,
+        "endChar": 69
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66aa8bd8_84addbf8",
@@ -195,6 +219,30 @@
       "writtenOn": "2022-08-08T20:30:54Z",
       "side": 1,
       "message": "LOG_INFO",
+      "range": {
+        "startLine": 824,
+        "startChar": 2,
+        "endLine": 824,
+        "endChar": 11
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1eecbcf6_6a36e115",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66aa8bd8_84addbf8",
       "range": {
         "startLine": 824,
         "startChar": 2,
@@ -228,6 +276,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ad63591_b693d326",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ff59fab_e3bdd89c",
+      "range": {
+        "startLine": 838,
+        "startChar": 0,
+        "endLine": 841,
+        "endChar": 18
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8944bc69_dcc7d83d",
@@ -241,6 +313,30 @@
       "writtenOn": "2022-08-08T20:30:54Z",
       "side": 1,
       "message": "LOG_INFO",
+      "range": {
+        "startLine": 843,
+        "startChar": 2,
+        "endLine": 843,
+        "endChar": 11
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4be9e79c_7c70a7af",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8944bc69_dcc7d83d",
       "range": {
         "startLine": 843,
         "startChar": 2,
@@ -274,6 +370,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef147b95_1304814d",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2352b04b_6a1e22ea",
+      "range": {
+        "startLine": 857,
+        "startChar": 9,
+        "endLine": 857,
+        "endChar": 24
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8df98747_63989da0",
@@ -287,6 +407,30 @@
       "writtenOn": "2022-08-08T20:30:54Z",
       "side": 1,
       "message": "struct cis cis_entry {\n  .id \u003d XXX,\n  .addr \u003d XXX\n  .type \u003d XXX\n}",
+      "range": {
+        "startLine": 858,
+        "startChar": 4,
+        "endLine": 861,
+        "endChar": 53
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2408c0_892b54f6",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 861,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8df98747_63989da0",
       "range": {
         "startLine": 858,
         "startChar": 4,
@@ -320,6 +464,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e9eb63c_e7ba50e2",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 867,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a2cf25a_012b7130",
+      "range": {
+        "startLine": 867,
+        "startChar": 9,
+        "endLine": 867,
+        "endChar": 30
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "740329ad_8998a0b0",
@@ -333,6 +501,30 @@
       "writtenOn": "2022-08-08T20:30:54Z",
       "side": 1,
       "message": "cis_count_unidir_source \u003e 0",
+      "range": {
+        "startLine": 877,
+        "startChar": 9,
+        "endLine": 877,
+        "endChar": 32
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69c64ecf_afe88b4a",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "740329ad_8998a0b0",
       "range": {
         "startLine": 877,
         "startChar": 9,
@@ -366,6 +558,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94bfdb51_f4ec6374",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 890,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b95b586_614eeddf",
+      "range": {
+        "startLine": 889,
+        "startChar": 2,
+        "endLine": 890,
+        "endChar": 17
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62f5203d_1ed58fbf",
@@ -389,6 +605,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cf5584a_b36ef7fb",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62f5203d_1ed58fbf",
+      "range": {
+        "startLine": 892,
+        "startChar": 1,
+        "endLine": 892,
+        "endChar": 61
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f392bfe9_8eae8026",
@@ -402,6 +642,30 @@
       "writtenOn": "2022-08-08T20:30:54Z",
       "side": 1,
       "message": "why can\u0027t this be a for-loop?\n\nfor (struct ase* ase \u003d leAudioDevice-\u003eGetFirstActiveAse(); ase !\u003d nullptr; ase \u003d leAudioDevice-\u003eGetNextActiveAse(ase)) {\n  // do things here\n}",
+      "range": {
+        "startLine": 896,
+        "startChar": 2,
+        "endLine": 899,
+        "endChar": 6
+      },
+      "revId": "10f2d89e3b3bd16c94f1b3d9e0d500e81ccb8309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "518a0b64_7150a105",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 899,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T09:56:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f392bfe9_8eae8026",
       "range": {
         "startLine": 896,
         "startChar": 2,
