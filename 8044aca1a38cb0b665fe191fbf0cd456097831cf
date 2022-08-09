@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d4d0b7_ff13662e",
+        "filename": "system/bta/le_audio/storage_helper.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T17:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8dc13051_1fa06dbc",
+      "range": {
+        "startLine": 274,
+        "startChar": 7,
+        "endLine": 274,
+        "endChar": 11
+      },
+      "revId": "8044aca1a38cb0b665fe191fbf0cd456097831cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6eb3b06_a6a82d8e",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-08-08T20:39:48Z",
       "side": 1,
       "message": "LeAudioUpdateHandles",
+      "range": {
+        "startLine": 48,
+        "startChar": 26,
+        "endLine": 48,
+        "endChar": 46
+      },
+      "revId": "8044aca1a38cb0b665fe191fbf0cd456097831cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "699077ec_8590525c",
+        "filename": "system/bta/test/common/btif_storage_mock.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-09T17:46:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6eb3b06_a6a82d8e",
       "range": {
         "startLine": 48,
         "startChar": 26,
