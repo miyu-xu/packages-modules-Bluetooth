@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee3c0db5_12e22026",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e085ff4c_fdf6682f",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf26f7ca_940be629",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "I would prefer to drop the `Ec` prefix here as we are already in an `ec` module",
+      "range": {
+        "startLine": 23,
+        "startChar": 11,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8997da12_379a3e93",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf26f7ca_940be629",
       "range": {
         "startLine": 23,
         "startChar": 11,
@@ -81,6 +123,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb337bce_e9eb5817",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae03a704_6167f421",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4c0a553_19c75e77",
@@ -94,6 +160,30 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "You can derive the implementation of `Clone` by using `#[derive(Clone)]` on the  `EcPoint` struct\n\nhttps://doc.rust-lang.org/std/clone/trait.Clone.html#derivable",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 0
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1bc7aad_12bda55f",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4c0a553_19c75e77",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -127,6 +217,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "048264ab_f86d95ec",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c33545e_2ee47b02",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 1
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7b51fda0_52902841",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "I don\u0027t think we should implement `fmt::Display` on it, why not use the Debug representation ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 0
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40a22134_8d6375c7",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b51fda0_52902841",
       "range": {
         "startLine": 50,
         "startChar": 0,
@@ -173,6 +311,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "455a0d3e_68fdc1f6",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33d21f9f_9222bf6e",
+      "range": {
+        "startLine": 79,
+        "startChar": 13,
+        "endLine": 79,
+        "endChar": 18
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0d49ad4_367a54dc",
@@ -186,6 +348,30 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "Could we use an infallible method of BigInt like `from_slice` or `new` ?",
+      "range": {
+        "startLine": 89,
+        "startChar": 51,
+        "endLine": 89,
+        "endChar": 60
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3054e4d1_45a3e9fd",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0d49ad4_367a54dc",
       "range": {
         "startLine": 89,
         "startChar": 51,
@@ -219,6 +405,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f536be9_6ce4c041",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fdfe4c8_3a9b421f",
+      "range": {
+        "startLine": 116,
+        "startChar": 27,
+        "endLine": 116,
+        "endChar": 39
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0355dc1a_deff4519",
@@ -242,6 +452,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "caca0399_d609f1ab",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0355dc1a_deff4519",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 119,
+        "endChar": 13
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa95c148_e2eacd81",
@@ -255,6 +489,30 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "Could we comment a bit more what we are doing here and give some links as well.\n\nI found the Wikipedia page really useful to understand what was going on here https://en.wikipedia.org/wiki/Elliptic_curve#The_group_law\n\nWe could also number each case with the number given on the picture of wikipedia",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 32
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25f71621_2cfcbd17",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa95c148_e2eacd81",
       "range": {
         "startLine": 120,
         "startChar": 0,
@@ -328,6 +586,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2045544_f8617eda",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74e64054_f7883f6c",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aad752e4_48a6dfda",
@@ -351,6 +627,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "410ebf4e_63be34f4",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aad752e4_48a6dfda",
+      "range": {
+        "startLine": 138,
+        "startChar": 14,
+        "endLine": 138,
+        "endChar": 26
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "793e0559_80c7775c",
@@ -364,6 +664,24 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "As we are checking `is_odd` (so not checking bits) can we do a `i /\u003d 2` instead ?",
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26a6b8b7_bc073bda",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "793e0559_80c7775c",
       "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -414,6 +732,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3139b256_28fd2953",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd7d8df2_cc10c6da",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 146,
+        "endChar": 5
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f16a01ca_a757dd63",
@@ -427,6 +769,30 @@
       "writtenOn": "2022-08-08T18:13:14Z",
       "side": 1,
       "message": "Take a non mutable reference in mul to avoid a clone here ?",
+      "range": {
+        "startLine": 149,
+        "startChar": 24,
+        "endLine": 149,
+        "endChar": 31
+      },
+      "revId": "5d4b52929ed76ffa78ce73b3d07da3274a67ebb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c940bc8_06eb92bd",
+        "filename": "tools/rootcanal/lmp/src/crypto_toolbox/ec.rs",
+        "patchSetId": 19
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-09T16:38:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f16a01ca_a757dd63",
       "range": {
         "startLine": 149,
         "startChar": 24,
