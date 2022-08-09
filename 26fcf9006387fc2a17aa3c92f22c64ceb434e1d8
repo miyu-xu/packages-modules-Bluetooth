@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceb94548_5ae0857d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-09T00:25:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70b4c2a0_2572e221",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 3
+      },
+      "revId": "26fcf9006387fc2a17aa3c92f22c64ceb434e1d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9843249d_a98ae87a",
@@ -61,6 +85,24 @@
       "writtenOn": "2022-08-08T23:05:25Z",
       "side": 1,
       "message": "BUG and TEST",
+      "revId": "26fcf9006387fc2a17aa3c92f22c64ceb434e1d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f2c2a7c_159fa1cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-09T00:25:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9843249d_a98ae87a",
       "revId": "26fcf9006387fc2a17aa3c92f22c64ceb434e1d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +130,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b8fb487_02b7e2cc",
+        "filename": "system/build/dpkg/libchrome/debian/patches/0001-Fix-build-issues-when-using-clang-older-than-v12.patch",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-09T00:25:45Z",
+      "side": 1,
+      "message": "This is the format of git-format-patch, prefer to align with this (as other patches do).",
+      "parentUuid": "3b8fc468_8064d33a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "26fcf9006387fc2a17aa3c92f22c64ceb434e1d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4408837c_473372d0",
@@ -101,6 +167,30 @@
       "writtenOn": "2022-08-08T23:05:25Z",
       "side": 1,
       "message": "nit: Redundant space?",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 3
+      },
+      "revId": "26fcf9006387fc2a17aa3c92f22c64ceb434e1d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "301421e9_6980c96b",
+        "filename": "system/build/dpkg/libchrome/debian/patches/0001-Fix-build-issues-when-using-clang-older-than-v12.patch",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-09T00:25:45Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4408837c_473372d0",
       "range": {
         "startLine": 23,
         "startChar": 2,
