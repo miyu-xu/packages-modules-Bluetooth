@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b263e38d_9e338d2a",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 21
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-09T19:06:52Z",
+      "side": 1,
+      "message": "I think this should not be in the `procedure` folder but in the `src` folder",
+      "revId": "fcf9822bd0108679558d5d28ebfb821e18ae7dc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
