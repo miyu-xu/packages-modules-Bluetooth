@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc327e0_d3754868",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2937,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-08-09T12:13:21Z",
+      "side": 1,
+      "message": "LOG_INFO",
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85e6c55_1c452b8b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2944,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-08-09T12:13:21Z",
+      "side": 1,
+      "message": "this is confusing ..`disable_timer` but `suspendTimeout`",
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b0a0b60_3c9c42d2",
+        "filename": "system/conf/bt_stack.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-08-09T12:13:21Z",
+      "side": 1,
+      "message": "typo",
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38c3ae8f_25d371ff",
+        "filename": "system/main/stack_config.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-08-09T12:13:21Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 41,
+        "startChar": 46,
+        "endLine": 41,
+        "endChar": 73
+      },
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
