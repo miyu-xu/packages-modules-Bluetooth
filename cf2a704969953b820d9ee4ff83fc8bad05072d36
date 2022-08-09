@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc147cba_3b85e015",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3461,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-08-09T14:19:29Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the force-overwritten context types be taken into the account here already?",
+      "range": {
+        "startLine": 3461,
+        "startChar": 4,
+        "endLine": 3461,
+        "endChar": 55
+      },
+      "revId": "cf2a704969953b820d9ee4ff83fc8bad05072d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9da9a0b8_d4a2202e",
+        "filename": "system/conf/bt_stack.conf",
+        "patchSetId": 1
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-08-09T14:19:29Z",
+      "side": 1,
+      "message": "Should be disabled by default.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 34
+      },
+      "revId": "cf2a704969953b820d9ee4ff83fc8bad05072d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
