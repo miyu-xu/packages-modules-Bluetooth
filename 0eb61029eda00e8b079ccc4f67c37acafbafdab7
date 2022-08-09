@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f0d0f94_22a82a21",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-09T17:50:42Z",
+      "side": 1,
+      "message": "TODO: b/241930383",
+      "parentUuid": "0c49791a_5d628486",
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f38cd015_420bf397",
@@ -65,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63f5658a_0a74f7d1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-09T17:50:42Z",
+      "side": 1,
+      "message": "lol I ran out of letters.  woot woot, xoot xoot, yoot yoot, zoot zoot :\u0027D",
+      "parentUuid": "c6fdc4fb_238d12e1",
+      "range": {
+        "startLine": 361,
+        "startChar": 7,
+        "endLine": 361,
+        "endChar": 30
+      },
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a93987c_d7ce4556",
@@ -78,6 +120,24 @@
       "writtenOn": "2022-06-24T16:35:59Z",
       "side": 1,
       "message": "nit: ye old Bluetoothe interface? :P",
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "903927bb_2c06330b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-09T17:50:42Z",
+      "side": 1,
+      "message": "xD yes.  ye olde Harald Bluetoothe!",
+      "parentUuid": "7a93987c_d7ce4556",
       "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -99,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "298f63ae_6ee10e0e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 538,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-09T17:50:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "257dd612_5032b24e",
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7d128cc6_01798d08",
@@ -112,6 +190,30 @@
       "writtenOn": "2022-06-24T16:09:59Z",
       "side": 1,
       "message": "remove?  Make debug?",
+      "range": {
+        "startLine": 944,
+        "startChar": 8,
+        "endLine": 944,
+        "endChar": 41
+      },
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b56b545b_858f375e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-09T17:50:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d128cc6_01798d08",
       "range": {
         "startLine": 944,
         "startChar": 8,
