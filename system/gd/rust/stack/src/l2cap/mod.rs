@@ -7,6 +7,7 @@ mod demultiplexer;
 mod handlemap;
 mod listeners;
 mod nonce;
+pub mod owned_handle;
 pub mod types;
 
 use anyhow::{ensure, Result};
@@ -15,20 +16,17 @@ use anyhow::{Context, Ok};
 use gddi::module;
 use gddi::provides;
 use gddi::Stoppable;
-use log::{info};
+use log::info;
 
-
-
+use std::mem;
 use std::num::NonZeroU16;
 use std::sync::Arc;
 use tokio::runtime::Runtime;
 use tokio::spawn;
 use tokio::sync::mpsc::{channel, Sender};
 
-use tokio::sync::{oneshot};
+use tokio::sync::oneshot;
 use tokio::task::JoinHandle;
-
-
 
 use self::bridge::ffi::{
     initialize_l2cap_tx_on_main_thread, L2CA_ConnectReq_from_rust, L2CA_Register_from_rust,
@@ -195,6 +193,6 @@ impl L2capChannel {
 
 impl Drop for L2capChannel {
     fn drop(&mut self) {
-        self.data_tx.try_send(OutgoingEvent::Disconnect { channel_handle: self.handle });
+        let _ = self.data_tx.try_send(OutgoingEvent::Disconnect { channel_handle: self.handle });
     }
 }

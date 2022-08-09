@@ -91,8 +91,13 @@ fn oneshot_send_u16(sender: &mut OneshotU16, value: u16) {
 
 fn run_l2cap_self_test() {
     unsafe {
-        L2CA_Register_from_rust(1, false, null_mut(), 0, 0, unsafe {
-            null_mut::<OneshotU16>().as_mut().unwrap()
-        });
+        L2CA_Register_from_rust(
+            1,
+            false,
+            null_mut(),
+            0,
+            0,
+            null_mut::<OneshotU16>().as_mut().unwrap(),
+        );
     }
 }

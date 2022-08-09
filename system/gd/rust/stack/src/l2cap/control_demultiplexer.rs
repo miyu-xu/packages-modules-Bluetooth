@@ -7,8 +7,8 @@ use super::{
     types::L2capChannelId,
     ChannelError, IncomingConnection, IncomingData, L2capChannel,
 };
-use anyhow::{bail, Context, Result};
-use log::{warn};
+use anyhow::{anyhow, bail, Context, Result};
+use log::warn;
 use tokio::{
     select,
     sync::{
@@ -132,7 +132,7 @@ impl L2capControlDemultiplexer {
     }
 
     async fn unregister_data_channel(&mut self, local_cid: L2capChannelId) -> Result<()> {
-        self.handles.free_key(local_cid);
+        self.handles.free_key(local_cid)?;
         self.data_demultiplexer.unsubscribe(local_cid).await.with_context(|| {
             format!("failed to unregister cid {local_cid:?} in data demultiplexer")
         })
@@ -150,6 +150,7 @@ impl L2capControlDemultiplexer {
                             handle: self.handles.assign_key(local_cid)?,
                             data_rx,
                             data_tx: self.outgoing_event_tx.clone(),
+                            is_disconnected: false,
                         },
                     })
                     .await
@@ -163,6 +164,7 @@ impl L2capControlDemultiplexer {
                         handle: self.handles.assign_key(local_cid)?,
                         data_rx,
                         data_tx: self.outgoing_event_tx.clone(),
+                        is_disconnected: false,
                     })
                     .await
                     .context("failed to dispatch established outgoing connection event")
@@ -198,12 +200,17 @@ impl L2capControlDemultiplexer {
                 let status =
                     rx.await.with_context(|| format!("failed to send data on LCID={channel:?}"))?;
                 match status {
-                    0 => {} // L2CAP_DW_FAILED,
+                    // L2CAP_DW_FAILED
+                    0 => {}
+                    // L2CAP_DW_SUCCESS
                     1 => {
-                        ack.send(ChannelSendStatus::Uncongested);
+                        ack.send(ChannelSendStatus::Uncongested)
+                            .map_err(|_| anyhow!("data sender hung up on us"))?;
                     }
+                    // L2CAP_DW_CONGESTED
                     2 => {
-                        ack.send(ChannelSendStatus::Congested);
+                        ack.send(ChannelSendStatus::Congested)
+                            .map_err(|_| anyhow!("data sender hung up on us"))?;
                     }
                     _ => bail!("got unexpected status code after sending data: {status:?}"),
                 };

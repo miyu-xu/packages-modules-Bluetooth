@@ -15,7 +15,10 @@ use tokio::{
     task::JoinHandle,
 };
 
-use super::nonce::{Nonce, NonceGenerator};
+use super::{
+    nonce::{Nonce, NonceGenerator},
+    owned_handle::OwnedHandle,
+};
 
 #[derive(Debug)]
 enum ControlSignal<E: Debug, K: Debug + Copy> {
@@ -123,7 +126,7 @@ async fn event_loop<E, K, C>(
 pub struct Demultiplexer<E: Debug, K: Debug + Copy> {
     control_tx: Sender<ControlSignal<E, K>>,
     pub event_tx: Sender<E>,
-    task_handle: JoinHandle<()>,
+    task_handle: OwnedHandle<()>,
 }
 
 impl<E, K> Demultiplexer<E, K>
@@ -137,7 +140,8 @@ where
     {
         let (control_tx, control_rx) = channel(4);
         let (event_tx, event_rx) = channel(16);
-        let task_handle = spawn(event_loop(event_rx, selector, control_tx.clone(), control_rx));
+        let task_handle =
+            OwnedHandle::new(spawn(event_loop(event_rx, selector, control_tx.clone(), control_rx)));
         Demultiplexer { control_tx, event_tx, task_handle }
     }
 
@@ -167,13 +171,6 @@ where
         reply_rx
             .await
             .with_context(|| format!("demultiplexer failed to unsubscribe from key {key:?}"))
-    }
-}
-
-impl<E: Debug, K: Debug + Copy> Drop for Demultiplexer<E, K> {
-    fn drop(&mut self) {
-        // stop task loop to release handle on incoming stream
-        self.task_handle.abort();
     }
 }
 

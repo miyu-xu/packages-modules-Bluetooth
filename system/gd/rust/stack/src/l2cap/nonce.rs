@@ -9,7 +9,7 @@ pub struct NonceGenerator {
 
 impl NonceGenerator {
     pub fn new() -> Self {
-        NonceGenerator { next_val: 0xdeadbeef }
+        NonceGenerator { next_val: 0xfee1dead }
     }
 
     pub fn next(&mut self) -> Nonce {
