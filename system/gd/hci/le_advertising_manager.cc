@@ -1064,9 +1064,9 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           }
         } break;
         case (AdvertisingApiType::EXTENDED): {
-          if (enabled_sets.size() != 0) {
+          for (auto set_id : enabled_sets) {
             le_advertising_interface_->EnqueueCommand(
-                hci::LeSetExtendedAdvertisingEnableBuilder::Create(Enable::ENABLED, enabled_sets),
+                hci::LeSetExtendedAdvertisingEnableBuilder::Create(Enable::ENABLED, {set_id}),
                 module_handler_->BindOnce(impl::check_status<LeSetExtendedAdvertisingEnableCompleteView>));
           }
         } break;
