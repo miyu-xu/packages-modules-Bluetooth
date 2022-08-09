@@ -16,6 +16,24 @@
       "message": "I had to move it up as well to proper calculate phone call scenario.",
       "revId": "4c13241a8f1da960961b3d210ee4daf3fc687aef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d28c8363_8e60f690",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-09T18:58:53Z",
+      "side": 1,
+      "message": "Thanks Lukasz for catching this",
+      "parentUuid": "2b87a625_404cc158",
+      "revId": "4c13241a8f1da960961b3d210ee4daf3fc687aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

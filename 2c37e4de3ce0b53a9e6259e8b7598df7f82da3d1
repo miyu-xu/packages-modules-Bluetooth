@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df0578ec_5c1b91eb",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-09T18:58:53Z",
+      "side": 1,
+      "message": "Hi Lukasz, please clarify why is this change needed, based on possibility we are trying first to assign Bi-directional CIS ID(s) followed by Uni-Directional Sink and Uni-Directional Source CIS ID(s).",
+      "range": {
+        "startLine": 936,
+        "startChar": 8,
+        "endLine": 936,
+        "endChar": 14
+      },
+      "revId": "2c37e4de3ce0b53a9e6259e8b7598df7f82da3d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2002c930_1071a97e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 955,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-09T18:58:53Z",
+      "side": 1,
+      "message": "Same as previous comment",
+      "revId": "2c37e4de3ce0b53a9e6259e8b7598df7f82da3d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
