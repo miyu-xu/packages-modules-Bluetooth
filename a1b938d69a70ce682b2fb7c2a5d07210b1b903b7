@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f0dc29_ee85b900",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-09T22:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6da52889_48a660cb",
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eccfc94f_ef1e108b",
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-09T06:56:14Z",
       "side": 1,
       "message": "is this check necessary?",
+      "range": {
+        "startLine": 248,
+        "startChar": 6,
+        "endLine": 248,
+        "endChar": 46
+      },
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a12f6c8_ae15b1fa",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-09T22:49:50Z",
+      "side": 1,
+      "message": "I was trying to save a call to the bluetooth::audio::sco::wbs::decode. Agree that this is not that necessary for now.",
+      "parentUuid": "eccfc94f_ef1e108b",
       "range": {
         "startLine": 248,
         "startChar": 6,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab9ab58f_405b5cf9",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-09T22:49:50Z",
+      "side": 1,
+      "message": "Thank you for the valid point. Addressed.",
+      "parentUuid": "f7886b09_a6cbb271",
+      "range": {
+        "startLine": 64,
+        "startChar": 43,
+        "endLine": 64,
+        "endChar": 60
+      },
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "660f4dbb_29eb7a31",
@@ -77,6 +143,24 @@
       "writtenOn": "2022-08-09T06:56:14Z",
       "side": 1,
       "message": "nit: deinit",
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44228ed6_f5000f3b",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-09T22:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "660f4dbb_29eb7a31",
       "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "972d8d74_455509fe",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-09T22:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ef885ea_41b702aa",
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d067549_c90fb28b",
@@ -111,6 +213,30 @@
       "writtenOn": "2022-08-09T06:56:14Z",
       "side": 1,
       "message": "as I commented in header, HFP hal should never lie about the packet size and this should be a fatal error.",
+      "range": {
+        "startLine": 257,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 3
+      },
+      "revId": "a1b938d69a70ce682b2fb7c2a5d07210b1b903b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dcc68d9_1163ce13",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-09T22:49:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d067549_c90fb28b",
       "range": {
         "startLine": 257,
         "startChar": 0,
