@@ -77,6 +77,24 @@ size_t enqueue_packet(const uint8_t* data, size_t pkt_size);
  */
 size_t decode(const uint8_t** output);
 
+/* Try to encode PCM data into one SCO packet and put the packets in the buffer.
+ * Args:
+ *    data - Pointer to the input PCM bytes for the encoder to encode.
+ *    len - Length of the input data.
+ * Returns:
+ *    The length of input data that is encoded. 0 if failed.
+ */
+size_t encode(const uint8_t* data, size_t len);
+
+/* Dequeue a SCO packet with encoded mSBC data if possible. The length of the
+ * packet is determined by the pkt_size set by the init().
+ * Args:
+ *    output - Pointer to output mSBC packets encoded by the encoder.
+ * Returns:
+ *    The length of dequeued packet. 0 if failed.
+ */
+size_t dequeue_packet(const uint8_t** output);
+
 }  // namespace bluetooth::audio::sco::wbs
 
 /* Define the structures needed by sco */
