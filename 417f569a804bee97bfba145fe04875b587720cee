@@ -16,6 +16,24 @@
       "message": "I always forget the byte order here.  Could we make it more obvious?  DE \u003e DD, but 0x50 \u003c 0x70\n\nMaybe we could compare\n\n{0x50, 0x02, 0x03, 0xC9, 0x12, 0xDE}\n{0x50, 0x02, 0x03, 0xC9, 0x12, 0xDD}\n\nand\n\n{0x50, 0x02, 0x03, 0xC9, 0x12, 0xDD}\n{0x70, 0x02, 0x03, 0xC9, 0x12, 0xDD}\n\nseparately?",
       "revId": "417f569a804bee97bfba145fe04875b587720cee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cfe9345_e4baa374",
+        "filename": "system/gd/hci/address_with_type_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-10T17:17:09Z",
+      "side": 1,
+      "message": "ok...can you help me understand how to make it more obvious ?\n\nWithin this stanza, the two \"end\" bytes are 0x50/0x70 and 0xDE/0xDD.\nThe ASSERT_TRUE validation for the logic in this stanza indicates that 0x50 \u003c 0x70, not 0xDE \u003c 0xDD.\n\nI could add another 2 stanzas with the 2 suggestions you provide but keep this one as a more \"complex\" validation after the more obvious ones ?\n\nI kept the address type values used in previous tests for continuity",
+      "parentUuid": "11f0cc11_e546a52a",
+      "revId": "417f569a804bee97bfba145fe04875b587720cee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
