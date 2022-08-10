@@ -1621,6 +1621,17 @@ class HasClientImpl : public HasClient {
                              device->GetAllPresetInfo());
     callbacks_->OnActivePresetSelected(device->addr,
                                        device->currently_active_preset);
+
+    if (device->conn_id != GATT_INVALID_CONN_ID &&
+        osi_property_get_bool("persist.bluetooth.has.always_use_preset_cache",
+                              true) == false) {
+      LOG_INFO("Reading all the presets for PTS purposes");
+      /* Get all the presets */
+      CpReadAllPresetsOperation(HasCtpOp(
+          device->addr, PresetCtpOpcode::READ_PRESETS,
+          le_audio::has::kStartPresetIndex, le_audio::has::kMaxNumOfPresets));
+    }
+
     return true;
   }
 
