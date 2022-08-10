@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b35464b9_2391ad8d",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "I use it to store public key received from peer",
+      "parentUuid": "eca95118_0313fba7",
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b0aeaf4_f4ca20d5",
         "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
         "patchSetId": 23
@@ -31,6 +49,30 @@
       "writtenOn": "2022-08-09T21:59:53Z",
       "side": 1,
       "message": "We should return `None` here",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 26
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4de98c7f_28885a97",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b0aeaf4_f4ca20d5",
       "range": {
         "startLine": 24,
         "startChar": 11,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4adbcdd6_77f0a2bc",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "187cb1f7_0b41fc0b",
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78cb6b67_5c738204",
@@ -71,6 +131,30 @@
       "writtenOn": "2022-08-09T21:59:53Z",
       "side": 1,
       "message": "Could we write it this way to avoid the `unwrap` ?\n```\n    if let Ok(inner) \u003d bytes.try_into() {\n        Some(PublicKey::P192(inner))\n    }\n    else if let Ok(inner) \u003d bytes.try_into() {\n        Some(PublicKey::P256(inner))\n    } else {\n        None\n    }\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 33,
+        "endChar": 9
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cf0d41f_bc23a91f",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78cb6b67_5c738204",
       "range": {
         "startLine": 29,
         "startChar": 7,
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da945ffe_767448ab",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23ad6e23_fede3bbb",
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccfdf2c6_8f2a211a",
@@ -111,6 +213,30 @@
       "writtenOn": "2022-08-09T21:59:53Z",
       "side": 1,
       "message": "I\u0027m not opiniated about this but you can also do that with\n`self.as_slice().split_at(self.get_size() / 2).0`\nThe current solution is also fine, pick whatever you prefer",
+      "range": {
+        "startLine": 55,
+        "startChar": 37,
+        "endLine": 55,
+        "endChar": 77
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b02eb0b9_c124992f",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "ccfdf2c6_8f2a211a",
       "range": {
         "startLine": 55,
         "startChar": 37,
@@ -163,6 +289,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f487b22_e2f7edb2",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "It then requires a macro upgrade to reuse input",
+      "parentUuid": "20dba4b1_7d2d425d",
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5032f4b7_398a57ed",
         "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
         "patchSetId": 23
@@ -174,6 +318,30 @@
       "writtenOn": "2022-08-09T21:59:53Z",
       "side": 1,
       "message": "```\nlet inner \u003d [0; P192_PRIVATE_KEY_SIZE];\ninner.copy_from_slice(key.to_signed_bytes_le())\nSelf::P192(inner)\n```",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 43
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdb11815_47cbacff",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5032f4b7_398a57ed",
       "range": {
         "startLine": 98,
         "startChar": 0,
@@ -197,6 +365,30 @@
       "writtenOn": "2022-08-09T21:59:53Z",
       "side": 1,
       "message": "Could we move that to the EllipticCurve trait ?\n```\n    fn g() -\u003e Point\u003cSelf\u003e {\n        Point::Finite::new(\n            BigInt::from_bytes_be(Sign::Plus, Self::G_X.as_ref()),\n            BigInt::from_bytes_be(Sign::Plus, Self::G_Y.as_ref())\n        )\n    }\n```\n\nAnd remove the generate_public_key function to be able to do directly\n`Curve::g() * private_key`",
+      "range": {
+        "startLine": 225,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 10
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca4510a3_17b0eff6",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a09ca2af_20e11b05",
       "range": {
         "startLine": 225,
         "startChar": 0,

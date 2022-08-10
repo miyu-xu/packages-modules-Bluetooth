@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "244d3748_177db90f",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3cf00ce8_dee63ee2",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 39
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cba8074a_aba6b438",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7a70574_a82bc71b",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cba8074a_aba6b438",
+      "range": {
+        "startLine": 181,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 1
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e5d3b5d_e0eee22b",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-08-09T19:06:52Z",
       "side": 1,
       "message": "Could we use array instead of byte strings here ?\n\n```\nimpl EllipticCurve for P256r1 {\n    type Param \u003d [u8; 32];\n\n    const A: i32 \u003d -3;\n    const P: Self::Param \u003d [\n        0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,\n        0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,\n        0xff, 0xff,\n    ];\n    const G_X: Self::Param \u003d [\n        0x6b, 0x17, 0xd1, 0xf2, 0xe1, 0x2c, 0x42, 0x47, 0xf8, 0xbc, 0xe6, 0xe5, 0x63, 0xa4, 0x40,\n        0xf2, 0x77, 0x03, 0x7d, 0x81, 0x2d, 0xeb, 0x33, 0xa0, 0xf4, 0xa1, 0x39, 0x45, 0xd8, 0x98,\n        0xc2, 0x96,\n    ];\n    const G_Y: Self::Param \u003d [\n        0x4f, 0xe3, 0x42, 0xe2, 0xfe, 0x1a, 0x7f, 0x9b, 0x8e, 0xe7, 0xeb, 0x4a, 0x7c, 0x0f, 0x9e,\n        0x16, 0x2b, 0xce, 0x33, 0x57, 0x6b, 0x31, 0x5e, 0xce, 0xcb, 0xb6, 0x40, 0x68, 0x37, 0xbf,\n        0x51, 0xf5,\n    ];\n    const SIZE: usize \u003d P256_PRIVATE_KEY_SIZE;\n}\n```",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 1
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36a90d9b_be2e64b4",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e5d3b5d_e0eee22b",
       "range": {
         "startLine": 196,
         "startChar": 0,
@@ -104,6 +176,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c0da7a8_bf8afdd2",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "679a4ef0_99b6de67",
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "097e7715_5f3c1e15",
@@ -117,6 +207,30 @@
       "writtenOn": "2022-08-09T19:06:52Z",
       "side": 1,
       "message": "You can ignore fields with `..`\n\n```\nPoint::Infinite { .. }\n```",
+      "range": {
+        "startLine": 240,
+        "startChar": 30,
+        "endLine": 240,
+        "endChar": 39
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dda7f283_c2d8d302",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "097e7715_5f3c1e15",
       "range": {
         "startLine": 240,
         "startChar": 30,
@@ -150,6 +264,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5463ecf2_3030c790",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5ac99ff_b3c4a872",
+      "range": {
+        "startLine": 269,
+        "startChar": 8,
+        "endLine": 269,
+        "endChar": 50
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9d08bc0_7702a4fe",
@@ -163,6 +301,30 @@
       "writtenOn": "2022-08-09T19:06:52Z",
       "side": 1,
       "message": "```\n            (Point::Infinite { .. }, right) \u003d\u003e return right,\n            (left, Point::Infinite { _curve: _ }) \u003d\u003e return left,\n```",
+      "range": {
+        "startLine": 270,
+        "startChar": 12,
+        "endLine": 278,
+        "endChar": 13
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe19155a_71ecd216",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9d08bc0_7702a4fe",
       "range": {
         "startLine": 270,
         "startChar": 12,
@@ -233,6 +395,30 @@
       "writtenOn": "2022-08-09T19:06:52Z",
       "side": 1,
       "message": "Could we move that in the match using a match guard ?\n\nhttps://doc.rust-lang.org/rust-by-example/flow_control/match/guard.html",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 9
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3cc1c26_d9dbb6d0",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T08:48:48Z",
+      "side": 1,
+      "message": "Not available for Rust 2018",
+      "parentUuid": "e5a233f1_042072ce",
       "range": {
         "startLine": 284,
         "startChar": 0,
