@@ -22,6 +22,30 @@
       },
       "revId": "ee441bdb992da4777647688ffc4afb2a39c4433a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2091e579_2751a2a5",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-10T08:58:01Z",
+      "side": 1,
+      "message": "idea is to move all logs we will move new style. So for HAP it is first step (included added and new LOG_ERROR used).",
+      "parentUuid": "922b9985_b4d2c29b",
+      "range": {
+        "startLine": 1550,
+        "startChar": 10,
+        "endLine": 1551,
+        "endChar": 39
+      },
+      "revId": "ee441bdb992da4777647688ffc4afb2a39c4433a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
