@@ -239,7 +239,7 @@ async fn send_commitment(ctx: &impl Context, skip_first: bool) {
 
 async fn user_confirmation_request(ctx: &impl Context) -> Result<(), ()> {
     ctx.send_hci_event(
-        hci::UserConfirmationRequestBuilder { bd_addr: ctx.peer_address(), numeric_value: 0 }
+        hci::UserConfirmationRequestBuilder { bd_addr: ctx.peer_address(), numeric_value: 123456 }
             .build(),
     );
 
