@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "922b9985_b4d2c29b",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1551,
+      "author": {
+        "id": 1532219
+      },
+      "writtenOn": "2022-08-10T08:22:15Z",
+      "side": 1,
+      "message": "Can we use `LOG(ERROR) \u003c\u003c __func__ \u003c\u003c...` as above, for consistency?",
+      "range": {
+        "startLine": 1550,
+        "startChar": 10,
+        "endLine": 1551,
+        "endChar": 39
+      },
+      "revId": "ee441bdb992da4777647688ffc4afb2a39c4433a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
