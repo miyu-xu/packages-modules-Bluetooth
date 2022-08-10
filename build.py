@@ -30,6 +30,7 @@ vendor repository as well.
 import argparse
 import multiprocessing
 import os
+import platform
 import shutil
 import six
 import subprocess
@@ -801,6 +802,12 @@ if __name__ == '__main__':
 
     # Make sure we get absolute path + expanded path for bootstrap directory
     args.bootstrap_dir = os.path.abspath(os.path.expanduser(args.bootstrap_dir))
+
+    # Possible values for machine() come from 'uname -m'
+    # Since this script only runs on Linux, arm machines must have 
+    # one of these values in its name.
+    if platform.machine().find('arm') != -1 or platform.machine().find('aarch') != -1:
+        sys.exit("ARM architecture is not yet supported for Floss.")
 
     if args.run_bootstrap:
         bootstrap = Bootstrap(args.bootstrap_dir, os.path.dirname(__file__))
