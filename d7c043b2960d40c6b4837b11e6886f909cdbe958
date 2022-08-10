@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d4c30af_701cfd98",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-10T22:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "057df099_e284b24e",
+      "range": {
+        "startLine": 68,
+        "startChar": 11,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3e1ebd8_05613c62",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-10T21:14:07Z",
       "side": 1,
       "message": "same as above\n\nlock_guard?",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d83d1c71_0856078c",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-10T22:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a3e1ebd8_05613c62",
       "range": {
         "startLine": 77,
         "startChar": 11,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "067c333b_08bdffef",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-10T22:59:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8bccaef5_f839d09a",
+      "range": {
+        "startLine": 127,
+        "startChar": 21,
+        "endLine": 127,
+        "endChar": 35
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d55b4e7b_f5c56913",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-10T21:14:07Z",
       "side": 1,
       "message": "Could this be simplified?\n\n```\n{\n  std::lock_guard\u003cstd::mutex\u003e lock(dumpsys_guard_);\n  const auto connect_list \u003d (le_impl_ !\u003d nullptr) ? le_impl_-\u003econnect_list : std::unordered_set\u003cAddressWithType\u003e();\n  const auto le_connectability_state \u003d (le_impl_ !\u003d nullptr) ? (int)le_impl_-\u003econnectability_state_ : 0;\n  const auto le_create_connection_timeout_alarms_count \u003d\n      (le_impl_ !\u003d nullptr) ? (int)le_impl_-\u003ecreate_connection_timeout_alarms_.size() : 0;\n}\n```\n\nWhen lock goes out of scope it will automatically unlock",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 0
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8735150a_c7904b98",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-10T22:59:36Z",
+      "side": 1,
+      "message": "I want to minimize holding the lock and the presented solution has the variables out of scope for the flatbuffer stuffing that occurs alter.\n\nIf this code didn\u0027t touch another library (flatbuffers) I\u0027d feel more comfortable with locking the entire method.  But since we have no control over anything in the flatbuffer API and impl there is a small but non-zero risk of losing control.\n\nAnother option I considered but discarded is to make the variables non-const and seed them with a default, and then later fill them in should the data be accessible.  This adds a 2nd frame and removes the constness of the vars.\n\n```\nauto connect_list \u003d std::unordered_set\u003cAddressWithType\u003e();\nauto le_connectability_state \u003d (int)0;\nauto le_create_connection_timeout_alarms_count \u003d (int)0;\n{\n    std::lock_guard\u003cstd::mutex\u003e lock(dumpsys_mutex_);\n    if (le_impl !\u003d nullptr) {\n       ... \u003cfill in values from le_impl\u003e\n    }\n}\n```",
+      "parentUuid": "d55b4e7b_f5c56913",
       "range": {
         "startLine": 337,
         "startChar": 0,
