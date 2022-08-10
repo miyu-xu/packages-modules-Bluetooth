@@ -16,6 +16,24 @@
       "message": "I think this should not be in the `procedure` folder but in the `src` folder",
       "revId": "fcf9822bd0108679558d5d28ebfb821e18ae7dc8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f0452cb_6a5c4403",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 21
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T10:02:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b263e38d_9e338d2a",
+      "revId": "fcf9822bd0108679558d5d28ebfb821e18ae7dc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

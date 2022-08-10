@@ -272,6 +272,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a087169_e629bb56",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T10:02:26Z",
+      "side": 1,
+      "message": "How about store private keys in context? No matter how we implement that, we will need a way to save private keys.",
+      "parentUuid": "36c7f741_fb60995d",
+      "range": {
+        "startLine": 88,
+        "startChar": 25,
+        "endLine": 88,
+        "endChar": 43
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20dba4b1_7d2d425d",
         "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
         "patchSetId": 23
@@ -412,6 +436,30 @@
       "writtenOn": "2022-08-09T19:10:22Z",
       "side": 1,
       "message": "I don\u0027t like that a lot, I would prefer this to be explicit by modifing the repeat syntax and assigning a variable with it.\n\nI like having no index with `repeat 3 times with data of sample_p192_public_key` in a functional programming fashion as the index is an implementation detail.\n\nBut I guess we can do `i @ repeat 3 times` if we want to have the index",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "741fe8fb_bcffbdd4",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-10T10:02:26Z",
+      "side": 1,
+      "message": "I haven\u0027t come up with a good solution since it seems pretty hard to capture variable passed in outer macros and non-repeat macro also involves which makes things complicated",
+      "parentUuid": "ee0f4f58_be416e13",
       "range": {
         "startLine": 84,
         "startChar": 16,
