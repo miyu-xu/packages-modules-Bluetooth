@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "057df099_e284b24e",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T21:14:07Z",
+      "side": 1,
+      "message": "lock_guard ?\n\nunique_lock is only needed when the guard is movable",
+      "range": {
+        "startLine": 68,
+        "startChar": 11,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3e1ebd8_05613c62",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T21:14:07Z",
+      "side": 1,
+      "message": "same as above\n\nlock_guard?",
+      "range": {
+        "startLine": 77,
+        "startChar": 11,
+        "endLine": 77,
+        "endChar": 22
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bccaef5_f839d09a",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T21:14:07Z",
+      "side": 1,
+      "message": "dumpsys_mutex_ ?\n\nguard in C++11 means the actual lock guard",
+      "range": {
+        "startLine": 127,
+        "startChar": 21,
+        "endLine": 127,
+        "endChar": 35
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d55b4e7b_f5c56913",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T21:14:07Z",
+      "side": 1,
+      "message": "Could this be simplified?\n\n```\n{\n  std::lock_guard\u003cstd::mutex\u003e lock(dumpsys_guard_);\n  const auto connect_list \u003d (le_impl_ !\u003d nullptr) ? le_impl_-\u003econnect_list : std::unordered_set\u003cAddressWithType\u003e();\n  const auto le_connectability_state \u003d (le_impl_ !\u003d nullptr) ? (int)le_impl_-\u003econnectability_state_ : 0;\n  const auto le_create_connection_timeout_alarms_count \u003d\n      (le_impl_ !\u003d nullptr) ? (int)le_impl_-\u003ecreate_connection_timeout_alarms_.size() : 0;\n}\n```\n\nWhen lock goes out of scope it will automatically unlock",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 0
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
