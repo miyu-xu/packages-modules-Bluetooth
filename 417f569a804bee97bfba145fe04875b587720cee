@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbf9aaad_465601cb",
+        "filename": "system/gd/hci/address_with_type.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-10T17:21:26Z",
+      "side": 1,
+      "message": "What do you think about this one?\n\nreturn address_ \u003c rhs.address_ || (address_ \u003d\u003d rhs.address \u0026\u0026 address_type_ \u003c rhs.address_type_);",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 76,
+        "endChar": 100
+      },
+      "revId": "417f569a804bee97bfba145fe04875b587720cee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11f0cc11_e546a52a",
         "filename": "system/gd/hci/address_with_type_test.cc",
         "patchSetId": 3
