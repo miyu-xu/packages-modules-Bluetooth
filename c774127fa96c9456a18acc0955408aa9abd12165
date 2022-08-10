@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcbd62ff_8efe86a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-10T23:50:34Z",
+      "side": 1,
+      "message": "I\u0027ve triggered a build at https://android-build.googleplex.com/builds/abtd/run/L55300000955873606 and will conduct the go/gd-local-health-tests to verify this won\u0027t regress Android.",
+      "revId": "c774127fa96c9456a18acc0955408aa9abd12165",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
