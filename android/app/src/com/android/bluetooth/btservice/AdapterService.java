@@ -4459,74 +4459,93 @@ public class AdapterService extends Service {
 
         // All profile toggles disabled, so connects all supported profiles
         if (mA2dpService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.A2DP, device)) {
+                BluetoothProfile.A2DP, device) && mA2dpService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting A2dp");
             // Set connection policy also connects the profile with CONNECTION_POLICY_ALLOWED
             mA2dpService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mA2dpSinkService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.A2DP_SINK, device)) {
+                BluetoothProfile.A2DP_SINK, device) && mA2dpSinkService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting A2dp Sink");
             mA2dpSinkService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mHeadsetService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.HEADSET, device)) {
+                BluetoothProfile.HEADSET, device) && mHeadsetService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Headset Profile");
             mHeadsetService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mHeadsetClientService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.HEADSET_CLIENT, device)) {
+                BluetoothProfile.HEADSET_CLIENT, device)
+                && mHeadsetClientService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting HFP");
             mHeadsetClientService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mMapClientService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.MAP_CLIENT, device)) {
+                BluetoothProfile.MAP_CLIENT, device)
+                && mMapClientService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting MAP");
             mMapClientService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mHidHostService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.HID_HOST, device)) {
+                BluetoothProfile.HID_HOST, device)
+                && mHidHostService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Hid Host Profile");
             mHidHostService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mPanService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.PAN, device)) {
+                BluetoothProfile.PAN, device)
+                && mPanService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Pan Profile");
             mPanService.setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mPbapClientService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.PBAP_CLIENT, device)) {
+                BluetoothProfile.PBAP_CLIENT, device)
+                && mPbapService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Pbap");
             mPbapClientService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mHearingAidService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.HEARING_AID, device)) {
+                BluetoothProfile.HEARING_AID, device)
+                && mHearingAidService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Hearing Aid Profile");
             mHearingAidService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mHapClientService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.HAP_CLIENT, device)) {
+                BluetoothProfile.HAP_CLIENT, device)
+                && mHapClientService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Hearing Access Client Profile");
             mHapClientService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mVolumeControlService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.VOLUME_CONTROL, device)) {
+                BluetoothProfile.VOLUME_CONTROL, device)
+                && mVolumeControlService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Volume Control Profile");
             mVolumeControlService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
@@ -4534,21 +4553,27 @@ public class AdapterService extends Service {
         }
         if (mCsipSetCoordinatorService != null
                 && isSupported(localDeviceUuids, remoteDeviceUuids,
-                        BluetoothProfile.CSIP_SET_COORDINATOR, device)) {
+                        BluetoothProfile.CSIP_SET_COORDINATOR, device)
+                && mCsipSetCoordinatorService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting Coordinated Set Profile");
             mCsipSetCoordinatorService.setConnectionPolicy(
                     device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mLeAudioService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.LE_AUDIO, device)) {
+                BluetoothProfile.LE_AUDIO, device)
+                && mLeAudioService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting LeAudio profile (BAP)");
             mLeAudioService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
             numProfilesConnected++;
         }
         if (mBassClientService != null && isSupported(localDeviceUuids, remoteDeviceUuids,
-                BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, device)) {
+                BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, device)
+                && mBassClientService.getConnectionPolicy(device)
+                >= BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
             Log.i(TAG, "connectAllEnabledProfiles: Connecting LE Broadcast Assistant Profile");
             mBassClientService.setConnectionPolicy(device,
                     BluetoothProfile.CONNECTION_POLICY_ALLOWED);
