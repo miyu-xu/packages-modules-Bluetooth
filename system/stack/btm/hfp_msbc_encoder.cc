@@ -43,7 +43,10 @@ void hfp_msbc_encoder_init(void) {
 
 void hfp_msbc_encoder_cleanup(void) { hfp_msbc_encoder = {}; }
 
-// Get the HFP MSBC encoded maximum frame size
-uint32_t hfp_msbc_encode_frames(int16_t* input, uint8_t* output) {
-  return SBC_Encode(&hfp_msbc_encoder.sbc_encoder_params, input, output);
+uint32_t hfp_msbc_encode_frames(uint8_t* input, uint8_t* output) {
+  /* According to the HFP Specification, the signal data should be 16-bit full
+   * scale linear PCM. SBC_Encode should fail if the input data format is
+   * incorrect */
+  return SBC_Encode(&hfp_msbc_encoder.sbc_encoder_params, (int16_t*)input,
+                    output);
 }
