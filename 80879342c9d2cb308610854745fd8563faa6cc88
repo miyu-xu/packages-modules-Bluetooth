@@ -22,6 +22,488 @@
       },
       "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e54e50e1_a5294673",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "Any new unit test cases can be added to make sure this change works as expected?\n\nGeneral comments:\n1. Prefer if (condition) {} as {} makes sure code is not affected by indent\n2. One logic regarding if (!pse) looks suspicious\n3. Big hack when modifying states in remove_if, but ok",
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a73c2156_bc604798",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "nit, else is not needed and the code will become shorter\n\nalso, always prefer \n\n```\nif (condition) {\n  // do something\n}\n```\n\nover\n\n```\nif (condition)\n  // do something\n```\n\n{} makes sure that code scope is not affected by indentation\n\ne.g.\n\n```\n                             if (d.expired()) {\n                               return false;\n                             }\n                             return (((d.lock()).get())\n                                           -\u003eGetFirstActiveAseByDataPathState(\n                                               data_path_state) !\u003d nullptr);\n```",
+      "range": {
+        "startLine": 320,
+        "startChar": 29,
+        "endLine": 325,
+        "endChar": 76
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d3c6805_a765cdf3",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "Should this case never happen? We already checked for expired() in find_if()?\n\n```\nif (iter \u003d\u003d leAudioDevices_.end()) {\n  return nullptr;\n}\n\nif (iter-\u003eexpired()) {\n  LOG_WARN(\"LeAudioDevice is expired after find_if\");\n  return nullptr;\n}\n\nreturn iter-\u003elock().get();\n```",
+      "range": {
+        "startLine": 328,
+        "startChar": 39,
+        "endLine": 328,
+        "endChar": 54
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3489b64_5a07e23a",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "why must () be added?\n\nShouldn\u0027t iter-\u003elock() always be evaluated first before .lock() ?",
+      "range": {
+        "startLine": 330,
+        "startChar": 9,
+        "endLine": 330,
+        "endChar": 23
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed5a9056_aa441006",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 337,
+        "startChar": 29,
+        "endLine": 340,
+        "endChar": 72
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9486340a_7dbd861e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "if (std::distance(iter, leAudioDevices_.end()) \u003c 1, then shouldn\u0027t the only possible value be 0?\n\nthen if distance is zero, shouldn\u0027t iter \u003d\u003d leAudioDevices_.end()?\n\nWhy do we need two conditions here\n\nalso prefer having {} after if condition",
+      "range": {
+        "startLine": 343,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 53
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58207e5_09c51f61",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 354,
+        "endChar": 27
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5340ed6f_e8abb306",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "prefer to split this\n\nif (iter \u003d\u003d leAudioDevices_.end()) {\n  return nullptr;\n}\n\nreturn iter-\u003elock().get();",
+      "range": {
+        "startLine": 357,
+        "startChar": 0,
+        "endLine": 357,
+        "endChar": 74
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b3763fb_19a57cc0",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "nit: cises_[id].addr.IsEmpty()",
+      "range": {
+        "startLine": 826,
+        "startChar": 8,
+        "endLine": 826,
+        "endChar": 45
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f56b1b93_f9adbc1d",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 838,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "nit cises_.size() \u003e 0\n\ntry not to use numeric value to imply boolean",
+      "range": {
+        "startLine": 838,
+        "startChar": 6,
+        "endLine": 838,
+        "endChar": 19
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "756df54d_d35846ce",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "print out ase-\u003edirection in crash log?",
+      "range": {
+        "startLine": 952,
+        "startChar": 41,
+        "endLine": 952,
+        "endChar": 44
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8c97f73_7492cb73",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "prefer if {}",
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f252ae11_f6955e7a",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 973,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be LOG_INFO if the log within for-loop is also LOG_INFO?",
+      "range": {
+        "startLine": 973,
+        "startChar": 2,
+        "endLine": 973,
+        "endChar": 11
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c50ca66_7e16bb88",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 1553,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "!pac? I am confused about `leAudioDevice-\u003eGetCodecConfigurationSupportedPac`, returning a nullptr means configuration is supported?\n\nis this a typo?\n\nThis is not very intuitive\n\nAlso prefer\n\n```\nif (!pac) {\n  return true\n}\n```",
+      "range": {
+        "startLine": 1553,
+        "startChar": 4,
+        "endLine": 1553,
+        "endChar": 13
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "019897a7_82b8ada8",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 1792,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "prefer splitting them\n\nif (iter \u003d\u003d ases_.end()) {\n  return nullptr\u0027\n}\n\nreturn \u0026(*iter);",
+      "range": {
+        "startLine": 1792,
+        "startChar": 0,
+        "endLine": 1792,
+        "endChar": 52
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d81bd38_982e3b98",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 2156,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "LOG_INFO or LOG_WARN?",
+      "range": {
+        "startLine": 2156,
+        "startChar": 4,
+        "endLine": 2156,
+        "endChar": 13
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "889b1bb5_c3d94d82",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 2162,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "LOG_INFO?",
+      "range": {
+        "startLine": 2162,
+        "startChar": 2,
+        "endLine": 2162,
+        "endChar": 11
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6af3720d_796058ec",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 2167,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "LOG_INFO?",
+      "range": {
+        "startLine": 2167,
+        "startChar": 6,
+        "endLine": 2167,
+        "endChar": 15
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1587d14e_708de69f",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "add {}",
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24e5ddef_f36131f7",
+        "filename": "system/bta/le_audio/le_audio_types.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "add {}",
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f8d45e8_28b9f2d2",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 921,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "this code repeats a lot, is there anyway we can define some helper function to shorten the logic?",
+      "range": {
+        "startLine": 919,
+        "startChar": 0,
+        "endLine": 921,
+        "endChar": 65
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f07991d9_df5c7ab6",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 29
+      },
+      "lineNbr": 1285,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-10T09:03:03Z",
+      "side": 1,
+      "message": "for loop will be better here, similar to above\n\nalso use ASSERT_LOG so that __func__ can be omitted.",
+      "range": {
+        "startLine": 1274,
+        "startChar": 0,
+        "endLine": 1285,
+        "endChar": 59
+      },
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
