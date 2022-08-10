@@ -1333,12 +1333,8 @@ impl BleScanner {
         mutcxxcall!(self, Unregister, scanner_id);
     }
 
-    pub fn start_scan(&mut self) {
-        mutcxxcall!(self, Scan, true);
-    }
-
-    pub fn stop_scan(&mut self) {
-        mutcxxcall!(self, Scan, false);
+    pub fn scan(&mut self, enable: bool) {
+        mutcxxcall!(self, Scan, enable);
     }
 
     pub fn scan_filter_setup(
