@@ -18,6 +18,8 @@ Otherwise, you can use the following apt-get list or use the `--run-bootstrap`
 option on `build.py` (see below) to get a list of packages missing on your
 system:
 
+Comment on cl about deleting below
+
 ```sh
 sudo apt-get install repo git-core gnupg flex bison gperf build-essential \
   zip curl zlib1g-dev gcc-multilib g++-multilib \
@@ -33,6 +35,13 @@ sudo apt-get install repo git-core gnupg flex bison gperf build-essential \
   libre2-dev libdouble-conversion-dev \
   libgtest-dev libgmock-dev libabsl-dev
 ```
+
+By default, llvm packages are named with their version number, e.g. llvm-ar-13, etc.
+This will not work properly with the build, so rename the llvm packages using
+```
+  floss/build/llvm-rename.sh <version number>
+```
+Replacing version number with the version of clang/llvm packages you installed.
 
 You will also need a recent-ish version of Rust and Cargo. Please follow the
 instructions on [Rustup](https://rustup.rs/) to install a recent version.
