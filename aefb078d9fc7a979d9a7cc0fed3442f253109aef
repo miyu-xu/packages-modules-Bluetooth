@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edae802a_11ea4da6",
+        "filename": "build.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-10T03:17:33Z",
+      "side": 1,
+      "message": "nit:applied.",
+      "range": {
+        "startLine": 247,
+        "startChar": 87,
+        "endLine": 247,
+        "endChar": 92
+      },
+      "revId": "aefb078d9fc7a979d9a7cc0fed3442f253109aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea07430c_9de31734",
+        "filename": "build.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-10T03:17:33Z",
+      "side": 1,
+      "message": "This can be better formatted. \n\nUse clang-format.",
+      "range": {
+        "startLine": 411,
+        "startChar": 94,
+        "endLine": 411,
+        "endChar": 104
+      },
+      "revId": "aefb078d9fc7a979d9a7cc0fed3442f253109aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e01948c_774fca62",
+        "filename": "build.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-10T03:17:33Z",
+      "side": 1,
+      "message": "Consider required sysroot if --triplet is include? \ne.g., ./build.py --triplet arm-xxx-xxx /chroot",
+      "range": {
+        "startLine": 876,
+        "startChar": 0,
+        "endLine": 876,
+        "endChar": 8
+      },
+      "revId": "aefb078d9fc7a979d9a7cc0fed3442f253109aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58becf62_edcba1b2",
+        "filename": "build.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 882,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-10T03:17:33Z",
+      "side": 1,
+      "message": "This change is unnecessary.",
+      "range": {
+        "startLine": 882,
+        "startChar": 39,
+        "endLine": 882,
+        "endChar": 42
+      },
+      "revId": "aefb078d9fc7a979d9a7cc0fed3442f253109aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81ce5144_4e7ba304",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-10T03:17:33Z",
+      "side": 1,
+      "message": "nit: incomplete sentence?",
+      "range": {
+        "startLine": 24,
+        "startChar": 61,
+        "endLine": 24,
+        "endChar": 65
+      },
+      "revId": "aefb078d9fc7a979d9a7cc0fed3442f253109aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1bedaa4_06213e70",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-10T03:17:33Z",
+      "side": 1,
+      "message": "nit: Wrong indentation?",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 4
+      },
+      "revId": "aefb078d9fc7a979d9a7cc0fed3442f253109aef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
