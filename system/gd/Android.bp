@@ -229,10 +229,11 @@ cc_library {
         "libbluetooth_gd_defaults",
     ],
     srcs: [
-        ":BluetoothOsSources_fuzz",
+        ":BluetoothOsSources_fake_timer",
     ],
     cflags: [
         "-DFUZZ_TARGET",
+        "-DUSE_FAKE_TIMERS",
     ],
 }
 
@@ -328,6 +329,9 @@ cc_test {
     host_supported: true,
     // TODO(b/231993739): Reenable isolated:true by deleting the explicit disable below
     isolated: false,
+    cflags: [
+        "-DUSE_FAKE_TIMERS",
+    ],
     target: {
         linux: {
             srcs: [
@@ -490,6 +494,7 @@ cc_defaults {
     ],
     cflags: [
         "-DFUZZ_TARGET",
+        "-DUSE_FAKE_TIMERS",
     ],
     target: {
         android: {
