@@ -1678,6 +1678,11 @@ class HasClientImpl : public HasClient {
      * mandatory active preset index notifications.
      */
     if (device->SupportsPresets()) {
+      /* Subscribe for active preset notifications */
+      SubscribeForNotifications(device->conn_id, device->addr,
+                                device->active_preset_handle,
+                                device->active_preset_ccc_handle);
+
       SubscribeForNotifications(device->conn_id, device->addr,
                                 device->cp_handle, device->cp_ccc_handle,
                                 device->cp_ccc_val);
@@ -1697,11 +1702,6 @@ class HasClientImpl : public HasClient {
                                                value, user_data);
           },
           nullptr);
-
-      /* Subscribe for active preset notifications */
-      SubscribeForNotifications(device->conn_id, device->addr,
-                                device->active_preset_handle,
-                                device->active_preset_ccc_handle);
     } else {
       LOG(WARNING) << __func__
                    << ": server can only report HAS features, other "
