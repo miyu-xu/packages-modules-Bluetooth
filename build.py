@@ -38,6 +38,15 @@ import sys
 import tarfile
 import time
 
+# These names align with platform.machine(), which gets its values from
+# the system implementation of 'uname -m'.
+# Since this script only runs on Linux, do not worry of varying
+# implementations of uname.
+SUPPORTED_MACHINES = {
+    'armv7l': 'arm',
+    'x86_64': 'amd64',
+}
+
 # Use flags required by common-mk (find -type f | grep -nE 'use[.]' {})
 COMMON_MK_USES = [
     'asan',
@@ -87,16 +96,15 @@ BOOTSTRAP_GIT_REPOS = {
     'proto_logging': 'https://android.googlesource.com/platform/frameworks/proto_logging'
 }
 
-# List of packages required for linux build
+# List of packages required for all linux builds
 REQUIRED_APT_PACKAGES = [
     'bison',
     'build-essential',
+    'clang',
     'curl',
     'debmake',
     'flatbuffers-compiler',
     'flex',
-    'g++-multilib',
-    'gcc-multilib',
     'generate-ninja',
     'gnupg',
     'gperf',
@@ -130,6 +138,16 @@ REQUIRED_APT_PACKAGES = [
     'xsltproc',
     'zip',
     'zlib1g-dev',
+]
+
+REQUIRED_AMD64_PACKAGES = [
+    'g++-multilib',
+    'gcc-multilib',
+]
+
+REQUIRED_ARM_PACKAGES = [
+    'libabsl-dev',
+    'lld',
 ]
 
 # List of cargo packages required for linux build
@@ -560,15 +578,17 @@ class HostBuild():
 
 class Bootstrap():
 
-    def __init__(self, base_dir, bt_dir):
+    def __init__(self, base_dir, bt_dir, host_arch):
         """ Construct bootstrapper.
 
         Args:
             base_dir: Where to stage everything.
             bt_dir: Where bluetooth source is kept (will be symlinked)
+            host_arch: Architecture of the host system.
         """
         self.base_dir = os.path.abspath(base_dir)
         self.bt_dir = os.path.abspath(bt_dir)
+        self.host_arch = host_arch
 
         # Create base directory if it doesn't already exist
         os.makedirs(self.base_dir, exist_ok=True)
@@ -716,6 +736,14 @@ class Bootstrap():
                 packages_installed[split[0]] = True
 
         need_packages = []
+        required_packages = REQUIRED_APT_PACKAGES
+        if self.host_arch == 'amd64':
+            required_packages.extend(REQUIRED_AMD64_PACKAGES)
+        elif self.host_arch == 'arm':
+            required_packages.extend(REQUIRED_ARM_PACKAGES)
+        else:
+            raise Exception("Host architecture not supported by build.py")
+
         for pkg in REQUIRED_APT_PACKAGES:
             if pkg not in packages_installed:
                 need_packages.append(pkg)
@@ -803,13 +831,13 @@ if __name__ == '__main__':
     # Make sure we get absolute path + expanded path for bootstrap directory
     args.bootstrap_dir = os.path.abspath(os.path.expanduser(args.bootstrap_dir))
 
-    # Possible values for machine() come from 'uname -m'
-    # Since this script only runs on Linux, x86_64 machines must have this value
-    if platform.machine() != 'x86_64':
-        sys.exit("Only x86_64 machines are currently supported by this build script.")
+    if platform.machine() in SUPPORTED_MACHINES:
+        host_arch = SUPPORTED_MACHINES[platform.machine()]
+    else:
+        sys.exit("Host machine currently not supported by ./build.py")
 
     if args.run_bootstrap:
-        bootstrap = Bootstrap(args.bootstrap_dir, os.path.dirname(__file__))
+        bootstrap = Bootstrap(args.bootstrap_dir, os.path.dirname(__file__), host_arch)
         bootstrap.bootstrap()
     else:
         build = HostBuild(args)
