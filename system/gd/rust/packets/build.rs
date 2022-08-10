@@ -18,7 +18,18 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn main() {
-    generate_packets();
+    let packets_prebuilt = PathBuf::from(env::var("HCI_PACKETS_PREBUILT").unwrap());
+    if !Path::new(packets_prebuilt.as_os_str()).exists() {
+        generate_packets();
+    } else {
+        let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
+        let outputted = out_dir.join("../../hci/hci_packets.rs");
+        std::fs::copy(
+            packets_prebuilt.as_os_str().to_str().unwrap(),
+            out_dir.join(outputted.file_name().unwrap()).as_os_str().to_str().unwrap(),
+        )
+        .unwrap();
+    }
 }
 
 fn generate_packets() {
