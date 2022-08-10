@@ -196,6 +196,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e7028e6_991ca7be",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-10T00:36:06Z",
+      "side": 1,
+      "message": "It\u0027s indeed is 😭",
+      "parentUuid": "fc710484_667a7e4d",
+      "range": {
+        "startLine": 285,
+        "startChar": 29,
+        "endLine": 285,
+        "endChar": 31
+      },
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e5a233f1_042072ce",
