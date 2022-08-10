@@ -1709,7 +1709,27 @@ class HasClientImpl : public HasClient {
     if (!CacheAttributeHandles(service, device)) return false;
 
     /* If deatails are loaded from storage we are done here */
-    if (LoadHasDetailsFromStorage(device)) return true;
+    if (LoadHasDetailsFromStorage(device)) {
+      if (device->conn_id != GATT_INVALID_CONN_ID) {
+        /* Be mistrustful here: write CCC values even remote should have it */
+        LOG_INFO("Subscribing for notification/indications");
+        if (device->SupportsFeaturesNotification()) {
+          SubscribeForNotifications(device->conn_id, device->addr,
+                                    device->features_handle,
+                                    device->features_ccc_handle);
+        }
+
+        if (device->SupportsPresets()) {
+          SubscribeForNotifications(device->conn_id, device->addr,
+                                    device->cp_handle, device->cp_ccc_handle,
+                                    device->cp_ccc_val);
+          SubscribeForNotifications(device->conn_id, device->addr,
+                                    device->active_preset_handle,
+                                    device->active_preset_ccc_handle);
+        }
+      }
+      return true;
+    }
 
     /* No storred details - read all the details and validate */
     return StartInitialHasDetailsReadAndValidation(service, device);
