@@ -1,0 +1,21 @@
+[workspace]
+
+[package]
+name = "lmp"
+version = "0.1.0"
+edition = "2018"
+build="build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bytes = "*"
+num-traits = "*"
+num-derive = "*"
+thiserror = "*"
+pin-utils = "*"
+bt_packets = { path = "../../../system/gd/rust/packets/" }
+
+[lib]
+path="src/lib.rs"
+crate-type = ["staticlib"]
