@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b796bbf1_d44aa99b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-10T03:32:53Z",
+      "side": 1,
+      "message": "Hi Lukasz, thanks for the clarification, correct me if i am wrong, if required bi-directional, uni-directional source and sink cis ids is the max no. able to handle any supported configs, we should be able to handle any supported chosen config based on remote capabilities. Made some change in get_cis_count() function and uploaded new patchset, please let know if you see any issue regarding the same, atest --host bluetooth_le_audio_test bluetooth_le_audio_client_test passes.\n\nThanks and Regards,\nPartha Sarathi",
+      "parentUuid": "4fc240e3_96a626bf",
+      "range": {
+        "startLine": 936,
+        "startChar": 8,
+        "endLine": 936,
+        "endChar": 14
+      },
+      "revId": "2c37e4de3ce0b53a9e6259e8b7598df7f82da3d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2002c930_1071a97e",

@@ -16,6 +16,24 @@
       "message": "Hi Lukasz, thanks for the changes uploaded. Please clarify regarding the need for the two mentioned changes in the comment.\n\nThanks and Regards,\nPartha Sarathi",
       "revId": "caa6eb8be34c78b83e0f122d5e12ec1e25f20a61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca829dd_fb185fb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 28
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-10T03:32:53Z",
+      "side": 1,
+      "message": "same as above comment",
+      "parentUuid": "b1b728fe_5ac75df0",
+      "revId": "caa6eb8be34c78b83e0f122d5e12ec1e25f20a61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
