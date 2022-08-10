@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bc714b8_aea2374d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-10T23:38:54Z",
+      "side": 1,
+      "message": "Hi team,\n\nPlease help review this CL. This is essential to support HFP WBS on boards with Realtek chipsets using alt 3 for SCO packets. This is currently blocking the verification of Floss WBS on those boards.",
+      "revId": "0d183f8381c9df40f7d32f1022dcfa869fc13f90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
