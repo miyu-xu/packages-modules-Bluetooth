@@ -65,6 +65,7 @@ VALID_TARGETS = [
     'docs',  # Build Rust docs
     'main',  # Build the main C++ codebase
     'prepare',  # Prepare the output directory (gn gen + rust setup)
+    'rootcanal',  # Build Rust targets for RootCanal
     'rust',  # Build only the rust components + copy artifacts to output dir
     'test',  # Run the unit tests
     'tools',  # Build the host tools (i.e. packetgen)
@@ -433,6 +434,11 @@ class HostBuild():
         """
         self._rust_build()
 
+    def _target_rootcanal(self):
+        """ Build rust artifacts for RootCanal in an already prepared environment.
+        """
+        self.run_command('rust', ['cargo', 'build'], cwd=os.path.join(self.platform_dir, 'bt/tools/rootcanal'), env=self.env)
+
     def _target_main(self):
         """ Build the main GN artifacts in an already prepared environment.
         """
@@ -542,6 +548,8 @@ class HostBuild():
             self._target_prepare()
         elif self.target == 'tools':
             self._target_tools()
+        elif self.target == 'rootcanal':
+            self._target_rootcanal()
         elif self.target == 'rust':
             self._target_rust()
         elif self.target == 'docs':
