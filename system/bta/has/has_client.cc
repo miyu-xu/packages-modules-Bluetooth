@@ -364,6 +364,14 @@ class HasClientImpl : public HasClient {
     auto op = op_opt.value();
     callbacks_->OnPresetInfoError(device->addr, op.index,
                                   GattStatus2SvcErrorCode(status));
+
+    /* We cannot write to control point, lets disconnect device. */
+    LOG_ERROR(
+        "Devices %s does not respond on control point. "
+        "Disconnecting.",
+        device->addr.ToString().c_str());
+    BTA_GATTC_Close(conn_id);
+    callbacks_->OnConnectionState(ConnectionState::DISCONNECTED, device->addr);
   }
 
   void OnHasPresetIndexOperation(uint16_t conn_id, tGATT_STATUS status,
