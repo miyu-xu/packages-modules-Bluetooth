@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f7b9915_c544aee2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-11T21:13:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5410b29b_0119b1a4",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd9c34df_2a380967",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-28T14:59:54Z",
       "side": 1,
       "message": "Can we check if the UUID is empty before we store it (line 1424)?",
+      "range": {
+        "startLine": 1438,
+        "startChar": 0,
+        "endLine": 1438,
+        "endChar": 31
+      },
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "643cceff_6ee78e10",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1438,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-11T21:13:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd9c34df_2a380967",
       "range": {
         "startLine": 1438,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "983891a8_9f3a5c91",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-11T21:13:16Z",
+      "side": 1,
+      "message": "Made the logic clearer. We need two loops because the first one gets the existing remote UUIDs that we know of and the second one adds the new ones that we just got. We do not need the interesting le service check in the earlier loop because we never store BLE UUIDs that are _not_ \"interesting\" 😊",
+      "parentUuid": "1682ff00_5cc32237",
+      "range": {
+        "startLine": 1441,
+        "startChar": 14,
+        "endLine": 1441,
+        "endChar": 44
+      },
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "129e3304_bcf5321d",
@@ -83,6 +155,24 @@
       "writtenOn": "2022-07-28T14:59:54Z",
       "side": 1,
       "message": "This seems like a lot of repeated code.  Did we think about factoring out the common code?",
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4b13937_0f78b199",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1515,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-11T21:13:16Z",
+      "side": 1,
+      "message": "agreed, changed to using an std::set for avoiding duplicates and also for what interesting_le_services_exist was doing here.",
+      "parentUuid": "129e3304_bcf5321d",
       "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
