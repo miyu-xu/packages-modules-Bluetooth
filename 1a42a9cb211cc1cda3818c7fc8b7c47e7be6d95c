@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d39a260a_7b798f01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-11T21:52:03Z",
+      "side": 1,
+      "message": "LGTM with one nit. ",
+      "revId": "1a42a9cb211cc1cda3818c7fc8b7c47e7be6d95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "093804e4_db67e7f4",
+        "filename": "build.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-11T21:52:03Z",
+      "side": 1,
+      "message": "The host/target relationship does not yet apply to this CL. The target is a little misleading. \n\nRename to `_generate_rustflags` instead, and let\u0027s only consider adding the target once cross compile is ready.",
+      "range": {
+        "startLine": 256,
+        "startChar": 18,
+        "endLine": 256,
+        "endChar": 24
+      },
+      "revId": "1a42a9cb211cc1cda3818c7fc8b7c47e7be6d95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
