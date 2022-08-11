@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e77baa3a_d70eddd7",
+        "filename": "tools/rootcanal/lmp/src/procedure/mod.rs",
+        "patchSetId": 25
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-11T13:55:43Z",
+      "side": 1,
+      "message": "You should be able to directly generate an array using `rand::thread_rng().gen()`\n\nI would expect\n\n```\nfn generate_random_bytes\u003cconst N: usize\u003e(\u0026self) -\u003e [u8; N] {\n    rand::thread_rng().gen()\n}\n```\n\nTo work",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "508dfb358ec0339aa5b6459f2f0c1162385d7687",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
