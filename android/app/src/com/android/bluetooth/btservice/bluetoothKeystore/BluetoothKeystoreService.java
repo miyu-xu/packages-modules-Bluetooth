@@ -568,12 +568,9 @@ public class BluetoothKeystoreService {
         }
     }
 
-    /**
-     * Parses a file to search for the key and put it into the pending compute queue
-     */
+    /** Parses a file to search for the key and put it into the pending compute queue */
     @VisibleForTesting
-    public void parseConfigFile(String filePathString)
-            throws IOException, InterruptedException {
+    public void parseConfigFile(String filePathString) throws IOException, InterruptedException {
         String prefixString = null;
         String dataString = null;
         String name = null;
