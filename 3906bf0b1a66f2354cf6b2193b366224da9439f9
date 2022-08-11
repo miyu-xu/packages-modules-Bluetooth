@@ -22,6 +22,30 @@
       },
       "revId": "3906bf0b1a66f2354cf6b2193b366224da9439f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2dc361e_03b6934d",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-11T23:13:35Z",
+      "side": 1,
+      "message": "Yes, make sense to rename to invalid. Thanks",
+      "parentUuid": "06baffa7_9fc07b8a",
+      "range": {
+        "startLine": 723,
+        "startChar": 24,
+        "endLine": 723,
+        "endChar": 36
+      },
+      "revId": "3906bf0b1a66f2354cf6b2193b366224da9439f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
