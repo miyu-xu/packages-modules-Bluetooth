@@ -3,6 +3,15 @@
 ## Building and running on AOSP
 Just build AOSP - Fluoride is there by default.
 
+## Building and running on Raspberry Pi
+You can follow all the steps below with one caveat: ```./build.py```
+must be ran with the ```--jobs``` flag set to 1, i.e.
+```sh
+./build.py --jobs=1
+```
+This is a temporary workaround as a fix for parralel building
+for Pi is worked on.
+
 ## Building and running on Linux
 
 Instructions for a Debian based distribution:
@@ -38,7 +47,7 @@ sudo apt-get install repo git-core gnupg flex bison gperf build-essential \
 
 By default, llvm packages are named with their version number, e.g. llvm-ar-13, etc.
 This will not work properly with the build, so rename the llvm packages using
-```
+```sh
   floss/build/llvm-rename.sh <version number>
 ```
 Replacing version number with the version of clang/llvm packages you installed.
@@ -167,5 +176,31 @@ binary directly. By default, it will try to run on hci0 but you can pass it
 --hci=N, where N corresponds to /sys/class/bluetooth/hciN.
 
 ```sh
-$OUTPUT_DIR/debug/btadapterd --hci=$HCI INIT_gd_hci=true
+sudo $OUTPUT_DIR/debug/btadapterd --hci=$HCI INIT_gd_hci=true
+```
+
+To interface with ```btadapterd``` using ```btclient```, the following steps are also required:
+
+1. The proper bluetooth configuration files must be present.
+2. The /var/run/bluetooth folder must exist.
+3. Non-Fluoride bluetooth services must be stopped.
+4. The manager service must be running.
+
+Assuming you are within the Fluroide source directory, the following will accomplish steps 1-3:
+
+```sh
+mv /etc/dbus-1/system.d/bluetooth.conf /etc/dbus-1/system.d/old-bluetooth.conf
+cp -u system/build/dpkg/floss/package/etc/dbus-1/system.d/org.chromium.bluetooth.conf /etc/dbus-1/system.d/bluetooth.conf
+mkdir -p /var/lib/bluetooth
+cp -u system/conf/bt_stack.conf /var/lib/bluetooth/
+
+mkdir -p /var/run/bluetooth
+
+systemctl stop bluetooth
+```
+
+Then, one can simply run 
+```sh
+sudo $OUTPUT_DIR/debug/btmanagerd
+sudo $OUTPUT_DIR/debug/btclient
 ```
