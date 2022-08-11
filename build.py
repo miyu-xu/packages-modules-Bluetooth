@@ -806,7 +806,8 @@ class Bootstrap():
 
         (success, output) = self._get_command_output(CARGO_PKG_LIST)
         if not success:
-            raise Exception("Could not query cargo for packages.")
+            raise Exception("Could not query cargo for packages. " + \
+                            "Please install Rust using rustup if you haven't already.")
 
         packages_installed = {}
         for line in output:
