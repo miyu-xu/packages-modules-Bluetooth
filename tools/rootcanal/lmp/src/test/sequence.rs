@@ -87,6 +87,28 @@ macro_rules! sequence_body {
 
             sequence_body!($ctx, $($tail)*)
         }};
+        ($ctx:ident, repeat $number:literal times with ($var:ident in $iterable:expr) {
+            $($inner:tt)*
+        } $($tail:tt)*) => {{
+            println!("repeat {}", $number);
+            for (_, $var) in (0..$number).into_iter().zip($iterable) {
+                sequence_body!($ctx, $($inner)*);
+            }
+            println!("endrepeat");
+
+            sequence_body!($ctx, $($tail)*)
+        }};
+        ($ctx:ident, $var:ident @ repeat $number:literal times {
+            $($inner:tt)*
+        } $($tail:tt)*) => {{
+            println!("repeat {}", $number);
+            for $var in 0..$number {
+                sequence_body!($ctx, $($inner)*);
+            }
+            println!("endrepeat");
+
+            sequence_body!($ctx, $($tail)*)
+        }};
     }
 
 macro_rules! sequence {

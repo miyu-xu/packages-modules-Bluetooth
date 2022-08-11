@@ -61,10 +61,10 @@ sequence! { procedure, context,
         transaction_id: 0,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
-    repeat 3 times {
+    repeat 3 times with (part in SAMPLE_P192_PUBLIC_KEY) {
         IUT -> Lower Tester: EncapsulatedPayload {
             transaction_id: 0,
-            data: [0; 16],
+            data: part,
         }
         Lower Tester -> IUT: Accepted {
             transaction_id: 0,
@@ -81,10 +81,10 @@ sequence! { procedure, context,
         transaction_id: 0,
         accepted_opcode: Opcode::EncapsulatedHeader,
     }
-    repeat 3 times {
+    i @ repeat 3 times {
         Lower Tester -> IUT: EncapsulatedPayload {
             transaction_id: 0,
-            data: [0; 16],
+            data: SAMPLE_P192_PUBLIC_KEY[i],
         }
         IUT -> Lower Tester: Accepted {
             transaction_id: 0,

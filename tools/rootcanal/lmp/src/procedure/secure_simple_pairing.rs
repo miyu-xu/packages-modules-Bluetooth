@@ -729,6 +729,8 @@ mod tests {
     use super::super::authentication::initiate;
     use super::super::authentication::respond;
 
+    const SAMPLE_P192_PUBLIC_KEY: [[u8; 16]; 3] = [[0; 16]; 3];
+
     #[test]
     fn initiate_size() {
         let context = crate::test::TestContext::new();
