@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f4b4af8_42dcd38b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-11T21:33:10Z",
+      "side": 1,
+      "message": "LGMT with nits",
+      "revId": "1dc4dd5adac470d8cc75d1cd50e8e64c00438ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c663053a_a8903587",
+        "filename": "build.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-11T21:33:10Z",
+      "side": 1,
+      "message": "nit: is",
+      "range": {
+        "startLine": 745,
+        "startChar": 46,
+        "endLine": 745,
+        "endChar": 47
+      },
+      "revId": "1dc4dd5adac470d8cc75d1cd50e8e64c00438ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36811838_3d72fb46",
+        "filename": "build.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-11T21:33:10Z",
+      "side": 1,
+      "message": "nit: build.py instead of ./build.py.",
+      "range": {
+        "startLine": 837,
+        "startChar": 58,
+        "endLine": 837,
+        "endChar": 60
+      },
+      "revId": "1dc4dd5adac470d8cc75d1cd50e8e64c00438ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f3ae3ca_3899ce7c",
+        "filename": "build.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 837,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-11T21:33:10Z",
+      "side": 1,
+      "message": "nit: better to print the variable platform.machine() out. \ni.e., Host machine armv5 is currently not supported by build.py\n\nUse raise exception to follow the file convention.",
+      "range": {
+        "startLine": 837,
+        "startChar": 30,
+        "endLine": 837,
+        "endChar": 32
+      },
+      "revId": "1dc4dd5adac470d8cc75d1cd50e8e64c00438ef6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
