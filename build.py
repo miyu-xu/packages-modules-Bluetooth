@@ -188,13 +188,14 @@ class UseFlags():
 
 class HostBuild():
 
-    def __init__(self, args):
+    def __init__(self, args, host_machine):
         """ Construct the builder.
 
         Args:
             args: Parsed arguments from ArgumentParser
         """
         self.args = args
+        self.host_machine = host_machine
 
         # Set jobs to number of cpus unless explicitly set
         self.jobs = self.args.jobs
@@ -252,6 +253,49 @@ class HostBuild():
 
         return ' '.join(rust_flags)
 
+    def _generate_target_rustflags(self):
+        """ Rustflags to include for specified target machines.
+      """
+        if machine == armv7l:
+            rust_flags = [
+                '-C',
+                'linker=clang',
+                '-C',
+                'link-arg=-fuse-ld=lld',
+                '-C',
+                'link-arg=--target=armv7a-linux-gnueabihf',
+            ]
+        else:
+            rust_flags = []
+
+        return ' '.join(rust_flags)
+
+    def _generate_target_cppflags(self, machine):
+        """ C/C++ flags to include for specified target machines.
+      """
+        if machine == armv7l:
+            cpp_flags = [
+                '-march=armv7l',
+                '-mtune=cortex-a72',
+                '-mfpu=vfpv4',
+                '-mfloat-abi=hard',
+                '-fuse-ld=lld',
+                '-target',
+                'armv7-unknown-linux-gnueabihf',
+                '-lpthread',
+                '-fno-exceptions',
+                '-fno-unwind-tables',
+                '-fno-asynchronous-unwind-tables',
+                '-ffunction-sections',
+                '-fdata-sections',
+                '-Wno-deprecated-declarations',
+                '-Wno-unused-command-line-argument',
+            ]
+        else:
+            cpp_flags = []
+
+        return cpp_flags
+
     def configure_environ(self):
         """ Configure environment variables for GN and Cargo.
         """
@@ -265,7 +309,7 @@ class HostBuild():
         # Configure Rust env variables
         self.env['CARGO_TARGET_DIR'] = self.output_dir
         self.env['CARGO_HOME'] = os.path.join(self.output_dir, 'cargo_home')
-        self.env['RUSTFLAGS'] = self._generate_rustflags()
+        self.env['RUSTFLAGS'] = self._generate_rustflags() + ' ' + self._generate_target_rustflags(host_machine)
         self.env['CXX_ROOT_PATH'] = os.path.join(self.platform_dir, 'bt')
         self.env['CROS_SYSTEM_API_ROOT'] = os.path.join(self.platform_dir, 'system_api')
         self.env['CXX_OUTDIR'] = self._gn_default_output()
@@ -355,8 +399,8 @@ class HostBuild():
             'platform2_root': self.platform_dir,
             'libbase_ver': self._get_basever(),
             'enable_exceptions': os.environ.get('CXXEXCEPTIONS', 0) == '1',
-            'external_cflags': [],
-            'external_cxxflags': ["-DNDEBUG"],
+            'external_cflags': self._generate_target_cppflags(host_machine),
+            'external_cxxflags': ["-DNDEBUG"] + self._generate_target_cppflags(host_machine),
             'enable_werror': False,
         }
 
@@ -831,8 +875,9 @@ if __name__ == '__main__':
     # Make sure we get absolute path + expanded path for bootstrap directory
     args.bootstrap_dir = os.path.abspath(os.path.expanduser(args.bootstrap_dir))
 
-    if platform.machine() in SUPPORTED_MACHINES:
-        host_arch = SUPPORTED_MACHINES[platform.machine()]
+    host_machine = platform.machine()
+    if host_machine in SUPPORTED_MACHINES:
+        host_arch = SUPPORTED_MACHINES[host_machine]
     else:
         sys.exit("Host machine currently not supported by ./build.py")
 
@@ -840,5 +885,5 @@ if __name__ == '__main__':
         bootstrap = Bootstrap(args.bootstrap_dir, os.path.dirname(__file__), host_arch)
         bootstrap.bootstrap()
     else:
-        build = HostBuild(args)
+        build = HostBuild(args, host_machine)
         build.build()
