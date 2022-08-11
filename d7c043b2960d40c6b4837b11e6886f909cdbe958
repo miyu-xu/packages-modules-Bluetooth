@@ -187,6 +187,30 @@
       },
       "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f4b1b11_82983dcd",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-11T20:33:28Z",
+      "side": 1,
+      "message": "Yes, you can do a local lock by using {} scope, the lock will be unlocked as soon as you exit the {} scope",
+      "parentUuid": "8735150a_c7904b98",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 0
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
