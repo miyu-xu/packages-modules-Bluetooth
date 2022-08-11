@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "240ba9bc_c9633323",
+        "filename": "tools/rootcanal/lmp/src/ec.rs",
+        "patchSetId": 25
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-11T15:28:55Z",
+      "side": 1,
+      "message": "```\n        let buf \u003d key.to_signed_bytes_le();\n        let mut inner \u003d [0; P256r1::PRIVATE_KEY_SIZE];\n        inner[..buf.len()].copy_from_slice(\u0026buf);\n```",
+      "range": {
+        "startLine": 115,
+        "startChar": 7,
+        "endLine": 118,
+        "endChar": 36
+      },
+      "revId": "508dfb358ec0339aa5b6459f2f0c1162385d7687",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e77baa3a_d70eddd7",
         "filename": "tools/rootcanal/lmp/src/procedure/mod.rs",
         "patchSetId": 25
