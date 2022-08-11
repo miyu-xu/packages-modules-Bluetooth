@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06baffa7_9fc07b8a",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 723,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-11T22:50:59Z",
+      "side": 1,
+      "message": "This looks like a zero vector, not defaults. Should we pass part of p_bta_dm_pm_md[index] for the defaults, or just rename it to zero or invalid or something?",
+      "range": {
+        "startLine": 723,
+        "startChar": 24,
+        "endLine": 723,
+        "endChar": 36
+      },
+      "revId": "3906bf0b1a66f2354cf6b2193b366224da9439f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
