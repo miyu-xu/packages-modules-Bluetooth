@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "056ed843_052f268f",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-11T13:52:40Z",
+      "side": 1,
+      "message": "Oh yeah true",
+      "parentUuid": "b35464b9_2391ad8d",
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b0aeaf4_f4ca20d5",
@@ -296,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a252d0bc_5678f8d4",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-11T13:52:40Z",
+      "side": 1,
+      "message": "Seems a good place to put that !",
+      "parentUuid": "7a087169_e629bb56",
+      "range": {
+        "startLine": 88,
+        "startChar": 25,
+        "endLine": 88,
+        "endChar": 43
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20dba4b1_7d2d425d",
         "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
         "patchSetId": 23
@@ -484,6 +526,30 @@
       "side": 1,
       "message": "How about stack? Test sequences will need to pop out test data explicitly, but the context seems more straight forward.",
       "parentUuid": "741fe8fb_bcffbdd4",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c2cb4c_34b85a79",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-11T13:52:40Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand what you mean by \"stack\" here.",
+      "parentUuid": "c9f87a36_bf80f81f",
       "range": {
         "startLine": 84,
         "startChar": 16,
