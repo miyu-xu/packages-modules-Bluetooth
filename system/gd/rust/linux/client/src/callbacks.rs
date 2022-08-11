@@ -11,8 +11,9 @@ use bt_topshim::profiles::gatt::GattStatus;
 use btstack::bluetooth::{
     BluetoothDevice, IBluetooth, IBluetoothCallback, IBluetoothConnectionCallback,
 };
+use btstack::bluetooth_adv::IAdvertisingSetCallback;
 use btstack::bluetooth_gatt::{
-    BluetoothGattService, IAdvertisingSetCallback, IBluetoothGattCallback, IScannerCallback, LePhy,
+    BluetoothGattService, IBluetoothGattCallback, IScannerCallback, LePhy,
 };
 use btstack::suspend::ISuspendCallback;
 use btstack::uuid::UuidWrapper;
@@ -332,7 +333,7 @@ impl RPCProxy for ScannerCallback {
 
 pub(crate) struct AdvertisingSetCallback {
     objpath: String,
-    _context: Arc<Mutex<ClientContext>>,
+    context: Arc<Mutex<ClientContext>>,
 
     dbus_connection: Arc<SyncConnection>,
     dbus_crossroads: Arc<Mutex<Crossroads>>,
@@ -341,11 +342,11 @@ pub(crate) struct AdvertisingSetCallback {
 impl AdvertisingSetCallback {
     pub(crate) fn new(
         objpath: String,
-        _context: Arc<Mutex<ClientContext>>,
+        context: Arc<Mutex<ClientContext>>,
         dbus_connection: Arc<SyncConnection>,
         dbus_crossroads: Arc<Mutex<Crossroads>>,
     ) -> Self {
-        Self { objpath, _context, dbus_connection, dbus_crossroads }
+        Self { objpath, context, dbus_connection, dbus_crossroads }
     }
 }
 
@@ -364,6 +365,23 @@ impl IAdvertisingSetCallback for AdvertisingSetCallback {
             tx_power,
             status
         );
+        if status == 0 {
+            if let Some(Some(ex_adv_id)) =
+                self.context.lock().unwrap().adv_sets.insert(reg_id, Some(advertiser_id))
+            {
+                print_error!(
+                    "on_advertising_set_started: previous advertising set ({}) registered ({}) is omitted",
+                    ex_adv_id,
+                    reg_id,
+                    );
+            }
+        } else {
+            print_error!(
+                "on_advertising_set_started: remove advertising set registered ({})",
+                reg_id
+            );
+            self.context.lock().unwrap().adv_sets.remove(&reg_id);
+        }
     }
 
     fn on_own_address_read(&self, advertiser_id: i32, address_type: i32, address: String) {
@@ -377,6 +395,7 @@ impl IAdvertisingSetCallback for AdvertisingSetCallback {
 
     fn on_advertising_set_stopped(&self, advertiser_id: i32) {
         print_info!("on_advertising_set_stopped: advertiser_id = {}", advertiser_id);
+        self.context.lock().unwrap().adv_sets.retain(|_, val| *val != Some(advertiser_id));
     }
 
     fn on_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: i32) {
