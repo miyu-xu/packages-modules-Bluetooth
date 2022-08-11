@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3fe180_b7eee2f0",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1441,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-11T21:51:12Z",
+      "side": 1,
+      "message": "sorry, ignore \"We do not need the interesting le service check in the earlier loop because we never store BLE UUIDs that are _not_ \"interesting\"\" part.\n\nThe actual reason is we do not need the interesting le service check in the earlier loop because the earlier loop is looping through the newly discovered classic UUIDs and adding them to the set.",
+      "parentUuid": "983891a8_9f3a5c91",
+      "range": {
+        "startLine": 1441,
+        "startChar": 14,
+        "endLine": 1441,
+        "endChar": 44
+      },
+      "revId": "0baced1cceebe70cb73ceef4ba6f4accf5e1353a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "129e3304_bcf5321d",
