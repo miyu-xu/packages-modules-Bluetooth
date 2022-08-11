@@ -150,7 +150,6 @@ impl L2capControlDemultiplexer {
                             handle: self.handles.assign_key(local_cid)?,
                             data_rx,
                             data_tx: self.outgoing_event_tx.clone(),
-                            is_disconnected: false,
                         },
                     })
                     .await
@@ -164,7 +163,6 @@ impl L2capControlDemultiplexer {
                         handle: self.handles.assign_key(local_cid)?,
                         data_rx,
                         data_tx: self.outgoing_event_tx.clone(),
-                        is_disconnected: false,
                     })
                     .await
                     .context("failed to dispatch established outgoing connection event")

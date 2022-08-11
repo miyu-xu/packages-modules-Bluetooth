@@ -278,7 +278,7 @@ async fn run_connection(
 ) {
     loop {
         select! {
-            Some(evt) = core.evt_rx.recv() => {
+            Some(evt) = core.ev t_rx.recv() => {
                 match evt.specialize() {
                     DisconnectionComplete(evt) => {
                         connections.lock().await.remove(&handle);

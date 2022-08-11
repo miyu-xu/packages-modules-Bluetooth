@@ -12,7 +12,6 @@ use tokio::{
         mpsc::{channel, Receiver, Sender},
         oneshot,
     },
-    task::JoinHandle,
 };
 
 use super::{
@@ -141,7 +140,7 @@ where
         let (control_tx, control_rx) = channel(4);
         let (event_tx, event_rx) = channel(16);
         let task_handle =
-            OwnedHandle::new(spawn(event_loop(event_rx, selector, control_tx.clone(), control_rx)));
+            spawn(event_loop(event_rx, selector, control_tx.clone(), control_rx)).into();
         Demultiplexer { control_tx, event_tx, task_handle }
     }
 

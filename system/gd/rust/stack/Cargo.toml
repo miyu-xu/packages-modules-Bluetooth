@@ -40,7 +40,7 @@ thiserror = "*"
 tokio = "*"
 tokio-stream = "*"
 walkdir = "*"
-anyhow = "*"
+anyhow = "=1.0.59"
 
 # Macro dependencies
 num-derive = "*"

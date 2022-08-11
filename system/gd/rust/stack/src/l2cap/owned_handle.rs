@@ -1,11 +1,12 @@
 use tokio::task::JoinHandle;
 
+#[derive(Debug)]
 pub struct OwnedHandle<T> {
     handle: JoinHandle<T>,
 }
 
-impl<T> OwnedHandle<T> {
-    pub fn new(handle: JoinHandle<T>) -> Self {
+impl<T> From<JoinHandle<T>> for OwnedHandle<T> {
+    fn from(handle: JoinHandle<T>) -> Self {
         Self { handle }
     }
 }

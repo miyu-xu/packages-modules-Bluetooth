@@ -3,7 +3,7 @@
 
 mod bridge;
 mod control_demultiplexer;
-mod demultiplexer;
+pub mod demultiplexer;
 mod handlemap;
 mod listeners;
 mod nonce;
@@ -18,7 +18,6 @@ use gddi::provides;
 use gddi::Stoppable;
 use log::info;
 
-use std::mem;
 use std::num::NonZeroU16;
 use std::sync::Arc;
 use tokio::runtime::Runtime;
@@ -37,6 +36,7 @@ use self::control_demultiplexer::{
 };
 use self::demultiplexer::{DemultiplexedReceiver, Demultiplexer};
 
+use self::owned_handle::OwnedHandle;
 use self::types::{IdentityAddress, L2capChannelId, L2capPsm};
 
 use std::ptr::null_mut;
@@ -76,7 +76,7 @@ struct L2capContents {
     /// Channel errors are dispatched to listeners keyed by their LCID
     error_demultiplexer: Demultiplexer<ChannelError, L2capChannelId>,
     /// A handle for our event loop, so we can stop it on shutdown
-    event_loop_handle: JoinHandle<()>,
+    event_loop_handle: OwnedHandle<()>,
 }
 
 #[provides]
