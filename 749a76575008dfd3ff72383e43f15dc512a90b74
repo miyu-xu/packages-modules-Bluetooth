@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "442adc83_6a7c08f8",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-11T21:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0020b032_d025404e",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 34
+      },
+      "revId": "749a76575008dfd3ff72383e43f15dc512a90b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67cf76ae_df727866",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ab6f304_962c5cc5",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 717,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-11T21:32:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67cf76ae_df727866",
+      "range": {
+        "startLine": 717,
+        "startChar": 88,
+        "endLine": 717,
+        "endChar": 94
+      },
+      "revId": "749a76575008dfd3ff72383e43f15dc512a90b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7f74591_322b71c0",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-08-11T05:09:14Z",
       "side": 1,
       "message": "uint32_t?  When do we need it to be signed?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 7
+      },
+      "revId": "749a76575008dfd3ff72383e43f15dc512a90b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e60c2f_19fda4d9",
+        "filename": "system/gd/os/android/system_properties.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-11T21:32:56Z",
+      "side": 1,
+      "message": "You\u0027re right. Don\u0027t need it to be signed -- updated.",
+      "parentUuid": "e7f74591_322b71c0",
       "range": {
         "startLine": 39,
         "startChar": 0,
