@@ -2,12 +2,12 @@ use std::collections::HashMap;
 use std::fmt::{Display, Formatter, Result};
 use std::sync::{Arc, Mutex};
 
-use crate::callbacks::BtGattCallback;
+use crate::callbacks::{BtGattCallback, AdvertisingSetCallback};
 use crate::ClientContext;
 use crate::{console_red, console_yellow, print_error, print_info};
 use bt_topshim::btif::BtTransport;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth};
-use btstack::bluetooth_gatt::IBluetoothGatt;
+use btstack::bluetooth_gatt::{AdvertiseData, AdvertisingSetParameters, IBluetoothGatt};
 use btstack::uuid::{Profile, UuidHelper, UuidWrapper};
 use manager_service::iface_bluetooth_manager::IBluetoothManager;
 
@@ -147,6 +147,16 @@ fn build_commands() -> HashMap<String, CommandOption> {
             ],
             description: String::from("LE scanning utilities."),
             function_pointer: CommandHandler::cmd_le_scan,
+        },
+    );
+    command_options.insert(
+        String::from("advertise"),
+        CommandOption {
+            rules: vec![
+                String::from("advertise <on|off>"),
+            ],
+            description: String::from("Advertising utilities."),
+            function_pointer: CommandHandler::cmd_advertise,
         },
     );
     command_options.insert(
@@ -726,6 +736,74 @@ impl CommandHandler {
                 } else {
                     print_error!("Failed parsing scanner id");
                 }
+            }
+            _ => {
+                println!("Invalid argument '{}'", args[0]);
+            }
+        });
+    }
+
+    fn cmd_advertise(&mut self, args: &Vec<String>) {
+        if !self.context.lock().unwrap().adapter_ready {
+            self.adapter_not_ready();
+            return;
+        }
+
+        enforce_arg_len(args, 1, "advertise <commands>", || match &args[0][0..] {
+            "on" => {
+                // wrap these up in a single function.
+                let adapter = self.context.lock().unwrap().default_adapter;
+                let cb_objpath: String =
+                    format!("/org/chromium/bluetooth/client/{}/advertising_set_callback", adapter);
+                let dbus_connection = self.context.lock().unwrap().dbus_connection.clone();
+                let dbus_crossroads = self.context.lock().unwrap().dbus_crossroads.clone();
+
+                let params = AdvertisingSetParameters {
+                    connectable: false,
+                    scannable: false,
+                    is_legacy: true,
+                    is_anonymous: false,
+                    include_tx_power: true,
+                    primary_phy: 1,
+                    secondary_phy: 1,
+                    interval: 160,
+                    tx_power_level: -21,
+                    own_address_type: 0, // random
+                };
+
+                let data = AdvertiseData {
+                    service_uuids: Vec::<String>::new(),
+                    solicit_uuids: Vec::<String>::new(),
+                    manufacturer_data: HashMap::<i32, Vec<u8>>::from([(0, vec![0, 1, 2])]),
+                    service_data: HashMap::<String, Vec<u8>>::new(),
+                    include_tx_power_level: true,
+                    include_device_name: false,
+                };
+
+                let callback = Box::new(AdvertisingSetCallback::new(
+                    cb_objpath.clone(),
+                    self.context.clone(),
+                    dbus_connection.clone(),
+                    dbus_crossroads.clone(),
+                ));
+
+                self.context.lock().unwrap().gatt_dbus.as_mut().unwrap().start_advertising_set(
+                    params,
+                    Some(data),
+                    None, // scan_response
+                    None, // periodic_parameters
+                    None, // periodic_data
+                    0, // duration
+                    0, // max_ext_adv_events
+                    callback,
+                );
+            }
+            "off" => {
+                println!("RJ_DBG: stop_advertising_set() --->'");
+                self.context.lock().unwrap().gatt_dbus.as_mut().unwrap().stop_advertising_set(
+                    0, // RJ_TOOD: save advertiser_id somewhere
+                );
+                println!("RJ_DBG: stop_advertising_set() <---'");
             }
             _ => {
                 println!("Invalid argument '{}'", args[0]);

@@ -66,6 +66,9 @@ pub enum Message {
     // Scanner related
     ScannerCallbackDisconnected(u32),
 
+    // Advertising related
+    AdvCallbackDisconnected(u32),
+
     SocketManagerActions(SocketActions),
     SocketManagerCallbackDisconnected(u32),
 }
@@ -124,12 +127,12 @@ impl Stack {
 
                 Message::LeAdvInband(m) => {
                     // TODO(b/233128394)
-                    debug!("Received LeAdvInband message: {:?}", m);
+                    log::warn!("Received LeAdvInband message: {:?}", m);
                 }
 
                 Message::LeAdv(m) => {
-                    // TODO(b/233128394)
-                    debug!("Received LeAdv message: {:?}", m);
+                    log::warn!("Received LeAdv message: {:?}", m);
+                    bluetooth_gatt.lock().unwrap().dispatch_le_adv_callbacks(m);
                 }
 
                 Message::Hfp(hf) => {
@@ -175,6 +178,10 @@ impl Stack {
 
                 Message::ScannerCallbackDisconnected(id) => {
                     bluetooth_gatt.lock().unwrap().remove_scanner_callback(id);
+                }
+
+                Message::AdvCallbackDisconnected(id) => {
+                    bluetooth_gatt.lock().unwrap().remove_adv_callback(id);
                 }
 
                 Message::SocketManagerActions(action) => {

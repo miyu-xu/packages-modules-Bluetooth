@@ -598,44 +598,35 @@ impl RPCProxy for IAdvertisingSetCallbackDBus {
     "org.chromium.bluetooth.AdvertisingSetCallback"
 )]
 impl IAdvertisingSetCallback for IAdvertisingSetCallbackDBus {
-    fn on_advertising_set_started(&self, _advertiser_id: i32, _tx_power: i32, _status: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnAdvertisingSetStarted")]
+    fn on_advertising_set_started(&self, advertiser_id: i32, tx_power: i32, status: i32) {}
 
-    fn on_own_address_read(&self, _advertiser_id: i32, _address_type: i32, _address: String) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnOwnAddressRead")]
+    fn on_own_address_read(&self, advertiser_id: i32, address_type: i32, address: String) {}
 
-    fn on_advertising_set_stopped(&self, _advertiser_id: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnAdvertisingSetStopped")]
+    fn on_advertising_set_stopped(&self, advertiser_id: i32) {}
 
-    fn on_advertising_enabled(&self, _advertiser_id: i32, _enable: bool, _status: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnAdvertisingEnabled")]
+    fn on_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: i32) {}
 
-    fn on_advertising_data_set(&self, _advertiser_id: i32, _status: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnAdvertisingDataSet")]
+    fn on_advertising_data_set(&self, advertiser_id: i32, status: i32) {}
 
-    fn on_scan_response_data_set(&self, _advertiser_id: i32, _status: i32) {
-        // TODO(b/233128828)
-    }
-    fn on_advertising_parameters_updated(&self, _advertiser_id: i32, _tx_power: i32, _status: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnScanResponseDataSet")]
+    fn on_scan_response_data_set(&self, advertiser_id: i32, status: i32) {}
 
-    fn on_periodic_advertising_parameters_updated(&self, _advertiser_id: i32, _status: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnAdvertisingParametersUpdated")]
+    fn on_advertising_parameters_updated(&self, advertiser_id: i32, tx_power: i32, status: i32) {}
 
-    fn on_periodic_advertising_data_set(&self, _advertiser_id: i32, _status: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnPeriodicAdvertisingParametersUpdated")]
+    fn on_periodic_advertising_parameters_updated(&self, advertiser_id: i32, status: i32) {}
 
-    fn on_periodic_advertising_enabled(&self, _advertiser_id: i32, _enable: bool, _status: i32) {
-        // TODO(b/233128828)
-    }
+    #[dbus_method("OnPeriodicAdvertisingDataSet")]
+    fn on_periodic_advertising_data_set(&self, advertiser_id: i32, status: i32) {}
+
+    #[dbus_method("OnPeriodicAdvertisingEnabled")]
+    fn on_periodic_advertising_enabled(&self, advertiser_id: i32, enable: bool, status: i32) {}
 }
 
 #[dbus_propmap(AdvertisingSetParameters)]
