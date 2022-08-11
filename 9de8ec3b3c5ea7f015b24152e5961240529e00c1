@@ -16,6 +16,24 @@
       "message": "Scanning and advertising should be separate interfaces from the generic GATT interface.\n\ni.e IBluetoothGattScanning, IBluetoothGattAdvertising",
       "revId": "9de8ec3b3c5ea7f015b24152e5961240529e00c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "503179db_898d9fa6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-11T15:34:21Z",
+      "side": 1,
+      "message": "Adding a TODO and will split out in a follow up CL 242083290",
+      "parentUuid": "f895194e_f9eb7c47",
+      "revId": "9de8ec3b3c5ea7f015b24152e5961240529e00c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
