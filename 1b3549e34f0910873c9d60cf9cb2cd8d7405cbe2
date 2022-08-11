@@ -16,6 +16,24 @@
       "message": "selfreview: Lets create helper for that and move it to LoadHasDetailsFromStorage.\n\nAlso call it in line 904",
       "revId": "1b3549e34f0910873c9d60cf9cb2cd8d7405cbe2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "288a1e99_02ad4a93",
+        "filename": "system/bta/has/has_client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1713,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-11T08:46:45Z",
+      "side": 1,
+      "message": "do you want to do it before merging this CL?",
+      "parentUuid": "069c9145_532b74b8",
+      "revId": "1b3549e34f0910873c9d60cf9cb2cd8d7405cbe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
