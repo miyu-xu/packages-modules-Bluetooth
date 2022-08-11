@@ -468,6 +468,30 @@
       },
       "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9f87a36_bf80f81f",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-11T06:08:04Z",
+      "side": 1,
+      "message": "How about stack? Test sequences will need to pop out test data explicitly, but the context seems more straight forward.",
+      "parentUuid": "741fe8fb_bcffbdd4",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
