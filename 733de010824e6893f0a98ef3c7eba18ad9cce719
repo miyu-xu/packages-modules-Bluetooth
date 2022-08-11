@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eceac021_ead768d6",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-11T23:20:47Z",
+      "side": 1,
+      "message": "Do we want to do all of this every time we call bta_dm_pm_sniff?  Could we just do it once and store it?  I have no idea how much work this actually is, but I\u0027m assuming these shouldn\u0027t change while Bluetooth is up.  It seems like once should be enough.",
+      "range": {
+        "startLine": 794,
+        "startChar": 0,
+        "endLine": 794,
+        "endChar": 54
+      },
+      "revId": "733de010824e6893f0a98ef3c7eba18ad9cce719",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
