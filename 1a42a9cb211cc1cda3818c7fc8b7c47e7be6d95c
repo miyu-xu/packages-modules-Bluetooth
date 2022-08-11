@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e133aa_ed7d54ad",
+        "filename": "build.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-11T23:12:45Z",
+      "side": 1,
+      "message": "Decided to merge for now.",
+      "parentUuid": "c13f5358_9976cd99",
+      "range": {
+        "startLine": 256,
+        "startChar": 18,
+        "endLine": 256,
+        "endChar": 24
+      },
+      "revId": "1a42a9cb211cc1cda3818c7fc8b7c47e7be6d95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "263c7717_dfbbf0f4",
@@ -78,6 +102,30 @@
       "writtenOn": "2022-08-11T22:58:26Z",
       "side": 1,
       "message": "Just wondering, is it `\u0027-target\u003darmv7-unknown-linux-gnueabihf\u0027,` instead?",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 48
+      },
+      "revId": "1a42a9cb211cc1cda3818c7fc8b7c47e7be6d95c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc4bc166_ff5903f2",
+        "filename": "build.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-11T23:12:45Z",
+      "side": 1,
+      "message": "Both works, I will go with \u0027--target\u003darmv7-unknown-linux-gnueabihf\u0027 for clarity",
+      "parentUuid": "263c7717_dfbbf0f4",
       "range": {
         "startLine": 283,
         "startChar": 0,
