@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3c6565a_5c06cb49",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-11T21:33:23Z",
+      "side": 1,
+      "message": "Ack. Changed",
+      "parentUuid": "7011df3f_d4b7457b",
+      "range": {
+        "startLine": 70,
+        "startChar": 1,
+        "endLine": 70,
+        "endChar": 7
+      },
+      "revId": "d29cca4f27256a862d833a20961544427f69ea1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b1b23f8_63ddba48",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b98387dd_3b329e65",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-11T21:33:23Z",
+      "side": 1,
+      "message": "Ah yes, put it in a separate commit.",
+      "parentUuid": "3b1b23f8_63ddba48",
+      "range": {
+        "startLine": 551,
+        "startChar": 2,
+        "endLine": 551,
+        "endChar": 3
+      },
+      "revId": "d29cca4f27256a862d833a20961544427f69ea1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cc53d2b_62932f33",
@@ -60,6 +108,30 @@
       "writtenOn": "2022-08-11T05:15:49Z",
       "side": 1,
       "message": "Should this be a const reference?",
+      "range": {
+        "startLine": 77,
+        "startChar": 21,
+        "endLine": 77,
+        "endChar": 56
+      },
+      "revId": "d29cca4f27256a862d833a20961544427f69ea1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04a15d95_fd5ad827",
+        "filename": "system/osi/src/properties.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-11T21:33:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cc53d2b_62932f33",
       "range": {
         "startLine": 77,
         "startChar": 21,
