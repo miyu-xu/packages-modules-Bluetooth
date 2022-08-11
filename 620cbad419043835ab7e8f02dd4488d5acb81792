@@ -582,6 +582,30 @@
       },
       "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dded82da_eca0fcf3",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-11T15:12:37Z",
+      "side": 1,
+      "message": "https://r.android.com/2184435\nI implemented the two syntaxes: with an index and without.\nI like both of them, so if you agree on the implementation and usage you can pick the one that you like most.",
+      "parentUuid": "b0694e9a_c9795687",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
