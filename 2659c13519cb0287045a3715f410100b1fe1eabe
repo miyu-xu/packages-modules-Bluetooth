@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70bb947c_23ec943c",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "Can you add the list of the tests you are adding here? For visibility.",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 26
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7de52508_27d4691d",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 17,
+        "startChar": 40,
+        "endLine": 17,
+        "endChar": 44
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eab53e8f_f1f29e45",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "Why do we return `Empty` here? I remember David told me that it was the right thing to do, but it would be good to add a comment to explain why we are doing it like that.",
+      "range": {
+        "startLine": 18,
+        "startChar": 66,
+        "endLine": 18,
+        "endChar": 90
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01053b41_22b2c504",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94126bd4_cc9cae61",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "663d835c_5ef0d62d",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dea8818_8d5277de",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 41
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3774716f_4521977a",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 42
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ebcde9_a8fd3354",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 44
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "604857ef_0cc04cf5",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 45
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ae3123_4ccef560",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 35
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5442f571_8c37dd07",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-11T23:28:00Z",
+      "side": 1,
+      "message": "What happens if you don\u0027t wait?",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 112,
+        "endChar": 99
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
