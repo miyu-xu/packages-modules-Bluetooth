@@ -16,6 +16,24 @@
       "message": "The CL LGTM, but I think the detection logic can be more inclusive by skipping the build if non-linux machine is detected. IN the following up CL we start to specify different machine if it is non-linux. ",
       "revId": "10d4c2cce1d32be1f4b76414f49943cfa8de07fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "951ee432_8a8345ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-11T18:36:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0090c606_d32d06d9",
+      "revId": "10d4c2cce1d32be1f4b76414f49943cfa8de07fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
