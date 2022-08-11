@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14840665_d45799c1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-08-11T08:17:49Z",
+      "side": 1,
+      "message": "Assigned number context label is Conversational. Do wee need to rename it as well?",
+      "revId": "19395fd878ad6f5b89342dcff9408bdeaa651c87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fef0bc26_8099e6e1",
+        "filename": "framework/java/android/bluetooth/BluetoothLeAudio.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-08-11T08:17:49Z",
+      "side": 1,
+      "message": "Assigned number context label is \"Emergency alarm\". Do we need to change to CONTEXT_TYPE_EMERGENCY_ALARM to align with the assigned number?",
+      "revId": "19395fd878ad6f5b89342dcff9408bdeaa651c87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
