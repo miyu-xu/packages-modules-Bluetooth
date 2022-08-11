@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eacfb8c_e9587822",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-11T22:28:55Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 269,
+        "startChar": 66,
+        "endLine": 271,
+        "endChar": 36
+      },
+      "revId": "a23dd38793352cec23ab6105815743562d871265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848efb6c_a2370916",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-11T22:28:55Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 272,
+        "startChar": 24,
+        "endLine": 272,
+        "endChar": 76
+      },
+      "revId": "a23dd38793352cec23ab6105815743562d871265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98af8e0b_e0e5c64b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-11T22:28:55Z",
+      "side": 1,
+      "message": "if (pin.isPresent()) {\n  intent.putExtra(BluetoothDevice.EXTRA_PAIRING_KEY, pin.get());\n}\n\n ?",
+      "range": {
+        "startLine": 377,
+        "startChar": 8,
+        "endLine": 377,
+        "endChar": 22
+      },
+      "revId": "a23dd38793352cec23ab6105815743562d871265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
