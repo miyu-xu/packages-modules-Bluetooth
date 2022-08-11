@@ -22,6 +22,30 @@
       },
       "revId": "6df236ed413d138fb2598aed769fd003fc0687cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed9b9fa_fc58033d",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-11T21:37:59Z",
+      "side": 1,
+      "message": "Replace this with \"You can view the list of required packages in build.py\" and get a list to install using `./build.py --run-bootstrap`",
+      "parentUuid": "5f4bef28_7fe4b222",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 3
+      },
+      "revId": "6df236ed413d138fb2598aed769fd003fc0687cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
