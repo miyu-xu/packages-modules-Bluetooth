@@ -84,6 +84,9 @@ pub(crate) struct ClientContext {
 
     /// Identifies the callback to receive IScannerCallback method calls.
     scanner_callback_id: Option<u32>,
+
+    /// Avertising sets started/registered. Map from reg_id to advertiser_id.
+    adv_sets: HashMap<i32, i32>,
 }
 
 impl ClientContext {
@@ -115,6 +118,7 @@ impl ClientContext {
             dbus_connection,
             dbus_crossroads,
             scanner_callback_id: None,
+            adv_sets: HashMap::new(),
         }
     }
 

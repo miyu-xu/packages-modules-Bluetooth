@@ -273,6 +273,7 @@ struct AdvertisingSetParametersDBus {
 pub struct AdvertiseDataDBus {
     service_uuids: Vec<String>,
     solicit_uuids: Vec<String>,
+    transport_discovery_data: Vec<Vec<u8>>,
     manufacturer_data: HashMap<i32, Vec<u8>>,
     service_data: HashMap<String, Vec<u8>>,
     include_tx_power_level: bool,
@@ -324,7 +325,7 @@ impl IBluetoothGatt for IBluetoothGattDBus {
     fn start_advertising_set(
         &mut self,
         parameters: AdvertisingSetParameters,
-        advertise_data: Option<AdvertiseData>,
+        advertise_data: AdvertiseData,
         scan_response: Option<AdvertiseData>,
         periodic_parameters: Option<PeriodicAdvertisingParameters>,
         periodic_data: Option<AdvertiseData>,

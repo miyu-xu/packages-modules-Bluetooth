@@ -5,22 +5,25 @@ use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 use bt_topshim::bindings::root::bluetooth::Uuid;
 use bt_topshim::btif::{BluetoothInterface, RawAddress, Uuid128Bit};
 use bt_topshim::profiles::gatt::{
-    BtGattDbElement, BtGattNotifyParams, BtGattReadParams, Gatt, GattAdvCallbacksDispatcher,
-    GattAdvInbandCallbacksDispatcher, GattClientCallbacks, GattClientCallbacksDispatcher,
-    GattScannerCallbacks, GattScannerCallbacksDispatcher, GattServerCallbacksDispatcher,
-    GattStatus,
+    BtGattDbElement, BtGattNotifyParams, BtGattReadParams, Gatt, GattAdvCallbacks,
+    GattAdvCallbacksDispatcher, GattAdvInbandCallbacksDispatcher, GattClientCallbacks,
+    GattClientCallbacksDispatcher, GattScannerCallbacks, GattScannerCallbacksDispatcher,
+    GattServerCallbacksDispatcher, GattStatus,
 };
 use bt_topshim::topstack;
 
 use log::{debug, warn};
 use num_traits::cast::{FromPrimitive, ToPrimitive};
+use num_traits::clamp;
 use rand::rngs::SmallRng;
 use rand::{RngCore, SeedableRng};
 use std::collections::{HashMap, HashSet};
 use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
+use crate::bluetooth_adv as adv;
 use crate::callbacks::Callbacks;
+use crate::uuid::parse_uuid_string;
 use crate::{Message, RPCProxy};
 
 struct Client {
@@ -139,6 +142,10 @@ impl ContextMap {
     }
 }
 
+pub type AdvertisingSetParameters = adv::AdvertisingSetParameters;
+pub type AdvertiseData = adv::AdvertiseData;
+pub type PeriodicAdvertisingParameters = adv::PeriodicAdvertisingParameters;
+
 /// Defines the GATT API.
 pub trait IBluetoothGatt {
     /// Registers an LE scanner callback.
@@ -177,7 +184,7 @@ pub trait IBluetoothGatt {
     fn start_advertising_set(
         &mut self,
         parameters: AdvertisingSetParameters,
-        advertise_data: Option<AdvertiseData>,
+        advertise_data: AdvertiseData,
         scan_response: Option<AdvertiseData>,
         periodic_parameters: Option<PeriodicAdvertisingParameters>,
         periodic_data: Option<AdvertiseData>,
@@ -538,64 +545,6 @@ pub struct ScanSettings {
     pub rssi_settings: RSSISettings,
 }
 
-/// Advertising parameters for each BLE advertising set.
-#[derive(Debug, Default)]
-pub struct AdvertisingSetParameters {
-    /// Whether the advertisement will be connectable.
-    pub connectable: bool,
-    /// Whether the advertisement will be scannable.
-    pub scannable: bool,
-    /// Whether the legacy advertisement will be used.
-    pub is_legacy: bool,
-    /// Whether the advertisement will be anonymous.
-    pub is_anonymous: bool,
-    /// Whether the TX Power will be included.
-    pub include_tx_power: bool,
-    /// Primary advertising phy. Valid values are: 1 (1M), 2 (2M), 3 (Coded).
-    pub primary_phy: i32,
-    /// Secondary advertising phy. Valid values are: 1 (1M), 2 (2M), 3 (Coded).
-    pub secondary_phy: i32,
-    /// The advertising interval. Bluetooth LE Advertising interval, in 0.625ms unit.
-    /// The valid range is from 160 (100ms) to 16777215 (10,485.759375 s).
-    /// Recommended values are: 160 (100ms), 400 (250ms), 1600 (1s).
-    pub interval: i32,
-    /// Transmission power of Bluetooth LE Advertising, in dBm. The valid range is [-127, 1].
-    /// Recommended values are: -21, -15, 7, 1.
-    pub tx_power_level: i32,
-    /// Own address type for advertising to control public or privacy mode.
-    /// The valid types are: -1 (default), 0 (public), 1 (random).
-    pub own_address_type: i32,
-}
-
-/// Represents the data to be advertised and the scan response data for active scans.
-#[derive(Debug, Default)]
-pub struct AdvertiseData {
-    /// A list of service UUIDs within the advertisement that are used to identify
-    /// the Bluetooth GATT services.
-    pub service_uuids: Vec<String>,
-    /// A list of service solicitation UUIDs within the advertisement that we invite to connect.
-    pub solicit_uuids: Vec<String>,
-    /// A collection of manufacturer Id and the corresponding manufacturer specific data.
-    pub manufacturer_data: HashMap<i32, Vec<u8>>,
-    /// A map of 16-bit UUID and its corresponding service data.
-    pub service_data: HashMap<String, Vec<u8>>,
-    /// Whether TX Power level will be included in the advertising packet.
-    pub include_tx_power_level: bool,
-    /// Whether the device name will be included in the advertisement packet.
-    pub include_device_name: bool,
-}
-
-/// Parameters of the periodic advertising packet for BLE advertising set.
-#[derive(Debug, Default)]
-pub struct PeriodicAdvertisingParameters {
-    /// Whether TX Power level will be included.
-    pub include_tx_power: bool,
-    /// Periodic advertising interval in 1.25ms unit. Valid values are from 80 (100ms) to
-    /// 65519 ms (81.89875s). Value from range [interval, interval+20ms] will be picked as
-    /// the actual value.
-    pub interval: i32,
-}
-
 /// Represents a scan filter to be passed to `IBluetoothGatt::start_scan`.
 #[derive(Debug, Default)]
 pub struct ScanFilter {}
@@ -609,6 +558,9 @@ pub struct BluetoothGatt {
     reliable_queue: HashSet<String>,
     scanner_callbacks: Callbacks<dyn IScannerCallback + Send>,
     scanners: HashMap<Uuid, ScannerInfo>,
+    adv_callbacks: Callbacks<dyn IAdvertisingSetCallback + Send>,
+    adv_sets: HashMap<u32, AdvSetInfo>,
+    adv_id_map: HashMap<u8, u32>,
 
     // Used for generating random UUIDs. SmallRng is chosen because it is fast, don't use this for
     // cryptography.
@@ -626,6 +578,9 @@ impl BluetoothGatt {
             scanner_callbacks: Callbacks::new(tx.clone(), Message::ScannerCallbackDisconnected),
             scanners: HashMap::new(),
             small_rng: SmallRng::from_entropy(),
+            adv_callbacks: Callbacks::new(tx.clone(), Message::AdvCallbackDisconnected),
+            adv_sets: HashMap::new(),
+            adv_id_map: HashMap::new(),
         }
     }
 
@@ -706,28 +661,23 @@ impl BluetoothGatt {
 
         self.scanner_callbacks.remove_callback(callback_id)
     }
-}
 
-// Temporary util that covers only basic string conversion.
-// TODO(b/193685325): Implement more UUID utils by using Uuid from gd/hci/uuid.h with cxx.
-fn parse_uuid_string<T: Into<String>>(uuid: T) -> Option<Uuid> {
-    let uuid = uuid.into();
-
-    if uuid.len() != 32 {
-        return None;
-    }
-
-    let mut raw = [0; 16];
-
-    for i in 0..16 {
-        let byte = u8::from_str_radix(&uuid[i * 2..i * 2 + 2], 16);
-        if byte.is_err() {
-            return None;
+    /// Remove an advertising callback and unregisters all advertising set associated with it.
+    pub fn remove_adv_callback(&mut self, callback_id: u32) -> bool {
+        if let Some(adv_set) = self.adv_sets.remove(&callback_id) {
+            if let Some(adv_id) = adv_set.advertiser_id {
+                self.adv_id_map.remove(&adv_id);
+                self.gatt.as_mut().unwrap().advertiser.unregister(adv_id);
+            }
+        } else {
+            log::warn!(
+                "There is no advertising set associated with the callback ({})",
+                callback_id
+            );
         }
-        raw[i] = byte.unwrap();
-    }
 
-    Some(Uuid { uu: raw })
+        self.adv_callbacks.remove_callback(callback_id)
+    }
 }
 
 #[derive(Debug, FromPrimitive, ToPrimitive)]
@@ -750,6 +700,11 @@ struct ScannerInfo {
     callback_id: u32,
     // If the scanner is registered successfully, this contains the scanner id, otherwise None.
     scanner_id: Option<u8>,
+}
+
+struct AdvSetInfo {
+    // The ID of the advertising set, which is from btif OnAdvertisingSetStarted.
+    advertiser_id: Option<u8>,
 }
 
 impl IBluetoothGatt for BluetoothGatt {
@@ -791,24 +746,62 @@ impl IBluetoothGatt for BluetoothGatt {
 
     fn start_advertising_set(
         &mut self,
-        _parameters: AdvertisingSetParameters,
-        _advertise_data: Option<AdvertiseData>,
-        _scan_response: Option<AdvertiseData>,
-        _periodic_parameters: Option<PeriodicAdvertisingParameters>,
-        _periodic_data: Option<AdvertiseData>,
-        _duration: i32,
-        _max_ext_adv_events: i32,
-        _callback: Box<dyn IAdvertisingSetCallback + Send>,
+        parameters: AdvertisingSetParameters,
+        advertise_data: AdvertiseData,
+        scan_response: Option<AdvertiseData>,
+        periodic_parameters: Option<PeriodicAdvertisingParameters>,
+        periodic_data: Option<AdvertiseData>,
+        duration: i32,
+        max_ext_adv_events: i32,
+        callback: Box<dyn IAdvertisingSetCallback + Send>,
     ) {
-        // TODO(b/233128394)
+        let device_name = String::new(); // TODO(233128294), need adapter from service.
+        let params = adv::parse_advertising_set_parameters(parameters);
+        let adv_bytes = adv::parse_advertise_data(Some(advertise_data), &device_name);
+        let scan_bytes = adv::parse_advertise_data(scan_response, &device_name);
+        let periodic_params = adv::parse_periodic_parameters(periodic_parameters);
+        let periodic_bytes = adv::parse_advertise_data(periodic_data, &device_name);
+        let adv_timeout = clamp(duration, 0, 0xffff) as u16;
+        let adv_events = clamp(max_ext_adv_events, 0, 0xff) as u8;
+
+        let callback_id = self.adv_callbacks.add_callback(callback);
+        let reg_id = callback_id as i32;
+        self.adv_sets.insert(callback_id, AdvSetInfo { advertiser_id: None });
+
+        self.gatt.as_mut().unwrap().advertiser.start_advertising_set(
+            reg_id,
+            params,
+            adv_bytes,
+            scan_bytes,
+            periodic_params,
+            periodic_bytes,
+            adv_timeout,
+            adv_events,
+        );
     }
 
-    fn stop_advertising_set(&mut self, _advertiser_id: i32) {
-        // TODO(b/233128394)
+    fn stop_advertising_set(&mut self, advertiser_id: i32) {
+        self.gatt.as_mut().unwrap().advertiser.unregister(advertiser_id as u8);
+
+        let adv_id = advertiser_id as u8;
+        if let Some(callback_id) = self.adv_id_map.remove(&adv_id) {
+            if let Some(_adv_set) = self.adv_sets.remove(&callback_id) {
+                if let Some(cb) = self.adv_callbacks.get_by_id(callback_id) {
+                    cb.on_advertising_set_stopped(advertiser_id);
+                }
+            } else {
+                warn!(
+                    "There is no advertising set ({}) associated with the callback ({})",
+                    advertiser_id, callback_id
+                );
+            }
+        } else {
+            warn!("There is no callback found for advertising set ({})", advertiser_id);
+        }
     }
 
-    fn get_own_address(&mut self, _advertiser_id: i32) {
-        // TODO(b/233128394)
+    fn get_own_address(&mut self, advertiser_id: i32) {
+        self.gatt.as_mut().unwrap().advertiser.get_own_address(advertiser_id as u8);
     }
 
     fn register_client(
@@ -1642,6 +1635,62 @@ impl BtifGattScannerCallbacks for BluetoothGatt {
             log::warn!(
                 "Scanner registered callback for non-existent scanner info, UUID = {}",
                 uuid
+            );
+        }
+    }
+}
+
+#[btif_callbacks_dispatcher(BluetoothGatt, dispatch_le_adv_callbacks, GattAdvCallbacks)]
+pub(crate) trait BtifGattAdvCallbacks {
+    #[btif_callback(OnAdvertisingSetStarted)]
+    fn on_advertising_set_started(
+        &mut self,
+        reg_id: i32,
+        advertiser_id: u8,
+        tx_power: i8,
+        status: u8,
+    );
+}
+
+impl BtifGattAdvCallbacks for BluetoothGatt {
+    fn on_advertising_set_started(
+        &mut self,
+        reg_id: i32,
+        advertiser_id: u8,
+        tx_power: i8,
+        status: u8,
+    ) {
+        debug!(
+            "on_advertising_set_started reg_id = {}, advertiser_id = {}, status = {}",
+            reg_id, advertiser_id, status
+        );
+
+        let callback_id = reg_id as u32;
+        if status != 0 {
+            warn!("Error registering advertising set for reg_id {}", reg_id);
+            self.adv_sets.remove(&callback_id);
+            if let Some(cb) = self.adv_callbacks.get_by_id(callback_id) {
+                cb.on_advertising_set_started(advertiser_id.into(), tx_power.into(), status.into());
+            }
+            self.adv_callbacks.remove_callback(callback_id);
+            return;
+        }
+
+        if let Some(cb) = self.adv_callbacks.get_by_id(callback_id) {
+            if let Some(adv_set) = self.adv_sets.get_mut(&callback_id) {
+                adv_set.advertiser_id = Some(advertiser_id);
+                self.adv_id_map.insert(advertiser_id, callback_id);
+                cb.on_advertising_set_started(advertiser_id.into(), tx_power.into(), status.into());
+            } else {
+                warn!(
+                    "There is no advertising set ({}) associated with the callback ({})",
+                    advertiser_id, callback_id
+                );
+            }
+        } else {
+            warn!(
+                "There is no callback ({}) found for advertising set ({})",
+                callback_id, advertiser_id
             );
         }
     }
