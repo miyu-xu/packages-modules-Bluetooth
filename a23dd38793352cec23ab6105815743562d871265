@@ -92,6 +92,30 @@
       },
       "revId": "a23dd38793352cec23ab6105815743562d871265",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb4ceb9b_18faec91",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-11T22:35:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "845476a3_62c48247",
+      "range": {
+        "startLine": 377,
+        "startChar": 8,
+        "endLine": 377,
+        "endChar": 22
+      },
+      "revId": "a23dd38793352cec23ab6105815743562d871265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
