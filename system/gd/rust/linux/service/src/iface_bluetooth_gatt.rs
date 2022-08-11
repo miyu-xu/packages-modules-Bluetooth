@@ -1,11 +1,14 @@
 use bt_topshim::{btif::Uuid128Bit, profiles::gatt::GattStatus};
 
-use btstack::bluetooth_gatt::{
-    AdvertiseData, AdvertisingSetParameters, BluetoothGattCharacteristic, BluetoothGattDescriptor,
-    BluetoothGattService, GattWriteRequestStatus, GattWriteType, IAdvertisingSetCallback,
-    IBluetoothGatt, IBluetoothGattCallback, IScannerCallback, LePhy, PeriodicAdvertisingParameters,
-    RSSISettings, ScanFilter, ScanSettings, ScanType,
+use btstack::bluetooth_adv::{
+    AdvertiseData, AdvertisingSetParameters, IAdvertisingSetCallback, PeriodicAdvertisingParameters,
 };
+use btstack::bluetooth_gatt::{
+    BluetoothGattCharacteristic, BluetoothGattDescriptor, BluetoothGattService,
+    GattWriteRequestStatus, GattWriteType, IBluetoothGatt, IBluetoothGattCallback,
+    IScannerCallback, LePhy, RSSISettings, ScanFilter, ScanSettings, ScanType,
+};
+
 use btstack::RPCProxy;
 
 use dbus::arg::RefArg;
