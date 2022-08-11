@@ -16,6 +16,24 @@
       "message": "looks like a bad merge -- you got rid of socket manager 😮",
       "revId": "11d6ddfe183a34a52d504e48d95b3307eb8ff15c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08e37130_4eb865f7",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-11T15:35:52Z",
+      "side": 0,
+      "message": "oh no! I\u0027ll fixit",
+      "parentUuid": "904f6691_a84b3f1a",
+      "revId": "11d6ddfe183a34a52d504e48d95b3307eb8ff15c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

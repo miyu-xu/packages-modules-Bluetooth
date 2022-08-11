@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fdea7a7_a79cf089",
+        "filename": "system/blueberry/tests/topshim/power/suspend_test.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-11T15:35:52Z",
+      "side": 1,
+      "message": "thanks.  this was testing the advertising api :-D",
+      "parentUuid": "24f2edf8_8c2f757c",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 0
+      },
+      "revId": "e5573651ffb476de3ca765fde36254e19578fbfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4b922a37_6f38e442",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-06-24T16:25:50Z",
       "side": 1,
       "message": "remove :) ?",
+      "range": {
+        "startLine": 214,
+        "startChar": 1,
+        "endLine": 214,
+        "endChar": 34
+      },
+      "revId": "e5573651ffb476de3ca765fde36254e19578fbfb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a28656_653be239",
+        "filename": "system/gd/rust/linux/service/src/main.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-11T15:35:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b922a37_6f38e442",
       "range": {
         "startLine": 214,
         "startChar": 1,
