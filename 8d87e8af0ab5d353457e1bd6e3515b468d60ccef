@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "695c9797_2f9ea53f",
+        "filename": "README.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-12T16:36:10Z",
+      "side": 1,
+      "message": "Fix the lint warning.",
+      "revId": "8d87e8af0ab5d353457e1bd6e3515b468d60ccef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
