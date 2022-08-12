@@ -67,6 +67,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "149fbe1a_040f9c14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-12T19:29:39Z",
+      "side": 1,
+      "message": "It is less than 72 char/ wrapped appropriately on my screen, perhaps a git bug?",
+      "parentUuid": "ee627628_27429a81",
+      "revId": "4a1651976d4db0021530f4a656fe7f0dc80a9448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6d9bc98b_103285d1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
