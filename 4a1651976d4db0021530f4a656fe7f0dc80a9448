@@ -85,6 +85,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2edf6718_4542a74a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-12T19:36:57Z",
+      "side": 1,
+      "message": "You wrapped around ~50 char, it should be like below. \n\n```\nConfigure build dependencies depending on host machine\n\nTHe current apt package list assumes that one is running on an x86_64.\nBuilding Floss for Raspberry Pi does not require all the listed package\nand requires packages not needed by the x86_64 build. Thus, I add\nfunctionality to conditionally add packages depending on host machine.\n\nI also explicitly added clang as a required package, and made note that\none needs to rename the installed llvm packages.\n```",
+      "parentUuid": "149fbe1a_040f9c14",
+      "revId": "4a1651976d4db0021530f4a656fe7f0dc80a9448",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6d9bc98b_103285d1",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 9
