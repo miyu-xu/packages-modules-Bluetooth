@@ -48,7 +48,13 @@ class LeDevice {
     return !(*this == other);
   }
   bool operator<(const LeDevice& other) const {
-    return config_ < other.config_ && memory_only_config_ < other.memory_only_config_ && section_ < other.section_;
+    if (config_ != other.config_) {
+      config_ < other.config_;
+    } else if (memory_only_config_ != other.memory_only_config_) {
+      return memory_only_config_ < other.memory_only_config_;
+    } else {
+      return section_ < other.section_;
+    }
   }
   bool operator>(const LeDevice& rhs) const {
     return (rhs < *this);
