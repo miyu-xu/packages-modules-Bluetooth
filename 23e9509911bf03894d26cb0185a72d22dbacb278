@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "124d7989_dde585d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-12T20:36:33Z",
+      "side": 1,
+      "message": "nit: Could you use the same change-id as the internal patch?",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 52
+      },
+      "revId": "23e9509911bf03894d26cb0185a72d22dbacb278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
