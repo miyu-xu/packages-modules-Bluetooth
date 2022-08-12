@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed160cdd_5e9ef9c7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T21:39:54Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 367,
+        "startChar": 3,
+        "endLine": 367,
+        "endChar": 30
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcea070a_65658be3",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T21:39:54Z",
+      "side": 1,
+      "message": "Why 1?  Does it have to match the ID in 158?",
+      "range": {
+        "startLine": 153,
+        "startChar": 38,
+        "endLine": 153,
+        "endChar": 39
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18f87fc1_7f9cf889",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T21:39:54Z",
+      "side": 1,
+      "message": "Why do you need to wait here on resume?  I wouldn\u0027t expect to need serialization.",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
