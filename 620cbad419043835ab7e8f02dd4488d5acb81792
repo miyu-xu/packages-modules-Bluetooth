@@ -336,6 +336,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c42eda0a_5adca31a",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-12T10:20:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a252d0bc_5678f8d4",
+      "range": {
+        "startLine": 88,
+        "startChar": 25,
+        "endLine": 88,
+        "endChar": 43
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20dba4b1_7d2d425d",
@@ -367,6 +391,24 @@
       "side": 1,
       "message": "It then requires a macro upgrade to reuse input",
       "parentUuid": "20dba4b1_7d2d425d",
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8b4577a_141c998d",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-12T10:20:29Z",
+      "side": 1,
+      "message": "Done, but it digs some failures out...",
+      "parentUuid": "6f487b22_e2f7edb2",
       "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -598,6 +640,30 @@
       "side": 1,
       "message": "https://r.android.com/2184435\nI implemented the two syntaxes: with an index and without.\nI like both of them, so if you agree on the implementation and usage you can pick the one that you like most.",
       "parentUuid": "b0694e9a_c9795687",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "620cbad419043835ab7e8f02dd4488d5acb81792",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84d167b8_a33ef1c7",
+        "filename": "tools/rootcanal/lmp/src/test/sequence.rs",
+        "patchSetId": 23
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-12T10:20:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dded82da_eca0fcf3",
       "range": {
         "startLine": 84,
         "startChar": 16,
