@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a232719_9634877a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T04:53:14Z",
+      "side": 1,
+      "message": "packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java:382: error: variable pin is already defined in method sendDisplayPinIntent(byte[],Optional\u003cInteger\u003e,int)\n        pin.ifPresent(pin -\u003e intent.putExtra(BluetoothDevice.EXTRA_PAIRING_KEY, pin));\n                      ^\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java:557: error: cannot find symbol\n            Bundle bundle \u003d new Bundle();\n            ^\n  symbol:   class Bundle\n  location: class BondStateMachine\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java:557: error: cannot find symbol\n            Bundle bundle \u003d new Bundle();\n                                ^\n  symbol:   class Bundle\n  location: class BondStateMachine",
+      "revId": "b8c88e4afd3fcf0d17230dd286d29bef16c84027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
