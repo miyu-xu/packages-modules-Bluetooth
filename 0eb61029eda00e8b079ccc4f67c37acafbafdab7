@@ -239,6 +239,24 @@
       "message": "This doesn\u0027t actually block -- instead, it returns right away. If le_rand hasn\u0027t returned by the time it runs, it will just return Err(_) and you unwrap below will crash.\n\nShove this into a tokio::block_on with a timeout:\n```\nconst SUSPEND_TIMEOUT \u003d 2000;\nlet result \u003d tokio::block_on(async move {\n  match tokio::time::timeout(Duration::from_millis(SUSPEND_TIMEOUT), c.recv()).await {\n    Ok(recv) \u003d\u003e match recv {\n      Ok(rand_value) \u003d\u003e rand_value !\u003d 0,\n      Err(_) \u003d\u003e false,\n    },\n    // Timeout\n    Err(_) \u003d\u003e false,\n  }\n});\n\nif result {\n  // Suspend ready\n} else {\n  // Bad suspend state. What do you do if le_rand times out or le_rand returns 0?\n  // To try to be resilient, maybe you just log it and just emit suspend ready\n  // anyway?\n}\n```",
       "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97ffc5e5_6e360eab",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-12T20:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12f96986_fdb25224",
+      "revId": "0eb61029eda00e8b079ccc4f67c37acafbafdab7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
