@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41e16f00_97fb5781",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-12T06:56:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b9fab9d_3ac69be2",
+      "revId": "8e855a2fc06ec2880f4fba91d8dbce5d05d6c509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da1524c8_ba555f7f",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03c9a93a_bd4fb196",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 875,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-12T06:56:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da1524c8_ba555f7f",
+      "revId": "8e855a2fc06ec2880f4fba91d8dbce5d05d6c509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01f4a138_ca55c5a9",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-07-12T10:07:04Z",
       "side": 1,
       "message": "Please fix the indentation",
+      "revId": "8e855a2fc06ec2880f4fba91d8dbce5d05d6c509",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3eb42a6_244c26e9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-12T06:56:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01f4a138_ca55c5a9",
       "revId": "8e855a2fc06ec2880f4fba91d8dbce5d05d6c509",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
