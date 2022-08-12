@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "86704ca6_0b2be5d7",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "70bb947c_23ec943c",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 26
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7de52508_27d4691d",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-11T23:28:00Z",
       "side": 1,
       "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 17,
+        "startChar": 40,
+        "endLine": 17,
+        "endChar": 44
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02593cab_3450f301",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7de52508_27d4691d",
       "range": {
         "startLine": 17,
         "startChar": 40,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1efe652d_c570efb4",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Android DiscoverServiceByUuid API was made for testing only and does not retrieve any services so I did not add it here originally but it should be, as grpc isn\u0027t specific to Android.\nI added a DiscoverServicesResponse here and the logic in the MMIs too!",
+      "parentUuid": "eab53e8f_f1f29e45",
+      "range": {
+        "startLine": 18,
+        "startChar": 66,
+        "endLine": 18,
+        "endChar": 90
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "01053b41_22b2c504",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-11T23:28:00Z",
       "side": 1,
       "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dbb1707_42d9e4b9",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01053b41_22b2c504",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "185d215d_cfa8667d",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94126bd4_cc9cae61",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "663d835c_5ef0d62d",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-08-11T23:28:00Z",
       "side": 1,
       "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 26,
+        "startChar": 1,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abc215e8_2bc63309",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "663d835c_5ef0d62d",
       "range": {
         "startLine": 26,
         "startChar": 1,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "19f0a548_3da1b7cf",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dea8818_8d5277de",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 41
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3774716f_4521977a",
@@ -175,6 +343,30 @@
       "writtenOn": "2022-08-11T23:28:00Z",
       "side": 1,
       "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 42
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95bd26d9_ad1cc655",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3774716f_4521977a",
       "range": {
         "startLine": 79,
         "startChar": 0,
@@ -208,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "897973ba_eeb83a73",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7ebcde9_a8fd3354",
+      "range": {
+        "startLine": 84,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 44
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "604857ef_0cc04cf5",
@@ -221,6 +437,30 @@
       "writtenOn": "2022-08-11T23:28:00Z",
       "side": 1,
       "message": "nit: Add \".\" at the end of the comment.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 45
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "505cd886_f516835f",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "604857ef_0cc04cf5",
       "range": {
         "startLine": 88,
         "startChar": 0,
@@ -254,6 +494,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "333869bb_5356ced8",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5ae3123_4ccef560",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 35
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5442f571_8c37dd07",
@@ -267,6 +531,30 @@
       "writtenOn": "2022-08-11T23:28:00Z",
       "side": 1,
       "message": "What happens if you don\u0027t wait?",
+      "range": {
+        "startLine": 110,
+        "startChar": 6,
+        "endLine": 112,
+        "endChar": 99
+      },
+      "revId": "2659c13519cb0287045a3715f410100b1fe1eabe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c023a0d_4799e818",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 6
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-12T00:01:05Z",
+      "side": 1,
+      "message": "BluetoothGatt#discoverServiceByUuid() will return true, we will return and the PTS-bot will be stuck until timeout.\nWhat happens is that the native call for discovery will fail because the native is busy, so we won\u0027t discover the services when needed.",
+      "parentUuid": "5442f571_8c37dd07",
       "range": {
         "startLine": 110,
         "startChar": 6,
