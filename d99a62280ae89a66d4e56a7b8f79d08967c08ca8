@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5b07263_c5f2945a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T13:47:55Z",
+      "side": 1,
+      "message": "return obj1.B \u003c obj2.B;\n\nNo need for the second if.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a737565_20ed547a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T13:47:55Z",
+      "side": 1,
+      "message": "nit: should",
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "652defb4_d0a9467e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T13:47:55Z",
+      "side": 1,
+      "message": "nit: incorrectly",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93659e44_b0264341",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T13:47:55Z",
+      "side": 1,
+      "message": "Thanks for the fix!",
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c29d8903_190e59a5",
+        "filename": "system/gd/storage/adapter_config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T13:47:55Z",
+      "side": 1,
+      "message": "Since section_ is a string (most likely the address), can we compare that first?  It seems like if we want an ordering, section would be a natural ordering.",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1350335f_b2186cf2",
+        "filename": "system/gd/storage/adapter_config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T13:47:55Z",
+      "side": 1,
+      "message": "return section_ \u003c other.section_;  // Handles the all equal case.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 17
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
