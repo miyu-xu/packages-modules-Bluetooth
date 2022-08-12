@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "715b81e0_78475527",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-12T22:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d32a47e_4a8b73c2",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 207,
+        "endChar": 79
+      },
+      "revId": "d774ca078684b94ab6c7c7a21a10a4c1a9ace400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b091637_e63da07e",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-12T20:41:36Z",
       "side": 1,
       "message": "what if bd_addr is not in eir_uuids_by_bdaddr?\n\nAn app may pair a device created via BluetoothAdapter#getRemoteDevice() without going through the BR/EDR inquiry process",
+      "range": {
+        "startLine": 1457,
+        "startChar": 31,
+        "endLine": 1457,
+        "endChar": 59
+      },
+      "revId": "d774ca078684b94ab6c7c7a21a10a4c1a9ace400",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d27510_3a2c49a7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1457,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-12T22:33:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b091637_e63da07e",
       "range": {
         "startLine": 1457,
         "startChar": 31,
