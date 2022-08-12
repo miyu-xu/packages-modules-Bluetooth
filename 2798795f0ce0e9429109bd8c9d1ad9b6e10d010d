@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db98619a_8b844f7d",
+        "filename": "system/blueberry/tests/topshim/lib/gatt_client.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-12T21:45:24Z",
+      "side": 1,
+      "message": "Should enable and disable also take an advertiser_id parameter?",
+      "range": {
+        "startLine": 79,
+        "startChar": 14,
+        "endLine": 79,
+        "endChar": 32
+      },
+      "revId": "2798795f0ce0e9429109bd8c9d1ad9b6e10d010d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
