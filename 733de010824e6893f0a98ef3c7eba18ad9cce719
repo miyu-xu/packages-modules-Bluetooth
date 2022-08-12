@@ -22,6 +22,30 @@
       },
       "revId": "733de010824e6893f0a98ef3c7eba18ad9cce719",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78ce3590_c4e63b86",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-12T18:15:39Z",
+      "side": 1,
+      "message": "Yeah, once should be enough. Updated to store the sysprops.",
+      "parentUuid": "eceac021_ead768d6",
+      "range": {
+        "startLine": 794,
+        "startChar": 0,
+        "endLine": 794,
+        "endChar": 54
+      },
+      "revId": "733de010824e6893f0a98ef3c7eba18ad9cce719",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
