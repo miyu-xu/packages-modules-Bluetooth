@@ -179,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bba35776_99ab0a7c",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-12T16:52:19Z",
+      "side": 1,
+      "message": "You should not need to add a constraint for `Curve` to implement `Clone` as PhantomData will implement `Clone` even if it\u0027s inner type doesn\u0027t implement `Clone`.\n\nhttps://doc.rust-lang.org/std/marker/struct.PhantomData.html#impl-Clone",
+      "parentUuid": "9a87e5da_16c7dcf4",
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "679a4ef0_99b6de67",
         "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
         "patchSetId": 22
