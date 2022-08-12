@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4911975_fd61d5a4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-12T22:40:24Z",
+      "side": 1,
+      "message": "Please use \"gd/common/lru_cahce.h\" in legacy code so that we know that this code is coming from GD. \n\nAlso, please run \"mm -jXX\" in package/modules/Bluetooth to make sure all tests build together with this change.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "9223f3ebd47fdeec3ddfa8e0d144fdad835d1f62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
