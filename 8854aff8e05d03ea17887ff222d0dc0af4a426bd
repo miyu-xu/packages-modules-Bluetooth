@@ -26,6 +26,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "906687c8_b439811c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-12T23:03:52Z",
+      "side": 1,
+      "message": "nit: Prefer following. Expect will crash and we don\u0027t want that.\n\n```\nmatch self.internal_le_rand_queue.pop_back() {\n  Some(promise) \u003d\u003e promise.send(random),\n  None \u003d\u003e error!(\"LE Rand callback received but no sender available!\"),\n}\n```",
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcea070a_65658be3",
         "filename": "system/gd/rust/linux/stack/src/suspend.rs",
         "patchSetId": 11
@@ -83,6 +100,30 @@
       "writtenOn": "2022-08-12T21:39:54Z",
       "side": 1,
       "message": "Why do you need to wait here on resume?  I wouldn\u0027t expect to need serialization.",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d29be478_13241ecf",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-12T23:03:52Z",
+      "side": 1,
+      "message": "Agreed. Subsequent dbus will serialize at the dbus interface anyway so you can probably mark `on_resumed` as soon as you\u0027ve successfully sent to the btif layer.",
+      "parentUuid": "18f87fc1_7f9cf889",
       "range": {
         "startLine": 173,
         "startChar": 0,
