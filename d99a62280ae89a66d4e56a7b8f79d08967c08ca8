@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7271ace3_c4375196",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-12T21:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5b07263_c5f2945a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 15
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a737565_20ed547a",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57d95756_a2cd073d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-12T21:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a737565_20ed547a",
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "652defb4_d0a9467e",
@@ -54,6 +96,30 @@
       "writtenOn": "2022-08-12T13:47:55Z",
       "side": 1,
       "message": "nit: incorrectly",
+      "range": {
+        "startLine": 22,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75735d9f_0ee414df",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-12T21:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "652defb4_d0a9467e",
       "range": {
         "startLine": 22,
         "startChar": 2,
@@ -104,6 +170,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "934c1050_dd40170d",
+        "filename": "system/gd/storage/adapter_config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-12T21:12:05Z",
+      "side": 1,
+      "message": "The structure of the config is\n\nconfig_\n -\u003e section1\n   -\u003e key1\u003dvalue1\n   -\u003e key2\u003dvalue2\n -\u003e section2\n   -\u003e key1\u003dvalue1\n   -\u003e key2\u003dvalue2\nmemory_only_config_\n -\u003e section3\n   -\u003e key1\u003dvalue1\n   -\u003e key2\u003dvalue2\n -\u003e section4\n   -\u003e key1\u003dvalue1\n   -\u003e key2\u003dvalue2\n\nHence, the ranking of section only makes sense when they are within the same config. \n\nOn Android, in most cases, the pointer to config_ and memory_only_config_ are the same for every Device class and section_ should be the only difference. \n\nThe reason why config and memory_only_config are included because we have to compare every member variable of this class.",
+      "parentUuid": "c29d8903_190e59a5",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1350335f_b2186cf2",
@@ -117,6 +207,30 @@
       "writtenOn": "2022-08-12T13:47:55Z",
       "side": 1,
       "message": "return section_ \u003c other.section_;  // Handles the all equal case.",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 17
+      },
+      "revId": "d99a62280ae89a66d4e56a7b8f79d08967c08ca8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75e4da82_c3c21256",
+        "filename": "system/gd/storage/adapter_config.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-12T21:12:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1350335f_b2186cf2",
       "range": {
         "startLine": 54,
         "startChar": 0,
