@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66ee77c3_5db3490c",
+        "filename": "tools/rootcanal/lmp/src/procedure/secure_simple_pairing.rs",
+        "patchSetId": 26
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-12T11:54:25Z",
+      "side": 1,
+      "message": "As we are reading from the `context` should we remove the `sample_` part ?",
+      "range": {
+        "startLine": 704,
+        "startChar": 7,
+        "endLine": 704,
+        "endChar": 14
+      },
+      "revId": "de28ee25d8a08a63cc0824ee685d7ba0da635db7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
