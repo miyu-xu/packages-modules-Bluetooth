@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64a213fd_d1ac5080",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "not exist",
+      "range": {
+        "startLine": 78,
+        "startChar": 6,
+        "endLine": 78,
+        "endChar": 68
+      },
+      "revId": "55cbc3cb23aa66bf9656e0fb7244d89a357dee30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

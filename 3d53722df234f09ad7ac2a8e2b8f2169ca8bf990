@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "084304a7_fd9dd212",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "This while(written) is applied only for is_wbs() case, but you\u0027re putting both NB and WB under this clause which is confusing.\n```\nif (is_wbs) {\n  while (written) { ...}\n} else {\n}\n```\nis better for reading",
+      "range": {
+        "startLine": 237,
+        "startChar": 2,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "724a27a7_3f2658bf",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "can this be zero? how do we make sure there\u0027s always room",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 238,
+        "endChar": 9
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c1ca31e_cafc6c71",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "can break early",
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d355c637_0549e8c5",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "if not checking |avail| you can just pass in \"btm_pcm_buf_write_offset - btm_pcm_buf_read_offset\"",
+      "range": {
+        "startLine": 249,
+        "startChar": 49,
+        "endLine": 249,
+        "endChar": 54
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c668b5bf_11e2d484",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "if pcm_buf is not yet enough for one mSBC frame, this log could be misleading. \nShould you check if write_offset - read_offset has enough data before calling to sco::wbs::encode() ?",
+      "range": {
+        "startLine": 250,
+        "startChar": 30,
+        "endLine": 250,
+        "endChar": 46
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a0d2c1_a56f3e14",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "\"as many SCO packets as possible\" could be misleading.\nIf I understand it correctly, below while(1) should generate the #of mSBC frames as close to what just received in payloads.\n\nAnd it\u0027s not too late we document the schedule scheme thoroughly. should cover:\n1. the role of btm_route_sco_data(). works between SCO and audio server\n2. in transaction between each layers, there should be same amount of data give and take",
+      "range": {
+        "startLine": 258,
+        "startChar": 9,
+        "endLine": 259,
+        "endChar": 69
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29727e15_6de23562",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "Move this rename to separate CL",
+      "range": {
+        "startLine": 144,
+        "startChar": 11,
+        "endLine": 146,
+        "endChar": 28
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f00dd06_caab7e2d",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "should they be initialized somewhere?",
+      "range": {
+        "startLine": 149,
+        "startChar": 9,
+        "endLine": 150,
+        "endChar": 23
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c388b92_1ce26926",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "please add comment to describe what does it do and return",
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5734099_0110efe9",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "just print the 3 variables in above line is more helpful if you ever need to debug this",
+      "range": {
+        "startLine": 262,
+        "startChar": 17,
+        "endLine": 262,
+        "endChar": 64
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d07e92_a9410917",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-12T06:45:12Z",
+      "side": 1,
+      "message": "nit: read_ptr() reflects the purpose better.",
+      "range": {
+        "startLine": 275,
+        "startChar": 17,
+        "endLine": 275,
+        "endChar": 21
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
