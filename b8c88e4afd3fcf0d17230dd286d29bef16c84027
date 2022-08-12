@@ -16,6 +16,24 @@
       "message": "packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java:382: error: variable pin is already defined in method sendDisplayPinIntent(byte[],Optional\u003cInteger\u003e,int)\n        pin.ifPresent(pin -\u003e intent.putExtra(BluetoothDevice.EXTRA_PAIRING_KEY, pin));\n                      ^\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java:557: error: cannot find symbol\n            Bundle bundle \u003d new Bundle();\n            ^\n  symbol:   class Bundle\n  location: class BondStateMachine\npackages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java:557: error: cannot find symbol\n            Bundle bundle \u003d new Bundle();\n                                ^\n  symbol:   class Bundle\n  location: class BondStateMachine",
       "revId": "b8c88e4afd3fcf0d17230dd286d29bef16c84027",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e601bc4_bfa2de4c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-12T09:01:22Z",
+      "side": 1,
+      "message": "Yup, will fix. I swear this built locally though... 😕",
+      "parentUuid": "5a232719_9634877a",
+      "revId": "b8c88e4afd3fcf0d17230dd286d29bef16c84027",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
