@@ -38,6 +38,8 @@ const char* PTS_CONNECT_EATT_UNCONDITIONALLY =
     "PTS_ConnectEattUncondictionally";
 const char* PTS_CONNECT_EATT_UNENCRYPTED = "PTS_ConnectEattUnencrypted";
 const char* PTS_BROADCAST_UNENCRYPTED = "PTS_BroadcastUnencrypted";
+const char* PTS_FORCE_LE_AUDIO_MULTIPLE_CONTEXTS_METADATA =
+    "PTS_ForceLeAudioMultipleContextsMetadata";
 const char* PTS_EATT_PERIPHERAL_COLLISION_SUPPORT =
     "PTS_EattPeripheralCollionSupport";
 
@@ -142,20 +144,27 @@ static bool get_pts_eatt_peripheral_collision_support(void) {
                          PTS_EATT_PERIPHERAL_COLLISION_SUPPORT, false);
 }
 
+static bool get_pts_force_le_audio_multiple_contexts_metadata(void) {
+  return config_get_bool(*config, CONFIG_DEFAULT_SECTION,
+                         PTS_FORCE_LE_AUDIO_MULTIPLE_CONTEXTS_METADATA, false);
+}
+
 static config_t* get_all(void) { return config.get(); }
 
-const stack_config_t interface = {get_trace_config_enabled,
-                                  get_pts_avrcp_test,
-                                  get_pts_secure_only_mode,
-                                  get_pts_conn_updates_disabled,
-                                  get_pts_crosskey_sdp_disable,
-                                  get_pts_smp_options,
-                                  get_pts_smp_failure_case,
-                                  get_pts_force_eatt_for_notifications,
-                                  get_pts_connect_eatt_unconditionally,
-                                  get_pts_connect_eatt_before_encryption,
-                                  get_pts_unencrypt_broadcast,
-                                  get_pts_eatt_peripheral_collision_support,
-                                  get_all};
+const stack_config_t interface = {
+    get_trace_config_enabled,
+    get_pts_avrcp_test,
+    get_pts_secure_only_mode,
+    get_pts_conn_updates_disabled,
+    get_pts_crosskey_sdp_disable,
+    get_pts_smp_options,
+    get_pts_smp_failure_case,
+    get_pts_force_eatt_for_notifications,
+    get_pts_connect_eatt_unconditionally,
+    get_pts_connect_eatt_before_encryption,
+    get_pts_unencrypt_broadcast,
+    get_pts_eatt_peripheral_collision_support,
+    get_pts_force_le_audio_multiple_contexts_metadata,
+    get_all};
 
 const stack_config_t* stack_config_get_interface(void) { return &interface; }
