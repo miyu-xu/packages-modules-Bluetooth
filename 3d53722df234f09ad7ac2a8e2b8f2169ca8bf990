@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "306e5ec8_fb7ac9b9",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "It is indeed confusing, but I did intend to use the while loop for both NB and WB case. It happens to NB when the buffer is partially full or when we wrote more than BTM_SCO_DATA_SIZE_MAX. Abstract this change to https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2184725 PTAL.",
+      "parentUuid": "084304a7_fd9dd212",
+      "range": {
+        "startLine": 237,
+        "startChar": 2,
+        "endLine": 237,
+        "endChar": 19
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "724a27a7_3f2658bf",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-12T06:45:12Z",
       "side": 1,
       "message": "can this be zero? how do we make sure there\u0027s always room",
+      "range": {
+        "startLine": 238,
+        "startChar": 4,
+        "endLine": 238,
+        "endChar": 9
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50435795_063dba44",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "It shouldn\u0027t. For the code logic, it only happens when we somehow couldn\u0027t consume the data in the btm_pcm_buf by encoding it into the buffer in msbc_info. In that case, we\u0027d like to try to call the encode and make some space in the msbc_info buffer that we can use to consume the pcm data in the btm_pcm_buf. However, it is an abnormal condition if happens. Added a warning log for it just in case.",
+      "parentUuid": "724a27a7_3f2658bf",
       "range": {
         "startLine": 238,
         "startChar": 4,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25463412_6abd7bca",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "True. Addressed at https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2184725.",
+      "parentUuid": "5c1ca31e_cafc6c71",
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d355c637_0549e8c5",
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cb7a7ec_c539ac4a",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d355c637_0549e8c5",
+      "range": {
+        "startLine": 249,
+        "startChar": 49,
+        "endLine": 249,
+        "endChar": 54
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c668b5bf_11e2d484",
@@ -100,6 +190,30 @@
       "writtenOn": "2022-08-12T06:45:12Z",
       "side": 1,
       "message": "if pcm_buf is not yet enough for one mSBC frame, this log could be misleading. \nShould you check if write_offset - read_offset has enough data before calling to sco::wbs::encode() ?",
+      "range": {
+        "startLine": 250,
+        "startChar": 30,
+        "endLine": 250,
+        "endChar": 46
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61b8d2d_ca2f7c64",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "I move the MSBC_CODE_SIZE into ::wbs and also put the check in the sco::wbs::encode(). It is not necessary for the caller to check that in advance. The logic behind this is similar to an IO read/write that the caller only need to know how much of the data is digested.",
+      "parentUuid": "c668b5bf_11e2d484",
       "range": {
         "startLine": 250,
         "startChar": 30,
@@ -135,6 +249,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe2400d4_3e6ca146",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "I added the comment on https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2184725/3. PTAL.\n\nWe may use more tuning to assure the read/write balance between each layers.\n\nThe currrent implementation focuses more on assuring the read and written data amount are the same between the BT daemon and the audio server. This can keep the data rate stable if we can assure the audio server can always recieve and send the amount of data the BT daemon requests. However, if audio server fails to do so, we\u0027ll rely on the adapter to balance the read/write data.\n\nThe alternative solution will be focusing on the data balance between the BT daemon and the adapter, so that we\u0027ll assure we write a packet to the adapter whenever we read one. For this solution, we\u0027ll rely on the audio server to handle solve the read/write inbalance whenever a read/write from/to the audio server failed. \n\nPlease help advised.",
+      "parentUuid": "36a0d2c1_a56f3e14",
+      "range": {
+        "startLine": 258,
+        "startChar": 9,
+        "endLine": 259,
+        "endChar": 69
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "29727e15_6de23562",
         "filename": "system/stack/btm/btm_sco_hci.cc",
         "patchSetId": 4
@@ -146,6 +284,30 @@
       "writtenOn": "2022-08-12T06:45:12Z",
       "side": 1,
       "message": "Move this rename to separate CL",
+      "range": {
+        "startLine": 144,
+        "startChar": 11,
+        "endLine": 146,
+        "endChar": 28
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d73150b_07f6c67e",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "Move to the parent (floss: Support recording for various SCO packet)",
+      "parentUuid": "29727e15_6de23562",
       "range": {
         "startLine": 144,
         "startChar": 11,
@@ -179,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45fa0893_d3aeba02",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "Definitely.",
+      "parentUuid": "4f00dd06_caab7e2d",
+      "range": {
+        "startLine": 149,
+        "startChar": 9,
+        "endLine": 150,
+        "endChar": 23
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c388b92_1ce26926",
@@ -192,6 +378,24 @@
       "writtenOn": "2022-08-12T06:45:12Z",
       "side": 1,
       "message": "please add comment to describe what does it do and return",
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "514cc8bd_e24149fa",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c388b92_1ce26926",
       "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -219,6 +423,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd3a089e_1e50797e",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5734099_0110efe9",
+      "range": {
+        "startLine": 262,
+        "startChar": 17,
+        "endLine": 262,
+        "endChar": 64
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91d07e92_a9410917",
@@ -232,6 +460,30 @@
       "writtenOn": "2022-08-12T06:45:12Z",
       "side": 1,
       "message": "nit: read_ptr() reflects the purpose better.",
+      "range": {
+        "startLine": 275,
+        "startChar": 17,
+        "endLine": 275,
+        "endChar": 21
+      },
+      "revId": "3d53722df234f09ad7ac2a8e2b8f2169ca8bf990",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f9242c5_9fb52a2b",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-13T09:46:41Z",
+      "side": 1,
+      "message": "Make it sco_pkt_read_ptr to be more specific.",
+      "parentUuid": "91d07e92_a9410917",
       "range": {
         "startLine": 275,
         "startChar": 17,
