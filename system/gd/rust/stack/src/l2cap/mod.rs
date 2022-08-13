@@ -25,15 +25,13 @@ use tokio::spawn;
 use tokio::sync::mpsc::{channel, Sender};
 
 use tokio::sync::oneshot;
-use tokio::task::JoinHandle;
 
 use self::bridge::ffi::{
     initialize_l2cap_tx_on_main_thread, L2CA_ConnectReq_from_rust, L2CA_Register_from_rust,
 };
 use self::bridge::EventChannel;
-use self::control_demultiplexer::{
-    ChannelHandle, ChannelSendStatus, L2capControlDemultiplexer, OutgoingEvent,
-};
+pub use self::control_demultiplexer::ChannelSendStatus;
+use self::control_demultiplexer::{ChannelHandle, L2capControlDemultiplexer, OutgoingEvent};
 use self::demultiplexer::{DemultiplexedReceiver, Demultiplexer};
 
 use self::owned_handle::OwnedHandle;
@@ -102,7 +100,8 @@ async fn provide_l2cap(_rt: Arc<Runtime>) -> L2cap {
             error_demultiplexer.event_tx.clone(),
         )
         .start(),
-    );
+    )
+    .into();
 
     L2cap(Arc::new(L2capContents {
         incoming_connection_demultiplexer,

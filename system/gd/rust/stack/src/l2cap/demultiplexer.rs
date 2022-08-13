@@ -193,7 +193,7 @@ impl<K: Debug + Copy, E: Debug> Drop for DemultiplexedReceiver<K, E> {
             .control_tx
             .try_send(ControlSignal::UnsubscribeWithNonce { key: self.key, nonce: self.nonce })
         {
-            error!("failed to drop demultiplexed receiver {self:?} with error {err:?}");
+            warn!("failed to drop demultiplexed receiver {self:?} with error {err:?}");
         }
     }
 }

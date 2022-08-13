@@ -97,13 +97,13 @@ packet InformationFrame1 : Basic1(control_1 = 0x03, control_2 = 0x03) {
 // }
 
 packet InformationFrame1WithoutCredits : InformationFrame1(poll_final = 0) {
-	_body_
+	_payload_
 }
 
 packet InformationFrame1WithCredits : InformationFrame1(poll_final = 1) {
 	// number of additional credits allocated for this channel on the sender
 	num_credits: 8,
-	_body_
+	_payload_
 }
 
 // packet InformationFrame2WithoutCredits : InformationFrame1(poll_final = 0) {
@@ -205,7 +205,7 @@ packet ParameterNegotiation : Command(command_type = 0x20) {
 
 // Test Command - we should just retransmit the payload in another TEST command
 packet Test : Command(command_type = 0x08) {
-	_body_,
+	_payload_,
 }
 
 // Flow Control On (FCON)
