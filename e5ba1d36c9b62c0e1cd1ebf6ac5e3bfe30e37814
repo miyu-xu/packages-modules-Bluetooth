@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f9ba5bb_a286ffd1",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-15T21:14:56Z",
+      "side": 1,
+      "message": "Maybe this should be uint16_t for alignment purposes?  I like casting from uint16_t to uint8_t better than the other way.",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "e5ba1d36c9b62c0e1cd1ebf6ac5e3bfe30e37814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72560904_44ce10fe",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-15T21:14:56Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem very safe.  Are there potential alignment issues?  Can we just have encode take the correct parameter type?",
+      "range": {
+        "startLine": 407,
+        "startChar": 40,
+        "endLine": 407,
+        "endChar": 54
+      },
+      "revId": "e5ba1d36c9b62c0e1cd1ebf6ac5e3bfe30e37814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
