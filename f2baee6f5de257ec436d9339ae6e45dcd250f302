@@ -89,6 +89,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "15736a49_ea952349",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 835,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-15T22:47:01Z",
+      "side": 1,
+      "message": "Resolving.",
+      "parentUuid": "7058b8c9_b14b7aef",
+      "range": {
+        "startLine": 835,
+        "startChar": 12,
+        "endLine": 835,
+        "endChar": 25
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04459e1a_1918dfdf",
@@ -177,6 +201,30 @@
       "side": 1,
       "message": "See below",
       "parentUuid": "9617f423_1a526d9c",
+      "range": {
+        "startLine": 664,
+        "startChar": 6,
+        "endLine": 664,
+        "endChar": 73
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73c7177_be7f37a4",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-15T22:47:01Z",
+      "side": 1,
+      "message": "Resolving.",
+      "parentUuid": "7951e147_0e62a467",
       "range": {
         "startLine": 664,
         "startChar": 6,
@@ -304,6 +352,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc6ee5f1_48881f94",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1448,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-15T22:47:01Z",
+      "side": 1,
+      "message": "It could still be returned since we passthrough the status if we don\u0027t use the queue.",
+      "parentUuid": "ff0bf789_ff9f53a2",
+      "range": {
+        "startLine": 1446,
+        "startChar": 0,
+        "endLine": 1448,
+        "endChar": 48
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b94000b6_9fc16cab",
@@ -357,6 +429,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "09d826ad_e0f6e919",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1510,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-15T22:47:01Z",
+      "side": 1,
+      "message": "Resolving as no longer relevant.",
+      "parentUuid": "cdd1fa38_3746c7ec",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a09d17ad_21ed9469",
@@ -370,6 +460,30 @@
       "writtenOn": "2022-07-28T01:27:10Z",
       "side": 1,
       "message": "I know this is from the old code, but is this a memcpy ?\nAlso `\u0027\\0\u0027`would be better for marking the end of string.",
+      "range": {
+        "startLine": 1535,
+        "startChar": 3,
+        "endLine": 1539,
+        "endChar": 49
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6498c7a_1ae09240",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1539,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-15T22:47:01Z",
+      "side": 1,
+      "message": "In a future CL, maybe? This is huge enough already...",
+      "parentUuid": "a09d17ad_21ed9469",
       "range": {
         "startLine": 1535,
         "startChar": 3,
@@ -603,6 +717,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "031cfd6a_d78f32c2",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-15T22:47:01Z",
+      "side": 1,
+      "message": "Fixed.",
+      "parentUuid": "f36b323b_ae88c7e2",
+      "range": {
+        "startLine": 200,
+        "startChar": 37,
+        "endLine": 200,
+        "endChar": 51
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8dabfa31_5e875f61",
@@ -616,6 +754,30 @@
       "writtenOn": "2022-07-28T01:27:10Z",
       "side": 1,
       "message": "Comment not updated",
+      "range": {
+        "startLine": 234,
+        "startChar": 22,
+        "endLine": 234,
+        "endChar": 74
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a6affdc_98bf20d7",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-15T22:47:01Z",
+      "side": 1,
+      "message": "No longer relevant.",
+      "parentUuid": "8dabfa31_5e875f61",
       "range": {
         "startLine": 234,
         "startChar": 22,
