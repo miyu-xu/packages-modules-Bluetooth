@@ -54,8 +54,6 @@ static constexpr size_t kRemoteDeviceNameLength = 248;
 static constexpr bool kActiveScanning = true;
 static constexpr bool kPassiveScanning = false;
 
-using BtmRemoteDeviceName = tBTM_REMOTE_DEV_NAME;
-
 extern void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode);
 extern void btm_process_inq_complete(tHCI_STATUS status, uint8_t result_type);
 extern void btm_ble_process_adv_addr(RawAddress& raw_address,
@@ -506,7 +504,7 @@ BtmStatus Btm::ReadClassicRemoteDeviceName(const RawAddress& raw_address,
              std::array<uint8_t, kRemoteDeviceNameLength> remote_name) {
             RawAddress raw_address = ToRawAddress(address);
 
-            BtmRemoteDeviceName name{
+            bluetooth::inquiry::RemoteNameRequestResult name{
                 .status = (static_cast<uint8_t>(status) == 0)
                               ? (BTM_SUCCESS)
                               : (BTM_BAD_VALUE_RET),

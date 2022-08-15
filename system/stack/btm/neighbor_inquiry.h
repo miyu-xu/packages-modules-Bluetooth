@@ -17,8 +17,10 @@
 #pragma once
 
 #include <cstdint>
+#include <deque>
 
 #include "osi/include/alarm.h"
+#include "remote_name_request.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/btm_api_types.h"
 #include "types/ble_address_with_type.h"
@@ -184,10 +186,6 @@ typedef struct {
 } tBTM_INQUIRY_CMPL;
 
 typedef struct {
-  tBTM_CMPL_CB* p_remname_cmpl_cb;
-
-#define BTM_EXT_RMT_NAME_TIMEOUT_MS (40 * 1000) /* 40 seconds */
-
   alarm_t* remote_name_timer;
 
   uint16_t discoverable_mode;
@@ -198,10 +196,6 @@ typedef struct {
   uint16_t inq_scan_period;
   uint16_t inq_scan_type;
   uint16_t page_scan_type; /* current page scan type */
-
-  RawAddress remname_bda; /* Name of bd addr for active remote name request */
-#define BTM_RMT_NAME_EXT 0x1 /* Initiated through API */
-  bool remname_active; /* State of a remote name request by external API */
 
   tBTM_CMPL_CB* p_inq_cmpl_cb;
   tBTM_INQ_RESULTS_CB* p_inq_results_cb;
@@ -230,22 +224,18 @@ typedef struct {
   uint8_t inq_active; /* Bit Mask indicating type of inquiry is active */
   bool no_inc_ssp;    /* true, to stop inquiry on incoming SSP */
 
+  // Module responsible for coordinating BR/EDR and LE remote name requests
+  bluetooth::inquiry::RemoteNameRequestScheduler remote_name_scheduler;
+
   void Init() {
-    alarm_free(remote_name_timer);
     remote_name_timer = alarm_new("btm_inq.remote_name_timer");
+    new (&remote_name_scheduler)
+        bluetooth::inquiry::RemoteNameRequestScheduler{};
     no_inc_ssp = BTM_NO_SSP_ON_INQUIRY;
   }
   void Free() { alarm_free(remote_name_timer); }
 
 } tBTM_INQUIRY_VAR_ST;
-
-/* Structure returned with remote name  request */
-typedef struct {
-  uint16_t status;
-  RawAddress bd_addr;
-  uint16_t length;
-  BD_NAME remote_bd_name;
-} tBTM_REMOTE_DEV_NAME;
 
 typedef union /* contains the inquiry filter condition */
 {
