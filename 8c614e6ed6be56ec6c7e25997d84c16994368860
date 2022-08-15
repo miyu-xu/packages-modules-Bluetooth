@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86d18a23_192c1d8c",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-15T14:52:44Z",
+      "side": 1,
+      "message": "Thanks for pulling this refactor out. Now I see what is making me feel weird.\n\nThis `while (written)` is bad because it\u0027ll make a process(btadapterd) busy loop until another process(CRAS) feeds data. (be aware that data I/O is asynchronous!)\n\nIf you experiment by adding a debug log here, I guess it\u0027s easy to see the busy loop - especially when SCO socket is up, but CRAS hasn\u0027t yet started stream I/O.\nBoth NB and WB applies. \n\nIMO the previous logic is more appropriate. When partial or non data comes from audio server, calculate and send some equivalent silence to SCO.",
+      "range": {
+        "startLine": 302,
+        "startChar": 2,
+        "endLine": 302,
+        "endChar": 19
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc600f1_6b2ddca8",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-15T14:52:44Z",
+      "side": 1,
+      "message": "This means SCO Tx underruns now. \nDo you know if LOG_DEBUG needs special flag to be printed? I know LOG_INFO is always printed.\n\nAnd we shall try to print the most helpful info to help debug. I think both read/write offset deserve to be logged.",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 308,
+        "endChar": 33
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df315702_f0383c5c",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-15T14:52:44Z",
+      "side": 1,
+      "message": "`sco::read( ..., avail)` is guarding the value of `read` so it won\u0027t go beyond.\n\nIMO we should either NOT care about this, or we handle it. e.g ASSERT? reset w/r offset?",
+      "range": {
+        "startLine": 312,
+        "startChar": 6,
+        "endLine": 315,
+        "endChar": 7
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
