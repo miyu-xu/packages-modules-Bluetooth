@@ -25,6 +25,7 @@
 #pragma once
 #include <cstdint>
 
+#include "stack/btm/remote_name_request.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/btm_api_types.h"
@@ -55,30 +56,6 @@ tBTM_SEC_DEV_REC* btm_sec_find_dev_by_sec_state(uint8_t state);
  *
  ******************************************************************************/
 bool BTM_SecRegister(const tBTM_APPL_INFO* p_cb_info);
-
-/*******************************************************************************
- *
- * Function         BTM_SecAddRmtNameNotifyCallback
- *
- * Description      Any profile can register to be notified when name of the
- *                  remote device is resolved.
- *
- * Returns          true if registered OK, else false
- *
- ******************************************************************************/
-bool BTM_SecAddRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
-
-/*******************************************************************************
- *
- * Function         BTM_SecDeleteRmtNameNotifyCallback
- *
- * Description      Any profile can deregister notification when a new Link Key
- *                  is generated per connection.
- *
- * Returns          true if OK, else false
- *
- ******************************************************************************/
-bool BTM_SecDeleteRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
 
 /*******************************************************************************
  *
@@ -482,32 +459,6 @@ void btm_sec_dev_reset(void);
 void btm_sec_abort_access_req(const RawAddress& bd_addr);
 
 bool is_state_getting_name(void* data, void* context);
-
-/*******************************************************************************
- *
- * Function         btm_sec_rmt_name_request_complete
- *
- * Description      This function is called when remote name was obtained from
- *                  the peer device
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
-                                       const uint8_t* p_bd_name,
-                                       tHCI_STATUS status);
-
-/*******************************************************************************
- *
- * Function         btm_sec_rmt_host_support_feat_evt
- *
- * Description      This function is called when the
- *                  HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT is received
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_sec_rmt_host_support_feat_evt(uint8_t* p);
 
 /*******************************************************************************
  *
