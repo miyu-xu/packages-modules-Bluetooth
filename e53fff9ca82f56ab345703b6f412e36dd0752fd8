@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dbf87f2_95bf8bd3",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1481,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-15T18:42:02Z",
+      "side": 1,
+      "message": "Can we move this logic into the if on 1471-1480?  No need to do this if the address wasn\u0027t found in the cache.",
+      "range": {
+        "startLine": 1481,
+        "startChar": 9,
+        "endLine": 1481,
+        "endChar": 10
+      },
+      "revId": "e53fff9ca82f56ab345703b6f412e36dd0752fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
