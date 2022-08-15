@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7548ea8_a47a7698",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-15T18:29:44Z",
+      "side": 1,
+      "message": "in AOSP there should be no `b:` prefix for bug number, by default it\u0027s buganizer.",
+      "range": {
+        "startLine": 12,
+        "startChar": 5,
+        "endLine": 12,
+        "endChar": 16
+      },
+      "revId": "ff95cac96bc11e31c5ced37129f76f658b7b40c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
