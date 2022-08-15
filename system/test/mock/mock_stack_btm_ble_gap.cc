@@ -74,10 +74,6 @@ bool BTM_BleLocalPrivacyEnabled(void) {
   mock_function_count_map[__func__]++;
   return false;
 }
-bool btm_ble_cancel_remote_name(const RawAddress& remote_bda) {
-  mock_function_count_map[__func__]++;
-  return false;
-}
 bool btm_ble_clear_topology_mask(tBTM_BLE_STATE_MASK request_state_mask) {
   mock_function_count_map[__func__]++;
   return false;
@@ -100,8 +96,7 @@ void BTM_BleOpportunisticObserve(bool enable,
                                  tBTM_INQ_RESULTS_CB* p_results_cb) {
   mock_function_count_map[__func__]++;
 }
-tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
-                                     tBTM_CMPL_CB* p_cb) {
+tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda) {
   mock_function_count_map[__func__]++;
   return BTM_SUCCESS;
 }

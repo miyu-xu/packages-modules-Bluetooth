@@ -19,12 +19,13 @@
 
 #include <cstdint>
 
-#include <cstdint>
-
 #include "types/raw_address.h"
 
 extern void btm_process_remote_name(const RawAddress* bda, const BD_NAME name,
                                     uint16_t evt_len, tHCI_STATUS hci_status);
+
+extern void btm_process_remote_host_supported_features(const RawAddress& bda,
+                                                       const uint8_t* p);
 
 extern void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
                                     uint8_t inq_res_mode);
