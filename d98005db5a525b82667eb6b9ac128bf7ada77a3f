@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c291ee9_1a641028",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-15T20:47:11Z",
+      "side": 1,
+      "message": "remove?\n\nCan be done in a follow-on CL.",
+      "range": {
+        "startLine": 45,
+        "startChar": 3,
+        "endLine": 45,
+        "endChar": 37
+      },
+      "revId": "d98005db5a525b82667eb6b9ac128bf7ada77a3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
