@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b3c30fb_f4c6b929",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-15T03:20:15Z",
+      "side": 1,
+      "message": "Could we use default configuration for alert if we don\u0027t have the specific configuration requirement for alert?",
+      "revId": "d97931b0f8f8e54784c29637bc4174744db9ee2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
