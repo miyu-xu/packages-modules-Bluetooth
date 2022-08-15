@@ -43,6 +43,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "383047b3_6a02ff69",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T17:31:38Z",
+      "side": 1,
+      "message": "yes, good point.",
+      "parentUuid": "88427571_daa89629",
+      "range": {
+        "startLine": 589,
+        "startChar": 6,
+        "endLine": 589,
+        "endChar": 15
+      },
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128ffe43_f98da9e2",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T17:31:38Z",
+      "side": 1,
+      "message": "PRIVATE_ADDRESS",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28ee66c1_5c3143e4",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 3
@@ -96,6 +137,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9b5e7006_f6dee3b8",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T17:31:38Z",
+      "side": 1,
+      "message": "I agree it is a bit heavy handed.  Too bad bta_dm_remove_device doesn\u0027t accept address type.  So we don\u0027t know what kind of address this is.  If it is a classic one and we are removing the bond.  \n\nBoth transports get funneled here.\n\nWe don\u0027t know until we do the check to see if its classic connected in the bta_dm_remove_device.  If it is, we need to disconnect the ACL regardless of transport.  So yeah a conditional check would be ok to wrap around the gatt cancel connect. nbd.\n\nwe should invoke the disconnect peer always on all addresses.  I\u0027ll add the conditional for gatt disconnect based on transport.",
+      "parentUuid": "7eced527_3715effa",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0c4cef2f_10f5c686",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 3
@@ -143,6 +202,24 @@
       "side": 1,
       "message": "Then why don\u0027t we also have this check for `bta_dm_process_remove_device`? \n\nOr in fact, why not then gate this whole thing (disconnection/device removal) inside an isEmpty() check? So if the classic address is empty, we skip anything to do with it.",
       "parentUuid": "9073bfd7_a507d664",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36649922_21e16a58",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T17:31:38Z",
+      "side": 1,
+      "message": "Because this is all legacy code, the person that wrote it didn\u0027t check, and we don\u0027t.  Sounds like you are volunteering to make a CL :)",
+      "parentUuid": "1150f6c1_3e2a8692",
       "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
