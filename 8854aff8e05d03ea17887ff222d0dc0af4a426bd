@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f39171da_6fad3cc9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T16:33:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed160cdd_5e9ef9c7",
+      "range": {
+        "startLine": 367,
+        "startChar": 3,
+        "endLine": 367,
+        "endChar": 30
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "906687c8_b439811c",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8c352b5_3481dbf1",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T16:33:17Z",
+      "side": 1,
+      "message": "b/c on suspend ready has the suspend id and we aren\u0027t getting the suspend id in suspend module anymore  the suspend id comes from powerd.",
+      "parentUuid": "dcea070a_65658be3",
+      "range": {
+        "startLine": 153,
+        "startChar": 38,
+        "endLine": 153,
+        "endChar": 39
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9d4ee62_dd9a5b60",
@@ -77,6 +125,30 @@
       "writtenOn": "2022-08-12T21:47:45Z",
       "side": 1,
       "message": "This gets removed in a later CL.  Here would be better.",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 158,
+        "endChar": 27
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "989d73b6_25c6cc40",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T16:33:17Z",
+      "side": 1,
+      "message": "yep",
+      "parentUuid": "a9d4ee62_dd9a5b60",
       "range": {
         "startLine": 158,
         "startChar": 8,
@@ -124,6 +196,30 @@
       "side": 1,
       "message": "Agreed. Subsequent dbus will serialize at the dbus interface anyway so you can probably mark `on_resumed` as soon as you\u0027ve successfully sent to the btif layer.",
       "parentUuid": "18f87fc1_7f9cf889",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "8854aff8e05d03ea17887ff222d0dc0af4a426bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3210c9d2_d76e9e61",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T16:33:17Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "d29be478_13241ecf",
       "range": {
         "startLine": 173,
         "startChar": 0,
