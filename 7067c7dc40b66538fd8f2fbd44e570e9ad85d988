@@ -16,6 +16,23 @@
       "message": "When investigating this issue I found the fix at https://github.com/AOSPA/android_hardware_qcom_bt/blob/7ca3df69533d596b7d72cf59077ab2feae0d8364/bta/av/bta_av_act.cc#L2276 although I altered it slightly",
       "revId": "7067c7dc40b66538fd8f2fbd44e570e9ad85d988",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f418c316_edd6adeb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1954890
+      },
+      "writtenOn": "2022-08-15T20:20:26Z",
+      "side": 1,
+      "message": "Hello everyone,\n\nHow do I get this reviewed. I have a bug for this https://issuetracker.google.com/issues/214569798",
+      "revId": "7067c7dc40b66538fd8f2fbd44e570e9ad85d988",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
