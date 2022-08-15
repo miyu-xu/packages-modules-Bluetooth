@@ -105,6 +105,24 @@
       "parentUuid": "c69d86e5_58d704ae",
       "revId": "523e902e24f267962773dd79cc1fc26de9637029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "259b3e5f_dceebbfd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-15T21:19:33Z",
+      "side": 1,
+      "message": "1. Yes. Any command sent from the HAL driver is transparent to the HCI layer.  We never see the events.\n\n2. I\u0027m not sure why I would want to let debug tooling touch HCI while it\u0027s in use.",
+      "parentUuid": "764bb279_46ba428a",
+      "revId": "523e902e24f267962773dd79cc1fc26de9637029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
