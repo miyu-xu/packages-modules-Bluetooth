@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbf59687_d4559d4c",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-15T21:03:02Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like the analyzer likes goto.  Is it worth it?\n\nIt makes it harder to review the actual change here.  I\u0027d prefer not adding goto.",
+      "range": {
+        "startLine": 261,
+        "startChar": 43,
+        "endLine": 261,
+        "endChar": 50
+      },
+      "revId": "57a8391e3e8cf797b4c290c792c0c2ff83b683cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
