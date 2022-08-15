@@ -13,6 +13,7 @@ use syslog::{BasicLogger, Facility, Formatter3164};
 use bt_topshim::{btif::get_btinterface, topstack};
 use btstack::{
     bluetooth::{get_bt_dispatcher, Bluetooth, IBluetooth},
+    bluetooth_admin::BluetoothAdmin,
     bluetooth_gatt::BluetoothGatt,
     bluetooth_media::BluetoothMedia,
     socket_manager::BluetoothSocketManager,
@@ -102,6 +103,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         Arc::new(Mutex::new(Box::new(BluetoothGatt::new(intf.clone(), tx.clone()))));
     let bluetooth_media =
         Arc::new(Mutex::new(Box::new(BluetoothMedia::new(tx.clone(), intf.clone()))));
+    let bluetooth_admin = Arc::new(Mutex::new(Box::new(BluetoothAdmin::new())));
     let bluetooth = Arc::new(Mutex::new(Box::new(Bluetooth::new(
         tx.clone(),
         intf.clone(),
@@ -237,6 +239,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             intf.lock().unwrap().initialize(get_bt_dispatcher(tx.clone()), init_flags);
 
             bluetooth_media.lock().unwrap().set_adapter(bluetooth.clone());
+            bluetooth_admin.lock().unwrap().set_adapter(bluetooth.clone());
 
             let mut bluetooth = bluetooth.lock().unwrap();
             bluetooth.init_profiles();
