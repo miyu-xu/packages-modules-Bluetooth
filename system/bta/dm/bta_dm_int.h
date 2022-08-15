@@ -34,6 +34,7 @@
 #include "bta/include/bta_gatt_api.h"
 #include "bta/sys/bta_sys.h"
 #include "main/shim/dumpsys.h"
+#include "stack/btm/remote_name_request.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "types/bluetooth/uuid.h"
@@ -353,6 +354,8 @@ typedef struct {
   tSDP_DISCOVERY_DB* p_sdp_db;
   uint16_t state;
   RawAddress peer_bdaddr;
+  bluetooth::inquiry::PendingRemoteNameRequestHandle
+      pending_name_request_handle;
   bool name_discover_done;
   BD_NAME peer_name;
   alarm_t* search_timer;

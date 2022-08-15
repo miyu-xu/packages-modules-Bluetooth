@@ -29,6 +29,7 @@
 
 #include "device/include/esco_parameters.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/btm/remote_name_request.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_api_types.h"
@@ -381,9 +382,11 @@ void BTM_EnableInterlacedPageScan();
  *                  BTM_WRONG_MODE if the device is not up.
  *
  ******************************************************************************/
-tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
-                                     tBTM_CMPL_CB* p_cb,
-                                     tBT_TRANSPORT transport);
+tBTM_STATUS BTM_ReadRemoteDeviceName(
+    const RawAddress& remote_bda,
+    bluetooth::inquiry::RemoteNameRequestCallbacks p_cb,
+    tBT_TRANSPORT transport,
+    bluetooth::inquiry::PendingRemoteNameRequestHandle* handle);
 
 /*******************************************************************************
  *
@@ -397,12 +400,12 @@ tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
  * Returns
  *                  BTM_CMD_STARTED is returned if the request was successfully
  *                                  sent to HCI.
- *                  BTM_NO_RESOURCES if resources could not be allocated to
- *                                   start the command
- *                  BTM_WRONG_MODE if there is no active remote name request.
+ *                  BTM_WRONG_MODE if there is not an active remote name
+ *                                 request for this handle
  *
  ******************************************************************************/
-tBTM_STATUS BTM_CancelRemoteDeviceName(void);
+tBTM_STATUS BTM_CancelRemoteDeviceName(
+    bluetooth::inquiry::PendingRemoteNameRequestHandle handle);
 
 /*******************************************************************************
  *
@@ -927,11 +930,6 @@ uint8_t BTM_GetEirUuidList(const uint8_t* p_eir, size_t eir_len,
  *
  ******************************************************************************/
 tBTM_CONTRL_STATE BTM_PM_ReadControllerState(void);
-
-/**
- * Send remote name request, either to legacy HCI, or to GD shim Name module
- */
-void SendRemoteNameRequest(const RawAddress& raw_address);
 
 bool BTM_IsScoActiveByBdaddr(const RawAddress& remote_bda);
 
