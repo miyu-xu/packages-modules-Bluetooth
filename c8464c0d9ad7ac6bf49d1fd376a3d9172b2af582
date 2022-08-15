@@ -22,6 +22,30 @@
       },
       "revId": "c8464c0d9ad7ac6bf49d1fd376a3d9172b2af582",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcf519ef_cc120585",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T16:05:28Z",
+      "side": 1,
+      "message": "its coming back with a follow up CL.  Need to get the Gatt Advertising callbacks CL in. (the test_woot CL)",
+      "parentUuid": "9740910f_30899af9",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 66
+      },
+      "revId": "c8464c0d9ad7ac6bf49d1fd376a3d9172b2af582",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
