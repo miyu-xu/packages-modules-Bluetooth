@@ -211,6 +211,30 @@
       },
       "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6aed8035_3d4f2df3",
+        "filename": "system/gd/hci/acl_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-15T16:31:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f4b1b11_82983dcd",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
+        "endLine": 343,
+        "endChar": 0
+      },
+      "revId": "d7c043b2960d40c6b4837b11e6886f909cdbe958",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
