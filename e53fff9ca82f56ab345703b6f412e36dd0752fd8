@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4981a27_38b7be49",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1425,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-15T19:08:03Z",
+      "side": 1,
+      "message": "this one and other similar lines look good to me, but can we do this in a separate patch since it is addressing a different issue? \n\n* line 1425\n* line 1437\n* line 1525",
+      "range": {
+        "startLine": 1425,
+        "startChar": 14,
+        "endLine": 1425,
+        "endChar": 44
+      },
+      "revId": "e53fff9ca82f56ab345703b6f412e36dd0752fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dddc537_fe2c1154",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1437,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-15T19:08:03Z",
+      "side": 1,
+      "message": "this one should go to a different CL",
+      "range": {
+        "startLine": 1437,
+        "startChar": 0,
+        "endLine": 1437,
+        "endChar": 46
+      },
+      "revId": "e53fff9ca82f56ab345703b6f412e36dd0752fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3dbf87f2_95bf8bd3",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
@@ -19,6 +65,53 @@
         "startChar": 9,
         "endLine": 1481,
         "endChar": 10
+      },
+      "revId": "e53fff9ca82f56ab345703b6f412e36dd0752fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ace49fbd_f190c72b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1481,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-15T19:08:03Z",
+      "side": 1,
+      "message": "I am ok with this one since we need to handle the \"SDP failed and we have no EIR UUIDs to report either\" case as well",
+      "parentUuid": "3dbf87f2_95bf8bd3",
+      "range": {
+        "startLine": 1481,
+        "startChar": 9,
+        "endLine": 1481,
+        "endChar": 10
+      },
+      "revId": "e53fff9ca82f56ab345703b6f412e36dd0752fd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f62f64f0_78f9772b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1525,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-15T19:08:03Z",
+      "side": 1,
+      "message": "this should go to a different CL",
+      "range": {
+        "startLine": 1525,
+        "startChar": 0,
+        "endLine": 1525,
+        "endChar": 46
       },
       "revId": "e53fff9ca82f56ab345703b6f412e36dd0752fd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
