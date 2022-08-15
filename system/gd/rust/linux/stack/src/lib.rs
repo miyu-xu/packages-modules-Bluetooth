@@ -7,6 +7,7 @@
 extern crate num_derive;
 
 pub mod bluetooth;
+pub mod bluetooth_admin;
 pub mod bluetooth_gatt;
 pub mod bluetooth_media;
 pub mod callbacks;
