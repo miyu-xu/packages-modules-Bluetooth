@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3e40f45c_8995e855",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-15T03:17:50Z",
+      "side": 1,
+      "message": "Maybe we don\u0027t need this patch. As I test the remain test case, I found the no metadata update reason is the context type mapping is wrong aosp/2181787, and we don\u0027t allow all the context type for the input devices.\n\nCould you please check if we still need the patch?",
+      "revId": "cf2a704969953b820d9ee4ff83fc8bad05072d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cc147cba_3b85e015",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 1
