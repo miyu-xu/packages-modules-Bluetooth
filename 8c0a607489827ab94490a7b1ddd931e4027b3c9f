@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "086772c1_455aa04f",
+        "filename": "build.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-15T18:04:17Z",
+      "side": 1,
+      "message": "is this not needed for ARM or is this not available on ARM?",
+      "revId": "8c0a607489827ab94490a7b1ddd931e4027b3c9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f6676c5_034a2efd",
+        "filename": "build.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-15T18:04:17Z",
+      "side": 1,
+      "message": "isn\u0027t this also required for amd64? libchrome wouldn\u0027t build without it even before floss build",
+      "revId": "8c0a607489827ab94490a7b1ddd931e4027b3c9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
