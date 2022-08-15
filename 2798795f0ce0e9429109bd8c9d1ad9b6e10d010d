@@ -22,6 +22,30 @@
       },
       "revId": "2798795f0ce0e9429109bd8c9d1ad9b6e10d010d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3191932a_7d409e35",
+        "filename": "system/blueberry/tests/topshim/lib/gatt_client.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-15T16:07:42Z",
+      "side": 1,
+      "message": "Eventually it will need to.  However, there isn\u0027t any supporting layers for managing the advertising ID.  Thats planned very soon as we flesh out the Rust/ChromeOS Advertising (and scanning) experience.  \n\nRegister advertiser should return the information for enabling and disabling.  Right now the facade service is managing a single one until we plumb it through.",
+      "parentUuid": "db98619a_8b844f7d",
+      "range": {
+        "startLine": 79,
+        "startChar": 14,
+        "endLine": 79,
+        "endChar": 32
+      },
+      "revId": "2798795f0ce0e9429109bd8c9d1ad9b6e10d010d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
