@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "403a76c5_be00f0b5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-15T16:16:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4911975_fd61d5a4",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 29
+      },
+      "revId": "9223f3ebd47fdeec3ddfa8e0d144fdad835d1f62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2b61fdd2_538cae09",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-12T22:50:23Z",
       "side": 1,
       "message": "could this be defined as a named constant to indicate that it is the limit on how many devices to cache EIR uuid for? \n\nAlso let\u0027s evaluate the average memory usage of this set. \n\nLet\u0027s say each entry is \n\n1 BD_ADDR \u003d 6 bytes\n1 set of, say 6, 128-bit UUIDs \u003d 96 bytes\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n128 entries \u003d 128*(6+96) \u003d13,056 bytes ~ 13KB of memory usage\n\nIf pairing is never done for certain devices after discovery, then the older device\u0027s entry will always stay there. Hence this 13 KB is rather permanent addition to our memory footprint. \n\nWe should indicate this in the commit msg of this CL to make sure that this is an intentional effect of this CL.",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 7
+      },
+      "revId": "9223f3ebd47fdeec3ddfa8e0d144fdad835d1f62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b06471d_091749c7",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-15T16:16:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b61fdd2_538cae09",
       "range": {
         "startLine": 209,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2158e62_5b82bf9e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1492,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-15T16:16:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00478478_83329151",
+      "range": {
+        "startLine": 1492,
+        "startChar": 0,
+        "endLine": 1492,
+        "endChar": 44
+      },
+      "revId": "9223f3ebd47fdeec3ddfa8e0d144fdad835d1f62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a26f7c2e_dae769ff",
@@ -83,6 +155,24 @@
       "writtenOn": "2022-08-12T22:50:23Z",
       "side": 1,
       "message": "maybe add an else case here to print that SDP failed, but we do not have EIR uuids either",
+      "revId": "9223f3ebd47fdeec3ddfa8e0d144fdad835d1f62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b544d7e_982e7830",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1494,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-15T16:16:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a26f7c2e_dae769ff",
       "revId": "9223f3ebd47fdeec3ddfa8e0d144fdad835d1f62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
