@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1024c63_f7482a31",
+        "filename": "build.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-15T22:42:24Z",
+      "side": 1,
+      "message": "Not available and for local ARM build this is not needed either.",
+      "parentUuid": "086772c1_455aa04f",
+      "revId": "8c0a607489827ab94490a7b1ddd931e4027b3c9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f6676c5_034a2efd",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-15T18:04:17Z",
       "side": 1,
       "message": "isn\u0027t this also required for amd64? libchrome wouldn\u0027t build without it even before floss build",
+      "revId": "8c0a607489827ab94490a7b1ddd931e4027b3c9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17689188_f378c990",
+        "filename": "build.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-15T22:42:24Z",
+      "side": 1,
+      "message": "Can you confirm Andre? If so, we can move this to default include.",
+      "parentUuid": "0f6676c5_034a2efd",
       "revId": "8c0a607489827ab94490a7b1ddd931e4027b3c9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
