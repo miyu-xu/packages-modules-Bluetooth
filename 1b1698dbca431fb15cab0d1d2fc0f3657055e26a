@@ -87,6 +87,30 @@
       },
       "revId": "1b1698dbca431fb15cab0d1d2fc0f3657055e26a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce7b9cfb_6d46fc39",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1544,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-15T06:48:07Z",
+      "side": 1,
+      "message": "Please add a comment for this drawbacks so that you or other people can handle it later.",
+      "parentUuid": "e1977b95_e5a73fe0",
+      "range": {
+        "startLine": 1542,
+        "startChar": 0,
+        "endLine": 1544,
+        "endChar": 81
+      },
+      "revId": "1b1698dbca431fb15cab0d1d2fc0f3657055e26a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
