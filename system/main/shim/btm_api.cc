@@ -273,7 +273,7 @@ std::unordered_map<bluetooth::hci::AuthenticationRequirements, int>
              GENERAL_BONDING_MITM_PROTECTION,
          BTM_AUTH_SPGB_YES},
 };
-}
+}  // namespace
 
 class ShimUi : public bluetooth::security::UI {
  public:
@@ -830,28 +830,18 @@ void bluetooth::shim::BTM_CancelInquiry(void) {
 }
 
 tBTM_STATUS bluetooth::shim::BTM_ReadRemoteDeviceName(
-    const RawAddress& raw_address, tBTM_CMPL_CB* callback,
-    tBT_TRANSPORT transport) {
-  CHECK(callback != nullptr);
-  tBTM_STATUS status = BTM_NO_RESOURCES;
-
-  switch (transport) {
-    case BT_TRANSPORT_LE:
-      status = Stack::GetInstance()->GetBtm()->ReadLeRemoteDeviceName(
-          raw_address, callback);
-      break;
-    case BT_TRANSPORT_BR_EDR:
-      status = Stack::GetInstance()->GetBtm()->ReadClassicRemoteDeviceName(
-          raw_address, callback);
-      break;
-    default:
-      LOG_WARN("%s Unspecified transport:%d", __func__, transport);
-      break;
-  }
-  return status;
+    const RawAddress& raw_address,
+    bluetooth::inquiry::RemoteNameRequestCallbacks callback,
+    tBT_TRANSPORT transport,
+    bluetooth::inquiry::PendingRemoteNameRequestHandle* handle) {
+  LOG_INFO("UNIMPLEMENTED %s need to support handle-based cancellation",
+           __func__);
+  return BTM_UNKNOWN_ADDR;
 }
 
-tBTM_STATUS bluetooth::shim::BTM_CancelRemoteDeviceName(void) {
+tBTM_STATUS bluetooth::shim::BTM_CancelRemoteDeviceName(
+    bluetooth::inquiry::PendingRemoteNameRequestHandle handle) {
+  LOG_INFO("UNIMPLEMENTED %s: needs support for handles", __func__);
   return Stack::GetInstance()->GetBtm()->CancelAllReadRemoteDeviceName();
 }
 
@@ -1254,15 +1244,6 @@ uint16_t bluetooth::shim::BTM_GetHCIConnHandle(const RawAddress& remote_bda,
   return Stack::GetInstance()->GetBtm()->GetAclHandle(remote_bda, transport);
 }
 
-static void remote_name_request_complete_noop(void* p_name){
-    // Should notify BTM_Sec, but we should use GD SMP.
-};
-
-void bluetooth::shim::SendRemoteNameRequest(const RawAddress& raw_address) {
-  Stack::GetInstance()->GetBtm()->ReadClassicRemoteDeviceName(
-      raw_address, remote_name_request_complete_noop);
-}
-
 tBTM_STATUS bluetooth::shim::btm_sec_mx_access_request(
     const RawAddress& bd_addr, bool is_originator,
     uint16_t security_requirement, tBTM_SEC_CALLBACK* p_callback,
@@ -1297,20 +1278,6 @@ void bluetooth::shim::BTM_SecClearSecurityFlags(const RawAddress& bd_addr) {
 char* bluetooth::shim::BTM_SecReadDevName(const RawAddress& address) {
   static char name[] = "TODO: See if this is needed";
   return name;
-}
-
-bool bluetooth::shim::BTM_SecAddRmtNameNotifyCallback(
-    tBTM_RMT_NAME_CALLBACK* p_callback) {
-  // TODO(optedoblivion): keep track of callback
-  LOG_WARN("Unimplemented");
-  return true;
-}
-
-bool bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-    tBTM_RMT_NAME_CALLBACK* p_callback) {
-  // TODO(optedoblivion): stop keeping track of callback
-  LOG_WARN("Unimplemented");
-  return true;
 }
 
 void bluetooth::shim::BTM_PINCodeReply(const RawAddress& bd_addr,
@@ -1360,7 +1327,9 @@ tBTM_STATUS bluetooth::shim::BTM_LeRand(LeRandCallback cb) {
 }
 
 tBTM_STATUS bluetooth::shim::BTM_RestoreFilterAcceptList() {
-  LOG_ERROR("%s: TODO(230604670): Figure out what address for A2DP Connected Resume", __func__);
+  LOG_ERROR(
+      "%s: TODO(230604670): Figure out what address for A2DP Connected Resume",
+      __func__);
   // TODO(230604670): Figure out what address for A2DP Connected Resume
   return BTM_SUCCESS;
 }
