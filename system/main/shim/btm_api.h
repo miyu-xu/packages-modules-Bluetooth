@@ -20,6 +20,7 @@
 #include "device/include/esco_parameters.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/btm/remote_name_request.h"
 #include "stack/include/acl_api_types.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
@@ -195,22 +196,26 @@ void BTM_CancelInquiry(void);
  * Input Params:    remote_bda      - device address of name to retrieve
  *                  p_cb            - callback function called when
  *                                    BTM_CMD_STARTED is returned.
- *                                    A pointer to tBTM_REMOTE_DEV_NAME is
+ *                                    A reference to tBTM_REMOTE_DEV_NAME is
  *                                    passed to the callback.
+ *
+ * Output Params:    handle      - the handle of the pending request, used for
+ *                                 cancellation
  *
  * Returns
  *                  BTM_CMD_STARTED is returned if the request was successfully
  *                                  sent to HCI.
- *                  BTM_BUSY if already in progress
  *                  BTM_UNKNOWN_ADDR if device address is bad
  *                  BTM_NO_RESOURCES if resources could not be allocated to
  *                                   start the command
  *                  BTM_WRONG_MODE if the device is not up.
  *
  ******************************************************************************/
-tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
-                                     tBTM_CMPL_CB* p_cb,
-                                     tBT_TRANSPORT transport);
+tBTM_STATUS BTM_ReadRemoteDeviceName(
+    const RawAddress& remote_bda,
+    bluetooth::inquiry::RemoteNameRequestCallbacks p_cb,
+    tBT_TRANSPORT transport,
+    bluetooth::inquiry::PendingRemoteNameRequestHandle* handle);
 
 /*******************************************************************************
  *
@@ -224,12 +229,12 @@ tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
  * Returns
  *                  BTM_CMD_STARTED is returned if the request was successfully
  *                                  sent to HCI.
- *                  BTM_NO_RESOURCES if resources could not be allocated to
- *                                   start the command
- *                  BTM_WRONG_MODE if there is no active remote name request.
+ *                  BTM_WRONG_MODE if there is not an active remote name
+ *                                 request for this handle
  *
  ******************************************************************************/
-tBTM_STATUS BTM_CancelRemoteDeviceName(void);
+tBTM_STATUS BTM_CancelRemoteDeviceName(
+    bluetooth::inquiry::PendingRemoteNameRequestHandle handle);
 
 /*******************************************************************************
  *
@@ -1277,31 +1282,6 @@ bool BTM_SecRegister(const tBTM_APPL_INFO* p_cb_info);
 
 /*******************************************************************************
  *
- * Function         BTM_SecAddRmtNameNotifyCallback
- *
- * Description      Profiles can register to be notified when name of the
- *                  remote device is resolved (up to
- *                  BTM_SEC_MAX_RMT_NAME_CALLBACKS).
- *
- * Returns          true if registered OK, else false
- *
- ******************************************************************************/
-bool BTM_SecAddRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
-
-/*******************************************************************************
- *
- * Function         BTM_SecDeleteRmtNameNotifyCallback
- *
- * Description      A profile can deregister notification when a new Link Key
- *                  is generated per connection.
- *
- * Returns          true if OK, else false
- *
- ******************************************************************************/
-bool BTM_SecDeleteRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback);
-
-/*******************************************************************************
- *
  * Function         BTM_GetSecurityFlagsByTransport
  *
  * Description      Get security flags for the device on a particular transport
@@ -1901,11 +1881,6 @@ tBTM_STATUS BTM_SetDefaultEventMask(void);
  *
  *******************************************************************************/
 tBTM_STATUS BTM_SetEventFilterInquiryResultAllDevices(void);
-
-/**
- * Send remote name request to GD shim Name module
- */
-void SendRemoteNameRequest(const RawAddress& raw_address);
 
 tBTM_STATUS btm_sec_mx_access_request(const RawAddress& bd_addr,
                                       bool is_originator,

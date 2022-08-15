@@ -87,14 +87,6 @@ tBT_DEVICE_TYPE BTM_GetPeerDeviceTypeFromFeatures(const RawAddress& bd_addr) {
   mock_function_count_map[__func__]++;
   return BT_DEVICE_TYPE_BREDR;
 }
-bool BTM_SecAddRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback) {
-  mock_function_count_map[__func__]++;
-  return false;
-}
-bool BTM_SecDeleteRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback) {
-  mock_function_count_map[__func__]++;
-  return false;
-}
 bool BTM_SecIsSecurityPending(const RawAddress& bd_addr) {
   mock_function_count_map[__func__]++;
   return false;
@@ -296,12 +288,11 @@ void btm_sec_link_key_request(const uint8_t* p_event) {
 void btm_sec_pin_code_request(const uint8_t* p_event) {
   mock_function_count_map[__func__]++;
 }
-void btm_sec_rmt_host_support_feat_evt(const uint8_t* p) {
+void btu_hcif_rmt_host_support_feat_evt(const uint8_t* p) {
   mock_function_count_map[__func__]++;
 }
-void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
-                                       const uint8_t* p_bd_name,
-                                       tHCI_STATUS status) {
+void btm_sec_rmt_name_request_complete(
+    const bluetooth::inquiry::RemoteNameRequestResult& result) {
   mock_function_count_map[__func__]++;
 }
 void btm_sec_set_peer_sec_caps(uint16_t hci_handle, bool ssp_supported,
