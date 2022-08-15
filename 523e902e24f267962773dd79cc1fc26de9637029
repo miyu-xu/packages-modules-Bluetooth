@@ -87,6 +87,24 @@
       "parentUuid": "23bc4f7a_a9d6dd14",
       "revId": "523e902e24f267962773dd79cc1fc26de9637029",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "764bb279_46ba428a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-15T17:04:29Z",
+      "side": 1,
+      "message": "I\u0027ll land this only in CHROMIUM tree for now to unblock us but I\u0027d like to understand a few things:\n\n* Do HAL drivers intercept cmd/response if they need to do something vendor specific? (i.e. let\u0027s say they need to trigger some action based on remote features, would they just send a remote feature cmd and intercept response without ever sending to userspace)\n\n* How do you handle userspace tools needing HCI access? i.e. Debug tooling using vendor specific events that only exist in userspace.",
+      "parentUuid": "c69d86e5_58d704ae",
+      "revId": "523e902e24f267962773dd79cc1fc26de9637029",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
