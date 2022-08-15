@@ -117,6 +117,7 @@ source_set("stack") {
     "btm/btm_dev.cc",
     "btm/btm_devctl.cc",
     "btm/btm_inq.cc",
+    "btm/remote_name_request.cc",
     "btm/btm_iso.cc",
     "btm/btm_main.cc",
     "btm/btm_scn.cc",
