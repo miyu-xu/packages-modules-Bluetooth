@@ -20,6 +20,7 @@
 
 #include "device/include/esco_parameters.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/btm/remote_name_request.h"
 #include "stack/include/acl_client_callbacks.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_octets.h"
@@ -82,10 +83,13 @@ struct btm_client_interface_t {
                                   tBT_TRANSPORT transport);
     bool (*BTM_ReadConnectedTransportAddress)(RawAddress* bd_addr,
                                               tBT_TRANSPORT transport);
-    tBTM_STATUS (*BTM_CancelRemoteDeviceName)(void);
-    tBTM_STATUS (*BTM_ReadRemoteDeviceName)(const RawAddress& bd_addr,
-                                            tBTM_CMPL_CB* p_cb,
-                                            tBT_TRANSPORT transport);
+    tBTM_STATUS (*BTM_CancelRemoteDeviceName)(
+        bluetooth::inquiry::PendingRemoteNameRequestHandle handle);
+    tBTM_STATUS (*BTM_ReadRemoteDeviceName)(
+        const RawAddress& bd_addr,
+        bluetooth::inquiry::RemoteNameRequestCallbacks p_cb,
+        tBT_TRANSPORT transport,
+        bluetooth::inquiry::PendingRemoteNameRequestHandle* handle);
     uint8_t* (*BTM_ReadRemoteFeatures)(const RawAddress&);
     void (*BTM_ReadDevInfo)(const RawAddress& bd_addr,
                             tBT_DEVICE_TYPE* p_dev_type,
@@ -123,10 +127,7 @@ struct btm_client_interface_t {
                              const BD_NAME& bd_name, uint8_t* features,
                              LinkKey* link_key, uint8_t key_type,
                              uint8_t pin_length);
-    bool (*BTM_SecAddRmtNameNotifyCallback)(tBTM_RMT_NAME_CALLBACK* p_callback);
     bool (*BTM_SecDeleteDevice)(const RawAddress& bd_addr);
-    bool (*BTM_SecDeleteRmtNameNotifyCallbac)(
-        tBTM_RMT_NAME_CALLBACK* p_callback);
     bool (*BTM_SecRegister)(const tBTM_APPL_INFO* p_cb_info);
     char* (*BTM_SecReadDevName)(const RawAddress& bd_addr);
     tBTM_STATUS (*BTM_SecBond)(const RawAddress& bd_addr,
@@ -149,8 +150,6 @@ struct btm_client_interface_t {
     void (*BTM_PINCodeReply)(const RawAddress& bd_addr, tBTM_STATUS res,
                              uint8_t pin_len, uint8_t* p_pin);
     void (*BTM_ConfirmReqReply)(tBTM_STATUS res, const RawAddress& bd_addr);
-    bool (*BTM_SecDeleteRmtNameNotifyCallback)(
-        tBTM_RMT_NAME_CALLBACK* p_callback);
     tBTM_STATUS (*BTM_SetEncryption)(const RawAddress& bd_addr,
                                      tBT_TRANSPORT transport,
                                      tBTM_SEC_CALLBACK* p_callback,

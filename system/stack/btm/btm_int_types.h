@@ -30,6 +30,7 @@
 #include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/btm_sco.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/btm/remote_name_request.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_ble_api_types.h"
@@ -255,8 +256,6 @@ typedef struct tBTM_CB {
   tBTM_APPL_INFO api;
 
 #define BTM_SEC_MAX_RMT_NAME_CALLBACKS 2
-  tBTM_RMT_NAME_CALLBACK* p_rmt_name_callback[BTM_SEC_MAX_RMT_NAME_CALLBACKS];
-
   tBTM_SEC_DEV_REC* p_collided_dev_rec{nullptr};
   alarm_t* sec_collision_timer{nullptr};
   uint64_t collision_start_time{0};
@@ -277,6 +276,8 @@ typedef struct tBTM_CB {
   alarm_t* execution_wait_timer{nullptr}; /* To avoid concurrent auth request */
   uint16_t disc_handle{0};          /* for legacy devices */
   uint8_t disc_reason{0};           /* for legacy devices */
+  bluetooth::inquiry::PendingRemoteNameRequestHandle
+      pending_remname_handle;       /* handle for pending remote name request */
   tBTM_SEC_SERV_REC sec_serv_rec[BTM_SEC_MAX_SERVICE_RECORDS];
   list_t* sec_dev_rec{nullptr}; /* list of tBTM_SEC_DEV_REC */
   tBTM_SEC_SERV_REC* p_out_serv{nullptr};
@@ -319,7 +320,6 @@ typedef struct tBTM_CB {
     memset(&btm_inq_vars, 0, sizeof(btm_inq_vars));
     memset(&sco_cb, 0, sizeof(sco_cb));
     memset(&api, 0, sizeof(api));
-    memset(p_rmt_name_callback, 0, sizeof(p_rmt_name_callback));
     memset(&pin_code, 0, sizeof(pin_code));
     memset(sec_serv_rec, 0, sizeof(sec_serv_rec));
 
@@ -327,6 +327,7 @@ typedef struct tBTM_CB {
     memset(&connecting_dc, 0, sizeof(connecting_dc));
 
     acl_cb_ = {};
+    pending_remname_handle = {};
 
     page_queue = fixed_queue_new(SIZE_MAX);
     sec_pending_q = fixed_queue_new(SIZE_MAX);

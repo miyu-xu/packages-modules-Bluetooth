@@ -76,10 +76,8 @@ void btm_ble_scanner_init(void);
 static void bta_dm_inq_results_cb(tBTM_INQ_RESULTS* p_inq, const uint8_t* p_eir,
                                   uint16_t eir_len);
 static void bta_dm_inq_cmpl_cb(void* p_result);
-static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
-                                                DEV_CLASS dc,
-                                                tBTM_BD_NAME bd_name);
-static void bta_dm_remname_cback(void* p);
+static void bta_dm_remname_cback(
+    const bluetooth::inquiry::RemoteNameRequestResult& result);
 static void bta_dm_find_services(const RawAddress& bd_addr);
 static void bta_dm_discover_next_device(void);
 static void bta_dm_sdp_callback(tSDP_STATUS sdp_status);
@@ -897,7 +895,7 @@ void bta_dm_search_cancel() {
   /* If no Service Search going on then issue cancel remote name in case it is
      active */
   else if (!bta_dm_search_cb.name_discover_done) {
-    BTM_CancelRemoteDeviceName();
+    BTM_CancelRemoteDeviceName(bta_dm_search_cb.pending_name_request_handle);
     bta_dm_search_cmpl();
   } else {
     bta_dm_inq_cmpl(0);
@@ -968,27 +966,18 @@ static bool bta_dm_read_remote_device_name(const RawAddress& bd_addr,
   btm_status =
       (bluetooth::shim::is_gd_security_enabled())
           ? bluetooth::shim::BTM_ReadRemoteDeviceName(
-                bta_dm_search_cb.peer_bdaddr, bta_dm_remname_cback, transport)
-          : BTM_ReadRemoteDeviceName(bta_dm_search_cb.peer_bdaddr,
-                                     bta_dm_remname_cback, transport);
+                bta_dm_search_cb.peer_bdaddr,
+                bluetooth::inquiry::RemoteNameRequestCallbacks::forName(
+                    bta_dm_remname_cback),
+                transport, &bta_dm_search_cb.pending_name_request_handle)
+          : BTM_ReadRemoteDeviceName(
+                bta_dm_search_cb.peer_bdaddr,
+                bluetooth::inquiry::RemoteNameRequestCallbacks::forName(
+                    bta_dm_remname_cback),
+                transport, &bta_dm_search_cb.pending_name_request_handle);
 
   if (btm_status == BTM_CMD_STARTED) {
     APPL_TRACE_DEBUG("%s: BTM_ReadRemoteDeviceName is started", __func__);
-
-    return (true);
-  } else if (btm_status == BTM_BUSY) {
-    APPL_TRACE_DEBUG("%s: BTM_ReadRemoteDeviceName is busy", __func__);
-
-    /* Remote name discovery is on going now so BTM cannot notify through
-     * "bta_dm_remname_cback" */
-    /* adding callback to get notified that current reading remote name done */
-
-    if (bluetooth::shim::is_gd_security_enabled()) {
-      bluetooth::shim::BTM_SecAddRmtNameNotifyCallback(
-          &bta_dm_service_search_remname_cback);
-    } else {
-      BTM_SecAddRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
-    }
 
     return (true);
   } else {
@@ -1207,14 +1196,6 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       /* callbacks */
       /* start next bd_addr if necessary */
 
-      if (bluetooth::shim::is_gd_security_enabled()) {
-        bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-            &bta_dm_service_search_remname_cback);
-      } else {
-        BTM_SecDeleteRmtNameNotifyCallback(
-            &bta_dm_service_search_remname_cback);
-      }
-
       p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
       p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
       p_msg->disc_result.result.disc_res.result = BTA_SUCCESS;
@@ -1272,13 +1253,6 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
     /* not able to connect go to next device */
     if (bta_dm_search_cb.p_sdp_db)
       osi_free_and_reset((void**)&bta_dm_search_cb.p_sdp_db);
-
-    if (bluetooth::shim::is_gd_security_enabled()) {
-      bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-          &bta_dm_service_search_remname_cback);
-    } else {
-      BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
-    }
 
     p_msg = (tBTA_DM_MSG*)osi_calloc(sizeof(tBTA_DM_MSG));
     p_msg->hdr.event = BTA_DM_DISCOVERY_RESULT_EVT;
@@ -1540,7 +1514,7 @@ void bta_dm_search_cancel_notify() {
   if (!bta_dm_search_cb.name_discover_done &&
       (bta_dm_search_cb.state == BTA_DM_SEARCH_ACTIVE ||
        bta_dm_search_cb.state == BTA_DM_SEARCH_CANCELLING)) {
-    BTM_CancelRemoteDeviceName();
+    BTM_CancelRemoteDeviceName(bta_dm_search_cb.pending_name_request_handle);
   }
 }
 
@@ -1879,59 +1853,6 @@ static void bta_dm_inq_cmpl_cb(void* p_result) {
 
 /*******************************************************************************
  *
- * Function         bta_dm_service_search_remname_cback
- *
- * Description      Remote name call back from BTM during service discovery
- *
- * Returns          void
- *
- ******************************************************************************/
-static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
-                                                UNUSED_ATTR DEV_CLASS dc,
-                                                tBTM_BD_NAME bd_name) {
-  tBTM_REMOTE_DEV_NAME rem_name;
-  tBTM_STATUS btm_status;
-
-  APPL_TRACE_DEBUG("%s name=<%s>", __func__, bd_name);
-
-
-  /* if this is what we are looking for */
-  if (bta_dm_search_cb.peer_bdaddr == bd_addr) {
-    rem_name.bd_addr = bd_addr;
-    rem_name.length = strlcpy((char*)rem_name.remote_bd_name, (char*)bd_name,
-                              BD_NAME_LEN + 1);
-    if (rem_name.length > BD_NAME_LEN) {
-      rem_name.length = BD_NAME_LEN;
-    }
-    rem_name.status = BTM_SUCCESS;
-
-    bta_dm_remname_cback(&rem_name);
-  } else {
-    /* get name of device */
-    btm_status =
-        BTM_ReadRemoteDeviceName(bta_dm_search_cb.peer_bdaddr,
-                                 bta_dm_remname_cback, BT_TRANSPORT_BR_EDR);
-    if (btm_status == BTM_BUSY) {
-      /* wait for next chance(notification of remote name discovery done) */
-      APPL_TRACE_DEBUG("%s: BTM_ReadRemoteDeviceName is busy", __func__);
-    } else if (btm_status != BTM_CMD_STARTED) {
-      /* if failed to start getting remote name then continue */
-      APPL_TRACE_WARNING("%s: BTM_ReadRemoteDeviceName returns 0x%02X",
-                         __func__, btm_status);
-
-      // needed so our response is not ignored, since this corresponds to the
-      // actual peer_bdaddr
-      rem_name.bd_addr = bta_dm_search_cb.peer_bdaddr;
-      rem_name.length = 0;
-      rem_name.remote_bd_name[0] = 0;
-      rem_name.status = btm_status;
-      bta_dm_remname_cback(&rem_name);
-    }
-  }
-}
-
-/*******************************************************************************
- *
  * Function         bta_dm_remname_cback
  *
  * Description      Remote name complete call back from BTM
@@ -1939,30 +1860,15 @@ static void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_remname_cback(void* p) {
-  tBTM_REMOTE_DEV_NAME* p_remote_name = (tBTM_REMOTE_DEV_NAME*)p;
-  APPL_TRACE_DEBUG("bta_dm_remname_cback len = %d name=<%s>",
-                   p_remote_name->length, p_remote_name->remote_bd_name);
-
-  if (bta_dm_search_cb.peer_bdaddr == p_remote_name->bd_addr) {
-    if (bluetooth::shim::is_gd_security_enabled()) {
-      bluetooth::shim::BTM_SecDeleteRmtNameNotifyCallback(
-          &bta_dm_service_search_remname_cback);
-    } else {
-      BTM_SecDeleteRmtNameNotifyCallback(&bta_dm_service_search_remname_cback);
-    }
-  } else {
-    // if we got a different response, ignore it
-    // we will have made a request directly from BTM_ReadRemoteDeviceName so we
-    // expect a dedicated response for us
-    LOG_INFO("ignoring remote name response in DM callback since it's for the wrong bd_addr");
-    return;
-  }
+static void bta_dm_remname_cback(
+    const bluetooth::inquiry::RemoteNameRequestResult& result) {
+  APPL_TRACE_DEBUG("bta_dm_remname_cback len = %d name=<%s>", result.length,
+                   result.length, result.remote_bd_name);
 
   /* remote name discovery is done but it could be failed */
   bta_dm_search_cb.name_discover_done = true;
-  strlcpy((char*)bta_dm_search_cb.peer_name,
-          (char*)p_remote_name->remote_bd_name, BD_NAME_LEN + 1);
+  strlcpy((char*)bta_dm_search_cb.peer_name, (char*)result.remote_bd_name,
+          BD_NAME_LEN + 1);
 
   if (bta_dm_search_cb.transport == BT_TRANSPORT_LE) {
     GAP_BleReadPeerPrefConnParams(bta_dm_search_cb.peer_bdaddr);
@@ -1971,8 +1877,8 @@ static void bta_dm_remname_cback(void* p) {
   tBTA_DM_REM_NAME* p_msg =
       (tBTA_DM_REM_NAME*)osi_malloc(sizeof(tBTA_DM_REM_NAME));
   p_msg->result.disc_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-  strlcpy((char*)p_msg->result.disc_res.bd_name,
-          (char*)p_remote_name->remote_bd_name, BD_NAME_LEN + 1);
+  strlcpy((char*)p_msg->result.disc_res.bd_name, (char*)result.remote_bd_name,
+          BD_NAME_LEN + 1);
   p_msg->hdr.event = BTA_DM_REMT_NAME_EVT;
 
   bta_sys_sendmsg(p_msg);
@@ -1987,8 +1893,8 @@ static void bta_dm_remname_cback(void* p) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_dm_pinname_cback(void* p_data) {
-  tBTM_REMOTE_DEV_NAME* p_result = (tBTM_REMOTE_DEV_NAME*)p_data;
+static void bta_dm_pinname_cback(
+    const bluetooth::inquiry::RemoteNameRequestResult& result) {
   tBTA_DM_SEC sec_event;
   uint32_t bytes_to_copy;
   tBTA_DM_SEC_EVT event = bta_dm_cb.pin_evt;
@@ -1998,11 +1904,10 @@ static void bta_dm_pinname_cback(void* p_data) {
     sec_event.cfm_req.bd_addr = bta_dm_cb.pin_bd_addr;
     BTA_COPY_DEVICE_CLASS(sec_event.cfm_req.dev_class, bta_dm_cb.pin_dev_class);
 
-    if (p_result && p_result->status == BTM_SUCCESS) {
+    if (result.status == BTM_SUCCESS) {
       bytes_to_copy =
-          (p_result->length < BD_NAME_LEN) ? p_result->length : BD_NAME_LEN;
-      memcpy(sec_event.cfm_req.bd_name, p_result->remote_bd_name,
-             bytes_to_copy);
+          (result.length < BD_NAME_LEN) ? result.length : BD_NAME_LEN;
+      memcpy(sec_event.cfm_req.bd_name, result.remote_bd_name, bytes_to_copy);
       sec_event.pin_req.bd_name[BD_NAME_LEN] = 0;
     } else /* No name found */
       sec_event.cfm_req.bd_name[0] = 0;
@@ -2023,11 +1928,10 @@ static void bta_dm_pinname_cback(void* p_data) {
     sec_event.pin_req.bd_addr = bta_dm_cb.pin_bd_addr;
     BTA_COPY_DEVICE_CLASS(sec_event.pin_req.dev_class, bta_dm_cb.pin_dev_class);
 
-    if (p_result && p_result->status == BTM_SUCCESS) {
-      bytes_to_copy = (p_result->length < BD_NAME_LEN) ? p_result->length
-                                                       : (BD_NAME_LEN - 1);
-      memcpy(sec_event.pin_req.bd_name, p_result->remote_bd_name,
-             bytes_to_copy);
+    if (result.status == BTM_SUCCESS) {
+      bytes_to_copy =
+          (result.length < BD_NAME_LEN) ? result.length : (BD_NAME_LEN - 1);
+      memcpy(sec_event.pin_req.bd_name, result.remote_bd_name, bytes_to_copy);
       sec_event.pin_req.bd_name[BD_NAME_LEN] = 0;
     } else /* No name found */
       sec_event.pin_req.bd_name[0] = 0;
@@ -2059,8 +1963,12 @@ static uint8_t bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_class,
     bta_dm_cb.pin_evt = BTA_DM_PIN_REQ_EVT;
     bta_dm_cb.pin_bd_addr = bd_addr;
     BTA_COPY_DEVICE_CLASS(bta_dm_cb.pin_dev_class, dev_class);
-    if ((BTM_ReadRemoteDeviceName(bd_addr, bta_dm_pinname_cback,
-                                  BT_TRANSPORT_BR_EDR)) == BTM_CMD_STARTED)
+    if ((BTM_ReadRemoteDeviceName(
+            bd_addr,
+            bluetooth::inquiry::RemoteNameRequestCallbacks::forName(
+                bta_dm_pinname_cback),
+            BT_TRANSPORT_BR_EDR,
+            &bta_dm_search_cb.pending_name_request_handle)) == BTM_CMD_STARTED)
       return BTM_CMD_STARTED;
 
     APPL_TRACE_WARNING(
@@ -2247,8 +2155,12 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event,
           BTA_COPY_DEVICE_CLASS(bta_dm_cb.pin_dev_class,
                                 p_data->cfm_req.dev_class);
           if ((BTM_ReadRemoteDeviceName(
-                  p_data->cfm_req.bd_addr, bta_dm_pinname_cback,
-                  BT_TRANSPORT_BR_EDR)) == BTM_CMD_STARTED)
+                  p_data->cfm_req.bd_addr,
+                  bluetooth::inquiry::RemoteNameRequestCallbacks::forName(
+                      bta_dm_pinname_cback),
+                  BT_TRANSPORT_BR_EDR,
+                  &bta_dm_search_cb.pending_name_request_handle)) ==
+              BTM_CMD_STARTED)
             return BTM_CMD_STARTED;
           APPL_TRACE_WARNING(
               " bta_dm_sp_cback() -> Failed to start Remote Name Request  ");
@@ -2273,8 +2185,12 @@ static tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event,
           BTA_COPY_DEVICE_CLASS(bta_dm_cb.pin_dev_class,
                                 p_data->key_notif.dev_class);
           if ((BTM_ReadRemoteDeviceName(
-                  p_data->key_notif.bd_addr, bta_dm_pinname_cback,
-                  BT_TRANSPORT_BR_EDR)) == BTM_CMD_STARTED)
+                  p_data->key_notif.bd_addr,
+                  bluetooth::inquiry::RemoteNameRequestCallbacks::forName(
+                      bta_dm_pinname_cback),
+                  BT_TRANSPORT_BR_EDR,
+                  &bta_dm_search_cb.pending_name_request_handle)) ==
+              BTM_CMD_STARTED)
             return BTM_CMD_STARTED;
           APPL_TRACE_WARNING(
               " bta_dm_sp_cback() -> Failed to start Remote Name Request  ");
@@ -2999,7 +2915,8 @@ static void bta_dm_set_eir(char* local_name) {
       for (custom_uuid_idx = 0;
            custom_uuid_idx < BTA_EIR_SERVER_NUM_CUSTOM_UUID;
            custom_uuid_idx++) {
-        const Uuid& curr = bta_dm_cb.bta_custom_uuid[custom_uuid_idx].custom_uuid;
+        const Uuid& curr =
+            bta_dm_cb.bta_custom_uuid[custom_uuid_idx].custom_uuid;
         if (curr.GetShortestRepresentationSize() == Uuid::kNumBytes16) {
           if (num_uuid < max_num_uuid) {
             UINT16_TO_STREAM(p, curr.As16Bit());
@@ -4221,6 +4138,7 @@ void bta_dm_process_delete_key_RC_to_unpair(const RawAddress& bd_addr)
     };
     bta_dm_cb.p_sec_cback(BTA_DM_REPORT_BONDING_EVT, &param);
 }
+
 
 namespace bluetooth {
 namespace legacy {
