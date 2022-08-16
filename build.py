@@ -229,7 +229,7 @@ class HostBuild():
             '-C',
             'link-arg=-Wl,--allow-multiple-definition',
             # exclude uninteresting warnings
-            '-A improper_ctypes_definitions -A improper_ctypes -A unknown_lints',
+            '-A improper_ctypes_definitions -A improper_ctypes -A unknown_lints'
         ]
 
         return ' '.join(rust_flags)
@@ -535,7 +535,7 @@ class HostBuild():
 
         # Validate that the target is valid
         if self.target not in VALID_TARGETS:
-            print('Target {} is not valid. Must be in {}', self.target, VALID_TARGETS)
+            print('Target {} is not valid. Must be in {}'.format(self.target, VALID_TARGETS))
             return
 
         if self.target == 'prepare':
