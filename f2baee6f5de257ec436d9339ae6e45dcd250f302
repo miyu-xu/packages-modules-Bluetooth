@@ -318,6 +318,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf4dfb01_79bdd598",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-16T21:38:21Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "6a5b8af2_50d4f766",
+      "range": {
+        "startLine": 666,
+        "startChar": 0,
+        "endLine": 667,
+        "endChar": 60
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ef5a96d_d4887ce9",

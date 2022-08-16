@@ -34,6 +34,98 @@
       "parentUuid": "a9c15e76_c0aa2192",
       "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb94022_812e1e17",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-16T21:38:21Z",
+      "side": 1,
+      "message": "I notice the BTM_ReadRemoteDeviceName internally check for the shim\n```\nif (bluetooth::shim::is_gd_shim_enabled()) {\n  return bluetooth::shim::BTM_ReadRemoteDeviceName(remote_bda, p_cb, transport);\n}\n```\nI suppose we could lightweight the code by removing the ternary operator and just calling BTM_ReadRemoteDeviceName.\nwdyt ?",
+      "range": {
+        "startLine": 967,
+        "startChar": 6,
+        "endLine": 977,
+        "endChar": 74
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993cacbf_3a263fe3",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-16T21:38:21Z",
+      "side": 1,
+      "message": "nit: lint warning about trailing whitespace",
+      "range": {
+        "startLine": 693,
+        "startChar": 59,
+        "endLine": 693,
+        "endChar": 60
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d4faf34_7557cd0a",
+        "filename": "system/stack/btm/remote_name_request.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-16T21:38:21Z",
+      "side": 1,
+      "message": "nit: Because you returned in the `if` you don\u0027t need to be scoped in the else. (you could gain 2 spaces 🎉)",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 8
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "420d62a2_cd137e5d",
+        "filename": "system/stack/btm/remote_name_request.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-16T21:38:21Z",
+      "side": 1,
+      "message": "why not starting at 0 ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 33,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
