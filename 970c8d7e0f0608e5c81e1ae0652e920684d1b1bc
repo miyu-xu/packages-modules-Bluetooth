@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1159cae6_2be27c55",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-16T06:18:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dea9eac2_be9d65fc",
+      "range": {
+        "startLine": 67,
+        "startChar": 25,
+        "endLine": 68,
+        "endChar": 21
+      },
+      "revId": "970c8d7e0f0608e5c81e1ae0652e920684d1b1bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da1ffd85_41580136",
@@ -72,6 +96,24 @@
       "writtenOn": "2022-08-04T06:47:51Z",
       "side": 1,
       "message": "Thanks for looking into it and sort out something can work!\nas we talked offline, let\u0027s try avoid accessing bta/ag directly.\n\nA proper way to solve this could be copy what\u0027s done in \"bta/hfp_client\" (the other side of HFP role, i.e the headset) which exposes BTHF_CLIENT_AUDIO_STATE_CONNECTED_MSBC.\n\nDid a quick code trace:\n// how it works now\nIn `bta/ag/bta_ag_sco.cc` function bta_ag_sco_conn_open() emits BTA_AG_AUDIO_OPEN_EVT event.\nIn `src/btif_hf.cc` triggers\nbt_hf_callbacks-\u003eAudioStateCallback(BTHF_AUDIO_STATE_CONNECTED, ...)\n\n// how to extend this\nIn bta_ag_sco can check `p_scb-\u003esco_codec \u003d\u003d MSBC` and emit a new BTA_AG_AUDIO_OPEN_MSBC_EVT\nThen in btif_hf.cc accordingly, hook a new BTHF_AUDIO_STATE_CONNECTED_MSBC event.\n\nFinally in the bluetooth_media/hfp_shim layer we can have additional value to `self.hfp_audio_state` and get_hfp_audio_started() can pass MSBC or not back to CRAS.",
+      "revId": "970c8d7e0f0608e5c81e1ae0652e920684d1b1bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9128b9c_d08f82b0",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-16T06:18:06Z",
+      "side": 1,
+      "message": "Per the investigation (see the associated bug link) I\u0027ve changed it to reading `wbs_supported` due to how it shall align with the final codecs should there be any change after `start_sco_call`.",
+      "parentUuid": "da1ffd85_41580136",
       "revId": "970c8d7e0f0608e5c81e1ae0652e920684d1b1bc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
