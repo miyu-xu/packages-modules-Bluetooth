@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d81cf82_074f883a",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/NativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-16T18:55:37Z",
+      "side": 0,
+      "message": "Can we remove the `address` logging completely ?\nit is already part of the event `toString()` method + bluetooth is trying to reduce the full address leak in the log.\n\nSame for all the occurrence in this file",
+      "range": {
+        "startLine": 343,
+        "startChar": 45,
+        "endLine": 343,
+        "endChar": 64
+      },
+      "revId": "19ea88d00a373888e12d1a00d7dc09eebdb712e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
