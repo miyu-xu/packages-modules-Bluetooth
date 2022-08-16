@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "409f1812_09eb1693",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-16T23:45:40Z",
+      "side": 1,
+      "message": "The latest patch revert the commit message and its now malformed.",
+      "revId": "6c8808e3bba4b447a69553282e5667e98332b6d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
