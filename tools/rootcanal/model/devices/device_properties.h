@@ -184,7 +184,7 @@ class DeviceProperties {
 
   // Specification Version 4.2, Volume 2, Part E, Section 7.4.4
   uint8_t GetExtendedFeaturesMaximumPageNumber() const {
-    return extended_features_.size() - 1;
+    return extended_features_.size();
   }
 
   uint64_t GetExtendedFeatures(uint8_t page_number) const {
