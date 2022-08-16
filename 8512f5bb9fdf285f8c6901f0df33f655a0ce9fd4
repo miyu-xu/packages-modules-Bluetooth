@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49a113e4_b65c41ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-16T19:49:17Z",
+      "side": 1,
+      "message": "I know this is big patch, but this is only for testing.",
+      "revId": "8512f5bb9fdf285f8c6901f0df33f655a0ce9fd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
