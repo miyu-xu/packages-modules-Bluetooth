@@ -70,6 +70,30 @@
       },
       "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e8c1cde_cadfdd4b",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-16T23:28:34Z",
+      "side": 1,
+      "message": "Actually I just looked at Android error codes and it seems there is a one-to-one match with those from the specs. So the only change I would do for this particular issue is declare them as constants in `gatt.py` using the specification terminology. For instance `GATT_READ_NOT_PERMITTED \u003d 0x02`",
+      "parentUuid": "a54a66b0_bb24930a",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
