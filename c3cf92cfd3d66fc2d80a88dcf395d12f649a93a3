@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac4eb169_7e943c79",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-16T21:44:01Z",
+      "side": 1,
+      "message": "were we getting: a{sv} where each v was another nested v?\n\nSo in chromium, you would need to PopVariant twice?",
+      "revId": "c3cf92cfd3d66fc2d80a88dcf395d12f649a93a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
