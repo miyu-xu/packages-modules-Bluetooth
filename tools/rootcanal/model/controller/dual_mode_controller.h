@@ -222,6 +222,12 @@ class DualModeController : public Device {
   // 7.1.36
   void IoCapabilityRequestNegativeReply(CommandView args);
 
+  // 7.1.45
+  void EnhancedSetupSynchronousConnection(CommandView args);
+
+  // 7.1.46
+  void EnhancedAcceptSynchronousConnection(CommandView args);
+
   // 7.1.53
   void RemoteOobExtendedDataRequestReply(CommandView args);
 
