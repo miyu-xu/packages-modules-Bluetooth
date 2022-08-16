@@ -41,6 +41,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "936dfa99_515f06a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 29
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-16T04:00:56Z",
+      "side": 1,
+      "message": "Thanks Jack for the review comments, will be uploading new patchset addressing the review comments.\n\nThanks and Regards,\nPartha Sarathi",
+      "revId": "80879342c9d2cb308610854745fd8563faa6cc88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a73c2156_bc604798",
