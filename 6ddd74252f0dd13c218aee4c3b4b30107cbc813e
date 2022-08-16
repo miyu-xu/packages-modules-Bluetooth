@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "924e4ff4_6bc6abdf",
+        "filename": "android/app/src/com/android/bluetooth/bas/BatteryService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-16T00:40:38Z",
+      "side": 1,
+      "message": "We use eight (8) space indents for line wraps, including function calls and assignments.\nhttps://source.android.com/docs/setup/contribute/code-style#use-spaces-for-indentation",
+      "range": {
+        "startLine": 232,
+        "startChar": 16,
+        "endLine": 232,
+        "endChar": 20
+      },
+      "revId": "6ddd74252f0dd13c218aee4c3b4b30107cbc813e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
