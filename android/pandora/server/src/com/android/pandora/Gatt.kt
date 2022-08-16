@@ -22,12 +22,15 @@ import android.bluetooth.BluetoothGattService
 import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothGattDescriptor
 import android.bluetooth.BluetoothManager
+import android.bluetooth.BluetoothStatusCodes
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.util.Log
 
 import com.google.protobuf.Empty
+import com.google.protobuf.ByteString
 
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
@@ -57,16 +60,30 @@ class Gatt(private val context: Context) : GATTImplBase() {
   private val mBluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val mBluetoothAdapter = mBluetoothManager.adapter
 
+  // WIP
+  private val broadCastReceiver = object : BroadcastReceiver() {
+    override fun onReceive(contxt: Context?, intent: Intent?) {
+      when (intent?.action) {
+        BluetoothDevice.ACTION_PAIRING_REQUEST -> cancelPairingAuthentication(intent)
+      }
+    }
+  }
+
   init {
     mScope = CoroutineScope(Dispatchers.Default)
 
     val intentFilter = IntentFilter()
     intentFilter.addAction(BluetoothDevice.ACTION_UUID)
 
+    // WIP
+    intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
+    context.registerReceiver(broadCastReceiver, intentFilter)
+
     flow = intentFlow(context, intentFilter).shareIn(mScope, SharingStarted.Eagerly)
   }
 
   fun deinit() {
+    context.unregisterReceiver(broadCastReceiver)
     mScope.cancel()
   }
 
@@ -74,9 +91,9 @@ class Gatt(private val context: Context) : GATTImplBase() {
       responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(mScope, responseObserver) {
       val mtu = request.mtu
-      val addr = request.connection.cookie.toByteArray().decodeToString()
-      if (!GattInstance.get(addr).mGatt.requestMtu(mtu)) {
-        Log.e(TAG, "Error on requesting MTU for $addr")
+      Log.i(TAG, "GRPC exchangeMTU called with MTU=$mtu")
+      if (!GattInstance.get(request.connection.cookie).mGatt.requestMtu(mtu)) {
+        Log.e(TAG, "Error on requesting MTU $mtu")
         throw Status.UNKNOWN.asException()
       }
       Empty.getDefaultInstance()
@@ -86,16 +103,15 @@ class Gatt(private val context: Context) : GATTImplBase() {
   override fun writeCharacteristicFromHandle(request: WriteCharacteristicRequest,
       responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(mScope, responseObserver) {
-      val addr = request.connection.cookie.toByteArray().decodeToString()
-      val gattInstance = GattInstance.get(addr)
+      val gattInstance = GattInstance.get(request.connection.cookie)
       val characteristic: BluetoothGattCharacteristic? =
           getCharacteristicWithHandle(request.handle, gattInstance)
       if (characteristic != null) {
+        Log.i(TAG, "GRPC writeCharacteristicFromHandle called with handle=${request.handle}")
         gattInstance.mGatt.writeCharacteristic(characteristic,
             request.value.toByteArray(), BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT)
       } else {
-        Log.e(TAG,
-            "Error while writing characteristic for $gattInstance")
+        Log.e(TAG, "Characteristic handle ${request.handle} not found.")
         throw Status.UNKNOWN.asException()
       }
       Empty.getDefaultInstance()
@@ -105,8 +121,8 @@ class Gatt(private val context: Context) : GATTImplBase() {
   override fun discoverServiceByUuid(request: DiscoverServiceByUuidRequest,
       responseObserver: StreamObserver<DiscoverServicesResponse>) {
     grpcUnary<DiscoverServicesResponse>(mScope, responseObserver) {
-      val addr = request.connection.cookie.toByteArray().decodeToString()
-      val gattInstance = GattInstance.get(addr)
+      val gattInstance = GattInstance.get(request.connection.cookie)
+      Log.i(TAG, "GRPC discoverServiceByUuid called with uuid=${request.uuid}")
       // In some cases, GATT starts a discovery immediately after being connected, so
       // we need to wait until the service discovery is finished to be able to discover again.
       // This takes between 20s and 28s, and there is no way to know if the service is busy or not.
@@ -121,8 +137,8 @@ class Gatt(private val context: Context) : GATTImplBase() {
   override fun discoverServices(request: DiscoverServicesRequest,
       responseObserver: StreamObserver<DiscoverServicesResponse>) {
     grpcUnary<DiscoverServicesResponse>(mScope, responseObserver) {
-      val addr = request.connection.cookie.toByteArray().decodeToString()
-      val gattInstance = GattInstance.get(addr)
+      Log.i(TAG, "GRPC discoverServices called")
+      val gattInstance = GattInstance.get(request.connection.cookie)
       check(gattInstance.mGatt.discoverServices())
       gattInstance.waitForDiscoveryEnd()
       DiscoverServicesResponse.newBuilder()
@@ -133,6 +149,7 @@ class Gatt(private val context: Context) : GATTImplBase() {
   override fun discoverServicesSdp(request: DiscoverServicesSdpRequest,
       responseObserver: StreamObserver<DiscoverServicesSdpResponse>) {
     grpcUnary<DiscoverServicesSdpResponse>(mScope, responseObserver) {
+      Log.i(TAG, "GRPC discoverServicesSdp called")
       val bluetoothDevice = request.address.toBluetoothDevice(mBluetoothAdapter)
       check(bluetoothDevice.fetchUuidsWithSdp())
       flow
@@ -151,25 +168,92 @@ class Gatt(private val context: Context) : GATTImplBase() {
   override fun clearCache(request: ClearCacheRequest,
       responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(mScope, responseObserver) {
-      val addr = request.connection.cookie.toByteArray().decodeToString()
-      val gattInstance = GattInstance.get(addr)
+      Log.i(TAG, "GRPC clearCache called")
+      val gattInstance = GattInstance.get(request.connection.cookie)
       check(gattInstance.mGatt.refresh())
       Empty.getDefaultInstance()
     }
   }
 
+  override fun readCharacteristicFromHandle(request: ReadCharacteristicRequest,
+      responseObserver: StreamObserver<ReadCharacteristicResponse>) {
+    grpcUnary<ReadCharacteristicResponse>(mScope, responseObserver) {
+      Log.i(TAG, "GRPC readCharacteristicFromHandle called with handle ${request.handle}")
+      val gattInstance = GattInstance.get(request.connection.cookie)
+      val characteristic: BluetoothGattCharacteristic? =
+          getCharacteristicWithHandle(request.handle, gattInstance)
+      val readValue: GattInstance.GattInstanceValueRead?
+      checkNotNull(characteristic) {
+        "Characteristic handle ${request.handle} not found."
+      }
+      readValue = gattInstance.readCharacteristicBlocking(characteristic)
+      ReadCharacteristicResponse.newBuilder()
+          .setStatus(readValue.status)
+          .setValue(ByteString.copyFrom(readValue.value)).build()
+    }
+  }
+
+  override fun readCharacteristicFromUuid(request: ReadCharacteristicUuidRequest,
+      responseObserver: StreamObserver<ReadCharacteristicResponse>) {
+    grpcUnary<ReadCharacteristicResponse>(mScope, responseObserver) {
+      Log.i(TAG, "GRPC readCharacteristicFromUuid called with handle ${request.uuid}")
+      val gattInstance = GattInstance.get(request.connection.cookie)
+      val readValue = gattInstance.readCharacteristicUuidBlocking(UUID.fromString(request.uuid),
+          request.startHandle, request.endHandle)
+      ReadCharacteristicResponse.newBuilder()
+          .setStatus(readValue.status)
+          .setValue(ByteString.copyFrom(readValue.value)).build()
+    }
+  }
+
+  override fun readDescriptorFromHandle(request: ReadDescriptorRequest,
+      responseObserver: StreamObserver<ReadDescriptorResponse>) {
+    grpcUnary<ReadDescriptorResponse>(mScope, responseObserver) {
+      Log.i(TAG, "GRPC readDescriptorFromHandle called with handle ${request.handle}")
+      val gattInstance = GattInstance.get(request.connection.cookie)
+      val descriptor: BluetoothGattDescriptor? =
+          getDescriptorWithHandle(request.handle, gattInstance)
+      val readValue: GattInstance.GattInstanceValueRead?
+      checkNotNull(descriptor) {
+        "Descriptor handle ${request.handle} not found."
+      }
+      readValue = gattInstance.readDescriptorBlocking(descriptor)
+      ReadDescriptorResponse.newBuilder()
+        .setStatus(readValue.status)
+        .setValue(ByteString.copyFrom(readValue.value)).build()
+    }
+  }
+
+  /**
+   * Discovers services, then returns characteristic with given handle.
+   * BluetoothGatt API is package-private so we have to redefine it here.
+   */
   private suspend fun getCharacteristicWithHandle(handle: Int,
       gattInstance: GattInstance): BluetoothGattCharacteristic? {
-    if (!gattInstance.servicesDiscovered() && !gattInstance.mGatt.discoverServices()) {
-      Log.e(TAG, "Error on discovering services for $gattInstance")
-      throw Status.UNKNOWN.asException()
-    } else {
-      gattInstance.waitForDiscoveryEnd()
-    }
+    tryDiscoverServices(gattInstance)
     for (service: BluetoothGattService in gattInstance.mGatt.services.orEmpty()) {
-      for (characteristic : BluetoothGattCharacteristic in service.characteristics) {
+      for (characteristic: BluetoothGattCharacteristic in service.characteristics) {
         if (characteristic.instanceId == handle) {
           return characteristic
+        }
+      }
+    }
+    return null
+  }
+
+  /**
+   * Discovers services, then returns descriptor with given handle.
+   * BluetoothGatt API is package-private so we have to redefine it here.
+   */
+  private suspend fun getDescriptorWithHandle(handle: Int,
+      gattInstance: GattInstance): BluetoothGattDescriptor? {
+    tryDiscoverServices(gattInstance)
+    for (service: BluetoothGattService in gattInstance.mGatt.services.orEmpty()) {
+      for (characteristic: BluetoothGattCharacteristic in service.characteristics) {
+        for (descriptor: BluetoothGattDescriptor in characteristic.descriptors) {
+          if (descriptor.getInstanceId() == handle) {
+            return descriptor
+          }
         }
       }
     }
@@ -226,5 +310,14 @@ class Gatt(private val context: Context) : GATTImplBase() {
       newDescriptorsList.add(descriptorBuilder.build())
     }
     return newDescriptorsList
+  }
+
+  private suspend fun tryDiscoverServices(gattInstance: GattInstance) {
+    if (!gattInstance.servicesDiscovered() && !gattInstance.mGatt.discoverServices()) {
+      Log.e(TAG, "Error on discovering services for $gattInstance")
+      throw Status.UNKNOWN.asException()
+    } else {
+      gattInstance.waitForDiscoveryEnd()
+    }
   }
 }
