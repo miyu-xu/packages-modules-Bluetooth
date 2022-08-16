@@ -69,6 +69,24 @@
       "parentUuid": "0f6676c5_034a2efd",
       "revId": "8c0a607489827ab94490a7b1ddd931e4027b3c9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66b217db_fc5f7c2d",
+        "filename": "build.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-16T18:10:10Z",
+      "side": 1,
+      "message": "Indeed, wasn\u0027t running into this issue as it was already installed on my machines.",
+      "parentUuid": "17689188_f378c990",
+      "revId": "8c0a607489827ab94490a7b1ddd931e4027b3c9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
