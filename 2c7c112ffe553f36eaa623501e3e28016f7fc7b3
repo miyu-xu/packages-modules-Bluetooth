@@ -46,6 +46,30 @@
       },
       "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2973cc8d_6bc68a35",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-16T23:27:03Z",
+      "side": 1,
+      "message": "What about just an enum in `gatt.proto`? This way we have access to it both from `Gatt.kt` and `gatt.py`?\nThere won\u0027t be any Android constants leaving the kotlin, and if the naming fits the one in the spec we don\u0027t really need the values to match?",
+      "parentUuid": "a54a66b0_bb24930a",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
