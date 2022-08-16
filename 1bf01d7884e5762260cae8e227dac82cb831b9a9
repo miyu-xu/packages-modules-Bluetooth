@@ -195,6 +195,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e86b550b_cb9dd44e",
+        "filename": "tools/rootcanal/lmp/src/procedure/ec.rs",
+        "patchSetId": 22
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-16T08:27:01Z",
+      "side": 1,
+      "message": "Got it!",
+      "parentUuid": "bba35776_99ab0a7c",
+      "revId": "1bf01d7884e5762260cae8e227dac82cb831b9a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "679a4ef0_99b6de67",
