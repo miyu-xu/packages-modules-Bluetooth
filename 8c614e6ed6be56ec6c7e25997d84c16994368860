@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c143f054_433434aa",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T01:42:39Z",
+      "side": 1,
+      "message": "Thank you for pointing out the potential busy loop.\n\nMay you elaborate what scenario you meant that may cause it? \n\nInstead of busy waiting for CRAS to feed us data, we\u0027ll break out from the loop when we couldn\u0027t read any data that happens when there is no available data on CRAS so that the UIPC_Read gets timeout after 10 ms.\n\nI think the main benefit for the while loop is to handle the case that we are writing more data than the BTM_SCO_DATA_SIZE_MAX so that we\u0027ll need to actually call read multiple time. This may happen when:\n1. We read partial data last time.\n2. For the non-standard SCO packet size scenario, the coming SCO packet cotains one mSBC packet and complete the remaining parial one in the buffer. We\u0027ll decode two mSBC packets, with \u003e BTM_SCO_DATA_SIZE_MAX size of data.\n\nWe indeed can fill in equivalent silence to our SCO packet buffer when the read fails as mitigation, but I think we\u0027ll still need the while loop.",
+      "parentUuid": "86d18a23_192c1d8c",
+      "range": {
+        "startLine": 302,
+        "startChar": 2,
+        "endLine": 302,
+        "endChar": 19
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bc600f1_6b2ddca8",
         "filename": "system/stack/btm/btm_sco.cc",
         "patchSetId": 3
