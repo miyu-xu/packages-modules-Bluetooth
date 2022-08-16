@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5ea352a_36b1d205",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-16T23:07:42Z",
+      "side": 1,
+      "message": "The status should be more specific and be a custom message instead and it should follow the Bluetooth Specification. It will be more clear and will remove magic number check from the Python. The differents attributes responses values could be found in the core spec v5.3 Vol 3 Part F 3.4.9.\n\nWe should do the same for the ReadDescriptorResponse status",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
