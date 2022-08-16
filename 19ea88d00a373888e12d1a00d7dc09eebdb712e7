@@ -22,6 +22,30 @@
       },
       "revId": "19ea88d00a373888e12d1a00d7dc09eebdb712e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f43ca44_3db89777",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/NativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1535516
+      },
+      "writtenOn": "2022-08-16T21:07:53Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "0d81cf82_074f883a",
+      "range": {
+        "startLine": 343,
+        "startChar": 45,
+        "endLine": 343,
+        "endChar": 64
+      },
+      "revId": "19ea88d00a373888e12d1a00d7dc09eebdb712e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
