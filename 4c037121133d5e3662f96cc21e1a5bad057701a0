@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38e9ec10_b3d3086c",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-16T23:35:20Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "0211b072_40358a90",
+      "range": {
+        "startLine": 967,
+        "startChar": 6,
+        "endLine": 977,
+        "endChar": 74
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "993cacbf_3a263fe3",
