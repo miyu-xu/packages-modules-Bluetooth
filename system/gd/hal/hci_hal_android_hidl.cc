@@ -14,10 +14,21 @@
  * limitations under the License.
  */
 
+#include <aidl/android/hardware/bluetooth/BnBluetoothHci.h>
+#include <aidl/android/hardware/bluetooth/BnBluetoothHciCallbacks.h>
+#include <aidl/android/hardware/bluetooth/IBluetoothHci.h>
+#include <android/binder_ibinder.h>
+#include <android/binder_manager.h>
+#include <android/binder_process.h>
 #include <android/hardware/bluetooth/1.0/types.h>
 #include <android/hardware/bluetooth/1.1/IBluetoothHci.h>
 #include <android/hardware/bluetooth/1.1/IBluetoothHciCallbacks.h>
 #include <stdlib.h>
+
+// AIDL uses syslog.h, so these defines conflict with os/log.h
+#undef LOG_DEBUG
+#undef LOG_INFO
+#undef LOG_WARNING
 
 #include <future>
 #include <vector>
@@ -35,9 +46,11 @@
 using ::android::hardware::hidl_vec;
 using ::android::hardware::Return;
 using ::android::hardware::Void;
-using ::android::hardware::bluetooth::V1_1::IBluetoothHci;
-using ::android::hardware::bluetooth::V1_1::IBluetoothHciCallbacks;
+using IBluetoothHci_1_1 = ::android::hardware::bluetooth::V1_1::IBluetoothHci;
+using IBluetoothHciCallbacks_1_1 = ::android::hardware::bluetooth::V1_1::IBluetoothHciCallbacks;
 using HidlStatus = ::android::hardware::bluetooth::V1_0::Status;
+using aidl::android::hardware::bluetooth::IBluetoothHci;
+using AidlStatus = ::aidl::android::hardware::bluetooth::Status;
 using IBluetoothHci_1_0 = ::android::hardware::bluetooth::V1_0::IBluetoothHci;
 using bluetooth::common::BindOnce;
 
@@ -65,7 +78,7 @@ std::string GetTimerText(const char* func_name, VecType vec) {
       common::ToHexString(vec.begin(), std::min(vec.end(), vec.begin() + 5)).c_str());
 }
 
-class InternalHciCallbacks : public IBluetoothHciCallbacks {
+class InternalHciCallbacks : public IBluetoothHciCallbacks_1_1 {
  public:
   InternalHciCallbacks(activity_attribution::ActivityAttribution* btaa_logger_, SnoopLogger* btsnoop_logger)
       : btaa_logger_(btaa_logger_), btsnoop_logger_(btsnoop_logger) {
@@ -150,6 +163,87 @@ class InternalHciCallbacks : public IBluetoothHciCallbacks {
   SnoopLogger* btsnoop_logger_ = nullptr;
 };
 
+static constexpr char kBluetoothAidlHalServiceName[] = "android.hardware.bluetooth.IBluetoothHci/default";
+
+class AidlHciCallbacks : public ::aidl::android::hardware::bluetooth::BnBluetoothHciCallbacks {
+ public:
+  AidlHciCallbacks(activity_attribution::ActivityAttribution* btaa_logger_, SnoopLogger* btsnoop_logger)
+      : btaa_logger_(btaa_logger_), btsnoop_logger_(btsnoop_logger) {
+    init_promise_ = new std::promise<void>();
+  }
+
+  void SetCallback(HciHalCallbacks* callback) {
+    ASSERT(callback_ == nullptr && callback != nullptr);
+    callback_ = callback;
+  }
+
+  void ResetCallback() {
+    callback_ = nullptr;
+  }
+
+  std::promise<void>* GetInitPromise() {
+    return init_promise_;
+  }
+
+  ::ndk::ScopedAStatus initializationComplete(AidlStatus status) {
+    common::StopWatch stop_watch(__func__);
+    ASSERT(status == AidlStatus::SUCCESS);
+    init_promise_->set_value();
+    return ::ndk::ScopedAStatus::ok();
+  }
+
+  ::ndk::ScopedAStatus hciEventReceived(const std::vector<uint8_t>& event) override {
+    common::StopWatch stop_watch(GetTimerText(__func__, event));
+    std::vector<uint8_t> received_hci_packet(event.begin(), event.end());
+    btsnoop_logger_->Capture(received_hci_packet, SnoopLogger::Direction::INCOMING, SnoopLogger::PacketType::EVT);
+    if (common::init_flags::btaa_hci_is_enabled()) {
+      btaa_logger_->Capture(received_hci_packet, SnoopLogger::PacketType::EVT);
+    }
+    ASSERT_LOG(callback_ != nullptr, "Unable to send event to null callback.");
+    callback_->hciEventReceived(std::move(received_hci_packet));
+    return ::ndk::ScopedAStatus::ok();
+  }
+
+  ::ndk::ScopedAStatus aclDataReceived(const std::vector<uint8_t>& data) override {
+    common::StopWatch stop_watch(GetTimerText(__func__, data));
+    std::vector<uint8_t> received_hci_packet(data.begin(), data.end());
+    btsnoop_logger_->Capture(received_hci_packet, SnoopLogger::Direction::INCOMING, SnoopLogger::PacketType::ACL);
+    if (common::init_flags::btaa_hci_is_enabled()) {
+      btaa_logger_->Capture(received_hci_packet, SnoopLogger::PacketType::ACL);
+    }
+    ASSERT_LOG(callback_ != nullptr, "Unable to send acl data to null callback.");
+    callback_->aclDataReceived(std::move(received_hci_packet));
+    return ::ndk::ScopedAStatus::ok();
+  }
+
+  ::ndk::ScopedAStatus scoDataReceived(const std::vector<uint8_t>& data) override {
+    common::StopWatch stop_watch(GetTimerText(__func__, data));
+    std::vector<uint8_t> received_hci_packet(data.begin(), data.end());
+    btsnoop_logger_->Capture(received_hci_packet, SnoopLogger::Direction::INCOMING, SnoopLogger::PacketType::SCO);
+    if (common::init_flags::btaa_hci_is_enabled()) {
+      btaa_logger_->Capture(received_hci_packet, SnoopLogger::PacketType::SCO);
+    }
+    ASSERT_LOG(callback_ != nullptr, "Unable to send sco data to null callback.");
+    callback_->scoDataReceived(std::move(received_hci_packet));
+    return ::ndk::ScopedAStatus::ok();
+  }
+
+  ::ndk::ScopedAStatus isoDataReceived(const std::vector<uint8_t>& data) override {
+    common::StopWatch stop_watch(GetTimerText(__func__, data));
+    std::vector<uint8_t> received_hci_packet(data.begin(), data.end());
+    btsnoop_logger_->Capture(received_hci_packet, SnoopLogger::Direction::INCOMING, SnoopLogger::PacketType::ISO);
+    ASSERT_LOG(callback_ != nullptr, "Unable to send Iso data to null callback.");
+    callback_->isoDataReceived(std::move(received_hci_packet));
+    return ::ndk::ScopedAStatus::ok();
+  }
+
+ private:
+  std::promise<void>* init_promise_ = nullptr;
+  HciHalCallbacks* callback_ = nullptr;
+  activity_attribution::ActivityAttribution* btaa_logger_ = nullptr;
+  SnoopLogger* btsnoop_logger_ = nullptr;
+};
+
 }  // namespace
 
 class HciHalHidl : public HciHal {
@@ -205,10 +299,52 @@ class HciHalHidl : public HciHal {
   }
 
   void Start() override {
+    common::StopWatch stop_watch(__func__);
+
+    // Start can't be called more than once before Stop is called.
+    ASSERT(bt_hci_ == nullptr);
+    ASSERT(bt_hci_1_1_ == nullptr);
+    ASSERT(aidl_hci_ == nullptr);
+
     if (common::init_flags::btaa_hci_is_enabled()) {
       btaa_logger_ = GetDependency<activity_attribution::ActivityAttribution>();
     }
     btsnoop_logger_ = GetDependency<SnoopLogger>();
+
+    if (AServiceManager_isDeclared(kBluetoothAidlHalServiceName)) {
+      StartAidl();
+    } else {
+      StartHidl();
+    }
+
+    // Don't timeout here, time out at a higher layer
+    callbacks_->GetInitPromise()->get_future().wait();
+  }
+
+  void StartAidl() {
+    common::StopWatch stop_watch(__func__);
+    ::ndk::SpAIBinder binder(AServiceManager_getService(kBluetoothAidlHalServiceName));
+    aidl_hci_ = IBluetoothHci::fromBinder(binder);
+    if (aidl_hci_ != nullptr) {
+      LOG_INFO("Using the AIDL interface");
+      auto aidl_death_recipient_ =
+          ::ndk::ScopedAIBinder_DeathRecipient(AIBinder_DeathRecipient_new(HciHalHidl::hci_binder_died_static));
+
+      auto death_link = AIBinder_linkToDeath(aidl_hci_->asBinder().get(), aidl_death_recipient_.get(), this);
+
+      ASSERT_LOG(death_link == STATUS_OK, "Unable to set the death recipient for the Bluetooth HAL");
+      callbacks_->GetInitPromise()->get_future().wait();
+
+      aidl_callbacks_ = ::ndk::SharedRefBase::make<AidlHciCallbacks>(btaa_logger_, btsnoop_logger_);
+      aidl_hci_->initialize(aidl_callbacks_);
+      return;
+    }
+  }
+
+  void StartHidl() {
+    common::StopWatch stop_watch(__func__);
+
+    LOG_INFO("Trying to find a HIDL interface");
 
     auto get_service_alarm = new os::Alarm(GetHandler());
     get_service_alarm->Schedule(
@@ -226,7 +362,7 @@ class HciHalHidl : public HciHal {
         }),
         std::chrono::milliseconds(500));
 
-    bt_hci_1_1_ = IBluetoothHci::getService();
+    bt_hci_1_1_ = IBluetoothHci_1_1::getService();
 
     if (bt_hci_1_1_ != nullptr) {
       bt_hci_ = bt_hci_1_1_;
@@ -247,12 +383,38 @@ class HciHalHidl : public HciHal {
     } else {
       bt_hci_->initialize(callbacks_);
     }
-
-    // Don't timeout here, time out at a higher layer
-    callbacks_->GetInitPromise()->get_future().wait();
   }
 
   void Stop() override {
+    if (bt_hci_ != nullptr) {
+      stop_hidl();
+      bt_hci_ = nullptr;
+      bt_hci_1_1_ = nullptr;
+    }
+    if (aidl_hci_ != nullptr) {
+      stop_aidl();
+      aidl_hci_ = nullptr;
+    }
+    callbacks_->ResetCallback();
+  }
+
+  std::string ToString() const override {
+    return std::string("HciHalHidl");
+  }
+
+ private:
+  static void hci_binder_died_static(void* cookie) {
+    auto hal_ptr = static_cast<HciHalHidl*>(cookie);
+    hal_ptr->hci_binder_died();
+  }
+
+  void hci_binder_died() {
+    LOG_ERROR("Bluetooth HAL service died!");
+    common::StopWatch::DumpStopWatchLog();
+    abort();
+  }
+
+  void stop_hidl() {
     ASSERT(bt_hci_ != nullptr);
     auto death_unlink = bt_hci_->unlinkToDeath(hci_death_recipient_);
     if (!death_unlink.isOk()) {
@@ -262,19 +424,25 @@ class HciHalHidl : public HciHal {
     if (!close_status.isOk()) {
       LOG_ERROR("Error calling close on the Bluetooth HAL");
     }
-    callbacks_->ResetCallback();
-    bt_hci_ = nullptr;
-    bt_hci_1_1_ = nullptr;
   }
 
-  std::string ToString() const override {
-    return std::string("HciHalHidl");
+  void stop_aidl() {
+    ASSERT(aidl_hci_ != nullptr);
+    auto death_unlink = AIBinder_unlinkToDeath(aidl_hci_->asBinder().get(), aidl_death_recipient_.get(), this);
+    if (death_unlink != STATUS_OK) {
+      LOG_ERROR("Error unlinking death recipient from the Bluetooth HAL");
+    }
+    auto close_status = aidl_hci_->close();
+    if (!close_status.isOk()) {
+      LOG_ERROR("Error calling close on the Bluetooth HAL");
+    }
   }
-
- private:
   android::sp<InternalHciCallbacks> callbacks_;
   android::sp<IBluetoothHci_1_0> bt_hci_;
-  android::sp<IBluetoothHci> bt_hci_1_1_;
+  android::sp<IBluetoothHci_1_1> bt_hci_1_1_;
+  std::shared_ptr<IBluetoothHci> aidl_hci_;
+  std::shared_ptr<AidlHciCallbacks> aidl_callbacks_;
+  ::ndk::ScopedAIBinder_DeathRecipient aidl_death_recipient_;
   activity_attribution::ActivityAttribution* btaa_logger_;
   SnoopLogger* btsnoop_logger_;
 };
