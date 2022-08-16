@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cccfe293_d4389eb2",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-16T18:50:37Z",
+      "side": 1,
+      "message": "It\u0027s not about the format assumption.  It\u0027s about depending on the alignment of the buffer.  It may only be a performance problem, but allocating bytes then casting to larger types is not a good idea.\n\nhttps://www.kernel.org/doc/Documentation/unaligned-memory-access.txt",
+      "parentUuid": "8590f56d_b2811bc8",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "e5ba1d36c9b62c0e1cd1ebf6ac5e3bfe30e37814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "72560904_44ce10fe",
         "filename": "system/stack/btm/btm_sco_hci.cc",
         "patchSetId": 10
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "True.\n\nAs my reply for the hfp_msbc_encode_frames type question, I think we should still use uint8_t for bytes buffer here. But I do agree that it looks weird and not very safe to do the casting here. Thus, I\u0027ve changed the interface of hfp_msbc_encode_frames to digest the uint8_t bytes and do the casting there when passing the data buffer to the actual SBC encoder. It\u0027s clearer that the SBC encoder requires the input data to be int16_t format",
       "parentUuid": "72560904_44ce10fe",
+      "range": {
+        "startLine": 407,
+        "startChar": 40,
+        "endLine": 407,
+        "endChar": 54
+      },
+      "revId": "e5ba1d36c9b62c0e1cd1ebf6ac5e3bfe30e37814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a06fddd0_265b6f75",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-16T18:50:37Z",
+      "side": 1,
+      "message": "I\u0027m worried that we\u0027re depending on the compiler aligning the buffer correctly.  If it ends up on an odd byte, the casting to int16_t may not work.",
+      "parentUuid": "a96d11ef_4e817365",
       "range": {
         "startLine": 407,
         "startChar": 40,
