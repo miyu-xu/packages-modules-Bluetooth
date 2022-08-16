@@ -22,6 +22,30 @@
       },
       "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a54a66b0_bb24930a",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-16T23:20:07Z",
+      "side": 1,
+      "message": "+1 on removing the magic numbers which are associated with Android. \n\nHowever, I don\u0027t think we need necessarily a custom message. I think keeping status (or `error_code`) is fine, if we define it by either `0x00` for success or a valid error code from the spec for the request. Then, we could simply declare constants in both `Gatt.kt` (and map Android error codes to them here) and `gatt.py`.",
+      "parentUuid": "d5ea352a_36b1d205",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
