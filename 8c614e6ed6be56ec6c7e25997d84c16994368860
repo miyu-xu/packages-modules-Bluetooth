@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ed87285_31576993",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T04:58:11Z",
+      "side": 1,
+      "message": "Discussed offline. Separate the WB and NB case to improve the readability.",
+      "parentUuid": "c143f054_433434aa",
+      "range": {
+        "startLine": 302,
+        "startChar": 2,
+        "endLine": 302,
+        "endChar": 19
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6bc600f1_6b2ddca8",
