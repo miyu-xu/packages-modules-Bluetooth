@@ -181,6 +181,11 @@ public class A2dpService extends ProfileService {
             return;
         }
 
+        // Reset device to safe volume if needed during BT off
+        if (mFactory.getAvrcpTargetService() != null) {
+            mFactory.getAvrcpTargetService().resetDeviceToSafeVolumeIfNeeded(getActiveDevice());
+        }
+
         // Step 9: Clear active device and stop playing audio
         removeActiveDevice(true);
 

@@ -21,6 +21,7 @@ import android.annotation.Nullable;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.SharedPreferences;
 import android.media.AudioDeviceAttributes;
 import android.media.AudioDeviceCallback;
@@ -414,6 +415,31 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
             return;
         }
         switchVolumeDevice(device);
+    }
+
+    synchronized void resetDeviceToSafeVolumeIfNeeded(@Nullable BluetoothDevice device) {
+        if (device != null) {
+            int storeVolume =  mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            // CE & FCC cert reports an failure test case about BT headset volume,
+            // if set the BT headset volume over the safe volume and reboot DUT,
+            // when BT reconnect to the heaset, the volume not back to safe volume.
+            Resources r = Resources.getSystem();
+            try {
+                int bluetoothSafeVolumeIndex = r.getInteger(r.getIdentifier(
+                        "config_safe_media_volume_bt_index", "integer", "android"));
+                if (storeVolume > bluetoothSafeVolumeIndex) {
+                    Log.w(TAG, "Current volume: " + storeVolume + ", over the safe volume index: " +
+                            bluetoothSafeVolumeIndex);
+                    storeVolume = bluetoothSafeVolumeIndex;
+                }
+                Log.d(TAG, "Store safe volume: " + storeVolume);
+                storeVolumeForDevice(device, storeVolume);
+            } catch (Resources.NotFoundException resourceNotFound) {
+                Log.w(TAG, "Resouce of config_safe_media_volume_bt_index not found");
+            }
+        } else {
+            Log.w(TAG, "resetDeviceToSafeVolume with null device");
+        }
     }
 
     synchronized void deviceDisconnected(@NonNull BluetoothDevice device) {
