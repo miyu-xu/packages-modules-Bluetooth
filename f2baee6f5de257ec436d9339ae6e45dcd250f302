@@ -132,6 +132,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "24e37d6f_1a5b4076",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2108,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-16T20:43:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04459e1a_1918dfdf",
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "05deb7ae_c2fdc417",
         "filename": "system/stack/btm/btm_inq.cc",
         "patchSetId": 4
