@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b562763_abf55228",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-16T20:15:43Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we do some adjustments here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d3280?q\u003dclient.cc",
+      "revId": "f4b31546818378ca0a23b49493c9f9c7f476290c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
