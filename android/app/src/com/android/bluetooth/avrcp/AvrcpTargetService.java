@@ -365,6 +365,10 @@ public class AvrcpTargetService extends ProfileService {
         mNativeInterface.sendMediaUpdate(false, true, false);
     }
 
+    public void resetDeviceToSafeVolumeIfNeeded(BluetoothDevice device) {
+        mVolumeManager.resetDeviceToSafeVolumeIfNeeded(device);
+    }
+
     /** Informs {@link AvrcpVolumeManager} that a remote device requests a volume change */
     void setVolume(int avrcpVolume) {
         BluetoothDevice activeDevice = getA2dpActiveDevice();
