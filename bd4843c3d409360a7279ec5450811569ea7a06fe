@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5513a42_3b52bcae",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-16T21:54:35Z",
+      "side": 1,
+      "message": "I got a little confused here by the `start_scan` and thought there was recursion. Do you mind adding a short comment explaining that this checks if any scanners are active and then calls the topshim api to enable/disable scan?",
+      "revId": "bd4843c3d409360a7279ec5450811569ea7a06fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
