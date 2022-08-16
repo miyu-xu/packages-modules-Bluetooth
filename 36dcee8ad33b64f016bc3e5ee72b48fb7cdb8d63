@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fd9953b_747543ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-16T06:11:48Z",
+      "side": 1,
+      "message": "Thanks! this makes later CLs a lot easier to read :D ",
+      "revId": "36dcee8ad33b64f016bc3e5ee72b48fb7cdb8d63",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
