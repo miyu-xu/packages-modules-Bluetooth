@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03f68737_684beb49",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-16T02:28:21Z",
+      "side": 1,
+      "message": "cleanup() instead?",
+      "range": {
+        "startLine": 352,
+        "startChar": 0,
+        "endLine": 364,
+        "endChar": 9
+      },
+      "revId": "f545cfbd8c13544ba89f3385cd6857ed4d22b1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
