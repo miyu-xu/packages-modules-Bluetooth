@@ -347,6 +347,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "465a51b4_effa9567",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-16T20:56:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db2435ee_166df147",
+      "range": {
+        "startLine": 668,
+        "startChar": 6,
+        "endLine": 668,
+        "endChar": 39
+      },
+      "revId": "f2baee6f5de257ec436d9339ae6e45dcd250f302",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ff0bf789_ff9f53a2",
