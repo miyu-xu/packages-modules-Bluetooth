@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7a8ff5f_4a8a145d",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T00:11:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38bd9423_43ca361d",
+      "range": {
+        "startLine": 90,
+        "startChar": 65,
+        "endLine": 90,
+        "endChar": 70
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86d18a23_192c1d8c",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4f3f66_0dec598d",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T00:11:40Z",
+      "side": 1,
+      "message": "There is a INIT_logging_debug_enabled_for_all flag we can use to enable the DEBUG log. More information is at go/floss-debugging.",
+      "parentUuid": "6bc600f1_6b2ddca8",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 308,
+        "endChar": 33
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df315702_f0383c5c",
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dbb9940_08024817",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T00:11:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df315702_f0383c5c",
+      "range": {
+        "startLine": 312,
+        "startChar": 6,
+        "endLine": 315,
+        "endChar": 7
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1e09223_458a6739",
@@ -106,6 +178,30 @@
       "writtenOn": "2022-08-15T20:54:45Z",
       "side": 1,
       "message": "I prefer not to put comments between a closing brace and an else.  Combine with the next comment?",
+      "range": {
+        "startLine": 351,
+        "startChar": 3,
+        "endLine": 352,
+        "endChar": 36
+      },
+      "revId": "8c614e6ed6be56ec6c7e25997d84c16994368860",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "65c5153c_633a1062",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T00:11:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1e09223_458a6739",
       "range": {
         "startLine": 351,
         "startChar": 3,
