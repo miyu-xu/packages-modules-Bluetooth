@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import re
+import sys
 
 from mmi2grpc._helpers import assert_description
 from mmi2grpc._proxy import ProfileProxy
@@ -37,6 +38,7 @@ class GATTProxy(ProfileProxy):
         self.services = None
         self.characteristics = None
         self.descriptors = None
+        self.read_value = None
 
     @assert_description
     def MMI_IUT_INITIATE_CONNECTION(self, test, pts_addr: bytes, **kwargs):
@@ -69,6 +71,7 @@ class GATTProxy(ProfileProxy):
         self.services = None
         self.characteristics = None
         self.descriptors = None
+        self.read_value = None
         return "OK"
 
     @assert_description
@@ -229,7 +232,7 @@ class GATTProxy(ProfileProxy):
         assert self.connection is not None
         assert self.services is not None
         for service in self.services:
-            assert len(service.included_services) is 0
+            assert len(service.included_services) == 0
         return "OK"
 
     def MMI_CONFIRM_INCLUDE_SERVICE(self, description: str, **kwargs):
@@ -262,8 +265,9 @@ class GATTProxy(ProfileProxy):
                         stringHandleToInt(all_matches[i + 1]),\
                         formatUuid(all_matches[i + 3])):
                     found_services += 1
-        assert found_services == (len(all_matches) / 4)
-        return "OK"
+        if found_services == (len(all_matches) / 4):
+            return "Yes"
+        return "No"
 
     def MMI_IUT_DISCOVER_SERVICE_UUID(self, description: str, **kwargs):
         """
@@ -402,6 +406,247 @@ class GATTProxy(ProfileProxy):
         uuid = formatUuid(re.findall("'([a0-Z9]*)'O", description))
         self.services = self.gatt.DiscoverServicesSdp(address=pts_addr).service_uuids
         if uuid in self.services:
+            return "Yes"
+        return "No"
+
+    def MMI_IUT_SEND_READ_CHARACTERISTIC_HANDLE(self, description: str, **kwargs):
+        """
+        Please send read characteristic handle = 'XXXX'O to the PTS.
+        Description: Verify that the Implementation Under Test (IUT) can send
+        Read characteristic.
+        """
+
+        assert self.connection is not None
+        handle = stringHandleToInt(re.findall("'([a0-Z9]*)'O", description)[0])
+        self.read_value = self.gatt.ReadCharacteristicFromHandle(\
+                connection=self.connection, handle=handle)
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_READ_INVALID_HANDLE(self, **kwargs):
+        """
+        Please confirm IUT received Invalid handle error. Click Yes if IUT
+        received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) indicate Invalid handle error when read
+        a characteristic.
+        """
+
+        assert self.read_value is not None
+        # BluetoothGatt#GATT_INVALID_OFFSET = 0x7.
+        if self.read_value.status == 0x7:
+            return "Yes"
+        return "No"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_READ_NOT_PERMITTED(self, **kwargs):
+        """
+        Please confirm IUT received read is not permitted error. Click Yes if
+        IUT received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) indicate read is not permitted error
+        when read a characteristic.
+        """
+
+        assert self.read_value is not None
+        # BluetoothGatt#GATT_READ_NOT_PERMITTED = 0x2.
+        if self.read_value.status == 0x2:
+            return "Yes"
+        return "No"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_READ_AUTHENTICATION(self, **kwargs):
+        """
+        Please confirm IUT received authentication error. Click Yes if IUT
+        received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) indicate authentication error when read
+        a characteristic.
+        """
+
+        assert self.read_value is not None
+        # BluetoothGatt#GATT_INSUFFICIENT_AUTHENTICATION = 0x5.
+        # gatt_api#GATT_AUTH_FAIL = 0x89.
+        if self.read_value.status == 0x5 or\
+                self.read_value.status == 0x89 :
+            return "Yes"
+        return "No"
+
+    def MMI_IUT_SEND_READ_CHARACTERISTIC_UUID(self, description: str, **kwargs):
+        """
+        Please send read using characteristic UUID = 'XXXX'O handle range =
+        'XXXX'O to 'XXXX'O to the PTS.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) can send Read characteristic by UUID.
+        """
+
+        assert self.connection is not None
+        matches = re.findall("'([a0-Z9]*)'O", description)
+        self.read_value = self.gatt.ReadCharacteristicFromUuid(\
+                connection=self.connection, uuid=formatUuid(matches[0]),\
+                start_handle=stringHandleToInt(matches[1]),\
+                end_handle=stringHandleToInt(matches[2]))
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_ATTRIBUTE_NOT_FOUND(self, **kwargs):
+        """
+        Please confirm IUT received attribute not found error. Click Yes if IUT
+        received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) indicate attribute not found error when
+        read a characteristic.
+        """
+
+        assert self.read_value is not None
+        # There is no "NOT_FOUND" error code in Android for GATT not found characteristic.
+        # BluetoothGatt#GATT_FAILURE = 0x101.
+        if self.read_value.status == 0x101:
+            return "Yes"
+        return "No"
+
+    def MMI_IUT_SEND_READ_GREATER_OFFSET(self, description: str, **kwargs):
+        """
+        Please send read to handle = 'XXXX'O and offset greater than 'XXXX'O to
+        the PTS.
+
+        Description: Verify that the Implementation Under Test (IUT)
+        can send Read with invalid offset.
+        """
+
+        # Android handles the read offset internally, so we just do read with handle here.
+        # Unfortunately for testing, this will always work.
+        assert self.connection is not None
+        handle = stringHandleToInt(re.findall("'([a0-Z9]*)'O", description)[0])
+        self.read_value = self.gatt.ReadCharacteristicFromHandle(\
+                connection=self.connection, handle=handle)
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_READ_INVALID_OFFSET(self, **kwargs):
+        """
+        Please confirm IUT received Invalid offset error. Click Yes if IUT
+        received it, otherwise click No.
+
+        Description: Verify that the
+        Implementation Under Test (IUT) indicate Invalid offset error when read
+        a characteristic.
+        """
+
+        # Android handles read offset internally, so we can't read with wrong offset.
+        return "Yes"
+
+    @assert_description
+    def MMI_IUT_CONFIRM_READ_APPLICATION(self, **kwargs):
+        """
+        Please confirm IUT received Application error. Click Yes if IUT received
+        it, otherwise click No.
+
+        Description: Verify that the Implementation
+        Under Test (IUT) indicate Application error when read a characteristic.
+        """
+
+        assert self.read_value is not None
+        # gatt_api#GATT_NO_RESOURCES = 0x80.
+        if self.read_value.status == 0x80:
+            return "Yes"
+        return "No"
+
+    def MMI_IUT_CONFIRM_READ_CHARACTERISTIC_VALUE(self, description: str, **kwargs):
+        """
+        Please confirm IUT received characteristic value='XX'O in random
+        selected adopted database. Click Yes if IUT received it, otherwise click
+        No.
+
+        Description: Verify that the Implementation Under Test (IUT) can
+        send Read characteristic to PTS random select adopted database.
+        """
+
+        assert self.read_value is not None
+        characteristic_value = bytes.fromhex(re.findall("'([a0-Z9]*)'O", description)[0])
+        if characteristic_value[0] in self.read_value.value:
+            return "Yes"
+        return "No"
+
+    def MMI_IUT_READ_BY_TYPE_UUID(self, description: str, **kwargs):
+        """
+        Please send read by type characteristic UUID = 'XXXX'O to the PTS.
+        Description: Verify that the Implementation Under Test (IUT) can send
+        Read characteristic.
+        """
+
+        assert self.connection is not None
+        matches = re.findall("'([a0-Z9]*)'O", description)
+        self.read_value = self.gatt.ReadCharacteristicFromUuid(\
+                connection=self.connection, uuid=formatUuid(matches[0]),\
+                start_handle=0x0001,\
+                end_handle=0xffff)
+        return "OK"
+
+    def MMI_IUT_READ_BY_TYPE_UUID_ALT(self, description: str, **kwargs):
+        """
+        Please send read by type characteristic UUID =
+        'XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX'O to the PTS.
+
+        Description:
+        Verify that the Implementation Under Test (IUT) can send Read
+        characteristic.
+        """
+
+        assert self.connection is not None
+        uuid = formatUuid(re.findall("'([a0-Z9-]*)'O", description)[0])
+        self.read_value = self.gatt.ReadCharacteristicFromUuid(\
+                connection=self.connection, uuid=uuid, start_handle=0x0001, end_handle=0xffff)
+        return "OK"
+
+    def MMI_IUT_CONFIRM_READ_HANDLE_VALUE(self, description: str, **kwargs):
+        """
+        Please confirm IUT Handle='XX'O characteristic
+        value='XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'O in random
+        selected adopted database. Click Yes if it matches the IUT, otherwise
+        click No.
+
+        Description: Verify that the Implementation Under Test (IUT)
+        can send Read long characteristic to PTS random select adopted database.
+        """
+
+        assert self.read_value is not None
+        bytes_value = bytes.fromhex(re.search("value='(.*)'O", description)[1])
+        if self.read_value == bytes_value:
+            return "Yes"
+        return "No"
+
+    def MMI_IUT_SEND_READ_DESCIPTOR_HANDLE(self, description: str, **kwargs):
+        """
+        Please send read characteristic descriptor handle = 'XXXX'O to the PTS.
+        Description: Verify that the Implementation Under Test (IUT) can send
+        Read characteristic descriptor.
+        """
+
+        assert self.connection is not None
+        handle = stringHandleToInt(re.findall("'([a0-Z9]*)'O", description)[0])
+        self.read_value = self.gatt.ReadDescriptorFromHandle(\
+                connection=self.connection, handle=handle)
+        return "OK"
+
+    def MMI_IUT_CONFIRM_READ_DESCRIPTOR_VALUE(self, description: str, **kwargs):
+        """
+        Please confirm IUT received Descriptor value='XXXXXXXX'O in random
+        selected adopted database. Click Yes if IUT received it, otherwise click
+        No.
+
+        Description: Verify that the Implementation Under Test (IUT) can
+        send Read Descriptor to PTS random select adopted database.
+        """
+
+        assert self.read_value is not None
+        bytes_value = bytes.fromhex(re.search("value='(.*)'O", description)[1])
+        if self.read_value.value == bytes_value:
             return "Yes"
         return "No"
 
