@@ -291,6 +291,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     grpcUnary<Empty>(scope, responseObserver) {
       val ptsAddress = request.connection.cookie.toByteArray().decodeToString()
       Log.i(TAG, "disconnect: $ptsAddress")
+      delay(3000L)
       GattInstance.get(ptsAddress).disconnectInstance()
       Empty.getDefaultInstance()
     }
