@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "500d6d7b_15836295",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T18:03:46Z",
+      "side": 1,
+      "message": "Consider separate the change of system/btif/src/btif_hf.cc and system/stack/btm/btm_sco_hfp_hal_linux.cc to a separate CL ahead or later of this CL.\n\nThe CL should still look reasonable with only those two files. Also, those two have the chance to affect Android and requires Android team to review. ",
+      "revId": "6f0081f2ea8ebd2b5601fcd43746c9d54656e51e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
