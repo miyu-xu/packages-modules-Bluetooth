@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0211b072_40358a90",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 977,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-16T22:11:04Z",
+      "side": 1,
+      "message": "I considered that - the problem is that the if statements have different conditions!",
+      "parentUuid": "ceb94022_812e1e17",
+      "range": {
+        "startLine": 967,
+        "startChar": 6,
+        "endLine": 977,
+        "endChar": 74
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "993cacbf_3a263fe3",
         "filename": "system/stack/btm/btm_ble_gap.cc",
         "patchSetId": 13
@@ -118,6 +142,30 @@
       "writtenOn": "2022-08-16T21:38:21Z",
       "side": 1,
       "message": "why not starting at 0 ?",
+      "range": {
+        "startLine": 66,
+        "startChar": 33,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53bb4142_931d5d5c",
+        "filename": "system/stack/btm/remote_name_request.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-16T22:11:04Z",
+      "side": 1,
+      "message": "To avoid anything weird with memsetting a C++ class (which happens, annoyingly). I tried to catch the relevant places and use the constructor, but if I missed something I don\u0027t want it to affect functionality.\n\nI actually will go modify the invalid handle to be handle\u003d0, just to be doubly sure of this.",
+      "parentUuid": "420d62a2_cd137e5d",
       "range": {
         "startLine": 66,
         "startChar": 33,
