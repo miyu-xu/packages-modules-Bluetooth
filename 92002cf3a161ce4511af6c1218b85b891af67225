@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f99f6c_2e07310c",
+        "filename": "system/bta/le_audio/le_audio_utils.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-16T20:23:27Z",
+      "side": 1,
+      "message": "can this be fixed?",
+      "revId": "92002cf3a161ce4511af6c1218b85b891af67225",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
