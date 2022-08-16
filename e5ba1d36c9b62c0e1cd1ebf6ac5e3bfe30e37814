@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c410486_9680f5e2",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T22:59:19Z",
+      "side": 1,
+      "message": "I see. Thank you for the pointer. Fixed.",
+      "parentUuid": "cccfe293_d4389eb2",
+      "range": {
+        "startLine": 86,
+        "startChar": 7,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "e5ba1d36c9b62c0e1cd1ebf6ac5e3bfe30e37814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72560904_44ce10fe",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "I\u0027m worried that we\u0027re depending on the compiler aligning the buffer correctly.  If it ends up on an odd byte, the casting to int16_t may not work.",
       "parentUuid": "a96d11ef_4e817365",
+      "range": {
+        "startLine": 407,
+        "startChar": 40,
+        "endLine": 407,
+        "endChar": 54
+      },
+      "revId": "e5ba1d36c9b62c0e1cd1ebf6ac5e3bfe30e37814",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47a452e4_c37afce4",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-16T22:59:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a06fddd0_265b6f75",
       "range": {
         "startLine": 407,
         "startChar": 40,
