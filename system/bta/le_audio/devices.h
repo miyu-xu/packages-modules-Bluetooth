@@ -136,7 +136,9 @@ class LeAudioDevice {
                      uint8_t* number_of_already_active_group_ase,
                      types::AudioLocations& group_snk_audio_locations,
                      types::AudioLocations& group_src_audio_locations,
-                     bool reconnect = false, int ccid = -1);
+                     bool reconnect = false,
+                     types::AudioContexts metadata_context_type = 0,
+                     std::vector<uint8_t> ccid_list = {});
   void SetSupportedContexts(types::AudioContexts snk_contexts,
                             types::AudioContexts src_contexts);
   types::AudioContexts GetAvailableContexts(void);
@@ -146,9 +148,10 @@ class LeAudioDevice {
   void ActivateConfiguredAses(types::LeAudioContextType context_type);
   void Dump(int fd);
   void DisconnectAcl(void);
-  std::vector<uint8_t> GetMetadata(types::LeAudioContextType context_type,
-                                   int ccid);
-  bool IsMetadataChanged(types::LeAudioContextType context_type, int ccid);
+  std::vector<uint8_t> GetMetadata(types::AudioContexts context_type,
+                                   std::vector<uint8_t> ccid_list);
+  bool IsMetadataChanged(types::AudioContexts context_type,
+                         std::vector<uint8_t> ccid_list);
 
  private:
   types::AudioContexts avail_snk_contexts_;
@@ -233,7 +236,9 @@ class LeAudioDeviceGroup {
   bool IsGroupStreamReady(void);
   bool HaveAllActiveDevicesCisDisc(void);
   uint8_t GetFirstFreeCisId(void);
-  bool Configure(types::LeAudioContextType context_type, int ccid = 1);
+  bool Configure(types::LeAudioContextType context_type,
+                 types::AudioContexts metadata_context_type,
+                 std::vector<uint8_t> ccid_list = {});
   bool SetContextType(types::LeAudioContextType context_type);
   types::LeAudioContextType GetContextType(void);
   uint32_t GetSduInterval(uint8_t direction);
@@ -262,8 +267,8 @@ class LeAudioDeviceGroup {
   std::optional<LeAudioCodecConfiguration> GetCodecConfigurationByDirection(
       types::LeAudioContextType group_context_type, uint8_t direction);
   bool IsContextSupported(types::LeAudioContextType group_context_type);
-  bool IsMetadataChanged(types::LeAudioContextType group_context_type,
-                         int ccid);
+  bool IsMetadataChanged(types::AudioContexts group_context_type,
+                         std::vector<uint8_t> ccid_list);
 
   inline types::AseState GetState(void) const { return current_state_; }
   void SetState(types::AseState state) {
@@ -300,7 +305,9 @@ class LeAudioDeviceGroup {
   FindFirstSupportedConfiguration(types::LeAudioContextType context_type);
   bool ConfigureAses(
       const set_configurations::AudioSetConfiguration* audio_set_conf,
-      types::LeAudioContextType context_type, int ccid = 1);
+      types::LeAudioContextType context_type,
+      types::AudioContexts metadata_context_type,
+      std::vector<uint8_t> ccid_list = {});
   bool IsConfigurationSupported(
       const set_configurations::AudioSetConfiguration* audio_set_configuration,
       types::LeAudioContextType context_type);
