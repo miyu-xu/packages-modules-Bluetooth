@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d10819cc_e8962ecb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-17T04:52:15Z",
+      "side": 1,
+      "message": "FYI, this makes mNativeInteface.cleanup() be called, which looks right to me.\n\nSome tests start and stop GattService but don\u0027t call cleanup(), which could raise crash in native stack. \nFortunately it hasn\u0027t happen until now because GattServiceTest did cleanup().",
+      "range": {
+        "startLine": 352,
+        "startChar": 8,
+        "endLine": 352,
+        "endChar": 18
+      },
+      "revId": "49700107ee8f5ec4cd2381bdd40194fa801e8e19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
