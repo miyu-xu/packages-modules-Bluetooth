@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b538b92_64536077",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-17T17:55:38Z",
+      "side": 1,
+      "message": "Pretty sure, yes... I\u0027ve already verified that the build works, end-to-end, and does exactly what I need.\nHappy to remove the tag though - that\u0027s the thing I\u0027m not sure about.",
+      "parentUuid": "ee3bcba5_dadd2a2a",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5287cb05_49c1dd15",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-17T17:01:05Z",
       "side": 1,
       "message": "Ivan, I think you probably want to be updating the Android.bp and not Cargo.toml with these changes.",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32d2a063_ff310d8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-17T17:55:38Z",
+      "side": 1,
+      "message": "In a word, no. :)\nThis is for Goldfish, which is built using CMake, rather than soong/ninja, so the plan is to rely on \"cargo build\" for LMP, much like Chrome OS does at the moment.",
+      "parentUuid": "5287cb05_49c1dd15",
       "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
