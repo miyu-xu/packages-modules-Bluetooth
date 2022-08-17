@@ -16,6 +16,23 @@
       "message": "Shouldn\u0027t we do some adjustments here: https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d3280?q\u003dclient.cc",
       "revId": "f4b31546818378ca0a23b49493c9f9c7f476290c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c288030_e42f1d8e",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1687135
+      },
+      "writtenOn": "2022-08-17T11:03:02Z",
+      "side": 1,
+      "message": "It looks like there are more \"Media\" oriented scenarios for differenct context - I think it can be defined here:\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/le_audio_set_configuration_provider_json.cc;drc\u003d8e1ae018809f626ac4d3696fb22648416d3bfe9b;l\u003d488 to not duplicate single - just point all that should be \"like\" Media.\n\ne.g.  {\"Media\", types::LeAudioContextType::INSTRUCTIONAL},",
+      "revId": "f4b31546818378ca0a23b49493c9f9c7f476290c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
