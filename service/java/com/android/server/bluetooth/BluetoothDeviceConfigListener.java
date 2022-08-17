@@ -20,6 +20,7 @@ import android.provider.DeviceConfig;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * The BluetoothDeviceConfigListener handles system device config change callback and checks
@@ -35,42 +36,64 @@ public class BluetoothDeviceConfigListener {
 
     private final BluetoothManagerService mService;
     private final boolean mLogDebug;
+    private final HashMap<String, String> mCurrFlags;
 
     BluetoothDeviceConfigListener(BluetoothManagerService service, boolean logDebug) {
         mService = service;
         mLogDebug = logDebug;
-        DeviceConfig.addOnPropertiesChangedListener(
-                DeviceConfig.NAMESPACE_BLUETOOTH,
-                (Runnable r) -> r.run(),
-                mDeviceConfigChangedListener);
+        mCurrFlags = getFlags();
+        DeviceConfig.addOnPropertiesChangedListener(DeviceConfig.NAMESPACE_BLUETOOTH,
+                (Runnable r) -> r.run(), mDeviceConfigChangedListener);
     }
 
     private final DeviceConfig.OnPropertiesChangedListener mDeviceConfigChangedListener =
             new DeviceConfig.OnPropertiesChangedListener() {
                 @Override
-                public void onPropertiesChanged(DeviceConfig.Properties properties) {
-                    if (!properties.getNamespace().equals(DeviceConfig.NAMESPACE_BLUETOOTH)) {
+                public void onPropertiesChanged(DeviceConfig.Properties newProperties) {
+                    if (!newProperties.getNamespace().equals(DeviceConfig.NAMESPACE_BLUETOOTH)) {
                         return;
                     }
                     if (mLogDebug) {
                         ArrayList<String> flags = new ArrayList<>();
-                        for (String name : properties.getKeyset()) {
-                            flags.add(name + "='" + properties.getString(name, "") + "'");
+                        for (String name : newProperties.getKeyset()) {
+                            flags.add(name + "='" + newProperties.getString(name, "") + "'");
                         }
                         Log.d(TAG, "onPropertiesChanged: " + String.join(",", flags));
                     }
-                    boolean foundInit = false;
-                    for (String name : properties.getKeyset()) {
-                        if (name.startsWith("INIT_")) {
-                            foundInit = true;
-                            break;
+                    boolean foundChangedInit = false;
+                    for (String name : newProperties.getKeyset()) {
+                        var oldValue = mCurrFlags.get(name);
+                        var newValue = newProperties.getString(name, "");
+                        if (!isInitFlag(name) || newValue.equals(oldValue)) {
+                            continue;
                         }
+                        Log.d(TAG,
+                                "Property " + name + " changed from " + oldValue + " -> "
+                                        + newValue);
+                        mCurrFlags.put(name, newValue);
+                        foundChangedInit = true;
                     }
-                    if (!foundInit) {
+                    if (!foundChangedInit) {
+                        Log.d(TAG, "All properties unchanged, skipping restart");
                         return;
                     }
+                    Log.d(TAG, "Properties changed, restarting");
                     mService.onInitFlagsChanged();
                 }
             };
 
+    private HashMap<String, String> getFlags() {
+        var properties = DeviceConfig.getProperties(DeviceConfig.NAMESPACE_BLUETOOTH);
+        var out = new HashMap();
+        for (var name : properties.getKeyset()) {
+            if (isInitFlag(name)) {
+                out.put(name, properties.getString(name, ""));
+            }
+        }
+        return out;
+    }
+
+    private Boolean isInitFlag(String flagName) {
+        return flagName.startsWith("INIT_");
+    }
 }
