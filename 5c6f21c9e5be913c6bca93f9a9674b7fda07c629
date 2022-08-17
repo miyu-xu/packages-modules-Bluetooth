@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bc77ea9_78e0d0ba",
+        "filename": "system/stack/eatt/eatt_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 1930116
+      },
+      "writtenOn": "2022-08-17T09:01:34Z",
+      "side": 1,
+      "message": "no channels pending?",
+      "range": {
+        "startLine": 260,
+        "startChar": 33,
+        "endLine": 260,
+        "endChar": 42
+      },
+      "revId": "5c6f21c9e5be913c6bca93f9a9674b7fda07c629",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
