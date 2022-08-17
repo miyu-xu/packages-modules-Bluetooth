@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35ac9597_b1ee4ea5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-17T02:38:50Z",
+      "side": 1,
+      "message": "Don\u0027t think this is something we fix. \"changes the behavior\" is more appropriate here.\n\nAnd the commit message is too simple for this important CL.\n\nPlease list out all the changes in detail\n 1. don\u0027t drop PCM now if not enough for one msbc frame\n 2. don\u0027t send zero frame to SCO if not enough\nIn case there\u0027s regression, clear description will help us see the culprit.\n\nalso please digest and include into commit message my concerns and what we\u0027ve discussed offline:\n\n\"\"\" \n (2) is what I worry the most, doing that means we intentionally let SCO Rx/Tx offset by 1 frame.\n However that\u0027s the behavior close to how CRAS was implemented (provide URL to link to code)\n Since we don\u0027t add any mechanism to catch up, it fully relies on controller to handle possible underrun in SCO.\nWe decide to go with this change because\n - the same behavior in CRAS has been tested in production \n - this will simplify code structure for future commit to land\n\"\"\"",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef72181_ac016425",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-17T02:38:50Z",
+      "side": 1,
+      "message": "Move this to the `else {` clause above(in which case avail\u003d\u003d0).\n\nand instead examine\nASSERT(w_offset - r_offset \u003d\u003d MSBC_CODE_SIZE, ...)",
+      "range": {
+        "startLine": 338,
+        "startChar": 9,
+        "endLine": 344,
+        "endChar": 33
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b98ea9b2_9e726324",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-17T02:38:50Z",
+      "side": 1,
+      "message": "Add comment to explain why this will reset eventually: the full buffer length is integer multiple of BTM_MSBC_CODE_SIZE so it shall always wrap.",
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "297d97da_c3708364",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-17T02:38:50Z",
+      "side": 1,
+      "message": "Not a correct statement, I think we still call it in-band SCO.\n\n\"In narrow-band, the CVSD encode is offloaded to controller ...\"",
+      "range": {
+        "startLine": 385,
+        "startChar": 9,
+        "endLine": 385,
+        "endChar": 52
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c55f8a70_bc93e456",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-17T02:38:50Z",
+      "side": 1,
+      "message": "to SCO.",
+      "range": {
+        "startLine": 386,
+        "startChar": 18,
+        "endLine": 386,
+        "endChar": 35
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09db41a0_5cc57e49",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-17T02:38:50Z",
+      "side": 1,
+      "message": "maintain",
+      "range": {
+        "startLine": 387,
+        "startChar": 18,
+        "endLine": 387,
+        "endChar": 26
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
