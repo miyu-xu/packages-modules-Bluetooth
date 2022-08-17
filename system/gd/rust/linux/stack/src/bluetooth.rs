@@ -175,6 +175,15 @@ pub trait IBluetooth {
     fn disconnect_all_enabled_profiles(&mut self, device: BluetoothDevice) -> bool;
 }
 
+/// Adapter API for Bluetooth qualification and verification.
+pub trait IBluetoothQa {
+    /// Returns whether the adapter is connectable.
+    fn get_connectable(&self) -> bool;
+
+    /// Sets connectability. Returns true on success, false otherwise.
+    fn set_connectable(&mut self, mode: bool) -> bool;
+}
+
 /// Serializable device used in various apis.
 #[derive(Clone, Debug, Default)]
 pub struct BluetoothDevice {
@@ -396,29 +405,6 @@ impl Bluetooth {
         self.callbacks.for_all_callbacks(|callback| {
             callback.on_address_changed(self.local_address.unwrap().to_string());
         });
-    }
-
-    pub fn get_connectable(&self) -> bool {
-        match self.properties.get(&BtPropertyType::AdapterScanMode) {
-            Some(prop) => match prop {
-                BluetoothProperty::AdapterScanMode(mode) => match *mode {
-                    BtScanMode::Connectable | BtScanMode::ConnectableDiscoverable => true,
-                    _ => false,
-                },
-                _ => false,
-            },
-            _ => false,
-        }
-    }
-
-    pub fn set_connectable(&mut self, mode: bool) -> bool {
-        self.is_connectable = mode;
-        if mode && self.get_discoverable() {
-            return true;
-        }
-        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
-            if mode { BtScanMode::Connectable } else { BtScanMode::None_ },
-        )) == 0
     }
 
     pub(crate) fn adapter_callback_disconnected(&mut self, id: u32) {
@@ -1492,5 +1478,30 @@ impl BtifSdpCallbacks for Bluetooth {
             "Sdp search result found: Status({:?}) Address({:?}) Uuid({:?})",
             status, address, uuid
         );
+    }
+}
+
+impl IBluetoothQa for Bluetooth {
+    fn get_connectable(&self) -> bool {
+        match self.properties.get(&BtPropertyType::AdapterScanMode) {
+            Some(prop) => match prop {
+                BluetoothProperty::AdapterScanMode(mode) => match *mode {
+                    BtScanMode::Connectable | BtScanMode::ConnectableDiscoverable => true,
+                    _ => false,
+                },
+                _ => false,
+            },
+            _ => false,
+        }
+    }
+
+    fn set_connectable(&mut self, mode: bool) -> bool {
+        self.is_connectable = mode;
+        if mode && self.get_discoverable() {
+            return true;
+        }
+        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
+            if mode { BtScanMode::Connectable } else { BtScanMode::None_ },
+        )) == 0
     }
 }
