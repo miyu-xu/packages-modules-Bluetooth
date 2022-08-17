@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbec87c8_3e3f57c2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-17T18:44:11Z",
+      "side": 1,
+      "message": "We were thinking that connectable is a state that should be derived from service availability rather than force-settable by clients, so this should not be exposed to clients. But if this is needed to unblock test migration, please put these methods in a separate interface (e.g. `IBluteoothPrivate`), so that it\u0027s clear which methods should only be used by tests and which can be used by clients.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 54
+      },
+      "revId": "c50aba47ea80c20036cebcaf7d58d95754b6e887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
