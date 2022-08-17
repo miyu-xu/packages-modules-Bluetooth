@@ -16,6 +16,24 @@
       "message": "were we getting: a{sv} where each v was another nested v?\n\nSo in chromium, you would need to PopVariant twice?",
       "revId": "c3cf92cfd3d66fc2d80a88dcf395d12f649a93a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53ef10a8_00482699",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-17T17:16:11Z",
+      "side": 1,
+      "message": "The bug was when floss extracts data from a{sv} it wrongly extracts it as a{svv} so it fails to read. This only affects nested struct so we haven\u0027t encountered this. I encountered this with LE scanning since there is nested struct. Chromium (or any client) that sends correctly formatted nested struct would make floss not able to read it. This CL fixes this.",
+      "parentUuid": "ac4eb169_7e943c79",
+      "revId": "c3cf92cfd3d66fc2d80a88dcf395d12f649a93a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
