@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acea33ac_cc433998",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-17T23:08:54Z",
+      "side": 1,
+      "message": "Set some init flags?\n\nadb shell device_config put bluetooth INIT_gd_controller true",
+      "revId": "7a11ecebb078d8c19442816e9cb4234ad85dba7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
