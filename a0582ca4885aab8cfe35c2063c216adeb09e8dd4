@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f13f1711_2f6136f6",
+        "filename": "system/gd/facade/facade_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-17T20:16:39Z",
+      "side": 1,
+      "message": "What if you replaced `bool interrupted` with `std::promise\u003cbool\u003e interrupted` ?\n\nThis removes the sleep(_n_) call but provides the same functionality in the watcher thread",
+      "revId": "a0582ca4885aab8cfe35c2063c216adeb09e8dd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
