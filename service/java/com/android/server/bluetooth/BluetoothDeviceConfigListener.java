@@ -19,8 +19,6 @@ package com.android.server.bluetooth;
 import android.provider.DeviceConfig;
 import android.util.Log;
 
-import java.util.ArrayList;
-
 /**
  * The BluetoothDeviceConfigListener handles system device config change callback and checks
  * whether we need to inform BluetoothManagerService on this change.
@@ -35,10 +33,14 @@ public class BluetoothDeviceConfigListener {
 
     private final BluetoothManagerService mService;
     private final boolean mLogDebug;
+    private final BluetoothDeviceConfigChangeTracker mConfigChangeTracker;
 
     BluetoothDeviceConfigListener(BluetoothManagerService service, boolean logDebug) {
         mService = service;
         mLogDebug = logDebug;
+        mConfigChangeTracker =
+                new BluetoothDeviceConfigChangeTracker(
+                        DeviceConfig.getProperties(DeviceConfig.NAMESPACE_BLUETOOTH));
         DeviceConfig.addOnPropertiesChangedListener(
                 DeviceConfig.NAMESPACE_BLUETOOTH,
                 (Runnable r) -> r.run(),
@@ -48,29 +50,14 @@ public class BluetoothDeviceConfigListener {
     private final DeviceConfig.OnPropertiesChangedListener mDeviceConfigChangedListener =
             new DeviceConfig.OnPropertiesChangedListener() {
                 @Override
-                public void onPropertiesChanged(DeviceConfig.Properties properties) {
-                    if (!properties.getNamespace().equals(DeviceConfig.NAMESPACE_BLUETOOTH)) {
+                public void onPropertiesChanged(DeviceConfig.Properties newProperties) {
+                    if (mConfigChangeTracker.shouldRestartWhenPropertiesUpdated(newProperties)) {
+                        Log.d(TAG, "Properties changed, enqueuing restart");
+                        mService.onInitFlagsChanged();
+                    } else {
+                        Log.d(TAG, "All properties unchanged, skipping restart");
                         return;
                     }
-                    if (mLogDebug) {
-                        ArrayList<String> flags = new ArrayList<>();
-                        for (String name : properties.getKeyset()) {
-                            flags.add(name + "='" + properties.getString(name, "") + "'");
-                        }
-                        Log.d(TAG, "onPropertiesChanged: " + String.join(",", flags));
-                    }
-                    boolean foundInit = false;
-                    for (String name : properties.getKeyset()) {
-                        if (name.startsWith("INIT_")) {
-                            foundInit = true;
-                            break;
-                        }
-                    }
-                    if (!foundInit) {
-                        return;
-                    }
-                    mService.onInitFlagsChanged();
                 }
             };
-
 }
