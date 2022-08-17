@@ -34,6 +34,24 @@
       "parentUuid": "e9b66a06_8ea4d89e",
       "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abc112d7_95304941",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-17T01:26:24Z",
+      "side": 1,
+      "message": "Also, why do you run a boot test on a CL that hasn\u0027t been submitted?",
+      "parentUuid": "b988ceee_7727bf2b",
+      "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
