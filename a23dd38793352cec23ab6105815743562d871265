@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a093f031_1493aae3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-17T18:28:15Z",
+      "side": 1,
+      "message": "see other reply",
+      "parentUuid": "9eacfb8c_e9587822",
+      "range": {
+        "startLine": 269,
+        "startChar": 66,
+        "endLine": 271,
+        "endChar": 36
+      },
+      "revId": "a23dd38793352cec23ab6105815743562d871265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "848efb6c_a2370916",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-11T22:28:55Z",
       "side": 1,
       "message": "remove?",
+      "range": {
+        "startLine": 272,
+        "startChar": 24,
+        "endLine": 272,
+        "endChar": 76
+      },
+      "revId": "a23dd38793352cec23ab6105815743562d871265",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c6b159_2dccba2a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-17T18:28:15Z",
+      "side": 1,
+      "message": "Separate CL? I\u0027m not touching this logic here, I don\u0027t know if something happens in native where this check is made.",
+      "parentUuid": "848efb6c_a2370916",
       "range": {
         "startLine": 272,
         "startChar": 24,
