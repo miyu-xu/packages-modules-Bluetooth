@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b052f06f_430001ff",
+        "filename": "system/build/dpkg/floss/package/etc/dbus-1/system.d/org.chromium.bluetooth.conf",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1956256
+      },
+      "writtenOn": "2022-08-17T23:06:00Z",
+      "side": 1,
+      "message": "Obsolete now after Sonny\u0027s comment.",
+      "parentUuid": "bc1463c4_af9a4d7c",
+      "range": {
+        "startLine": 30,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 27
+      },
+      "revId": "501624d2bffdb0670f68395ab6267a62bc08b887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce64ae77_5829e074",
