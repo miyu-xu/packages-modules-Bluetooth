@@ -16,6 +16,24 @@
       "message": "Hi folks, this is Harry from the Android CrystalBall team. Our boot time test found that this change might introduce a 5-second (20%+) regression in total boot time (https://screenshot.googleplex.com/ABumf2mBXJRKSpC). Could we hold off on submitting this change? Thank you!",
       "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b988ceee_7727bf2b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-17T01:15:40Z",
+      "side": 1,
+      "message": "Did you run the test on a presubmit build? What is the base build and why this CL is thought to be the root cause to be the root cause for the boot time increase?",
+      "parentUuid": "e9b66a06_8ea4d89e",
+      "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
