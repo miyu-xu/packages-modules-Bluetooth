@@ -142,6 +142,30 @@
       },
       "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8cd3aa_a253feef",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-17T00:45:59Z",
+      "side": 1,
+      "message": "As discussed offline with Thomas, I\u0027ve added the constants to `gatt.py`, and mapped the Android error codes that differ to the Bluetooth Core Specification values.\nDone",
+      "parentUuid": "6214733b_cdecaf90",
+      "range": {
+        "startLine": 125,
+        "startChar": 2,
+        "endLine": 125,
+        "endChar": 20
+      },
+      "revId": "2c7c112ffe553f36eaa623501e3e28016f7fc7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
