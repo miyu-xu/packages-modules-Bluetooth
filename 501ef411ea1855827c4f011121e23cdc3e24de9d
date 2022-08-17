@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b72f3b52_afe19112",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-17T17:27:00Z",
+      "side": 1,
+      "message": "public API methods in I* must have documentation because this is the source of truth of Floss API. Could you follow up with adding documentation? Or file a bug to complete it.",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 36
+      },
+      "revId": "501ef411ea1855827c4f011121e23cdc3e24de9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e43360f2_b258866e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-17T17:27:00Z",
+      "side": 1,
+      "message": "what are these methods based on? I don\u0027t see corresponing methods in IBluetoothGatt.aidl.",
+      "range": {
+        "startLine": 193,
+        "startChar": 0,
+        "endLine": 225,
+        "endChar": 0
+      },
+      "revId": "501ef411ea1855827c4f011121e23cdc3e24de9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
