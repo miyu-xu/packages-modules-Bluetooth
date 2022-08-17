@@ -16,6 +16,29 @@
       "message": "Could we use default configuration for alert if we don\u0027t have the specific configuration requirement for alert?",
       "revId": "d97931b0f8f8e54784c29637bc4174744db9ee2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "648f7f8c_e9b045f8",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 2
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-17T07:48:59Z",
+      "side": 1,
+      "message": "we should handle it in the policy : https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/client.cc;l\u003d3280?q\u003dclient.cc",
+      "range": {
+        "startLine": 234,
+        "startChar": 12,
+        "endLine": 297,
+        "endChar": 64
+      },
+      "revId": "d97931b0f8f8e54784c29637bc4174744db9ee2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
