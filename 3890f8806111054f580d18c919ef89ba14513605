@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dc358f2_47cd5ee9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-08-17T07:26:54Z",
+      "side": 1,
+      "message": "overall LGTM, please fix some typos before submitting",
+      "revId": "3890f8806111054f580d18c919ef89ba14513605",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7abd9ed7_1c38a255",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 392,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-08-17T07:26:54Z",
+      "side": 1,
+      "message": "connectable",
+      "range": {
+        "startLine": 392,
+        "startChar": 64,
+        "endLine": 392,
+        "endChar": 76
+      },
+      "revId": "3890f8806111054f580d18c919ef89ba14513605",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d0007e7_0e04a97b",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-08-17T07:26:54Z",
+      "side": 1,
+      "message": "GetConnectable",
+      "range": {
+        "startLine": 340,
+        "startChar": 19,
+        "endLine": 340,
+        "endChar": 34
+      },
+      "revId": "3890f8806111054f580d18c919ef89ba14513605",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12c3001f_6bb2ef07",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-08-17T07:26:54Z",
+      "side": 1,
+      "message": "SetConnectable",
+      "range": {
+        "startLine": 345,
+        "startChar": 19,
+        "endLine": 345,
+        "endChar": 34
+      },
+      "revId": "3890f8806111054f580d18c919ef89ba14513605",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
