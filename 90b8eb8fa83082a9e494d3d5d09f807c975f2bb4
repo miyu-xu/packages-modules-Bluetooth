@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db219818_a2f4ea4d",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-17T20:12:41Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of VDBG and didn\u0027t want to touch it.  I don\u0027t find VDBG useful",
+      "parentUuid": "b89bbd35_8d956534",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 21
+      },
+      "revId": "90b8eb8fa83082a9e494d3d5d09f807c975f2bb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5be744ce_df8e67d6",
         "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2022-07-22T04:57:50Z",
       "side": 1,
       "message": "Should this be inside the synchronized block, since we\u0027re checking the state?",
+      "range": {
+        "startLine": 209,
+        "startChar": 18,
+        "endLine": 209,
+        "endChar": 58
+      },
+      "revId": "90b8eb8fa83082a9e494d3d5d09f807c975f2bb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed4a764b_c02a4970",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-17T20:12:41Z",
+      "side": 1,
+      "message": "Technically yes, but the state machine flow is such that the CLOSED state is both the start point and end point of the flow, so there no continuation out of this state.\n\nThe setting of CONN_STATE_CLOSED is not synchronized so I didn\u0027t synchronize this.  If the setting was synchronized, then I would consider it.",
+      "parentUuid": "5be744ce_df8e67d6",
       "range": {
         "startLine": 209,
         "startChar": 18,
