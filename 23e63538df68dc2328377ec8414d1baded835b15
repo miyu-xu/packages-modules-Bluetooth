@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e8ef5d_e1334bf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 23
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-17T00:50:57Z",
+      "side": 1,
+      "message": "Triggered the build on https://android-build.googleplex.com/builds/abtd/run/L32900000955986584 and verified to pass go/gd-local-health-tests.",
+      "revId": "23e63538df68dc2328377ec8414d1baded835b15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
