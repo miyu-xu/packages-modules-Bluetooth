@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc341f1_0ef9cf13",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-17T20:31:51Z",
+      "side": 1,
+      "message": "I appreciate making the names more specific.\n\nIn Bluetooth, we try not to move the declarations to the top.  They should be declared as close to the usage as possible.",
+      "range": {
+        "startLine": 223,
+        "startChar": 2,
+        "endLine": 223,
+        "endChar": 10
+      },
+      "revId": "08c97b70dc71d86791272b1302586ad6abc1d22c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
