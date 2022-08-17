@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17ead94e_3994de7e",
+        "filename": "tools/rootcanal/lmp/src/ec.rs",
+        "patchSetId": 29
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-17T08:56:24Z",
+      "side": 1,
+      "message": "We should add a disclaimer warning that this implementation was not reviewed for security and hence is not secure and should only be used for testing",
+      "revId": "fa75f32649cf4c29aa2c0c7330821cc48d0f39fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
