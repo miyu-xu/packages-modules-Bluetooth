@@ -516,7 +516,10 @@ class LeAudioAseConfigurationTest : public Test {
 
     /* Stimulate update of active context map */
     group_->UpdateActiveContextsMap(static_cast<uint16_t>(context_type));
-    ASSERT_EQ(success_expected, group_->Configure(context_type));
+    ASSERT_EQ(
+        success_expected,
+        group_->Configure(context_type,
+                          AudioContexts(static_cast<uint16_t>(context_type))));
 
     for (int i = 0; i < data_size; i++) {
       TestGroupAseConfigurationVerdict(data[i]);
@@ -579,7 +582,10 @@ class LeAudioAseConfigurationTest : public Test {
 
       /* Stimulate update of active context map */
       group_->UpdateActiveContextsMap(static_cast<uint16_t>(context_type));
-      ASSERT_EQ(success_expected, group_->Configure(context_type));
+      ASSERT_EQ(success_expected,
+                group_->Configure(
+                    context_type,
+                    AudioContexts(static_cast<uint16_t>(context_type))));
 
       for (int i = 0; i < data_size; i++) {
         TestGroupAseConfigurationVerdict(data[i]);
@@ -678,7 +684,10 @@ class LeAudioAseConfigurationTest : public Test {
             /* Stimulate update of active context map */
             group_->UpdateActiveContextsMap(
                 static_cast<uint16_t>(context_type));
-            ASSERT_EQ(success_expected, group_->Configure(context_type));
+            ASSERT_EQ(success_expected,
+                      group_->Configure(
+                          context_type,
+                          AudioContexts(static_cast<uint16_t>(context_type))));
             if (success_expected) {
               TestAsesActive(LeAudioCodecIdLc3, sampling_frequency,
                              frame_duration, octets_per_frame);
@@ -708,7 +717,7 @@ TEST_F(LeAudioAseConfigurationTest, test_mono_speaker_ringtone) {
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
 
-TEST_F(LeAudioAseConfigurationTest, test_mono_speaker_conversional) {
+TEST_F(LeAudioAseConfigurationTest, test_mono_speaker_conversational) {
   LeAudioDevice* mono_speaker = AddTestDevice(1, 0);
   TestGroupAseConfigurationData data({mono_speaker,
                                       kLeAudioCodecLC3ChannelCountSingleChannel,
@@ -898,7 +907,9 @@ TEST_F(LeAudioAseConfigurationTest, test_unsupported_codec) {
   device->snk_pacs_ = pac_builder.Get();
   device->src_pacs_ = pac_builder.Get();
 
-  ASSERT_FALSE(group_->Configure(LeAudioContextType::RINGTONE));
+  ASSERT_FALSE(group_->Configure(
+      LeAudioContextType::RINGTONE,
+      AudioContexts(static_cast<uint16_t>(LeAudioContextType::RINGTONE))));
   TestAsesInactive();
 }
 
