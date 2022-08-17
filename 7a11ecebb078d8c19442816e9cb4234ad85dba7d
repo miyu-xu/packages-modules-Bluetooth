@@ -16,6 +16,52 @@
       "message": "Set some init flags?\n\nadb shell device_config put bluetooth INIT_gd_controller true",
       "revId": "7a11ecebb078d8c19442816e9cb4234ad85dba7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccfb9fd7_5782bdb2",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothDeviceConfigListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-17T23:16:27Z",
+      "side": 1,
+      "message": "What if we just build a new Hashmap here of init flags, then use .equals?\n\nI\u0027m wondering about what happens if we don\u0027t have a flag set that we used to have.",
+      "range": {
+        "startLine": 64,
+        "startChar": 39,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "7a11ecebb078d8c19442816e9cb4234ad85dba7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f86ebc6c_403ac734",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothDeviceConfigListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-17T23:16:27Z",
+      "side": 1,
+      "message": "If it\u0027s !isInitFlag(name) then oldValue \u003d\u003d newValue 😊\n\nShould we only get the properties if the name is an InitFlag?",
+      "range": {
+        "startLine": 67,
+        "startChar": 29,
+        "endLine": 67,
+        "endChar": 39
+      },
+      "revId": "7a11ecebb078d8c19442816e9cb4234ad85dba7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
