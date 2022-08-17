@@ -45,6 +45,23 @@
       },
       "revId": "501ef411ea1855827c4f011121e23cdc3e24de9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ea82c3_fba1f09c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 14
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-17T17:35:24Z",
+      "side": 1,
+      "message": "Please remove temporary debugs.",
+      "revId": "501ef411ea1855827c4f011121e23cdc3e24de9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
