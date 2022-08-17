@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "167c14bc_41c35924",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2937,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-08-17T11:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdc327e0_d3754868",
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c85e6c55_1c452b8b",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-09T12:13:21Z",
       "side": 1,
       "message": "this is confusing ..`disable_timer` but `suspendTimeout`",
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb81d93_0c903f15",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2944,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-08-17T11:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c85e6c55_1c452b8b",
       "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2397f0a8_0f9cc7d5",
+        "filename": "system/conf/bt_stack.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-08-17T11:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b0a0b60_3c9c42d2",
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38c3ae8f_25d371ff",
@@ -65,6 +119,30 @@
       "writtenOn": "2022-08-09T12:13:21Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 41,
+        "startChar": 46,
+        "endLine": 41,
+        "endChar": 73
+      },
+      "revId": "9942d6803d03d61b84d928a22ecbc65c6db73e17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54bfce7a_b0fb0876",
+        "filename": "system/main/stack_config.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2022-08-17T11:33:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38c3ae8f_25d371ff",
       "range": {
         "startLine": 41,
         "startChar": 46,
