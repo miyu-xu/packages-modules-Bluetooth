@@ -198,6 +198,30 @@
       },
       "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a163acc8_7c74c7d5",
+        "filename": "system/stack/btm/remote_name_request.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2022-08-17T23:46:27Z",
+      "side": 1,
+      "message": "You should, the test nextHandle \u003d\u003d -1 is always false because of the way integer promotion works",
+      "parentUuid": "53bb4142_931d5d5c",
+      "range": {
+        "startLine": 66,
+        "startChar": 33,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "4c037121133d5e3662f96cc21e1a5bad057701a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
