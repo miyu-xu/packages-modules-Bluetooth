@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b66a06_8ea4d89e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1358301
+      },
+      "writtenOn": "2022-08-17T00:47:32Z",
+      "side": 1,
+      "message": "Hi folks, this is Harry from the Android CrystalBall team. Our boot time test found that this change might introduce a 5-second (20%+) regression in total boot time (https://screenshot.googleplex.com/ABumf2mBXJRKSpC). Could we hold off on submitting this change? Thank you!",
+      "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
