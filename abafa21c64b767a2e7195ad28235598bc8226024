@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89c51976_ec4a0e7b",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-17T21:37:27Z",
+      "side": 1,
+      "message": "anything special we need to think about 5.3?",
+      "range": {
+        "startLine": 195,
+        "startChar": 31,
+        "endLine": 195,
+        "endChar": 36
+      },
+      "revId": "abafa21c64b767a2e7195ad28235598bc8226024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
