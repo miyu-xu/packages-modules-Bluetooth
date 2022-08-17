@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d2832daf_bfa903f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-17T23:20:56Z",
+      "side": 1,
+      "message": "makes sense, will do - I guess this will also trigger the listener",
+      "parentUuid": "acea33ac_cc433998",
+      "revId": "7a11ecebb078d8c19442816e9cb4234ad85dba7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccfb9fd7_5782bdb2",
         "filename": "service/java/com/android/server/bluetooth/BluetoothDeviceConfigListener.java",
         "patchSetId": 1
