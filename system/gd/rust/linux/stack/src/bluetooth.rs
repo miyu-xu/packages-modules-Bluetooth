@@ -89,6 +89,12 @@ pub trait IBluetooth {
     /// Sets discoverability. If discoverable, limits the duration with given value.
     fn set_discoverable(&self, mode: bool, duration: u32) -> bool;
 
+    /// Returns whether the adapter is connectable.
+    fn get_connectable(&self) -> bool;
+
+    /// Sets connectability and returns true on success, false otherwise.
+    fn set_connectable(&mut self, mode: bool) -> bool;
+
     /// Returns whether multi-advertisement is supported.
     /// A minimum number of 5 advertising instances is required for multi-advertisment support.
     fn is_multi_advertisement_supported(&self) -> bool;
@@ -386,29 +392,6 @@ impl Bluetooth {
         self.callbacks.for_all_callbacks(|callback| {
             callback.on_address_changed(self.local_address.unwrap().to_string());
         });
-    }
-
-    pub fn get_connectable(&self) -> bool {
-        match self.properties.get(&BtPropertyType::AdapterScanMode) {
-            Some(prop) => match prop {
-                BluetoothProperty::AdapterScanMode(mode) => match *mode {
-                    BtScanMode::Connectable | BtScanMode::ConnectableDiscoverable => true,
-                    _ => false,
-                },
-                _ => false,
-            },
-            _ => false,
-        }
-    }
-
-    pub fn set_connectable(&mut self, mode: bool) -> bool {
-        self.is_connectable = mode;
-        if mode && self.get_discoverable() {
-            return true;
-        }
-        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
-            if mode { BtScanMode::Connectable } else { BtScanMode::None_ },
-        )) == 0
     }
 
     pub(crate) fn adapter_callback_disconnected(&mut self, id: u32) {
@@ -1026,6 +1009,29 @@ impl IBluetooth for Bluetooth {
                     BtScanMode::None_
                 }
             },
+        )) == 0
+    }
+
+    fn get_connectable(&self) -> bool {
+        match self.properties.get(&BtPropertyType::AdapterScanMode) {
+            Some(prop) => match prop {
+                BluetoothProperty::AdapterScanMode(mode) => match *mode {
+                    BtScanMode::Connectable | BtScanMode::ConnectableDiscoverable => true,
+                    _ => false,
+                },
+                _ => false,
+            },
+            _ => false,
+        }
+    }
+
+    fn set_connectable(&mut self, mode: bool) -> bool {
+        self.is_connectable = mode;
+        if mode && self.get_discoverable() {
+            return true;
+        }
+        self.intf.lock().unwrap().set_adapter_property(BluetoothProperty::AdapterScanMode(
+            if mode { BtScanMode::Connectable } else { BtScanMode::None_ },
         )) == 0
     }
 

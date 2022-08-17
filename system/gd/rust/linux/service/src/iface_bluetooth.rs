@@ -216,6 +216,16 @@ impl IBluetooth for IBluetoothDBus {
         dbus_generated!()
     }
 
+    #[dbus_method("GetDiscoverable")]
+    fn get_connectable(&self) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("SetDiscoverable")]
+    fn set_connectable(&mut self, mode: bool) -> bool {
+        dbus_generated!()
+    }
+
     #[dbus_method("IsMultiAdvertisementSupported")]
     fn is_multi_advertisement_supported(&self) -> bool {
         dbus_generated!()

@@ -85,10 +85,11 @@ fn build_commands() -> HashMap<String, CommandOption> {
     command_options.insert(
         String::from("adapter"),
         CommandOption {
-            rules: vec![String::from("adapter <enable|disable|show>")],
+            rules: vec![String::from("adapter <enable|disable|show|discoverable|connectable>")],
             description: String::from(
                 "Enable/Disable/Show default bluetooth adapter. (e.g. adapter enable)\n
-                 Discoverable On/Off (e.g. adapter discoverable on)",
+                 Discoverable On/Off (e.g. adapter discoverable on)\n
+                 Connectable On/Off (e.g. adapter connectable on)",
             ),
             function_pointer: CommandHandler::cmd_adapter,
         },
@@ -272,7 +273,7 @@ impl CommandHandler {
         }
 
         let default_adapter = self.context.lock().unwrap().default_adapter;
-        enforce_arg_len(args, 1, "adapter <enable|disable|show|discoverable>", || {
+        enforce_arg_len(args, 1, "adapter <enable|disable|show|discoverable|connectable>", || {
             match &args[0][0..] {
                 "enable" => {
                     self.context.lock().unwrap().manager_dbus.start(default_adapter);
@@ -296,6 +297,7 @@ impl CommandHandler {
                     let name = adapter_dbus.get_name();
                     let uuids = adapter_dbus.get_uuids();
                     let is_discoverable = adapter_dbus.get_discoverable();
+                    let is_connectable = adapter_dbus.get_connectable();
                     let discoverable_timeout = adapter_dbus.get_discoverable_timeout();
                     let cod = adapter_dbus.get_bluetooth_class();
                     let multi_adv_supported = adapter_dbus.is_multi_advertisement_supported();
@@ -312,6 +314,7 @@ impl CommandHandler {
                     print_info!("State: {}", if enabled { "enabled" } else { "disabled" });
                     print_info!("Discoverable: {}", is_discoverable);
                     print_info!("DiscoverableTimeout: {}s", discoverable_timeout);
+                    print_info!("Connectable: {}", is_connectable);
                     print_info!("Class: {:#06x}", cod);
                     print_info!("IsMultiAdvertisementSupported: {}", multi_adv_supported);
                     print_info!("IsLeExtendedAdvertisingSupported: {}", le_ext_adv_supported);
@@ -357,6 +360,38 @@ impl CommandHandler {
                     }
                     _ => println!("Invalid argument for adapter discoverable '{}'", args[1]),
                 },
+                "connectable" => match &args[1][0..] {
+                    "on" => {
+                        let ret = self
+                            .context
+                            .lock()
+                            .unwrap()
+                            .adapter_dbus
+                            .as_mut()
+                            .unwrap()
+                            .set_connectable(true);
+                        print_info!(
+                            "Set connectable on {}",
+                            if ret { "succeeded" } else { "failed" }
+                        );
+                    }
+                    "off" => {
+                        let ret = self
+                            .context
+                            .lock()
+                            .unwrap()
+                            .adapter_dbus
+                            .as_mut()
+                            .unwrap()
+                            .set_connectable(false);
+                        print_info!(
+                            "Set connectable off {}",
+                            if ret { "succeeded" } else { "failed" }
+                        );
+                    }
+                    _ => println!("Invalid argument for adapter discoverable '{}'", args[1]),
+                },
+
                 _ => {
                     println!("Invalid argument '{}'", args[0]);
                 }
