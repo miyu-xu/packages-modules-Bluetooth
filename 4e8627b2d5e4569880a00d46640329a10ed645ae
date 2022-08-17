@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "838adf8f_4d24ad5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-17T19:50:12Z",
+      "side": 1,
+      "message": "I think this will need to modify the Python if that lands before this one does.",
+      "revId": "4e8627b2d5e4569880a00d46640329a10ed645ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
