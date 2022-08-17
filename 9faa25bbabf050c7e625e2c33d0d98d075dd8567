@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee3bcba5_dadd2a2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-17T17:01:05Z",
+      "side": 1,
+      "message": "Floss is the ChromeOS and Linux build of Fluoride and currently doesn\u0027t actually use rootcanal (though we\u0027re going to fix that in the future).\n\nAre you sure you\u0027re adding the fixes in the right place?",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5287cb05_49c1dd15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-17T17:01:05Z",
+      "side": 1,
+      "message": "Ivan, I think you probably want to be updating the Android.bp and not Cargo.toml with these changes.",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d11b4dff_b89211e5",
+        "filename": "system/gd/rust/packets/build.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-17T17:01:05Z",
+      "side": 1,
+      "message": "nit: Prefer to change if block so `generate_packets` is in else.",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3b083a7_17bea421",
+        "filename": "tools/rootcanal/lmp/Cargo.toml",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-17T17:01:05Z",
+      "side": 1,
+      "message": "Use actual versions here. We\u0027re migrating away from \u0027*\u0027 in other areas too but this one should have semver (since it\u0027s currently not built by Floss).",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1050670_b34e378f",
+        "filename": "tools/rootcanal/lmp/build.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-17T17:01:05Z",
+      "side": 1,
+      "message": "nit: Swap if blocks so it\u0027s `if exists {} else { generate_packet(); }`",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
