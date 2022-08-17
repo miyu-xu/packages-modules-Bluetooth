@@ -93,6 +93,30 @@
       },
       "revId": "1e9366fdf3256bc28a248417089a577a3149af91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68b524af_95651445",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-17T19:48:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9e664565_3a7ee276",
+      "range": {
+        "startLine": 784,
+        "startChar": 0,
+        "endLine": 799,
+        "endChar": 59
+      },
+      "revId": "1e9366fdf3256bc28a248417089a577a3149af91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
