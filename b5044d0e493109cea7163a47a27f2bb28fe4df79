@@ -88,6 +88,24 @@
       "parentUuid": "d07fa4cd_2838a512",
       "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2393e06_339fe57a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1073883
+      },
+      "writtenOn": "2022-08-17T18:21:15Z",
+      "side": 1,
+      "message": "There was one 60 secs boot time outlier from the very first run where the warning was issued.\n\nhttps://screenshot.googleplex.com/7CoSKiykf494oPA\n\n\nI tried multiple rerun on the same presubmit build id but I couldnot repro this issue. Please proceed with the checkin and we will monitor how this is doing in the coninuous runs.\n\nhttps://android-build.googleplex.com/builds/tests/view?invocationId\u003dI67100010081729098\u0026testResultId\u003dTR02428208397521372\u0026redirect\u003dhttp://sponge2/0624a2a9-a1af-4cb6-90d0-2c3be4def9d3",
+      "parentUuid": "1dcdb43f_ab9d90ae",
+      "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
