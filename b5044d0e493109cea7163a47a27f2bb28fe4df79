@@ -52,6 +52,24 @@
       "parentUuid": "b988ceee_7727bf2b",
       "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07fa4cd_2838a512",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1073883
+      },
+      "writtenOn": "2022-08-17T01:59:13Z",
+      "side": 1,
+      "message": "Hi Jack,\n\nWe recently enabled boot time test in presubmit to catch regressions sooner and resolve it before checkin.\n\nFrom the warning above you can find the list of metrics regressed here \n\nMetric ActivityManagerTiming_TotalBootTime-mean has regressed with 100.00% confidence; its value is 15021.00 here, and increased from historical average 10330.66 by 38.00 standard deviations.\nMetric SystemServerTiming_DeviceStateManagerService-mean has regressed with 100.00% confidence; its value is 436.40 here, and increased from historical average 5.63 by 844.76 standard deviations.\nMetric SystemServerTiming_StartAudioService-mean has regressed with 100.00% confidence; its value is 3235.30 here, and increased from historical average 25.09 by 2334.97 standard deviations.\nMetric SystemServerTiming_StartBootPhaseSystemServicesReady-mean has regressed with 100.00% confidence; its value is 570.20 here, and increased from historical average 97.92 by 120.34 standard deviations.\nMetric SystemServerTiming_StartPowerStatsService-mean has regressed with 100.00% confidence; its value is 713.70 here, and increased from historical average 9.76 by 1049.36 standard deviations.\nMetric SystemServerTiming_StartServices-mean has regressed with 100.00% confidence; its value is 11620.40 here, and increased from historical average 6756.84 by 93.10 standard deviations.\nMetric SystemServerTiming_startBootstrapServices-mean has regressed with 100.00% confidence; its value is 3860.50 here, and increased from historical average 3025.73 by 16.84 standard deviations.\nMetric SystemServerTiming_startOtherServices-mean has regressed with 100.00% confidence; its value is 7728.10 here, and increased from historical average 3709.59 by 149.60 standard deviations.\nMetric TOTAL_BOOT_TIME-mean has regressed with 100.00% confidence; its value is 26098.10 here, and increased from historical average 21624.88 by 21.87 standard deviations.\nMetric init_bootanim_DURATION-mean has regressed with 100.00% confidence; its value is 20847.00 here, and increased from historical average 16412.73 by 22.27 standard deviations.\n\n\nTotal boot time is the overall mesaure of end to end boot time and with this presubmit build id that score has been regressed compared to the previous postsubmit build id\u0027s.\n\n\nhttps://b20020a656487000000b0041c9d446d0a36b100000052690107d400.proxy.googleprod.com/dashboard/I42400010081559756\n\nPlease do not merge this change until the root cause is identified and fixed. Thanks",
+      "parentUuid": "abc112d7_95304941",
+      "revId": "b5044d0e493109cea7163a47a27f2bb28fe4df79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
