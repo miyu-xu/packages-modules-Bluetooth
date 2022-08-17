@@ -296,11 +296,13 @@ void init() {
 
 // Check if wideband speech is supported on local device
 bool get_wbs_supported() {
+#if (DISABLE_WBS == FALSE)
   for (cached_codec_info c : cached_codecs) {
     if (c.inner.codec == MSBC || c.inner.codec == MSBC_TRANSPARENT) {
       return true;
     }
   }
+#endif
   return false;
 }
 
