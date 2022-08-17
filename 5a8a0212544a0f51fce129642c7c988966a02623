@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84910894_473911c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "32dc42c4_059de7f2",
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ac28839_99b81b48",
@@ -48,6 +66,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "Move these lines above `# Handles HFP MMIs.` to keep an alphabetical order for the profiles.",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 127,
+        "endChar": 84
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcf336d4_3f6895be",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/__init__.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ac28839_99b81b48",
       "range": {
         "startLine": 123,
         "startChar": 8,
@@ -81,6 +123,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17481b2a_6c2c5509",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "550aed57_f4e4e95e",
+      "range": {
+        "startLine": 29,
+        "startChar": 43,
+        "endLine": 29,
+        "endChar": 63
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86540eb2_1a7a04c0",
@@ -94,6 +160,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "Remove those lines since it\u0027s not yet used.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 3
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b984f64_017eb6ee",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86540eb2_1a7a04c0",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -127,6 +217,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a45ca87b_c826b245",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e26166c5_ed8ae168",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 32
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0266278_1c458c29",
@@ -140,6 +254,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "These lines are identical in both `if \"CT\" in test:` and `else` and so can be put them only a single time before the `if`.",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 69,
+        "endChar": 44
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc198d13_4452177b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0266278_1c458c29",
       "range": {
         "startLine": 68,
         "startChar": 12,
@@ -173,6 +311,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3498467b_05ffbbee",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c0dad90_d3b9e3a7",
+      "range": {
+        "startLine": 72,
+        "startChar": 39,
+        "endLine": 72,
+        "endChar": 44
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a25aee70_be532a8e",
@@ -186,6 +348,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "`\"INT\" in test` is always `false` because there is no AVRCP tests which contains \"INT\" in its name. These lines must thus be removed.",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93d3bc6b_4d6d3643",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a25aee70_be532a8e",
       "range": {
         "startLine": 71,
         "startChar": 0,
@@ -219,6 +405,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfa96439_264d358f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Currently testing only Target cases, so added only WaitSink and deleted WaitSource",
+      "parentUuid": "bd5ced97_662c531a",
+      "range": {
+        "startLine": 75,
+        "startChar": 39,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "78b7a6bb_0f6a80a5",
@@ -232,6 +442,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "This should be `a2dp` and not `avrcp`.",
+      "range": {
+        "startLine": 83,
+        "startChar": 33,
+        "endLine": 83,
+        "endChar": 38
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15aa3e53_2d5845b7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78b7a6bb_0f6a80a5",
       "range": {
         "startLine": 83,
         "startChar": 33,
@@ -265,6 +499,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a37315f_d6587c7f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "83475628_8a030339",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 48
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a2c10e2_899c1194",
@@ -278,6 +536,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "Removing the empty line below should probably fix the `assert_description`.",
+      "range": {
+        "startLine": 98,
+        "startChar": 59,
+        "endLine": 98,
+        "endChar": 60
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f775a0d_748cbbbf",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a2c10e2_899c1194",
       "range": {
         "startLine": 98,
         "startChar": 59,
@@ -311,6 +593,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e49d9bad_fed614c3",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "242309dd_f3434a42",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 18
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2f5535c_b1b837a0",
@@ -324,6 +630,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "Remove line.",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 12
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc708257_58a0baa9",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/avrcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2f5535c_b1b837a0",
       "range": {
         "startLine": 159,
         "startChar": 0,
@@ -357,6 +687,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0258234b_aa0bca8d",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done, do we need to commit pts_bot_tests_config.json?",
+      "parentUuid": "baf883f3_2231ff1d",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 50
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d650007_2bd261a3",
@@ -370,6 +724,30 @@
       "writtenOn": "2022-08-05T21:01:09Z",
       "side": 1,
       "message": "This cannot compile without `Avrcp.kt`. Create `avrcp.proto` and `Avrcp.kt` basic files.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3bf364a_9cccf5f4",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Yeah, so do we commit this change and basic file structure? Or commit only avrcp.py?",
+      "parentUuid": "1d650007_2bd261a3",
       "range": {
         "startLine": 32,
         "startChar": 0,
@@ -403,6 +781,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd371534_2b55d380",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4e8e4ab1_fc75a312",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b26159d9_8ef33d8b",
@@ -416,6 +818,30 @@
       "writtenOn": "2022-08-05T21:00:05Z",
       "side": 1,
       "message": "Move this line after `a2dp.deinit()` to keep an alphabetical order  for profiles.",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 18
+      },
+      "revId": "5a8a0212544a0f51fce129642c7c988966a02623",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c628b857_8151e87c",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b26159d9_8ef33d8b",
       "range": {
         "startLine": 62,
         "startChar": 4,

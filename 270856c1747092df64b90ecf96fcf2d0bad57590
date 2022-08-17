@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e674b8a7_5312653e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960961
+      },
+      "writtenOn": "2022-08-17T11:14:26Z",
+      "side": 1,
+      "message": "Hi Thomas,\n\nRequest you to provide your feedback post addressing the comments. Updated the files for 9 AVRCP test cases.\n\nThank you.\n\nRegards,\nSnehal",
+      "revId": "270856c1747092df64b90ecf96fcf2d0bad57590",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
