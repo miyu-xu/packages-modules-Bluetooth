@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "83346111_75cd53f2",
+        "filename": "system/stack/btm/remote_name_request.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-17T23:51:23Z",
+      "side": 1,
+      "message": "I want to make explicit what callbacks we are registering. It is not clear when `RemoteNameRequestCallbacks(f)` or `RemoteNameRequestCallbacks(f, g)` are triggered (especially since in the latter case, `g` is triggered before `f`). I guess the type system would catch this since the return types are different, but I\u0027d still prefer to make it really obvious.",
+      "parentUuid": "2e7375cc_1fe51669",
+      "revId": "d45d467a15de36f94b00d4b64dde513054714def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "72dfd5d6_a7e5d51f",
