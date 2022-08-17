@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce9a0d86_dc964f46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2022-08-17T01:45:23Z",
+      "side": 1,
+      "message": "LGTM with _generate_target_rustflags() fix.",
+      "revId": "3ed215a9e6fe3261ba319f4e407b8061ec11810b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9595657a_7608e2be",
+        "filename": "build.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1962420
+      },
+      "writtenOn": "2022-08-17T01:45:23Z",
+      "side": 1,
+      "message": "Since this function is now merged to _generate_rustflags(), we can remove _generate_target_rustflags() from here.",
+      "range": {
+        "startLine": 305,
+        "startChar": 37,
+        "endLine": 305,
+        "endChar": 63
+      },
+      "revId": "3ed215a9e6fe3261ba319f4e407b8061ec11810b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
