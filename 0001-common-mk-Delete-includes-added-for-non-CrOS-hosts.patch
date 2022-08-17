@@ -1,0 +1,33 @@
+From 0d9b87f8083e573ee1ef4a79691fce896d28d5c1 Mon Sep 17 00:00:00 2001
+From: Andre Braga <andrebraga@google.com>
+Date: Fri, 12 Aug 2022 22:58:27 +0000
+Subject: [PATCH] common-mk: Delete includes added for non CrOS hosts
+
+When the 'cros_host' use flag is set to false, common-mk adds include
+dirs and changes the sysroot in expectation of a cross compile. However,
+these flags get passed onto all compiler invocations, including those
+for host tools, which leads to incorrectly cross compiling host tools.
+Thus, I patch this out to fix Linux cross compiles.
+---
+ common-mk/BUILD.gn | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/common-mk/BUILD.gn b/common-mk/BUILD.gn
+index 8b1931834a..f34e134423 100644
+--- a/common-mk/BUILD.gn
++++ b/common-mk/BUILD.gn
+@@ -113,11 +113,6 @@ config("compiler_defaults") {
+   cflags_cc -= _cflags_no_exceptions
+   cflags_c -= _cflags_no_exceptions
+ 
+-  if (!use.cros_host) {
+-    include_dirs += [ "${sysroot}/usr/include" ]
+-    cflags += [ "--sysroot=${sysroot}" ]
+-    ldflags += [ "--sysroot=${sysroot}" ]
+-  }
+   if (use.profiling) {
+     cflags += [
+       "-fprofile-instr-generate",
+-- 
+2.37.1.595.g718a3a8f04-goog
+

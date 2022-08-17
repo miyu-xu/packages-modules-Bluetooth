@@ -1,0 +1,30 @@
+From 93cb12f96aa735b395b23996d6e72eaa56791ab3 Mon Sep 17 00:00:00 2001
+From: Andre Braga <andrebraga@google.com>
+Date: Wed, 17 Aug 2022 22:34:59 +0000
+Subject: [PATCH] proto_logging: Add target_defaults config
+
+proto_logging creates object files that parts of Floss depend on.
+However, if cross compiling, the object files will be compiled for the
+host instead of the target. This change adds the default configs defined
+for the target, which includes flags necessary for cross compiling.
+---
+ stats/enums/bluetooth/BUILD.gn | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/stats/enums/bluetooth/BUILD.gn b/stats/enums/bluetooth/BUILD.gn
+index e1f398e1..2428452e 100644
+--- a/stats/enums/bluetooth/BUILD.gn
++++ b/stats/enums/bluetooth/BUILD.gn
+@@ -27,5 +27,8 @@ proto_library("libbt-platform-protos-lite") {
+     "smp/enums.proto",
+   ]
+ 
+-  configs = [ "//common-mk:pic" ]
++  configs = [ 
++    "//common-mk:pic",
++    "//bt/system:target_defaults" 
++    ]
+ }
+-- 
+2.37.1.595.g718a3a8f04-goog
+
