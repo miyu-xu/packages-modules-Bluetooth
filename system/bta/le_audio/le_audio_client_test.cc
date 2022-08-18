@@ -686,9 +686,8 @@ class UnicastTestNoInit : public Test {
             return false;
           }
 
-          group->Configure(
-              group->GetCurrentContextType(),
-              static_cast<uint16_t>(group->GetCurrentContextType()), {});
+          group->Configure(group->GetCurrentContextType(),
+                           group->GetMetadataContextType(), {});
           if (!group->CigAssignCisIds(leAudioDevice)) return false;
           group->CigAssignCisConnHandlesToAses(leAudioDevice);
 
@@ -3378,6 +3377,7 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchNoReconfigure) {
   UpdateMetadata(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN);
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
   Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
+  SyncOnMainLoop();
 
   // Do a content switch to EMERGENCY
   EXPECT_CALL(mock_audio_hal_client_,
