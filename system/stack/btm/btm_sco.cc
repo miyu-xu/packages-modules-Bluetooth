@@ -271,12 +271,11 @@ void btm_route_sco_data(BT_HDR* p_msg) {
               (unsigned long)data_len, (unsigned long)read,
               (unsigned long)btm_pcm_buf_write_offset,
               (unsigned long)btm_pcm_buf_read_offset);
-
-          /* Appending zero bytes to cover the underrun of audio server. This
-           * also helps us to secure the Tx/Rx data balance */
-          std::fill(wp + read, wp + data_len, 0);
-          read = data_len;
         }
+
+        /* We read no data from the audio server. Break here to prevent a busy
+         * loop waiting for the data from the audio server */
+        if (read == 0) break;
 
         written -= read;
       } else {
