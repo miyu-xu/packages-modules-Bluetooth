@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b8db10_f74e961d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-18T12:13:24Z",
+      "side": 1,
+      "message": "Is there any build test for this in presubmit? We are going to add some new dependencies to liblmp so I am afraid build may be broken.\n2147705: RootCanal: Implement ECDH for BR/EDR | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2147705",
+      "revId": "c493017bb847cf552ace2c6ac860d55037febc85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
