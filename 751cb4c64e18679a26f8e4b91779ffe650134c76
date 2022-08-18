@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c85dd02_8362119e",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-18T15:02:36Z",
+      "side": 1,
+      "message": "Should be an inversion of what `ScenarioToContextType(...)` returns.",
+      "range": {
+        "startLine": 480,
+        "startChar": 0,
+        "endLine": 483,
+        "endChar": 31
+      },
+      "revId": "751cb4c64e18679a26f8e4b91779ffe650134c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "22ae7ff6_5bf6d556",
@@ -24,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73a1df62_47245bb3",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-18T15:02:36Z",
+      "side": 1,
+      "message": "can use std::multimap instead",
+      "parentUuid": "22ae7ff6_5bf6d556",
+      "range": {
+        "startLine": 496,
+        "startChar": 22,
+        "endLine": 496,
+        "endChar": 25
+      },
+      "revId": "751cb4c64e18679a26f8e4b91779ffe650134c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8ebc123_fca7aed7",
@@ -37,6 +84,30 @@
       "writtenOn": "2022-08-18T09:22:57Z",
       "side": 1,
       "message": "Could we add more mapping?\n{\"Media\", type::LeAudioContextType::NOTIFICATION}",
+      "range": {
+        "startLine": 500,
+        "startChar": 0,
+        "endLine": 500,
+        "endChar": 64
+      },
+      "revId": "751cb4c64e18679a26f8e4b91779ffe650134c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e85403b5_ec015924",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-18T15:02:36Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "a8ebc123_fca7aed7",
       "range": {
         "startLine": 500,
         "startChar": 0,
