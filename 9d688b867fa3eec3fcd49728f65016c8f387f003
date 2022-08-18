@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdd89082_10863511",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-18T15:12:40Z",
+      "side": 1,
+      "message": "this is incorrect. Instead we should just check  `std::distance(iter, leAudioDevices_.end()) \u003c 1`\n\nwill fix that.",
+      "revId": "9d688b867fa3eec3fcd49728f65016c8f387f003",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

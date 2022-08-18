@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2121bba9_de1033ac",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-18T15:12:40Z",
+      "side": 1,
+      "message": "with current approach, we end up with creating CIG with much more CISes we will ever need. And this might lead (and happened to me) to Limited Resources issue when creating CIG or CIS.\n\nBut OK - let put it aside - I will push following patch on top.",
+      "parentUuid": "b796bbf1_d44aa99b",
+      "range": {
+        "startLine": 936,
+        "startChar": 8,
+        "endLine": 936,
+        "endChar": 14
+      },
+      "revId": "2c37e4de3ce0b53a9e6259e8b7598df7f82da3d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2002c930_1071a97e",
