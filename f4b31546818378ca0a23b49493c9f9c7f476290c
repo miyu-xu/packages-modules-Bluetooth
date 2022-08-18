@@ -51,6 +51,24 @@
       "parentUuid": "3c288030_e42f1d8e",
       "revId": "f4b31546818378ca0a23b49493c9f9c7f476290c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db682a3f_5bb26467",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-18T00:55:19Z",
+      "side": 1,
+      "message": "Good idea.",
+      "parentUuid": "facf08fb_515e1a35",
+      "revId": "f4b31546818378ca0a23b49493c9f9c7f476290c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
