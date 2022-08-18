@@ -16,21 +16,15 @@
 
 package com.android.pandora
 
-import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothHeadset
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import com.google.protobuf.Empty
 import io.grpc.stub.StreamObserver
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.shareIn
 import pandora.HFPGrpc.HFPImplBase
 import pandora.HfpProto.*
 
@@ -39,7 +33,6 @@ class Hfp(val context: Context) : HFPImplBase() {
   private val TAG = "PandoraHfp"
 
   private val scope: CoroutineScope
-  private val flow: Flow<Intent>
 
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
@@ -48,9 +41,6 @@ class Hfp(val context: Context) : HFPImplBase() {
 
   init {
     scope = CoroutineScope(Dispatchers.Default)
-
-    val intentFilter = IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
-    flow = intentFlow(context, intentFilter).shareIn(scope, SharingStarted.Eagerly)
   }
 
   fun deinit() {

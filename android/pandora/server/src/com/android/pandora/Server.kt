@@ -21,12 +21,12 @@ import android.util.Log
 import io.grpc.Server as GrpcServer
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
 
+private const val TAG = "PandoraServer"
+
+private const val GRPC_PORT = 8999
+
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Server(context: Context) {
-
-  private val TAG = "PandoraServer"
-  private val GRPC_PORT = 8999
-
   private var host: Host
   private var a2dp: A2dp
   private var gatt: Gatt
@@ -55,11 +55,11 @@ class Server(context: Context) {
   }
 
   fun shutdownNow() {
-    host.deinit()
     a2dp.deinit()
     gatt.deinit()
     hfp.deinit()
     sm.deinit()
+    host.deinit()
     grpcServer.shutdownNow()
   }
 
