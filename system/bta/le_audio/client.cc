@@ -3242,6 +3242,12 @@ class LeAudioClientImpl : public LeAudioClient {
     }
   }
 
+  /* The returned LeAudioContextType should have its entry in the
+   * AudioSetConfigurationProvider's scenario to context mapping table.
+   * Otherwise if it won't get filtered-out by the 'mini policy' in
+   * ChooseContextType(), the AudioSetConfigurationProvider will fall back
+   * to default scenario.
+   */
   LeAudioContextType AudioContentToLeAudioContext(
       audio_content_type_t content_type, audio_usage_t usage) {
     /* Check audio attribute usage of stream */
