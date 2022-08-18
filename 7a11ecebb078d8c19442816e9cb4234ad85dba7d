@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f0727e2_b1292929",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-18T03:53:02Z",
+      "side": 1,
+      "message": "Confirmed that this works, and that we restart on changes, but not when it is just reapplied.",
+      "parentUuid": "d2832daf_bfa903f1",
+      "revId": "7a11ecebb078d8c19442816e9cb4234ad85dba7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccfb9fd7_5782bdb2",
