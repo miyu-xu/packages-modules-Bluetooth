@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22ae7ff6_5bf6d556",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-08-18T08:26:08Z",
+      "side": 1,
+      "message": "it will not work as this is std:map. I thin change should be here:  https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/bta/le_audio/le_audio_set_configuration_provider_json.cc;l\u003d74?q\u003dGetConfigurationsByContextType\n\nSome function maping requested context type to known context type.",
+      "range": {
+        "startLine": 496,
+        "startChar": 22,
+        "endLine": 496,
+        "endChar": 25
+      },
+      "revId": "751cb4c64e18679a26f8e4b91779ffe650134c76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
