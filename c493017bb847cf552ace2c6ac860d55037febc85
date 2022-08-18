@@ -34,6 +34,24 @@
       "parentUuid": "40b8db10_f74e961d",
       "revId": "c493017bb847cf552ace2c6ac860d55037febc85",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c321badd_a09183fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-18T13:28:02Z",
+      "side": 1,
+      "message": "\u003e Is there any build test for this in presubmit?\n\nNone at the moment, and generally the build system is not ready yet, it still needs at least aosp/2185460 and aosp/2184936 to add vendored crates — we can probably add some tests after that.\n\n\u003e Also consider cargo2android?\n\nI\u0027d say this wouldn\u0027t be needed in the nearest future, as RootCanal is a part of Emulator source tree, rather than Android source tree, but I\u0027m not sure... I think it could be easily added in the future, if needed at all.\nGenerally, in this project I was following the way \"system/gd/rust/packets\" is done.",
+      "parentUuid": "3da543b3_65150ced",
+      "revId": "c493017bb847cf552ace2c6ac860d55037febc85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
