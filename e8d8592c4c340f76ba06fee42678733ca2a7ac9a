@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb53866e_274911dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1117583
+      },
+      "writtenOn": "2022-08-18T20:34:25Z",
+      "side": 1,
+      "message": "Hi Lukasz, thanks for taking care of the patch. Introduced function AddCisToStreamConfiguration() and RemoveCisFromStreamConfiguration() in Patchset#30 state_machine.cc to remove code duplication, please review once, if ok may consider incorporating related changes in state_machine.cc from Patchset#30. Thanks and Regards - Partha Sarathi",
+      "revId": "e8d8592c4c340f76ba06fee42678733ca2a7ac9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
