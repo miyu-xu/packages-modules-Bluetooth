@@ -159,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be63e838_ebc900c4",
+        "filename": "tools/rootcanal/lmp/Cargo.toml",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-18T22:10:18Z",
+      "side": 1,
+      "message": "Put the minimum version you need. With semver, any version that is 1.x.y will work as long as it is greater than the version you selected. Your new versioning LGTM.",
+      "parentUuid": "93a11b40_4cf602d2",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1050670_b34e378f",
