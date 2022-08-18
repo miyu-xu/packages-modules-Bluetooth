@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c596126_c69ef772",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 14
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-18T00:52:56Z",
+      "side": 1,
+      "message": "Rewrite the comment. I found that we actually fill zeros in the WBS case in CRAS\u0027s implementation. Thus, I follow the imeplementation to append the zeros in the Bluetooth stack to alleviate the risk of potential regression introduced by this CL.\n\nHowever, I think this \"filling zero\" mitigation is actually not ideal while playing with it. I\u0027ll make it a follow up CL to elaboarate that and make the refinement there.",
+      "parentUuid": "35ac9597_b1ee4ea5",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ef72181_ac016425",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-17T02:38:50Z",
       "side": 1,
       "message": "Move this to the `else {` clause above(in which case avail\u003d\u003d0).\n\nand instead examine\nASSERT(w_offset - r_offset \u003d\u003d MSBC_CODE_SIZE, ...)",
+      "range": {
+        "startLine": 338,
+        "startChar": 9,
+        "endLine": 344,
+        "endChar": 33
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c89bbeaf_e829723d",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-18T00:52:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4ef72181_ac016425",
       "range": {
         "startLine": 338,
         "startChar": 9,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c04057df_f1f2099a",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-18T00:52:56Z",
+      "side": 1,
+      "message": "Done. Also add comment on btm_pcm_buf and an ASSERT_LOG before the buffer init.",
+      "parentUuid": "b98ea9b2_9e726324",
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "297d97da_c3708364",
@@ -77,6 +143,30 @@
       "writtenOn": "2022-08-17T02:38:50Z",
       "side": 1,
       "message": "Not a correct statement, I think we still call it in-band SCO.\n\n\"In narrow-band, the CVSD encode is offloaded to controller ...\"",
+      "range": {
+        "startLine": 385,
+        "startChar": 9,
+        "endLine": 385,
+        "endChar": 52
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7943e18_0dbdcd2b",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-18T00:52:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "297d97da_c3708364",
       "range": {
         "startLine": 385,
         "startChar": 9,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a030c624_bec4920c",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-18T00:52:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c55f8a70_bc93e456",
+      "range": {
+        "startLine": 386,
+        "startChar": 18,
+        "endLine": 386,
+        "endChar": 35
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09db41a0_5cc57e49",
@@ -123,6 +237,30 @@
       "writtenOn": "2022-08-17T02:38:50Z",
       "side": 1,
       "message": "maintain",
+      "range": {
+        "startLine": 387,
+        "startChar": 18,
+        "endLine": 387,
+        "endChar": 26
+      },
+      "revId": "426b048898a9dee74e3831dffbe6381f629260ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "465291ca_9369f6e7",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-18T00:52:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09db41a0_5cc57e49",
       "range": {
         "startLine": 387,
         "startChar": 18,
