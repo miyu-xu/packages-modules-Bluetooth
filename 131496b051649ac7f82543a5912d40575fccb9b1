@@ -45,6 +45,30 @@
       },
       "revId": "131496b051649ac7f82543a5912d40575fccb9b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a716210e_b98756f3",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-18T20:08:33Z",
+      "side": 1,
+      "message": "If we look at the specification, the ReadDescriptorReq/Rsp are mapped to ReadAttributeReq/Rsp: core spec 5.3 Vol 3 Part G 4.13 (Page 1524).\nIt could make sense to mapped it directly here.But if we want to keep them separate we should rename `ReadDescriptorReq/Rsp` to `ReadCharateristicDescriptorReq/Rsp` to be closer to the specification.\n\nThus said, for someone who doesn\u0027t know how GATT is working in detail, keeping `ReadCharacteristicDescriptorReq/Rsp` should be more obvious.",
+      "parentUuid": "5ec6e8a0_f3bdfc64",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 1
+      },
+      "revId": "131496b051649ac7f82543a5912d40575fccb9b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
