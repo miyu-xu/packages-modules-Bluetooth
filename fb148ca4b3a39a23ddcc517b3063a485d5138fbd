@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "306b965d_c62e481f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-08-18T10:12:38Z",
+      "side": 1,
+      "message": "I thought that in today\u0027s meeting, since SetConnectable might not just be used in qualification but useful for testing and perhaps Android, so it can be part of IBluetooth?",
+      "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
