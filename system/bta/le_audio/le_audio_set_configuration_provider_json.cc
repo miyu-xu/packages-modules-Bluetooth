@@ -477,18 +477,29 @@ struct AudioSetConfigurationProviderJson {
         return "VoiceAssinstants";
       case types::LeAudioContextType::RINGTONE:
         return "Ringtone";
+      case types::LeAudioContextType::ALERTS:
+        return "Alerts";
+      case types::LeAudioContextType::INSTRUCTIONAL:
+        return "Instructional";
       default:
         return "Default";
     }
   }
 
+  /* Use the same scenario configurations for different context to avoid
+   * internal reconfiguration and handover that produces time gap. While using
+   * the same scenario for different contexts, quality and configuration remains
+   * the same while changing to same scenario based context type.
+   */
   static ::le_audio::types::LeAudioContextType ScenarioToContextType(
       std::string scenario) {
     static const std::map<std::string, ::le_audio::types::LeAudioContextType>
         scenarios = {
             {"Media", types::LeAudioContextType::MEDIA},
+            {"Media", types::LeAudioContextType::ALERTS},
+            {"Media", types::LeAudioContextType::INSTRUCTIONAL},
             {"Conversational", types::LeAudioContextType::CONVERSATIONAL},
-            {"Ringtone", types::LeAudioContextType::RINGTONE},
+            {"Conversational", types::LeAudioContextType::RINGTONE},
             {"Recording", types::LeAudioContextType::LIVE},
             {"Game", types::LeAudioContextType::GAME},
             {"VoiceAssistants", types::LeAudioContextType::VOICEASSISTANTS},
