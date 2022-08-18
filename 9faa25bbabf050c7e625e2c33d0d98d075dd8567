@@ -106,6 +106,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32ba8772_2aa3057e",
+        "filename": "system/gd/rust/packets/build.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-18T08:47:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d11b4dff_b89211e5",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3b083a7_17bea421",
@@ -123,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93a11b40_4cf602d2",
+        "filename": "tools/rootcanal/lmp/Cargo.toml",
+        "patchSetId": 13
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-18T08:47:57Z",
+      "side": 1,
+      "message": "Done. Should the versions be specific (e.g. \"1.0.1\"), or more broad (e.g. \"1\") though?",
+      "parentUuid": "d3b083a7_17bea421",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1050670_b34e378f",
@@ -136,6 +172,24 @@
       "writtenOn": "2022-08-17T17:01:05Z",
       "side": 1,
       "message": "nit: Swap if blocks so it\u0027s `if exists {} else { generate_packet(); }`",
+      "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1b2ea40_0fe8150a",
+        "filename": "tools/rootcanal/lmp/build.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-18T08:47:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1050670_b34e378f",
       "revId": "9faa25bbabf050c7e625e2c33d0d98d075dd8567",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
