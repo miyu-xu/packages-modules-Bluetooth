@@ -39,6 +39,30 @@
       },
       "revId": "08c97b70dc71d86791272b1302586ad6abc1d22c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83d22eda_32d85131",
+        "filename": "system/stack/btm/btm_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-18T00:06:13Z",
+      "side": 1,
+      "message": "I see. Thank you for the explaination. I moved them mainly to fix the goto which is no longer required. Repolished the declaration to respect the existing convention.",
+      "parentUuid": "1fc341f1_0ef9cf13",
+      "range": {
+        "startLine": 223,
+        "startChar": 2,
+        "endLine": 223,
+        "endChar": 10
+      },
+      "revId": "08c97b70dc71d86791272b1302586ad6abc1d22c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
