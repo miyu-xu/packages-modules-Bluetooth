@@ -22,6 +22,30 @@
       },
       "revId": "c50aba47ea80c20036cebcaf7d58d95754b6e887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "219dc8f9_d3975187",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-18T01:16:33Z",
+      "side": 1,
+      "message": "I agree that we need another set of interface for internal verification and qualification. However, both \"Connectable \u0027\u0027 (page) and \"Discoverable \u0027\u0027 (inquiry) control the scan mode, I thought it\u0027s ok to export connectability in IBluetooth. What do you think?",
+      "parentUuid": "bbec87c8_3e3f57c2",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 54
+      },
+      "revId": "c50aba47ea80c20036cebcaf7d58d95754b6e887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
