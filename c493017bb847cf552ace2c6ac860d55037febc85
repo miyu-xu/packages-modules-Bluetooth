@@ -16,6 +16,24 @@
       "message": "Is there any build test for this in presubmit? We are going to add some new dependencies to liblmp so I am afraid build may be broken.\n2147705: RootCanal: Implement ECDH for BR/EDR | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2147705",
       "revId": "c493017bb847cf552ace2c6ac860d55037febc85",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3da543b3_65150ced",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-18T12:15:15Z",
+      "side": 1,
+      "message": "Also consider cargo2android?",
+      "parentUuid": "40b8db10_f74e961d",
+      "revId": "c493017bb847cf552ace2c6ac860d55037febc85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
