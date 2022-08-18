@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8163e029_72526829",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-18T18:32:31Z",
+      "side": 1,
+      "message": "`FromUuid` instead of just `Uuid`",
+      "range": {
+        "startLine": 115,
+        "startChar": 26,
+        "endLine": 115,
+        "endChar": 30
+      },
+      "revId": "131496b051649ac7f82543a5912d40575fccb9b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ec6e8a0_f3bdfc64",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-18T18:32:31Z",
+      "side": 1,
+      "message": "It\u0027s more an open question, but since `ReadDescriptorRequest` and `ReadAttributeRequest` are similar, should we replace it by a single `ReadAttributeRequest`?",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 1
+      },
+      "revId": "131496b051649ac7f82543a5912d40575fccb9b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
