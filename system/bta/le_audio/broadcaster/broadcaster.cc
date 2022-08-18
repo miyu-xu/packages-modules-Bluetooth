@@ -48,6 +48,7 @@ using le_audio::broadcaster::BroadcastQosConfig;
 using le_audio::broadcaster::BroadcastStateMachine;
 using le_audio::broadcaster::BroadcastStateMachineConfig;
 using le_audio::broadcaster::IBroadcastStateMachineCallbacks;
+using le_audio::types::AudioContexts;
 using le_audio::types::CodecLocation;
 using le_audio::types::kLeAudioCodingFormatLC3;
 using le_audio::types::LeAudioContextType;
@@ -170,18 +171,18 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     return announcement;
   }
 
-  void UpdateStreamingContextTypeOnAllSubgroups(uint16_t context_type_map) {
-    LOG_DEBUG("%s context_type_map=%d", __func__, context_type_map);
+  void UpdateStreamingContextTypeOnAllSubgroups(AudioContexts contexts) {
+    LOG_DEBUG("%s context_type_map=%s", __func__, contexts.to_string().c_str());
 
-    auto ccids = GetAllCcids(context_type_map);
+    auto ccids = GetAllCcids(contexts);
     if (ccids.empty()) {
-      LOG_WARN("%s No content providers available for context_type_map=%d.",
-               __func__, context_type_map);
+      LOG_WARN("%s No content providers available for context_type_map=%s.",
+               __func__, contexts.to_string().c_str());
     }
 
     std::vector<uint8_t> stream_context_vec(2);
     auto pp = stream_context_vec.data();
-    UINT16_TO_STREAM(pp, context_type_map);
+    UINT16_TO_STREAM(pp, contexts.value());
 
     for (auto const& kv_it : broadcasts_) {
       auto& broadcast = kv_it.second;
@@ -264,9 +265,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       return;
     }
 
-    uint16_t context_type =
-        static_cast<std::underlying_type<LeAudioContextType>::type>(
-            LeAudioContextType::MEDIA);
+    auto context_type = AudioContexts(LeAudioContextType::MEDIA);
 
     /* Adds multiple contexts and CCIDs regardless of the incoming audio
      * context. Android has only two CCIDs, one for Media and one for
@@ -276,15 +275,12 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     if (stack_config_get_interface()
             ->get_pts_force_le_audio_multiple_contexts_metadata()) {
       context_type =
-          static_cast<std::underlying_type<LeAudioContextType>::type>(
-              LeAudioContextType::MEDIA) |
-          static_cast<std::underlying_type<LeAudioContextType>::type>(
-              LeAudioContextType::CONVERSATIONAL);
+          LeAudioContextType::MEDIA | LeAudioContextType::CONVERSATIONAL;
       auto stream_context_vec =
           ltv.Find(le_audio::types::kLeAudioMetadataTypeStreamingAudioContext);
       if (stream_context_vec) {
         auto pp = stream_context_vec.value().data();
-        UINT16_TO_STREAM(pp, context_type);
+        UINT16_TO_STREAM(pp, context_type.value());
       }
     }
 
@@ -292,7 +288,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
         ltv.Find(le_audio::types::kLeAudioMetadataTypeStreamingAudioContext);
     if (stream_context_vec) {
       auto pp = stream_context_vec.value().data();
-      STREAM_TO_UINT16(context_type, pp);
+      STREAM_TO_UINT16(context_type.value_ref(), pp);
     }
 
     // Append the CCID list
@@ -324,9 +320,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       return;
     }
 
-    uint16_t context_type =
-        static_cast<std::underlying_type<LeAudioContextType>::type>(
-            LeAudioContextType::MEDIA);
+    auto context_type = AudioContexts(LeAudioContextType::MEDIA);
 
     /* Adds multiple contexts and CCIDs regardless of the incoming audio
      * context. Android has only two CCIDs, one for Media and one for
@@ -336,15 +330,12 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     if (stack_config_get_interface()
             ->get_pts_force_le_audio_multiple_contexts_metadata()) {
       context_type =
-          static_cast<std::underlying_type<LeAudioContextType>::type>(
-              LeAudioContextType::MEDIA) |
-          static_cast<std::underlying_type<LeAudioContextType>::type>(
-              LeAudioContextType::CONVERSATIONAL);
+          LeAudioContextType::MEDIA | LeAudioContextType::CONVERSATIONAL;
       auto stream_context_vec =
           ltv.Find(le_audio::types::kLeAudioMetadataTypeStreamingAudioContext);
       if (stream_context_vec) {
         auto pp = stream_context_vec.value().data();
-        UINT16_TO_STREAM(pp, context_type);
+        UINT16_TO_STREAM(pp, context_type.value());
       }
     }
 
@@ -352,7 +343,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
         ltv.Find(le_audio::types::kLeAudioMetadataTypeStreamingAudioContext);
     if (stream_context_vec) {
       auto pp = stream_context_vec.value().data();
-      STREAM_TO_UINT16(context_type, pp);
+      STREAM_TO_UINT16(context_type.value_ref(), pp);
     }
 
     // Append the CCID list
@@ -739,11 +730,9 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       : public AudioHalClient::LeAudioSourceCallbacks {
    public:
     LeAudioSourceCallbacksImpl()
-        : codec_wrapper_(
-              le_audio::broadcaster::getStreamConfigForContext(
-                  static_cast<std::underlying_type<LeAudioContextType>::type>(
-                      le_audio::types::LeAudioContextType::UNSPECIFIED))
-                  .first) {}
+        : codec_wrapper_(le_audio::broadcaster::getStreamConfigForContext(
+                             AudioContexts(LeAudioContextType::UNSPECIFIED))
+                             .first) {}
 
     void CheckAndReconfigureEncoders() {
       auto const& codec_id = codec_wrapper_.GetLeAudioCodecId();
@@ -883,9 +872,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       /* TODO: Should we take supported contexts from ASCS? */
       auto supported_context_types = le_audio::types::kLeAudioContextAllTypes;
       auto contexts = GetAllowedAudioContextsFromSourceMetadata(
-          source_metadata,
-          static_cast<std::underlying_type<LeAudioContextType>::type>(
-              supported_context_types));
+          source_metadata, supported_context_types);
       if (contexts.any()) {
         /* NOTICE: We probably don't want to change the stream configuration
          * on each metadata change, so just update the context type metadata.
@@ -893,7 +880,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
          * they are all mixed inside a single data stream, we will update
          * the metadata of all BIS subgroups with the same combined context.
          */
-        instance->UpdateStreamingContextTypeOnAllSubgroups(contexts.to_ulong());
+        instance->UpdateStreamingContextTypeOnAllSubgroups(contexts);
       }
     }
 
