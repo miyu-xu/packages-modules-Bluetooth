@@ -45,6 +45,8 @@ android_test_helper_app {
     optimize: {
         enabled: false,
     },
+
+    test_suites: ["device-tests"],
 }
 
 android_test {
