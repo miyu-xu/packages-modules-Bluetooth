@@ -2761,7 +2761,7 @@ TEST_F(UnicastTest, TwoEarbudsStreaming) {
   Mock::VerifyAndClearExpectations(mock_audio_sink_);
 }
 
-TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchSimple) {
+TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchNoReconfigure) {
   uint8_t group_size = 2;
   int group_id = 2;
 
@@ -2806,14 +2806,16 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchSimple) {
   Mock::VerifyAndClearExpectations(mock_unicast_audio_source_);
   SyncOnMainLoop();
 
-  // Do a content switch to ALERTS
+  // Do a content switch to INSTRUCTIONAL
   EXPECT_CALL(*mock_unicast_audio_source_, Release).Times(0);
   EXPECT_CALL(*mock_unicast_audio_source_, Stop).Times(0);
   EXPECT_CALL(*mock_unicast_audio_source_, Start).Times(0);
-  EXPECT_CALL(mock_state_machine_,
-              StartStream(_, le_audio::types::LeAudioContextType::ALERTS, _))
+  EXPECT_CALL(
+      mock_state_machine_,
+      StartStream(_, le_audio::types::LeAudioContextType::INSTRUCTIONAL, _))
       .Times(1);
-  UpdateMetadata(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN);
+  UpdateMetadata(AUDIO_USAGE_ASSISTANCE_NAVIGATION_GUIDANCE,
+                 AUDIO_CONTENT_TYPE_UNKNOWN);
   Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(mock_unicast_audio_source_);
 
@@ -2827,6 +2829,19 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchSimple) {
       StartStream(_, le_audio::types::LeAudioContextType::EMERGENCYALARM, _))
       .Times(1);
   UpdateMetadata(AUDIO_USAGE_EMERGENCY, AUDIO_CONTENT_TYPE_UNKNOWN);
+  Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
+  Mock::VerifyAndClearExpectations(mock_unicast_audio_source_);
+
+  // Do a content switch to ALERTS
+  EXPECT_CALL(*mock_unicast_audio_source_, Release).Times(0);
+  EXPECT_CALL(*mock_unicast_audio_source_, Stop).Times(0);
+  EXPECT_CALL(*mock_unicast_audio_source_, Start).Times(0);
+
+  EXPECT_CALL(mock_state_machine_,
+              StartStream(_, le_audio::types::LeAudioContextType::ALERTS, _))
+      .Times(1);
+  UpdateMetadata(AUDIO_USAGE_ALARM, AUDIO_CONTENT_TYPE_UNKNOWN);
+  Mock::VerifyAndClearExpectations(&mock_client_callbacks_);
   Mock::VerifyAndClearExpectations(mock_unicast_audio_source_);
 }
 
