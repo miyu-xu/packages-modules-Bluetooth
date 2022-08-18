@@ -22,6 +22,30 @@
       },
       "revId": "c41820eaa910445da047f6cd4d2d2356e3815597",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a04a2926_14e1d74b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 889,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-18T06:41:52Z",
+      "side": 1,
+      "message": "it is happening to often. I would keep LOG_DEBUG here",
+      "parentUuid": "c89efc75_29cc65f2",
+      "range": {
+        "startLine": 889,
+        "startChar": 8,
+        "endLine": 889,
+        "endChar": 17
+      },
+      "revId": "c41820eaa910445da047f6cd4d2d2356e3815597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
