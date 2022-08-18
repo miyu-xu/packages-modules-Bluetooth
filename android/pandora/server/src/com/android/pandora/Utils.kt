@@ -27,16 +27,11 @@ import android.content.IntentFilter
 import android.net.MacAddress
 import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withTimeout
-import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostProto.Connection
 
 /**
@@ -110,7 +105,6 @@ fun <T> grpcUnary(
  *
  * @param T the type of profile proxy (e.g. BluetoothA2dp)
  * @param context context
- * @param bluetoothAdapter local Bluetooth adapter
  * @param profile identifier of the Bluetooth profile (e.g. BluetoothProfile#A2DP)
  * @return T the desired profile proxy
  */
@@ -128,6 +122,7 @@ fun <T> getProfileProxy(context: Context, profile: Int): T {
           override fun onServiceConnected(profile: Int, proxy: BluetoothProfile) {
             trySendBlocking(proxy)
           }
+
           override fun onServiceDisconnected(profile: Int) {}
         }
 
