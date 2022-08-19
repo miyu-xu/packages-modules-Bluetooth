@@ -46,6 +46,30 @@
       },
       "revId": "abafa21c64b767a2e7195ad28235598bc8226024",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "33defd5d_abaf00cb",
+        "filename": "system/gd/hci/controller.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-19T22:04:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "1e91a7c8_e33dcae3",
+      "range": {
+        "startLine": 195,
+        "startChar": 31,
+        "endLine": 195,
+        "endChar": 36
+      },
+      "revId": "abafa21c64b767a2e7195ad28235598bc8226024",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
