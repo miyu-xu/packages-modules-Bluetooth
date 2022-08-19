@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c1a14b8_f5716220",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-19T06:48:39Z",
+      "side": 1,
+      "message": "can you please add note, that keys shall be always group here as later in the code it is used?",
+      "revId": "b2340854f4c09ad937eb336c3f5753db94d77a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9370cf6_a2e8f1a5",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-19T06:48:39Z",
+      "side": 1,
+      "message": "didn\u0027t we want to have Media as default ?",
+      "revId": "b2340854f4c09ad937eb336c3f5753db94d77a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
