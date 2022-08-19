@@ -29,6 +29,9 @@ use crate::bluetooth::{Bluetooth, BluetoothDevice, IBluetooth};
 use crate::callbacks::Callbacks;
 use crate::{Message, RPCProxy};
 
+// The timeout we have to wait for all supported profiles to connect after we
+// receive the first profile connected event. In the worst scenario, we'll have
+// 2 * DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC of waiting time.
 const DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC: u64 = 5;
 
 pub trait IBluetoothMedia {
@@ -214,8 +217,23 @@ impl BluetoothMedia {
 
     pub fn dispatch_avrcp_callbacks(&mut self, cb: AvrcpCallbacks) {
         match cb {
-            AvrcpCallbacks::AvrcpAbsoluteVolumeEnabled(supported) => {
+            AvrcpCallbacks::AvrcpAbsoluteVolumeEnabled(supported, addr) => {
+                if self.absolute_volume == supported {
+                    return;
+                }
+
                 self.absolute_volume = supported;
+                if let Some(task) = self.device_added_tasks.lock().unwrap().remove(&addr) {
+                    // There is a device added event waiting for other profile
+                    // (a2dp or hfp) to connect. We need to cancel the pending
+                    // event to update the absolute volume capability.
+                    // This will refresh our worst case waiting time for profile
+                    // connection to 2 * DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC.
+                    if !task.is_none() {
+                        task.unwrap().abort();
+                        self.notify_media_capability_added(addr);
+                    }
+                }
                 self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
                     callback.on_absolute_volume_supported_changed(supported);
                 });

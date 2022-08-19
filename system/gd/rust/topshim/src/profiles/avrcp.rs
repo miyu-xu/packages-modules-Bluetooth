@@ -1,4 +1,4 @@
-use crate::btif::BluetoothInterface;
+use crate::btif::{BluetoothInterface, RawAddress};
 use crate::topstack::get_dispatchers;
 
 use std::sync::{Arc, Mutex};
@@ -6,6 +6,11 @@ use topshim_macros::cb_variant;
 
 #[cxx::bridge(namespace = bluetooth::topshim::rust)]
 pub mod ffi {
+    #[derive(Debug, Copy, Clone)]
+    pub struct RustRawAddress {
+        address: [u8; 6],
+    }
+
     unsafe extern "C++" {
         include!("btav/btav_shim.h");
 
@@ -19,14 +24,26 @@ pub mod ffi {
 
     }
     extern "Rust" {
-        fn avrcp_absolute_volume_enabled(enabled: bool);
+        fn avrcp_absolute_volume_enabled(enabled: bool, addr: RustRawAddress);
         fn avrcp_absolute_volume_update(volume: u8);
+    }
+}
+
+impl From<RawAddress> for ffi::RustRawAddress {
+    fn from(addr: RawAddress) -> Self {
+        ffi::RustRawAddress { address: addr.val }
+    }
+}
+
+impl Into<RawAddress> for ffi::RustRawAddress {
+    fn into(self) -> RawAddress {
+        RawAddress { val: self.address }
     }
 }
 
 #[derive(Debug)]
 pub enum AvrcpCallbacks {
-    AvrcpAbsoluteVolumeEnabled(bool),
+    AvrcpAbsoluteVolumeEnabled(bool, RawAddress),
     AvrcpAbsoluteVolumeUpdate(u8),
 }
 
@@ -39,7 +56,9 @@ type AvrcpCb = Arc<Mutex<AvrcpCallbacksDispatcher>>;
 cb_variant!(
     AvrcpCb,
     avrcp_absolute_volume_enabled -> AvrcpCallbacks::AvrcpAbsoluteVolumeEnabled,
-    bool, {}
+    bool, ffi::RustRawAddress -> RawAddress, {
+        let _1 = _1.into();
+    }
 );
 
 cb_variant!(
