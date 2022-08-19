@@ -65,18 +65,21 @@ class AvrcpMediaInterfaceImpl : public MediaInterface {
 
 class VolumeInterfaceImpl : public VolumeInterface {
  public:
-  void DeviceConnected([[maybe_unused]] const RawAddress& bdaddr) override {
-    rusty::avrcp_absolute_volume_enabled(false);
+  void DeviceConnected(const RawAddress& bt_addr) override {
+    rusty::RustRawAddress addr = rusty::CopyToRustAddress(bt_addr);
+    rusty::avrcp_absolute_volume_enabled(false, addr);
   }
 
-  void DeviceConnected([[maybe_unused]] const RawAddress& bdaddr, VolumeChangedCb cb) override {
+  void DeviceConnected(const RawAddress& bt_addr, VolumeChangedCb cb) override {
+    rusty::RustRawAddress addr = rusty::CopyToRustAddress(bt_addr);
     volumeCb = std::move(cb);
-    rusty::avrcp_absolute_volume_enabled(true);
+    rusty::avrcp_absolute_volume_enabled(true, addr);
   }
 
-  void DeviceDisconnected([[maybe_unused]] const RawAddress& bdaddr) override {
+  void DeviceDisconnected([[maybe_unused]] const RawAddress& bt_addr) override {
+    rusty::RustRawAddress addr = rusty::CopyToRustAddress(bt_addr);
     volumeCb.Reset();
-    rusty::avrcp_absolute_volume_enabled(false);
+    rusty::avrcp_absolute_volume_enabled(false, addr);
   }
 
   // Set TG's (Android, ChromeOS) volume.
@@ -86,7 +89,7 @@ class VolumeInterfaceImpl : public VolumeInterface {
     rusty::avrcp_absolute_volume_update(volume);
   }
 
-  // Set CT's (headsets, speakers) volume.
+  // Set CT's (headsets, speakers) volume
   void SetDeviceVolume(int8_t volume) {
     if (!volumeCb || volume < 0) return;
 

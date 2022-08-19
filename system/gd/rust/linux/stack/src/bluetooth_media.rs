@@ -214,8 +214,15 @@ impl BluetoothMedia {
 
     pub fn dispatch_avrcp_callbacks(&mut self, cb: AvrcpCallbacks) {
         match cb {
-            AvrcpCallbacks::AvrcpAbsoluteVolumeEnabled(supported) => {
+            AvrcpCallbacks::AvrcpAbsoluteVolumeEnabled(supported, addr) => {
                 self.absolute_volume = supported;
+                if let Some(task) = self.device_added_tasks.lock().unwrap().remove(&addr) {
+                    // There is a pending notification. Update it
+                    if !task.is_none() {
+                        task.unwrap().abort();
+                        self.notify_media_capability_added(addr);
+                    }
+                }
                 self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
                     callback.on_absolute_volume_supported_changed(supported);
                 });
