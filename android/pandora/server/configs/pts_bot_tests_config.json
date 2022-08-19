@@ -194,7 +194,9 @@
     "HFP/AG/TCA/BV-01-I",
     "HFP/AG/TCA/BV-02-I",
     "HFP/AG/TCA/BV-03-I",
-    "HFP/AG/TCA/BV-05-I"
+    "HFP/AG/TCA/BV-05-I",
+    "SM/CEN/JW/BI-01-C",
+    "SM/CEN/JW/BI-04-C"
   ],
   "ics": {
     "TSPC_4.0HCI_1a_2": true,
