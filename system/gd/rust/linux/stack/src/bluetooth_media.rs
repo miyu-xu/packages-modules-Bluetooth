@@ -534,6 +534,7 @@ impl IBluetoothMedia for BluetoothMedia {
     fn connect(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(address.clone()) {
             self.a2dp.as_mut().unwrap().connect(addr);
+            self.avrcp.as_mut().unwrap().connect(addr);
             self.hfp.as_mut().unwrap().connect(addr);
         } else {
             warn!("Invalid device string {}", address);
@@ -555,6 +556,7 @@ impl IBluetoothMedia for BluetoothMedia {
     fn disconnect(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(address.clone()) {
             self.a2dp.as_mut().unwrap().disconnect(addr);
+            self.avrcp.as_mut().unwrap().disconnect(addr);
             self.hfp.as_mut().unwrap().disconnect(addr);
         } else {
             warn!("Invalid device string {}", address);

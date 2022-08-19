@@ -20,6 +20,8 @@ pub mod ffi {
 
         fn init(self: Pin<&mut AvrcpIntf>);
         fn cleanup(self: Pin<&mut AvrcpIntf>);
+        fn connect(self: Pin<&mut AvrcpIntf>, bt_addr: RustRawAddress) -> i32;
+        fn disconnect(self: Pin<&mut AvrcpIntf>, bt_addr: RustRawAddress) -> i32;
         fn set_volume(self: Pin<&mut AvrcpIntf>, volume: i8);
 
     }
@@ -90,6 +92,16 @@ impl Avrcp {
             panic!("Tried to set dispatcher for Avrcp callbacks while it already exists");
         }
         self.internal.pin_mut().init();
+        true
+    }
+
+    pub fn connect(&mut self, addr: RawAddress) -> bool {
+        self.internal.pin_mut().connect(addr.into());
+        true
+    }
+
+    pub fn disconnect(&mut self, addr: RawAddress) -> bool {
+        let rc = self.internal.pin_mut().disconnect(addr.into());
         true
     }
 
