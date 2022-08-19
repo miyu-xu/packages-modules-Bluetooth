@@ -16,6 +16,23 @@
       "message": "Hi, please review this CL, thanks!",
       "revId": "7e1b124f703dc458b4cb7e73f112a092b48a578f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fd71a0f_681c32f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-19T16:30:13Z",
+      "side": 1,
+      "message": "LGTM as first round reviewer. \nBut let\u0027s have the owners take a look. ",
+      "revId": "7e1b124f703dc458b4cb7e73f112a092b48a578f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
