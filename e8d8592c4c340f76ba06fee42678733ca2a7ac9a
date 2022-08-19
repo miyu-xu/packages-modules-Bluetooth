@@ -16,6 +16,24 @@
       "message": "Hi Lukasz, thanks for taking care of the patch. Introduced function AddCisToStreamConfiguration() and RemoveCisFromStreamConfiguration() in Patchset#30 state_machine.cc to remove code duplication, please review once, if ok may consider incorporating related changes in state_machine.cc from Patchset#30. Thanks and Regards - Partha Sarathi",
       "revId": "e8d8592c4c340f76ba06fee42678733ca2a7ac9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17d14425_30770254",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 32
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-19T06:58:33Z",
+      "side": 1,
+      "message": "Thanks for pointing it out - this is good idea. \nactually I\u0027m working on another patch which is needed for support offloader case and will use this idea.\n\nbtw. I noticed I missed couple of minor fixes which you did, so I will fix it now.",
+      "parentUuid": "eb53866e_274911dd",
+      "revId": "e8d8592c4c340f76ba06fee42678733ca2a7ac9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
