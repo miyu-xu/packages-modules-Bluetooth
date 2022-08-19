@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11029b6d_e47ace99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-19T22:36:42Z",
+      "side": 1,
+      "message": "I confirm it flaky when the test are run in one-shot",
+      "revId": "24466805d71e5556f29619f03b900a1faab57c81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
