@@ -83,6 +83,7 @@ using bluetooth::groups::DeviceGroups;
 #define BTIF_STORAGE_PATH_REMOTE_DEVCLASS "DevClass"
 #define BTIF_STORAGE_PATH_REMOTE_DEVTYPE "DevType"
 #define BTIF_STORAGE_PATH_REMOTE_NAME "Name"
+#define BTIF_STORAGE_PATH_REMOTE_APPEARANCE "Appearance"
 
 //#define BTIF_STORAGE_PATH_REMOTE_LINKKEYS "remote_linkkeys"
 #define BTIF_STORAGE_PATH_REMOTE_ALIASE "Aliase"
@@ -281,6 +282,10 @@ static int prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
       btif_config_set_int(bdstr, BT_CONFIG_KEY_REMOTE_VER_SUBVER,
                           info->sub_ver);
     } break;
+    case BT_PROPERTY_APPEARANCE:
+      btif_config_set_int(bdstr, BTIF_STORAGE_PATH_REMOTE_APPEARANCE,
+                          *(int*)prop->val);
+      break;
 
     default:
       BTIF_TRACE_ERROR("Unknown prop type:%d", prop->type);
@@ -406,6 +411,12 @@ static int cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
                                     &info->sub_ver);
       }
     } break;
+
+    case BT_PROPERTY_APPEARANCE:
+      if (prop->len >= (int)sizeof(int))
+        ret = btif_config_get_int(bdstr, BTIF_STORAGE_PATH_REMOTE_APPEARANCE,
+                                  (int*)prop->val);
+      break;
 
     default:
       BTIF_TRACE_ERROR("Unknow prop type:%d", prop->type);
@@ -1131,6 +1142,14 @@ bt_status_t btif_storage_load_bonded_devices(void) {
                                    remote_uuids, sizeof(remote_uuids),
                                    remote_properties[num_props]);
       num_props++;
+
+#if TARGET_FLOSS
+      // Floss needs appearance for metrics purposes
+      BTIF_STORAGE_GET_REMOTE_PROP(p_remote_addr, BT_PROPERTY_APPEARANCE,
+                                   remote_uuids, sizeof(remote_uuids),
+                                   remote_properties[num_props]);
+      num_props++;
+#endif
 
       btif_remote_properties_evt(BT_STATUS_SUCCESS, p_remote_addr, num_props,
                                  remote_properties);
