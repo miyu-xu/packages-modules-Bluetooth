@@ -26,6 +26,7 @@ import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Objects;
 
 /**
  * An object to represent an image from the Media Framework
@@ -35,7 +36,6 @@ import java.io.InputStream;
  */
 public class Image {
     private static final String TAG = "Image";
-    private static final boolean DEBUG = false;
 
     public static int SOURCE_NONE = 0;
     public static int SOURCE_URI = 1;
@@ -259,6 +259,11 @@ public class Image {
         final Bitmap bmp = image.getImage();
         if (bmp == null) return (mImage == null);
         return bmp.sameAs(mImage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mImage);
     }
 
     /**

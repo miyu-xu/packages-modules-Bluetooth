@@ -32,6 +32,7 @@ import android.os.ResultReceiver;
 import android.view.KeyEvent;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Provide a mockable interface in order to test classes that use MediaController.
@@ -237,6 +238,11 @@ public class MediaController {
             return mDelegate.equals(other.mDelegate);
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mDelegate, mTransportDelegate, mTransportControls);
     }
 
     /**
