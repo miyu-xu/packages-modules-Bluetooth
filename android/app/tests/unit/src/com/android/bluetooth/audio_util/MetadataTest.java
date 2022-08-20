@@ -245,7 +245,7 @@ public class MetadataTest {
         assertThat(metadata.numTracks).isEqualTo(numTracks);
         assertThat(metadata.genre).isEqualTo(genre);
         assertThat(metadata.duration).isEqualTo(duration);
-        assertThat(metadata.image).isEqualTo(image);
+        assertTrue(Image.sameAs(metadata.image, image));
     }
 
     /**
