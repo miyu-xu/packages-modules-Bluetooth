@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "292160c7_38af5de6",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-20T23:49:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bf5c028e_b6053db5",
+      "range": {
+        "startLine": 488,
+        "startChar": 53,
+        "endLine": 488,
+        "endChar": 64
+      },
+      "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b5d66de3_8cd3091f",
@@ -58,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe30a2a7_f61c961c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-20T23:49:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5d66de3_8cd3091f",
+      "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a29a4d7_7169f04d",
@@ -71,6 +113,30 @@
       "writtenOn": "2022-08-20T23:15:27Z",
       "side": 1,
       "message": "nit `IBluetoothQA`.",
+      "range": {
+        "startLine": 179,
+        "startChar": 10,
+        "endLine": 179,
+        "endChar": 22
+      },
+      "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c60ab50a_878f90c1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-20T23:49:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a29a4d7_7169f04d",
       "range": {
         "startLine": 179,
         "startChar": 10,
