@@ -16,6 +16,69 @@
       "message": "I thought that in today\u0027s meeting, since SetConnectable might not just be used in qualification but useful for testing and perhaps Android, so it can be part of IBluetooth?",
       "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf5c028e_b6053db5",
+        "filename": "system/gd/rust/linux/client/src/dbus_iface.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 488,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-20T23:15:27Z",
+      "side": 1,
+      "message": "nit: `BluetoothQA`",
+      "range": {
+        "startLine": 488,
+        "startChar": 53,
+        "endLine": 488,
+        "endChar": 64
+      },
+      "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5d66de3_8cd3091f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-20T23:15:27Z",
+      "side": 1,
+      "message": "nit: Add the second paragraph in the doc comment: This interface is provided for testing and debugging. Clients should not use this interface for production.",
+      "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a29a4d7_7169f04d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-20T23:15:27Z",
+      "side": 1,
+      "message": "nit `IBluetoothQA`.",
+      "range": {
+        "startLine": 179,
+        "startChar": 10,
+        "endLine": 179,
+        "endChar": 22
+      },
+      "revId": "fb148ca4b3a39a23ddcc517b3063a485d5138fbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
