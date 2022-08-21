@@ -604,7 +604,7 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
   // Send the HID set report reply to the kernel.
   if (p_dev->fd >= 0) {
     uint32_t* set_rpt_id =
-        (uint32_t*)fixed_queue_dequeue(p_dev->set_rpt_id_queue);
+        (uint32_t*)fixed_queue_try_dequeue(p_dev->set_rpt_id_queue);
     if (set_rpt_id) {
       struct uhid_event ev = {};
 
@@ -654,7 +654,7 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status, uint8_t* p_rpt,
   // Send the HID report to the kernel.
   if (p_dev->fd >= 0 && p_dev->get_rpt_snt > 0 && p_dev->get_rpt_snt--) {
     uint32_t* get_rpt_id =
-        (uint32_t*)fixed_queue_dequeue(p_dev->get_rpt_id_queue);
+        (uint32_t*)fixed_queue_try_dequeue(p_dev->get_rpt_id_queue);
     memset(&ev, 0, sizeof(ev));
     ev.type = UHID_FEATURE_ANSWER;
     ev.u.feature_answer.id = *get_rpt_id;
