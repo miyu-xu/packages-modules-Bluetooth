@@ -25,6 +25,7 @@ from mmi2grpc.a2dp import A2DPProxy
 from mmi2grpc.gatt import GATTProxy
 from mmi2grpc.hid import HIDProxy
 from mmi2grpc.hfp import HFPProxy
+from mmi2grpc.hogp import HOGPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
 from mmi2grpc._rootcanal import RootCanal
@@ -61,6 +62,7 @@ class IUT:
         self._sdp = None
         self._sm = None
         self._hid = None
+        self._hogp = None
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
@@ -77,6 +79,7 @@ class IUT:
         self._sdp = None
         self._sm = None
         self._hid = None
+        self._hogp = None
 
     def _retry(self, func):
 
@@ -145,6 +148,11 @@ class IUT:
             if not self._hid:
                 self._hid = HIDProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._hid.interact(test, interaction, description, pts_address)
+        # Handles HOGP MMIs.
+        if profile in ('HOGP'):
+            if not self._hogp:
+                self._hogp = HOGPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._hogp.interact(test, interaction, description, pts_address)
 
         # Handles unsupported profiles.
         code = format_proxy(profile, interaction, description)
