@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e29be5e_e7a82602",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:02:03Z",
+      "side": 1,
+      "message": "nit: Capital letter",
+      "range": {
+        "startLine": 189,
+        "startChar": 5,
+        "endLine": 189,
+        "endChar": 12
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e992ef2_eaaaa43b",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:02:03Z",
+      "side": 1,
+      "message": "nit: Capital letter",
+      "range": {
+        "startLine": 192,
+        "startChar": 7,
+        "endLine": 192,
+        "endChar": 12
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4797fdb7_100098c9",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:02:03Z",
+      "side": 1,
+      "message": "Is the name needed here ?",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 18
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8cd2e11_5ecec9d3",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:02:03Z",
+      "side": 1,
+      "message": "This isn\u0027t an error, Log.i should be enough. And usually we put the function name as content",
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c0a7a85_9538dae1",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:02:03Z",
+      "side": 1,
+      "message": "nit: Log.d",
+      "range": {
+        "startLine": 365,
+        "startChar": 9,
+        "endLine": 365,
+        "endChar": 15
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5a67614_2610c619",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:02:03Z",
+      "side": 1,
+      "message": "nit: \"Device found: $device\"",
+      "range": {
+        "startLine": 365,
+        "startChar": 22,
+        "endLine": 365,
+        "endChar": 40
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50c31842_6ae48e52",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:02:03Z",
+      "side": 1,
+      "message": "Have you run ktfmt ?",
+      "range": {
+        "startLine": 366,
+        "startChar": 10,
+        "endLine": 366,
+        "endChar": 120
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
