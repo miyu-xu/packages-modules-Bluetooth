@@ -27,6 +27,7 @@ from mmi2grpc.gatt import GATTProxy
 from mmi2grpc.hfp import HFPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
+from mmi2grpc._rootcanal import RootCanal
 from mmi2grpc._helpers import format_proxy
 
 from pandora.host_grpc import Host
@@ -65,6 +66,7 @@ class IUT:
         """Resets the IUT when starting a PTS test."""
         # Note: we don't keep a single gRPC channel instance in the IUT class
         # because reset is allowed to close the gRPC server.
+        RootCanal().reconnect_phone()
         with grpc.insecure_channel(f'localhost:{self.port}') as channel:
             self._retry(Host(channel).HardReset)(wait_for_ready=True)
 
