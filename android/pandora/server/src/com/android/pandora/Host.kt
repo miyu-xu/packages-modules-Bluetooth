@@ -19,9 +19,9 @@ package com.android.pandora
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothAssignedNumbers
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC
 import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_RANDOM
+import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
@@ -40,12 +40,11 @@ import com.google.protobuf.ByteString
 import com.google.protobuf.Empty
 import io.grpc.Status
 import io.grpc.stub.StreamObserver
-import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -115,11 +114,11 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
   override fun hardReset(request: Empty, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
-        Log.i(TAG, "hardReset")
+      Log.i(TAG, "hardReset")
 
-        bluetoothAdapter.clearBluetooth()
+      bluetoothAdapter.clearBluetooth()
 
-        rebootBluetooth()
+      rebootBluetooth()
 
       Log.i(TAG, "Shutdown the gRPC Server")
       server.shutdown()
@@ -371,8 +370,13 @@ class Host(private val context: Context, private val server: Server) : HostImplB
           advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
         }
 
-        advertisingDataBuilder.setIncludeDeviceName(request.advertisingData.includeLocalName).setIncludeTxPowerLevel(request.advertisingData.includeTxPowerLevel).addManufacturerData(
-          BluetoothAssignedNumbers.GOOGLE, request.advertisingData.manufacturerSpecificData.toByteArray())
+        advertisingDataBuilder
+          .setIncludeDeviceName(request.advertisingData.includeLocalName)
+          .setIncludeTxPowerLevel(request.advertisingData.includeTxPowerLevel)
+          .addManufacturerData(
+            BluetoothAssignedNumbers.GOOGLE,
+            request.advertisingData.manufacturerSpecificData.toByteArray()
+          )
 
         bluetoothAdapter.bluetoothLeAdvertiser.startAdvertising(
           AdvertiseSettings.Builder()
@@ -392,6 +396,37 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
         continuation.invokeOnCancellation { /* no-op */}
       }
+    }
+  }
+
+  override fun runInquiry(
+    request: RunInquiryRequest,
+    responseObserver: StreamObserver<RunInquiryResponse>
+  ) {
+    grpcServerStream(scope, responseObserver) {
+      launch {
+        try {
+          bluetoothAdapter.startDiscovery()
+          awaitCancellation()
+        } finally {
+          bluetoothAdapter.cancelDiscovery()
+        }
+      }
+      Log.e(TAG, "runInquiry()")
+
+      flow
+        .filter { it.action == BluetoothDevice.ACTION_FOUND }
+        .map {
+          val device = it.getBluetoothDeviceExtra()
+          Log.i(TAG, "Device found: $device")
+          RunInquiryResponse.newBuilder()
+            .addDevice(
+              Device.newBuilder()
+                .setName(device.name)
+                .setAddress(ByteString.copyFrom(device.address.toByteArray()))
+            )
+            .build()
+        }
     }
   }
 }
