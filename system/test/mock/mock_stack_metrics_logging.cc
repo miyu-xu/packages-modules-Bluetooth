@@ -86,7 +86,7 @@ void log_link_layer_connection_event(
       address, connection_handle, direction, link_type, hci_cmd, hci_event,
       hci_ble_event, cmd_status, reason_code);
 }
-void log_smp_pairing_event(const RawAddress& address, uint8_t smp_cmd,
+void log_smp_pairing_event(const RawAddress& address, uint16_t smp_cmd,
                            android::bluetooth::DirectionEnum direction,
                            uint8_t smp_fail_reason) {
   mock_function_count_map[__func__]++;
