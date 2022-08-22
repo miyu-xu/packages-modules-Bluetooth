@@ -1,6 +1,8 @@
 //! This library provides access to the Bluetooth socket. Included are ways to bind to specific
 //! channels (i.e. control / user) and send/receive + encode/decode MGMT commands and events.
 
+pub mod uinput;
+
 use std::mem;
 use std::os::unix::io::{AsRawFd, RawFd};
 
