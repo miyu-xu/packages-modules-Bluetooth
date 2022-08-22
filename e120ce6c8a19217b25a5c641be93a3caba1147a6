@@ -34,6 +34,24 @@
       "parentUuid": "619d5d1a_eadadc98",
       "revId": "e120ce6c8a19217b25a5c641be93a3caba1147a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "658d6d9c_ea691b2f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_rootcanal.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-22T22:23:02Z",
+      "side": 1,
+      "message": "I\u0027ve only copied the relevant parts from that file. What do you mean by \"wrap\"?",
+      "parentUuid": "b896fabd_4cd9886f",
+      "revId": "e120ce6c8a19217b25a5c641be93a3caba1147a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
