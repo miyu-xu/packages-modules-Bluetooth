@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db1cad99_daeaf02b",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-22T17:58:54Z",
+      "side": 1,
+      "message": "Should this be \u0027NO\u0027?",
+      "range": {
+        "startLine": 65,
+        "startChar": 15,
+        "endLine": 65,
+        "endChar": 17
+      },
+      "revId": "453d6074f30cef0317f4a0840411905bb1b62d25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
