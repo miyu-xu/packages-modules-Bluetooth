@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d9f9098_33e0935e",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-08-22T17:18:42Z",
+      "side": 1,
+      "message": "nit: please fix the length",
+      "revId": "b2c0890318e665b805f49e65880a748237a364ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f5e7185_203c4498",
+        "filename": "system/gd/os/host/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-08-22T17:18:42Z",
+      "side": 1,
+      "message": "nit: please fix the length",
+      "revId": "b2c0890318e665b805f49e65880a748237a364ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
