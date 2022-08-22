@@ -17,6 +17,9 @@ service Host {
   // This is comparable to a process restart or an hardware reset.
   // The GRPC server might take some time to be available after
   // this command.
+  rpc Restart(google.protobuf.Empty) returns (google.protobuf.Empty);
+  // Reset the Bluetooth
+  // Factory reset the bluetooth settings and restart the Bluetooth
   rpc Reset(google.protobuf.Empty) returns (google.protobuf.Empty);
   // Read the local Bluetooth device address.
   // This should return the same value as a Read BD_ADDR HCI command.
