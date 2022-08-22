@@ -22,6 +22,30 @@
       },
       "revId": "ce4a59d999c95a1a8822307f90c636bb143c649f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cbc8a63_caf287c8",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapContent.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-22T21:37:44Z",
+      "side": 1,
+      "message": "To keep the value in the code for reference.\nI am assuming all the value are part of a spec and by keeping it in comment, a futur new usage of this value is facilitated.",
+      "parentUuid": "a76eaf32_0a0742f7",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 62
+      },
+      "revId": "ce4a59d999c95a1a8822307f90c636bb143c649f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
