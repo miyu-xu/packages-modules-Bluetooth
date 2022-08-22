@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c89f602_4764e218",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T23:45:05Z",
+      "side": 1,
+      "message": "Could we use a gRPC stream to get found devices instead of a single response?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 65
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e29be5e_e7a82602",
         "filename": "android/pandora/server/proto/pandora/host.proto",
         "patchSetId": 2
