@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f093eecf_e39f88ec",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:59:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cf81a47_21d2b54b",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 10
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "421bb017_7bb9982b",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-22T23:43:47Z",
       "side": 1,
       "message": "nit: Can you also update this into `gRPC`? 😋",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 13
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9727d41_f96729bf",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:59:00Z",
+      "side": 1,
+      "message": "I\u0027ve updated the others in the file as well 👍",
+      "parentUuid": "421bb017_7bb9982b",
       "range": {
         "startLine": 18,
         "startChar": 9,
@@ -83,6 +131,54 @@
       "writtenOn": "2022-08-22T23:43:47Z",
       "side": 1,
       "message": "Should be more explicit: \"Previous bonds must not be removed and the gRPC server must not be restarted.\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 53,
+        "endLine": 21,
+        "endChar": 91
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02b96a20_d94e6c9a",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:59:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fa419a0_dca99c2b",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb7eaa93_d2ba79fe",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:59:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af9ae525_7193a8a5",
       "range": {
         "startLine": 21,
         "startChar": 53,
