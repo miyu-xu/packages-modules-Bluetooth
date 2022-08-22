@@ -22,6 +22,53 @@
       },
       "revId": "acedbc7127f796ccebc186982f0b5dbe2e83a31b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b97cded_8311ae57",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T22:46:02Z",
+      "side": 1,
+      "message": "I don\u0027t think we need to check if a connection exist here. The gRPC server will send us an error if the device is already connected.",
+      "parentUuid": "5e7ce3ad_030ba53a",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "acedbc7127f796ccebc186982f0b5dbe2e83a31b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3995ee78_07b7e545",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T22:46:02Z",
+      "side": 1,
+      "message": "if self.connection is None:\n  self.connection \u003d self.host.GetConnection(address\u003dpts_addr).connection\nself.hfp.DisableSlc...",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 55
+      },
+      "revId": "acedbc7127f796ccebc186982f0b5dbe2e83a31b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
