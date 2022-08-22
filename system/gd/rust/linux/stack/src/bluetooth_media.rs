@@ -190,6 +190,7 @@ impl BluetoothMedia {
                     }
                     BtavConnectionState::Disconnected => {
                         self.a2dp_audio_state.remove(&addr);
+                        self.selectable_caps.remove(&addr);
                         match self.a2dp_states.remove(&addr) {
                             Some(_) => self.notify_media_capability_removed(addr),
                             None => {
