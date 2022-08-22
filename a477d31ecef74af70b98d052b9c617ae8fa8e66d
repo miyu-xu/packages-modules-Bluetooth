@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e76b3317_ecbe16c1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_rootcanal.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T23:59:52Z",
+      "side": 1,
+      "message": "To update based on other CL review 😊 aosp/2192115",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 50
+      },
+      "revId": "a477d31ecef74af70b98d052b9c617ae8fa8e66d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
