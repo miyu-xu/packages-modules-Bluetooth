@@ -25,11 +25,13 @@ import grpc
 from mmi2grpc.a2dp import A2DPProxy
 from mmi2grpc.avrcp import AVRCPProxy
 from mmi2grpc.gatt import GATTProxy
+from mmi2grpc.hid import HIDProxy
 from mmi2grpc.hfp import HFPProxy
 from mmi2grpc.hogp import HOGPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
 from mmi2grpc._helpers import format_proxy
+from mmi2grpc._rootcanal import RootCanal
 
 from pandora.host_grpc import Host
 
@@ -64,11 +66,13 @@ class IUT:
         self._sdp = None
         self._sm = None
         self._hogp = None
+        self._hid = None
 
     def __enter__(self):
         """Resets the IUT when starting a PTS test."""
         # Note: we don't keep a single gRPC channel instance in the IUT class
         # because reset is allowed to close the gRPC server.
+        RootCanal().reconnect_phone()
         with grpc.insecure_channel(f'localhost:{self.port}') as channel:
             self._retry(Host(channel).HardReset)(wait_for_ready=True)
 
@@ -80,6 +84,7 @@ class IUT:
         self._sdp = None
         self._sm = None
         self._hogp = None
+        self._hid = None
 
     def _retry(self, func):
 
@@ -169,6 +174,11 @@ class IUT:
             if not self._hogp:
                 self._hogp = HOGPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._hogp.interact(test, interaction, description, pts_address)
+        # Handles HID MMIs.
+        if profile in ('HID'):
+            if not self._hid:
+                self._hid = HIDProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._hid.interact(test, interaction, description, pts_address)
 
         # Handles unsupported profiles.
         code = format_proxy(profile, interaction, description)
