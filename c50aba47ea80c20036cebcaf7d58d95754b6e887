@@ -70,6 +70,30 @@
       },
       "revId": "c50aba47ea80c20036cebcaf7d58d95754b6e887",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4e667ed_783c58d9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-22T18:53:12Z",
+      "side": 1,
+      "message": "I am worried that the direct interface to set connectability gets \"abused\" since it\u0027s too convenient. Let\u0027s make this as private as possible for now, and if a need arises in the future to make this public, we can expose it but probably we want to change the design a bit so to make it safer, e.g. like `register_connectable_session(\u0026self, callback: ...)` that can also detect client disconnection/crash so that the connectability state doesn\u0027t get stuck.",
+      "parentUuid": "dcb56353_cd556583",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 54
+      },
+      "revId": "c50aba47ea80c20036cebcaf7d58d95754b6e887",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
