@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf81a47_21d2b54b",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T23:43:47Z",
+      "side": 1,
+      "message": "To replace by `Hard reset`.",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 10
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "421bb017_7bb9982b",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T23:43:47Z",
+      "side": 1,
+      "message": "nit: Can you also update this into `gRPC`? 😋",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 13
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa419a0_dca99c2b",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T23:43:47Z",
+      "side": 1,
+      "message": "nit: Soft reset the host instead.",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 24
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af9ae525_7193a8a5",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T23:43:47Z",
+      "side": 1,
+      "message": "Should be more explicit: \"Previous bonds must not be removed and the gRPC server must not be restarted.\"",
+      "range": {
+        "startLine": 21,
+        "startChar": 53,
+        "endLine": 21,
+        "endChar": 91
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
