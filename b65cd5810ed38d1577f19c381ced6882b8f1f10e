@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a0c23d4a_494b0a95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-08-22T17:05:05Z",
+      "side": 1,
+      "message": "There appears to be a breakage of downstream Floss build, per non-blocking presubmit build of Floss. PTAL and consider fixing if it\u0027s relevant.\n\nb/243398199",
+      "revId": "b65cd5810ed38d1577f19c381ced6882b8f1f10e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a135df8a_53532a2e",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 10
