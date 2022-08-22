@@ -42,6 +42,7 @@ import kotlin.Result.Companion.success
 import kotlin.coroutines.suspendCoroutine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -77,6 +78,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     intentFilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED)
     intentFilter.addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
+    intentFilter.addAction(BluetoothDevice.ACTION_FOUND)
 
     // Creates a shared flow of intents that can be used in all methods in the coroutine scope.
     // This flow is started eagerly to make sure that the broadcast receiver is registered before
@@ -404,5 +406,134 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothDevice = flow.first()
     }
     return bluetoothDevice
+  }
+
+  override fun startAdvertising(
+    request: StartAdvertisingRequest,
+    responseObserver: StreamObserver<StartAdvertisingResponse>
+  ) {
+    grpcUnary(scope, responseObserver) {
+      suspendCancellableCoroutine { continuation ->
+        val (_, callback) =
+          advertisers.registerWithHandle { handle ->
+            object : AdvertiseCallback() {
+              override fun onStartSuccess(settingsInEffect: AdvertiseSettings) {
+                continuation.resume(
+                  StartAdvertisingResponse.newBuilder()
+                    .setHandle(
+                      AdvertisingHandle.newBuilder()
+                        .setCookie(ByteString.copyFromUtf8(handle.toString()))
+                    )
+                    .build()
+                ) {}
+              }
+              override fun onStartFailure(errorCode: Int) {
+                error("failed to start advertising")
+              }
+            }
+          }
+
+        val advertisingDataBuilder = AdvertiseData.Builder()
+
+        for (service_uuid in request.advertisingData.serviceUuidsList) {
+          advertisingDataBuilder.addServiceUuid(ParcelUuid.fromString(service_uuid))
+        }
+
+        advertisingDataBuilder
+          .setIncludeDeviceName(request.advertisingData.includeLocalName)
+          .setIncludeTxPowerLevel(request.advertisingData.includeTxPowerLevel)
+          .addManufacturerData(
+            BluetoothAssignedNumbers.GOOGLE,
+            request.advertisingData.manufacturerSpecificData.toByteArray()
+          )
+
+        bluetoothAdapter.bluetoothLeAdvertiser.startAdvertising(
+          AdvertiseSettings.Builder()
+            .setConnectable(request.connectable)
+            .setOwnAddressType(
+              when (request.ownAddressType!!) {
+                AddressType.PUBLIC -> ADDRESS_TYPE_PUBLIC
+                AddressType.RANDOM -> ADDRESS_TYPE_RANDOM
+                AddressType.UNRECOGNIZED ->
+                  error("unrecognized address type ${request.ownAddressType}")
+              }
+            )
+            .build(),
+          advertisingDataBuilder.build(),
+          callback,
+        )
+
+        continuation.invokeOnCancellation { /* no-op */}
+      }
+    }
+  }
+
+  override fun runInquiry(
+    request: RunInquiryRequest,
+    responseObserver: StreamObserver<RunInquiryResponse>
+  ) {
+    Log.d(TAG, "runInquiry")
+    grpcServerStream(scope, responseObserver) {
+      launch {
+        try {
+          bluetoothAdapter.startDiscovery()
+          awaitCancellation()
+        } finally {
+          bluetoothAdapter.cancelDiscovery()
+        }
+      }
+      flow
+        .filter { it.action == BluetoothDevice.ACTION_FOUND }
+        .map {
+          val device = it.getBluetoothDeviceExtra()
+          Log.i(TAG, "Device found: $device")
+          RunInquiryResponse.newBuilder()
+            .addDevice(
+              Device.newBuilder()
+                .setName(device.name)
+                .setAddress(
+                  ByteString.copyFrom(MacAddress.fromString(device.address).toByteArray())
+                )
+            )
+            .build()
+        }
+    }
+  }
+
+  override fun runDiscovery(
+    request: RunDiscoveryRequest,
+    responseObserver: StreamObserver<RunDiscoveryResponse>
+  ) {
+    Log.d(TAG, "runDiscovery")
+    grpcServerStream(scope, responseObserver) {
+      callbackFlow {
+        val callback =
+          object : ScanCallback() {
+            override fun onScanResult(callbackType: Int, result: ScanResult) {
+              sendBlocking(
+                RunDiscoveryResponse.newBuilder()
+                  .setDevice(
+                    Device.newBuilder()
+                      .setAddress(
+                        ByteString.copyFrom(
+                          MacAddress.fromString(result.device.address).toByteArray()
+                        )
+                      )
+                      .setName(result.device.name ?: "")
+                  )
+                  .setFlags(result.scanRecord?.advertiseFlags ?: 0)
+                  .build()
+              )
+            }
+
+            override fun onScanFailed(errorCode: Int) {
+              error("scan failed")
+            }
+          }
+        bluetoothAdapter.bluetoothLeScanner.startScan(callback)
+
+        awaitClose { bluetoothAdapter.bluetoothLeScanner.stopScan(callback) }
+      }
+    }
   }
 }
