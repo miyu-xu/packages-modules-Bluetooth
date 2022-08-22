@@ -16,7 +16,6 @@
 
 package com.android.pandora
 
-import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
@@ -25,38 +24,33 @@ import android.content.IntentFilter
 import android.util.Log
 
 import com.google.protobuf.Empty
-import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
-import kotlinx.coroutines.launch
 
 import pandora.SMGrpc.SMImplBase
 import pandora.HostProto.*
 import pandora.SmProto.*
 
-@kotlinx.coroutines.ExperimentalCoroutinesApi
-class Sm(private val context: Context) : SMImplBase() {
-  private val TAG = "PandoraSm"
+const val TAG = "PandoraSm"
 
-  private val scope: CoroutineScope
+@kotlinx.coroutines.ExperimentalCoroutinesApi
+class Sm(context: Context) : SMImplBase() {
+
+  private val scope: CoroutineScope = CoroutineScope(Dispatchers.Default)
   private val flow: Flow<Intent>
 
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
 
   init {
-    scope = CoroutineScope(Dispatchers.Default)
-
     val intentFilter = IntentFilter()
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
 
@@ -68,9 +62,9 @@ class Sm(private val context: Context) : SMImplBase() {
   }
 
   override fun pair(request: PairRequest, responseObserver: StreamObserver<Empty>) {
-    grpcUnary<Empty>(scope, responseObserver) {
+    grpcUnary(scope, responseObserver) {
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
-      Log.i(TAG, "pair: ${bluetoothDevice.getAddress()}")
+      Log.i(TAG, "pair: ${bluetoothDevice.address}")
       bluetoothDevice.createBond()
       Empty.getDefaultInstance()
     }
@@ -80,15 +74,21 @@ class Sm(private val context: Context) : SMImplBase() {
       request: PairingConfirmationRequest,
       responseObserver: StreamObserver<Empty>
   ) {
-    grpcUnary<Empty>(scope, responseObserver) {
+    grpcUnary(scope, responseObserver) {
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
-      Log.i(TAG, "Confirm pairing for: address=${bluetoothDevice.getAddress()}")
+      Log.i(TAG, "Confirm pairing for: address=${bluetoothDevice.address}")
       flow
-        .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
+        .filter { it.action == BluetoothDevice.ACTION_PAIRING_REQUEST }
         .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
         .first()
       bluetoothDevice.setPairingConfirmation(request.pairingConfirmationValue)
       Empty.getDefaultInstance()
     }
+  }
+
+  override fun onPairing(
+    request: StreamObserver<PairingEvent> responseObserver
+  ) {
+    grp
   }
 }

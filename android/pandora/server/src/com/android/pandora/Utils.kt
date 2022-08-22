@@ -38,6 +38,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostProto.Connection
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Creates a cold flow of intents based on an intent filter. If used multiple times in a same class,
@@ -91,6 +92,75 @@ fun <T> grpcUnary(
   timeout: Long = 60,
   block: suspend () -> T
 ): Job {
+  return scope.launch {
+    try {
+      withTimeout(timeout * 1000) {
+        val response = block()
+        responseObserver.onNext(response)
+        responseObserver.onCompleted()
+      }
+    } catch (e: Throwable) {
+      e.printStackTrace()
+      responseObserver.onError(e)
+    }
+  }
+}
+
+/**
+ * Creates a gRPC coroutine in a given coroutine scope which executes a given suspended function
+ * returning a gRPC response and sends it on a given gRPC stream observer.
+ *
+ * @param T the type of gRPC response.
+ * @param scope coroutine scope used to run the coroutine.
+ * @param responseObserver the gRPC stream observer on which to send the response.
+ * @param timeout the duration in seconds after which the coroutine is automatically cancelled and
+ * returns a timeout error. Default: 60s.
+ * @param block the suspended function to execute to get the response.
+ * @return reference to the coroutine as a Job.
+ *
+ * Example usage:
+ * ```
+ * override fun grpcMethod(
+ *   request: TypeOfRequest,
+ *   responseObserver: StreamObserver<TypeOfResponse> {
+ *     grpcUnary(scope, responseObserver) {
+ *       block
+ *     }
+ *   }
+ * }
+ * ```
+ */
+@kotlinx.coroutines.ExperimentalCoroutinesApi
+fun <T, U> grpcBidirectionalStream(
+  scope: CoroutineScope,
+  responseObserver: StreamObserver<T>,
+  timeout: Long = 60,
+  block: (Flow<T>) -> Flow<U>
+): StreamObserver<U> {
+  scope.launch {
+    try {
+      val response = block()
+      responseObserver.onNext(response)
+      responseObserver.onCompleted()
+    } catch (e: Throwable) {
+      e.printStackTrace()
+      responseObserver.onError(e)
+    }
+  }
+  
+  object : StreamObserver<T> {
+    onNext(req: T) {
+
+    }
+
+    override fun onCompleted() {
+      TODO("Not yet implemented")
+    }
+
+    override fun onError(p0: Throwable?) {
+      TODO("Not yet implemented")
+    }
+  }
   return scope.launch {
     try {
       withTimeout(timeout * 1000) {
