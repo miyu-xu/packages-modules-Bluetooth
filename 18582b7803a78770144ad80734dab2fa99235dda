@@ -91,6 +91,29 @@
       },
       "revId": "18582b7803a78770144ad80734dab2fa99235dda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70cc60ca_3632bd2e",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1929170
+      },
+      "writtenOn": "2022-08-22T23:50:08Z",
+      "side": 1,
+      "message": "Do we need the delay? \n`stateFlow.filter { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first()` should wait until the state changes to off right?",
+      "range": {
+        "startLine": 97,
+        "startChar": 10,
+        "endLine": 97,
+        "endChar": 15
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
