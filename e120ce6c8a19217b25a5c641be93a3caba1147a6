@@ -70,6 +70,24 @@
       "parentUuid": "658d6d9c_ea691b2f",
       "revId": "e120ce6c8a19217b25a5c641be93a3caba1147a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c9d67e1_4d142f7f",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_rootcanal.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-22T23:20:49Z",
+      "side": 1,
+      "message": "Awesome, then I\u0027ll just remove the \"DO NOT SUBMIT\" but keep the note about where it\u0027s copied from. Thanks!",
+      "parentUuid": "53f18dc0_6242f126",
+      "revId": "e120ce6c8a19217b25a5c641be93a3caba1147a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
