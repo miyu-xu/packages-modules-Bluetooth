@@ -34,6 +34,24 @@
       "parentUuid": "b9066827_acf4d795",
       "revId": "458dca9bccd42998eb328e2b269b3334112c9f8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5e79b5f_02cbcfa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-22T23:24:49Z",
+      "side": 1,
+      "message": "For example `TP/HCE/BV-04-I` (aka `HID/HOS/HCE/BV-04-I`) is \"Host initiated reconnection\"",
+      "parentUuid": "498a5adb_41e6a641",
+      "revId": "458dca9bccd42998eb328e2b269b3334112c9f8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
