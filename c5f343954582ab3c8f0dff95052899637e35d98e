@@ -89,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3df60014_59da83b3",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-22T23:23:39Z",
+      "side": 1,
+      "message": "thanks - completely forgot about cleaning up the log statements after debugging 😂",
+      "parentUuid": "f8cd2e11_5ecec9d3",
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c0a7a85_9538dae1",
         "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
         "patchSetId": 2
@@ -146,6 +164,30 @@
       "writtenOn": "2022-08-22T23:02:03Z",
       "side": 1,
       "message": "Have you run ktfmt ?",
+      "range": {
+        "startLine": 366,
+        "startChar": 10,
+        "endLine": 366,
+        "endChar": 120
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d8cd807_f5a0dfdc",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-22T23:23:39Z",
+      "side": 1,
+      "message": "will do - I normally just run whatever the commit hook asks me to, but I guess ktfmt isn\u0027t there yet?",
+      "parentUuid": "50c31842_6ae48e52",
       "range": {
         "startLine": 366,
         "startChar": 10,
