@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "301d0342_a8224ab2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-22T15:22:00Z",
+      "side": 1,
+      "message": "com.android.bluetooth.le_audio.LeAudioServiceTest\n\nSome Java unit tests are failing",
+      "revId": "b4eb218394f1c44e97013bebf012ba53082d224e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
