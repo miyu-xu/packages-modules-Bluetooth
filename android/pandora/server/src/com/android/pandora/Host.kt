@@ -362,4 +362,41 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
     return bluetoothDevice
   }
+
+
+  override fun runInquiry(
+    request: RunInquiryRequest,
+    responseObserver: StreamObserver<RunInquiryResponse>
+  ) {
+    grpcUnary<RunInquiryResponse>(scope, responseObserver) {
+      bluetoothAdapter.startDiscovery()
+      Log.e(TAG, "we want to find a device!");
+
+      val collector = flow
+        .filter { it.action == BluetoothDevice.ACTION_FOUND }
+        .map {
+          val device = it.getBluetoothDeviceExtra()
+          Log.e(TAG, "we found a device! $device");
+          Device.newBuilder().setName(device.name).setAddress(ByteString.copyFrom(device.address.toByteArray())).build()
+         }
+
+      val responseBuilder = RunInquiryResponse.newBuilder();
+
+      withTimeoutOrNull(request.timeoutSeconds * 1000L) {
+        when (request.stopConditionCase!!) {
+          RunInquiryRequest.StopConditionCase.ADDRESS -> {
+            collector.transformWhile {
+              emit(it)
+              !it.address.toByteArray().contentEquals(request.address.toByteArray())
+            }
+          }
+          RunInquiryRequest.StopConditionCase.STOPCONDITION_NOT_SET -> collector
+        }.collect { responseBuilder.addDevice(it) }
+      }
+
+      bluetoothAdapter.cancelDiscovery();
+
+      responseBuilder.build()
+    }
+  }
 }
