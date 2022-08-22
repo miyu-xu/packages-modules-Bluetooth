@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "511d7d64_d7e0ace6",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-08-22T04:05:46Z",
+      "side": 1,
+      "message": "Presubmit failed because this function is unused outside floss. Should I enclose it within \"#if TARGET_FLOSS\"?",
+      "revId": "7e1b124f703dc458b4cb7e73f112a092b48a578f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1d0ccd6c_9f263bf8",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 1
