@@ -558,9 +558,13 @@ void handle_rc_ctrl_features(btif_rc_device_cb_t* p_dev) {
     rc_features |= BTRC_FEAT_COVER_ARTWORK;
   }
 
-  BTIF_TRACE_DEBUG("%s: Update rc features to CTRL: %d", __func__, rc_features);
-  do_in_jni_thread(FROM_HERE, base::Bind(bt_rc_ctrl_callbacks->getrcfeatures_cb,
-                                         p_dev->rc_addr, rc_features));
+  if (bt_rc_ctrl_callbacks != NULL) {
+    BTIF_TRACE_DEBUG("%s: Update rc features to CTRL: %d", __func__,
+                     rc_features);
+    do_in_jni_thread(FROM_HERE,
+                     base::Bind(bt_rc_ctrl_callbacks->getrcfeatures_cb,
+                                p_dev->rc_addr, rc_features));
+  }
 }
 
 void handle_rc_ctrl_psm(btif_rc_device_cb_t* p_dev) {
@@ -734,12 +738,12 @@ void handle_rc_connect(tBTA_AV_RC_OPEN* p_rc_open) {
     do_in_jni_thread(FROM_HERE,
                      base::Bind(bt_rc_ctrl_callbacks->connection_state_cb, true,
                                 false, p_dev->rc_addr));
-  }
-  /* report connection state if remote device is AVRCP target */
-  handle_rc_ctrl_features(p_dev);
+    /* report connection state if remote device is AVRCP target */
+    handle_rc_ctrl_features(p_dev);
 
-  /* report psm if remote device is AVRCP target */
-  handle_rc_ctrl_psm(p_dev);
+    /* report psm if remote device is AVRCP target */
+    handle_rc_ctrl_psm(p_dev);
+  }
 }
 
 /***************************************************************************
