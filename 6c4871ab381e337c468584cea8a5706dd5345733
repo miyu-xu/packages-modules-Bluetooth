@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c3e101a1_5a3db817",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-22T15:20:25Z",
+      "side": 1,
+      "message": "Xiaoyang, could you help resolve the comments from Jakub? ",
+      "revId": "6c4871ab381e337c468584cea8a5706dd5345733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f212c0b_b0a4c1d5",
         "filename": "android/app/src/com/android/bluetooth/bass_client/BassConstants.java",
         "patchSetId": 2
