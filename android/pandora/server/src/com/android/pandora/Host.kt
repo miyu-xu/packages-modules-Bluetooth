@@ -46,6 +46,7 @@ import kotlin.Result.Companion.success
 import kotlin.coroutines.suspendCoroutine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.awaitCancellation
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -469,6 +470,37 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
         continuation.invokeOnCancellation { /* no-op */}
       }
+    }
+  }
+
+  override fun runInquiry(
+    request: RunInquiryRequest,
+    responseObserver: StreamObserver<RunInquiryResponse>
+  ) {
+    grpcServerStream(scope, responseObserver) {
+      launch {
+        try {
+          bluetoothAdapter.startDiscovery()
+          awaitCancellation()
+        } finally {
+          bluetoothAdapter.cancelDiscovery()
+        }
+      }
+      Log.e(TAG, "runInquiry()")
+
+      flow
+        .filter { it.action == BluetoothDevice.ACTION_FOUND }
+        .map {
+          val device = it.getBluetoothDeviceExtra()
+          Log.i(TAG, "Device found: $device")
+          RunInquiryResponse.newBuilder()
+            .addDevice(
+              Device.newBuilder()
+                .setName(device.name)
+                .setAddress(ByteString.copyFrom(device.address.toByteArray()))
+            )
+            .build()
+        }
     }
   }
 }
