@@ -181,6 +181,11 @@ uint16_t AclConnectionHandler::GetHandleOnlyAddress(
   return kReservedHandle;
 }
 
+bool AclConnectionHandler::HasHandleOnlyAddress(
+    bluetooth::hci::Address addr) const {
+  return GetHandleOnlyAddress(addr) != kReservedHandle;
+}
+
 AddressWithType AclConnectionHandler::GetAddress(uint16_t handle) const {
   ASSERT_LOG(HasHandle(handle), "Unknown handle %hd", handle);
   return acl_connections_.at(handle).GetAddress();
@@ -221,6 +226,24 @@ Phy::Type AclConnectionHandler::GetPhyType(uint16_t handle) const {
     return Phy::Type::BR_EDR;
   }
   return acl_connections_.at(handle).GetPhyType();
+}
+
+uint16_t AclConnectionHandler::GetAclLinkPolicySettings(uint16_t handle) const {
+  return acl_connections_.at(handle).GetLinkPolicySettings();
+};
+
+void AclConnectionHandler::SetAclLinkPolicySettings(uint16_t handle,
+                                                    uint16_t settings) {
+  acl_connections_.at(handle).SetLinkPolicySettings(settings);
+}
+
+bluetooth::hci::Role AclConnectionHandler::GetAclRole(uint16_t handle) const {
+  return acl_connections_.at(handle).GetRole();
+};
+
+void AclConnectionHandler::SetAclRole(uint16_t handle,
+                                      bluetooth::hci::Role role) {
+  acl_connections_.at(handle).SetRole(role);
 }
 
 std::unique_ptr<bluetooth::hci::LeSetCigParametersCompleteBuilder>
