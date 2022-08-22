@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "577bfd56_b944fbca",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T22:14:11Z",
+      "side": 1,
+      "message": "If we\u0027re doing a factory reset, then it\u0027s comparable to restart (the only difference being the gRPC server restart). Maybe we should call it indeed `SoftReset` and use `HardReset` for the first method.",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 41
+      },
+      "revId": "b1d2454b728d2885caf12e62becd6d0753ac945d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8440cf58_0095c49a",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T22:14:11Z",
+      "side": 1,
+      "message": "To update.",
+      "range": {
+        "startLine": 105,
+        "startChar": 18,
+        "endLine": 105,
+        "endChar": 23
+      },
+      "revId": "b1d2454b728d2885caf12e62becd6d0753ac945d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "934cf7cb_36f3f5aa",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T22:14:11Z",
+      "side": 1,
+      "message": "To update.",
+      "range": {
+        "startLine": 120,
+        "startChar": 18,
+        "endLine": 120,
+        "endChar": 32
+      },
+      "revId": "b1d2454b728d2885caf12e62becd6d0753ac945d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d7a979_84dc97fe",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T22:14:11Z",
+      "side": 1,
+      "message": "To remove, here, let\u0027s just keep it in the `restart` command.",
+      "range": {
+        "startLine": 124,
+        "startChar": 6,
+        "endLine": 124,
+        "endChar": 49
+      },
+      "revId": "b1d2454b728d2885caf12e62becd6d0753ac945d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

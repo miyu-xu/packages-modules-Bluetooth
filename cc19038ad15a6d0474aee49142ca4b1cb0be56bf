@@ -140,6 +140,30 @@
       },
       "revId": "cc19038ad15a6d0474aee49142ca4b1cb0be56bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65b23111_0cf4bc30",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-22T22:14:11Z",
+      "side": 1,
+      "message": "HCI Reset is by default a soft reset of the Controller, it does not mean that it requires a hard reset, but `clearBluetooth` seems to remove all bonded devices as well.",
+      "parentUuid": "03c3aab3_49f88509",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 64
+      },
+      "revId": "cc19038ad15a6d0474aee49142ca4b1cb0be56bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
