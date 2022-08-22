@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9066827_acf4d795",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-22T23:05:18Z",
+      "side": 1,
+      "message": "I am just wondering for which usecase (test) will we need to perform this ?",
+      "revId": "458dca9bccd42998eb328e2b269b3334112c9f8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
