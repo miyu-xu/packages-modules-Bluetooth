@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7f52be1_dd2b84d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-22T08:39:24Z",
+      "side": 1,
+      "message": "Could you please check it with the unencrypted broadcast and PTS related test case as well.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "163cea2c390de00ce5e243acbdfae233f55a9015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
