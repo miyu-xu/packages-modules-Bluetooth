@@ -35,6 +35,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "34ed2bcb_c31e53f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-22T17:05:06Z",
+      "side": 1,
+      "message": "Please rebase and build against floss -- this currently doesn\u0027t compile:\n\nb/243398199:\n\n```\n../../../staging/bt/system/btif/src/btif_dm.cc:1324:26: error: no member named \u0027num_eir_uuids\u0027 in \u0027btif_dm_pairing_cb_t\u0027\n              pairing_cb.num_eir_uuids * Uuid::kNumBytes128,\n              ~~~~~~~~~~ ^\n---- 8\u003c ---- 8\u003c ---- 8\u003c ---- 8\u003c ---- 8\u003c ---- 8\u003c ---- 8\u003c ---- 8\u003c ----\n../../../staging/bt/system/btif/src/btif_dm.cc:1325:26: error: no member named \u0027eir_uuids\u0027 in \u0027btif_dm_pairing_cb_t\u0027\n              pairing_cb.eir_uuids);\n```",
+      "revId": "b65cd5810ed38d1577f19c381ced6882b8f1f10e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a135df8a_53532a2e",
