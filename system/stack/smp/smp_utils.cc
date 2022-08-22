@@ -314,22 +314,25 @@ static tSMP_ASSO_MODEL smp_select_association_model_secure_connections(
  * @param buf_len length available to read for p_buf
  */
 void smp_log_metrics(const RawAddress& bd_addr, bool is_outgoing,
-                     const uint8_t* p_buf, size_t buf_len) {
+                     const uint8_t* p_buf, size_t buf_len, bool is_over_br) {
   if (buf_len < 1) {
     LOG(WARNING) << __func__ << ": buffer is too small, size is " << buf_len;
     return;
   }
-  uint8_t cmd;
-  STREAM_TO_UINT8(cmd, p_buf);
+  uint8_t raw_cmd;
+  STREAM_TO_UINT8(raw_cmd, p_buf);
   buf_len--;
   uint8_t failure_reason = 0;
-  if (cmd == SMP_OPCODE_PAIRING_FAILED && buf_len >= 1) {
+  if (raw_cmd == SMP_OPCODE_PAIRING_FAILED && buf_len >= 1) {
     STREAM_TO_UINT8(failure_reason, p_buf);
   }
+  uint16_t metric_cmd =
+      is_over_br ? SMP_METRIC_COMMAND_BR_MASK : SMP_METRIC_COMMAND_LE_MASK;
+  metric_cmd |= static_cast<uint16_t>(raw_cmd);
   android::bluetooth::DirectionEnum direction =
       is_outgoing ? android::bluetooth::DirectionEnum::DIRECTION_OUTGOING
                   : android::bluetooth::DirectionEnum::DIRECTION_INCOMING;
-  log_smp_pairing_event(bd_addr, cmd, direction, failure_reason);
+  log_smp_pairing_event(bd_addr, metric_cmd, direction, failure_reason);
 }
 
 /*******************************************************************************
@@ -350,7 +353,8 @@ bool smp_send_msg_to_L2CAP(const RawAddress& rem_bda, BT_HDR* p_toL2CAP) {
   SMP_TRACE_EVENT("%s", __func__);
 
   smp_log_metrics(rem_bda, true /* outgoing */,
-                  p_toL2CAP->data + p_toL2CAP->offset, p_toL2CAP->len);
+                  p_toL2CAP->data + p_toL2CAP->offset, p_toL2CAP->len,
+                  smp_cb.smp_over_br /* is_over_br */);
 
   l2cap_ret = L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_toL2CAP);
   if (l2cap_ret == L2CAP_DW_FAILED) {
@@ -976,6 +980,16 @@ void smp_proc_pairing_cmpl(tSMP_CB* p_cb) {
         kBtmLogTag, pairing_bda, "Pairing failed",
         base::StringPrintf("reason:%s",
                            smp_status_text(evt_data.cmplt.reason).c_str()));
+  }
+
+  // Log pairing complete event
+  {
+    auto direction = android::bluetooth::DirectionEnum::DIRECTION_UNKNOWN;
+    uint16_t metric_cmd = p_cb->smp_over_br
+                              ? SMP_METRIC_COMMAND_BR_PAIRING_CMPL
+                              : SMP_METRIC_COMMAND_LE_PAIRING_CMPL;
+    log_smp_pairing_event(p_cb->pairing_bda, metric_cmd, direction,
+                          p_cb->status);
   }
 
   smp_reset_control_value(p_cb);
