@@ -36,5 +36,6 @@
         <option name="profile" value="SM/CEN/JW" />
         <option name="profile" value="SM/CEN/KDU" />
         <option name="profile" value="HOGP/RH" />
+        <option name="profile" value="HID/HOS" />
     </test>
 </configuration>
