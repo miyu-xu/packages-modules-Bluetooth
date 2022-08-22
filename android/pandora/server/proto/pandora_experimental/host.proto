@@ -46,6 +46,8 @@ service Host {
   rpc StartPeriodicAdvertising(StartPeriodicAdvertisingRequest) returns (StartPeriodicAdvertisingResponse);
   // Remove an advertising set.
   rpc StopAdvertising(StopAdvertisingRequest) returns (StopAdvertisingResponse);
+  // Run BR/EDR inquiry and returns each device found
+  rpc RunInquiry(RunInquiryRequest) returns (stream RunInquiryResponse);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -205,3 +207,15 @@ message StopAdvertisingRequest {
 }
 
 message StopAdvertisingResponse {}
+
+message RunInquiryRequest {
+}
+
+message RunInquiryResponse {
+  repeated Device device = 1;
+}
+
+message Device {
+  string name = 1;
+  bytes address = 2;
+}
