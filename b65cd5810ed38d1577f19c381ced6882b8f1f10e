@@ -16,6 +16,29 @@
       "message": "b/243380633",
       "revId": "b65cd5810ed38d1577f19c381ced6882b8f1f10e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a135df8a_53532a2e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1474,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2022-08-22T15:01:16Z",
+      "side": 1,
+      "message": "Should be inside `if (uuids_iter !\u003d eir_uuids_cache.end()) {}` to avoid null-erase?",
+      "range": {
+        "startLine": 1474,
+        "startChar": 10,
+        "endLine": 1474,
+        "endChar": 44
+      },
+      "revId": "b65cd5810ed38d1577f19c381ced6882b8f1f10e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
