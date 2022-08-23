@@ -27,6 +27,7 @@ use tokio::time::{sleep, Duration};
 
 use crate::bluetooth::{Bluetooth, BluetoothDevice, IBluetooth};
 use crate::callbacks::Callbacks;
+use crate::uuid;
 use crate::{Message, RPCProxy};
 
 const DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC: u64 = 5;
@@ -185,7 +186,6 @@ impl BluetoothMedia {
                 match state {
                     BtavConnectionState::Connected => {
                         info!("[{}]: a2dp connected.", addr.to_string());
-                        self.notify_media_capability_added(addr);
                         self.a2dp_states.insert(addr, state);
                     }
                     BtavConnectionState::Disconnected => {
@@ -208,6 +208,7 @@ impl BluetoothMedia {
             }
             A2dpCallbacks::AudioConfig(addr, _config, _local_caps, selectable_caps) => {
                 self.selectable_caps.insert(addr, selectable_caps);
+                self.notify_media_capability_added(addr);
             }
             A2dpCallbacks::MandatoryCodecPreferred(_addr) => {}
         }
@@ -324,7 +325,7 @@ impl BluetoothMedia {
         self.callbacks.lock().unwrap().remove_callback(id)
     }
 
-    fn notify_media_capability_added(&self, addr: RawAddress) {
+    fn notify_media_capability_added(&mut self, addr: RawAddress) {
         // Return true if the device added message is sent by the call.
         fn dedup_added_cb(
             device_added_tasks: Arc<Mutex<HashMap<RawAddress, Option<JoinHandle<()>>>>>,
@@ -372,52 +373,49 @@ impl BluetoothMedia {
         }
 
         let cur_a2dp_caps = self.selectable_caps.get(&addr);
-        let cur_hfp_cap = self.hfp_caps.get(&addr);
+        let cur_hfp_caps = self.hfp_caps.get(&addr);
         let name = self.adapter_get_remote_name(addr);
         let absolute_volume = self.absolute_volume;
-        match (cur_a2dp_caps, cur_hfp_cap) {
-            (None, None) => warn!(
-                "[{}]: Try to add a device without a2dp and hfp capability.",
-                addr.to_string()
-            ),
-            (Some(caps), Some(hfp_cap)) => {
-                dedup_added_cb(
-                    self.device_added_tasks.clone(),
-                    addr,
-                    self.callbacks.clone(),
-                    BluetoothAudioDevice::new(
-                        addr.to_string(),
-                        name.clone(),
-                        caps.to_vec(),
-                        *hfp_cap,
-                        absolute_volume,
-                    ),
-                    false,
-                );
-            }
-            (_, _) => {
-                let mut guard = self.device_added_tasks.lock().unwrap();
-                if guard.get(&addr).is_none() {
-                    let callbacks = self.callbacks.clone();
-                    let device_added_tasks = self.device_added_tasks.clone();
-                    let device = BluetoothAudioDevice::new(
-                        addr.to_string(),
-                        name.clone(),
-                        cur_a2dp_caps.unwrap_or(&Vec::new()).to_vec(),
-                        *cur_hfp_cap.unwrap_or(&HfpCodecCapability::UNSUPPORTED),
-                        absolute_volume,
-                    );
-                    let task = topstack::get_runtime().spawn(async move {
-                        sleep(Duration::from_secs(DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC)).await;
-                        if dedup_added_cb(device_added_tasks, addr, callbacks, device, true) {
-                            warn!(
-                                "[{}]: Add a device with only hfp or a2dp capability after timeout.",
-                                addr.to_string()
-                            );
-                        }
-                    });
-                    guard.insert(addr, Some(task));
-                }
+        let device = BluetoothAudioDevice::new(
+            addr.to_string(),
+            name.clone(),
+            cur_a2dp_caps.unwrap_or(&Vec::new()).to_vec(),
+            *cur_hfp_caps.unwrap_or(&HfpCodecCapability::UNSUPPORTED),
+            absolute_volume,
+        );
+
+        let num_profiles_available = self.adapter_get_num_profiles(addr);
+        let num_profiles_connected =
+            (cur_a2dp_caps.is_some() as u32) + (cur_hfp_caps.is_some() as u32);
+
+        if num_profiles_connected == num_profiles_available {
+            dedup_added_cb(
+                self.device_added_tasks.clone(),
+                addr,
+                self.callbacks.clone(),
+                device,
+                false,
+            );
+        } else {
+            assert!(num_profiles_available == 2);
+            assert!(num_profiles_connected == 1);
+
+            self.connect(addr.to_string());
+
+            let mut guard = self.device_added_tasks.lock().unwrap();
+            if guard.get(&addr).is_none() {
+                let callbacks = self.callbacks.clone();
+                let device_added_tasks = self.device_added_tasks.clone();
+                let task = topstack::get_runtime().spawn(async move {
+                    sleep(Duration::from_secs(DEFAULT_PROFILE_DISCOVERY_TIMEOUT_SEC)).await;
+                    if dedup_added_cb(device_added_tasks, addr, callbacks, device, true) {
+                        warn!(
+                            "[{}]: Add a device with only hfp or a2dp capability after timeout.",
+                            addr.to_string()
+                        );
+                    }
+                });
+                guard.insert(addr, Some(task));
             }
         }
     }
@@ -451,6 +449,26 @@ impl BluetoothMedia {
             }
         } else {
             addr.to_string()
+        }
+    }
+
+    fn adapter_get_num_profiles(&self, addr: RawAddress) -> u32 {
+        let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+        if let Some(adapter) = &self.adapter {
+            let audio_profiles = vec![
+                uuid::UuidHelper::from_string(uuid::A2DP_SINK).unwrap(),
+                uuid::UuidHelper::from_string(uuid::HFP).unwrap(),
+            ];
+
+            adapter
+                .lock()
+                .unwrap()
+                .get_remote_uuids(device)
+                .iter()
+                .filter(|u| audio_profiles.contains(u))
+                .count() as u32
+        } else {
+            0
         }
     }
 
