@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f30cea67_3c095055",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T20:10:14Z",
+      "side": 1,
+      "message": "Taking another look at how this is built/used, I would suggest the following:\n\n* Add a Cargo.toml under tools/rootcanal and add LMP to the workspace.\n* Update ./build.py to accept `--target rootcanal` to build that repo.\n* We can add that to the pre-submit.\n\nOtherwise, this will quickly get out of sync with any other changes here and fail to compile. \n\nAlso, Floss team will eventually migrate this build over to either Cargo or Bazel and it\u0027ll be easier for us to not miss anyone during the migration if you use our preferred build method.\n",
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe07241c_0c80746e",
