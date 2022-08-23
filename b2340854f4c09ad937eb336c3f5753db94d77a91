@@ -69,6 +69,24 @@
       "parentUuid": "c9370cf6_a2e8f1a5",
       "revId": "b2340854f4c09ad937eb336c3f5753db94d77a91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b3dbe9b_826337e7",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-23T12:20:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd70a65c_4d5704fb",
+      "revId": "b2340854f4c09ad937eb336c3f5753db94d77a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
