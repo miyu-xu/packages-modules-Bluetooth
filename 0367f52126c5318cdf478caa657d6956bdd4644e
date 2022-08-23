@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49a3ec14_ac7b7127",
+        "filename": "system/gd/rust/linux/socket/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-23T23:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e99283ce_13d50b0c",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2cf96bb1_97eb1229",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93091bfe_27e4c8d2",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-23T23:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2cf96bb1_97eb1229",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "307c42ff_b7774bfa",
@@ -65,6 +101,24 @@
       "writtenOn": "2022-08-23T21:01:59Z",
       "side": 1,
       "message": "nit: /// for docstrings. This is a pub api.",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f55a3335_17bf4207",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-23T23:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "307c42ff_b7774bfa",
       "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -99,6 +153,42 @@
       "writtenOn": "2022-08-23T21:01:59Z",
       "side": 1,
       "message": "suggestion:\n```\nfor path in [\"/dev/uinput\", \"/dev/input/uinput\", \"/dev/misc/uinput\"] {\n  match libc::open(CString(path).unwrap().as_ptr().cast(), libc::O_RDWR) {\n    fd if fd \u003e\u003d 0 \u003d\u003e {\n      self.fd \u003d fd;\n      break;\n    }\n    _ \u003d\u003e (),\n  };\n}\n\nif self.fd \u003d\u003d -1 {\n  error!(\"Failed to open uinput\");\n}\n```",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8acdaf86_e8b5b6ba",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-23T23:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9322e5b4_cd3cbf19",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3401488f_cac18e97",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-23T23:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d50d2d7_cd887623",
       "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
