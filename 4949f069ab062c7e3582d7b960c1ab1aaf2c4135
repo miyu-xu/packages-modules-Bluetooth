@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "428988f9_5978ee36",
+        "filename": "system/gd/rust/packets/build.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-23T13:29:19Z",
+      "side": 1,
+      "message": "It\u0027s much easier to just use `android_bluetooth_packet_gen` rule in CMake that will do the job for us, than create the full directory structure, and keep in mind where the packetgen binary and its dependencies are (e.g. we\u0027d need to put both the binary and `libc++.so.1` in the \"bin\" subdir, and make sure we don\u0027t screw up with the target/host architecture in the process).\nSo, no, I\u0027d rather not use `generate_packets` there.",
+      "parentUuid": "fe07241c_0c80746e",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b59a12de_bbfbf8b9",
@@ -37,6 +61,24 @@
       "writtenOn": "2022-08-23T13:09:00Z",
       "side": 1,
       "message": "As we are using that as a staticlib we might want to commit the lockfile as well",
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c225033f_a0bf0718",
+        "filename": "tools/rootcanal/lmp/Cargo.toml",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-23T13:29:19Z",
+      "side": 1,
+      "message": "Hm, it\u0027s currently in .gitignore...\nAlso, the parent folder (packages/modules/Bluetooth, the workspace for other crates) doesn\u0027t have Cargo.lock either, so that seems intentional?",
+      "parentUuid": "b59a12de_bbfbf8b9",
       "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
