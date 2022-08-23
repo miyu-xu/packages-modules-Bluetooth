@@ -4,7 +4,9 @@ use crate::topstack::get_dispatchers;
 use num_traits::cast::FromPrimitive;
 use std::convert::{TryFrom, TryInto};
 use std::sync::{Arc, Mutex};
-use topshim_macros::cb_variant;
+use topshim_macros::{cb_variant, check_internal_enabled};
+
+use log::warn;
 
 #[derive(Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
 #[repr(u32)]
@@ -152,6 +154,7 @@ cb_variant!(
 pub struct Hfp {
     internal: cxx::UniquePtr<ffi::HfpIntf>,
     _is_init: bool,
+    _is_enabled: bool,
 }
 
 // For *const u8 opaque btif
@@ -164,37 +167,64 @@ impl Hfp {
             hfpif = ffi::GetHfpProfile(intf.as_raw_ptr());
         }
 
-        Hfp { internal: hfpif, _is_init: false }
+        Hfp { internal: hfpif, _is_init: false, _is_enabled: false }
+    }
+
+    pub fn is_initialized(&self) -> bool {
+        self._is_init
+    }
+
+    pub fn is_enabled(&self) -> bool {
+        self._is_enabled
+    }
+
+    pub fn enable(&mut self) -> bool {
+        self.internal.pin_mut().init();
+        self._is_enabled = true;
+        true
+    }
+
+    #[check_internal_enabled(false)]
+    pub fn disable(&mut self) -> bool {
+        self.internal.pin_mut().cleanup();
+        self._is_enabled = false;
+        true
     }
 
     pub fn initialize(&mut self, callbacks: HfpCallbacksDispatcher) -> bool {
         if get_dispatchers().lock().unwrap().set::<HfpCb>(Arc::new(Mutex::new(callbacks))) {
             panic!("Tried to set dispatcher for HFP callbacks while it already exists");
         }
-        self.internal.pin_mut().init();
+        self._is_init = true;
         true
     }
 
+    #[check_internal_enabled]
     pub fn connect(&mut self, addr: RawAddress) {
         self.internal.pin_mut().connect(addr.into());
     }
 
+    #[check_internal_enabled(2)] // BT_STATUS_NOT_READY
     pub fn connect_audio(&mut self, addr: RawAddress) -> i32 {
         self.internal.pin_mut().connect_audio(addr.into())
     }
 
+    #[check_internal_enabled(2)] // BT_STATUS_NOT_READY
     pub fn set_volume(&mut self, volume: i8, addr: RawAddress) -> i32 {
         self.internal.pin_mut().set_volume(volume, addr.into())
     }
 
+    #[check_internal_enabled]
     pub fn disconnect(&mut self, addr: RawAddress) {
         self.internal.pin_mut().disconnect(addr.into());
     }
 
+    #[check_internal_enabled(2)] // BT_STATUS_NOT_READY
     pub fn disconnect_audio(&mut self, addr: RawAddress) -> i32 {
         self.internal.pin_mut().disconnect_audio(addr.into())
     }
 
+    #[check_internal_enabled(false)]
     pub fn cleanup(&mut self) -> bool {
         self.internal.pin_mut().cleanup();
         true
