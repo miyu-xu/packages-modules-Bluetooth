@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe07241c_0c80746e",
+        "filename": "system/gd/rust/packets/build.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-23T13:08:21Z",
+      "side": 1,
+      "message": "Looking at https://r.android.com/2184936 this seems to be used to integrate into the emulator.\nCould we not use the `generate_packets` branch also for the emulator ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
