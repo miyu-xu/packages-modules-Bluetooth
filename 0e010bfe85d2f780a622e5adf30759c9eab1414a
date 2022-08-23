@@ -16,6 +16,24 @@
       "message": "Do you still want to reference onPropertiesChanged here?",
       "revId": "0e010bfe85d2f780a622e5adf30759c9eab1414a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8129a0e6_51fc9457",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothDeviceConfigChangeTracker.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-23T23:27:31Z",
+      "side": 1,
+      "message": "renamed",
+      "parentUuid": "281bb785_73ff4dcd",
+      "revId": "0e010bfe85d2f780a622e5adf30759c9eab1414a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
