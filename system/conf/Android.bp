@@ -9,7 +9,7 @@ package {
 }
 
 prebuilt_etc {
-    name: "bt_stack.conf",
+    name: "bt_stack.conf_lib",
     src: "bt_stack.conf",
     sub_dir: "bluetooth",
 }
