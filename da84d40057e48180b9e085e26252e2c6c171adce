@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e3f2156_eafb43a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T16:23:20Z",
+      "side": 1,
+      "message": "+2 assuming this builds with ./build.py",
+      "revId": "da84d40057e48180b9e085e26252e2c6c171adce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
