@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3a720ef_40b76f41",
+        "filename": "system/gd/rust/packets/build.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-23T13:53:28Z",
+      "side": 1,
+      "message": "Might still be tricky: the CMake rule doesn\u0027t expose the executable path, and pulling it out sounds like a hack. I\u0027m also still a bit worried about the binary\u0027s dependencies.\nAs for CI, how is this script being tested at the moment? I believe it\u0027s only used in ChromeOS (meaning, we\u0027d need to adjust their build script as well), whereas Android uses a `genrule` called `BluetoothGeneratedPackets_rust` (in that sense, I\u0027m doing a very similar thing here)?",
+      "parentUuid": "b9e1e56d_dd123493",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b59a12de_bbfbf8b9",
         "filename": "tools/rootcanal/lmp/Cargo.toml",
         "patchSetId": 15
