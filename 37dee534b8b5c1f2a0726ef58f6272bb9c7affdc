@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac415fd1_03110e0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T15:58:48Z",
+      "side": 1,
+      "message": "None of the failing tests are affected by this change (it\u0027s not even built on Android) + the failing emulator builder is not even tangentially related.",
+      "revId": "37dee534b8b5c1f2a0726ef58f6272bb9c7affdc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
