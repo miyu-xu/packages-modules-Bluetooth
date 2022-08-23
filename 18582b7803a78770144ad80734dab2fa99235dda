@@ -210,6 +210,30 @@
       },
       "revId": "18582b7803a78770144ad80734dab2fa99235dda",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47907fb6_ba2bc0f9",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-23T00:00:51Z",
+      "side": 1,
+      "message": "Yup, it was there before, I just moved the code location. We opened the bug 234892968 to follow up on this.",
+      "parentUuid": "70cc60ca_3632bd2e",
+      "range": {
+        "startLine": 97,
+        "startChar": 10,
+        "endLine": 97,
+        "endChar": 15
+      },
+      "revId": "18582b7803a78770144ad80734dab2fa99235dda",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
