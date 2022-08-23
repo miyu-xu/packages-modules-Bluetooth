@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "c9582bd3_56513ee8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1623611
+      },
+      "writtenOn": "2022-08-23T21:45:02Z",
+      "side": 1,
+      "message": "One note: I think that if there 100 caches that have not been GC\u0027ed, then there are also 100 BluetoothDevices that have not been GC\u0027ed.",
+      "revId": "ea6274aebf9b3b70232973cfd156db21d210646e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "67557d09_2affac06",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 2
