@@ -22,6 +22,23 @@
       },
       "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59a12de_bbfbf8b9",
+        "filename": "tools/rootcanal/lmp/Cargo.toml",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-23T13:09:00Z",
+      "side": 1,
+      "message": "As we are using that as a staticlib we might want to commit the lockfile as well",
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
