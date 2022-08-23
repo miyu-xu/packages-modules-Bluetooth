@@ -1,6 +1,7 @@
 use bt_topshim::profiles::a2dp::{A2dpCodecConfig, PresentationPosition};
 use bt_topshim::profiles::hfp::HfpCodecCapability;
 use btstack::bluetooth_media::{BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback};
+use btstack::uuid::Profile;
 use btstack::RPCProxy;
 
 use dbus::arg::RefArg;
@@ -101,7 +102,7 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("Connect")]
-    fn connect(&mut self, address: String) {
+    fn connect(&mut self, address: String, profile: Profile) {
         dbus_generated!()
     }
 
@@ -111,7 +112,7 @@ impl IBluetoothMedia for IBluetoothMediaDBus {
     }
 
     #[dbus_method("Disconnect")]
-    fn disconnect(&mut self, address: String) {
+    fn disconnect(&mut self, address: String, profile: Profile) {
         dbus_generated!()
     }
 

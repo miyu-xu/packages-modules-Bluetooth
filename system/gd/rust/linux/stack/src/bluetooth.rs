@@ -1512,12 +1512,15 @@ impl IBluetooth for Bluetooth {
                                 self.hh.as_ref().unwrap().connect(&mut addr.unwrap());
                             }
 
-                            Profile::A2dpSink | Profile::A2dpSource | Profile::Hfp => {
+                            Profile::A2dpSink | Profile::Hfp | Profile::AvrcpController => {
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
+                                let profile = p.clone();
                                 topstack::get_runtime().spawn(async move {
                                     let _ = txl
-                                        .send(Message::Media(MediaActions::Connect(address)))
+                                        .send(Message::Media(MediaActions::Connect(
+                                            address, profile,
+                                        )))
                                         .await;
                                 });
                             }
@@ -1561,12 +1564,15 @@ impl IBluetooth for Bluetooth {
                                 self.hh.as_ref().unwrap().disconnect(&mut addr.unwrap());
                             }
 
-                            Profile::A2dpSink | Profile::A2dpSource => {
+                            Profile::A2dpSink | Profile::Hfp | Profile::AvrcpController => {
                                 let txl = self.tx.clone();
                                 let address = device.address.clone();
+                                let profile = p.clone();
                                 topstack::get_runtime().spawn(async move {
                                     let _ = txl
-                                        .send(Message::Media(MediaActions::Disconnect(address)))
+                                        .send(Message::Media(MediaActions::Disconnect(
+                                            address, profile,
+                                        )))
                                         .await;
                                 });
                             }

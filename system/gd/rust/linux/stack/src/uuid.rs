@@ -103,6 +103,7 @@ impl UuidHelper {
         let enabled_profiles: HashSet<Profile> = [
             Profile::A2dpSink,
             Profile::A2dpSource,
+            Profile::AvrcpController,
             Profile::Hsp,
             Profile::Hfp,
             Profile::Hid,
