@@ -219,6 +219,30 @@
       },
       "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55691721_c2d3a0a6",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-08-23T00:15:46Z",
+      "side": 1,
+      "message": "Nope 😞, there is a bug number for it. For the moment w//e need to install and run it manually.The whole PandoraServer is formatted with ktfmt with the google-style option:\ngo/ktfmt",
+      "parentUuid": "4d8cd807_f5a0dfdc",
+      "range": {
+        "startLine": 366,
+        "startChar": 10,
+        "endLine": 366,
+        "endChar": 120
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
