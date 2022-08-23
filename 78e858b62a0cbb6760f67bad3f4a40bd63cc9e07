@@ -1,5 +1,190 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "511194df_f93dc80a",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 791,
+        "startChar": 0,
+        "endLine": 794,
+        "endChar": 63
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ccba977_5557d459",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 809,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 806,
+        "startChar": 0,
+        "endLine": 809,
+        "endChar": 61
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d93a070_6c1a66b0",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 825,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 822,
+        "startChar": 1,
+        "endLine": 825,
+        "endChar": 63
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3df5873a_3b1ea7fa",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 840,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 837,
+        "startChar": 0,
+        "endLine": 840,
+        "endChar": 61
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d46dc7c_0496e0ce",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 936,
+        "startChar": 0,
+        "endLine": 939,
+        "endChar": 63
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b68943c_87440c55",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 954,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 951,
+        "startChar": 1,
+        "endLine": 954,
+        "endChar": 61
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff7f384a_6e92a563",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 967,
+        "startChar": 0,
+        "endLine": 970,
+        "endChar": 63
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fdbca3e_01d60dfa",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 985,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2022-08-23T13:31:43Z",
+      "side": 1,
+      "message": "This got warned about, and looks to be a copy/paste bug.  I didn\u0027t see any comments about why we\u0027re ignoring this warning.",
+      "range": {
+        "startLine": 982,
+        "startChar": 1,
+        "endLine": 985,
+        "endChar": 61
+      },
+      "revId": "78e858b62a0cbb6760f67bad3f4a40bd63cc9e07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
