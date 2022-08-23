@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e17ef3df_28f78b8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-23T02:50:36Z",
+      "side": 1,
+      "message": "ld.lld: error: undefined symbol: hfp_hal_interface::get_wbs_supported()\n\u003e\u003e\u003e referenced by btif_hf.cc:558 (packages/modules/Bluetooth/system/btif/src/btif_hf.cc:558)\n\u003e\u003e\u003e               btif_hf.o:(bluetooth::headset::btif_hf_upstreams_evt(unsigned short, char*)) in archive out/soong/.intermediates/packages/modules/Bluetooth/system/btif/libbtif/linux_glibc_x86_static_asan/libbtif.a\nclang-15: error: linker command failed with exit code 1 (use -v to see invocation)",
+      "revId": "56da8b5023de1171ead4b6a5e5cabf9cc61424a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
