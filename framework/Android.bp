@@ -5,7 +5,6 @@ package {
 java_defaults {
     name: "bluetooth-module-sdk-version-defaults",
     min_sdk_version: "current",
-    target_sdk_version: "current",
 }
 
 filegroup {
@@ -37,6 +36,7 @@ java_defaults {
         ":framework-bluetooth-sources",
         ":libbluetooth-binder-aidl",
     ],
+    target_sdk_version: "current",
 }
 
 // bluetooth-service needs pre-jarjared version of framework-bluetooth so it can reference copied utility
