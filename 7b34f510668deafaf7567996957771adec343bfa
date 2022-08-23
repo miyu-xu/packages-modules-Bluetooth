@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00403335_6f6a7244",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-23T05:17:14Z",
+      "side": 1,
+      "message": "Thanks for the fix!",
+      "revId": "7b34f510668deafaf7567996957771adec343bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66ee7c62_a5fa1431",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-23T05:17:14Z",
+      "side": 1,
+      "message": "We have a map of permits, but only one mConnId.\n\nWould it make sense to have a map:\nprivate final HashMap\u003cString, AtomicInteger\u003e mPermits \u003d new HashMap\u003c\u003e();\n\nIt would track the connection ID that held the write permit for each device.  The value of -1 would mean that no connection ID held the permit.",
+      "range": {
+        "startLine": 264,
+        "startChar": 16,
+        "endLine": 264,
+        "endChar": 23
+      },
+      "revId": "7b34f510668deafaf7567996957771adec343bfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
