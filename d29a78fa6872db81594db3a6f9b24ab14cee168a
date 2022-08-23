@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c12af0f7_1e0a4c99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T21:06:55Z",
+      "side": 1,
+      "message": "LGTM. Will +2 after docstrings + crate refactor in previous CL is done.",
+      "revId": "d29a78fa6872db81594db3a6f9b24ab14cee168a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
