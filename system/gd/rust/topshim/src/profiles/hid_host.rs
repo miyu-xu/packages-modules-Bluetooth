@@ -6,7 +6,9 @@ use crate::{cast_to_ffi_address, ccall, deref_ffi_address};
 
 use num_traits::cast::{FromPrimitive, ToPrimitive};
 use std::sync::{Arc, Mutex};
-use topshim_macros::cb_variant;
+use topshim_macros::{cb_variant, profile_enabled_or};
+
+use log::warn;
 
 #[derive(Debug, FromPrimitive, PartialEq, PartialOrd)]
 #[repr(u32)]
@@ -158,6 +160,7 @@ unsafe impl Send for RawHHWrapper {}
 pub struct HidHost {
     internal: RawHHWrapper,
     is_init: bool,
+    is_enabled: bool,
     // Keep callback object in memory (underlying code doesn't make copy)
     callbacks: Option<Box<bindings::bthh_callbacks_t>>,
 }
@@ -168,6 +171,7 @@ impl HidHost {
         HidHost {
             internal: RawHHWrapper { raw: r as *const bthh_interface_t },
             is_init: false,
+            is_enabled: false,
             callbacks: None,
         }
     }
@@ -176,13 +180,33 @@ impl HidHost {
         self.is_init
     }
 
+    pub fn is_enabled(&self) -> bool {
+        self.is_enabled
+    }
+
+    pub fn enable(&mut self) -> bool {
+        let rawcb = &mut **self.callbacks.as_mut().unwrap();
+
+        let init = ccall!(self, init, rawcb);
+        self.is_init = BtStatus::from(init) == BtStatus::Success;
+        self.is_enabled = self.is_init;
+        true
+    }
+
+    #[profile_enabled_or(false)]
+    pub fn disable(&mut self) -> bool {
+        ccall!(self, cleanup);
+        self.is_enabled = false;
+        true
+    }
+
     pub fn initialize(&mut self, callbacks: HHCallbacksDispatcher) -> bool {
         // Register dispatcher
         if get_dispatchers().lock().unwrap().set::<HHCb>(Arc::new(Mutex::new(callbacks))) {
             panic!("Tried to set dispatcher for HHCallbacks but it already existed");
         }
 
-        let mut callbacks = Box::new(bindings::bthh_callbacks_t {
+        let callbacks = Box::new(bindings::bthh_callbacks_t {
             size: 8 * 8,
             connection_state_cb: Some(connection_state_cb),
             hid_info_cb: Some(hid_info_cb),
@@ -193,35 +217,36 @@ impl HidHost {
             handshake_cb: Some(handshake_cb),
         });
 
-        let rawcb = &mut *callbacks;
-
-        let init = ccall!(self, init, rawcb);
-        self.is_init = BtStatus::from(init) == BtStatus::Success;
         self.callbacks = Some(callbacks);
 
-        return self.is_init;
+        true
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn connect(&self, addr: &mut RawAddress) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(self, connect, ffi_addr))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn disconnect(&self, addr: &mut RawAddress) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(self, disconnect, ffi_addr))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn virtual_unplug(&self, addr: &mut RawAddress) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(self, virtual_unplug, ffi_addr))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_info(&self, addr: &mut RawAddress, info: BthhHidInfo) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(self, set_info, ffi_addr, info))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn get_protocol(&self, addr: &mut RawAddress, mode: BthhProtocolMode) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(
@@ -232,6 +257,7 @@ impl HidHost {
         ))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_protocol(&self, addr: &mut RawAddress, mode: BthhProtocolMode) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(
@@ -242,16 +268,19 @@ impl HidHost {
         ))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn get_idle_time(&self, addr: &mut RawAddress) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(self, get_idle_time, ffi_addr))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_idle_time(&self, addr: &mut RawAddress, idle_time: u8) -> BtStatus {
         let ffi_addr = cast_to_ffi_address!(addr as *mut RawAddress);
         BtStatus::from(ccall!(self, set_idle_time, ffi_addr, idle_time))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn get_report(
         &self,
         addr: &mut RawAddress,
@@ -270,6 +299,7 @@ impl HidHost {
         ))
     }
 
+    #[profile_enabled_or(BtStatus::NotReady)]
     pub fn set_report(
         &self,
         addr: &mut RawAddress,
@@ -286,7 +316,8 @@ impl HidHost {
         ))
     }
 
-    pub fn cleanup(&self) {
+    #[profile_enabled_or]
+    pub fn cleanup(&mut self) {
         ccall!(self, cleanup)
     }
 }
