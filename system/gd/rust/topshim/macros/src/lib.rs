@@ -140,3 +140,73 @@ pub fn cb_variant(input: TokenStream) -> TokenStream {
 
     TokenStream::from(tokens)
 }
+
+#[proc_macro_attribute]
+/**
+Macro to check if the internal has been initialized before running the actual block in the function
+
+Function who applies this macro should also include log::warn and the self must implement fn is_initialized(&self) -> bool
+
+Example:
+    ```
+    use log::warn;
+    #[check_internal_enabled]
+    fn foo(&self) {
+        // actual code
+    }
+    ```
+    expands as
+    ```
+    use log::warn;
+    fn foo(&self) {
+        if !self.is_enabled() {
+            warn!("Tried to {} but internal hasn't been enabled", "foo");
+            return ;
+        }
+        // actual code
+    }
+    ```
+One can specify a return value on uninitialized case
+    ```
+    use log::warn;
+    #[check_internal_enabled("not ready")]
+    fn foo(&self) -> &str {
+        // actual code
+    }
+    ```
+    expands as
+    ```
+    use log::warn;
+    fn foo(&self) -> &str {
+        if !self.is_enabled() {
+            warn!("Tried to {} but internal hasn't been enabled", "foo");
+            return "not ready";
+        }
+        // actual code
+        return "success"
+    }
+    ```
+*/
+pub fn check_internal_enabled(attr: TokenStream, item: TokenStream) -> TokenStream {
+    let mut input = syn::parse_macro_input!(item as syn::ItemFn);
+
+    let fn_name = input.sig.ident.to_string();
+
+    let ret_stmt: proc_macro2::TokenStream =
+        format!("return {};", attr.to_string()).parse().unwrap();
+
+    let check_block = quote::quote! {
+        if !self.is_enabled() {
+            warn!("Tried to {} but internal hasn't been enabled", #fn_name);
+            #ret_stmt
+        }
+    };
+
+    input.block.stmts.insert(0, syn::parse(check_block.into()).unwrap());
+
+    let output = quote::quote! {
+        #input
+    };
+
+    output.into()
+}
