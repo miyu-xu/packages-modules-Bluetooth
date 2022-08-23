@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f23545a0_9d0277be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-23T14:37:16Z",
+      "side": 1,
+      "message": "Lukasz, could we stop the background connection as the paired member reach the set size instead of no callback to upper layer?",
+      "revId": "cc56c941defe2dffe9fae8ae81af03da462da12f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
