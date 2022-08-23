@@ -16,7 +16,7 @@ filegroup {
         "bte_logmsg.cc",
         "bte_main.cc",
         "stack_config.cc",
-    ]
+    ],
 }
 
 cc_library_static {
@@ -50,7 +50,7 @@ cc_library_static {
         "hardware/interfaces/keymaster/4.0/support/include",
     ],
     shared_libs: [
-            "libflatbuffers-cpp",
+        "libflatbuffers-cpp",
     ],
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
@@ -153,7 +153,7 @@ cc_library_shared {
     ldflags: ["-Wl,-Bsymbolic,-Bsymbolic-functions"],
     required: [
         "bt_did.conf",
-        "bt_stack.conf",
+        "bt_stack.conf_lib",
         "audio_set_scenarios_bfbs",
         "audio_set_scenarios_json",
         "audio_set_configurations_bfbs",
@@ -272,7 +272,7 @@ cc_test {
         integer_overflow: true,
         scs: true,
         diag: {
-            undefined : true
+            undefined: true,
         },
     },
     generated_headers: [
