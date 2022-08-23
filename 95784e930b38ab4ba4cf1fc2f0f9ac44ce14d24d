@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52014201_0ff549bf",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-23T05:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d1eda7ab_1616434f",
+      "range": {
+        "startLine": 139,
+        "startChar": 20,
+        "endLine": 139,
+        "endChar": 44
+      },
+      "revId": "95784e930b38ab4ba4cf1fc2f0f9ac44ce14d24d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ba8030a_fbfa201c",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-23T03:09:06Z",
       "side": 1,
       "message": "nit:  `ReadCharacteristicDescriptorFromHandle`",
+      "range": {
+        "startLine": 145,
+        "startChar": 21,
+        "endLine": 145,
+        "endChar": 45
+      },
+      "revId": "95784e930b38ab4ba4cf1fc2f0f9ac44ce14d24d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4e2c787_85bf4f4d",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 11
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-23T05:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ba8030a_fbfa201c",
       "range": {
         "startLine": 145,
         "startChar": 21,
