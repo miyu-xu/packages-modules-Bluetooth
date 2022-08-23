@@ -244,6 +244,12 @@ impl Into<u32> for BtStatus {
     }
 }
 
+impl Into<i32> for BtStatus {
+    fn into(self) -> i32 {
+        self.to_i32().unwrap_or_default()
+    }
+}
+
 impl From<bindings::bt_bdname_t> for String {
     fn from(item: bindings::bt_bdname_t) -> Self {
         ascii_to_string(&item.name, item.name.len())
