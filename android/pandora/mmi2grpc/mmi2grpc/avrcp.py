@@ -93,6 +93,20 @@ class AVRCPProxy(ProfileProxy):
         return "OK"
 
     @assert_description
+    def TSC_AVDTP_mmi_iut_initiate_connect(self, pts_addr: bytes, **kwargs):
+        """
+        Create an AVDTP signaling channel.
+
+        Action: Create an audio or video
+        connection with PTS.
+        """
+        self.connection = self.host.Connect(address=pts_addr).connection
+        if (self.connection is not None):
+            time.sleep(1)
+            self.source = self.a2dp.OpenSource(connection=self.connection).source
+        return "OK"
+
+    @assert_description
     def TSC_AVRCP_mmi_iut_accept_unit_info(self, **kwargs):
         """
         Take action to send a valid response to the [Unit Info] command sent by
@@ -164,4 +178,17 @@ class AVRCPProxy(ProfileProxy):
         command sent by the PTS.
 
         """
+        return "OK"
+
+    @assert_description
+    def TSC_AVP_mmi_iut_initiate_disconnect(self, **kwargs):
+        """
+        Take action to disconnect all A2DP and/or AVRCP connections.
+
+        """
+        if self.connection is not None:
+            self.host.Disconnect(connection=self.connection)
+        self.connection = None
+        self.sink = None
+        self.source = None
         return "OK"
