@@ -16,7 +16,7 @@ use bt_topshim::topstack;
 
 use log::{info, warn};
 use num_traits::cast::ToPrimitive;
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::convert::TryFrom;
 use std::sync::Arc;
 use std::sync::Mutex;
@@ -27,6 +27,7 @@ use tokio::time::{sleep, Duration};
 
 use crate::bluetooth::{Bluetooth, BluetoothDevice, IBluetooth};
 use crate::callbacks::Callbacks;
+use crate::uuid;
 use crate::{Message, RPCProxy};
 
 // The timeout we have to wait for all supported profiles to connect after we
@@ -142,10 +143,11 @@ pub struct BluetoothMedia {
     hfp: Option<Hfp>,
     hfp_states: HashMap<RawAddress, BthfConnectionState>,
     hfp_audio_state: HashMap<RawAddress, BthfAudioState>,
-    selectable_caps: HashMap<RawAddress, Vec<A2dpCodecConfig>>,
-    hfp_caps: HashMap<RawAddress, HfpCodecCapability>,
+    a2dp_caps: HashMap<RawAddress, Vec<A2dpCodecConfig>>,
+    hfp_cap: HashMap<RawAddress, HfpCodecCapability>,
     device_added_tasks: Arc<Mutex<HashMap<RawAddress, Option<JoinHandle<()>>>>>,
     absolute_volume: bool,
+    connected_profiles: HashMap<RawAddress, HashSet<uuid::Profile>>,
 }
 
 impl BluetoothMedia {
@@ -166,10 +168,11 @@ impl BluetoothMedia {
             hfp: None,
             hfp_states: HashMap::new(),
             hfp_audio_state: HashMap::new(),
-            selectable_caps: HashMap::new(),
-            hfp_caps: HashMap::new(),
+            a2dp_caps: HashMap::new(),
+            hfp_cap: HashMap::new(),
             device_added_tasks: Arc::new(Mutex::new(HashMap::new())),
             absolute_volume: false,
+            connected_profiles: HashMap::new(),
         }
     }
 
@@ -188,18 +191,31 @@ impl BluetoothMedia {
                 match state {
                     BtavConnectionState::Connected => {
                         info!("[{}]: a2dp connected.", addr.to_string());
-                        self.notify_media_capability_added(addr);
                         self.a2dp_states.insert(addr, state);
+
+                        self.connected_profiles
+                            .entry(addr)
+                            .or_insert_with(HashSet::new)
+                            .insert(uuid::Profile::A2dpSink);
+
+                        self.notify_media_capability_added(addr);
                     }
-                    BtavConnectionState::Disconnected => {
-                        self.a2dp_audio_state.remove(&addr);
-                        match self.a2dp_states.remove(&addr) {
-                            Some(_) => self.notify_media_capability_removed(addr),
-                            None => {
-                                warn!("[{}]: Unknown address a2dp disconnected.", addr.to_string());
-                            }
+                    BtavConnectionState::Disconnected => match self.a2dp_states.remove(&addr) {
+                        Some(_) => {
+                            info!("[{}]: a2dp disconnected.", addr.to_string());
+                            self.a2dp_audio_state.remove(&addr);
+
+                            self.connected_profiles
+                                .entry(addr)
+                                .or_insert_with(HashSet::new)
+                                .remove(&uuid::Profile::A2dpSink);
+
+                            self.notify_media_capability_removed(addr);
                         }
-                    }
+                        None => {
+                            warn!("[{}]: Unknown address a2dp disconnected.", addr.to_string());
+                        }
+                    },
                     _ => {
                         self.a2dp_states.insert(addr, state);
                     }
@@ -208,8 +224,8 @@ impl BluetoothMedia {
             A2dpCallbacks::AudioState(addr, state) => {
                 self.a2dp_audio_state.insert(addr, state);
             }
-            A2dpCallbacks::AudioConfig(addr, _config, _local_caps, selectable_caps) => {
-                self.selectable_caps.insert(addr, selectable_caps);
+            A2dpCallbacks::AudioConfig(addr, _config, _local_caps, a2dp_caps) => {
+                self.a2dp_caps.insert(addr, a2dp_caps);
             }
             A2dpCallbacks::MandatoryCodecPreferred(_addr) => {}
         }
@@ -218,38 +234,27 @@ impl BluetoothMedia {
     pub fn dispatch_avrcp_callbacks(&mut self, cb: AvrcpCallbacks) {
         match cb {
             AvrcpCallbacks::AvrcpDeviceConnected(addr, supported) => {
-                if self.absolute_volume == supported {
-                    return;
-                }
+                info!("[{}]: avrcp connected.", addr.to_string());
 
                 self.absolute_volume = supported;
-                let mut guard = self.device_added_tasks.lock().unwrap();
-                if let Some(task) = guard.get(&addr) {
-                    match task {
-                        // There is a device added event waiting for other
-                        // profiles (A2DP or HFP) to connect. We need to cancel
-                        // the pending event to update the absolute volume
-                        // capability.
-                        // This refreshes the timeout waiting for potential
-                        // profile connection and makes the worst case total
-                        // waiting time to 2 * PROFILE_DISCOVERY_TIMEOUT_SEC.
-                        Some(handler) => {
-                            handler.abort();
-                            guard.remove(&addr);
-                            drop(guard);
-                            self.notify_media_capability_added(addr);
-                        }
-                        // This addr has been added so trigger the absolute
-                        // volume supported changed callback.
-                        None => self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
-                            callback.on_absolute_volume_supported_changed(supported);
-                        }),
-                    }
-                } else {
-                    info!("[{}]: Device's avrcp connected before a2dp and hfp", addr.to_string());
-                }
+
+                self.connected_profiles
+                    .entry(addr)
+                    .or_insert_with(HashSet::new)
+                    .insert(uuid::Profile::AvrcpController);
+
+                self.notify_media_capability_added(addr);
             }
-            AvrcpCallbacks::AvrcpDeviceDisconnected(_addr) => {}
+            AvrcpCallbacks::AvrcpDeviceDisconnected(addr) => {
+                info!("[{}]: avrcp disconnected.", addr.to_string());
+
+                self.connected_profiles
+                    .entry(addr)
+                    .or_insert_with(HashSet::new)
+                    .remove(&uuid::Profile::AvrcpController);
+
+                self.notify_media_capability_removed(addr);
+            }
             AvrcpCallbacks::AvrcpAbsoluteVolumeUpdate(volume) => {
                 self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
                     callback.on_absolute_volume_changed(volume);
@@ -282,17 +287,31 @@ impl BluetoothMedia {
                         info!("[{}]: hfp slc connected.", addr.to_string());
                         // The device may not support codec-negotiation,
                         // in which case we shall assume it supports CVSD at this point.
-                        if !self.hfp_caps.contains_key(&addr) {
-                            self.hfp_caps.insert(addr, HfpCodecCapability::CVSD);
+                        if !self.hfp_cap.contains_key(&addr) {
+                            self.hfp_cap.insert(addr, HfpCodecCapability::CVSD);
                         }
+
+                        self.connected_profiles
+                            .entry(addr)
+                            .or_insert_with(HashSet::new)
+                            .insert(uuid::Profile::Hfp);
+
                         self.notify_media_capability_added(addr);
                     }
                     BthfConnectionState::Disconnected => {
                         info!("[{}]: hfp disconnected.", addr.to_string());
-                        self.hfp_caps.remove(&addr);
-                        self.hfp_audio_state.remove(&addr);
                         match self.hfp_states.remove(&addr) {
-                            Some(_) => self.notify_media_capability_removed(addr),
+                            Some(_) => {
+                                self.hfp_cap.remove(&addr);
+                                self.hfp_audio_state.remove(&addr);
+
+                                self.connected_profiles
+                                    .entry(addr)
+                                    .or_insert_with(HashSet::new)
+                                    .remove(&uuid::Profile::Hfp);
+
+                                self.notify_media_capability_removed(addr);
+                            }
                             None => {
                                 warn!("[{}] Unknown address hfp disconnected.", addr.to_string())
                             }
@@ -340,12 +359,12 @@ impl BluetoothMedia {
                 });
             }
             HfpCallbacks::CapsUpdate(wbs_supported, addr) => {
-                let hfp_caps = match wbs_supported {
+                let hfp_cap = match wbs_supported {
                     true => HfpCodecCapability::CVSD | HfpCodecCapability::MSBC,
                     false => HfpCodecCapability::CVSD,
                 };
 
-                self.hfp_caps.insert(addr, hfp_caps);
+                self.hfp_cap.insert(addr, hfp_cap);
             }
         }
     }
@@ -354,102 +373,82 @@ impl BluetoothMedia {
         self.callbacks.lock().unwrap().remove_callback(id)
     }
 
-    fn notify_media_capability_added(&self, addr: RawAddress) {
-        // Return true if the device added message is sent by the call.
-        fn dedup_added_cb(
+    fn notify_media_capability_added(&mut self, addr: RawAddress) {
+        fn device_added_cb(
             device_added_tasks: Arc<Mutex<HashMap<RawAddress, Option<JoinHandle<()>>>>>,
             addr: RawAddress,
             callbacks: Arc<Mutex<Callbacks<dyn IBluetoothMediaCallback + Send>>>,
             device: BluetoothAudioDevice,
-            is_delayed: bool,
-        ) -> bool {
-            // Closure used to lock and trigger the device added callbacks.
-            let trigger_device_added = || {
-                callbacks.lock().unwrap().for_all_callbacks(|callback| {
-                    callback.on_bluetooth_audio_device_added(device.clone());
-                });
-            };
+            missing_profiles: HashSet<uuid::Profile>,
+        ) {
+            // Once it gets here, it is the only caller to notify the audio stack.
             let mut guard = device_added_tasks.lock().unwrap();
             let task = guard.insert(addr, None);
-            match task {
-                // None handler means the device has just been added
-                Some(handler) if handler.is_none() => {
-                    warn!("[{}]: A device with the same address has been added.", addr.to_string());
-                    false
-                }
-                // Not None handler means there is a pending task.
-                Some(handler) => {
-                    trigger_device_added();
 
-                    // Abort the delayed callback if the caller is not delayed.
-                    // Otherwise, it is the delayed callback task itself.
-                    // The abort call can be out of the critical section as we
-                    // have updated the device_added_tasks and send the message.
-                    drop(guard);
-                    if !is_delayed {
-                        handler.unwrap().abort();
-                    }
-                    true
-                }
-                // The delayed callback task has been removed and couldn't be found.
-                None if is_delayed => false,
-                // No delayed callback and the device hasn't been added.
-                None => {
-                    trigger_device_added();
-                    true
-                }
-            }
-        }
-
-        let cur_a2dp_caps = self.selectable_caps.get(&addr);
-        let cur_hfp_cap = self.hfp_caps.get(&addr);
-        let name = self.adapter_get_remote_name(addr);
-        let absolute_volume = self.absolute_volume;
-        match (cur_a2dp_caps, cur_hfp_cap) {
-            (None, None) => warn!(
-                "[{}]: Try to add a device without a2dp and hfp capability.",
-                addr.to_string()
-            ),
-            (Some(caps), Some(hfp_cap)) => {
-                dedup_added_cb(
-                    self.device_added_tasks.clone(),
-                    addr,
-                    self.callbacks.clone(),
-                    BluetoothAudioDevice::new(
-                        addr.to_string(),
-                        name.clone(),
-                        caps.to_vec(),
-                        *hfp_cap,
-                        absolute_volume,
-                    ),
-                    false,
+            if !missing_profiles.is_empty() {
+                warn!(
+                    "Notify media capability added with missing profiles: {:?}",
+                    missing_profiles
                 );
             }
-            (_, _) => {
-                let mut guard = self.device_added_tasks.lock().unwrap();
-                if guard.get(&addr).is_none() {
-                    let callbacks = self.callbacks.clone();
-                    let device_added_tasks = self.device_added_tasks.clone();
-                    let device = BluetoothAudioDevice::new(
-                        addr.to_string(),
-                        name.clone(),
-                        cur_a2dp_caps.unwrap_or(&Vec::new()).to_vec(),
-                        *cur_hfp_cap.unwrap_or(&HfpCodecCapability::UNSUPPORTED),
-                        absolute_volume,
-                    );
-                    let task = topstack::get_runtime().spawn(async move {
-                        sleep(Duration::from_secs(PROFILE_DISCOVERY_TIMEOUT_SEC)).await;
-                        if dedup_added_cb(device_added_tasks, addr, callbacks, device, true) {
-                            warn!(
-                                "[{}]: Add a device with only hfp or a2dp capability after timeout.",
-                                addr.to_string()
-                            );
-                        }
-                    });
-                    guard.insert(addr, Some(task));
+
+            callbacks.lock().unwrap().for_all_callbacks(|callback| {
+                callback.on_bluetooth_audio_device_added(device.clone());
+            });
+        }
+
+        let cur_a2dp_caps = self.a2dp_caps.get(&addr);
+        let cur_hfp_cap = self.hfp_cap.get(&addr);
+        let name = self.adapter_get_remote_name(addr);
+        let absolute_volume = self.absolute_volume;
+        let device = BluetoothAudioDevice::new(
+            addr.to_string(),
+            name.clone(),
+            cur_a2dp_caps.unwrap_or(&Vec::new()).to_vec(),
+            *cur_hfp_cap.unwrap_or(&HfpCodecCapability::UNSUPPORTED),
+            absolute_volume,
+        );
+
+        let available_profiles = self.adapter_get_audio_profiles(addr);
+        let connected_profiles = match self.connected_profiles.get(&addr) {
+            Some(profiles) => profiles,
+            None => {
+                warn!("Device added without any connected profile.");
+                return;
+            }
+        };
+        let missing_profiles =
+            available_profiles.difference(&connected_profiles).cloned().collect::<HashSet<_>>();
+
+        // Proactively send a connection request to the missing profiles.
+        // Will be ignored by the state machine if redundant.
+        self.connect(addr.to_string());
+
+        let mut guard = self.device_added_tasks.lock().unwrap();
+
+        if let Some(task) = guard.get(&addr) {
+            match task {
+                Some(handler) => {
+                    handler.abort();
+                    guard.remove(&addr);
+                }
+                None => {
+                    warn!("Device has been added due to timeout.");
+                    return;
                 }
             }
         }
+
+        let callbacks = self.callbacks.clone();
+        let device_added_tasks = self.device_added_tasks.clone();
+        let task = topstack::get_runtime().spawn(async move {
+            if !missing_profiles.is_empty() {
+                sleep(Duration::from_secs(PROFILE_DISCOVERY_TIMEOUT_SEC)).await;
+            }
+            device_added_cb(device_added_tasks, addr, callbacks, device, missing_profiles);
+        });
+
+        guard.insert(addr, Some(task));
     }
 
     fn notify_media_capability_removed(&self, addr: RawAddress) {
@@ -481,6 +480,29 @@ impl BluetoothMedia {
             }
         } else {
             addr.to_string()
+        }
+    }
+
+    fn adapter_get_audio_profiles(&self, addr: RawAddress) -> HashSet<uuid::Profile> {
+        let device = BluetoothDevice::new(addr.to_string(), "".to_string());
+        if let Some(adapter) = &self.adapter {
+            let audio_profiles =
+                vec![uuid::Profile::A2dpSink, uuid::Profile::Hfp, uuid::Profile::AvrcpController];
+
+            let uuid_helper = uuid::UuidHelper::new();
+
+            adapter
+                .lock()
+                .unwrap()
+                .get_remote_uuids(device)
+                .into_iter()
+                .map(|u| uuid_helper.is_known_profile(&u))
+                .filter(|u| u.is_some())
+                .map(|u| *u.unwrap())
+                .filter(|u| audio_profiles.contains(&u))
+                .collect()
+        } else {
+            HashSet::new()
         }
     }
 
@@ -564,8 +586,15 @@ impl IBluetoothMedia for BluetoothMedia {
 
     fn connect(&mut self, address: String) {
         if let Some(addr) = RawAddress::from_string(address.clone()) {
-            self.a2dp.as_mut().unwrap().connect(addr);
-            self.hfp.as_mut().unwrap().connect(addr);
+            let profiles = self.adapter_get_audio_profiles(addr);
+            for profile in profiles {
+                match profile {
+                    uuid::Profile::A2dpSink => self.a2dp.as_mut().unwrap().connect(addr),
+                    uuid::Profile::Hfp => self.hfp.as_mut().unwrap().connect(addr),
+                    uuid::Profile::AvrcpController => self.avrcp.as_mut().unwrap().connect(addr),
+                    _ => warn!("Unknown profile."),
+                }
+            }
         } else {
             warn!("Invalid device string {}", address);
         }
@@ -684,7 +713,7 @@ impl IBluetoothMedia for BluetoothMedia {
     fn get_hfp_audio_started(&mut self, address: String) -> u8 {
         if let Some(addr) = RawAddress::from_string(address.clone()) {
             match self.hfp_audio_state.get(&addr) {
-                Some(BthfAudioState::Connected) => match self.hfp_caps.get(&addr) {
+                Some(BthfAudioState::Connected) => match self.hfp_cap.get(&addr) {
                     Some(caps)
                         if (*caps & HfpCodecCapability::MSBC) == HfpCodecCapability::MSBC =>
                     {
@@ -696,7 +725,7 @@ impl IBluetoothMedia for BluetoothMedia {
                         1
                     }
                     _ => {
-                        warn!("hfp_caps not found, fallback to CVSD.");
+                        warn!("hfp_cap not found, fallback to CVSD.");
                         1
                     }
                 },
