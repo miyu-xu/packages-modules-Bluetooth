@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aba9b6cf_03a79d56",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1623611
+      },
+      "writtenOn": "2022-08-23T21:40:37Z",
+      "side": 1,
+      "message": "This looks good to me.  \n\nOut of curiosity, what is the concrete class that\u0027s passed around as IBluetooth?  Does it have a specialized equals() method?",
+      "revId": "ea6274aebf9b3b70232973cfd156db21d210646e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67557d09_2affac06",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1907,
+      "author": {
+        "id": 1623611
+      },
+      "writtenOn": "2022-08-23T21:40:37Z",
+      "side": 1,
+      "message": "Cool.  I had to check that AttributionSource had a proper equals() method.",
+      "revId": "ea6274aebf9b3b70232973cfd156db21d210646e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34cb4f7_b4a8f604",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1907,
+      "author": {
+        "id": 1623611
+      },
+      "writtenOn": "2022-08-23T21:40:37Z",
+      "side": 1,
+      "message": "It makes you wish for a Triple\u003c\u003e class...",
+      "revId": "ea6274aebf9b3b70232973cfd156db21d210646e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a357188a_39a6b8ea",
+        "filename": "framework/java/android/bluetooth/BluetoothSap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 1623611
+      },
+      "writtenOn": "2022-08-23T21:40:37Z",
+      "side": 1,
+      "message": "The temporaries make the code easier to read.",
+      "revId": "ea6274aebf9b3b70232973cfd156db21d210646e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
