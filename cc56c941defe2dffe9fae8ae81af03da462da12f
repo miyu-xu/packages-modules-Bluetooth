@@ -16,6 +16,24 @@
       "message": "Lukasz, could we stop the background connection as the paired member reach the set size instead of no callback to upper layer?",
       "revId": "cc56c941defe2dffe9fae8ae81af03da462da12f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19ab6ced_98086883",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-08-23T20:27:21Z",
+      "side": 1,
+      "message": "this background scanner is almost 0 cost. It just take very little time when user gets into settings. If user is not scanning, we are doing nothing. I would keep it as it is rather then adding additional logic here.",
+      "parentUuid": "f23545a0_9d0277be",
+      "revId": "cc56c941defe2dffe9fae8ae81af03da462da12f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
