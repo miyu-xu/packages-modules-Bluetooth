@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5a37ccb_8f376a54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T21:01:59Z",
+      "side": 1,
+      "message": "Docstrings + rename crate please",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e99283ce_13d50b0c",
+        "filename": "system/gd/rust/linux/socket/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T21:01:59Z",
+      "side": 1,
+      "message": "Since this is no longer just sockets, you should rename the crate to `bt_utils` and move this implementation into `socket.rs` to be marked as `pub mod socket` here.",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cf96bb1_97eb1229",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T21:01:59Z",
+      "side": 1,
+      "message": "Anything pub should be documented.",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "307c42ff_b7774bfa",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T21:01:59Z",
+      "side": 1,
+      "message": "nit: /// for docstrings. This is a pub api.",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d50d2d7_cd887623",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T21:01:59Z",
+      "side": 1,
+      "message": "Prefer CString: https://doc.rust-lang.org/alloc/ffi/struct.CString.html",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9322e5b4_cd3cbf19",
+        "filename": "system/gd/rust/linux/socket/src/uinput.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T21:01:59Z",
+      "side": 1,
+      "message": "suggestion:\n```\nfor path in [\"/dev/uinput\", \"/dev/input/uinput\", \"/dev/misc/uinput\"] {\n  match libc::open(CString(path).unwrap().as_ptr().cast(), libc::O_RDWR) {\n    fd if fd \u003e\u003d 0 \u003d\u003e {\n      self.fd \u003d fd;\n      break;\n    }\n    _ \u003d\u003e (),\n  };\n}\n\nif self.fd \u003d\u003d -1 {\n  error!(\"Failed to open uinput\");\n}\n```",
+      "revId": "0367f52126c5318cdf478caa657d6956bdd4644e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
