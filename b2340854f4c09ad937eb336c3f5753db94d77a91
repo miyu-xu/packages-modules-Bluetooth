@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6399614_8afd9160",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2022-08-23T12:05:54Z",
+      "side": 1,
+      "message": "nevermind - multimap handles that.",
+      "parentUuid": "6c1a14b8_f5716220",
+      "revId": "b2340854f4c09ad937eb336c3f5753db94d77a91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9370cf6_a2e8f1a5",
