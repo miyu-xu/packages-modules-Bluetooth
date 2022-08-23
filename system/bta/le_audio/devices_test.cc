@@ -388,8 +388,8 @@ struct TestGroupAseConfigurationData {
   uint8_t audio_channel_counts_snk;
   uint8_t audio_channel_counts_src;
 
-  uint8_t active_channel_num_snk;
-  uint8_t active_channel_num_src;
+  uint8_t max_active_channel_num_snk;
+  uint8_t max_active_channel_num_src;
 };
 
 class LeAudioAseConfigurationTest : public Test {
@@ -459,7 +459,7 @@ class LeAudioAseConfigurationTest : public Test {
     uint8_t active_channel_num_src = 0;
 
     bool have_active_ase =
-        data.active_channel_num_snk + data.active_channel_num_src;
+        data.max_active_channel_num_snk + data.max_active_channel_num_src;
     ASSERT_EQ(have_active_ase, data.device->HaveActiveAse());
 
     for (ase* ase = data.device->GetFirstActiveAse(); ase;
@@ -472,8 +472,8 @@ class LeAudioAseConfigurationTest : public Test {
             GetAudioChannelCounts(*ase->codec_config.audio_channel_allocation);
     }
 
-    ASSERT_EQ(data.active_channel_num_snk, active_channel_num_snk);
-    ASSERT_EQ(data.active_channel_num_src, active_channel_num_src);
+    ASSERT_TRUE(data.max_active_channel_num_snk >= active_channel_num_snk);
+    ASSERT_TRUE(data.max_active_channel_num_src >= active_channel_num_src);
   }
 
   void SetCisInformationToActiveAse(void) {
@@ -497,8 +497,8 @@ class LeAudioAseConfigurationTest : public Test {
     // the configuration should fail if there are no active ases expected
     bool success_expected = data_size > 0;
     for (int i = 0; i < data_size; i++) {
-      success_expected &=
-          (data[i].active_channel_num_snk + data[i].active_channel_num_src) > 0;
+      success_expected &= (data[i].max_active_channel_num_snk +
+                           data[i].max_active_channel_num_src) > 0;
 
       /* Prepare PAC's */
       PublishedAudioCapabilitiesBuilder snk_pac_builder, src_pac_builder;
@@ -540,8 +540,8 @@ class LeAudioAseConfigurationTest : public Test {
       src_pac_builder.Reset();
 
       for (int i = 0; i < data_size; i++) {
-        success_expected &= (data[i].active_channel_num_snk +
-                             data[i].active_channel_num_src) > 0;
+        success_expected &= (data[i].max_active_channel_num_snk +
+                             data[i].max_active_channel_num_src) > 0;
 
         /* Prepare PAC's */
         /* Note this test requires that reach TwoStereoChan configuration
@@ -559,13 +559,14 @@ class LeAudioAseConfigurationTest : public Test {
             snk_ases_cnt += entry.ase_cnt;
             snk_pac_builder.Add(entry.codec, data[i].audio_channel_counts_snk);
           } else {
+            src_ases_cnt += entry.ase_cnt;
             src_pac_builder.Add(entry.codec, data[i].audio_channel_counts_src);
           }
         }
 
         /* Scenario requires more ASEs than defined requirement */
-        if (snk_ases_cnt < data[i].audio_channel_counts_snk ||
-            src_ases_cnt < data[i].audio_channel_counts_src) {
+        if (snk_ases_cnt != data[i].audio_channel_counts_snk ||
+            src_ases_cnt != data[i].audio_channel_counts_src) {
           not_matching_scenario = true;
         }
 
@@ -703,7 +704,7 @@ TEST_F(LeAudioAseConfigurationTest, test_mono_speaker_ringtone) {
   LeAudioDevice* mono_speaker = AddTestDevice(1, 1);
   TestGroupAseConfigurationData data(
       {mono_speaker, kLeAudioCodecLC3ChannelCountSingleChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0});
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1});
 
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
@@ -712,7 +713,7 @@ TEST_F(LeAudioAseConfigurationTest, test_mono_speaker_conversional) {
   LeAudioDevice* mono_speaker = AddTestDevice(1, 0);
   TestGroupAseConfigurationData data({mono_speaker,
                                       kLeAudioCodecLC3ChannelCountSingleChannel,
-                                      kLeAudioCodecLC3ChannelCountNone, 0, 0});
+                                      kLeAudioCodecLC3ChannelCountNone, 1, 0});
 
   TestGroupAseConfiguration(LeAudioContextType::CONVERSATIONAL, &data, 1);
 }
@@ -730,7 +731,7 @@ TEST_F(LeAudioAseConfigurationTest, test_bounded_headphones_ringtone) {
   LeAudioDevice* bounded_headphones = AddTestDevice(2, 1);
   TestGroupAseConfigurationData data(
       {bounded_headphones, kLeAudioCodecLC3ChannelCountTwoChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 2, 0});
+       kLeAudioCodecLC3ChannelCountSingleChannel, 2, 1});
 
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
@@ -757,7 +758,7 @@ TEST_F(LeAudioAseConfigurationTest, test_bounded_headset_ringtone) {
   LeAudioDevice* bounded_headset = AddTestDevice(2, 1);
   TestGroupAseConfigurationData data(
       {bounded_headset, kLeAudioCodecLC3ChannelCountTwoChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 2, 0});
+       kLeAudioCodecLC3ChannelCountSingleChannel, 2, 1});
 
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
@@ -775,7 +776,7 @@ TEST_F(LeAudioAseConfigurationTest, test_bounded_headset_media) {
   LeAudioDevice* bounded_headset = AddTestDevice(2, 1);
   TestGroupAseConfigurationData data(
       {bounded_headset, kLeAudioCodecLC3ChannelCountTwoChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 2, 0});
+       kLeAudioCodecLC3ChannelCountSingleChannel, 2, 1});
 
   TestGroupAseConfiguration(LeAudioContextType::MEDIA, &data, 1);
 }
@@ -785,9 +786,9 @@ TEST_F(LeAudioAseConfigurationTest, test_earbuds_ringtone) {
   LeAudioDevice* right = AddTestDevice(1, 1);
   TestGroupAseConfigurationData data[] = {
       {left, kLeAudioCodecLC3ChannelCountSingleChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0},
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1},
       {right, kLeAudioCodecLC3ChannelCountSingleChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0}};
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1}};
 
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, data, 2);
 }
@@ -820,7 +821,7 @@ TEST_F(LeAudioAseConfigurationTest, test_handsfree_ringtone) {
   LeAudioDevice* handsfree = AddTestDevice(1, 1);
   TestGroupAseConfigurationData data(
       {handsfree, kLeAudioCodecLC3ChannelCountSingleChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0});
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1});
 
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
@@ -857,7 +858,7 @@ TEST_F(LeAudioAseConfigurationTest, test_handsfree_media) {
   LeAudioDevice* handsfree = AddTestDevice(1, 1);
   TestGroupAseConfigurationData data(
       {handsfree, kLeAudioCodecLC3ChannelCountSingleChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0});
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1});
 
   TestGroupAseConfiguration(LeAudioContextType::MEDIA, &data, 1);
 }
