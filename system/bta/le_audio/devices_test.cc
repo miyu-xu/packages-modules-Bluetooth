@@ -559,13 +559,14 @@ class LeAudioAseConfigurationTest : public Test {
             snk_ases_cnt += entry.ase_cnt;
             snk_pac_builder.Add(entry.codec, data[i].audio_channel_counts_snk);
           } else {
+            src_ases_cnt += entry.ase_cnt;
             src_pac_builder.Add(entry.codec, data[i].audio_channel_counts_src);
           }
         }
 
         /* Scenario requires more ASEs than defined requirement */
-        if (snk_ases_cnt < data[i].audio_channel_counts_snk ||
-            src_ases_cnt < data[i].audio_channel_counts_src) {
+        if (snk_ases_cnt > data[i].audio_channel_counts_snk ||
+            src_ases_cnt > data[i].audio_channel_counts_src) {
           not_matching_scenario = true;
         }
 
@@ -712,7 +713,7 @@ TEST_F(LeAudioAseConfigurationTest, test_mono_speaker_conversional) {
   LeAudioDevice* mono_speaker = AddTestDevice(1, 0);
   TestGroupAseConfigurationData data({mono_speaker,
                                       kLeAudioCodecLC3ChannelCountSingleChannel,
-                                      kLeAudioCodecLC3ChannelCountNone, 0, 0});
+                                      kLeAudioCodecLC3ChannelCountNone, 1, 0});
 
   TestGroupAseConfiguration(LeAudioContextType::CONVERSATIONAL, &data, 1);
 }
