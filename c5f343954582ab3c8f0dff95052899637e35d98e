@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dccc3b6_d1a8737d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-23T12:29:26Z",
+      "side": 1,
+      "message": "RootCanal does support this, do you encountered something making you thinking it\u0027s not ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 44,
+        "endLine": 10,
+        "endChar": 24
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c89f602_4764e218",
         "filename": "android/pandora/server/proto/pandora/host.proto",
         "patchSetId": 2
@@ -19,6 +42,29 @@
         "startChar": 0,
         "endLine": 49,
         "endChar": 65
+      },
+      "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac17b5bc_7974c18c",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-23T12:29:26Z",
+      "side": 1,
+      "message": "nit: I would prefer that we drop the `Run` prefix",
+      "range": {
+        "startLine": 49,
+        "startChar": 6,
+        "endLine": 49,
+        "endChar": 10
       },
       "revId": "c5f343954582ab3c8f0dff95052899637e35d98e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
