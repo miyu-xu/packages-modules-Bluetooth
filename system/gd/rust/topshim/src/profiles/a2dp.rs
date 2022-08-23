@@ -3,7 +3,9 @@ use crate::topstack::get_dispatchers;
 
 use num_traits::cast::FromPrimitive;
 use std::sync::{Arc, Mutex};
-use topshim_macros::cb_variant;
+use topshim_macros::{cb_variant, check_internal_enabled};
+
+use log::warn;
 
 #[derive(Debug, FromPrimitive, ToPrimitive, PartialEq, PartialOrd)]
 #[repr(u32)]
@@ -270,6 +272,7 @@ FfiAddress -> RawAddress, A2dpCodecConfig, Vec<A2dpCodecConfig>, Vec<A2dpCodecCo
 pub struct A2dp {
     internal: cxx::UniquePtr<ffi::A2dpIntf>,
     _is_init: bool,
+    _is_enabled: bool,
 }
 
 // For *const u8 opaque btif
@@ -282,42 +285,76 @@ impl A2dp {
             a2dpif = ffi::GetA2dpProfile(intf.as_raw_ptr());
         }
 
-        A2dp { internal: a2dpif, _is_init: false }
+        A2dp { internal: a2dpif, _is_init: false, _is_enabled: false }
+    }
+
+    pub fn is_initialized(&self) -> bool {
+        self._is_init
+    }
+
+    pub fn is_enabled(&self) -> bool {
+        self._is_enabled
+    }
+
+    pub fn enable(&mut self) -> bool {
+        self.internal.init();
+        self._is_enabled = true;
+        true
+    }
+
+    #[check_internal_enabled(false)]
+    pub fn disable(&mut self) -> bool {
+        self.internal.cleanup();
+        self._is_enabled = false;
+        true
     }
 
     pub fn initialize(&mut self, callbacks: A2dpCallbacksDispatcher) -> bool {
         if get_dispatchers().lock().unwrap().set::<A2dpCb>(Arc::new(Mutex::new(callbacks))) {
             panic!("Tried to set dispatcher for A2dp callbacks while it already exists");
         }
-        self.internal.init();
+
+        if self._is_init {
+            warn!("A2dp has already been initialized");
+            return false;
+        }
+
         true
     }
 
+    #[check_internal_enabled]
     pub fn connect(&mut self, addr: RawAddress) {
         self.internal.connect(addr.into());
     }
 
+    #[check_internal_enabled]
     pub fn set_active_device(&mut self, addr: RawAddress) {
         self.internal.set_active_device(addr.into());
     }
 
+    #[check_internal_enabled]
     pub fn disconnect(&mut self, addr: RawAddress) {
         self.internal.disconnect(addr.into());
     }
 
+    #[check_internal_enabled]
     pub fn set_audio_config(&self, sample_rate: i32, bits_per_sample: i32, channel_mode: i32) {
         let config =
             A2dpCodecConfig { sample_rate, bits_per_sample, channel_mode, ..Default::default() };
         self.internal.set_audio_config(config);
     }
+
+    #[check_internal_enabled]
     pub fn start_audio_request(&self) {
         self.internal.start_audio_request();
     }
 
+    #[check_internal_enabled]
     pub fn stop_audio_request(&self) {
         self.internal.stop_audio_request();
     }
 
+    #[check_internal_enabled(Default::default())]
     pub fn get_presentation_position(&self) -> PresentationPosition {
         self.internal.get_presentation_position()
     }
@@ -337,6 +374,7 @@ type A2dpSinkCb = Arc<Mutex<A2dpSinkCallbacksDispatcher>>;
 pub struct A2dpSink {
     internal: cxx::UniquePtr<ffi::A2dpSinkIntf>,
     _is_init: bool,
+    _is_enabled: bool,
 }
 
 // For *const u8 opaque btif
@@ -349,29 +387,54 @@ impl A2dpSink {
             a2dp_sink = ffi::GetA2dpSinkProfile(intf.as_raw_ptr());
         }
 
-        A2dpSink { internal: a2dp_sink, _is_init: false }
+        A2dpSink { internal: a2dp_sink, _is_init: false, _is_enabled: false }
+    }
+
+    pub fn is_initialized(&self) -> bool {
+        self._is_init
+    }
+
+    pub fn is_enabled(&self) -> bool {
+        self._is_enabled
+    }
+
+    pub fn enable(&mut self) -> bool {
+        self.internal.init();
+        self._is_enabled = true;
+        true
+    }
+
+    #[check_internal_enabled(false)]
+    pub fn disable(&mut self) -> bool {
+        self.internal.cleanup();
+        self._is_enabled = false;
+        true
     }
 
     pub fn initialize(&mut self, callbacks: A2dpSinkCallbacksDispatcher) -> bool {
         if get_dispatchers().lock().unwrap().set::<A2dpSinkCb>(Arc::new(Mutex::new(callbacks))) {
             panic!("Tried to set dispatcher for A2dp Sink Callbacks while it already exists");
         }
-        self.internal.init();
+        self._is_init = true;
         true
     }
 
+    #[check_internal_enabled]
     pub fn connect(&mut self, bt_addr: RawAddress) {
         self.internal.connect(bt_addr.into());
     }
 
+    #[check_internal_enabled]
     pub fn disconnect(&mut self, bt_addr: RawAddress) {
         self.internal.disconnect(bt_addr.into());
     }
 
+    #[check_internal_enabled]
     pub fn set_active_device(&mut self, bt_addr: RawAddress) {
         self.internal.set_active_device(bt_addr.into());
     }
 
+    #[check_internal_enabled]
     pub fn cleanup(&mut self) {}
 }
 
