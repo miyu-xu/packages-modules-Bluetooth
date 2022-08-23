@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3edd1bc5_99358331",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-23T21:51:43Z",
+      "side": 1,
+      "message": "It doesn\u0027t have one: unless aidl automatically generate one ? https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/binder/android/bluetooth/IBluetooth.aidl?q\u003dIBluetooth.aidl\nI understand if the address change, it should invalidate, and that\u0027s what we want for this one.",
+      "parentUuid": "aba9b6cf_03a79d56",
+      "revId": "ea6274aebf9b3b70232973cfd156db21d210646e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "67557d09_2affac06",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 2
