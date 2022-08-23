@@ -117,6 +117,30 @@
       },
       "revId": "131496b051649ac7f82543a5912d40575fccb9b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af58076_5b610911",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-23T00:42:01Z",
+      "side": 1,
+      "message": "It was an open question, but I think we should indeed use `ReadCharacteristicDescriptorRequest/Response` right now as Charlie said.",
+      "parentUuid": "35b90754_ace667af",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 1
+      },
+      "revId": "131496b051649ac7f82543a5912d40575fccb9b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

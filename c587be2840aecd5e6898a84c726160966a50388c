@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "000a8d42_55fd9578",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-23T00:42:01Z",
+      "side": 1,
+      "message": "`AttStatusCode` instead of `GattReadStatusCode` since they are also being used by Write request 😊",
+      "range": {
+        "startLine": 39,
+        "startChar": 5,
+        "endLine": 39,
+        "endChar": 24
+      },
+      "revId": "c587be2840aecd5e6898a84c726160966a50388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7a402a8_cf5f47f9",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 10
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-23T00:42:01Z",
+      "side": 1,
+      "message": "nit: GRPC -\u003e gRPC, generally we format our logs as `\u003cfunc name\u003e: \u003cparam\u003e\u003d\u003cvalue\u003e`",
+      "range": {
+        "startLine": 81,
+        "startChar": 18,
+        "endLine": 81,
+        "endChar": 22
+      },
+      "revId": "c587be2840aecd5e6898a84c726160966a50388c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
