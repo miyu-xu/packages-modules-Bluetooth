@@ -178,6 +178,7 @@ bool StopRequest() {
   LOG(INFO) << __func__ << ": handling";
   a2dp_pending_cmd_ = A2DP_CTRL_CMD_STOP;
   btif_av_stream_stop(RawAddress::kEmpty);
+  a2dp_pending_cmd_ = A2DP_CTRL_CMD_NONE;
   return true;
 }
 
