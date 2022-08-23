@@ -38,6 +38,7 @@ java_defaults {
             enabled: false,
         },
     },
+    target_sdk_version: "current",
 }
 
 // pre-jarjar version of service-uwb that builds against pre-jarjar version of framework-bluetooth
