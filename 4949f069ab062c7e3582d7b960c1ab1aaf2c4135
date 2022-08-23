@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9e1e56d_dd123493",
+        "filename": "system/gd/rust/packets/build.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2022-08-23T13:33:51Z",
+      "side": 1,
+      "message": "Would an environment variable pointing to `bluetooth_packetgen` make this easier ?\n\nTo be clear my motivation here is to avoid having a different branch specifically for the emulator as I feel it\u0027s something that we will not test and that we will not be able to put in CI",
+      "parentUuid": "428988f9_5978ee36",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b59a12de_bbfbf8b9",
         "filename": "tools/rootcanal/lmp/Cargo.toml",
         "patchSetId": 15
