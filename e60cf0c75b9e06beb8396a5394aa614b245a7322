@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "010a2d7d_019eb073",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T20:22:06Z",
+      "side": 1,
+      "message": "Does this result in a link key that\u0027s unusable or is it still viable?",
+      "revId": "e60cf0c75b9e06beb8396a5394aa614b245a7322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e0d314e0_12da3876",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-23T20:22:06Z",
+      "side": 1,
+      "message": "nit: If str.len() \u003c 32 isn\u0027t an error condition, prefer not to log and just do:\n\n```\nlet s \u003d String::from(\u0026str[0..std::cmp::min(str.len(), 32));\n```",
+      "revId": "e60cf0c75b9e06beb8396a5394aa614b245a7322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
