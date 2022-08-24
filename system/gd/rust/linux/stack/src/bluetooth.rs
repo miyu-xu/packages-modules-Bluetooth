@@ -387,18 +387,86 @@ impl Bluetooth {
         }
     }
 
-    pub fn init_profiles(&mut self) {
-        let hhtx = self.tx.clone();
-        self.hh = Some(HidHost::new(&self.intf.lock().unwrap()));
-        self.hh.as_mut().unwrap().initialize(HHCallbacksDispatcher {
-            dispatch: Box::new(move |cb| {
-                let txl = hhtx.clone();
-                topstack::get_runtime().spawn(async move {
-                    let _ = txl.send(Message::HidHost(cb)).await;
-                });
-            }),
-        });
+    fn disable_profile(&mut self, profile: &Profile) {
+        if !self.uuid_helper.is_profile_supported(profile) {
+            return;
+        }
 
+        match profile {
+            Profile::Hid => {
+                self.hh.as_mut().unwrap().disable();
+            }
+
+            Profile::A2dpSource => {
+                self.bluetooth_media.lock().unwrap().disable_a2dp();
+            }
+
+            Profile::Hfp => {
+                self.bluetooth_media.lock().unwrap().disable_hfp();
+            }
+            _ => (),
+        }
+    }
+
+    fn enable_profile(&mut self, profile: &Profile) {
+        if !self.uuid_helper.is_profile_supported(profile) {
+            return;
+        }
+
+        match profile {
+            Profile::Hid => {
+                self.hh.as_mut().unwrap().enable();
+            }
+
+            Profile::A2dpSource => {
+                self.bluetooth_media.lock().unwrap().enable_a2dp();
+            }
+
+            Profile::Hfp => {
+                self.bluetooth_media.lock().unwrap().enable_hfp();
+            }
+            _ => (),
+        }
+    }
+
+    fn is_profile_enabled(&self, profile: &Profile) -> Option<bool> {
+        if !self.uuid_helper.is_profile_supported(profile) {
+            return None;
+        }
+
+        match profile {
+            Profile::Hid => Some(!self.hh.is_none() && self.hh.as_ref().unwrap().is_enabled()),
+
+            Profile::A2dpSource => {
+                let a2dp_enabled = self.bluetooth_media.lock().unwrap().is_a2dp_enabled();
+                Some(a2dp_enabled)
+            }
+
+            Profile::Hfp => Some(self.bluetooth_media.lock().unwrap().is_hfp_enabled()),
+            _ => None,
+        }
+    }
+
+    pub fn toggle_enabled_profiles(&mut self, allowed_services: &Vec<Uuid128Bit>) {
+        for profile in self.uuid_helper.get_supported_profiles() {
+            // Only toggle initializable profiles.
+            if let Some(enabled) = self.is_profile_enabled(&profile) {
+                let allowed = allowed_services.len() == 0
+                    || allowed_services
+                        .contains(&self.uuid_helper.get_profile_uuid(&profile).unwrap().clone());
+
+                if allowed && !enabled {
+                    debug!("Enabling profile {}", profile.to_string());
+                    self.enable_profile(&profile);
+                } else if !allowed && enabled {
+                    debug!("Disabling profile {}", profile.to_string());
+                    self.disable_profile(&profile);
+                }
+            }
+        }
+    }
+
+    pub fn init_profiles(&mut self) {
         let sdptx = self.tx.clone();
         self.sdp = Some(Sdp::new(&self.intf.lock().unwrap()));
         self.sdp.as_mut().unwrap().initialize(SdpCallbacksDispatcher {
@@ -410,6 +478,18 @@ impl Bluetooth {
             }),
         });
 
+        let hhtx = self.tx.clone();
+        self.hh = Some(HidHost::new(&self.intf.lock().unwrap()));
+        self.hh.as_mut().unwrap().initialize(HHCallbacksDispatcher {
+            dispatch: Box::new(move |cb| {
+                let txl = hhtx.clone();
+                topstack::get_runtime().spawn(async move {
+                    let _ = txl.send(Message::HidHost(cb)).await;
+                });
+            }),
+        });
+
+        self.toggle_enabled_profiles(&vec![]);
         // Mark profiles as ready
         self.profiles_ready = true;
     }
@@ -1509,7 +1589,7 @@ impl IBluetooth for Bluetooth {
         for uuid in uuids.iter() {
             match self.uuid_helper.is_known_profile(uuid) {
                 Some(p) => {
-                    if self.uuid_helper.is_profile_enabled(&p) {
+                    if self.uuid_helper.is_profile_supported(&p) {
                         match p {
                             Profile::Hid | Profile::Hogp => {
                                 self.hh.as_ref().unwrap().connect(&mut addr.unwrap());
@@ -1558,7 +1638,7 @@ impl IBluetooth for Bluetooth {
         for uuid in uuids.iter() {
             match self.uuid_helper.is_known_profile(uuid) {
                 Some(p) => {
-                    if self.uuid_helper.is_profile_enabled(&p) {
+                    if self.uuid_helper.is_profile_supported(&p) {
                         match p {
                             Profile::Hid | Profile::Hogp => {
                                 self.hh.as_ref().unwrap().disconnect(&mut addr.unwrap());
