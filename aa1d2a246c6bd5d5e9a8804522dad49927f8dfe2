@@ -22,6 +22,30 @@
       },
       "revId": "aa1d2a246c6bd5d5e9a8804522dad49927f8dfe2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8f2640f_a0f1e9d7",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-24T04:21:51Z",
+      "side": 1,
+      "message": "IMO we\u0027d like to remove all of these `DISABLE_WBS` later since there seems to be no purpose other than to facilitate development, and due to its obsolete usage it will not go to prod as it is now.\n\nWe have the board Kukui for example that requires hardware encoding and only supports narrow-band. While we have been discussing whether querying this property in runtime is justifiable, I think for the time being we\u0027ll keep this part as it is and refrain from adding the ifdef as you said.",
+      "parentUuid": "94e5408c_c33f5e73",
+      "range": {
+        "startLine": 299,
+        "startChar": 1,
+        "endLine": 299,
+        "endChar": 3
+      },
+      "revId": "aa1d2a246c6bd5d5e9a8804522dad49927f8dfe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
