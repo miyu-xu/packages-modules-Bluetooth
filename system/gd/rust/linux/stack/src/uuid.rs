@@ -1,7 +1,7 @@
 //! Collection of Profile UUIDs and helpers to use them.
 
 use std::collections::{HashMap, HashSet};
-use std::fmt::{Display, Formatter};
+use std::fmt::{Display, Formatter, Debug};
 
 use bt_topshim::btif::{Uuid, Uuid128Bit};
 
@@ -70,6 +70,12 @@ pub enum Profile {
     CoordinatedSet,
 }
 
+impl Display for Profile {
+    fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
+        Debug::fmt(self, f)
+    }
+}
+
 /// Wraps a reference of Uuid128Bit, which is the raw array of bytes of UUID.
 /// This is useful in implementing standard Rust traits which can't be implemented directly on
 /// built-in types (Rust's Orphan Rule).
@@ -91,16 +97,18 @@ impl<'a> Display for KnownUuidWrapper<'a> {
 }
 
 pub struct UuidHelper {
-    /// A list of enabled profiles on the system. These may be modified by policy.
-    pub enabled_profiles: HashSet<Profile>,
+    /// A list of supported profiles on the system.
+    pub supported_profiles: HashSet<Profile>,
 
     /// Map a UUID to a known profile
     pub profiles: HashMap<Uuid128Bit, Profile>,
+
+    profile_uuids: HashMap<Profile, Uuid128Bit>,
 }
 
 impl UuidHelper {
     pub fn new() -> Self {
-        let enabled_profiles: HashSet<Profile> = [
+        let supported_profiles: HashSet<Profile> = [
             Profile::A2dpSink,
             Profile::A2dpSource,
             Profile::Hsp,
@@ -152,12 +160,13 @@ impl UuidHelper {
         .cloned()
         .collect();
 
-        UuidHelper { enabled_profiles, profiles }
+        let profile_uuids: HashMap<Profile, Uuid128Bit> = profiles.clone().iter().map(|(k, v)| (v.clone(), k.clone())).collect();
+        UuidHelper { supported_profiles, profiles, profile_uuids }
     }
 
     /// Checks whether a UUID corresponds to a currently enabled profile.
     pub fn is_profile_enabled(&self, profile: &Profile) -> bool {
-        self.enabled_profiles.contains(profile)
+        self.supported_profiles.contains(profile)
     }
 
     /// Converts a UUID to a known profile enum.
@@ -165,8 +174,13 @@ impl UuidHelper {
         self.profiles.get(uuid)
     }
 
-    pub fn get_enabled_profiles(&self) -> HashSet<Profile> {
-        self.enabled_profiles.clone()
+    /// Converts a profile enum to its UUID if known.
+    pub fn get_profile_uuid(&self, profile: &Profile) -> Option<&Uuid128Bit> {
+        self.profile_uuids.get(profile)
+    }
+
+    pub fn get_supported_profiles(&self) -> HashSet<Profile> {
+        self.supported_profiles.clone()
     }
 
     /// Converts a UUID byte array into a formatted string.
