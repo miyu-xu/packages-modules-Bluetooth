@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4db4d0dc_b09b41d2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-24T21:06:58Z",
+      "side": 1,
+      "message": "Thanks for including me. I suggest this CL to wait until my refractor is done. \nMine CL will, pass in the address like this one. Also renaming the call back to use the DeviceConnected and DeviceDisconnected convention, as the rest AVRCP functionalities will rely more on the device connection status.  \n",
+      "revId": "317cda2e00c4ba1c476a7431b6a194be1a8f79bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
