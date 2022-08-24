@@ -1,7 +1,7 @@
 //! Collection of Profile UUIDs and helpers to use them.
 
 use std::collections::{HashMap, HashSet};
-use std::fmt::{Display, Formatter};
+use std::fmt::{Display, Formatter, Debug};
 
 use bt_topshim::btif::{Uuid, Uuid128Bit};
 
@@ -70,6 +70,12 @@ pub enum Profile {
     CoordinatedSet,
 }
 
+impl Display for Profile {
+    fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
+        Debug::fmt(self, f)
+    }
+}
+
 /// Wraps a reference of Uuid128Bit, which is the raw array of bytes of UUID.
 /// This is useful in implementing standard Rust traits which can't be implemented directly on
 /// built-in types (Rust's Orphan Rule).
@@ -96,6 +102,8 @@ pub struct UuidHelper {
 
     /// Map a UUID to a known profile
     pub profiles: HashMap<Uuid128Bit, Profile>,
+
+    profile_uuids: HashMap<Profile, Uuid128Bit>,
 }
 
 impl UuidHelper {
@@ -152,7 +160,8 @@ impl UuidHelper {
         .cloned()
         .collect();
 
-        UuidHelper { enabled_profiles, profiles }
+        let profile_uuids: HashMap<Profile, Uuid128Bit> = profiles.clone().iter().map(|(k, v)| (v.clone(), k.clone())).collect();
+        UuidHelper { enabled_profiles, profiles, profile_uuids }
     }
 
     /// Checks whether a UUID corresponds to a currently enabled profile.
@@ -163,6 +172,11 @@ impl UuidHelper {
     /// Converts a UUID to a known profile enum.
     pub fn is_known_profile(&self, uuid: &Uuid128Bit) -> Option<&Profile> {
         self.profiles.get(uuid)
+    }
+
+    /// Converts a profile enum to its UUID if known.
+    pub fn get_profile_uuid(&self, profile: &Profile) -> Option<&Uuid128Bit> {
+        self.profile_uuids.get(profile)
     }
 
     pub fn get_enabled_profiles(&self) -> HashSet<Profile> {
