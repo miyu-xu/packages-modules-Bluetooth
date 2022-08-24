@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef301c3f_99f2a9c3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-24T10:20:05Z",
+      "side": 1,
+      "message": "Added `--target rootcanal` and workspace, verified locally that it builds.",
+      "parentUuid": "f30cea67_3c095055",
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe07241c_0c80746e",
@@ -103,6 +121,30 @@
       "side": 1,
       "message": "Might still be tricky: the CMake rule doesn\u0027t expose the executable path, and pulling it out sounds like a hack. I\u0027m also still a bit worried about the binary\u0027s dependencies.\nAs for CI, how is this script being tested at the moment? I believe it\u0027s only used in ChromeOS (meaning, we\u0027d need to adjust their build script as well), whereas Android uses a `genrule` called `BluetoothGeneratedPackets_rust` (in that sense, I\u0027m doing a very similar thing here)?",
       "parentUuid": "b9e1e56d_dd123493",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "4949f069ab062c7e3582d7b960c1ab1aaf2c4135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e8c6618_03a7644e",
+        "filename": "system/gd/rust/packets/build.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-24T10:20:05Z",
+      "side": 1,
+      "message": "Abhishek\u0027s comment cleared up how it\u0027s tested in CrOS.",
+      "parentUuid": "d3a720ef_40b76f41",
       "range": {
         "startLine": 21,
         "startChar": 4,
