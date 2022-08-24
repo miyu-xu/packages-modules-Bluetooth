@@ -171,6 +171,14 @@ import java.util.Objects;
         return mOngoingScans.get(scannerId);
     }
 
+    synchronized boolean isScanTimeout(int scannerId) {
+        LastScan onGoingScan = getScanFromScannerId(scannerId);
+        if (onGoingScan == null) {
+            return false;
+        }
+        return onGoingScan.isTimeout;
+    }
+
     synchronized void recordScanStart(ScanSettings settings, List<ScanFilter> filters,
             boolean isFilterScan, boolean isCallbackScan, int scannerId) {
         LastScan existingScan = getScanFromScannerId(scannerId);
