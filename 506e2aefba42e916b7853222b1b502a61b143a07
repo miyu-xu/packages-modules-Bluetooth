@@ -16,6 +16,24 @@
       "message": "bluetooth_le_audio_test64.LeAudioAseConfigurationTest#test_mono_speaker_conversional\n\nthis test is failing\n\n```\n[0816/214015.600747:INFO:devices.cc(1173)] Choosed ASE Configuration for group: 6 configuration: SingleDev_OneChanMonoSnk_16_2_Server_Preferred\npackages/modules/Bluetooth/system/bta/le_audio/devices_test.cc:582: Failure\nExpected equality of these values:\nsuccess_expected\nWhich is: false\ngroup_-\u003eConfigure(context_type)\nWhich is: true\n```",
       "revId": "506e2aefba42e916b7853222b1b502a61b143a07",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf90cf80_6bf883f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-24T03:48:45Z",
+      "side": 1,
+      "message": "Had some discussion with Lukasz, and have been fixed by aosp/2193564",
+      "parentUuid": "968dca4c_b51ae637",
+      "revId": "506e2aefba42e916b7853222b1b502a61b143a07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
