@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe090f06_02140ab2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-24T22:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01202144_9435d9f7",
+      "revId": "ca4031de40d9a389d4963cad2f1a150290562d05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db6a2f5f_82274665",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-24T21:38:13Z",
       "side": 1,
       "message": "Should send_key return something to confirm the send was successful? Silently swallowing the error seems like the wrong thing to do.\n\ni.e. `pub fn send_key(\u0026mut self, key: u8, state: u8) -\u003e Result\u003c(), String\u003e`\n\nnit: should `state` be `value` instead?",
+      "revId": "ca4031de40d9a389d4963cad2f1a150290562d05",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0251aaf7_fa7c1765",
+        "filename": "system/gd/rust/linux/utils/src/uinput.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-24T22:24:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db6a2f5f_82274665",
       "revId": "ca4031de40d9a389d4963cad2f1a150290562d05",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
