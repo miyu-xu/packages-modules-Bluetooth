@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94e5408c_c33f5e73",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-24T03:44:22Z",
+      "side": 1,
+      "message": "We\u0027re trying not to add more ifdefs.  Can we use a system property?  Can we set the bits correctly in cached_codecs?  I expected all hosts to support it if we\u0027re using software encoding.",
+      "range": {
+        "startLine": 299,
+        "startChar": 1,
+        "endLine": 299,
+        "endChar": 3
+      },
+      "revId": "aa1d2a246c6bd5d5e9a8804522dad49927f8dfe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
