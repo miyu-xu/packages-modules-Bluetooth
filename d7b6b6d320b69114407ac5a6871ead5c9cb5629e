@@ -16,6 +16,24 @@
       "message": "Look for  v2/pixel-test-automation/floss/flossbuild_gcp_presubmit on test_suites_x86_64 on aosp-master \n\nOn this CL: https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI64400010084098787",
       "revId": "d7b6b6d320b69114407ac5a6871ead5c9cb5629e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c629a7d5_ffbbfb5b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-24T21:45:19Z",
+      "side": 1,
+      "message": "Thanks! Failed exactly as expected. :)\nhttps://fusion.corp.googleusercontent.com/file/autoview?fileUri\u003dgooglefile%3A%2Fcns%2Fph-d%2Fhome%2Fmobileharness%2Fgateway%2F20220824%2Fs_29f9a2cb-abb9-41ec-bb2f-e66d3ac08aeb%2F88289abc-d3d1-427f-9e86-4c9b89c35548%2Ftest_abeb822b-8402-4920-bf13-f74804fed485%2FFloss.BuildFloss%2Ffloss-build.log\u0026filename\u003dfloss-build.log\u0026invocationId\u003d29f9a2cb-abb9-41ec-bb2f-e66d3ac08aeb\u0026actionName\u003dinvocations%2F29f9a2cb-abb9-41ec-bb2f-e66d3ac08aeb%2Ftargets%2F%252F%252Fwearables%252Fqa%252Fblueberry%252Ftests%252Ffloss_build%253Aflossbuild_gcp_presubmit%2FconfiguredTargets%2Fdefault%2Factions%2Ftest\u0026contentType\u003dansi\n```\nerror: no matching package named `num-bigint` found\nlocation searched: registry `crates-io`\nrequired by package `lmp v0.1.0 (/root/src/tools/rootcanal/lmp)`\n```",
+      "parentUuid": "001b720d_bb6135ca",
+      "revId": "d7b6b6d320b69114407ac5a6871ead5c9cb5629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
