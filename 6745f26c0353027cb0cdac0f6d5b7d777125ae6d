@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7626ab55_45cae9ca",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-24T20:48:23Z",
+      "side": 1,
+      "message": "(2, 0) otherwise it is the same as `test_bounded_headset_ringtone`",
+      "range": {
+        "startLine": 749,
+        "startChar": 55,
+        "endLine": 749,
+        "endChar": 56
+      },
+      "revId": "6745f26c0353027cb0cdac0f6d5b7d777125ae6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afcee648_c5fcf4f3",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-24T20:48:23Z",
+      "side": 1,
+      "message": "(2, 0)",
+      "range": {
+        "startLine": 752,
+        "startChar": 50,
+        "endLine": 752,
+        "endChar": 54
+      },
+      "revId": "6745f26c0353027cb0cdac0f6d5b7d777125ae6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
