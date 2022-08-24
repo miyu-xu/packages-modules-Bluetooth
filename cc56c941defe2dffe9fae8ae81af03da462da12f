@@ -34,6 +34,24 @@
       "parentUuid": "f23545a0_9d0277be",
       "revId": "cc56c941defe2dffe9fae8ae81af03da462da12f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c370a1ee_89fc74ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-24T01:35:35Z",
+      "side": 1,
+      "message": "We haven\u0027t apply any AD type filter for the background scan currently, so it only works for the setting trigger the scan with empty filter and without cost now. But it might be changed later.\n\nSo I\u0027m thinking stoping background scan is more correct way. \nWe could improve it later after the critical bug fixed. How do you think?",
+      "parentUuid": "19ab6ced_98086883",
+      "revId": "cc56c941defe2dffe9fae8ae81af03da462da12f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
