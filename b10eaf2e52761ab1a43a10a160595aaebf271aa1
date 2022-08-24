@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79792af3_7b196983",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-24T01:41:24Z",
+      "side": 1,
+      "message": "a. Should we consider checking `self.absolute_volume !\u003d supported`?\n b. Line 223 would restart the 5 secs timer right? is that intended?\n \n I\u0027m fine with whatever decision to above. We could position like: don\u0027t do (a) so give headset some more time because of (b).\n Just explain the new strategy explicitly here. It\u0027d be helpful we clearly mention the max timeout value (which becomes 5+5 now I think)",
+      "revId": "b10eaf2e52761ab1a43a10a160595aaebf271aa1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
