@@ -284,16 +284,16 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
-  override fun connectLE(
-    request: ConnectLERequest,
-    responseObserver: StreamObserver<ConnectLEResponse>
+  override fun connectLe(
+      request: ConnectLeRequest,
+      responseObserver: StreamObserver<ConnectLeResponse>
   ) {
-    grpcUnary<ConnectLEResponse>(scope, responseObserver) {
+    grpcUnary<ConnectLeResponse>(scope, responseObserver) {
       val ptsAddress = request.address.decodeToString()
       Log.i(TAG, "connect LE: $ptsAddress")
       val device = scanLeDevice(ptsAddress)
       GattInstance(device!!, TRANSPORT_LE, context).waitForState(BluetoothProfile.STATE_CONNECTED)
-      ConnectLEResponse.newBuilder()
+      ConnectLeResponse.newBuilder()
         .setConnection(
           Connection.newBuilder().setCookie(ByteString.copyFromUtf8(device.address)).build()
         )
@@ -301,7 +301,7 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     }
   }
 
-  override fun disconnectLE(request: DisconnectLERequest, responseObserver: StreamObserver<Empty>) {
+  override fun disconnectLe(request: DisconnectLeRequest, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
       val ptsAddress = request.connection.cookie.toByteArray().decodeToString()
       Log.i(TAG, "disconnect: $ptsAddress")

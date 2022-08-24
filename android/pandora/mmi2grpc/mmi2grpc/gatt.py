@@ -51,7 +51,7 @@ class GATTProxy(ProfileProxy):
         PTS.
         """
 
-        self.connection = self.host.ConnectLE(address=pts_addr).connection
+        self.connection = self.host.ConnectLe(address=pts_addr).connection
         if test in NEEDS_CACHE_CLEARED:
             self.gatt.ClearCache(connection=self.connection)
         return "OK"
@@ -67,7 +67,7 @@ class GATTProxy(ProfileProxy):
         """
 
         assert self.connection is not None
-        self.host.DisconnectLE(connection=self.connection)
+        self.host.DisconnectLe(connection=self.connection)
         self.connection = None
         self.services = None
         self.characteristics = None

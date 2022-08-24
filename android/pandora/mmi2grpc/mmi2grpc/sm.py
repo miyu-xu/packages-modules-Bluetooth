@@ -51,7 +51,7 @@ class SMProxy(ProfileProxy):
         """
         Initiate an connection from the IUT to the PTS.
         """
-        self.connection = self.host.ConnectLE(address=pts_addr).connection
+        self.connection = self.host.ConnectLe(address=pts_addr).connection
         if self.connection and test in ACCEPTS_REMOTE_PAIRING_CONFIRMATION:
             self.sm.ProvidePairingConfirmation(connection=self.connection, pairing_confirmation_value=True)
         return "OK"
@@ -78,7 +78,7 @@ class SMProxy(ProfileProxy):
         PTS.
         """
         if self.connection:
-            self.host.DisconnectLE(connection=self.connection)
+            self.host.DisconnectLe(connection=self.connection)
             self.connection = None
         return "OK"
 
