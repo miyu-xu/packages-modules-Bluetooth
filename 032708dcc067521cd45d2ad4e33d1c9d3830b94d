@@ -16,6 +16,24 @@
       "message": "Blocking Floss pre-submit was just enabled today so if you re-run pre-submit, it should fail properly now (we\u0027ll need to merge the rust_crates change first -- I\u0027ll go approve that now).",
       "revId": "032708dcc067521cd45d2ad4e33d1c9d3830b94d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6bca6a7_59c5a9d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-24T21:07:20Z",
+      "side": 1,
+      "message": "Awesome! Could you please tell me the name and location of the presubmit test to see the logs? It seems that, even if there\u0027s a crate missing, cargo may still try and download it from crates.io, and the test will pass, but I want do double-check and make sure.",
+      "parentUuid": "21a136bb_01375c10",
+      "revId": "032708dcc067521cd45d2ad4e33d1c9d3830b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
