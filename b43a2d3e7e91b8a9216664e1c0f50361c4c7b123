@@ -16,6 +16,24 @@
       "message": "I did not pay attention here - why we need it for media use case?",
       "revId": "b43a2d3e7e91b8a9216664e1c0f50361c4c7b123",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c803606_acf876f3",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-24T13:03:17Z",
+      "side": 1,
+      "message": "CAP/INI/UST/BV-18-C, it\u0027s for CAP PTS test case, single device with standalone source only for the media context type.",
+      "parentUuid": "6eb20046_176faed2",
+      "revId": "b43a2d3e7e91b8a9216664e1c0f50361c4c7b123",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
