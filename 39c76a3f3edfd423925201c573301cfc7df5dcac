@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6298058c_baca546f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-24T16:49:07Z",
+      "side": 1,
+      "message": "This CL seems independent of the rest of the stack.",
+      "revId": "39c76a3f3edfd423925201c573301cfc7df5dcac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "485528ba_b078d04e",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3085,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-24T16:49:07Z",
+      "side": 1,
+      "message": "This makes me question the utility of HasHandleOnlyAddress()\n\n\nauto handle \u003d connections_.GetHandleOnlyAddress(addr);\nif (handle \u003d\u003d kReservedHandle) {\n  return ErrorCode::UNKNOWN_CONNECTION;\n}\n\nI\u0027m interested in why you preferred HasHandleOnlyAddress()",
+      "range": {
+        "startLine": 3082,
+        "startChar": 0,
+        "endLine": 3085,
+        "endChar": 56
+      },
+      "revId": "39c76a3f3edfd423925201c573301cfc7df5dcac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
