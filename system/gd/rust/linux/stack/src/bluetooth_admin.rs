@@ -59,8 +59,18 @@ impl IBluetoothAdmin for BluetoothAdmin {
             self.allowed_services.insert(service.clone());
         }
 
-        // TODO: Toggle profiles here.
-        true
+        if !self.adapter.is_none() {
+            let allowed_services = self.get_allowed_services();
+            self.adapter
+                .as_mut()
+                .unwrap()
+                .lock()
+                .unwrap()
+                .toggle_enabled_profiles(&allowed_services);
+            return true;
+        }
+
+        false
     }
 
     fn get_allowed_services(&self) -> Vec<Uuid128Bit> {
