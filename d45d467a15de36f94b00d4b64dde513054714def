@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "583f83ae_1714efdc",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 1865,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-24T18:37:07Z",
+      "side": 1,
+      "message": "use LOG_DEBUG in new code",
+      "range": {
+        "startLine": 1865,
+        "startChar": 2,
+        "endLine": 1865,
+        "endChar": 18
+      },
+      "revId": "d45d467a15de36f94b00d4b64dde513054714def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84cb7126_180a02d3",
+        "filename": "system/stack/btm/remote_name_request.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-24T18:37:07Z",
+      "side": 1,
+      "message": "Per Google C++ style guide, // style comment is preferred in new code",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 10
+      },
+      "revId": "d45d467a15de36f94b00d4b64dde513054714def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39c16c3c_81ffc0d9",
+        "filename": "system/stack/btm/remote_name_request.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-24T18:37:07Z",
+      "side": 1,
+      "message": "Please follow the Google C++ style guide for method naming\n\nhttps://google.github.io/styleguide/cppguide.html#Function_Names",
+      "range": {
+        "startLine": 65,
+        "startChar": 40,
+        "endLine": 65,
+        "endChar": 49
+      },
+      "revId": "d45d467a15de36f94b00d4b64dde513054714def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2e7375cc_1fe51669",
         "filename": "system/stack/btm/remote_name_request.h",
         "patchSetId": 14
@@ -32,6 +101,23 @@
       "side": 1,
       "message": "I want to make explicit what callbacks we are registering. It is not clear when `RemoteNameRequestCallbacks(f)` or `RemoteNameRequestCallbacks(f, g)` are triggered (especially since in the latter case, `g` is triggered before `f`). I guess the type system would catch this since the return types are different, but I\u0027d still prefer to make it really obvious.",
       "parentUuid": "2e7375cc_1fe51669",
+      "revId": "d45d467a15de36f94b00d4b64dde513054714def",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d626dcf_fa9801df",
+        "filename": "system/stack/btm/remote_name_request.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-24T18:37:07Z",
+      "side": 1,
+      "message": "Could this code be moved into GD? \n\nSee https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/le_periodic_sync_manager.h\n\nfor how GD handles request queuing.",
       "revId": "d45d467a15de36f94b00d4b64dde513054714def",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
