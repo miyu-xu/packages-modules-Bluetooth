@@ -150,7 +150,9 @@ pub struct BluetoothMedia {
     tx: Sender<Message>,
     adapter: Option<Arc<Mutex<Box<Bluetooth>>>>,
     a2dp: Option<A2dp>,
+    a2dp_delay_enable: bool,
     avrcp: Option<Avrcp>,
+    avrcp_delay_enable: bool,
     a2dp_states: HashMap<RawAddress, BtavConnectionState>,
     a2dp_audio_state: HashMap<RawAddress, BtavAudioState>,
     hfp: Option<Hfp>,
@@ -158,6 +160,7 @@ pub struct BluetoothMedia {
     hfp_audio_state: HashMap<RawAddress, BthfAudioState>,
     a2dp_caps: HashMap<RawAddress, Vec<A2dpCodecConfig>>,
     hfp_cap: HashMap<RawAddress, HfpCodecCapability>,
+    hfp_delay_enable: bool,
     device_added_tasks: Arc<Mutex<HashMap<RawAddress, Option<(JoinHandle<()>, Instant)>>>>,
     absolute_volume: bool,
     uinput: UInput,
@@ -177,7 +180,9 @@ impl BluetoothMedia {
             tx,
             adapter: None,
             a2dp: None,
+            a2dp_delay_enable: false,
             avrcp: None,
+            avrcp_delay_enable: false,
             a2dp_states: HashMap::new(),
             a2dp_audio_state: HashMap::new(),
             hfp: None,
@@ -185,6 +190,7 @@ impl BluetoothMedia {
             hfp_audio_state: HashMap::new(),
             a2dp_caps: HashMap::new(),
             hfp_cap: HashMap::new(),
+            hfp_delay_enable: false,
             device_added_tasks: Arc::new(Mutex::new(HashMap::new())),
             absolute_volume: false,
             uinput: UInput::new(),
@@ -195,6 +201,66 @@ impl BluetoothMedia {
 
     pub fn set_adapter(&mut self, adapter: Arc<Mutex<Box<Bluetooth>>>) {
         self.adapter = Some(adapter);
+    }
+
+    pub fn enable_a2dp(&mut self) {
+        if let Some(a2dp) = &mut self.a2dp {
+            a2dp.enable();
+            self.a2dp_delay_enable = false;
+        } else {
+            self.a2dp_delay_enable = true;
+        }
+    }
+
+    pub fn enable_avrcp(&mut self) {
+        if let Some(avrcp) = &mut self.avrcp {
+            avrcp.enable();
+            self.avrcp_delay_enable = false;
+        } else {
+            self.avrcp_delay_enable = true;
+        }
+    }
+
+    pub fn enable_hfp(&mut self) {
+        if let Some(hfp) = &mut self.hfp {
+            hfp.enable();
+            self.hfp_delay_enable = false;
+        } else {
+            self.hfp_delay_enable = true;
+        }
+    }
+
+    pub fn disable_a2dp(&mut self) {
+        if let Some(a2dp) = &mut self.a2dp {
+            a2dp.disable();
+        }
+        self.a2dp_delay_enable = false;
+    }
+
+    pub fn disable_avrcp(&mut self) {
+        if let Some(avrcp) = &mut self.avrcp {
+            avrcp.disable();
+        }
+        self.avrcp_delay_enable = false;
+    }
+
+    pub fn disable_hfp(&mut self) {
+        if let Some(hfp) = &mut self.hfp {
+            hfp.disable();
+        }
+        self.hfp_delay_enable = false;
+    }
+
+    pub fn is_a2dp_enabled(&self) -> bool {
+        self.a2dp.as_ref().map_or(false, |a2dp| a2dp.is_enabled())
+    }
+
+    pub fn is_avrcp_enabled(&self) -> bool {
+        self.avrcp.as_ref().map_or(false, |avrcp| avrcp.is_enabled())
+    }
+
+    pub fn is_hfp_enabled(&self) -> bool {
+        self.hfp.as_ref().map_or(false, |hfp| hfp.is_enabled())
     }
 
     pub fn dispatch_a2dp_callbacks(&mut self, cb: A2dpCallbacks) {
@@ -730,6 +796,16 @@ impl IBluetoothMedia for BluetoothMedia {
         self.hfp = Some(Hfp::new(&self.intf.lock().unwrap()));
         self.hfp.as_mut().unwrap().initialize(hfp_dispatcher);
 
+        if self.a2dp_delay_enable {
+            self.enable_a2dp();
+        }
+
+        // Default to enable AVRCP
+        self.enable_avrcp();
+
+        if self.hfp_delay_enable {
+            self.enable_hfp();
+        }
         true
     }
 
