@@ -335,8 +335,8 @@ impl CommandHandler {
                     let le_ext_adv_supported = adapter_dbus.is_le_extended_advertising_supported();
                     let wbs_supported = adapter_dbus.is_wbs_supported();
                     let uuid_helper = UuidHelper::new();
-                    let enabled_profiles = uuid_helper.get_enabled_profiles();
-                    let connected_profiles: Vec<Profile> = enabled_profiles
+                    let supported_profiles = uuid_helper.get_supported_profiles();
+                    let connected_profiles: Vec<Profile> = supported_profiles
                         .iter()
                         .filter(|&&prof| adapter_dbus.get_profile_connection_state(prof) > 0)
                         .cloned()
