@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eb20046_176faed2",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-24T12:47:58Z",
+      "side": 1,
+      "message": "I did not pay attention here - why we need it for media use case?",
+      "revId": "b43a2d3e7e91b8a9216664e1c0f50361c4c7b123",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
