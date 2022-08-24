@@ -719,10 +719,10 @@ class LeAudioAseConfigurationTest : public Test {
 };
 
 TEST_F(LeAudioAseConfigurationTest, test_mono_speaker_ringtone) {
-  LeAudioDevice* mono_speaker = AddTestDevice(1, 1);
+  LeAudioDevice* mono_speaker = AddTestDevice(1, 0);
   TestGroupAseConfigurationData data(
       {mono_speaker, kLeAudioCodecLC3ChannelCountSingleChannel,
-       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 1});
+       kLeAudioCodecLC3ChannelCountSingleChannel, 1, 0});
 
   TestGroupAseConfiguration(LeAudioContextType::RINGTONE, &data, 1);
 }
