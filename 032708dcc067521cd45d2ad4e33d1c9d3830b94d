@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "21a136bb_01375c10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-24T18:19:09Z",
+      "side": 1,
+      "message": "Blocking Floss pre-submit was just enabled today so if you re-run pre-submit, it should fail properly now (we\u0027ll need to merge the rust_crates change first -- I\u0027ll go approve that now).",
+      "revId": "032708dcc067521cd45d2ad4e33d1c9d3830b94d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
