@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "feab5efe_c3b14fea",
+        "filename": "system/gd/rust/topshim/btav/btav_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-24T22:24:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab8c3a6f_4f322b91",
+      "revId": "5c94d70dd2affcb754e06982c861107b0a26fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a39e3cc3_0a29c2e8",
@@ -48,6 +66,24 @@
       "writtenOn": "2022-08-24T21:47:51Z",
       "side": 1,
       "message": "Can you write docstrings for this? Focus on when these events get emitted.\n\ni.e.\n\n```\npub enum AvrcpCallbacks {\n\n  /// Emitted when avrcp completes connection.\n  /// Params: Device address, Absolute Volume Enabled\n  AvrcpDeviceConnected(RawAddress, bool);\n}\n```",
+      "revId": "5c94d70dd2affcb754e06982c861107b0a26fc58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4d7b4cf_077dcf57",
+        "filename": "system/gd/rust/topshim/src/profiles/avrcp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-24T22:24:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a39e3cc3_0a29c2e8",
       "revId": "5c94d70dd2affcb754e06982c861107b0a26fc58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
