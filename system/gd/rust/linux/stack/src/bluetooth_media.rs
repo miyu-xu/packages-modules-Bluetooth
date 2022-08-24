@@ -161,6 +161,7 @@ pub struct BluetoothMedia {
     device_added_tasks: Arc<Mutex<HashMap<RawAddress, Option<(JoinHandle<()>, Instant)>>>>,
     absolute_volume: bool,
     uinput: UInput,
+    delay_enable_profiles: HashSet<uuid::Profile>,
     connected_profiles: HashMap<RawAddress, HashSet<uuid::Profile>>,
     disconnecting_devices: HashSet<RawAddress>,
 }
@@ -188,6 +189,7 @@ impl BluetoothMedia {
             device_added_tasks: Arc::new(Mutex::new(HashMap::new())),
             absolute_volume: false,
             uinput: UInput::new(),
+            delay_enable_profiles: HashSet::new(),
             connected_profiles: HashMap::new(),
             disconnecting_devices: HashSet::new(),
         }
@@ -195,6 +197,84 @@ impl BluetoothMedia {
 
     pub fn set_adapter(&mut self, adapter: Arc<Mutex<Box<Bluetooth>>>) {
         self.adapter = Some(adapter);
+    }
+
+    pub fn enable_profile(&mut self, profile: &Profile) {
+        let mut delay_enable = None;
+        match profile {
+            &Profile::A2dpSource => {
+                delay_enable = Some(self.a2dp.is_none());
+                if let Some(a2dp) = &mut self.a2dp {
+                    a2dp.enable();
+                }
+            }
+            &Profile::AvrcpTarget => {
+                delay_enable = Some(self.avrcp.is_none());
+                if let Some(avrcp) = &mut self.avrcp {
+                    avrcp.enable();
+                }
+            }
+            &Profile::Hfp => {
+                delay_enable = Some(self.hfp.is_none());
+                if let Some(hfp) = &mut self.hfp {
+                    hfp.enable();
+                }
+            }
+            _ => (),
+        }
+
+        match delay_enable {
+            Some(true) => {
+                self.delay_enable_profiles.insert(profile.clone());
+            }
+            Some(false) => {
+                self.delay_enable_profiles.remove(profile);
+            }
+            _ => {
+                warn!("Tried to enable {} in bluetooth_media", profile);
+            }
+        };
+    }
+
+    pub fn disable_profile(&mut self, profile: &Profile) {
+        match profile {
+            &Profile::A2dpSource => {
+                if let Some(a2dp) = &mut self.a2dp {
+                    a2dp.disable();
+                }
+            }
+            &Profile::AvrcpTarget => {
+                if let Some(avrcp) = &mut self.avrcp {
+                    avrcp.disable();
+                }
+            }
+            &Profile::Hfp => {
+                if let Some(hfp) = &mut self.hfp {
+                    hfp.disable();
+                }
+            }
+            _ => {
+                warn!("Tried to disable {} in bluetooth_media", profile);
+            }
+        }
+
+        self.delay_enable_profiles.remove(profile);
+    }
+
+    pub fn is_profile_enabled(&self, profile: &Profile) -> Option<bool> {
+        match profile {
+            &Profile::A2dpSource => {
+                Some(self.a2dp.as_ref().map_or(false, |a2dp| a2dp.is_enabled()))
+            }
+            &Profile::AvrcpTarget => {
+                Some(self.avrcp.as_ref().map_or(false, |avrcp| avrcp.is_enabled()))
+            }
+            &Profile::Hfp => Some(self.hfp.as_ref().map_or(false, |hfp| hfp.is_enabled())),
+            _ => {
+                warn!("Tried to query enablement status of {} in bluetooth_media", profile);
+                None
+            }
+        }
     }
 
     pub fn dispatch_a2dp_callbacks(&mut self, cb: A2dpCallbacks) {
@@ -729,6 +809,12 @@ impl IBluetoothMedia for BluetoothMedia {
         let hfp_dispatcher = get_hfp_dispatcher(self.tx.clone());
         self.hfp = Some(Hfp::new(&self.intf.lock().unwrap()));
         self.hfp.as_mut().unwrap().initialize(hfp_dispatcher);
+
+        for profile in self.delay_enable_profiles.clone() {
+            self.enable_profile(&profile);
+        }
+        // Default to enable AVRCP
+        self.enable_profile(&Profile::AvrcpTarget);
 
         true
     }
