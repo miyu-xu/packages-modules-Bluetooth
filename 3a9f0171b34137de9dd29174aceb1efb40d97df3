@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c6c319f_6dec85bd",
+        "filename": "system/bta/le_audio/devices_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 749,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2022-08-24T09:18:00Z",
+      "side": 1,
+      "message": "Wasn\u0027t the intent here to test sink only device? I think bounded_headphones should be: AddTestDevice(2, 0) consistently in each test case. and AddTestDevice(2, 1) should be the case for bounded_headset.\n\nWhat you did here is pretty much the same as `test_bounded_headset_ringtone` and I think that was not the intent of this test case original author.",
+      "range": {
+        "startLine": 749,
+        "startChar": 38,
+        "endLine": 749,
+        "endChar": 58
+      },
+      "revId": "3a9f0171b34137de9dd29174aceb1efb40d97df3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
