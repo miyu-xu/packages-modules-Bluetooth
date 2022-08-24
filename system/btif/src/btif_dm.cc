@@ -1319,11 +1319,19 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
           //
           // If a subsequent SDP is completed, the new UUIDs should replace the
           // existing UUIDs.
-          BTIF_STORAGE_FILL_PROPERTY(
-              &properties[num_properties], BT_PROPERTY_UUIDS,
-              pairing_cb.num_eir_uuids * Uuid::kNumBytes128,
-              pairing_cb.eir_uuids);
-          num_properties++;
+          if (num_uuids > 0) {
+            std::vector<uint8_t> uuid_value;
+
+            for (auto& id : uuid_iter->second) {
+              auto uuid_128bit = id.To128BitBE();
+              uuid_value.insert(uuid_value.end(), uuid_128bit.begin(),
+                                uuid_128bit.end());
+            }
+            BTIF_STORAGE_FILL_PROPERTY(
+                &properties[num_properties], BT_PROPERTY_UUIDS,
+                num_uuids * Uuid::kNumBytes128, &uuid_value[0]);
+            num_properties++;
+          }
 #endif
         }
 
