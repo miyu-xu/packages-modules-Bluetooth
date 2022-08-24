@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a685a73_88253657",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-24T23:07:47Z",
+      "side": 1,
+      "message": "Hi Hsin-yu,\n\nI rebase it on top of Michael\u0027s CLs. Also, I realized that I should use \"get\" instead of \"remove\" to preserve the state of the task hashmap and check the returned value to determine the task\u0027s state instead of directly digest it.\nPlease help take another look at this CL.",
+      "revId": "3b776ca526e5cfc02b5ce19b9188cdc27c5abef8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
