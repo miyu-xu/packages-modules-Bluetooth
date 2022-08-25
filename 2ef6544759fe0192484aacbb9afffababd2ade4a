@@ -16,6 +16,24 @@
       "message": "Thanks for the work, it looks like the direction.\nCan you try rebase this on top of enshuo\u0027s recent CL: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2192153 ?\n\nAlso maybe we can consider including \"AVRCP\" to the UUID allow list and `connect()` as well?\n\n+Michael (AVRCP owner) FYI, and to try if Sony headset behaves with this fix.",
       "revId": "2ef6544759fe0192484aacbb9afffababd2ade4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baf25bb2_88a94263",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-25T10:27:18Z",
+      "side": 1,
+      "message": "I\u0027ve squashed all the things to get it working for now. Would like to have some more time testing, but feel free to comment on anything fishy or let me know if it doesn\u0027t work in some cases, thanks!\n\nSo far I\u0027ve tested once with each of XM4/XM5/HM1100/Motorola-S10 and I can verify all are working.",
+      "parentUuid": "91afd085_937813b7",
+      "revId": "2ef6544759fe0192484aacbb9afffababd2ade4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
