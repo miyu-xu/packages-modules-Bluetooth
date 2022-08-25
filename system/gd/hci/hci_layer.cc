@@ -267,7 +267,6 @@ struct HciLayer::impl {
     std::shared_ptr<std::vector<uint8_t>> bytes = std::make_shared<std::vector<uint8_t>>();
     BitInserter bi(*bytes);
     command_queue_.front().command->Serialize(bi);
-    hal_->sendHciCommand(*bytes);
 
     auto cmd_view = CommandView::Create(PacketView<kLittleEndian>(bytes));
     ASSERT(cmd_view.IsValid());
@@ -282,6 +281,7 @@ struct HciLayer::impl {
     } else {
       LOG_WARN("%s sent without an hci-timeout timer", OpCodeText(op_code).c_str());
     }
+    hal_->sendHciCommand(*bytes);
   }
 
   void register_event(EventCode event, ContextualCallback<void(EventView)> handler) {
