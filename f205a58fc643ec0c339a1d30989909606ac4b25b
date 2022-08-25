@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdc45370_8fa6fe66",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-25T22:40:08Z",
+      "side": 1,
+      "message": "will handle that in a separate CL and move to using unique_ptr as well",
+      "parentUuid": "fe2b7e4a_b658f11e",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89bda0d7_a116805a",
@@ -48,6 +66,42 @@
       "writtenOn": "2022-08-25T21:40:29Z",
       "side": 1,
       "message": "else {\n     LOG_ERROR(\"Received command response without valid timer\");\n }",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0545aab8_41160604",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-25T22:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89bda0d7_a116805a",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce5698e4_450151e0",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-25T22:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89bda0d7_a116805a",
       "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "337a40a3_6007fbbd",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-25T22:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f62e246e_52b55b22",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "439ac419_242cfe3e",
@@ -82,6 +154,24 @@
       "writtenOn": "2022-08-25T21:40:29Z",
       "side": 1,
       "message": "LOG_ERROR\nThis seems to only occur after an hci timeout occurred and/or hci root inflamation occurred.",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b687d443_f6ae67f6",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1106424
+      },
+      "writtenOn": "2022-08-25T22:40:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "439ac419_242cfe3e",
       "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
