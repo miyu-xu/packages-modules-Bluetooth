@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c500dd98_56b0508c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-25T17:36:17Z",
+      "side": 1,
+      "message": "Do we need this?  It means that we were advertising, and the device connected to us while we were trying to find their advertisement.",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a823a76c_711dd042",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-25T17:36:17Z",
+      "side": 1,
+      "message": "Same here.",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
