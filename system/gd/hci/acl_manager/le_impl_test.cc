@@ -17,25 +17,37 @@
 #include "hci/acl_manager/le_impl.h"
 
 #include <gtest/gtest.h>
+#include <unistd.h>
 
 #include <chrono>
 
 #include "common/bidi_queue.h"
 #include "common/callback.h"
 #include "hci/acl_manager.h"
+#include "hci/acl_manager/le_connection_callbacks.h"
 #include "hci/address_with_type.h"
 #include "hci/controller.h"
 #include "hci/hci_packets.h"
 #include "os/handler.h"
 #include "os/log.h"
+#include "packet/bit_inserter.h"
 #include "packet/raw_builder.h"
 
 using namespace std::chrono_literals;
+using namespace bluetooth;
 
 using ::bluetooth::common::BidiQueue;
 using ::bluetooth::common::Callback;
 using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
+
+namespace {
+const char* test_flags[] = {
+    "INIT_logging_debug_enabled_for_all=true",
+    nullptr,
+};
+
+}
 
 namespace bluetooth {
 namespace hci {
@@ -80,6 +92,8 @@ class TestController : public Controller {
 };
 
 class TestHciLayer : public HciLayer {
+  // This is a springboard class that converts from `AclCommandBuilder`
+  // to `ComandBuilder` for use in the hci layer.
   template <typename T>
   class CommandInterfaceImpl : public CommandInterface<T> {
    public:
@@ -98,7 +112,49 @@ class TestHciLayer : public HciLayer {
     HciLayer& hci_;
   };
 
+  std::queue<std::vector<uint8_t>> packet_queue_;
+
  public:
+  std::future<void> future;
+  std::promise<void> promise;
+
+ public:
+  virtual void EnqueueCommand(
+      std::unique_ptr<CommandBuilder> command,
+      common::ContextualOnceCallback<void(CommandCompleteView)> on_complete) override {
+    std::vector<uint8_t> bytes;
+    packet::BitInserter bi(bytes);
+    command->Serialize(bi);
+    packet_queue_.push(bytes);
+    promise.set_value();
+  }
+
+  virtual void EnqueueCommand(
+      std::unique_ptr<CommandBuilder> command,
+      common::ContextualOnceCallback<void(CommandStatusView)> on_status) override {
+    std::vector<uint8_t> bytes;
+    packet::BitInserter bi(bytes);
+    command->Serialize(bi);
+    packet_queue_.push(bytes);
+    promise.set_value();
+  }
+
+  std::vector<uint8_t> DequeueCommand() {
+    auto bytes = packet_queue_.front();
+    packet_queue_.pop();
+    return bytes;
+  }
+
+  size_t NumberOfQueuedCommands() const {
+    return packet_queue_.size();
+  }
+
+  PacketView<kLittleEndian> GetQueuedPacketView() {
+    ASSERT(!packet_queue_.empty());
+    auto vec = std::make_shared<std::vector<uint8_t>>(DequeueCommand());
+    return PacketView<kLittleEndian>(vec);
+  }
+
   LeAclConnectionInterface* GetLeAclConnectionInterface(
       common::ContextualCallback<void(LeMetaEventView)> event_handler,
       common::ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect,
@@ -107,21 +163,35 @@ class TestHciLayer : public HciLayer {
           on_read_remote_version) override {
     disconnect_handlers_.push_back(on_disconnect);
     read_remote_version_handlers_.push_back(on_read_remote_version);
-    return &le_acl_connection_manager_interface_2_;
+    return &le_acl_connection_manager_interface_;
   }
 
   void PutLeAclConnectionInterface() override {}
 
-  CommandInterfaceImpl<AclCommandBuilder> le_acl_connection_manager_interface_2_{*this};
+  CommandInterfaceTest<AclCommandBuilder> le_acl_connection_manager_interface_{*this};
+};
+
+class LeConnectionCallbacksTest : public LeConnectionCallbacks {
+ public:
+  virtual ~LeConnectionCallbacksTest() = default;
+  virtual void OnLeConnectSuccess(
+      AddressWithType address_with_type, std::unique_ptr<LeAclConnection> connection) override {
+    LOG_INFO("got ddress with type connect success");
+  }
+  virtual void OnLeConnectFail(AddressWithType address_with_type, ErrorCode reason) override {
+    LOG_INFO("got ddress with type connect fail");
+  }
 };
 
 class LeImplTest : public ::testing::Test {
- public:
+ protected:
   void SetUp() override {
     thread_ = new Thread("thread", Thread::Priority::NORMAL);
     handler_ = new Handler(thread_);
     controller_ = new TestController();
     hci_layer_ = new TestHciLayer();
+
+    handler_->Post(BindOnce([]() { LOG_INFO("Handler is operational"); }));
 
     round_robin_scheduler_ = new RoundRobinScheduler(handler_, controller_, hci_queue_.GetUpEnd());
     hci_queue_.GetDownEnd()->RegisterDequeue(
@@ -172,6 +242,7 @@ class LeImplTest : public ::testing::Test {
     }
   }
 
+ protected:
   uint16_t packet_count_;
   std::unique_ptr<std::promise<void>> packet_promise_;
   std::unique_ptr<std::future<void>> packet_future_;
@@ -181,11 +252,24 @@ class LeImplTest : public ::testing::Test {
 
   Thread* thread_;
   Handler* handler_;
-  HciLayer* hci_layer_{nullptr};
+  TestHciLayer* hci_layer_{nullptr};
   TestController* controller_;
   RoundRobinScheduler* round_robin_scheduler_{nullptr};
 
+  LeConnectionCallbacksTest connection_callbacks_;
   struct le_impl* le_impl_;
+};
+
+class LeImplWithCallbacksTest : public LeImplTest {
+ protected:
+  void SetUp() override {
+    LeImplTest::SetUp();
+    le_impl_->handle_register_le_callbacks(&connection_callbacks_, handler_);
+  }
+
+  void TearDown() override {
+    LeImplTest::TearDown();
+  }
 };
 
 TEST_F(LeImplTest, nop) {}
