@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5dbbf0_2131d1ac",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-25T16:40:13Z",
+      "side": 1,
+      "message": "May want to delete these TODO",
+      "revId": "46966c77215bdb62159c7ea068bfc7fbca484884",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
