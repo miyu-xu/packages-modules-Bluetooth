@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65cbbe00_84aea076",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2022-08-25T08:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e5138f2_f26e3dee",
+      "revId": "dd0083f86970f6da895088809bb88db738207802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "888f7a6b_9aad585b",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Right now we don\u0027t use a specific type in the rest of our APIs so I\u0027d suggest letting this as is.",
       "parentUuid": "888f7a6b_9aad585b",
+      "revId": "dd0083f86970f6da895088809bb88db738207802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "163ebd25_92f461bd",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2022-08-25T08:48:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e701f85_ce12ba40",
       "revId": "dd0083f86970f6da895088809bb88db738207802",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
