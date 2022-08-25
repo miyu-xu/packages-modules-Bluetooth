@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae63674d_03e4e1bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-25T21:40:29Z",
+      "side": 1,
+      "message": "I would expect no difference in production value between this and previous point when scheduling the packet for the hal layer.\n",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe2b7e4a_b658f11e",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-25T21:40:29Z",
+      "side": 1,
+      "message": "hci_timeout_alarm_ \u003d nullptr\n\nUnsure of guidance to reset points during destruction",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89bda0d7_a116805a",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-25T21:40:29Z",
+      "side": 1,
+      "message": "else {\n     LOG_ERROR(\"Received command response without valid timer\");\n }",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f62e246e_52b55b22",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-25T21:40:29Z",
+      "side": 1,
+      "message": "\"Unable to schedule an already existing abort timer\"",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "439ac419_242cfe3e",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-25T21:40:29Z",
+      "side": 1,
+      "message": "LOG_ERROR\nThis seems to only occur after an hci timeout occurred and/or hci root inflamation occurred.",
+      "revId": "f205a58fc643ec0c339a1d30989909606ac4b25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
