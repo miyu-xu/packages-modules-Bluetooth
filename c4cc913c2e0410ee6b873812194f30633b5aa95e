@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaea10ec_9f020127",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-25T11:00:48Z",
+      "side": 1,
+      "message": "Notes for myself: if there are 3 profiles, and 2 of them get connected at the end, the second probably wouldn\u0027t get reflected.",
+      "range": {
+        "startLine": 475,
+        "startChar": 75,
+        "endLine": 475,
+        "endChar": 81
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
