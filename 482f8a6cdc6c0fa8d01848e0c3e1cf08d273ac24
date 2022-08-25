@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d941cf55_ebdf3604",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-25T22:18:14Z",
+      "side": 1,
+      "message": "ok so pretend the shim doesn\u0027t exist (b/c it doesn\u0027t on any diagrams but is a currently and essential part of the product until it\u0027s parted out into final owners)\n\nThe shim had a shadow list because at one point le_impl didn\u0027t keep track of the filter accept list entries.  That has since changed.\n\nIt makes sense that the filter accept list and IRK list (which is currently not kept but should be) should be the sole provider of le_impl.\n\nThe shim shadow list (and others in ble_*) should be advisory only, and either removed or turned into \u0027cached\u0027 containers",
+      "parentUuid": "5746d68e_cf3f6d8d",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a823a76c_711dd042",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 2
