@@ -33,6 +33,24 @@
       "message": "There is a similar call in `btif_hh_remove_device`, using the jni_thread.\n\nWhy this isn\u0027t needed in  `btif_hh_upstreams_evt` ? there is a lot of HAL_CBACK there too",
       "revId": "24ef2bb8ae01810795812e4f49c13ab17c418996",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32cdc77f_2475d990",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1561242
+      },
+      "writtenOn": "2022-08-25T08:10:22Z",
+      "side": 1,
+      "message": "For btif_hh_upstreams_evt(), the context is changed to jni thread through btif_transfer_context(). So the HAL_CALLBACK called in here does not require a switch to the explicit jni thread.",
+      "parentUuid": "a3dedf98_d12da03f",
+      "revId": "24ef2bb8ae01810795812e4f49c13ab17c418996",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
