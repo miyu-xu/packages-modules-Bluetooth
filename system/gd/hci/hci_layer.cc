@@ -225,6 +225,8 @@ struct HciLayer::impl {
     if (hci_timeout_alarm_ != nullptr) {
       hci_timeout_alarm_->Cancel();
       send_next_command();
+    } else {
+      LOG_ERROR("Received command response without a valid timer");
     }
   }
 
@@ -250,7 +252,7 @@ struct HciLayer::impl {
       hci_abort_alarm_ = new Alarm(module_.GetHandler());
       hci_abort_alarm_->Schedule(BindOnce(&abort_after_time_out, op_code), kHciTimeoutRestartMs);
     } else {
-      LOG_WARN("Unable to schedul abort timer");
+      LOG_WARN("Unable to schedule an already existing abort timer");
     }
   }
 
@@ -267,7 +269,6 @@ struct HciLayer::impl {
     std::shared_ptr<std::vector<uint8_t>> bytes = std::make_shared<std::vector<uint8_t>>();
     BitInserter bi(*bytes);
     command_queue_.front().command->Serialize(bi);
-    hal_->sendHciCommand(*bytes);
 
     auto cmd_view = CommandView::Create(PacketView<kLittleEndian>(bytes));
     ASSERT(cmd_view.IsValid());
@@ -280,8 +281,9 @@ struct HciLayer::impl {
     if (hci_timeout_alarm_ != nullptr) {
       hci_timeout_alarm_->Schedule(BindOnce(&impl::on_hci_timeout, common::Unretained(this), op_code), kHciTimeoutMs);
     } else {
-      LOG_WARN("%s sent without an hci-timeout timer", OpCodeText(op_code).c_str());
+      LOG_ERROR("%s sent without an hci-timeout timer", OpCodeText(op_code).c_str());
     }
+    hal_->sendHciCommand(*bytes);
   }
 
   void register_event(EventCode event, ContextualCallback<void(EventView)> handler) {
