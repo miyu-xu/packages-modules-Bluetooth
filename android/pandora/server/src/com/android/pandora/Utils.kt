@@ -27,12 +27,20 @@ import android.content.IntentFilter
 import android.net.MacAddress
 import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
+import java.util.concurrent.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
@@ -50,11 +58,11 @@ import pandora.HostProto.Connection
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 fun intentFlow(context: Context, intentFilter: IntentFilter) = callbackFlow {
   val broadcastReceiver: BroadcastReceiver =
-    object : BroadcastReceiver() {
-      override fun onReceive(context: Context, intent: Intent) {
-        trySendBlocking(intent)
+      object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+          trySendBlocking(intent)
+        }
       }
-    }
   context.registerReceiver(broadcastReceiver, intentFilter)
 
   awaitClose { context.unregisterReceiver(broadcastReceiver) }
@@ -86,10 +94,10 @@ fun intentFlow(context: Context, intentFilter: IntentFilter) = callbackFlow {
  */
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 fun <T> grpcUnary(
-  scope: CoroutineScope,
-  responseObserver: StreamObserver<T>,
-  timeout: Long = 60,
-  block: suspend () -> T
+    scope: CoroutineScope,
+    responseObserver: StreamObserver<T>,
+    timeout: Long = 60,
+    block: suspend () -> T
 ): Job {
   return scope.launch {
     try {
@@ -101,6 +109,75 @@ fun <T> grpcUnary(
     } catch (e: Throwable) {
       e.printStackTrace()
       responseObserver.onError(e)
+    }
+  }
+}
+
+/**
+ * Creates a gRPC coroutine in a given coroutine scope which executes a given suspended function
+ * taking in a Flow of gRPC requests and returning a Flow of gRPC responses and sends it on a given
+ * gRPC stream observer.
+ *
+ * @param T the type of gRPC response.
+ * @param scope coroutine scope used to run the coroutine.
+ * @param responseObserver the gRPC stream observer on which to send the response.
+ * @param block the suspended function transforming the request Flow to the response Flow.
+ * @return a StreamObserver for the incoming requests.
+ *
+ * Example usage:
+ * ```
+ * override fun grpcMethod(
+ *   request: TypeOfRequest,
+ *   responseObserver: StreamObserver<TypeOfResponse> {
+ *     grpcBidirectionalStream(scope, responseObserver) {
+ *       block
+ *     }
+ *   }
+ * }
+ * ```
+ */
+@kotlinx.coroutines.ExperimentalCoroutinesApi
+fun <T, U> grpcBidirectionalStream(
+    scope: CoroutineScope,
+    responseObserver: StreamObserver<U>,
+    block: CoroutineScope.(Flow<T>) -> Flow<U>
+): StreamObserver<T> {
+
+  val inputFlow = MutableSharedFlow<T>(extraBufferCapacity = 8)
+  val outputFlow = scope.block(inputFlow.asSharedFlow())
+
+  val job =
+      outputFlow
+          .onEach { responseObserver.onNext(it) }
+          .onCompletion { error ->
+            if (error == null) {
+              responseObserver.onCompleted()
+            }
+          }
+          .catch {
+            it.printStackTrace()
+            responseObserver.onError(it)
+          }
+          .launchIn(scope)
+
+  return object : StreamObserver<T> {
+    override fun onNext(req: T) {
+      // Note: this should be made a blocking call, and the MMIs should run in a separate thread
+      // so we get flow control - but for now we can live with this
+      if (!inputFlow.tryEmit(req)) {
+        job.cancel(CancellationException("too many incoming requests, buffer exceeded"))
+        responseObserver.onError(
+            CancellationException("too many incoming requests, buffer exceeded"))
+      }
+    }
+
+    override fun onCompleted() {
+      // no-op
+    }
+
+    override fun onError(e: Throwable) {
+      job.cancel()
+      e.printStackTrace()
     }
   }
 }
@@ -124,12 +201,12 @@ fun <T> getProfileProxy(context: Context, profile: Int): T {
 
     val flow = callbackFlow {
       val serviceListener =
-        object : BluetoothProfile.ServiceListener {
-          override fun onServiceConnected(profile: Int, proxy: BluetoothProfile) {
-            trySendBlocking(proxy)
+          object : BluetoothProfile.ServiceListener {
+            override fun onServiceConnected(profile: Int, proxy: BluetoothProfile) {
+              trySendBlocking(proxy)
+            }
+            override fun onServiceDisconnected(profile: Int) {}
           }
-          override fun onServiceDisconnected(profile: Int) {}
-        }
 
       bluetoothAdapter.getProfileProxy(context, serviceListener, profile)
 
@@ -141,16 +218,16 @@ fun <T> getProfileProxy(context: Context, profile: Int): T {
 }
 
 fun Intent.getBluetoothDeviceExtra(): BluetoothDevice =
-  this.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
+    this.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE, BluetoothDevice::class.java)
 
 fun ByteString.decodeToString(): String =
-  MacAddress.fromBytes(this.toByteArray()).toString().uppercase()
+    MacAddress.fromBytes(this.toByteArray()).toString().uppercase()
 
 fun ByteString.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
-  adapter.getRemoteDevice(this.decodeToString())
+    adapter.getRemoteDevice(this.decodeToString())
 
 fun Connection.toBluetoothDevice(adapter: BluetoothAdapter): BluetoothDevice =
-  adapter.getRemoteDevice(this.cookie.toByteArray().decodeToString())
+    adapter.getRemoteDevice(this.cookie.toByteArray().decodeToString())
 
 fun String.toByteArray(): ByteArray = MacAddress.fromString(this).toByteArray()
 
