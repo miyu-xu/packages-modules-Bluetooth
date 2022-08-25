@@ -60,7 +60,7 @@ class Sm(private val context: Context) : SMImplBase() {
     val intentFilter = IntentFilter()
     intentFilter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST)
 
-    flow = intentFlow(context, intentFilter).shareIn(scope, SharingStarted.Eagerly)
+    flow = intentFlow(context, intentFilter).shareIn(globalScope, SharingStarted.Eagerly)
   }
 
   fun deinit() {
@@ -68,9 +68,9 @@ class Sm(private val context: Context) : SMImplBase() {
   }
 
   override fun pair(request: PairRequest, responseObserver: StreamObserver<Empty>) {
-    grpcUnary<Empty>(scope, responseObserver) {
+    grpcUnary(globalScope, responseObserver) {
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
-      Log.i(TAG, "pair: ${bluetoothDevice.getAddress()}")
+      Log.i(TAG, "pair: ${bluetoothDevice.address}")
       bluetoothDevice.createBond()
       Empty.getDefaultInstance()
     }
@@ -89,6 +89,35 @@ class Sm(private val context: Context) : SMImplBase() {
         .first()
       bluetoothDevice.setPairingConfirmation(request.pairingConfirmationValue)
       Empty.getDefaultInstance()
+    }
+  }
+
+  override fun deletePairing(
+    request: DeletePairingRequest,
+    responseObserver: StreamObserver<DeletePairingResponse>
+  ) {
+    grpcUnary<DeletePairingResponse>(globalScope, responseObserver) {
+      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
+      Log.i(TAG, "DeletePairing: device=$bluetoothDevice")
+
+      if (bluetoothDevice.removeBond()) {
+        Log.i(TAG, "DeletePairing: device=$bluetoothDevice - wait BOND_NONE intent")
+        flow
+          .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
+          .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+          .filter {
+            it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) ==
+              BluetoothDevice.BOND_NONE
+          }
+          .filter {
+            it.getIntExtra(BluetoothDevice.EXTRA_REASON, BluetoothAdapter.ERROR) ==
+              BluetoothDevice.BOND_SUCCESS
+          }
+          .first()
+      } else {
+        Log.i(TAG, "DeletePairing: device=$bluetoothDevice - Already unpaired")
+      }
+      DeletePairingResponse.getDefaultInstance()
     }
   }
 }
