@@ -11,6 +11,7 @@ use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, Hfp, HfpCallbacks, HfpCallbacksDispatcher,
     HfpCodecCapability,
 };
+use bt_utils::uinput::UInput;
 
 use bt_topshim::topstack;
 
@@ -146,6 +147,7 @@ pub struct BluetoothMedia {
     hfp_caps: HashMap<RawAddress, HfpCodecCapability>,
     device_added_tasks: Arc<Mutex<HashMap<RawAddress, Option<JoinHandle<()>>>>>,
     absolute_volume: bool,
+    uinput: UInput,
 }
 
 impl BluetoothMedia {
@@ -170,6 +172,7 @@ impl BluetoothMedia {
             hfp_caps: HashMap::new(),
             device_added_tasks: Arc::new(Mutex::new(HashMap::new())),
             absolute_volume: false,
+            uinput: UInput::new(),
         }
     }
 
@@ -218,6 +221,8 @@ impl BluetoothMedia {
     pub fn dispatch_avrcp_callbacks(&mut self, cb: AvrcpCallbacks) {
         match cb {
             AvrcpCallbacks::AvrcpDeviceConnected(addr, supported) => {
+                self.uinput.init(self.adapter_get_remote_name(addr), addr.to_string());
+
                 if self.absolute_volume == supported {
                     return;
                 }
@@ -249,13 +254,17 @@ impl BluetoothMedia {
                     info!("[{}]: Device's avrcp connected before a2dp and hfp", addr.to_string());
                 }
             }
-            AvrcpCallbacks::AvrcpDeviceDisconnected(_addr) => {}
+            AvrcpCallbacks::AvrcpDeviceDisconnected(_addr) => {
+                self.uinput.close();
+            }
             AvrcpCallbacks::AvrcpAbsoluteVolumeUpdate(volume) => {
                 self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
                     callback.on_absolute_volume_changed(volume);
                 });
             }
-            AvrcpCallbacks::AvrcpSendKeyEvent(_key, _value) => {}
+            AvrcpCallbacks::AvrcpSendKeyEvent(key, value) => {
+                self.uinput.send_key(key, value);
+            }
         }
     }
 
@@ -566,6 +575,7 @@ impl IBluetoothMedia for BluetoothMedia {
         if let Some(addr) = RawAddress::from_string(address.clone()) {
             self.a2dp.as_mut().unwrap().connect(addr);
             self.hfp.as_mut().unwrap().connect(addr);
+            self.avrcp.as_mut().unwrap().connect(addr);
         } else {
             warn!("Invalid device string {}", address);
         }
@@ -587,6 +597,7 @@ impl IBluetoothMedia for BluetoothMedia {
         if let Some(addr) = RawAddress::from_string(address.clone()) {
             self.a2dp.as_mut().unwrap().disconnect(addr);
             self.hfp.as_mut().unwrap().disconnect(addr);
+            self.avrcp.as_mut().unwrap().disconnect(addr);
         } else {
             warn!("Invalid device string {}", address);
         }
