@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91b2d240_0ebceba2",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-25T15:39:44Z",
+      "side": 0,
+      "message": "logic for outgoing connection and cancel connection, move into statement \"role \u003d\u003d hci::Role::CENTRAL\"",
+      "range": {
+        "startLine": 383,
+        "startChar": 4,
+        "endLine": 388,
+        "endChar": 0
+      },
+      "revId": "ac515334e5c39846da4cee8bf57bfe7ce06ac827",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d78f04b8_4da2d5fa",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 414,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-25T15:39:44Z",
+      "side": 0,
+      "message": "logic for outgoing connection and cancel connection, move into statement \"role \u003d\u003d hci::Role::CENTRAL\"",
+      "range": {
+        "startLine": 403,
+        "startChar": 4,
+        "endLine": 414,
+        "endChar": 31
+      },
+      "revId": "ac515334e5c39846da4cee8bf57bfe7ce06ac827",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6c853c4_b21eb6fa",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-25T15:39:44Z",
+      "side": 0,
+      "message": "logic for outgoing connection, move into statement \"role \u003d\u003d hci::Role::CENTRAL\"",
+      "range": {
+        "startLine": 418,
+        "startChar": 4,
+        "endLine": 421,
+        "endChar": 5
+      },
+      "revId": "ac515334e5c39846da4cee8bf57bfe7ce06ac827",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43bbd649_48877a32",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-25T15:39:44Z",
+      "side": 0,
+      "message": "logic for outgoing connection, move into statement \"role \u003d\u003d hci::Role::CENTRAL\"",
+      "range": {
+        "startLine": 428,
+        "startChar": 4,
+        "endLine": 433,
+        "endChar": 0
+      },
+      "revId": "ac515334e5c39846da4cee8bf57bfe7ce06ac827",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
