@@ -49,13 +49,16 @@ message PairingEvent {
       // Passkey Entry Secure Simple Pairing association model.
       // Passkey is shown to the user.
       // The peer device receives a Passkey Entry request.
-      bytes passkey_entry_notification = 4;
+      uint32 passkey_entry_notification = 4;
       // Passkey Entry Secure Simple Pairing association model.
       // Passkey is typed by the user.
       google.protobuf.Empty passkey_entry_request = 5;
       // Legacy PIN Pairing.
-      // A PIN Code is typed by the user.
+      // A PIN Code is typed by the user on IUT and the peer device
       google.protobuf.Empty pin_code = 6;
+      // Legacy PIN Pairing.
+      // We generate a PIN code, and the peer device requests a PIN
+      bytes pin_entry_request = 7;
     }
 }
 
@@ -65,14 +68,14 @@ message PairingEventAnswer {
     // Answer when needed to the pairing event method.
     oneof answer {
       // Numeric Comparison confirmation.
-      // Used when pairing event method is `numeric_comparison`.
+      // Used when pairing event method is `numeric_comparison` or `just_works`
       bool confirm = 2;
       // Passkey typed by the user.
       // Used when pairing event method is `passkey_entry_request`.
-      bytes passkey = 3;
+      uint32 passkey = 3;
       // Pin typed by the user.
       // Used when pairing event method is `pin_code`.
-      uint32 pin = 4;
+      bytes pin = 4;
     };
 }
 
