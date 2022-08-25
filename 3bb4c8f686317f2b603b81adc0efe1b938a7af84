@@ -22,6 +22,30 @@
       },
       "revId": "3bb4c8f686317f2b603b81adc0efe1b938a7af84",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f12d690_715a8ab2",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-08-25T02:51:13Z",
+      "side": 1,
+      "message": "Thanks for the comments. Passed unit tests. Done.",
+      "parentUuid": "d1b33b5e_5a4712cf",
+      "range": {
+        "startLine": 166,
+        "startChar": 0,
+        "endLine": 172,
+        "endChar": 5
+      },
+      "revId": "3bb4c8f686317f2b603b81adc0efe1b938a7af84",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
