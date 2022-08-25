@@ -27,18 +27,25 @@ import android.content.IntentFilter
 import android.net.MacAddress
 import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
+import java.util.concurrent.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.withTimeoutOrNull
 import pandora.HostProto.Connection
-import kotlinx.coroutines.flow.Flow
 
 /**
  * Creates a cold flow of intents based on an intent filter. If used multiple times in a same class,
@@ -133,44 +140,34 @@ fun <T> grpcUnary(
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 fun <T, U> grpcBidirectionalStream(
   scope: CoroutineScope,
-  responseObserver: StreamObserver<T>,
-  timeout: Long = 60,
-  block: (Flow<T>) -> Flow<U>
-): StreamObserver<U> {
-  scope.launch {
-    try {
-      val response = block()
-      responseObserver.onNext(response)
-      responseObserver.onCompleted()
-    } catch (e: Throwable) {
-      e.printStackTrace()
-      responseObserver.onError(e)
-    }
-  }
-  
-  object : StreamObserver<T> {
-    onNext(req: T) {
+  responseObserver: StreamObserver<U>,
+  block: CoroutineScope.(Flow<T>) -> Flow<U>
+): StreamObserver<T> {
 
+  val inputFlow = MutableSharedFlow<T>()
+  val outputFlow = scope.block(inputFlow.asSharedFlow())
+
+  val job = outputFlow.catch {
+    it.printStackTrace()
+    responseObserver.onError(it) }.onEach { responseObserver.onNext(it) }.onCompletion { responseObserver.onCompleted() }.launchIn(scope)
+
+  return object : StreamObserver<T> {
+    override fun onNext(req: T) {
+      // Note: this should be made a blocking call, and the MMIs should run in a separate thread
+      // so we get flow control - but for now we can live with this
+      if (!inputFlow.tryEmit(req)) {
+        job.cancel(CancellationException("too many incoming requests, buffer exceeded"))
+        responseObserver.onError(CancellationException("too many incoming requests, buffer exceeded"))
+      }
     }
 
     override fun onCompleted() {
-      TODO("Not yet implemented")
+      job.cancel()
     }
 
-    override fun onError(p0: Throwable?) {
-      TODO("Not yet implemented")
-    }
-  }
-  return scope.launch {
-    try {
-      withTimeout(timeout * 1000) {
-        val response = block()
-        responseObserver.onNext(response)
-        responseObserver.onCompleted()
-      }
-    } catch (e: Throwable) {
+    override fun onError(e: Throwable) {
+      job.cancel()
       e.printStackTrace()
-      responseObserver.onError(e)
     }
   }
 }
