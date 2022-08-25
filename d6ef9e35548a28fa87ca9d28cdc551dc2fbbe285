@@ -226,6 +226,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "caeb5a78_c1e4f81c",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 620,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-25T16:57:23Z",
+      "side": 1,
+      "message": "I\u0027ll add the checks and update this soon.",
+      "parentUuid": "36649922_21e16a58",
+      "revId": "d6ef9e35548a28fa87ca9d28cdc551dc2fbbe285",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c514d8ef_c8519074",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 3
