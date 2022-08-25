@@ -16,6 +16,24 @@
       "message": "Nit: update comment",
       "revId": "2d792b3cfa24d5f39cd661cba39b654d2fe698e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "092f3d55_efb0a791",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-25T17:32:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b707f3d_973c5407",
+      "revId": "2d792b3cfa24d5f39cd661cba39b654d2fe698e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
