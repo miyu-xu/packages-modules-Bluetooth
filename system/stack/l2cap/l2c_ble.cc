@@ -538,6 +538,8 @@ void l2cble_process_sig_cmd(tL2C_LCB* p_lcb, uint8_t* p, uint16_t pkt_len) {
             timeout > BTM_BLE_CONN_SUP_TOUT_MAX ||
             max_interval < min_interval) {
           l2cu_send_peer_ble_par_rsp(p_lcb, L2CAP_CFG_UNACCEPTABLE_PARAMS, id);
+        } else if (p_lcb->conn_update_mask & L2C_BLE_CONN_UPDATE_DISABLE) {
+          l2cu_send_peer_ble_par_rsp(p_lcb, L2CAP_CFG_UNACCEPTABLE_PARAMS, id);
         } else {
           l2cu_send_peer_ble_par_rsp(p_lcb, L2CAP_CFG_OK, id);
 
