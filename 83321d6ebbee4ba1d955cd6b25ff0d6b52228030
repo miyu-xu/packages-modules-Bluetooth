@@ -34,6 +34,24 @@
       "parentUuid": "0b556c7d_d273c08a",
       "revId": "83321d6ebbee4ba1d955cd6b25ff0d6b52228030",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f83cc8ef_98110d35",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-25T21:51:46Z",
+      "side": 1,
+      "message": "This is really designed to handle only one device, otherwise, each AVRCP-capable device will need its own uinput object. \n\nLet\u0027s skip the TODO, I will jump right in to make it multi-device ready.",
+      "parentUuid": "5e1d1e34_8ab5b706",
+      "revId": "83321d6ebbee4ba1d955cd6b25ff0d6b52228030",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
