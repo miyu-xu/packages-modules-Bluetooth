@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcd6aa7a_1c590b9a",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-25T18:26:43Z",
+      "side": 1,
+      "message": "Then you can keep this as-is and observe logs.",
+      "parentUuid": "ad92a17a_576ee8a8",
+      "revId": "e60cf0c75b9e06beb8396a5394aa614b245a7322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0d314e0_12da3876",
