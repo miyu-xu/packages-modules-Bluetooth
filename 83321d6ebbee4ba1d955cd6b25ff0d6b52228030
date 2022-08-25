@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b556c7d_d273c08a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-25T21:44:16Z",
+      "side": 1,
+      "message": "How does this handle multiple audio devices connected at once? i.e. I have two classic headsets connected and one of them is active...\n\nDoes connecting the new headset disconnect avrcp on the old one?\n\nIf you\u0027re not sure, please add a TODO here to figure out the multi-device story.",
+      "revId": "83321d6ebbee4ba1d955cd6b25ff0d6b52228030",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
