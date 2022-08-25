@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f832d4f6_f562be92",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapapi/BluetoothMapEmailProviderTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-25T05:47:58Z",
+      "side": 1,
+      "message": "AFAIK, we are not adding \"test\" prefix on test method names and use @Test annotation instead.",
+      "range": {
+        "startLine": 68,
+        "startChar": 16,
+        "endLine": 68,
+        "endChar": 56
+      },
+      "revId": "652db898380016f9f6d91aeb840c6ee552f99f29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
