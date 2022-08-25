@@ -72,6 +72,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f94a76c_9013d837",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-25T18:25:13Z",
+      "side": 1,
+      "message": "I thought we were putting this in its own trait (and dbus interface)",
+      "revId": "274e6c83cd08b2ecca99373c2d8a15265f63da15",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9cd9f790_8e211ed3",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 9
