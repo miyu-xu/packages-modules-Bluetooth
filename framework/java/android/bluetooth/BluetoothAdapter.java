@@ -2633,9 +2633,6 @@ public final class BluetoothAdapter {
      */
     @RequiresNoPermission
     public @LeFeatureReturnValues int isLeAudioSupported() {
-        if (!getLeAccess()) {
-            return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
-        }
         try {
             mServiceLock.readLock().lock();
             if (mService != null) {
@@ -2667,9 +2664,6 @@ public final class BluetoothAdapter {
      */
     @RequiresNoPermission
     public @LeFeatureReturnValues int isLeAudioBroadcastSourceSupported() {
-        if (!getLeAccess()) {
-            return BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
-        }
         try {
             mServiceLock.readLock().lock();
             if (mService != null) {
