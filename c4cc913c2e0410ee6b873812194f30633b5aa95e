@@ -22,6 +22,29 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4160ec23_f30e4fcb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-25T20:37:42Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/linux/stack/src/bluetooth.rs;rcl\u003d37dee534b8b5c1f2a0726ef58f6272bb9c7affdc;l\u003d1430\n\nYou may also check here. This is the place I tended to pass the profile information to the media layer.",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
