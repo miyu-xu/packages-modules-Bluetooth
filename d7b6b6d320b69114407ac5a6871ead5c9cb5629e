@@ -34,6 +34,24 @@
       "parentUuid": "001b720d_bb6135ca",
       "revId": "d7b6b6d320b69114407ac5a6871ead5c9cb5629e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d213495_7f18797a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1086529
+      },
+      "writtenOn": "2022-08-25T08:48:56Z",
+      "side": 1,
+      "message": "Now passing (with the missing crate submitted): https://android-build.googleplex.com/builds/tests/view?invocationId\u003dI88400010084331836\u0026testResultId\u003dTR63228224056088683\n```\n     Running unittests (/root/.floss/output/debug/deps/lmp-56af1a935e43c210)\nrunning 11 tests\ntest procedure::secure_simple_pairing::tests::initiate_size ... ok\ntest procedure::secure_simple_pairing::tests::numeric_comparaison_responder_success ... ok\ntest procedure::secure_simple_pairing::tests::numeric_comparaison_responder_failure_on_responding_side ... ok\ntest procedure::secure_simple_pairing::tests::numeric_comparaison_initiator_failure_on_initiating_side ... ok\ntest procedure::secure_simple_pairing::tests::numeric_comparaison_initiator_failure_on_responding_side ... ok\ntest procedure::secure_simple_pairing::tests::numeric_comparaison_responder_failure_on_initiating_side ... ok\ntest procedure::secure_simple_pairing::tests::numeric_comparaison_initiator_success ... ok\ntest procedure::secure_simple_pairing::tests::passkey_entry_initiator_success ... ok\ntest procedure::secure_simple_pairing::tests::passkey_entry_responder_success ... ok\ntest ec::tests::p256 ... ok\ntest ec::tests::p192 ... ok\ntest result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.72s\n```",
+      "parentUuid": "c629a7d5_ffbbfb5b",
+      "revId": "d7b6b6d320b69114407ac5a6871ead5c9cb5629e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
