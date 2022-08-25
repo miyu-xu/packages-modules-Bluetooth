@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91afd085_937813b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-25T05:23:47Z",
+      "side": 1,
+      "message": "Thanks for the work, it looks like the direction.\nCan you try rebase this on top of enshuo\u0027s recent CL: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2192153 ?\n\nAlso maybe we can consider including \"AVRCP\" to the UUID allow list and `connect()` as well?\n\n+Michael (AVRCP owner) FYI, and to try if Sony headset behaves with this fix.",
+      "revId": "2ef6544759fe0192484aacbb9afffababd2ade4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
