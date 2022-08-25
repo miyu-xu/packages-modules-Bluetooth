@@ -348,6 +348,8 @@ static void l2cble_start_conn_update(tL2C_LCB* p_lcb) {
       p_lcb->conn_update_mask &= ~L2C_BLE_NOT_DEFAULT_PARAM;
       p_lcb->conn_update_mask |= L2C_BLE_NEW_CONN_PARAM;
     }
+  } else if (p_lcb->conn_update_mask & L2C_BLE_CONN_UPDATE_DISABLE) {
+      l2cu_send_peer_ble_par_rsp(p_lcb, L2CAP_CFG_UNACCEPTABLE_PARAMS, id);
   } else {
     /* application allows to do update, if we were delaying one do it now */
     if (p_lcb->conn_update_mask & L2C_BLE_NEW_CONN_PARAM) {
