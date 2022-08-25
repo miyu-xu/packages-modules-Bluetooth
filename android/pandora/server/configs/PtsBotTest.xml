@@ -39,5 +39,6 @@
         <option name="profile" value="HID/HOS/HCR" />
         <option name="profile" value="HID/HOS/HDT" />
         <option name="profile" value="HID/HOS/DAT" />
+        <option name="profile" value="HOGP/RH" />
     </test>
 </configuration>
