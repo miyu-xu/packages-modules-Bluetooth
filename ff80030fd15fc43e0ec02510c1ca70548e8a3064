@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "237999d1_207960ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-25T06:21:45Z",
+      "side": 1,
+      "message": "I have again a CL that is very similar to this one when implement AVRCP. Do you mind wait until my patch to see how we want to merge? \n",
+      "revId": "ff80030fd15fc43e0ec02510c1ca70548e8a3064",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
