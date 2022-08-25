@@ -16,6 +16,24 @@
       "message": "Hi Thomas,\n\nFaced issues with same change ids while performing commit --amend, so created new branch to commit the changes.\n\nCommit files for AVCTP. Request you to provide your inputs.\n\nThank you.\n-Snehal",
       "revId": "7116a25dc1ddd729d1476d436abb4754631ef099",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69e39b4d_350aa6ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-25T17:13:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3b81d36_bf743228",
+      "revId": "7116a25dc1ddd729d1476d436abb4754631ef099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
