@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8b21910f_4dc57af2",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-25T17:55:21Z",
+      "side": 1,
+      "message": "in current logic of this CL, we are removing the device from our outgoing connection list\n\nhowever, do we need to update the shadow accept list in the shim layer? \n\nOr the OnLeConnectSuccess callback below should already take care of this?",
+      "parentUuid": "c500dd98_56b0508c",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a823a76c_711dd042",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 2
