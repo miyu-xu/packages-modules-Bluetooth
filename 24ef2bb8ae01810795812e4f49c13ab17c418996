@@ -69,6 +69,24 @@
       "parentUuid": "a3dedf98_d12da03f",
       "revId": "24ef2bb8ae01810795812e4f49c13ab17c418996",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "518f7c30_b1dbaa3c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-25T20:19:55Z",
+      "side": 1,
+      "message": "Oh yes I missed that part. Thanks for the explanation.\nLGTM !",
+      "parentUuid": "32cdc77f_2475d990",
+      "revId": "24ef2bb8ae01810795812e4f49c13ab17c418996",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
