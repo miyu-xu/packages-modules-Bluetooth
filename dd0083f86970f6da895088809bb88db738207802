@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e5138f2_f26e3dee",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-25T01:05:50Z",
+      "side": 1,
+      "message": "I don\u0027t think so, this advertising is only LE.",
+      "parentUuid": "90ace1f6_8f71f7e2",
+      "revId": "dd0083f86970f6da895088809bb88db738207802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "888f7a6b_9aad585b",
         "filename": "android/pandora/server/proto/pandora/host.proto",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-24T02:56:26Z",
       "side": 1,
       "message": "should we define an address type or mac?",
+      "revId": "dd0083f86970f6da895088809bb88db738207802",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e701f85_ce12ba40",
+        "filename": "android/pandora/server/proto/pandora/host.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-25T01:05:50Z",
+      "side": 1,
+      "message": "Right now we don\u0027t use a specific type in the rest of our APIs so I\u0027d suggest letting this as is.",
+      "parentUuid": "888f7a6b_9aad585b",
       "revId": "dd0083f86970f6da895088809bb88db738207802",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
