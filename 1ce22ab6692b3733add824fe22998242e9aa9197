@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b6f7a34_f6c9bbcd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-08-25T04:34:35Z",
+      "side": 1,
+      "message": "Will add one more test class in this CL.",
+      "revId": "1ce22ab6692b3733add824fe22998242e9aa9197",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
