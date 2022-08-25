@@ -69,6 +69,24 @@
       "message": "nit: If str.len() \u003c 32 isn\u0027t an error condition, prefer not to log and just do:\n\n```\nlet s \u003d String::from(\u0026str[0..std::cmp::min(str.len(), 32));\n```",
       "revId": "e60cf0c75b9e06beb8396a5394aa614b245a7322",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "259e73e2_b43a696b",
+        "filename": "system/gd/rust/linux/mgmt/src/migrate.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2022-08-25T19:58:51Z",
+      "side": 1,
+      "message": "As per comments above, leaving logging as is for now",
+      "parentUuid": "e0d314e0_12da3876",
+      "revId": "e60cf0c75b9e06beb8396a5394aa614b245a7322",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
