@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5746d68e_cf3f6d8d",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-25T20:47:25Z",
+      "side": 1,
+      "message": "Good point Jack.  I think this should be handled at a higher level (maybe in the shim)",
+      "parentUuid": "8b21910f_4dc57af2",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a823a76c_711dd042",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 2
