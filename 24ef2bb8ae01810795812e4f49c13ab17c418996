@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3dedf98_d12da03f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-25T01:28:47Z",
+      "side": 1,
+      "message": "There is a similar call in `btif_hh_remove_device`, using the jni_thread.\n\nWhy this isn\u0027t needed in  `btif_hh_upstreams_evt` ? there is a lot of HAL_CBACK there too",
+      "revId": "24ef2bb8ae01810795812e4f49c13ab17c418996",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
