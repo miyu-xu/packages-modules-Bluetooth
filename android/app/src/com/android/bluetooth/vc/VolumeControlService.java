@@ -653,7 +653,8 @@ public class VolumeControlService extends ProfileService {
              * remote side send us wrong value - lets check it.
              */
 
-            if (groupVolume == volume) {
+            if (groupVolume == volume
+                    || ((volume < groupVolume + 5) && (volume > groupVolume + 5))) {
                 Log.i(TAG, " Volume changed: " + volume);
                 return;
             }
