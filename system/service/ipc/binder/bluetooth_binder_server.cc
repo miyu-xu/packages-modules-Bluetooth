@@ -128,8 +128,8 @@ Status BluetoothBinderServer::SspReply(
     const ::android::String16& device_address, int32_t variant, bool accept,
     int32_t passkey, bool* _aidl_return) {
   VLOG(2) << __func__;
-  *_aidl_return = adapter_->SspReply(String8(device_address).string(), variant,
-                                     accept, passkey);
+  *_aidl_return =
+      adapter_->SspReply(String8(device_address).string(), variant, accept);
   return Status::ok();
 }
 

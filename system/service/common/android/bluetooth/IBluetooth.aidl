@@ -45,8 +45,7 @@ interface IBluetooth {
   boolean SspReply(
       String device_address,
       int variant,
-      boolean accept,
-      int passkey);
+      boolean accept);
   boolean CreateBond(String device_address, int transport);
   boolean GetBondedDevices();
   boolean RemoveBond(String device_address);

@@ -2891,42 +2891,6 @@ public class AdapterService extends Service {
         }
 
         @Override
-        public void setPasskey(BluetoothDevice device, boolean accept, int len, byte[] passkey,
-                AttributionSource source, SynchronousResultReceiver receiver) {
-            try {
-                receiver.send(setPasskey(device, accept, len, passkey, source));
-            } catch (RuntimeException e) {
-                receiver.propagateException(e);
-            }
-        }
-        @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-        private boolean setPasskey(BluetoothDevice device, boolean accept, int len, byte[] passkey,
-                AttributionSource attributionSource) {
-            AdapterService service = getService();
-            if (service == null || !callerIsSystemOrActiveUser(TAG, "setPasskey")
-                    || !Utils.checkConnectPermissionForDataDelivery(
-                            service, attributionSource, "AdapterService setPasskey")) {
-                return false;
-            }
-
-            DeviceProperties deviceProp = service.mRemoteDevices.getDeviceProperties(device);
-            if (deviceProp == null || !deviceProp.isBonding()) {
-                return false;
-            }
-            if (passkey.length != len) {
-                android.util.EventLog.writeEvent(0x534e4554, "139287605", -1,
-                        "Passkey length mismatch");
-                return false;
-            }
-            service.logUserBondResponse(device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_SSP_REPLIED);
-            return service.sspReplyNative(
-                    getBytesFromAddress(device.getAddress()),
-                    AbstractionLayer.BT_SSP_VARIANT_PASSKEY_ENTRY,
-                    accept,
-                    Utils.byteArrayToInt(passkey));
-        }
-
-        @Override
         public void setPairingConfirmation(BluetoothDevice device, boolean accept,
                 AttributionSource source, SynchronousResultReceiver receiver) {
             try {
@@ -2958,8 +2922,7 @@ public class AdapterService extends Service {
             return service.sspReplyNative(
                     getBytesFromAddress(device.getAddress()),
                     AbstractionLayer.BT_SSP_VARIANT_PASSKEY_CONFIRMATION,
-                    accept,
-                    0);
+                    accept);
         }
 
         @Override
@@ -5723,7 +5686,7 @@ public class AdapterService extends Service {
 
     private native boolean pinReplyNative(byte[] address, boolean accept, int len, byte[] pin);
 
-    private native boolean sspReplyNative(byte[] address, int type, boolean accept, int passkey);
+    private native boolean sspReplyNative(byte[] address, int type, boolean accept);
 
     /*package*/
     native boolean getRemoteServicesNative(byte[] address, int transport);

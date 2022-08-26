@@ -86,7 +86,7 @@ class BluetoothBinderServer : public BnBluetooth,
   Status SetScanMode(int32_t scan_mode, bool* _aidl_return) override;
   Status SetScanEnable(bool scan_enable, bool* _aidl_return) override;
   Status SspReply(const ::android::String16& device_address, int32_t variant,
-                  bool accept, int32_t passkey, bool* _aidl_return) override;
+                  bool accept, bool* _aidl_return) override;
   Status CreateBond(const ::android::String16& device_address,
                     int32_t transport, bool* _aidl_return) override;
   Status GetBondedDevices(bool* _aidl_return) override;

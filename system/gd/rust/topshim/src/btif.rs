@@ -1079,7 +1079,7 @@ impl BluetoothInterface {
     ) -> i32 {
         let cvariant = bindings::bt_ssp_variant_t::from(variant);
         let ffi_addr = cast_to_const_ffi_address!(addr as *const RawAddress);
-        ccall!(self, ssp_reply, ffi_addr, cvariant, accept, passkey)
+        ccall!(self, ssp_reply, ffi_addr, cvariant, accept)
     }
 
     pub fn clear_event_filter(&self) -> i32 {

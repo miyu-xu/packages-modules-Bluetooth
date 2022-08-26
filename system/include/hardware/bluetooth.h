@@ -388,7 +388,6 @@ typedef enum {
 /** Bluetooth SSP Bonding Variant */
 typedef enum {
   BT_SSP_VARIANT_PASSKEY_CONFIRMATION,
-  BT_SSP_VARIANT_PASSKEY_ENTRY,
   BT_SSP_VARIANT_CONSENT,
   BT_SSP_VARIANT_PASSKEY_NOTIFICATION
 } bt_ssp_variant_t;
@@ -681,11 +680,9 @@ typedef struct {
 
   /** BT SSP Reply - Just Works, Numeric Comparison and Passkey
    * passkey shall be zero for BT_SSP_VARIANT_PASSKEY_COMPARISON &
-   * BT_SSP_VARIANT_CONSENT
-   * For BT_SSP_VARIANT_PASSKEY_ENTRY, if accept==FALSE, then passkey
-   * shall be zero */
+   * BT_SSP_VARIANT_CONSENT */
   int (*ssp_reply)(const RawAddress* bd_addr, bt_ssp_variant_t variant,
-                   uint8_t accept, uint32_t passkey);
+                   uint8_t accept);
 
   /** Get Bluetooth profile interface */
   const void* (*get_profile_interface)(const char* profile_id);

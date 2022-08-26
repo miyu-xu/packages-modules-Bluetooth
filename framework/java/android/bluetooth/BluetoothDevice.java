@@ -1054,14 +1054,6 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     public static final int PAIRING_VARIANT_PIN = 0;
 
     /**
-     * The user will be prompted to enter a passkey
-     *
-     * @hide
-     */
-    @SystemApi
-    public static final int PAIRING_VARIANT_PASSKEY = 1;
-
-    /**
      * The user will be prompted to confirm the passkey displayed on the screen or
      * an app will confirm the passkey for the user.
      */
