@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "02d39552_2923ab1c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2638,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-26T11:41:54Z",
+      "side": 0,
+      "message": "Oh, please ignore my comment. I found the status is check inside the AdapterService.",
+      "parentUuid": "5ea57c89_cfd4dfa2",
+      "range": {
+        "startLine": 2636,
+        "startChar": 0,
+        "endLine": 2638,
+        "endChar": 9
+      },
+      "revId": "c01e1876fea1d52bb5dc21af64421def8ba94bbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2424b0f0_dfd6caf3",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-26T11:37:48Z",
       "side": 0,
       "message": "The same as above",
+      "range": {
+        "startLine": 2670,
+        "startChar": 0,
+        "endLine": 2672,
+        "endChar": 9
+      },
+      "revId": "c01e1876fea1d52bb5dc21af64421def8ba94bbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aba2a165_bd16a61d",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2672,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-26T11:41:54Z",
+      "side": 0,
+      "message": "Ack",
+      "parentUuid": "2424b0f0_dfd6caf3",
       "range": {
         "startLine": 2670,
         "startChar": 0,
