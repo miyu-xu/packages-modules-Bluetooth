@@ -515,147 +515,157 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * Maximum length of a metadata entry, this is to avoid exploding Bluetooth
-     * disk usage
+     * disk usage.
      * @hide
      */
     @SystemApi
     public static final int METADATA_MAX_LENGTH = 2048;
 
     /**
-     * Manufacturer name of this Bluetooth device
-     * Data type should be {@String} as {@link Byte} array.
+     * Manufacturer name of this Bluetooth device.
+     * Data type should be {@link String} as {@link Byte} array.
      * @hide
      */
     @SystemApi
     public static final int METADATA_MANUFACTURER_NAME = 0;
 
     /**
-     * Model name of this Bluetooth device
-     * Data type should be {@String} as {@link Byte} array.
+     * Model name of this Bluetooth device.
+     * Data type should be {@link String} as {@link Byte} array.
      * @hide
      */
     @SystemApi
     public static final int METADATA_MODEL_NAME = 1;
 
     /**
-     * Software version of this Bluetooth device
-     * Data type should be {@String} as {@link Byte} array.
+     * Software version of this Bluetooth device.
+     * Data type should be {@link String} as {@link Byte} array.
      * @hide
      */
     @SystemApi
     public static final int METADATA_SOFTWARE_VERSION = 2;
 
     /**
-     * Hardware version of this Bluetooth device
-     * Data type should be {@String} as {@link Byte} array.
+     * Hardware version of this Bluetooth device.
+     * Data type should be {@link String} as {@link Byte} array.
      * @hide
      */
     @SystemApi
     public static final int METADATA_HARDWARE_VERSION = 3;
 
     /**
-     * Package name of the companion app, if any
-     * Data type should be {@String} as {@link Byte} array.
+     * Package name of the companion app, if any.
+     * Data type should be {@link String} as {@link Byte} array.
      * @hide
      */
     @SystemApi
     public static final int METADATA_COMPANION_APP = 4;
 
     /**
-     * URI to the main icon shown on the settings UI
-     * Data type should be {@link Byte} array.
+     * URI to the main icon shown on the settings UI.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The URI can be parsed using {@link android.net.Uri#parse(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_MAIN_ICON = 5;
 
     /**
-     * Whether this device is an untethered headset with left, right and case
-     * Data type should be {@String} as {@link Byte} array.
+     * Whether this device is an untethered headset with left, right and case.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The boolean can be parsed using {@link Boolean#parseBoolean(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_IS_UNTETHERED_HEADSET = 6;
 
     /**
-     * URI to icon of the left headset
-     * Data type should be {@link Byte} array.
+     * URI to icon of the left headset.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The URI can be parsed using {@link android.net.Uri#parse(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_LEFT_ICON = 7;
 
     /**
-     * URI to icon of the right headset
-     * Data type should be {@link Byte} array.
+     * URI to icon of the right headset.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The URI can be parsed using {@link android.net.Uri#parse(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_RIGHT_ICON = 8;
 
     /**
-     * URI to icon of the headset charging case
-     * Data type should be {@link Byte} array.
+     * URI to icon of the headset charging case.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The URI can be parsed using {@link android.net.Uri#parse(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_CASE_ICON = 9;
 
     /**
-     * Battery level of left headset
-     * Data type should be {@String} 0-100 as {@link Byte} array, otherwise
-     * as invalid.
+     * Battery level of left headset.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The string contains the battery level between 0 and 100.
+     * Any other values represent an invalid battery level.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_LEFT_BATTERY = 10;
 
     /**
-     * Battery level of rigth headset
-     * Data type should be {@String} 0-100 as {@link Byte} array, otherwise
-     * as invalid.
+     * Battery level of right headset.
+     * The string contains the battery level between 0 and 100.
+     * Any other values represent an invalid battery level.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_RIGHT_BATTERY = 11;
 
     /**
-     * Battery level of the headset charging case
-     * Data type should be {@String} 0-100 as {@link Byte} array, otherwise
-     * as invalid.
+     * Battery level of the headset charging case.
+     * The string contains the battery level between 0 and 100.
+     * Any other values represent an invalid battery level.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_CASE_BATTERY = 12;
 
     /**
-     * Whether the left headset is charging
-     * Data type should be {@String} as {@link Byte} array.
+     * Whether the left headset is charging.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The boolean can be parsed using {@link Boolean#parseBoolean(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_LEFT_CHARGING = 13;
 
     /**
-     * Whether the right headset is charging
-     * Data type should be {@String} as {@link Byte} array.
+     * Whether the right headset is charging.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The boolean can be parsed using {@link Boolean#parseBoolean(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_RIGHT_CHARGING = 14;
 
     /**
-     * Whether the headset charging case is charging
-     * Data type should be {@String} as {@link Byte} array.
+     * Whether the headset charging case is charging.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The boolean can be parsed using {@link Boolean#parseBoolean(String)}.
      * @hide
      */
     @SystemApi
     public static final int METADATA_UNTETHERED_CASE_CHARGING = 15;
 
     /**
-     * URI to the enhanced settings UI slice
-     * Data type should be {@String} as {@link Byte} array, null means
-     * the UI does not exist.
+     * URI to the enhanced settings UI slice.
+     * Data type should be {@link String} as {@link Byte} array, where a
+     * null array means the UI does not exist.
+     * The URI can be parsed using {@link android.net.Uri#parse(String)}.
      * @hide
      */
     @SystemApi
@@ -664,7 +674,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     /**
      * Type of the Bluetooth device, must be within the list of
      * BluetoothDevice.DEVICE_TYPE_*
-     * Data type should be {@String} as {@link Byte} array.
+     * Data type should be {@link String} as {@link Byte} array.
      * @hide
      */
     @SystemApi
@@ -673,7 +683,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     /**
      * Battery level of the Bluetooth device, use when the Bluetooth device
      * does not support HFP battery indicator.
-     * Data type should be {@String} as {@link Byte} array.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The string contains the battery level between 0 and 100.
+     * Any other values represent an invalid battery level.
      * @hide
      */
     @SystemApi
@@ -681,7 +693,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * Whether the device is charging.
-     * Data type should be {@String} as {@link Byte} array.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The boolean can be parsed using {@link Boolean#parseBoolean(String)}.
      * @hide
      */
     @SystemApi
@@ -689,7 +702,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * The battery threshold of the Bluetooth device to show low battery icon.
-     * Data type should be {@String} as {@link Byte} array.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The string contains the low battery threshold between 0 and 100.
+     * Any other values represent an invalid threshold.
      * @hide
      */
     @SystemApi
@@ -697,7 +712,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * The battery threshold of the left headset to show low battery icon.
-     * Data type should be {@String} as {@link Byte} array.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The string contains the low battery threshold between 0 and 100.
+     * Any other values represent an invalid threshold.
      * @hide
      */
     @SystemApi
@@ -705,7 +722,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * The battery threshold of the right headset to show low battery icon.
-     * Data type should be {@String} as {@link Byte} array.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The string contains the low battery threshold between 0 and 100.
+     * Any other values represent an invalid threshold.
      * @hide
      */
     @SystemApi
@@ -713,7 +732,9 @@ public final class BluetoothDevice implements Parcelable, Attributable {
 
     /**
      * The battery threshold of the case to show low battery icon.
-     * Data type should be {@String} as {@link Byte} array.
+     * Data type should be {@link String} as {@link Byte} array.
+     * The string contains the low battery threshold between 0 and 100.
+     * Any other values represent an invalid threshold.
      * @hide
      */
     @SystemApi
@@ -728,7 +749,7 @@ public final class BluetoothDevice implements Parcelable, Attributable {
     public static final int METADATA_SPATIAL_AUDIO = 24;
 
     /**
-     * The metadata of the Fast Pair for any custmized feature.
+     * The metadata of the Fast Pair for any customized feature.
      * Data type should be {@link Byte} array.
      * @hide
      */
