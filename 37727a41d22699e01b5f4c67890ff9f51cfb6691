@@ -22,6 +22,30 @@
       },
       "revId": "37727a41d22699e01b5f4c67890ff9f51cfb6691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2344621c_d74cd6d9",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-26T18:09:02Z",
+      "side": 1,
+      "message": "I think @bidsharma is working on SM, and has (or will shortly have) a CL doing basically what you ask. Is it alright if that\u0027s done there, to avoid duplicating work? Also, I wanted this CL to be purely a \"code-moving\" operation with no logical changes.",
+      "parentUuid": "1ca0c520_7da0236d",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 38
+      },
+      "revId": "37727a41d22699e01b5f4c67890ff9f51cfb6691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
