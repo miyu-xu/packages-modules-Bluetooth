@@ -357,3 +357,16 @@ class AVRCPProxy(ProfileProxy):
         """
         #TODO: Remove trailing space post "values:" from docstring description
         return "OK"
+
+    @assert_description
+    def TSC_AVDTP_mmi_iut_initiate_connect(self, pts_addr: bytes, **kwargs):
+        """
+        Create an AVDTP signaling channel.
+
+        Action: Create an audio or video
+        connection with PTS.
+        """
+        self.connection = self.host.Connect(address=pts_addr).connection
+        time.sleep(1)
+        self.source = self.a2dp.OpenSource(connection=self.connection).source
+        return "OK"
