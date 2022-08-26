@@ -26,6 +26,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.BluetoothVolumeControl;
+import android.bluetooth.IBluetoothLeAudio;
 import android.bluetooth.IBluetoothVolumeControl;
 import android.bluetooth.IBluetoothVolumeControlCallback;
 import android.content.AttributionSource;
@@ -48,6 +49,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -628,9 +630,33 @@ public class VolumeControlService extends ProfileService {
     void handleVolumeControlChanged(BluetoothDevice device, int groupId,
                                     int volume, boolean mute, boolean isAutonomous) {
         if (!isAutonomous) {
-            // If the change is triggered by Android device, the stream is already changed.
+            /* If the change is triggered by Android device, the stream is already changed.
+             * However it might be reconnection and read response from volume state.
+             * Make sure it has volume same as a group.
+             */
+            LeAudioService leAudioService = mFactory.getLeAudioService();
+            if (leAudioService == null) {
+                Log.e(TAG, "leAudioService not available");
+                return;
+            }
+
+            int group_id = leAudioService.getGroupId(device);
+            if (group_id == IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID) {
+                if (DBG) {
+                    Log.d(TAG, "Device not a part of the group");
+                }
+                return;
+            }
+
+            int group_volume = getGroupVolume(group_id);
+            if (group_volume != IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME
+                            && volume != group_volume) {
+                Log.i(TAG, "Setting value:" + group_volume + " to " + device);
+                mVolumeControlNativeInterface.setVolume(device, group_volume);
+            }
             return;
         }
+
         // TODO: Handle the other arguments: device, groupId, mute.
 
         /* We are interested only in the group volume as any LeAudio device is a part of group */
