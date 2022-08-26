@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c38ce282_c805c7a3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-26T17:59:27Z",
+      "side": 1,
+      "message": "nit: Say what the CL does, not what it fixes on the first line. \n\nsuggestion:\nScanningManager: Always set own_address_type",
+      "range": {
+        "startLine": 7,
+        "startChar": 1,
+        "endLine": 7,
+        "endChar": 120
+      },
+      "revId": "f80eb0cafe6fe60f0d5057abfb8bd7bdfe6d3fac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
