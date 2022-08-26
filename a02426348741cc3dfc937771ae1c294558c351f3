@@ -16,6 +16,24 @@
       "message": "nit: set in Step 3, cleared in Step 4.  I know... It\u0027s just the other side of the comment :)",
       "revId": "a02426348741cc3dfc937771ae1c294558c351f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa244893_9f5839fa",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-26T18:15:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b537967_670fcb49",
+      "revId": "a02426348741cc3dfc937771ae1c294558c351f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
