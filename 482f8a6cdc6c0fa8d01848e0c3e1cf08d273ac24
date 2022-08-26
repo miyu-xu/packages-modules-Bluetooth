@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82d75bba_c86fca83",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-26T05:40:55Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "a35fd83a_e6bdfd20",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a823a76c_711dd042",
@@ -103,6 +121,24 @@
       "writtenOn": "2022-08-25T17:36:17Z",
       "side": 1,
       "message": "Same here.",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d24f44a_46941f46",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-26T05:40:55Z",
+      "side": 1,
+      "message": "If the device address is in the filter accept list, it\u0027s an explicit locally initiated connection request.  Otherwise it should not be in the shadow filter accept list.  Regardless, upon connection, there should be a log indication that there was a failed device lookup removal upon both the shadow and le_impl filter acceptlist, which should be advisory",
+      "parentUuid": "a823a76c_711dd042",
       "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
