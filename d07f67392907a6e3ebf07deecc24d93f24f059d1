@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "91f9df50_e2566c75",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-26T18:34:29Z",
+      "side": 1,
+      "message": "Unfortunately, Android \"cheats\" - when pairing with a HID keyboard, we do method (2), but rather than asking the user to enter a PIN code, we generate it within the stack and just display it in read-only format to the user, asking them to enter it on the other device.\n\nSo if we want to support that, we need to modify the interface to include this event",
+      "parentUuid": "2d383208_aa5e3777",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 50
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c65a30b9_be076af1",
         "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
         "patchSetId": 14
