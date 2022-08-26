@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9973704_d693d73d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1407716
+      },
+      "writtenOn": "2022-08-26T20:31:21Z",
+      "side": 1,
+      "message": "Hey folks,\n\nAdding some more info to the metadata docs to make it clear how the returned byte array should be parsed.\n\nPTAL, thanks!",
+      "revId": "455b661c8dfe0ce21597307baaa88a1e700ce486",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
