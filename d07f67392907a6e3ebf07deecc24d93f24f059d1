@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d383208_aa5e3777",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-26T18:32:38Z",
+      "side": 1,
+      "message": "Why do you need this method? There are only two scenarios for legacy PIN pairing:\n\n1/ One of the two devices has a fixed PIN (hardcoded and provided as part of the device user guide) and the user has to type this PIN on the other devices. Which can be done using: `PairingEvent(method\u003dpin_code)` -\u003e `PairingEventAnswer(pin\u003d\u003cfixed PIN\u003e)`.\n\n2/ One device asks the user to enter a PIN code first, and then the second device asks the user to enter the same PIN code. Which can be done using: `PairingEvent(method\u003dpin_code)` -\u003e `PairingEventAnswer(pin\u003d\u003cprovided PIN\u003e)` on device 1 and then `PairingEvent(method\u003dpin_code)` -\u003e `PairingEventAnswer(pin\u003d\u003cprovided PIN\u003e) on device 2.\n\nThe reason why passkey entry is different is because 1/ does not exist but instead one of devices can automatically generate the passkey and show it to the user (`passkey_entry_notification`) and then the other device must entry the generated passkey.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 50
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c65a30b9_be076af1",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-26T18:32:38Z",
+      "side": 1,
+      "message": "Has it been tested with a LE device? Or only with classic? If not, it would be great to create a bug to track this 😊",
+      "range": {
+        "startLine": 122,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 25
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
