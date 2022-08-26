@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a35fd83a_e6bdfd20",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-08-26T02:16:11Z",
+      "side": 1,
+      "message": "Yes the shadow list will be remove by shim::legacy::Acl::OnLeConnectSuccess.",
+      "parentUuid": "d941cf55_ebdf3604",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a823a76c_711dd042",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 2
