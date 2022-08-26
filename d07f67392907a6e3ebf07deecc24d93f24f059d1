@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c4b0c49_71ea6c81",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-26T21:36:55Z",
+      "side": 1,
+      "message": "Discussed offline: resolution in https://docs.google.com/document/d/16AOBrl4pLqwuuMMgcb7v2bef7vIWJ1c0tP93IC75viM/edit",
+      "parentUuid": "89112bdf_27c01749",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 50
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c65a30b9_be076af1",
