@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4e572c82_93d15e78",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-26T18:35:38Z",
+      "side": 1,
+      "message": "I _should_ be using it - `PAIRING_VARIANT_DISPLAY_PIN` should use this, not passkeyEntryNotification - thank you for that catch! 😊",
+      "parentUuid": "91f9df50_e2566c75",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 50
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c65a30b9_be076af1",
         "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
         "patchSetId": 14
@@ -85,6 +109,30 @@
       "writtenOn": "2022-08-26T18:32:38Z",
       "side": 1,
       "message": "Has it been tested with a LE device? Or only with classic? If not, it would be great to create a bug to track this 😊",
+      "range": {
+        "startLine": 122,
+        "startChar": 2,
+        "endLine": 122,
+        "endChar": 25
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f4a729e_1b68b940",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 14
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-26T18:35:38Z",
+      "side": 1,
+      "message": "Yup, tested with both! (since HOGP is LE)",
+      "parentUuid": "c65a30b9_be076af1",
       "range": {
         "startLine": 122,
         "startChar": 2,
