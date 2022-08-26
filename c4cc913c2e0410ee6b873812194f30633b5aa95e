@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3e5215d_727bdf1d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-26T01:33:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eaea10ec_9f020127",
+      "range": {
+        "startLine": 475,
+        "startChar": 75,
+        "endLine": 475,
+        "endChar": 81
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4160ec23_f30e4fcb",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-25T20:37:42Z",
       "side": 1,
       "message": "https://source.corp.google.com/chromeos_public/src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/linux/stack/src/bluetooth.rs;rcl\u003d37dee534b8b5c1f2a0726ef58f6272bb9c7affdc;l\u003d1430\n\nYou may also check here. This is the place I tended to pass the profile information to the media layer.",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85b13ee7_7664315d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-26T01:33:05Z",
+      "side": 1,
+      "message": "It\u0027s ultimately calling the general `connect` that is being modified in my last patch (7).\n\nI feel like we should not connect to profiles that aren\u0027t available (before this it connects to both a2dp and hfp regardless of that, though there were no callers of it).\n\nSo I find it natural to have a method to retrieve available audio profiles here, and check it upon `connect` and use it to compute missing profiles. Did you mean to suggest to move this function to the general Bluetooth layer instead (or move the check upwards)?",
+      "parentUuid": "4160ec23_f30e4fcb",
       "range": {
         "startLine": 519,
         "startChar": 7,
