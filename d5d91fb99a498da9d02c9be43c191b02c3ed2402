@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cd89f70_4631b28c",
+        "filename": "android/pandora/server/src/com/android/pandora/Utils.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-26T18:01:12Z",
+      "side": 1,
+      "message": "nit: you should not mention MMI (or PTS btw) here, since Pandora gRPC server is supposed to be independent from PTS-bot (it\u0027s being used by Avatar). You can use \"caller\" or something like this.",
+      "range": {
+        "startLine": 165,
+        "startChar": 60,
+        "endLine": 165,
+        "endChar": 64
+      },
+      "revId": "d5d91fb99a498da9d02c9be43c191b02c3ed2402",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
