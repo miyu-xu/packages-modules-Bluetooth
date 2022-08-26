@@ -450,4 +450,8 @@ void notify_sco_connection_change(RawAddress device, bool is_connected,
   close(fd);
 }
 
+void update_esco_parameters(enh_esco_params_t* p_parms) {
+  p_parms->input_transport_unit_size = 0x01;
+  p_parms->output_transport_unit_size = 0x01;
+}
 }  // namespace hfp_hal_interface
