@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6d0d861_0c6c505d",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-26T14:28:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6db3a5e7_63340e1e",
+      "revId": "562cb9cff8b55f36d4e4d8ff1073c00ae462ed60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1f7c1ba4_bb672d5d",
@@ -31,6 +49,24 @@
       "writtenOn": "2022-08-26T12:38:50Z",
       "side": 1,
       "message": "Do we need to override the volume with the group volume value?",
+      "revId": "562cb9cff8b55f36d4e4d8ff1073c00ae462ed60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f65ddd_5aa2abbe",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-26T14:28:51Z",
+      "side": 1,
+      "message": "we want second device connected to have same volume as the one which is streaming. imagine used lower volume while streaming to single earbud.",
+      "parentUuid": "1f7c1ba4_bb672d5d",
       "revId": "562cb9cff8b55f36d4e4d8ff1073c00ae462ed60",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
