@@ -160,9 +160,6 @@ void ssp_request(RawAddress* remote_bd_addr, bt_bdname_t* bd_name, uint32_t cod,
     case BT_SSP_VARIANT_PASSKEY_CONFIRMATION:
       pairing_variant_name = "Passkey confirmation";
       break;
-    case BT_SSP_VARIANT_PASSKEY_ENTRY:
-      pairing_variant_name = "Passkey entry";
-      break;
 
     case BT_SSP_VARIANT_CONSENT:
       pairing_variant_name = "Passkey consent";

@@ -182,8 +182,6 @@ public class BluetoothTestUtils extends Assert {
                     case BluetoothDevice.PAIRING_VARIANT_PIN_16_DIGITS:
                         mDevice.setPin(mPin);
                         break;
-                    case BluetoothDevice.PAIRING_VARIANT_PASSKEY:
-                        break;
                     case BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION:
                     case BluetoothDevice.PAIRING_VARIANT_CONSENT:
                         mDevice.setPairingConfirmation(true);
