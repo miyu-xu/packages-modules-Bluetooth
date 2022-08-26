@@ -22,6 +22,30 @@
       },
       "revId": "a0c2687c1d269dbd602e8e21e1b16eb715b5a4ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b1b760d_3d792ba6",
+        "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
+        "patchSetId": 19
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-26T23:22:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87152226_10e26143",
+      "range": {
+        "startLine": 179,
+        "startChar": 29,
+        "endLine": 179,
+        "endChar": 49
+      },
+      "revId": "a0c2687c1d269dbd602e8e21e1b16eb715b5a4ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
