@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb268f33_f1b6f897",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-26T02:07:27Z",
+      "side": 1,
+      "message": "should this be guarded by checking `missing_profiles.is_empty()`?",
+      "revId": "bcc8ccd4957643c1056c9a7645ef3d98b49a2c36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

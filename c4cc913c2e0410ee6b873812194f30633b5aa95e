@@ -93,6 +93,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e74a9f9_5591e22e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-26T02:07:27Z",
+      "side": 1,
+      "message": "We should only connect the profile available in UUID, for avoiding side effects.\n\nAnd it\u0027s interesting to know there\u0027s the `connect_all_enabled_profiles` in bluetooth.rs layer and it makes me wonder how stable does HFP-only device work since `MediaActions::Connect` is guarded by checking `A2DP` profile.\n\nHeadset could initiate profile connection, but if headset doesn\u0027t do that for some reason, it\u0027s host side\u0027s job to take care of it. \nIMO we should take care that logic in bluetooth.rs as a different CL/bug.",
+      "parentUuid": "85b13ee7_7664315d",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
