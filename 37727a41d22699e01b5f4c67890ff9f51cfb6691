@@ -46,6 +46,30 @@
       },
       "revId": "37727a41d22699e01b5f4c67890ff9f51cfb6691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b815ae01_74c921b5",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-26T18:39:18Z",
+      "side": 1,
+      "message": "Can you put a `TODO: to remove` or something like that and link b/240276298?",
+      "parentUuid": "2344621c_d74cd6d9",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 38
+      },
+      "revId": "37727a41d22699e01b5f4c67890ff9f51cfb6691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
