@@ -804,7 +804,7 @@ impl CommandHandler {
                 }
             }
             "unregister-scanner" => {
-                if args.len() < 3 {
+                if args.len() < 2 {
                     println!("usage: le-scan unregister-scanner <scanner-id>");
                     return;
                 }
