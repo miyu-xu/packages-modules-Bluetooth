@@ -355,8 +355,8 @@ class AdapterImpl : public Adapter, public hal::BluetoothInterface::Observer {
     return true;
   }
 
-  bool SspReply(const std::string& device_address, int variant, bool accept,
-                int32_t pass_key) override {
+  bool SspReply(const std::string& device_address, int variant,
+                bool accept) override {
     RawAddress addr;
     if (!RawAddress::FromString(device_address, addr)) {
       LOG(ERROR) << "Invalid device address given: " << device_address;
@@ -364,7 +364,7 @@ class AdapterImpl : public Adapter, public hal::BluetoothInterface::Observer {
     }
 
     int status = hal::BluetoothInterface::Get()->GetHALInterface()->ssp_reply(
-        &addr, static_cast<bt_ssp_variant_t>(variant), accept, pass_key);
+        &addr, static_cast<bt_ssp_variant_t>(variant), accept);
     if (status != BT_STATUS_SUCCESS) {
       LOG(ERROR) << "Failed to send SSP response - status: "
                  << BtStatusText((const bt_status_t)status);

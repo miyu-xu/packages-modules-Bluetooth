@@ -42,7 +42,7 @@ class MockAdapter : public Adapter {
   MOCK_CONST_METHOD0(GetAddress, std::string());
   MOCK_METHOD1(SetScanMode, bool(int));
   MOCK_METHOD1(SetScanEnable, bool(bool));
-  MOCK_METHOD4(SspReply, bool(const std::string&, int, bool, int32_t));
+  MOCK_METHOD3(SspReply, bool(const std::string&, int, bool));
   MOCK_METHOD2(CreateBond,
                bool(const std::string& device_address, int transport));
   MOCK_METHOD0(IsMultiAdvertisementSupported, bool());

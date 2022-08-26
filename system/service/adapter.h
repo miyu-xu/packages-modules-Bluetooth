@@ -144,7 +144,7 @@ class Adapter {
 
   // Reply to an SSP request received in |OnSspRequest|.
   virtual bool SspReply(const std::string& device_address, int variant,
-                        bool accept, int32_t pass_key) = 0;
+                        bool accept) = 0;
 
   // Create a bond with device specified by |device_address|.
   virtual bool CreateBond(const std::string& device_address, int transport) = 0;

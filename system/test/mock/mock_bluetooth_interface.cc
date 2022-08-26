@@ -103,7 +103,7 @@ static int pin_reply(const RawAddress* bd_addr, uint8_t accept, uint8_t pin_len,
 }
 
 static int ssp_reply(const RawAddress* bd_addr, bt_ssp_variant_t variant,
-                     uint8_t accept, uint32_t passkey) {
+                     uint8_t accept) {
   return BT_STATUS_SUCCESS;
 }
 
