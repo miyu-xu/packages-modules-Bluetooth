@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "725e420b_cfb01816",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-26T18:36:59Z",
+      "side": 1,
+      "message": "See https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/BondStateMachine.java;l\u003d269",
+      "parentUuid": "4e572c82_93d15e78",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 50
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c65a30b9_be076af1",
         "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
         "patchSetId": 14
