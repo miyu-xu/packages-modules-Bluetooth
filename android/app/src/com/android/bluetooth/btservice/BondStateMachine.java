@@ -528,10 +528,6 @@ final class BondStateMachine extends StateMachine {
                 variant = BluetoothDevice.PAIRING_VARIANT_CONSENT;
                 break;
 
-            case AbstractionLayer.BT_SSP_VARIANT_PASSKEY_ENTRY:
-                variant = BluetoothDevice.PAIRING_VARIANT_PASSKEY;
-                break;
-
             case AbstractionLayer.BT_SSP_VARIANT_PASSKEY_NOTIFICATION:
                 variant = BluetoothDevice.PAIRING_VARIANT_DISPLAY_PASSKEY;
                 displayPasskey = true;
