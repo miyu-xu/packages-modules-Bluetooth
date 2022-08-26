@@ -51,8 +51,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_pcm_payload_msb_position = 0,
         .input_data_path = ESCO_DATA_PATH_PCM,
         .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_transport_unit_size = 0x01,
+        .output_transport_unit_size = 0x01,
         .max_latency_ms = 0xFFFF,  // Don't care
         .packet_types = (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
                          ESCO_PKT_TYPES_MASK_HV3),
@@ -86,8 +86,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_pcm_payload_msb_position = 0,
         .input_data_path = ESCO_DATA_PATH_PCM,
         .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_transport_unit_size = 0x01,
+        .output_transport_unit_size = 0x01,
         .max_latency_ms = 10,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
@@ -125,8 +125,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_pcm_payload_msb_position = 0,
         .input_data_path = ESCO_DATA_PATH_PCM,
         .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_transport_unit_size = 0x01,
+        .output_transport_unit_size = 0x01,
         .max_latency_ms = 12,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_HV1 | ESCO_PKT_TYPES_MASK_HV2 |
@@ -164,8 +164,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_pcm_payload_msb_position = 0,
         .input_data_path = ESCO_DATA_PATH_PCM,
         .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_transport_unit_size = 0x01,
+        .output_transport_unit_size = 0x01,
         .max_latency_ms = 8,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 |
@@ -201,8 +201,8 @@ static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
         .output_pcm_payload_msb_position = 0,
         .input_data_path = ESCO_DATA_PATH_PCM,
         .output_data_path = ESCO_DATA_PATH_PCM,
-        .input_transport_unit_size = 0x00,
-        .output_transport_unit_size = 0x00,
+        .input_transport_unit_size = 0x01,
+        .output_transport_unit_size = 0x01,
         .max_latency_ms = 13,
         .packet_types =
             (ESCO_PKT_TYPES_MASK_EV3 | ESCO_PKT_TYPES_MASK_NO_3_EV3 |
@@ -221,6 +221,8 @@ enh_esco_params_t esco_parameters_for_codec(esco_codec_t codec, bool offload) {
 
   enh_esco_params_t param = default_esco_parameters[codec];
   param.input_data_path = param.output_data_path = ESCO_DATA_PATH_HCI;
+  param.input_transport_unit_size = 0x00;
+  param.output_transport_unit_size = 0x00;
 
   if (codec >= ESCO_CODEC_MSBC_T1) {
     param.transmit_coding_format.coding_format = ESCO_CODING_FORMAT_TRANSPNT;
