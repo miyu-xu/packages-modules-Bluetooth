@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e2ec03_25344ac4",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-26T18:37:11Z",
+      "side": 1,
+      "message": "Unused?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 1
+      },
+      "revId": "216ee73f5736ac42a6d856ad88e80030025b9b8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
