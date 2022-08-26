@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6db3a5e7_63340e1e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-08-26T12:38:50Z",
+      "side": 1,
+      "message": "Could we change the variable name to lowerCamelCase. Thank you.\ngroup_id -\u003e groupId\ngroup_volume -\u003e groupVolume",
+      "revId": "562cb9cff8b55f36d4e4d8ff1073c00ae462ed60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f7c1ba4_bb672d5d",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-08-26T12:38:50Z",
+      "side": 1,
+      "message": "Do we need to override the volume with the group volume value?",
+      "revId": "562cb9cff8b55f36d4e4d8ff1073c00ae462ed60",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
