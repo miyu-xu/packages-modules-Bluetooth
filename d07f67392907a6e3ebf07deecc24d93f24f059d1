@@ -122,6 +122,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89112bdf_27c01749",
+        "filename": "android/pandora/server/proto/pandora/security.proto",
+        "patchSetId": 14
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-26T18:48:10Z",
+      "side": 1,
+      "message": "I believe Android is using PIN everywhere, event when it\u0027s a passkey. Are you sure that we are in a legacy pairing scenario? What are the commands sent over HCI?",
+      "parentUuid": "725e420b_cfb01816",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 50
+      },
+      "revId": "d07f67392907a6e3ebf07deecc24d93f24f059d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c65a30b9_be076af1",
         "filename": "android/pandora/server/src/com/android/pandora/Security.kt",
         "patchSetId": 14
