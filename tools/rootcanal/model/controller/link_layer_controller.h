@@ -107,10 +107,10 @@ class LinkLayerController {
                              uint8_t page_scan_mode, uint16_t clock_offset,
                              uint8_t allow_role_switch);
   ErrorCode CreateConnectionCancel(const Address& addr);
-  ErrorCode Disconnect(uint16_t handle, uint8_t reason);
+  ErrorCode Disconnect(uint16_t handle, ErrorCode reason);
 
  private:
-  void SendDisconnectionCompleteEvent(uint16_t handle, uint8_t reason);
+  void SendDisconnectionCompleteEvent(uint16_t handle, ErrorCode reason);
 
   void IncomingPacketWithRssi(model::packets::LinkLayerPacketView incoming,
                               uint8_t rssi);
@@ -476,6 +476,9 @@ class LinkLayerController {
   void IncomingScoConnectionResponse(
       model::packets::LinkLayerPacketView packet);
   void IncomingScoDisconnect(model::packets::LinkLayerPacketView packet);
+
+  void CheckExpiringConnections();
+  void IncomingPingRequest(model::packets::LinkLayerPacketView packet);
 
  private:
   const Address& address_;

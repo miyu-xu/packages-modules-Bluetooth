@@ -564,4 +564,16 @@ std::vector<uint16_t> AclConnectionHandler::GetAclHandles() const {
   return keys;
 }
 
+void AclConnectionHandler::AdvanceLinkTimer(uint16_t handle) {
+  acl_connections_.at(handle).AdvanceLinkTimer();
+}
+
+bool AclConnectionHandler::IsLinkExpiring(uint16_t handle) const {
+  return acl_connections_.at(handle).IsExpiring();
+}
+
+bool AclConnectionHandler::HasLinkExpired(uint16_t handle) const {
+  return acl_connections_.at(handle).HasExpired();
+}
+
 }  // namespace rootcanal
