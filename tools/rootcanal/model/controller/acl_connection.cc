@@ -24,7 +24,9 @@ AclConnection::AclConnection(AddressWithType address,
     : address_(address),
       own_address_(own_address),
       resolved_address_(resolved_address),
-      type_(phy_type) {}
+      type_(phy_type),
+      last_heartbeat_(std::chrono::steady_clock::now()),
+      timeout_(std::chrono::seconds(1)) {}
 
 void AclConnection::Encrypt() { encrypted_ = true; };
 
@@ -57,5 +59,17 @@ void AclConnection::SetLinkPolicySettings(uint16_t settings) {
 bluetooth::hci::Role AclConnection::GetRole() const { return role_; };
 
 void AclConnection::SetRole(bluetooth::hci::Role role) { role_ = role; }
+
+void AclConnection::AdvanceLinkTimer() {
+  last_heartbeat_ = std::chrono::steady_clock::now();
+}
+
+bool AclConnection::IsExpiring() const {
+  return std::chrono::steady_clock::now() > last_heartbeat_ + timeout_ / 2;
+}
+
+bool AclConnection::HasExpired() const {
+  return std::chrono::steady_clock::now() > last_heartbeat_ + timeout_;
+}
 
 }  // namespace rootcanal
