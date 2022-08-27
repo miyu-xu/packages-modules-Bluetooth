@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78fd83cd_01a40e6e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-27T07:41:13Z",
+      "side": 1,
+      "message": "nit: The log may cause the confusion. Could we change it to be \"device volume: \" + volume + \"is the same as the group volume\"?",
+      "range": {
+        "startLine": 657,
+        "startChar": 16,
+        "endLine": 657,
+        "endChar": 56
+      },
+      "revId": "d090ed67f8dd232d5ae149d0f4bbf266399955a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
