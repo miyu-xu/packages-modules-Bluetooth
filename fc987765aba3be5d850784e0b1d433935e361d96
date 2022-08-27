@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2378b872_733f7659",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 655,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-27T14:19:03Z",
+      "side": 1,
+      "message": "This still can be infinite loop if BLE audio device is poorly implemented (e.g. not setting the volume at all? or has fixed volume?)\n\nCan we limit the number of retries so we can give up at some point?",
+      "revId": "fc987765aba3be5d850784e0b1d433935e361d96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f53e67_6a3ce87c",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2022-08-27T14:19:03Z",
+      "side": 1,
+      "message": "Is this intended? Shouldn\u0027t it be -?",
+      "range": {
+        "startLine": 657,
+        "startChar": 76,
+        "endLine": 657,
+        "endChar": 77
+      },
+      "revId": "fc987765aba3be5d850784e0b1d433935e361d96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
