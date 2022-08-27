@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb5edbda_566c45ef",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-27T00:22:21Z",
+      "side": 1,
+      "message": "I would rename this into `GattCharacteristicDescriptor` to match the function below.",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "0fa9454d08b01d572d1987a97734ed7bbf3f479a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0647a67_f5a1770e",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-27T00:22:21Z",
+      "side": 1,
+      "message": "This handle is actually confusing: are you talking about the Characteristic handle or the Characteristic Value handle or Descriptor Handle? \n\nYou\u0027re probably talking about Characteristic handle since I believe the Characteristic Value handle is not available in Android 😄\n\nI would reformat this message into something like:\n```\nGattCharacteristicValue {\n  uint32 characteristic_handle \u003d 1;\n  bytes value \u003d 2;\n}\n```\nThis makes it clearer that we are dealing with a characteristic handle and not a characteristic handle value. I would also remove the status here, because it\u0027s only part of the response, not of the value.\n\nThen I would define:\n```\nReadCharacteristicResponse {\n  GattCharacteristicValue \u003d 1\n  AttStatusCode \u003d 2;\n}\n\nReadCharacteristicsFromUuidResponse {\n  repeated ReadCharacteristicResponse \u003d 1;\n}\n```\n\nAnd I would duplicate the same behavior for `CharacteristicDescriptor` (except that in the case of descriptors, there is no descriptor value handle, only a descriptor handle).",
+      "range": {
+        "startLine": 76,
+        "startChar": 9,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "0fa9454d08b01d572d1987a97734ed7bbf3f479a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
