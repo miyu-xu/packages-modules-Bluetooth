@@ -45,6 +45,30 @@
       },
       "revId": "0fa9454d08b01d572d1987a97734ed7bbf3f479a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fad6338_91999977",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-27T00:26:42Z",
+      "side": 1,
+      "message": "If you don\u0027t want to duplicate, we can do the following:\n\n```\nAttValue {\n  // Descriptor handle or Characteristic handle (not Characteristic Value handle).\n  uint32 handle \u003d 1;\n  bytes value \u003d 2;\n}\n\nReadCharacteristicResponse {\n  AttValue \u003d 1\n  AttStatusCode \u003d 2;\n}\n\nReadCharacteristicsFromUuidResponse {\n  repeated ReadCharacteristicResponse \u003d 1;\n}\n```",
+      "parentUuid": "d0647a67_f5a1770e",
+      "range": {
+        "startLine": 76,
+        "startChar": 9,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "0fa9454d08b01d572d1987a97734ed7bbf3f479a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
