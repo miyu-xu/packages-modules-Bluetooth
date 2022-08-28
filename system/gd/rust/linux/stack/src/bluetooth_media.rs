@@ -70,7 +70,7 @@ pub trait IBluetoothMedia {
 
     fn get_presentation_position(&mut self) -> PresentationPosition;
 
-    fn start_sco_call(&mut self, address: String);
+    fn start_sco_call(&mut self, address: String, sco_offload: bool);
     fn stop_sco_call(&mut self, address: String);
 }
 
@@ -613,10 +613,10 @@ impl IBluetoothMedia for BluetoothMedia {
         self.a2dp.as_mut().unwrap().stop_audio_request();
     }
 
-    fn start_sco_call(&mut self, address: String) {
+    fn start_sco_call(&mut self, address: String, sco_offload: bool) {
         if let Some(addr) = RawAddress::from_string(address.clone()) {
             info!("Start sco call for {}", address);
-            match self.hfp.as_mut().unwrap().connect_audio(addr) {
+            match self.hfp.as_mut().unwrap().connect_audio(addr, sco_offload) {
                 0 => {
                     info!("SCO connect_audio status success.");
                 }
