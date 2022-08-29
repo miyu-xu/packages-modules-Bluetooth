@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ecc1739_b4556f6b",
+        "filename": "service/java/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3041,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-29T18:40:49Z",
+      "side": 1,
+      "message": "Can we change the comment to be about all the activity, not just the OppLauncher ?\nor Maybe just something like\n`Log.e(TAG, \"updateOppLauncherComponentState failed: No Bluetooth packages found\"` ?",
+      "range": {
+        "startLine": 3041,
+        "startChar": 35,
+        "endLine": 3041,
+        "endChar": 63
+      },
+      "revId": "bfab4668bbdfb90c91ba132ba4fa0176dbccfab1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
