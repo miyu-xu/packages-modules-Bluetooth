@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbaacb85_c2de8e24",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T17:11:46Z",
+      "side": 1,
+      "message": "nit: Wrap to 100 chars, rustfmt does not take care of string splitting.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d228587_d9214862",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T17:11:46Z",
+      "side": 1,
+      "message": "Looks like this is a large move without behavior change. To make it easier to review, I prefer to not have a CL with big move refactor + behavior change. Could you split the CL into 2 CLs: a pure large move and the one with additional behavior? Or the large move can go together with CL \"Extend IBluetoothGatt\" since that CL is more trivial to also contain a large move.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
