@@ -30,7 +30,7 @@ class ExampleTest(base_test.BaseTestClass):
         self.ref = self.pandora_devices[1]
 
     def setup_test(self):
-        self.dut.host.HardReset()
+        self.dut.host.HardReset(wait_for_ready=True)
         # TODO: wait for server
         time.sleep(3)
 
