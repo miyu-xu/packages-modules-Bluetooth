@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "626d84cb_790804f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-08-29T18:01:22Z",
+      "side": 1,
+      "message": "Merged-In",
+      "revId": "861ca68307f223c2e482f72a87dd12a869dc0bce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
