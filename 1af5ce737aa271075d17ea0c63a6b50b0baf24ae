@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "758c27e4_17d4636a",
+        "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T18:31:29Z",
+      "side": 1,
+      "message": "Sorry we seem to be talking past each other.  I encapsulated the details in the .kt file.  There are no Android-specific things left.  I don\u0027t have access to the low-level details of RFCOMM.",
+      "parentUuid": "f44249fd_79ef0c05",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "24ad679c_5bb2d0ab",
         "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
         "patchSetId": 3
