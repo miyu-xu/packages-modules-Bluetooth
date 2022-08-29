@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26faf9cd_c9c2597d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-29T21:41:54Z",
+      "side": 1,
+      "message": "Hello Jeff,\nIt looks like your an owner for this directory.\nCan you help merging this CL ?",
+      "revId": "0e47627e31b3a80ba8b956e222f5627f0154ade0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
