@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2596884_7750a691",
+        "filename": "system/gd/rust/linux/utils/src/uinput.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T19:46:30Z",
+      "side": 1,
+      "message": "In Rust, you don\u0027t need the `return` if it\u0027s the final statement and has no `;`\n\nIt\u0027s actually preferred to do it this way in Rust:\n\n```\nself.fd \u003d fd;\n\nOk(())\n```",
+      "revId": "3b1613f0370b14854f8fe2779db2289eda0219af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
