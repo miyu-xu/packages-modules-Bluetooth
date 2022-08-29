@@ -33,6 +33,24 @@
       "message": "5.2 Vol 2 Part F 4.2.22 LMP ping",
       "revId": "26a5a3188241f6b889ff10687b141b5c432f5f43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07b644cb_db9eafb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-29T18:25:16Z",
+      "side": 1,
+      "message": "That makes sense, I can do that, sure.\n\nSo then we don\u0027t have this noise on the channel in the normal case, only when nothing else is being sent (and even then, the rate is much lower than on every tick).",
+      "parentUuid": "2db03c78_4d003b73",
+      "revId": "26a5a3188241f6b889ff10687b141b5c432f5f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
