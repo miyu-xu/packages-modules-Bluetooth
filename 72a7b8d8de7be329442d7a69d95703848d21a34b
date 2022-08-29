@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b374db07_63937385",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-29T23:52:52Z",
+      "side": 1,
+      "message": "nit: \n```\nBYPASS_LONG_LINES_REASON: Bluetooth likes 120 lines\n```",
+      "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "55a4bf47_97fddb80",
@@ -31,6 +48,64 @@
       "writtenOn": "2022-08-29T20:08:17Z",
       "side": 1,
       "message": "Please re-run rust formatter (lots of complaints here). If you repo upload from within AOSP checkout, the pre-submit should tell you what to run.",
+      "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99591488_a98c69ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-29T23:52:52Z",
+      "side": 1,
+      "message": "LGTM with format and nits. ",
+      "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73e5c5c9_3f8340fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-29T23:52:52Z",
+      "side": 1,
+      "message": "I always do rustfmt /path/to/file",
+      "parentUuid": "ffdf30e2_fda241c1",
+      "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cb6cc4a_4dab731b",
+        "filename": "system/gd/metrics/chromeos/metrics.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-29T23:52:52Z",
+      "side": 1,
+      "message": "nit: I have a vague impression that `constexpr` whenever possible?",
+      "range": {
+        "startLine": 30,
+        "startChar": 7,
+        "endLine": 30,
+        "endChar": 12
+      },
       "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
