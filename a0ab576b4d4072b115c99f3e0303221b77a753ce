@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51165a9_2ab9f9c4",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T16:50:09Z",
+      "side": 1,
+      "message": "nit: on_battery_info_updated? This makes it more consistent with `on` prefix.",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 27
+      },
+      "revId": "a0ab576b4d4072b115c99f3e0303221b77a753ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b31e158_08de6eb5",
+        "filename": "system/gd/rust/linux/stack/Cargo.toml",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T16:50:09Z",
+      "side": 1,
+      "message": "gd/rust/linux/stack should be free from RPC-dependent concepts. It should not depend on D-Bus.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 57
+      },
+      "revId": "a0ab576b4d4072b115c99f3e0303221b77a753ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8225d93b_27d7eb6c",
+        "filename": "system/gd/rust/linux/stack/src/dbus_arg.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T16:50:09Z",
+      "side": 1,
+      "message": "D-Bus should not be in gd/rust/linux/stack since it\u0027s RPC agnostic.",
+      "revId": "a0ab576b4d4072b115c99f3e0303221b77a753ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

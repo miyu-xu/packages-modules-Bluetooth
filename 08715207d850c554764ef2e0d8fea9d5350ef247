@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6de3b4dc_ddc18b99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T16:50:09Z",
+      "side": 1,
+      "message": "Unfortunately Gerrit still sends email titled \"DO NOT SUBMIT\" and it\u0027s a bit misleading to reviewers. My trick is usually to always use a different Change-Id (just remove from commit mesages and gerrit git hook will generate a new random one) after I make my prototype ready for review and then abandon the temporary prototype.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 13
+      },
+      "revId": "08715207d850c554764ef2e0d8fea9d5350ef247",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
