@@ -16,6 +16,23 @@
       "message": "Why having a separate CL from aosp/2167842? Most of my comments on my previous CL are still applying here",
       "revId": "27b035604d59e820e9555ad015da34b914e74e56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "311a52ec_b3f4a44f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T18:22:15Z",
+      "side": 1,
+      "message": "I missed the other null check for addresses",
+      "revId": "27b035604d59e820e9555ad015da34b914e74e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
