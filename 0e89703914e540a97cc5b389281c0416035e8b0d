@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "393bba55_12cb8925",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T20:35:17Z",
+      "side": 1,
+      "message": "+Josh for SCO/HFP review\n+Martin for OWNERS",
+      "revId": "0e89703914e540a97cc5b389281c0416035e8b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7ab49b_287b1347",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T20:35:17Z",
+      "side": 1,
+      "message": "Prefer not use bool in value and set it explicitly.\n\n```\nuint8_t datapath \u003d 0;\nswitch(codec-\u003ecodec) {\ncase codec::MSBC:\n  datapath \u003d 0x1;\n  break;\ndefault:\n  break;\n}\n\nstd::vector\u003cuint8_t\u003e data \u003d { datapath };\n```",
+      "revId": "0e89703914e540a97cc5b389281c0416035e8b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
