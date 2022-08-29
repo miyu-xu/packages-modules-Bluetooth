@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b100c09a_b47d8545",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-29T17:03:47Z",
+      "side": 1,
+      "message": "check rc: good point\n\n re: dup2 - not reason; the manpage diff are:\n \n        *  The  caller  can  force  the close-on-exec flag to be set for the new file descriptor by specifying O_CLOEXEC in flags.  See the description of the\n          same flag in open(2) for reasons why this may be useful.\n\n       *  If oldfd equals newfd, then dup3() fails with the error EINVAL.\n       \nThis should not have any effect but I will update to dup3",
+      "parentUuid": "5a4fb9f7_a110c729",
+      "range": {
+        "startLine": 51,
+        "startChar": 2,
+        "endLine": 51,
+        "endChar": 30
+      },
+      "revId": "019d6923197e5c24d01625713555653acccb3311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7460fd00_9d33134d",
@@ -54,6 +78,30 @@
       "writtenOn": "2022-08-29T16:59:48Z",
       "side": 1,
       "message": "nit: variable name should have an underscore suffix",
+      "range": {
+        "startLine": 49,
+        "startChar": 6,
+        "endLine": 49,
+        "endChar": 24
+      },
+      "revId": "019d6923197e5c24d01625713555653acccb3311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5d3ca81_f9b6aa40",
+        "filename": "system/gd/common/testing/log_capture.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-29T17:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7460fd00_9d33134d",
       "range": {
         "startLine": 49,
         "startChar": 6,
