@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9691881d_e5d06cd1",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1938031
+      },
+      "writtenOn": "2022-08-29T18:24:54Z",
+      "side": 1,
+      "message": "Just Curious - Is this synchronized needed? Whenever we are calling getScanFromScannerId, it is from a synchronized block. Same for isScanning()",
+      "revId": "05f6dc004858c1529bc3d8ff645d1feeed2cf0d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
