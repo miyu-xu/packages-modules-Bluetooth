@@ -16,6 +16,29 @@
       "message": "[1/26] HOGP/RH#HOGP/RH/HGDS/BV-01-I: PASSED (33.493s)\n[2/26] HOGP/RH#HOGP/RH/HGDS/BV-02-I: PASSED (32.663s)\n[3/26] HOGP/RH#HOGP/RH/HGDS/BV-03-I: PASSED (32.911s)\n[4/26] HOGP/RH#HOGP/RH/HGDR/BV-01-I: PASSED (33.415s)\n[5/26] HOGP/RH#HOGP/RH/HGDC/BV-01-I: PASSED (33.564s)\n[6/26] HOGP/RH#HOGP/RH/HGDC/BV-02-I: PASSED (33.474s)\n[7/26] HOGP/RH#HOGP/RH/HGDC/BV-03-I: PASSED (33.934s)\n[8/26] HOGP/RH#HOGP/RH/HGDC/BV-04-I: PASSED (33.853s)\n[9/26] HOGP/RH#HOGP/RH/HGDC/BV-05-I: PASSED (32.470s)\n[10/26] HOGP/RH#HOGP/RH/HGDC/BV-06-I: PASSED (32.532s)\n[11/26] HOGP/RH#HOGP/RH/HGDC/BV-07-I: PASSED (33.625s)\n[12/26] HOGP/RH#HOGP/RH/HGDC/BV-14-I: PASSED (32.576s)\n[13/26] HOGP/RH#HOGP/RH/HGDC/BV-15-I: PASSED (32.121s)\n[14/26] HOGP/RH#HOGP/RH/HGDC/BV-16-I: PASSED (32.837s)\n[15/26] HOGP/RH#HOGP/RH/HGRF/BV-01-I: PASSED (39.146s)\n[16/26] HOGP/RH#HOGP/RH/HGRF/BV-02-I: PASSED (34.249s)\n[17/26] HOGP/RH#HOGP/RH/HGRF/BV-04-I: PASSED (33.628s)\n[18/26] HOGP/RH#HOGP/RH/HGRF/BV-05-I: PASSED (36.559s)\n[19/26] HOGP/RH#HOGP/RH/HGRF/BV-06-I: PASSED (32.794s)\n[20/26] HOGP/RH#HOGP/RH/HGRF/BV-08-I: PASSED (32.906s)\n[21/26] HOGP/RH#HOGP/RH/HGRF/BV-10-I: PASSED (33.568s)\n[22/26] HOGP/RH#HOGP/RH/HGRF/BV-12-I: PASSED (33.372s)\n[23/26] HOGP/RH#HOGP/RH/HGCF/BV-01-I: PASSED (35.333s)\n[24/26] HOGP/RH#HOGP/RH/HGNF/BV-01-I: PASSED (32.521s)\n[25/26] HOGP/RH#HOGP/RH/HGNF/BI-01-I: PASSED (33.044s)\n[26/26] HOGP/RH#HOGP/RH/HGNF/BI-02-I: PASSED (31.913s)",
       "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea09e7d8_5e4a5e26",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 30
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-29T17:34:31Z",
+      "side": 1,
+      "message": "1/ Can you make this function able to write on a characteristic as well?\n\nI think we can define `writeAttribute` as: write a characteristic value from a characteristic handle (and not a characteristic value handle, same as the `readCharacteristic`, which is fine because it\u0027s probably the handle exposed to the user in any case) or a characteristic descriptor value from a descriptor handle (there is no descriptor value handle).\n\n2/ It would be great to check the result callback from the `writeCharacteristic` or `writeDescriptor`, similarly as the `readCharacteristicBlocking`.",
+      "range": {
+        "startLine": 229,
+        "startChar": 2,
+        "endLine": 229,
+        "endChar": 30
+      },
+      "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

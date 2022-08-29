@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "271efcbb_47e14fa6",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 26
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-29T17:34:31Z",
+      "side": 1,
+      "message": "I would change this by specifying that it writes a characteristic value from a characteristic handle (and not a characteristic value handle) or a descriptor value from a descriptor handle. See my other comment",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "737f38454548a261ee9f0736ce071bb1aad2405c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
