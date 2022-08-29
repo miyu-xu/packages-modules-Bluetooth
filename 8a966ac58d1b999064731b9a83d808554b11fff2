@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f23a3ab_cbbb8170",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-29T07:46:30Z",
+      "side": 1,
+      "message": "test_bounded_headphones_ringtone\n\npackages/modules/Bluetooth/system/bta/le_audio/devices_test.cc:597: Failure\nValue of: configuration_result\nActual: false\nExpected: true\n\nthis test failed",
+      "revId": "8a966ac58d1b999064731b9a83d808554b11fff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
