@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbc55b53_5b1c55c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-08-29T18:00:06Z",
+      "side": 1,
+      "message": "Can you please add a \"Merged-In\" tag?",
+      "revId": "86eaa9b58da8c58b5725e33cd304f2cd4483680d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
