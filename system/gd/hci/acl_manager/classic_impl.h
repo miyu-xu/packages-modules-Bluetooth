@@ -218,11 +218,20 @@ struct classic_impl : public security::ISecurityManagerListener {
     }
     Address get_address(uint16_t handle) const {
       std::unique_lock<std::mutex> lock(acl_connections_guard_);
+<<<<<<< HEAD
       auto connection = acl_connections_.find(handle);
       if (connection == acl_connections_.end()) {
         return Address::kEmpty;
       }
       return connection->second.address_with_type_.GetAddress();
+=======
+      for (auto it = acl_connections_.begin(); it != acl_connections_.end(); it++) {
+        if (it->first == handle) {
+          return it->second.address_with_type_.GetAddress();
+        }
+      }
+      return Address::kEmpty;
+>>>>>>> 5e4624d1ec (BluetoothMetrics: Log disconnection reason demo)
     }
     bool is_classic_link_already_connected(const Address& address) const {
       std::unique_lock<std::mutex> lock(acl_connections_guard_);
@@ -436,6 +445,8 @@ struct classic_impl : public security::ISecurityManagerListener {
     bool event_also_routes_to_other_receivers = connections.crash_on_unknown_handle_;
     bluetooth::os::LogMetricBluetoothDisconnectionReasonReported(
         static_cast<uint32_t>(reason), connections.get_address(handle), handle);
+    // log here
+    LOG_INFO("aaaaaaaa on_classic_disconnect %d %hhu %s", handle, reason, connections.get_address(handle).ToString().c_str());
     connections.crash_on_unknown_handle_ = false;
     connections.execute(
         handle,

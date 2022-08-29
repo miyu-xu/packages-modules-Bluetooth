@@ -1007,6 +1007,7 @@ final class RemoteDevices {
         int connectionState = newState == AbstractionLayer.BT_ACL_STATE_CONNECTED
                 ? BluetoothAdapter.STATE_CONNECTED : BluetoothAdapter.STATE_DISCONNECTED;
         int metricId = mAdapterService.getMetricId(device);
+        Log.w(TAG, "aaaaaaaaa acl connection: " + connectionState);
         BluetoothStatsLog.write(
                 BluetoothStatsLog.BLUETOOTH_ACL_CONNECTION_STATE_CHANGED,
                 mAdapterService.obfuscateAddress(device),
