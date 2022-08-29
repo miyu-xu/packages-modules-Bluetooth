@@ -33,6 +33,24 @@
       "message": "I missed the other null check for addresses",
       "revId": "27b035604d59e820e9555ad015da34b914e74e56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8220ccc8_dff8c9e1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-29T18:22:21Z",
+      "side": 1,
+      "message": "Unresolving it",
+      "parentUuid": "cde457f1_b49a03a9",
+      "revId": "27b035604d59e820e9555ad015da34b914e74e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
