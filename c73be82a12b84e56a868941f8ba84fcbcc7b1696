@@ -20,6 +20,74 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2c5f9d30_83b4be1c",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "This needs a TODO since the advertising is really only being used for debugging. We may eventually want to allow more params to do this (and I think refactor away the custom cmd parsing to use clap).",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "530f1b09_67aa2b92",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Should read: \"Starting advertising set for reg_id\u003d...\" The original seems like you\u0027re not waiting for reg_id, not that you\u0027re immediately starting advertising.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c9f772_997a32e9",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Clone + into iter is probably unnecessary. I\u0027m guessing you\u0027re having trouble with the `if let` taking ownership here.\n\nTry using this:\n```\nfor (_, val) in self.context.lock().unwrap().adv_sets.iter() {\n  if let Some(\u0026adv_id) \u003d val.as_ref() {\n  }\n}\n```",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba86211_714ff31f",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Advertising",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d228587_d9214862",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
         "patchSetId": 5
@@ -31,6 +99,142 @@
       "writtenOn": "2022-08-29T17:11:46Z",
       "side": 1,
       "message": "Looks like this is a large move without behavior change. To make it easier to review, I prefer to not have a CL with big move refactor + behavior change. Could you split the CL into 2 CLs: a pure large move and the one with additional behavior? Or the large move can go together with CL \"Extend IBluetoothGatt\" since that CL is more trivial to also contain a large move.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdbb429d_1005a339",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Instead of a custom function, implement the From or Into trait. You should be able to implement `impl Into\u003cbt_topshim::profiles::gatt::AdvertiseParameters\u003e for AdvertisingSetParameters` since the struct was described in this crate.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c642084c_7c40c1f1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Use existing traits.\n\n```\nimpl Default for PeriodicAdvertisingParameters {}\nimpl Into\u003cbt_topshim::profiles::gatt::PeriodicAdvertisingParameters\u003e for PeriodicAdvertisingParameters {}\n```",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f57c7dd_794a6d20",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Remove todo comment or add what remains to be done",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddf30fb1_53e431ce",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "pleasefix - todo with no content",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b64e81_d78f2da7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2002,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Please convert all status: u8 and status: i32 to GattStatus in topshim and elsewhere. I\u0027m making a similar refactor in other areas of Gatt. This will make our apis more consistent for status handling.\n\n(You can do this in a follow-up CL here)",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d00e54e_c052d60f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2060,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "This seems like it\u0027s going to be a duplicated log entry -- should this be debug! instead?",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba0bdbae_149dab14",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "This seems like a debugging warn! -- move it back to debug!",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "974f53f2_627a8e76",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:08Z",
+      "side": 1,
+      "message": "Remove debug! since you handle this now.",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
