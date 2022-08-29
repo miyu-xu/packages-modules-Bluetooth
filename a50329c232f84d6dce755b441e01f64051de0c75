@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "360c05cd_589faec1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-29T06:25:46Z",
+      "side": 1,
+      "message": "Looks good to me. Can you also find reviewer from Android team to take a look?",
+      "revId": "a50329c232f84d6dce755b441e01f64051de0c75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
