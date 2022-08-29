@@ -121,6 +121,10 @@ java_library {
 
 genrule {
     name: "pandora-grpc-python",
+    visibility: [
+        "//packages/modules/Bluetooth:__subpackages__",
+        "//external/pandora/bt-test-interfaces",
+    ],
     tools: [
         "aprotoc",
         "protoc-gen-mmi2grpc-python"
