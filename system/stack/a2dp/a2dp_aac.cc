@@ -719,10 +719,21 @@ void aac_source_caps_initialize() {
   if (aac_source_caps_configured) {
     return;
   }
-  a2dp_aac_source_caps =
-      osi_property_get_bool("persist.bluetooth.a2dp_aac.vbr_supported", false)
-          ? a2dp_aac_vbr_source_caps
-          : a2dp_aac_cbr_source_caps;
+
+  int32_t value_mode = osi_property_get_int32("aac.vbr.mode.test", 255);
+  if (value_mode == 255) {
+    LOG_INFO("[NTI-Test] Default case");
+    a2dp_aac_source_caps =
+        osi_property_get_bool("persist.bluetooth.a2dp_aac.vbr_supported", false)
+            ? a2dp_aac_vbr_source_caps
+            : a2dp_aac_cbr_source_caps;
+  } else if (value_mode == 0) {
+    LOG_INFO("[NTI-Test] CBR case");
+    a2dp_aac_source_caps = a2dp_aac_cbr_source_caps;
+  } else {
+    LOG_INFO("[NTI-Test] VBR case");
+    a2dp_aac_source_caps = a2dp_aac_vbr_source_caps;
+  }
   aac_source_caps_configured = true;
 }
 
