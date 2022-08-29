@@ -21,7 +21,8 @@
 #ifndef HFP_MSBC_DECODER_H
 #define HFP_MSBC_DECODER_H
 
-#include <stdint.h>
+#include <cstddef>
+#include <cstdint>
 
 // Initialize the HFP MSBC decoder.
 bool hfp_msbc_decoder_init(void);
@@ -29,8 +30,10 @@ bool hfp_msbc_decoder_init(void);
 // Cleanup the HFP MSBC decoder.
 void hfp_msbc_decoder_cleanup(void);
 
-// Decodes |i_buf|. |o_buf| will be assigned to the decoded frames if available.
-bool hfp_msbc_decoder_decode_packet(const uint8_t* i_buf,
-                                    const uint8_t** o_buf);
+// Decodes |i_buf| into |o_buf| with size |out_len| in bytes. |i_buf| should
+// point to a mSBC packet starting with sync word (0xAD) and containing with 58
+// bytes of data.
+bool hfp_msbc_decoder_decode_packet(const uint8_t* i_buf, int16_t* o_buf,
+                                    size_t out_len);
 
 #endif  // HFP_MSBC_DECODER_H
