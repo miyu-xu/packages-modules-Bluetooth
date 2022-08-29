@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ff5933_9b0f2a72",
+        "filename": "android/pandora/server/configs/PtsBotTest.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9cc9c79e_35eeb65d",
+      "range": {
+        "startLine": 34,
+        "startChar": 38,
+        "endLine": 34,
+        "endChar": 44
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba08df7e_c995a8f1",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-26T18:56:58Z",
       "side": 1,
       "message": "Why 25 ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 30,
+        "endLine": 45,
+        "endChar": 32
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "512eeec4_0441439d",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "No good reason.  Added a comment.",
+      "parentUuid": "ba08df7e_c995a8f1",
       "range": {
         "startLine": 45,
         "startChar": 30,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "081573c9_0110f6be",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17077688_9e1b0154",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 36
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92d8dac0_5c37de6c",
@@ -83,6 +155,30 @@
       "writtenOn": "2022-08-26T18:56:58Z",
       "side": 1,
       "message": "unused ?",
+      "range": {
+        "startLine": 52,
+        "startChar": 2,
+        "endLine": 53,
+        "endChar": 38
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbacb0f9_331ff19b",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92d8dac0_5c37de6c",
       "range": {
         "startLine": 52,
         "startChar": 2,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4681dce_fc95f908",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1960bb9b_09ade571",
+      "range": {
+        "startLine": 66,
+        "startChar": 47,
+        "endLine": 66,
+        "endChar": 54
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b384fcf4_ef9fd85f",
@@ -129,6 +249,30 @@
       "writtenOn": "2022-08-26T18:56:58Z",
       "side": 1,
       "message": "Unused ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 22
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7ea3bb6_561eadd0",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b384fcf4_ef9fd85f",
       "range": {
         "startLine": 69,
         "startChar": 4,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce618de_a14d1285",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "435e92ff_fb6bf8e9",
+      "range": {
+        "startLine": 92,
+        "startChar": 6,
+        "endLine": 95,
+        "endChar": 7
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41f561a1_4af09ac3",
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffdb8fab_7d3ddd01",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Good point!",
+      "parentUuid": "41f561a1_4af09ac3",
+      "range": {
+        "startLine": 107,
+        "startChar": 3,
+        "endLine": 108,
+        "endChar": 42
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0f5e2848_f6be5e57",
@@ -198,6 +390,30 @@
       "writtenOn": "2022-08-26T18:56:58Z",
       "side": 1,
       "message": "😮\nNit: rfcomm before sm ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 19
+      },
+      "revId": "a21d4fa6f8af6d5dca6e91085cbb15b651f2fff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af889dd_62672ec2",
+        "filename": "android/pandora/server/src/com/android/pandora/Server.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f5e2848_f6be5e57",
       "range": {
         "startLine": 69,
         "startChar": 0,

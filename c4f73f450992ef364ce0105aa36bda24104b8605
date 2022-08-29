@@ -22,6 +22,30 @@
       },
       "revId": "c4f73f450992ef364ce0105aa36bda24104b8605",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d526e13_86e5deb4",
+        "filename": "android/pandora/server/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T17:41:50Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "a080ff3d_ab860700",
+      "range": {
+        "startLine": 141,
+        "startChar": 32,
+        "endLine": 141,
+        "endChar": 33
+      },
+      "revId": "c4f73f450992ef364ce0105aa36bda24104b8605",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
