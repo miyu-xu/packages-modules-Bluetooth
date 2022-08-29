@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a7e899f_b83e6c11",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-29T18:06:56Z",
+      "side": 1,
+      "message": "todo(aryarahul): fix comment to omit reference to passkey",
+      "revId": "4dfdc3ae8f13175d0b6f6e8ca99e63f482993714",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
