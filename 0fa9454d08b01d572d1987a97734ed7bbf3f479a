@@ -93,6 +93,30 @@
       },
       "revId": "0fa9454d08b01d572d1987a97734ed7bbf3f479a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "735d4154_fb33561b",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-29T23:09:10Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "2fad6338_91999977",
+      "range": {
+        "startLine": 76,
+        "startChar": 9,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "0fa9454d08b01d572d1987a97734ed7bbf3f479a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
