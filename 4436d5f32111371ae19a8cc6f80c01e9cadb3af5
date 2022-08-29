@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32b5920c_c15702f6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2022-08-29T18:12:40Z",
+      "side": 1,
+      "message": "You are introducing a typo on purpose here ?",
+      "range": {
+        "startLine": 242,
+        "startChar": 26,
+        "endLine": 242,
+        "endChar": 28
+      },
+      "revId": "4436d5f32111371ae19a8cc6f80c01e9cadb3af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
