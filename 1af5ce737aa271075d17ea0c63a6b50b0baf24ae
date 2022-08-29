@@ -167,6 +167,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b65e9770_351b42ec",
+        "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T18:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9c44b2c_b2d638ef",
+      "range": {
+        "startLine": 18,
+        "startChar": 2,
+        "endLine": 18,
+        "endChar": 18
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bbf6ef51_c4b1640e",
