@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a492ee04_7d1546d2",
+        "filename": "android/pandora/server/src/com/android/pandora/Host.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-29T17:46:29Z",
+      "side": 1,
+      "message": "The current issue is that `connect` is supposed to only wait for the ACL link to be created, while the connection intent on Android is currently waiting for the profiles to be initialized as well. This is an issue because PTS-bot may see a connection test successful before, thus disconnecting the Android DUT, which never receives the connection intent, and making this function fail.\n\nIt would be best to fix the `ACTION_ACL_CONNECTED` and `ACTION_ACL_DISCONNECTED` on Android 😊",
+      "range": {
+        "startLine": 232,
+        "startChar": 10,
+        "endLine": 232,
+        "endChar": 47
+      },
+      "revId": "8c9815aef93fac4a61ade5ce82db733b651f9360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
