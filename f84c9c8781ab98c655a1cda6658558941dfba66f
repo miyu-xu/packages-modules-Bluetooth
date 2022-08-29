@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5853828a_9ae93532",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-08-29T19:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "806bf659_7f066dc9",
+      "range": {
+        "startLine": 21,
+        "startChar": 19,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2754ab5_c314dee4",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "afad461a_fb0c50b3",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-08-29T19:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2754ab5_c314dee4",
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68666e7b_84136373",
@@ -54,6 +96,24 @@
       "writtenOn": "2022-08-29T18:27:13Z",
       "side": 1,
       "message": "nit: Move this below callback-related methods. The convention is that we put callback registration on the top of interface definitions.",
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d32d2cb_9326021f",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-08-29T19:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68666e7b_84136373",
       "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "098d67a8_805e0168",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-08-29T19:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ae52046_53df813c",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7771a694_3f82095d",
@@ -94,6 +178,24 @@
       "writtenOn": "2022-08-29T18:27:13Z",
       "side": 1,
       "message": "Add public facing comments to pub traits and the methods.",
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b26f8f4b_c68044c7",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-08-29T19:38:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7771a694_3f82095d",
       "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
