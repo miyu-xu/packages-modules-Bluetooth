@@ -70,6 +70,30 @@
       },
       "revId": "4436d5f32111371ae19a8cc6f80c01e9cadb3af5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5338b5f_07f34f79",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-29T21:52:39Z",
+      "side": 1,
+      "message": "aosp/2198679  - could you just fill the proper bug id for that? Thanks!",
+      "parentUuid": "5a82426c_fa6f62ee",
+      "range": {
+        "startLine": 242,
+        "startChar": 26,
+        "endLine": 242,
+        "endChar": 28
+      },
+      "revId": "4436d5f32111371ae19a8cc6f80c01e9cadb3af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
