@@ -313,6 +313,7 @@ cc_binary {
     },
     sanitize: {
         address: true,
+        memtag_heap: false,  // conflicts with address
         cfi: true,
     }
 }
