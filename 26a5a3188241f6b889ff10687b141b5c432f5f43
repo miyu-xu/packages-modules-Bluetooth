@@ -16,6 +16,23 @@
       "message": "Thanks for looking into this!\n\nDid you look into using a PING packet when the timer expires to be closer to the spec?",
       "revId": "26a5a3188241f6b889ff10687b141b5c432f5f43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24db4a42_835f1816",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-08-29T18:21:08Z",
+      "side": 1,
+      "message": "5.2 Vol 2 Part F 4.2.22 LMP ping",
+      "revId": "26a5a3188241f6b889ff10687b141b5c432f5f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
