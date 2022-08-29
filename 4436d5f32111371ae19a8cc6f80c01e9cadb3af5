@@ -22,6 +22,30 @@
       },
       "revId": "4436d5f32111371ae19a8cc6f80c01e9cadb3af5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "89fd4af5_a256534b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-29T19:35:21Z",
+      "side": 1,
+      "message": "this is just revert. Unfortunately previous patch fixed typo in the patch which did something else",
+      "parentUuid": "32b5920c_c15702f6",
+      "range": {
+        "startLine": 242,
+        "startChar": 26,
+        "endLine": 242,
+        "endChar": 28
+      },
+      "revId": "4436d5f32111371ae19a8cc6f80c01e9cadb3af5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
