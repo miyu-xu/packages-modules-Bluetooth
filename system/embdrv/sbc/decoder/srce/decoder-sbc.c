@@ -381,11 +381,6 @@ OI_STATUS OI_CODEC_SBC_DecodeFrame(OI_CODEC_SBC_DECODER_CONTEXT* context,
   }
   TRACE(("-OI_CODEC_SBC_DecodeFrame: %d", status));
 
-  /* mSBC is designed with 8 bits of zeros at the end for padding. */
-  if (context->mSbcEnabled) {
-    *frameBytes -= 1;
-  }
-
   return status;
 }
 
