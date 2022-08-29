@@ -16,6 +16,23 @@
       "message": "Hi reviewers, gentle ping",
       "revId": "5d4a8a4bdf8faa3a439fe71a8888290085e87dc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d41e3f2_bc94e85c",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T19:50:59Z",
+      "side": 1,
+      "message": "Get rid of #if target_floss",
+      "revId": "5d4a8a4bdf8faa3a439fe71a8888290085e87dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
