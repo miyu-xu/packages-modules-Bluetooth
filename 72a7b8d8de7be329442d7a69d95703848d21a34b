@@ -16,6 +16,23 @@
       "message": "Hi, please review this part of the code (and possibly the other CLs in the relation chain as well), thanks!",
       "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffdf30e2_fda241c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T20:08:17Z",
+      "side": 1,
+      "message": "Please re-run rust formatter (lots of complaints here). If you repo upload from within AOSP checkout, the pre-submit should tell you what to run.",
+      "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
