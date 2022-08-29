@@ -436,6 +436,8 @@ struct classic_impl : public security::ISecurityManagerListener {
     bool event_also_routes_to_other_receivers = connections.crash_on_unknown_handle_;
     bluetooth::os::LogMetricBluetoothDisconnectionReasonReported(
         static_cast<uint32_t>(reason), connections.get_address(handle), handle);
+    // log here
+    LOG_INFO("aaaaaaaa on_classic_disconnect %d %hhu %s", handle, reason, connections.get_address(handle).ToString().c_str());
     connections.crash_on_unknown_handle_ = false;
     connections.execute(
         handle,
