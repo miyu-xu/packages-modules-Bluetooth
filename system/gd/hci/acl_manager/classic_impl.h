@@ -209,6 +209,15 @@ struct classic_impl : public security::ISecurityManagerListener {
       }
       return kIllegalConnectionHandle;
     }
+    Address get_address(uint16_t handle) const {
+      std::unique_lock<std::mutex> lock(acl_connections_guard_);
+      for (auto it = acl_connections_.begin(); it != acl_connections_.end(); it++) {
+        if (it->first == handle) {
+          return it->second.address_with_type_.GetAddress();
+        }
+      }
+      return Address::kEmpty;
+    }
     bool is_classic_link_already_connected(const Address& address) const {
       std::unique_lock<std::mutex> lock(acl_connections_guard_);
       for (const auto& connection : acl_connections_) {
@@ -386,6 +395,8 @@ struct classic_impl : public security::ISecurityManagerListener {
   static constexpr bool kRemoveConnectionAfterwards = true;
   void on_classic_disconnect(uint16_t handle, ErrorCode reason) {
     bool event_also_routes_to_other_receivers = connections.crash_on_unknown_handle_;
+    // log here
+    LOG_INFO("on_classic_disconnect %d %hhu %s", handle, reason, connections.get_address(handle).ToString().c_str());
     connections.crash_on_unknown_handle_ = false;
     connections.execute(
         handle,
