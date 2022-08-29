@@ -34,6 +34,24 @@
       "parentUuid": "9691881d_e5d06cd1",
       "revId": "05f6dc004858c1529bc3d8ff645d1feeed2cf0d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e03a74a_48f164dc",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AppScanStats.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2022-08-29T18:42:03Z",
+      "side": 1,
+      "message": "yes, currently these two APIs are called in synchronized block but allows package access. Adding synchronized is to avoid NPE when someone may call these APIs out of synchronized blocks in the future.",
+      "parentUuid": "1c4b5523_fcb54afc",
+      "revId": "05f6dc004858c1529bc3d8ff645d1feeed2cf0d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
