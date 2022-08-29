@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55a4bf47_97fddb80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-08-29T12:16:37Z",
+      "side": 1,
+      "message": "Hi, please review this part of the code (and possibly the other CLs in the relation chain as well), thanks!",
+      "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
