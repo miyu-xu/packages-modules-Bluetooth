@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ca05e2b_00c646d7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 586,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T17:03:48Z",
+      "side": 1,
+      "message": "nit: wrap to 100 chars. Rustfmt does not take care of comments so we have to take care manually.",
+      "revId": "de8fd88cc721eb79f58f63eada4dafc74fe9f482",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
