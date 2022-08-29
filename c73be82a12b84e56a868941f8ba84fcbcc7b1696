@@ -190,6 +190,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7dfdaf6a_39ccb6b1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2002,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T17:18:48Z",
+      "side": 1,
+      "message": "See https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2199577 as an example",
+      "parentUuid": "d7b64e81_d78f2da7",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d00e54e_c052d60f",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 5
