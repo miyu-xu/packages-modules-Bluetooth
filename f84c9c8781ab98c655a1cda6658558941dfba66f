@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "806bf659_7f066dc9",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T18:27:13Z",
+      "side": 1,
+      "message": "This should also be `OnBatteryInfoUpdated`",
+      "range": {
+        "startLine": 21,
+        "startChar": 19,
+        "endLine": 21,
+        "endChar": 37
+      },
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2754ab5_c314dee4",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T18:27:13Z",
+      "side": 1,
+      "message": "Since this contains public API definitions, we have to add comments to the traits and each methods. Also in IBatteryManagerCallback.",
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68666e7b_84136373",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T18:27:13Z",
+      "side": 1,
+      "message": "nit: Move this below callback-related methods. The convention is that we put callback registration on the top of interface definitions.",
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ae52046_53df813c",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T18:27:13Z",
+      "side": 1,
+      "message": "I think Default is no longer needed, could you try removing Default to see if it compiles? Please remove if not needed.",
+      "range": {
+        "startLine": 3,
+        "startChar": 16,
+        "endLine": 3,
+        "endChar": 23
+      },
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7771a694_3f82095d",
+        "filename": "system/gd/rust/linux/stack/src/battery_provider_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-29T18:27:13Z",
+      "side": 1,
+      "message": "Add public facing comments to pub traits and the methods.",
+      "revId": "f84c9c8781ab98c655a1cda6658558941dfba66f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
