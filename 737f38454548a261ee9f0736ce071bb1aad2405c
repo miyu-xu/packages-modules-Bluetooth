@@ -22,6 +22,30 @@
       },
       "revId": "737f38454548a261ee9f0736ce071bb1aad2405c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40996be5_19384a0b",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 26
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-29T17:36:40Z",
+      "side": 1,
+      "message": "Then should this maybe be split up into WriteCharacteristicFromHandle and WriteCharacteristicDescriptorFromHandle, to match the read methods?",
+      "parentUuid": "271efcbb_47e14fa6",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "737f38454548a261ee9f0736ce071bb1aad2405c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
