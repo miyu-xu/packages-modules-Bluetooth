@@ -46,6 +46,30 @@
       },
       "revId": "737f38454548a261ee9f0736ce071bb1aad2405c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37904b1_477942b6",
+        "filename": "android/pandora/server/proto/pandora/gatt.proto",
+        "patchSetId": 26
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2022-08-29T17:48:49Z",
+      "side": 1,
+      "message": "I think we can have all those methods: WriteCharacteristicFromHandle and WriteCharacteristicDescriptorFromHandle when you know exactly what you\u0027re going to write, and just WriteAttribute when you don\u0027t (and which is doing either WriteCharacteristicFromHandle or WriteCharacteristicDescriptorFromHandle).\n\nBut if you think that WriteCharacteristicDescriptorFromHandle is sufficient, you can keep only this method yes.",
+      "parentUuid": "40996be5_19384a0b",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "737f38454548a261ee9f0736ce071bb1aad2405c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
