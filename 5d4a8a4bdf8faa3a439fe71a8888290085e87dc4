@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3376cacf_401d2c50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-29T20:15:26Z",
+      "side": 1,
+      "message": "Please also update test results from go/gd-local-health-tests\nCheck basic pairing + connection on an Android device.\n\nYou may need to cherry-pick this series to git-tm_dev to get a build you can put on a device to test. Will try to get someone in Android to give OWNERS + 1 and feedback on changes.",
+      "parentUuid": "7b42203a_6b45f4b2",
+      "revId": "5d4a8a4bdf8faa3a439fe71a8888290085e87dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d41e3f2_bc94e85c",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 4
