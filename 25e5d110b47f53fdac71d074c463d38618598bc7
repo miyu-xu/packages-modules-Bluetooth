@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d30e522d_f8d68fad",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-29T23:56:24Z",
+      "side": 1,
+      "message": "nit: \n```\nBYPASS_LONG_LINES_REASON: Bluetooth likes 120 lines\n```",
+      "revId": "25e5d110b47f53fdac71d074c463d38618598bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b732f51_e4657851",
+        "filename": "system/gd/metrics/BUILD.gn",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-29T23:56:24Z",
+      "side": 1,
+      "message": "nit: have it sorted.\n\n```\n\"chromeos/metrics.cc\",\n\"chromeos/metrics_allowlist.cc\",\n\"chromeos/metrics_event.cc\",\n\n```",
+      "revId": "25e5d110b47f53fdac71d074c463d38618598bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e0899a4_c1bdad6e",
+        "filename": "system/gd/metrics/chromeos/metrics_allowlist.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2022-08-29T23:56:24Z",
+      "side": 1,
+      "message": "nit: `constexpr`?",
+      "revId": "25e5d110b47f53fdac71d074c463d38618598bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
