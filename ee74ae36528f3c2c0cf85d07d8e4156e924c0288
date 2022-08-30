@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dbb971c_ee9e99c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-30T02:44:43Z",
+      "side": 1,
+      "message": "Please create the buganizer and add the bug in the commit message.",
+      "revId": "ee74ae36528f3c2c0cf85d07d8e4156e924c0288",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
