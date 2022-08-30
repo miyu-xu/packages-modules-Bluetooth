@@ -156,6 +156,7 @@ void LeAddressManager::register_client(LeAddressManagerCallback* callback) {
       address_policy_ == AddressPolicy::USE_NON_RESOLVABLE_ADDRESS) {
       if (registered_clients_.size() == 1) {
         schedule_rotate_random_address();
+        LOG_DEBUG("Scheduled address rotation for first client registered");
       }
   }
 }
@@ -172,9 +173,11 @@ void LeAddressManager::unregister_client(LeAddressManagerCallback* callback) {
       ack_resume(callback);
     }
     registered_clients_.erase(callback);
+    LOG_DEBUG("Client unregistered");
   }
   if (registered_clients_.empty() && address_rotation_alarm_ != nullptr) {
     address_rotation_alarm_->Cancel();
+    LOG_DEBUG("Cancelled address rotation alarm");
   }
 }
 
