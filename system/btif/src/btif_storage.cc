@@ -1594,6 +1594,29 @@ bt_status_t btif_storage_remove_hid_info(const RawAddress& remote_bd_addr) {
   return BT_STATUS_SUCCESS;
 }
 
+/*******************************************************************************
+ *
+ * Function         btif_storage_get_hid_device_addresses
+ *
+ * Description      BTIF storage API - Finds all bonded HID devices
+ *
+ * Returns          std::vector of RawAddress
+ *
+ ******************************************************************************/
+std::vector<RawAddress> btif_storage_get_hid_device_addresses(void) {
+  std::vector<RawAddress> hid_addresses;
+  for (const auto& bd_addr : btif_config_get_paired_devices()) {
+    auto name = bd_addr.ToString();
+
+    LOG_ERROR("Remote device:%s", name.c_str());
+
+    int value;
+    if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
+    hid_addresses.push_back(bd_addr);
+  }
+  return hid_addresses;
+}
+
 constexpr char HEARING_AID_READ_PSM_HANDLE[] = "HearingAidReadPsmHandle";
 constexpr char HEARING_AID_CAPABILITIES[] = "HearingAidCapabilities";
 constexpr char HEARING_AID_CODECS[] = "HearingAidCodecs";

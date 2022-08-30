@@ -3480,6 +3480,7 @@ void btif_dm_set_event_filter_connection_setup_all_devices() {
 
 void btif_dm_allow_wake_by_hid() {
   // Autoplumbed
+  auto le_hid_devices = btif_storage_get_hid_device_addresses();
   BTA_DmAllowWakeByHid();
 }
 
