@@ -25,6 +25,7 @@ python_test_host {
     libs: [
         "libavatar",
         "pandora_experimental-python",
+        "absl-py",
     ],
     required: ["PandoraServer"],
     test_suites: ["general-tests"],
@@ -32,4 +33,9 @@ python_test_host {
         unit_test: false,
     },
     data: ["config.yml"],
+    version: {
+        py3: {
+            embedded_launcher: true,
+        },
+    },
 }
