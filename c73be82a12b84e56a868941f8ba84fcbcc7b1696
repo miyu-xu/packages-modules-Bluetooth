@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7313965_49bd93f8",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T02:09:25Z",
+      "side": 1,
+      "message": "Will do. Any pointer for clap?",
+      "parentUuid": "2c5f9d30_83b4be1c",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "530f1b09_67aa2b92",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 5
@@ -48,6 +66,24 @@
       "writtenOn": "2022-08-29T17:18:08Z",
       "side": 1,
       "message": "Should read: \"Starting advertising set for reg_id\u003d...\" The original seems like you\u0027re not waiting for reg_id, not that you\u0027re immediately starting advertising.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54a32270_ccaa6d60",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T02:09:25Z",
+      "side": 1,
+      "message": "Thanks, I\u0027ll fix it.",
+      "parentUuid": "530f1b09_67aa2b92",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -99,6 +135,24 @@
       "writtenOn": "2022-08-29T17:11:46Z",
       "side": 1,
       "message": "Looks like this is a large move without behavior change. To make it easier to review, I prefer to not have a CL with big move refactor + behavior change. Could you split the CL into 2 CLs: a pure large move and the one with additional behavior? Or the large move can go together with CL \"Extend IBluetoothGatt\" since that CL is more trivial to also contain a large move.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e242d89_3231e3df",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T02:09:25Z",
+      "side": 1,
+      "message": "I can split the public struct and callback move to another CL.",
+      "parentUuid": "5d228587_d9214862",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -208,6 +262,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c95827f_70317130",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2002,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T02:09:25Z",
+      "side": 1,
+      "message": "Will do, thanks.",
+      "parentUuid": "7dfdaf6a_39ccb6b1",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6d00e54e_c052d60f",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 5
@@ -219,6 +291,24 @@
       "writtenOn": "2022-08-29T17:18:08Z",
       "side": 1,
       "message": "This seems like it\u0027s going to be a duplicated log entry -- should this be debug! instead?",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49ca0f98_935c6943",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2060,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T02:09:25Z",
+      "side": 1,
+      "message": "Prefer to keep it as warn as we can pay attention to the failed reason start_advertising_set.",
+      "parentUuid": "6d00e54e_c052d60f",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
