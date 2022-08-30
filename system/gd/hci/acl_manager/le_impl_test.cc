@@ -19,9 +19,11 @@
 #include <gtest/gtest.h>
 
 #include <chrono>
+#include <mutex>
 
 #include "common/bidi_queue.h"
 #include "common/callback.h"
+#include "common/testing/log_capture.h"
 #include "hci/acl_manager.h"
 #include "hci/address_with_type.h"
 #include "hci/controller.h"
@@ -36,6 +38,24 @@ using ::bluetooth::common::BidiQueue;
 using ::bluetooth::common::Callback;
 using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
+using ::bluetooth::testing::LogCapture;
+
+namespace {
+[[maybe_unused]] const char* test_flags[] = {
+    "INIT_logging_debug_enabled_for_all=true",
+    nullptr,
+};
+
+constexpr char kFixedAddress[] = "c0:aa:bb:cc:dd:ee";
+constexpr char kRemoteAddress[] = "00:11:22:33:44:55";
+[[maybe_unused]] constexpr bool kAddToFilterAcceptList = true;
+[[maybe_unused]] constexpr bool kSkipFilterAcceptList = !kAddToFilterAcceptList;
+[[maybe_unused]] constexpr bool kIsDirectConnection = true;
+[[maybe_unused]] constexpr bool kIsBackgroundConnection = !kIsDirectConnection;
+[[maybe_unused]] constexpr ::bluetooth::crypto_toolbox::Octet16 kRotationIrk = {};
+[[maybe_unused]] constexpr std::chrono::milliseconds kMinimumRotationTime(14 * 1000);
+[[maybe_unused]] constexpr std::chrono::milliseconds kMaximumRotationTime(16 * 1000);
+}  // namespace
 
 namespace bluetooth {
 namespace hci {
@@ -80,6 +100,8 @@ class TestController : public Controller {
 };
 
 class TestHciLayer : public HciLayer {
+  // This is a springboard class that converts from `AclCommandBuilder`
+  // to `ComandBuilder` for use in the hci layer.
   template <typename T>
   class CommandInterfaceImpl : public CommandInterface<T> {
    public:
@@ -97,6 +119,49 @@ class TestHciLayer : public HciLayer {
     }
     HciLayer& hci_;
   };
+
+  std::queue<std::unique_ptr<CommandBuilder>> packet_queue_;
+  mutable std::mutex packet_queue_mutex_;
+
+ public:
+  virtual void EnqueueCommand(
+      std::unique_ptr<CommandBuilder> command,
+      common::ContextualOnceCallback<void(CommandCompleteView)> on_complete) override {
+    const std::lock_guard<std::mutex> lock(packet_queue_mutex_);
+    packet_queue_.push(std::move(command));
+  }
+
+  virtual void EnqueueCommand(
+      std::unique_ptr<CommandBuilder> command,
+      common::ContextualOnceCallback<void(CommandStatusView)> on_status) override {
+    const std::lock_guard<std::mutex> lock(packet_queue_mutex_);
+    packet_queue_.push(std::move(command));
+  }
+
+  std::unique_ptr<CommandBuilder> DequeueCommand() {
+    const std::lock_guard<std::mutex> lock(packet_queue_mutex_);
+    auto packet = std::move(packet_queue_.front());
+    packet_queue_.pop();
+    return std::move(packet);
+  }
+
+  std::shared_ptr<std::vector<uint8_t>> DequeueCommandBytes() {
+    auto command = DequeueCommand();
+    auto bytes = std::make_shared<std::vector<uint8_t>>();
+    packet::BitInserter bi(*bytes);
+    command->Serialize(bi);
+    return bytes;
+  }
+
+  bool IsPacketQueueEmpty() const {
+    const std::lock_guard<std::mutex> lock(packet_queue_mutex_);
+    return packet_queue_.empty();
+  }
+
+  size_t NumberOfQueuedCommands() const {
+    const std::lock_guard<std::mutex> lock(packet_queue_mutex_);
+    return packet_queue_.size();
+  }
 
  public:
   LeAclConnectionInterface* GetLeAclConnectionInterface(
@@ -127,6 +192,13 @@ class LeImplTest : public ::testing::Test {
     hci_queue_.GetDownEnd()->RegisterDequeue(
         handler_, common::Bind(&LeImplTest::HciDownEndDequeue, common::Unretained(this)));
     le_impl_ = new le_impl(hci_layer_, controller_, handler_, round_robin_scheduler_, true);
+
+    Address address;
+    Address::FromString(kFixedAddress, address);
+    fixed_address_ = AddressWithType(address, AddressType::PUBLIC_DEVICE_ADDRESS);
+
+    Address::FromString(kRemoteAddress, address);
+    remote_public_address_ = AddressWithType(address, AddressType::PUBLIC_DEVICE_ADDRESS);
   }
 
   void TearDown() override {
@@ -172,6 +244,16 @@ class LeImplTest : public ::testing::Test {
     }
   }
 
+ protected:
+  void set_privacy_policy_for_initiator_address(
+      const AddressWithType& address, const LeAddressManager::AddressPolicy& policy) {
+    le_impl_->set_privacy_policy_for_initiator_address(
+        policy, address, kRotationIrk, kMinimumRotationTime, kMaximumRotationTime);
+  }
+
+  AddressWithType fixed_address_;
+  AddressWithType remote_public_address_;
+
   uint16_t packet_count_;
   std::unique_ptr<std::promise<void>> packet_promise_;
   std::unique_ptr<std::future<void>> packet_future_;
@@ -181,7 +263,7 @@ class LeImplTest : public ::testing::Test {
 
   Thread* thread_;
   Handler* handler_;
-  HciLayer* hci_layer_{nullptr};
+  TestHciLayer* hci_layer_{nullptr};
   TestController* controller_;
   RoundRobinScheduler* round_robin_scheduler_{nullptr};
 
@@ -226,6 +308,109 @@ TEST_F(LeImplTest, remove_device_from_connect_list) {
   le_impl_->remove_device_from_connect_list({{0x21, 0x22, 0x23, 0x24, 0x25, 0x26}, AddressType::PUBLIC_DEVICE_ADDRESS});
   le_impl_->remove_device_from_connect_list({{0x31, 0x32, 0x33, 0x34, 0x35, 0x36}, AddressType::PUBLIC_DEVICE_ADDRESS});
   ASSERT_EQ(0UL, le_impl_->connect_list.size());
+}
+
+TEST_F(LeImplTest, register_with_address_manager__AddressPolicyNotSet) {
+  bluetooth::common::InitFlags::Load(test_flags);
+  std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
+
+  le_impl_->register_with_address_manager();
+  sync_handler();  // Let |LeAddressManager::register_client| execute on handler
+  ASSERT_TRUE(le_impl_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->pause_connection);
+
+  le_impl_->ready_to_unregister = true;
+
+  le_impl_->check_for_unregister();
+  sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
+  ASSERT_FALSE(le_impl_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_TRUE(log_capture->Rewind()->Find("address policy isn't set yet"));
+  ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
+}
+
+TEST_F(LeImplTest, register_with_address_manager__AddressPolicyPublicAddress) {
+  bluetooth::common::InitFlags::Load(test_flags);
+  std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
+
+  set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS);
+
+  le_impl_->register_with_address_manager();
+  sync_handler();  // Let |eAddressManager::register_client| execute on handler
+  ASSERT_TRUE(le_impl_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->pause_connection);
+
+  le_impl_->ready_to_unregister = true;
+
+  le_impl_->check_for_unregister();
+  sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
+  ASSERT_FALSE(le_impl_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 1"));
+  ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
+}
+
+TEST_F(LeImplTest, register_with_address_manager__AddressPolicyStaticAddress) {
+  bluetooth::common::InitFlags::Load(test_flags);
+  std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
+
+  set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_STATIC_ADDRESS);
+
+  le_impl_->register_with_address_manager();
+  sync_handler();  // Let |LeAddressManager::register_client| execute on handler
+  ASSERT_TRUE(le_impl_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->pause_connection);
+
+  le_impl_->ready_to_unregister = true;
+
+  le_impl_->check_for_unregister();
+  sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
+  ASSERT_FALSE(le_impl_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 2"));
+  ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
+}
+
+TEST_F(LeImplTest, register_with_address_manager__AddressPolicyNonResolvableAddress) {
+  bluetooth::common::InitFlags::Load(test_flags);
+  std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
+
+  set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_NON_RESOLVABLE_ADDRESS);
+
+  le_impl_->register_with_address_manager();
+  sync_handler();  // Let |LeAddressManager::register_client| execute on handler
+  ASSERT_TRUE(le_impl_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->pause_connection);
+
+  le_impl_->ready_to_unregister = true;
+
+  le_impl_->check_for_unregister();
+  sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
+  ASSERT_FALSE(le_impl_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 3"));
+  ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
+}
+
+TEST_F(LeImplTest, register_with_address_manager__AddressPolicyResolvableAddress) {
+  bluetooth::common::InitFlags::Load(test_flags);
+  std::unique_ptr<LogCapture> log_capture = std::make_unique<LogCapture>();
+
+  set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS);
+
+  le_impl_->register_with_address_manager();
+  sync_handler();  // Let |LeAddressManager::register_client| execute on handler
+  ASSERT_TRUE(le_impl_->address_manager_registered);
+  ASSERT_TRUE(le_impl_->pause_connection);
+
+  le_impl_->ready_to_unregister = true;
+
+  le_impl_->check_for_unregister();
+  sync_handler();  // Let |LeAddressManager::unregister_client| execute on handler
+  ASSERT_FALSE(le_impl_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->pause_connection);
+  ASSERT_TRUE(log_capture->Rewind()->Find("SetPrivacyPolicyForInitiatorAddress with policy 4"));
+  ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
 }
 
 }  // namespace acl_manager
