@@ -15,6 +15,8 @@
 
 __version__ = "0.0.1"
 
+import datetime
+from threading import Thread
 from typing import List
 import time
 import sys
@@ -35,6 +37,11 @@ from pandora.host_grpc import Host
 GRPC_PORT = 8999
 MAX_RETRIES = 10
 
+def looper():
+    print(datetime.datetime.now())
+    time.sleep(1)
+
+looping = False
 
 class IUT:
     """IUT class.
@@ -67,6 +74,12 @@ class IUT:
         """Resets the IUT when starting a PTS test."""
         # Note: we don't keep a single gRPC channel instance in the IUT class
         # because reset is allowed to close the gRPC server.
+
+        global looping
+        if not looping:
+            Thread(target=looper).start()
+        looping = True
+
         with grpc.insecure_channel(f'localhost:{self.port}') as channel:
             self._retry(Host(channel).HardReset)(wait_for_ready=True)
 
