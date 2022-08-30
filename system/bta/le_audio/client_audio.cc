@@ -192,17 +192,14 @@ bool LeAudioClientAudioSource::SinkOnMetadataUpdateReq(
   }
 
   // Call OnAudioSuspend and block till it returns.
-  std::promise<void> do_update_metadata_promise;
-  std::future<void> do_update_metadata_future =
-      do_update_metadata_promise.get_future();
   bt_status_t status = do_in_main_thread(
       FROM_HERE,
       base::BindOnce(&LeAudioClientAudioSinkReceiver::OnAudioMetadataUpdate,
                      base::Unretained(audioSinkReceiver_),
-                     std::move(do_update_metadata_promise), source_metadata));
+                     std::move(source_metadata)));
 
   if (status == BT_STATUS_SUCCESS) {
-    do_update_metadata_future.wait();
+    LOG(ERROR) << __func__ << "UNLock";
     return true;
   }
 
@@ -262,18 +259,13 @@ bool LeAudioUnicastClientAudioSink::SourceOnMetadataUpdateReq(
     return false;
   }
 
-  // Call OnAudioSuspend and block till it returns.
-  std::promise<void> do_update_metadata_promise;
-  std::future<void> do_update_metadata_future =
-      do_update_metadata_promise.get_future();
   bt_status_t status = do_in_main_thread(
       FROM_HERE,
       base::BindOnce(&LeAudioClientAudioSourceReceiver::OnAudioMetadataUpdate,
                      base::Unretained(audioSourceReceiver_),
-                     std::move(do_update_metadata_promise), sink_metadata));
+                     std::move(sink_metadata)));
 
   if (status == BT_STATUS_SUCCESS) {
-    do_update_metadata_future.wait();
     return true;
   }
 
