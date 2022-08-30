@@ -12,33 +12,73 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import absl.import_helper
+
 import logging
 import sys
 import time
 
+from absl.testing import parameterized
 from mobly import test_runner, base_test, asserts
 from grpc import RpcError
 
 from avatar.controllers import pandora_device
+from pandora.security_pb2 import PairingEvent, PairingEventAnswer
 
 
-class ExampleTest(base_test.BaseTestClass):
+class ExampleTest(base_test.BaseTestClass, parameterized.TestCase):
 
     def setup_class(self):
         self.pandora_devices = self.register_controller(pandora_device)
         self.dut = self.pandora_devices[0]
         self.ref = self.pandora_devices[1]
 
-    def setup_test(self):
         self.dut.host.HardReset()
         # TODO: wait for server
         time.sleep(3)
 
-    def test_classic_connect(self):
+    def setup_test(self):
+        self.dut.host.SoftReset()
+        self.ref.host.SoftReset()
+
+    def test_classic_connect_from_ref(self):
         dut_address = self.dut.address
         self.dut.log.info(f'Address: {dut_address}')
         response = self.ref.host.Connect(address=dut_address)
         assert response.WhichOneof("result") == "connection"
+
+    def test_classic_connect_from_dut(self):
+        ref_address = self.ref.address
+        self.ref.log.info(f'Address: {ref_address}')
+        response = self.dut.host.Connect(address=ref_address)
+        assert response.WhichOneof("result") == "connection"
+
+    def test_classic_pair_from_ref(self):
+        # TODO: Parameterized
+        io_cap = 1
+        sc = True
+        mitm = True
+
+        dut_address = self.dut.address
+        self.dut.log.info(f'Address: {dut_address}')
+        self.ref.security.SetPairingConfig(
+            io_capability=io_cap, bonding=True, mitm_required=mitm, secure_connection_supported=sc, oob_data=0)
+        response = self.ref.host.Connect(address=dut_address)
+        assert response.WhichOneof("result") == "connection"
+
+        dut_pairing_event_stream = self.dut.security.OnPairing()
+        ref_pairing_event_stream = self.ref.security.OnPairing()
+
+        self.ref.security.Pair(connection=response.connection)
+        dut_pairing_event = dut_pairing_event_stream.recv()
+        ref_pairing_event = ref_pairing_event_stream.recv()
+        assert dut_pairing_event.WhichOneof("method") == ref_pairing_event.WhichOneof("method")
+        dut_pairing_event_stream.send(event=dut_pairing_event, confirm=True)
+        ref_pairing_event_stream.send(event=ref_pairing_event, confirm=True)
+        ref_pairing_event_stream.close()
+
+        # TODO: Wait for bond state instead of sleep
+        time.sleep(3)
 
 
 if __name__ == '__main__':
