@@ -21,10 +21,10 @@ python_test_host {
     main: "connect.py",
     srcs: [
         "connect.py",
+        ":mmi2grpc",
     ],
     libs: [
         "libavatar",
-        "pandora_experimental-python",
     ],
     required: ["PandoraServer"],
     test_suites: ["general-tests"],
