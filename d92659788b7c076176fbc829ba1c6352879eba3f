@@ -16,6 +16,23 @@
       "message": "Adding `set noparent` breaks downstream projects that enforce OWNERS files (i.e. ChromeOS). See https://chromium-review.googlesource.com/c/aosp/platform/packages/modules/Bluetooth/+/3866430 for example where we are pulling this downstream.\n\nIf there is a need to enforce that Bluetooth OWNERS can\u0027t actually modify these files, they should not exist in the Bluetooth repo. If the root OWNERS is too permissive, that should be refactored.",
       "revId": "d92659788b7c076176fbc829ba1c6352879eba3f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9b07bbc_ea72cf3e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-30T22:32:11Z",
+      "side": 1,
+      "message": "Adding a few more people that are in MTV timezone",
+      "revId": "d92659788b7c076176fbc829ba1c6352879eba3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
