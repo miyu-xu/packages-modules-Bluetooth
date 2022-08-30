@@ -16,6 +16,24 @@
       "message": "Can you please add a \"Merged-In\" tag?",
       "revId": "86eaa9b58da8c58b5725e33cd304f2cd4483680d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "927e9680_b9e45420",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-30T17:24:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bbc55b53_5b1c55c6",
+      "revId": "86eaa9b58da8c58b5725e33cd304f2cd4483680d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
