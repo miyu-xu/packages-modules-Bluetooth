@@ -29,16 +29,37 @@ class ExampleTest(base_test.BaseTestClass):
         self.dut = self.pandora_devices[0]
         self.ref = self.pandora_devices[1]
 
-    def setup_test(self):
         self.dut.host.HardReset()
         # TODO: wait for server
         time.sleep(3)
 
-    def test_classic_connect(self):
+    def setup_test(self):
+        self.dut.host.SoftReset()
+        time.sleep(1)
+
+    def test_classic_connect_from_ref(self):
         dut_address = self.dut.address
         self.dut.log.info(f'Address: {dut_address}')
         response = self.ref.host.Connect(address=dut_address)
         assert response.WhichOneof("result") == "connection"
+
+    def test_classic_connect_from_dut(self):
+        ref_address = self.ref.address
+        self.ref.log.info(f'Address: {ref_address}')
+        response = self.dut.host.Connect(address=ref_address)
+        assert response.WhichOneof("result") == "connection"
+
+    def test_classic_pair_from_ref(self):
+        io_cap = 3
+        sc = True
+        mitm = True
+        dut_address = self.dut.address
+        self.dut.log.info(f'Address: {dut_address}')
+        self.ref.security.SetPairingConfig(
+            io_capability=io_cap, bonding=True, mitm_required=mitm, secure_connection_supported=sc, oob_data=0)
+        response = self.ref.host.Connect(address=dut_address)
+        assert response.WhichOneof("result") == "connection"
+        self.ref.security.Pair(connection=response.connection)
 
 
 if __name__ == '__main__':
