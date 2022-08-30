@@ -124,6 +124,7 @@ class Security(private val context: Context) : SecurityImplBase() {
       it
         .map { answer ->
           val device = answer.event.address.toBluetoothDevice(bluetoothAdapter)
+          Log.i(TAG, "onPairing ${answer.answerCase.toString()}")
           when (answer.answerCase!!) {
             PairingEventAnswer.AnswerCase.CONFIRM -> device.setPairingConfirmation(true)
             PairingEventAnswer.AnswerCase.PASSKEY ->
@@ -132,7 +133,7 @@ class Security(private val context: Context) : SecurityImplBase() {
             PairingEventAnswer.AnswerCase.ANSWER_NOT_SET -> error("unexpected pairing answer type")
           }
         }
-        .launchIn(this)
+        .launchIn(globalScope)
 
       // TODO(243977710) - Resolve the transport on which pairing is taking place
       // so we can disambiguate intents
