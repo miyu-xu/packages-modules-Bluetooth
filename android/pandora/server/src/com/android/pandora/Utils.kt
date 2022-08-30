@@ -24,6 +24,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.util.Log
 import android.net.MacAddress
 import com.google.protobuf.ByteString
 import io.grpc.stub.StreamObserver
@@ -150,6 +151,7 @@ fun <T, U> grpcBidirectionalStream(
     outputFlow
       .onEach { responseObserver.onNext(it) }
       .onCompletion { error ->
+        Log.i("PandoraUtil", "Output completed")
         if (error == null) {
           responseObserver.onCompleted()
         }
@@ -162,17 +164,21 @@ fun <T, U> grpcBidirectionalStream(
 
   return object : StreamObserver<T> {
     override fun onNext(req: T) {
+      Log.i("PandoraUtil", "onNext ${req.toString()}")
       // Note: this should be made a blocking call, and the handler should run in a separate thread
       // so we get flow control - but for now we can live with this
       if (!inputFlow.tryEmit(req)) {
+        Log.i("PandoraUtil", "onNext fail")
         job.cancel(CancellationException("too many incoming requests, buffer exceeded"))
         responseObserver.onError(
           CancellationException("too many incoming requests, buffer exceeded")
         )
       }
+      Log.i("PandoraUtil", "onNext success")
     }
 
     override fun onCompleted() {
+      Log.i("PandoraUtil", "input completed")
       // no-op
     }
 
