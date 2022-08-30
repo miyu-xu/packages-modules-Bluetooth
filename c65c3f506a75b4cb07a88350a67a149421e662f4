@@ -16,6 +16,24 @@
       "message": "I don\u0027t think setting the default to 0x0 is the right thing here.\n\nCan we put this into a HAL api and specialize there?",
       "revId": "c65c3f506a75b4cb07a88350a67a149421e662f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ece96ae_c644bd6b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-30T02:27:52Z",
+      "side": 1,
+      "message": "The spec defines that 0x00 is only for HCI (non-offload), but I don\u0027t see anywhere in Android changing that for non-zero which is strange...\n\nHowever I agree that we can do it in HAL, thanks for the suggestion.",
+      "parentUuid": "a5734570_68bde16a",
+      "revId": "c65c3f506a75b4cb07a88350a67a149421e662f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
