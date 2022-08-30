@@ -39,3 +39,10 @@ filegroup {
         ":pandora_experimental-python-src",
     ],
 }
+
+filegroup {
+    name: "libmmi2grpc",
+    srcs: [
+        "mmi2grpc/*.py",
+    ],
+}
