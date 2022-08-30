@@ -51,6 +51,24 @@
       "message": "Get rid of #if target_floss",
       "revId": "5d4a8a4bdf8faa3a439fe71a8888290085e87dc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06810e2d_4429b584",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1150,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-08-30T04:58:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d41e3f2_bc94e85c",
+      "revId": "5d4a8a4bdf8faa3a439fe71a8888290085e87dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

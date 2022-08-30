@@ -70,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88efb1b9_040d84dd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-08-30T04:58:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ebd0aa3_93a538e1",
+      "revId": "7e1b124f703dc458b4cb7e73f112a092b48a578f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d0ccd6c_9f263bf8",
@@ -101,6 +119,24 @@
       "side": 1,
       "message": "For now, we should remove this #if TARGET_FLOSS I think. Always emit the appearance if it exists.",
       "parentUuid": "1d0ccd6c_9f263bf8",
+      "revId": "7e1b124f703dc458b4cb7e73f112a092b48a578f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "123e905d_200aa1cd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1357,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-08-30T04:58:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac53aa53_508177d4",
       "revId": "7e1b124f703dc458b4cb7e73f112a092b48a578f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
