@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3133ac61_c06a3114",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-30T06:56:18Z",
+      "side": 1,
+      "message": "Please align naming with the library you\u0027re using \nhttps://source.corp.google.com/master-arc-dev/packages/modules/Bluetooth/system/embdrv/sbc/decoder/include/oi_codec_sbc.h\n\nframe_len - encoded data\npcm_bytes - decoded data\n\nI think you want `#define HFP_MSBC_PCM_BYTES 240` here. \n\nNot sure if you need `#define HFP_MSBC_FRAME_LEN 57` here, using \"58\" feels a bit weird to me (see my other comment below)",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d00bb06a_187b547f",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-30T06:56:18Z",
+      "side": 1,
+      "message": "If we assert `oi_size\u003d\u003d0` here, why can you change the HFP_MSBC_PKT_LEN from 60 to 58?\nAlso the implementation of OI_CODEC_SBC_DecodeFrame mentions checking oi_size against frame length, please double check if we shall pass the real \"frame length\" 57 here.",
+      "range": {
+        "startLine": 82,
+        "startChar": 64,
+        "endLine": 82,
+        "endChar": 76
+      },
+      "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
