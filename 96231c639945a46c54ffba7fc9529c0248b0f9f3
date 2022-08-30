@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42244bcb_fa36fdb3",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-30T16:10:45Z",
+      "side": 1,
+      "message": "would this file be included in the sponge output from presubmit test?",
+      "range": {
+        "startLine": 30,
+        "startChar": 34,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "96231c639945a46c54ffba7fc9529c0248b0f9f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
