@@ -271,6 +271,8 @@ struct Controller::impl {
     ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
     uint8_t page_number = complete_view.GetPageNumber();
     extended_lmp_features_array_.push_back(complete_view.GetExtendedLmpFeatures());
+    LOG_WARN("zzzzz page number %s", std::to_string(page_number).c_str());
+    LOG_WARN("zzzzzz features %s", std::to_string(complete_view.GetExtendedLmpFeatures()).c_str());
     bluetooth::os::LogMetricBluetoothLocalSupportedFeatures(page_number, complete_view.GetExtendedLmpFeatures());
     // Query all extended features
     if (page_number < complete_view.GetMaximumPageNumber()) {
