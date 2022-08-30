@@ -10,3 +10,5 @@ TestBeds:
     - class: BumblePandoraDevice
       transport: 'tcp-client:127.0.0.1:7300'
       classic_enabled: true
+      classic_sc_enabled: true
+      classic_ssp_enabled: true
