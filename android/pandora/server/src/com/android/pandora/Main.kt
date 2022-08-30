@@ -48,6 +48,7 @@ class Main : MonitoringInstrumentation() {
     val context: Context = getApplicationContext()
 
     while (true) {
+      Log.i(TAG, "Await server termination")
       Server(context).awaitTermination()
     }
   }

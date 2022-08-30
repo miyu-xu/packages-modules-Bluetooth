@@ -36,6 +36,7 @@ class Server(context: Context) {
   private var grpcServer: GrpcServer
 
   init {
+    Log.d(TAG, "Init Pandora Server")
     host = Host(context, this)
     a2dp = A2dp(context)
     avrcp = Avrcp(context)
