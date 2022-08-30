@@ -16,6 +16,24 @@
       "message": "Telecom is the place where LeAudio is choosen as an active device for the phone call scenario. We should not introduce yet another place for doing that.",
       "revId": "f630c4ddd3b3d70be9d7373894e264067f0167c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c13f645_290cf701",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-30T13:54:09Z",
+      "side": 1,
+      "message": "... unless we have very good reason for doing that.",
+      "parentUuid": "3c57e31e_e844eefb",
+      "revId": "f630c4ddd3b3d70be9d7373894e264067f0167c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
