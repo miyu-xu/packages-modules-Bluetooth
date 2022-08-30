@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a92db50_58c27722",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874901
+      },
+      "writtenOn": "2022-08-30T21:54:52Z",
+      "side": 1,
+      "message": "The `v2/pixel-test-automation/floss/flossbuild_gcp_presubmit` test failed, due to some transient issue (first time this happened). Filed b/244356397 to track this issue for future occurrences.\n\nIt should run normally the next time this test is triggered.",
+      "revId": "287c29746d901383ad57e213949fd9a3cd05f60d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
