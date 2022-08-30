@@ -33,6 +33,24 @@
       "message": "Prefer not use bool in value and set it explicitly.\n\n```\nuint8_t datapath \u003d 0;\nswitch(codec-\u003ecodec) {\ncase codec::MSBC:\n  datapath \u003d 0x1;\n  break;\ndefault:\n  break;\n}\n\nstd::vector\u003cuint8_t\u003e data \u003d { datapath };\n```",
       "revId": "0e89703914e540a97cc5b389281c0416035e8b0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cfa459e_11f73754",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-30T02:24:25Z",
+      "side": 1,
+      "message": "It\u0027s vendor-config data, so I assume it will soon be changed so that we can get it directly from `codec-\u003edata`. At this point we were only told that CVSD\u003d\u003e{0x00}, MSBC\u003d\u003e{0x01} for starters.",
+      "parentUuid": "4d7ab49b_287b1347",
+      "revId": "0e89703914e540a97cc5b389281c0416035e8b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
