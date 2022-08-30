@@ -110,6 +110,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "516a8a5b_4e4924be",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-30T08:56:30Z",
+      "side": 1,
+      "message": "maybe we could extract some common part and put it in the helper function?",
+      "revId": "482f8a6cdc6c0fa8d01848e0c3e1cf08d273ac24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a823a76c_711dd042",
         "filename": "system/gd/hci/acl_manager/le_impl.h",
         "patchSetId": 2
