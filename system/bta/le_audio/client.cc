@@ -3822,10 +3822,8 @@ class LeAudioClientAudioSinkReceiverImpl
   }
 
   void OnAudioMetadataUpdate(
-      std::promise<void> do_metadata_update_promise,
       const source_metadata_t& source_metadata) override {
     if (instance) instance->OnAudioMetadataUpdate(source_metadata);
-    do_metadata_update_promise.set_value();
   }
 };
 
@@ -3840,10 +3838,8 @@ class LeAudioClientAudioSourceReceiverImpl
     if (instance) instance->OnAudioSourceResume();
   }
 
-  void OnAudioMetadataUpdate(std::promise<void> do_metadata_update_promise,
-                             const sink_metadata_t& sink_metadata) override {
+  void OnAudioMetadataUpdate(const sink_metadata_t& sink_metadata) override {
     if (instance) instance->OnAudioSourceMetadataUpdate(sink_metadata);
-    do_metadata_update_promise.set_value();
   }
 };
 
