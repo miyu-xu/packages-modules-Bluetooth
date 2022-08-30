@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7498053c_b691863b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-30T19:52:35Z",
+      "side": 1,
+      "message": "LGTM - you can use `nonlocal mut_address` to avoid the array",
+      "revId": "de78103e89edc4b18040b8afbde087c4ad38583a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
