@@ -28,6 +28,9 @@ import google.protobuf.descriptor_pool
 google.protobuf.descriptor_pool.Default().__init__()
 
 from pandora_experimental.host_grpc import Host
+from pandora_experimental.security_pb2 import PairingEvent, PairingEventAnswer
+
+import bumble
 
 
 class ExampleTest(base_test.BaseTestClass):
@@ -42,11 +45,87 @@ class ExampleTest(base_test.BaseTestClass):
         # TODO: wait for server
         time.sleep(3)
 
-    def test_classic_connect(self):
+    def setup_test(self):
+        self.dut.host.HardReset()
+        self.ref.host.HardReset()
+
+    def test_classic_connect_from_ref(self):
         dut_address = self.dut.address
         self.dut.log.info(f'Address: {dut_address}')
         response = self.ref.host.Connect(address=dut_address)
         assert response.WhichOneof("result") == "connection"
+
+    def test_classic_connect_from_dut(self):
+        ref_address = self.ref.address
+        self.ref.log.info(f'Address: {ref_address}')
+        response = self.dut.host.Connect(address=ref_address)
+        assert response.WhichOneof("result") == "connection"
+
+    def _setup_connection(self, io_cap):
+        dut_address = self.dut.address
+        self.dut.log.info(f'Address: {dut_address}')
+        self.ref.server.security_service.set_pairing_config(io_cap=io_cap, bonding=True, mitm=True, sc=True)
+        response = self.ref.host.Connect(address=dut_address)
+        assert response.WhichOneof("result") == "connection"
+        return response
+
+    def test_classic_pair_from_ref_no_io(self):
+        response = self._setup_connection(bumble.smp.SMP_NO_INPUT_NO_OUTPUT_IO_CAPABILITY)
+
+        dut_pairing_event_stream = self.dut.security.OnPairing()
+
+        self.ref.security.Pair(connection=response.connection)
+        dut_pairing_event = dut_pairing_event_stream.recv()
+        assert dut_pairing_event.WhichOneof("method") == "just_works"
+        dut_pairing_event_stream.send(event=dut_pairing_event, confirm=True)
+
+        assert self.dut.security.WaitPairing(address=self.ref.address).success
+
+    def test_classic_pair_from_ref_display_only(self):
+        response = self._setup_connection(bumble.smp.SMP_DISPLAY_ONLY_IO_CAPABILITY)
+
+        dut_pairing_event_stream = self.dut.security.OnPairing()
+
+        self.ref.security.Pair(connection=response.connection)
+        dut_pairing_event = dut_pairing_event_stream.recv()
+        assert dut_pairing_event.WhichOneof("method") == "numeric_comparison"
+        dut_pairing_event_stream.send(event=dut_pairing_event, confirm=True)
+
+        assert self.dut.security.WaitPairing(address=self.ref.address).success
+
+    def test_classic_pair_from_ref_display_yes_no(self):
+        response = self._setup_connection(bumble.smp.SMP_DISPLAY_YES_NO_IO_CAPABILITY)
+
+        dut_pairing_event_stream = self.dut.security.OnPairing()
+        ref_pairing_event_stream = self.ref.security.OnPairing()
+
+        self.ref.security.Pair(connection=response.connection)
+        dut_pairing_event = dut_pairing_event_stream.recv()
+        ref_pairing_event = ref_pairing_event_stream.recv()
+        assert dut_pairing_event.WhichOneof("method") == "numeric_comparison"
+        assert ref_pairing_event.WhichOneof("method") == "numeric_comparison"
+        dut_pairing_event_stream.send(event=dut_pairing_event, confirm=True)
+        ref_pairing_event_stream.send(event=ref_pairing_event, confirm=True)
+        ref_pairing_event_stream.close()
+
+        assert self.dut.security.WaitPairing(address=self.ref.address).success
+
+    def test_classic_pair_from_ref_keyboard_only(self):
+        response = self._setup_connection(bumble.smp.SMP_KEYBOARD_ONLY_IO_CAPABILITY)
+
+        dut_pairing_event_stream = self.dut.security.OnPairing()
+        ref_pairing_event_stream = self.ref.security.OnPairing()
+
+        self.ref.security.Pair(connection=response.connection)
+        dut_pairing_event = dut_pairing_event_stream.recv()
+        ref_pairing_event = ref_pairing_event_stream.recv()
+        assert dut_pairing_event.WhichOneof("method") == "passkey_entry_notification"
+        assert ref_pairing_event.WhichOneof("method") == "passkey_entry_request"
+        dut_pairing_event_stream.send(event=dut_pairing_event, confirm=True)
+        ref_pairing_event_stream.send(event=ref_pairing_event, confirm=True)
+        ref_pairing_event_stream.close()
+
+        assert self.dut.security.WaitPairing(address=self.ref.address).success
 
 
 if __name__ == '__main__':
