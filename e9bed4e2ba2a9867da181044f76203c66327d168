@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1300bbc7_cc469438",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-30T17:58:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3133ac61_c06a3114",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 30
+      },
+      "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d00bb06a_187b547f",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-30T06:56:18Z",
       "side": 1,
       "message": "If we assert `oi_size\u003d\u003d0` here, why can you change the HFP_MSBC_PKT_LEN from 60 to 58?\nAlso the implementation of OI_CODEC_SBC_DecodeFrame mentions checking oi_size against frame length, please double check if we shall pass the real \"frame length\" 57 here.",
+      "range": {
+        "startLine": 82,
+        "startChar": 64,
+        "endLine": 82,
+        "endChar": 76
+      },
+      "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "148e085b_bc6eed7e",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-30T17:58:45Z",
+      "side": 1,
+      "message": "The sbc decoder does the find syncword also. https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/embdrv/sbc/decoder/srce/decoder-sbc.c;drc\u003d01a8f0414c3c28071d24f0f086a05e6f14d24bab;l\u003d281\n\nSo, by skipping the h1 header, the behavior remains the same.\n\nWe have 58 instead of 57 because of the padding 0 in the end that the mSBC decoder actually check and reflect on the `oi_size`.\n```\n  /* mSBC is designed with 8 bits of zeros at the end for padding. */\n  if (context-\u003emSbcEnabled) {\n    *frameBytes -\u003d 1;\n  }\n```\n\nRemove the logic in decoder-sbc.c and change to pass 57, considering we don\u0027t really care if the padding byte is 0 or not, which makes the logic meaningless.",
+      "parentUuid": "d00bb06a_187b547f",
       "range": {
         "startLine": 82,
         "startChar": 64,
