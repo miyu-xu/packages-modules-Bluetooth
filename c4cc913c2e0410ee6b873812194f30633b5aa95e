@@ -117,6 +117,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb628e55_eb463aeb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-30T21:59:59Z",
+      "side": 1,
+      "message": "Re Jeremy:\nI was thinking about filtering the uuids in bluetooth.rs and pass the uuids to bluetooth_media.rs through the MediaActions::Connect. The get_remote_uuids interface you use here is the same one bluetooth.rs uses. It makes sense to me to put the audio_profiles filtering logic in the bluetooth_media.\n\nRe Hsin-Yu:\nAccording to my test, HM1000(HFP only headset) somehow also reports the A2dpSink uuid, making the HFP still work. I don\u0027t know if this is by design or there is other hidden issue for the reported UUID. We should be cautious when making the connection logic change from connecting \"all profiles we supported\" to \"only those reported\" and I do agree this should be a different CL/bug. I haven\u0027t seen any feedback report or encountered any issue regardingly so it has been a lower priority bug buried in my memory. The potential side effects you bring up could be a valid point to raise its priority.",
+      "parentUuid": "6e74a9f9_5591e22e",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
