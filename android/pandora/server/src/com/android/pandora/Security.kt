@@ -124,6 +124,7 @@ class Security(private val context: Context) : SecurityImplBase() {
       it
         .map { answer ->
           val device = answer.event.address.toBluetoothDevice(bluetoothAdapter)
+          Log.i(TAG, "onPairing ${answer.answerCase.toString()}")
           when (answer.answerCase!!) {
             PairingEventAnswer.AnswerCase.CONFIRM -> device.setPairingConfirmation(true)
             PairingEventAnswer.AnswerCase.PASSKEY ->
