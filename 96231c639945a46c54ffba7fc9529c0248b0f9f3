@@ -22,6 +22,30 @@
       },
       "revId": "96231c639945a46c54ffba7fc9529c0248b0f9f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "029d60a2_b39f43b0",
+        "filename": "system/gd/common/testing/log_capture.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2022-08-30T16:54:13Z",
+      "side": 1,
+      "message": "yes...what happens is the /tmp/log is the backing store; all log goes to the backing store; we can parse the backing store; then upon RAII the contents of the /tmp/log is re-sent through the stderr preserving behavior",
+      "parentUuid": "42244bcb_fa36fdb3",
+      "range": {
+        "startLine": 30,
+        "startChar": 34,
+        "endLine": 30,
+        "endChar": 68
+      },
+      "revId": "96231c639945a46c54ffba7fc9529c0248b0f9f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
