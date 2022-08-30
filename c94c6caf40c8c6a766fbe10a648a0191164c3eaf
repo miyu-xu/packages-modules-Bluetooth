@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "056d9a7f_fb367b07",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_helpers.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-30T16:33:37Z",
+      "side": 1,
+      "message": "I replaced tabs in the supplied description from PTS-bot, so I\u0027m replacing them here too for consistency. But you\u0027re right, we really _shouldn\u0027t_ have tabs in our own docstrings...\n\nI\u0027ll just pull this out to a function `normalize_description` or something",
+      "parentUuid": "de0bfa17_69790fb0",
+      "range": {
+        "startLine": 75,
+        "startChar": 61,
+        "endLine": 75,
+        "endChar": 83
+      },
+      "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9dc06116_a2b36f7a",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
         "patchSetId": 30
