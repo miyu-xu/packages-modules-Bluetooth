@@ -21,6 +21,7 @@ python_test_host {
     main: "connect.py",
     srcs: [
         "connect.py",
+        ":libmmi2grpc",
     ],
     libs: [
         "libavatar_experimental",
