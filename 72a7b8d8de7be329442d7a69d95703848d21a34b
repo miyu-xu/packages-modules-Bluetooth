@@ -87,6 +87,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac366f5f_63bc358a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-08-30T03:59:18Z",
+      "side": 1,
+      "message": "Ack. Presubmit blocks me from uploading c++ files before I sort out the linting errors, but I can upload rust files without restriction. I am not aware of any complaint from presubmit, might be just because it immediately allows me to upload.\n\nWill try rustfmt, thanks for the tip.",
+      "parentUuid": "73e5c5c9_3f8340fa",
+      "revId": "72a7b8d8de7be329442d7a69d95703848d21a34b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8cb6cc4a_4dab731b",
