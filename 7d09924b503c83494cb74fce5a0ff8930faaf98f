@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8030e5b0_6d9b8385",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2022-08-30T21:28:01Z",
+      "side": 1,
+      "message": "These are not well-surfaced when there aren\u0027t any errors (`emb floss` with success only outputs a few green lines) - is there a way for us to change this behavior?",
+      "revId": "7d09924b503c83494cb74fce5a0ff8930faaf98f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
