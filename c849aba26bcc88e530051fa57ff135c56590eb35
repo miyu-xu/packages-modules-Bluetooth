@@ -22,6 +22,30 @@
       },
       "revId": "c849aba26bcc88e530051fa57ff135c56590eb35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ea068be_664820b3",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-30T07:37:29Z",
+      "side": 1,
+      "message": "we are here if this is autonomous change.\nActually not sure why before we did update cached value for group and in the same time we update audio system without any condition.\n\nAnyways, we have two approaches here\n1) if device is null (then groupId is valid) -\u003e {cache value and update audio system } else {  ignore (because it should not happen :))}\n2) if device is not null, find the groupId and update accordingly -\u003e this is what we are doing now (see line 633)\n\nI don\u0027t have strong opinion here. Any suggestions",
+      "parentUuid": "a2a76e63_350c2768",
+      "range": {
+        "startLine": 675,
+        "startChar": 8,
+        "endLine": 675,
+        "endChar": 47
+      },
+      "revId": "c849aba26bcc88e530051fa57ff135c56590eb35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
