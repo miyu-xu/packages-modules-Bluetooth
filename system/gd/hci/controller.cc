@@ -271,7 +271,13 @@ struct Controller::impl {
     ASSERT_LOG(status == ErrorCode::SUCCESS, "Status 0x%02hhx, %s", status, ErrorCodeText(status).c_str());
     uint8_t page_number = complete_view.GetPageNumber();
     extended_lmp_features_array_.push_back(complete_view.GetExtendedLmpFeatures());
+<<<<<<< PATCH SET (b5570f BluetoothMetrics: demo of local supported features)
+    LOG_WARN("page number %s", std::to_string(page_number).c_str());
+    LOG_WARN("features %s", std::to_string(complete_view.GetExtendedLmpFeatures()).c_str());
+
+=======
     bluetooth::os::LogMetricBluetoothLocalSupportedFeatures(page_number, complete_view.GetExtendedLmpFeatures());
+>>>>>>> BASE      (5e781f Merge "API Review: support* methods should be supports*")
     // Query all extended features
     if (page_number < complete_view.GetMaximumPageNumber()) {
       page_number++;
