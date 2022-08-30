@@ -64,38 +64,36 @@ class Gatt(private val context: Context) : GATTImplBase() {
     mScope.cancel()
   }
 
-  override fun exchangeMTU(request: ExchangeMTURequest, responseObserver: StreamObserver<Empty>) {
-    grpcUnary<Empty>(mScope, responseObserver) {
+  override fun exchangeMTU(request: ExchangeMTURequest, responseObserver: StreamObserver<ExchangeMTUResponse>) {
+    grpcUnary<ExchangeMTUResponse>(mScope, responseObserver) {
       val mtu = request.mtu
       Log.i(TAG, "exchangeMTU MTU=$mtu")
       if (!GattInstance.get(request.connection.cookie).mGatt.requestMtu(mtu)) {
         Log.e(TAG, "Error on requesting MTU $mtu")
         throw Status.UNKNOWN.asException()
       }
-      Empty.getDefaultInstance()
+      ExchangeMTUResponse.newBuilder().build()
     }
   }
 
   override fun writeCharacteristicFromHandle(
     request: WriteCharacteristicRequest,
-    responseObserver: StreamObserver<Empty>
+    responseObserver: StreamObserver<WriteCharacteristicResponse>
   ) {
-    grpcUnary<Empty>(mScope, responseObserver) {
+    grpcUnary<WriteCharacteristicResponse>(mScope, responseObserver) {
+      Log.i(TAG, "writeCharacteristicFromHandle handle=${request.handle}")
       val gattInstance = GattInstance.get(request.connection.cookie)
       val characteristic: BluetoothGattCharacteristic? =
         getCharacteristicWithHandle(request.handle, gattInstance)
-      if (characteristic != null) {
-        Log.i(TAG, "writeCharacteristicFromHandle handle=${request.handle}")
-        gattInstance.mGatt.writeCharacteristic(
-          characteristic,
-          request.value.toByteArray(),
-          BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT
-        )
-      } else {
-        Log.e(TAG, "Characteristic handle ${request.handle} not found.")
-        throw Status.UNKNOWN.asException()
-      }
-      Empty.getDefaultInstance()
+      checkNotNull(characteristic) { "Characteristic handle ${request.handle} not found." }
+      val readValue = gattInstance.writeCharacteristicBlocking(
+        characteristic,
+        request.value.toByteArray()
+      )
+      WriteCharacteristicResponse.newBuilder()
+        .setHandle(readValue.handle)
+        .setStatus(readValue.status)
+        .build()
     }
   }
 
@@ -175,11 +173,11 @@ class Gatt(private val context: Context) : GATTImplBase() {
       val readValue = gattInstance.readCharacteristicBlocking(characteristic)
       ReadCharacteristicResponse.newBuilder()
         .setReadValue(
-          GattReadValue.newBuilder()
+          AttValue.newBuilder()
             .setHandle(readValue.handle)
             .setValue(readValue.value)
-            .setStatus(readValue.status)
         )
+        .setStatus(readValue.status)
         .build()
     }
   }
@@ -199,7 +197,7 @@ class Gatt(private val context: Context) : GATTImplBase() {
           request.endHandle
         )
       ReadCharacteristicsFromUuidResponse.newBuilder()
-        .addAllReadValues(generateReadValuesList(readValues))
+        .addAllCharacteristicsRead(generateReadValuesList(readValues))
         .build()
     }
   }
@@ -217,11 +215,11 @@ class Gatt(private val context: Context) : GATTImplBase() {
       val readValue = gattInstance.readDescriptorBlocking(descriptor)
       ReadCharacteristicDescriptorResponse.newBuilder()
         .setReadValue(
-          GattReadValue.newBuilder()
+          AttValue.newBuilder()
             .setHandle(readValue.handle)
             .setValue(readValue.value)
-            .setStatus(readValue.status)
         )
+        .setStatus(readValue.status)
         .build()
     }
   }
@@ -303,14 +301,14 @@ class Gatt(private val context: Context) : GATTImplBase() {
     return newCharacteristicsList
   }
 
-  /** Generates a list of GattDescriptor from a list of BluetoothGattDescriptor. */
+  /** Generates a list of GattCharacteristicDescriptor from a list of BluetoothGattDescriptor. */
   private fun generateDescriptorsList(
     descriptorsList: List<BluetoothGattDescriptor>
-  ): ArrayList<GattDescriptor> {
-    val newDescriptorsList = arrayListOf<GattDescriptor>()
+  ): ArrayList<GattCharacteristicDescriptor> {
+    val newDescriptorsList = arrayListOf<GattCharacteristicDescriptor>()
     for (descriptor in descriptorsList) {
       val descriptorBuilder =
-        GattDescriptor.newBuilder()
+        GattCharacteristicDescriptor.newBuilder()
           .setHandle(descriptor.getInstanceId())
           .setPermissions(descriptor.getPermissions())
           .setUuid(descriptor.getUuid().toString())
@@ -319,17 +317,20 @@ class Gatt(private val context: Context) : GATTImplBase() {
     return newDescriptorsList
   }
 
-  /** Generates a list of GattReadValue from a list of GattInstanceValueRead. */
+  /** Generates a list of ReadCharacteristicResponse from a list of GattInstanceValueRead. */
   private fun generateReadValuesList(
     readValuesList: ArrayList<GattInstance.GattInstanceValueRead>
-  ): ArrayList<GattReadValue> {
-    val newReadValuesList = arrayListOf<GattReadValue>()
+  ): ArrayList<ReadCharacteristicResponse> {
+    val newReadValuesList = arrayListOf<ReadCharacteristicResponse>()
     for (readValue in readValuesList) {
       val readValueBuilder =
-        GattReadValue.newBuilder()
-          .setHandle(readValue.handle)
-          .setValue(readValue.value)
-          .setStatus(readValue.status)
+      ReadCharacteristicResponse.newBuilder()
+        .setReadValue(
+          AttValue.newBuilder()
+            .setHandle(readValue.handle)
+            .setValue(readValue.value)
+        )
+        .setStatus(readValue.status)
       newReadValuesList.add(readValueBuilder.build())
     }
     return newReadValuesList
