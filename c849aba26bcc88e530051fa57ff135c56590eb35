@@ -46,6 +46,30 @@
       },
       "revId": "c849aba26bcc88e530051fa57ff135c56590eb35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a20f2471_96840b3b",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2022-08-30T10:56:07Z",
+      "side": 1,
+      "message": "I see. \nFor 1), how about ignoring the device is null (groupId is valid) and print the error message? If we see the case, we could add the handle further.",
+      "parentUuid": "2ea068be_664820b3",
+      "range": {
+        "startLine": 675,
+        "startChar": 8,
+        "endLine": 675,
+        "endChar": 47
+      },
+      "revId": "c849aba26bcc88e530051fa57ff135c56590eb35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
