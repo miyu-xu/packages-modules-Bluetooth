@@ -70,6 +70,30 @@
       },
       "revId": "c849aba26bcc88e530051fa57ff135c56590eb35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cef65bc9_30c06dc0",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2022-08-30T11:25:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ea068be_664820b3",
+      "range": {
+        "startLine": 675,
+        "startChar": 8,
+        "endLine": 675,
+        "endChar": 47
+      },
+      "revId": "c849aba26bcc88e530051fa57ff135c56590eb35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
