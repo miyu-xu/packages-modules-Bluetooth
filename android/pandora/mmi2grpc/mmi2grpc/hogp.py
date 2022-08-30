@@ -70,7 +70,7 @@ class HOGPProxy(ProfileProxy):
              Properties: \[0x00(?P<properties>\S*)\]
         """
 
-        self.gatt.WriteCharacteristicDescriptorFromHandle(
+        self.gatt.WriteFromHandle(
             connection=self.connection,
             handle=int(handle, base=16),
             value=bytes([int(f"0x{properties}", base=16), 0]),
@@ -209,7 +209,7 @@ class HOGPProxy(ProfileProxy):
         Descriptor handle value: (?P<value>\S*)
         """
 
-        self.gatt.WriteCharacteristicDescriptorFromHandle(
+        self.gatt.WriteFromHandle(
             connection=self.connection,
             handle=int(value, base=16),
             value=bytes([0x01, 0x00]),
