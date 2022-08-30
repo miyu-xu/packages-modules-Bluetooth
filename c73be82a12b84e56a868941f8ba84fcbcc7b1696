@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b9e6d49_8bb7a76c",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "According to [1], over 100 chars is allowed in some case. I think keep a string in one line like this case is actually more readable (see also [2]).\n\n[1] https://rustc-dev-guide.rust-lang.org/conventions.html\n[2] go/go-style/guide#line-length",
+      "parentUuid": "cbaacb85_c2de8e24",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2c5f9d30_83b4be1c",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "Will do. Any pointer for clap?",
       "parentUuid": "2c5f9d30_83b4be1c",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a758136_688fdeaf",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b7313965_49bd93f8",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -88,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "135820f6_c21ccce2",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54a32270_ccaa6d60",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88c9f772_997a32e9",
@@ -105,6 +159,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b938f1ab_79fa5d91",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "clone is required or it\u0027ll encounter a deadlock while calling stop_advertising_set later. I can replace into_iter with iter().",
+      "parentUuid": "88c9f772_997a32e9",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ba86211_714ff31f",
@@ -118,6 +190,24 @@
       "writtenOn": "2022-08-29T17:18:08Z",
       "side": 1,
       "message": "Advertising",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d790308_a18cf925",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ba86211_714ff31f",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -157,6 +247,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6adcbd37_99f9592e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done. See aosp/2198668.",
+      "parentUuid": "2e242d89_3231e3df",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdbb429d_1005a339",
@@ -170,6 +278,24 @@
       "writtenOn": "2022-08-29T17:18:08Z",
       "side": 1,
       "message": "Instead of a custom function, implement the From or Into trait. You should be able to implement `impl Into\u003cbt_topshim::profiles::gatt::AdvertiseParameters\u003e for AdvertisingSetParameters` since the struct was described in this crate.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78e09783_a65dce86",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdbb429d_1005a339",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -191,6 +317,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "943c46da_248196a1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c642084c_7c40c1f1",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f57c7dd_794a6d20",
@@ -208,6 +352,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f108833_9b8ce497",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f57c7dd_794a6d20",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddf30fb1_53e431ce",
@@ -221,6 +383,24 @@
       "writtenOn": "2022-08-29T17:18:08Z",
       "side": 1,
       "message": "pleasefix - todo with no content",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec042ef9_aebddd8d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1059,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddf30fb1_53e431ce",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -278,6 +458,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "babe73d1_00e7c7db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2002,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c95827f_70317130",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6d00e54e_c052d60f",
@@ -330,6 +528,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "407f7b79_8a379c21",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba0bdbae_149dab14",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "974f53f2_627a8e76",
@@ -343,6 +559,24 @@
       "writtenOn": "2022-08-29T17:18:08Z",
       "side": 1,
       "message": "Remove debug! since you handle this now.",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ddc4d47_0b6a5f71",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-30T16:58:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "974f53f2_627a8e76",
       "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
