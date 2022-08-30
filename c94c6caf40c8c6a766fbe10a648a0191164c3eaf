@@ -113,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b4148c1a_536fb396",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-30T16:47:49Z",
+      "side": 1,
+      "message": "Good point, I\u0027ll fix it. Originally I used eval to parse a list of hex values, but now I\u0027m parsing each hex separately, so `int(..., base\u003d16)` should work",
+      "parentUuid": "e1938504_6ca58c9c",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 20
+      },
+      "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ea09e7d8_5e4a5e26",
         "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
         "patchSetId": 30
