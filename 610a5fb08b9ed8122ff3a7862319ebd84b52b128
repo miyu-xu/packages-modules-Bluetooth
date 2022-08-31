@@ -37,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42739231_2f6d999c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-08-31T03:40:46Z",
+      "side": 1,
+      "message": "any update on this one?",
+      "revId": "610a5fb08b9ed8122ff3a7862319ebd84b52b128",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9faec10_0740e852",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 11
