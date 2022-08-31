@@ -41,6 +41,7 @@ import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Build;
 import android.os.HandlerThread;
+import android.os.ParcelUuid;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
@@ -48,6 +49,7 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
@@ -67,7 +69,7 @@ import java.util.concurrent.ConcurrentMap;
  * Provides Bluetooth A2DP profile, as a service in the Bluetooth application.
  * @hide
  */
-public class A2dpService extends ProfileService {
+public class A2dpService extends ConnectableProfileService {
     private static final boolean DBG = true;
     private static final String TAG = "A2dpService";
 
@@ -114,6 +116,10 @@ public class A2dpService extends ProfileService {
         return new BluetoothA2dpBinder(this);
     }
 
+    A2dpService() {
+        super(BluetoothProfile.A2DP, TAG);
+    }
+
     @Override
     protected void create() {
         Log.i(TAG, "create()");
@@ -125,6 +131,7 @@ public class A2dpService extends ProfileService {
         if (sA2dpService != null) {
             throw new IllegalStateException("start() called twice");
         }
+        super.start();
 
         // Step 1: Get AdapterService, A2dpNativeInterface, DatabaseManager, AudioManager.
         // None of them can be null.
@@ -268,6 +275,13 @@ public class A2dpService extends ProfileService {
             Log.d(TAG, "setA2dpService(): set to: " + instance);
         }
         sA2dpService = instance;
+    }
+
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.ADV_AUDIO_DIST)
+            || Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.A2DP_SINK);
     }
 
     public boolean connect(BluetoothDevice device) {
@@ -650,58 +664,6 @@ public class A2dpService extends ProfileService {
         synchronized (mStateMachines) {
             return (device != null) && Objects.equals(device, mActiveDevice);
         }
-    }
-
-    /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.A2DP,
-                  connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.A2DP);
     }
 
     public boolean isAvrcpAbsoluteVolumeSupported() {
@@ -1418,7 +1380,6 @@ public class A2dpService extends ProfileService {
                 A2dpService service = getService(source);
                 int result = BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
                 if (service != null) {
-                    enforceBluetoothPrivilegedPermission(service);
                     result = service.getConnectionPolicy(device);
                 }
                 receiver.send(result);

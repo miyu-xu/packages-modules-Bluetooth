@@ -57,9 +57,9 @@ import android.util.Pair;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.mcp.McpService;
 import com.android.bluetooth.tbs.TbsGatt;
 import com.android.bluetooth.vc.VolumeControlService;
@@ -80,7 +80,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Provides Bluetooth LeAudio profile, as a service in the Bluetooth application.
  * @hide
  */
-public class LeAudioService extends ProfileService {
+public class LeAudioService extends ConnectableProfileService {
     private static final boolean DBG = true;
     private static final String TAG = "LeAudioService";
 
@@ -107,7 +107,6 @@ public class LeAudioService extends ProfileService {
     private static final int ACTIVE_CONTEXTS_NONE = 0;
 
     private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
     private volatile BluetoothDevice mActiveAudioOutDevice;
     private volatile BluetoothDevice mActiveAudioInDevice;
@@ -185,6 +184,10 @@ public class LeAudioService extends ProfileService {
     private final Map<Integer, BluetoothLeBroadcastMetadata> mBroadcastMetadataList =
             new HashMap<>();
 
+    LeAudioService() {
+        super(BluetoothProfile.LE_AUDIO, TAG);
+    }
+
     @Override
     protected IProfileServiceBinder initBinder() {
         return new BluetoothLeAudioBinder(this);
@@ -206,12 +209,12 @@ public class LeAudioService extends ProfileService {
             throw new IllegalStateException("start() called twice");
         }
 
+        super.start();
+
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService cannot be null when LeAudioService starts");
         mLeAudioNativeInterface = Objects.requireNonNull(LeAudioNativeInterface.getInstance(),
                 "LeAudioNativeInterface cannot be null when LeAudioService starts");
-        mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
-                "DatabaseManager cannot be null when LeAudioService starts");
 
         mAudioManager = getSystemService(AudioManager.class);
         Objects.requireNonNull(mAudioManager,
@@ -422,6 +425,12 @@ public class LeAudioService extends ProfileService {
         }
 
         return mVolumeControlService.getGroupVolume(groupId);
+    }
+
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.LE_AUDIO);
     }
 
     public boolean connect(BluetoothDevice device) {
@@ -1723,58 +1732,6 @@ public class LeAudioService extends ProfileService {
     }
 
     /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device the remote device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true on success, otherwise false
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO,
-                connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO);
-    }
-
-    /**
      * Get device group id. Devices with same group id belong to same group (i.e left and right
      * earbud)
      * @param device LE Audio capable device
@@ -2321,7 +2278,6 @@ public class LeAudioService extends ProfileService {
                 LeAudioService service = getService(source);
                 boolean result = false;
                 if (service != null) {
-                    enforceBluetoothPrivilegedPermission(service);
                     result = service.setConnectionPolicy(device, connectionPolicy);
                 }
                 receiver.send(result);
@@ -2343,7 +2299,6 @@ public class LeAudioService extends ProfileService {
                 if (service == null) {
                     throw new IllegalStateException("service is null");
                 }
-                enforceBluetoothPrivilegedPermission(service);
                 result = service.getConnectionPolicy(device);
                 receiver.send(result);
             } catch (RuntimeException e) {

@@ -71,6 +71,7 @@ public class SapServiceTest {
                 SapService.isEnabled());
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
+        when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.startService(mServiceRule, SapService.class);
         mService = SapService.getSapService();
@@ -126,7 +127,6 @@ public class SapServiceTest {
      */
     @Test
     public void testGetConnectionPolicy() {
-        when(mAdapterService.getDatabase()).thenReturn(mDatabaseManager);
         when(mDatabaseManager
                 .getProfileConnectionPolicy(mDevice, BluetoothProfile.SAP))
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);

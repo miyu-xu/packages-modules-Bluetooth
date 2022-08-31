@@ -40,10 +40,9 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.MetricsLogger;
-import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -58,7 +57,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Provides Bluetooth HearingAid profile, as a service in the Bluetooth application.
  * @hide
  */
-public class HearingAidService extends ProfileService {
+public class HearingAidService extends ConnectableProfileService {
     private static final boolean DBG = true;
     private static final String TAG = "HearingAidService";
 
@@ -70,7 +69,6 @@ public class HearingAidService extends ProfileService {
     private static HearingAidService sHearingAidService;
 
     private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
     private BluetoothDevice mPreviousAudioDevice;
 
@@ -90,6 +88,10 @@ public class HearingAidService extends ProfileService {
     private BroadcastReceiver mConnectionStateChangedReceiver;
 
     private final ServiceFactory mFactory = new ServiceFactory();
+
+    HearingAidService() {
+        super(BluetoothProfile.HEARING_AID, TAG);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileAshaCentralEnabled().orElse(false);
@@ -116,12 +118,11 @@ public class HearingAidService extends ProfileService {
             throw new IllegalStateException("start() called twice");
         }
 
+        super.start();
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService cannot be null when HearingAidService starts");
         mHearingAidNativeInterface = Objects.requireNonNull(HearingAidNativeInterface.getInstance(),
                 "HearingAidNativeInterface cannot be null when HearingAidService starts");
-        mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
-                "DatabaseManager cannot be null when HearingAidService starts");
         mAudioManager = getSystemService(AudioManager.class);
         Objects.requireNonNull(mAudioManager,
                 "AudioManager cannot be null when HearingAidService starts");
@@ -243,6 +244,12 @@ public class HearingAidService extends ProfileService {
             Log.d(TAG, "setHearingAidService(): set to: " + instance);
         }
         sHearingAidService = instance;
+    }
+
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.HEARING_AID);
     }
 
     /**
@@ -487,61 +494,6 @@ public class HearingAidService extends ProfileService {
             }
             return sm.getConnectionState();
         }
-    }
-
-    /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.HEARING_AID,
-                  connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public int getConnectionPolicy(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.HEARING_AID);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
