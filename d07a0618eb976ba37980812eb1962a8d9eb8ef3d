@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91b9e04f_7eb074a3",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T08:44:25Z",
+      "side": 1,
+      "message": "nit: should revert this back to _PKT_ for 60 bytes.\n\nlet\u0027s try to stay aligned in using the terms/names\n\nThe sources of naming to follow\n - An HCI SCO \"packet\" is of 60 bytes in most cases\n - one packet contains 2 bytes header, payload, and padding\n - payload consist of one \"mSBC frame\" (57 bytes)\n \n - In embdrv/sbc\n   - \"PCM_BYTES\" of bytes is one block of un-encoded data\n   - \"FRAME_LEN\" of bytes is one block of encoded data",
+      "range": {
+        "startLine": 29,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 22
+      },
+      "revId": "d07a0618eb976ba37980812eb1962a8d9eb8ef3d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
