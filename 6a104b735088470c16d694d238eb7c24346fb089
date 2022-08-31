@@ -16,6 +16,24 @@
       "message": "ActiveDeviceManagerTest \n 2 failed\n18\n\nlastA2dpDisconnected_clearA2dpActive \nFailed\n1\n\nlastHeadsetDisconnected_clearHeadsetActive \n\n\nthese tests are broken",
       "revId": "6a104b735088470c16d694d238eb7c24346fb089",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "617e3477_96c5a94e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-08-31T20:03:21Z",
+      "side": 1,
+      "message": "I had wrote/modified tests for ActiveDeviceManagerTests on an old version of this change here if that can help: https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2045245",
+      "parentUuid": "251e3dd3_577d8819",
+      "revId": "6a104b735088470c16d694d238eb7c24346fb089",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
