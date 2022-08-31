@@ -141,6 +141,30 @@
       },
       "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba5e1ca_5923b88e",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-31T06:32:27Z",
+      "side": 1,
+      "message": "Sure. I\u0027ve also tried the implementation you refered and both work. I just felt a little weird to pass in the header considering the header will later be striped by the decoder so I choose the previous implementation.",
+      "parentUuid": "a2daa39a_4ff0d506",
+      "range": {
+        "startLine": 82,
+        "startChar": 64,
+        "endLine": 82,
+        "endChar": 76
+      },
+      "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
