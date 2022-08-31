@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6128b04_cc1be462",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-31T06:35:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19729372_d431232f",
+      "range": {
+        "startLine": 182,
+        "startChar": 7,
+        "endLine": 182,
+        "endChar": 19
+      },
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "444b40f5_82b85269",
@@ -37,6 +61,30 @@
       "writtenOn": "2022-08-31T03:15:17Z",
       "side": 1,
       "message": "This should never fail. Use assert or just comment and ignore.",
+      "range": {
+        "startLine": 282,
+        "startChar": 4,
+        "endLine": 282,
+        "endChar": 9
+      },
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5c91458_4c44b623",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-31T06:35:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "444b40f5_82b85269",
       "range": {
         "startLine": 282,
         "startChar": 4,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddbfc35f_b2bbfd5a",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-31T06:35:22Z",
+      "side": 1,
+      "message": "You are right. We need to keep the constructed frames somewhere and I shouldn\u0027t try to save the copy here. Fixed.",
+      "parentUuid": "762c3c91_30c7faf6",
+      "range": {
+        "startLine": 332,
+        "startChar": 4,
+        "endLine": 332,
+        "endChar": 41
+      },
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebd6676e_322f3386",
@@ -83,6 +155,24 @@
       "writtenOn": "2022-08-31T03:15:17Z",
       "side": 1,
       "message": "Is this just to get rid of \"goto\" here? don\u0027t see the logic difference before/after changing the code flow.",
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a556a76d_cb4f264e",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-31T06:35:22Z",
+      "side": 1,
+      "message": "True. Revert to prevent distracting reviewers.",
+      "parentUuid": "ebd6676e_322f3386",
       "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
