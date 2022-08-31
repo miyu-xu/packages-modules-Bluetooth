@@ -37,8 +37,7 @@ import android.util.Log;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -52,7 +51,7 @@ import java.util.Objects;
 /**
  * A profile service that connects to the Battery service (BAS) of BLE devices
  */
-public class BatteryService extends ProfileService {
+public class BatteryService extends ConnectableProfileService {
     private static final boolean DBG = false;
     private static final String TAG = "BatteryService";
 
@@ -63,11 +62,14 @@ public class BatteryService extends ProfileService {
     private static BatteryService sBatteryService;
 
     private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
     private final Map<BluetoothDevice, BatteryStateMachine> mStateMachines = new HashMap<>();
 
     private BroadcastReceiver mBondStateChangedReceiver;
+
+    BatteryService() {
+        super(BluetoothProfile.BATTERY, TAG);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileBasClientEnabled().orElse(false);
@@ -94,10 +96,10 @@ public class BatteryService extends ProfileService {
             throw new IllegalStateException("start() called twice");
         }
 
+        super.start();
+
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService cannot be null when BatteryService starts");
-        mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
-                "DatabaseManager cannot be null when BatteryService starts");
 
         mStateMachines.clear();
         mStateMachinesThread = new HandlerThread("BatteryService.StateMachines");
@@ -182,6 +184,12 @@ public class BatteryService extends ProfileService {
             Log.d(TAG, "setBatteryService(): set to: " + instance);
         }
         sBatteryService = instance;
+    }
+
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.BATTERY);
     }
 
     /**
@@ -391,47 +399,6 @@ public class BatteryService extends ProfileService {
         }
     }
 
-    /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device the remote device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true on success, otherwise false
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-        mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.BATTERY,
-                        connectionPolicy);
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Gets the connection policy for the battery service of the given device.
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public int getConnectionPolicy(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        return mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.BATTERY);
-    }
     /**
      * Called when the battery level of the device is notified.
      */

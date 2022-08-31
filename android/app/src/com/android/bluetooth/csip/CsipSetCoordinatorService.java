@@ -46,8 +46,7 @@ import android.util.Pair;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -66,7 +65,7 @@ import java.util.stream.Collectors;
  * Provides Bluetooth CSIP Set Coordinator profile, as a service.
  * @hide
  */
-public class CsipSetCoordinatorService extends ProfileService {
+public class CsipSetCoordinatorService extends ConnectableProfileService {
     private static final boolean DBG = false;
     private static final String TAG = "CsipSetCoordinatorService";
 
@@ -78,7 +77,6 @@ public class CsipSetCoordinatorService extends ProfileService {
     private static CsipSetCoordinatorService sCsipSetCoordinatorService;
 
     private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
     private BluetoothDevice mPreviousAudioDevice;
 
@@ -98,6 +96,10 @@ public class CsipSetCoordinatorService extends ProfileService {
 
     private BroadcastReceiver mBondStateChangedReceiver;
     private BroadcastReceiver mConnectionStateChangedReceiver;
+
+    CsipSetCoordinatorService() {
+        super(BluetoothProfile.CSIP_SET_COORDINATOR, TAG);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileCsipSetCoordinatorEnabled().orElse(false);
@@ -124,12 +126,11 @@ public class CsipSetCoordinatorService extends ProfileService {
             throw new IllegalStateException("start() called twice");
         }
 
-        // Get AdapterService, DatabaseManager, CsipSetCoordinatorNativeInterface.
+        super.start();
+        // Get AdapterService, CsipSetCoordinatorNativeInterface.
         // None of them can be null.
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService cannot be null when CsipSetCoordinatorService starts");
-        mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
-                "DatabaseManager cannot be null when CsipSetCoordinatorService starts");
         mCsipSetCoordinatorNativeInterface = Objects.requireNonNull(
                 CsipSetCoordinatorNativeInterface.getInstance(),
                 "CsipSetCoordinatorNativeInterface cannot be null when"
@@ -249,6 +250,12 @@ public class CsipSetCoordinatorService extends ProfileService {
             Log.d(TAG, "setCsipSetCoordinatorService(): set to: " + instance);
         }
         sCsipSetCoordinatorService = instance;
+    }
+
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.COORDINATED_SET);
     }
 
     /**
@@ -444,48 +451,6 @@ public class CsipSetCoordinatorService extends ProfileService {
             }
             return sm.getConnectionState();
         }
-    }
-
-    /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device the remote device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true on success, otherwise false
-     */
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-        mDatabaseManager.setProfileConnectionPolicy(
-                device, BluetoothProfile.CSIP_SET_COORDINATOR, connectionPolicy);
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * @param device the remote device
-     * @return connection policy of the specified device
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        return mDatabaseManager.getProfileConnectionPolicy(
-                device, BluetoothProfile.CSIP_SET_COORDINATOR);
     }
 
     /**
@@ -1096,8 +1061,6 @@ public class CsipSetCoordinatorService extends ProfileService {
                     throw new IllegalStateException("service is null");
                 }
 
-                enforceBluetoothPrivilegedPermission(service);
-
                 defaultValue = service.setConnectionPolicy(device, connectionPolicy);
                 receiver.send(defaultValue);
             } catch (RuntimeException e) {
@@ -1118,8 +1081,6 @@ public class CsipSetCoordinatorService extends ProfileService {
                 if (service == null) {
                     throw new IllegalStateException("service is null");
                 }
-
-                enforceBluetoothPrivilegedPermission(service);
 
                 defaultValue = service.getConnectionPolicy(device);
                 receiver.send(defaultValue);
