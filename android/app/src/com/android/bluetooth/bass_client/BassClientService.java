@@ -16,8 +16,6 @@
 
 package com.android.bluetooth.bass_client;
 
-import static android.Manifest.permission.BLUETOOTH_CONNECT;
-
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.bluetooth.BluetoothAdapter;
@@ -52,9 +50,8 @@ import android.util.Pair;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -70,7 +67,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Broacast Assistant Scan Service
  */
-public class BassClientService extends ProfileService {
+public class BassClientService extends ConnectableProfileService {
     private static final boolean DBG = true;
     private static final String TAG = BassClientService.class.getSimpleName();
     private static final int MAX_BASS_CLIENT_STATE_MACHINES = 10;
@@ -89,7 +86,6 @@ public class BassClientService extends ProfileService {
     private HandlerThread mStateMachinesThread;
     private HandlerThread mCallbackHandlerThread;
     private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
     private BluetoothAdapter mBluetoothAdapter = null;
     private BassUtils mBassUtils = null;
     private Map<BluetoothDevice, BluetoothDevice> mActiveSourceMap;
@@ -109,6 +105,10 @@ public class BassClientService extends ProfileService {
 
     @VisibleForTesting
     ServiceFactory mServiceFactory = new ServiceFactory();
+
+    BassClientService() {
+        super(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, TAG);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileBapBroadcastAssistEnabled().orElse(false);
@@ -236,10 +236,10 @@ public class BassClientService extends ProfileService {
         if (sService != null) {
             throw new IllegalStateException("start() called twice");
         }
+        super.start();
+
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService cannot be null when BassClientService starts");
-        mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
-                "DatabaseManager cannot be null when BassClientService starts");
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         mStateMachines.clear();
         mStateMachinesThread = new HandlerThread("BassClientService.StateMachines");
@@ -654,6 +654,12 @@ public class BassClientService extends ProfileService {
         }
     }
 
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.BASS);
+    }
+
     /**
      * Connects the bass profile to the passed in device
      *
@@ -800,50 +806,6 @@ public class BassClientService extends ProfileService {
             log("getConnectedDevices: " + devices);
             return devices;
         }
-    }
-
-    /**
-     * Set the connectionPolicy of the Broadcast Audio Scan Service profile.
-     *
-     * <p>The connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-        boolean setSuccessfully =
-                mDatabaseManager.setProfileConnectionPolicy(device,
-                        BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, connectionPolicy);
-        if (setSuccessfully && connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (setSuccessfully
-                && connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return setSuccessfully;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p>The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device paired bluetooth device
-     * @return connection policy of the device
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT);
     }
 
     /**
@@ -1544,7 +1506,6 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return false;
                 }
-                mService.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
                 return service.setConnectionPolicy(device, connectionPolicy);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);
@@ -1560,7 +1521,6 @@ public class BassClientService extends ProfileService {
                     Log.e(TAG, "Service is null");
                     return BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
                 }
-                mService.enforceCallingOrSelfPermission(BLUETOOTH_CONNECT, "Need BLUETOOTH_CONNECT permission");
                 return service.getConnectionPolicy(device);
             } catch (RuntimeException e) {
                 Log.e(TAG, "Exception happened", e);

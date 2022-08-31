@@ -21,6 +21,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
 import android.bluetooth.BluetoothHeadsetClientCall;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothHeadsetClient;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
@@ -32,13 +33,13 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -58,7 +59,7 @@ import java.util.UUID;
  *
  * @hide
  */
-public class HeadsetClientService extends ProfileService {
+public class HeadsetClientService extends ConnectableProfileService {
     private static final boolean DBG = false;
     private static final String TAG = "HeadsetClientService";
 
@@ -71,7 +72,6 @@ public class HeadsetClientService extends ProfileService {
     private NativeInterface mNativeInterface = null;
     private HandlerThread mSmThread = null;
     private HeadsetClientStateMachineFactory mSmFactory = null;
-    private DatabaseManager mDatabaseManager;
     private AudioManager mAudioManager = null;
     private BatteryManager mBatteryManager = null;
     private int mLastBatteryLevel = -1;
@@ -84,6 +84,10 @@ public class HeadsetClientService extends ProfileService {
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileHfpHfEnabled().orElse(false);
+    }
+
+    HeadsetClientService() {
+        super(BluetoothProfile.HEADSET_CLIENT, TAG);
     }
 
     @Override
@@ -102,9 +106,7 @@ public class HeadsetClientService extends ProfileService {
                 return false;
             }
 
-            mDatabaseManager = Objects.requireNonNull(
-                    AdapterService.getAdapterService().getDatabase(),
-                    "DatabaseManager cannot be null when HeadsetClientService starts");
+            super.start();
 
             // Setup the JNI service
             mNativeInterface = NativeInterface.getInstance();
@@ -716,6 +718,12 @@ public class HeadsetClientService extends ProfileService {
         sHeadsetClientService = instance;
     }
 
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.HFP_AG)
+                && Utils.arrayContains(localDeviceUuids, BluetoothUuid.HFP);
+    }
     public boolean connect(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "connect " + device);
@@ -805,55 +813,6 @@ public class HeadsetClientService extends ProfileService {
         }
 
         return BluetoothProfile.STATE_DISCONNECTED;
-    }
-
-    /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.HEADSET_CLIENT,
-                  connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.HEADSET_CLIENT);
     }
 
     boolean startVoiceRecognition(BluetoothDevice device) {

@@ -25,6 +25,7 @@ import android.bluetooth.BluetoothPan;
 import android.bluetooth.BluetoothPan.LocalPanRole;
 import android.bluetooth.BluetoothPan.RemotePanRole;
 import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothPan;
 import android.bluetooth.IBluetoothPanCallback;
 import android.content.AttributionSource;
@@ -35,6 +36,7 @@ import android.net.TetheringManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.os.UserManager;
 import android.sysprop.BluetoothProperties;
@@ -43,9 +45,8 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.MetricsLogger;
-import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.HandlerExecutor;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -61,7 +62,7 @@ import java.util.Objects;
  * the Bluetooth application.
  * @hide
  */
-public class PanService extends ProfileService {
+public class PanService extends ConnectableProfileService {
     private static final String TAG = "PanService";
     private static final boolean DBG = false;
     private static PanService sPanService;
@@ -78,7 +79,6 @@ public class PanService extends ProfileService {
     private HashMap<String, IBluetoothPanCallback> mBluetoothTetheringCallbacks;
 
     private TetheringManager mTetheringManager;
-    private DatabaseManager mDatabaseManager;
     @VisibleForTesting
     UserManager mUserManager;
 
@@ -114,6 +114,10 @@ public class PanService extends ProfileService {
         classInitNative();
     }
 
+    PanService() {
+        super(BluetoothProfile.PAN, TAG);
+    }
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfilePanNapEnabled().orElse(false)
                 || BluetoothProperties.isProfilePanPanuEnabled().orElse(false);
@@ -147,8 +151,7 @@ public class PanService extends ProfileService {
     protected boolean start() {
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService cannot be null when PanService starts");
-        mDatabaseManager = Objects.requireNonNull(AdapterService.getAdapterService().getDatabase(),
-                "DatabaseManager cannot be null when PanService starts");
+        super.start();
 
         mBluetoothTetheringCallbacks = new HashMap<>();
         mPanDevices = new HashMap<BluetoothDevice, BluetoothPanDevice>();
@@ -417,6 +420,12 @@ public class PanService extends ProfileService {
         }
     }
 
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.NAP);
+    }
+
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public boolean connect(BluetoothDevice device) {
         if (mUserManager.isGuestUser()) {
@@ -503,58 +512,6 @@ public class PanService extends ProfileService {
                     mTetherOn ? BluetoothPan.TETHERING_STATE_ON : BluetoothPan.TETHERING_STATE_OFF);
             sendBroadcast(intent, null, Utils.getTempAllowlistBroadcastOptions());
         }
-    }
-
-    /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(
-                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.PAN,
-                  connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.PAN);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
