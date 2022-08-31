@@ -22,6 +22,30 @@
       },
       "revId": "df83356d4ccf8950e5d9794769a59e59b625b768",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5cc9ec7_91ca39a7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/util/GsmAlphabetTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-31T06:06:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7640ef80_07a2ed2e",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 18
+      },
+      "revId": "df83356d4ccf8950e5d9794769a59e59b625b768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
