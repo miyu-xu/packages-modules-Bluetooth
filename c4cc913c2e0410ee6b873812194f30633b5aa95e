@@ -213,6 +213,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7618c6c7_d04c2349",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-31T03:20:50Z",
+      "side": 1,
+      "message": "Re Enshuo:\n\nI think it\u0027s possible to log \"a2dp supported\" when the headset never claimed A2DP connection, I intended to fix one cause of that in aosp/2191601.\n\n`selectable_caps` is used to decide if a2dp is supported (see ~L383 in that patch), but it is not cleared when previous headset is removed.\n\nSo I guess if the previous headset claims a2dp supported, then HM* will claim that and log it anyway...\n\nI\u0027m trying to fix that along with this patch, and I also find the cap added/removed logic to be more tricky than I initially thought (especially now we have 3 profiles and proactive connections): e.g., I saw a headset acting weird and adding/removing AVRCP within the 5s frame.",
+      "parentUuid": "ff51d905_d276b583",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
