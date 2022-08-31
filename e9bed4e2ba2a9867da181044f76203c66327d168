@@ -117,6 +117,30 @@
       },
       "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2daa39a_4ff0d506",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T01:44:36Z",
+      "side": 1,
+      "message": "After reviewing your 2nd CL, now I see why you\u0027re changing the interface here. You want to pass the static `btm_msbc_zero_packet` to decoder.\n\nHowever it feels weird that you change it in two stages: (a) cut 2-bytes header in decode function, (b) add 1 dummy byte to `btm_msbc_zero_packet`\nI would suggest you just make `btm_msbc_zero_packet` a 60 bytes array with padding in both front/end. And leave `hfp_msbc_decoder_decode_packet()` to accept standard 60 bytes HCI SCO packet.",
+      "parentUuid": "345824f2_636855cb",
+      "range": {
+        "startLine": 82,
+        "startChar": 64,
+        "endLine": 82,
+        "endChar": 76
+      },
+      "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
