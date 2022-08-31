@@ -93,6 +93,30 @@
       },
       "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "345824f2_636855cb",
+        "filename": "system/stack/btm/hfp_msbc_decoder.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T00:55:28Z",
+      "side": 1,
+      "message": "I see.\nLet\u0027s not touch decoder-sbc since there might be other users(e.g Android auto).\nInstead just express explicitly what we set for `io_size`\n```\n// Packet: 2 bytes header + 57 bytes mSBC + 1 byte padding.\noi_size \u003d HFP_MSBC_FRAME_LEN + 1;\n```",
+      "parentUuid": "148e085b_bc6eed7e",
+      "range": {
+        "startLine": 82,
+        "startChar": 64,
+        "endLine": 82,
+        "endChar": 76
+      },
+      "revId": "e9bed4e2ba2a9867da181044f76203c66327d168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
