@@ -52,6 +52,24 @@
       "parentUuid": "99b49b0d_e5e1f2e0",
       "revId": "5709a0beea0052adaa80dce1a94b2aac1dc97da0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7ff36da_4ca47a04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1358301
+      },
+      "writtenOn": "2022-08-31T21:15:03Z",
+      "side": 1,
+      "message": "Thanks for looking into this, folks! You can run the test locally following go/crystalball-userguide/run#local-testing. In this case the ATP test name is asit/perf/boottime_test. Please note that this will wipe your test device.",
+      "parentUuid": "cfca1ef8_568e06f2",
+      "revId": "5709a0beea0052adaa80dce1a94b2aac1dc97da0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
