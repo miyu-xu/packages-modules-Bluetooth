@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7601fd3c_6110737e",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-31T01:41:58Z",
+      "side": 1,
+      "message": "9 build warnings after this CL merged, please fix it in next CL and make sure there\u0027s no build warning next time.\n\n```\nwarning: unused variable: `remote_address`                                                                                                                                                                                                                                                \n  --\u003e system/gd/rust/linux/stack/src/battery_manager.rs:42:9                                                                                                                                                                                                                              \n   |                                                                                                                                                                                                                                                                                      \n42 |         remote_address: String,                                                                                                                                                                                                                                                         |         ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_remote_address` \n```",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 74
+      },
+      "revId": "b196a8a8c165ffb32518f4c2ab52f78e0a0f7ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
