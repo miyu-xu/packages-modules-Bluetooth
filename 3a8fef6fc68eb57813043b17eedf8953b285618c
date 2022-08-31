@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "414b917b_90f0cb1c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-31T16:13:24Z",
+      "side": 1,
+      "message": "Left some comments.  Maybe we can try something like that?",
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea135721_a06f476a",
@@ -14,6 +31,70 @@
       "writtenOn": "2022-08-30T05:14:44Z",
       "side": 1,
       "message": "Treehugger doesn\u0027t like this because the only call to it is hidden behind #if TARGET_FLOSS. Should I hide this whole function behind the #if as well?\n\nIn the other patch, Abhishek suggested to remove the #if instead. However, this could be a little more costly in this case because it requires an additional packet to be sent to the peer device in order to get the GATT reply.",
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b9a88c_f8ed8445",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-31T16:13:24Z",
+      "side": 1,
+      "message": "```\nstatic void bta_dm_read_dis_cmpl(const RawAddress\u0026 addr, tDIS_VALUE* p_dis_value, bool is_floss) {\n\n  if (is_floss) {\n    if (!p_dis_value) {\n      LOG_WARN(\"read DIS failed\");\n    } else {\n      tBTA_DM_SEARCH result;\n      result.did_res.bd_addr \u003d addr;\n      result.did_res.vendor_id_src \u003d p_dis_value-\u003epnp_id.vendor_id_src;\n      result.did_res.vendor_id \u003d p_dis_value-\u003epnp_id.vendor_id;\n      result.did_res.product_id \u003d p_dis_value-\u003epnp_id.product_id;\n      result.did_res.version \u003d p_dis_value-\u003epnp_id.product_version;\n      bta_dm_search_cb.p_search_cback(BTA_DM_DID_RES_EVT, \u0026result);\n    }\n  }\n  \n  bta_dm_execute_queued_request();\n}\n```",
+      "parentUuid": "ea135721_a06f476a",
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3db67138_72af66c0",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-31T16:13:24Z",
+      "side": 1,
+      "message": "```\n if (DIS_ReadDISInfo(bta_dm_search_cb.peer_bdaddr, bta_dm_read_dis_cmpl,\n                      DIS_ATTR_PNP_ID_BIT, true)) {\n    return;\n }\n```\n\nAlso note if this fails to ReadDISInfo it will fall back to bta_dm_execute_queued_request as normal.",
+      "range": {
+        "startLine": 1384,
+        "startChar": 0,
+        "endLine": 1387,
+        "endChar": 3
+      },
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "438efb8e_2d4a080a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-08-31T16:13:24Z",
+      "side": 1,
+      "message": "`bta_dm_read_dis_cmpl(bta_dm_search_cb.peer_bdaddr, DIS_ATTR_PNP_ID_BIT, false);`",
+      "range": {
+        "startLine": 1390,
+        "startChar": 2,
+        "endLine": 1390,
+        "endChar": 34
+      },
       "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
