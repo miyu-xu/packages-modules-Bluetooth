@@ -22,6 +22,30 @@
       },
       "revId": "163cea2c390de00ce5e243acbdfae233f55a9015",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb62527f_f24bcaf5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-08-31T02:27:11Z",
+      "side": 1,
+      "message": "I did test the broadcast sink can join the unencrypted broadcast with this patch.\nFor PTS test, it required more than on laptop to perform the test. I will test it after I have the enough equipment to do so",
+      "parentUuid": "f7f52be1_dd2b84d0",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 40
+      },
+      "revId": "163cea2c390de00ce5e243acbdfae233f55a9015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
