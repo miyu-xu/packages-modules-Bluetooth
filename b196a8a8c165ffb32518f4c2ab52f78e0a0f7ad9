@@ -22,6 +22,30 @@
       },
       "revId": "b196a8a8c165ffb32518f4c2ab52f78e0a0f7ad9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95919417_b83f576b",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-31T22:38:53Z",
+      "side": 1,
+      "message": "Warnings fixed. You can rebase.",
+      "parentUuid": "7601fd3c_6110737e",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 74
+      },
+      "revId": "b196a8a8c165ffb32518f4c2ab52f78e0a0f7ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
