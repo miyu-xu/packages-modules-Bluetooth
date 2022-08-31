@@ -30,6 +30,12 @@
 
 #define LOG_TAG "bt_btif_storage"
 
+constexpr char kPrivateAddressPrefix[] = "xx:xx:xx:xx";
+#define PRIVATE_ADDRESS(addr)                                            \
+  (addr.ToString()                                                       \
+       .replace(0, strlen(kPrivateAddressPrefix), kPrivateAddressPrefix) \
+       .c_str())
+
 #include "btif_storage.h"
 
 #include <alloca.h>
