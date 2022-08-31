@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e84d9215_7b08c70a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_helpers.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-31T22:22:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "056d9a7f_fb367b07",
+      "range": {
+        "startLine": 75,
+        "startChar": 61,
+        "endLine": 75,
+        "endChar": 83
+      },
+      "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9dc06116_a2b36f7a",
@@ -78,6 +102,30 @@
       "writtenOn": "2022-08-30T14:10:16Z",
       "side": 1,
       "message": "You might be interested in using VERBOSE mode for this regex\nhttps://docs.python.org/3/library/re.html#re.VERBOSE",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 48
+      },
+      "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "385dafbe_7aac58b1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-31T22:22:54Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "9dc06116_a2b36f7a",
       "range": {
         "startLine": 90,
         "startChar": 0,
@@ -135,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c17980b_f5b26100",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
+        "patchSetId": 30
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-31T22:22:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4148c1a_536fb396",
+      "range": {
+        "startLine": 102,
+        "startChar": 16,
+        "endLine": 102,
+        "endChar": 20
+      },
+      "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea09e7d8_5e4a5e26",
@@ -148,6 +220,30 @@
       "writtenOn": "2022-08-29T17:34:31Z",
       "side": 1,
       "message": "1/ Can you make this function able to write on a characteristic as well?\n\nI think we can define `writeAttribute` as: write a characteristic value from a characteristic handle (and not a characteristic value handle, same as the `readCharacteristic`, which is fine because it\u0027s probably the handle exposed to the user in any case) or a characteristic descriptor value from a descriptor handle (there is no descriptor value handle).\n\n2/ It would be great to check the result callback from the `writeCharacteristic` or `writeDescriptor`, similarly as the `readCharacteristicBlocking`.",
+      "range": {
+        "startLine": 229,
+        "startChar": 2,
+        "endLine": 229,
+        "endChar": 30
+      },
+      "revId": "c94c6caf40c8c6a766fbe10a648a0191164c3eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82a75c81_aaf7b9c1",
+        "filename": "android/pandora/server/src/com/android/pandora/Gatt.kt",
+        "patchSetId": 30
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1958203
+      },
+      "writtenOn": "2022-08-31T22:22:54Z",
+      "side": 1,
+      "message": "(1) is no longer relevant, I think?\n\nI\u0027ll do (2) in a separate CL on top of Etienne\u0027s to avoid merge conflicts if we land this first.",
+      "parentUuid": "ea09e7d8_5e4a5e26",
       "range": {
         "startLine": 229,
         "startChar": 2,
