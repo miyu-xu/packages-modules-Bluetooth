@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e389aff_e456d263",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-08-31T06:28:40Z",
+      "side": 1,
+      "message": "Can I use the builds available from [1]?\nFor example, clicking on aosp_arm64-userdebug_tidy [2] grants me build ID P39898341 which I can copy-paste into go/flash.\n\nIf yes, there are many choices with git_tm-dev, do you have any recommendation on which one to use?\nAlso, there are many installation options, it is OK if I just select the default? Is there a specific config options I should choose?\n\n[1] https://android-build.googleplex.com/builds/treetop/android-review/2200617?ref\u003dCOMMENT\u0026revision\u003d2\n[2] https://android-build.googleplex.com/builds/build-details/P39898341/targets/aosp_arm64-userdebug_tidy",
+      "parentUuid": "3376cacf_401d2c50",
+      "revId": "5d4a8a4bdf8faa3a439fe71a8888290085e87dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3d41e3f2_bc94e85c",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 4
