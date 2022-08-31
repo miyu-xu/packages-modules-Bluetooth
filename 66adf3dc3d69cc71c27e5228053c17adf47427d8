@@ -16,6 +16,29 @@
       "message": "LGTM - letting Sonny take last look for +2",
       "revId": "66adf3dc3d69cc71c27e5228053c17adf47427d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13809e64_8606a3a3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-08-31T22:35:41Z",
+      "side": 1,
+      "message": "nit:\n```\nif let Some(id) \u003d s.advertiser_id {\n    gatt.advertiser.unregister(id);\n}\n```\n\nor maybe put it in the filter above?\n```\nfor (_, s) in self.sets.iter_mut().filter(|(_, s)| s.callback_id() \u003d\u003d callback_id \u0026\u0026 s.advertiser_id.is_some()) {\n```",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 465,
+        "endChar": 13
+      },
+      "revId": "66adf3dc3d69cc71c27e5228053c17adf47427d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
