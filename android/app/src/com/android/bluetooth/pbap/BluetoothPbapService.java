@@ -52,6 +52,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.os.PowerManager;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -63,9 +64,7 @@ import com.android.bluetooth.IObexConnectionHandler;
 import com.android.bluetooth.ObexServerSockets;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
-import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.sdp.SdpManager;
 import com.android.bluetooth.util.DevicePolicyUtils;
 import com.android.internal.annotations.VisibleForTesting;
@@ -73,9 +72,12 @@ import com.android.internal.annotations.VisibleForTesting;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
-public class BluetoothPbapService extends ProfileService implements IObexConnectionHandler {
+/**
+ * @hide
+ */
+public class BluetoothPbapService extends ConnectableProfileService
+        implements IObexConnectionHandler {
     private static final String TAG = "BluetoothPbapService";
 
     /**
@@ -148,7 +150,6 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     private static String sLocalPhoneName;
 
     private ObexServerSockets mServerSockets = null;
-    private DatabaseManager mDatabaseManager;
 
     private static final int SDP_PBAP_SERVER_VERSION = 0x0102;
     // PBAP v1.2.3, Sec. 7.1.2: local phonebook and favorites
@@ -180,6 +181,10 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     private Thread mThreadUpdateSecVersionCounter;
 
     private static BluetoothPbapService sBluetoothPbapService;
+
+    BluetoothPbapService() {
+        super(BluetoothProfile.PBAP, TAG);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfilePbapServerEnabled().orElse(false);
@@ -485,69 +490,30 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         return devices;
     }
 
-    /**
-     * Set connection policy of the profile and tries to disconnect it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(
-                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        if (DEBUG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.PBAP,
-                  connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return getConnectionState(device) == BluetoothProfile.STATE_CONNECTED;
     }
 
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        if (device == null) {
-            throw new IllegalArgumentException("Null device");
-        }
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.PBAP);
+    @Override
+    public boolean connect(BluetoothDevice device) {
+        Log.d(TAG, "connect skipped: not implemented");
+        return true;
     }
 
     /**
      * Disconnects pbap server profile with device
      * @param device is the remote bluetooth device
      */
-    public void disconnect(BluetoothDevice device) {
+    public boolean disconnect(BluetoothDevice device) {
         synchronized (mPbapStateMachineMap) {
             PbapStateMachine sm = mPbapStateMachineMap.get(device);
             if (sm != null) {
                 sm.sendMessage(PbapStateMachine.DISCONNECT);
             }
         }
+        return true;
     }
 
     static String getLocalPhoneNum() {
@@ -573,8 +539,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         if (VERBOSE) {
             Log.v(TAG, "start()");
         }
-        mDatabaseManager = Objects.requireNonNull(AdapterService.getAdapterService().getDatabase(),
-            "DatabaseManager cannot be null when PbapService starts");
+        super.start();
 
         // Enable owned Activity component
         setComponentAvailable(PBAP_ACTIVITY, true);
