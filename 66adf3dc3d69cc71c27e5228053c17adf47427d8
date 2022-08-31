@@ -39,6 +39,30 @@
       },
       "revId": "66adf3dc3d69cc71c27e5228053c17adf47427d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afec3e17_a2b66364",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2022-08-31T23:27:04Z",
+      "side": 1,
+      "message": "ACK. I\u0027ll use the filter way in next CL.",
+      "parentUuid": "13809e64_8606a3a3",
+      "range": {
+        "startLine": 463,
+        "startChar": 0,
+        "endLine": 465,
+        "endChar": 13
+      },
+      "revId": "66adf3dc3d69cc71c27e5228053c17adf47427d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
