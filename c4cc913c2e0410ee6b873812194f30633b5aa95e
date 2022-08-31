@@ -189,6 +189,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff51d905_d276b583",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-08-31T02:46:06Z",
+      "side": 1,
+      "message": "b/241816822 is the bug that makes me checked this. I shared the same feeling with you when I saw the code. \nFrom b/241816822\u0027s feedback report, it seems we used to regard the headset support both a2dp and hfp.\n\nDEV_ADDED                      a2dp supported and hfp supported with codec capability bitmask 2\n\nMight worth double checking other platforms, but no matter whether this is a platform specific behavior or simply a hidden issued fixed, we should file the bug and fix this by adding the HFP profile in `connect_all_enabled_profiles`.",
+      "parentUuid": "4529ce9c_5109a621",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
