@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3f54105_fbfbfe81",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3483,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-31T20:14:39Z",
+      "side": 1,
+      "message": "move this to subsequent CL",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "886b00a6_0e65538d",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1611,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-31T20:14:39Z",
+      "side": 1,
+      "message": "Suggest removing in favor of after HidAttrMask check",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7202bef4_3c4a221a",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-31T20:14:39Z",
+      "side": 1,
+      "message": "LOG_DEBUG(\"Allow wake from %s\", name);",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
