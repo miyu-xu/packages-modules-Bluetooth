@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7640ef80_07a2ed2e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/util/GsmAlphabetTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2022-08-31T05:42:22Z",
+      "side": 1,
+      "message": "assertThat(actual),isEqualTo(expected), here and others",
+      "range": {
+        "startLine": 69,
+        "startChar": 15,
+        "endLine": 69,
+        "endChar": 18
+      },
+      "revId": "df83356d4ccf8950e5d9794769a59e59b625b768",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
