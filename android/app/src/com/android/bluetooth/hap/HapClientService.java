@@ -47,7 +47,7 @@ import android.util.Log;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
@@ -67,7 +67,7 @@ import java.util.Objects;
  * Provides Bluetooth Hearing Access profile, as a service.
  * @hide
  */
-public class HapClientService extends ProfileService {
+public class HapClientService extends ConnectableProfileService {
     private static final boolean DBG = true;
     private static final String TAG = "HapClientService";
 
@@ -95,6 +95,10 @@ public class HapClientService extends ProfileService {
 
     @VisibleForTesting
     ServiceFactory mFactory = new ServiceFactory();
+
+    HapClientService() {
+        super(BluetoothProfile.HAP_CLIENT, TAG);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileHapClientEnabled().orElse(false);
@@ -153,6 +157,7 @@ public class HapClientService extends ProfileService {
             throw new IllegalStateException("start() called twice");
         }
 
+        super.start();
         // Get AdapterService, HapClientNativeInterface, DatabaseManager, AudioManager.
         // None of them can be null.
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
@@ -353,52 +358,6 @@ public class HapClientService extends ProfileService {
     }
 
     /**
-     * Set connection policy of the profile and connects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED} or disconnects if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device           the remote device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true on success, otherwise false
-     */
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceBluetoothPrivilegedPermission(this);
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-        mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.HAP_CLIENT,
-                        connectionPolicy);
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            connect(device);
-        } else if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    public int getConnectionPolicy(BluetoothDevice device) {
-        return mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.HAP_CLIENT);
-    }
-
-    /**
      * Check whether can connect to a peer device.
      * The check considers a number of factors during the evaluation.
      *
@@ -448,6 +407,12 @@ public class HapClientService extends ProfileService {
                 removeStateMachine(device);
             }
         }
+    }
+
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.HAS);
     }
 
     /**
@@ -1304,7 +1269,6 @@ public class HapClientService extends ProfileService {
                 if (service == null) {
                     throw new IllegalStateException("service is null");
                 }
-                enforceBluetoothPrivilegedPermission(service);
                 defaultValue = service.setConnectionPolicy(device, connectionPolicy);
                 receiver.send(defaultValue);
             } catch (RuntimeException e) {
@@ -1324,7 +1288,6 @@ public class HapClientService extends ProfileService {
                 if (service == null) {
                     throw new IllegalStateException("service is null");
                 }
-                enforceBluetoothPrivilegedPermission(service);
                 defaultValue = service.getConnectionPolicy(device);
                 receiver.send(defaultValue);
             } catch (RuntimeException e) {

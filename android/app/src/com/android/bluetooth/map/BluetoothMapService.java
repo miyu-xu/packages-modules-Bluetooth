@@ -52,9 +52,8 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.MetricsLogger;
-import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -62,9 +61,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
-public class BluetoothMapService extends ProfileService {
+/**
+ * @hide
+ */
+public class BluetoothMapService extends ConnectableProfileService {
     private static final String TAG = "BluetoothMapService";
 
     /**
@@ -120,7 +121,6 @@ public class BluetoothMapService extends ProfileService {
     private static final int MAS_ID_SMS_MMS = 0;
 
     private AdapterService mAdapterService;
-    private DatabaseManager mDatabaseManager;
 
     private BluetoothMnsObexClient mBluetoothMnsObexClient = null;
 
@@ -164,6 +164,7 @@ public class BluetoothMapService extends ProfileService {
     }
 
     public BluetoothMapService() {
+        super(BluetoothProfile.MAP, TAG);
         mState = BluetoothMap.STATE_DISCONNECTED;
         BluetoothMap.invalidateBluetoothGetConnectionStateCache();
     }
@@ -530,14 +531,26 @@ public class BluetoothMapService extends ProfileService {
         }
     }
 
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return getConnectionState(device) == BluetoothProfile.STATE_CONNECTED;
+    }
+
+    @Override
+    public boolean connect(BluetoothDevice device) {
+        Log.d(TAG, "connect skipped: not implemented");
+        return true;
+    }
     /**
      * Disconnects MAP from the supplied device
      *
      * @param device is the device on which we want to disconnect MAP
      */
-    public void disconnect(BluetoothDevice device) {
+    public boolean disconnect(BluetoothDevice device) {
         mSessionStatusHandler.sendMessage(
                 mSessionStatusHandler.obtainMessage(DISCONNECT_MAP, 0, 0, device));
+        return true;
     }
 
     void disconnectMap(BluetoothDevice device) {
@@ -607,58 +620,6 @@ public class BluetoothMapService extends ProfileService {
         }
     }
 
-    /**
-     * Set connection policy of the profile and tries to disconnect it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        if (VERBOSE) {
-            Log.v(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.MAP,
-                  connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    int getConnectionPolicy(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.MAP);
-    }
-
     @Override
     protected IProfileServiceBinder initBinder() {
         return new BluetoothMapBinder(this);
@@ -670,8 +631,7 @@ public class BluetoothMapService extends ProfileService {
             Log.d(TAG, "start()");
         }
 
-        mDatabaseManager = Objects.requireNonNull(AdapterService.getAdapterService().getDatabase(),
-                "DatabaseManager cannot be null when MapService starts");
+        super.start();
 
         setComponentAvailable(MAP_SETTINGS_ACTIVITY, true);
         setComponentAvailable(MAP_FILE_PROVIDER, true);

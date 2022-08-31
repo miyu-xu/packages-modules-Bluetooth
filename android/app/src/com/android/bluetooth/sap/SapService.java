@@ -32,8 +32,8 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.MetricsLogger;
-import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.sdp.SdpManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -43,7 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @TargetApi(Build.VERSION_CODES.ECLAIR)
-public class SapService extends ProfileService {
+public class SapService extends ConnectableProfileService {
 
     private static final String SDP_SAP_SERVICE_NAME = "SIM Access";
     private static final int SDP_SAP_VERSION = 0x0102;
@@ -107,7 +107,8 @@ public class SapService extends ProfileService {
         return BluetoothProperties.isProfileSapServerEnabled().orElse(false);
     }
 
-    public SapService() {
+    SapService() {
+        super(BluetoothProfile.SAP, TAG);
         mState = BluetoothSap.STATE_DISCONNECTED;
         BluetoothSap.invalidateBluetoothGetConnectionStateCache();
     }
@@ -548,6 +549,18 @@ public class SapService extends ProfileService {
         return sRemoteDeviceName;
     }
 
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return Utils.arrayContains(remoteDeviceUuids, BluetoothUuid.SAP);
+    }
+
+    @Override
+    public boolean connect(BluetoothDevice device) {
+        Log.d(TAG, "connect skipped: not implemented");
+        return true;
+    }
+
     public boolean disconnect(BluetoothDevice device) {
         boolean result = false;
         synchronized (SapService.this) {
@@ -608,55 +621,6 @@ public class SapService extends ProfileService {
         }
     }
 
-    /**
-     * Set connection policy of the profile and disconnects it if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy is the connection policy to set to for this profile
-     * @return true if connectionPolicy is set, false on error
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        if (DEBUG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        AdapterService.getAdapterService().getDatabase()
-                .setProfileConnectionPolicy(device, BluetoothProfile.SAP, connectionPolicy);
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public int getConnectionPolicy(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
-                "Need BLUETOOTH_PRIVILEGED permission");
-        return AdapterService.getAdapterService().getDatabase()
-                .getProfileConnectionPolicy(device, BluetoothProfile.SAP);
-    }
-
     @Override
     protected IProfileServiceBinder initBinder() {
         return new SapBinder(this);
@@ -665,6 +629,9 @@ public class SapService extends ProfileService {
     @Override
     protected boolean start() {
         Log.v(TAG, "start()");
+
+        super.start();
+
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
         filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
