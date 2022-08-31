@@ -16,6 +16,24 @@
       "message": "Please address the errorprone checks. Thank you :)",
       "revId": "b8a570460cf78053e893309b583923a11ab34f41",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23018e7f_da81e511",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/util/GsmAlphabetTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2022-08-31T00:29:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3531be2_195eef21",
+      "revId": "b8a570460cf78053e893309b583923a11ab34f41",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
