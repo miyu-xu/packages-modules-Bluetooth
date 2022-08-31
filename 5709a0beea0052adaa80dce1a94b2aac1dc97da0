@@ -34,6 +34,24 @@
       "parentUuid": "664c1b7f_ee967d74",
       "revId": "5709a0beea0052adaa80dce1a94b2aac1dc97da0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfca1ef8_568e06f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-31T19:57:41Z",
+      "side": 1,
+      "message": "Wow ! 20 sec it\u0027s pretty bad.\nI will split the cleanup from the new lock added to facilitate narrowing down the lock causing this and do some more test offline.\n@harrytczhang Do you know how can I run the boottimetest on a local device ?",
+      "parentUuid": "99b49b0d_e5e1f2e0",
+      "revId": "5709a0beea0052adaa80dce1a94b2aac1dc97da0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
