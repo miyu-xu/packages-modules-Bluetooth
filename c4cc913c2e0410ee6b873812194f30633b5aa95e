@@ -141,6 +141,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d733fd78_77a201de",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T02:06:22Z",
+      "side": 1,
+      "message": "\u003e According to my test, HM1000(HFP only headset) somehow also reports the A2dpSink uuid, \nThis sounds conflicting to me :/\nIn CRAS logic, current policy will wait A2DP to the end if headset claims it has A2DP sink UUID.\nhttps://source.corp.google.com/chromeos_public/src/third_party/adhd/cras/src/server/cras_bt_device.c;rcl\u003dbe7c91e52a3876274ae36fb07e96a70d6c45e8b0;l\u003d58\n\nThat said, if HM1000 reporst a2dp-sink UUID but couldn\u0027t connect A2DP, it won\u0027t work with CRAS-BlueZ logic now.\nIt should be easy to verify by `cras_test_client --dump_bt` since we log `supported_profiles` in BTLOG. Can you help confirm?",
+      "parentUuid": "cb628e55_eb463aeb",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
