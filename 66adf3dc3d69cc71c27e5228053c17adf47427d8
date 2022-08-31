@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f08bbd8_3510f21b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-31T16:36:09Z",
+      "side": 1,
+      "message": "LGTM - letting Sonny take last look for +2",
+      "revId": "66adf3dc3d69cc71c27e5228053c17adf47427d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

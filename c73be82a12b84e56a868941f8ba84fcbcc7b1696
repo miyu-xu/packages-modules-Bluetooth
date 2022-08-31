@@ -89,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c1c9911_e4abee9e",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-31T16:36:09Z",
+      "side": 1,
+      "message": "Clap: https://docs.rs/clap/latest/clap/",
+      "parentUuid": "4a758136_688fdeaf",
+      "revId": "c73be82a12b84e56a868941f8ba84fcbcc7b1696",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "530f1b09_67aa2b92",
