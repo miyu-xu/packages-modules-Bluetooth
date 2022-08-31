@@ -33,6 +33,7 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.os.Process;
 import android.os.RemoteException;
 import android.sysprop.BluetoothProperties;
@@ -41,9 +42,8 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.btservice.ConnectableProfileService;
 import com.android.bluetooth.btservice.MetricsLogger;
-import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -52,10 +52,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 
 /** @hide */
-public class HidDeviceService extends ProfileService {
+public class HidDeviceService extends ConnectableProfileService {
     private static final boolean DBG = false;
     private static final String TAG = HidDeviceService.class.getSimpleName();
 
@@ -73,7 +72,6 @@ public class HidDeviceService extends ProfileService {
 
     private static HidDeviceService sHidDeviceService;
 
-    private DatabaseManager mDatabaseManager;
     private HidDeviceNativeInterface mHidDeviceNativeInterface;
 
     private boolean mNativeAvailable = false;
@@ -85,6 +83,10 @@ public class HidDeviceService extends ProfileService {
     private ActivityManager mActivityManager;
 
     private HidDeviceServiceHandler mHandler;
+
+    HidDeviceService() {
+        super(BluetoothProfile.HID_DEVICE, TAG);
+    }
 
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileHidDeviceEnabled().orElse(false);
@@ -652,6 +654,12 @@ public class HidDeviceService extends ProfileService {
                 && mHidDeviceNativeInterface.unplug();
     }
 
+    @Override
+    public boolean isSupported(ParcelUuid[] localDeviceUuids, ParcelUuid[] remoteDeviceUuids,
+            BluetoothDevice device) {
+        return getConnectionState(device) == BluetoothProfile.STATE_DISCONNECTED;
+    }
+
     /**
      * Connects the Hid device profile for the remote bluetooth device
      *
@@ -685,62 +693,6 @@ public class HidDeviceService extends ProfileService {
         return checkDevice(device) && mHidDeviceNativeInterface.disconnect();
     }
 
-    /**
-     * Connects Hid Device if connectionPolicy is {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED}
-     * and disconnects Hid device if connectionPolicy is
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN}.
-     *
-     * <p> The device should already be paired.
-     * Connection policy can be one of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Paired bluetooth device
-     * @param connectionPolicy determines whether hid device should be connected or disconnected
-     * @return true if hid device is connected or disconnected, false otherwise
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(
-                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        if (DBG) {
-            Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
-        }
-
-        if (!mDatabaseManager.setProfileConnectionPolicy(device, BluetoothProfile.HID_DEVICE,
-                  connectionPolicy)) {
-            return false;
-        }
-        if (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN) {
-            disconnect(device);
-        }
-        return true;
-    }
-
-    /**
-     * Get the connection policy of the profile.
-     *
-     * <p> The connection policy can be any of:
-     * {@link BluetoothProfile#CONNECTION_POLICY_ALLOWED},
-     * {@link BluetoothProfile#CONNECTION_POLICY_FORBIDDEN},
-     * {@link BluetoothProfile#CONNECTION_POLICY_UNKNOWN}
-     *
-     * @param device Bluetooth device
-     * @return connection policy of the device
-     * @hide
-     */
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
-    public int getConnectionPolicy(BluetoothDevice device) {
-        if (device == null) {
-            throw new IllegalArgumentException("Null device");
-        }
-        enforceCallingOrSelfPermission(
-                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
-        return mDatabaseManager
-                .getProfileConnectionPolicy(device, BluetoothProfile.HID_DEVICE);
-    }
-
     synchronized boolean reportError(BluetoothDevice device, byte error) {
         if (DBG) {
             Log.d(TAG, "reportError(): device=" + device + " error=" + error);
@@ -764,8 +716,7 @@ public class HidDeviceService extends ProfileService {
             Log.d(TAG, "start()");
         }
 
-        mDatabaseManager = Objects.requireNonNull(AdapterService.getAdapterService().getDatabase(),
-                "DatabaseManager cannot be null when HidDeviceService starts");
+        super.start();
 
         mHandler = new HidDeviceServiceHandler();
         mHidDeviceNativeInterface = HidDeviceNativeInterface.getInstance();
