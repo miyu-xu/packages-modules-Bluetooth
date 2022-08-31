@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9734813c_a7d9c0dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T06:01:16Z",
+      "side": 1,
+      "message": "Thanks this is more readable now!",
+      "revId": "44ebf592d6eb3038a54ba76b48ce1fc35c3f456e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ceeb288_c744baa1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T06:01:16Z",
+      "side": 1,
+      "message": "nit: string -\u003e address, here and below",
+      "range": {
+        "startLine": 568,
+        "startChar": 38,
+        "endLine": 568,
+        "endChar": 44
+      },
+      "revId": "44ebf592d6eb3038a54ba76b48ce1fc35c3f456e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e8404f3_f030d42f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T06:01:16Z",
+      "side": 1,
+      "message": "Make warning more specific. ex: Uninitialized A2DP to start_audio_request.\nSame for other warnings across this file.",
+      "range": {
+        "startLine": 692,
+        "startChar": 27,
+        "endLine": 692,
+        "endChar": 60
+      },
+      "revId": "44ebf592d6eb3038a54ba76b48ce1fc35c3f456e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
