@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c80357a_d74d1a79",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-31T22:18:34Z",
+      "side": 1,
+      "message": "TODO: check if this make sense to keep",
+      "range": {
+        "startLine": 583,
+        "startChar": 17,
+        "endLine": 583,
+        "endChar": 36
+      },
+      "revId": "cfc8fe1c326577c0ceae0ad487036377486f80e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61582f75_90f70ee3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 606,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-08-31T22:18:34Z",
+      "side": 1,
+      "message": "TODO: check if this make sense to keep",
+      "range": {
+        "startLine": 606,
+        "startChar": 17,
+        "endLine": 606,
+        "endChar": 44
+      },
+      "revId": "cfc8fe1c326577c0ceae0ad487036377486f80e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
