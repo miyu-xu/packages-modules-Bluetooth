@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19729372_d431232f",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T03:15:17Z",
+      "side": 1,
+      "message": "This name is vague as reader would think \"invalid\" results some kind of error.\nHow about make it more self explanatory, e.g \"is_packet_loss_too_high()\"",
+      "range": {
+        "startLine": 182,
+        "startChar": 7,
+        "endLine": 182,
+        "endChar": 19
+      },
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "444b40f5_82b85269",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T03:15:17Z",
+      "side": 1,
+      "message": "This should never fail. Use assert or just comment and ignore.",
+      "range": {
+        "startLine": 282,
+        "startChar": 4,
+        "endLine": 282,
+        "endChar": 9
+      },
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "762c3c91_30c7faf6",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T03:15:17Z",
+      "side": 1,
+      "message": "Is this safe and what you\u0027re intended to do?\nYou\u0027re giving outside pointer access to `hist`, and in the next line you\u0027re doing a drastic memmove in hist. That is likely to change the content of `output`.",
+      "range": {
+        "startLine": 332,
+        "startChar": 4,
+        "endLine": 332,
+        "endChar": 41
+      },
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebd6676e_322f3386",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 624,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2022-08-31T03:15:17Z",
+      "side": 1,
+      "message": "Is this just to get rid of \"goto\" here? don\u0027t see the logic difference before/after changing the code flow.",
+      "revId": "cb008223a9f703dc7578f9adab6e355c070e1012",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
