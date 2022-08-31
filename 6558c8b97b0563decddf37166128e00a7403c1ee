@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "968620a7_1e237cb4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3483,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-08-31T20:16:58Z",
+      "side": 0,
+      "message": "Open comment to make sure you pull in this change from previous commit",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
