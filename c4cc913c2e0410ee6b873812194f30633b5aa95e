@@ -237,6 +237,30 @@
       },
       "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6ed5531_f61b7ae1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2022-08-31T03:30:11Z",
+      "side": 1,
+      "message": "Oops at second thought I think it\u0027s unrelated for HM*. This is another case I encountered with XM4 that could only provide HFP and get into trouble due to that.",
+      "parentUuid": "7618c6c7_d04c2349",
+      "range": {
+        "startLine": 519,
+        "startChar": 7,
+        "endLine": 519,
+        "endChar": 33
+      },
+      "revId": "c4cc913c2e0410ee6b873812194f30633b5aa95e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
