@@ -574,61 +574,9 @@ class PhonePolicy {
             }
             debugLog("autoConnect: Device " + mostRecentlyActiveA2dpDevice
                     + " attempting auto connection");
-            autoConnectHeadset(mostRecentlyActiveA2dpDevice);
-            autoConnectA2dp(mostRecentlyActiveA2dpDevice);
-            autoConnectHidHost(mostRecentlyActiveA2dpDevice);
+            mostRecentlyActiveA2dpDevice.connect();
         } else {
             debugLog("autoConnect() - BT is in quiet mode. Not initiating auto connections");
-        }
-    }
-
-    private void autoConnectA2dp(BluetoothDevice device) {
-        final A2dpService a2dpService = mFactory.getA2dpService();
-        if (a2dpService == null) {
-            warnLog("autoConnectA2dp: service is null, failed to connect to " + device);
-            return;
-        }
-        int a2dpConnectionPolicy = a2dpService.getConnectionPolicy(device);
-        if (a2dpConnectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            debugLog("autoConnectA2dp: connecting A2DP with " + device);
-            a2dpService.connect(device);
-        } else {
-            debugLog("autoConnectA2dp: skipped auto-connect A2DP with device " + device
-                    + " connectionPolicy " + a2dpConnectionPolicy);
-        }
-    }
-
-    @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void autoConnectHeadset(BluetoothDevice device) {
-        final HeadsetService hsService = mFactory.getHeadsetService();
-        if (hsService == null) {
-            warnLog("autoConnectHeadset: service is null, failed to connect to " + device);
-            return;
-        }
-        int headsetConnectionPolicy = hsService.getConnectionPolicy(device);
-        if (headsetConnectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            debugLog("autoConnectHeadset: Connecting HFP with " + device);
-            hsService.connect(device);
-        } else {
-            debugLog("autoConnectHeadset: skipped auto-connect HFP with device " + device
-                    + " connectionPolicy " + headsetConnectionPolicy);
-        }
-    }
-
-    @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void autoConnectHidHost(BluetoothDevice device) {
-        final HidHostService hidHostService = mFactory.getHidHostService();
-        if (hidHostService == null) {
-            warnLog("autoConnectHidHost: service is null, failed to connect to " + device);
-            return;
-        }
-        int hidHostConnectionPolicy = hidHostService.getConnectionPolicy(device);
-        if (hidHostConnectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED) {
-            debugLog("autoConnectHidHost: Connecting HID with " + device);
-            hidHostService.connect(device);
-        } else {
-            debugLog("autoConnectHidHost: skipped auto-connect HID with device " + device
-                    + " connectionPolicy " + hidHostConnectionPolicy);
         }
     }
 
