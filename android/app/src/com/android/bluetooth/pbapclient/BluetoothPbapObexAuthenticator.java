@@ -28,8 +28,6 @@ import java.util.Arrays;
  * with PSE devices prior to PBAP 1.2. With profiles prior to 1.2 the actual initiation of
  * authentication is implementation defined.
  */
-
-
 class BluetoothPbapObexAuthenticator implements Authenticator {
 
     private static final String TAG = "BtPbapObexAuthenticator";
@@ -47,20 +45,8 @@ class BluetoothPbapObexAuthenticator implements Authenticator {
     @Override
     public PasswordAuthentication onAuthenticationChallenge(String description,
             boolean isUserIdRequired, boolean isFullAccess) {
-        PasswordAuthentication pa = null;
-        if (DBG) Log.v(TAG, "onAuthenticationChallenge: starting");
-
-        if (mSessionKey != null && mSessionKey.length() != 0) {
-            if (DBG) Log.v(TAG, "onAuthenticationChallenge: mSessionKey=" + mSessionKey);
-            pa = new PasswordAuthentication(null, mSessionKey.getBytes());
-        } else {
-            if (DBG) {
-                Log.v(TAG,
-                        "onAuthenticationChallenge: mSessionKey is empty, timeout/cancel occured");
-            }
-        }
-
-        return pa;
+        if (DBG) Log.v(TAG, "onAuthenticationChallenge: starting. mSessionKey=" + mSessionKey);
+        return new PasswordAuthentication(null, mSessionKey.getBytes());
     }
 
     @Override
@@ -69,5 +55,4 @@ class BluetoothPbapObexAuthenticator implements Authenticator {
         /* required only in case PCE challenges PSE which we don't do now */
         return null;
     }
-
 }
