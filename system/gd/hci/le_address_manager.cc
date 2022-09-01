@@ -266,11 +266,12 @@ void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
 void LeAddressManager::resume_registered_clients() {
   // Do not resume clients if cached command is not empty
   if (!cached_commands_.empty()) {
+    LOG_DEBUG("Skipped client resume still have cached commands count:%zu", cached_commands_.size());
     handle_next_command();
     return;
   }
 
-  LOG_DEBUG("Resuming registered clients");
+  LOG_DEBUG("Cached commands is empty resuming registered clients");
   for (auto& client : registered_clients_) {
     client.second = ClientState::WAITING_FOR_RESUME;
     client.first->OnResume();
