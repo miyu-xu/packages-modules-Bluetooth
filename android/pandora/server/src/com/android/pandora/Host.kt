@@ -18,9 +18,14 @@ package com.android.pandora
 
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_PUBLIC
+import android.bluetooth.BluetoothDevice.ADDRESS_TYPE_RANDOM
 import android.bluetooth.BluetoothDevice.TRANSPORT_LE
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
+import android.bluetooth.le.AdvertiseCallback
+import android.bluetooth.le.AdvertiseData
+import android.bluetooth.le.AdvertiseSettings
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
 import android.content.Context
@@ -36,6 +41,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.sendBlocking
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -59,6 +65,9 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
   private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
   private val bluetoothAdapter = bluetoothManager.adapter
+
+  private var advertiserIndex = 0
+  private val advertisers = mutableMapOf<Int, AdvertiseCallback>()
 
   init {
     scope = CoroutineScope(Dispatchers.Default)
@@ -84,9 +93,9 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     Log.i(TAG, "rebootBluetooth")
 
     val stateFlow =
-      flow.filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }.map {
-        it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR)
-      }
+        flow
+            .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
+            .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
 
     if (bluetoothAdapter.isEnabled) {
       bluetoothAdapter.disable()
@@ -102,19 +111,19 @@ class Host(private val context: Context, private val server: Server) : HostImplB
 
   override fun hardReset(request: Empty, responseObserver: StreamObserver<Empty>) {
     grpcUnary<Empty>(scope, responseObserver) {
-      Log.i(TAG, "hardReset")
+          Log.i(TAG, "hardReset")
 
-      bluetoothAdapter.clearBluetooth()
+          bluetoothAdapter.clearBluetooth()
 
-      rebootBluetooth()
+          rebootBluetooth()
 
-      // The last expression is the return value.
-      Empty.getDefaultInstance()
-    }
-      .invokeOnCompletion {
-        Log.i(TAG, "Shutdown the gRPC Server")
-        server.shutdownNow()
-      }
+          // The last expression is the return value.
+          Empty.getDefaultInstance()
+        }
+        .invokeOnCompletion {
+          Log.i(TAG, "Shutdown the gRPC Server")
+          server.shutdownNow()
+        }
   }
 
   override fun softReset(request: Empty, responseObserver: StreamObserver<Empty>) {
@@ -128,33 +137,33 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   }
 
   override fun readLocalAddress(
-    request: Empty,
-    responseObserver: StreamObserver<ReadLocalAddressResponse>
+      request: Empty,
+      responseObserver: StreamObserver<ReadLocalAddressResponse>
   ) {
     grpcUnary<ReadLocalAddressResponse>(scope, responseObserver) {
       Log.i(TAG, "readLocalAddress")
       val localMacAddress = MacAddress.fromString(bluetoothAdapter.getAddress())
       ReadLocalAddressResponse.newBuilder()
-        .setAddress(ByteString.copyFrom(localMacAddress.toByteArray()))
-        .build()
+          .setAddress(ByteString.copyFrom(localMacAddress.toByteArray()))
+          .build()
     }
   }
 
   private suspend fun waitPairingRequestIntent(bluetoothDevice: BluetoothDevice) {
     Log.i(TAG, "waitPairingRequestIntent: device=$bluetoothDevice")
     var pairingVariant =
-      flow
-        .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
-        .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
-        .first()
-        .getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
+        flow
+            .filter { it.getAction() == BluetoothDevice.ACTION_PAIRING_REQUEST }
+            .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+            .first()
+            .getIntExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.ERROR)
 
     val confirmationCases =
-      intArrayOf(
-        BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION,
-        BluetoothDevice.PAIRING_VARIANT_CONSENT,
-        BluetoothDevice.PAIRING_VARIANT_PIN,
-      )
+        intArrayOf(
+            BluetoothDevice.PAIRING_VARIANT_PASSKEY_CONFIRMATION,
+            BluetoothDevice.PAIRING_VARIANT_CONSENT,
+            BluetoothDevice.PAIRING_VARIANT_PIN,
+        )
 
     if (pairingVariant in confirmationCases) {
       bluetoothDevice.setPairingConfirmation(true)
@@ -167,11 +176,11 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     // have been connected).
     Log.i(TAG, "waitBondIntent: device=$bluetoothDevice")
     flow
-      .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
-      .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
-      .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
-      .filter { it == BluetoothDevice.BOND_BONDED }
-      .first()
+        .filter { it.getAction() == BluetoothDevice.ACTION_BOND_STATE_CHANGED }
+        .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+        .map { it.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothAdapter.ERROR) }
+        .filter { it == BluetoothDevice.BOND_BONDED }
+        .first()
   }
 
   private suspend fun waitConnectionIntent(bluetoothDevice: BluetoothDevice) {
@@ -183,8 +192,8 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   }
 
   override fun waitConnection(
-    request: WaitConnectionRequest,
-    responseObserver: StreamObserver<WaitConnectionResponse>
+      request: WaitConnectionRequest,
+      responseObserver: StreamObserver<WaitConnectionResponse>
   ) {
     grpcUnary<WaitConnectionResponse>(scope, responseObserver) {
       val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
@@ -199,12 +208,11 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       waitConnectionIntent(bluetoothDevice)
 
       WaitConnectionResponse.newBuilder()
-        .setConnection(
-          Connection.newBuilder()
-            .setCookie(ByteString.copyFromUtf8(bluetoothDevice.address))
-            .build()
-        )
-        .build()
+          .setConnection(
+              Connection.newBuilder()
+                  .setCookie(ByteString.copyFromUtf8(bluetoothDevice.address))
+                  .build())
+          .build()
     }
   }
 
@@ -220,18 +228,17 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       }
 
       ConnectResponse.newBuilder()
-        .setConnection(
-          Connection.newBuilder()
-            .setCookie(ByteString.copyFromUtf8(bluetoothDevice.address))
-            .build()
-        )
-        .build()
+          .setConnection(
+              Connection.newBuilder()
+                  .setCookie(ByteString.copyFromUtf8(bluetoothDevice.address))
+                  .build())
+          .build()
     }
   }
 
   override fun disconnect(
-    request: DisconnectRequest,
-    responseObserver: StreamObserver<DisconnectResponse>
+      request: DisconnectRequest,
+      responseObserver: StreamObserver<DisconnectResponse>
   ) {
     grpcUnary<DisconnectResponse>(scope, responseObserver) {
       val bluetoothDevice = request.connection.toBluetoothDevice(bluetoothAdapter)
@@ -243,10 +250,12 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       }
 
       val connectionStateChangedFlow =
-        flow
-          .filter { it.getAction() == BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED }
-          .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
-          .map { it.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR) }
+          flow
+              .filter { it.getAction() == BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED }
+              .filter { it.getBluetoothDeviceExtra() == bluetoothDevice }
+              .map {
+                it.getIntExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, BluetoothAdapter.ERROR)
+              }
 
       bluetoothDevice.disconnect()
       connectionStateChangedFlow.filter { it == BluetoothAdapter.STATE_DISCONNECTED }.first()
@@ -256,8 +265,8 @@ class Host(private val context: Context, private val server: Server) : HostImplB
   }
 
   override fun connectLE(
-    request: ConnectLERequest,
-    responseObserver: StreamObserver<ConnectLEResponse>
+      request: ConnectLERequest,
+      responseObserver: StreamObserver<ConnectLEResponse>
   ) {
     grpcUnary<ConnectLEResponse>(scope, responseObserver) {
       val ptsAddress = request.address.decodeToString()
@@ -265,10 +274,9 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       val device = scanLeDevice(ptsAddress)
       GattInstance(device!!, TRANSPORT_LE, context).waitForState(BluetoothProfile.STATE_CONNECTED)
       ConnectLEResponse.newBuilder()
-        .setConnection(
-          Connection.newBuilder().setCookie(ByteString.copyFromUtf8(device.address)).build()
-        )
-        .build()
+          .setConnection(
+              Connection.newBuilder().setCookie(ByteString.copyFromUtf8(device.address)).build())
+          .build()
     }
   }
 
@@ -287,21 +295,21 @@ class Host(private val context: Context, private val server: Server) : HostImplB
     runBlocking {
       val flow = callbackFlow {
         val leScanCallback =
-          object : ScanCallback() {
-            override fun onScanFailed(errorCode: Int) {
-              super.onScanFailed(errorCode)
-              Log.d(TAG, "onScanFailed: errorCode: $errorCode")
-              trySendBlocking(null)
-            }
-            override fun onScanResult(callbackType: Int, result: ScanResult) {
-              super.onScanResult(callbackType, result)
-              val deviceAddress = result.device.address
-              if (deviceAddress == ptsAddress) {
-                Log.d(TAG, "found device address: $deviceAddress")
-                trySendBlocking(result.device)
+            object : ScanCallback() {
+              override fun onScanFailed(errorCode: Int) {
+                super.onScanFailed(errorCode)
+                Log.d(TAG, "onScanFailed: errorCode: $errorCode")
+                trySendBlocking(null)
+              }
+              override fun onScanResult(callbackType: Int, result: ScanResult) {
+                super.onScanResult(callbackType, result)
+                val deviceAddress = result.device.address
+                if (deviceAddress == ptsAddress) {
+                  Log.d(TAG, "found device address: $deviceAddress")
+                  trySendBlocking(result.device)
+                }
               }
             }
-          }
         val bluetoothLeScanner = bluetoothAdapter.bluetoothLeScanner
         bluetoothLeScanner?.startScan(leScanCallback) ?: run { trySendBlocking(null) }
         awaitClose { bluetoothLeScanner?.stopScan(leScanCallback) }
@@ -309,5 +317,43 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothDevice = flow.first()
     }
     return bluetoothDevice
+  }
+
+  override fun startAdvertising(
+      request: StartAdvertisingRequest,
+      responseObserver: StreamObserver<StartAdvertisingResponse>
+  ) {
+    grpcUnary(scope, responseObserver) {
+      callbackFlow {
+        val handle = advertiserIndex
+        advertiserIndex += 1
+
+        val callback = object : AdvertiseCallback() {
+          override fun onStartSuccess(settingsInEffect: AdvertiseSettings) {
+            sendBlocking(StartAdvertisingResponse.newBuilder().setHandle(AdvertisingHandle.newBuilder().setCookie(ByteString.copyFromUtf8(handle.toString()))).build())
+          }
+          override fun onStartFailure(errorCode: Int) {
+            error("failed to start advertising")
+          }
+        }
+        advertisers[handle] = callback
+
+        bluetoothAdapter.bluetoothLeAdvertiser.startAdvertising(
+            AdvertiseSettings.Builder()
+              .setConnectable(request.connectable)
+              .setOwnAddressType(
+                when (request.ownAddressType!!) {
+                 AddressType.PUBLIC -> ADDRESS_TYPE_PUBLIC
+                 AddressType.RANDOM -> ADDRESS_TYPE_RANDOM
+                 AddressType.UNRECOGNIZED -> error("unrecognized address type ${request.ownAddressType}")
+               })
+              .build(),
+            AdvertiseData.Builder().build(),
+            callback,
+        )
+
+        awaitClose { /* no-op */ }
+      }.first()
+    }
   }
 }

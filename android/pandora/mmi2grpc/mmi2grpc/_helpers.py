@@ -40,19 +40,24 @@ def assert_description(f):
 
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
-        description = textwrap.fill(kwargs['description'], DOCSTRING_WIDTH, replace_whitespace=False)
-        docstring = textwrap.dedent(f.__doc__ or '')
+        description = textwrap.fill(
+            kwargs["description"], DOCSTRING_WIDTH, replace_whitespace=False
+        )
+        docstring = textwrap.dedent(f.__doc__ or "")
 
         if docstring.strip() != description.strip():
-            print(f'Expected description of {f.__name__}:')
+            print(f"Expected description of {f.__name__}:")
             print(description)
 
             # Generate AssertionError.
             test = unittest.TestCase()
             test.maxDiff = None
-            test.assertMultiLineEqual(docstring.strip(), description.strip(),
-                                      f'description does not match with function docstring of'
-                                      f'{f.__name__}')
+            test.assertMultiLineEqual(
+                docstring.strip(),
+                description.strip(),
+                f"description does not match with function docstring of"
+                f"{f.__name__}",
+            )
 
         return f(*args, **kwargs)
 
@@ -81,10 +86,12 @@ def match_description(f):
 
     @functools.wraps(f)
     def wrapper(*args, **kwargs):
-        description = normalize(kwargs['description'])
+        description = normalize(kwargs["description"])
         match = regex.fullmatch(description)
 
-        assert match is not None, f'description does not match with function docstring of {f.__name__}:\n{repr(description)}\n!=\n{repr(docstring)}'
+        assert (
+            match is not None
+        ), f"description does not match with function docstring of {f.__name__}:\n{repr(description)}\n!=\n{repr(docstring)}"
 
         return f(*args, **kwargs, **match.groupdict())
 
@@ -93,29 +100,37 @@ def match_description(f):
 
 def format_function(mmi_name, mmi_description):
     """Returns the base format of a function implementing a PTS MMI."""
-    wrapped_description = textwrap.fill(mmi_description, DOCSTRING_WIDTH, replace_whitespace=False)
-    return (f'@assert_description\n'
-            f'def {mmi_name}(self, **kwargs):\n'
-            f'    """\n'
-            f'{textwrap.indent(wrapped_description, "    ")}\n'
-            f'    """\n'
-            f'\n'
-            f'    return "OK"\n')
+    wrapped_description = textwrap.fill(
+        mmi_description, DOCSTRING_WIDTH, replace_whitespace=False
+    )
+    return (
+        f"@assert_description\n"
+        f"def {mmi_name}(self, **kwargs):\n"
+        f'    """\n'
+        f'{textwrap.indent(wrapped_description, "    ")}\n'
+        f'    """\n'
+        f"\n"
+        f'    return "OK"\n'
+    )
 
 
 def format_proxy(profile, mmi_name, mmi_description):
     """Returns the base format of a profile proxy including a given MMI."""
-    wrapped_function = textwrap.indent(format_function(mmi_name, mmi_description), '    ')
-    return (f'from mmi2grpc._helpers import assert_description\n'
-            f'from mmi2grpc._proxy import ProfileProxy\n'
-            f'\n'
-            f'from pandora.{profile.lower()}_grpc import {profile}\n'
-            f'\n'
-            f'\n'
-            f'class {profile}Proxy(ProfileProxy):\n'
-            f'\n'
-            f'    def __init__(self, channel):\n'
-            f'        super().__init__()\n'
-            f'        self.{profile.lower()} = {profile}(channel)\n'
-            f'\n'
-            f'{wrapped_function}')
+    wrapped_function = textwrap.indent(
+        format_function(mmi_name, mmi_description), "    "
+    )
+    return (
+        f"from mmi2grpc._helpers import assert_description\n"
+        f"from mmi2grpc._proxy import ProfileProxy\n"
+        f"\n"
+        f"from pandora.{profile.lower()}_grpc import {profile}\n"
+        f"\n"
+        f"\n"
+        f"class {profile}Proxy(ProfileProxy):\n"
+        f"\n"
+        f"    def __init__(self, channel):\n"
+        f"        super().__init__()\n"
+        f"        self.{profile.lower()} = {profile}(channel)\n"
+        f"\n"
+        f"{wrapped_function}"
+    )
