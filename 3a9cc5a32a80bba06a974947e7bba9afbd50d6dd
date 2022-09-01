@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fff9e4c0_f0a2a7a1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T18:11:40Z",
+      "side": 1,
+      "message": "This will allow to call `getConnectionPolicy` on the following profile that where not implemented before:\n`MapService`\n`HidDeviceService`\n`PbapService`\n`SapService`\n\nIs this an issue?",
+      "range": {
+        "startLine": 1092,
+        "startChar": 35,
+        "endLine": 1092,
+        "endChar": 70
+      },
+      "revId": "3a9cc5a32a80bba06a974947e7bba9afbd50d6dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9019c7d9_08c97833",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T18:11:40Z",
+      "side": 1,
+      "message": "This will allow to call `connect` on the following profile that where not implemented before:\n`MapService`\n`HidDeviceService`\n`PbapService`\n`SapService`\n\nIs this an issue?",
+      "range": {
+        "startLine": 1121,
+        "startChar": 16,
+        "endLine": 1121,
+        "endChar": 31
+      },
+      "revId": "3a9cc5a32a80bba06a974947e7bba9afbd50d6dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5399eb0_33bfb498",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4240,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T18:11:40Z",
+      "side": 1,
+      "message": "This will allow to call `setConnectionPolicy` on the following profile that where not implemented before:\n`MapService`\n`HidDeviceService`\n`PbapService`\n`SapService`\n`BatteryService`\n\nIs this an issue?",
+      "range": {
+        "startLine": 4240,
+        "startChar": 16,
+        "endLine": 4240,
+        "endChar": 43
+      },
+      "revId": "3a9cc5a32a80bba06a974947e7bba9afbd50d6dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2de1075_b4cf4d92",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 4268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T18:11:40Z",
+      "side": 1,
+      "message": "This will allow to call `disconnect` on the following profile that where not implemented before:\n`BatteryService`\n\nIs this an issue?",
+      "range": {
+        "startLine": 4268,
+        "startChar": 16,
+        "endLine": 4268,
+        "endChar": 43
+      },
+      "revId": "3a9cc5a32a80bba06a974947e7bba9afbd50d6dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
