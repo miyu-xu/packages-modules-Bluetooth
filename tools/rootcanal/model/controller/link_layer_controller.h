@@ -44,7 +44,9 @@ class LinkLayerController {
  public:
   static constexpr size_t kIrkSize = 16;
 
-  LinkLayerController(const DeviceProperties& properties);
+  LinkLayerController(const Address& address,
+                      const DeviceProperties& properties);
+
   ErrorCode SendCommandToRemoteByAddress(
       OpCode opcode, bluetooth::packet::PacketView<true> args,
       const Address& remote);
@@ -114,6 +116,8 @@ class LinkLayerController {
                               uint8_t rssi);
 
  public:
+  const Address& GetAddress() const;
+
   void IncomingPacket(model::packets::LinkLayerPacketView incoming);
 
   void TimerTick();
@@ -474,7 +478,9 @@ class LinkLayerController {
   void IncomingScoDisconnect(model::packets::LinkLayerPacketView packet);
 
  private:
+  const Address& address_;
   const DeviceProperties& properties_;
+
   AclConnectionHandler connections_;
 
   // Callbacks to schedule tasks.

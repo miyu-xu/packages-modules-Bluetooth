@@ -108,12 +108,6 @@ class DualModeController : public Device {
       const std::function<void(std::shared_ptr<std::vector<uint8_t>>)>&
           send_iso);
 
-  // Set the device's address.
-  void SetAddress(Address address) override;
-
-  // Get the device's address.
-  const Address& GetAddress();
-
   // Controller commands. For error codes, see the Bluetooth Core Specification,
   // Version 4.2, Volume 2, Part D (page 370).
 
@@ -628,7 +622,11 @@ class DualModeController : public Device {
   void StopTimer();
 
  protected:
-  LinkLayerController link_layer_controller_{properties_};
+  // Controller configuration.
+  DeviceProperties properties_;
+
+  // Link Layer state.
+  LinkLayerController link_layer_controller_{address_, properties_};
 
  private:
   // Set a timer for a future action
