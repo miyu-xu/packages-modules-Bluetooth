@@ -16,6 +16,40 @@
       "message": "Hi, this series is ready for review!\nThanks in advance.",
       "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d7d7289_e1b41f62",
+        "filename": "system/gd/rust/linux/stack/build.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-01T20:28:01Z",
+      "side": 1,
+      "message": "Is this needed only for test? I wonder if there is a way to avoid linking in non-test builds?",
+      "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c10236be_37269153",
+        "filename": "system/gd/rust/linux/stack/build.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1831528
+      },
+      "writtenOn": "2022-09-01T20:28:01Z",
+      "side": 1,
+      "message": "maybe this is not needed? We don\u0027t want to rebuild every time a c++ file changes.",
+      "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
