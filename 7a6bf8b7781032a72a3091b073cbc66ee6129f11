@@ -56,6 +56,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0ee4eb6e_932f4f72",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1581454
+      },
+      "writtenOn": "2022-09-01T17:23:09Z",
+      "side": 1,
+      "message": "Instead of SIMPLE_PAIRING_COMPLETE, we should use Authentication_complete",
+      "revId": "7a6bf8b7781032a72a3091b073cbc66ee6129f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd8e10c1_44a5c10d",
         "filename": "system/gd/os/android/metrics.cc",
         "patchSetId": 4
