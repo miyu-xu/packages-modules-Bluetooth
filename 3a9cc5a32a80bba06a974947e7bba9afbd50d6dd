@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d416d424_12bfa90b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-09-01T18:52:03Z",
+      "side": 1,
+      "message": "getConnectionPolicy should be fine because it just retrieves the state from our DB. I am surprised those profiles were missed.",
+      "parentUuid": "fff9e4c0_f0a2a7a1",
+      "range": {
+        "startLine": 1092,
+        "startChar": 35,
+        "endLine": 1092,
+        "endChar": 70
+      },
+      "revId": "3a9cc5a32a80bba06a974947e7bba9afbd50d6dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9019c7d9_08c97833",
