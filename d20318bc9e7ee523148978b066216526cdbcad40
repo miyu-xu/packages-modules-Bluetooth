@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c4dd676_e15a705b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-01T04:08:55Z",
+      "side": 1,
+      "message": "So JoinHandle doesn\u0027t abort when dropped. That\u0027s some sad news 😞\n\nDo you mind submitting a follow-up fixing this for the freshness check too? Thanks.",
+      "revId": "d20318bc9e7ee523148978b066216526cdbcad40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
