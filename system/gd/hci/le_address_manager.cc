@@ -156,10 +156,10 @@ void LeAddressManager::register_client(LeAddressManagerCallback* callback) {
       address_policy_ == AddressPolicy::USE_NON_RESOLVABLE_ADDRESS) {
       if (registered_clients_.size() == 1) {
         schedule_rotate_random_address();
-        LOG_INFO("Scheduled address rotation for first client registered");
+        LOG_DEBUG("Scheduled address rotation for first client registered");
       }
   }
-  LOG_INFO("Client registered");
+  LOG_DEBUG("Client registered");
 }
 
 void LeAddressManager::Unregister(LeAddressManagerCallback* callback) {
@@ -174,11 +174,11 @@ void LeAddressManager::unregister_client(LeAddressManagerCallback* callback) {
       ack_resume(callback);
     }
     registered_clients_.erase(callback);
-    LOG_INFO("Client unregistered");
+    LOG_DEBUG("Client unregistered");
   }
   if (registered_clients_.empty() && address_rotation_alarm_ != nullptr) {
     address_rotation_alarm_->Cancel();
-    LOG_INFO("Cancelled address rotation alarm");
+    LOG_DEBUG("Cancelled address rotation alarm");
   }
 }
 
@@ -234,14 +234,14 @@ void LeAddressManager::push_command(Command command) {
 
 void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
   if (registered_clients_.find(callback) == registered_clients_.end()) {
-    LOG_INFO("No clients registered to ack pause");
+    LOG_DEBUG("No clients registered to ack pause");
     return;
   }
   registered_clients_.find(callback)->second = ClientState::PAUSED;
   for (auto client : registered_clients_) {
     switch (client.second) {
       case ClientState::PAUSED:
-        LOG_INFO("Client already in paused state");
+        LOG_DEBUG("Client already in paused state");
         break;
       case ClientState::WAITING_FOR_PAUSE:
         // make sure all client paused
@@ -266,11 +266,12 @@ void LeAddressManager::ack_pause(LeAddressManagerCallback* callback) {
 void LeAddressManager::resume_registered_clients() {
   // Do not resume clients if cached command is not empty
   if (!cached_commands_.empty()) {
+    LOG_DEBUG("Skipped client resume still have cached commands count:%zu", cached_commands_.size());
     handle_next_command();
     return;
   }
 
-  LOG_INFO("Resuming registered clients");
+  LOG_DEBUG("Cached commands is empty resuming registered clients");
   for (auto& client : registered_clients_) {
     client.second = ClientState::WAITING_FOR_RESUME;
     client.first->OnResume();
