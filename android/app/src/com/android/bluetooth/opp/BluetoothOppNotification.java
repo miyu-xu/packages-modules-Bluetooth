@@ -574,8 +574,6 @@ class BluetoothOppNotification {
                             true)
                             .setOngoing(true)
                             .setWhen(info.mTimeStamp)
-                            .addAction(actionDecline)
-                            .addAction(actionAccept)
                             .setContentIntent(PendingIntent.getBroadcast(mContext, 0,
                                     new Intent(baseIntent).setAction(
                                             Constants.ACTION_INCOMING_FILE_CONFIRM),
@@ -603,6 +601,8 @@ class BluetoothOppNotification {
                             true)
                             .setOngoing(true)
                             .setWhen(info.mTimeStamp)
+                            .addAction(actionDecline)
+                            .addAction(actionAccept)
                             .setContentIntent(PendingIntent.getBroadcast(mContext, 0,
                                     new Intent(baseIntent).setAction(
                                             Constants.ACTION_INCOMING_FILE_CONFIRM),
