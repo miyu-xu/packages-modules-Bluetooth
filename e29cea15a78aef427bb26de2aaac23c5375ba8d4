@@ -22,6 +22,23 @@
       },
       "revId": "e29cea15a78aef427bb26de2aaac23c5375ba8d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d79908_33cd74c5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1087,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-09-01T18:49:28Z",
+      "side": 0,
+      "message": "I know this CL does a 1:1 copy of existing functionality into the profile services, but there are spec-defined UUIDs for some of these profiles which aren\u0027t reflected here. We can see all the UUIDs here: https://btprodspecificationrefs.blob.core.windows.net/assigned-values/16-bit%20UUID%20Numbers%20Document.pdf.\n\nWe should file a follow-up bug to look into why these aren\u0027t included in our logic. I wouldn\u0027t block this CL on that though again because it\u0027s just maintaining existing functionality :)",
+      "revId": "e29cea15a78aef427bb26de2aaac23c5375ba8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

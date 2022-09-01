@@ -91,6 +91,23 @@
       },
       "revId": "3a9cc5a32a80bba06a974947e7bba9afbd50d6dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5e2432_a82bb382",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2022-09-01T18:49:28Z",
+      "side": 1,
+      "message": "nit: We don\u0027t need this in any of the service classes. They aren\u0027t part of the framework code, so they shouldn\u0027t be exposed in the API surface.",
+      "revId": "3a9cc5a32a80bba06a974947e7bba9afbd50d6dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
