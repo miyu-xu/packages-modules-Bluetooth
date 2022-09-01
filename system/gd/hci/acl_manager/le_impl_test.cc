@@ -511,6 +511,75 @@ TEST_F(LeImplTest, register_with_address_manager__AddressPolicyResolvableAddress
   ASSERT_TRUE(log_capture->Rewind()->Find("Client unregistered"));
 }
 
+TEST_F(LeImplTest, add_device_to_resolving_list) {
+  bluetooth::common::InitFlags::Load(test_flags);
+
+  // Some kind of privacy policy must be set for LeAddressManager to operate properly
+  set_privacy_policy_for_initiator_address(fixed_address_, LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS);
+  // Let LeAddressManager::resume_registered_clients execute
+  sync_handler();
+
+  ASSERT_EQ(0UL, hci_layer_->NumberOfQueuedCommands());
+
+  // le_impl should not be registered with address manager
+  ASSERT_FALSE(le_impl_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->pause_connection);
+
+  ASSERT_EQ(0UL, le_impl_->le_address_manager_->NumberCachedCommands());
+  // Acknowledge that the le_impl has quiesced all relevant controller state
+  le_impl_->add_device_to_resolving_list(remote_public_address_, kPeerIdentityResolvingKey, kLocalIdentityResolvingKey);
+  ASSERT_EQ(3UL, le_impl_->le_address_manager_->NumberCachedCommands());
+
+  // Ensure that both |register_client| and |pause_registered_clients| queued on the
+  // handler executed
+  sync_handler();
+  sync_handler();
+  sync_handler();
+
+  // After the pause is received the le_address_manager will start sending
+  // the cached commands one at a time to the hci layer.
+  ASSERT_EQ(1UL, hci_layer_->NumberOfQueuedCommands());
+  {
+    auto command = CreateCommand<LeSetAddressResolutionEnableView>(hci_layer_->DequeueCommandBytes());
+    ASSERT_TRUE(command.IsValid());
+    ASSERT_EQ(Enable::DISABLED, command.GetAddressResolutionEnable());
+    SendCommandComplete(OpCode::LE_SET_ADDRESS_RESOLUTION_ENABLE, ErrorCode::SUCCESS);
+  }
+  SendCommandComplete(OpCode::LE_ADD_DEVICE_TO_RESOLVING_LIST, ErrorCode::SUCCESS);
+  sync_handler();
+
+  ASSERT_EQ(2UL, hci_layer_->NumberOfQueuedCommands());
+  {
+    auto command = CreateCommand<LeAddDeviceToResolvingListView>(hci_layer_->DequeueCommandBytes());
+    ASSERT_TRUE(command.IsValid());
+    ASSERT_EQ(PeerAddressType::PUBLIC_DEVICE_OR_IDENTITY_ADDRESS, command.GetPeerIdentityAddressType());
+    ASSERT_EQ(remote_public_address_.GetAddress(), command.GetPeerIdentityAddress());
+    ASSERT_EQ(kPeerIdentityResolvingKey, command.GetPeerIrk());
+    ASSERT_EQ(kLocalIdentityResolvingKey, command.GetLocalIrk());
+  }
+
+  ASSERT_EQ(1UL, hci_layer_->NumberOfQueuedCommands());
+
+  {
+    auto command = CreateCommand<LeSetAddressResolutionEnableView>(hci_layer_->DequeueCommandBytes());
+    ASSERT_TRUE(command.IsValid());
+    ASSERT_EQ(Enable::ENABLED, command.GetAddressResolutionEnable());
+
+    SendCommandComplete(OpCode::LE_SET_ADDRESS_RESOLUTION_ENABLE, ErrorCode::SUCCESS);
+  }
+
+  ASSERT_EQ(0UL, hci_layer_->NumberOfQueuedCommands());
+
+  ASSERT_TRUE(le_impl_->address_manager_registered);
+
+  le_impl_->ready_to_unregister = true;
+
+  le_impl_->check_for_unregister();
+  sync_handler();
+  ASSERT_FALSE(le_impl_->address_manager_registered);
+  ASSERT_FALSE(le_impl_->pause_connection);
+}
+
 }  // namespace acl_manager
 }  // namespace hci
 }  // namespace bluetooth
