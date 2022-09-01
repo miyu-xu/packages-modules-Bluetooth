@@ -25,6 +25,7 @@ import grpc
 from mmi2grpc.a2dp import A2DPProxy
 from mmi2grpc.avrcp import AVRCPProxy
 from mmi2grpc.gatt import GATTProxy
+from mmi2grpc.gap import GAPProxy
 from mmi2grpc.hfp import HFPProxy
 from mmi2grpc.sdp import SDPProxy
 from mmi2grpc.sm import SMProxy
@@ -34,7 +35,7 @@ from pandora.host_grpc import Host
 
 GRPC_PORT = 8999
 MAX_RETRIES = 10
-GRPC_SERVER_INIT_TIMEOUT = 10 # seconds
+GRPC_SERVER_INIT_TIMEOUT = 10  # seconds
 
 
 class IUT:
@@ -59,6 +60,7 @@ class IUT:
         self._a2dp = None
         self._avrcp = None
         self._gatt = None
+        self._gap = None
         self._hfp = None
         self._sdp = None
         self._sm = None
@@ -74,6 +76,7 @@ class IUT:
         self._a2dp = None
         self._avrcp = None
         self._gatt = None
+        self._gap = None
         self._hfp = None
         self._sdp = None
         self._sm = None
@@ -106,8 +109,7 @@ class IUT:
         def read_local_address():
             with grpc.insecure_channel(f'localhost:{self.port}') as channel:
                 nonlocal mut_address
-                mut_address = self._retry(
-                    Host(channel).ReadLocalAddress)(wait_for_ready=True).address
+                mut_address = self._retry(Host(channel).ReadLocalAddress)(wait_for_ready=True).address
 
         thread = Thread(target=read_local_address)
         thread.start()
@@ -117,7 +119,6 @@ class IUT:
             raise Exception("Pandora gRPC server timeout")
         else:
             return mut_address
-
 
     def interact(self, pts_address: bytes, profile: str, test: str, interaction: str, description: str, style: str,
                  **kwargs) -> str:
@@ -148,6 +149,11 @@ class IUT:
             if not self._gatt:
                 self._gatt = GATTProxy(grpc.insecure_channel(f'localhost:{self.port}'))
             return self._gatt.interact(test, interaction, description, pts_address)
+        # Handles GAP MMIs.
+        if profile in ('GAP'):
+            if not self._gap:
+                self._gap = GAPProxy(grpc.insecure_channel(f'localhost:{self.port}'))
+            return self._gap.interact(test, interaction, description, pts_address)
         # Handles HFP MMIs.
         if profile in ('HFP'):
             if not self._hfp:
