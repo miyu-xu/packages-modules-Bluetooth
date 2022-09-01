@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "225bc3f1_44cb7283",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T19:05:29Z",
+      "side": 1,
+      "message": "Is there any way we can remove the actionValue and update the action string ?\nIf it was a systemApi before, we should have the control on it.",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 30
+      },
+      "revId": "5dd5ad56efdb17ecfecd97c2f85c9a7ef76f3148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f7610c9_643206ff",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T19:05:29Z",
+      "side": 1,
+      "message": "Is this intended to be used somewhere or is it just for information purpose that the mCodecSpecific1 contain one of this value ?\n\n\n----\n\n`CODEC_SPECIFIC_1_LDAC_` vs `LdacCodecSpecific1`\n\nCan we uniformise the word order ?",
+      "range": {
+        "startLine": 230,
+        "startChar": 22,
+        "endLine": 230,
+        "endChar": 40
+      },
+      "revId": "5dd5ad56efdb17ecfecd97c2f85c9a7ef76f3148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
