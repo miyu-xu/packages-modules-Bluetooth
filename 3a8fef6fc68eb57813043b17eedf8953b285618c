@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e63c06_d6098a2f",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-01T20:04:06Z",
+      "side": 1,
+      "message": "Sure that works too.  I was just suggesting an alternative.",
+      "parentUuid": "eac291a8_7ca009ce",
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3db67138_72af66c0",
@@ -118,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "032ea634_1ad593a4",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-01T20:04:06Z",
+      "side": 1,
+      "message": "No, I mean if the DIS_ReadDISInfo returns false then it\u0027ll execute the queued request.  You are trying to delay this until ReadDISInfo is complete before you say that its really complete right? Which seems to be expected behavior.\n\nI think removing the ifdef everywhere and doing the bool is_floss \u003d false and setting it with an ifdef is the cleanest way to go.  \n\nLooks like a comment of mine got lost.  Basically it was this.\n\n```\nbool is_floss \u003d false;\n\n#if TARGET_FLOSS\nis_floss \u003d true;\n#endif\n\nbta_dm_read_dis_cmpl(bta_dm_search_cb.peer_bdaddr, (is_floss ? DIS_ATTR_PNP_ID_BIT : NULL), is_floss)\n```\n\nThis would is what I meant below.\n\nLess to change in the future.  Why wouldn\u0027t Android want this?  What is the gain from this?",
+      "parentUuid": "7a7e32c0_da2d62f2",
+      "range": {
+        "startLine": 1384,
+        "startChar": 0,
+        "endLine": 1387,
+        "endChar": 3
+      },
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "438efb8e_2d4a080a",
@@ -155,6 +197,30 @@
       "side": 1,
       "message": "Sorry - I don\u0027t get this. The second parameter doesn\u0027t match, do you mean to left it NULL (since it doesn\u0027t matter anyway if the 3rd parameter is false)?\n\nAlso, why not directly call bta_dm_execute_queued_request()?",
       "parentUuid": "438efb8e_2d4a080a",
+      "range": {
+        "startLine": 1390,
+        "startChar": 2,
+        "endLine": 1390,
+        "endChar": 34
+      },
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27186f15_b81c2403",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-01T20:04:06Z",
+      "side": 1,
+      "message": "Its kinda indirection right.  Yeah NULL would\u0027ve been acceptable there.  it was more of an example. Basically, you can streamline the logic and gate it on the conditional third parameter.  its fairly simple and you can set the variable based on the IFDEF which leaves less code behind an IFDEF and also opens up the possibility to use a sysprop instead.\n\nI guess yeah you could call it directly, but then you go back to the treehugger error 😊",
+      "parentUuid": "15ebce22_8bf2c931",
       "range": {
         "startLine": 1390,
         "startChar": 2,
