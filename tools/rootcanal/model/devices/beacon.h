@@ -16,6 +16,7 @@
 
 #pragma once
 
+#include <chrono>
 #include <cstdint>
 #include <vector>
 
@@ -23,7 +24,8 @@
 
 namespace rootcanal {
 
-// A simple device that advertises periodically and is not connectable.
+// Simple device that advertises with non-connectable advertising in general
+// discoverable mode, and responds to LE scan requests.
 class Beacon : public Device {
  public:
   Beacon();
@@ -34,16 +36,25 @@ class Beacon : public Device {
     return std::make_shared<Beacon>(args);
   }
 
-  // Return a string representation of the type of device.
-  virtual std::string GetTypeString() const override;
+  virtual void SetAddress(Address address) override { address_ = address; }
 
-  // Return a string representation of the device.
+  virtual std::string GetTypeString() const override;
   virtual std::string ToString() const override;
 
+  // Link Layer packet handling.
   virtual void IncomingPacket(
       model::packets::LinkLayerPacketView packet) override;
 
+  // Scheduler tick.
   virtual void TimerTick() override;
+
+ protected:
+  Address address_{};
+  model::packets::AdvertisementType advertising_type_{};
+  std::array<uint8_t, 31> advertising_data_{};
+  std::array<uint8_t, 31> scan_response_data_{};
+  std::chrono::steady_clock::duration advertising_interval_{};
+  std::chrono::steady_clock::time_point advertising_last_{};
 
  private:
   static bool registered_;

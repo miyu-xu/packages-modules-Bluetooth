@@ -36,8 +36,7 @@ using ::bluetooth::hci::Address;
 class Device {
  public:
   Device(const std::string properties_filename = "")
-      : last_advertisement_(std::chrono::steady_clock::now()),
-        properties_(properties_filename) {}
+      : properties_(properties_filename) {}
   virtual ~Device() = default;
 
   // Return a string representation of the type of device.
@@ -55,14 +54,6 @@ class Device {
   // Set the device's Bluetooth address.
   virtual void SetAddress(Address address);
 
-  // Set the advertisement interval in milliseconds.
-  void SetAdvertisementInterval(std::chrono::milliseconds ms) {
-    advertising_interval_ms_ = ms;
-  }
-
-  // Returns true if the host could see an advertisement about now.
-  virtual bool IsAdvertisementAvailable() const;
-
   // Let the device know that time has passed.
   virtual void TimerTick() {}
 
@@ -77,6 +68,7 @@ class Device {
   virtual void SendLinkLayerPacket(
       std::shared_ptr<model::packets::LinkLayerPacketBuilder> packet,
       Phy::Type phy_type);
+
   virtual void SendLinkLayerPacket(model::packets::LinkLayerPacketView packet,
                                    Phy::Type phy_type);
 
@@ -87,15 +79,7 @@ class Device {
  protected:
   std::vector<std::shared_ptr<PhyLayer>> phy_layers_;
 
-  std::chrono::steady_clock::time_point last_advertisement_;
-
-  // The time between page scans.
-  std::chrono::milliseconds page_scan_delay_ms_{};
-
-  // The spec defines the advertising interval as a 16-bit value, but since it
-  // is never sent in packets, we use std::chrono::milliseconds.
-  std::chrono::milliseconds advertising_interval_ms_{};
-
+  // Controller configuration.
   DeviceProperties properties_;
 
   // Callback to be invoked when this device is closed.

@@ -50,12 +50,6 @@ void Device::UnregisterPhyLayer(Phy::Type phy_type, uint32_t factory_id) {
   }
 }
 
-bool Device::IsAdvertisementAvailable() const {
-  return (advertising_interval_ms_ > std::chrono::milliseconds(0)) &&
-         (std::chrono::steady_clock::now() >=
-          last_advertisement_ + advertising_interval_ms_);
-}
-
 void Device::SendLinkLayerPacket(
     std::shared_ptr<model::packets::LinkLayerPacketBuilder> to_send,
     Phy::Type phy_type) {
