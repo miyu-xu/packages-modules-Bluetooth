@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f93056a_cdd2af35",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T00:07:06Z",
+      "side": 1,
+      "message": "Nice number aosp/2200000",
+      "revId": "650a63e4ccf5753e2a34d1c553dec765f298e57a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
