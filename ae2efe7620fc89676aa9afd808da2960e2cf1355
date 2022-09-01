@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2af91ff9_5b6a9428",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2022-09-01T08:20:28Z",
+      "side": 1,
+      "message": "Please remove this blank line",
+      "revId": "ae2efe7620fc89676aa9afd808da2960e2cf1355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
