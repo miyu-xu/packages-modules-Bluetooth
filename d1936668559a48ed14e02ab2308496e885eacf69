@@ -16,6 +16,24 @@
       "message": "Since PLC is in place, we should try to add basic unittest in the decode path.\n\nEx: generate a block of audio data plus packet losses, feed through decode() function in btm_sco_hci.cc and expect the output to look exactly like a golden output.\nThe (audio data, golden output) shall be generated in CRAS-BlueZ path. This way we can have some confidence that the ported code results equivalent behavior.",
       "revId": "d1936668559a48ed14e02ab2308496e885eacf69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19760e09_7df60dba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2022-09-01T00:10:58Z",
+      "side": 1,
+      "message": "Sure. Will work on it. Do you think we should wait for the unittest before merging this?",
+      "parentUuid": "dcb47a4e_fc52de27",
+      "revId": "d1936668559a48ed14e02ab2308496e885eacf69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
