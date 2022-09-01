@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db5b1cf6_a3640b0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2022-09-01T19:56:44Z",
+      "side": 1,
+      "message": "Do we risk running into a race condition where audio fwk think LE audio is inactive while lower native layer still keep LE audio as active?",
+      "range": {
+        "startLine": 10,
+        "startChar": 38,
+        "endLine": 11,
+        "endChar": 29
+      },
+      "revId": "dbd6c8dc9b3a7c3c11267eb5bdf1a0b28bf86a59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
