@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "adbd71a3_f7e97555",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-09-01T20:20:40Z",
+      "side": 1,
+      "message": "The SuppressLint is here because as Bluetooth profiles declare similar action values, we have to specify the profile in the actual string action. `\"android.bluetooth.a2dp.profile.action.ACTIVE_DEVICE_CHANGED\"`\n and `\"android.bluetooth.headset.profile.action.ACTIVE_DEVICE_CHANGED\"` are a good example of that.\n\n`ACTION_CODEC_CONFIG_CHANGED` is only declared in BluetoothA2d,so we could rename it, at the cost of consistency of action naming in the file.",
+      "parentUuid": "225bc3f1_44cb7283",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 30
+      },
+      "revId": "5dd5ad56efdb17ecfecd97c2f85c9a7ef76f3148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f7610c9_643206ff",
         "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
         "patchSetId": 3
