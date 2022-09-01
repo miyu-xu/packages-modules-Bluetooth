@@ -45,6 +45,30 @@
       },
       "revId": "5dd5ad56efdb17ecfecd97c2f85c9a7ef76f3148",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9d19f4b_f97fab82",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-09-01T20:07:08Z",
+      "side": 1,
+      "message": "We should add intDefs for constants sets as per go/android-api-guidelines#annotations-intdef, but as the codec specific 1, 2, 3 and 4 values are not all pre-defined, we can\u0027t have an exhaustive list of them thus we can\u0027t add the intDef as return value nor parameter value of codec specific getters/setters",
+      "parentUuid": "5f7610c9_643206ff",
+      "range": {
+        "startLine": 230,
+        "startChar": 22,
+        "endLine": 230,
+        "endChar": 40
+      },
+      "revId": "5dd5ad56efdb17ecfecd97c2f85c9a7ef76f3148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

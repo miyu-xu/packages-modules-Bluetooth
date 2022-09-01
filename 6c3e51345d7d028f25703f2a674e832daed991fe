@@ -22,6 +22,30 @@
       },
       "revId": "6c3e51345d7d028f25703f2a674e832daed991fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2a6600e_2dd0076e",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2022-09-01T20:07:08Z",
+      "side": 0,
+      "message": "Yes",
+      "parentUuid": "1617a266_d49b229c",
+      "range": {
+        "startLine": 785,
+        "startChar": 40,
+        "endLine": 785,
+        "endChar": 60
+      },
+      "revId": "6c3e51345d7d028f25703f2a674e832daed991fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
