@@ -132,7 +132,7 @@ class Security(private val context: Context) : SecurityImplBase() {
             PairingEventAnswer.AnswerCase.ANSWER_NOT_SET -> error("unexpected pairing answer type")
           }
         }
-        .launchIn(this)
+        .launchIn(globalScope)
 
       // TODO(243977710) - Resolve the transport on which pairing is taking place
       // so we can disambiguate intents
