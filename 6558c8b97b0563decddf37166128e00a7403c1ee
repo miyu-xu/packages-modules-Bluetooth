@@ -104,6 +104,24 @@
       "parentUuid": "7202bef4_3c4a221a",
       "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d8bc6d5_54f86ce9",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2022-09-01T19:56:05Z",
+      "side": 1,
+      "message": "This should be LOG_DEBUG, not LOG_ERROR.",
+      "parentUuid": "99349048_cfe6e567",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
