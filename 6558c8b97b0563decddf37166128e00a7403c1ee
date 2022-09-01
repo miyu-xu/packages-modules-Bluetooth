@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a94ee17_779c7e65",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3483,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-01T16:02:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3f54105_fbfbfe81",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "886b00a6_0e65538d",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6caf97f5_273f770c",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1611,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-01T16:02:26Z",
+      "side": 1,
+      "message": "This was for debugging, missed it.",
+      "parentUuid": "886b00a6_0e65538d",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7202bef4_3c4a221a",
@@ -48,6 +84,24 @@
       "writtenOn": "2022-08-31T20:14:39Z",
       "side": 1,
       "message": "LOG_DEBUG(\"Allow wake from %s\", name);",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99349048_cfe6e567",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1615,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-01T16:02:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7202bef4_3c4a221a",
       "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
