@@ -12,9 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 #pragma once
-#ifdef _WIN32
-#include "msvc-posix.h"
-#endif
 
 #include <sys/types.h>
 
