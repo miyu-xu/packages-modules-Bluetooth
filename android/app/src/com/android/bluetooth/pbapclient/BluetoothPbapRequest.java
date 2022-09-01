@@ -18,6 +18,7 @@ package com.android.bluetooth.pbapclient;
 
 import android.util.Log;
 
+import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.ClientOperation;
 import com.android.obex.ClientSession;
 import com.android.obex.HeaderSet;
@@ -44,9 +45,11 @@ abstract class BluetoothPbapRequest {
 
     protected HeaderSet mHeaderSet;
 
-    protected int mResponseCode;
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PROTECTED)
+    int mResponseCode;
 
-    private boolean mAborted = false;
+    @VisibleForTesting
+    boolean mAborted = false;
 
     private ClientOperation mOp = null;
 
