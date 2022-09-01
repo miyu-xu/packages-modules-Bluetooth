@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56936238_51dbaace",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1074,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2022-09-01T17:47:40Z",
+      "side": 0,
+      "message": "BluetoothProfile.OPP is never sent to this function",
+      "range": {
+        "startLine": 1072,
+        "startChar": 8,
+        "endLine": 1074,
+        "endChar": 9
+      },
+      "revId": "e29cea15a78aef427bb26de2aaac23c5375ba8d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
