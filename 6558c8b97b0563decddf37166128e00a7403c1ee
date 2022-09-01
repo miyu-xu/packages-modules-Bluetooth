@@ -16,6 +16,24 @@
       "message": "Open comment to make sure you pull in this change from previous commit",
       "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "366d5811_c2a29720",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3483,
+      "author": {
+        "id": 1132614
+      },
+      "writtenOn": "2022-09-01T16:09:14Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "968620a7_1e237cb4",
+      "revId": "6558c8b97b0563decddf37166128e00a7403c1ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
