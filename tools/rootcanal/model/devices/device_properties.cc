@@ -62,7 +62,6 @@ DeviceProperties::DeviceProperties(const std::string& file_name)
       le_resolving_list_size_(15) {
   std::string properties_raw;
 
-  ASSERT(Address::FromString("BB:BB:BB:BB:BB:AD", address_));
   ASSERT(Address::FromString("BB:BB:BB:BB:AD:1E", le_address_));
   name_ = {'D', 'e', 'f', 'a', 'u', 'l', 't'};
 
