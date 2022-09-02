@@ -46,6 +46,30 @@
       },
       "revId": "19a91c3ef9801e63095ffdc00ed6f8eeea25febf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4217f9e0_639e9110",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-02T10:48:22Z",
+      "side": 0,
+      "message": "Oh, I guess that\u0027s because you set the |start| correctly. When it didn\u0027t set, I remembered it will be `discoverable`.",
+      "parentUuid": "fe615bc8_5da2d59f",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 78
+      },
+      "revId": "19a91c3ef9801e63095ffdc00ed6f8eeea25febf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
