@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0de23b9e_2d98310a",
+        "filename": "system/gd/rust/linux/stack/build.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-02T07:25:43Z",
+      "side": 1,
+      "message": "For the current implementation, yes. To avoid linking it, I think we can take a class in some trait (something similar to dyn IBluetooth) instead of a Bluetooth struct. That way, we can implement a mock Bluetooth class and do some tests.\nThe pain point to do so is that in the other stack modules like bluetooth_media and suspend, they use Arc\u003cMutex\u003cBox\u003cBluetooth\u003e\u003e\u003e directly, but Rust is not capable to recognize Arc\u003cMutex\u003cBox\u003cBluetooth\u003e\u003e\u003e as Arc\u003cMutex\u003cBox\u003cdyn IBluetooth\u003e\u003e\u003e so when in service/main.rs, it seems to me that if we want to change BluetoothAdmin to take dyn IBluetooth, we also need to change others too.",
+      "parentUuid": "8d7d7289_e1b41f62",
+      "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c10236be_37269153",
         "filename": "system/gd/rust/linux/stack/build.rs",
         "patchSetId": 4
@@ -48,6 +66,24 @@
       "writtenOn": "2022-09-01T20:28:01Z",
       "side": 1,
       "message": "maybe this is not needed? We don\u0027t want to rebuild every time a c++ file changes.",
+      "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "033d4bca_74f7a07f",
+        "filename": "system/gd/rust/linux/stack/build.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-02T07:25:43Z",
+      "side": 1,
+      "message": "Ack, will remove it in the next patch version.",
+      "parentUuid": "c10236be_37269153",
       "revId": "fd5015e95484ee3f4cf763d694b1dcf2e6eea799",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
