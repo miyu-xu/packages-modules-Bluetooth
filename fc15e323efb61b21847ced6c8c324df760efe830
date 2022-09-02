@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58b6e02_533e90c9",
+        "filename": "system/audio_hal_interface/a2dp_encoding_host.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1318371
+      },
+      "writtenOn": "2022-09-02T05:58:16Z",
+      "side": 1,
+      "message": "Would you like to reset the pending command flag here while session ending? I also do that by aosp/1790448.\n\nAccording to your comment, the issue happens when A2DP is off (btif_a2dp_source_cb.State() \u003d\u003d kStateOff), and there shouldn\u0027t be audio session without A2DP.",
+      "revId": "fc15e323efb61b21847ced6c8c324df760efe830",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
