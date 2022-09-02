@@ -39,6 +39,8 @@ service Host {
   rpc ConnectLE(ConnectLERequest) returns (ConnectLEResponse);
   // Disconnect ongoing LE connection.
   rpc DisconnectLE(DisconnectLERequest) returns (google.protobuf.Empty);
+  // Enable connectable mode
+  rpc EnableConnectableMode(EnableConnectableModeRequest) returns (google.protobuf.Empty);
 }
 
 // Response of the `ReadLocalAddress` method.
@@ -124,4 +126,9 @@ message ConnectLEResponse {
 // Request of the `DisconnectLE` method
 message DisconnectLERequest {
   Connection connection = 1;
+}
+
+// Request of the `EnableConnectableMode` method
+message EnableConnectableModeRequest {
+  bytes address = 1;
 }
