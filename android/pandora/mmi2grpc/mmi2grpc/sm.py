@@ -47,7 +47,15 @@ NUM_OF_CONFIRMATIONS_REQUIRED = {
     "SM/PER/JW/BI-03-C": 2,
     "SM/PER/PKE/BV-02-C": 1,
     "SM/PER/PKE/BV-05-C": 2,
-    "SM/PER/PKE/BI-03-C": 1
+    "SM/PER/PKE/BI-03-C": 1,
+    "SM/PER/EKS/BV-02-C": 2,
+    "SM/PER/KDU/BV-01-C": 2,
+    "SM/PER/KDU/BV-02-C": 2,
+    "SM/PER/KDU/BV-03-C": 2,
+    "SM/PER/KDU/BV-07-C": 2,
+    "SM/PER/KDU/BV-08-C": 2,
+    "SM/PER/KDU/BV-09-C": 2,
+    "SM/PER/KDU/BI-01-C": 1
 }
 
 

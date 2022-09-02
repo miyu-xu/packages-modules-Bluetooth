@@ -38,6 +38,8 @@
         <option name="profile" value="SM/PER/PROT" />
         <option name="profile" value="SM/PER/JW" />
         <option name="profile" value="SM/PER/PKE" />
+        <option name="profile" value="SM/PER/EKS" />
+        <option name="profile" value="SM/PER/KDU" />
         <option name="profile" value="HOGP/RH" />
     </test>
 </configuration>
