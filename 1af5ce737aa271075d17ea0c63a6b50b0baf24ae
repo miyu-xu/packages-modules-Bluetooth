@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9ae4963_cec4eee1",
+        "filename": "android/pandora/server/proto/pandora/rfcomm.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-02T19:55:09Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "758c27e4_17d4636a",
+      "range": {
+        "startLine": 11,
+        "startChar": 2,
+        "endLine": 13,
+        "endChar": 77
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24ad679c_5bb2d0ab",
@@ -276,6 +300,30 @@
       "side": 1,
       "message": "I wanted to test an insecure socket, because it is different than what the other profiles are testing (more coverage).  I changed it to pair anyway, since that won\u0027t make a difference here.",
       "parentUuid": "da341ef5_e37f9ad5",
+      "range": {
+        "startLine": 70,
+        "startChar": 28,
+        "endLine": 70,
+        "endChar": 69
+      },
+      "revId": "1af5ce737aa271075d17ea0c63a6b50b0baf24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2767741c_d744cceb",
+        "filename": "android/pandora/server/src/com/android/pandora/Rfcomm.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2022-09-02T19:55:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba76ce82_092fdb6c",
       "range": {
         "startLine": 70,
         "startChar": 28,
