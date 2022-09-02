@@ -4243,6 +4243,14 @@ public final class BluetoothAdapter {
         }
     }
 
+    /**
+     * Registers a IBluetoothManagerCallback and returns the cached
+     * Bluetooth service proxy object.
+     *
+     * TODO: rename this API to registerBlueoothManagerCallback or something?
+     * the current name does not match what it does very well.
+     *
+     * /
     @UnsupportedAppUsage
     /*package*/ IBluetooth getBluetoothService(IBluetoothManagerCallback cb) {
         Objects.requireNonNull(cb);
