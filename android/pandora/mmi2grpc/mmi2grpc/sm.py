@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """SMP proxy module."""
+from queue import Queue
+from threading import Thread
 import sys
+import time
 
-from mmi2grpc._helpers import assert_description
+from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 from mmi2grpc._streaming import StreamWrapper
 
@@ -39,6 +42,16 @@ ACCEPTS_REMOTE_PAIRING_CONFIRMATION = {
     "SM/CEN/KDU/BI-03-C",
 }
 
+NUM_OF_CONFIRMATIONS_REQUIRED = {
+    "SM/PER/PROT/BV-02-C": 1,
+    "SM/PER/JW/BV-02-C": 2,
+    "SM/PER/JW/BI-02-C": 2,
+    "SM/PER/JW/BI-03-C": 2,
+    "SM/PER/PKE/BV-05-C": 2,
+    "SM/PER/PKE/BI-03-C": 1,
+    "SM/PER/PKE/BV-02-C": 1,
+}
+
 
 def debug(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
@@ -59,6 +72,8 @@ class SMProxy(ProfileProxy):
         self.host = Host(channel)
         self.connection = None
         self.pairing_stream = None
+        self.passkey_queue = Queue()
+        self._handle_passkey_requests()
 
     @assert_description
     def MMI_IUT_ENABLE_CONNECTION_SM(self, test, pts_addr: bytes, **kwargs):
@@ -104,7 +119,6 @@ class SMProxy(ProfileProxy):
         """
         Please confirm the following number matches IUT: 385874.
         """
-
         return "OK"
 
     @assert_description
@@ -114,3 +128,63 @@ class SMProxy(ProfileProxy):
         """
         self.host.SoftReset()
         return "OK"
+
+    @assert_description
+    def MMI_TESTER_ENABLE_CONNECTION_SM(self, test, pts_addr, **kwargs):
+        """
+        Action: Place the IUT in connectable mode
+        """
+        self.pairing_stream = self.security.OnPairing()
+        self.host.setLEConnectable()
+
+        for _ in range(NUM_OF_CONFIRMATIONS_REQUIRED.get(test, 0)):
+            event = get_event(pairing_stream=self.pairing_stream, addr=pts_addr)
+            self.pairing_stream.send(event=event, confirm=True)
+
+        self.pairing_stream.close()
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_SMP_TIMEOUT_30_SECONDS(self, **kwargs):
+        """
+        Wait for the 30 seconds. Lower tester will not send corresponding or
+        next SMP message.
+        """
+        return "OK"
+
+    @assert_description
+    def MMI_IUT_SMP_TIMEOUT_ADDITIONAL_10_SECONDS(self, **kwargs):
+        """
+        Wait for an additional 10 seconds. Lower test will send corresponding or
+        next SMP message.
+        """
+        time.sleep(10)
+        return "OK"
+
+    @match_description
+    def MMI_DISPLAY_PASSKEY_CODE(self, test, pts_addr: bytes, passkey: str, **kwargs):
+        """
+        Please enter (?P<passkey>[0-9]*) in the IUT.
+        """
+        self.passkey_queue.put(passkey)
+        return "OK"
+
+    @assert_description
+    def MMI_ENTER_PASSKEY_CODE(self, **kwargs):
+        """
+        Please enter 6 digit passkey code.
+        """
+
+        return "OK"
+
+    def _handle_passkey_requests(self):
+
+        def task():
+            pairing_events = self.security.OnPairing()
+            for event in pairing_events:
+                debug(f"event: {event}")
+                if event.passkey_entry_request:
+                    passkey = self.passkey_queue.get()
+                    pairing_events.send(event=event, passkey=int(passkey))
+
+        Thread(target=task).start()
