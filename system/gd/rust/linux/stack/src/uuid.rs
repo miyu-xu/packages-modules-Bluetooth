@@ -9,6 +9,7 @@ use bt_topshim::btif::{Uuid, Uuid128Bit};
 pub const A2DP_SINK: &str = "0000110B-0000-1000-8000-00805F9B34FB";
 pub const A2DP_SOURCE: &str = "0000110A-0000-1000-8000-00805F9B34FB";
 pub const ADV_AUDIO_DIST: &str = "0000110D-0000-1000-8000-00805F9B34FB";
+pub const BAS: &str = "0000180F-0000-1000-8000-00805F9B34FB";
 pub const HSP: &str = "00001108-0000-1000-8000-00805F9B34FB";
 pub const HSP_AG: &str = "00001112-0000-1000-8000-00805F9B34FB";
 pub const HFP: &str = "0000111E-0000-1000-8000-00805F9B34FB";
@@ -43,6 +44,7 @@ pub enum Profile {
     A2dpSink,
     A2dpSource,
     AdvAudioDist,
+    Bas,
     Hsp,
     HspAg,
     Hfp,
@@ -219,6 +221,7 @@ impl UuidHelper {
 pub fn parse_uuid_string<T: Into<String>>(uuid: T) -> Option<Uuid> {
     let uuid = uuid.into();
 
+    let uuid = uuid.chars().filter(|char| *char != '-').collect::<String>();
     if uuid.len() != 32 {
         return None;
     }

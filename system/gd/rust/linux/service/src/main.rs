@@ -8,13 +8,16 @@ use futures::future;
 use log::LevelFilter;
 use std::error::Error;
 use std::sync::{Arc, Mutex};
+use std::time::Duration;
 use syslog::{BasicLogger, Facility, Formatter3164};
+use tokio::time;
 
 use bt_topshim::{btif::get_btinterface, topstack};
 use btstack::{
     battery_manager::BatteryManager,
     battery_provider_manager::BatteryProviderManager,
     bluetooth::{get_bt_dispatcher, Bluetooth, IBluetooth},
+    bluetooth_battery_service::BatteryService,
     bluetooth_gatt::BluetoothGatt,
     bluetooth_media::BluetoothMedia,
     socket_manager::BluetoothSocketManager,
@@ -107,7 +110,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     let bluetooth_media =
         Arc::new(Mutex::new(Box::new(BluetoothMedia::new(tx.clone(), intf.clone()))));
     let battery_provider_manager = Arc::new(Mutex::new(Box::new(BatteryProviderManager::new())));
-    let battery_manager = Arc::new(Mutex::new(Box::new(BatteryManager::new())));
+    let battery_service =
+        Arc::new(Mutex::new(Box::new(BatteryService::new(bluetooth_gatt.clone(), tx.clone()))));
+    let battery_manager =
+        Arc::new(Mutex::new(Box::new(BatteryManager::new(battery_service.clone(), tx.clone()))));
     let bluetooth = Arc::new(Mutex::new(Box::new(Bluetooth::new(
         tx.clone(),
         intf.clone(),
@@ -156,6 +162,8 @@ fn main() -> Result<(), Box<dyn Error>> {
             rx,
             bluetooth.clone(),
             bluetooth_gatt.clone(),
+            battery_service.clone(),
+            battery_manager.clone(),
             bluetooth_media.clone(),
             suspend.clone(),
             bt_sock_mgr.clone(),
@@ -273,6 +281,11 @@ fn main() -> Result<(), Box<dyn Error>> {
             bluetooth.enable();
 
             bluetooth_gatt.lock().unwrap().init_profiles(tx.clone(), adapter.clone());
+            // TODO: investigate why this is necessary and remove it
+            tokio::spawn(async move {
+                time::sleep(Duration::from_millis(500)).await;
+                battery_service.lock().unwrap().init();
+            });
             bt_sock_mgr.lock().unwrap().initialize(intf.clone());
         }
 
