@@ -10,6 +10,7 @@ pub mod battery_manager;
 pub mod battery_provider_manager;
 pub mod bluetooth;
 pub mod bluetooth_adv;
+pub mod bluetooth_battery_service;
 pub mod bluetooth_gatt;
 pub mod bluetooth_media;
 pub mod callbacks;
@@ -74,6 +75,9 @@ pub enum Message {
 
     SocketManagerActions(SocketActions),
     SocketManagerCallbackDisconnected(u32),
+
+    // Battery related
+    BatteryServiceCallbackDisconnected(u32),
 }
 
 /// Umbrella class for the Bluetooth stack.
@@ -189,6 +193,9 @@ impl Stack {
                 }
                 Message::SocketManagerCallbackDisconnected(id) => {
                     bluetooth_socketmgr.lock().unwrap().remove_callback(id);
+                }
+                Message::BatteryServiceCallbackDisconnected(id) => {
+                    debug!("Disconnected");
                 }
             }
         }

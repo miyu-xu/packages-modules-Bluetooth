@@ -1016,6 +1016,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
 // TODO: Add unit tests for this implementation
 impl IBluetooth for Bluetooth {
     fn register_callback(&mut self, callback: Box<dyn IBluetoothCallback + Send>) {
+        log::info!("melhuishj: registering callback");
         self.callbacks.add_callback(callback);
     }
 
