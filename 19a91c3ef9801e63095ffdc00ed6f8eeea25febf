@@ -22,6 +22,30 @@
       },
       "revId": "19a91c3ef9801e63095ffdc00ed6f8eeea25febf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe615bc8_5da2d59f",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-02T10:44:53Z",
+      "side": 0,
+      "message": "`adapter discoverable `.",
+      "parentUuid": "e5be600e_4ac1ee30",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 78
+      },
+      "revId": "19a91c3ef9801e63095ffdc00ed6f8eeea25febf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
