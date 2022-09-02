@@ -70,6 +70,30 @@
       },
       "revId": "19a91c3ef9801e63095ffdc00ed6f8eeea25febf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "522f5ca8_b5c1df28",
+        "filename": "system/gd/rust/linux/client/src/editor.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-02T10:50:32Z",
+      "side": 0,
+      "message": "Yeah, I noticed that as well :P",
+      "parentUuid": "4217f9e0_639e9110",
+      "range": {
+        "startLine": 63,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 78
+      },
+      "revId": "19a91c3ef9801e63095ffdc00ed6f8eeea25febf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
