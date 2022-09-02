@@ -24,6 +24,11 @@ import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
+import android.bluetooth.le.BluetoothLeAdvertiser
+import android.bluetooth.le.AdvertiseSettings
+import android.bluetooth.le.AdvertiseData
+import android.bluetooth.le.AdvertiseCallback
+import android.bluetooth.le.AdvertisingSetParameters
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
@@ -326,5 +331,32 @@ class Host(private val context: Context, private val server: Server) : HostImplB
       bluetoothDevice = flow.first()
     }
     return bluetoothDevice
+  }
+
+  override fun enableConnectableMode(request: EnableConnectableModeRequest, responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      Log.i(TAG, "Starting advertising")
+      val advertiser = bluetoothAdapter.getBluetoothLeAdvertiser()
+      val advSettings = AdvertiseSettings.Builder().setOwnAddressType(AdvertisingSetParameters.ADDRESS_TYPE_PUBLIC).setConnectable(true).setTimeout(120000).build()
+      val advData = AdvertiseData.Builder().build()
+      val advCallback = object: AdvertiseCallback() {
+        override fun onStartFailure (errorCode: Int) {
+          Log.i(TAG, "Advertising failed: $errorCode")
+        }
+        override fun onStartSuccess (settingsInEffect: AdvertiseSettings) {
+          Log.i(TAG, "Advertising success")
+        }
+      }
+      advertiser.startAdvertising(advSettings, advData, advCallback)
+      Empty.getDefaultInstance()
+    }
+  }
+
+  override fun enterPasskey(request: PasskeyRequest, responseObserver: StreamObserver<Empty>) {
+    grpcUnary<Empty>(scope, responseObserver) {
+      val bluetoothDevice = request.address.toBluetoothDevice(bluetoothAdapter)
+      bluetoothDevice.setPin(request.passkey!!)
+      Empty.getDefaultInstance()
+    }
   }
 }
