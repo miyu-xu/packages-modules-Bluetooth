@@ -10,6 +10,7 @@ pub mod battery_manager;
 pub mod battery_provider_manager;
 pub mod bluetooth;
 pub mod bluetooth_adv;
+pub mod bluetooth_battery_service;
 pub mod bluetooth_gatt;
 pub mod bluetooth_media;
 pub mod callbacks;
@@ -23,6 +24,7 @@ use tokio::sync::mpsc::channel;
 use tokio::sync::mpsc::{Receiver, Sender};
 
 use crate::bluetooth::Bluetooth;
+use crate::bluetooth_battery_service::{BatteryService, GattBatteryCallbacks};
 use crate::bluetooth_gatt::BluetoothGatt;
 use crate::bluetooth_media::{BluetoothMedia, MediaActions};
 use crate::socket_manager::{BluetoothSocketManager, SocketActions};
@@ -74,6 +76,11 @@ pub enum Message {
 
     SocketManagerActions(SocketActions),
     SocketManagerCallbackDisconnected(u32),
+
+    // Battery related
+    BatteryServiceCallbackDisconnected(u32),
+    BatteryServiceCallbacks(GattBatteryCallbacks),
+    BatteryManagerCallbackDisconnected(u32),
 }
 
 /// Umbrella class for the Bluetooth stack.
@@ -90,6 +97,7 @@ impl Stack {
         mut rx: Receiver<Message>,
         bluetooth: Arc<Mutex<Box<Bluetooth>>>,
         bluetooth_gatt: Arc<Mutex<Box<BluetoothGatt>>>,
+        bluetooth_battery_service: Arc<Mutex<Box<BatteryService>>>,
         bluetooth_media: Arc<Mutex<Box<BluetoothMedia>>>,
         suspend: Arc<Mutex<Box<Suspend>>>,
         bluetooth_socketmgr: Arc<Mutex<Box<BluetoothSocketManager>>>,
@@ -189,6 +197,15 @@ impl Stack {
                 }
                 Message::SocketManagerCallbackDisconnected(id) => {
                     bluetooth_socketmgr.lock().unwrap().remove_callback(id);
+                }
+                Message::BatteryServiceCallbackDisconnected(id) => {
+                    debug!("Disconnected");
+                }
+                Message::BatteryServiceCallbacks(callback) => {
+                    bluetooth_battery_service.lock().unwrap().handle_callback(callback);
+                }
+                Message::BatteryManagerCallbackDisconnected(id) => {
+                    debug!("Disconnected");
                 }
             }
         }
