@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c20ce31a_6f138d7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2022-09-02T00:28:08Z",
+      "side": 1,
+      "message": "Note: Don\u0027t merge until we detach the instrumentation process in tradefed",
+      "revId": "6c34f0b3d2c556440229b3b8a6d3f93d7661c2a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
