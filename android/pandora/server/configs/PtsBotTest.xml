@@ -6,7 +6,7 @@
     </target_preparer>
 
     <target_preparer class="com.android.tradefed.targetprep.InstallApkSetup">
-        <option name="post-install-cmd" value="am instrument -e Debug false com.android.pandora/.Main" />
+        <option name="post-install-cmd" value="am instrument -e Debug false -w com.android.pandora/.Main" />
     </target_preparer>
 
     <target_preparer class="com.android.tradefed.targetprep.PythonVirtualenvPreparer">

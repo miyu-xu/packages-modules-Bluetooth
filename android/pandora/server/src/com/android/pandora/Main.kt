@@ -16,10 +16,12 @@
 
 package com.android.pandora
 
+import android.Manifest.permission.BLUETOOTH_PRIVILEGED
 import android.content.Context
 import android.os.Bundle
 import android.os.Debug
 import android.util.Log
+import androidx.test.InstrumentationRegistry
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import androidx.test.runner.MonitoringInstrumentation
 
@@ -46,6 +48,8 @@ class Main : MonitoringInstrumentation() {
     super.onStart()
 
     val context: Context = getApplicationContext()
+    val uiAutomation = InstrumentationRegistry.getInstrumentation().getUiAutomation()
+    uiAutomation.adoptShellPermissionIdentity(BLUETOOTH_PRIVILEGED)
 
     while (true) {
       Server(context).awaitTermination()
