@@ -160,6 +160,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5acbdd41_07538580",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1387,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-02T03:43:54Z",
+      "side": 1,
+      "message": "\u003e Why wouldn\u0027t Android want this?\n\nThis requires an additional GATT transaction.\nAndroid metrics seems not to use the peer\u0027s VID:PID info from LE devices for some reason.\n\nIn case of LE HID device, bthh actually already made the call, but I found it\u0027s quite difficult to wire things from there, so I end up calling this again instead. IIRC the information is used in UHID, but not in metrics.\n\n\u003e What is the gain from this?\n\nThis works not only for LE HID, but for all LE devices.",
+      "parentUuid": "032ea634_1ad593a4",
+      "range": {
+        "startLine": 1384,
+        "startChar": 0,
+        "endLine": 1387,
+        "endChar": 3
+      },
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "438efb8e_2d4a080a",
@@ -221,6 +245,30 @@
       "side": 1,
       "message": "Its kinda indirection right.  Yeah NULL would\u0027ve been acceptable there.  it was more of an example. Basically, you can streamline the logic and gate it on the conditional third parameter.  its fairly simple and you can set the variable based on the IFDEF which leaves less code behind an IFDEF and also opens up the possibility to use a sysprop instead.\n\nI guess yeah you could call it directly, but then you go back to the treehugger error 😊",
       "parentUuid": "15ebce22_8bf2c931",
+      "range": {
+        "startLine": 1390,
+        "startChar": 2,
+        "endLine": 1390,
+        "endChar": 34
+      },
+      "revId": "3a8fef6fc68eb57813043b17eedf8953b285618c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93453859_6319bfc7",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1390,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2022-09-02T03:43:54Z",
+      "side": 1,
+      "message": "Ah, that makes sense now. Thanks for the explanation!",
+      "parentUuid": "27186f15_b81c2403",
       "range": {
         "startLine": 1390,
         "startChar": 2,
