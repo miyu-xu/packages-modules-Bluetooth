@@ -56,23 +56,22 @@ impl Completer for BtHelper {
     ) -> Result<(usize, Vec<String>), ReadlineError> {
         let slice = &line[..pos];
         let candidates = self.get_candidates(slice.to_string().clone());
-        let mut completions = candidates
-            .iter()
-            .map(|c| {
-                if candidates.len() == 1 {
-                    // If only one candidate, Completer will replace the input by
-                    // the returned string. Return the complete string here to avoid
-                    // input being replaced by the suggested word.
-                    slice.to_string() + &c.suggest_word[c.matched_len..] + " "
-                } else {
-                    c.suggest_word.clone()
-                }
-            })
-            .collect::<Vec<String>>();
+        let mut completions =
+            candidates.iter().map(|c| c.suggest_word.clone() + " ").collect::<Vec<String>>();
 
         completions.sort();
 
-        Ok((0, completions))
+        // |start| points to the starting position of the current token
+        let mut start = 0;
+        for split in slice.split(" ") {
+            if start + split.len() + 1 > pos {
+                break;
+            }
+
+            start += split.len() + 1;
+        }
+
+        Ok((start, completions))
     }
 }
 
