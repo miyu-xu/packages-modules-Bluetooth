@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1082709b_ba0b81ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2022-09-02T22:09:52Z",
+      "side": 1,
+      "message": "Hi:\n\nI pushed a patch to fix a deadlock bug in Bluetooth framework. Could you\nplease spare some time to have a look at it?\n\nThanks!",
+      "revId": "e7ec8f296b03b9f24f508a1abf49c290971b5a48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
