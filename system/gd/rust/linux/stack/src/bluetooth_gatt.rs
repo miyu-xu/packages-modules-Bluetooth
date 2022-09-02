@@ -521,7 +521,7 @@ impl BluetoothGattService {
 /// Callback for GATT Client API.
 pub trait IBluetoothGattCallback: RPCProxy {
     /// When the `register_client` request is done.
-    fn on_client_registered(&self, status: GattStatus, client_id: i32);
+    fn on_client_registered(&self, status: GattStatus, client_id: i32) {}
 
     /// When there is a change in the state of a GATT client connection.
     fn on_client_connection_state(
@@ -530,13 +530,14 @@ pub trait IBluetoothGattCallback: RPCProxy {
         client_id: i32,
         connected: bool,
         addr: String,
-    );
+    ) {
+    }
 
     /// When there is a change of PHY.
-    fn on_phy_update(&self, addr: String, tx_phy: LePhy, rx_phy: LePhy, status: GattStatus);
+    fn on_phy_update(&self, addr: String, tx_phy: LePhy, rx_phy: LePhy, status: GattStatus) {}
 
     /// The completion of IBluetoothGatt::read_phy.
-    fn on_phy_read(&self, addr: String, tx_phy: LePhy, rx_phy: LePhy, status: GattStatus);
+    fn on_phy_read(&self, addr: String, tx_phy: LePhy, rx_phy: LePhy, status: GattStatus) {}
 
     /// When GATT db is available.
     fn on_search_complete(
@@ -544,31 +545,39 @@ pub trait IBluetoothGattCallback: RPCProxy {
         addr: String,
         services: Vec<BluetoothGattService>,
         status: GattStatus,
-    );
+    ) {
+    }
 
     /// The completion of IBluetoothGatt::read_characteristic.
-    fn on_characteristic_read(&self, addr: String, status: GattStatus, handle: i32, value: Vec<u8>);
+    fn on_characteristic_read(
+        &self,
+        addr: String,
+        status: GattStatus,
+        handle: i32,
+        value: Vec<u8>,
+    ) {
+    }
 
     /// The completion of IBluetoothGatt::write_characteristic.
-    fn on_characteristic_write(&self, addr: String, status: GattStatus, handle: i32);
+    fn on_characteristic_write(&self, addr: String, status: GattStatus, handle: i32) {}
 
     /// When a reliable write is completed.
-    fn on_execute_write(&self, addr: String, status: GattStatus);
+    fn on_execute_write(&self, addr: String, status: GattStatus) {}
 
     /// The completion of IBluetoothGatt::read_descriptor.
-    fn on_descriptor_read(&self, addr: String, status: GattStatus, handle: i32, value: Vec<u8>);
+    fn on_descriptor_read(&self, addr: String, status: GattStatus, handle: i32, value: Vec<u8>) {}
 
     /// The completion of IBluetoothGatt::write_descriptor.
-    fn on_descriptor_write(&self, addr: String, status: GattStatus, handle: i32);
+    fn on_descriptor_write(&self, addr: String, status: GattStatus, handle: i32) {}
 
     /// When notification or indication is received.
-    fn on_notify(&self, addr: String, handle: i32, value: Vec<u8>);
+    fn on_notify(&self, addr: String, handle: i32, value: Vec<u8>) {}
 
     /// The completion of IBluetoothGatt::read_remote_rssi.
-    fn on_read_remote_rssi(&self, addr: String, rssi: i32, status: GattStatus);
+    fn on_read_remote_rssi(&self, addr: String, rssi: i32, status: GattStatus) {}
 
     /// The completion of IBluetoothGatt::configure_mtu.
-    fn on_configure_mtu(&self, addr: String, mtu: i32, status: GattStatus);
+    fn on_configure_mtu(&self, addr: String, mtu: i32, status: GattStatus) {}
 
     /// When a connection parameter changes.
     fn on_connection_updated(
@@ -578,10 +587,11 @@ pub trait IBluetoothGattCallback: RPCProxy {
         latency: i32,
         timeout: i32,
         status: GattStatus,
-    );
+    ) {
+    }
 
     /// When there is an addition, removal, or change of a GATT service.
-    fn on_service_changed(&self, addr: String);
+    fn on_service_changed(&self, addr: String) {}
 }
 
 /// Interface for scanner callbacks to clients, passed to
@@ -717,7 +727,6 @@ impl BluetoothGatt {
     }
 
     pub fn init_profiles(&mut self, tx: Sender<Message>, adapter: Arc<Mutex<Box<Bluetooth>>>) {
-        println!("woot woot");
         self.gatt = Gatt::new(&self.intf.lock().unwrap());
         self.adapter = Some(adapter);
 
@@ -1160,9 +1169,17 @@ impl IBluetoothGatt for BluetoothGatt {
         callback: Box<dyn IBluetoothGattCallback + Send>,
         eatt_support: bool,
     ) {
-        let uuid = parse_uuid_string(app_uuid).unwrap();
+        let uuid = match parse_uuid_string(app_uuid) {
+            Some(id) => id,
+            None => return,
+        };
         self.context_map.add(&uuid.uu, callback);
-        self.gatt.as_ref().unwrap().client.register_client(&uuid, eatt_support);
+        let gatt_status = self
+            .gatt
+            .as_ref()
+            .expect("GATT has not been initialized")
+            .client
+            .register_client(&uuid, eatt_support);
     }
 
     fn unregister_client(&mut self, client_id: i32) {
