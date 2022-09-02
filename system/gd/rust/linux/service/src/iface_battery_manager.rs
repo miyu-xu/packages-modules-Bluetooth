@@ -38,7 +38,7 @@ impl IBatteryManager for IBatteryManagerDBus {
         &mut self,
         remote_address: String,
         battery_manager_callback: Box<dyn IBatteryManagerCallback + Send>,
-    ) -> i32 {
+    ) -> u32 {
         dbus_generated!()
     }
 
