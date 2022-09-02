@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "670ae2ef_7da8dbc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2022-09-02T06:57:04Z",
+      "side": 1,
+      "message": "Hi, just need an owner to approve this.\nThanks",
+      "revId": "63187b635be73b53bc7c0cb8a40f5d0b94c6cb18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
