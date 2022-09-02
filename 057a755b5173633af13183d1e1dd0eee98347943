@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0afd8733_a2b23c73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2022-09-02T07:00:47Z",
+      "side": 1,
+      "message": "This patch is very helpful! Many thanks!\nSome change about obsolete code is not necessary.\nI uploaded patchset 6 to remove them and fix some error about command builder.\nThe patch work as expected.\nMany thanks!",
+      "revId": "057a755b5173633af13183d1e1dd0eee98347943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
